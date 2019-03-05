@@ -7,7 +7,7 @@ Constructing a Runtime!
 
 The `construct_runtime!` macro is where you declare all the runtime modules you would like to include into your blockchain's runtime. This includes any modules from the Substrate Runtime Module Library (SRML) or even custom modules you may have written.
 
-Here is an example of a `construct_runtime!` definition from the [substrate-node-template](https://github.com/paritytech/substrate-node-template/blob/master/runtime/src/lib.rs):
+Here is an example of a `construct_runtime!` definition from the [substrate-node-template](https://github.com/paritytech/substrate/blob/master/node-template/runtime/src/lib.rs):
 
 ```rust
 construct_runtime!(
