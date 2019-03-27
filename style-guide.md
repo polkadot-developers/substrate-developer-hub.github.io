@@ -126,6 +126,9 @@ This problem can arise when talking about people because English does not have a
 
 There are a few ways to solve this:
 
+> **Remove the pronoun (clearest)**</br>
+> When the user submits a transaction, the user will need to sign the message.
+> 
 > **"He or she"**</br>
 > When the user submits a transaction, he or she will need to sign the message.
 > 
