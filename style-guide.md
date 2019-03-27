@@ -197,6 +197,14 @@ When listing macros in a bulleted or numbered list, do not put the exclamation m
 
 When including code examples in your documentation, they must comply with the [style guide](https://wiki.parity.io/Substrate-Style-Guide).
 
+### Links
+
+Links to other documents should be relative paths to avoid broken local paths or outdated http links.
+
+> ```
+> [enum](./enum.Call.html)
+> ```
+
 ### Markdown Lists
 
 Lists in markdown should have one empty line before the first item and one empty line after the last item. There should not be empty lines between items. This will ensure consistent spacing when rendered.
