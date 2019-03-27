@@ -138,6 +138,18 @@ There are a few ways to solve this:
 > **Change the subject**</br>
 > When users submit a transaction, they will need to sign the message.
 
+### Setup vs. Set Up (Same for Lookup)
+
+"Setup" and "lookup" can be used as adjectives or nouns.
+
+> Adjective: The lookup mechanism to get account ID.
+> 
+> Noun: Create an intermediate setup.
+
+"Set up" and "look up" are verbs.
+
+> Use this function to look up the next available index.
+
 ### e.g. and i.e.
 
 E.g. means "for example" and is used to give a (usually non-exhaustive) example.
