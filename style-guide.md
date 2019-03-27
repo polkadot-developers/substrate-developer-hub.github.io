@@ -29,7 +29,7 @@ Copy/pasting existing documentation and code comments is not a productive way to
 
 ### When and How to Use a List
 
-If you have a list of items that is long (>3) or contains long or complex items, that list belongs in bullet points and not a paragraph.
+If you have a list of items that is long (>3) or contains long or complex items, that list belongs in bullet points and not in a paragraph.
 
 This list is too long:
 
@@ -39,9 +39,9 @@ Not only is this list long, it includes compound list items ("retrieving total b
 
 > The balances module handles:
 > 
-> - setting and retrieval of free balance
-> - retrieving total balance, reserve and unreserve balance
-> - repatriating a reserved balance to a beneficiary account that exists
+> - Setting and retrieval of free balance.
+> - Retrieving total balance, reserve and unreserve balance.
+> - Repatriating a reserved balance to a beneficiary account that exists.
 > - etc.
 
 If your list contains complete sentences, each one should start with a capital letter and end with a period. A simple rule is: Does each item contain more than one part of speech? If yes, make them sentences.
@@ -126,13 +126,13 @@ This problem can arise when talking about people because English does not have a
 
 There are a few ways to solve this:
 
-> **"He or she"**
+> **"He or she"**</br>
 > When the user submits a transaction, he or she will need to sign the message.
 > 
-> **Pick a gender**
+> **Pick a gender**</br>
 > When the user submits a transaction, she will need to sign the message.
 > 
-> **Change the subject**
+> **Change the subject**</br>
 > When users submit a transaction, they will need to sign the message.
 
 ### e.g. and i.e.
