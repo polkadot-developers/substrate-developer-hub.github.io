@@ -1,15 +1,22 @@
 Documentation Style Guide
 ===
 
+Our software handles mission-critical systems and the documentation must be clear, precise, and concise.
+
+- Clear: You explain concepts without jargon.
+- Precise: Your statements cannot be interpreted in any way other than your intention.
+- Concise: Your writing is free of superfluous detail. Every word you write is necessary.
+
+The goal of this guide is to help you achieve these qualities. A consistent style adds to clarity and precision so that users do not interpret different styles as having different meanings.
+
 When you have a question that is not covered here, refer to the AP style guide. For example, if you want to know if you should spell out "versus" or use "vs.", "vs", or "v.", then search for "AP style versus" and it will [tell you what to do](https://writingexplained.org/ap-style/ap-style-versus).
 
 ## Clarity and Consistency
 
 ### Understand before you write
 
-George Orwell:
-
 > “Probably it is better to put off using words as long as possible and get one’s meaning as clear as one can through pictures and sensations. Afterward one can choose—not simply accept—the phrases that will best cover the meaning.”
+> \- George Orwell
 
 Before writing documentation - at any level from reference to blog post - you should have a clear understanding of the topic. You should be able to explain the topic in plain language without jargon or metaphor.
 
