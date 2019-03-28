@@ -11,7 +11,18 @@ The goal of this guide is to help you achieve these qualities. A consistent styl
 
 When you have a question that is not covered here, refer to the AP style guide. For example, if you want to know if you should spell out "versus" or use "vs.", "vs", or "v.", then search for "AP style versus" and it will [tell you what to do](https://writingexplained.org/ap-style/ap-style-versus).
 
-## Clarity and Consistency
+## Brevity
+
+Before starting to write anything, you should answer the following (example for SRML reference docs):
+
+- Reader: (A runtime developer)
+- Objective: (The reader will understand the functionality, appropriate usage, and warnings associated with this module.)
+- Action: (The reader will implement the appropriate traits and use the functions safely for his or her application.)
+- Impression: (Parity writes clear and useful documentation.)
+
+For every word and sentence that you write, you should ask yourself if it does productive work in achieving the objective, action, and impression on the target reader. If it does not, you need to change it or remove it.
+
+## Clarity
 
 ### Understand before you write
 
@@ -90,13 +101,13 @@ Statements like, "This function is usually used for..." make assumptions about w
 
 ### That vs. Which
 
-"That" and "which" are often used interchangeably in conversational English, but they have different meanings. That is restrictive: you cannot remove it without changing the meaning of the sentence.
+"That" and "which" are often used interchangeably in conversational English, but they have different meanings. "That" is restrictive: you cannot remove it without changing the meaning of the sentence.
 
 > Dispatchable functions that do not have an `origin` parameter in the function signature can only be called by `Root`.
 
 The clause "that do not have an `origin` parameter in the function signature" changes the meaning of the sentence. The sentence would not be true if you removed it.
 
-Which precedes a nonrestrictive clause. Removing it does not change the meaning of the sentence. A nonrestrictive clause is extra information.
+"Which" precedes a nonrestrictive clause. Removing it does not change the meaning of the sentence. A nonrestrictive clause is extra information.
 
 > Dispatchable functions, which are listed in the `Call` enum, always include an `origin` parameter after macro expansion.
 
@@ -138,7 +149,7 @@ There are a few ways to solve this:
 > **Change the subject**</br>
 > When users submit a transaction, they will need to sign the message.
 
-### Setup vs. Set Up (Same for Lookup)
+### Setup vs. Set Up (Same for Lookup vs. Look Up)
 
 "Setup" and "lookup" can be used as adjectives or nouns.
 
