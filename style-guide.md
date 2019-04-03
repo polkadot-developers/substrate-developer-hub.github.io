@@ -179,9 +179,9 @@ When you have a question that is not covered here, your first reference should b
 
 ### SRML Module Names
 
-SRML modules should not be capitalized and should not be in \`backticks\`.
+SRML modules should be capitalized and should not be in \`backticks\`.
 
-> The following examples show how to use the balances module in your custom module.
+> The following examples show how to use the Balances module in your custom module.
 
 When referring to the crate name, use \`backticks\`, e.g. `srml-balances`.
 
