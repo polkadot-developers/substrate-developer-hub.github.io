@@ -165,7 +165,7 @@ There are a few ways to solve this:
 
 E.g. means "for example" and is used to give a (usually non-exhaustive) example.
 
-> Substrate includes several modules (e.g., balances, consensus, assets) to help you construct your runtime.
+> Substrate includes several modules (e.g., Balances, Consensus, Assets) to help you construct your runtime.
 
 I.e. means "in other words" and is used for further clarification.
 
