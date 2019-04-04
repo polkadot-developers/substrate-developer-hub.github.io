@@ -177,27 +177,27 @@ E.g. and i.e. are abbreviations and should always have a period after each lette
 
 When you have a question that is not covered here, your first reference should be the Rust documentation. The Rust Book is also a great resource for style because it discusses several expressions in Rust, so you will almost always be able to find an example.
 
-### SRML Module Names
+### When to Use `Preformatted Text`
 
-SRML modules should be capitalized and should not be in \`backticks\`.
+English and programming languages have unique vocabularies and grammars. When we want to be clear that certain information is from a programming language, we use \`backticks\` to generate `preformatted text`.
 
-> The following examples show how to use the Balances module in your custom module.
-
-When referring to the crate name, use \`backticks\`, e.g. `srml-balances`.
-
-### Types, Traits, Enums, and Structs
-
-When mentioning specific types, traits, enums (and variants), and structs, they should be in \`backticks\`.
+Identifiers - e.g. variables, functions, types, traits, enums (and variants), and structs - are grammatical elements of a programming language and should be `preformatted`.
 
 > The `Event` type is also generated as a simpler type definition for the `RawEvent` type.
 
+Names of things - e.g. SRML modules, Substrate, Substrate Node - are proper nouns and should be capitalized.
+
+> The following examples show how to use the Balances module in your custom module.
+
+A crate name, however, is a Rust identifier, e.g. `srml-balances`.
+
 ### Functions
 
-When mentioning a specific function, it should be in \`backticks\`. It should not include `()`.
+When mentioning a specific function, it should be `preformatted`. It should not include `()`.
 
 > You can execute these privileged functions by calling `sudo` with the sudo key account.
 
-When listing functions in a bulleted or numbered list, you do not need \`backticks\` if every item is strictly a function.
+When listing functions in a bulleted or numbered list, using `preformatted text` is optional if every item is strictly a function.
 
 > Functions in the `LockableCurrency` trait:
 > 
@@ -207,11 +207,11 @@ When listing functions in a bulleted or numbered list, you do not need \`backtic
 
 ### Macros
 
-When mentioning a specific macro in a sentence, it should be in \`backticks\` and include an exclamation mark.
+When mentioning a specific macro in a sentence, it should be `preformatted` and include an exclamation mark.
 
 > At compile time, the `decl_event!` macro expands to generate the `RawEvent` enum for each module.
 
-When listing macros in a bulleted or numbered list, do not put the exclamation mark. You do not need \`backticks\` if every item is strictly a macro.
+When listing macros in a bulleted or numbered list, do not put the exclamation mark. Using `preformatted text` is optional if every item is strictly a macro.
 
 > Common macros you will see in the SRML:
 > 
@@ -225,7 +225,7 @@ When including code examples in your documentation, they must comply with the [s
 
 ### Links
 
-Links to other documents should be relative paths to avoid broken local paths or outdated http links.
+Links to other documents should be relative paths whenever possible to avoid broken local paths or outdated http links.
 
 > ```
 > [enum](./enum.Call.html)
