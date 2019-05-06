@@ -1,6 +1,5 @@
 ---
 title: "Installing Substrate"
-excerpt: "This page will help you get started with Substrate. You'll be up and running in a jiffy!"
 ---
 [block:api-header]
 {

@@ -1,6 +1,5 @@
 ---
 title: "Extrinsics"
-excerpt: "What is an Extrinsic, anyway?"
 ---
 Extrinsics in Substrate are pieces of information from "the outside world" (i.e. not from within the state of the chain itself) that are contained in the blocks of the chain. You might think "ahh, that means *transactions*": in fact, no. Extrinsics fall into two broad categories of which only one is *transactions*. The other type are known as inherent extrinsics or *inherents*.
 [block:api-header]

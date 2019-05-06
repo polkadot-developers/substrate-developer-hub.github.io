@@ -1,6 +1,5 @@
 ---
 title: "Substrate Runtime Recipes"
-excerpt: ""
 ---
 [block:callout]
 {

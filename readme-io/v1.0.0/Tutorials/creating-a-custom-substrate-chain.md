@@ -1,6 +1,5 @@
 ---
 title: "Creating a Custom Substrate chain"
-excerpt: ""
 ---
 [block:callout]
 {

@@ -1,6 +1,5 @@
 ---
 title: "Transaction Lifecycle"
-excerpt: ""
 ---
 Substrate allows developers to make a custom runtime - or application logic - that can put any kind of information in blocks. Although some primitive functionality is provided in Substrate Core and the SRML, the chain developer has responsibility for validating the information that goes into blocks before it is finalized by the network.
 

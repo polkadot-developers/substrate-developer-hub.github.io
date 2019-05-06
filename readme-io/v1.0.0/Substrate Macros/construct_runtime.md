@@ -1,6 +1,5 @@
 ---
 title: "construct_runtime!"
-excerpt: ""
 ---
 Constructing a Runtime!
 ===

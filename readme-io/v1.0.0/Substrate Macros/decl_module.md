@@ -1,6 +1,5 @@
 ---
 title: "decl_module!"
-excerpt: ""
 ---
 Declaring a Module!
 ===
