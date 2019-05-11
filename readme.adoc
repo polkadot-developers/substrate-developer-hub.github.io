@@ -1,3 +1,0 @@
-= Substrate Developers' Hub
-
-This repository houses https://github.com/paritytech/substrate[Substrate] documentation, tutorials and other developer resources.
