@@ -5,7 +5,7 @@ title: "Feedback"
 
 We want to allow new users to quickly learn and use the skills required to build on Substrate. To do that, we need your feedback and support. If you find issues with our documentation, have suggestions, or any kind of feedback about your developer experiences using Substrate, **we would love to hear it**.
 
-The best way to talk to us and the rest of the Substrate development community is on the [**Substrate Technical**](https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org) channel on Riot:
+Join the Substrate development community is on the [**Substrate Technical**](https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org) channel on Riot:
 
 [![An image of the Substrate Technical Channel on Riot](https://files.readme.io/077dc52-substrate-technical-riot-2.png)](
 https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org)
