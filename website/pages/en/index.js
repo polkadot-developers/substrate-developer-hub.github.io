@@ -15,14 +15,14 @@ const GridBlock = CompLibrary.GridBlock;
 
 class HomeSplash extends React.Component {
   render() {
-    const {siteConfig, language = ''} = this.props;
-    const {baseUrl, docsUrl} = siteConfig;
+    const { siteConfig, language = '' } = this.props;
+    const { baseUrl, docsUrl } = siteConfig;
     const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
     const langPart = `${language ? `${language}/` : ''}`;
     const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
 
     const SplashContainer = props => (
-      <div className="homeContainer heroImage">
+      <div className="homeContainer heroImage heroPadding">
         <div className="homeSplashFade">
           <div className="wrapper homeWrapper">{props.children}</div>
         </div>
@@ -36,10 +36,10 @@ class HomeSplash extends React.Component {
     );
 
     const ProjectTitle = () => (
-      <h2 className="projectTitle">
-        {siteConfig.title}
-        <small>{siteConfig.tagline}</small>
-      </h2>
+      <div className="container">
+        <h1 className="projectTitle">
+          {siteConfig.title}</h1>
+        <p className="lead text-muted">{siteConfig.tagline}</p></div>
     );
 
     const PromoSection = props => (
@@ -52,7 +52,7 @@ class HomeSplash extends React.Component {
 
     const Button = props => (
       <div className="pluginWrapper buttonWrapper">
-        <a className="button" href={props.href} target={props.target}>
+        <a className={`btn ${props.className}`} href={props.href} target={props.target}>
           {props.children}
         </a>
       </div>
@@ -63,8 +63,8 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
           <PromoSection>
-            <Button href="#try">Get Started</Button>
-            <Button href={docUrl('doc1.html')}>Try a Tutorial</Button>
+            <Button className="btn-secondary primary-color" href="#try">Get Started</Button>
+            <Button className="btn-secondary" href={docUrl('doc1.html')}>Try a Tutorial</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -74,8 +74,14 @@ class HomeSplash extends React.Component {
 
 class Index extends React.Component {
   render() {
-    const {config: siteConfig, language = ''} = this.props;
-    const {baseUrl} = siteConfig;
+    const { config: siteConfig, language = '' } = this.props;
+    const { baseUrl } = siteConfig;
+
+    const Button = props => (
+        <a className={`btn mr-1 ${props.className}`} href={props.href} target={props.target}>
+          {props.children}
+        </a>
+    );
 
     const Block = props => (
       <Container
@@ -93,7 +99,7 @@ class Index extends React.Component {
     const FeatureCallout = () => (
       <div
         className="productShowcaseSection paddingBottom"
-        style={{textAlign: 'center'}}>
+        style={{ textAlign: 'center' }}>
         <h2>Feature Callout</h2>
         <MarkdownBlock>These are features of this project</MarkdownBlock>
       </div>
@@ -143,23 +149,53 @@ class Index extends React.Component {
       </Block>
     );
 
+    const Card = props => (
+      <div className="col-md-4">
+        <div className="card mb-4 box-shadow h-100">
+          <div className="card-body">
+            <h5 className="card-title">{props.title}</h5>
+            <p className="card-text">{props.children}</p>
+          </div>
+          <div className="card-footer">
+            {props.buttons.map((button, index) => {
+              return (
+                <Button
+                  href={button.link}
+                  className={
+                    `btn-secondary` + (index == 0 ? ` primary-color` : ``)
+                  }>{button.name}</Button>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    );
+
     const Features = () => (
-      <Block layout="fourColumn">
-        {[
-          {
-            content: 'This is the content of my feature',
-            image: `${baseUrl}img/undraw_react.svg`,
-            imageAlign: 'top',
-            title: 'Feature One',
-          },
-          {
-            content: 'The content of my second feature',
-            image: `${baseUrl}img/undraw_operating_system.svg`,
-            imageAlign: 'top',
-            title: 'Feature Two',
-          },
-        ]}
-      </Block>
+      <div className="container">
+        <div className="row">
+          <Card
+            title="Documentation"
+            buttons={[
+              {"name":"High Level Docs", "link":"https://docs.substrate.dev/"},
+              {"name":"Reference Docs", "link":"https://crates.parity.io/"}
+            ]}>Substrate provides both high level documentation which you can find here and reference level documentation as Rust docs.
+          </Card>
+          <Card
+            title="Join the Community"
+            buttons={[
+              {"name":"Join the chat!", "link":"https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"},
+              {"name":"StackOverflow", "link":"https://stackoverflow.com/questions/tagged/substrate"}
+            ]}>Substrate has a rapidly growing, friendly, and technical community. Ask questions and work with others who are building in the space.
+          </Card>
+          <Card
+            title="Tutorials"
+            buttons={[
+              {"name":"Tutorial Catalog", "link":"https://substrate-developer-hub.github.io/tutorials/"}
+            ]}>Substrate has a range of tutorials to take you from 0-60 in a short amount of time. Learn about runtime development, building smart contracts, setting up a network, and more!
+          </Card>
+        </div>
+      </div>
     );
 
     const Showcase = () => {

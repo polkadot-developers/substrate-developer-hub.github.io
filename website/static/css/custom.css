@@ -10,7 +10,22 @@
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; /* Resize the background image to cover the entire container */
-  }
+}
+
+.heroPadding {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+.primary-color {
+    background-color: $primaryColor;
+    border-color: $primaryColor;
+}
+
+.projectTitle {
+    font-weight: 300;
+    color: #ffffff;
+}
 
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
