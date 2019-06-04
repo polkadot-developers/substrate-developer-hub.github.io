@@ -3,7 +3,7 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "Replace this landing page with Eric's design",
+    "tagline": "The place for blockchain innovators.",
     "docs": {
       "contact/feedback": {
         "title": "Feedback"
@@ -119,7 +119,10 @@
     },
     "links": {
       "Docs": "Docs",
-      "Help": "Help"
+      "Tutorials": "Tutorials",
+      "Blog": "Blog",
+      "Community": "Community",
+      "GitHub": "GitHub"
     },
     "categories": {
       "Home": "Home",

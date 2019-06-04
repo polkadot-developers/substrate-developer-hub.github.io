@@ -1,5 +1,17 @@
 /* your custom css */
 
+.fixedHeaderContainer {
+    background: $secondaryColor;
+}
+
+.heroImage {
+    background-image: url("/docs/img/bg-dark-1.png"); /* The image used */
+    background-color: $secondaryColor; /* Used if the image is unavailable */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+  }
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 

@@ -21,8 +21,8 @@ const users = [
 ];
 
 const siteConfig = {
-  title: 'Substrate Developers\' Hub', // Title for your website.
-  tagline: 'Replace this landing page with Eric\'s design',
+  title: 'Substrate Developer Hub', // Title for your website.
+  tagline: 'The place for blockchain innovators.',
 
   url: 'https://substrate-developer-hub.github.io/', // Your website URL
   baseUrl: '/docs/', // Base URL for your project */
@@ -40,21 +40,23 @@ const siteConfig = {
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     {page: 'docs', label: 'Docs'},
-    {page: 'help', label: 'Help'},
-    //{blog: true, label: 'Blog'},
+    {page: 'tutorials', label: 'Tutorials'},
+    {href: 'https://www.parity.io/blog/', label: 'Blog'},
+    {page: 'community', label: 'Community'},
+    {href: 'https://github.com/substrate-developer-hub/', label: 'GitHub'},
   ],
 
   // If you have users set above, you add it here:
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/favicon.ico',
-  footerIcon: 'img/favicon.ico',
-  favicon: 'img/favicon.ico',
+  headerIcon: 'img/Substrate-logo.svg',
+  footerIcon: 'img/Substrate-logo.svg',
+  favicon: 'img/Substrate-logo.svg',
 
   /* Colors for website */
   colors: {
-    primaryColor: '#565659',
+    primaryColor: '#ff1864',
     secondaryColor: '#3c3c3e',
   },
 
@@ -73,7 +75,7 @@ const siteConfig = {
   */
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © ${new Date().getFullYear()} Your Name or Your Company Name`,
+  copyright: `Copyright © ${new Date().getFullYear()} Parity Technologies`,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
