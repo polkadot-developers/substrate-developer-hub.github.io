@@ -93,7 +93,7 @@ class WhoIndex extends React.Component {
           language={language}
           title="Tell us about you!"
           tagline="Let us help you dive into Substrate."
-          buttons={[{ name: "Not Sure?", link: "./not-sure/" }]}
+          buttons={[{ name: "Not Sure?", href: "./not-sure/" }]}
           padding={0}
         />
         <div className="mainContainer">

@@ -49,7 +49,7 @@ class HomeSplash extends React.Component {
                   return (
                     <Button
                       variant="secondary"
-                      href={button.link}
+                      href={button.href}
                       className={`mr-2` + (index == 0 ? ` primary-color` : ``)}
                     >
                       {button.name}

@@ -42,7 +42,7 @@ const siteConfig = {
     {page: 'docs', label: 'Docs'},
     {page: 'tutorials', label: 'Tutorials'},
     {href: 'https://www.parity.io/blog/', label: 'Blog'},
-    {page: 'community', label: 'Community'},
+    {page: 'community/support', label: 'Community'},
     {href: 'https://github.com/substrate-developer-hub/', label: 'GitHub'},
   ],
 

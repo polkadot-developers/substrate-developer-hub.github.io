@@ -148,8 +148,8 @@ class Index extends React.Component {
           title={siteConfig.title}
           tagline={siteConfig.tagline}
           buttons={[
-            { "name": "Get Started", "link": "./who/" },
-            { "name": "Try a Tutorial", "link": "./tutorials/" }
+            { name: "Get Started", href: "./who/" },
+            { name: "Try a Tutorial", href: "./tutorials/" }
           ]}
           padding={5}
         />

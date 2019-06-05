@@ -26,10 +26,10 @@ class NotSure extends React.Component {
           <iframe
             src="https://www.youtube-nocookie.com/embed/X40Duo7kWOI"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen="true"
+            allowFullScreen={true}
             width="560"
             height="315"
-            frameborder="0"
+            frameBorder="0"
           />
         </Timespot>
         <Timespot>
@@ -37,10 +37,10 @@ class NotSure extends React.Component {
           <iframe
             src="https://www.youtube-nocookie.com/embed/kpUO8g_Ig0A?start=0&amp;end=2452"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen="true"
+            allowFullScreen={true}
             width="560"
             height="315"
-            frameborder="0"
+            frameBorder="0"
           />
         </Timespot>
         <Timespot>
@@ -48,10 +48,10 @@ class NotSure extends React.Component {
           <iframe
             src="https://www.youtube-nocookie.com/embed/-EJHu0u6hT8?start=0&amp;end=1059"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen="true"
+            allowFullScreen={true}
             width="560"
             height="315"
-            frameborder="0"
+            frameBorder="0"
           />
         </Timespot>
         <Timespot>
