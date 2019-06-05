@@ -53,8 +53,8 @@ class Architect extends React.Component {
                 <HomeSplash
                     siteConfig={siteConfig}
                     language={language}
-                    title="Runtime Developer"
-                    tagline="So you wanna build blockchains..."
+                    title="Architect"
+                    tagline="So you wanna change the future..."
                     padding={0}
                 />
                 <div className="mainContainer">

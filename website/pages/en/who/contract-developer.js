@@ -93,8 +93,8 @@ class ContractDeveloper extends React.Component {
                 <HomeSplash
                     siteConfig={siteConfig}
                     language={language}
-                    title="Runtime Developer"
-                    tagline="So you wanna build blockchains..."
+                    title="Contract Developer"
+                    tagline="So you wanna build Wasm smart contracts..."
                     padding={0}
                 />
                 <div className="mainContainer">

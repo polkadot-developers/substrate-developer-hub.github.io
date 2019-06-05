@@ -59,8 +59,8 @@ class NotSure extends React.Component {
                 <HomeSplash
                     siteConfig={siteConfig}
                     language={language}
-                    title="Runtime Developer"
-                    tagline="So you wanna build blockchains..."
+                    title="Learn About Substrate"
+                    tagline="Watch these videos to get up to speed!"
                     padding={0}
                 />
                 <div className="mainContainer">
