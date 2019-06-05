@@ -80,6 +80,7 @@ const siteConfig = {
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
     theme: 'default',
+    defaultLang: 'rust',
   },
 
   // Add custom scripts here that would be placed in <script> tags.
