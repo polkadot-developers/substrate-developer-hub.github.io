@@ -34,7 +34,7 @@ class WhoIndex extends React.Component {
           </Card.Body>
           <Card.Footer>
             <Button
-              variant="primary"
+              variant="secondary"
               href="./runtime-developer/"
               className="mr-1 primary-color"
             >
@@ -54,7 +54,7 @@ class WhoIndex extends React.Component {
           </Card.Body>
           <Card.Footer>
             <Button
-              variant="primary"
+              variant="secondary"
               href="./contract-developer/"
               className="mr-1 primary-color"
             >
@@ -75,7 +75,7 @@ class WhoIndex extends React.Component {
           </Card.Body>
           <Card.Footer>
             <Button
-              variant="primary"
+              variant="secondary"
               href="./architect/"
               className="mr-1 primary-color"
             >

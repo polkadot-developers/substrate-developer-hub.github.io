@@ -34,21 +34,21 @@ class RuntimeDeveloper extends React.Component {
             you at any point during your journey.
           </p>
           <Button
-            variant="primary"
+            variant="secondary"
             href="https://docs.substrate.dev/docs/"
             className="mr-1 primary-color"
           >
             High Level Docs
           </Button>
           <Button
-            variant="primary"
+            variant="secondary"
             href="https://stackoverflow.com/questions/tagged/substrate"
             className="mr-1 primary-color"
           >
             StackOverflow
           </Button>
           <Button
-            variant="primary"
+            variant="secondary"
             href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"
             className="mr-1 primary-color"
           >
@@ -64,7 +64,7 @@ class RuntimeDeveloper extends React.Component {
             for you.
           </p>
           <Button
-            variant="primary"
+            variant="secondary"
             href="https://docs.substrate.dev/docs/getting-started"
             className="mr-1 primary-color"
           >
@@ -80,7 +80,7 @@ class RuntimeDeveloper extends React.Component {
             chain, and even building a user interface!
           </p>
           <Button
-            variant="primary"
+            variant="secondary"
             href="https://substrate-developer-hub.github.io/substrate-collectables-workshop/"
             className="mr-1 primary-color"
           >
@@ -99,7 +99,7 @@ class RuntimeDeveloper extends React.Component {
             patterns found within them.
           </p>
           <Button
-            variant="primary"
+            variant="secondary"
             href="https://crates.parity.io/"
             className="mr-1 primary-color"
           >
@@ -114,7 +114,7 @@ class RuntimeDeveloper extends React.Component {
             equipped you with on this journey.
           </p>
           <Button
-            variant="primary"
+            variant="secondary"
             href="../../"
             className="mr-1 primary-color"
             >

@@ -25,21 +25,21 @@ class Architect extends React.Component {
           <h5>Under Construction</h5>
           <p>Someone will fill out this page...</p>
           <Button
-            variant="primary"
+            variant="secondary"
             href="https://docs.substrate.dev/docs/"
             className="mr-1 primary-color"
           >
             High Level Docs
           </Button>
           <Button
-            variant="primary"
+            variant="secondary"
             href="https://stackoverflow.com/questions/tagged/substrate"
             className="mr-1 primary-color"
           >
             StackOverflow
           </Button>
           <Button
-            variant="primary"
+            variant="secondary"
             href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"
             className="mr-1 primary-color"
           >
@@ -49,7 +49,7 @@ class Architect extends React.Component {
         <Timespot>
           <h5>Restart your journey through the Substrate Developer Hub</h5>
           <Button
-            variant="primary"
+            variant="secondary"
             href="../../"
             className="mr-1 primary-color"
           >

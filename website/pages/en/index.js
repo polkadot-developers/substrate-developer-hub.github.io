@@ -49,7 +49,7 @@ class Index extends React.Component {
               </Card.Text>
             </Card.Body>
             <Card.Footer>
-              <Button variant="primary" href="./docs/" className="mr-1 primary-color">High Level Docs</Button>
+              <Button variant="secondary" href="./docs/" className="mr-1 primary-color">High Level Docs</Button>
               <Button variant="secondary" href="https://crates.parity.io" className="mr-1">Reference Docs</Button>
             </Card.Footer>
           </Card>
@@ -61,7 +61,7 @@ class Index extends React.Component {
               </Card.Text>
             </Card.Body>
             <Card.Footer>
-              <Button variant="primary" href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org" className="mr-1 primary-color">Join the Chat!</Button>
+              <Button variant="secondary" href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org" className="mr-1 primary-color">Join the Chat!</Button>
               <Button variant="secondary" href="https://stackoverflow.com/questions/tagged/substrate" className="mr-1">StackOverflow</Button>
             </Card.Footer>
           </Card>
@@ -73,7 +73,7 @@ class Index extends React.Component {
               </Card.Text>
             </Card.Body>
             <Card.Footer>
-              <Button variant="primary" href="https://substrate-developer-hub.github.io/sandbox/tutorials/" className="mr-1 primary-color">Tutorial Catalog</Button>
+              <Button variant="secondary" href="https://substrate-developer-hub.github.io/sandbox/tutorials/" className="mr-1 primary-color">Tutorial Catalog</Button>
             </Card.Footer>
           </Card>
         </CardDeck>

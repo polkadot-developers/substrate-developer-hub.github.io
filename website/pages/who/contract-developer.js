@@ -40,14 +40,14 @@ class ContractDeveloper extends React.Component {
             so you can get the help you need.
           </p>
           <Button
-            variant="primary"
+            variant="secondary"
             href="https://stackoverflow.com/questions/tagged/ink"
             className="mr-1 primary-color"
           >
             StackOverflow
           </Button>
           <Button
-            variant="primary"
+            variant="secondary"
             href="https://riot.im/app/#/room/!tYUCYdSvSYPMjWNDDD:matrix.parity.io"
             className="mr-1 primary-color"
           >
@@ -65,7 +65,7 @@ class ContractDeveloper extends React.Component {
             contract in real time!
           </p>
           <Button
-            variant="primary"
+            variant="secondary"
             href="https://github.com/paritytech/ink/wiki/Deploying-Your-First-Contract"
             className="mr-1 primary-color"
           >
@@ -80,7 +80,7 @@ class ContractDeveloper extends React.Component {
             the language used for building smart contracts on Ethereum.
           </p>
           <Button
-            variant="primary"
+            variant="secondary"
             href="https://github.com/paritytech/ink/wiki/Writing-Your-First-Contract"
             className="mr-1 primary-color"
           >
@@ -96,7 +96,7 @@ class ContractDeveloper extends React.Component {
             token.
           </p>
           <Button
-            variant="primary"
+            variant="secondary"
             href="https://substrate-developer-hub.github.io/substrate-contracts-workshop"
             className="mr-1 primary-color"
           >
@@ -112,7 +112,7 @@ class ContractDeveloper extends React.Component {
             journey and share your experiences!
           </p>
           <Button
-            variant="primary"
+            variant="secondary"
             href="../../"
             className="mr-1 primary-color"
           >

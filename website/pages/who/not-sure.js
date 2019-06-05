@@ -57,7 +57,7 @@ class NotSure extends React.Component {
         <Timespot>
           <h5>Restart your journey through the Substrate Developer Hub</h5>
           <Button
-            variant="primary"
+            variant="secondary"
             href="../../"
             className="mr-1 primary-color"
             >
