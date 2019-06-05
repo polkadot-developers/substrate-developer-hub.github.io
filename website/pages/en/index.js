@@ -15,16 +15,17 @@ const GridBlock = CompLibrary.GridBlock;
 
 const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash.js`);
 
+const BSContainer = require('../../../../react-bootstrap/Container.js')
+const Button = require('../../../../react-bootstrap/Button.js')
+const Card = require('../../../../react-bootstrap/Card.js')
+const CardDeck = require('../../../../react-bootstrap/CardDeck.js')
+
+
+
 class Index extends React.Component {
   render() {
     const { config: siteConfig, language = '' } = this.props;
     const { baseUrl } = siteConfig;
-
-    const Button = props => (
-      <a className={`btn mr-1 ${props.className}`} href={props.href} target={props.target}>
-        {props.children}
-      </a>
-    );
 
     const Block = props => (
       <Container
@@ -39,9 +40,51 @@ class Index extends React.Component {
       </Container>
     );
 
+    const ShowCase = () => (
+      <BSContainer>
+        <CardDeck>
+          <Card>
+            <Card.Body>
+              <Card.Title>Documentation</Card.Title>
+              <Card.Text>
+                Substrate provides both high level documentation which you can find here and reference level documentation as Rust docs.
+              </Card.Text>
+            </Card.Body>
+            <Card.Footer>
+              <Button variant="primary" href="./docs/" className="mr-1 primary-color">High Level Docs</Button>
+              <Button variant="secondary" href="https://crates.parity.io" className="mr-1">Reference Docs</Button>
+            </Card.Footer>
+          </Card>
+          <Card>
+            <Card.Body>
+              <Card.Title>Join the Community</Card.Title>
+              <Card.Text>
+                Substrate has a rapidly growing, friendly, and technical community. Ask questions and work with others who are building in the space.
+              </Card.Text>
+            </Card.Body>
+            <Card.Footer>
+              <Button variant="primary" href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org" className="mr-1 primary-color">Join the Chat!</Button>
+              <Button variant="secondary" href="https://stackoverflow.com/questions/tagged/substrate" className="mr-1">StackOverflow</Button>
+            </Card.Footer>
+          </Card>
+          <Card>
+            <Card.Body>
+              <Card.Title>Tutorials</Card.Title>
+              <Card.Text>
+                Substrate has a range of tutorials to take you from 0-60 in a short amount of time. Learn about runtime development, building smart contracts, setting up a network, and more!
+              </Card.Text>
+            </Card.Body>
+            <Card.Footer>
+              <Button variant="primary" href="https://substrate-developer-hub.github.io/sandbox/tutorials/" className="mr-1 primary-color">Tutorial Catalog</Button>
+            </Card.Footer>
+          </Card>
+        </CardDeck>
+      </BSContainer>
+    );
+
     const WhatIsSubstrate = () => (
       <div
-        className="productShowcaseSection pb-5 pt-5"
+        className="productShowcaseSection mb-5 mt-5"
         style={{ textAlign: 'center' }}>
         <h1>What is Substrate?</h1>
         <h1 className="primary-color-text">&#11015;</h1>
@@ -52,14 +95,14 @@ class Index extends React.Component {
       <Block background="light">
         {[
           {
-            content:  'Substrate provides you with:' +
-                      '<ul>' +
-                      '<li>Database</li>' +
-                      '<li>P2P Networking</li>' +
-                      '<li>Consensus</li>' +
-                      '<li>Transaction Queue</li>' +
-                      '<li>Library of Runtime Modules</li>' +
-                      '</ul>',
+            content: 'Substrate provides you with:' +
+              '<ul>' +
+              '<li>Database</li>' +
+              '<li>P2P Networking</li>' +
+              '<li>Consensus</li>' +
+              '<li>Transaction Queue</li>' +
+              '<li>Library of Runtime Modules</li>' +
+              '</ul>',
             image: `${baseUrl}img/undraw_youtube_tutorial.svg`,
             imageAlign: 'right',
             title: 'Everything you need to build a blockchain.',
@@ -98,100 +141,22 @@ class Index extends React.Component {
       </Block>
     );
 
-    const Card = props => (
-      <div className="col-md-4">
-        <div className="card mb-4 box-shadow h-100">
-          <div className="card-body">
-            <h5 className="card-title">{props.title}</h5>
-            <p className="card-text">{props.children}</p>
-          </div>
-          <div className="card-footer">
-            {props.buttons.map((button, index) => {
-              return (
-                <Button
-                  href={button.link}
-                  className={
-                    `btn-secondary` + (index == 0 ? ` primary-color` : ``)
-                  }>{button.name}</Button>
-              )
-            })}
-          </div>
-        </div>
-      </div>
-    );
-
-    const Features = () => (
-      <div className="container">
-        <div className="row">
-          <Card
-            title="Documentation"
-            buttons={[
-              { "name": "High Level Docs", "link": "https://docs.substrate.dev/" },
-              { "name": "Reference Docs", "link": "https://crates.parity.io/" }
-            ]}>Substrate provides both high level documentation which you can find here and reference level documentation as Rust docs.
-          </Card>
-          <Card
-            title="Join the Community"
-            buttons={[
-              { "name": "Join the chat!", "link": "https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org" },
-              { "name": "StackOverflow", "link": "https://stackoverflow.com/questions/tagged/substrate" }
-            ]}>Substrate has a rapidly growing, friendly, and technical community. Ask questions and work with others who are building in the space.
-          </Card>
-          <Card
-            title="Tutorials"
-            buttons={[
-              { "name": "Tutorial Catalog", "link": "https://substrate-developer-hub.github.io/tutorials/" }
-            ]}>Substrate has a range of tutorials to take you from 0-60 in a short amount of time. Learn about runtime development, building smart contracts, setting up a network, and more!
-          </Card>
-        </div>
-      </div>
-    );
-
-    const Showcase = () => {
-      if ((siteConfig.users || []).length === 0) {
-        return null;
-      }
-
-      const showcase = siteConfig.users
-        .filter(user => user.pinned)
-        .map(user => (
-          <a href={user.infoLink} key={user.infoLink}>
-            <img src={user.image} alt={user.caption} title={user.caption} />
-          </a>
-        ));
-
-      const pageUrl = page => baseUrl + (language ? `${language}/` : '') + page;
-
-      return (
-        <div className="productShowcaseSection paddingBottom">
-          <h2>Who is Using This?</h2>
-          <p>This project is used by all these people</p>
-          <div className="logos">{showcase}</div>
-          <div className="more-users">
-            <a className="button" href={pageUrl('users.html')}>
-              More {siteConfig.title} Users
-            </a>
-          </div>
-        </div>
-      );
-    };
-
     return (
       <div>
-        
+
         <HomeSplash
           siteConfig={siteConfig}
           language={language}
           title={siteConfig.title}
           tagline={siteConfig.tagline}
           buttons={[
-            { "name": "Get Started", "link": "./who/"},
-            { "name": "Try a Tutorial", "link": "./tutorials/"}
+            { "name": "Get Started", "link": "./who/" },
+            { "name": "Try a Tutorial", "link": "./tutorials/" }
           ]}
           padding={5}
-          />
+        />
         <div className="mainContainer">
-          <Features />
+          <ShowCase />
           <WhatIsSubstrate />
           <Substrate1 />
           <Substrate2 />
