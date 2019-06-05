@@ -3,7 +3,7 @@ const React = require('react');
 class Timeline extends React.Component {
     render() {
         return (
-            <ol class="list-unstyled timeline">{this.props.children}</ol>
+            <ol className="list-unstyled timeline">{this.props.children}</ol>
         )
     }
 }
@@ -11,7 +11,7 @@ class Timeline extends React.Component {
 class Timespot extends React.Component {
     render() {
         return (
-            <li class="timeline">{this.props.children}</li>
+            <li className="timeline">{this.props.children}</li>
         )
     }
 }
