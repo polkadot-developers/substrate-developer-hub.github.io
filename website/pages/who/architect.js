@@ -5,64 +5,75 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const React = require('react');
+const React = require("react");
 
 const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash.js`);
+const { Timeline, Timespot } = require(`${process.cwd()}` +
+  `/core/Timeline.js`);
+
+const Container = require("../../../../react-bootstrap/Container.js");
+const Button = require("../../../../react-bootstrap/Button.js");
 
 class Architect extends React.Component {
-    render() {
-        const { config: siteConfig, language = '' } = this.props;
-        const { baseUrl } = siteConfig;
+  render() {
+    const { config: siteConfig, language = "" } = this.props;
+    const { baseUrl } = siteConfig;
 
-        const Button = props => (
-            <a className={`btn mr-1 ${props.className}`} href={props.href} target={props.target}>
-                {props.children}
-            </a>
-        );
+    const ArchitectTimeline = () => (
+      <Timeline>
+        <Timespot>
+          <h5>Under Construction</h5>
+          <p>Someone will fill out this page...</p>
+          <Button
+            variant="primary"
+            href="https://docs.substrate.dev/docs/"
+            className="mr-1 primary-color"
+          >
+            High Level Docs
+          </Button>
+          <Button
+            variant="primary"
+            href="https://stackoverflow.com/questions/tagged/substrate"
+            className="mr-1 primary-color"
+          >
+            StackOverflow
+          </Button>
+          <Button
+            variant="primary"
+            href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"
+            className="mr-1 primary-color"
+          >
+            Riot Chat
+          </Button>
+        </Timespot>
+        <Timespot>
+          <h5>Restart your journey through the Substrate Developer Hub</h5>
+          <Button
+            variant="primary"
+            href="../../"
+            className="mr-1 primary-color"
+          >
+            Back to Home
+          </Button>
+        </Timespot>
+      </Timeline>
+    );
 
-        const Timespot = props => (
-            <li class="timeline">
-                <h5>{props.title}</h5>
-                <p>{props.children}</p>
-                {props.buttons ? props.buttons.map((button) => {
-                    return (
-                        <Button href={button.link} className="btn-secondary primary-color">{button.name}</Button>
-                    )
-                }) : ''}
-            </li>
-        )
-
-        const Timeline = () => (
-            <div className="container">
-                <ol class="list-unstyled timeline">
-                    <Timespot
-                        title="Path to be determined..."
-                        buttons={[
-                            {"name":"High Level Docs", "link":"https://docs.substrate.dev/docs/"},
-                            {"name":"StackOverflow", "link":"https://stackoverflow.com/questions/tagged/substrate"},
-                            {"name":"Riot Chat", "link":"https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"}
-                        ]}
-                    >Someone will fill out this page...
-                    </Timespot>
-                </ol>
-            </div>
-        );
-
-        return (
-            <div>
-                <HomeSplash
-                    siteConfig={siteConfig}
-                    language={language}
-                    title="Architect"
-                    tagline="So you wanna change the future..."
-                    padding={0}
-                />
-                <div className="mainContainer">
-                    <Timeline />
-                </div>
-            </div>
-        );
-    }
+    return (
+      <div>
+        <HomeSplash
+          siteConfig={siteConfig}
+          language={language}
+          title="Architect"
+          tagline="So you wanna change the future..."
+          padding={0}
+        />
+        <Container>
+          <ArchitectTimeline />
+        </Container>
+      </div>
+    );
+  }
 }
 
 module.exports = Architect;

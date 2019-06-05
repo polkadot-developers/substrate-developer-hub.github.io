@@ -20,8 +20,6 @@ const Button = require('../../../../react-bootstrap/Button.js')
 const Card = require('../../../../react-bootstrap/Card.js')
 const CardDeck = require('../../../../react-bootstrap/CardDeck.js')
 
-
-
 class Index extends React.Component {
   render() {
     const { config: siteConfig, language = '' } = this.props;

@@ -1,3 +1,8 @@
+.timeline.list-unstyled {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 .timeline ol:before, .timeline ol:after {
     content: "";
     width: 5px;
