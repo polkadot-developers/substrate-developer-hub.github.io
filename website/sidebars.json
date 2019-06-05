@@ -3,9 +3,6 @@
     "Home": [
       "index"
     ],
-    "Contact Us": [
-      "contact/feedback"
-    ],
     "Quick Start": [
       "quickstart/installing-substrate",
       "quickstart/using-the-substrate-node-and-module-setup-scripts"

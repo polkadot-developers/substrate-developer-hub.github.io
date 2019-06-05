@@ -5,9 +5,6 @@
     "previous": "Previous",
     "tagline": "The place for blockchain innovators.",
     "docs": {
-      "contact/feedback": {
-        "title": "Feedback"
-      },
       "index": {
         "title": "Docs"
       },
@@ -126,7 +123,6 @@
     },
     "categories": {
       "Home": "Home",
-      "Contact Us": "Contact Us",
       "Quick Start": "Quick Start",
       "Runtime": "Runtime",
       "Substrate Overview": "Substrate Overview",
