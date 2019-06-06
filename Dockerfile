@@ -1,3 +1,6 @@
+# Q: What is this dockerfile for?
+# A: https://docusaurus.io/docs/en/docker
+
 FROM node:8.11.4
 
 WORKDIR /app/website
