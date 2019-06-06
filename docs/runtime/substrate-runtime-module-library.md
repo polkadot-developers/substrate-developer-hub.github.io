@@ -11,7 +11,7 @@ A Substrate runtime can be composed of several smaller components for separation
 
 The Substrate codebase ships with a set of runtime modules and some framework components to support their execution environment. The following diagram shows the architectural components of the SRML and its support libraries.
 
-![srml-arch](https://raw.githubusercontent.com/paritytech/substrate-developer-hub/master/img/srml-arch.png)
+![srml-arch](../assets/srml-arch.png)
 
 There are four primary framework components that support the runtime modules.
 
