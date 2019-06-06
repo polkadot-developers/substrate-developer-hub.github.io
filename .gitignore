@@ -2,3 +2,5 @@
 build
 node_modules
 *.zip
+website/translated_docs
+website/i18n/*
