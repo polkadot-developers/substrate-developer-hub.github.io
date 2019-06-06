@@ -63,14 +63,14 @@ class Index extends React.Component {
               <Button
                 variant="secondary"
                 href="./docs/"
-                className="mr-1 primary-color"
+                className="m-1 primary-color"
               >
                 High Level Docs
               </Button>
               <Button
                 variant="secondary"
                 href="https://crates.parity.io"
-                className="mr-1"
+                className="m-1"
               >
                 Reference Docs
               </Button>
@@ -89,14 +89,14 @@ class Index extends React.Component {
               <Button
                 variant="secondary"
                 href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"
-                className="mr-1 primary-color"
+                className="m-1 primary-color"
               >
                 Join the Chat!
               </Button>
               <Button
                 variant="secondary"
                 href="https://stackoverflow.com/questions/tagged/substrate"
-                className="mr-1"
+                className="m-1"
               >
                 StackOverflow
               </Button>
@@ -115,7 +115,7 @@ class Index extends React.Component {
               <Button
                 variant="secondary"
                 href="https://substrate-developer-hub.github.io/sandbox/tutorials/"
-                className="mr-1 primary-color"
+                className="m-1 primary-color"
               >
                 Tutorial Catalog
               </Button>

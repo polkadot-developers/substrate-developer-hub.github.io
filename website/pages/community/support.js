@@ -32,10 +32,10 @@ function Help(props) {
         questions/answers or ask your own!
 
         <p>Tags:
-            <Button variant="info" size="sm" href="https://stackoverflow.com/questions/tagged/substrate" className="ml-1"><code>substrate</code></Button>
-            <Button variant="dark" size="sm" href="https://stackoverflow.com/questions/tagged/ink" className="ml-1"><code>ink</code></Button>
-            <Button variant="secondary" size="sm" href="https://stackoverflow.com/questions/tagged/parity-io" className="ml-1 primary-color"><code>parity-io</code></Button>
-            <Button variant="warning" size="sm" href="https://stackoverflow.com/questions/tagged/rust" className="ml-1"><code>rust</code></Button>
+            <Button variant="info" size="sm" href="https://stackoverflow.com/questions/tagged/substrate" className="m-1"><code>substrate</code></Button>
+            <Button variant="dark" size="sm" href="https://stackoverflow.com/questions/tagged/ink" className="m-1"><code>ink</code></Button>
+            <Button variant="secondary" size="sm" href="https://stackoverflow.com/questions/tagged/parity-io" className="m-1 primary-color"><code>parity-io</code></Button>
+            <Button variant="warning" size="sm" href="https://stackoverflow.com/questions/tagged/rust" className="m-1"><code>rust</code></Button>
         </p>
     </SupportResource>
   )
@@ -45,10 +45,10 @@ function Help(props) {
         Riot is the main form of communication between employees at Parity and the community of people who use Parity products. Drop in to ask technical question, meet others who share your interests, or to keep an eye on whats going on.
 
         <p>Channels:
-            <Button variant="dark" size="sm" href="#" className="ml-1">Substrate Technical</Button>
-            <Button variant="dark" size="sm" href="#" className="ml-1">Parity ink! (Smart Contracts)</Button>
-            <Button variant="dark" size="sm" href="#" className="ml-1">Polkadot Watercooler</Button>
-            <Button variant="dark" size="sm" href="#" className="ml-1">TODO</Button>
+            <Button variant="dark" size="sm" href="#" className="m-1">Substrate Technical</Button>
+            <Button variant="dark" size="sm" href="#" className="m-1">Parity ink! (Smart Contracts)</Button>
+            <Button variant="dark" size="sm" href="#" className="m-1">Polkadot Watercooler</Button>
+            <Button variant="dark" size="sm" href="#" className="m-1">TODO</Button>
         </p>
     </SupportResource>
   )

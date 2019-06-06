@@ -38,7 +38,7 @@ class Tutorials extends React.Component {
                       ? `warning`
                       : `success`
                   }
-                  className="mr-1"
+                  className="m-1"
                 >
                   {tutorial.difficulty.charAt(0).toUpperCase() + tutorial.difficulty.slice(1)}
                 </Badge>
@@ -49,7 +49,7 @@ class Tutorials extends React.Component {
                       ? `warning`
                       : `success`
                   }
-                  className="mr-1">
+                  className="m-1">
                   {tutorial.length} Hour{tutorial.length > 1 ? `s` : ``}
                 </Badge>
                 <Badge variant={
@@ -57,7 +57,7 @@ class Tutorials extends React.Component {
                       ? `warning`
                       : `success`
                   }
-                  className="mr-1">
+                  className="m-1">
                   {
                     tutorial.prerequisite == true
                       ? `Prerequisites`

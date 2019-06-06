@@ -27,21 +27,21 @@ class Architect extends React.Component {
           <Button
             variant="secondary"
             href="https://docs.substrate.dev/docs/"
-            className="mr-1 primary-color"
+            className="m-1 primary-color"
           >
             High Level Docs
           </Button>
           <Button
             variant="secondary"
             href="https://stackoverflow.com/questions/tagged/substrate"
-            className="mr-1 primary-color"
+            className="m-1 primary-color"
           >
             StackOverflow
           </Button>
           <Button
             variant="secondary"
             href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"
-            className="mr-1 primary-color"
+            className="m-1 primary-color"
           >
             Riot Chat
           </Button>
@@ -51,7 +51,7 @@ class Architect extends React.Component {
           <Button
             variant="secondary"
             href="../../"
-            className="mr-1 primary-color"
+            className="m-1 primary-color"
           >
             Back to Home
           </Button>

@@ -42,14 +42,14 @@ class ContractDeveloper extends React.Component {
           <Button
             variant="secondary"
             href="https://stackoverflow.com/questions/tagged/ink"
-            className="mr-1 primary-color"
+            className="m-1 primary-color"
           >
             StackOverflow
           </Button>
           <Button
             variant="secondary"
             href="https://riot.im/app/#/room/!tYUCYdSvSYPMjWNDDD:matrix.parity.io"
-            className="mr-1 primary-color"
+            className="m-1 primary-color"
           >
             Riot Chat
           </Button>
@@ -67,7 +67,7 @@ class ContractDeveloper extends React.Component {
           <Button
             variant="secondary"
             href="https://github.com/paritytech/ink/wiki/Deploying-Your-First-Contract"
-            className="mr-1 primary-color"
+            className="m-1 primary-color"
           >
             Start Deploying!
           </Button>
@@ -82,7 +82,7 @@ class ContractDeveloper extends React.Component {
           <Button
             variant="secondary"
             href="https://github.com/paritytech/ink/wiki/Writing-Your-First-Contract"
-            className="mr-1 primary-color"
+            className="m-1 primary-color"
           >
             Start Writing!
           </Button>
@@ -98,7 +98,7 @@ class ContractDeveloper extends React.Component {
           <Button
             variant="secondary"
             href="https://substrate-developer-hub.github.io/substrate-contracts-workshop"
-            className="mr-1 primary-color"
+            className="m-1 primary-color"
           >
             Start the Workshop
           </Button>
@@ -114,7 +114,7 @@ class ContractDeveloper extends React.Component {
           <Button
             variant="secondary"
             href="../../"
-            className="mr-1 primary-color"
+            className="m-1 primary-color"
           >
             Back to Home
           </Button>

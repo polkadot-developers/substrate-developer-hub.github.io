@@ -59,7 +59,7 @@ class NotSure extends React.Component {
           <Button
             variant="secondary"
             href="../../"
-            className="mr-1 primary-color"
+            className="m-1 primary-color"
             >
             Back to Home
           </Button>
