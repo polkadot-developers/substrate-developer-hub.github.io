@@ -48,7 +48,7 @@
         "title": "Constructing a Runtime!"
       },
       "runtime/macros/decl_module": {
-        "title": "decl_module!"
+        "title": "Declaring a Module!"
       },
       "runtime/macros/decl_storage": {
         "title": "runtime/macros/decl_storage"

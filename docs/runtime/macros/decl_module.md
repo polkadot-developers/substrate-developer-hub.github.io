@@ -1,8 +1,6 @@
 ---
-title: "decl_module!"
+title: "Declaring a Module!"
 ---
-Declaring a Module!
-===
 
 The `decl_module!` macro defines the public functions exposed by your module, which act as entry points to accessing your runtime. These functions should work together to build a *generally* independent set of features and functionality which will be included with your blockchain's final runtime. The main logic of the macro is defined [here](https://crates.parity.io/srml_support/macro.decl_module.html).
 
@@ -24,7 +22,7 @@ decl_module! {
 
 Note that for the purposes of this example, we are taking advantage of a single storage item created by the `decl_storage` macro. We will omit the storage declaration for the purposes of this article, but you can learn more about `decl_storage` in our documentation [here](TODO: Create Doc).
 
-# Declaration of the Module Type
+## Declaration of the Module Type
 
 The first line in the `decl_module` macro defines the `Module` type which is used by the `construct_runtime` macro:
 
@@ -40,11 +38,11 @@ An `enum` is also defined with the name `Call`, which is expected by the `constr
 
 Finally, `origin: T::Origin` is a optimization made to simplify the parameter definition of functions in `decl_module`. We are just saying that the `origin` variable used in the function has type `Trait::Origin` which is usually defined by the `system` module.
 
-# Functional Requirements
+## Functional Requirements
 
 To ensure that your module functions as intended, you need to follow these rules when developing module functions.
 
-## Must Not Panic
+### Must Not Panic
 
 Under no circumstances should a module function `panic`. A `panic` in your runtime module can lead to a potential denial of service (DoS) attack. If your runtime has the ability to panic, a malicious user could send a transaction which does a lot of computational work, cause the runtime to panic, and then because of the panic, avoid paying any fees related to that computational work. None of the computation done before the panic gets charged for since a panic will always revert any prior changes to the storage, including payment taken.
 
@@ -54,7 +52,7 @@ You should check in advance for possible error conditions and handle them gracef
 
 State inconsistencies can generally be fixed be governance poking state values back into shape. Introducing some sort of "reset", where possible, for governance to call might also make sense to solve these scenarios.
 
-## No Side-Effects On Error
+### No Side-Effects On Error
 
 This function must either complete totally (and return `Ok(())` or it must have no side-effects on storage and return `Err('Some reason')`. 
 
@@ -66,7 +64,7 @@ This is necessary for blockchain systems since you may want to track things like
 
 You will have to be conscious of any changes you make to the state of your blockchain, and ensure that it follows the "verify first, write last" pattern.
 
-## Function Return
+### Function Return
 
 Dispatchable functions in your module cannot return a value. Instead it can only return a `Result` which accepts either `Ok(())` when everything has completed successfully or `Err(&'static str)` if something goes wrong.
 
@@ -87,7 +85,7 @@ decl_module! {
 
 You can still return an `Err()` at other points in your code like normal.
 
-## Proportional Costs to Computation
+### Proportional Costs to Computation
 
 Ensure that calls into each of these execute in a time, memory and using storage space proportional to any costs paid for by the caller or otherwise the difficulty of forcing the call to happen.
 
@@ -95,7 +93,7 @@ If you can't be certain that your module function will succeed without substanti
 
 If it eventually transpires that the operation is fine and, therefore, that the expense of the checks should be borne by the network, then you can refund the reserved deposit. If, however, the operation turns out to be invalid and the computation is wasted, then you can burn it or repatriate elsewhere.
 
-## Check Origin
+### Check Origin
 
 All functions use `origin` to determine the origin of the call. Modules support checking against one of three `origin` types:
 
@@ -107,11 +105,11 @@ You should always match against one of them as the first thing you do in your fu
 
 You can learn more about `Origin` [here](TODO: Create Doc)
 
-# Reserved Functions
+## Reserved Functions
 
 While you are generally able to name your function anything you want in your module, there are a few functions names which are reserved, and carry with it special functionality that you can access in your module.
 
-## deposit_event()
+### deposit_event()
 
 If your module wants to emit events, it will need to define a `deposit_event()` function which handles the events you define in the `decl_events` macro. Events can contain generics, in which case you should define a `deposit_event<T>()` function.
 
@@ -145,7 +143,7 @@ decl_module! {
 
 We have omitted the `decl_event` macro definition required for this module to work. You can learn more about events and the `decl_event!` macro [here] (Coming Soon)
 
-## on_initialise() and on_finalise()
+### on_initialise() and on_finalise()
 
 `on_initialise()` and `on_finalise()` are a special functions that gets executed once per block.
 
@@ -169,7 +167,7 @@ You might use `on_initalise()` to help you with tasks that need to run before an
 
 > Note: If you print to console using these functions, you will the output appear twice since it will be called once when the block is prepared and once more when it is imported. However, from within the blockchain, these functions only get called one time.
 
-# Privileged Functions
+## Privileged Functions
 
 A privileged function is one that can only be called when the origin of the call is `Root`. An example of a privileged function can be found in the [`Consensus` module](https://github.com/paritytech/substrate/blob/master/srml/consensus/src/lib.rs) for a runtime upgrade:
 
