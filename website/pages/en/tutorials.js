@@ -67,7 +67,7 @@ class Tutorials extends React.Component {
               </div>
             </Card.Body>
             <Card.Footer>
-              <Button variant="primary" href={tutorial.href}>Try it now!</Button>
+              <Button variant="secondary" className="primary-color" href={tutorial.href}>Try it now!</Button>
             </Card.Footer>
           </Card>
         </Col>
