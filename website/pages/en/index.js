@@ -175,7 +175,7 @@ class Index extends React.Component {
         imageAlign="right"
         title="Production Ready"
       >
-        Substrate is backbone which powers the Polkadot, a next generation,
+        Substrate is the backbone which powers Polkadot, a next generation,
         heterogenous, multi-chain network. Most 'parachains' which connect to
         this network also use Substrate for their node. Take a look at all the
         users who are already using Substrate for their projects.
