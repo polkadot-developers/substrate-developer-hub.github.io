@@ -7,40 +7,49 @@
 
 const React = require("react");
 
-const CompLibrary = require("../../core/CompLibrary.js");
-
-const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
-const Container = CompLibrary.Container;
-const GridBlock = CompLibrary.GridBlock;
-
 const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash.js`);
 
-const BSContainer = require("../../../../react-bootstrap/Container.js");
+const Container = require("../../../../react-bootstrap/Container.js");
 const Button = require("../../../../react-bootstrap/Button.js");
 const Card = require("../../../../react-bootstrap/Card.js");
 const CardDeck = require("../../../../react-bootstrap/CardDeck.js");
+const Row = require("../../../../react-bootstrap/Row.js");
+const Col = require("../../../../react-bootstrap/Col.js");
+const Image = require("../../../../react-bootstrap/Image.js");
 
 class Index extends React.Component {
   render() {
     const { config: siteConfig, language = "" } = this.props;
     const { baseUrl } = siteConfig;
 
-    const Block = props => (
-      <Container
-        padding={["bottom", "top"]}
-        id={props.id}
-        background={props.background}
+    const Feature = props => (
+      <Row
+        className={
+          (props.background
+            ? props.background == `dark`
+              ? `bg-dark text-white`
+              : `bg-` + props.background
+            : ``) + ` p-5`
+        }
       >
-        <GridBlock
-          align="left"
-          contents={props.children}
-          layout={props.layout}
-        />
-      </Container>
+        <Col
+          md={7}
+          className={props.imageAlign == `right` ? `order-md-1` : `order-md-2`}
+        >
+          <h2>{props.title}</h2>
+          <p className="lead">{props.children}</p>
+        </Col>
+        <Col
+          md={5}
+          className={props.imageAlign == `right` ? `order-md-2` : `order-md-1`}
+        >
+          <Image src={props.image} />
+        </Col>
+      </Row>
     );
 
     const Hotspots = () => (
-      <BSContainer>
+      <Container>
         <CardDeck>
           <Card>
             <Card.Body>
@@ -113,7 +122,7 @@ class Index extends React.Component {
             </Card.Footer>
           </Card>
         </CardDeck>
-      </BSContainer>
+      </Container>
     );
 
     const WhatIsSubstrate = () => (
@@ -127,52 +136,50 @@ class Index extends React.Component {
     );
 
     const Substrate1 = () => (
-      <Block background="light">
-        {[
-          {
-            content:
-              "Substrate provides you with:" +
-              "<ul>" +
-              "<li>A fast and efficient database.</li>" +
-              "<li>A modular P2P networking stack in <a href='https://github.com/libp2p'>libp2p</a>.</li>" +
-              "<li>A hot-swappable consensus layer using next generation algorithms.</li>" +
-              "<li>A customizable transaction queue management system.</li>" +
-              "<li>A diverse library of runtime modules.</li>" +
-              "</ul>",
-            image: `${baseUrl}img/substrate-architecture.svg`,
-            imageAlign: "right",
-            title: "Everything you need to build a blockchain."
-          }
-        ]}
-      </Block>
+      <Feature
+        image={`${baseUrl}img/undraw_programming.svg`}
+        imageAlign="right"
+        title="Everything you need to build a blockchain."
+        background="light"
+      >
+          <ul className="lead">
+            <li>Fast and efficient database.</li>
+            <li>
+              Modular P2P networking stack in{" "}
+              <a href="https://github.com/libp2p">libp2p</a>.
+            </li>
+            <li>Hot-swappable consensus layer.</li>
+            <li>Customizable transaction queue management system.</li>
+            <li>Diverse library of runtime modules.</li>
+          </ul>
+      </Feature>
     );
 
     const Substrate2 = () => (
-      <Block id="try">
-        {[
-          {
-            content:
-              "Substrate has a Wasm smart contract platform which you can use out of the box. Because Substrate uses Wasm, you can build your smart contracts using any compatible language. We have built ink!, a Rust based eDSL for this purpose.",
-            image: `${baseUrl}img/undraw_mind_map.svg`,
-            imageAlign: "left",
-            title: "Smart Contract Ready"
-          }
-        ]}
-      </Block>
+      <Feature
+        image={`${baseUrl}img/undraw_mind_map.svg`}
+        imageAlign="left"
+        title="Smart Contract Ready"
+      >
+        Substrate has a Wasm smart contract platform which you can use out of
+        the box. Because Substrate uses Wasm, you can build your smart contracts
+        using any compatible language. We have built ink!, a Rust based eDSL for
+        this purpose.
+      </Feature>
     );
 
     const Substrate3 = () => (
-      <Block background="dark">
-        {[
-          {
-            content:
-              "Substrate is backbone which powers the Polkadot, a next generation, heterogenous, multi-chain network. Most 'parachains' which connect to this network also use Substrate for their node. Take a look at all the users who are already using Substrate for their projects.",
-            image: `${baseUrl}img/undraw_connected_world.svg`,
-            imageAlign: "right",
-            title: "Production Ready"
-          }
-        ]}
-      </Block>
+      <Feature
+        background="dark"
+        image={`${baseUrl}img/undraw_connected_world.svg`}
+        imageAlign="right"
+        title="Production Ready"
+      >
+        Substrate is backbone which powers the Polkadot, a next generation,
+        heterogenous, multi-chain network. Most 'parachains' which connect to
+        this network also use Substrate for their node. Take a look at all the
+        users who are already using Substrate for their projects.
+      </Feature>
     );
 
     const Showcase = () => {
@@ -220,9 +227,11 @@ class Index extends React.Component {
         <div className="mainContainer">
           <Hotspots />
           <WhatIsSubstrate />
-          <Substrate1 />
-          <Substrate2 />
-          <Substrate3 />
+          <Container>
+            <Substrate1 />
+            <Substrate2 />
+            <Substrate3 />
+          </Container>
           <Showcase />
         </div>
       </div>

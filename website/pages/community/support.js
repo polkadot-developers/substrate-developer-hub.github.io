@@ -7,11 +7,7 @@
 
 const React = require("react");
 
-const CompLibrary = require("../../core/CompLibrary.js");
-
-const Container = CompLibrary.Container;
-const GridBlock = CompLibrary.GridBlock;
-
+const Container = require("../../../../react-bootstrap/Container.js");
 const Button = require("../../../../react-bootstrap/Button.js");
 
 function Help(props) {

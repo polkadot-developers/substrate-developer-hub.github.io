@@ -26,6 +26,15 @@
     color: #ffffff;
 }
 
+.lead {
+    list-style: none;
+  }
+
+.lead li:before {
+    content: '✓ ';
+    color: #28a745;
+  }
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
