@@ -30,7 +30,7 @@ class FrontEndDeveloper extends React.Component {
           <p>
             The "Bonds" API is a ReactJS based library which makes it extremely
             simple to start new projects from existing templates. The
-            Polkadot-API is a more traditional promised-based library which is a
+            Polkadot-API is a more traditional promise-based library which is a
             bit more robust and better documented for larger projects looking to
             build from the ground up. We will explore both on this journey.
           </p>
