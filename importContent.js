@@ -6,7 +6,7 @@
 
 // Usage: ./importContent.js myExport.zip
 
-const { statSync, mkdtempSync, readdirSync, readfileSync } = require('fs');
+const { statSync, mkdtempSync, readdirSync, readFileSync, writeFileSync } = require('fs');
 const { removeSync, moveSync, ensureDir } = require('fs-extra');
 const { execSync } = require('child_process');
 const { basename } = require('path');
@@ -30,6 +30,8 @@ removeSync(`${workingDir}/Contact Us`);
 // Rename a few directories
 moveSync(`${workingDir}/Quick Start`, `${workingDir}/quickstart`);
 moveSync(`${workingDir}/Substrate Overview`, `${workingDir}/overview`);
+moveSync(`${workingDir}/Runtime/Runtime Types`, `${workingDir}/Runtime/types`);
+moveSync(`${workingDir}/Runtime/Runtime Macros`, `${workingDir}/Runtime/macros`);
 
 // Process new files over old
 moveFiles(workingDir, target);
@@ -48,9 +50,12 @@ function moveFiles (source, dest) {
   if (statSync(source).isFile()) {
     // Terminating case. Process and save it.
 
-    const oldContent = readFileSync(source);
-    const newContent = oldContent.split('\n').splice(2, 1).join();
-    writeFileSync(dest, newContent);
+    let oldContent = readFileSync(source, 'utf8').split("\n");
+    //console.log(oldContent);
+
+    const extracted = oldContent.splice(2, 1);
+    //console.log("Just extracted: " + extracted);
+    writeFileSync(dest, oldContent.join("\n"));
     //moveSync(source, dest, {overwrite: true} );
   }
 
