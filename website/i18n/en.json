@@ -68,49 +68,49 @@
       "runtime/types/genesisconfig-struct": {
         "title": "GenesisConfig Struct"
       },
-      "tutorial/building-a-token-curated-registry-dappchain-using-substrate": {
+      "tutorials/building-a-token-curated-registry-dappchain-using-substrate": {
         "title": "Building a Token Curated Registry DAppChain using Substrate"
       },
-      "tutorial/collator-nodes-on-polkadot-chains": {
-        "title": "tutorial/collator-nodes-on-polkadot-chains"
+      "tutorials/collator-nodes-on-polkadot-chains": {
+        "title": "tutorials/collator-nodes-on-polkadot-chains"
       },
-      "tutorial/creating-a-custom-substrate-chain": {
+      "tutorials/creating-a-custom-substrate-chain": {
         "title": "Creating a Custom Substrate chain"
       },
-      "tutorial/deploying-a-smart-contract-on-a-substrate-node-chain": {
+      "tutorials/deploying-a-smart-contract-on-a-substrate-node-chain": {
         "title": "Deploying a Smart Contract on a Substrate Node Chain"
       },
-      "tutorial/deploying-a-substrate-node-chain": {
+      "tutorials/deploying-a-substrate-node-chain": {
         "title": "Deploying a Substrate Node chain"
       },
-      "tutorial/governance--public--mechanism-with-a-substrate-node-chain": {
+      "tutorials/governance--public--mechanism-with-a-substrate-node-chain": {
         "title": "Governance \"Public\" Mechanism with a Substrate Node Chain"
       },
-      "tutorial/migrating-storage-to-a-new-substrate-node-s-runtime": {
+      "tutorials/migrating-storage-to-a-new-substrate-node-s-runtime": {
         "title": "Migrating Storage to a new Substrate Node's Runtime"
       },
-      "tutorial/substrate-collectables-workshop": {
-        "title": "tutorial/substrate-collectables-workshop"
+      "tutorials/substrate-collectables-workshop": {
+        "title": "tutorials/substrate-collectables-workshop"
       },
-      "tutorial/substrate-runtime-recipes": {
+      "tutorials/substrate-runtime-recipes": {
         "title": "Substrate Runtime Recipes"
       },
-      "tutorial/tcr/best-practices": {
+      "tutorials/tcr/best-practices": {
         "title": "Best Practices"
       },
-      "tutorial/tcr/building-a-ui-for-the-tcr-runtime": {
+      "tutorials/tcr/building-a-ui-for-the-tcr-runtime": {
         "title": "Building a UI for the TCR runtime"
       },
-      "tutorial/tcr/building-an-event-based-off-chain-storage": {
+      "tutorials/tcr/building-an-event-based-off-chain-storage": {
         "title": "Building an event based off-chain storage"
       },
-      "tutorial/tcr/building-the-substrate-tcr-runtime": {
+      "tutorials/tcr/building-the-substrate-tcr-runtime": {
         "title": "Building the Substrate TCR runtime"
       },
-      "tutorial/tcr/unit-testing-the-tcr-runtime-module": {
+      "tutorials/tcr/unit-testing-the-tcr-runtime-module": {
         "title": "Unit testing the TCR runtime module"
       },
-      "tutorial/validator-nodes-and-nominators-on-substrate-chains": {
+      "tutorials/validator-nodes-and-nominators-on-substrate-chains": {
         "title": "Validator Nodes and Nominators on Substrate chains"
       }
     },
