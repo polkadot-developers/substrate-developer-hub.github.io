@@ -6,7 +6,7 @@
 
 // Usage: ./importContent.js myExport.zip
 
-const { statSync, mkdtempSync, readdirSync } = require('fs');
+const { statSync, mkdtempSync, readdirSync, readfileSync } = require('fs');
 const { removeSync, moveSync, ensureDir } = require('fs-extra');
 const { execSync } = require('child_process');
 const { basename } = require('path');
@@ -31,12 +31,8 @@ removeSync(`${workingDir}/Contact Us`);
 moveSync(`${workingDir}/Quick Start`, `${workingDir}/quickstart`);
 moveSync(`${workingDir}/Substrate Overview`, `${workingDir}/overview`);
 
-// Copy new files over old
+// Process new files over old
 moveFiles(workingDir, target);
-
-// TODO Remove the excerpt line from each file
-// Possible hack: It is always line three
-
 
 
 
@@ -50,8 +46,12 @@ moveFiles(workingDir, target);
 function moveFiles (source, dest) {
 
   if (statSync(source).isFile()) {
-    // Terminating case. Just move it.
-    moveSync(source, dest, {overwrite: true} );
+    // Terminating case. Process and save it.
+
+    const oldContent = readFileSync(source);
+    const newContent = oldContent.split('\n').splice(2, 1).join();
+    writeFileSync(dest, newContent);
+    //moveSync(source, dest, {overwrite: true} );
   }
 
   else {
