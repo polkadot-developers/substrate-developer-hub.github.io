@@ -46,23 +46,23 @@
         "type": "subcategory",
         "label": "Building a Token Curated Registry DAppChain using Substrate",
         "ids": [
-          "tutorial/tcr/best-practices",
-          "tutorial/tcr/building-a-ui-for-the-tcr-runtime",
-          "tutorial/tcr/building-an-event-based-off-chain-storage",
-          "tutorial/tcr/building-the-substrate-tcr-runtime",
-          "tutorial/tcr/unit-testing-the-tcr-runtime-module",
-          "tutorial/tcr/building-a-token-curated-registry-dappchain-using-substrate"
+          "tutorials/tcr/best-practices",
+          "tutorials/tcr/building-a-ui-for-the-tcr-runtime",
+          "tutorials/tcr/building-an-event-based-off-chain-storage",
+          "tutorials/tcr/building-the-substrate-tcr-runtime",
+          "tutorials/tcr/unit-testing-the-tcr-runtime-module",
+          "tutorials/tcr/building-a-token-curated-registry-dappchain-using-substrate"
         ]
       },
-      "tutorial/collator-nodes-on-polkadot-chains",
-      "tutorial/creating-a-custom-substrate-chain",
-      "tutorial/deploying-a-smart-contract-on-a-substrate-node-chain",
-      "tutorial/deploying-a-substrate-node-chain",
-      "tutorial/governance--public--mechanism-with-a-substrate-node-chain",
-      "tutorial/migrating-storage-to-a-new-substrate-node-s-runtime",
-      "tutorial/substrate-collectables-workshop",
-      "tutorial/substrate-runtime-recipes",
-      "tutorial/validator-nodes-and-nominators-on-substrate-chains"
+      "tutorials/collator-nodes-on-polkadot-chains",
+      "tutorials/creating-a-custom-substrate-chain",
+      "tutorials/deploying-a-smart-contract-on-a-substrate-node-chain",
+      "tutorials/deploying-a-substrate-node-chain",
+      "tutorials/governance--public--mechanism-with-a-substrate-node-chain",
+      "tutorials/migrating-storage-to-a-new-substrate-node-s-runtime",
+      "tutorials/substrate-collectables-workshop",
+      "tutorials/substrate-runtime-recipes",
+      "tutorials/validator-nodes-and-nominators-on-substrate-chains"
     ]
   }
 }
