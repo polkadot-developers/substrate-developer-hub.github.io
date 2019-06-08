@@ -1,31 +1,10 @@
-# aliases:
-#  - &filter-only-master
-#    branches:
-#      only:
-#        - master
-
+# https://docusaurus.io/docs/tr/1.1.x/publishing#tips-tricks
+# This config file will prevent tests from being run on the gh-pages branch.
 version: 2
 jobs:
-  deploy-website:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:10.15.2
-
+  build:
+    machine: true
+    branches:
+      ignore: master
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "db:18:fc:b1:b6:20:68:47:61:df:13:d7:c6:24:12:1e"
-      - checkout
-      - run:
-          name: Deploying to GitHub Pages
-          command: |
-            git config --global user.email "devhub-deploy@users.noreply.github.com"
-            git config --global user.name "Devhub Deployer"
-            cd website && yarn install && USE_SSH=true GIT_USER=git yarn publish-gh-pages
-
-workflows:
-  version: 2
-  build_and_deploy:
-    jobs:
-      - deploy-website
-          #filters: *filter-only-master
+      -run: echo "Skipping tests on master branch."

@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>GenesisConfig Struct · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;The genesis configuration is used to initialize the state of storage items in the Substrate runtime at the first block.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="GenesisConfig Struct · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;The genesis configuration is used to initialize the state of storage items in the Substrate runtime at the first block.&lt;/p&gt;
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/Substrate-logo.svg"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs" target="_self">Docs</a></li><li class=""><a href="/tutorials" target="_self">Tutorials</a></li><li class=""><a href="https://www.parity.io/blog/" target="_self">Blog</a></li><li class=""><a href="/community/support" target="_self">Community</a></li><li class=""><a href="https://github.com/substrate-developer-hub/" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Runtime Types</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Home</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/">Docs</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Quick Start</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/quickstart/installing-substrate">Installing Substrate</a></li><li class="navListItem"><a class="navItem" href="/docs/quickstart/using-the-substrate-node-and-module-setup-scripts">Using the Substrate node and module setup scripts</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Runtime</h3><ul class=""><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Macros</h4><ul><li class="navListItem"><a class="navItem" href="/docs/runtime/macros/construct_runtime">Constructing a Runtime!</a></li><li class="navListItem"><a class="navItem" href="/docs/runtime/macros/decl_module">Declaring a Module!</a></li><li class="navListItem"><a class="navItem" href="/docs/runtime/macros/decl_storage">runtime/macros/decl_storage</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Types</h4><ul><li class="navListItem"><a class="navItem" href="/docs/runtime/types/call-enum">Call Enum</a></li><li class="navListItem"><a class="navItem" href="/docs/runtime/types/event-enum">Event Enum</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/runtime/types/genesisconfig-struct">GenesisConfig Struct</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/runtime/architecture-of-a-runtime">Architecture of a Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/runtime/substrate-runtime-module-library">Substrate Runtime Module Library</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Substrate Overview</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/overview/extrinsics">Extrinsics</a></li><li class="navListItem"><a class="navItem" href="/docs/overview/glossary">Glossary</a></li><li class="navListItem"><a class="navItem" href="/docs/overview/introduction">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/overview/low-level-data-format">Low-level Data Format</a></li><li class="navListItem"><a class="navItem" href="/docs/overview/runtime-and-api">Runtime and API</a></li><li class="navListItem"><a class="navItem" href="/docs/overview/substrate-bonds">overview/substrate-bonds</a></li><li class="navListItem"><a class="navItem" href="/docs/overview/telemetry">Telemetry</a></li><li class="navListItem"><a class="navItem" href="/docs/overview/transaction-lifecycle">Transaction Lifecycle</a></li><li class="navListItem"><a class="navItem" href="/docs/overview/versioning">Versioning</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Tutorials</h3><ul class=""><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Building a Token Curated Registry DAppChain using Substrate</h4><ul><li class="navListItem"><a class="navItem" href="/docs/tutorials/tcr/best-practices">Best Practices</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/tcr/building-a-ui-for-the-tcr-runtime">Building a UI for the TCR runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/tcr/building-an-event-based-off-chain-storage">Building an event based off-chain storage</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/tcr/building-the-substrate-tcr-runtime">Building the Substrate TCR runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/tcr/unit-testing-the-tcr-runtime-module">Unit testing the TCR runtime module</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/tutorials/collator-nodes-on-polkadot-chains">tutorials/collator-nodes-on-polkadot-chains</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/creating-a-custom-substrate-chain">Creating a Custom Substrate chain</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/deploying-a-smart-contract-on-a-substrate-node-chain">Deploying a Smart Contract on a Substrate Node Chain</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/deploying-a-substrate-node-chain">Deploying a Substrate Node chain</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/governance--public--mechanism-with-a-substrate-node-chain">Governance &quot;Public&quot; Mechanism with a Substrate Node Chain</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/migrating-storage-to-a-new-substrate-node-s-runtime">Migrating Storage to a new Substrate Node&#x27;s Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/substrate-collectables-workshop">tutorials/substrate-collectables-workshop</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/substrate-runtime-recipes">Substrate Runtime Recipes</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/validator-nodes-and-nominators-on-substrate-chains">Validator Nodes and Nominators on Substrate chains</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">GenesisConfig Struct</h1></header><article><div><span><p>The genesis configuration is used to initialize the state of storage items in the Substrate runtime at the first block.</p>
+<h2><a class="anchor" aria-hidden="true" id="declaring-configurable-storage-items"></a><a href="#declaring-configurable-storage-items" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Declaring Configurable Storage Items</h2>
+<p>In Substrate, a storage item can be initialized in the genesis configuration. To enable this, you add the <code>config()</code> parameter to the storage item declaration.</p>
+<p>For example, in the SRML sudo module (<code>srml-sudo</code>), the storage item <code>Key</code> is declared with a <code>config()</code> parameter.</p>
+<pre><code class="hljs css language-rust">decl_storage! {
+    <span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Store</span></span> <span class="hljs-keyword">for</span> Module&lt;T: Trait&gt; <span class="hljs-keyword">as</span> Sudo {
+        Key get(key) config(): T::AccountId;
+    }
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="the-_module_-genesisconfig-type"></a><a href="#the-_module_-genesisconfig-type" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The <em>Module</em> GenesisConfig Type</h2>
+<p>When the <code>decl_storage!</code> macro expands, it generates the <code>GenesisConfig</code> type, which includes a reference to each storage item declared with the <code>config()</code> parameter.</p>
+<p>For example, for the SRML sudo module (<code>srml-sudo</code>), the following <code>GenesisConfig</code> type is generated.</p>
+<pre><code class="hljs css language-rust"><span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">GenesisConfig</span></span>&lt;T: Trait&gt; {
+    <span class="hljs-keyword">pub</span> key: T::AccountId,
+}
+</code></pre>
+<p>Each module that supports a genesis configuration will also have its <code>GenesisConfig</code> type aliased as <code>&lt;ModuleName&gt;Config</code> as part of the <code>construct_runtime!</code> macro expansion:</p>
+<pre><code class="hljs css language-rust"><span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">SudoConfig</span></span> = sudo::GenesisConfig&lt;Runtime&gt;;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="the-_outer_-genesisconfig-struct"></a><a href="#the-_outer_-genesisconfig-struct" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The <em>Outer</em> GenesisConfig Struct</h2>
+<p>Once a storage item is declared with a genesis configuration, its value needs to be set. We do this through an <em>outer</em> <code>GenesisConfig</code> type, which is generated by the <code>construct_runtime!</code> macro:</p>
+<pre><code class="hljs css language-rust"><span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">GenesisConfig</span></span> {
+    <span class="hljs-keyword">pub</span> system: <span class="hljs-built_in">Option</span>&lt;SystemConfig&gt;,
+    <span class="hljs-keyword">pub</span> timestamp: <span class="hljs-built_in">Option</span>&lt;TimestampConfig&gt;,
+    <span class="hljs-keyword">pub</span> consensus: <span class="hljs-built_in">Option</span>&lt;ConsensusConfig&gt;,
+    <span class="hljs-keyword">pub</span> indices: <span class="hljs-built_in">Option</span>&lt;IndicesConfig&gt;,
+    <span class="hljs-keyword">pub</span> balances: <span class="hljs-built_in">Option</span>&lt;BalancesConfig&gt;,
+    <span class="hljs-keyword">pub</span> sudo: <span class="hljs-built_in">Option</span>&lt;SudoConfig&gt;,
+}
+</code></pre>
+<p>This outer type includes references to each of the modules' <code>GenesisConfig</code> types.</p>
+<h2><a class="anchor" aria-hidden="true" id="setting-the-genesis-configuration-values"></a><a href="#setting-the-genesis-configuration-values" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setting the Genesis Configuration Values</h2>
+<p>Now that we have established the module and outer <code>GenesisConfig</code> types, we need to set their values.</p>
+<p>You can find an example of this in Substrate's <code>node-template</code> within the <code>chain_spec.rs</code> file. For the SRML sudo module (<code>srml-sudo</code>), the following code snippet shows the genesis configuration of the storage item <code>Key</code>.</p>
+<pre><code class="hljs css language-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">testnet_genesis</span></span>(root_key: AccountId, ...) -&gt; GenesisConfig {
+    GenesisConfig {
+        sudo: <span class="hljs-literal">Some</span>(SudoConfig 
+        {
+            key: root_key,
+        }),
+        ...
+    }
+}
+</code></pre>
+<p>When you start your node, the <em>outer</em> <code>GenesisConfig</code> that you specified will be used to set the initial values into storage. At that point, you can access and use those values just like you would any other runtime storage item.</p>
+<blockquote>
+<p><strong>Note:</strong> The <code>GenesisConfig</code> type is not available for the WASM runtime environment, but only available for the native environment. The configurable storage items are treated as pre-initialized by the WASM environment.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="exposing-the-genesisconfig-type"></a><a href="#exposing-the-genesisconfig-type" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Exposing the GenesisConfig Type</h2>
+<p>The <code>GenesisConfig</code> type is not directly exposed through the Substrate metadata endpoint. Instead, the <code>GenesisConfig</code> is used to set an initial value for <code>Storage</code> items, so you can find the impact of this configuration by querying the storage.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/runtime/types/event-enum"><span class="arrow-prev">← </span><span>Event Enum</span></a><a class="docs-next button" href="/docs/runtime/architecture-of-a-runtime"><span>Architecture of a Runtime</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#declaring-configurable-storage-items">Declaring Configurable Storage Items</a></li><li><a href="#the-_module_-genesisconfig-type">The <em>Module</em> GenesisConfig Type</a></li><li><a href="#the-_outer_-genesisconfig-struct">The <em>Outer</em> GenesisConfig Struct</a></li><li><a href="#setting-the-genesis-configuration-values">Setting the Genesis Configuration Values</a></li><li><a href="#exposing-the-genesisconfig-type">Exposing the GenesisConfig Type</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/en/who">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="https://crates.parity.io">Reference Docs</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/paritytech/substrate">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 Parity Technologies</section></footer></div></body></html>
