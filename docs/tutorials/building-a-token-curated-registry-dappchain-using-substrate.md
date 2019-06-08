@@ -1,11 +1,10 @@
 ---
 title: "Building a Token Curated Registry DAppChain using Substrate"
 ---
-
 This is an intermediate level guide to help you get started with building complex DAppChains using the Substrate framework. If you are new to Substrate, we recommend you first start with any of the following beginner level tutorials to have the basic concepts covered.
 
 1. [Creating a Custom Substrate chain](https://substrate.readme.io/docs/creating-a-custom-substrate-chain) - Fast paced, brief tutorial.
-2. [Substrate Collectables Tutorial](https://shawntabrizi.github.io/substrate-collectables-workshop/) - Detailed tutorial and covers more concepts in depth (highly recommended).
+2. [Substrate Collectables Tutorial](https://substrate-developer-hub.github.io/substrate-collectables-workshop/) - Detailed tutorial and covers more concepts in depth (highly recommended).
 
 Once you have finished one of these tutorials, you are good to go with this guide.
 

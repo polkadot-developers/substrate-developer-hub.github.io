@@ -3,7 +3,7 @@ title: "Call Enum"
 ---
 In Substrate, the `Call` enum lists the dispatchable functions exposed by your runtime modules. 
 
-Each module will have its own `Call` enum, which contains the function names and parameters for that module. Then when constructing the runtime, an _outer_ `Call` enum is generated as an aggragate of each module's specific `Call`, which references these individual `Call` types from a per-module enumeration.
+Each module will have its own `Call` enum, which contains the function names and parameters for that module. Then when constructing the runtime, an _outer_ `Call` enum is generated as an aggregate of each module's specific `Call`, which references these individual `Call` types from a per-module enumeration.
 
 ## Module Call Enum
 

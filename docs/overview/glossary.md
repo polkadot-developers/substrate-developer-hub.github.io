@@ -57,15 +57,13 @@ A single item of a block chain (or parachain) that amalgamates a series of extri
 ### Byzantine Fault Tolerance (BFT)
 The ability of a distributed computer system to remain operational in the face of a proportion of defective nodes or actors. "Byzantine" refers to the ultimate level of defectiveness, with such nodes assumed to be actively malicious and coordinating rather than merely offline or buggy. Typically BFT systems remain functional with up to around one third of Byzantine nodes.
 
-Also see https://wiki.parity.io/Byzantine-Fault-Tolerance.
-
 #### Byzantine Failure 
 The loss of a system service due to a Byzantine Fault (i.e. components in the system fail and there is imperfect information about whether a component has failed) in systems that require consensus.
 
 ---
 
 ### Consensus
-See https://wiki.parity.io/Consensus
+The process by which validators agree upon the next valid block to be added to the relay chain.
 
 #### Consensus Engine
 A means for forming consensus over what constitutes the (one true) canonical chain. In the context of Substrate, it refers to a set of trait implementations that dictate which of a number of input blocks form the chain.
@@ -126,8 +124,6 @@ An Executor that uses the current inbuilt and natively compiled runtime to execu
 
 ### Extrinsic
 A piece of data bundled into a block that expresses something from the "external" (i.e. off-chain) world. There are, broadly speaking, two types of extrinsic: transactions (which tend to be signed) and inherents (which don't).
-
-See https://wiki.parity.io/Extrinsic.
 
 ### Existential Deposit
 
