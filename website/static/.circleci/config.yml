@@ -7,4 +7,4 @@ jobs:
     branches:
       ignore: master
     steps:
-      -run: echo "Skipping tests on master branch"
+      -run: echo "Skipping tests on master branch."
