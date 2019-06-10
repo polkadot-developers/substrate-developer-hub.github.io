@@ -14,7 +14,8 @@ This command will download and compile the complete substrate node, and the subk
 
 It will take 20 - 40 minutes to finish. Once it is done, check that Substrate is properly installed by running `substrate --version`. You should see something like this:
 ```
-$ substrate --version\nsubstrate 0.10.0-fdb3a846-x86_64-linux-gnu",
+$ substrate --version
+substrate 0.10.0-fdb3a846-x86_64-linux-gnu
 ```
 
 If you get that, then you're ready to proceed!

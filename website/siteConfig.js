@@ -117,6 +117,11 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
+
+  // Directories inside which any CSS files will not be processed and
+  // concatenated to Docusaurus' styles. This is to support static HTML pages
+  // that may be separate from Docusaurus with completely separate styles.
+  separateCss: [],
 };
 
 module.exports = siteConfig;
