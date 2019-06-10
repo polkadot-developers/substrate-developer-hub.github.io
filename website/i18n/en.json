@@ -86,8 +86,14 @@
       "tutorials/governance--public--mechanism-with-a-substrate-node-chain": {
         "title": "Governance \"Public\" Mechanism with a Substrate Node Chain"
       },
+      "tutorials/keys--seeds--and-the--subkey--tool": {
+        "title": "Keys, Seeds, and the `subkey` Tool"
+      },
       "tutorials/migrating-storage-to-a-new-substrate-node-s-runtime": {
         "title": "Migrating Storage to a new Substrate Node's Runtime"
+      },
+      "tutorials/start-a-private-network-with-substrate": {
+        "title": "Start a Private Network with Substrate"
       },
       "tutorials/substrate-collectables-workshop": {
         "title": "tutorials/substrate-collectables-workshop"
