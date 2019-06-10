@@ -235,10 +235,12 @@ const siteConfig = {
   onPageNav: 'separate',
   // No .html extensions for paths.
   cleanUrl: true,
+  // Collapsible Categories
+  docsSideNavCollapsible: true,
 
   // Open Graph and Twitter card images.
-  ogImage: 'img/undraw_online.svg',
-  twitterImage: 'img/undraw_tweetstorm.svg',
+  ogImage: 'img/Substrate-logo.svg',
+  twitterImage: 'img/Substrate-logo.svg',
 
   // Show documentation's last contributor's name.
   // enableUpdateBy: true,
