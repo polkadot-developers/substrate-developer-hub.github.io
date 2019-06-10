@@ -21,7 +21,6 @@ const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash.js`);
 const Container = require("../../../../react-bootstrap/Container.js");
 const Button = require("../../../../react-bootstrap/Button.js");
 const Card = require("../../../../react-bootstrap/Card.js");
-const CardDeck = require("../../../../react-bootstrap/CardDeck.js");
 const Row = require("../../../../react-bootstrap/Row.js");
 const Col = require("../../../../react-bootstrap/Col.js");
 const Image = require("../../../../react-bootstrap/Image.js");
@@ -57,80 +56,72 @@ class Index extends React.Component {
       </Row>
     );
 
+    const HotspotCard = props => (
+      <Col md={4} className="mb-3 d-flex align-items-stretch">
+        <Card>
+          <Card.Body>
+            <Card.Title>{props.title}</Card.Title>
+            <Card.Text>{props.text}</Card.Text>
+          </Card.Body>
+          <Card.Footer>{props.children}</Card.Footer>
+        </Card>
+      </Col>
+    );
+
     const Hotspots = () => (
       <Container>
-        <CardDeck>
-          <Card>
-            <Card.Body>
-              <Card.Title>Documentation</Card.Title>
-              <Card.Text>
-                Substrate provides both high level documentation which you can
-                find here and reference level documentation as Rust docs.
-              </Card.Text>
-            </Card.Body>
-            <Card.Footer>
-              <Button
-                variant="secondary"
-                href="./docs/"
-                className="m-1 primary-color"
-              >
-                High Level Docs
-              </Button>
-              <Button
-                variant="secondary"
-                href="https://crates.parity.io"
-                className="m-1"
-              >
-                Reference Docs
-              </Button>
-            </Card.Footer>
-          </Card>
-          <Card>
-            <Card.Body>
-              <Card.Title>Join the Community</Card.Title>
-              <Card.Text>
-                Substrate has a rapidly growing, friendly, and technical
-                community. Ask questions and work with others who are building
-                in the space.
-              </Card.Text>
-            </Card.Body>
-            <Card.Footer>
-              <Button
-                variant="secondary"
-                href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"
-                className="m-1 primary-color"
-              >
-                Join the Chat!
-              </Button>
-              <Button
-                variant="secondary"
-                href="https://stackoverflow.com/questions/tagged/substrate"
-                className="m-1"
-              >
-                StackOverflow
-              </Button>
-            </Card.Footer>
-          </Card>
-          <Card>
-            <Card.Body>
-              <Card.Title>Tutorials</Card.Title>
-              <Card.Text>
-                Substrate has a range of tutorials to take you from 0-60 in a
-                short amount of time. Learn about runtime development, building
-                smart contracts, setting up a network, and more!
-              </Card.Text>
-            </Card.Body>
-            <Card.Footer>
-              <Button
-                variant="secondary"
-                href="https://substrate-developer-hub.github.io/sandbox/tutorials/"
-                className="m-1 primary-color"
-              >
-                Tutorial Catalog
-              </Button>
-            </Card.Footer>
-          </Card>
-        </CardDeck>
+        <Row>
+          <HotspotCard
+            title="Documentation"
+            text="Substrate provides both high level documentation which you can find here and reference level documentation as Rust docs."
+          >
+            <Button
+              variant="secondary"
+              href="./docs/"
+              className="m-1 primary-color"
+            >
+              High Level Docs
+            </Button>
+            <Button
+              variant="secondary"
+              href="https://crates.parity.io"
+              className="m-1"
+            >
+              Reference Docs
+            </Button>
+          </HotspotCard>
+          <HotspotCard
+            title="Join the Community"
+            text="Substrate has a rapidly growing, friendly, and technical community. Ask questions and work with others who are building in the space."
+          >
+            <Button
+              variant="secondary"
+              href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"
+              className="m-1 primary-color"
+            >
+              Join the Chat!
+            </Button>
+            <Button
+              variant="secondary"
+              href="https://stackoverflow.com/questions/tagged/substrate"
+              className="m-1"
+            >
+              StackOverflow
+            </Button>
+          </HotspotCard>
+          <HotspotCard
+            title="Tutorials"
+            text="Substrate has a range of tutorials to take you from 0-60 in a short amount of time. Learn about runtime development, building smart contracts, setting up a network, and more!"
+          >
+            <Button
+              variant="secondary"
+              href="https://substrate-developer-hub.github.io/sandbox/tutorials/"
+              className="m-1 primary-color"
+            >
+              Tutorial Catalog
+            </Button>
+          </HotspotCard>
+        </Row>
       </Container>
     );
 
@@ -151,16 +142,16 @@ class Index extends React.Component {
         title="Everything you need to build a blockchain."
         background="light"
       >
-          <ul className="lead">
-            <li>Fast and efficient database.</li>
-            <li>
-              Modular P2P networking stack in{" "}
-              <a href="https://github.com/libp2p">libp2p</a>.
-            </li>
-            <li>Hot-swappable consensus layer.</li>
-            <li>Customizable transaction queue management system.</li>
-            <li>Diverse library of runtime modules.</li>
-          </ul>
+        <ul className="lead">
+          <li>Fast and efficient database.</li>
+          <li>
+            Modular P2P networking stack in{" "}
+            <a href="https://github.com/libp2p">libp2p</a>.
+          </li>
+          <li>Hot-swappable consensus layer.</li>
+          <li>Customizable transaction queue management system.</li>
+          <li>Diverse library of runtime modules.</li>
+        </ul>
       </Feature>
     );
 

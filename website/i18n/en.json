@@ -74,9 +74,6 @@
       "tutorials/deploying-a-smart-contract-on-a-substrate-node-chain": {
         "title": "Deploying a Smart Contract on a Substrate Node Chain"
       },
-      "tutorials/deploying-a-substrate-node-chain": {
-        "title": "Deploying a Substrate Node chain"
-      },
       "tutorials/governance--public--mechanism-with-a-substrate-node-chain": {
         "title": "Governance \"Public\" Mechanism with a Substrate Node Chain"
       },
