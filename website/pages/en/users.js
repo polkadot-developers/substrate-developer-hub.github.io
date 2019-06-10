@@ -27,10 +27,11 @@ class Users extends React.Component {
       return null;
     }
 
-    const editUrl = `${siteConfig.repoUrl}/edit/master/website/siteConfig.js`;
+    const editUrl = `${siteConfig.repoUrl}/edit/source/website/siteConfig.js`;
     const showcase = siteConfig.users.map(user => (
       <a href={user.infoLink} key={user.infoLink}>
         <img src={user.image} alt={user.caption} title={user.caption} />
+        <p className="text-dark">{user.caption}</p>
       </a>
     ));
 
@@ -38,7 +39,7 @@ class Users extends React.Component {
       <div className="mainContainer">
         <Container padding={['bottom', 'top']}>
           <div className="showcaseSection">
-            <div className="prose">
+            <div>
               <h1>Who is building on Substrate?</h1>
               <p>These projects are shaping the future of Web3.</p>
             </div>
