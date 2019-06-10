@@ -24,6 +24,7 @@
         ]
       },
       "runtime/architecture-of-a-runtime",
+      "runtime/runtime-and-api",
       "runtime/substrate-runtime-module-library"
     ],
     "Substrate Overview": [
@@ -32,7 +33,6 @@
       "overview/inherent-extrinsics-and-inherentdata",
       "overview/introduction",
       "overview/low-level-data-format",
-      "overview/runtime-and-api",
       "overview/substrate-bonds",
       "overview/telemetry",
       "overview/transaction-lifecycle",

@@ -17,9 +17,6 @@
       "overview/low-level-data-format": {
         "title": "Low-level Data Format"
       },
-      "overview/runtime-and-api": {
-        "title": "Runtime and API"
-      },
       "overview/substrate-bonds": {
         "title": "overview/substrate-bonds"
       },
@@ -49,6 +46,9 @@
       },
       "runtime/macros/decl_storage": {
         "title": "runtime/macros/decl_storage"
+      },
+      "runtime/runtime-and-api": {
+        "title": "Runtime and API"
       },
       "runtime/runtime-types": {
         "title": "Runtime Types"
