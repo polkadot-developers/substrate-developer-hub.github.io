@@ -43,10 +43,12 @@ class Users extends React.Component {
               <h1>Who is building on Substrate?</h1>
               <p>These projects are shaping the future of Web3.</p>
             </div>
+            <hr />
             <div className="logos">{showcase}</div>
-            <p>Are you using this project?</p>
+            <hr />
+            <p>Are you using Substrate?</p>
             <a href={editUrl} className="button">
-              Add your company
+              Add your project
             </a>
           </div>
         </Container>

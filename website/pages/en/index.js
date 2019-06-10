@@ -69,60 +69,58 @@ class Index extends React.Component {
     );
 
     const Hotspots = () => (
-      <Container>
-        <Row>
-          <HotspotCard
-            title="Documentation"
-            text="Substrate provides both high level documentation which you can find here and reference level documentation as Rust docs."
+      <Row>
+        <HotspotCard
+          title="Documentation"
+          text="Substrate provides both high level documentation which you can find here and reference level documentation as Rust docs."
+        >
+          <Button
+            variant="secondary"
+            href="./docs/"
+            className="m-1 primary-color"
           >
-            <Button
-              variant="secondary"
-              href="./docs/"
-              className="m-1 primary-color"
-            >
-              High Level Docs
-            </Button>
-            <Button
-              variant="secondary"
-              href="https://crates.parity.io"
-              className="m-1"
-            >
-              Reference Docs
-            </Button>
-          </HotspotCard>
-          <HotspotCard
-            title="Join the Community"
-            text="Substrate has a rapidly growing, friendly, and technical community. Ask questions and work with others who are building in the space."
+            High Level Docs
+          </Button>
+          <Button
+            variant="secondary"
+            href="https://crates.parity.io"
+            className="m-1"
           >
-            <Button
-              variant="secondary"
-              href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"
-              className="m-1 primary-color"
-            >
-              Join the Chat!
-            </Button>
-            <Button
-              variant="secondary"
-              href="https://stackoverflow.com/questions/tagged/substrate"
-              className="m-1"
-            >
-              StackOverflow
-            </Button>
-          </HotspotCard>
-          <HotspotCard
-            title="Tutorials"
-            text="Substrate has a range of tutorials to take you from 0-60 in a short amount of time. Learn about runtime development, building smart contracts, setting up a network, and more!"
+            Reference Docs
+          </Button>
+        </HotspotCard>
+        <HotspotCard
+          title="Join the Community"
+          text="Substrate has a rapidly growing, friendly, and technical community. Ask questions and work with others who are building in the space."
+        >
+          <Button
+            variant="secondary"
+            href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"
+            className="m-1 primary-color"
           >
-            <Button
-              variant="secondary"
-              href="https://substrate-developer-hub.github.io/sandbox/tutorials/"
-              className="m-1 primary-color"
-            >
-              Tutorial Catalog
-            </Button>
-          </HotspotCard>
-        </Row>
-      </Container>
+            Join the Chat!
+          </Button>
+          <Button
+            variant="secondary"
+            href="https://stackoverflow.com/questions/tagged/substrate"
+            className="m-1"
+          >
+            StackOverflow
+          </Button>
+        </HotspotCard>
+        <HotspotCard
+          title="Tutorials"
+          text="Substrate has a range of tutorials to take you from 0-60 in a short amount of time. Learn about runtime development, building smart contracts, setting up a network, and more!"
+        >
+          <Button
+            variant="secondary"
+            href="https://substrate-developer-hub.github.io/sandbox/tutorials/"
+            className="m-1 primary-color"
+          >
+            Tutorial Catalog
+          </Button>
+        </HotspotCard>
+      </Row>
     );
 
     const WhatIsSubstrate = () => (
@@ -200,7 +198,6 @@ class Index extends React.Component {
       return (
         <div className="productShowcaseSection paddingBottom">
           <h2>Who else is building on Substrate?</h2>
-          <p>These people are shaping the future of Web3.</p>
           <div className="logos">{showcase}</div>
           <div className="more-users">
             <a className="button" href={pageUrl("users.html")}>
@@ -225,14 +222,14 @@ class Index extends React.Component {
           padding={5}
         />
         <div className="mainContainer">
-          <Hotspots />
-          <WhatIsSubstrate />
           <Container>
+            <Hotspots />
+            <WhatIsSubstrate />
             <Substrate1 />
             <Substrate2 />
             <Substrate3 />
+            <Showcase />
           </Container>
-          <Showcase />
         </div>
       </div>
     );
