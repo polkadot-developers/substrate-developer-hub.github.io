@@ -27,13 +27,9 @@ Voting system where voter can vote for as many candidates as desired. The candid
 
 ### Authority
 Authorities are the actors, keys or identities who, as a collective, manage consensus on the network. `AuthorityId` can be used to identify them. In a PoS chain (such as one using the SRML's Staking module), authorities are determined through a token-weighted nomination/voting system.
-[block:callout]
-{
-  "type": "info",
-  "body": "We sometimes use \"authorities\" and \"validators\" to refer to what seems like the same thing. \"Validators\" is a broader term that can include other aspects of chain maintenance such as parachain validation. In general authorities are a (non-strict) subset of validators and many validators will be authorities.",
-  "title": "Terminology (Authority vs Validitor)"
-}
-[/block]
+
+> We sometimes use "authorities" and "validators" to refer to what seems like the same thing. "Validators" is a broader term that can include other aspects of chain maintenance such as parachain validation. In general authorities are a (non-strict) subset of validators and many validators will be authorities.
+
 ### Aura (aka "Authority Round")
 Deterministic consensus protocol with Non-Instant Finality where block production is achieved by a rotating list of authorities that take turns issuing blocks over time, and where the majority of those online are honest authorities. See https://wiki.parity.io/Aura
 
@@ -57,7 +53,7 @@ A single item of a block chain (or parachain) that amalgamates a series of extri
 ### Byzantine Fault Tolerance (BFT)
 The ability of a distributed computer system to remain operational in the face of a proportion of defective nodes or actors. "Byzantine" refers to the ultimate level of defectiveness, with such nodes assumed to be actively malicious and coordinating rather than merely offline or buggy. Typically BFT systems remain functional with up to around one third of Byzantine nodes.
 
-#### Byzantine Failure 
+#### Byzantine Failure
 The loss of a system service due to a Byzantine Fault (i.e. components in the system fail and there is imperfect information about whether a component has failed) in systems that require consensus.
 
 ---
@@ -105,10 +101,10 @@ The execution of a function with a pre-defined set of arguments. In the context 
 ---
 
 ### Equivocating
-Voting or otherwise backing multiple mutually-exclusive options within the consensus mechanism. This is considered fundamentally Byzantine behaviour. 
+Voting or otherwise backing multiple mutually-exclusive options within the consensus mechanism. This is considered fundamentally Byzantine behaviour.
 
 ### Ethash
-One of a number of proofs of work, to be used in a Proof-of-Work (PoW) consensus algorithm. Originally developed for, and used in, Ethereum by a team led by Tim Hughes. 
+One of a number of proofs of work, to be used in a Proof-of-Work (PoW) consensus algorithm. Originally developed for, and used in, Ethereum by a team led by Tim Hughes.
 
 ### Events
 A means of recording, for the benefit of the off-chain world, that some particular state transition has happened. Within the context of the SRML, events are one of a number of amalgamatable datatypes that each module defines individually and which are aggregated together into a single overall `enum` type that can represent all module's types. Events are implemented through a transient set of storage items which are inspected immediately after a block has executed and reset during block-initialisation.
@@ -128,14 +124,12 @@ A piece of data bundled into a block that expresses something from the "external
 ### Existential Deposit
 
 Within the SRML Balances module, this is the minimum balance an account may have. Accounts cannot be created with a balance less than some minimal amount, and if an account's balance ever drops below amount, then it is removed entirely from the system.
-[block:callout]
-{
-  "type": "warning",
-  "title": "Transferring Small Amounts",
-  "body": "As long as both the sender and receiver keep a balance of at least the existential deposit, transfers, including of very small amounts, will work intuitively. However, an attempt to transfer a small balance from one account to another can have slightly less-than-intuitive consequences when either the sender or receiver balances are very low.\nIf the amount transferred is less than the existential deposit and the destination account did not previously exist, then the transfer will \"succeed\" without actually creating and crediting the destination account; this appears to essentially just burn the transfer balance from the sender. If the transfer takes the sender to below the existential balance, then its account will be deleted. In this way, a transfer can even \"successfully\" result in the sender account being completely deleted, with the receiver account never being created.\nIt is up to middleware to ensure that end-users are made aware of and/or protected from these edge cases."
-}
-[/block]
----
+
+> As long as both the sender and receiver keep a balance of at least the existential deposit, transfers, including of very small amounts, will work intuitively. However, an attempt to transfer a small balance from one account to another can have slightly less-than-intuitive consequences when either the sender or receiver balances are very low.
+>
+> If the amount transferred is less than the existential deposit and the destination account did not previously exist, then the transfer will "succeed" without actually creating and crediting the destination account; this appears to essentially just burn the transfer balance from the sender. If the transfer takes the sender to below the existential balance, then its account will be deleted. In this way, a transfer can even "successfully" result in the sender account being completely deleted, with the receiver account never being created.
+>
+> It is up to middleware to ensure that end-users are made aware of and/or protected from these edge cases.
 
 ### Finality
 A part of consensus dealing with making a progression be irreversible. If a block is finalised, then any real-world repercussions can be effected. The consensus algorithm must guarantee that finalised blocks never need reverting.
@@ -179,13 +173,13 @@ A standard to call functions on a remote system using a JSON protocol. For Subst
 #### JSON-RPC Core Crate
 Allows creation of JSON-RPC server handler, with supported methods registered. Exposes the Substrate Core via different types of Transport Protocols (i.e. WS, HTTP, TCP, IPC)
 
-#### JSON-RPC Macros Crate 
+#### JSON-RPC Macros Crate
 Allows simplifying in code the creation process of the JSON-RPC server through creating a Rust Trait that is annotated with RPC method names, so you can just implement the methods names
 
 #### JSON-RPC Proxy Crate
 Expose a simple server such as TCP from binaries, with another binary in front to serve as a proxy that will expose all other Transport Protocols, and process incoming RPC calls before reaching an upstream server, making it possible to implement Caching Middleware (saves having to go all the way to the node), Permissioning Middleware, load balancing between node instances, or moving account management to the proxy which processes the signed transaction. This provides an alternative to embedding the whole JSON-RPC in each project and all the configuration options for each server.
 
-#### JSON-RPC PubSub Crate 
+#### JSON-RPC PubSub Crate
 Custom (though conventional) extension that is useful for Dapp developers. It allows "subscriptions" so that the server sends notifications to the client automatically (instead of having to call and poll a remote procedure manually all the time) but only with Transport Protocols that support persistent connection between client and server (i.e. WS, TCP, IPC)
 
 ---
@@ -288,7 +282,7 @@ A "generic" transaction pool implementation allowing the runtime to specify whet
 ### Trie (Patricia Merkle Tree)
 An immutable cryptographic data-structure typically used to express maps or sets of items where:
 - a cryptographic digest of the dataset is needed; and/or
-- it is cheap to recompute the digest with incremental changes to the dataset even when it is very large; and/or 
+- it is cheap to recompute the digest with incremental changes to the dataset even when it is very large; and/or
 - a concise proof that the dataset contains some item/pair (or lacks it) is needed.
 
 ---

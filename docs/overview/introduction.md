@@ -19,14 +19,11 @@ Each of these datatypes corresponds to a Rust `trait`. They are:
 - `Extrinsic`, a type to represent a single piece of data external to the blockchain that is recognised by the blockchain. This typically involves one or more signatures, and some sort of encoded instruction (e.g. for transferring ownership of funds or calling into a smart contract).
 - `Block`, essentially just a combination of `Header` and a series of `Extrinsic`s, together with a specification of the hashing algorithm to be used.
 
-Generic reference implementations for each of these traits are provided in the <<glossary:SRML>>. Technically these need not be used, but there are few cases where they are insufficiently generic for a use case.
-[block:callout]
-{
-  "type": "warning",
-  "title": "Some Expertise Needed!",
-  "body": "In order to get the most out of Substrate, you should have a good knowledge of blockchain concepts and basic cryptography. Terminology like header, block, client, hash, transaction and signature should be familiar. At present you will need a working knowledge of Rust to be able to do any significant customisation/adaption of Substrate (though eventually, we aim for this not to be the case)."
-}
-[/block]
+Generic reference implementations for each of these traits are provided in the [SRML](glossary#srml-substrate-runtime-module-library). Technically these need not be used, but there are few cases where they are insufficiently generic for a use case.
+
+> **Some Expertise Needed**
+>
+> In order to get the most out of Substrate, you should have a good knowledge of blockchain concepts and basic cryptography. Terminology like header, block, client, hash, transaction and signature should be familiar. At present you will need a working knowledge of Rust to be able to do any significant customization/adaption of Substrate (though eventually, we aim for this not to be the case).
 
 ## Usage
 
