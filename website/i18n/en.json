@@ -68,9 +68,6 @@
       "tutorials/building-a-token-curated-registry-dappchain": {
         "title": "Building a Token Curated Registry DAppChain"
       },
-      "tutorials/collator-nodes-on-polkadot-chains": {
-        "title": "tutorials/collator-nodes-on-polkadot-chains"
-      },
       "tutorials/creating-a-custom-substrate-chain": {
         "title": "Creating a Custom Substrate chain"
       },
