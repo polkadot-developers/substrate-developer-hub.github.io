@@ -1,0 +1,282 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Constructing a Runtime! · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;The &lt;code&gt;construct_runtime!&lt;/code&gt; macro is where you declare all the runtime modules you would like to include into your blockchain&#x27;s runtime. This includes any modules from the Substrate Runtime Module Library (SRML) or even custom modules you may have written.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Constructing a Runtime! · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;The &lt;code&gt;construct_runtime!&lt;/code&gt; macro is where you declare all the runtime modules you would like to include into your blockchain&#x27;s runtime. This includes any modules from the Substrate Runtime Module Library (SRML) or even custom modules you may have written.&lt;/p&gt;
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/Substrate-logo.svg"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/quickstart/installing-substrate" target="_self">Docs</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="https://www.parity.io/blog/" target="_self">Blog</a></li><li class=""><a href="/community/support" target="_self">Community</a></li><li class=""><a href="https://github.com/substrate-developer-hub/" target="_self">GitHub</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/zh-CN/runtime/macros/construct_runtime">中文</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Runtime Macros</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Quick Start</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/quickstart/installing-substrate">Installing Substrate</a></li><li class="navListItem"><a class="navItem" href="/docs/en/quickstart/using-the-substrate-node-and-module-setup-scripts">Using the Substrate node and module setup scripts</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Runtime</h3><ul class=""><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Macros</h4><ul><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/runtime/macros/construct_runtime">Constructing a Runtime!</a></li><li class="navListItem"><a class="navItem" href="/docs/en/runtime/macros/decl_module">Declaring a Module!</a></li><li class="navListItem"><a class="navItem" href="/docs/en/runtime/macros/decl_storage">runtime/macros/decl_storage</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Types</h4><ul><li class="navListItem"><a class="navItem" href="/docs/en/runtime/types/call-enum">Call Enum</a></li><li class="navListItem"><a class="navItem" href="/docs/en/runtime/types/event-enum">Event Enum</a></li><li class="navListItem"><a class="navItem" href="/docs/en/runtime/types/genesisconfig-struct">GenesisConfig Struct</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/en/runtime/architecture-of-a-runtime">Architecture of a Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/runtime/runtime-and-api">Runtime and API</a></li><li class="navListItem"><a class="navItem" href="/docs/en/runtime/substrate-runtime-module-library">Substrate Runtime Module Library</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Substrate Overview</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/overview/extrinsics">Extrinsics</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/glossary">Glossary</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/introduction">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/low-level-data-format">Low-level Data Format</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/substrate-bonds">overview/substrate-bonds</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/telemetry">Telemetry</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/transaction-lifecycle">Transaction Lifecycle</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/versioning">Versioning</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Tutorials</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/building-a-token-curated-registry-dappchain">Building a Token Curated Registry DAppChain</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/creating-a-custom-substrate-chain">Creating a Custom Substrate chain</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/deploying-a-smart-contract-on-a-substrate-node-chain">Deploying a Smart Contract on a Substrate Node Chain</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/start-a-private-network-with-substrate">Start a Private Network with Substrate</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/keys--seeds--and-the--subkey--tool">Keys, Seeds, and the `subkey` Tool</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/governance--public--mechanism-with-a-substrate-node-chain">Governance &quot;Public&quot; Mechanism with a Substrate Node Chain</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/migrating-storage-to-a-new-substrate-node-s-runtime">Migrating Storage to a new Substrate Node&#x27;s Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/substrate-collectables-workshop">tutorials/substrate-collectables-workshop</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/substrate-runtime-recipes">Substrate Runtime Recipes</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/validator-nodes-and-nominators-on-substrate-chains">Validator Nodes and Nominators on Substrate chains</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Constructing a Runtime!</h1></header><article><div><span><p>The <code>construct_runtime!</code> macro is where you declare all the runtime modules you would like to include into your blockchain's runtime. This includes any modules from the Substrate Runtime Module Library (SRML) or even custom modules you may have written.</p>
+<p>Here is an example of a <code>construct_runtime!</code> definition from the <a href="https://github.com/paritytech/substrate-node-template/blob/master/runtime/src/lib.rs">substrate-node-template</a>:</p>
+<pre><code class="hljs css language-rust">construct_runtime!(
+    <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Runtime</span></span> with Log(InternalLog: DigestItem&lt;Hash, Ed25519AuthorityId&gt;) <span class="hljs-keyword">where</span>
+        Block = Block,
+        NodeBlock = opaque::Block,
+        UncheckedExtrinsic = UncheckedExtrinsic
+    {
+        System: system::{<span class="hljs-keyword">default</span>, Log(ChangesTrieRoot)},
+        Timestamp: timestamp::{Module, Call, Storage, Config&lt;T&gt;, Inherent},
+        Consensus: consensus::{Module, Call, Storage, Config&lt;T&gt;, Log(AuthoritiesChange), Inherent},
+        Aura: aura::{Module},
+        Indices: indices,
+        Balances: balances,
+        Sudo: sudo,
+    }
+);
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="defining-the-modules-used"></a><a href="#defining-the-modules-used" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Defining the Modules Used</h2>
+<p>In the example above, we only use modules in the SRML, but you can see that there are different syntactical ways that you can define the use of a module and its types. These different patterns are managed by the <a href="https://github.com/paritytech/substrate/blob/master/srml/support/src/runtime.rs">macro definition</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="naming-your-module"></a><a href="#naming-your-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Naming Your Module</h3>
+<p>Each line in your <code>construct_runtime!</code> macro defines a module you are using in your runtime.</p>
+<pre><code class="hljs css language-rust">System: system::{<span class="hljs-keyword">default</span>, Log(ChangesTrieRoot)},
+</code></pre>
+<p>The lowercase <code>system</code> points to the Rust module where you have defined your runtime logic (following the standard Rust style guidelines). The uppercase <code>System</code> is a friendly name that you can define for your module which gets exposed through the runtime APIs.</p>
+<h3><a class="anchor" aria-hidden="true" id="supported-types"></a><a href="#supported-types" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Supported Types</h3>
+<p>The <code>construct_runtime!</code> macro provides support for the following types in a module:</p>
+<ul>
+<li><a href="#section-module"><code>Module</code></a></li>
+<li><a href="#section-call"><code>Call</code></a></li>
+<li><a href="#section-storage"><code>Storage</code></a></li>
+<li><a href="#section-event"><code>Event</code></a> or <code>Event&lt;T&gt;</code> (if the event is <a href="https://doc.rust-lang.org/rust-by-example/generics.html">generic</a>)</li>
+<li><a href="#section-origin"><code>Origin</code></a> or <code>Origin&lt;T&gt;</code> (if the origin is <a href="https://doc.rust-lang.org/rust-by-example/generics.html">generic</a>)</li>
+<li><a href="#section-config"><code>Config</code></a> or <code>Config&lt;T&gt;</code> (if the config is <a href="https://doc.rust-lang.org/rust-by-example/generics.html">generic</a>)</li>
+<li><a href="#section-log"><code>Log</code></a></li>
+<li><a href="#section-inherent"><code>Inherent</code></a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="no-types-or-default"></a><a href="#no-types-or-default" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>No Types or <code>default</code></h3>
+<p>In the definition of the <code>Balances</code> or <code>Sudo</code> module, you see that we do not specify any of the types used within the module. In this case, the macro automatically expands this definition to include the following:</p>
+<pre><code class="hljs css language-rust">Module, Call, Storage, Event&lt;T&gt;, Config&lt;T&gt;
+</code></pre>
+<p>So these two lines are equivalent:</p>
+<pre><code class="hljs css language-rust">Balances: balances,
+<span class="hljs-comment">// Same as...</span>
+Balances: balances::{Module, Call, Storage, Event&lt;T&gt;, Config&lt;T&gt;},
+</code></pre>
+<p>If you want to include these default types in addition to other types you define, you can use the <code>default</code> keyword as shown in the <code>System</code> module. Thus these two lines are equivalent as well:</p>
+<pre><code class="hljs css language-rust">System: system::{<span class="hljs-keyword">default</span>, Log(ChangesTrieRoot)},
+<span class="hljs-comment">// Same as...</span>
+System: system::{Module, Call, Storage, Event&lt;T&gt;, Config&lt;T&gt;, Log(ChangesTrieRoot)},
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="when-to-use-different-types"></a><a href="#when-to-use-different-types" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>When To Use Different Types</h2>
+<p>As you can see, the types exposed by your various modules are what ultimately power the runtime. Most of these types are automatically generated by other macros used in the runtime development.</p>
+<h3><a class="anchor" aria-hidden="true" id="module"></a><a href="#module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Module</h3>
+<p>The <code>Module</code> type is required by all modules in your runtime. This type gets generated through the <code>decl_module!</code> macro. This is where all the public functions your module exposes are defined. For example, in the <a href="https://github.com/paritytech/substrate/blob/master/srml/sudo/src/lib.rs"><code>Sudo</code></a> module which controls the management of &quot;admin&quot; access to your chain:</p>
+<pre><code class="hljs css language-rust">decl_module! {
+    <span class="hljs-comment">// Simple declaration of the `Module` type. Lets the macro know what its working on.</span>
+    <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Module</span></span>&lt;T: Trait&gt; <span class="hljs-keyword">for</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span> <span class="hljs-keyword">where</span> origin: T::Origin {
+        <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">deposit_event</span></span>&lt;T&gt;() = <span class="hljs-keyword">default</span>;
+
+        <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sudo</span></span>(origin, proposal: <span class="hljs-built_in">Box</span>&lt;T::Proposal&gt;) {
+            <span class="hljs-comment">// This is a public call, so we ensure that the origin is some signed account.</span>
+            <span class="hljs-keyword">let</span> sender = ensure_signed(origin)?;
+            ensure!(sender == Self::key(), <span class="hljs-string">"only the current sudo key can sudo"</span>);
+
+            <span class="hljs-keyword">let</span> ok = proposal.dispatch(system::RawOrigin::Root.into()).is_ok();
+            Self::deposit_event(RawEvent::Sudid(ok));
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">set_key</span></span>(origin, new: &lt;T::Lookup <span class="hljs-keyword">as</span> StaticLookup&gt;::Source) {
+            <span class="hljs-comment">// This is a public call, so we ensure that the origin is some signed account.</span>
+            <span class="hljs-keyword">let</span> sender = ensure_signed(origin)?;
+            ensure!(sender == Self::key(), <span class="hljs-string">"only the current sudo key can change the sudo key"</span>);
+            <span class="hljs-keyword">let</span> new = T::Lookup::lookup(new)?;
+
+            Self::deposit_event(RawEvent::KeyChanged(Self::key()));
+            &lt;Key&lt;T&gt;&gt;::put(new);
+        }
+    }
+}
+</code></pre>
+<p>You can learn more about <code>decl_module!</code> <a href="https://substrate.readme.io/docs/decl_module">here</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="call"></a><a href="#call" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Call</h3>
+<p>The <code>Call</code> type is an enum generated by the <code>decl_module!</code> macro which contains a list of all the callable functions and their arguments. For example, in the <a href="https://github.com/paritytech/substrate/blob/master/srml/sudo/src/lib.rs"><code>Sudo</code></a> module above, we should expect an enum similar to:</p>
+<pre><code class="hljs css language-rust"><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span>&lt;T&gt; {
+    sudo(proposal: <span class="hljs-built_in">Box</span>&lt;T::Proposal&gt;),
+    set_key(new: &lt;T::Lookup <span class="hljs-keyword">as</span> StaticLookup&gt;::Source),
+}
+</code></pre>
+<p>We will dig deeper into this topic [here] (Coming Soon).</p>
+<h3><a class="anchor" aria-hidden="true" id="storage"></a><a href="#storage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Storage</h3>
+<p>The <code>Storage</code> type is exposed whenever your runtime uses the <code>decl_storage!</code> macro. This macro is used to save data used by your runtime module into the chain state.</p>
+<p>We can look at the <a href="https://github.com/paritytech/substrate/blob/master/srml/sudo/src/lib.rs"><code>Sudo</code></a> module to see an example:</p>
+<pre><code class="hljs css language-rust">decl_storage! {
+    <span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Store</span></span> <span class="hljs-keyword">for</span> Module&lt;T: Trait&gt; <span class="hljs-keyword">as</span> Sudo {
+        Key get(key) config(): T::AccountId;
+    }
+}
+</code></pre>
+<p>You can learn more about <a href="https://github.com/paritytech/wiki/blob/master/decl_storage.md"><code>decl_storage!</code></a></p>
+<h3><a class="anchor" aria-hidden="true" id="event"></a><a href="#event" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Event</h3>
+<p>The <code>Event</code> type needs to be exposed whenever your module deposits events using the <code>decl_event!</code> module. Events can be used to easily report changes or conditions in your runtime to external entities like users, chain explorers, or dApps.</p>
+<p>If you want to expose generic types defined by your module, you will need to make your type generic (Event<T>), as shown here:</p>
+<pre><code class="hljs css language-rust"><span class="hljs-comment">/// An event in this module.</span>
+decl_event!(
+    <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Event</span></span>&lt;T&gt; <span class="hljs-keyword">where</span> AccountId = &lt;T <span class="hljs-keyword">as</span> system::Trait&gt;::AccountId {
+        <span class="hljs-comment">/// A sudo just took place.</span>
+        Sudid(<span class="hljs-built_in">bool</span>),
+        <span class="hljs-comment">/// The sudoer just switched identity; the old key is supplied.</span>
+        KeyChanged(AccountId),
+    }
+);
+</code></pre>
+<p>Otherwise, you can simply use <code>Event</code> for non-generic types. You can learn more about <code>decl_event!</code> [here] (Coming Soon).</p>
+<h3><a class="anchor" aria-hidden="true" id="origin"></a><a href="#origin" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Origin</h3>
+<p>The <code>Origin</code> type is needed whenever your module declares a custom <code>Origin</code> enum to be used within your module.</p>
+<p>Every function call to your runtime has an origin which specifies where the extrinsic was generated from. In the case of a signed extrinsic (transaction), the origin contains an identifier for the caller. The origin can be empty in the case of an inherent extrinsic.</p>
+<p>You can see an example of a customized <code>Origin</code> in the <a href="https://github.com/paritytech/substrate/blob/master/srml/council/src/motions.rs">council motion module</a>:</p>
+<pre><code class="hljs css language-rust"><span class="hljs-comment">/// Origin for the council module.</span>
+<span class="hljs-meta">#[derive(PartialEq, Eq, Clone)]</span>
+<span class="hljs-meta">#[cfg_attr(feature = <span class="hljs-meta-string">"std"</span>, derive(Debug))]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Origin</span></span> {
+    <span class="hljs-comment">/// It has been condoned by a given number of council members.</span>
+    Members(<span class="hljs-built_in">u32</span>),
+}
+</code></pre>
+<p>We will dig deeper into this topic [here] (Coming Soon).</p>
+<h3><a class="anchor" aria-hidden="true" id="config"></a><a href="#config" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Config</h3>
+<p>The <code>Config</code> type is needed whenever your module defines an initial state in the genesis configuration. By default, all storage variables are left in an 'unassigned' state, but using the <code>config()</code> keyword while declaring the storage variable allows you to initialize that state.</p>
+<p>An example of that initialization can be found in the <code>substrate-node-template</code>, where Alice is set as the upgrade <code>Key</code> for <code>Sudo</code>. You can see from the <code>Storage</code> section that <code>Key</code> does have the <code>config()</code> parameter, and the value for it gets set in the <code>GenesisConfig</code> within <a href="https://github.com/paritytech/substrate-node-template/blob/master/src/chain_spec.rs">chain_spec.rs</a>:</p>
+<pre><code class="hljs css language-rust">GenesisConfig {
+    ...
+    sudo: <span class="hljs-literal">Some</span>(SudoConfig {
+        key: root_key,
+    }),
+}
+</code></pre>
+<p>We will dig deeper into this topic [here] (Coming Soon).</p>
+<h3><a class="anchor" aria-hidden="true" id="log"></a><a href="#log" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Log</h3>
+<p>The <code>Log</code> type is needed if your module generates logs entries for the runtime. Within the module, you must expose both a <code>Log</code> type and a <code>RawLog</code> enum which defines what the module is logging. Logs must satisfy the following requirements:</p>
+<ol>
+<li><p>The binary representation of all supported 'system' log items should stay the same. Otherwise, the native code will be unable to read log items generated by previous runtime versions.</p></li>
+<li><p>The support of 'system' log items should never be dropped by runtime. Otherwise, native code will lose its ability to read items of this type even if they were generated by the versions which have supported these items.</p></li>
+</ol>
+<p>The <a href="https://github.com/paritytech/substrate/blob/master/srml/consensus/src/lib.rs"><code>Consensus</code> module</a> shows an example of how to implement a log:</p>
+<pre><code class="hljs css language-rust"><span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Log</span></span>&lt;T&gt; = RawLog&lt;
+    &lt;T <span class="hljs-keyword">as</span> Trait&gt;::SessionKey,
+&gt;;
+
+<span class="hljs-comment">/// Add logs in this module.</span>
+<span class="hljs-meta">#[cfg_attr(feature = <span class="hljs-meta-string">"std"</span>, derive(Serialize, Debug))]</span>
+<span class="hljs-meta">#[derive(Encode, Decode, PartialEq, Eq, Clone)]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">RawLog</span></span>&lt;SessionKey&gt; {
+    <span class="hljs-comment">/// Authorities set has been changed. Contains the new set of authorities.</span>
+    AuthoritiesChange(<span class="hljs-built_in">Vec</span>&lt;SessionKey&gt;),
+}
+
+<span class="hljs-keyword">impl</span>&lt;SessionKey: Member&gt; RawLog&lt;SessionKey&gt; {
+    <span class="hljs-comment">/// Try to cast the log entry as AuthoritiesChange log entry.</span>
+    <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">as_authorities_change</span></span>(&amp;<span class="hljs-keyword">self</span>) -&gt; <span class="hljs-built_in">Option</span>&lt;&amp;[SessionKey]&gt; {
+        <span class="hljs-keyword">match</span> *<span class="hljs-keyword">self</span> {
+            RawLog::AuthoritiesChange(<span class="hljs-keyword">ref</span> item) =&gt; <span class="hljs-literal">Some</span>(item),
+        }
+    }
+}
+</code></pre>
+<p>It is customary to expose a <code>deposit_log()</code> function within your module which creates a log:</p>
+<pre><code class="hljs css language-rust"><span class="hljs-comment">/// Deposit one of this module's logs.</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">deposit_log</span></span>(log: Log&lt;T&gt;) {
+    &lt;system::Module&lt;T&gt;&gt;::deposit_log(&lt;T <span class="hljs-keyword">as</span> Trait&gt;::Log::from(log).into());
+}
+</code></pre>
+<p>We will dig deeper into this topic [here] (Coming Soon).</p>
+<h3><a class="anchor" aria-hidden="true" id="inherent"></a><a href="#inherent" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Inherent</h3>
+<p>The <code>Inherent</code> type is needed when your module defines an implementation of the <code>ProvideInherent</code> trait.</p>
+<p>This custom implementation is needed whenever your module wants to provide an inherent extrinsic and/or wants to verify an inherent extrinsic. If your module requires extra data for creating the inherent extrinsic, the data needs to be passed as <code>InherentData</code> into the runtime.</p>
+<p>For example, in the <a href="https://github.com/paritytech/substrate/blob/master/srml/timestamp/src/lib.rs"><code>Timestamp</code> module</a>, an inherent data is used to set the timestamp for a given block by creating an extrinsic. As a peer authority of the block author, we confirm that the time proposed in the inherent extrinsic is within an acceptable period from our clock.</p>
+<pre><code class="hljs css language-rust"><span class="hljs-keyword">impl</span>&lt;T: Trait&gt; ProvideInherent <span class="hljs-keyword">for</span> Module&lt;T&gt; {
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Inherent</span></span> = T::Moment;
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Call</span></span> = Call&lt;T&gt;;
+
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">create_inherent_extrinsics</span></span>(data: Self::Inherent) -&gt; <span class="hljs-built_in">Vec</span>&lt;(<span class="hljs-built_in">u32</span>, Self::Call)&gt; {
+        <span class="hljs-keyword">let</span> next_time = ::rstd::cmp::max(data, Self::now() + Self::block_period());
+        <span class="hljs-built_in">vec!</span>[(T::TIMESTAMP_SET_POSITION, Call::set(next_time.into()))]
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">check_inherent</span></span>&lt;Block: BlockT, F: <span class="hljs-built_in">Fn</span>(&amp;Block::Extrinsic) -&gt; <span class="hljs-built_in">Option</span>&lt;&amp;Self::Call&gt;&gt;(
+            block: &amp;Block, data: Self::Inherent, extract_function: &amp;F
+    ) -&gt; result::<span class="hljs-built_in">Result</span>&lt;(), CheckInherentError&gt; {
+        <span class="hljs-keyword">const</span> MAX_TIMESTAMP_DRIFT: <span class="hljs-built_in">u64</span> = <span class="hljs-number">60</span>;
+
+        <span class="hljs-keyword">let</span> xt = block.extrinsics().get(T::TIMESTAMP_SET_POSITION <span class="hljs-keyword">as</span> <span class="hljs-built_in">usize</span>)
+            .ok_or_else(|| CheckInherentError::Other(<span class="hljs-string">"No valid timestamp inherent in block"</span>.into()))?;
+
+        <span class="hljs-keyword">let</span> t = <span class="hljs-keyword">match</span> (xt.is_signed(), extract_function(&amp;xt)) {
+            (<span class="hljs-literal">Some</span>(<span class="hljs-literal">false</span>), <span class="hljs-literal">Some</span>(Call::set(<span class="hljs-keyword">ref</span> t))) =&gt; t.clone(),
+            _ =&gt; <span class="hljs-keyword">return</span> <span class="hljs-literal">Err</span>(CheckInherentError::Other(<span class="hljs-string">"No valid timestamp inherent in block"</span>.into())),
+        }.into().as_();
+
+        <span class="hljs-keyword">let</span> minimum = (Self::now() + Self::block_period()).as_();
+        <span class="hljs-keyword">if</span> t &gt; data.as_() + MAX_TIMESTAMP_DRIFT {
+            <span class="hljs-literal">Err</span>(CheckInherentError::Other(<span class="hljs-string">"Timestamp too far in future to accept"</span>.into()))
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> t &lt; minimum {
+            <span class="hljs-literal">Err</span>(CheckInherentError::ValidAtTimestamp(minimum))
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-literal">Ok</span>(())
+        }
+    }
+}
+</code></pre>
+<p>We will dig deeper into this topic [here] (Coming Soon).</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/quickstart/using-the-substrate-node-and-module-setup-scripts"><span class="arrow-prev">← </span><span>Using the Substrate node and module setup scripts</span></a><a class="docs-next button" href="/docs/en/runtime/macros/decl_module"><span>Declaring a Module!</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#defining-the-modules-used">Defining the Modules Used</a><ul class="toc-headings"><li><a href="#naming-your-module">Naming Your Module</a></li><li><a href="#supported-types">Supported Types</a></li><li><a href="#no-types-or-default">No Types or <code>default</code></a></li></ul></li><li><a href="#when-to-use-different-types">When To Use Different Types</a><ul class="toc-headings"><li><a href="#module">Module</a></li><li><a href="#call">Call</a></li><li><a href="#storage">Storage</a></li><li><a href="#event">Event</a></li><li><a href="#origin">Origin</a></li><li><a href="#config">Config</a></li><li><a href="#log">Log</a></li><li><a href="#inherent">Inherent</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/en/who">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="https://crates.parity.io">Reference Docs</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/paritytech/substrate">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 Parity Technologies</section></footer></div></body></html>

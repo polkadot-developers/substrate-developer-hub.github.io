@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Start a Private Network with Substrate · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;In this tutorial we will learn and practice how to start a blockchain network with a validator/authority set of your choosing using Substrate.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Start a Private Network with Substrate · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;In this tutorial we will learn and practice how to start a blockchain network with a validator/authority set of your choosing using Substrate.&lt;/p&gt;
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/Substrate-logo.svg"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/quickstart/installing-substrate" target="_self">Docs</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="https://www.parity.io/blog/" target="_self">Blog</a></li><li class=""><a href="/community/support" target="_self">Community</a></li><li class=""><a href="https://github.com/substrate-developer-hub/" target="_self">GitHub</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/zh-CN/tutorials/start-a-private-network-with-substrate">中文</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Tutorials</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Quick Start</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/quickstart/installing-substrate">Installing Substrate</a></li><li class="navListItem"><a class="navItem" href="/docs/en/quickstart/using-the-substrate-node-and-module-setup-scripts">Using the Substrate node and module setup scripts</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Runtime</h3><ul class=""><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Macros</h4><ul><li class="navListItem"><a class="navItem" href="/docs/en/runtime/macros/construct_runtime">Constructing a Runtime!</a></li><li class="navListItem"><a class="navItem" href="/docs/en/runtime/macros/decl_module">Declaring a Module!</a></li><li class="navListItem"><a class="navItem" href="/docs/en/runtime/macros/decl_storage">runtime/macros/decl_storage</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Types</h4><ul><li class="navListItem"><a class="navItem" href="/docs/en/runtime/types/call-enum">Call Enum</a></li><li class="navListItem"><a class="navItem" href="/docs/en/runtime/types/event-enum">Event Enum</a></li><li class="navListItem"><a class="navItem" href="/docs/en/runtime/types/genesisconfig-struct">GenesisConfig Struct</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/en/runtime/architecture-of-a-runtime">Architecture of a Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/runtime/runtime-and-api">Runtime and API</a></li><li class="navListItem"><a class="navItem" href="/docs/en/runtime/substrate-runtime-module-library">Substrate Runtime Module Library</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Substrate Overview</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/overview/extrinsics">Extrinsics</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/glossary">Glossary</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/introduction">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/low-level-data-format">Low-level Data Format</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/substrate-bonds">overview/substrate-bonds</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/telemetry">Telemetry</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/transaction-lifecycle">Transaction Lifecycle</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/versioning">Versioning</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Tutorials</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/building-a-token-curated-registry-dappchain">Building a Token Curated Registry DAppChain</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/creating-a-custom-substrate-chain">Creating a Custom Substrate chain</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/deploying-a-smart-contract-on-a-substrate-node-chain">Deploying a Smart Contract on a Substrate Node Chain</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/tutorials/start-a-private-network-with-substrate">Start a Private Network with Substrate</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/keys--seeds--and-the--subkey--tool">Keys, Seeds, and the `subkey` Tool</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/governance--public--mechanism-with-a-substrate-node-chain">Governance &quot;Public&quot; Mechanism with a Substrate Node Chain</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/migrating-storage-to-a-new-substrate-node-s-runtime">Migrating Storage to a new Substrate Node&#x27;s Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/substrate-collectables-workshop">tutorials/substrate-collectables-workshop</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/substrate-runtime-recipes">Substrate Runtime Recipes</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/validator-nodes-and-nominators-on-substrate-chains">Validator Nodes and Nominators on Substrate chains</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Start a Private Network with Substrate</h1></header><article><div><span><p>In this tutorial we will learn and practice how to start a blockchain network with a validator/authority set of your choosing using Substrate.</p>
+<p>You will need:</p>
+<ol>
+<li>A linux- or OSX-like shell</li>
+<li>git</li>
+</ol>
+<p>You will learn to:</p>
+<ol>
+<li>Compile a Substrate node from source code.</li>
+<li>Generate ed25519 key-pairs for use as a network authority</li>
+<li>Create and edit a chainspec json file</li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="compiling-the-tools"></a><a href="#compiling-the-tools" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Compiling the Tools</h2>
+<p>Substrate is an open source framework for building your own blockchain nodes. It can be used for a very wide variety of applications.</p>
+<p>Substrate does not (yet) offer binary installation packages, so it must be compiled from source, which can be a time-consuming process. Commits go into the <a href="https://github.com/paritytech/substrate">Substrate repository</a> regularly and it is wise that everyone participating in this network have the same version of substrate to guarantee success. In practice similar but not identical versions will often work, but banking on that is a recipe for frustration.</p>
+<h3><a class="anchor" aria-hidden="true" id="your-first-time"></a><a href="#your-first-time" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Your First Time</h3>
+<p>First we'll download the Substrate v1.0 code by cloning the git repository.</p>
+<pre><code class="hljs css language-bash">git <span class="hljs-built_in">clone</span> -b v1.0 https://github.com/paritytech/substrate
+<span class="hljs-built_in">cd</span> substrate
+</code></pre>
+<p>The repository includes a utility called <code>subkey</code> which we'll use to generate and inspect keypairs. Let's compile it first. The <code>--force</code> option means that we'll install this version over any previously installed versions.</p>
+<pre><code class="hljs css language-bash">cargo install --force --path subkey subkey
+</code></pre>
+<p>Now let's compile the actual blockchain node that we'll be running. Because Substrate is a framework, most real-world blockchains that use it will write custom runtime code. There are <a href="https://docs.substrate.dev/docs/">other tutorials</a> that cover that process in detail. Luckily the Substrate repository itself already comes with two ready-to-run node environments. The first lives in the <code>node</code> directory and includes many features to be a practical blockchain. In fact it looks quite similar to polkadot which is also built on Substrate. The second is a minimalistic runtime that lives in the <code>node-template</code> directory. We'll be using the node template in this tutorial because of its simplicity and because it is the usual starting point when writing your own custom runtime.</p>
+<pre><code class="hljs css language-bash"><span class="hljs-built_in">cd</span> node-template
+
+<span class="hljs-comment"># Ensure your rust toolchain is up to date</span>
+./scripts/init.sh
+
+<span class="hljs-comment"># Compile the wasm version of the runtime code</span>
+./scripts/build.sh
+
+<span class="hljs-comment"># Compile the native version of the node</span>
+cargo build
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="updating-later"></a><a href="#updating-later" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Updating Later</h3>
+<p>When updating or changing Substrate versions, the process is similar, but the builds are much faster. Start by grabbing all the latest code, even if you will ultimately use an older version.</p>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># Ensure you're on the v1.0 branch</span>
+git checkout v1.0
+
+<span class="hljs-comment"># Grab the latest code</span>
+git pull
+</code></pre>
+<p>Subkey doesn't change nearly as quickly as Substrate itself, so you can often skip rebuilding it. If your get checksum errors or key-compatibility errors, ensure subkey is up to date.</p>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># Optional: Rebuild subkey</span>
+cargo install --force --path subkey subkey
+</code></pre>
+<p>Now we're ready to rebuild the node template. This process is identical to before, but will run much faster, because only the parts of the code that have actually changed will be recompiled.</p>
+<pre><code class="hljs css language-bash"><span class="hljs-built_in">cd</span> node-template
+./scripts/init.sh
+./scripts/build.sh
+cargo build
+</code></pre>
+<p>Protip: If you'd like <code>node-template</code> to end up on your path, you may use <code>cargo install</code> instead of <code>cargo build</code> in the last step.</p>
+<h2><a class="anchor" aria-hidden="true" id="alice-and-bob-start-blockchain"></a><a href="#alice-and-bob-start-blockchain" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Alice and Bob Start Blockchain</h2>
+<p>Before we generate our own keys, and start a truly unique Substrate network, let's learn the fundamentals by starting with a pre-defined network specification called <code>local</code> with two pre-defined (and definitely not private!) keys known as Alice and Bob.</p>
+<h3><a class="anchor" aria-hidden="true" id="alice-starts-first"></a><a href="#alice-starts-first" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Alice Starts first</h3>
+<p>Alice (or whomever is playing her) should run this command from Substrate repository root.</p>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># If you're still in node-template/</span>
+<span class="hljs-built_in">cd</span> ..
+
+<span class="hljs-comment"># Start the node</span>
+./target/debug/node-template \
+  --base-path /tmp/alice \
+  --chain=<span class="hljs-built_in">local</span> \
+  --key //Alice \
+  --port 30333 \
+  --telemetry-url ws://telemetry.polkadot.io:1024 \
+  --validator \
+  --name AlicesNode
+</code></pre>
+<p>Let's look at those flags in detail:</p>
+<ul>
+<li><code>--base-path</code> Specifies a directory where Substrate should store all the data related to this chain. If the directory does not exist it will be created for you. If other blockchain data already exists there you will get an error. Either clear the directory or choose a different one.</li>
+<li><code>--chain=local</code> Specifies which chain specification to use. There are a few pre-packaged options including <code>local</code> <code>development</code> and <code>staging</code> but generally one specifies their own chainspec file. We'll specify our own file in a later step.</li>
+<li><code>--key //Alice</code> Specifies that we're using the pre-packaged Alice key as a validator on this node. Generally one should generate their own key with <code>subkey</code> and then the flag would look like <code>--key 0x23dce424ed...</code>. We'll generate our own keys in a later step.</li>
+<li><code>--port 30333</code> Specifies the port that your node will listen for p2p traffic on. 30333 is the default and this flag can be omitted if you're happy with the default. If Bob's node will run on the same physical system, you will need to explicitly specify a different port for it.</li>
+<li><code>--telemetry-url</code> Tells the node to send telemetry data to a particular server. The one we've chosen here is hosted by Parity and is available for anyone to use. You may host your own (beyond the scope of this article) or omit this flag entirely.</li>
+<li><code>--validator</code> Means that we want to participate in block production rather than just sync the network. TODO learn and explain exactly how this works when grandpa or babe are present, etc.</li>
+<li><code>--name</code> Attaches a human readable name to the node. This flag is optional and if you omit it a human-readable name will be generated for you. If you aren't using telemetry, you likely won't find much value in assigning a name to the node.</li>
+</ul>
+<p>When the node starts you should see output similar to this.</p>
+<pre><code class="hljs"><span class="hljs-number">2019</span>-<span class="hljs-number">05</span>-<span class="hljs-number">08</span> <span class="hljs-number">11</span>:<span class="hljs-number">15</span>:<span class="hljs-number">38</span> Substrate Node
+<span class="hljs-number">2019</span>-<span class="hljs-number">05</span>-<span class="hljs-number">08</span> <span class="hljs-number">11</span>:<span class="hljs-number">15</span>:<span class="hljs-number">38</span>   version <span class="hljs-number">1.0</span>.<span class="hljs-number">0</span>-<span class="hljs-number">17</span>dcbe6c-x86_64-linux-gnu
+<span class="hljs-number">2019</span>-<span class="hljs-number">05</span>-<span class="hljs-number">08</span> <span class="hljs-number">11</span>:<span class="hljs-number">15</span>:<span class="hljs-number">38</span>   by Anonymous, <span class="hljs-number">2017</span>, <span class="hljs-number">2018</span>
+<span class="hljs-number">2019</span>-<span class="hljs-number">05</span>-<span class="hljs-number">08</span> <span class="hljs-number">11</span>:<span class="hljs-number">15</span>:<span class="hljs-number">38</span> Chain specification: Local Testnet
+<span class="hljs-number">2019</span>-<span class="hljs-number">05</span>-<span class="hljs-number">08</span> <span class="hljs-number">11</span>:<span class="hljs-number">15</span>:<span class="hljs-number">38</span> Node name: AlicesNode
+<span class="hljs-number">2019</span>-<span class="hljs-number">05</span>-<span class="hljs-number">08</span> <span class="hljs-number">11</span>:<span class="hljs-number">15</span>:<span class="hljs-number">38</span> Roles: FULL
+<span class="hljs-number">2019</span>-<span class="hljs-number">05</span>-<span class="hljs-number">08</span> <span class="hljs-number">11</span>:<span class="hljs-number">15</span>:<span class="hljs-number">38</span> Generated a new keypair: <span class="hljs-number">3520</span>cafa56767704a32b27c351851b9f0dba7dec34e79e4165b10b89dce98a9c (<span class="hljs-number">5</span>DGN8sgD...)
+<span class="hljs-number">2019</span>-<span class="hljs-number">05</span>-<span class="hljs-number">08</span> <span class="hljs-number">11</span>:<span class="hljs-number">15</span>:<span class="hljs-number">38</span> Best block: #<span class="hljs-number">63</span>
+<span class="hljs-number">2019</span>-<span class="hljs-number">05</span>-<span class="hljs-number">08</span> <span class="hljs-number">11</span>:<span class="hljs-number">15</span>:<span class="hljs-number">38</span> Using <span class="hljs-keyword">default</span> protocol ID <span class="hljs-string">"sup"</span> because none is configured <span class="hljs-keyword">in</span> the chain specs
+<span class="hljs-number">2019</span>-<span class="hljs-number">05</span>-<span class="hljs-number">08</span> <span class="hljs-number">11</span>:<span class="hljs-number">15</span>:<span class="hljs-number">38</span> Local node identity is: QmNTx7qYd5JiasUTzjaAbTCUeH5ot9xMjRePRjkSEdD7MY
+<span class="hljs-number">2019</span>-<span class="hljs-number">05</span>-<span class="hljs-number">08</span> <span class="hljs-number">11</span>:<span class="hljs-number">15</span>:<span class="hljs-number">38</span> Libp2p =&gt; Random Kademlia query has yielded empty results
+<span class="hljs-number">2019</span>-<span class="hljs-number">05</span>-<span class="hljs-number">08</span> <span class="hljs-number">11</span>:<span class="hljs-number">15</span>:<span class="hljs-number">38</span> Listening <span class="hljs-keyword">for</span> new connections on <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">9944</span>.
+<span class="hljs-number">2019</span>-<span class="hljs-number">05</span>-<span class="hljs-number">08</span> <span class="hljs-number">11</span>:<span class="hljs-number">15</span>:<span class="hljs-number">41</span> Libp2p =&gt; Random Kademlia query has yielded empty results
+<span class="hljs-number">2019</span>-<span class="hljs-number">05</span>-<span class="hljs-number">08</span> <span class="hljs-number">11</span>:<span class="hljs-number">15</span>:<span class="hljs-number">43</span> Idle (<span class="hljs-number">0</span> peers), best: #<span class="hljs-number">63</span> (<span class="hljs-number">0x8a3c</span>…b693), finalized #<span class="hljs-number">0</span> (<span class="hljs-number">0xdb6e</span>…<span class="hljs-number">679</span>d), ⬇ <span class="hljs-number">0</span> ⬆ <span class="hljs-number">0</span>
+</code></pre>
+<p>A few lines to take note of:
+<code>Node name: AlicesNode</code> shows the human-readable name you specified or an autogenerated one
+<code>Local node identity is: QmNTx7qYd5JiasUTzjaAbTCUeH5ot9xMjRePRjkSEdD7MY</code> shows the node ID that Bob will need when booting from Alice's node
+<code>Listening for new connections on 127.0.0.1:9944.</code> shows that the node is listening for RPC connections on port 9944. By default only connections from localhost will be accepted, but you can change that behavior by specifying <code>--ws-external</code>. You can change the port by specifying <code>--ws-port 12345</code>.</p>
+<p>More details about all of these flags and others that I haven't mentioned are available by running <code>./target/debug/node-template --help</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="attach-a-ui"></a><a href="#attach-a-ui" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Attach a UI</h3>
+<p>You can tell a lot about your node by watching the output it produces in your terminal. There is also a nice graphical user interface known as the <a href="https://polkadot.js.org/apps/">Polkadot Js Apps UI</a> which you can connect to your node on the settings tab. That link goes to the hosted version of the user interface, which is super convenient when it works, but is often out of date compared to the version of Substrate you're running. In the likely scenario that the hosted interface is out of date, you can run the interface locally by grabbing the code from <a href="https://github.com/polkadot-js/apps">github</a>. In general the instructions in that repository will be your best guide, but the process should be something like this.</p>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># Grab the code</span>
+git <span class="hljs-built_in">clone</span> https://github.com/polkadot-js/apps
+<span class="hljs-built_in">cd</span> apps
+
+<span class="hljs-comment"># Install dependencies (you MUST use yarn, not npm)</span>
+yarn
+
+<span class="hljs-comment"># Start the project</span>
+yarn run start
+</code></pre>
+<p>Point your favorite web browser at localhost:3000, and on the settings page, choose &quot;local node&quot;. You should see something like this.</p>
+<p><img src="https://cdn.discordapp.com/attachments/559788157239951376/580368220364603392/unknown.png" alt="No blocks in polkadot-js-apps"></p>
+<p>You'll notice, both in the terminal and the UI, that no blocks are being produced yet. Curious learners can see why <a href="https://github.com/paritytech/substrate/blob/ae350506053b186a15fe5ffe2c1e85088b13a619/core/consensus/aura/src/lib.rs#L341">here</a>. Blocks will start being produced once another validator joins the network.</p>
+<h3><a class="anchor" aria-hidden="true" id="bob-joins-in"></a><a href="#bob-joins-in" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Bob Joins In</h3>
+<p>Now that Alice's node is up and running, Bob can join the network by bootstrapping from her node. His command will look very similar.</p>
+<pre><code class="hljs css language-bash">./target/debug/node-template \
+  --base-path /tmp/bob \
+  --chain=<span class="hljs-built_in">local</span> \
+  --key //Bob \
+  --port 30333 \
+  --telemetry-url ws://telemetry.polkadot.io:1024 \
+  --validator \
+  --name BobsNode \
+  --bootnodes /ip4/&lt;Alices IP Address&gt;/tcp/&lt;Alices Port&gt;/p2p/&lt;Alices Node ID&gt;
+</code></pre>
+<p>Most of these options are already explained above, but there are a few tripping points.</p>
+<ul>
+<li>If these two nodes are running on the same physical machine, Bob MUST specify a different <code>--base-path</code> and <code>--port</code>.</li>
+<li>Bob has added the <code>--bootnodes</code> flag and specified a single boot node, namely Alice's. He must correctly specify these three pieces of information which Alice can supply for him.
+<ul>
+<li>Alice's IP Address in the form <code>192.168.1.1</code></li>
+<li>Alice's Port, probably 30333</li>
+<li>Alice's node ID, copied from her log output. (<code>QmNTx7qYd5JiasUTzjaAbTCUeH5ot9xMjRePRjkSEdD7MY</code> in the output above.)</li>
+</ul></li>
+</ul>
+<p>If all is going well, after a few seconds, the nodes should peer together and start producing blocks. You should see some lines like</p>
+<pre><code class="hljs">Idle (<span class="hljs-number">1</span> peers), best: #<span class="hljs-number">1</span> (<span class="hljs-number">0x9f1b</span>…<span class="hljs-number">9</span>b57), finalized #<span class="hljs-number">0</span> (<span class="hljs-number">0x28be</span>…<span class="hljs-number">45e5</span>), ⬇ <span class="hljs-number">1.7</span>kiB/s ⬆ <span class="hljs-number">1.4</span>kiB/s
+</code></pre>
+<p>This line shows that Bob has peered with Alice (<code>1 peers</code>), they have produced a block (<code>best: #1 (0x9f1b…9b57)</code>), and the block is not finalized (<code>finalized #0 (0x28be…45e5)</code>). In this network, only the genesis block will ever be finalized because there is no finality gadget in the node-template. Finality is beyond the scope of this tutorial.</p>
+<h2><a class="anchor" aria-hidden="true" id="generate-your-own-keys"></a><a href="#generate-your-own-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generate Your Own Keys</h2>
+<p>Now that we know the fundamentals and the command line options, it's time to generate our own keys rather than using the well-known Alice and Bob keys.</p>
+<p>Each person who wants to participate in the blockchain can generate their own key using the [subkey tool](todo this tutorial isn't published yet) or the Polkadot JS Apps UI that we used previously. In this tutorial, we'll use the UI.</p>
+<p>Navigate to the &quot;Accounts&quot; tab, and choose &quot;Add Account&quot;. For this kind of session key, we'll need to select Edwards Curve near the bottom, and copy-paste the public address and the raw seed.</p>
+<p><img src="https://cdn.discordapp.com/attachments/559788157239951376/583363719753367567/unknown.png" alt="Screenshot of key generation"></p>
+<p>When you have generated a key pair, store the entire output somewhere safe. Share your public address (TODO reference screenshot) with the other validators who will be in your network. When everyone in the network knows everyone else's addresses, you are ready to proceed to launch your own chain.</p>
+<h2><a class="anchor" aria-hidden="true" id="start-your-private-blockchain"></a><a href="#start-your-private-blockchain" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Start Your Private Blockchain</h2>
+<p>Last time around, we used <code>--chain=local</code> which is a predefined &quot;chainspec&quot; that has Alice and Bob specified as validators along with many other useful defaults.</p>
+<h3><a class="anchor" aria-hidden="true" id="creating-the-chainspec"></a><a href="#creating-the-chainspec" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating the chainspec</h3>
+<p>Rather than writing our chainspec completely from scratch, we'll just make a few modifications to the the one we used before. To start we need to export the chainspec to a json file. Remember, further details about all of these commands are available by running <code>node-template --help</code>.</p>
+<pre><code class="hljs css language-bash">./target/debug/node-template build-spec --chain=<span class="hljs-built_in">local</span> &gt; customSpec.json
+</code></pre>
+<p>The file we just created contains several fields, and one can learn a lot by exploring them. By far the largest field is a single hex number that is the wasm binary of our runtime. It is what you build earlier when you ran the <code>build.sh</code> script. Learn more about why it's useful to have that info on-chain from <a href="https://www.youtube.com/watch?v=0IoUZdDi5Is">Gav's web3 summit demo</a>.</p>
+<p>The portion of the file we're interested in is the authorities which looks like this</p>
+<pre><code class="hljs css language-json">  "consensus": {
+      "authorities": [
+        "5FA9nQDVg267DEd8m1ZypXLBnvN7SFxYwV7ndqSYGiN9TTpu",
+        "5GoNkf6WdbxCFnPdAnYYQyCjAKPJgLNxXwPjwTh6DGg6gN3E",
+      ],
+      "code": &lt;snip&gt;
+    }
+</code></pre>
+<p>All we need to do is change the authority addresses listed (currently Alice and Bob) to our own addresses that we generated with subkey in the previous step. Each participant may make that change on their own, or a single person may do it and share the resulting file. TODO does order matter?</p>
+<p>Once the chainspec is ready, we need to convert it to a &quot;raw&quot; chainspec. The distinction between regular and raw is just that all the field names are encoded as hex in the raw chainspec. Not much interesting to explore there.</p>
+<pre><code class="hljs css language-bash">./target/debug/node-template build-spec --chain customSpec.json --raw &gt; customSpecRaw.json
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="launching-the-chain"></a><a href="#launching-the-chain" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Launching the chain</h3>
+<p>You've completed all the necessary prep work and you're now ready to launch your chain. This process is very similar to when you launched a chain earlier as Alice and Bob. It's important to start with a clean base path, so if you plan to use the same path that you've used previously, please delete all contents from that directory.</p>
+<p>The first participant can launch her node with</p>
+<pre><code class="hljs css language-bash">./target/debug/node-template \
+  --chain ./customSpecRaw.json \
+  --key 0x8167e5997afeed9886bc88ebb94d8905b330540bfa4624dcc6d0e983171e67ed \
+  --port 30333 \
+  --telemetry-url ws://telemetry.polkadot.io:1024 \
+  --validator
+</code></pre>
+<p>Here are some differences from when we launched as Alice.</p>
+<ul>
+<li>I've omitted the <code>--base-path</code> flag, so Substrate will use a default location. You're free to specify your own base path.</li>
+<li>For the key, I've used the secret seed that subkey generated previously. This must be a seed that corresponds to one of the addresses in your chainspec.</li>
+<li>The <code>--chain</code> flag has changed to use our custom chainspec.</li>
+</ul>
+<p>Subsequent validators can now join the network just as Bob did previously. You may bootstrap from any of the nodes already in the network, not just the one that went first.</p>
+<h2><a class="anchor" aria-hidden="true" id="next-steps"></a><a href="#next-steps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Next Steps</h2>
+<p>Congratulations! You've finished the exercise!</p>
+<p>In this tutorial you've learned to compile the node-template, generate your own keypairs, create a custom chainspec that uses those keypairs, and start a private network based on your custom chainspec and the node-template.</p>
+<p>Here are some ideas for what to learn next.</p>
+<h3><a class="anchor" aria-hidden="true" id="use-the-full-node"></a><a href="#use-the-full-node" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Use the Full Node</h3>
+<p>You can go through a very similar process using Substrate's full node that lives in the <code>node</code> directory rather than the <code>node-template</code> that we used. The process should be familiar to you, and you'll get to explore more runtime modules that are included in the full node.</p>
+<h3><a class="anchor" aria-hidden="true" id="add-validators-after-genesis"></a><a href="#add-validators-after-genesis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add Validators After Genesis</h3>
+<p>What if you want to add more validators after starting the blockchain? You can't just go back and edit the chainspec at that point. The authority set can be changed after genesis by calling the consensus module's <a href="https://github.com/paritytech/substrate/blob/master/srml/consensus/src/lib.rs#L356-L362"><code>set_authorities</code> function</a>. However, that function can only be called from other runtime modules. If you've built the full node, you can use the democracy module for this task. Or check out the <a href="https://github.com/gautamdhameja/substrate-poa">Substrate POA runtime</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="write-a-custom-runtime"></a><a href="#write-a-custom-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Write a Custom Runtime</h3>
+<p>Substrate is all about writing your own runtimes, and now that you've gotten your hands dirty, I encourage you to try writing one. Consider one of the tutorials listed here.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/tutorials/deploying-a-smart-contract-on-a-substrate-node-chain"><span class="arrow-prev">← </span><span>Deploying a Smart Contract on a Substrate Node Chain</span></a><a class="docs-next button" href="/docs/en/tutorials/keys--seeds--and-the--subkey--tool"><span>Keys, Seeds, and the `subkey` Tool</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#compiling-the-tools">Compiling the Tools</a><ul class="toc-headings"><li><a href="#your-first-time">Your First Time</a></li><li><a href="#updating-later">Updating Later</a></li></ul></li><li><a href="#alice-and-bob-start-blockchain">Alice and Bob Start Blockchain</a><ul class="toc-headings"><li><a href="#alice-starts-first">Alice Starts first</a></li><li><a href="#attach-a-ui">Attach a UI</a></li><li><a href="#bob-joins-in">Bob Joins In</a></li></ul></li><li><a href="#generate-your-own-keys">Generate Your Own Keys</a></li><li><a href="#start-your-private-blockchain">Start Your Private Blockchain</a><ul class="toc-headings"><li><a href="#creating-the-chainspec">Creating the chainspec</a></li><li><a href="#launching-the-chain">Launching the chain</a></li></ul></li><li><a href="#next-steps">Next Steps</a><ul class="toc-headings"><li><a href="#use-the-full-node">Use the Full Node</a></li><li><a href="#add-validators-after-genesis">Add Validators After Genesis</a></li><li><a href="#write-a-custom-runtime">Write a Custom Runtime</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/en/who">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="https://crates.parity.io">Reference Docs</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/paritytech/substrate">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 Parity Technologies</section></footer></div></body></html>

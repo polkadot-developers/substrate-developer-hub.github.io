@@ -1,0 +1,644 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Substrate Runtime Recipes · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;[block:callout]&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Substrate Runtime Recipes · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;[block:callout]&lt;/p&gt;
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/Substrate-logo.svg"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/quickstart/installing-substrate" target="_self">Docs</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="https://www.parity.io/blog/" target="_self">Blog</a></li><li class=""><a href="/community/support" target="_self">Community</a></li><li class=""><a href="https://github.com/substrate-developer-hub/" target="_self">GitHub</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/zh-CN/tutorials/substrate-runtime-recipes">中文</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Tutorials</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Quick Start</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/quickstart/installing-substrate">Installing Substrate</a></li><li class="navListItem"><a class="navItem" href="/docs/en/quickstart/using-the-substrate-node-and-module-setup-scripts">Using the Substrate node and module setup scripts</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Runtime</h3><ul class=""><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Macros</h4><ul><li class="navListItem"><a class="navItem" href="/docs/en/runtime/macros/construct_runtime">Constructing a Runtime!</a></li><li class="navListItem"><a class="navItem" href="/docs/en/runtime/macros/decl_module">Declaring a Module!</a></li><li class="navListItem"><a class="navItem" href="/docs/en/runtime/macros/decl_storage">runtime/macros/decl_storage</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Types</h4><ul><li class="navListItem"><a class="navItem" href="/docs/en/runtime/types/call-enum">Call Enum</a></li><li class="navListItem"><a class="navItem" href="/docs/en/runtime/types/event-enum">Event Enum</a></li><li class="navListItem"><a class="navItem" href="/docs/en/runtime/types/genesisconfig-struct">GenesisConfig Struct</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/en/runtime/architecture-of-a-runtime">Architecture of a Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/runtime/runtime-and-api">Runtime and API</a></li><li class="navListItem"><a class="navItem" href="/docs/en/runtime/substrate-runtime-module-library">Substrate Runtime Module Library</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Substrate Overview</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/overview/extrinsics">Extrinsics</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/glossary">Glossary</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/introduction">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/low-level-data-format">Low-level Data Format</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/substrate-bonds">overview/substrate-bonds</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/telemetry">Telemetry</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/transaction-lifecycle">Transaction Lifecycle</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/versioning">Versioning</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Tutorials</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/building-a-token-curated-registry-dappchain">Building a Token Curated Registry DAppChain</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/creating-a-custom-substrate-chain">Creating a Custom Substrate chain</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/deploying-a-smart-contract-on-a-substrate-node-chain">Deploying a Smart Contract on a Substrate Node Chain</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/start-a-private-network-with-substrate">Start a Private Network with Substrate</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/keys--seeds--and-the--subkey--tool">Keys, Seeds, and the `subkey` Tool</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/governance--public--mechanism-with-a-substrate-node-chain">Governance &quot;Public&quot; Mechanism with a Substrate Node Chain</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/migrating-storage-to-a-new-substrate-node-s-runtime">Migrating Storage to a new Substrate Node&#x27;s Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/substrate-collectables-workshop">tutorials/substrate-collectables-workshop</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/tutorials/substrate-runtime-recipes">Substrate Runtime Recipes</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/validator-nodes-and-nominators-on-substrate-chains">Validator Nodes and Nominators on Substrate chains</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Substrate Runtime Recipes</h1></header><article><div><span><p>[block:callout]
+{
+&quot;type&quot;: &quot;warning&quot;,
+&quot;body&quot;: &quot;Substrate is a rapidly evolving project, which means that breaking changes may cause you problems when trying to follow the instructions below. Feel free to <a href="https://substrate.readme.io/v1.0.0/docs/feedback">contact us</a> with any problems you encounter.&quot;,
+&quot;title&quot;: &quot;Troubleshooting&quot;
+}
+[/block]
+This page will contain a series of minimal working samples which demonstrate different features and functionalities available to you when developing a custom Substrate runtime.</p>
+<p>If you have not followed our tutorial on <a href="https://substrate.readme.io/docs/creating-a-custom-substrate-chain">creating a custom substrate chain</a>, we recommend you do that before working with the samples below.</p>
+<h1><a class="anchor" aria-hidden="true" id="prerequisites"></a><a href="#prerequisites" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prerequisites</h1>
+<p>If you do not have <code>substrate</code> installed on your machine, run:
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;curl <a href="https://getsubstrate.io">https://getsubstrate.io</a> -sSf | bash&quot;,
+&quot;language&quot;: &quot;shell&quot;
+}
+]
+}
+[/block]</p>
+<h2><a class="anchor" aria-hidden="true" id="create-a-substrate-node-template"></a><a href="#create-a-substrate-node-template" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create a Substrate Node Template</h2>
+<p>In this tutorial we will be using the <a href="https://github.com/polkadot-js/apps">Polkadot UI</a> to interact with our node. To start, create an instance of the <code>substrate-node-template</code> using the following command:
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;substrate-node-new substrate-example <name>&quot;,
+&quot;language&quot;: &quot;shell&quot;
+}
+]
+}
+[/block]
+To extend the default implementation of the <code>substrate-node-template</code>, you will need to modify <code>substrate-example/runtime/src/lib.rs</code>.</p>
+<ul>
+<li>Add these two lines after the initial declarations:
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;mod runtime_example;\nimpl runtime_example::Trait for Runtime {}&quot;,
+&quot;language&quot;: &quot;rust&quot;,
+&quot;name&quot;: &quot;lib.rs&quot;
+}
+]
+}
+[/block]</li>
+<li>Then modify the <code>construct_runtime!()</code> macro to include <code>RuntimeExample</code> at the end:
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;construct_runtime!(\n\tpub enum Runtime with Log(InternalLog: DigestItem&lt;Hash, Ed25519AuthorityId&gt;) where\n\t\tBlock = Block,\n\t\tNodeBlock = opaque::Block,\n\t\tUncheckedExtrinsic = UncheckedExtrinsic\n\t{\n\t\tSystem: system::{default, Log(ChangesTrieRoot)},\n\t\tTimestamp: timestamp::{Module, Call, Storage, Config<T>, Inherent},\n\t\tConsensus: consensus::{Module, Call, Storage, Config<T>, Log(AuthoritiesChange), Inherent},\n\t\tAura: aura::{Module},\n\t\tIndices: indices,\n\t\tBalances: balances,\n\t\tSudo: sudo,\n\t\tRuntimeExample: runtime_example::{Module, Call, Storage},\n\t}\n);&quot;,
+&quot;language&quot;: &quot;rust&quot;,
+&quot;name&quot;: &quot;lib.rs&quot;
+}
+]
+}
+[/block]</li>
+</ul>
+<p>[block:callout]
+{
+&quot;type&quot;: &quot;info&quot;,
+&quot;title&quot;: &quot;NOTE&quot;,
+&quot;body&quot;: &quot;We may continue to update this file depending on the needs of our runtime example. However, you should only need to modify these sections, and the examples below should make clear what needs to change.&quot;
+}
+[/block]
+Finally, you need to create a new file called <code>runtime_example.rs</code> in the same folder as <code>lib.rs</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="updating-your-runtime"></a><a href="#updating-your-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Updating Your Runtime</h2>
+<p>You can paste any of the runtime samples below into that <code>runtime_examples.rs</code> file and compile the new runtime binaries with:
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;cd substrate-example\ncargo build --release&quot;,
+&quot;language&quot;: &quot;shell&quot;
+}
+]
+}
+[/block]
+You should delete the old chain before you start the new one:
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;substrate purge-chain --dev\n./target/release/substrate-example --dev&quot;,
+&quot;language&quot;: &quot;shell&quot;
+}
+]
+}
+[/block]</p>
+<h2><a class="anchor" aria-hidden="true" id="using-the-polkadot-ui-to-interact"></a><a href="#using-the-polkadot-ui-to-interact" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using the Polkadot UI to Interact</h2>
+<p>To simplify interactions with your custom Substrate runtime, we will take advantage of the <a href="https://polkadot.js.org/apps/next/">Polkadot JS UI for Substrate</a>.</p>
+<p>By default, this UI is configured to interact with the public Substrate test-network BBQ Birch. To have it connect to your local node, simply go to:</p>
+<pre><code class="hljs">Settings &gt; remote node/endpoint to connect to &gt; Local Node (<span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">9944</span>)
+</code></pre>
+<p><img src="https://i.imgur.com/1FpB5aM.png" alt="A picture of the Polkadot UI Settings Tab"></p>
+<p>If the UI connected successfully, you should be able to go to the <strong>Explorer</strong> tab and see the block production process running.</p>
+<p><img src="https://i.imgur.com/TXmM0cB.png" alt="A picture of the block production process running in Explorer tab"></p>
+<p>You can then interact with your custom functions in the <strong>Extrinsics</strong> tab under <strong>runtimeExample</strong>:</p>
+<p><img src="https://i.imgur.com/JFXSaHw.png" alt="A picture of custom functions appearing in the Extrinsics tab"></p>
+<h3><a class="anchor" aria-hidden="true" id="viewing-storage-variables"></a><a href="#viewing-storage-variables" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Viewing Storage Variables</h3>
+<p>If you want to check the value of a storage variable that you created, you can go to:</p>
+<pre><code class="hljs">Chain State &gt; runtimeExampleStorage &gt; (variable name)
+</code></pre>
+<p>From there you should be able to query the state of the variable. It may return <code>&lt;unknown&gt;</code> if the value has not been set yet.</p>
+<p><img src="https://i.imgur.com/JLoWxc3.png" alt="A picture of viewing a storage variable in the Polkadot UI"></p>
+<h3><a class="anchor" aria-hidden="true" id="viewing-events"></a><a href="#viewing-events" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Viewing Events</h3>
+<p>Some runtime examples below generate <code>Events</code> when functions are run. You can temporarily view these events in the <strong>Explorer</strong> tab under <strong>recent events</strong> if any get generated.</p>
+<p><img src="https://i.imgur.com/2jUtBUk.png" alt="A picture of an event getting generated in the Explorer tab"></p>
+<h3><a class="anchor" aria-hidden="true" id="wasm-runtime-upgrade"></a><a href="#wasm-runtime-upgrade" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>WASM Runtime Upgrade</h3>
+<p>Rather than restarting your chain for each update, you can also do an in-place runtime upgrade using the Polkadot UI. If you do this, you will not get runtime messages appearing in your terminal, but you should be able to interact with the chain via the UI just fine. To perform the upgrade, go to:</p>
+<pre><code class="hljs">Extrinsics &gt; Upgrade Key &gt; upgrade(new)
+</code></pre>
+<p>There, you can select the file icon and upload the wasm file generated when you run <code>./build.sh</code></p>
+<pre><code class="hljs">substrate-example/runtime/wasm/target/wasm32-unknown-unknown/release/node_runtime.compact.wasm
+</code></pre>
+<p><img src="https://i.imgur.com/rujS3p6.png" alt="A picture of upgrading the Substrate runtime"></p>
+<p>Once the upgrade is finalized, you should be able to refresh the UI and see your updates.</p>
+<h1><a class="anchor" aria-hidden="true" id="recipes"></a><a href="#recipes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Recipes</h1>
+<p>A good general reference for Substrate runtime development can be found in the <a href="https://github.com/paritytech/substrate/blob/master/srml/example/src/lib.rs"><code>srml/example</code> source</a> and the <a href="https://github.com/paritytech/substrate/blob/master/srml/">other SRML modules</a>. The examples below are meant to be minimal working samples of specific features.</p>
+<h2><a class="anchor" aria-hidden="true" id="simple-storage"></a><a href="#simple-storage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Simple Storage</h2>
+<p>Create a simple single value storage.
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;use support::{decl_module, decl_storage, StorageValue, dispatch::Result};\n\npub trait Trait: system::Trait {}\n\ndecl_module! {\n  pub struct Module&lt;T: Trait&gt; for enum Call where origin: T::Origin {\n    fn set_value(_origin, value: u32) -&gt; Result {\n      &lt;Value<T>&gt;::put(value);\n      Ok(())\n    }\n  }\n}\n\ndecl_storage! {\n  trait Store for Module&lt;T: Trait&gt; as RuntimeExampleStorage {\n    Value: u32;\n  }\n}&quot;,
+&quot;language&quot;: &quot;rust&quot;,
+&quot;name&quot;: &quot;runtime_example.rs&quot;
+}
+]
+}
+[/block]</p>
+<h2><a class="anchor" aria-hidden="true" id="account-mapping"></a><a href="#account-mapping" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Account Mapping</h2>
+<p>Create an account to value mapping in storage.
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;use support::{decl_module, decl_storage, StorageMap, dispatch::Result};\nuse system::ensure_signed;\n\npub trait Trait: system::Trait {}\n\ndecl_module! {\n\tpub struct Module&lt;T: Trait&gt; for enum Call where origin: T::Origin {\n\t\tfn set_account_value(origin, value: u32) -&gt; Result {\n\t\t\tlet sender = ensure_signed(origin)?;\n\t\t\t&lt;Value<T>&gt;::insert(sender.clone(), value);\n\t\t\tOk(())\n\t\t}\n\t}\n}\n\ndecl_storage! {\n\ttrait Store for Module&lt;T: Trait&gt; as RuntimeExampleStorage {\n\t\tValue: map T::AccountId =&gt; u32;\n\t}\n}&quot;,
+&quot;language&quot;: &quot;rust&quot;,
+&quot;name&quot;: &quot;runtime_example.rs&quot;
+}
+]
+}
+[/block]</p>
+<h2><a class="anchor" aria-hidden="true" id="storage-mapping"></a><a href="#storage-mapping" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Storage Mapping</h2>
+<p>Create a key/value mapping in storage.
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;use support::{decl_module, decl_storage, StorageMap, dispatch::Result};\n\npub trait Trait: system::Trait {}\n\ndecl_module! {\n\tpub struct Module&lt;T: Trait&gt; for enum Call where origin: T::Origin {\n\t\tfn set_mapping(_origin, key: u32, value: u32) -&gt; Result {\n\t\t\t&lt;Value<T>&gt;::insert(key, value);\n\t\t\tOk(())\n\t\t}\n\t}\n}\n\ndecl_storage! {\n\ttrait Store for Module&lt;T: Trait&gt; as RuntimeExampleStorage {\n\t\tValue: map u32 =&gt; u32;\n\t}\n}&quot;,
+&quot;language&quot;: &quot;rust&quot;,
+&quot;name&quot;: &quot;runtime_example.rs&quot;
+}
+]
+}
+[/block]</p>
+<h2><a class="anchor" aria-hidden="true" id="simple-token-transfer-a-name-ex-a"></a><a href="#simple-token-transfer-a-name-ex-a" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Simple Token Transfer <a name = "ex"></a></h2>
+<p>If we want to implement a simple token transfer with Substrate, we need to:</p>
+<ol>
+<li>Set total supply</li>
+<li>Establish ownership upon configuration of circulating tokens</li>
+<li>Coordinate token transfers with our runtime functions</li>
+</ol>
+<pre><code class="hljs css language-rust">decl_storage! {
+  <span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Store</span></span> <span class="hljs-keyword">for</span> Module&lt;T: Trait&gt; <span class="hljs-keyword">as</span> Template {
+    <span class="hljs-keyword">pub</span> TotalSupply get(total_supply): <span class="hljs-built_in">u64</span> = <span class="hljs-number">21000000</span>; <span class="hljs-comment">// (1)</span>
+
+    <span class="hljs-keyword">pub</span> BalanceOf get(balance_of): map T::AccountId =&gt; <span class="hljs-built_in">u64</span>; <span class="hljs-comment">// (3)</span>
+
+    Init get(is_init): <span class="hljs-built_in">bool</span>; <span class="hljs-comment">// (2)</span>
+  }
+}
+</code></pre>
+<p>We should also set an event for when token transfers occur to notify clients:</p>
+<pre><code class="hljs css language-rust">decl_event!(
+    <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Event</span></span>&lt;T&gt; <span class="hljs-keyword">where</span> AccountId = &lt;T <span class="hljs-keyword">as</span> system::Trait&gt;::AccountId {
+        <span class="hljs-comment">// event for transfer of tokens</span>
+        <span class="hljs-comment">// from, to, value</span>
+        Transfer(AccountId, AccountId, <span class="hljs-built_in">u64</span>),
+    }
+);
+</code></pre>
+<p>To integrate this logic into our module, we could write the following code:</p>
+<pre><code class="hljs css language-rust">decl_module! {
+  <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Module</span></span>&lt;T: Trait&gt; <span class="hljs-keyword">for</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span> <span class="hljs-keyword">where</span> origin: T::Origin {
+      <span class="hljs-comment">// initialize default event handling for this module</span>
+      <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">deposit_event</span></span>&lt;T&gt;() = <span class="hljs-keyword">default</span>;
+
+      <span class="hljs-comment">// initialize the token</span>
+      <span class="hljs-comment">// transfers the total_supply amount to the caller</span>
+      <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">init</span></span>(origin) -&gt; <span class="hljs-built_in">Result</span> {
+        <span class="hljs-keyword">let</span> sender = ensure_signed(origin)?;
+        ensure!(Self::is_init() == <span class="hljs-literal">false</span>, <span class="hljs-string">"Already initialized."</span>);
+
+        &lt;BalanceOf&lt;T&gt;&gt;::insert(sender, Self::total_supply());
+
+        &lt;Init&lt;T&gt;&gt;::put(<span class="hljs-literal">true</span>);
+
+        <span class="hljs-literal">Ok</span>(())
+      }
+
+      <span class="hljs-comment">// transfer tokens from one account to another</span>
+      <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">transfer</span></span>(origin, to: T::AccountId, value: <span class="hljs-built_in">u64</span>) -&gt; <span class="hljs-built_in">Result</span> {
+        <span class="hljs-keyword">let</span> sender = ensure_signed(origin)?;
+        <span class="hljs-keyword">let</span> sender_balance = Self::balance_of(sender.clone());
+        ensure!(sender_balance &gt;= value, <span class="hljs-string">"Not enough balance."</span>);
+
+        <span class="hljs-keyword">let</span> updated_from_balance = sender_balance.checked_sub(value).ok_or(<span class="hljs-string">"overflow in calculating balance"</span>)?;
+        <span class="hljs-keyword">let</span> receiver_balance = Self::balance_of(to.clone());
+        <span class="hljs-keyword">let</span> updated_to_balance = receiver_balance.checked_add(value).ok_or(<span class="hljs-string">"overflow in calculating balance"</span>)?;
+        
+        <span class="hljs-comment">// reduce sender's balance</span>
+        &lt;BalanceOf&lt;T&gt;&gt;::insert(sender.clone(), updated_from_balance);
+
+        <span class="hljs-comment">// increase receiver's balance</span>
+        &lt;BalanceOf&lt;T&gt;&gt;::insert(to.clone(), updated_to_balance);
+
+        Self::deposit_event(RawEvent::Transfer(sender, to, value));
+        
+        <span class="hljs-literal">Ok</span>(())
+      }
+  }
+}
+</code></pre>
+<p>The full code from this example can be found <a href="https://github.com/gautamdhameja/substrate-demo/blob/master/runtime/src/template.rs">here</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="adding-removing-elements-in-an-unbounded-list"></a><a href="#adding-removing-elements-in-an-unbounded-list" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding/Removing Elements in an Unbounded List</h2>
+<p>If the size of our list is not relevant to how we access data, the implementation is straightforward.</p>
+<p>For example, let's say that we have a list of <code>proposal</code>s (defined as a struct in our runtime). When a <code>proposal</code> expires, we remove it from our list, but it is not necessary to update the indices of other <code>proposal</code>s that have been added (<em>if</em> we perform checks that a proposal exists in the map before accessing it).</p>
+<p>We can store our <code>proposal</code>s in a key-value mapping similar to the initial example:</p>
+<pre><code class="hljs css language-rust"><span class="hljs-meta">#[cfg_attr(feature = <span class="hljs-meta-string">"std"</span>, derive(Serialize, Deserialize, Debug))]</span>
+<span class="hljs-meta">#[derive(Encode, Decode, Clone, PartialEq, Eq)]</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Proposal</span></span>&lt;Hash&gt; {
+    details: Hash,
+}
+
+decl_storage! {
+    <span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Store</span></span> <span class="hljs-keyword">for</span> Module&lt;T: Trait&gt; <span class="hljs-keyword">as</span> Example {
+        Proposals get(proposals): map <span class="hljs-built_in">u32</span> =&gt; Proposal&lt;T::Hash&gt;;
+        LargestIndex get(largest_index): <span class="hljs-built_in">u32</span>;
+    }
+}
+</code></pre>
+<p>To add a <code>proposal</code>, we would increment the <code>largest_index</code> and add a <code>proposal</code> at that index:</p>
+<pre><code class="hljs css language-rust">decl_module! {
+    <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Module</span></span>&lt;T: Trait&gt; <span class="hljs-keyword">for</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span> <span class="hljs-keyword">where</span> origin: T::Origin {
+        <span class="hljs-comment">// other methods</span>
+
+        <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add_proposal</span></span>(hash: Hash) -&gt; <span class="hljs-built_in">Result</span> {
+            <span class="hljs-comment">// any necessary checks here</span>
+
+            <span class="hljs-comment">// instantiate new proposal</span>
+            <span class="hljs-keyword">let</span> prop = Proposal { details: hash.clone() };
+
+            <span class="hljs-comment">// increment largest index</span>
+            &lt;LargestIndex&lt;T&gt;&gt;::mutate(|count| count + <span class="hljs-number">1</span>);
+
+            <span class="hljs-comment">// add a proposal at largest_index</span>
+            <span class="hljs-keyword">let</span> largest_index = Self::largest_index::get();
+            &lt;Proposals&lt;T&gt;&gt;::insert(largest_index, prop);
+
+            <span class="hljs-literal">Ok</span>(())
+        }
+    }
+}
+</code></pre>
+<p>To remove a <code>proposal</code>, we can simple invoke the <code>remove</code> method for the <code>StorageMap</code> type at the relevant index. In this case, we do not need to update the indices of other <code>proposal</code>s. This is because order does not matter for this sample.</p>
+<pre><code class="hljs css language-rust">decl_module! {
+    <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Module</span></span>&lt;T: Trait&gt; <span class="hljs-keyword">for</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span> <span class="hljs-keyword">where</span> origin: T::Origin {
+        <span class="hljs-comment">// other methods</span>
+
+        <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">remove_proposal</span></span>(index: <span class="hljs-built_in">u32</span>) -&gt; <span class="hljs-built_in">Result</span> {
+            <span class="hljs-comment">// any necessary checks here</span>
+
+            <span class="hljs-comment">// remove proposal at the given index</span>
+            &lt;Proposals&lt;T&gt;&gt;::remove(index);
+
+            <span class="hljs-literal">Ok</span>(())
+        }
+    }
+}
+</code></pre>
+<p>Because we are not updating the indices of other <code>proposal</code>s in our map, we have to check that a proposal exists before removing it, mutating it, or performing any other relevant operation.</p>
+<pre><code class="hljs css language-rust"><span class="hljs-comment">// index is the `u32` that corresponds to the proposal in the `&lt;Proposals&lt;T&gt;&gt;` map</span>
+ensure!(&lt;Proposals&lt;T&gt;&gt;::exists(index), <span class="hljs-string">"proposal does not exist at the provided index"</span>);
+</code></pre>
+<p>For a more extensive and complete example of this pattern, see <a href="https://github.com/AmarRSingh/SunshineDAO/runtime/src/dao.rs">SunshineDAO</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="swap-and-pop-for-ordered-lists"></a><a href="#swap-and-pop-for-ordered-lists" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Swap and Pop for Ordered Lists</h2>
+<p>When we want to preserve storage such that our list doesn't continue growing even after we remove elements, we can invoke the <strong>swap and pop</strong> method:</p>
+<ol>
+<li>Swap the element to be removed with the element at the head of our <em>list</em> (the element with the highest index in our map).</li>
+<li>Remove the element recently placed at the highest index.</li>
+<li>Decrement the <code>LargestIndex</code> value.</li>
+</ol>
+<p>Continuing with our example, we maintain the same logic for adding proposals (increment <code>LargestIndex</code> and insert entry at the head of our <em>list</em>).  However, we invoke the <em>swap and pop</em> algorithm when removing elements from our list:</p>
+<pre><code class="hljs css language-rust">decl_module! {
+    <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Module</span></span>&lt;T: Trait&gt; <span class="hljs-keyword">for</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span> <span class="hljs-keyword">where</span> origin: T::Origin {
+        <span class="hljs-comment">// other methods</span>
+
+        <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">remove_proposal</span></span>(index: <span class="hljs-built_in">u32</span>) -&gt; <span class="hljs-built_in">Result</span> {
+            <span class="hljs-comment">// check that a proposal exists at the given index</span>
+            ensure!(&lt;Proposals&lt;T&gt;&gt;::exists(index), <span class="hljs-string">"A proposal does not exist at this index"</span>);
+
+            <span class="hljs-keyword">let</span> largest_index = Self::largest_index::get();
+            <span class="hljs-keyword">let</span> proposal_to_remove = &lt;Proposals&lt;T&gt;&gt;::take(index);
+            <span class="hljs-comment">// swap</span>
+            <span class="hljs-keyword">if</span> index != largest_index {
+                <span class="hljs-keyword">let</span> temp = &lt;Proposals&lt;T&gt;&gt;::take(largest_index);
+                &lt;Proposals&lt;T&gt;&gt;::insert(index, temp);
+                &lt;Proposals&lt;T&gt;&gt;::insert(largest_index, proposal_to_remove);
+            }
+            <span class="hljs-comment">// pop</span>
+            &lt;Proposals&lt;T&gt;&gt;::remove(largest_index);
+            &lt;LargestIndex&lt;T&gt;&gt;::mutate(|count| count - <span class="hljs-number">1</span>);
+
+            <span class="hljs-literal">Ok</span>(())
+        }
+    }
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="linked-map"></a><a href="#linked-map" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Linked Map</h3>
+<p>To trade performance for simpler code, utilize the <code>linked_map</code> data structure. By implementing <a href="https://crates.parity.io/srml_support/storage/trait.EnumerableStorageMap.html"><code>EnumarableStorageMap</code></a> in addition to <a href="https://crates.parity.io/srml_support/storage/trait.StorageMap.html"><code>StorageMap</code></a>, <code>linked_map</code> provides a method <code>head</code> that yields the head of the <em>list</em>, thereby making it unnecessary to also store the <code>LargestIndex</code>. The <code>enumerate</code> method also returns an <code>Iterator</code> ordered according to when (key, value) pairs were inserted into the map.</p>
+<p>To use <code>linked_map</code>, we also need to import <code>EnumerableStorageMap</code>. Here is the new declaration in the <code>decl_storage</code> block:</p>
+<pre><code class="hljs css language-rust"><span class="hljs-keyword">use</span> support::{StorageMap, EnumerableStorageMap}; <span class="hljs-comment">// no StorageValue necessary</span>
+
+decl_storage! {
+    <span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Store</span></span> <span class="hljs-keyword">for</span> Module&lt;T: Trait&gt; <span class="hljs-keyword">as</span> Example {
+        Proposals get(proposals): linked_map <span class="hljs-built_in">u32</span> =&gt; Proposal&lt;T::Hash&gt;;
+        <span class="hljs-comment">// no largest_index value necessary</span>
+    }
+}
+</code></pre>
+<p>Here is our new <code>remove_proposal</code> method:</p>
+<pre><code class="hljs css language-rust">decl_module! {
+    <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Module</span></span>&lt;T: Trait&gt; <span class="hljs-keyword">for</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span> <span class="hljs-keyword">where</span> origin: T::Origin {
+        <span class="hljs-comment">// other methods</span>
+
+        <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">remove_proposal</span></span>(index: <span class="hljs-built_in">u32</span>) -&gt; <span class="hljs-built_in">Result</span> {
+            <span class="hljs-comment">// check that a proposal exists at the given index</span>
+            ensure!(&lt;Proposals&lt;T&gt;&gt;::exists(index), <span class="hljs-string">"A proposal does not exist at this index"</span>);
+
+            <span class="hljs-keyword">let</span> head_index = Self::proposals::head();
+            <span class="hljs-keyword">let</span> proposal_to_remove = &lt;Proposals&lt;T&gt;&gt;::take(index);
+            &lt;Proposals&lt;T&gt;&gt;::insert(index, &lt;Proposals&lt;T&gt;&gt;::get(head_index));
+            &lt;Proposals&lt;T&gt;&gt;::remove(head_index);
+
+            <span class="hljs-literal">Ok</span>(())
+        }
+    }
+}
+</code></pre>
+<p>The only caveat is that this implementation incurs some performance costs (vs. solely using <code>StorageMap</code> and <code>StorageValue</code>) because <code>linked_map</code> heap allocates the entire map as an iterator in order to implement the <a href="https://crates.parity.io/srml_support/storage/trait.EnumerableStorageMap.html#tymethod.enumerate"><code>enumerate</code> method</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="higher-order-arrays-with-tuples-and-maps"></a><a href="#higher-order-arrays-with-tuples-and-maps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Higher Order Arrays with Tuples and Maps</h2>
+<p>To represent ownership of multiple items across multiple users, tuples can be used alongside maps in order to emulate arrays.</p>
+<p>For example, consider a scenario in which persistent storage keeps track of a <em>social network graph</em> in which each user (represented by an <code>AccountId</code>) has a list of other friends. In this case, it would be convenient to use a 2 dimensional array like:</p>
+<pre><code class="hljs css language-rust">SocialNetwork[AccountId][Index] -&gt; AccountId
+</code></pre>
+<p>With this data structure, we could see how many friends a given <code>AccountId</code> has by calling:</p>
+<pre><code class="hljs css language-rust">SocialNetwork[AccountId].length()
+</code></pre>
+<p>To emulate this data structure in the context of the Substrate runtime storage, we can use tuples and maps (declared in a <code>decl_storage!{}</code> block like previous examples):</p>
+<pre><code class="hljs css language-rust">SocialNetwork get(my_friend): map (T::AccountId, <span class="hljs-built_in">u32</span>) =&gt; T::AccountId;
+SocialNetwork get(friends_count): map T::AccountId =&gt; <span class="hljs-built_in">u32</span>;
+</code></pre>
+<p>Patterns that use mappings to emulate higher order data structures are common when managing runtime storage on Substrate. To see this pattern in action, check out <a href="https://shawntabrizi.github.io/substrate-collectables-workshop/#/2/owning-multiple-kitties?id=using-tuples-to-emulate-higher-order-arrays">the Substratekitties Collectables Tutorial</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="string-storage-as-bytemap"></a><a href="#string-storage-as-bytemap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>String Storage (as Bytemap)</h2>
+<p>How to store a string in the runtime using JavaScript to convert the string to hex and back.</p>
+<p>Substrate does not directly support Strings. Runtime storage is there to store the state of the business logic on which the runtime operates. It is not to store general data that the UI needs. If you really need to store some arbitrary data into your runtime, you can always create a bytearray (Vec<u8>), however the more logical thing to do is to store a hash to a service like IPFS to then use to fetch data for your UI.
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;use support::{decl_module, decl_storage, ensure, StorageValue, dispatch::Result};\nuse rstd::prelude::*;\n\npub trait Trait: system::Trait {}\n\nconst BYTEARRAY_LIMIT: usize = 500;\n\ndecl_module! {\n  pub struct Module&lt;T: Trait&gt; for enum Call where origin: T::Origin {\n    fn set_value(_origin, value: Vec<u8>) -&gt; Result {\n      ensure!(value.len() &lt;= BYTEARRAY_LIMIT, &quot;Bytearray is too large&quot;);\n      &lt;Value<T>&gt;::put(value);\n      Ok(())\n    }\n  }\n}\n\ndecl_storage! {\n  trait Store for Module&lt;T: Trait&gt; as RuntimeExampleStorage {\n    Value: Vec<u8>;\n  }\n}&quot;,
+&quot;language&quot;: &quot;rust&quot;,
+&quot;name&quot;: &quot;runtime_example.rs&quot;
+}
+]
+}
+[/block]</p>
+<h3><a class="anchor" aria-hidden="true" id="javascript-helper-for-string-storage"></a><a href="#javascript-helper-for-string-storage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JavaScript Helper for String Storage</h3>
+<p>We store the string as a bytearray, which is inputted into the Polkadot UI as a hex string. These helper functions can allow you to convert a string to hex and back right in your browser console.
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;function toHex(s) {\n    var s = unescape(encodeURIComponent(s))\n    var h = '0x'\n    for (var i = 0; i &lt; s.length; i++) {\n        h += s.charCodeAt(i).toString(16)\n    }\n    return h\n}\n\nfunction fromHex(h) {\n    var s = ''\n    for (var i = 0; i &lt; h.length; i+=2) {\n        s += String.fromCharCode(parseInt(h.substr(i, 2), 16))\n    }\n    return decodeURIComponent(escape(s))\n}&quot;,
+&quot;language&quot;: &quot;javascript&quot;
+}
+]
+}
+[/block]</p>
+<h2><a class="anchor" aria-hidden="true" id="adder-with-simple-event"></a><a href="#adder-with-simple-event" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adder with Simple Event</h2>
+<p>A simple adding machine which checks for overflow and emits an event with the result, without using storage.</p>
+<p>You will need to modify <code>lib.rs</code> for ths example. Add <code>type Event = Event;</code> to the trait implementation, remove <code>Storage</code>, and add <code>Event</code> to <code>construct_runtime!()</code> like so:
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;impl runtime_example::Trait for Runtime {\n\ttype Event = Event;\n}\n\n...\nRuntimeExample: runtime_example::{Module, Call, Event},\n...&quot;,
+&quot;language&quot;: &quot;rust&quot;,
+&quot;name&quot;: &quot;lib.rs&quot;
+}
+]
+}
+[/block]</p>
+<p>[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;use support::{decl_module, decl_storage, decl_event, dispatch::Result};\n\npub trait Trait: system::Trait {\n    type Event: From<Event> + Into&lt;<Self as system::Trait>::Event&gt;;\n}\n\ndecl_module! {\n    pub struct Module&lt;T: Trait&gt; for enum Call where origin: T::Origin {\n        fn deposit_event() = default;\n\n        fn add(_origin, val1: u32, val2: u32) -&gt; Result {\n            let result = match val1.checked_add(val2) {\n                Some(r) =&gt; r,\n                None =&gt; return Err(&quot;Addition overflowed&quot;),\n            };\n            Self::deposit_event(Event::Added(val1, val2, result));\n            Ok(())\n        }\n    }\n}\n\ndecl_event!(\n    pub enum Event {\n        Added(u32, u32, u32),\n    }\n);&quot;,
+&quot;language&quot;: &quot;rust&quot;,
+&quot;name&quot;: &quot;runtime_example.rs&quot;
+}
+]
+}
+[/block]</p>
+<h2><a class="anchor" aria-hidden="true" id="permissioned-function-with-generic-event-onlyowner-ownable"></a><a href="#permissioned-function-with-generic-event-onlyowner-ownable" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Permissioned Function with Generic Event (OnlyOwner, Ownable)</h2>
+<p>A basic implementation of a permissioned function which can only be called by the &quot;owner&quot;. An event is emitted when the function is successfully run.</p>
+<p>You will need to modify <code>lib.rs</code> for this example. Add <code>type Event = Event;</code> to the trait implementation, and add <code>Event&lt;T&gt;</code> to the <code>construct_runtime()</code> macro:
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;impl runtime_example::Trait for Runtime {\n\ttype Event = Event;\n}\n\n...\nRuntimeExample: runtime_example::{Module, Call, Storage, Event<T>},\n...&quot;,
+&quot;language&quot;: &quot;rust&quot;,
+&quot;name&quot;: &quot;lib.rs&quot;
+}
+]
+}
+[/block]</p>
+<p>[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;use support::{decl_module, decl_storage, decl_event, StorageValue, dispatch::Result, ensure};\nuse system::ensure_signed;\n\npub trait Trait: system::Trait {\n    type Event: From&lt;Event<Self>&gt; + Into&lt;<Self as system::Trait>::Event&gt;;\n}\n\ndecl_module! {\n    pub struct Module&lt;T: Trait&gt; for enum Call where origin: T::Origin {\n        fn deposit_event<T>() = default;\n\n        fn init_ownership(origin) -&gt; Result {\n            ensure!(!&lt;Owner<T>&gt;::exists(), &quot;Owner already exists&quot;);\n            let sender = ensure_signed(origin)?;\n            &lt;Owner<T>&gt;::put(&amp;sender);\n            Self::deposit_event(RawEvent::OwnershipTransferred(sender.clone(), sender));\n            Ok(())\n        }\n\n        fn transfer_ownership(origin, newOwner: T::AccountId) -&gt; Result {\n            let sender = ensure_signed(origin)?;\n            ensure!(sender == Self::owner(), &quot;This function can only be called by the owner&quot;);\n            &lt;Owner<T>&gt;::put(&amp;newOwner);\n            Self::deposit_event(RawEvent::OwnershipTransferred(sender, newOwner));\n            Ok(())\n        }\n    }\n}\n\ndecl_storage! {\n\ttrait Store for Module&lt;T: Trait&gt; as RuntimeExampleStorage {\n\t\tOwner get(owner): T::AccountId;\n    }\n}\n\ndecl_event!(\n\tpub enum Event<T> where AccountId = <T as system::Trait>::AccountId {\n\t\tOwnershipTransferred(AccountId, AccountId),\n\t}\n);&quot;,
+&quot;language&quot;: &quot;rust&quot;,
+&quot;name&quot;: &quot;runtime_example.rs&quot;
+}
+]
+}
+[/block]</p>
+<h2><a class="anchor" aria-hidden="true" id="hashing-data"></a><a href="#hashing-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hashing data</h2>
+<p>Substrate provides in-built support for hashing data with BlakeTwo256 algorithm. This is available as part of the <code>system</code> trait. The Hashing type under the system trait exposes a function called <code>hash</code>. This function takes a reference of a byte array (<code>Vec&lt;u8&gt;</code>) and produces a BlakeTwo256 hash digest of it.</p>
+<p>In the following code snippet, our custom module has a function <code>get_hash</code> which takes a <code>Vec&lt;u8&gt;</code> parameter <code>data</code> and calls the <code>hash</code> function on it.
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;use runtime_primitives::traits::Hash;\nuse support::{decl_module, dispatch::Result};\nuse {system::{self}};\n\npub trait Trait: system::Trait {}\n\ndecl_module! {\n  pub struct Module&lt;T: Trait&gt; for enum Call where origin: T::Origin {\n    pub fn get_hash(_origin, data: Vec<u8>) -&gt; Result {\n      let _digest = &lt;<T as system::Trait>::Hashing as Hash&gt;::hash(&amp;data);\n      Ok(())\n    }\n  }\n}\n&quot;,
+&quot;language&quot;: &quot;rust&quot;
+}
+]
+}
+[/block]</p>
+<h2><a class="anchor" aria-hidden="true" id="storing-structs-with-generics"></a><a href="#storing-structs-with-generics" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Storing Structs with Generics</h2>
+<p>A basic runtime which stores custom, nested structs using a combination of Rust primitive types and Substrate specific types via generics. We also show you how to import and use this custom type in both the Polkadot-UI and Substrate-UI.
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;use support::{decl_module, decl_storage, StorageMap, dispatch::Result};\n\npub trait Trait: balances::Trait {}\n\n#[derive(Encode, Decode, Default)]\npub struct Thing &lt;Hash, Balance&gt; {\n    my_num: u32,\n    my_hash: Hash,\n    my_balance: Balance,\n}\n\n#[derive(Encode, Decode, Default)]\npub struct SuperThing &lt;Hash, Balance&gt; {\n    my_super_num: u32,\n    my_thing: Thing&lt;Hash, Balance&gt;,\n}\n\ndecl_module! {\n    pub struct Module&lt;T: Trait&gt; for enum Call where origin: T::Origin {\n        fn set_mapping(_origin, key: u32, num: u32, hash: T::Hash, balance: T::Balance) -&gt; Result {\n            let thing = Thing { \n                            my_num: num, \n                            my_hash: hash, \n                            my_balance: balance\n                        };\n            &lt;Value<T>&gt;::insert(key, thing);\n            Ok(())\n        }\n\n        fn set_super_mapping(_origin, key: u32, super_num: u32, thing_key: u32) -&gt; Result {\n            let thing = Self::value(thing_key);\n            let super_thing = SuperThing { \n                            my_super_num: super_num, \n                            my_thing: thing\n                        };\n            &lt;SuperValue<T>&gt;::insert(key, super_thing);\n            Ok(())\n        }\n    }\n}\n\ndecl_storage! {\n    trait Store for Module&lt;T: Trait&gt; as RuntimeExampleStorage {\n        Value get(value): map u32 =&gt; Thing&lt;T::Hash, T::Balance&gt;;\n        SuperValue get(super_value): map u32 =&gt; SuperThing&lt;T::Hash, T::Balance&gt;;\n    }\n}&quot;,
+&quot;language&quot;: &quot;rust&quot;
+}
+]
+}
+[/block]
+To access the value of this struct via the UI, you will need to import the structure of your new type so that the UI understand how to decode it.</p>
+<h3><a class="anchor" aria-hidden="true" id="polkadot-ui"></a><a href="#polkadot-ui" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Polkadot UI</h3>
+<p>For the Polkadot-UI, you will need to create a JSON file which describes your struct:
+[block:callout]
+{
+&quot;type&quot;: &quot;warning&quot;,
+&quot;title&quot;: &quot;NOTE&quot;,
+&quot;body&quot;: &quot;The order of the struct definitions matter here since the UI registers one by one in order.&quot;
+}
+[/block]</p>
+<p>[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;{\n    &quot;Thing&quot;: {\n        &quot;my_num&quot;: &quot;u32&quot;,\n        &quot;my_hash&quot;: &quot;Hash&quot;,\n        &quot;my_balance&quot;: &quot;Balance&quot;\n    },\n    &quot;SuperThing&quot;: {\n        &quot;my_super_num&quot;: &quot;u32&quot;,\n        &quot;my_thing&quot;: &quot;Thing&quot;\n    }\n}&quot;,
+&quot;language&quot;: &quot;json&quot;
+}
+]
+}
+[/block]
+Then go into the Polkadot UI, and navigate to:</p>
+<pre><code class="hljs">Settings &gt; developer &gt; additional type definitions (JSON)
+</code></pre>
+<p>Import your JSON file there and press &quot;Save and Reload&quot;. If all went well, you should be able to interact with this value just like any other primitive type.</p>
+<h3><a class="anchor" aria-hidden="true" id="substrate-ui"></a><a href="#substrate-ui" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Substrate UI</h3>
+<p>For the Substrate UI, you need to take advantage of a registration function provided by the oo7-substrate module: <code>addCodecTransform()</code>.</p>
+<p>In the console, simply type:
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;addCodecTransform('Thing&lt;Hash,Balance&gt;', { my_num: 'u32', my_hash: 'Hash', my_balance: 'Balance' });\naddCodecTransform('SuperThing&lt;Hash,Balance&gt;', { my_super_num: 'u32', my_thing: 'Thing' });&quot;,
+&quot;language&quot;: &quot;javascript&quot;
+}
+]
+}
+[/block]
+You can add these lines in your <strong>app.jsx</strong> <code>constructor()</code> function to automatically import these types when the page loads.</p>
+<h2><a class="anchor" aria-hidden="true" id="working-with-custom-enums-in-polkadot-apps"></a><a href="#working-with-custom-enums-in-polkadot-apps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Working with Custom Enums in Polkadot Apps</h2>
+<p>If you want to register custom Substrate enums in Polkadot Apps, here is a working example.</p>
+<p>First, you need to define enums in your Substrate module (Rust):
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;// Example 1: Simple enum\npub enum VoteKind {\n    Approve,\n    Reject,\n    Slash,\n}\n\n// Example 2: Parametrized enum\npub enum ElectionStage<BlockNumber> {\n    Announcing(BlockNumber),\n    Voting(BlockNumber),\n    Revealing(BlockNumber),\n}&quot;,
+&quot;language&quot;: &quot;rust&quot;
+}
+]
+}
+[/block]
+Second, registers previous enums in TypeScript code of Polkadot Apps. This code  could be placed somewhere around <a href="https://github.com/polkadot-js/apps/blob/master/packages/apps/src/index.tsx#L47">https://github.com/polkadot-js/apps/blob/master/packages/apps/src/index.tsx#L47</a>
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;import { BlockNumber } from '@polkadot/types';\nimport { Enum, EnumType } from '@polkadot/types/codec';\n\n// Example 1: Simple enum\n\nclass VoteKind extends Enum {\n  constructor (value?: any) {\n    super([\n      'Approve',\n      'Reject',\n      'Slash'\n    ], value);\n  }\n}\n\ntypeRegistry.register({\n  VoteKind\n});\n\n// Example 2: Parametrized enum\n\nclass Announcing extends BlockNumber { }\nclass Voting extends BlockNumber { }\nclass Revealing extends BlockNumber { }\nclass ElectionStage extends EnumType&lt;Announcing | Voting | Revealing&gt; {\n  constructor(value?: any, index?: number) {\n    super({\n      Announcing,\n      Voting,\n      Revealing\n    }, value, index);\n  }\n}\n\ntypeRegistry.register({\n  Announcing,\n  Voting,\n  Revealing,\n  ElectionStage\n});&quot;,
+&quot;language&quot;: &quot;javascript&quot;
+}
+]
+}
+[/block]</p>
+<h2><a class="anchor" aria-hidden="true" id="print-a-message"></a><a href="#print-a-message" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Print a message</h2>
+<p>Sometimes we need to print debug messages while building applications. This recipe shows how to print messages for debugging your Substrate runtime code.</p>
+<p>You need to include <code>runtime_io</code> crate from the Substrate core in order to use IO functions from within the runtime modules.
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;use support::{decl_module, dispatch::Result};\nuse runtime_io;\n\npub trait Trait: system::Trait {}\n\ndecl_module! {\n  pub struct Module&lt;T: Trait&gt; for enum Call where origin: T::Origin {\n    pub fn print_something(_origin) -&gt; Result {\n      // the following line prints a message on the node's terminal/console\n      runtime_io::print(&quot;Hello World from Substrate Runtime!&quot;);\n      Ok(())\n    }\n  }\n}&quot;,
+&quot;language&quot;: &quot;rust&quot;,
+&quot;name&quot;: &quot;runtime_examples.rs&quot;
+}
+]
+}
+[/block]
+When this function is executed, the message will appear on the terminal where the Substrate node is running. The following screenshot shows the printed message.
+[block:image]
+{
+&quot;images&quot;: [
+{
+&quot;image&quot;: [
+&quot;<a href="https://files.readme.io/16b213f-Screenshot_from_2019-01-11_16-29-09.png">https://files.readme.io/16b213f-Screenshot_from_2019-01-11_16-29-09.png</a>&quot;,
+&quot;Screenshot from 2019-01-11 16-29-09.png&quot;,
+612,
+92,
+&quot;#35383a&quot;
+]
+}
+]
+}
+[/block]</p>
+<h2><a class="anchor" aria-hidden="true" id="make-a-balance-transfer"></a><a href="#make-a-balance-transfer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Make a Balance Transfer</h2>
+<p>You can use the <code>Currency</code> type to safely transfer funds between two accounts. Note that this module does not use the <code>Storage</code> type.
+[block:code]
+{
+&quot;codes&quot;: [
+{
+&quot;code&quot;: &quot;use support::{decl_module, dispatch::Result, Currency, LockableCurrency};\nuse system::ensure_signed;\n\npub trait Trait: system::Trait {\n    type Currency: LockableCurrency&lt;Self::AccountId, Moment=Self::BlockNumber&gt;;\n    \n    type Event: From&lt;Event<Self>&gt; + Into&lt;<Self as system::Trait>::Event&gt;;\n}\n\ndecl_module! {\n  pub struct Module&lt;T: Trait&gt; for enum Call where origin: T::Origin {\n    fn transfer_proxy(origin, to: T::AccountId, value: T::Balance) -&gt; Result {\n      let sender = ensure_signed(origin)?;\n      T::Currency::make_transfer(&amp;sender, &amp;to, value)?;\n\n      Ok(())\n    }\n  }\n}&quot;,
+&quot;language&quot;: &quot;rust&quot;
+}
+]
+}
+[/block]</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/tutorials/substrate-collectables-workshop"><span class="arrow-prev">← </span><span>tutorials/substrate-collectables-workshop</span></a><a class="docs-next button" href="/docs/en/tutorials/validator-nodes-and-nominators-on-substrate-chains"><span>Validator Nodes and Nominators on Substrate chains</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#create-a-substrate-node-template">Create a Substrate Node Template</a></li><li><a href="#updating-your-runtime">Updating Your Runtime</a></li><li><a href="#using-the-polkadot-ui-to-interact">Using the Polkadot UI to Interact</a><ul class="toc-headings"><li><a href="#viewing-storage-variables">Viewing Storage Variables</a></li><li><a href="#viewing-events">Viewing Events</a></li><li><a href="#wasm-runtime-upgrade">WASM Runtime Upgrade</a></li></ul></li><li><a href="#simple-storage">Simple Storage</a></li><li><a href="#account-mapping">Account Mapping</a></li><li><a href="#storage-mapping">Storage Mapping</a></li><li><a href="#simple-token-transfer-a-name-ex-a">Simple Token Transfer &lt;a name = &quot;ex&quot;&gt;&lt;/a&gt;</a></li><li><a href="#adding-removing-elements-in-an-unbounded-list">Adding/Removing Elements in an Unbounded List</a></li><li><a href="#swap-and-pop-for-ordered-lists">Swap and Pop for Ordered Lists</a><ul class="toc-headings"><li><a href="#linked-map">Linked Map</a></li></ul></li><li><a href="#higher-order-arrays-with-tuples-and-maps">Higher Order Arrays with Tuples and Maps</a></li><li><a href="#string-storage-as-bytemap">String Storage (as Bytemap)</a><ul class="toc-headings"><li><a href="#javascript-helper-for-string-storage">JavaScript Helper for String Storage</a></li></ul></li><li><a href="#adder-with-simple-event">Adder with Simple Event</a></li><li><a href="#permissioned-function-with-generic-event-onlyowner-ownable">Permissioned Function with Generic Event (OnlyOwner, Ownable)</a></li><li><a href="#hashing-data">Hashing data</a></li><li><a href="#storing-structs-with-generics">Storing Structs with Generics</a><ul class="toc-headings"><li><a href="#polkadot-ui">Polkadot UI</a></li><li><a href="#substrate-ui">Substrate UI</a></li></ul></li><li><a href="#working-with-custom-enums-in-polkadot-apps">Working with Custom Enums in Polkadot Apps</a></li><li><a href="#print-a-message">Print a message</a></li><li><a href="#make-a-balance-transfer">Make a Balance Transfer</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/en/who">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="https://crates.parity.io">Reference Docs</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/paritytech/substrate">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 Parity Technologies</section></footer></div></body></html>
