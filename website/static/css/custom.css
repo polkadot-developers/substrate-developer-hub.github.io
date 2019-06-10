@@ -19,7 +19,7 @@
 }
 
 .heroImage {
-    background-image: url("/docs/img/bg-dark-1.png"); /* The image used */
+    background-image: url("/img/bg-dark-1.png"); /* The image used */
     background-color: $secondaryColor; /* Used if the image is unavailable */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */

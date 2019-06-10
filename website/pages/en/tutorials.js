@@ -34,7 +34,7 @@ class Tutorials extends React.Component {
       props.data.map(tutorial => (
         <Col md={3} className="mb-3 d-flex align-items-stretch">
           <Card>
-            <Card.Img variant="top" src={tutorial.img ? tutorial.img : `/docs/img/substrate-placeholder.png`} />
+            <Card.Img variant="top" src={tutorial.img ? tutorial.img : `${baseUrl}img/substrate-placeholder.png`} />
             <Card.Body className="d-flex flex-column">
               <Card.Title>{tutorial.title}</Card.Title>
               <Card.Text>{tutorial.text}</Card.Text>
@@ -90,7 +90,7 @@ class Tutorials extends React.Component {
           <TutorialCards
             data={[
               {
-                img: "/docs/img/substrate-collectables-workshop.png",
+                img: `${baseUrl}img/substrate-collectables-workshop.png`,
                 title: "Substrate Collectables Workshop",
                 text: "A comprehensive end to end tutorial for creating a non-fungible tokens chain. Learn all the basics of Substrate runtime development here!",
                 difficulty: "easy",
@@ -133,7 +133,7 @@ class Tutorials extends React.Component {
           <TutorialCards
             data={[
               {
-                img: "/docs/img/substrate-contracts-workshop.png",
+                img: `${baseUrl}img/substrate-contracts-workshop.png`,
                 title: "Substrate Contracts Workshop",
                 text: "A comprehensive end to end tutorial for building an ERC20 token using Parity Substrate and ink!.",
                 difficulty: "easy",
@@ -142,7 +142,7 @@ class Tutorials extends React.Component {
                 href: "https://substrate-developer-hub.github.io/substrate-contracts-workshop/"
               },
               {
-                img: "/docs/img/ink-placeholder.png",
+                img: `${baseUrl}img/ink-placeholder.png`,
                 title: "Deploying Your First Contract",
                 text: "A simple guide which helps you understand the process of deploying smart contracts on Substrate.",
                 difficulty: "easy",
@@ -150,7 +150,7 @@ class Tutorials extends React.Component {
                 prerequisite: false,
               },
               {
-                img: "/docs/img/ink-placeholder.png",
+                img: `${baseUrl}img/ink-placeholder.png`,
                 title: "Writing Your First Contract",
                 text: "A simple guide which helps you write your first 'flipper' contract.",
                 difficulty: "easy",
