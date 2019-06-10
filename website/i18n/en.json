@@ -65,8 +65,8 @@
       "runtime/types/genesisconfig-struct": {
         "title": "GenesisConfig Struct"
       },
-      "tutorials/building-a-token-curated-registry-dappchain-using-substrate": {
-        "title": "Building a Token Curated Registry DAppChain using Substrate"
+      "tutorials/building-a-token-curated-registry-dappchain": {
+        "title": "Building a Token Curated Registry DAppChain"
       },
       "tutorials/collator-nodes-on-polkadot-chains": {
         "title": "tutorials/collator-nodes-on-polkadot-chains"

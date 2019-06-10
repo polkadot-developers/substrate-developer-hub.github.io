@@ -39,18 +39,7 @@
       "overview/versioning"
     ],
     "Tutorials": [
-      {
-        "type": "subcategory",
-        "label": "Building a Token Curated Registry DAppChain using Substrate",
-        "ids": [
-          "tutorials/tcr/best-practices",
-          "tutorials/tcr/building-a-ui-for-the-tcr-runtime",
-          "tutorials/tcr/building-an-event-based-off-chain-storage",
-          "tutorials/tcr/building-the-substrate-tcr-runtime",
-          "tutorials/tcr/unit-testing-the-tcr-runtime-module",
-          "tutorials/tcr/building-a-token-curated-registry-dappchain-using-substrate"
-        ]
-      },
+      "tutorials/building-a-token-curated-registry-dappchain",
       "tutorials/collator-nodes-on-polkadot-chains",
       "tutorials/creating-a-custom-substrate-chain",
       "tutorials/deploying-a-smart-contract-on-a-substrate-node-chain",
