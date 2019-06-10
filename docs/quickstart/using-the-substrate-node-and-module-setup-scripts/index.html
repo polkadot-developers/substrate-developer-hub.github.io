@@ -56,14 +56,9 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Using the Substrate node and module setup scripts</h1></header><article><div><span><p>The following scripts allow you to set-up ready-to-hack Substrate runtimes node and modules.
-[block:api-header]
-{
-&quot;type&quot;: &quot;basic&quot;,
-&quot;title&quot;: &quot;substrate-node-new&quot;
-}
-[/block]
-The <code>substrate-node-new</code> script downloads a compressed copy of the <a href="https://github.com/paritytech/substrate/tree/master/node-template">Substrate node template codebase</a> and compiles it. This gives you a ready-to-hack Substrate node with a template runtime module.</p>
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Using the Substrate node and module setup scripts</h1></header><article><div><span><p>The following scripts allow you to set-up ready-to-hack Substrate runtimes node and modules.</p>
+<h2><a class="anchor" aria-hidden="true" id="substrate-node-new"></a><a href="#substrate-node-new" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>substrate-node-new</h2>
+<p>The <code>substrate-node-new</code> script downloads a compressed copy of the <a href="https://github.com/paritytech/substrate/tree/master/node-template">Substrate node template codebase</a> and compiles it. This gives you a ready-to-hack Substrate node with a template runtime module.</p>
 <p>To use the <code>substrate-node-new</code> script,</p>
 <ol>
 <li>First, install Substrate using <code>curl https://getsubstrate.io -sSf | bash</code>. This installation also adds the Substrate scripts to the system path so that you can call them from anywhere.</li>
@@ -75,12 +70,8 @@ The <code>substrate-node-new</code> script downloads a compressed copy of the <a
 <p><code>&lt;node-name&gt;</code> is the name for your substrate runtime. This is a <em>required</em> parameter.</p>
 <p><code>&lt;author&gt;</code> is the name of the author of this node runtime. This is <em>optional</em>.</p>
 <p>Once you run the <code>substrate-node-new</code> command, it will take a few minutes (depending on your hardware) to finish compilation.</p>
-<p>[block:api-header]
-{
-&quot;title&quot;: &quot;substrate-module-new&quot;
-}
-[/block]
-Once you have your local node up and running using the <code>substrate-node-new</code> script, you can add more modules to your runtime using the <code>substrate-module-new</code> script.</p>
+<h2><a class="anchor" aria-hidden="true" id="substrate-module-new"></a><a href="#substrate-module-new" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>substrate-module-new</h2>
+<p>Once you have your local node up and running using the <code>substrate-node-new</code> script, you can add more modules to your runtime using the <code>substrate-module-new</code> script.</p>
 <p>The <code>substrate-module-new</code> script creates a new runtime module based on a <a href="https://github.com/paritytech/substrate/blob/master/node-template/runtime/src/template.rs">template</a>. This gives you a ready-to-hack runtime module with all necessary imports, entry-points and sample tests. We recommend using this script to create new modules, specially for users who are just getting started with Substrate, as it also gives you good information on how a typical Substrate runtime module is structured.</p>
 <p>To use the <code>substrate-module-new</code> script,</p>
 <ol>
@@ -101,7 +92,7 @@ Once you have your local node up and running using the <code>substrate-node-new<
 <pre><code class="hljs"><span class="hljs-keyword">mod</span> mymodule;
 </code></pre>
 <p>Further, implement the module trait for your module in the <code>lib.rs</code></p>
-<pre><code class="hljs"><span class="hljs-keyword">impl</span> mymodule::Trait <span class="hljs-keyword">for</span> Runtime { 
+<pre><code class="hljs"><span class="hljs-keyword">impl</span> mymodule::Trait <span class="hljs-keyword">for</span> Runtime {
     <span class="hljs-comment">// add required types here</span>
     <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Event</span></span> = Event;
 }
@@ -124,4 +115,4 @@ Once you have your local node up and running using the <code>substrate-node-new<
     }
 );
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/quickstart/installing-substrate"><span class="arrow-prev">← </span><span>Installing Substrate</span></a><a class="docs-next button" href="/docs/runtime/macros/construct_runtime"><span>Constructing a Runtime!</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/en/who">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="https://crates.parity.io">Reference Docs</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/paritytech/substrate">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 Parity Technologies</section></footer></div></body></html>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/quickstart/installing-substrate"><span class="arrow-prev">← </span><span>Installing Substrate</span></a><a class="docs-next button" href="/docs/runtime/macros/construct_runtime"><span>Constructing a Runtime!</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#substrate-node-new">substrate-node-new</a></li><li><a href="#substrate-module-new">substrate-module-new</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/en/who">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="https://crates.parity.io">Reference Docs</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/paritytech/substrate">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 Parity Technologies</section></footer></div></body></html>
