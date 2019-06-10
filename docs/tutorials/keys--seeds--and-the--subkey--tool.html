@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Keys, Seeds, and the `subkey` Tool · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Subkey is a key-generation utility that is developed alongside substrate. Its main features are generating Ed25519 and Sr25519 key pairs, encoding SS58 addresses, and restoring keys from seeds. This guide serves as an introduction and tour of the tool. Once you are basically familiar with &lt;code&gt;subkey&lt;/code&gt;, it will be more time-efficient to refresh your memory by looking at &lt;code&gt;subkey help&lt;/code&gt; than by re-reading this intro.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Keys, Seeds, and the `subkey` Tool · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;Subkey is a key-generation utility that is developed alongside substrate. Its main features are generating Ed25519 and Sr25519 key pairs, encoding SS58 addresses, and restoring keys from seeds. This guide serves as an introduction and tour of the tool. Once you are basically familiar with &lt;code&gt;subkey&lt;/code&gt;, it will be more time-efficient to refresh your memory by looking at &lt;code&gt;subkey help&lt;/code&gt; than by re-reading this intro.&lt;/p&gt;
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/Substrate-logo.svg"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs" target="_self">Docs</a></li><li class=""><a href="/tutorials" target="_self">Tutorials</a></li><li class=""><a href="https://www.parity.io/blog/" target="_self">Blog</a></li><li class=""><a href="/community/support" target="_self">Community</a></li><li class=""><a href="https://github.com/substrate-developer-hub/" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Tutorials</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Home</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/">Docs</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Quick Start</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/quickstart/installing-substrate">Installing Substrate</a></li><li class="navListItem"><a class="navItem" href="/docs/quickstart/using-the-substrate-node-and-module-setup-scripts">Using the Substrate node and module setup scripts</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Runtime</h3><ul class=""><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Macros</h4><ul><li class="navListItem"><a class="navItem" href="/docs/runtime/macros/construct_runtime">Constructing a Runtime!</a></li><li class="navListItem"><a class="navItem" href="/docs/runtime/macros/decl_module">Declaring a Module!</a></li><li class="navListItem"><a class="navItem" href="/docs/runtime/macros/decl_storage">runtime/macros/decl_storage</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Types</h4><ul><li class="navListItem"><a class="navItem" href="/docs/runtime/types/call-enum">Call Enum</a></li><li class="navListItem"><a class="navItem" href="/docs/runtime/types/event-enum">Event Enum</a></li><li class="navListItem"><a class="navItem" href="/docs/runtime/types/genesisconfig-struct">GenesisConfig Struct</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/runtime/architecture-of-a-runtime">Architecture of a Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/runtime/substrate-runtime-module-library">Substrate Runtime Module Library</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Substrate Overview</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/overview/extrinsics">Extrinsics</a></li><li class="navListItem"><a class="navItem" href="/docs/overview/glossary">Glossary</a></li><li class="navListItem"><a class="navItem" href="/docs/overview/introduction">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/overview/low-level-data-format">Low-level Data Format</a></li><li class="navListItem"><a class="navItem" href="/docs/overview/runtime-and-api">Runtime and API</a></li><li class="navListItem"><a class="navItem" href="/docs/overview/substrate-bonds">overview/substrate-bonds</a></li><li class="navListItem"><a class="navItem" href="/docs/overview/telemetry">Telemetry</a></li><li class="navListItem"><a class="navItem" href="/docs/overview/transaction-lifecycle">Transaction Lifecycle</a></li><li class="navListItem"><a class="navItem" href="/docs/overview/versioning">Versioning</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Tutorials</h3><ul class=""><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Building a Token Curated Registry DAppChain using Substrate</h4><ul><li class="navListItem"><a class="navItem" href="/docs/tutorials/tcr/best-practices">Best Practices</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/tcr/building-a-ui-for-the-tcr-runtime">Building a UI for the TCR runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/tcr/building-an-event-based-off-chain-storage">Building an event based off-chain storage</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/tcr/building-the-substrate-tcr-runtime">Building the Substrate TCR runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/tcr/unit-testing-the-tcr-runtime-module">Unit testing the TCR runtime module</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/tutorials/collator-nodes-on-polkadot-chains">tutorials/collator-nodes-on-polkadot-chains</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/creating-a-custom-substrate-chain">Creating a Custom Substrate chain</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/deploying-a-smart-contract-on-a-substrate-node-chain">Deploying a Smart Contract on a Substrate Node Chain</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/start-a-private-network-with-substrate">Start a Private Network with Substrate</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/tutorials/keys--seeds--and-the--subkey--tool">Keys, Seeds, and the `subkey` Tool</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/governance--public--mechanism-with-a-substrate-node-chain">Governance &quot;Public&quot; Mechanism with a Substrate Node Chain</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/migrating-storage-to-a-new-substrate-node-s-runtime">Migrating Storage to a new Substrate Node&#x27;s Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/substrate-collectables-workshop">tutorials/substrate-collectables-workshop</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/substrate-runtime-recipes">Substrate Runtime Recipes</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/validator-nodes-and-nominators-on-substrate-chains">Validator Nodes and Nominators on Substrate chains</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Keys, Seeds, and the `subkey` Tool</h1></header><article><div><span><p>Subkey is a key-generation utility that is developed alongside substrate. Its main features are generating Ed25519 and Sr25519 key pairs, encoding SS58 addresses, and restoring keys from seeds. This guide serves as an introduction and tour of the tool. Once you are basically familiar with <code>subkey</code>, it will be more time-efficient to refresh your memory by looking at <code>subkey help</code> than by re-reading this intro.</p>
+<h1><a class="anchor" aria-hidden="true" id="building-the-subkey-binary"></a><a href="#building-the-subkey-binary" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Building the Subkey Binary</h1>
+<h2><a class="anchor" aria-hidden="true" id="one-line-install"></a><a href="#one-line-install" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>One-line Install</h2>
+<p>The Subkey binary, <code>subkey</code>, is also installed along with the <a href="https://docs.substrate.dev/docs/getting-started">Substrate installation</a>. If you want to play with just subkey (and not substrate), you can compile and install it with this one-line command.</p>
+<pre><code class="hljs css language-bash">cargo install --force --git https://github.com/paritytech/substrate subkey
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="compiling-with-cargo"></a><a href="#compiling-with-cargo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Compiling with Cargo</h2>
+<p>If you already have the <a href="https://github.com/paritytech/substrate">Substrate repository</a> cloned, you can build it with</p>
+<pre><code class="hljs css language-bash">cargo build -p subkey
+</code></pre>
+<h1><a class="anchor" aria-hidden="true" id="generating-and-inspecting-keys-with-subkey"></a><a href="#generating-and-inspecting-keys-with-subkey" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generating and Inspecting Keys with Subkey</h1>
+<h2><a class="anchor" aria-hidden="true" id="generating-your-first-key"></a><a href="#generating-your-first-key" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generating Your First Key</h2>
+<p>Generate a Sr25519 key by running:</p>
+<pre><code class="hljs css language-bash">satoshi@jambox$ subkey generate
+
+Phrase `mosquito sketch face supreme side tourist monkey damp idea warm luggage better` is account:
+  Seed: 0xe35fdbf9b9ddf8e54e0c1d49fe50561a5a7fd31728450f7a9f8663820c09401e
+  Public key (hex): 0xec57cf6230ce7e675123d056eda9ab331aa6fb3ba422c5fd194721ddc6b69a14
+  Address (SS58): 5HQbF3hCugq71XdCk43FcxVqduhu7JojGiBfzD8iEFW22kiy
+</code></pre>
+<p>Subkey has just consumed some entropy and generated a cryptographic SR25519 key-pair. The output tells us a few properties of our key.</p>
+<p>Phrase (aka <strong>Mnemonic Phrase</strong>) - A series of English words that encodes the seed in a more human-friendly way.
+Seed (aka <strong>Private Key / Raw Seed</strong>) - The minimum necessary information to restore the key pair. All other information is calculated from the seed.
+<strong>Public Key</strong> - The public half of the cryptographic key-pair in hexadecimal (hex).
+Address (<strong>Public Address</strong>) - An SS58 hash based on the public key.</p>
+<p>Note: See <a href="https://github.com/paritytech/substrate/pull/2669#issuecomment-495702589">https://github.com/paritytech/substrate/pull/2669#issuecomment-495702589</a> for reasons why <code>subkey</code> outputs have not yet been updated.</p>
+<h2><a class="anchor" aria-hidden="true" id="inspecting-keys"></a><a href="#inspecting-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Inspecting keys</h2>
+<p>The inspect command recalculates a key-pair's public key and public address given it's seed. This shows that it is sufficient to backup the seed alone.</p>
+<pre><code class="hljs css language-bash">satoshi@jambox$ subkey inspect 0xe35fdbf9b9ddf8e54e0c1d49fe50561a5a7fd31728450f7a9f8663820c09401e
+
+Secret Key URI `0xe35fdbf9b9ddf8e54e0c1d49fe50561a5a7fd31728450f7a9f8663820c09401e` is account:
+  Public key (hex): 0xec57cf6230ce7e675123d056eda9ab331aa6fb3ba422c5fd194721ddc6b69a14
+  Address (SS58): 5HQbF3hCugq71XdCk43FcxVqduhu7JojGiBfzD8iEFW22kiy
+</code></pre>
+<p>You can also inspect the key by it's mnemonic phrase. Mind the quotes.</p>
+<pre><code class="hljs css language-bash">satoshi@jambox$ subkey inspect <span class="hljs-string">"mosquito sketch face supreme side tourist monkey damp idea warm luggage better"</span>
+
+Secret Key URI `mosquito sketch face supreme side tourist monkey damp idea warm luggage better` is account:
+  Public key (hex): 0xec57cf6230ce7e675123d056eda9ab331aa6fb3ba422c5fd194721ddc6b69a14
+  Address (SS58): 5HQbF3hCugq71XdCk43FcxVqduhu7JojGiBfzD8iEFW22kiy
+</code></pre>
+<p>Mnemonic phrases are cool. They were first introduced in Bitcoin (see <a href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki">BIP39</a>) and make it much easier to manually write down your key. They also allow cool things like &quot;memorizing&quot; your life savings.</p>
+<h2><a class="anchor" aria-hidden="true" id="external-address-format-ss58"></a><a href="#external-address-format-ss58" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>External Address Format (SS58)</h2>
+<p>SS58 is an address format for Substrate-based chains. See <a href="https://github.com/substrate-developer-hub/docs/issues/90">https://github.com/substrate-developer-hub/docs/issues/90</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="session-keys"></a><a href="#session-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Session keys</h2>
+<p>A Session key is actually a Session Certificate since each one comprises of three keys that are used by validators for network operations, and for key-pairs and signing. The three keys include:</p>
+<ul>
+<li>BLS (Boneh-Lynn-Shacham) key, which is used for consensus signatures when voting since it is desirable to be used with the GRANDPA finality gadget. BLS is preferred for voting in consensus algorithms and threshold signatures. It allows more efficient signature aggregation than when using Schnorr signatures. It will be used by validators in Substrate and Polkadot since they are more efficient than Schnorr signatures in some ways.</li>
+<li>Schnorrkel/Ristretto x25519 (&quot;Sr25519&quot;) key, which is used for producing blocks with BABE (using Schnorr signatures). It was created specifically to handle Substrate and Polkadot use cases. &quot;Sr25519&quot; is based on the same underlying Curve25519 as its EdDSA counterpart, Ed25519, but it uses Schnorr signatures instead of the EdDSA scheme, since they are more efficient, retain the same feature set and security assumptions, and allow for native multisignature through signature aggregation. It is superior to Ed25519 for implementing complex protocols.</li>
+<li>Ed25519 key (using Schnorr signatures) is used for identifying itself to other nodes over libp2p. It is used for simpler implementations like account keys that only need to provide signature capabilities. It has a broader support ecosystem (i.e. HSMs are already available for it).</li>
+</ul>
+<p>The &quot;Seed&quot; of an account generated with <code>subkey</code> may be used as the Session key of only a single Substrate validator at any one time (i.e. using <code>substrate --key &lt;SEED&gt;</code>).</p>
+<p>Session keys are hot keys that must be kept online, so it is not recommended to store funds on accounts used for a Session key, as they may be cycled through (possibly automatically), and if the Session key is leaked or the validator node that uses the Session key is compromised then theft of funds may occur.</p>
+<h2><a class="anchor" aria-hidden="true" id="ed25519-keys"></a><a href="#ed25519-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Ed25519 keys</h2>
+<p>So far we've been using Sr25519 keys. Substrate uses those keys in most places, which is why they are the default for <code>subkey</code>. Ed25519 keys may be generated by providing the <code>-e</code> or <code>--ed25519</code> flag (see <code>subkey help</code>):</p>
+<pre><code class="hljs css language-bash">satoshi@jambox:~$ subkey -e generate
+Phrase `kick raw cram palm fiction term two salt allow document hidden mix` is account:
+  Seed: 0x8167e5997afeed9886bc88ebb94d8905b330540bfa4624dcc6d0e983171e67ed
+  Public key (hex): 0x61319aa2d62a87bb1adbe18ab436bc60ab949dea07a1b7859deb13bdfbb85f53
+  Address (SS58): 5EG9Ej4JPcb1YHn8R2ai5p7EApwTyXMVYiCzueY7yRLwGEAf
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="password-protected-keys"></a><a href="#password-protected-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Password Protected keys</h2>
+<p>You can put a password on a key by using the <code>--password</code> option (in the example below the password is &quot;pass&quot; followed by the <code>generate</code> subcommand, see <code>subkey help</code>). The output looks exactly the same as before.</p>
+<pre><code class="hljs css language-bash">satoshi@jambox:~$ subkey --password pass generate
+
+Phrase `certain notable bacon broken reflect fragile accuse march bamboo isolate call gate` is account:
+  Seed: 0xf4e6c7f224705dc0c803f29a7f721238a23489f4bedd70e9faa839e0a1d1a392
+  Public key (hex): 0x229b59387b74aa45eeda235b461b655b84f9694a3e280775d5438d64d477673a
+  Address (SS58): 5Cr5dgyZD16Uc6rDNHs494wNCEwD4wfjQvUGG6wdma9EMib8
+</code></pre>
+<p>Indeed we can still restore the key with nothing but its seed. This shows that even if the key is generated with a password, the seed alone <em>still</em> holds all the information about the key.</p>
+<pre><code class="hljs css language-bash">satoshi@jambox:~$ subkey inspect 0xf4e6c7f224705dc0c803f29a7f721238a23489f4bedd70e9faa839e0a1d1a392
+
+Secret Key URI `0xf4e6c7f224705dc0c803f29a7f721238a23489f4bedd70e9faa839e0a1d1a392` is account:
+  Public key (hex): 0x229b59387b74aa45eeda235b461b655b84f9694a3e280775d5438d64d477673a
+  Address (SS58): 5Cr5dgyZD16Uc6rDNHs494wNCEwD4wfjQvUGG6wdma9EMib8
+</code></pre>
+<p>But notice what happens when we try to restore the key from the mnemonic phrase. Although the output looks <em>similar</em> it is <em>not</em> identical. We are restoring a completely different key-pair. Notice the public key and address don't match.</p>
+<pre><code class="hljs css language-bash">satoshi@jambox$ subkey inspect <span class="hljs-string">"certain notable bacon broken reflect fragile accuse march bamboo isolate call gate"</span>
+
+Secret Key URI `certain notable bacon broken reflect fragile accuse march bamboo isolate call gate` is account:
+  Public key (hex): 0x08898f67df39ba5a5a9f6fd1ed1273cabce440851b537a07fad152f85649ce66
+  Address (SS58): 5CFu6zbvJ9Z49w4RXM3FqrkmseSi5aFAUVbvW6jRnZzsZjYG
+</code></pre>
+<p>This is because the password we supplied when generating the key-pair is necessary to restore the key from the mnemonic phrase.</p>
+<pre><code class="hljs css language-bash">satoshi@jambox$ subkey -p pass inspect <span class="hljs-string">"certain notable bacon broken reflect fragile accuse march bamboo isolate call gate"</span>
+
+Secret Key URI `certain notable bacon broken reflect fragile accuse march bamboo isolate call gate` is account:
+  Public key (hex): 0x229b59387b74aa45eeda235b461b655b84f9694a3e280775d5438d64d477673a
+  Address (SS58): 5Cr5dgyZD16Uc6rDNHs494wNCEwD4wfjQvUGG6wdma9EMib8
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="well-known-keys"></a><a href="#well-known-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Well-known keys</h2>
+<p>If you've worked with Substrate previously, you likely encountered the ubiquitous accounts for Alice, Bob, and their friends. These keys are not at all private, but are useful for playing with Substrate without always generating new key-pairs. You can inspect these &quot;well-known&quot; keys with <code>subkey</code>.</p>
+<pre><code class="hljs css language-bash">satoshi@jambox$ subkey inspect //Alice
+
+Secret Key URI `//Alice` is account:
+  Public key (hex): 0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
+  Address (SS58): 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+</code></pre>
+<p>There is nothing special about the name Alice. You can do the same trick with your own name. But remember that keys like this are <em>not</em> secure, and are only useful for experimenting.</p>
+<pre><code class="hljs css language-bash">satoshi@jambox$ subkey inspect //Joshy
+
+Secret Key URI `//Joshy` is account:
+  Public key (hex): 0x006f5081d495811a16724b317fcd70b8e42c9317da2ba1f5c36756a41fadec67
+  Address (SS58): 5C5GvaAWfruRLnCJYgJrut1JovGeMMXV2VzXeiua7f691J9R
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="more-to-explore"></a><a href="#more-to-explore" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>More to Explore</h2>
+<p><code>subkey</code> is getting more robust all the time. Recently it has added features to sign messages, verify signatures over messages, and create signed token transfer transactions. Learn more by running <code>subkey help</code>.</p>
+<p>Key-pairs can also be generated in the <a href="https://github.com/polkadot-js/apps">PolkadotJS Apps UI</a>. Try creating keys with the UI and restoring them with <code>subkey</code> or vice versa.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/tutorials/start-a-private-network-with-substrate"><span class="arrow-prev">← </span><span>Start a Private Network with Substrate</span></a><a class="docs-next button" href="/docs/tutorials/governance--public--mechanism-with-a-substrate-node-chain"><span>Governance &quot;Public&quot; Mechanism with a Substrate Node Chain</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#one-line-install">One-line Install</a></li><li><a href="#compiling-with-cargo">Compiling with Cargo</a></li><li><a href="#generating-your-first-key">Generating Your First Key</a></li><li><a href="#inspecting-keys">Inspecting keys</a></li><li><a href="#external-address-format-ss58">External Address Format (SS58)</a></li><li><a href="#session-keys">Session keys</a></li><li><a href="#ed25519-keys">Ed25519 keys</a></li><li><a href="#password-protected-keys">Password Protected keys</a></li><li><a href="#well-known-keys">Well-known keys</a></li><li><a href="#more-to-explore">More to Explore</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/en/who">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="https://crates.parity.io">Reference Docs</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/paritytech/substrate">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 Parity Technologies</section></footer></div></body></html>
