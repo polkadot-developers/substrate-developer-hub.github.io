@@ -5,9 +5,6 @@
     "previous": "Previous",
     "tagline": "The place for blockchain innovators.",
     "docs": {
-      "index": {
-        "title": "Docs"
-      },
       "overview/extrinsics": {
         "title": "Extrinsics"
       },
@@ -128,7 +125,6 @@
       "GitHub": "GitHub"
     },
     "categories": {
-      "Home": "Home",
       "Quick Start": "Quick Start",
       "Runtime": "Runtime",
       "Substrate Overview": "Substrate Overview",
