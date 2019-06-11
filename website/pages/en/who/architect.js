@@ -35,35 +35,121 @@ class Architect extends React.Component {
     const ArchitectTimeline = () => (
       <Timeline>
         <Timespot>
-          <h3 className="mt-3">Under Construction</h3>
-          <p>Someone will fill out this page...</p>
+          <h3 className="mt-3">High Level Overview</h3>
+          <p>
+            To start your journey, first we want to make sure you have a high
+            level overview of what Substrate even is. Explore our Substrate
+            Overview starting with the Introduction page. Also take a look at
+            our Glossary so you can make sure that you can become familiar with
+            all the terms you encounter!
+          </p>
           <Button
             variant="secondary"
-            href={docUrl("quickstart/getting-started")}
+            href={docUrl("overview/introduction")}
             className="m-1 primary-color"
           >
-            High Level Docs
+            Introduction
           </Button>
           <Button
             variant="secondary"
-            href="https://stackoverflow.com/questions/tagged/substrate"
+            href={docUrl("overview/glossary")}
             className="m-1 primary-color"
           >
-            StackOverflow
-          </Button>
-          <Button
-            variant="secondary"
-            href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"
-            className="m-1 primary-color"
-          >
-            Riot Chat
+            Glossary
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Restart your journey through the Substrate Developer Hub</h3>
+          <h3 className="mt-3">Architecture of a Runtime</h3>
+          <p>
+            Next, take a look at the architecture of a Substrate runtime. You
+            can explore how the modules included in your Runtime are turned into
+            primitive Substrate types which ultimately get exposed via our JSON
+            RPC.
+          </p>
           <Button
             variant="secondary"
-            href="../../"
+            href={docUrl("runtime/architecture-of-a-runtime")}
+            className="m-1 primary-color"
+          >
+            Architecture of a Runtime
+          </Button>
+        </Timespot>
+        <Timespot>
+          <h3 className="mt-3">Transaction Lifecycle</h3>
+          <p>
+            We will now take a look at the lifecycle of a transaction made on
+            Substrate, including block production, transaction validation, and
+            even handling of inherents.
+          </p>
+          <Button
+            variant="secondary"
+            href={docUrl("overview/transaction-lifecycle")}
+            className="m-1 primary-color"
+          >
+            Transaction Lifecycle
+          </Button>
+        </Timespot>
+        <Timespot>
+          <h3 className="mt-3">Integration Tools</h3>
+          <p>
+            The Substrate framework provides a number of tools to make it easy
+            for you to integrate your project. Become familiar with the
+            underlying `parity-scale-codec` which gets used to serialize and
+            deserialize messages. Learn about our home grown Wasm interpreter
+            used for our Runtime and Smart Contract layer. Finally, take a look
+            at our generic and extensible JSON-RPC proxy, which supports caching
+            and load-balancing.
+          </p>
+          <Button
+            variant="secondary"
+            href="https://github.com/paritytech/parity-scale-codec"
+            className="m-1 primary-color"
+          >
+            Parity Scale Codec
+          </Button>
+          <Button
+            variant="secondary"
+            href="https://github.com/paritytech/wasmi"
+            className="m-1 primary-color"
+          >
+            Wasmi
+          </Button>
+          <Button
+            variant="secondary"
+            href="https://github.com/tomusdrw/jsonrpc-proxy"
+            className="m-1 primary-color"
+          >
+            JSON RPC Proxy
+          </Button>
+        </Timespot>
+        <Timespot>
+          <h3 className="mt-3">
+            Building decentralized solutions with Substrate
+          </h3>
+          <p>We are working on this step.</p>
+          <Button variant="secondary" href="#" className="m-1 primary-color">
+            TODO
+          </Button>
+        </Timespot>
+        <Timespot>
+          <h3 className="mt-3">Get in Touch!</h3>
+          <p>
+            Now that you have a grasp of all the basics, we want to talk with
+            you! We are always looking to form new partnerships or
+            collaborations with other visionaries. Tell us about your project
+            and let us know what we can do to help you accomplish your goals!
+            Otherwise restart your journey through our Substrate Developer Hub.
+          </p>
+          <Button
+            variant="secondary"
+            href="mailto:solutions.parity.io"
+            className="m-1 primary-color"
+          >
+            Contact Us
+          </Button>
+          <Button
+            variant="secondary"
+            href={baseUrl}
             className="m-1 primary-color"
           >
             Back to Home
