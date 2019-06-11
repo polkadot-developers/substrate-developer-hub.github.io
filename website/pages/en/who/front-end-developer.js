@@ -27,11 +27,15 @@ class FrontEndDeveloper extends React.Component {
   render() {
     const { config: siteConfig, language = "" } = this.props;
     const { baseUrl } = siteConfig;
+    const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
+    const langPart = `${language ? `${language}/` : ""}`;
+    const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
+    const pageUrl = page => baseUrl + (language ? `${language}/` : "") + page;
 
     const FrontEndDeveloperTimeline = () => (
       <Timeline>
         <Timespot>
-          <h5>Background</h5>
+          <h3 className="mt-3">Background</h3>
           <p>
             We provides two different JavaScript libraries that you can work
             with to build user experiences for Substrate.
@@ -59,7 +63,7 @@ class FrontEndDeveloper extends React.Component {
           </Button>
         </Timespot>
         <Timespot>
-          <h5>Launch and Interact with the Substrate UI</h5>
+          <h3 className="mt-3">Launch and Interact with the Substrate UI</h3>
           <p>
             The Substrate UI is a prebuilt template based on the oo7-substrate
             API. It is small, simple, and probably the fastest way to start
@@ -77,14 +81,14 @@ class FrontEndDeveloper extends React.Component {
           </Button>
         </Timespot>
         <Timespot>
-          <h5>Make Your First Substrate UI Component</h5>
+          <h3 className="mt-3">Make Your First Substrate UI Component</h3>
           <p>To be created...</p>
           <Button variant="secondary" href="#" className="m-1 primary-color">
             TODO
           </Button>
         </Timespot>
         <Timespot>
-          <h5>Launch and Interact with the Polkadot-JS Apps</h5>
+          <h3 className="mt-3">Launch and Interact with the Polkadot-JS Apps</h3>
           <p>
             The Polkadot-JS Apps (also called the Polkadot UI) is a feature
             packed product which uses the Polkadot-JS API. More to be added
@@ -99,7 +103,7 @@ class FrontEndDeveloper extends React.Component {
           </Button>
         </Timespot>
         <Timespot>
-          <h5>Build your first Polkadot-JS App</h5>
+          <h3 className="mt-3">Build your first Polkadot-JS App</h3>
           <p>
             Now it is time to actually get your hands dirty and build your own
             "App" for the Polkadot UI. TODO
@@ -113,7 +117,7 @@ class FrontEndDeveloper extends React.Component {
           </Button>
         </Timespot>
         <Timespot>
-          <h5>Buidl</h5>
+          <h3 className="mt-3">Buidl</h3>
           <p>
             You are now ready to start building your own user experiences! TODO
             community links

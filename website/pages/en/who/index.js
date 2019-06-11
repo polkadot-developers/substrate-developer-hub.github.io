@@ -34,7 +34,7 @@ class WhoIndex extends React.Component {
         <Col md={4} className="mb-3 d-flex align-items-stretch">
           <Card>
             <Card.Header>
-              <h5>{user.name}</h5>
+              <h3 className="m-1">{user.name}</h3>
             </Card.Header>
             <Card.Body>
               <Card.Text>{user.text}</Card.Text>

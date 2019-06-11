@@ -26,16 +26,20 @@ const Button = require("../../../../../react-bootstrap/Button.js");
 class Architect extends React.Component {
   render() {
     const { config: siteConfig, language = "" } = this.props;
-    const { baseUrl } = siteConfig;
+    const { baseUrl, docsUrl } = siteConfig;
+    const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
+    const langPart = `${language ? `${language}/` : ""}`;
+    const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
+    const pageUrl = page => baseUrl + (language ? `${language}/` : "") + page;
 
     const ArchitectTimeline = () => (
       <Timeline>
         <Timespot>
-          <h5>Under Construction</h5>
+          <h3 className="mt-3">Under Construction</h3>
           <p>Someone will fill out this page...</p>
           <Button
             variant="secondary"
-            href="https://docs.substrate.dev/docs/"
+            href={docUrl("quickstart/getting-started")}
             className="m-1 primary-color"
           >
             High Level Docs
@@ -56,7 +60,7 @@ class Architect extends React.Component {
           </Button>
         </Timespot>
         <Timespot>
-          <h5>Restart your journey through the Substrate Developer Hub</h5>
+          <h3 className="mt-3">Restart your journey through the Substrate Developer Hub</h3>
           <Button
             variant="secondary"
             href="../../"

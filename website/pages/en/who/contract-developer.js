@@ -26,12 +26,16 @@ const Button = require("../../../../../react-bootstrap/Button.js");
 class ContractDeveloper extends React.Component {
   render() {
     const { config: siteConfig, language = "" } = this.props;
-    const { baseUrl } = siteConfig;
+    const { baseUrl, docsUrl } = siteConfig;
+    const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
+    const langPart = `${language ? `${language}/` : ""}`;
+    const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
+    const pageUrl = page => baseUrl + (language ? `${language}/` : "") + page;
 
     const ContractDeveloperTimeline = () => (
       <Timeline>
         <Timespot>
-          <h5>It's dangerous to go alone!</h5>
+          <h3 className="mt-3">It's dangerous to go alone!</h3>
           <p>
             Substrate provides Wasm smart contract functionality through the{" "}
             <a href="https://crates.parity.io/srml_contract/index.html">
@@ -64,7 +68,7 @@ class ContractDeveloper extends React.Component {
           </Button>
         </Timespot>
         <Timespot>
-          <h5>Deploy Your First Contract</h5>
+          <h3 className="mt-3">Deploy Your First Contract</h3>
           <p>
             Let's get off the ground running by deploying your first contract to
             a local Substrate chain. No development experience is needed here,
@@ -82,7 +86,7 @@ class ContractDeveloper extends React.Component {
           </Button>
         </Timespot>
         <Timespot>
-          <h5>Writing Your First Contract</h5>
+          <h3 className="mt-3">Writing Your First Contract</h3>
           <p>
             Next we will walk you through the basics of contract development on
             ink!. For this we will assume you have some background in Solidity,
@@ -97,7 +101,7 @@ class ContractDeveloper extends React.Component {
           </Button>
         </Timespot>
         <Timespot>
-          <h5>Substrate Contracts Workshop</h5>
+          <h3 className="mt-3">Substrate Contracts Workshop</h3>
           <p>
             Now that you have gotten the basics down, you can jump into our end
             to end workshop where we will teach you in detail how to build more
@@ -113,7 +117,7 @@ class ContractDeveloper extends React.Component {
           </Button>
         </Timespot>
         <Timespot>
-          <h5>Buidl</h5>
+          <h3 className="mt-3">Buidl</h3>
           <p>
             You are now ready to start building your own smart contracts!
             Remember that ink! is still a rapidly developing platform, so take

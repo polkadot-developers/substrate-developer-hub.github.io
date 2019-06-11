@@ -305,7 +305,6 @@ const siteConfig = {
   // Style sheets to import
   stylesheets: ["https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"],
 
-  translationRecruitingLink: "https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/48"
 };
 
 module.exports = siteConfig;

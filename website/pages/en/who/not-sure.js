@@ -31,7 +31,7 @@ class NotSure extends React.Component {
     const NotSureTimeline = () => (
       <Timeline>
         <Timespot>
-          <h5>The Past, Present, and Future of Substrate</h5>
+          <h3 className="mt-3">The Past, Present, and Future of Substrate</h3>
           <iframe
             src="https://www.youtube-nocookie.com/embed/X40Duo7kWOI"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -42,7 +42,7 @@ class NotSure extends React.Component {
           />
         </Timespot>
         <Timespot>
-          <h5>Substrate Runtime Module Library Overview</h5>
+          <h3 className="mt-3">Substrate Runtime Module Library Overview</h3>
           <iframe
             src="https://www.youtube-nocookie.com/embed/kpUO8g_Ig0A?start=0&amp;end=2452"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -53,7 +53,7 @@ class NotSure extends React.Component {
           />
         </Timespot>
         <Timespot>
-          <h5>Getting Started with Substrate Smart Contracts</h5>
+          <h3 className="mt-3">Getting Started with Substrate Smart Contracts</h3>
           <iframe
             src="https://www.youtube-nocookie.com/embed/-EJHu0u6hT8?start=0&amp;end=1059"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -64,7 +64,7 @@ class NotSure extends React.Component {
           />
         </Timespot>
         <Timespot>
-          <h5>Restart your journey through the Substrate Developer Hub</h5>
+          <h3 className="mt-3">Restart your journey through the Substrate Developer Hub</h3>
           <Button
             variant="secondary"
             href={baseUrl}

@@ -26,12 +26,16 @@ const Button = require("../../../../../react-bootstrap/Button.js");
 class RuntimeDeveloper extends React.Component {
   render() {
     const { config: siteConfig, language = "" } = this.props;
-    const { baseUrl } = siteConfig;
+    const { baseUrl, docsUrl } = siteConfig;
+    const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
+    const langPart = `${language ? `${language}/` : ""}`;
+    const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
+    const pageUrl = page => baseUrl + (language ? `${language}/` : "") + page;
 
     const RuntimeDeveloperTimeline = () => (
       <Timeline>
         <Timespot>
-          <h5>It's dangerous to go alone!</h5>
+          <h3 className="mt-3">It's dangerous to go alone!</h3>
           <p>
             Before you start your journey you should become familiar with
             resources that can help you along the way. We have high level
@@ -44,7 +48,7 @@ class RuntimeDeveloper extends React.Component {
           </p>
           <Button
             variant="secondary"
-            href="https://docs.substrate.dev/docs/"
+            href={docUrl("quickstart/getting-started")}
             className="m-1 primary-color"
           >
             High Level Docs
@@ -65,7 +69,7 @@ class RuntimeDeveloper extends React.Component {
           </Button>
         </Timespot>
         <Timespot>
-          <h5>Install Substrate</h5>
+          <h3 className="mt-3">Install Substrate</h3>
           <p>
             The first thing you need to do is set up Substrate on your computer!
             The instructions vary depending on which operating system you use,
@@ -74,14 +78,14 @@ class RuntimeDeveloper extends React.Component {
           </p>
           <Button
             variant="secondary"
-            href="https://docs.substrate.dev/docs/getting-started"
+            href={docUrl("quickstart/installing-substrate")}
             className="m-1 primary-color"
           >
             Installation Instructions
           </Button>
         </Timespot>
         <Timespot>
-          <h5>Substrate Collectables Workshop</h5>
+          <h3 className="mt-3">Substrate Collectables Workshop</h3>
           <p>
             Next follow our Substrate Collectables Workshop to get a deep dive
             into runtime development. We will walk you through the end to end
@@ -97,7 +101,7 @@ class RuntimeDeveloper extends React.Component {
           </Button>
         </Timespot>
         <Timespot>
-          <h5>Reference Level Documentation</h5>
+          <h3 className="mt-3">Reference Level Documentation</h3>
           <p>
             Now that you are more familiar with Substrate and runtime
             development, you can jump into the reference level documentation
@@ -116,7 +120,7 @@ class RuntimeDeveloper extends React.Component {
           </Button>
         </Timespot>
         <Timespot>
-          <h5>Buidl</h5>
+          <h3 className="mt-3">Buidl</h3>
           <p>
             You are now ready to start building your own Runtime logic! Do not
             forget about the community and documentation resources that we have

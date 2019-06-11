@@ -28,7 +28,11 @@ const Badge = require("../../../../react-bootstrap/Badge.js");
 class Tutorials extends React.Component {
   render() {
     const { config: siteConfig, language = "" } = this.props;
-    const { baseUrl } = siteConfig;
+    const { baseUrl, docsUrl } = siteConfig;
+    const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
+    const langPart = `${language ? `${language}/` : ""}`;
+    const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
+    const pageUrl = page => baseUrl + (language ? `${language}/` : "") + page;
 
     const TutorialCards = props =>
       props.data.map(tutorial => (
@@ -176,7 +180,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "2",
                 prerequisite: false,
-                href: "https://docs.substrate.dev/docs/deploying-a-substrate-node-chain"
+                href: `${docUrl("tutorials/start-a-private-network-with-substrate")}`
               },
             ]}
           />
