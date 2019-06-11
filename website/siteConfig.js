@@ -288,7 +288,24 @@ const siteConfig = {
   // concatenated to Docusaurus' styles. This is to support static HTML pages
   // that may be separate from Docusaurus with completely separate styles.
   separateCss: [],
+
+  // Use prism for syntax highlighting
   usePrism: true,
+
+  // Edit this page button
+  editUrl: "https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/",
+
+  // Add Update by information at the bottom of the page:
+  enableUpdateBy: true,
+  enableUpdateTime: true,
+
+  // Scroll to top button at the bottom
+  scrollToTop: true,
+
+  // Style sheets to import
+  stylesheets: ["https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"],
+
+  translationRecruitingLink: "https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/48"
 };
 
 module.exports = siteConfig;
