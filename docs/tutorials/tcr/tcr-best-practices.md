@@ -1,7 +1,7 @@
 ---
 title: "Best Practices"
 ---
-This part of the guide covers some of the best practices and general guidance about building Substrate runtimes and modules. 
+This is Part 5 of the guide [Building a Token Curated Registry DAppChain on Substrate](introduction.md). This part of the guide covers some of the best practices and general guidance about building Substrate runtimes and modules.
 
 ## Avoiding economic vulnerability in runtime modules
 

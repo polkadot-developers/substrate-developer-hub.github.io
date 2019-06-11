@@ -1,7 +1,7 @@
 ---
 title: "Unit testing the TCR runtime module"
 ---
-In [part 1 of the guide](https://docs.substrate.dev/v1.0.0/docs/building-the-substrate-tcr-runtime), we built a Substrate runtime module for a simple Token Curated Registry implementation. In this part, we cover unit testing of the TCR runtime module.
+This is Part 2 of the guide [Building a Token Curated Registry DAppChain on Substrate](introduction.md). In [part 1](building-the-substrate-tcr-runtime.md), we built a Substrate runtime module for a simple Token Curated Registry implementation. In this part, we cover unit testing of the TCR runtime module.
 
 ## Setup and mocks
 
@@ -115,6 +115,6 @@ Now, let's write a test for a successful proposal,
 
 In the above snippet, the test first initializes the TCR by calling the `init` function and then calls the propose function with correct values. The `assert_ok` macro expects an `Ok(())` result.
 
-Similarly, we can write other tests covering more logic in our runtime. We have a few more tests in the TCR sample codebase [here](https://github.com/parity-samples/substrate-tcr/blob/master/runtime/src/tcr.rs#L470).
+Similarly, we can write other tests covering more logic in our runtime. We have a few more tests in the TCR sample codebase [here](https://github.com/substrate-developer-hub/substrate-tcr/blob/master/runtime/src/tcr.rs#L470).
 
 When writing the unit tests for your runtime modules, it is recommended to refer to the test written for SRML modules which ship with the Substrate framework. The SRML modules have good code coverage and can provide guidance on how to write tests in more complex scenarios.

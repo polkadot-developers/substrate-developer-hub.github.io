@@ -1,15 +1,15 @@
 ---
 title: "Building a UI for the TCR runtime"
 ---
-In [part 1 of the guide](https://docs.substrate.dev/v1.0.0/docs/building-the-substrate-tcr-runtime), we covered the implementation of a simple Token Curated Registry chain using Substrate runtime modules. This is part 3 of the guide covering the development of a simple UI for the TCR runtime.
+This is Part 3 of the guide [Building a Token Curated Registry DAppChain on Substrate](introduction.md). In [part 1](building-the-substrate-tcr-runtime.md), we implemented a substrate runtime module for a TCR. In [part 2](unit-testing-the-tcr-runtime-module.md), we wrote unit tests for our runtime.
 
-As part of the samples, we've created a `reactjs` based web app as a simple frontend for the TCR runtime. The code for the TCR UI sample is available [here](https://github.com/parity-samples/substrate-tcr-ui). 
+As part of the samples, we've created a `reactjs` based web app as a simple frontend for the TCR runtime. The [complete code](https://github.com/substrate-developer-hub/substrate-tcr-ui) is available, although slightly outdated.
 
 In this part of the guide, we will be covering the framework agnostic parts of the UI sample which are mainly used for interaction with the Substrate node and the TCR runtime extrinsic functions. We will not be going into the react specific parts - components, etc. The sample is created using the `create-react-app` scaffolding command. We have added a simple react component to display a list of items (TCR listings) and the corresponding TCR actions. We also have a couple of modals to take input for the `propose`, `challenge` and `vote` actions on a listing.
 
 What's more important for this guide is the javascript code which interacts with the TCR runtime. We have used the [PolkadotJS API](https://polkadot.js.org/api/) to achieve this.
 
-In the sample, we have the [tcrService.js file](https://github.com/parity-samples/substrate-tcr-ui/blob/master/src/services/tcrService.js) which contains all the relevant functions for interaction with the runtime. The following are packages and imports that we need from the PolkadotJS API to support this javascript code.
+In the sample, we have the [tcrService.js file](https://github.com/substrate-developer-hub/substrate-tcr-ui/blob/master/src/services/tcrService.js) which contains all the relevant functions for interaction with the runtime. The following are packages and imports that we need from the PolkadotJS API to support this javascript code.
 
 ```javascript
 const { ApiPromise } = require('@polkadot/api');
@@ -121,7 +121,7 @@ export async function applyListing(name, deposit) {
               }
               await dataService.insertListing(listingInstance);
               // resolve the promise with listing data
-              resolve(listingInstance); 
+              resolve(listingInstance);
             }
           });
         }
@@ -140,6 +140,6 @@ Notice that when we handle the `Proposed` event, we create a listing object and 
 
 Just like we called the `propose` function of the TCR runtime, we can call the `challenge`, `vote`, `resolve` and `claim_reward` functions also. In the exact same way, we call the functions using the `api.tx.<module name>.<function name>` convention and handle the corresponding events to update the UI and the off-chain state.
 
-The [tcrService.js file](https://github.com/parity-samples/substrate-tcr-ui/blob/master/src/services/tcrService.js) has all the function calls implemented in the same way.
+The [tcrService.js file](https://github.com/substrate-developer-hub/substrate-tcr-ui/blob/master/src/services/tcrService.js) has all the function calls implemented in the same way.
 
 In the next part of the guide, we will learn how we can build an event-based off-chain storage and use it to optimize our DAppChain solution.

@@ -1,9 +1,9 @@
 ---
 title: "Building the Substrate TCR runtime"
 ---
-This is Part 1 of the guide [Building a Token Curated Registry DAppChain on Substrate](TODO: INSERT LINK TO GUIDE). This part covers the implementation of the Substrate runtime modules needed for the Token Curated Registry runtime.
+This is Part 1 of the guide [Building a Token Curated Registry DAppChain on Substrate](introduction.md). This part covers the implementation of the Substrate runtime modules needed for the Token Curated Registry runtime.
 
-The code for the sample TCR runtime covered in this guide is available in [this GitHub repository](https://github.com/parity-samples/substrate-tcr/).
+The code for the sample TCR runtime covered in this guide is available in [this GitHub repository](https://github.com/substrate-developer-hub/substrate-tcr/).
 
 ## Step 1: Setup and prerequisites
 
@@ -32,14 +32,14 @@ use {system::ensure_signed, timestamp};
 use crate::token;
 ```
 
-The token module is another custom module that we need in order to support the token functionality for TCR curation functions. We would not be going into the implementation details of the `token` module in this guide as its code is pretty much self explanatory. Basically, the `token` module implements the ERC20 interface with some additional functions (lock and unlock). It is available as part of the TCR sample code base [here](https://github.com/parity-samples/substrate-tcr/blob/master/runtime/src/token.rs).
+The token module is another custom module that we need in order to support the token functionality for TCR curation functions. We would not be going into the implementation details of the `token` module in this guide as its code is pretty much self explanatory. Basically, the `token` module implements the ERC20 interface with some additional functions (lock and unlock). It is available as part of the TCR sample code base [here](https://github.com/substrate-developer-hub/substrate-tcr/blob/master/runtime/src/token.rs).
 
 Remember to add references of your `token.rs` and `tcr.rs` modules to the `lib.rs`, and add them to the `construct_runtime!` macro.
 
 
 ## Step 3: Declaring the runtime storage
 
-The first thing we would want to do is define the storage for our TCR runtime. 
+The first thing we would want to do is define the storage for our TCR runtime.
 
 When building a DApp or a DAppChain it is very important to decide what gets stored on-chain and what doesn't. It is recommended that you store on-chain only the data which is critical for conflict resolution; anything else can and should be stored off-chain. Properly defined storage is important for your chain's economic security in order to match resources paid by the user with resources provided by the network. If the storage items become large or unwieldy to deal with, then the transactions will become complex, risking an economic denial of service attack on your chain.
 
@@ -143,7 +143,7 @@ As you can see, in addition to the storage items mentioned before, we have a few
 
 ### Using the genesis config
 
-The genesis config is the state of the chain before the first block. This is useful in scenarios when we want to use some parameters needed for subsequent transactions. For example, the TCR parameters are needed before any of the listings can be applied. 
+The genesis config is the state of the chain before the first block. This is useful in scenarios when we want to use some parameters needed for subsequent transactions. For example, the TCR parameters are needed before any of the listings can be applied.
 
 In Substrate, a storage value can be marked as part of the genesis config by adding the `config()` call to its declaration. In the TCR runtime, we have the following as part of the genesis config. Note that each of the declarations has `config()` in it.
 
@@ -161,7 +161,7 @@ ApplyStageLen get(apply_stage_len) config(): Option<T::Moment>;
 CommitStageLen get(commit_stage_len) config(): Option<T::Moment>;
 ```
 
-Marking a storage value as `config()` is just enabling it to be used as genesis config. To use it as the state before the first block, we also need to set a value for it. 
+Marking a storage value as `config()` is just enabling it to be used as genesis config. To use it as the state before the first block, we also need to set a value for it.
 
 To set the values for genesis config, we need to make some edits in the `chain_spec.rs` file.
 
@@ -198,7 +198,7 @@ tcr: Some(TcrConfig {
 
 Here, we have assigned values to each of the storage items that were marked with `config()` in the runtime storage declaration inside the `decl_storage` macro. For example, the value for minimum deposit is 100 and this will be used right from the beginning of the chain so that the deposit on any new listing being applied can be validated against this value.
 
-You can see the `chain_spec.rs` file with all the required edits [here](https://github.com/parity-samples/substrate-tcr/blob/master/src/chain_spec.rs).
+You can see the `chain_spec.rs` file with all the required edits [here](https://github.com/substrate-developer-hub/substrate-tcr/blob/master/src/chain_spec.rs).
 
 This also concludes the work needed on the storage declaration and setup.
 
@@ -218,9 +218,9 @@ For our TCR runtime, we have the following events declared using the `decl_event
 
 ```rust
 decl_event!(
-    pub enum Event<T> where 
-        AccountId = <T as system::Trait>::AccountId, 
-        Balance = <T as token::Trait>::TokenBalance, 
+    pub enum Event<T> where
+        AccountId = <T as system::Trait>::AccountId,
+        Balance = <T as token::Trait>::TokenBalance,
         Hash = <T as system::Trait>::Hash,
     {
       // when a listing is proposed
@@ -479,7 +479,7 @@ fn resolve(_origin, listing_id: u32) -> Result {
     ensure!(listing.application_expiry < now, "Apply stage length has not passed.");
 
     // update listing status
-    <Listings<T>>::mutate(listing_hash, |listing| 
+    <Listings<T>>::mutate(listing_hash, |listing|
     {
       listing.whitelisted = true;
     });
@@ -575,6 +575,6 @@ fn claim_reward(origin, challenge_id: u32) -> Result {
 
 The core TCR flow is now complete with the `propose`, `challenge`, `vote`, `resolve`, and `claim_reward` functions. It can be further extended, as needed. Please note that what we have covered here is just a sample implementation of a subset of TCR functions. It is only for educational purposes and is not intended for real use-cases.
 
-The code for the TCR runtime modules - `tcr` and `token` covered in this part of the guide, is available [here](https://github.com/parity-samples/substrate-tcr/tree/master/runtime/src).
+The code for the TCR runtime modules - `tcr` and `token` covered in this part of the guide, is available [here](https://github.com/substrate-developer-hub/substrate-tcr/tree/master/runtime/src).
 
 In the next part of this guide, we will learn how we can call these runtime functions from a `reactjs` frontend using the `PolkadotJS` API.

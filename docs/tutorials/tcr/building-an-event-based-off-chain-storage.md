@@ -1,7 +1,7 @@
 ---
 title: "Building an event based off-chain storage"
 ---
-In [part 1 of the guide](https://docs.substrate.dev/v1.0.0/docs/building-the-substrate-tcr-runtime), we built the TCR runtime using the Substrate framework. In [part 3](), we built a simple UI to interact with the Substrate TCR runtime. In this part, we will look at how we can further optimize our TCR DAppChain solution by building an off-chain storage.
+This is Part 4 of the guide [Building a Token Curated Registry DAppChain on Substrate](introduction.md). In [part 1](building-the-substrate-tcr-runtime.md), we implemented a substrate runtime module for a TCR. In [part 2](unit-testing-the-tcr-runtime-module.md), we wrote unit tests for our runtime. In [part 3](building-a-ui-for-the-tcr-runtime.md), we built a simple UI to interact with the Substrate TCR runtime. In this part, we will look at how we can further optimize our TCR DAppChain solution by building an off-chain storage.
 
 ## Purpose
 
@@ -17,7 +17,7 @@ In scenarios like these, it is preferred to have an off-chain storage syncing wi
 
 ## Event based syncing
 
-Now that we have a reason to setup an off-chain storage for our DAppChain, we need a way to make sure that the on-chain and off-chain stores are always in sync. This can be easily achieved using the runtime events. Remember from part 1 that we declared several events to communicate the state changes on the TCR data. Also, remember from part 2 that we handled these events in the client side when they were emitted through the runtime extrinsic calls. We can use these events to build an off-chain store without querying any data from the chain. 
+Now that we have a reason to setup an off-chain storage for our DAppChain, we need a way to make sure that the on-chain and off-chain stores are always in sync. This can be easily achieved using the runtime events. Remember from part 1 that we declared several events to communicate the state changes on the TCR data. Also, remember from part 2 that we handled these events in the client side when they were emitted through the runtime extrinsic calls. We can use these events to build an off-chain store without querying any data from the chain.
 
 Using the events, we can insert into and update the off-chain storage either by using the client-side code or by using a background listener. The approach using the client side won't work if the client is not always connected, because then it will miss the events and the off-chain store would become stale. The background listener approach would be more suitable in production scenarios.
 
@@ -82,7 +82,7 @@ After the off-chain storage sync is setup using the event listener, we can use t
 
 ## Potential Issues
 
-When using this approach of maintaining an off-chain store, there could be sync issues because of network partitions or temporary forks on the chain. 
+When using this approach of maintaining an off-chain store, there could be sync issues because of network partitions or temporary forks on the chain.
 
 To get a better idea of sync status between the on-chain and off-chain stores, the off chain store could also maintain the latest block number. When querying from the off-chain store, the block numbers in both places (on-chain and off-chain) could be compared to ensure that the data in the off-chain store is not stale.
 
