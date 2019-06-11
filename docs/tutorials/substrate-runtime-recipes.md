@@ -3,7 +3,7 @@ title: "Substrate Runtime Recipes"
 ---
 
 
-This page will contains a some minimal working samples which demonstrate different features and functionalities available when developing a custom Substrate runtime.
+This page contains a some minimal working samples which demonstrate different features and functionalities available when developing a custom Substrate runtime.
 
 This content is also hosted at [https://substrate.recipes/](https://substrate.recipes/).
 
