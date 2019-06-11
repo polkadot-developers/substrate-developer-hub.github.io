@@ -49,6 +49,11 @@
     color: #28a745;
   }
 
+header a:hover {
+    color: $primaryColor;
+    text-decoration: none;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 

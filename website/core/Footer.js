@@ -46,7 +46,7 @@ class Footer extends React.Component {
           </a>
           <div>
             <h5>Docs</h5>
-            <a href={this.pageUrl("who", this.props.language)}>
+            <a href={this.docUrl("quickstart/getting-started", this.props.language)}>
               Getting Started
             </a>
             <a href={this.pageUrl("tutorials", this.props.language)}>
@@ -79,8 +79,8 @@ class Footer extends React.Component {
           </div>
           <div>
             <h5>More</h5>
-            <a href={`${this.props.config.baseUrl}blog`}>Blog</a>
-            <a href="https://github.com/paritytech/substrate">GitHub</a>
+            <a href="https://www.parity.io/blog/">Blog</a>
+            <a href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io">GitHub</a>
             <a
               className="github-button"
               href={this.props.config.repoUrl}
