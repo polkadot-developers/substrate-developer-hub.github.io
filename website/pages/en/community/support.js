@@ -16,8 +16,8 @@
 
 const React = require("react");
 
-const Container = require("../../../../react-bootstrap/Container.js");
-const Button = require("../../../../react-bootstrap/Button.js");
+const Container = require("../../../../../react-bootstrap/Container.js");
+const Button = require("../../../../../react-bootstrap/Button.js");
 
 function Help(props) {
   const { config: siteConfig, language = "" } = props;
