@@ -229,7 +229,7 @@ const siteConfig = {
   /* path to images for header/footer */
   headerIcon: 'img/Substrate-logo.svg',
   footerIcon: 'img/Substrate-logo.svg',
-  favicon: 'img/Substrate-logo.svg',
+  favicon: 'img/favicon.png',
 
   /* Colors for website */
   colors: {
