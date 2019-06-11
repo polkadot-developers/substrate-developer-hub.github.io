@@ -28,7 +28,11 @@ const Image = require("../../../../react-bootstrap/Image.js");
 class Index extends React.Component {
   render() {
     const { config: siteConfig, language = "" } = this.props;
-    const { baseUrl } = siteConfig;
+    const { baseUrl, docsUrl } = siteConfig;
+    const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
+    const langPart = `${language ? `${language}/` : ""}`;
+    const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
+    const pageUrl = page => baseUrl + (language ? `${language}/` : "") + page;
 
     const Feature = props => (
       <Row
@@ -76,7 +80,7 @@ class Index extends React.Component {
         >
           <Button
             variant="secondary"
-            href="./docs/"
+            href={docUrl('quickstart/getting-started')}
             className="m-1 primary-color"
           >
             High Level Docs
@@ -114,7 +118,7 @@ class Index extends React.Component {
         >
           <Button
             variant="secondary"
-            href="https://substrate-developer-hub.github.io/sandbox/tutorials/"
+            href={pageUrl('tutorials')}
             className="m-1 primary-color"
           >
             Tutorial Catalog
@@ -216,8 +220,8 @@ class Index extends React.Component {
           title={siteConfig.title}
           tagline={siteConfig.tagline}
           buttons={[
-            { name: "Get Started", href: "./who/" },
-            { name: "Try a Tutorial", href: "./tutorials/" }
+            { name: "Get Started", href: `${docUrl('quickstart/getting-started')}` },
+            { name: "Try a Tutorial", href: `${pageUrl('tutorials')}`},
           ]}
           padding={5}
         />

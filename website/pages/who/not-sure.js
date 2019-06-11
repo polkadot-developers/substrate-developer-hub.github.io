@@ -67,7 +67,7 @@ class NotSure extends React.Component {
           <h5>Restart your journey through the Substrate Developer Hub</h5>
           <Button
             variant="secondary"
-            href="../../"
+            href={baseUrl}
             className="m-1 primary-color"
             >
             Back to Home

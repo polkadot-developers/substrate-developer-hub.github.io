@@ -29,6 +29,9 @@
       "overview/versioning": {
         "title": "Versioning"
       },
+      "quickstart/getting-started": {
+        "title": "Getting Started"
+      },
       "quickstart/installing-substrate": {
         "title": "Installing Substrate"
       },

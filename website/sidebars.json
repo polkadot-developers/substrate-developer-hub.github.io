@@ -1,6 +1,7 @@
 {
   "docs": {
     "Quick Start": [
+      "quickstart/getting-started",
       "quickstart/installing-substrate",
       "quickstart/using-the-substrate-node-and-module-setup-scripts"
     ],

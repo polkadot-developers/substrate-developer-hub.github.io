@@ -120,7 +120,7 @@ class FrontEndDeveloper extends React.Component {
           </p>
           <Button
             variant="secondary"
-            href="../../"
+            href={baseUrl}
             className="m-1 primary-color"
           >
             Back to Home
