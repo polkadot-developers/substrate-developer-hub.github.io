@@ -3,9 +3,9 @@ title: "Substrate Runtime Recipes"
 ---
 
 
-This page will contain a series of minimal working samples which demonstrate different features and functionalities available to you when developing a custom Substrate runtime.
+This page will contains a some minimal working samples which demonstrate different features and functionalities available when developing a custom Substrate runtime.
 
-If you have not followed our tutorial on [creating a custom substrate chain](https://substrate.readme.io/docs/creating-a-custom-substrate-chain), we recommend you do that before working with the samples below.
+This content is also hosted at [https://substrate.recipes/](https://substrate.recipes/).
 
 ## Prerequisites
 If you do not have `substrate` installed on your machine yet, check out the [installation instructions](../quickstart/installing-substrate). For this tutorial you will probably want the fast installation.

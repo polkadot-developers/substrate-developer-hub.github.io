@@ -5,6 +5,9 @@
     "previous": "Previous",
     "tagline": "The place for blockchain innovators.",
     "docs": {
+      "ecosystem/keys-seeds-and-the-subkey-tool": {
+        "title": "Keys, Seeds, and the `subkey` Tool"
+      },
       "overview/extrinsics": {
         "title": "Extrinsics"
       },
@@ -74,9 +77,6 @@
       "tutorials/governance--public--mechanism-with-a-substrate-node-chain": {
         "title": "Governance \"Public\" Mechanism with a Substrate Node Chain"
       },
-      "tutorials/keys--seeds--and-the--subkey--tool": {
-        "title": "Keys, Seeds, and the `subkey` Tool"
-      },
       "tutorials/start-a-private-network-with-substrate": {
         "title": "Start a Private Network with Substrate"
       },
@@ -115,7 +115,8 @@
     "categories": {
       "Quick Start": "Quick Start",
       "Substrate Overview": "Substrate Overview",
-      "Runtime": "Runtime"
+      "Runtime": "Runtime",
+      "Ecosystem Tools": "Ecosystem Tools"
     }
   },
   "pages-strings": {
