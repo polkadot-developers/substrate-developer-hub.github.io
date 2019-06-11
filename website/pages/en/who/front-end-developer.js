@@ -20,8 +20,8 @@ const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash.js`);
 const { Timeline, Timespot } = require(`${process.cwd()}` +
   `/core/Timeline.js`);
 
-const Container = require("../../../../react-bootstrap/Container.js");
-const Button = require("../../../../react-bootstrap/Button.js");
+const Container = require("../../../../../react-bootstrap/Container.js");
+const Button = require("../../../../../react-bootstrap/Button.js");
 
 class FrontEndDeveloper extends React.Component {
   render() {

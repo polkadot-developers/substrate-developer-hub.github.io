@@ -18,11 +18,11 @@ const React = require("react");
 
 const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash.js`);
 
-const Container = require("../../../../react-bootstrap/Container.js");
-const Button = require("../../../../react-bootstrap/Button.js");
-const Card = require("../../../../react-bootstrap/Card.js");
-const Row = require("../../../../react-bootstrap/Row.js");
-const Col = require("../../../../react-bootstrap/Col.js");
+const Container = require("../../../../../react-bootstrap/Container.js");
+const Button = require("../../../../../react-bootstrap/Button.js");
+const Card = require("../../../../../react-bootstrap/Card.js");
+const Row = require("../../../../../react-bootstrap/Row.js");
+const Col = require("../../../../../react-bootstrap/Col.js");
 
 class WhoIndex extends React.Component {
   render() {
