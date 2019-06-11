@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Declaring a Module! · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;The &lt;code&gt;decl_module!&lt;/code&gt; macro defines the public functions exposed by your module, which act as entry points to accessing your runtime. These functions should work together to build a &lt;em&gt;generally&lt;/em&gt; independent set of features and functionality which will be included with your blockchain&#x27;s final runtime. The main logic of the macro is defined &lt;a href=&quot;https://crates.parity.io/srml_support/macro.decl_module.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 "/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Declaring a Module! · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;The &lt;code&gt;decl_module!&lt;/code&gt; macro defines the public functions exposed by your module, which act as entry points to accessing your runtime. These functions should work together to build a &lt;em&gt;generally&lt;/em&gt; independent set of features and functionality which will be included with your blockchain&#x27;s final runtime. The main logic of the macro is defined &lt;a href=&quot;https://crates.parity.io/srml_support/macro.decl_module.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><link rel="shortcut icon" href="/img/Substrate-logo.svg"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/en/quickstart/getting-started" target="_self">Docs</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="https://www.parity.io/blog/" target="_self">Blog</a></li><li class=""><a href="/en/community/support" target="_self">Community</a></li><li class=""><a href="https://github.com/substrate-developer-hub/" target="_self">GitHub</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/zh-CN/runtime/macros/decl_module">中文</a></li></ul></div></li><script>
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><link rel="shortcut icon" href="/img/Substrate-logo.svg"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/en/quickstart/getting-started" target="_self">Docs</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="https://www.parity.io/blog/" target="_self">Blog</a></li><li class=""><a href="/en/community/support" target="_self">Community</a></li><li class=""><a href="https://github.com/substrate-developer-hub/" target="_self">GitHub</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/zh-CN/runtime/macros/decl_module">中文</a></li></ul></div></li><script>
         const languagesMenuItem = document.getElementById("languages-menu");
         const languagesDropDown = document.getElementById("languages-dropdown");
         languagesMenuItem.addEventListener("click", function(event) {
@@ -71,20 +71,20 @@
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Declaring a Module!</h1></header><article><div><span><p>The <code>decl_module!</code> macro defines the public functions exposed by your module, which act as entry points to accessing your runtime. These functions should work together to build a <em>generally</em> independent set of features and functionality which will be included with your blockchain's final runtime. The main logic of the macro is defined <a href="https://crates.parity.io/srml_support/macro.decl_module.html">here</a>.</p>
 <p>Each of the different components in the <a href="https://github.com/paritytech/substrate/tree/master/srml">Substrate Runtime Module Library</a> (SRML) is an example of a Runtime Module.</p>
 <p>We will start by looking at the <code>decl_module</code> macro in it's most simple form:</p>
-<pre><code class="hljs css language-rust">decl_module! {
-  <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Module</span></span>&lt;T: Trait&gt; <span class="hljs-keyword">for</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span> <span class="hljs-keyword">where</span> origin: T::Origin {
-    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">set_value</span></span>(origin, value: <span class="hljs-built_in">u32</span>) -&gt; <span class="hljs-built_in">Result</span> {
-      <span class="hljs-keyword">let</span> _sender = ensure_signed(origin)?;
-      &lt;Value&lt;T&gt;&gt;::put(value);
-      <span class="hljs-literal">Ok</span>(())
-    }
-  }
-}
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span>
+  <span class="token keyword">pub</span> <span class="token keyword">struct</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> Call <span class="token keyword">where</span> origin<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>Origin <span class="token punctuation">{</span>
+    <span class="token keyword">fn</span> <span class="token function">set_value</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> value<span class="token punctuation">:</span> u32<span class="token punctuation">)</span> <span class="token punctuation">-></span> Result <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> _sender <span class="token operator">=</span> <span class="token function">ensure_signed</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span>?<span class="token punctuation">;</span>
+      <span class="token operator">&lt;</span>Value<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">put</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Note that for the purposes of this example, we are taking advantage of a single storage item created by the <code>decl_storage</code> macro. We will omit the storage declaration for the purposes of this article, but you can learn more about <code>decl_storage</code> in our documentation [here](TODO: Create Doc).</p>
 <h2><a class="anchor" aria-hidden="true" id="declaration-of-the-module-type"></a><a href="#declaration-of-the-module-type" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Declaration of the Module Type</h2>
 <p>The first line in the <code>decl_module</code> macro defines the <code>Module</code> type which is used by the <code>construct_runtime</code> macro:</p>
-<pre><code class="hljs css language-rust"><span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Module</span></span>&lt;T: Trait&gt; <span class="hljs-keyword">for</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span> <span class="hljs-keyword">where</span> origin: T::Origin
+<pre><code class="hljs css language-rust"><span class="token keyword">pub</span> <span class="token keyword">struct</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> Call <span class="token keyword">where</span> origin<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>Origin
 </code></pre>
 <p>This line is using custom syntax expected by the <code>decl_module</code> macro and is not standard Rust. For most module development, you will not need to modify this line.</p>
 <p><code>Module</code> is defined to use the generic <code>T</code> which represents the <code>Trait</code> type defined for the module. Functions inside the Module can then use this generic to access custom types.</p>
@@ -107,14 +107,14 @@
 <p>Dispatchable functions in your module cannot return a value. Instead it can only return a <code>Result</code> which accepts either <code>Ok(())</code> when everything has completed successfully or <code>Err(&amp;'static str)</code> if something goes wrong.</p>
 <p>If you not specify <code>Result</code> explicitly as return value, it will be added automatically for you by the <code>decl_module!</code> macro and <code>Ok(())</code> will be returned at the end.</p>
 <p>Thus, this function definition is equivalent to the above example:</p>
-<pre><code class="hljs css language-rust">decl_module! {
-  <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Module</span></span>&lt;T: Trait&gt; <span class="hljs-keyword">for</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span> <span class="hljs-keyword">where</span> origin: T::Origin {
-    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">set_value</span></span>(origin, value: <span class="hljs-built_in">u32</span>) {
-      <span class="hljs-keyword">let</span> _sender = ensure_signed(origin)?;
-      &lt;Value&lt;T&gt;&gt;::put(value);
-    }
-  }
-}
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span>
+  <span class="token keyword">pub</span> <span class="token keyword">struct</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> Call <span class="token keyword">where</span> origin<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>Origin <span class="token punctuation">{</span>
+    <span class="token keyword">fn</span> <span class="token function">set_value</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> value<span class="token punctuation">:</span> u32<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> _sender <span class="token operator">=</span> <span class="token function">ensure_signed</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span>?<span class="token punctuation">;</span>
+      <span class="token operator">&lt;</span>Value<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">put</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>You can still return an <code>Err()</code> at other points in your code like normal.</p>
 <h3><a class="anchor" aria-hidden="true" id="proportional-costs-to-computation"></a><a href="#proportional-costs-to-computation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Proportional Costs to Computation</h3>
@@ -135,42 +135,42 @@
 <h3><a class="anchor" aria-hidden="true" id="deposit_event"></a><a href="#deposit_event" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>deposit_event()</h3>
 <p>If your module wants to emit events, it will need to define a <code>deposit_event()</code> function which handles the events you define in the <code>decl_events</code> macro. Events can contain generics, in which case you should define a <code>deposit_event&lt;T&gt;()</code> function.</p>
 <p>The <code>decl_module</code> macro provides a default implementation for the <code>deposit_event()</code> function which you can access by simply defining the function like so:</p>
-<pre><code class="hljs css language-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">deposit_event</span></span>() = <span class="hljs-keyword">default</span>;
+<pre><code class="hljs css language-rust"><span class="token keyword">fn</span> <span class="token function">deposit_event</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> default<span class="token punctuation">;</span>
 
-<span class="hljs-comment">// or for events with generics</span>
-<span class="hljs-comment">// fn deposit_event&lt;T&gt;() = default;</span>
+<span class="token comment">// or for events with generics</span>
+<span class="token comment">// fn deposit_event&lt;T>() = default;</span>
 </code></pre>
 <p>If we wanted to emit an event from our <code>decl_module</code> it would look like this:</p>
-<pre><code class="hljs css language-rust">decl_module! {
-  <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Module</span></span>&lt;T: Trait&gt; <span class="hljs-keyword">for</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span> <span class="hljs-keyword">where</span> origin: T::Origin {
-    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">deposit_event</span></span>&lt;T&gt;() = <span class="hljs-keyword">default</span>;
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span>
+  <span class="token keyword">pub</span> <span class="token keyword">struct</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> Call <span class="token keyword">where</span> origin<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>Origin <span class="token punctuation">{</span>
+    <span class="token keyword">fn</span> deposit_event<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> default<span class="token punctuation">;</span>
   
-    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">set_value</span></span>(origin, value: <span class="hljs-built_in">u32</span>) -&gt; <span class="hljs-built_in">Result</span> {
-      <span class="hljs-keyword">let</span> sender = ensure_signed(origin)?;
-      &lt;Value&lt;T&gt;&gt;::put(value);
+    <span class="token keyword">fn</span> <span class="token function">set_value</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> value<span class="token punctuation">:</span> u32<span class="token punctuation">)</span> <span class="token punctuation">-></span> Result <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> sender <span class="token operator">=</span> <span class="token function">ensure_signed</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span>?<span class="token punctuation">;</span>
+      <span class="token operator">&lt;</span>Value<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">put</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
       
-      Self::deposit_event(Event::Set(sender, value));
+      <span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">deposit_event</span><span class="token punctuation">(</span>Event<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">Set</span><span class="token punctuation">(</span>sender<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
       
-      <span class="hljs-literal">Ok</span>(())
-    }
-  }
-}
+      <span class="token function">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>We have omitted the <code>decl_event</code> macro definition required for this module to work. You can learn more about events and the <code>decl_event!</code> macro [here] (Coming Soon)</p>
 <h3><a class="anchor" aria-hidden="true" id="on_initialise-and-on_finalise"></a><a href="#on_initialise-and-on_finalise" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>on_initialise() and on_finalise()</h3>
 <p><code>on_initialise()</code> and <code>on_finalise()</code> are a special functions that gets executed once per block.</p>
 <p>These functions can either be called with no parameters, or accept one parameter which has the block number.</p>
-<pre><code class="hljs css language-rust"><span class="hljs-comment">// The signature could also be: `fn on_initialise(n: T::BlockNumber)`</span>
-<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">on_initialise</span></span>() {
-    <span class="hljs-comment">// Anything that needs to be done at the beginning of the block.</span>
-    Self::my_function();
-}
+<pre><code class="hljs css language-rust"><span class="token comment">// The signature could also be: `fn on_initialise(n: T::BlockNumber)`</span>
+<span class="token keyword">fn</span> <span class="token function">on_initialise</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Anything that needs to be done at the beginning of the block.</span>
+    <span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">my_function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-comment">// The signature could also be: `fn on_finalise()`</span>
-<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">on_finalise</span></span>(n: T::BlockNumber) {
-    <span class="hljs-comment">// Anything that needs to be done at the end of the block.</span>
-    Self::my_function_with_blocknumber(n);
-}
+<span class="token comment">// The signature could also be: `fn on_finalise()`</span>
+<span class="token keyword">fn</span> <span class="token function">on_finalise</span><span class="token punctuation">(</span>n<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>BlockNumber<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Anything that needs to be done at the end of the block.</span>
+    <span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">my_function_with_blocknumber</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>You might use <code>on_initalise()</code> to help you with tasks that need to run before any logic in your runtime executes. For example, doing a one-off migration of storage elements for an updated storage schema. You might use <code>on_finalise()</code> to help you clean up any unneeded storage items or to reset values for the next block.</p>
 <blockquote>
@@ -178,18 +178,18 @@
 </blockquote>
 <h2><a class="anchor" aria-hidden="true" id="privileged-functions"></a><a href="#privileged-functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Privileged Functions</h2>
 <p>A privileged function is one that can only be called when the origin of the call is <code>Root</code>. An example of a privileged function can be found in the <a href="https://github.com/paritytech/substrate/blob/master/srml/consensus/src/lib.rs"><code>Consensus</code> module</a> for a runtime upgrade:</p>
-<pre><code class="hljs css language-rust"><span class="hljs-comment">/// Set the new code.</span>
-<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">set_code</span></span>(new: <span class="hljs-built_in">Vec</span>&lt;<span class="hljs-built_in">u8</span>&gt;) {
-    storage::unhashed::put_raw(well_known_keys::CODE, &amp;new);
-}
+<pre><code class="hljs css language-rust"><span class="token comment">/// Set the new code.</span>
+<span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function">set_code</span><span class="token punctuation">(</span>new<span class="token punctuation">:</span> Vec<span class="token operator">&lt;</span>u8<span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    storage<span class="token punctuation">:</span><span class="token punctuation">:</span>unhashed<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">put_raw</span><span class="token punctuation">(</span>well_known_keys<span class="token punctuation">:</span><span class="token punctuation">:</span>CODE<span class="token punctuation">,</span> <span class="token operator">&amp;</span>new<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Note that this function omits the <code>origin</code> parameter at the beginning of the function inputs. The <code>decl_module!</code> macro automatically converts functions without <code>origin</code> to check that <code>origin</code> is <code>Root</code>. Thus, the function above is equivalent to writing:</p>
-<pre><code class="hljs css language-rust"><span class="hljs-comment">/// Set the new code.</span>
-<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">set_code</span></span>(origin, new: <span class="hljs-built_in">Vec</span>&lt;<span class="hljs-built_in">u8</span>&gt;) -&gt; <span class="hljs-built_in">Result</span> {
-    ensure_root(origin)?;
-    storage::unhashed::put_raw(well_known_keys::CODE, &amp;new);
-    <span class="hljs-literal">Ok</span>(())
-}
+<pre><code class="hljs css language-rust"><span class="token comment">/// Set the new code.</span>
+<span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function">set_code</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> new<span class="token punctuation">:</span> Vec<span class="token operator">&lt;</span>u8<span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">-></span> Result <span class="token punctuation">{</span>
+    <span class="token function">ensure_root</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span>?<span class="token punctuation">;</span>
+    storage<span class="token punctuation">:</span><span class="token punctuation">:</span>unhashed<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">put_raw</span><span class="token punctuation">(</span>well_known_keys<span class="token punctuation">:</span><span class="token punctuation">:</span>CODE<span class="token punctuation">,</span> <span class="token operator">&amp;</span>new<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Where <code>Result</code> and <code>Ok(())</code> were automatically added as mentioned in <a href="#section-function-return">Function Return</a></p>
 <p>Different runtimes have different reasons for allow privileged calls to be executed. Because it's privileged, we can assume it's a one-off operation and substantial processing/storage/memory can be used without worrying about gameability or attack scenarios.</p>

@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Substrate Runtime Recipes · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;[block:callout]&lt;/p&gt;
 "/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Substrate Runtime Recipes · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;[block:callout]&lt;/p&gt;
-"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><link rel="shortcut icon" href="/img/Substrate-logo.svg"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/en/quickstart/getting-started" target="_self">Docs</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="https://www.parity.io/blog/" target="_self">Blog</a></li><li class=""><a href="/en/community/support" target="_self">Community</a></li><li class=""><a href="https://github.com/substrate-developer-hub/" target="_self">GitHub</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/zh-CN/tutorials/substrate-runtime-recipes">中文</a></li></ul></div></li><script>
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><link rel="shortcut icon" href="/img/Substrate-logo.svg"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/en/quickstart/getting-started" target="_self">Docs</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="https://www.parity.io/blog/" target="_self">Blog</a></li><li class=""><a href="/en/community/support" target="_self">Community</a></li><li class=""><a href="https://github.com/substrate-developer-hub/" target="_self">GitHub</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/zh-CN/tutorials/substrate-runtime-recipes">中文</a></li></ul></div></li><script>
         const languagesMenuItem = document.getElementById("languages-menu");
         const languagesDropDown = document.getElementById("languages-dropdown");
         languagesMenuItem.addEventListener("click", function(event) {
@@ -162,7 +162,7 @@ You should delete the old chain before you start the new one:
 <h2><a class="anchor" aria-hidden="true" id="using-the-polkadot-ui-to-interact"></a><a href="#using-the-polkadot-ui-to-interact" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using the Polkadot UI to Interact</h2>
 <p>To simplify interactions with your custom Substrate runtime, we will take advantage of the <a href="https://polkadot.js.org/apps/next/">Polkadot JS UI for Substrate</a>.</p>
 <p>By default, this UI is configured to interact with the public Substrate test-network BBQ Birch. To have it connect to your local node, simply go to:</p>
-<pre><code class="hljs">Settings &gt; remote node/endpoint to connect to &gt; Local Node (<span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">9944</span>)
+<pre><code class="hljs">Settings <span class="token operator">></span> remote node<span class="token operator">/</span>endpoint to connect to <span class="token operator">></span> Local <span class="token function">Node</span> <span class="token punctuation">(</span><span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">9944</span><span class="token punctuation">)</span>
 </code></pre>
 <p><img src="https://i.imgur.com/1FpB5aM.png" alt="A picture of the Polkadot UI Settings Tab"></p>
 <p>If the UI connected successfully, you should be able to go to the <strong>Explorer</strong> tab and see the block production process running.</p>
@@ -171,7 +171,7 @@ You should delete the old chain before you start the new one:
 <p><img src="https://i.imgur.com/JFXSaHw.png" alt="A picture of custom functions appearing in the Extrinsics tab"></p>
 <h3><a class="anchor" aria-hidden="true" id="viewing-storage-variables"></a><a href="#viewing-storage-variables" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Viewing Storage Variables</h3>
 <p>If you want to check the value of a storage variable that you created, you can go to:</p>
-<pre><code class="hljs">Chain State &gt; runtimeExampleStorage &gt; (variable name)
+<pre><code class="hljs">Chain State <span class="token operator">></span> runtimeExampleStorage <span class="token operator">></span> <span class="token punctuation">(</span>variable name<span class="token punctuation">)</span>
 </code></pre>
 <p>From there you should be able to query the state of the variable. It may return <code>&lt;unknown&gt;</code> if the value has not been set yet.</p>
 <p><img src="https://i.imgur.com/JLoWxc3.png" alt="A picture of viewing a storage variable in the Polkadot UI"></p>
@@ -180,10 +180,10 @@ You should delete the old chain before you start the new one:
 <p><img src="https://i.imgur.com/2jUtBUk.png" alt="A picture of an event getting generated in the Explorer tab"></p>
 <h3><a class="anchor" aria-hidden="true" id="wasm-runtime-upgrade"></a><a href="#wasm-runtime-upgrade" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>WASM Runtime Upgrade</h3>
 <p>Rather than restarting your chain for each update, you can also do an in-place runtime upgrade using the Polkadot UI. If you do this, you will not get runtime messages appearing in your terminal, but you should be able to interact with the chain via the UI just fine. To perform the upgrade, go to:</p>
-<pre><code class="hljs">Extrinsics &gt; Upgrade Key &gt; upgrade(new)
+<pre><code class="hljs">Extrinsics <span class="token operator">></span> Upgrade Key <span class="token operator">></span> <span class="token function">upgrade</span><span class="token punctuation">(</span>new<span class="token punctuation">)</span>
 </code></pre>
 <p>There, you can select the file icon and upload the wasm file generated when you run <code>./build.sh</code></p>
-<pre><code class="hljs">substrate-example/runtime/wasm/target/wasm32-unknown-unknown/release/node_runtime.compact.wasm
+<pre><code class="hljs">substrate<span class="token operator">-</span>example<span class="token operator">/</span>runtime<span class="token operator">/</span>wasm<span class="token operator">/</span>target<span class="token operator">/</span>wasm32<span class="token operator">-</span>unknown<span class="token operator">-</span>unknown<span class="token operator">/</span>release<span class="token operator">/</span>node_runtime<span class="token punctuation">.</span>compact<span class="token punctuation">.</span>wasm
 </code></pre>
 <p><img src="https://i.imgur.com/rujS3p6.png" alt="A picture of upgrading the Substrate runtime"></p>
 <p>Once the upgrade is finalized, you should be able to refresh the UI and see your updates.</p>
@@ -235,127 +235,127 @@ You should delete the old chain before you start the new one:
 <li>Establish ownership upon configuration of circulating tokens</li>
 <li>Coordinate token transfers with our runtime functions</li>
 </ol>
-<pre><code class="hljs css language-rust">decl_storage! {
-  <span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Store</span></span> <span class="hljs-keyword">for</span> Module&lt;T: Trait&gt; <span class="hljs-keyword">as</span> Template {
-    <span class="hljs-keyword">pub</span> TotalSupply get(total_supply): <span class="hljs-built_in">u64</span> = <span class="hljs-number">21000000</span>; <span class="hljs-comment">// (1)</span>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_storage!</span> <span class="token punctuation">{</span>
+  <span class="token keyword">trait</span> Store <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">as</span> Template <span class="token punctuation">{</span>
+    <span class="token keyword">pub</span> TotalSupply <span class="token function">get</span><span class="token punctuation">(</span>total_supply<span class="token punctuation">)</span><span class="token punctuation">:</span> u64 <span class="token operator">=</span> <span class="token number">21000000</span><span class="token punctuation">;</span> <span class="token comment">// (1)</span>
 
-    <span class="hljs-keyword">pub</span> BalanceOf get(balance_of): map T::AccountId =&gt; <span class="hljs-built_in">u64</span>; <span class="hljs-comment">// (3)</span>
+    <span class="token keyword">pub</span> BalanceOf <span class="token function">get</span><span class="token punctuation">(</span>balance_of<span class="token punctuation">)</span><span class="token punctuation">:</span> map T<span class="token punctuation">:</span><span class="token punctuation">:</span>AccountId <span class="token operator">=></span> u64<span class="token punctuation">;</span> <span class="token comment">// (3)</span>
 
-    Init get(is_init): <span class="hljs-built_in">bool</span>; <span class="hljs-comment">// (2)</span>
-  }
-}
+    Init <span class="token function">get</span><span class="token punctuation">(</span>is_init<span class="token punctuation">)</span><span class="token punctuation">:</span> bool<span class="token punctuation">;</span> <span class="token comment">// (2)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>We should also set an event for when token transfers occur to notify clients:</p>
-<pre><code class="hljs css language-rust">decl_event!(
-    <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Event</span></span>&lt;T&gt; <span class="hljs-keyword">where</span> AccountId = &lt;T <span class="hljs-keyword">as</span> system::Trait&gt;::AccountId {
-        <span class="hljs-comment">// event for transfer of tokens</span>
-        <span class="hljs-comment">// from, to, value</span>
-        Transfer(AccountId, AccountId, <span class="hljs-built_in">u64</span>),
-    }
-);
+<pre><code class="hljs css language-rust"><span class="token function">decl_event!</span><span class="token punctuation">(</span>
+    <span class="token keyword">pub</span> <span class="token keyword">enum</span> Event<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token keyword">where</span> AccountId <span class="token operator">=</span> <span class="token operator">&lt;</span>T <span class="token keyword">as</span> system<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span>AccountId <span class="token punctuation">{</span>
+        <span class="token comment">// event for transfer of tokens</span>
+        <span class="token comment">// from, to, value</span>
+        <span class="token function">Transfer</span><span class="token punctuation">(</span>AccountId<span class="token punctuation">,</span> AccountId<span class="token punctuation">,</span> u64<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>To integrate this logic into our module, we could write the following code:</p>
-<pre><code class="hljs css language-rust">decl_module! {
-  <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Module</span></span>&lt;T: Trait&gt; <span class="hljs-keyword">for</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span> <span class="hljs-keyword">where</span> origin: T::Origin {
-      <span class="hljs-comment">// initialize default event handling for this module</span>
-      <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">deposit_event</span></span>&lt;T&gt;() = <span class="hljs-keyword">default</span>;
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span>
+  <span class="token keyword">pub</span> <span class="token keyword">struct</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> Call <span class="token keyword">where</span> origin<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>Origin <span class="token punctuation">{</span>
+      <span class="token comment">// initialize default event handling for this module</span>
+      <span class="token keyword">fn</span> deposit_event<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> default<span class="token punctuation">;</span>
 
-      <span class="hljs-comment">// initialize the token</span>
-      <span class="hljs-comment">// transfers the total_supply amount to the caller</span>
-      <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">init</span></span>(origin) -&gt; <span class="hljs-built_in">Result</span> {
-        <span class="hljs-keyword">let</span> sender = ensure_signed(origin)?;
-        ensure!(Self::is_init() == <span class="hljs-literal">false</span>, <span class="hljs-string">"Already initialized."</span>);
+      <span class="token comment">// initialize the token</span>
+      <span class="token comment">// transfers the total_supply amount to the caller</span>
+      <span class="token keyword">fn</span> <span class="token function">init</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span> <span class="token punctuation">-></span> Result <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> sender <span class="token operator">=</span> <span class="token function">ensure_signed</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span>?<span class="token punctuation">;</span>
+        <span class="token function">ensure!</span><span class="token punctuation">(</span><span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">is_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token keyword">false</span><span class="token punctuation">,</span> <span class="token string">"Already initialized."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        &lt;BalanceOf&lt;T&gt;&gt;::insert(sender, Self::total_supply());
+        <span class="token operator">&lt;</span>BalanceOf<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">insert</span><span class="token punctuation">(</span>sender<span class="token punctuation">,</span> <span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">total_supply</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        &lt;Init&lt;T&gt;&gt;::put(<span class="hljs-literal">true</span>);
+        <span class="token operator">&lt;</span>Init<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token keyword">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="hljs-literal">Ok</span>(())
-      }
+        <span class="token function">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
 
-      <span class="hljs-comment">// transfer tokens from one account to another</span>
-      <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">transfer</span></span>(origin, to: T::AccountId, value: <span class="hljs-built_in">u64</span>) -&gt; <span class="hljs-built_in">Result</span> {
-        <span class="hljs-keyword">let</span> sender = ensure_signed(origin)?;
-        <span class="hljs-keyword">let</span> sender_balance = Self::balance_of(sender.clone());
-        ensure!(sender_balance &gt;= value, <span class="hljs-string">"Not enough balance."</span>);
+      <span class="token comment">// transfer tokens from one account to another</span>
+      <span class="token keyword">fn</span> <span class="token function">transfer</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> to<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>AccountId<span class="token punctuation">,</span> value<span class="token punctuation">:</span> u64<span class="token punctuation">)</span> <span class="token punctuation">-></span> Result <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> sender <span class="token operator">=</span> <span class="token function">ensure_signed</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span>?<span class="token punctuation">;</span>
+        <span class="token keyword">let</span> sender_balance <span class="token operator">=</span> <span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">balance_of</span><span class="token punctuation">(</span>sender<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">ensure!</span><span class="token punctuation">(</span>sender_balance <span class="token operator">>=</span> value<span class="token punctuation">,</span> <span class="token string">"Not enough balance."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="hljs-keyword">let</span> updated_from_balance = sender_balance.checked_sub(value).ok_or(<span class="hljs-string">"overflow in calculating balance"</span>)?;
-        <span class="hljs-keyword">let</span> receiver_balance = Self::balance_of(to.clone());
-        <span class="hljs-keyword">let</span> updated_to_balance = receiver_balance.checked_add(value).ok_or(<span class="hljs-string">"overflow in calculating balance"</span>)?;
+        <span class="token keyword">let</span> updated_from_balance <span class="token operator">=</span> sender_balance<span class="token punctuation">.</span><span class="token function">checked_sub</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ok_or</span><span class="token punctuation">(</span><span class="token string">"overflow in calculating balance"</span><span class="token punctuation">)</span>?<span class="token punctuation">;</span>
+        <span class="token keyword">let</span> receiver_balance <span class="token operator">=</span> <span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">balance_of</span><span class="token punctuation">(</span>to<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> updated_to_balance <span class="token operator">=</span> receiver_balance<span class="token punctuation">.</span><span class="token function">checked_add</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ok_or</span><span class="token punctuation">(</span><span class="token string">"overflow in calculating balance"</span><span class="token punctuation">)</span>?<span class="token punctuation">;</span>
         
-        <span class="hljs-comment">// reduce sender's balance</span>
-        &lt;BalanceOf&lt;T&gt;&gt;::insert(sender.clone(), updated_from_balance);
+        <span class="token comment">// reduce sender's balance</span>
+        <span class="token operator">&lt;</span>BalanceOf<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">insert</span><span class="token punctuation">(</span>sender<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> updated_from_balance<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="hljs-comment">// increase receiver's balance</span>
-        &lt;BalanceOf&lt;T&gt;&gt;::insert(to.clone(), updated_to_balance);
+        <span class="token comment">// increase receiver's balance</span>
+        <span class="token operator">&lt;</span>BalanceOf<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">insert</span><span class="token punctuation">(</span>to<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> updated_to_balance<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        Self::deposit_event(RawEvent::Transfer(sender, to, value));
+        <span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">deposit_event</span><span class="token punctuation">(</span>RawEvent<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">Transfer</span><span class="token punctuation">(</span>sender<span class="token punctuation">,</span> to<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         
-        <span class="hljs-literal">Ok</span>(())
-      }
-  }
-}
+        <span class="token function">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>The full code from this example can be found <a href="https://github.com/gautamdhameja/substrate-demo/blob/master/runtime/src/template.rs">here</a>.</p>
 <h2><a class="anchor" aria-hidden="true" id="adding-removing-elements-in-an-unbounded-list"></a><a href="#adding-removing-elements-in-an-unbounded-list" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding/Removing Elements in an Unbounded List</h2>
 <p>If the size of our list is not relevant to how we access data, the implementation is straightforward.</p>
 <p>For example, let's say that we have a list of <code>proposal</code>s (defined as a struct in our runtime). When a <code>proposal</code> expires, we remove it from our list, but it is not necessary to update the indices of other <code>proposal</code>s that have been added (<em>if</em> we perform checks that a proposal exists in the map before accessing it).</p>
 <p>We can store our <code>proposal</code>s in a key-value mapping similar to the initial example:</p>
-<pre><code class="hljs css language-rust"><span class="hljs-meta">#[cfg_attr(feature = <span class="hljs-meta-string">"std"</span>, derive(Serialize, Deserialize, Debug))]</span>
-<span class="hljs-meta">#[derive(Encode, Decode, Clone, PartialEq, Eq)]</span>
-<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Proposal</span></span>&lt;Hash&gt; {
-    details: Hash,
-}
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[cfg_attr(feature = "std", derive(Serialize, Deserialize, Debug))]</span>
+<span class="token attribute attr-name">#[derive(Encode, Decode, Clone, PartialEq, Eq)]</span>
+<span class="token keyword">struct</span> Proposal<span class="token operator">&lt;</span>Hash<span class="token operator">></span> <span class="token punctuation">{</span>
+    details<span class="token punctuation">:</span> Hash<span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
 
-decl_storage! {
-    <span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Store</span></span> <span class="hljs-keyword">for</span> Module&lt;T: Trait&gt; <span class="hljs-keyword">as</span> Example {
-        Proposals get(proposals): map <span class="hljs-built_in">u32</span> =&gt; Proposal&lt;T::Hash&gt;;
-        LargestIndex get(largest_index): <span class="hljs-built_in">u32</span>;
-    }
-}
+<span class="token macro-rules function">decl_storage!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">trait</span> Store <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">as</span> Example <span class="token punctuation">{</span>
+        Proposals <span class="token function">get</span><span class="token punctuation">(</span>proposals<span class="token punctuation">)</span><span class="token punctuation">:</span> map u32 <span class="token operator">=></span> Proposal<span class="token operator">&lt;</span>T<span class="token punctuation">:</span><span class="token punctuation">:</span>Hash<span class="token operator">></span><span class="token punctuation">;</span>
+        LargestIndex <span class="token function">get</span><span class="token punctuation">(</span>largest_index<span class="token punctuation">)</span><span class="token punctuation">:</span> u32<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>To add a <code>proposal</code>, we would increment the <code>largest_index</code> and add a <code>proposal</code> at that index:</p>
-<pre><code class="hljs css language-rust">decl_module! {
-    <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Module</span></span>&lt;T: Trait&gt; <span class="hljs-keyword">for</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span> <span class="hljs-keyword">where</span> origin: T::Origin {
-        <span class="hljs-comment">// other methods</span>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">pub</span> <span class="token keyword">struct</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> Call <span class="token keyword">where</span> origin<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>Origin <span class="token punctuation">{</span>
+        <span class="token comment">// other methods</span>
 
-        <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add_proposal</span></span>(hash: Hash) -&gt; <span class="hljs-built_in">Result</span> {
-            <span class="hljs-comment">// any necessary checks here</span>
+        <span class="token keyword">fn</span> <span class="token function">add_proposal</span><span class="token punctuation">(</span>hash<span class="token punctuation">:</span> Hash<span class="token punctuation">)</span> <span class="token punctuation">-></span> Result <span class="token punctuation">{</span>
+            <span class="token comment">// any necessary checks here</span>
 
-            <span class="hljs-comment">// instantiate new proposal</span>
-            <span class="hljs-keyword">let</span> prop = Proposal { details: hash.clone() };
+            <span class="token comment">// instantiate new proposal</span>
+            <span class="token keyword">let</span> prop <span class="token operator">=</span> Proposal <span class="token punctuation">{</span> details<span class="token punctuation">:</span> hash<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-            <span class="hljs-comment">// increment largest index</span>
-            &lt;LargestIndex&lt;T&gt;&gt;::mutate(|count| count + <span class="hljs-number">1</span>);
+            <span class="token comment">// increment largest index</span>
+            <span class="token operator">&lt;</span>LargestIndex<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">mutate</span><span class="token punctuation">(</span><span class="token operator">|</span>count<span class="token operator">|</span> count <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-            <span class="hljs-comment">// add a proposal at largest_index</span>
-            <span class="hljs-keyword">let</span> largest_index = Self::largest_index::get();
-            &lt;Proposals&lt;T&gt;&gt;::insert(largest_index, prop);
+            <span class="token comment">// add a proposal at largest_index</span>
+            <span class="token keyword">let</span> largest_index <span class="token operator">=</span> <span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span>largest_index<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&lt;</span>Proposals<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">insert</span><span class="token punctuation">(</span>largest_index<span class="token punctuation">,</span> prop<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-            <span class="hljs-literal">Ok</span>(())
-        }
-    }
-}
+            <span class="token function">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>To remove a <code>proposal</code>, we can simple invoke the <code>remove</code> method for the <code>StorageMap</code> type at the relevant index. In this case, we do not need to update the indices of other <code>proposal</code>s. This is because order does not matter for this sample.</p>
-<pre><code class="hljs css language-rust">decl_module! {
-    <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Module</span></span>&lt;T: Trait&gt; <span class="hljs-keyword">for</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span> <span class="hljs-keyword">where</span> origin: T::Origin {
-        <span class="hljs-comment">// other methods</span>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">pub</span> <span class="token keyword">struct</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> Call <span class="token keyword">where</span> origin<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>Origin <span class="token punctuation">{</span>
+        <span class="token comment">// other methods</span>
 
-        <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">remove_proposal</span></span>(index: <span class="hljs-built_in">u32</span>) -&gt; <span class="hljs-built_in">Result</span> {
-            <span class="hljs-comment">// any necessary checks here</span>
+        <span class="token keyword">fn</span> <span class="token function">remove_proposal</span><span class="token punctuation">(</span>index<span class="token punctuation">:</span> u32<span class="token punctuation">)</span> <span class="token punctuation">-></span> Result <span class="token punctuation">{</span>
+            <span class="token comment">// any necessary checks here</span>
 
-            <span class="hljs-comment">// remove proposal at the given index</span>
-            &lt;Proposals&lt;T&gt;&gt;::remove(index);
+            <span class="token comment">// remove proposal at the given index</span>
+            <span class="token operator">&lt;</span>Proposals<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">remove</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-            <span class="hljs-literal">Ok</span>(())
-        }
-    }
-}
+            <span class="token function">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Because we are not updating the indices of other <code>proposal</code>s in our map, we have to check that a proposal exists before removing it, mutating it, or performing any other relevant operation.</p>
-<pre><code class="hljs css language-rust"><span class="hljs-comment">// index is the `u32` that corresponds to the proposal in the `&lt;Proposals&lt;T&gt;&gt;` map</span>
-ensure!(&lt;Proposals&lt;T&gt;&gt;::exists(index), <span class="hljs-string">"proposal does not exist at the provided index"</span>);
+<pre><code class="hljs css language-rust"><span class="token comment">// index is the `u32` that corresponds to the proposal in the `&lt;Proposals&lt;T>>` map</span>
+<span class="token function">ensure!</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>Proposals<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">exists</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"proposal does not exist at the provided index"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>For a more extensive and complete example of this pattern, see <a href="https://github.com/AmarRSingh/SunshineDAO/runtime/src/dao.rs">SunshineDAO</a>.</p>
 <h2><a class="anchor" aria-hidden="true" id="swap-and-pop-for-ordered-lists"></a><a href="#swap-and-pop-for-ordered-lists" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Swap and Pop for Ordered Lists</h2>
@@ -366,74 +366,74 @@ ensure!(&lt;Proposals&lt;T&gt;&gt;::exists(index), <span class="hljs-string">"pr
 <li>Decrement the <code>LargestIndex</code> value.</li>
 </ol>
 <p>Continuing with our example, we maintain the same logic for adding proposals (increment <code>LargestIndex</code> and insert entry at the head of our <em>list</em>).  However, we invoke the <em>swap and pop</em> algorithm when removing elements from our list:</p>
-<pre><code class="hljs css language-rust">decl_module! {
-    <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Module</span></span>&lt;T: Trait&gt; <span class="hljs-keyword">for</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span> <span class="hljs-keyword">where</span> origin: T::Origin {
-        <span class="hljs-comment">// other methods</span>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">pub</span> <span class="token keyword">struct</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> Call <span class="token keyword">where</span> origin<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>Origin <span class="token punctuation">{</span>
+        <span class="token comment">// other methods</span>
 
-        <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">remove_proposal</span></span>(index: <span class="hljs-built_in">u32</span>) -&gt; <span class="hljs-built_in">Result</span> {
-            <span class="hljs-comment">// check that a proposal exists at the given index</span>
-            ensure!(&lt;Proposals&lt;T&gt;&gt;::exists(index), <span class="hljs-string">"A proposal does not exist at this index"</span>);
+        <span class="token keyword">fn</span> <span class="token function">remove_proposal</span><span class="token punctuation">(</span>index<span class="token punctuation">:</span> u32<span class="token punctuation">)</span> <span class="token punctuation">-></span> Result <span class="token punctuation">{</span>
+            <span class="token comment">// check that a proposal exists at the given index</span>
+            <span class="token function">ensure!</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>Proposals<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">exists</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"A proposal does not exist at this index"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-            <span class="hljs-keyword">let</span> largest_index = Self::largest_index::get();
-            <span class="hljs-keyword">let</span> proposal_to_remove = &lt;Proposals&lt;T&gt;&gt;::take(index);
-            <span class="hljs-comment">// swap</span>
-            <span class="hljs-keyword">if</span> index != largest_index {
-                <span class="hljs-keyword">let</span> temp = &lt;Proposals&lt;T&gt;&gt;::take(largest_index);
-                &lt;Proposals&lt;T&gt;&gt;::insert(index, temp);
-                &lt;Proposals&lt;T&gt;&gt;::insert(largest_index, proposal_to_remove);
-            }
-            <span class="hljs-comment">// pop</span>
-            &lt;Proposals&lt;T&gt;&gt;::remove(largest_index);
-            &lt;LargestIndex&lt;T&gt;&gt;::mutate(|count| count - <span class="hljs-number">1</span>);
+            <span class="token keyword">let</span> largest_index <span class="token operator">=</span> <span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span>largest_index<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">let</span> proposal_to_remove <span class="token operator">=</span> <span class="token operator">&lt;</span>Proposals<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">take</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// swap</span>
+            <span class="token keyword">if</span> index <span class="token operator">!=</span> largest_index <span class="token punctuation">{</span>
+                <span class="token keyword">let</span> temp <span class="token operator">=</span> <span class="token operator">&lt;</span>Proposals<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">take</span><span class="token punctuation">(</span>largest_index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token operator">&lt;</span>Proposals<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">insert</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> temp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token operator">&lt;</span>Proposals<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">insert</span><span class="token punctuation">(</span>largest_index<span class="token punctuation">,</span> proposal_to_remove<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment">// pop</span>
+            <span class="token operator">&lt;</span>Proposals<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">remove</span><span class="token punctuation">(</span>largest_index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&lt;</span>LargestIndex<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">mutate</span><span class="token punctuation">(</span><span class="token operator">|</span>count<span class="token operator">|</span> count <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-            <span class="hljs-literal">Ok</span>(())
-        }
-    }
-}
+            <span class="token function">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="linked-map"></a><a href="#linked-map" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Linked Map</h3>
 <p>To trade performance for simpler code, utilize the <code>linked_map</code> data structure. By implementing <a href="https://crates.parity.io/srml_support/storage/trait.EnumerableStorageMap.html"><code>EnumarableStorageMap</code></a> in addition to <a href="https://crates.parity.io/srml_support/storage/trait.StorageMap.html"><code>StorageMap</code></a>, <code>linked_map</code> provides a method <code>head</code> that yields the head of the <em>list</em>, thereby making it unnecessary to also store the <code>LargestIndex</code>. The <code>enumerate</code> method also returns an <code>Iterator</code> ordered according to when (key, value) pairs were inserted into the map.</p>
 <p>To use <code>linked_map</code>, we also need to import <code>EnumerableStorageMap</code>. Here is the new declaration in the <code>decl_storage</code> block:</p>
-<pre><code class="hljs css language-rust"><span class="hljs-keyword">use</span> support::{StorageMap, EnumerableStorageMap}; <span class="hljs-comment">// no StorageValue necessary</span>
+<pre><code class="hljs css language-rust"><span class="token keyword">use</span> support<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>StorageMap<span class="token punctuation">,</span> EnumerableStorageMap<span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// no StorageValue necessary</span>
 
-decl_storage! {
-    <span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Store</span></span> <span class="hljs-keyword">for</span> Module&lt;T: Trait&gt; <span class="hljs-keyword">as</span> Example {
-        Proposals get(proposals): linked_map <span class="hljs-built_in">u32</span> =&gt; Proposal&lt;T::Hash&gt;;
-        <span class="hljs-comment">// no largest_index value necessary</span>
-    }
-}
+<span class="token macro-rules function">decl_storage!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">trait</span> Store <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">as</span> Example <span class="token punctuation">{</span>
+        Proposals <span class="token function">get</span><span class="token punctuation">(</span>proposals<span class="token punctuation">)</span><span class="token punctuation">:</span> linked_map u32 <span class="token operator">=></span> Proposal<span class="token operator">&lt;</span>T<span class="token punctuation">:</span><span class="token punctuation">:</span>Hash<span class="token operator">></span><span class="token punctuation">;</span>
+        <span class="token comment">// no largest_index value necessary</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Here is our new <code>remove_proposal</code> method:</p>
-<pre><code class="hljs css language-rust">decl_module! {
-    <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Module</span></span>&lt;T: Trait&gt; <span class="hljs-keyword">for</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span> <span class="hljs-keyword">where</span> origin: T::Origin {
-        <span class="hljs-comment">// other methods</span>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">pub</span> <span class="token keyword">struct</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> Call <span class="token keyword">where</span> origin<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>Origin <span class="token punctuation">{</span>
+        <span class="token comment">// other methods</span>
 
-        <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">remove_proposal</span></span>(index: <span class="hljs-built_in">u32</span>) -&gt; <span class="hljs-built_in">Result</span> {
-            <span class="hljs-comment">// check that a proposal exists at the given index</span>
-            ensure!(&lt;Proposals&lt;T&gt;&gt;::exists(index), <span class="hljs-string">"A proposal does not exist at this index"</span>);
+        <span class="token keyword">fn</span> <span class="token function">remove_proposal</span><span class="token punctuation">(</span>index<span class="token punctuation">:</span> u32<span class="token punctuation">)</span> <span class="token punctuation">-></span> Result <span class="token punctuation">{</span>
+            <span class="token comment">// check that a proposal exists at the given index</span>
+            <span class="token function">ensure!</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>Proposals<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">exists</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"A proposal does not exist at this index"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-            <span class="hljs-keyword">let</span> head_index = Self::proposals::head();
-            <span class="hljs-keyword">let</span> proposal_to_remove = &lt;Proposals&lt;T&gt;&gt;::take(index);
-            &lt;Proposals&lt;T&gt;&gt;::insert(index, &lt;Proposals&lt;T&gt;&gt;::get(head_index));
-            &lt;Proposals&lt;T&gt;&gt;::remove(head_index);
+            <span class="token keyword">let</span> head_index <span class="token operator">=</span> <span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span>proposals<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">head</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">let</span> proposal_to_remove <span class="token operator">=</span> <span class="token operator">&lt;</span>Proposals<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">take</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&lt;</span>Proposals<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">insert</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> <span class="token operator">&lt;</span>Proposals<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">get</span><span class="token punctuation">(</span>head_index<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">&lt;</span>Proposals<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">remove</span><span class="token punctuation">(</span>head_index<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-            <span class="hljs-literal">Ok</span>(())
-        }
-    }
-}
+            <span class="token function">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>The only caveat is that this implementation incurs some performance costs (vs. solely using <code>StorageMap</code> and <code>StorageValue</code>) because <code>linked_map</code> heap allocates the entire map as an iterator in order to implement the <a href="https://crates.parity.io/srml_support/storage/trait.EnumerableStorageMap.html#tymethod.enumerate"><code>enumerate</code> method</a>.</p>
 <h2><a class="anchor" aria-hidden="true" id="higher-order-arrays-with-tuples-and-maps"></a><a href="#higher-order-arrays-with-tuples-and-maps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Higher Order Arrays with Tuples and Maps</h2>
 <p>To represent ownership of multiple items across multiple users, tuples can be used alongside maps in order to emulate arrays.</p>
 <p>For example, consider a scenario in which persistent storage keeps track of a <em>social network graph</em> in which each user (represented by an <code>AccountId</code>) has a list of other friends. In this case, it would be convenient to use a 2 dimensional array like:</p>
-<pre><code class="hljs css language-rust">SocialNetwork[AccountId][Index] -&gt; AccountId
+<pre><code class="hljs css language-rust">SocialNetwork<span class="token punctuation">[</span>AccountId<span class="token punctuation">]</span><span class="token punctuation">[</span>Index<span class="token punctuation">]</span> <span class="token punctuation">-></span> AccountId
 </code></pre>
 <p>With this data structure, we could see how many friends a given <code>AccountId</code> has by calling:</p>
-<pre><code class="hljs css language-rust">SocialNetwork[AccountId].length()
+<pre><code class="hljs css language-rust">SocialNetwork<span class="token punctuation">[</span>AccountId<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre>
 <p>To emulate this data structure in the context of the Substrate runtime storage, we can use tuples and maps (declared in a <code>decl_storage!{}</code> block like previous examples):</p>
-<pre><code class="hljs css language-rust">SocialNetwork get(my_friend): map (T::AccountId, <span class="hljs-built_in">u32</span>) =&gt; T::AccountId;
-SocialNetwork get(friends_count): map T::AccountId =&gt; <span class="hljs-built_in">u32</span>;
+<pre><code class="hljs css language-rust">SocialNetwork <span class="token function">get</span><span class="token punctuation">(</span>my_friend<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token function">map</span> <span class="token punctuation">(</span>T<span class="token punctuation">:</span><span class="token punctuation">:</span>AccountId<span class="token punctuation">,</span> u32<span class="token punctuation">)</span> <span class="token operator">=></span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>AccountId<span class="token punctuation">;</span>
+SocialNetwork <span class="token function">get</span><span class="token punctuation">(</span>friends_count<span class="token punctuation">)</span><span class="token punctuation">:</span> map T<span class="token punctuation">:</span><span class="token punctuation">:</span>AccountId <span class="token operator">=></span> u32<span class="token punctuation">;</span>
 </code></pre>
 <p>Patterns that use mappings to emulate higher order data structures are common when managing runtime storage on Substrate. To see this pattern in action, check out <a href="https://shawntabrizi.github.io/substrate-collectables-workshop/#/2/owning-multiple-kitties?id=using-tuples-to-emulate-higher-order-arrays">the Substratekitties Collectables Tutorial</a>.</p>
 <h2><a class="anchor" aria-hidden="true" id="string-storage-as-bytemap"></a><a href="#string-storage-as-bytemap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>String Storage (as Bytemap)</h2>

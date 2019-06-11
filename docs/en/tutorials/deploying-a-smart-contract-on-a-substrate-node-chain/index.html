@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Deploying a Smart Contract on a Substrate Node Chain · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This document will walk you through steps used in the demo that &lt;a href=&quot;https://youtu.be/26ucTSSaqog?t=5298&quot;&gt;Sergei Shulepov and Dr Gavin Wood presented at the 2018 Dotcon-0 during the Web3 Summit&lt;/a&gt;, showing off how you can create a Substrate Node, integrate the Substrate SRML &#x27;Contracts&#x27; Module into the Substrate Node&#x27;s Runtime, and then deploy a WASM-compiled Rust Smart Contract to the Substrate Node in less than 30 min.&lt;/p&gt;
 "/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Deploying a Smart Contract on a Substrate Node Chain · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;This document will walk you through steps used in the demo that &lt;a href=&quot;https://youtu.be/26ucTSSaqog?t=5298&quot;&gt;Sergei Shulepov and Dr Gavin Wood presented at the 2018 Dotcon-0 during the Web3 Summit&lt;/a&gt;, showing off how you can create a Substrate Node, integrate the Substrate SRML &#x27;Contracts&#x27; Module into the Substrate Node&#x27;s Runtime, and then deploy a WASM-compiled Rust Smart Contract to the Substrate Node in less than 30 min.&lt;/p&gt;
-"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><link rel="shortcut icon" href="/img/Substrate-logo.svg"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/en/quickstart/getting-started" target="_self">Docs</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="https://www.parity.io/blog/" target="_self">Blog</a></li><li class=""><a href="/en/community/support" target="_self">Community</a></li><li class=""><a href="https://github.com/substrate-developer-hub/" target="_self">GitHub</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/zh-CN/tutorials/deploying-a-smart-contract-on-a-substrate-node-chain">中文</a></li></ul></div></li><script>
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><link rel="shortcut icon" href="/img/Substrate-logo.svg"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/en/quickstart/getting-started" target="_self">Docs</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="https://www.parity.io/blog/" target="_self">Blog</a></li><li class=""><a href="/en/community/support" target="_self">Community</a></li><li class=""><a href="https://github.com/substrate-developer-hub/" target="_self">GitHub</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/zh-CN/tutorials/deploying-a-smart-contract-on-a-substrate-node-chain">中文</a></li></ul></div></li><script>
         const languagesMenuItem = document.getElementById("languages-menu");
         const languagesDropDown = document.getElementById("languages-dropdown");
         languagesMenuItem.addEventListener("click", function(event) {
@@ -79,12 +79,12 @@
 <li><a href="https://github.com/polkadot-js">https://github.com/polkadot-js</a></li>
 </ul>
 <p>So we'll start by creating subdirectories to organise the code that we'll be downloading from them. We'll namespace them to match the Github usernames:</p>
-<pre><code class="hljs css language-shell">mkdir -p ~/code/paritytech ~/code/polkadot-js
+<pre><code class="hljs css language-shell"><span class="token function">mkdir</span> -p ~/code/paritytech ~/code/polkadot-js
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="setup-substrate-node-and-substrate-ui"></a><a href="#setup-substrate-node-and-substrate-ui" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup Substrate Node and Substrate UI</h3>
 <p>Run the following command to install Substrate.</p>
-<pre><code class="hljs css language-shell">cd ~/code/paritytech;
-curl https://getsubstrate.io -sSf | sh
+<pre><code class="hljs css language-shell"><span class="token function">cd</span> ~/code/paritytech<span class="token punctuation">;</span>
+<span class="token function">curl</span> https://getsubstrate.io -sSf <span class="token operator">|</span> sh
 </code></pre>
 <p>You will also need to set up a few more repositories into your working folder which were used in the demo:</p>
 <ul>
@@ -93,14 +93,14 @@ curl https://getsubstrate.io -sSf | sh
 <li><a href="https://github.com/polkadot-js/apps">Polkadot-JS Apps</a></li>
 </ul>
 <p>You can do that with some <a href="https://github.com/paritytech/substrate-up">script aliases</a> that were loaded on your machine:</p>
-<pre><code class="hljs css language-shell">cd ~/code/paritytech
+<pre><code class="hljs css language-shell"><span class="token function">cd</span> ~/code/paritytech
 substrate-node-new my-substrate-node-template-1 my-name
 substrate-ui-new substrate my-substrate-node-template-1
 </code></pre>
 <p>This will create folders called 'my-substrate-node-template-1' and 'substrate-ui' within directory ~/code/paritytech, with the corresponding repositories cloned in them. You can of course rename your projects in these commands, but for the sake of the clarity, we will continue with these folder names.</p>
 <h4><a class="anchor" aria-hidden="true" id="setup-polkadot-js-apps"></a><a href="#setup-polkadot-js-apps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup Polkadot-JS Apps</h4>
 <p>We'll also run a couple of other script aliases to install necessary dependencies (Xcode Command Line Tools, Homebrew, Homebrew Cask, RBEnv, Ruby, NVM and Node.js latest LTS, Yarn,) and create a folder called <code>apps</code> within directory ~/code/polkadot-js, containing a clone of the Polkadot-JS Apps repository with a branch that supports PoC-4:</p>
-<pre><code class="hljs css language-shell">cd ~/code/polkadot-js
+<pre><code class="hljs css language-shell"><span class="token function">cd</span> ~/code/polkadot-js
 polkadot-js-dependencies
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="view-and-run-the-rust-program-demo"></a><a href="#view-and-run-the-rust-program-demo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>View and Run the Rust Program Demo</h3>
@@ -108,14 +108,14 @@ polkadot-js-dependencies
 <p>We've bundled all the code samples from this guide in the following <a href="https://github.com/paritytech/substrate/compare/deploy-smart-contract-adder?expand=1">Substrate branch 'deploy-smart-contract-adder'</a> that you may view in the browser.</p>
 <h4><a class="anchor" aria-hidden="true" id="run-rust-program-advanced-a-name-run-rust-program-a"></a><a href="#run-rust-program-advanced-a-name-run-rust-program-a" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Run Rust Program (Advanced) <a name="run-rust-program"></a></h4>
 <p>Once Substrate is installed. Switch to branch 'deploy-smart-contract-adder', run relevant Git commands that you are familiar with to rebase or merge the latest changes in the 'master' branch into 'deploy-smart-contract-adder'. We'll run yet another script alias 'substrate-dependencies' to install or update necessary Substrate dependencies, and then build and run the program:</p>
-<pre><code class="hljs css language-shell">cd ~/code/paritytech
-git clone https://github.com/paritytech/substrate
-cd substrate
-git fetch origin deploy-smart-contract-adder:deploy-smart-contract-adder
-git checkout master
-git pull --rebase origin master
-git checkout deploy-smart-contract-adder
-git merge master
+<pre><code class="hljs css language-shell"><span class="token function">cd</span> ~/code/paritytech
+<span class="token function">git</span> clone https://github.com/paritytech/substrate
+<span class="token function">cd</span> substrate
+<span class="token function">git</span> fetch origin deploy-smart-contract-adder:deploy-smart-contract-adder
+<span class="token function">git</span> checkout master
+<span class="token function">git</span> pull --rebase origin master
+<span class="token function">git</span> checkout deploy-smart-contract-adder
+<span class="token function">git</span> merge master
 substrate-dependencies
 ./scripts/build.sh
 cargo build
@@ -129,7 +129,7 @@ cargo run -p deploy-smart-contract-adder
 <p><img src="https://files.readme.io/ff3a66e-53b8dc8-Screen_Shot_2018-11-18_at_15.31.20.png" alt="Source: https://youtu.be/0IoUZdDi5Is?t=1377"></p>
 <h2><a class="anchor" aria-hidden="true" id="step-2-launch-a-substrate-node-blockchain"></a><a href="#step-2-launch-a-substrate-node-blockchain" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Step 2: Launch a Substrate Node Blockchain</h2>
 <p>If you have set up everything correctly, you can now start a Substrate dev chain! In directory 'my-substrate-node-template-1' run the following and it will be published on <a href="https://telemetry.polkadot.io">Telemetry</a>:</p>
-<pre><code class="hljs css language-shell">cd ~/code/paritytech/my-substrate-node-template-1
+<pre><code class="hljs css language-shell"><span class="token function">cd</span> ~/code/paritytech/my-substrate-node-template-1
 ./target/release/my-substrate-node-template-1 \\
   --dev \\
   --telemetry-url ws://telemetry.polkadot.io:1024
@@ -146,8 +146,8 @@ cargo run -p deploy-smart-contract-adder
 </blockquote>
 <h2><a class="anchor" aria-hidden="true" id="step-3-launch-ui-of-polkadot-js-apps"></a><a href="#step-3-launch-ui-of-polkadot-js-apps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Step 3: Launch UI of Polkadot-JS Apps</h2>
 <p>To interact with the Substrate Node, we'll start the UI of Polkadot JS Apps.</p>
-<pre><code class="hljs css language-shell">cd ~/code/polkadot-js/apps;
-yarn run start
+<pre><code class="hljs css language-shell"><span class="token function">cd</span> ~/code/polkadot-js/apps<span class="token punctuation">;</span>
+<span class="token function">yarn</span> run start
 </code></pre>
 <p>Open your browser to <a href="http://localhost:3000">http://localhost:3000</a>.</p>
 <p>Go to the 'Settings' menu item. Select option 'Local Node (127.0.0.1:9944)', then click 'Save &amp; Reload'.
@@ -163,16 +163,16 @@ yarn run start
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="option-2-interact-using-curl"></a><a href="#option-2-interact-using-curl" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Option 2: Interact using cURL</h3>
 <p>Alternatively we can fetch the block hash of the genesis block in the Substrate Node by using cURL to perform a JSON-RPC call that contains a JSON-RPC request object with members including method <code>state_getBlockHash</code> and params <code>[0]</code> (the genesis block).</p>
-<pre><code class="hljs css language-shell">curl -H 'Content-Type: application/json' \\
-     -d '{ "jsonrpc": "2.0", "method":"chain_getBlockHash", "params":[0], "id": 1 }' \\
+<pre><code class="hljs css language-shell"><span class="token function">curl</span> -H <span class="token string">'Content-Type: application/json'</span> \\
+     -d <span class="token string">'{ "jsonrpc": "2.0", "method":"chain_getBlockHash", "params":[0], "id": 1 }'</span> \\
      -vv http://127.0.0.1:9933/
 </code></pre>
 <p>We'll receive a <a href="https://www.jsonrpc.org/specification#response_object">JSON-RPC response object</a> as follows, where the 'result' member contains the block hash:</p>
-<pre><code class="hljs css language-json">{
-  <span class="hljs-attr">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-  <span class="hljs-attr">"result"</span>:<span class="hljs-string">"0x0000fcb6a13183bf24669dc6d66ad80eaf20ee17e3712ba79b0285c2b42adc79"</span>,
-  <span class="hljs-attr">"id"</span>:<span class="hljs-number">1</span>
-}
+<pre><code class="hljs css language-json"><span class="token punctuation">{</span>
+  <span class="token property">"jsonrpc"</span><span class="token operator">:</span><span class="token string">"2.0"</span><span class="token punctuation">,</span>
+  <span class="token property">"result"</span><span class="token operator">:</span><span class="token string">"0x0000fcb6a13183bf24669dc6d66ad80eaf20ee17e3712ba79b0285c2b42adc79"</span><span class="token punctuation">,</span>
+  <span class="token property">"id"</span><span class="token operator">:</span><span class="token number">1</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="step-5-about-the-smart-contract-adder-rust-program"></a><a href="#step-5-about-the-smart-contract-adder-rust-program" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Step 5: About the Smart Contract 'Adder' Rust program</h2>
 <p>The Smart Contract 'Adder' is a basic counter that has two actions that we can execute:</p>
@@ -186,38 +186,38 @@ yarn run start
 <li><p><code>Action::Get</code>: We simply query the extrinsics storage using the counter key and return that value.</p></li>
 <li><p>Extracted code snippets from the <a href="https://github.com/pepyakin/substrate-contracts-adder/blob/master/src/lib.rs">Smart Contract 'Adder'</a> are shown below:</p></li>
 </ul>
-<pre><code class="hljs css language-rust">...
+<pre><code class="hljs css language-rust"><span class="token punctuation">...</span>
 
-<span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Action</span></span> {
-    Inc(<span class="hljs-built_in">u32</span>),
-    Get,
-}
+<span class="token keyword">enum</span> Action <span class="token punctuation">{</span>
+    <span class="token function">Inc</span><span class="token punctuation">(</span>u32<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    Get<span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-keyword">static</span> COUNTER_KEY: ext::Key = ext::Key([<span class="hljs-number">1</span>; <span class="hljs-number">32</span>]);
+<span class="token keyword">static</span> COUNTER_KEY<span class="token punctuation">:</span> ext<span class="token punctuation">:</span><span class="token punctuation">:</span>Key <span class="token operator">=</span> ext<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">Key</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token number">32</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-...
+<span class="token punctuation">...</span>
 
-<span class="hljs-keyword">pub</span> <span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">call</span></span>() {
-    <span class="hljs-keyword">let</span> input = ext::input();
-    <span class="hljs-keyword">let</span> action = Action::decode(&amp;<span class="hljs-keyword">mut</span> &amp;input[..]).unwrap();
+<span class="token keyword">pub</span> <span class="token keyword">extern</span> <span class="token string">"C"</span> <span class="token keyword">fn</span> <span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> input <span class="token operator">=</span> ext<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">input</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> action <span class="token operator">=</span> Action<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">decode</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> <span class="token operator">&amp;</span>input<span class="token punctuation">[</span><span class="token punctuation">..</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unwrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="hljs-keyword">match</span> action {
-        Action::Inc(by) =&gt; {
-            <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> counter = ext::get_storage(&amp;COUNTER_KEY).and_then(|v| <span class="hljs-built_in">u32</span>::decode(&amp;<span class="hljs-keyword">mut</span> &amp;v[..])).unwrap_or(<span class="hljs-number">0</span>);
-            counter += by;
-            ext::set_storage(&amp;COUNTER_KEY, <span class="hljs-literal">Some</span>(&amp;<span class="hljs-built_in">u32</span>::encode(&amp;counter)));
-        }
-        Action::Get =&gt; {
-            <span class="hljs-keyword">let</span> raw_counter = ext::get_storage(&amp;COUNTER_KEY).unwrap_or(<span class="hljs-built_in">vec!</span>[]);
-            ext::return_(&amp;raw_counter);
-        }
-    }
-}
+    <span class="token keyword">match</span> action <span class="token punctuation">{</span>
+        Action<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">Inc</span><span class="token punctuation">(</span>by<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            <span class="token keyword">let</span> <span class="token keyword">mut</span> counter <span class="token operator">=</span> ext<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">get_storage</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>COUNTER_KEY<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">and_then</span><span class="token punctuation">(</span><span class="token operator">|</span>v<span class="token operator">|</span> u32<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">decode</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> <span class="token operator">&amp;</span>v<span class="token punctuation">[</span><span class="token punctuation">..</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unwrap_or</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            counter <span class="token operator">+=</span> by<span class="token punctuation">;</span>
+            ext<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">set_storage</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>COUNTER_KEY<span class="token punctuation">,</span> <span class="token function">Some</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>u32<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>counter<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        Action<span class="token punctuation">:</span><span class="token punctuation">:</span>Get <span class="token operator">=></span> <span class="token punctuation">{</span>
+            <span class="token keyword">let</span> raw_counter <span class="token operator">=</span> ext<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">get_storage</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>COUNTER_KEY<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unwrap_or</span><span class="token punctuation">(</span><span class="token function">vec!</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            ext<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">return_</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>raw_counter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="step-6-generate-wasm-file-from-smart-contract-adder-rust-program"></a><a href="#step-6-generate-wasm-file-from-smart-contract-adder-rust-program" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Step 6: Generate WASM file from Smart Contract 'Adder' Rust program</h2>
 <p>Let's clone the 'Adder' Smart Contract Rust library, and compile its Rust code into a WASM file using the provided <code>./build.sh</code> Shell script, which runs a <code>wasm-build</code> command from the <a href="https://github.com/paritytech/wasm-utils">wasm-utils</a> repository. The generated WASM file will be located in <code>~/substrate-contracts-adder/target/wasm32-unknown-unknown/release/substrate_contracts_adder.wasm</code></p>
-<pre><code class="hljs css language-shell">git clone https://github.com/pepyakin/substrate-contracts-adder
-cd substrate-contracts-adder
+<pre><code class="hljs css language-shell"><span class="token function">git</span> clone https://github.com/pepyakin/substrate-contracts-adder
+<span class="token function">cd</span> substrate-contracts-adder
 ./build.sh
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="step-7-create-extrinsic-and-deploy-smart-contract-adder-to-substrate-node"></a><a href="#step-7-create-extrinsic-and-deploy-smart-contract-adder-to-substrate-node" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Step 7: Create Extrinsic and Deploy Smart Contract 'Adder' to Substrate Node</h2>
@@ -313,62 +313,62 @@ Click 'Sign &amp; Submit' in the modal to add the extrinsic into the 'pending' e
 <li>FIXME - is there really no way for us to use the Substrate codebase generated with <code>substrate-node-new</code>?</li>
 </ul>
 <p>Let's follow similar steps to <a href="#run-rust-program">&quot;Option 2: Run Rust Program (Advanced)&quot;</a>, where we viewed the complete solution, but here we just clone the 'master' branch, checkout a new branch named 'deploy-smart-contract-adder' where we'll create our new Rust program, and build Substrate.</p>
-<pre><code class="hljs css language-shell">cd ~/code/paritytech
-git clone https://github.com/paritytech/substrate
-cd substrate
-git fetch origin master
-git checkout -b deploy-smart-contract-adder
+<pre><code class="hljs css language-shell"><span class="token function">cd</span> ~/code/paritytech
+<span class="token function">git</span> clone https://github.com/paritytech/substrate
+<span class="token function">cd</span> substrate
+<span class="token function">git</span> fetch origin master
+<span class="token function">git</span> checkout -b deploy-smart-contract-adder
 substrate-dependencies
 ./scripts/build.sh
 cargo build
 </code></pre>
 <p>We're ready to <a href="https://doc.rust-lang.org/cargo/guide/creating-a-new-project.html">create a new Rust program</a>.</p>
-<pre><code class="hljs css language-shell">cd ~/code/paritytech/substrate
+<pre><code class="hljs css language-shell"><span class="token function">cd</span> ~/code/paritytech/substrate
 cargo new examples/deploy-smart-contract-adder --bin
 </code></pre>
 <p>Add dependencies to Cargo.toml</p>
-<pre><code class="hljs css language-toml"><span class="hljs-section">[package]</span>
-<span class="hljs-attr">name</span> = <span class="hljs-string">"deploy-smart-contract-adder"</span>
-<span class="hljs-attr">version</span> = <span class="hljs-string">"0.1.0"</span>
-<span class="hljs-attr">authors</span> = [<span class="hljs-string">"Parity Technologies &lt;admin@parity.io&gt;"</span>]
-<span class="hljs-attr">description</span> = <span class="hljs-string">"Substrate Deploy Smart Contract."</span>
-<span class="hljs-section">
-[dependencies]</span>
-<span class="hljs-attr">hex-literal</span> = <span class="hljs-string">"0.1.0"</span>
-<span class="hljs-attr">hex</span> = <span class="hljs-string">"0.3"</span>
-<span class="hljs-attr">substrate-primitives</span> = { path = <span class="hljs-string">"../../core/primitives"</span> }
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">package</span><span class="token punctuation">]</span>
+<span class="token key property">name</span> <span class="token punctuation">=</span> <span class="token string">"deploy-smart-contract-adder"</span>
+<span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">"0.1.0"</span>
+<span class="token key property">authors</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token table class-name">"Parity Technologies &lt;admin@parity.io>"</span><span class="token punctuation">]</span>
+<span class="token key property">description</span> <span class="token punctuation">=</span> <span class="token string">"Substrate Deploy Smart Contract."</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">dependencies</span><span class="token punctuation">]</span>
+<span class="token key property">hex-literal</span> <span class="token punctuation">=</span> <span class="token string">"0.1.0"</span>
+<span class="token key property">hex</span> <span class="token punctuation">=</span> <span class="token string">"0.3"</span>
+<span class="token key property">substrate-primitives</span> <span class="token punctuation">=</span> <span class="token punctuation">{</span> <span class="token key property">path</span> <span class="token punctuation">=</span> <span class="token string">"../../core/primitives"</span> <span class="token punctuation">}</span>
 </code></pre>
 <p>We'll create the encoded form of an extrinsic (blob of data) to be sent from Alice that contains instructions to deploy a certain WASM smart contract.</p>
 <p>Update main.rs (executable file of the program) <code>~/code/paritytech/substrate/examples/deploy-smart-contract-adder/src/main.rs</code>, replacing <code>&lt;INSERT_BLOCK_HASH&gt;</code> with the block hash obtained in the previous step (i.e. <code>&quot;0x0000fcb6a13183bf24669dc6d66ad80eaf20ee17e3712ba79b0285c2b42adc79&quot;</code>)</p>
-<pre><code class="hljs css language-rust"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> substrate_primitives <span class="hljs-keyword">as</span> primitives;
-<span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> hex;
+<pre><code class="hljs css language-rust"><span class="token keyword">extern</span> <span class="token keyword">crate</span> substrate_primitives <span class="token keyword">as</span> primitives<span class="token punctuation">;</span>
+<span class="token keyword">extern</span> <span class="token keyword">crate</span> hex<span class="token punctuation">;</span>
 
-<span class="hljs-meta">#[macro_use]</span>
-<span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> hex_literal;
+<span class="token attribute attr-name">#[macro_use]</span>
+<span class="token keyword">extern</span> <span class="token keyword">crate</span> hex_literal<span class="token punctuation">;</span>
 
-<span class="hljs-keyword">use</span> std::fmt::Write;
-<span class="hljs-keyword">use</span> primitives::hexdisplay::HexDisplay;
+<span class="token keyword">use</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>fmt<span class="token punctuation">:</span><span class="token punctuation">:</span>Write<span class="token punctuation">;</span>
+<span class="token keyword">use</span> primitives<span class="token punctuation">:</span><span class="token punctuation">:</span>hexdisplay<span class="token punctuation">:</span><span class="token punctuation">:</span>HexDisplay<span class="token punctuation">;</span>
 
-<span class="hljs-comment">/// Display the hex value of the smart contract</span>
-<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">show_hex_of_smart_contract</span></span>(raw_bytes: &amp;[<span class="hljs-built_in">u8</span>]) {
-    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> hex_raw_bytes = <span class="hljs-built_in">String</span>::new();
-    <span class="hljs-built_in">write!</span>(hex_raw_bytes, <span class="hljs-string">"0x"</span>);
-    <span class="hljs-keyword">for</span> byte <span class="hljs-keyword">in</span> raw_bytes {
-        <span class="hljs-built_in">write!</span>(hex_raw_bytes, <span class="hljs-string">"{:02x}"</span>, byte);
-    }
-    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"Smart Contract 'Adder' WASM code in hex is: {}"</span>, hex_raw_bytes);
-}
+<span class="token comment">/// Display the hex value of the smart contract</span>
+<span class="token keyword">fn</span> <span class="token function">show_hex_of_smart_contract</span><span class="token punctuation">(</span>raw_bytes<span class="token punctuation">:</span> <span class="token operator">&amp;</span><span class="token punctuation">[</span>u8<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> <span class="token keyword">mut</span> hex_raw_bytes <span class="token operator">=</span> String<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">write!</span><span class="token punctuation">(</span>hex_raw_bytes<span class="token punctuation">,</span> <span class="token string">"0x"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> byte <span class="token keyword">in</span> raw_bytes <span class="token punctuation">{</span>
+        <span class="token function">write!</span><span class="token punctuation">(</span>hex_raw_bytes<span class="token punctuation">,</span> <span class="token string">"{:02x}"</span><span class="token punctuation">,</span> byte<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">println!</span><span class="token punctuation">(</span><span class="token string">"Smart Contract 'Adder' WASM code in hex is: {}"</span><span class="token punctuation">,</span> hex_raw_bytes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
-    <span class="hljs-comment">/// Add 0x-prefix to given genesis block hash.</span>
-    <span class="hljs-keyword">const</span> GENESIS_BLOCK_HASH: &amp;[<span class="hljs-built_in">u8</span>; <span class="hljs-number">32</span>] = &amp;hex!(<span class="hljs-string">"771dfd2593b2f07998e3a1ffb196f78ca583c25641a3bc844d3d6a49405acde0"</span>);
-    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"Genesis Block Hash is: 0x{}
-"</span>, HexDisplay::from(GENESIS_BLOCK_HASH));
+<span class="token keyword">fn</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/// Add 0x-prefix to given genesis block hash.</span>
+    <span class="token keyword">const</span> GENESIS_BLOCK_HASH<span class="token punctuation">:</span> <span class="token operator">&amp;</span><span class="token punctuation">[</span>u8<span class="token punctuation">;</span> <span class="token number">32</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token function">hex!</span><span class="token punctuation">(</span><span class="token string">"771dfd2593b2f07998e3a1ffb196f78ca583c25641a3bc844d3d6a49405acde0"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">println!</span><span class="token punctuation">(</span>"Genesis Block Hash is<span class="token punctuation">:</span> 0x<span class="token punctuation">{</span><span class="token punctuation">}</span>
+"<span class="token punctuation">,</span> HexDisplay<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">from</span><span class="token punctuation">(</span>GENESIS_BLOCK_HASH<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="hljs-comment">/// Load Smart Contract 'Adder' WASM code into a bytes slice</span>
-    <span class="hljs-keyword">const</span> ADDER_INIT_CODE: &amp;<span class="hljs-symbol">'static</span> [<span class="hljs-built_in">u8</span>] = include_bytes!(<span class="hljs-string">"/Users/YOUR_USERNAME/code/src/pepyakin/substrate-contracts-adder/target/wasm32-unknown-unknown/release/substrate_contracts_adder.wasm"</span>);
-    show_hex_of_smart_contract(&amp;ADDER_INIT_CODE);
-}
+    <span class="token comment">/// Load Smart Contract 'Adder' WASM code into a bytes slice</span>
+    <span class="token keyword">const</span> ADDER_INIT_CODE<span class="token punctuation">:</span> <span class="token operator">&amp;</span><span class="token lifetime-annotation symbol">'static</span> <span class="token punctuation">[</span>u8<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">include_bytes!</span><span class="token punctuation">(</span><span class="token string">"/Users/YOUR_USERNAME/code/src/pepyakin/substrate-contracts-adder/target/wasm32-unknown-unknown/release/substrate_contracts_adder.wasm"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">show_hex_of_smart_contract</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>ADDER_INIT_CODE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Run the Rust program</p>
 <pre><code class="hljs css language-shell">cargo run -p deploy-smart-contract-adder
@@ -381,33 +381,33 @@ Smart Contract 'Adder' WASM code in hex is: 0x0061...7079
 <h4><a class="anchor" aria-hidden="true" id="load-in-built-account-alice"></a><a href="#load-in-built-account-alice" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Load In-Built Account 'Alice'</h4>
 <p>We'll update the Rust program to load the account key of an in-built account named Alice, since we'll be using her account to deploy the Smart Contract 'Adder' to the BBQ Birch PoC-3 chain.</p>
 <p>Add additional dependencies to Cargo.toml:</p>
-<pre><code class="hljs css language-toml"><span class="hljs-attr">substrate-primitives</span> = { path = <span class="hljs-string">"../../core/primitives"</span> }
-<span class="hljs-attr">substrate-keyring</span> = { path = <span class="hljs-string">"../../core/keyring"</span> }
-<span class="hljs-attr">node-primitives</span> = { path = <span class="hljs-string">"../../node/primitives"</span> }
+<pre><code class="hljs css language-toml"><span class="token key property">substrate-primitives</span> <span class="token punctuation">=</span> <span class="token punctuation">{</span> <span class="token key property">path</span> <span class="token punctuation">=</span> <span class="token string">"../../core/primitives"</span> <span class="token punctuation">}</span>
+<span class="token key property">substrate-keyring</span> <span class="token punctuation">=</span> <span class="token punctuation">{</span> <span class="token key property">path</span> <span class="token punctuation">=</span> <span class="token string">"../../core/keyring"</span> <span class="token punctuation">}</span>
+<span class="token key property">node-primitives</span> <span class="token punctuation">=</span> <span class="token punctuation">{</span> <span class="token key property">path</span> <span class="token punctuation">=</span> <span class="token string">"../../node/primitives"</span> <span class="token punctuation">}</span>
 </code></pre>
 <p>Add these functions to main.rs</p>
-<pre><code class="hljs css language-rust"><span class="hljs-comment">/// Get Alice's account public key</span>
-<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">get_alice_public_key</span></span>() -&gt; AccountId {
-    AccountId::from(Keyring::Alice.to_raw_public())
-}
+<pre><code class="hljs css language-rust"><span class="token comment">/// Get Alice's account public key</span>
+<span class="token keyword">fn</span> <span class="token function">get_alice_public_key</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> AccountId <span class="token punctuation">{</span>
+    AccountId<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">from</span><span class="token punctuation">(</span>Keyring<span class="token punctuation">:</span><span class="token punctuation">:</span>Alice<span class="token punctuation">.</span><span class="token function">to_raw_public</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
-    ...
+<span class="token keyword">fn</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">...</span>
 
-    <span class="hljs-comment">/// Get Alice's account key</span>
-    <span class="hljs-keyword">let</span> pair = Pair::from(Keyring::from_public(Public::from_raw(get_alice_public_key().clone().into())).unwrap());
-    <span class="hljs-keyword">let</span> alice = AccountId::from(&amp;pair.public().<span class="hljs-number">0</span>[..]);
-    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"Alice's Account Key is: {:?} ({})
-"</span>, alice, keyring::ed25519::Public(alice.<span class="hljs-number">0</span>).to_ss58check());
-}
+    <span class="token comment">/// Get Alice's account key</span>
+    <span class="token keyword">let</span> pair <span class="token operator">=</span> Pair<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">from</span><span class="token punctuation">(</span>Keyring<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">from_public</span><span class="token punctuation">(</span>Public<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">from_raw</span><span class="token punctuation">(</span><span class="token function">get_alice_public_key</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unwrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> alice <span class="token operator">=</span> AccountId<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>pair<span class="token punctuation">.</span><span class="token function">public</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token number">0</span><span class="token punctuation">[</span><span class="token punctuation">..</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">println!</span><span class="token punctuation">(</span>"Alice<span class="token lifetime-annotation symbol">'s</span> Account Key is<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">:</span>?<span class="token punctuation">}</span> <span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+"<span class="token punctuation">,</span> alice<span class="token punctuation">,</span> keyring<span class="token punctuation">:</span><span class="token punctuation">:</span>ed25519<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">Public</span><span class="token punctuation">(</span>alice<span class="token number">.0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">to_ss58check</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="print-an-extrinsic-with-nonce-0-in-encoded-form-where-alice-would-deploy-smart-contract-adder-to-the-substrate-node"></a><a href="#print-an-extrinsic-with-nonce-0-in-encoded-form-where-alice-would-deploy-smart-contract-adder-to-the-substrate-node" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Print an Extrinsic with Nonce 0 in encoded form where Alice would deploy Smart Contract 'Adder' to the Substrate Node</h4>
 <p>We'll create the encoded form of an extrinsic (blob of data) sent from Alice that contains instructions to deploy a certain WASM smart contract.</p>
 <p>Add additional dependencies to Cargo.toml:</p>
-<pre><code class="hljs css language-toml"><span class="hljs-attr">node-runtime</span> = { path = <span class="hljs-string">"../../node/runtime"</span> }
-<span class="hljs-attr">sr-primitives</span> = { path = <span class="hljs-string">"../../core/sr-primitives"</span> }
-<span class="hljs-attr">srml-balances</span> = { path = <span class="hljs-string">"../../srml/balances"</span> }
-<span class="hljs-attr">srml-contract</span> = { path = <span class="hljs-string">"../../srml/contract"</span> }
+<pre><code class="hljs css language-toml"><span class="token key property">node-runtime</span> <span class="token punctuation">=</span> <span class="token punctuation">{</span> <span class="token key property">path</span> <span class="token punctuation">=</span> <span class="token string">"../../node/runtime"</span> <span class="token punctuation">}</span>
+<span class="token key property">sr-primitives</span> <span class="token punctuation">=</span> <span class="token punctuation">{</span> <span class="token key property">path</span> <span class="token punctuation">=</span> <span class="token string">"../../core/sr-primitives"</span> <span class="token punctuation">}</span>
+<span class="token key property">srml-balances</span> <span class="token punctuation">=</span> <span class="token punctuation">{</span> <span class="token key property">path</span> <span class="token punctuation">=</span> <span class="token string">"../../srml/balances"</span> <span class="token punctuation">}</span>
+<span class="token key property">srml-contract</span> <span class="token punctuation">=</span> <span class="token punctuation">{</span> <span class="token key property">path</span> <span class="token punctuation">=</span> <span class="token string">"../../srml/contract"</span> <span class="token punctuation">}</span>
 </code></pre>
 <p>Add the following code to to main.rs that we've explained for you below.</p>
 <p>It creates an unchecked extrinsic that's signed with Alice's public key pair. It's been provided with a Nonce (index) value of <code>0</code>, assuming this will be the first extrinsic that we'll have submitted to the chain using Alice's account. We'll also provide it with a function call to <code>create</code> a contract using the Substrate runtime that has arguments including the funds to send <code>1001</code> to the contract, gas limit to allocate <code>9_000_000</code> to the extrinsic, and the bytes of the Smart Contract 'Adder' as data.</p>
@@ -418,61 +418,61 @@ Smart Contract 'Adder' WASM code in hex is: 0x0061...7079
 <p>We really should be taking advantage of Substrate's <strong>Transaction Eras</strong> so that the transaction is only valid for a certain period of time, as this protects Alice's account from being subjected to malicious replay attacks on the first index if her account is deleted along with its Nonce (enumeration index), perhaps due to insufficient funds, and exposing it to a malicious user who may <a href="https://github.com/paritytech/substrate/wiki/Reclaiming-an-index">reclaim her account</a>.</p>
 </blockquote>
 <p><strong>FIXME</strong> - reuse to avoid duplicate code in <code>show_hex_of_extrinsic</code> and <code>show_hex_of_smart_contract</code></p>
-<pre><code class="hljs css language-rust"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> node_runtime;
-<span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> sr_primitives <span class="hljs-keyword">as</span> runtime_primitives;
-<span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> srml_balances <span class="hljs-keyword">as</span> balances;
-<span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> srml_contract <span class="hljs-keyword">as</span> contract;
+<pre><code class="hljs css language-rust"><span class="token keyword">extern</span> <span class="token keyword">crate</span> node_runtime<span class="token punctuation">;</span>
+<span class="token keyword">extern</span> <span class="token keyword">crate</span> sr_primitives <span class="token keyword">as</span> runtime_primitives<span class="token punctuation">;</span>
+<span class="token keyword">extern</span> <span class="token keyword">crate</span> srml_balances <span class="token keyword">as</span> balances<span class="token punctuation">;</span>
+<span class="token keyword">extern</span> <span class="token keyword">crate</span> srml_contract <span class="token keyword">as</span> contract<span class="token punctuation">;</span>
 
-<span class="hljs-keyword">use</span> node_runtime::{UncheckedExtrinsic, Call, Runtime};
+<span class="token keyword">use</span> node_runtime<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>UncheckedExtrinsic<span class="token punctuation">,</span> Call<span class="token punctuation">,</span> Runtime<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="hljs-comment">/// Display the hex value of the extrinsic</span>
-<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">show_hex_of_extrinsic</span></span>(raw_bytes: &amp;[<span class="hljs-built_in">u8</span>]) {
-  <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> hex_raw_bytes = <span class="hljs-built_in">String</span>::new();
-  <span class="hljs-built_in">write!</span>(hex_raw_bytes, <span class="hljs-string">"0x"</span>);
-  <span class="hljs-keyword">for</span> byte <span class="hljs-keyword">in</span> raw_bytes {
-    <span class="hljs-built_in">write!</span>(hex_raw_bytes, <span class="hljs-string">"{:02x}"</span>, byte);
-  }
-  <span class="hljs-built_in">println!</span>(<span class="hljs-string">"Unchecked Extrinsic with Nonce 0: {}"</span>, hex_raw_bytes);
-}
+<span class="token comment">/// Display the hex value of the extrinsic</span>
+<span class="token keyword">fn</span> <span class="token function">show_hex_of_extrinsic</span><span class="token punctuation">(</span>raw_bytes<span class="token punctuation">:</span> <span class="token operator">&amp;</span><span class="token punctuation">[</span>u8<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> <span class="token keyword">mut</span> hex_raw_bytes <span class="token operator">=</span> String<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">write!</span><span class="token punctuation">(</span>hex_raw_bytes<span class="token punctuation">,</span> <span class="token string">"0x"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> byte <span class="token keyword">in</span> raw_bytes <span class="token punctuation">{</span>
+    <span class="token function">write!</span><span class="token punctuation">(</span>hex_raw_bytes<span class="token punctuation">,</span> <span class="token string">"{:02x}"</span><span class="token punctuation">,</span> byte<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">println!</span><span class="token punctuation">(</span><span class="token string">"Unchecked Extrinsic with Nonce 0: {}"</span><span class="token punctuation">,</span> hex_raw_bytes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">print_extrinsic</span></span>(pair: &amp;Pair, genesis_hash: &amp;[<span class="hljs-built_in">u8</span>; <span class="hljs-number">32</span>], index: <span class="hljs-built_in">u64</span>, func: Call) {
-  <span class="hljs-keyword">let</span> pepa = AccountId::from(&amp;pair.public().<span class="hljs-number">0</span>[..]);
-  <span class="hljs-keyword">let</span> era = Era::immortal();
-  <span class="hljs-keyword">let</span> payload = (index, func.clone(), era, genesis_hash);
-  <span class="hljs-keyword">let</span> signature = pair.sign(&amp;payload.encode()).into();
-  <span class="hljs-keyword">let</span> uxt = UncheckedExtrinsic {
-    signature: <span class="hljs-literal">Some</span>((balances::address::Address::Id(pepa), signature, index, era)),
-    function: func,
-  };
+<span class="token keyword">fn</span> <span class="token function">print_extrinsic</span><span class="token punctuation">(</span>pair<span class="token punctuation">:</span> <span class="token operator">&amp;</span>Pair<span class="token punctuation">,</span> genesis_hash<span class="token punctuation">:</span> <span class="token operator">&amp;</span><span class="token punctuation">[</span>u8<span class="token punctuation">;</span> <span class="token number">32</span><span class="token punctuation">]</span><span class="token punctuation">,</span> index<span class="token punctuation">:</span> u64<span class="token punctuation">,</span> func<span class="token punctuation">:</span> Call<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> pepa <span class="token operator">=</span> AccountId<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>pair<span class="token punctuation">.</span><span class="token function">public</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token number">0</span><span class="token punctuation">[</span><span class="token punctuation">..</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> era <span class="token operator">=</span> Era<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">immortal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> payload <span class="token operator">=</span> <span class="token punctuation">(</span>index<span class="token punctuation">,</span> func<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> era<span class="token punctuation">,</span> genesis_hash<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> signature <span class="token operator">=</span> pair<span class="token punctuation">.</span><span class="token function">sign</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>payload<span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> uxt <span class="token operator">=</span> UncheckedExtrinsic <span class="token punctuation">{</span>
+    signature<span class="token punctuation">:</span> <span class="token function">Some</span><span class="token punctuation">(</span><span class="token punctuation">(</span>balances<span class="token punctuation">:</span><span class="token punctuation">:</span>address<span class="token punctuation">:</span><span class="token punctuation">:</span>Address<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">Id</span><span class="token punctuation">(</span>pepa<span class="token punctuation">)</span><span class="token punctuation">,</span> signature<span class="token punctuation">,</span> index<span class="token punctuation">,</span> era<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    function<span class="token punctuation">:</span> func<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-  show_hex_of_extrinsic(&amp;raw_uxt);
-}
+  <span class="token function">show_hex_of_extrinsic</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>raw_uxt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
-  ...
+<span class="token keyword">fn</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">...</span>
 
-  <span class="hljs-comment">/// Print the Extrinsic with Nonce 0 in encoded form where Alice would deploy Smart Contract "Adder" to the Substrate Node</span>
-  print_extrinsic(
-    &amp;pair,
-    GENESIS_BLOCK_HASH,
-    <span class="hljs-number">0</span>,
-    Call::Contract(contract::Call::create::&lt;Runtime&gt;(<span class="hljs-number">1001</span>.into(), <span class="hljs-number">9_000_000</span>.into(), ADDER_INIT_CODE.to_vec(), <span class="hljs-built_in">Vec</span>::new()))
-  );
-}
+  <span class="token comment">/// Print the Extrinsic with Nonce 0 in encoded form where Alice would deploy Smart Contract "Adder" to the Substrate Node</span>
+  <span class="token function">print_extrinsic</span><span class="token punctuation">(</span>
+    <span class="token operator">&amp;</span>pair<span class="token punctuation">,</span>
+    GENESIS_BLOCK_HASH<span class="token punctuation">,</span>
+    <span class="token number">0</span><span class="token punctuation">,</span>
+    Call<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">Contract</span><span class="token punctuation">(</span>contract<span class="token punctuation">:</span><span class="token punctuation">:</span>Call<span class="token punctuation">:</span><span class="token punctuation">:</span>create<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">&lt;</span>Runtime<span class="token operator">></span><span class="token punctuation">(</span><span class="token number">1001</span><span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">9_000_000</span><span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> ADDER_INIT_CODE<span class="token punctuation">.</span><span class="token function">to_vec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Vec<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="pre-determine-the-contract-address-in-the-substrate-node-s-runtime-that-the-smart-contract-adder-would-be-deployed-to-by-alice-once-submitted"></a><a href="#pre-determine-the-contract-address-in-the-substrate-node-s-runtime-that-the-smart-contract-adder-would-be-deployed-to-by-alice-once-submitted" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pre-Determine the Contract Address in the Substrate Node's Runtime that the Smart Contract 'Adder' would be deployed to by Alice once Submitted</h4>
 <p>We're able to determine upfront what the Contract Address would be in the Substrate Node's Runtime if we were to actually submit an extrinsic containing the Smart Contract 'Adder' sent from Alice. Note that queries do not require a Nonce.</p>
 <p>Add the following code to to main.rs.</p>
-<pre><code class="hljs css language-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
-  ...
+<pre><code class="hljs css language-rust"><span class="token keyword">fn</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">...</span>
 
-  <span class="hljs-comment">/// Pre-Determine upfront the Contract Address in the Substrate Node's Runtime that the Smart Contract 'Adder' would be deployed to by Alice if an extrinsic was submitted</span>
-  <span class="hljs-keyword">let</span> addr = &lt;Runtime <span class="hljs-keyword">as</span> contract::Trait&gt;::DetermineContractAddress::contract_address_for(
-    &amp;ADDER_INIT_CODE,
-    &amp;[],
-    &amp;alice,
-  );
-}
+  <span class="token comment">/// Pre-Determine upfront the Contract Address in the Substrate Node's Runtime that the Smart Contract 'Adder' would be deployed to by Alice if an extrinsic was submitted</span>
+  <span class="token keyword">let</span> addr <span class="token operator">=</span> <span class="token operator">&lt;</span>Runtime <span class="token keyword">as</span> contract<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span>DetermineContractAddress<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">contract_address_for</span><span class="token punctuation">(</span>
+    <span class="token operator">&amp;</span>ADDER_INIT_CODE<span class="token punctuation">,</span>
+    <span class="token operator">&amp;</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token operator">&amp;</span>alice<span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="print-the-extrinsic-with-nonce-1-of-a-call-to-a-method-to-increment-storage-by-7-in-the-smart-contract-adder-at-the-pre-determined-contract-address-using-the-encoded-form-of-the-extrinsic"></a><a href="#print-the-extrinsic-with-nonce-1-of-a-call-to-a-method-to-increment-storage-by-7-in-the-smart-contract-adder-at-the-pre-determined-contract-address-using-the-encoded-form-of-the-extrinsic" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Print the Extrinsic with Nonce 1 of a Call to a method to Increment storage by 7 in the Smart Contract 'Adder' at the Pre-Determined Contract Address using the encoded form of the Extrinsic</h4>
 <p>We'll use the Contract Address that we pre-determined in the previous step to subsequently pre-determine what the response would be if we were to <code>call</code> a function of the Smart Contract 'Adder'.</p>
@@ -485,69 +485,69 @@ Smart Contract 'Adder' WASM code in hex is: 0x0061...7079
 <li>Last four bytes <code>0x07, 0x00, 0x00, 0x00</code> encodes the <code>u32</code> argument provided to the action, which is a value of 7.</li>
 </ul>
 <p>Add the following code to to main.rs.</p>
-<pre><code class="hljs css language-rust"><span class="hljs-comment">/// Print the Extrinsic with Nonce 1 of a Call to a method to Increment storage by 7 in the Smart Contract 'Adder' at the Pre-Determined Contract Address using the encoded form of the Extrinsic</span>
-print_extrinsic(&amp;pair, GENESIS_BLOCK_HASH, <span class="hljs-number">1</span>, Call::Contract(contract::Call::call::&lt;Runtime&gt;(addr, <span class="hljs-number">1001</span>.into(), <span class="hljs-number">9_000_000</span>.into(), <span class="hljs-built_in">vec!</span>[<span class="hljs-number">0x00</span>, <span class="hljs-number">0x07</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x00</span>])));
+<pre><code class="hljs css language-rust"><span class="token comment">/// Print the Extrinsic with Nonce 1 of a Call to a method to Increment storage by 7 in the Smart Contract 'Adder' at the Pre-Determined Contract Address using the encoded form of the Extrinsic</span>
+<span class="token function">print_extrinsic</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>pair<span class="token punctuation">,</span> GENESIS_BLOCK_HASH<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> Call<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">Contract</span><span class="token punctuation">(</span>contract<span class="token punctuation">:</span><span class="token punctuation">:</span>Call<span class="token punctuation">:</span><span class="token punctuation">:</span>call<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">&lt;</span>Runtime<span class="token operator">></span><span class="token punctuation">(</span>addr<span class="token punctuation">,</span> <span class="token number">1001</span><span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">9_000_000</span><span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">vec!</span><span class="token punctuation">[</span><span class="token number">0x00</span><span class="token punctuation">,</span> <span class="token number">0x07</span><span class="token punctuation">,</span> <span class="token number">0x00</span><span class="token punctuation">,</span> <span class="token number">0x00</span><span class="token punctuation">,</span> <span class="token number">0x00</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="print-the-pre-determined-storage-key-of-the-pre-determined-smart-contract-adder-address-in-substrate-database-storage"></a><a href="#print-the-pre-determined-storage-key-of-the-pre-determined-smart-contract-adder-address-in-substrate-database-storage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Print the Pre-Determined Storage Key of the Pre-Determined Smart Contract 'Adder' Address in Substrate Database Storage</h4>
 <p>We'll pre-determine the Storage Key where the Contract Address of the Smart Contract 'Adder' that we pre-determined earlier would be stored in the Substrate Database Storage.</p>
 <p>Add additional dependencies to <strong>Cargo.toml</strong>:</p>
-<pre><code class="hljs css language-toml"><span class="hljs-attr">parity-codec</span> = <span class="hljs-string">"2.1"</span>
+<pre><code class="hljs css language-toml"><span class="token key property">parity-codec</span> <span class="token punctuation">=</span> <span class="token string">"2.1"</span>
 </code></pre>
 <p>Add the following code to to <strong>main.rs</strong>.</p>
-<pre><code class="hljs css language-rust"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">crate</span> parity_codec <span class="hljs-keyword">as</span> codec;
+<pre><code class="hljs css language-rust"><span class="token keyword">extern</span> <span class="token keyword">crate</span> parity_codec <span class="token keyword">as</span> codec<span class="token punctuation">;</span>
 
-<span class="hljs-keyword">use</span> codec::{Encode};
-<span class="hljs-keyword">use</span> primitives::{twox_128, blake2_256};
-<span class="hljs-keyword">use</span> node_primitives::{AccountId};
+<span class="token keyword">use</span> codec<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>Encode<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> primitives<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>twox_128<span class="token punctuation">,</span> blake2_256<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> node_primitives<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>AccountId<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">use</span> primitives::hexdisplay::HexDisplay;
+<span class="token keyword">use</span> primitives<span class="token punctuation">:</span><span class="token punctuation">:</span>hexdisplay<span class="token punctuation">:</span><span class="token punctuation">:</span>HexDisplay<span class="token punctuation">;</span>
 
-<span class="hljs-comment">/// Returns only a first part of the storage key.</span>
-<span class="hljs-comment">///</span>
-<span class="hljs-comment">/// Hashed by 128 bit version of xxHash.</span>
-<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">first_part_of_key</span></span>(k1: AccountId) -&gt; [<span class="hljs-built_in">u8</span>; <span class="hljs-number">16</span>] {
-  <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> raw_prefix = <span class="hljs-built_in">Vec</span>::new();
-  raw_prefix.extend(<span class="hljs-string">b"con:sto:"</span>);
-  raw_prefix.extend(Encode::encode(&amp;k1));
-  twox_128(&amp;raw_prefix)
-}
+<span class="token comment">/// Returns only a first part of the storage key.</span>
+<span class="token comment">///</span>
+<span class="token comment">/// Hashed by 128 bit version of xxHash.</span>
+<span class="token keyword">fn</span> <span class="token function">first_part_of_key</span><span class="token punctuation">(</span>k1<span class="token punctuation">:</span> AccountId<span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token punctuation">[</span>u8<span class="token punctuation">;</span> <span class="token number">16</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> <span class="token keyword">mut</span> raw_prefix <span class="token operator">=</span> Vec<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  raw_prefix<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token string">b"con:sto:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  raw_prefix<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span>Encode<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>k1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">twox_128</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>raw_prefix<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-comment">/// Returns a compound key that consist of the two parts: (prefix, `k1`) and `k2`.</span>
-<span class="hljs-comment">///</span>
-<span class="hljs-comment">/// The first part is hashed by xxHash and then concatenated with a 256 bit version of blake2 hash of `k2`.</span>
-<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">db_key_for_contract_storage</span></span>(k1: AccountId, k2: <span class="hljs-built_in">Vec</span>&lt;<span class="hljs-built_in">u8</span>&gt;) -&gt; <span class="hljs-built_in">Vec</span>&lt;<span class="hljs-built_in">u8</span>&gt; {
-  <span class="hljs-keyword">let</span> first_part = first_part_of_key(k1);
-  <span class="hljs-keyword">let</span> second_part = blake2_256(&amp;Encode::encode(&amp;k2));
+<span class="token comment">/// Returns a compound key that consist of the two parts: (prefix, `k1`) and `k2`.</span>
+<span class="token comment">///</span>
+<span class="token comment">/// The first part is hashed by xxHash and then concatenated with a 256 bit version of blake2 hash of `k2`.</span>
+<span class="token keyword">fn</span> <span class="token function">db_key_for_contract_storage</span><span class="token punctuation">(</span>k1<span class="token punctuation">:</span> AccountId<span class="token punctuation">,</span> k2<span class="token punctuation">:</span> Vec<span class="token operator">&lt;</span>u8<span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">-></span> Vec<span class="token operator">&lt;</span>u8<span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> first_part <span class="token operator">=</span> <span class="token function">first_part_of_key</span><span class="token punctuation">(</span>k1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> second_part <span class="token operator">=</span> <span class="token function">blake2_256</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>Encode<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>k2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> k = <span class="hljs-built_in">Vec</span>::new();
-  k.extend(&amp;first_part);
-  k.extend(&amp;second_part);
+  <span class="token keyword">let</span> <span class="token keyword">mut</span> k <span class="token operator">=</span> Vec<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  k<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>first_part<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  k<span class="token punctuation">.</span><span class="token function">extend</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>second_part<span class="token punctuation">)</span><span class="token punctuation">;</span>
   k
-}
+<span class="token punctuation">}</span>
 
-<span class="hljs-built_in">println!</span>(<span class="hljs-string">"DB Storage Key of Smart Contract code:"</span>);
-<span class="hljs-built_in">println!</span>(<span class="hljs-string">"0x{}"</span>, HexDisplay::from(&amp;db_key_for_contract_storage(addr.clone(), [<span class="hljs-number">1u8</span>; <span class="hljs-number">32</span>].to_vec())));
+<span class="token function">println!</span><span class="token punctuation">(</span><span class="token string">"DB Storage Key of Smart Contract code:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">println!</span><span class="token punctuation">(</span><span class="token string">"0x{}"</span><span class="token punctuation">,</span> HexDisplay<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token function">db_key_for_contract_storage</span><span class="token punctuation">(</span>addr<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1u8</span><span class="token punctuation">;</span> <span class="token number">32</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">to_vec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="submit-the-extrinsic-with-nonce-0-using-json-rpc-and-curl-to-deploy-smart-contract-adder-to-substrate-node"></a><a href="#submit-the-extrinsic-with-nonce-0-using-json-rpc-and-curl-to-deploy-smart-contract-adder-to-substrate-node" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Submit the Extrinsic with Nonce 0 using JSON-RPC and cURL to deploy Smart Contract 'Adder' to Substrate Node</h4>
 <p><strong>FIXME</strong> - do we need actually use JSON-RPC using cURL to deploy the Smart Contract with Nonce 0?</p>
 <p>We'll submit our 1st extrinsic by providing values for members of a JSON-RPC call including method <code>author_submitExtrinsic</code> and params <code>[&quot;&lt;INSERT_EXTRINSIC_NONCE_0_HASH&gt;&quot;]</code> using cURL</p>
-<pre><code class="hljs css language-shell">curl -H 'Content-Type: application/json' \\
-    -d '{ "jsonrpc": "2.0", "method": "author_submitExtrinsic", "params": ["&lt;INSERT_EXTRINSIC_NONCE_0_HASH&gt;"], "id": 0 }' \\
+<pre><code class="hljs css language-shell"><span class="token function">curl</span> -H <span class="token string">'Content-Type: application/json'</span> \\
+    -d <span class="token string">'{ "jsonrpc": "2.0", "method": "author_submitExtrinsic", "params": ["&lt;INSERT_EXTRINSIC_NONCE_0_HASH>"], "id": 0 }'</span> \\
     -vv http://localhost:9933/
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="check-pending-extrinsics-until-extrinsic-with-nonce-0-is-submitted"></a><a href="#check-pending-extrinsics-until-extrinsic-with-nonce-0-is-submitted" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Check Pending Extrinsics until Extrinsic with Nonce 0 is Submitted</h4>
 <p>We learnt earlier that we've got to be quick at querying to see an extrinsic in the 'pending' extrinsics queue before it's submitted. Let's try it again, providing values for members of a JSON-RPC call including method <code>author_pendingExtrinsics</code> and params <code>[]</code> using cURL.</p>
 <p>Initially in the JSON-RPC's response the <code>result</code> value will be an array containing the extrinsic hash as its value <code>[&quot;&lt;INSERT_EXTRINSIC_NONCE_0_HASH&gt;&quot;]</code>. However, we'll repeating the command until the <code>result</code> value is an empty array <code>[]</code> in the value returned of <code>{ &quot;jsonrpc&quot;: &quot;2.0&quot;, &quot;result&quot;: [], &quot;id&quot;: 1 }</code> to confirm that the extrinsic was executed.</p>
-<pre><code class="hljs css language-shell">curl -H 'Content-Type: application/json' \\
-    -d '{ "jsonrpc": "2.0", "method": "author_pendingExtrinsics", "params": [], "id": 0 }' \\
+<pre><code class="hljs css language-shell"><span class="token function">curl</span> -H <span class="token string">'Content-Type: application/json'</span> \\
+    -d <span class="token string">'{ "jsonrpc": "2.0", "method": "author_pendingExtrinsics", "params": [], "id": 0 }'</span> \\
     -vv http://localhost:9933/
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="verify-extrinsic-with-nonce-0-was-submitted"></a><a href="#verify-extrinsic-with-nonce-0-was-submitted" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Verify Extrinsic with Nonce 0 was Submitted</h4>
 <p>We'll verify that the extrinsic with Nonce 0 was actually submitted, such that the Smart Contract 'Adder' was actually deployed.</p>
 <p>Let's create another JSON-RPC call, and provide values for members including method <code>state_getStorage</code> and params <code>[&quot;&lt;INSERT_DB_STORAGE_KEY_OF_SMART_CONTRACT&gt;&quot;]</code> using cURL.</p>
 <p>In the JSON-RPC's response the <code>result</code> value is <code>0x1001000000</code> in the value returned of <code>{ &quot;jsonrpc&quot;: &quot;2.0&quot;, &quot;result&quot;: &quot;0x1001000000, &quot;id&quot;: 0 }</code>. It corresponds to a value of 1 in little endian (LE) format <code>1000000</code>, which is the length of the data, and means that it worked</p>
-<pre><code class="hljs css language-shell">curl -H 'Content-Type: application/json' \\
-    -d '{ "jsonrpc": "2.0", "method": "state_getStorage", "params": ["&lt;INSERT_DB_STORAGE_KEY_OF_SMART_CONTRACT&gt;"], "id": 0 }' \\
+<pre><code class="hljs css language-shell"><span class="token function">curl</span> -H <span class="token string">'Content-Type: application/json'</span> \\
+    -d <span class="token string">'{ "jsonrpc": "2.0", "method": "state_getStorage", "params": ["&lt;INSERT_DB_STORAGE_KEY_OF_SMART_CONTRACT>"], "id": 0 }'</span> \\
     -vv http://localhost:9933/
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="verify-the-current-nonce-of-an-account-id"></a><a href="#verify-the-current-nonce-of-an-account-id" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Verify the Current Nonce of an Account ID</h4>
@@ -556,8 +556,8 @@ print_extrinsic(&amp;pair, GENESIS_BLOCK_HASH, <span class="hljs-number">1</span
 <img src="https://files.readme.io/34fe214-Screen_Shot_2018-11-15_at_00.22.44.png" alt="todo"></p>
 <h4><a class="anchor" aria-hidden="true" id="submit-the-extrinsic-with-nonce-1-using-json-rpc-with-curl"></a><a href="#submit-the-extrinsic-with-nonce-1-using-json-rpc-with-curl" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Submit the Extrinsic with Nonce 1 using JSON-RPC with cURL</h4>
 <p>We'll submit our extrinsic with Nonce 1 by providing values for members of a JSON-RPC call including method <code>author_submitExtrinsic</code> and params <code>[&quot;&lt;INSERT_EXTRINSIC_NONCE_1_HASH&gt;&quot;]</code> using cURL</p>
-<pre><code class="hljs css language-shell">curl -H 'Content-Type: application/json' \\
-    -d '{ "jsonrpc": "2.0", "method": "author_submitExtrinsic", "params": ["&lt;INSERT_EXTRINSIC_NONCE_1_HASH&gt;"], "id": 0 }' \\
+<pre><code class="hljs css language-shell"><span class="token function">curl</span> -H <span class="token string">'Content-Type: application/json'</span> \\
+    -d <span class="token string">'{ "jsonrpc": "2.0", "method": "author_submitExtrinsic", "params": ["&lt;INSERT_EXTRINSIC_NONCE_1_HASH>"], "id": 0 }'</span> \\
     -vv http://localhost:9933/
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="check-pending-extrinsics-until-extrinsic-with-nonce-1-is-submitted"></a><a href="#check-pending-extrinsics-until-extrinsic-with-nonce-1-is-submitted" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Check Pending Extrinsics until Extrinsic with Nonce 1 is Submitted</h4>
@@ -565,8 +565,8 @@ print_extrinsic(&amp;pair, GENESIS_BLOCK_HASH, <span class="hljs-number">1</span
 <h4><a class="anchor" aria-hidden="true" id="verify-extrinsic-with-nonce-1-was-submitted"></a><a href="#verify-extrinsic-with-nonce-1-was-submitted" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Verify Extrinsic with Nonce 1 was Submitted</h4>
 <p>We'll verify that the extrinsic with Nonce 1 was actually submitted, such that the Smart Contract 'Adder' storage was incremented by 7.</p>
 <p>Let's provide values for members of a JSON-RPC call including method <code>state_getStorage</code> and params <code>[&quot;&lt;INSERT_DB_STORAGE_KEY_OF_SMART_CONTRACT&gt;&quot;]</code> using cURL. In the JSON-RPC's response the <code>result</code> value is <code>0x1007000000</code> in the value returned of <code>{ &quot;jsonrpc&quot;: &quot;2.0&quot;, &quot;result&quot;: &quot;0x1007000000, &quot;id&quot;: 0 }</code>. It corresponds to a value of 1 in little endian (LE) format <code>7000000</code>, which means that it successfully incremented the storage by a value of 7.</p>
-<pre><code class="hljs css language-shell">curl -H 'Content-Type: application/json' \\
-    -d '{ "jsonrpc": "2.0", "method": "state_getStorage", "params": ["&lt;INSERT_DB_STORAGE_KEY_OF_SMART_CONTRACT&gt;"], "id": 0 }' \\
+<pre><code class="hljs css language-shell"><span class="token function">curl</span> -H <span class="token string">'Content-Type: application/json'</span> \\
+    -d <span class="token string">'{ "jsonrpc": "2.0", "method": "state_getStorage", "params": ["&lt;INSERT_DB_STORAGE_KEY_OF_SMART_CONTRACT>"], "id": 0 }'</span> \\
     -vv http://localhost:9933/
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="step-8-deploy-and-call-smart-contract-adder-to-substrate-node-using-javascript-promises-and-rxjs"></a><a href="#step-8-deploy-and-call-smart-contract-adder-to-substrate-node-using-javascript-promises-and-rxjs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Step 8: Deploy and Call Smart Contract &quot;Adder&quot; to Substrate Node using JavaScript Promises and RxJS</h2>

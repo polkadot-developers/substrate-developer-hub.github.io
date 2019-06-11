@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Call Enum · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;In Substrate, the &lt;code&gt;Call&lt;/code&gt; enum lists the dispatchable functions exposed by your runtime modules.&lt;/p&gt;
 "/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Call Enum · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;In Substrate, the &lt;code&gt;Call&lt;/code&gt; enum lists the dispatchable functions exposed by your runtime modules.&lt;/p&gt;
-"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><link rel="shortcut icon" href="/img/Substrate-logo.svg"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/en/quickstart/getting-started" target="_self">Docs</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="https://www.parity.io/blog/" target="_self">Blog</a></li><li class=""><a href="/en/community/support" target="_self">Community</a></li><li class=""><a href="https://github.com/substrate-developer-hub/" target="_self">GitHub</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/zh-CN/runtime/types/call-enum">中文</a></li></ul></div></li><script>
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><link rel="shortcut icon" href="/img/Substrate-logo.svg"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/en/quickstart/getting-started" target="_self">Docs</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="https://www.parity.io/blog/" target="_self">Blog</a></li><li class=""><a href="/en/community/support" target="_self">Community</a></li><li class=""><a href="https://github.com/substrate-developer-hub/" target="_self">GitHub</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/zh-CN/runtime/types/call-enum">中文</a></li></ul></div></li><script>
         const languagesMenuItem = document.getElementById("languages-menu");
         const languagesDropDown = document.getElementById("languages-dropdown");
         languagesMenuItem.addEventListener("click", function(event) {
@@ -72,26 +72,26 @@
 <p>Each module will have its own <code>Call</code> enum, which contains the function names and parameters for that module. Then when constructing the runtime, an <em>outer</em> <code>Call</code> enum is generated as an aggregate of each module's specific <code>Call</code>, which references these individual <code>Call</code> types from a per-module enumeration.</p>
 <h2><a class="anchor" aria-hidden="true" id="module-call-enum"></a><a href="#module-call-enum" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Module Call Enum</h2>
 <p>At the individual module level, a <code>Call</code> enum is generated in the <code>decl_module!</code> macro. For example, here is the <code>decl_module!</code> macro defined in the SRML Sudo module (<code>srml-sudo</code>):</p>
-<pre><code class="hljs css language-rust">decl_module! {
-    <span class="hljs-comment">// Simple declaration of the `Module` type. Lets the macro know what its working on.</span>
-    <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Module</span></span>&lt;T: Trait&gt; <span class="hljs-keyword">for</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span> <span class="hljs-keyword">where</span> origin: T::Origin {
-        <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">deposit_event</span></span>&lt;T&gt;() = <span class="hljs-keyword">default</span>;
-        <span class="hljs-comment">/// Authenticates the sudo key and dispatches a function call with `Root` origin</span>
-        <span class="hljs-comment">///</span>
-        <span class="hljs-comment">/// The dispatch origin for this call must be _Signed_.</span>
-        <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sudo</span></span>(origin, proposal: <span class="hljs-built_in">Box</span>&lt;T::Proposal&gt;) {...}
-        <span class="hljs-comment">/// Authenticates the current sudo key and sets the given AccountId as the new sudo key</span>
-        <span class="hljs-comment">///</span>
-        <span class="hljs-comment">/// The dispatch origin for this call must be _Signed_.</span>
-        <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">set_key</span></span>(origin, new: &lt;T::Lookup <span class="hljs-keyword">as</span> StaticLookup&gt;::Source) {...}
-    }
-}
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Simple declaration of the `Module` type. Lets the macro know what its working on.</span>
+    <span class="token keyword">pub</span> <span class="token keyword">struct</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> Call <span class="token keyword">where</span> origin<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>Origin <span class="token punctuation">{</span>
+        <span class="token keyword">fn</span> deposit_event<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> default<span class="token punctuation">;</span>
+        <span class="token comment">/// Authenticates the sudo key and dispatches a function call with `Root` origin</span>
+        <span class="token comment">///</span>
+        <span class="token comment">/// The dispatch origin for this call must be _Signed_.</span>
+        <span class="token keyword">fn</span> <span class="token function">sudo</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> proposal<span class="token punctuation">:</span> Box<span class="token operator">&lt;</span>T<span class="token punctuation">:</span><span class="token punctuation">:</span>Proposal<span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">...</span><span class="token punctuation">}</span>
+        <span class="token comment">/// Authenticates the current sudo key and sets the given AccountId as the new sudo key</span>
+        <span class="token comment">///</span>
+        <span class="token comment">/// The dispatch origin for this call must be _Signed_.</span>
+        <span class="token keyword">fn</span> <span class="token function">set_key</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> new<span class="token punctuation">:</span> <span class="token operator">&lt;</span>T<span class="token punctuation">:</span><span class="token punctuation">:</span>Lookup <span class="token keyword">as</span> StaticLookup<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span>Source<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">...</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>When the <code>decl_module!</code> macro expands, the following <code>Call</code> enum is generated:</p>
-<pre><code class="hljs css language-rust"><span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span>&lt;T: Trait&gt; {
-    sudo(<span class="hljs-built_in">Box</span>&lt;T::Proposal&gt;),
-    set_key(&lt;T::Lookup <span class="hljs-keyword">as</span> StaticLookup&gt;::Source),
-}
+<pre><code class="hljs css language-rust"><span class="token keyword">pub</span> <span class="token keyword">enum</span> Call<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token function">sudo</span><span class="token punctuation">(</span>Box<span class="token operator">&lt;</span>T<span class="token punctuation">:</span><span class="token punctuation">:</span>Proposal<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">set_key</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>T<span class="token punctuation">:</span><span class="token punctuation">:</span>Lookup <span class="token keyword">as</span> StaticLookup<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span>Source<span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Here you can see that it has enumerated the list of dispatchable functions available in the module and the parameters needed to call them. <code>origin</code> is excluded as it is implicitly required for all dispatchable function calls.</p>
 <blockquote>
@@ -100,79 +100,79 @@
 <h2><a class="anchor" aria-hidden="true" id="runtime-_outer_-call-enum"></a><a href="#runtime-_outer_-call-enum" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Runtime <em>Outer</em> Call Enum</h2>
 <p>A <code>Call</code> enum is generated for each module included in your runtime. This enum is then passed to the <code>construct_runtime!</code> macro to generate an <em>outer</em> <code>Call</code> enum which lists all of your runtime modules and references their individual <code>Call</code> objects.</p>
 <p>For example, in the default <code>substrate-node-template</code> runtime provided with Substrate, we find the following declaration:</p>
-<pre><code class="hljs css language-rust">construct_runtime!(
-    <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Runtime</span></span> with Log(InternalLog: DigestItem&lt;Hash, AuthorityId, AuthoritySignature&gt;) <span class="hljs-keyword">where</span>
-        Block = Block,
-        NodeBlock = opaque::Block,
-        UncheckedExtrinsic = UncheckedExtrinsic
-    {
-        System: system::{<span class="hljs-keyword">default</span>, Log(ChangesTrieRoot)},
-        Timestamp: timestamp::{Module, Call, Storage, Config&lt;T&gt;, Inherent},
-        Consensus: consensus::{Module, Call, Storage, Config&lt;T&gt;, Log(AuthoritiesChange), Inherent},
-        Aura: aura::{Module},
-        Indices: indices,
-        Balances: balances,
-        Sudo: sudo,
-        Fees: fees::{Module, Storage, Config&lt;T&gt;, Event&lt;T&gt;},
-        TemplateModule: template::{Module, Call, Storage, Event&lt;T&gt;},
-    }
-);
+<pre><code class="hljs css language-rust"><span class="token function">construct_runtime!</span><span class="token punctuation">(</span>
+    <span class="token keyword">pub</span> <span class="token keyword">enum</span> Runtime with <span class="token function">Log</span><span class="token punctuation">(</span>InternalLog<span class="token punctuation">:</span> DigestItem<span class="token operator">&lt;</span>Hash<span class="token punctuation">,</span> AuthorityId<span class="token punctuation">,</span> AuthoritySignature<span class="token operator">></span><span class="token punctuation">)</span> <span class="token keyword">where</span>
+        Block <span class="token operator">=</span> Block<span class="token punctuation">,</span>
+        NodeBlock <span class="token operator">=</span> opaque<span class="token punctuation">:</span><span class="token punctuation">:</span>Block<span class="token punctuation">,</span>
+        UncheckedExtrinsic <span class="token operator">=</span> UncheckedExtrinsic
+    <span class="token punctuation">{</span>
+        System<span class="token punctuation">:</span> system<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>default<span class="token punctuation">,</span> <span class="token function">Log</span><span class="token punctuation">(</span>ChangesTrieRoot<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        Timestamp<span class="token punctuation">:</span> timestamp<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>Module<span class="token punctuation">,</span> Call<span class="token punctuation">,</span> Storage<span class="token punctuation">,</span> Config<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">,</span> Inherent<span class="token punctuation">}</span><span class="token punctuation">,</span>
+        Consensus<span class="token punctuation">:</span> consensus<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>Module<span class="token punctuation">,</span> Call<span class="token punctuation">,</span> Storage<span class="token punctuation">,</span> Config<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">,</span> <span class="token function">Log</span><span class="token punctuation">(</span>AuthoritiesChange<span class="token punctuation">)</span><span class="token punctuation">,</span> Inherent<span class="token punctuation">}</span><span class="token punctuation">,</span>
+        Aura<span class="token punctuation">:</span> aura<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>Module<span class="token punctuation">}</span><span class="token punctuation">,</span>
+        Indices<span class="token punctuation">:</span> indices<span class="token punctuation">,</span>
+        Balances<span class="token punctuation">:</span> balances<span class="token punctuation">,</span>
+        Sudo<span class="token punctuation">:</span> sudo<span class="token punctuation">,</span>
+        Fees<span class="token punctuation">:</span> fees<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>Module<span class="token punctuation">,</span> Storage<span class="token punctuation">,</span> Config<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">,</span> Event<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        TemplateModule<span class="token punctuation">:</span> template<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>Module<span class="token punctuation">,</span> Call<span class="token punctuation">,</span> Storage<span class="token punctuation">,</span> Event<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <blockquote>
 <p>Note that if you do not include any types with your module declaration, it uses the <a href="https://docs.substrate.dev/docs/construct_runtime#section-no-types-or-default-">default set</a>, which includes <code>Call</code>.</p>
 </blockquote>
 <p>This will then generate the following <em>outer</em> <code>Call</code> enum:</p>
-<pre><code class="hljs css language-rust"><span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Call</span></span> {
-    Timestamp(::srml_support::dispatch::CallableCallFor&lt;Timestamp&gt;),
-    Consensus(::srml_support::dispatch::CallableCallFor&lt;Consensus&gt;),
-    Indices(::srml_support::dispatch::CallableCallFor&lt;Indices&gt;),
-    Balances(::srml_support::dispatch::CallableCallFor&lt;Balances&gt;),
-    Sudo(::srml_support::dispatch::CallableCallFor&lt;Sudo&gt;),
-    TemplateModule(::srml_support::dispatch::CallableCallFor&lt;TemplateModule&gt;),
-}
+<pre><code class="hljs css language-rust"><span class="token keyword">pub</span> <span class="token keyword">enum</span> Call <span class="token punctuation">{</span>
+    <span class="token function">Timestamp</span><span class="token punctuation">(</span><span class="token punctuation">:</span><span class="token punctuation">:</span>srml_support<span class="token punctuation">:</span><span class="token punctuation">:</span>dispatch<span class="token punctuation">:</span><span class="token punctuation">:</span>CallableCallFor<span class="token operator">&lt;</span>Timestamp<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">Consensus</span><span class="token punctuation">(</span><span class="token punctuation">:</span><span class="token punctuation">:</span>srml_support<span class="token punctuation">:</span><span class="token punctuation">:</span>dispatch<span class="token punctuation">:</span><span class="token punctuation">:</span>CallableCallFor<span class="token operator">&lt;</span>Consensus<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">Indices</span><span class="token punctuation">(</span><span class="token punctuation">:</span><span class="token punctuation">:</span>srml_support<span class="token punctuation">:</span><span class="token punctuation">:</span>dispatch<span class="token punctuation">:</span><span class="token punctuation">:</span>CallableCallFor<span class="token operator">&lt;</span>Indices<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">Balances</span><span class="token punctuation">(</span><span class="token punctuation">:</span><span class="token punctuation">:</span>srml_support<span class="token punctuation">:</span><span class="token punctuation">:</span>dispatch<span class="token punctuation">:</span><span class="token punctuation">:</span>CallableCallFor<span class="token operator">&lt;</span>Balances<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">Sudo</span><span class="token punctuation">(</span><span class="token punctuation">:</span><span class="token punctuation">:</span>srml_support<span class="token punctuation">:</span><span class="token punctuation">:</span>dispatch<span class="token punctuation">:</span><span class="token punctuation">:</span>CallableCallFor<span class="token operator">&lt;</span>Sudo<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">TemplateModule</span><span class="token punctuation">(</span><span class="token punctuation">:</span><span class="token punctuation">:</span>srml_support<span class="token punctuation">:</span><span class="token punctuation">:</span>dispatch<span class="token punctuation">:</span><span class="token punctuation">:</span>CallableCallFor<span class="token operator">&lt;</span>TemplateModule<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>The <em>outer</em> <code>Call</code> enum has collected all the modules from the <code>construct_runtime!</code> macro that expose a <code>Call</code> enum, since only such modules expose dispatchable functions. Hence, it defines the full set of exposed dispatchable functions in your blockchain.</p>
 <h2><a class="anchor" aria-hidden="true" id="exposing-call-via-the-metadata-endpoint"></a><a href="#exposing-call-via-the-metadata-endpoint" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Exposing Call via the Metadata Endpoint</h2>
 <p>Finally, when you run a Substrate node, it will automatically generate a <code>getMetadata</code> endpoint containing the objects generated by your runtime.</p>
 <p>For example, the SRML Sudo module (<code>srml-sudo</code>) lists the following <code>calls</code> when the response of the <code>getMetadata</code> API is converted to JSON.</p>
-<pre><code class="hljs css language-json">"modules": [
-    {
-        "name": "sudo",
-        "prefix": "Sudo",
-        "calls": [
-            {
-                "name": "sudo",
-                "args": [
-                    {
-                        "name": "proposal",
-                        "type": "Proposal"
-                    }
-                ],
-                "docs": [
-                    "Authenticates the sudo key and dispatches a function call with `Root` origin",
-                    "",
-                    "The dispatch origin for this call must be _Signed_."
-                ]
-            },
-            {
-                "name": "set_key",
-                "args": [
-                    {
-                        "name": "new",
-                        "type": "Address"
-                    }
-                ],
-                "docs": [
-                    "Authenticates the current sudo key and sets the given AccountId as the new sudo key",
-                    "",
-                    "The dispatch origin for this call must be _Signed_."
-                ]
-            }
-        ],
+<pre><code class="hljs css language-json"><span class="token property">"modules"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+        <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"sudo"</span><span class="token punctuation">,</span>
+        <span class="token property">"prefix"</span><span class="token operator">:</span> <span class="token string">"Sudo"</span><span class="token punctuation">,</span>
+        <span class="token property">"calls"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"sudo"</span><span class="token punctuation">,</span>
+                <span class="token property">"args"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"proposal"</span><span class="token punctuation">,</span>
+                        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"Proposal"</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">"docs"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                    <span class="token string">"Authenticates the sudo key and dispatches a function call with `Root` origin"</span><span class="token punctuation">,</span>
+                    <span class="token string">""</span><span class="token punctuation">,</span>
+                    <span class="token string">"The dispatch origin for this call must be _Signed_."</span>
+                <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"set_key"</span><span class="token punctuation">,</span>
+                <span class="token property">"args"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"new"</span><span class="token punctuation">,</span>
+                        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"Address"</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">"docs"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                    <span class="token string">"Authenticates the current sudo key and sets the given AccountId as the new sudo key"</span><span class="token punctuation">,</span>
+                    <span class="token string">""</span><span class="token punctuation">,</span>
+                    <span class="token string">"The dispatch origin for this call must be _Signed_."</span>
+                <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
         ...
-    },
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
     ...
-]
+<span class="token punctuation">]</span>
 </code></pre>
 <p>This may then be used to generate JavaScript functions which allow you to dispatch calls to the runtime.</p>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/runtime/macros/decl_storage"><span class="arrow-prev">← </span><span>runtime/macros/decl_storage</span></a><a class="docs-next button" href="/docs/en/runtime/types/event-enum"><span>Event Enum</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#module-call-enum">Module Call Enum</a></li><li><a href="#runtime-_outer_-call-enum">Runtime <em>Outer</em> Call Enum</a></li><li><a href="#exposing-call-via-the-metadata-endpoint">Exposing Call via the Metadata Endpoint</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/quickstart/getting-started">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="https://crates.parity.io">Reference Docs</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io">GitHub</a><a class="github-button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 Parity Technologies</section></footer></div></body></html>

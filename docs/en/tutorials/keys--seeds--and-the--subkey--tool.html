@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Keys, Seeds, and the `subkey` Tool · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Subkey is a key-generation utility that is developed alongside substrate. Its main features are generating Ed25519 and Sr25519 key pairs, encoding SS58 addresses, and restoring keys from seeds. This guide serves as an introduction and tour of the tool. Once you are basically familiar with &lt;code&gt;subkey&lt;/code&gt;, it will be more time-efficient to refresh your memory by looking at &lt;code&gt;subkey help&lt;/code&gt; than by re-reading this intro.&lt;/p&gt;
 "/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Keys, Seeds, and the `subkey` Tool · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;Subkey is a key-generation utility that is developed alongside substrate. Its main features are generating Ed25519 and Sr25519 key pairs, encoding SS58 addresses, and restoring keys from seeds. This guide serves as an introduction and tour of the tool. Once you are basically familiar with &lt;code&gt;subkey&lt;/code&gt;, it will be more time-efficient to refresh your memory by looking at &lt;code&gt;subkey help&lt;/code&gt; than by re-reading this intro.&lt;/p&gt;
-"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><link rel="shortcut icon" href="/img/Substrate-logo.svg"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/en/quickstart/getting-started" target="_self">Docs</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="https://www.parity.io/blog/" target="_self">Blog</a></li><li class=""><a href="/en/community/support" target="_self">Community</a></li><li class=""><a href="https://github.com/substrate-developer-hub/" target="_self">GitHub</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/zh-CN/tutorials/keys--seeds--and-the--subkey--tool">中文</a></li></ul></div></li><script>
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/Substrate-logo.svg"/><link rel="shortcut icon" href="/img/Substrate-logo.svg"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/en/quickstart/getting-started" target="_self">Docs</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="https://www.parity.io/blog/" target="_self">Blog</a></li><li class=""><a href="/en/community/support" target="_self">Community</a></li><li class=""><a href="https://github.com/substrate-developer-hub/" target="_self">GitHub</a></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/zh-CN/tutorials/keys--seeds--and-the--subkey--tool">中文</a></li></ul></div></li><script>
         const languagesMenuItem = document.getElementById("languages-menu");
         const languagesDropDown = document.getElementById("languages-dropdown");
         languagesMenuItem.addEventListener("click", function(event) {
@@ -72,7 +72,7 @@
 <h1><a class="anchor" aria-hidden="true" id="building-the-subkey-binary"></a><a href="#building-the-subkey-binary" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Building the Subkey Binary</h1>
 <h2><a class="anchor" aria-hidden="true" id="one-line-install"></a><a href="#one-line-install" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>One-line Install</h2>
 <p>The Subkey binary, <code>subkey</code>, is also installed along with the <a href="https://docs.substrate.dev/docs/getting-started">Substrate installation</a>. If you want to play with just subkey (and not substrate), you can compile and install it with this one-line command.</p>
-<pre><code class="hljs css language-bash">cargo install --force --git https://github.com/paritytech/substrate subkey
+<pre><code class="hljs css language-bash">cargo <span class="token function">install</span> --force --git https://github.com/paritytech/substrate subkey
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="compiling-with-cargo"></a><a href="#compiling-with-cargo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Compiling with Cargo</h2>
 <p>If you already have the <a href="https://github.com/paritytech/substrate">Substrate repository</a> cloned, you can build it with</p>
@@ -83,10 +83,10 @@
 <p>Generate a Sr25519 key by running:</p>
 <pre><code class="hljs css language-bash">satoshi@jambox$ subkey generate
 
-Phrase `mosquito sketch face supreme side tourist monkey damp idea warm luggage better` is account:
+Phrase <span class="token variable"><span class="token variable">`</span>mosquito sketch face supreme side tourist monkey damp idea warm luggage better<span class="token variable">`</span></span> is account:
   Seed: 0xe35fdbf9b9ddf8e54e0c1d49fe50561a5a7fd31728450f7a9f8663820c09401e
-  Public key (hex): 0xec57cf6230ce7e675123d056eda9ab331aa6fb3ba422c5fd194721ddc6b69a14
-  Address (SS58): 5HQbF3hCugq71XdCk43FcxVqduhu7JojGiBfzD8iEFW22kiy
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0xec57cf6230ce7e675123d056eda9ab331aa6fb3ba422c5fd194721ddc6b69a14
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5HQbF3hCugq71XdCk43FcxVqduhu7JojGiBfzD8iEFW22kiy
 </code></pre>
 <p>Subkey has just consumed some entropy and generated a cryptographic SR25519 key-pair. The output tells us a few properties of our key.</p>
 <p>Phrase (aka <strong>Mnemonic Phrase</strong>) - A series of English words that encodes the seed in a more human-friendly way.
@@ -98,16 +98,16 @@ Address (<strong>Public Address</strong>) - An SS58 hash based on the public key
 <p>The inspect command recalculates a key-pair's public key and public address given it's seed. This shows that it is sufficient to backup the seed alone.</p>
 <pre><code class="hljs css language-bash">satoshi@jambox$ subkey inspect 0xe35fdbf9b9ddf8e54e0c1d49fe50561a5a7fd31728450f7a9f8663820c09401e
 
-Secret Key URI `0xe35fdbf9b9ddf8e54e0c1d49fe50561a5a7fd31728450f7a9f8663820c09401e` is account:
-  Public key (hex): 0xec57cf6230ce7e675123d056eda9ab331aa6fb3ba422c5fd194721ddc6b69a14
-  Address (SS58): 5HQbF3hCugq71XdCk43FcxVqduhu7JojGiBfzD8iEFW22kiy
+Secret Key URI <span class="token variable"><span class="token variable">`</span>0xe35fdbf9b9ddf8e54e0c1d49fe50561a5a7fd31728450f7a9f8663820c09401e<span class="token variable">`</span></span> is account:
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0xec57cf6230ce7e675123d056eda9ab331aa6fb3ba422c5fd194721ddc6b69a14
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5HQbF3hCugq71XdCk43FcxVqduhu7JojGiBfzD8iEFW22kiy
 </code></pre>
 <p>You can also inspect the key by it's mnemonic phrase. Mind the quotes.</p>
-<pre><code class="hljs css language-bash">satoshi@jambox$ subkey inspect <span class="hljs-string">"mosquito sketch face supreme side tourist monkey damp idea warm luggage better"</span>
+<pre><code class="hljs css language-bash">satoshi@jambox$ subkey inspect <span class="token string">"mosquito sketch face supreme side tourist monkey damp idea warm luggage better"</span>
 
-Secret Key URI `mosquito sketch face supreme side tourist monkey damp idea warm luggage better` is account:
-  Public key (hex): 0xec57cf6230ce7e675123d056eda9ab331aa6fb3ba422c5fd194721ddc6b69a14
-  Address (SS58): 5HQbF3hCugq71XdCk43FcxVqduhu7JojGiBfzD8iEFW22kiy
+Secret Key URI <span class="token variable"><span class="token variable">`</span>mosquito sketch face supreme side tourist monkey damp idea warm luggage better<span class="token variable">`</span></span> is account:
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0xec57cf6230ce7e675123d056eda9ab331aa6fb3ba422c5fd194721ddc6b69a14
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5HQbF3hCugq71XdCk43FcxVqduhu7JojGiBfzD8iEFW22kiy
 </code></pre>
 <p>Mnemonic phrases are cool. They were first introduced in Bitcoin (see <a href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki">BIP39</a>) and make it much easier to manually write down your key. They also allow cool things like &quot;memorizing&quot; your life savings.</p>
 <h2><a class="anchor" aria-hidden="true" id="external-address-format-ss58"></a><a href="#external-address-format-ss58" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>External Address Format (SS58)</h2>
@@ -124,55 +124,55 @@ Secret Key URI `mosquito sketch face supreme side tourist monkey damp idea warm 
 <h2><a class="anchor" aria-hidden="true" id="ed25519-keys"></a><a href="#ed25519-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Ed25519 keys</h2>
 <p>So far we've been using Sr25519 keys. Substrate uses those keys in most places, which is why they are the default for <code>subkey</code>. Ed25519 keys may be generated by providing the <code>-e</code> or <code>--ed25519</code> flag (see <code>subkey help</code>):</p>
 <pre><code class="hljs css language-bash">satoshi@jambox:~$ subkey -e generate
-Phrase `kick raw cram palm fiction term two salt allow document hidden mix` is account:
+Phrase <span class="token variable"><span class="token variable">`</span>kick raw cram palm fiction term two salt allow document hidden mix<span class="token variable">`</span></span> is account:
   Seed: 0x8167e5997afeed9886bc88ebb94d8905b330540bfa4624dcc6d0e983171e67ed
-  Public key (hex): 0x61319aa2d62a87bb1adbe18ab436bc60ab949dea07a1b7859deb13bdfbb85f53
-  Address (SS58): 5EG9Ej4JPcb1YHn8R2ai5p7EApwTyXMVYiCzueY7yRLwGEAf
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x61319aa2d62a87bb1adbe18ab436bc60ab949dea07a1b7859deb13bdfbb85f53
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5EG9Ej4JPcb1YHn8R2ai5p7EApwTyXMVYiCzueY7yRLwGEAf
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="password-protected-keys"></a><a href="#password-protected-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Password Protected keys</h2>
 <p>You can put a password on a key by using the <code>--password</code> option (in the example below the password is &quot;pass&quot; followed by the <code>generate</code> subcommand, see <code>subkey help</code>). The output looks exactly the same as before.</p>
 <pre><code class="hljs css language-bash">satoshi@jambox:~$ subkey --password pass generate
 
-Phrase `certain notable bacon broken reflect fragile accuse march bamboo isolate call gate` is account:
+Phrase <span class="token variable"><span class="token variable">`</span>certain notable bacon broken reflect fragile accuse march bamboo isolate call gate<span class="token variable">`</span></span> is account:
   Seed: 0xf4e6c7f224705dc0c803f29a7f721238a23489f4bedd70e9faa839e0a1d1a392
-  Public key (hex): 0x229b59387b74aa45eeda235b461b655b84f9694a3e280775d5438d64d477673a
-  Address (SS58): 5Cr5dgyZD16Uc6rDNHs494wNCEwD4wfjQvUGG6wdma9EMib8
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x229b59387b74aa45eeda235b461b655b84f9694a3e280775d5438d64d477673a
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5Cr5dgyZD16Uc6rDNHs494wNCEwD4wfjQvUGG6wdma9EMib8
 </code></pre>
 <p>Indeed we can still restore the key with nothing but its seed. This shows that even if the key is generated with a password, the seed alone <em>still</em> holds all the information about the key.</p>
 <pre><code class="hljs css language-bash">satoshi@jambox:~$ subkey inspect 0xf4e6c7f224705dc0c803f29a7f721238a23489f4bedd70e9faa839e0a1d1a392
 
-Secret Key URI `0xf4e6c7f224705dc0c803f29a7f721238a23489f4bedd70e9faa839e0a1d1a392` is account:
-  Public key (hex): 0x229b59387b74aa45eeda235b461b655b84f9694a3e280775d5438d64d477673a
-  Address (SS58): 5Cr5dgyZD16Uc6rDNHs494wNCEwD4wfjQvUGG6wdma9EMib8
+Secret Key URI <span class="token variable"><span class="token variable">`</span>0xf4e6c7f224705dc0c803f29a7f721238a23489f4bedd70e9faa839e0a1d1a392<span class="token variable">`</span></span> is account:
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x229b59387b74aa45eeda235b461b655b84f9694a3e280775d5438d64d477673a
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5Cr5dgyZD16Uc6rDNHs494wNCEwD4wfjQvUGG6wdma9EMib8
 </code></pre>
 <p>But notice what happens when we try to restore the key from the mnemonic phrase. Although the output looks <em>similar</em> it is <em>not</em> identical. We are restoring a completely different key-pair. Notice the public key and address don't match.</p>
-<pre><code class="hljs css language-bash">satoshi@jambox$ subkey inspect <span class="hljs-string">"certain notable bacon broken reflect fragile accuse march bamboo isolate call gate"</span>
+<pre><code class="hljs css language-bash">satoshi@jambox$ subkey inspect <span class="token string">"certain notable bacon broken reflect fragile accuse march bamboo isolate call gate"</span>
 
-Secret Key URI `certain notable bacon broken reflect fragile accuse march bamboo isolate call gate` is account:
-  Public key (hex): 0x08898f67df39ba5a5a9f6fd1ed1273cabce440851b537a07fad152f85649ce66
-  Address (SS58): 5CFu6zbvJ9Z49w4RXM3FqrkmseSi5aFAUVbvW6jRnZzsZjYG
+Secret Key URI <span class="token variable"><span class="token variable">`</span>certain notable bacon broken reflect fragile accuse march bamboo isolate call gate<span class="token variable">`</span></span> is account:
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x08898f67df39ba5a5a9f6fd1ed1273cabce440851b537a07fad152f85649ce66
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5CFu6zbvJ9Z49w4RXM3FqrkmseSi5aFAUVbvW6jRnZzsZjYG
 </code></pre>
 <p>This is because the password we supplied when generating the key-pair is necessary to restore the key from the mnemonic phrase.</p>
-<pre><code class="hljs css language-bash">satoshi@jambox$ subkey -p pass inspect <span class="hljs-string">"certain notable bacon broken reflect fragile accuse march bamboo isolate call gate"</span>
+<pre><code class="hljs css language-bash">satoshi@jambox$ subkey -p pass inspect <span class="token string">"certain notable bacon broken reflect fragile accuse march bamboo isolate call gate"</span>
 
-Secret Key URI `certain notable bacon broken reflect fragile accuse march bamboo isolate call gate` is account:
-  Public key (hex): 0x229b59387b74aa45eeda235b461b655b84f9694a3e280775d5438d64d477673a
-  Address (SS58): 5Cr5dgyZD16Uc6rDNHs494wNCEwD4wfjQvUGG6wdma9EMib8
+Secret Key URI <span class="token variable"><span class="token variable">`</span>certain notable bacon broken reflect fragile accuse march bamboo isolate call gate<span class="token variable">`</span></span> is account:
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x229b59387b74aa45eeda235b461b655b84f9694a3e280775d5438d64d477673a
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5Cr5dgyZD16Uc6rDNHs494wNCEwD4wfjQvUGG6wdma9EMib8
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="well-known-keys"></a><a href="#well-known-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Well-known keys</h2>
 <p>If you've worked with Substrate previously, you likely encountered the ubiquitous accounts for Alice, Bob, and their friends. These keys are not at all private, but are useful for playing with Substrate without always generating new key-pairs. You can inspect these &quot;well-known&quot; keys with <code>subkey</code>.</p>
 <pre><code class="hljs css language-bash">satoshi@jambox$ subkey inspect //Alice
 
-Secret Key URI `//Alice` is account:
-  Public key (hex): 0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
-  Address (SS58): 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+Secret Key URI <span class="token variable"><span class="token variable">`</span>//Alice<span class="token variable">`</span></span> is account:
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
 </code></pre>
 <p>There is nothing special about the name Alice. You can do the same trick with your own name. But remember that keys like this are <em>not</em> secure, and are only useful for experimenting.</p>
 <pre><code class="hljs css language-bash">satoshi@jambox$ subkey inspect //Joshy
 
-Secret Key URI `//Joshy` is account:
-  Public key (hex): 0x006f5081d495811a16724b317fcd70b8e42c9317da2ba1f5c36756a41fadec67
-  Address (SS58): 5C5GvaAWfruRLnCJYgJrut1JovGeMMXV2VzXeiua7f691J9R
+Secret Key URI <span class="token variable"><span class="token variable">`</span>//Joshy<span class="token variable">`</span></span> is account:
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x006f5081d495811a16724b317fcd70b8e42c9317da2ba1f5c36756a41fadec67
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5C5GvaAWfruRLnCJYgJrut1JovGeMMXV2VzXeiua7f691J9R
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="more-to-explore"></a><a href="#more-to-explore" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>More to Explore</h2>
 <p><code>subkey</code> is getting more robust all the time. Recently it has added features to sign messages, verify signatures over messages, and create signed token transfer transactions. Learn more by running <code>subkey help</code>.</p>
