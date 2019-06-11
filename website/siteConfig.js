@@ -17,18 +17,20 @@
 // See https://docusaurus.io/docs/site-config for all the possible
 // site configuration options.
 
-// List of projects/orgs using your project for the users page.
-const users = [
+// List of projects listed on the "users" page.
+
+// INSTRUCTIONS:
+// If you would like to add your name to this list, please open a Pull Request.
+// Include a transparent icon with the same width/height (square), in PNG or SVG format.
+// Caption should be the name you want to appear to people viewing the page
+// Link should include some reference to Substrate, whether it be an announcement,
+// GitHub, or a landing page which highlights that you are using Substrate.
+
+const usersList = [
   {
-    caption: 'ChainLink',
-    image: '/img/users/chainlink.png',
-    infoLink: 'https://medium.com/web3foundation/web3-foundation-and-chainlink-announce-collaboration-df55ed462a3a',
-    pinned: true,
-  },
-  {
-    caption: 'ChainX',
-    image: '/img/users/chainx.png',
-    infoLink: 'https://medium.com/web3foundation/web3-foundation-and-chainx-announce-collaboration-6c70564d7272',
+    caption: 'Edgeware',
+    image: '/img/users/edgeware.png',
+    infoLink: 'https://edgewa.re/',
     pinned: true,
   },
   {
@@ -44,15 +46,9 @@ const users = [
     pinned: true,
   },
   {
-    caption: 'Ocean Protocol',
-    image: '/img/users/oceanprotocol.svg',
-    infoLink: 'https://blog.oceanprotocol.com/decentralized-web-summit-2018-highlights-a6376edefb01',
-    pinned: true,
-  },
-  {
-    caption: 'Aragon',
-    image: '/img/users/aragon.svg',
-    infoLink: 'https://twitter.com/rzurrer/status/1090201496753504259',
+    caption: 'ChainX',
+    image: '/img/users/chainx.png',
+    infoLink: 'https://medium.com/web3foundation/web3-foundation-and-chainx-announce-collaboration-6c70564d7272',
     pinned: true,
   },
   {
@@ -62,22 +58,28 @@ const users = [
     pinned: true,
   },
   {
-    caption: 'iExec',
-    image: '/img/users/iexec.png',
-    infoLink: 'https://medium.com/iex-ec/dev-letter-24-sidechain-approach-7cab5de2e54a',
+    caption: 'Ocean Protocol',
+    image: '/img/users/oceanprotocol.svg',
+    infoLink: 'https://blog.oceanprotocol.com/decentralized-web-summit-2018-highlights-a6376edefb01',
     pinned: true,
   },
   {
-    caption: 'Edgeware',
-    image: '/img/users/edgeware.png',
-    infoLink: 'https://edgewa.re/',
+    caption: 'ChainLink',
+    image: '/img/users/chainlink.png',
+    infoLink: 'https://medium.com/web3foundation/web3-foundation-and-chainlink-announce-collaboration-df55ed462a3a',
     pinned: true,
+  },
+  {
+    caption: 'iExec',
+    image: '/img/users/iexec.png',
+    infoLink: 'https://medium.com/iex-ec/dev-letter-24-sidechain-approach-7cab5de2e54a',
+    pinned: false,
   },
   {
     caption: 'LayerX',
     image: '/img/users/layerx.png',
     infoLink: 'https://medium.com/layerx/announcing-zerochain-5b08e158355d',
-    pinned: true,
+    pinned: false,
   },
   {
     caption: 'Robonomics',
@@ -89,81 +91,111 @@ const users = [
     caption: 'MXC',
     image: '/img/users/mxc.png',
     infoLink: 'https://www.mxc.org/',
-    pinned: true,
+    pinned: false,
   },
   {
     caption: 'Katallasos',
     image: '/img/users/katallassos.png',
     infoLink: 'https://polkadot.network/katallassos-moves-towards-a-polkadot-parachain/',
-    pinned: true,
+    pinned: false,
   },
   {
     caption: 'Joystream',
     image: '/img/users/joystream.svg',
     infoLink: 'https://blog.joystream.org/sparta/',
-    pinned: true,
+    pinned: false,
   },
   {
     caption: 'Ladder Network',
     image: '/img/users/laddernetwork.png',
     infoLink: 'http://laddernetwork.io/',
-    pinned: true,
+    pinned: false,
   },
   {
     caption: 'Asure Network',
     image: '/img/users/asurenetwork.svg',
     infoLink: 'https://www.asure.network/',
-    pinned: true,
+    pinned: false,
   },
   {
     caption: 'Kilt Protocol',
     image: '/img/users/kiltprotocol.png',
     infoLink: 'https://polkadot.network/katallassos-moves-towards-a-polkadot-parachain/',
-    pinned: true,
+    pinned: false,
   },
   {
     caption: 'PACTCare Starlog',
     image: '/img/users/starlog.png',
     infoLink: 'https://github.com/PACTCare/Starlog',
-    pinned: true,
+    pinned: false,
   },
   {
     caption: '0x Protocol',
     image: '/img/users/0xprotocol.png',
     infoLink: 'https://twitter.com/recmo/status/1081637877027549190?s=09',
-    pinned: true,
+    pinned: false,
   },
   {
     caption: 'Blink Network',
     image: '/img/users/blinknetwork.png',
     infoLink: 'https://polkadot.network/katallassos-moves-towards-a-polkadot-parachain/',
-    pinned: true,
+    pinned: false,
   },
   {
     caption: 'Akropolis',
     image: '/img/users/akropolis.png',
     infoLink: 'https://medium.com/akropolis/hello-world-ae16b654ba71',
-    pinned: true,
+    pinned: false,
   },
   {
     caption: 'Staked Technologies',
     image: '/img/users/plasm.png',
     infoLink: 'https://github.com/stakedtechnologies/Plasm',
-    pinned: true,
+    pinned: false,
   },
   {
     caption: 'Speckle OS',
     image: '/img/users/speckleos.png',
     infoLink: 'https://medium.com/polkadot-network/dots-and-speckle-paving-the-way-forward-for-the-new-web-691beed50f1a',
-    pinned: true,
+    pinned: false,
   },
   {
     caption: 'Agora.Trade',
     image: '/img/users/agoratrade.png',
     infoLink: 'https://agora.trade/',
+    pinned: false,
+  },
+  {
+    caption: 'Clovyr',
+    image: '/img/users/clovyr.svg',
+    infoLink: 'https://clovyr.io/',
+    pinned: true,
+  },
+  {
+    caption: 'Aragon',
+    image: '/img/users/aragon.svg',
+    infoLink: 'https://twitter.com/rzurrer/status/1090201496753504259',
+    pinned: false,
+  },
+  {
+    caption: 'Melon Protocol',
+    image: '/img/users/melonprotocol.png',
+    infoLink: 'https://medium.com/melonprotocol',
     pinned: true,
   },
 ];
+
+function alphabetize( a, b ) {
+  if ( a.caption.toUpperCase() < b.caption.toUpperCase() ){
+    return -1;
+  }
+  if ( a.caption.toUpperCase() > b.caption.toUpperCase() ){
+    return 1;
+  }
+  return 0;
+}
+
+const users = usersList.sort(alphabetize);
 
 const siteConfig = {
   title: 'Substrate Developer Hub', // Title for your website.
