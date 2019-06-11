@@ -6,7 +6,7 @@ title: "Installing Substrate"
 
 If you're running Mac OS, Arch, or a Debian-based OS like Ubuntu, then **with a good internet connection** run this simple one-liner:
 
-```shell
+```bash
 curl https://getsubstrate.io -sSf | bash
 ```
 
@@ -24,7 +24,7 @@ If you get that, then you're ready to proceed!
 
 If you plan to create your own substrate node, and don't need to compile the entire standard node, you may run the faster version of the installation.
 
-```shell
+```bash
 curl https://getsubstrate.io -sSf | bash -- -s --fast
 ```
 

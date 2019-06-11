@@ -17,14 +17,14 @@ We'll be using code from the following Parity Github repositories:
 
 So we'll start by creating subdirectories to organise the code that we'll be downloading from them. We'll namespace them to match the Github usernames:
 
-```shell
+```bash
 mkdir -p ~/code/paritytech ~/code/polkadot-js
 ```
 
 ### Setup Substrate Node and Substrate UI
 
 Run the following command to install Substrate.
-```shell
+```bash
 cd ~/code/paritytech;
 curl https://getsubstrate.io -sSf | sh
 ```
@@ -36,7 +36,7 @@ You will also need to set up a few more repositories into your working folder wh
  * [Polkadot-JS Apps](https://github.com/polkadot-js/apps)
 
 You can do that with some [script aliases](https://github.com/paritytech/substrate-up) that were loaded on your machine:
-```shell
+```bash
 cd ~/code/paritytech
 substrate-node-new my-substrate-node-template-1 my-name
 substrate-ui-new substrate my-substrate-node-template-1
@@ -47,7 +47,7 @@ This will create folders called 'my-substrate-node-template-1' and 'substrate-ui
 #### Setup Polkadot-JS Apps
 
 We'll also run a couple of other script aliases to install necessary dependencies (Xcode Command Line Tools, Homebrew, Homebrew Cask, RBEnv, Ruby, NVM and Node.js latest LTS, Yarn,) and create a folder called `apps` within directory ~/code/polkadot-js, containing a clone of the Polkadot-JS Apps repository with a branch that supports PoC-4:
-```shell
+```bash
 cd ~/code/polkadot-js
 polkadot-js-dependencies
 ```
@@ -60,7 +60,7 @@ We've bundled all the code samples from this guide in the following [Substrate b
 #### Run Rust Program (Advanced) <a name="run-rust-program"></a>
 
 Once Substrate is installed. Switch to branch 'deploy-smart-contract-adder', run relevant Git commands that you are familiar with to rebase or merge the latest changes in the 'master' branch into 'deploy-smart-contract-adder'. We'll run yet another script alias 'substrate-dependencies' to install or update necessary Substrate dependencies, and then build and run the program:
-```shell
+```bash
 cd ~/code/paritytech
 git clone https://github.com/paritytech/substrate
 cd substrate
@@ -90,7 +90,7 @@ The [Substrate Node Template](https://github.com/paritytech/substrate/blob/maste
 
 If you have set up everything correctly, you can now start a Substrate dev chain! In directory 'my-substrate-node-template-1' run the following and it will be published on [Telemetry](https://telemetry.polkadot.io):
 
-```shell
+```bash
 cd ~/code/paritytech/my-substrate-node-template-1
 ./target/release/my-substrate-node-template-1 \\
   --dev \\
@@ -99,7 +99,7 @@ cd ~/code/paritytech/my-substrate-node-template-1
 
 > If you run into an error like `Error: UnknownBlock: Unknown block Hash(...)`, you will need to purge the chain files from disk, with either of the following commands: `cargo run -- --dev purge-chain --dev` or `rm -rf ~/Library/Application\ Support/Substrate/chains/development/`
 
-```shell
+```bash
 cargo run -- --dev purge-chain --dev
 ```
 
@@ -112,7 +112,7 @@ If everything is working it should start producing blocks, as shown below:
 ## Step 3: Launch UI of Polkadot-JS Apps
 
 To interact with the Substrate Node, we'll start the UI of Polkadot JS Apps.
-```shell
+```bash
 cd ~/code/polkadot-js/apps;
 yarn run start
 ```
@@ -138,7 +138,7 @@ Let's go to the 'Chain state' menu item and create JSON-RPC calls to the Substra
 
 Alternatively we can fetch the block hash of the genesis block in the Substrate Node by using cURL to perform a JSON-RPC call that contains a JSON-RPC request object with members including method `state_getBlockHash` and params `[0]` (the genesis block).
 
-```shell
+```bash
 curl -H 'Content-Type: application/json' \\
      -d '{ "jsonrpc": "2.0", "method":"chain_getBlockHash", "params":[0], "id": 1 }' \\
      -vv http://127.0.0.1:9933/
@@ -198,7 +198,7 @@ pub extern "C" fn call() {
 
 Let's clone the 'Adder' Smart Contract Rust library, and compile its Rust code into a WASM file using the provided `./build.sh` Shell script, which runs a `wasm-build` command from the [wasm-utils](https://github.com/paritytech/wasm-utils) repository. The generated WASM file will be located in `~/substrate-contracts-adder/target/wasm32-unknown-unknown/release/substrate_contracts_adder.wasm`
 
-```shell
+```bash
 git clone https://github.com/pepyakin/substrate-contracts-adder
 cd substrate-contracts-adder
 ./build.sh
@@ -296,7 +296,7 @@ Before we start creating a Rust program that uses Substrate, we'll first need to
 
 Let's follow similar steps to ["Option 2: Run Rust Program (Advanced)"](#run-rust-program), where we viewed the complete solution, but here we just clone the 'master' branch, checkout a new branch named 'deploy-smart-contract-adder' where we'll create our new Rust program, and build Substrate.
 
-```shell
+```bash
 cd ~/code/paritytech
 git clone https://github.com/paritytech/substrate
 cd substrate
@@ -309,7 +309,7 @@ cargo build
 
 We're ready to [create a new Rust program](https://doc.rust-lang.org/cargo/guide/creating-a-new-project.html).
 
-```shell
+```bash
 cd ~/code/paritytech/substrate
 cargo new examples/deploy-smart-contract-adder --bin
 ```
@@ -365,7 +365,7 @@ fn main() {
 ```
 
 Run the Rust program
-```shell
+```bash
 cargo run -p deploy-smart-contract-adder
 ```
 
@@ -565,7 +565,7 @@ println!("0x{}", HexDisplay::from(&db_key_for_contract_storage(addr.clone(), [1u
 
 We'll submit our 1st extrinsic by providing values for members of a JSON-RPC call including method `author_submitExtrinsic` and params `["<INSERT_EXTRINSIC_NONCE_0_HASH>"]` using cURL
 
-```shell
+```bash
 curl -H 'Content-Type: application/json' \\
     -d '{ "jsonrpc": "2.0", "method": "author_submitExtrinsic", "params": ["<INSERT_EXTRINSIC_NONCE_0_HASH>"], "id": 0 }' \\
     -vv http://localhost:9933/
@@ -576,7 +576,7 @@ curl -H 'Content-Type: application/json' \\
 We learnt earlier that we've got to be quick at querying to see an extrinsic in the 'pending' extrinsics queue before it's submitted. Let's try it again, providing values for members of a JSON-RPC call including method `author_pendingExtrinsics` and params `[]` using cURL.
 
 Initially in the JSON-RPC's response the `result` value will be an array containing the extrinsic hash as its value `["<INSERT_EXTRINSIC_NONCE_0_HASH>"]`. However, we'll repeating the command until the `result` value is an empty array `[]` in the value returned of `{ "jsonrpc": "2.0", "result": [], "id": 1 }` to confirm that the extrinsic was executed.
-```shell
+```bash
 curl -H 'Content-Type: application/json' \\
     -d '{ "jsonrpc": "2.0", "method": "author_pendingExtrinsics", "params": [], "id": 0 }' \\
     -vv http://localhost:9933/
@@ -589,7 +589,7 @@ We'll verify that the extrinsic with Nonce 0 was actually submitted, such that t
 Let's create another JSON-RPC call, and provide values for members including method `state_getStorage` and params `["<INSERT_DB_STORAGE_KEY_OF_SMART_CONTRACT>"]` using cURL.
 
 In the JSON-RPC's response the `result` value is `0x1001000000` in the value returned of `{ "jsonrpc": "2.0", "result": "0x1001000000, "id": 0 }`. It corresponds to a value of 1 in little endian (LE) format `1000000`, which is the length of the data, and means that it worked
-```shell
+```bash
 curl -H 'Content-Type: application/json' \\
     -d '{ "jsonrpc": "2.0", "method": "state_getStorage", "params": ["<INSERT_DB_STORAGE_KEY_OF_SMART_CONTRACT>"], "id": 0 }' \\
     -vv http://localhost:9933/
@@ -605,7 +605,7 @@ curl -H 'Content-Type: application/json' \\
 #### Submit the Extrinsic with Nonce 1 using JSON-RPC with cURL
 
 We'll submit our extrinsic with Nonce 1 by providing values for members of a JSON-RPC call including method `author_submitExtrinsic` and params `["<INSERT_EXTRINSIC_NONCE_1_HASH>"]` using cURL
-```shell
+```bash
 curl -H 'Content-Type: application/json' \\
     -d '{ "jsonrpc": "2.0", "method": "author_submitExtrinsic", "params": ["<INSERT_EXTRINSIC_NONCE_1_HASH>"], "id": 0 }' \\
     -vv http://localhost:9933/
@@ -621,7 +621,7 @@ We'll verify that the extrinsic with Nonce 1 was actually submitted, such that t
 
 Let's provide values for members of a JSON-RPC call including method `state_getStorage` and params `["<INSERT_DB_STORAGE_KEY_OF_SMART_CONTRACT>"]` using cURL. In the JSON-RPC's response the `result` value is `0x1007000000` in the value returned of `{ "jsonrpc": "2.0", "result": "0x1007000000, "id": 0 }`. It corresponds to a value of 1 in little endian (LE) format `7000000`, which means that it successfully incremented the storage by a value of 7.
 
-```shell
+```bash
 curl -H 'Content-Type: application/json' \\
     -d '{ "jsonrpc": "2.0", "method": "state_getStorage", "params": ["<INSERT_DB_STORAGE_KEY_OF_SMART_CONTRACT>"], "id": 0 }' \\
     -vv http://localhost:9933/
