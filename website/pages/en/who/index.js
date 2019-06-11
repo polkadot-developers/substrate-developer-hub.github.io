@@ -105,4 +105,6 @@ class WhoIndex extends React.Component {
   }
 }
 
+WhoIndex.title = 'User Guides';
+WhoIndex.description = 'Let us help you dive into Substrate.';
 module.exports = WhoIndex;

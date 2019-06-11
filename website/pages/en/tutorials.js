@@ -214,4 +214,6 @@ class Tutorials extends React.Component {
   }
 }
 
+Tutorials.title = 'Tutorials';
+Tutorials.description = 'Find the latest tutorials for Substrate.';
 module.exports = Tutorials;

@@ -175,4 +175,6 @@ class Architect extends React.Component {
   }
 }
 
+Architect.title = 'Architect';
+Architect.description = 'Learn if Substrate is the right framework for your project.';
 module.exports = Architect;

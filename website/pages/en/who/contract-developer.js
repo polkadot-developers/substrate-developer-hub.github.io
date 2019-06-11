@@ -152,4 +152,6 @@ class ContractDeveloper extends React.Component {
   }
 }
 
+ContractDeveloper.title = 'Contract Developer';
+ContractDeveloper.description = 'Learn how you can develop Wasm smart contracts for Substrate.';
 module.exports = ContractDeveloper;

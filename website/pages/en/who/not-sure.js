@@ -93,4 +93,6 @@ class NotSure extends React.Component {
   }
 }
 
+NotSure.title = 'Learn About Substrate';
+NotSure.description = 'Start learning about Substrate from ground zero.';
 module.exports = NotSure;

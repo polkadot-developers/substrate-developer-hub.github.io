@@ -150,4 +150,6 @@ class FrontEndDeveloper extends React.Component {
   }
 }
 
+FrontEndDeveloper.title = 'Front End Developer';
+FrontEndDeveloper.description = 'Learn how you can develop custom user experiences for Substrate.';
 module.exports = FrontEndDeveloper;

@@ -241,4 +241,6 @@ class Index extends React.Component {
   }
 }
 
+Index.title = 'Substrate Developer Hub';
+Index.description = 'Learn to build blockchains using the next generation blockchain framework: Substrate.';
 module.exports = Index;

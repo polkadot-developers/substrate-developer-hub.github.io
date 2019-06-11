@@ -57,4 +57,6 @@ class Users extends React.Component {
   }
 }
 
+Users.title = 'Users';
+Users.description = 'Learn who is currently using Substrate.';
 module.exports = Users;

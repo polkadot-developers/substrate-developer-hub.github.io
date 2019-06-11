@@ -154,4 +154,6 @@ class RuntimeDeveloper extends React.Component {
   }
 }
 
+RuntimeDeveloper.title = 'Runtime Developer';
+RuntimeDeveloper.description = 'Learn how you can develop custom runtimes with Substrate.';
 module.exports = RuntimeDeveloper;
