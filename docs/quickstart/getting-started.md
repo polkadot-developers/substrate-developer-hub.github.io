@@ -8,7 +8,7 @@ This is the high level documentation for Substrate, a next generation blockchain
 
 If you are not sure where you should get started, check out our **Guided User Stories** which are designed to take you down the quickest path to get you started with Substrate.
 
-<a class="btn btn-secondary primary-color text-white" href="/who/">Guided User Stories &gt;</a>
+<a class="btn btn-secondary primary-color text-white" href="/en/who/">Guided User Stories &gt;</a>
 
 ## Products
 
