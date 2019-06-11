@@ -288,6 +288,7 @@ const siteConfig = {
   // concatenated to Docusaurus' styles. This is to support static HTML pages
   // that may be separate from Docusaurus with completely separate styles.
   separateCss: [],
+  usePrism: true,
 };
 
 module.exports = siteConfig;
