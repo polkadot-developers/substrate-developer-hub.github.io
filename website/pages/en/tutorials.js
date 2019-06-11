@@ -103,11 +103,12 @@ class Tutorials extends React.Component {
                 href: "https://substrate-developer-hub.github.io/substrate-collectables-workshop/"
               },
               {
-                title: "Creating a Custom Substrate Chain",
+                title: "Creating Your First Substrate Chain",
                 text: "A minimal end to end guide to build and interact with your first custom Substrate chain.",
                 difficulty: "easy",
                 length: "< 1",
                 prerequisite: false,
+                href: `${docUrl("tutorials/creating-your-first-substrate-chain")}`
               },
               {
                 title: "Substrate Token Curated Registry",
@@ -115,6 +116,7 @@ class Tutorials extends React.Component {
                 difficulty: "medium",
                 length: "3",
                 prerequisite: true,
+                href: `${docUrl("tutorials/tcr/introduction")}`
               },
               {
                 title: "UTXO Workshop",
@@ -122,6 +124,7 @@ class Tutorials extends React.Component {
                 difficulty: "medium",
                 length: "2",
                 prerequisite: true,
+                href: "https://github.com/substrate-developer-hub/utxo-workshop"
               },
             ]}
           />
@@ -152,6 +155,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "1",
                 prerequisite: false,
+                href: "https://github.com/paritytech/ink/wiki/Deploying-Your-First-Contract"
               },
               {
                 img: `${baseUrl}img/ink-placeholder.png`,
@@ -160,6 +164,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "1",
                 prerequisite: false,
+                href: "https://github.com/paritytech/ink/wiki/Writing-Your-First-Contract"
               },
             ]}
           />

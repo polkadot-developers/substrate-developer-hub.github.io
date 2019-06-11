@@ -1,6 +1,7 @@
 ---
-title: "Building a Token Curated Registry DAppChain"
+title: "Introduction: Building a Token Curated Registry DAppChain"
 ---
+
 This is an intermediate level guide to help you get started with building complex DAppChains using the Substrate framework. If you are new to Substrate, we recommend you first start with any of the following beginner level tutorials to have the basic concepts covered.
 
 1. [Creating a Custom Substrate chain](https://substrate.readme.io/docs/creating-a-custom-substrate-chain) - Fast paced, brief tutorial.
@@ -16,27 +17,27 @@ While the guide covers some of the TCR concepts in brief, if interested, you can
 
 The guide is divided into the following five parts.
 
-* **PART 1:** [Building the TCR Substrate runtime](tcr/building-the-substrate-tcr-runtime)
+* **PART 1:** [Building the TCR Substrate runtime](building-the-substrate-tcr-runtime.md)
     * How to use other SRML modules in custom runtime modules
     * How to use complex types in runtime storage
     * How to use genesis config for Substrate modules
     * How and when to use runtime events
 
-* **PART 2:** [Unit testing the TCR module](tcr/unit-testing-the-tcr-runtime-module)
+* **PART 2:** [Unit testing the TCR module](unit-testing-the-tcr-runtime-module.md)
     * How to mock the runtime
     * How to mock genesis config
     * How to write unit tests for runtime module functions
 
-* **PART 3:** [Building a UI for Substrate TCR runtime](tcr/building-a-ui-for-the-tcr-runtime)
+* **PART 3:** [Building a UI for Substrate TCR runtime](building-a-ui-for-the-tcr-runtime.md)
     * How to connect to the Substrate node using the [Polkadot JS API](https://polkadot.js.org/api/)
     * How to bind complex types
     * How to subscribe to on-chain state updates
 
-* **PART 4:** [Building event-based off-chain storage for querying and analysis](tcr/building-an-event-based-off-chain-storage)
+* **PART 4:** [Building event-based off-chain storage for querying and analysis](building-an-event-based-off-chain-storage.md)
     * How to listen to Substrate runtime events
     * How to sync on-chain data with an off-chain storage
 
-* **PART 5:** [Best practices](tcr/best-practices)
+* **PART 5:** [Best practices](tcr-best-practices.md)
     * Avoiding economic vulnerability in runtime modules
     * Error handling - Never Panic!
     * When to update state (doing enough checks)

@@ -1,5 +1,5 @@
 ---
-title: "Creating a Custom Substrate chain"
+title: "Creating Your First Substrate chain"
 ---
 
 This document will walk you through the steps required to duplicate the demo that [Gavin Wood presented at the 2018 Web3 Summit](https://youtu.be/0IoUZdDi5Is), showing off how you can build a Runtime Library for a Substrate Blockchain in less than 30 min.
