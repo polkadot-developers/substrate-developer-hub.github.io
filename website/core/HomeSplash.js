@@ -64,6 +64,7 @@ class HomeSplash extends React.Component {
               ? this.props.buttons.map((button, index) => {
                   return (
                     <Button
+                      key={index}
                       variant="secondary"
                       href={button.href}
                       className={`mr-2` + (index == 0 ? ` primary-color` : ``)}
