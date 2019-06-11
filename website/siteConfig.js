@@ -184,7 +184,7 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {page: 'docs/quickstart/installing-substrate', label: 'Docs'},
+    {page: 'docs/quickstart/getting-started', label: 'Docs'},
     {page: 'tutorials', label: 'Tutorials'},
     {href: 'https://www.parity.io/blog/', label: 'Blog'},
     {page: 'community/support', label: 'Community'},
