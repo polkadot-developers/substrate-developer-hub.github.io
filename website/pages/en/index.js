@@ -141,7 +141,7 @@ class Index extends React.Component {
       <Feature
         image={`${baseUrl}img/undraw_programming.svg`}
         imageAlign="right"
-        title="Everything you need to build a blockchain."
+        title="Everything you Need to Build a Blockchain"
         background="light"
       >
         <ul className="lead">
@@ -179,7 +179,7 @@ class Index extends React.Component {
       >
         Substrate is the backbone which powers Polkadot, a next generation,
         heterogenous, multi-chain network. Most 'parachains' which connect to
-        this network also use Substrate for their node. Take a look at all the
+        this network are also built on Substrate. Take a look at all the
         users who are already using Substrate for their projects.
       </Feature>
     );
@@ -201,7 +201,7 @@ class Index extends React.Component {
 
       return (
         <div className="productShowcaseSection paddingBottom">
-          <h2>Who else is building on Substrate?</h2>
+          <h2>Who is Building on Substrate?</h2>
           <div className="logos">{showcase}</div>
           <div className="more-users">
             <a className="button" href={pageUrl("users.html")}>
