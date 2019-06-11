@@ -175,12 +175,13 @@ class Index extends React.Component {
         background="dark"
         image={`${baseUrl}img/undraw_connected_world.svg`}
         imageAlign="right"
-        title="Production Ready"
+        title="(Almost) Production Ready"
       >
         Substrate is the backbone which powers Polkadot, a next generation,
-        heterogenous, multi-chain network. Most 'parachains' which connect to
-        this network are also built on Substrate. Take a look at all the
-        users who are already using Substrate for their projects.
+        heterogenous, multi-chain network. Most 'parachains' which will connect to
+        this network are also built on Substrate. Substrate is undergoing a security
+        audit in preparation for a 2020 release of the Polkadot network. Take a look
+        below for some of the users who are already using Substrate for their projects.
       </Feature>
     );
 
