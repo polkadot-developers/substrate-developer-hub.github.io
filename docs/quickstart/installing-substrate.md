@@ -34,7 +34,7 @@ This command will still install the substrate up commands for creating your own 
 
 If you want to hack on substrate itself, or manually build the node, you can get the code with
 ```
-git clone https://github.com/paritytech/substrate
+git clone https://github.com/paritytech/substrate.git
 ```
 
 Then you can build the node with
@@ -53,3 +53,4 @@ You can slo build the subkey utility with
 ```
 cargo build -p subkey
 ```
+Much more information is available in the [project readme](https://github.com/paritytech/substrate/#substrate).
