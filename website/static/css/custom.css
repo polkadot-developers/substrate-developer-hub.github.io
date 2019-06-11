@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
+/* Make nav bar dark like the background of the hero image container */
 .fixedHeaderContainer {
     background: $secondaryColor;
 }
 
+/* Add a hero image to the home splash */
 .heroImage {
     background-image: url("/img/bg-dark-1.png"); /* The image used */
     background-color: $secondaryColor; /* Used if the image is unavailable */
@@ -26,20 +28,24 @@
     background-size: cover; /* Resize the background image to cover the entire container */
 }
 
+/* Add simple tags to use the primary color */
 .primary-color {
     background-color: $primaryColor;
     border-color: $primaryColor;
+    color: #ffffff;
 }
 
 .primary-color-text {
     color: $primaryColor!important;
 }
 
+/* Make Home Splash title look better */
 .projectTitle {
     font-weight: 300;
     color: #ffffff;
 }
 
+/* Add green checkmarks to homepage list */
 .lead {
     list-style: none;
   }
@@ -49,9 +55,10 @@
     color: #28a745;
   }
 
-header a:hover {
-    color: $primaryColor;
-    text-decoration: none;
+/* Patch the docs nav bar on mobile */
+.docsNavContainer {
+    max-width: 100%;
+    padding: 0;
 }
 
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
