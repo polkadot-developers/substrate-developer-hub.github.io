@@ -1,0 +1,86 @@
+/* Used for Architecture of a Runtime */
+.substrate-layer {
+    width: 700px;
+    background-color: #CCC;
+    margin: 10px;
+    text-align: center;
+    color: black;
+}
+
+.substrate-javascript-apis,
+.substrate-construct-runtime {
+    line-height: 100px;
+    height: 100px;
+}
+.substrate-types{
+    height: 150px;
+    line-height: 50px;
+}
+
+.substrate-type {
+    width: 90px;
+    height: 90px;
+    line-height: 90px;
+    text-align: center; 
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-top: 5px;
+    float: left;
+}
+
+.substrate-decl-module-color {
+    background-color: orange;
+    color: black;
+}
+
+.substrate-decl-storage-color {
+    background-color: green;
+    color: white;
+}
+
+.substrate-decl-event-color {
+    background-color: blue;
+    color: white;
+}
+
+.substrate-custom-color {
+    background-color: purple;
+    color: white;
+}
+
+.substrate-module {
+    height: 550px;
+    line-height: 50px;
+}
+
+.substrate-module-section {
+    width: 330px;
+    background-color: #EEE;
+    float: left;
+    margin: 10px;
+}
+
+
+.substrate-module-block {
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    float: left;
+    margin-left: 10px;
+  	margin-bottom: 10px;
+}
+
+.substrate-srml-row {
+    background-color: #888;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    width: 100px;
+    float: left;
+  	color: white;
+}
+
+.substrate-srml-meta {
+    background-color: #868
+}
+/* End CSS for Architecture of a Runtime */
