@@ -220,7 +220,7 @@ const siteConfig = {
     {href: 'https://crates.parity.io', label: 'Reference Docs'},
     {page: 'tutorials', label: 'Tutorials'},
     {page: 'community', label: 'Community'},
-    {href: 'https://github.com/substrate-developer-hub/', label: 'GitHub'},
+    {href: 'https://github.com/paritytech/substrate', label: 'GitHub'},
   ],
 
   // If you have users set above, you add it here:
