@@ -6,7 +6,7 @@ This document will walk you through steps to create a Substrate Node, integrate 
 
 We apply governance mechanisms discussed by [Dr Gavin Wood at EdCon Toronto](https://youtu.be/VsZuDJMmVPY?t=24732) where the runtime was changed (see screenshot below).
 
-We also explore and reflect upon concepts covered in [Substrate: A Rustic Vision for Polkadot by Dr Gavin Wood at Web3 Summit 2018](https://www.youtube.com/watch?v=0IoUZdDi5Is) where he [created a custom Substrate chain](https://substrate.readme.io/v1.0.0/docs/creating-a-custom-substrate-chain).
+We also explore and reflect upon concepts covered in [Substrate: A Rustic Vision for Polkadot by Dr Gavin Wood at Web3 Summit 2018](https://www.youtube.com/watch?v=0IoUZdDi5Is) where he [created a custom Substrate chain](tutorials/creating-your-first-substrate-chain.md).
 ![Source: https://youtu.be/VsZuDJMmVPY?t=25194](https://files.readme.io/160cde4-Screen_Shot_2018-11-27_at_22.07.35.png)
 
 This tutorial will be written for a Mac OS X machine, and may require some tweaks to get it working on other operating systems.

@@ -205,7 +205,7 @@ A means of determining a set of validators (and thus authorities) from a number 
 ---
 
 ## OAS3
-OpenAPI Specification 3 (OAS3), which was formally referred to as a Swagger API Specification, is the specification used to author a Swagger File in either JSON or YAML format that may be used to generate API Reference documentation such as https://substrate.readme.io/v1.0.0/reference
+OpenAPI Specification 3 (OAS3), which was formally referred to as a Swagger API Specification, is the specification used to author a Swagger File in either JSON or YAML format that may be used to generate API Reference documentation.
 
 ## Origin
 The provenance of a dispatched function call into the runtime. Can be customised (e.g. the Council "Motion" origin), but there are two special "built-in"s:

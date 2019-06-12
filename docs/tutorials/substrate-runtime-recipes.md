@@ -832,7 +832,7 @@ decl_module! {
 ```
 
 When this function is executed, the message will appear on the terminal where the Substrate node is running. The following screenshot shows the printed message.
-![Text "Hello World from Substrate Runtime!"](https://files.readme.io/16b213f-Screenshot_from_2019-01-11_16-29-09.png)
+![Text "Hello World from Substrate Runtime!"](/docs/assets/16b213f-Screenshot_from_2019-01-11_16-29-09.png)
 
 ### Make a Balance Transfer
 

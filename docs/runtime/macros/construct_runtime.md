@@ -111,7 +111,7 @@ decl_module! {
 }
 ```
 
-You can learn more about `decl_module!` [here](https://substrate.readme.io/docs/decl_module).
+You can learn more about `decl_module!` [here](runtime/macros/decl_module.md).
 
 ### Call
 

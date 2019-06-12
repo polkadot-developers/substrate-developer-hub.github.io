@@ -9,7 +9,7 @@ The code for the sample TCR runtime covered in this guide is available in [this 
 
 In this guide, we will directly jump into the TCR runtime development using Substrate node bootstrapped using the `substrate-node-new` script. This guide is intended to walk you through the overall process of creating a DAppChain using Substrate. It does not cover the "getting started" and other basic concepts about Substrate. To get an overview of these concepts, it is highly recommended that you go through the [Substrate Collectibles tutorial](https://shawntabrizi.github.io/substrate-collectables-workshop/) before proceeding further.
 
-Let's start with a new Substrate runtime node. We recommend going through the [Substrate setup scripts tutorial](https://substrate.readme.io/docs/substrate-up-scripts) to spin up a hack-ready node runtime using the `substrate-node-new` script.
+Let's start with a new Substrate runtime node. We recommend going through the [Substrate setup scripts tutorial](quickstart/using-the-substrate-node-and-module-setup-scripts.md) to spin up a hack-ready node runtime using the `substrate-node-new` script.
 
 ## Step 2: Module trait and types
 
