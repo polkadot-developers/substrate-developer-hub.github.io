@@ -65,9 +65,9 @@ function Community(props) {
   const TwitchStream = () => (
     <CommunityResource title="Twitch Stream">
       You might catch us streaming cool live coding sessions. Follow our channel to make sure you never miss a stream!
-      <iframe src="https://player.twitch.tv/?channel=paritylivecoding" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+      <iframe src="https://player.twitch.tv/?channel=paritylivecoding" frameBorder="0" allowFullScreen={true} scrolling="no" height="378" width="620"></iframe>
       <p>
-      <Button variant="secondary" size="sm" href="https://www.twitch.tv/paritylivecoding" style={{"background-color": "#6441A5"}} className="m-1">Twitch Channel ></Button>
+      <Button variant="secondary" size="sm" href="https://www.twitch.tv/paritylivecoding" style={{"backgroundColor": "#6441A5"}} className="m-1">Twitch Channel ></Button>
       </p>
     </CommunityResource>
   )
