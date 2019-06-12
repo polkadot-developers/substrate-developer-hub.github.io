@@ -3,21 +3,19 @@ title: "The `subkey` Tool"
 ---
 Subkey is a key-generation utility that is developed alongside substrate. Its main features are generating Ed25519 and Sr25519 key pairs, encoding SS58 addresses, and restoring keys from mnemonics and raw seeds. This guide serves as an introduction and tour of the tool. Once you are basically familiar with `subkey`, it will be more time-efficient to refresh your memory by looking at `subkey help` than by re-reading this intro.
 
-# Building the Subkey Binary
+## Building the Subkey Binary
 
-## One-line Install
+### One-line Install
 The Subkey binary, `subkey`, is also installed along with the [Substrate installation](quickstart/installing-substrate.md). If you want to play with just subkey (and not substrate), you can compile and install it with this one-line command.
 ```bash
 cargo install --force --git https://github.com/paritytech/substrate subkey
 ```
 
-## Compiling with Cargo
+### Compiling with Cargo
 If you already have the [Substrate repository](https://github.com/paritytech/substrate) cloned, you can build it with
 ```bash
 cargo build -p subkey
 ```
-
-# Generating and Inspecting Keys with Subkey
 
 ## Generating Your First Key
 Generate a Sr25519 key by running:
