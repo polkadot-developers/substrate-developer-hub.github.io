@@ -42,14 +42,14 @@ The lowercase `system` points to the Rust module where you have defined your run
 
 The `construct_runtime!` macro provides support for the following types in a module:
 
- - [`Module`](#section-module)
- - [`Call`](#section-call)
- - [`Storage`](#section-storage)
- - [`Event`](#section-event) or `Event<T>` (if the event is [generic](https://doc.rust-lang.org/rust-by-example/generics.html))
- - [`Origin`](#section-origin) or `Origin<T>` (if the origin is [generic](https://doc.rust-lang.org/rust-by-example/generics.html))
- - [`Config`](#section-config) or `Config<T>` (if the config is [generic](https://doc.rust-lang.org/rust-by-example/generics.html))
- - [`Log`](#section-log)
- - [`Inherent`](#section-inherent)
+ - [`Module`](#module)
+ - [`Call`](#call)
+ - [`Storage`](#storage)
+ - [`Event`](#event) or `Event<T>` (if the event is [generic](https://doc.rust-lang.org/rust-by-example/generics.html))
+ - [`Origin`](#origin) or `Origin<T>` (if the origin is [generic](https://doc.rust-lang.org/rust-by-example/generics.html))
+ - [`Config`](#config) or `Config<T>` (if the config is [generic](https://doc.rust-lang.org/rust-by-example/generics.html))
+ - [`Log`](#log)
+ - [`Inherent`](#inherent)
 
 ### No Types or `default`
 

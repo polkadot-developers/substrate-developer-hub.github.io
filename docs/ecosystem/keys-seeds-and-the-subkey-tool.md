@@ -6,7 +6,7 @@ Subkey is a key-generation utility that is developed alongside substrate. Its ma
 # Building the Subkey Binary
 
 ## One-line Install
-The Subkey binary, `subkey`, is also installed along with the [Substrate installation](https://docs.substrate.dev/docs/getting-started). If you want to play with just subkey (and not substrate), you can compile and install it with this one-line command.
+The Subkey binary, `subkey`, is also installed along with the [Substrate installation](quickstart/installing-substrate.md). If you want to play with just subkey (and not substrate), you can compile and install it with this one-line command.
 ```bash
 cargo install --force --git https://github.com/paritytech/substrate subkey
 ```

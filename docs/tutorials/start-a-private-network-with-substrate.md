@@ -31,7 +31,7 @@ The repository includes a utility called `subkey` which we'll use to generate an
 cargo install --force --path subkey subkey
 ```
 
-Now let's compile the actual blockchain node that we'll be running. Because Substrate is a framework, most real-world blockchains that use it will write custom runtime code. There are [other tutorials](https://docs.substrate.dev/docs/) that cover that process in detail. Luckily the Substrate repository itself already comes with two ready-to-run node environments. The first lives in the `node` directory and includes many features to be a practical blockchain. In fact it looks quite similar to polkadot which is also built on Substrate. The second is a minimalistic runtime that lives in the `node-template` directory. We'll be using the node template in this tutorial because of its simplicity and because it is the usual starting point when writing your own custom runtime.
+Now let's compile the actual blockchain node that we'll be running. Because Substrate is a framework, most real-world blockchains that use it will write custom runtime code. There are [other tutorials](/tutorials/) that cover that process in detail. Luckily the Substrate repository itself already comes with two ready-to-run node environments. The first lives in the `node` directory and includes many features to be a practical blockchain. In fact it looks quite similar to polkadot which is also built on Substrate. The second is a minimalistic runtime that lives in the `node-template` directory. We'll be using the node template in this tutorial because of its simplicity and because it is the usual starting point when writing your own custom runtime.
 
 ```bash
 cd node-template
