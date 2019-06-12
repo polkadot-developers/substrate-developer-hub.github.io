@@ -309,6 +309,9 @@ const siteConfig = {
   // Style sheets to import
   stylesheets: ["https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"],
 
+  // Generate CNAME file when building
+  cname: "substrate.dev"
+
 };
 
 module.exports = siteConfig;
