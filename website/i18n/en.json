@@ -56,9 +56,6 @@
       "runtime/runtime-and-api": {
         "title": "Runtime and API"
       },
-      "runtime/runtime-types": {
-        "title": "Runtime Types"
-      },
       "runtime/substrate-runtime-module-library": {
         "title": "Substrate Runtime Module Library"
       },

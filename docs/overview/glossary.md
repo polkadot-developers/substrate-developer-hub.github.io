@@ -134,9 +134,9 @@ Within the SRML Balances module, this is the minimum balance an account may have
 ## Finality
 A part of consensus dealing with making a progression be irreversible. If a block is finalised, then any real-world repercussions can be effected. The consensus algorithm must guarantee that finalised blocks never need reverting.
 
-One example of a work in progress provable finality gadget is being used in Polkadot: [GRANDPA](#GRANDPA).
+One example of a work in progress provable finality gadget is being used in Polkadot: [GRANDPA](#grandpa).
 
-See also: [Aurand+GRANDPA](#Aurand+GRANDPA), [Instant Finality](#Instant-Finality), [Proof-of-Finality](#Proof-of-Finality), [Probabilistic Finality](#Probabilistic-Finality), [Provable Finality](#Provable-Finality)
+See also: [Aurand+GRANDPA](#aurand-grandpa), [Instant Finality](#instant-finality), [Proof-of-Finality](#proof-of-finality), [Probabilistic Finality](#probabilistic-finality), [Provable Finality](#provable-finality)
 
 ## Full Client
 A node able to synchronise a block chain in a maximally secure manner through execution (and thus verification) of all logic. Compare to Light Client.
@@ -224,7 +224,7 @@ In a probabilistic finality based chain (e.g. Bitcoin), network participants rel
 A piece of data that can be used to prove that a particular block is finalised. Potentially very large unless signature aggregation is used.
 
 ## Provable Finality
-Some consensus mechanisms aim for provable finality, whereby all blocks are guaranteed to be the canonical block for that chain upon block inclusion. Provable finality is desirable in cases such as when light clients do not have the full chain state, or when communicating with other chains, where interchain data is not ubiquitously distributed. See: [GRANDPA](#GRANDPA)
+Some consensus mechanisms aim for provable finality, whereby all blocks are guaranteed to be the canonical block for that chain upon block inclusion. Provable finality is desirable in cases such as when light clients do not have the full chain state, or when communicating with other chains, where interchain data is not ubiquitously distributed. See: [GRANDPA](#grandpa)
 
 ---
 
@@ -237,7 +237,7 @@ The block execution logic of a blockchain, i.e. the state transition function. I
 ---
 
 ## SHAFT
-SHAFT (SHared Ancestry Finality Tool). See [GRANDPA](#GRANDPA).
+SHAFT (SHared Ancestry Finality Tool). See [GRANDPA](#grandpa).
 
 ## Stake-Weighted Voting
 Democratic system with one-vote-per-token, rather than one-vote-per-head.
