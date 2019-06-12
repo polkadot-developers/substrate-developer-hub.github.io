@@ -5,11 +5,12 @@
       "quickstart/installing-substrate",
       "quickstart/using-the-substrate-node-and-module-setup-scripts"
     ],
-    "Substrate Overview": [
+    "Substrate Fundamentals": [
       "overview/introduction",
       "overview/extrinsics",
       "overview/transaction-lifecycle",
       "overview/low-level-data-format",
+      "overview/session-keys",
       "overview/glossary"
     ],
     "Runtime": [
@@ -35,7 +36,7 @@
       }
     ],
     "Ecosystem Tools": [
-      "ecosystem/keys-seeds-and-the-subkey-tool"
+      "ecosystem/subkey"
     ]
   }
 }
