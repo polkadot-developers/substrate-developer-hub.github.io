@@ -130,7 +130,7 @@ Secret Key URI `//Joshy` is account:
 ## Derivation Paths
 Commonly one will need multiple keys to work together. For example you may need to use an Sr25519 key along with an Ed25519 key. When the keys are intended to be used together, it is convenient to only remember a single mnemonic phrase. Luckily `subkey` provides derivation paths for that.
 
-### Soft Paths
+### Hard Paths
 `subkey` supports both hard and soft derivation paths. Let's start by looking at hard paths, and then explain the difference when we get to soft paths.
 
 ```bash
