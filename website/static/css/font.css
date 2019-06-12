@@ -15,8 +15,8 @@ License: 	The WebFont(s) listed in this document must follow the YouWorkForThem
 */
 @font-face {
     font-family: 'ManifoldCF';
-    src: url('../fonts/manifold-cf-bold.eot');
-    src: url('../fonts/manifold-cf-bold.eot?#iefix') format('embedded-opentype'), url('../fonts/manifold-cf-bold.woff2') format('woff2'), url('../fonts/manifold-cf-bold.woff') format('woff'), url('../fonts/manifold-cf-bold.ttf') format('truetype'), url('../fonts/manifold-cf-bold.svg#youworkforthem') format('svg');
+    src: url('/fonts/manifold-cf-bold.eot');
+    src: url('/fonts/manifold-cf-bold.eot?#iefix') format('embedded-opentype'), url('/fonts/manifold-cf-bold.woff2') format('woff2'), url('/fonts/manifold-cf-bold.woff') format('woff'), url('/fonts/manifold-cf-bold.ttf') format('truetype'), url('/fonts/manifold-cf-bold.svg#youworkforthem') format('svg');
     font-weight: bold;
     /*700*/
     font-style: normal;
@@ -38,8 +38,8 @@ License: 	The WebFont(s) listed in this document must follow the YouWorkForThem
   */
   @font-face {
     font-family: 'ManifoldCF';
-    src: url('../fonts/manifold-cf-demi-bold.eot');
-    src: url('../fonts/manifold-cf-demi-bold.eot?#iefix') format('embedded-opentype'), url('../fonts/manifold-cf-demi-bold.woff2') format('woff2'), url('../fonts/manifold-cf-demi-bold.woff') format('woff'), url('../fonts/manifold-cf-demi-bold.ttf') format('truetype'), url('../fonts/manifold-cf-demi-bold.svg#youworkforthem') format('svg');
+    src: url('/fonts/manifold-cf-demi-bold.eot');
+    src: url('/fonts/manifold-cf-demi-bold.eot?#iefix') format('embedded-opentype'), url('/fonts/manifold-cf-demi-bold.woff2') format('woff2'), url('/fonts/manifold-cf-demi-bold.woff') format('woff'), url('/fonts/manifold-cf-demi-bold.ttf') format('truetype'), url('/fonts/manifold-cf-demi-bold.svg#youworkforthem') format('svg');
     font-weight: 600;
     font-style: normal;
   }
@@ -60,8 +60,8 @@ License: 	The WebFont(s) listed in this document must follow the YouWorkForThem
   */
   @font-face {
     font-family: 'ManifoldCF';
-    src: url('../fonts/manifold-cf-extra-bold.eot');
-    src: url('../fonts/manifold-cf-extra-bold.eot?#iefix') format('embedded-opentype'), url('../fonts/manifold-cf-extra-bold.woff2') format('woff2'), url('../fonts/manifold-cf-extra-bold.woff') format('woff'), url('../fonts/manifold-cf-extra-bold.ttf') format('truetype'), url('../fonts/manifold-cf-extra-bold.svg#youworkforthem') format('svg');
+    src: url('/fonts/manifold-cf-extra-bold.eot');
+    src: url('/fonts/manifold-cf-extra-bold.eot?#iefix') format('embedded-opentype'), url('/fonts/manifold-cf-extra-bold.woff2') format('woff2'), url('/fonts/manifold-cf-extra-bold.woff') format('woff'), url('/fonts/manifold-cf-extra-bold.ttf') format('truetype'), url('/fonts/manifold-cf-extra-bold.svg#youworkforthem') format('svg');
     font-weight: 800;
     font-style: normal;
   }
@@ -82,8 +82,8 @@ License: 	The WebFont(s) listed in this document must follow the YouWorkForThem
   */
   @font-face {
     font-family: 'ManifoldCF';
-    src: url('../fonts/manifold-cf-light.eot');
-    src: url('../fonts/manifold-cf-light.eot?#iefix') format('embedded-opentype'), url('../fonts/manifold-cf-light.woff2') format('woff2'), url('../fonts/manifold-cf-light.woff') format('woff'), url('../fonts/manifold-cf-light.ttf') format('truetype'), url('../fonts/manifold-cf-light.svg#youworkforthem') format('svg');
+    src: url('/fonts/manifold-cf-light.eot');
+    src: url('/fonts/manifold-cf-light.eot?#iefix') format('embedded-opentype'), url('/fonts/manifold-cf-light.woff2') format('woff2'), url('/fonts/manifold-cf-light.woff') format('woff'), url('/fonts/manifold-cf-light.ttf') format('truetype'), url('/fonts/manifold-cf-light.svg#youworkforthem') format('svg');
     font-weight: 200;
     font-style: normal;
   }
@@ -104,30 +104,30 @@ License: 	The WebFont(s) listed in this document must follow the YouWorkForThem
   */
   @font-face {
     font-family: 'ManifoldCF';
-    src: url('../fonts/manifold-cf.eot');
-    src: url('../fonts/manifold-cf.eot?#iefix') format('embedded-opentype'), url('../fonts/manifold-cf.woff2') format('woff2'), url('../fonts/manifold-cf.woff') format('woff'), url('../fonts/manifold-cf.ttf') format('truetype'), url('../fonts/manifold-cf.svg#youworkforthem') format('svg');
+    src: url('/fonts/manifold-cf.eot');
+    src: url('/fonts/manifold-cf.eot?#iefix') format('embedded-opentype'), url('/fonts/manifold-cf.woff2') format('woff2'), url('/fonts/manifold-cf.woff') format('woff'), url('/fonts/manifold-cf.ttf') format('truetype'), url('/fonts/manifold-cf.svg#youworkforthem') format('svg');
     font-weight: normal;
     font-style: normal;
   }
   @font-face {
     font-family: 'Roboto';
-    src: url('../fonts/Roboto-Bold.eot');
-    src: url('../fonts/Roboto-Bold.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto-Bold.woff2') format('woff2'), url('../fonts/Roboto-Bold.woff') format('woff'), url('../fonts/Roboto-Bold.ttf') format('truetype'), url('../fonts/Roboto-Bold.svg#RobotoBold') format('svg');
+    src: url('/fonts/Roboto-Bold.eot');
+    src: url('/fonts/Roboto-Bold.eot?#iefix') format('embedded-opentype'), url('/fonts/Roboto-Bold.woff2') format('woff2'), url('/fonts/Roboto-Bold.woff') format('woff'), url('/fonts/Roboto-Bold.ttf') format('truetype'), url('/fonts/Roboto-Bold.svg#RobotoBold') format('svg');
     font-weight: bold;
     /*700*/
     font-style: normal;
   }
   @font-face {
     font-family: 'Roboto';
-    src: url('../fonts/Roboto-Light.eot');
-    src: url('../fonts/Roboto-Light.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto-Light.woff2') format('woff2'), url('../fonts/Roboto-Light.woff') format('woff'), url('../fonts/Roboto-Light.ttf') format('truetype'), url('../fonts/Roboto-Light.svg#RobotoLight') format('svg');
+    src: url('/fonts/Roboto-Light.eot');
+    src: url('/fonts/Roboto-Light.eot?#iefix') format('embedded-opentype'), url('/fonts/Roboto-Light.woff2') format('woff2'), url('/fonts/Roboto-Light.woff') format('woff'), url('/fonts/Roboto-Light.ttf') format('truetype'), url('/fonts/Roboto-Light.svg#RobotoLight') format('svg');
     font-weight: 300;
     font-style: normal;
   }
   @font-face {
     font-family: 'Roboto';
-    src: url('../fonts/Roboto-Regular.eot');
-    src: url('../fonts/Roboto-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/Roboto-Regular.woff2') format('woff2'), url('../fonts/Roboto-Regular.woff') format('woff'), url('../fonts/Roboto-Regular.ttf') format('truetype'), url('../fonts/Roboto-Regular.svg#RobotoRegular') format('svg');
+    src: url('/fonts/Roboto-Regular.eot');
+    src: url('/fonts/Roboto-Regular.eot?#iefix') format('embedded-opentype'), url('/fonts/Roboto-Regular.woff2') format('woff2'), url('/fonts/Roboto-Regular.woff') format('woff'), url('/fonts/Roboto-Regular.ttf') format('truetype'), url('/fonts/Roboto-Regular.svg#RobotoRegular') format('svg');
     font-weight: normal;
     font-style: normal;
   }
