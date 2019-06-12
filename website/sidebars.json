@@ -11,7 +11,8 @@
       "overview/transaction-lifecycle",
       "overview/low-level-data-format",
       "overview/session-keys",
-      "overview/glossary"
+      "overview/glossary",
+      "overview/ss58-address-format"
     ],
     "Runtime": [
       "runtime/architecture-of-a-runtime",
