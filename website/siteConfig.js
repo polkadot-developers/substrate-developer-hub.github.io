@@ -84,7 +84,7 @@ const usersList = [
   {
     caption: 'Robonomics',
     image: '/img/users/robonomics.png',
-    infoLink: 'https://medium.com/layerx/announcing-zerochain-5b08e158355d',
+    infoLink: 'https://robonomics.network/en/',
     pinned: true,
   },
   {
