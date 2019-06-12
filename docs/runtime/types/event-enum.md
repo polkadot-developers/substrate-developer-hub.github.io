@@ -35,7 +35,7 @@ pub type Event<T> = RawEvent<<T as system::Trait>::AccountId>;
 
 ## The _Outer_ Event Enum
 
-In addition to the `Event` type for each module, there is an _outer_ `Event` type generated for the entire runtime using the [`construct_runtime!`](https://docs.substrate.dev/docs/construct_runtime) macro. This _outer_ event type consolidates the `Event` enums of all the modules that are part of the runtime.
+In addition to the `Event` type for each module, there is an _outer_ `Event` type generated for the entire runtime using the [`construct_runtime!`](runtime/macros/construct_runtime.md) macro. This _outer_ event type consolidates the `Event` enums of all the modules that are part of the runtime.
 
 For example, in the default `substrate-node-template` runtime provided with Substrate, we find the following declaration, which shows all the modules that are declared in the `construct_runtime!` macro. Only some of its modules have the `Event` type, including: `System`, `Indices`, `Balances`, `Sudo` and `TemplateModule`.
 

@@ -37,7 +37,7 @@ pub enum Call<T: Trait> {
 
 Here you can see that it has enumerated the list of dispatchable functions available in the module and the parameters needed to call them. `origin` is excluded as it is implicitly required for all dispatchable function calls.
 
-> Note that `deposit_event` did not receive an entry in the `Call` enum because it is not really a dispatchable function, and [the `decl_module!` macro handles that](https://docs.substrate.dev/docs/decl_module#section-deposit_event-).
+> Note that `deposit_event` did not receive an entry in the `Call` enum because it is not really a dispatchable function, and [the `decl_module!` macro handles that](runtime/macros/decl_module.md#deposit_event).
 
 ## Runtime _Outer_ Call Enum
 
@@ -65,7 +65,7 @@ construct_runtime!(
 );
 ```
 
-> Note that if you do not include any types with your module declaration, it uses the [default set](https://docs.substrate.dev/docs/construct_runtime#section-no-types-or-default-), which includes `Call`.
+> Note that if you do not include any types with your module declaration, it uses the [default set](runtime/macros/construct_runtime.md#no-types-or-default), which includes `Call`.
 
 This will then generate the following _outer_ `Call` enum:
 

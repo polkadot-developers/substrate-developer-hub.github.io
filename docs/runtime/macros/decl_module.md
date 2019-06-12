@@ -20,7 +20,7 @@ decl_module! {
 }
 ```
 
-Note that for the purposes of this example, we are taking advantage of a single storage item created by the `decl_storage` macro. We will omit the storage declaration for the purposes of this article, but you can learn more about `decl_storage` in our documentation [here](TODO: Create Doc).
+Note that for the purposes of this example, we are taking advantage of a single storage item created by the `decl_storage` macro. We will omit the storage declaration for the purposes of this article, but you can learn more about `decl_storage` in our documentation [here](https://crates.parity.io/srml_support_procedural/macro.decl_storage.html).
 
 ## Declaration of the Module Type
 
@@ -189,7 +189,7 @@ pub fn set_code(origin, new: Vec<u8>) -> Result {
 }
 ```
 
-Where `Result` and `Ok(())` were automatically added as mentioned in [Function Return](#section-function-return)
+Where `Result` and `Ok(())` were automatically added as mentioned in [Function Return](#function-return)
 
 Different runtimes have different reasons for allow privileged calls to be executed. Because it's privileged, we can assume it's a one-off operation and substantial processing/storage/memory can be used without worrying about gameability or attack scenarios.
 

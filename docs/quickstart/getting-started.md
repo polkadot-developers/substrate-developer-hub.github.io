@@ -23,7 +23,7 @@ Within the Substrate ecosystem, you can build blockchains, smart contracts, and 
 
 ## Join the Community
 
-Substrate has a rapidly growing, friendly, and technical community. Ask questions and work with others who are building in the space. Check out all the community resources available to you via our [Community page](/community/support/).
+Substrate has a rapidly growing, friendly, and technical community. Ask questions and work with others who are building in the space. Check out all the community resources available to you via our [Community page](/community/).
 
 ## Something Missing?
 
