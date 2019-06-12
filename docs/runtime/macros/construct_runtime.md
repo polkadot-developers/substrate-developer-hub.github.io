@@ -4,7 +4,7 @@ title: "Constructing a Runtime!"
 
 The `construct_runtime!` macro is where you declare all the runtime modules you would like to include into your blockchain's runtime. This includes any modules from the Substrate Runtime Module Library (SRML) or even custom modules you may have written.
 
-Here is an example of a `construct_runtime!` definition from the [substrate-node-template](https://github.com/paritytech/substrate-node-template/blob/master/runtime/src/lib.rs):
+You can find an example of a `construct_runtime!` definition from the Substrate [node-template](https://github.com/paritytech/substrate/blob/master/node-template/runtime/src/lib.rs):
 
 ```rust
 construct_runtime!(
@@ -186,7 +186,7 @@ We will dig deeper into this topic [here] (Coming Soon).
 
 The `Config` type is needed whenever your module defines an initial state in the genesis configuration. By default, all storage variables are left in an 'unassigned' state, but using the `config()` keyword while declaring the storage variable allows you to initialize that state.
 
-An example of that initialization can be found in the `substrate-node-template`, where Alice is set as the upgrade `Key` for `Sudo`. You can see from the `Storage` section that `Key` does have the `config()` parameter, and the value for it gets set in the `GenesisConfig` within [chain_spec.rs](https://github.com/paritytech/substrate-node-template/blob/master/src/chain_spec.rs):
+An example of that initialization can be found in the Substrate `node-template`, where Alice is set as the upgrade `Key` for `Sudo`. You can see from the `Storage` section that `Key` does have the `config()` parameter, and the value for it gets set in the `GenesisConfig` within [chain_spec.rs](https://github.com/paritytech/substrate/blob/master/node-template/src/chain_spec.rs):
 
 ```rust
 GenesisConfig {

@@ -43,7 +43,7 @@ Here you can see that it has enumerated the list of dispatchable functions avail
 
 A `Call` enum is generated for each module included in your runtime. This enum is then passed to the `construct_runtime!` macro to generate an _outer_ `Call` enum which lists all of your runtime modules and references their individual `Call` objects.
 
-For example, in the default `substrate-node-template` runtime provided with Substrate, we find the following declaration:
+For example, in the default Substrate `node-template` runtime, we find the following declaration:
 
 ```rust
 construct_runtime!(
@@ -59,7 +59,6 @@ construct_runtime!(
 		Indices: indices,
 		Balances: balances,
 		Sudo: sudo,
-		Fees: fees::{Module, Storage, Config<T>, Event<T>},
 		TemplateModule: template::{Module, Call, Storage, Event<T>},
 	}
 );

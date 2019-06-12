@@ -52,8 +52,6 @@ documentation about that part of the runtime.
             <div class="substrate-srml-row">Council</div>
         </a><a href="https://crates.parity.io/srml_democracy/index.html">
             <div class="substrate-srml-row">Democracy</div>
-        </a><a href="https://crates.parity.io/srml_fees/index.html">
-            <div class="substrate-srml-row">Fees</div>
         </a><a href="https://crates.parity.io/srml_grandpa/index.html">
             <div class="substrate-srml-row">Grandpa</div>
         </a><a href="https://crates.parity.io/srml_indices/index.html">
