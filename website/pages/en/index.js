@@ -139,8 +139,8 @@ class Index extends React.Component {
         className="productShowcaseSection mb-5 mt-5"
         style={{ textAlign: "center" }}
       >
-        <h1>What is Substrate?</h1>
-        <h1 className="primary-color-text">&#11015;</h1>
+        <h2 className="text-dark">What is Substrate?</h2>
+        <h2 className="primary-color-text">&#11015;</h2>
       </div>
     );
 

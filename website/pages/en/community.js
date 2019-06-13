@@ -16,6 +16,8 @@
 
 const React = require("react");
 
+const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash.js`);
+
 const Container = require("../../../../react-bootstrap/Container.js");
 const Button = require("../../../../react-bootstrap/Button.js");
 
@@ -36,59 +38,141 @@ function Community(props) {
 
   const StackOverflow = () => (
     <CommunityResource title="StackOverflow">
-        Stack Overflow is a great place to ask code-level questions or if
-        you’re stuck with a specific error. Read through the existing
-        questions/answers or ask your own!
-
-        <p>Tags:
-            <Button variant="info" size="sm" href="https://stackoverflow.com/questions/tagged/substrate" className="m-1"><code>substrate</code></Button>
-            <Button variant="dark" size="sm" href="https://stackoverflow.com/questions/tagged/ink" className="m-1"><code>ink</code></Button>
-            <Button variant="secondary" size="sm" href="https://stackoverflow.com/questions/tagged/parity-io" className="m-1 primary-color"><code>parity-io</code></Button>
-            <Button variant="warning" size="sm" href="https://stackoverflow.com/questions/tagged/rust" className="m-1"><code>rust</code></Button>
-        </p>
+      Stack Overflow is a great place to ask code-level questions or if you’re
+      stuck with a specific error. Read through the existing questions/answers
+      or ask your own!
+      <p>
+        Tags:
+        <Button
+          variant="info"
+          size="sm"
+          href="https://stackoverflow.com/questions/tagged/substrate"
+          className="m-1"
+        >
+          <code>substrate</code>
+        </Button>
+        <Button
+          variant="dark"
+          size="sm"
+          href="https://stackoverflow.com/questions/tagged/ink"
+          className="m-1"
+        >
+          <code>ink</code>
+        </Button>
+        <Button
+          variant="secondary"
+          size="sm"
+          href="https://stackoverflow.com/questions/tagged/parity-io"
+          className="m-1 primary-color"
+        >
+          <code>parity-io</code>
+        </Button>
+        <Button
+          variant="warning"
+          size="sm"
+          href="https://stackoverflow.com/questions/tagged/rust"
+          className="m-1"
+        >
+          <code>rust</code>
+        </Button>
+      </p>
     </CommunityResource>
-  )
+  );
 
   const RiotChat = () => (
     <CommunityResource title="Riot Chat">
-        Riot is the main form of communication between employees at Parity and the community of people who use Parity products. Drop in to ask technical question, meet others who share your interests, or to keep an eye on whats going on.
-
-        <p>Channels:
-            <Button variant="dark" size="sm" href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org" className="m-1">Substrate Technical</Button>
-            <Button variant="dark" size="sm" href="https://riot.im/app/#/room/!tYUCYdSvSYPMjWNDDD:matrix.parity.io" className="m-1">Parity ink! (Smart Contracts)</Button>
-            <Button variant="dark" size="sm" href="https://riot.im/app/#/room/!fOOzymDEHiIIUtmlBE:matrix.org" className="m-1">Polkadot Watercooler</Button>
-            <Button variant="dark" size="sm" href="https://riot.im/app/#/room/!IWlcTyHSqIEjpUReHD:matrix.parity.io" className="m-1">Parity Watercooler</Button>
-        </p>
+      Riot is the main form of communication between employees at Parity and the
+      community of people who use Parity products. Drop in to ask technical
+      question, meet others who share your interests, or to keep an eye on whats
+      going on.
+      <p>
+        Channels:
+        <Button
+          variant="dark"
+          size="sm"
+          href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"
+          className="m-1"
+        >
+          Substrate Technical
+        </Button>
+        <Button
+          variant="dark"
+          size="sm"
+          href="https://riot.im/app/#/room/!tYUCYdSvSYPMjWNDDD:matrix.parity.io"
+          className="m-1"
+        >
+          Parity ink! (Smart Contracts)
+        </Button>
+        <Button
+          variant="dark"
+          size="sm"
+          href="https://riot.im/app/#/room/!fOOzymDEHiIIUtmlBE:matrix.org"
+          className="m-1"
+        >
+          Polkadot Watercooler
+        </Button>
+        <Button
+          variant="dark"
+          size="sm"
+          href="https://riot.im/app/#/room/!IWlcTyHSqIEjpUReHD:matrix.parity.io"
+          className="m-1"
+        >
+          Parity Watercooler
+        </Button>
+      </p>
     </CommunityResource>
-  )
+  );
 
   const TwitchStream = () => (
     <CommunityResource title="Twitch Stream">
-      You might catch us streaming cool live coding sessions. Follow our channel to make sure you never miss a stream!
-      <iframe src="https://player.twitch.tv/?channel=paritylivecoding" frameBorder="0" allowFullScreen={true} scrolling="no" height="378" width="620"></iframe>
+      You might catch us streaming cool live coding sessions. Follow our channel
+      to make sure you never miss a stream!
+      <iframe
+        src="https://player.twitch.tv/?channel=paritylivecoding"
+        frameBorder="0"
+        allowFullScreen={true}
+        scrolling="no"
+        height="378"
+        width="620"
+      />
       <p>
-      <Button variant="secondary" size="sm" href="https://www.twitch.tv/paritylivecoding" style={{"backgroundColor": "#6441A5"}} className="m-1">Twitch Channel ></Button>
+        <Button
+          variant="secondary"
+          size="sm"
+          href="https://www.twitch.tv/paritylivecoding"
+          style={{ backgroundColor: "#6441A5" }}
+          className="m-1"
+        >
+          Twitch Channel >
+        </Button>
       </p>
     </CommunityResource>
-  )
+  );
 
   return (
-    <div className="docMainWrapper wrapper">
-      <Container className="mainContainer documentContainer postContainer">
-        <div className="post">
-          <header className="postHeader">
-            <h1>Community</h1>
-          </header>
-          <p>The Substrate community is both technical and friendly, and we would be happy for you to join!</p>
+    <div>
+      <HomeSplash
+        siteConfig={siteConfig}
+        language={language}
+        title="Community"
+        tagline="Join the Conversation!"
+        padding={0}
+      />
+      <div className="mainContainer">
+        <Container>
+          <p>
+            The Substrate community is both technical and friendly, and we would
+            be happy for you to join!
+          </p>
           <StackOverflow />
           <RiotChat />
           <TwitchStream />
-        </div>
-      </Container>
+        </Container>
+      </div>
     </div>
   );
 }
 
-Community.title = 'Community';
-Community.description = 'Learn about community resources for Substrate.';
+Community.title = "Community";
+Community.description = "Learn about community resources for Substrate.";
 module.exports = Community;
