@@ -27,9 +27,7 @@ The `base58encode` function is identical to Bitcoin's and IPFS's implementation.
 
 The chain identifier is a one-byte magic number used to specify on which chain the address is intended to be used. The Substrate default is 42, which is intended as a "wildcard" meant to be equally valid on all Substrate-based chains.
 
-For production networks, a network-specific chain identifier may be desirable to help avoid key-reuse and some of the problems it can cause.
-
-TODO citation needed
+For production networks, a network-specific chain identifier may be desirable to help avoid key-reuse and some of the [problems it can cause](https://github.com/tintinweb/ecdsa-private-key-recovery).
 
 A few chain identifier values are known to have been used. This list is for convenience and not intended to serve as any kind of registry.
 
