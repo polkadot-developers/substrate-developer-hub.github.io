@@ -55,7 +55,7 @@ class Index extends React.Component {
           md={5}
           className={props.imageAlign == `right` ? `order-md-2` : `order-md-1`}
         >
-          <Image src={props.image} />
+          <Image src={props.image} alt={props.title}/>
         </Col>
       </Row>
     );
