@@ -94,8 +94,8 @@ const siteConfig = {
   docsSideNavCollapsible: true,
 
   // Open Graph and Twitter card images.
-  ogImage: 'img/Substrate-logo.svg',
-  twitterImage: 'img/Substrate-logo.svg',
+  ogImage: 'img/substrate-dev-hub-card.png',
+  twitterImage: 'img/substrate-dev-hub-card.png',
 
   // Show documentation's last contributor's name.
   // enableUpdateBy: true,
