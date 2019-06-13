@@ -11,6 +11,7 @@
       "overview/transaction-lifecycle",
       "overview/low-level-data-format",
       "overview/session-keys",
+      "overview/ss58-address-format",
       "overview/glossary"
     ],
     "Runtime": [
