@@ -17,7 +17,7 @@ Compiling the Tools
 -----------------
 Substrate is an open source framework for building your own blockchain nodes. It can be used for a very wide variety of applications.
 
-Substrate does not (yet) offer binary installation packages, so it must be compiled from source, which can be a time-consuming process. Commits go into the [Substrate repository](https://github.com/paritytech/substrate) regularly and it is wise that everyone participating in this network have the same version of substrate to guarantee success. In practice similar but not identical versions will often work, but banking on that is a recipe for frustration.
+Substrate does not (yet) offer binary installation packages, so it must be compiled from source, which can be a time-consuming process. Commits go into the [Substrate repository](https://github.com/paritytech/substrate) regularly and it is wise that everyone participating in this network have the same version of substrate to guarantee success. In practice similar but not identical versions will often work, but banking on that is a recipe for frustration. We'll be using the `v1.0` branch for more stability.
 
 ### Your First Time
 First we'll download the Substrate v1.0 code by cloning the git repository.
@@ -26,14 +26,15 @@ git clone -b v1.0 https://github.com/paritytech/substrate
 cd substrate
 ```
 
-The repository includes a utility called `subkey` which we'll use to generate and inspect keypairs. Let's compile it first. The `--force` option means that we'll install this version over any previously installed versions.
+The repository includes a utility called `subkey` which we'll optionally  use to generate and inspect keypairs. Let's compile it first. The `--force` option means that we'll install this version over any previously installed versions.
 ```bash
 cargo install --force --path subkey subkey
 ```
 
-Now let's compile the actual blockchain node that we'll be running. Because Substrate is a framework, most real-world blockchains that use it will write custom runtime code. There are [other tutorials](/tutorials/) that cover that process in detail. Luckily the Substrate repository itself already comes with two ready-to-run node environments. The first lives in the `node` directory and includes many features to be a practical blockchain. In fact it looks quite similar to polkadot which is also built on Substrate. The second is a minimalistic runtime that lives in the `node-template` directory. We'll be using the node template in this tutorial because of its simplicity and because it is the usual starting point when writing your own custom runtime.
+Now let's compile the actual blockchain node that we'll be running. Because Substrate is a framework, most real-world blockchains that use it will write custom runtime code. There are [other tutorials](/tutorials/) that cover that process in detail. Luckily the Substrate repository itself already comes with two ready-to-run node environments. The first lives in the `node` directory and includes many features to be a practical blockchain. In fact it looks quite similar to [Polkadot](https://polkadot.network) which is also built on Substrate. The second is a minimalistic runtime that lives in the `node-template` directory. We'll be using the node template in this tutorial because of its simplicity and because it is the usual starting point when writing your own custom runtime.
 
 ```bash
+# Switch to note-template directory
 cd node-template
 
 # Ensure your rust toolchain is up to date
@@ -98,10 +99,10 @@ cd ..
 Let's look at those flags in detail:
 * `--base-path` Specifies a directory where Substrate should store all the data related to this chain. If the directory does not exist it will be created for you. If other blockchain data already exists there you will get an error. Either clear the directory or choose a different one.
 * `--chain=local` Specifies which chain specification to use. There are a few pre-packaged options including `local` `development` and `staging` but generally one specifies their own chainspec file. We'll specify our own file in a later step.
-* `--key //Alice` Specifies that we're using the pre-packaged Alice key as a validator on this node. Generally one should generate their own key with `subkey` and then the flag would look like `--key 0x23dce424ed...`. We'll generate our own keys in a later step.
+* `--key //Alice` Specifies that we're using the pre-packaged Alice key as a validator on this node. Generally one should generate their own key with `subkey` and then the flag would look like `--key "enroll mechanic science ...""`. We'll generate our own keys in a later step.
 * `--port 30333` Specifies the port that your node will listen for p2p traffic on. 30333 is the default and this flag can be omitted if you're happy with the default. If Bob's node will run on the same physical system, you will need to explicitly specify a different port for it.
 * `--telemetry-url` Tells the node to send telemetry data to a particular server. The one we've chosen here is hosted by Parity and is available for anyone to use. You may host your own (beyond the scope of this article) or omit this flag entirely.
-* `--validator` Means that we want to participate in block production rather than just sync the network. TODO learn and explain exactly how this works when grandpa or babe are present, etc.
+* `--validator` Means that we want to participate in block production rather than just sync the network.
 * `--name` Attaches a human readable name to the node. This flag is optional and if you omit it a human-readable name will be generated for you. If you aren't using telemetry, you likely won't find much value in assigning a name to the node.
 
 When the node starts you should see output similar to this.
@@ -113,13 +114,13 @@ When the node starts you should see output similar to this.
 2019-05-08 11:15:38 Node name: AlicesNode
 2019-05-08 11:15:38 Roles: FULL
 2019-05-08 11:15:38 Generated a new keypair: 3520cafa56767704a32b27c351851b9f0dba7dec34e79e4165b10b89dce98a9c (5DGN8sgD...)
-2019-05-08 11:15:38 Best block: #63
+2019-05-08 11:15:38 Best block: #0
 2019-05-08 11:15:38 Using default protocol ID "sup" because none is configured in the chain specs
 2019-05-08 11:15:38 Local node identity is: QmNTx7qYd5JiasUTzjaAbTCUeH5ot9xMjRePRjkSEdD7MY
 2019-05-08 11:15:38 Libp2p => Random Kademlia query has yielded empty results
 2019-05-08 11:15:38 Listening for new connections on 127.0.0.1:9944.
 2019-05-08 11:15:41 Libp2p => Random Kademlia query has yielded empty results
-2019-05-08 11:15:43 Idle (0 peers), best: #63 (0x8a3c…b693), finalized #0 (0xdb6e…679d), ⬇ 0 ⬆ 0
+2019-05-08 11:15:43 Idle (0 peers), best: #0 (0x8a3c…b693), finalized #0 (0xdb6e…679d), ⬇ 0 ⬆ 0
 ```
 
 A few lines to take note of:
@@ -130,7 +131,7 @@ A few lines to take note of:
 More details about all of these flags and others that I haven't mentioned are available by running `./target/debug/node-template --help`.
 
 ### Attach a UI
-You can tell a lot about your node by watching the output it produces in your terminal. There is also a nice graphical user interface known as the [Polkadot Js Apps UI](https://polkadot.js.org/apps/) which you can connect to your node on the settings tab. That link goes to the hosted version of the user interface, which is super convenient when it works, but is often out of date compared to the version of Substrate you're running. In the likely scenario that the hosted interface is out of date, you can run the interface locally by grabbing the code from [github](https://github.com/polkadot-js/apps). In general the instructions in that repository will be your best guide, but the process should be something like this.
+You can tell a lot about your node by watching the output it produces in your terminal. There is also a nice graphical user interface known as the [Polkadot Js Apps UI](https://polkadot.js.org/apps/) which you can connect to your node. That link goes to the hosted version of the user interface, which is super convenient when it works, but is often out of date compared to the version of Substrate you're running. In the likely scenario that the hosted interface is out of date, you can run the interface locally by grabbing the code from [github](https://github.com/polkadot-js/apps). In general the instructions in that repository will be your best guide, but the process should be something like this.
 
 ```bash
 # Grab the code
@@ -148,7 +149,7 @@ Point your favorite web browser at localhost:3000, and on the settings page, cho
 
 ![No blocks in polkadot-js-apps](https://cdn.discordapp.com/attachments/559788157239951376/580368220364603392/unknown.png)
 
-You'll notice, both in the terminal and the UI, that no blocks are being produced yet. Curious learners can see why [here](https://github.com/paritytech/substrate/blob/ae350506053b186a15fe5ffe2c1e85088b13a619/core/consensus/aura/src/lib.rs#L341). Blocks will start being produced once another validator joins the network.
+You'll notice, both in the terminal and the UI, that no blocks are being produced yet. Curious learners can [see why](https://github.com/paritytech/substrate/blob/ae350506053b186a15fe5ffe2c1e85088b13a619/core/consensus/aura/src/lib.rs#L341). Blocks will start being produced once another validator joins the network.
 
 ### Bob Joins In
 Now that Alice's node is up and running, Bob can join the network by bootstrapping from her node. His command will look very similar.
@@ -182,13 +183,13 @@ Generate Your Own Keys
 ----------------------
 Now that we know the fundamentals and the command line options, it's time to generate our own keys rather than using the well-known Alice and Bob keys.
 
-Each person who wants to participate in the blockchain can generate their own key using the [subkey tool](todo this tutorial isn't published yet) or the Polkadot JS Apps UI that we used previously. In this tutorial, we'll use the UI.
+Each person who wants to participate in the blockchain can generate their own key using the [subkey tool](ecosystem/subkey) or the Polkadot JS Apps UI that we used previously. In this tutorial, we'll use the UI.
 
 Navigate to the "Accounts" tab, and choose "Add Account". For this kind of session key, we'll need to select Edwards Curve near the bottom, and copy-paste the public address and the raw seed.
 
 ![Screenshot of key generation](https://cdn.discordapp.com/attachments/559788157239951376/583363719753367567/unknown.png)
 
-When you have generated a key pair, store the entire output somewhere safe. Share your public address (TODO reference screenshot) with the other validators who will be in your network. When everyone in the network knows everyone else's addresses, you are ready to proceed to launch your own chain.
+When you have generated a key pair, store the entire output somewhere safe. Share your public address with the other validators who will be in your network. When everyone in the network knows everyone else's addresses, you can proceed to launch your own chain.
 
 Start Your Private Blockchain
 -----------------------------
@@ -201,7 +202,7 @@ Rather than writing our chainspec completely from scratch, we'll just make a few
 ./target/debug/node-template build-spec --chain=local > customSpec.json
 ```
 
-The file we just created contains several fields, and one can learn a lot by exploring them. By far the largest field is a single hex number that is the wasm binary of our runtime. It is what you build earlier when you ran the `build.sh` script. Learn more about why it's useful to have that info on-chain from [Gav's web3 summit demo](https://www.youtube.com/watch?v=0IoUZdDi5Is).
+The file we just created contains several fields, and one can learn a lot by exploring them. By far the largest field is a single hex number that is the wasm binary of our runtime. It is what you built earlier when you ran the `build.sh` script. Learn more about why it's useful to have that info on-chain from [Gav's web3 summit demo](https://www.youtube.com/watch?v=0IoUZdDi5Is).
 
 The portion of the file we're interested in is the authorities which looks like this
 ```json
@@ -214,13 +215,15 @@ The portion of the file we're interested in is the authorities which looks like 
     }
 ```
 
-All we need to do is change the authority addresses listed (currently Alice and Bob) to our own addresses that we generated with subkey in the previous step. Each participant may make that change on their own, or a single person may do it and share the resulting file. TODO does order matter?
+All we need to do is change the authority addresses listed (currently Alice and Bob) to our own addresses that we generated in the previous step. A single person should do these steps and share the resulting file. with their fellow validators. (Because rust -> wasm builds aren't "reproducible", each person will get a slightly different wasm blob which will break consensus if each participant generates the file themselves.)
 
-Once the chainspec is ready, we need to convert it to a "raw" chainspec. The distinction between regular and raw is just that all the field names are encoded as hex in the raw chainspec. Not much interesting to explore there.
+Once the chainspec is prepared, convert it to a "raw" chainspec. The distinction between regular and raw is just that all the field names are encoded as hex in the raw chainspec. Not much interesting to explore there.
 
 ```bash
 ./target/debug/node-template build-spec --chain customSpec.json --raw > customSpecRaw.json
 ```
+
+Finally share the `customSpecRaw.json` with your all the other validators in the network.
 
 ### Launching the chain
 
@@ -230,22 +233,22 @@ The first participant can launch her node with
 ```bash
 ./target/debug/node-template \
   --chain ./customSpecRaw.json \
-  --key 0x8167e5997afeed9886bc88ebb94d8905b330540bfa4624dcc6d0e983171e67ed \
+  --key "enroll mechanic ... embody" \
   --port 30333 \
   --telemetry-url ws://telemetry.polkadot.io:1024 \
   --validator
 ```
 Here are some differences from when we launched as Alice.
-* I've omitted the `--base-path` flag, so Substrate will use a default location. You're free to specify your own base path.
-* For the key, I've used the secret seed that subkey generated previously. This must be a seed that corresponds to one of the addresses in your chainspec.
+* I've omitted the `--base-path` flag, so Substrate will use a default location. You're still free to specify your own base path.
+* For the key, I've used the mnemonic phrase that we generated previously. This must be a phrase that corresponds to one of the addresses in your chainspec.
 * The `--chain` flag has changed to use our custom chainspec.
 
-Subsequent validators can now join the network just as Bob did previously. You may bootstrap from any of the nodes already in the network, not just the one that went first.
+Subsequent validators can now join the network just as Bob did previously. You may bootstrap from _any_ of the nodes already in the network, not just the one that went first.
 
 
 Next Steps
 ----------
-Congratulations! You've finished the exercise!
+Congratulations! You've started your own blockchain!
 
 In this tutorial you've learned to compile the node-template, generate your own keypairs, create a custom chainspec that uses those keypairs, and start a private network based on your custom chainspec and the node-template.
 
@@ -258,4 +261,4 @@ You can go through a very similar process using Substrate's full node that lives
 What if you want to add more validators after starting the blockchain? You can't just go back and edit the chainspec at that point. The authority set can be changed after genesis by calling the consensus module's [`set_authorities` function](https://github.com/paritytech/substrate/blob/master/srml/consensus/src/lib.rs#L356-L362). However, that function can only be called from other runtime modules. If you've built the full node, you can use the democracy module for this task. Or check out the [Substrate POA runtime](https://github.com/gautamdhameja/substrate-poa).
 
 ### Write a Custom Runtime
-Substrate is all about writing your own runtimes, and now that you've gotten your hands dirty, I encourage you to try writing one. Consider one of the tutorials listed here.
+Substrate is all about writing your own runtimes, and now that you've gotten your hands dirty, I encourage you to try writing one. Consider one of the [tutorials](/tutorials/).

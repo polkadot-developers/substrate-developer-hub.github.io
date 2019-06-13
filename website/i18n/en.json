@@ -83,9 +83,6 @@
       "tutorials/start-a-private-network-with-substrate": {
         "title": "Start a Private Network with Substrate"
       },
-      "tutorials/substrate-runtime-recipes": {
-        "title": "Substrate Runtime Recipes"
-      },
       "tutorials/tcr/building-a-ui-for-the-tcr-runtime": {
         "title": "Building a UI for the TCR runtime"
       },

@@ -86,6 +86,17 @@ class Tutorials extends React.Component {
         </Col>
       ));
 
+    const RuntimeRecipes = () => (
+      <div>
+        <h2>Runtime Recipes</h2>
+        <hr />
+        <p>Find code samples for common patterns and best practices when developing runtime modules on Substrate:</p>
+        <p>
+          <Button variant="secondary" className="primary-color" href="/recipes/">Substrate Runtime Recipes ></Button>
+        </p>
+      </div>
+    )
+
     const RuntimeTutorials = () => (
       <div>
         <h2>Runtime Development</h2>
@@ -199,11 +210,12 @@ class Tutorials extends React.Component {
           siteConfig={siteConfig}
           language={language}
           title="Tutorial Catalog"
-          tagline="Let us guide you."
+          tagline="Let's learn together!"
           padding={0}
         />
         <div className="mainContainer">
           <BSContainer>
+            <RuntimeRecipes />
             <RuntimeTutorials />
             <ContractTutorials />
             <NetworkTutorials />
