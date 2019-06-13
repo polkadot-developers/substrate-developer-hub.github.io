@@ -5,8 +5,8 @@
     "previous": "Previous",
     "tagline": "The place for blockchain innovators.",
     "docs": {
-      "ecosystem/keys-seeds-and-the-subkey-tool": {
-        "title": "Keys, Seeds, and the `subkey` Tool"
+      "ecosystem/subkey": {
+        "title": "The `subkey` Tool"
       },
       "overview/extrinsics": {
         "title": "Extrinsics"
@@ -19,6 +19,9 @@
       },
       "overview/low-level-data-format": {
         "title": "Low-level Data Format"
+      },
+      "overview/session-keys": {
+        "title": "Session Keys"
       },
       "overview/substrate-bonds": {
         "title": "overview/substrate-bonds"
@@ -111,7 +114,7 @@
     },
     "categories": {
       "Quick Start": "Quick Start",
-      "Substrate Overview": "Substrate Overview",
+      "Substrate Fundamentals": "Substrate Fundamentals",
       "Runtime": "Runtime",
       "Ecosystem Tools": "Ecosystem Tools"
     }
