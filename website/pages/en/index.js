@@ -55,7 +55,7 @@ class Index extends React.Component {
           md={5}
           className={props.imageAlign == `right` ? `order-md-2` : `order-md-1`}
         >
-          <Image src={props.image} />
+          <Image src={props.image} alt={props.title}/>
         </Col>
       </Row>
     );
@@ -139,8 +139,8 @@ class Index extends React.Component {
         className="productShowcaseSection mb-5 mt-5"
         style={{ textAlign: "center" }}
       >
-        <h1>What is Substrate?</h1>
-        <h1 className="primary-color-text">&#11015;</h1>
+        <h2 className="text-dark">What is Substrate?</h2>
+        <h2 className="primary-color-text">&#11015;</h2>
       </div>
     );
 
@@ -185,7 +185,7 @@ class Index extends React.Component {
         title="(Almost) Production Ready"
       >
         Substrate is the backbone which powers Polkadot, a next generation,
-        heterogenous, multi-chain network. Most 'parachains' which will connect to
+        heterogeneous, multi-chain network. Most 'parachains' which will connect to
         this network are also built on Substrate. Substrate is undergoing a security
         audit in preparation for a 2020 release of the Polkadot network. Take a look
         below for some of the users who are already using Substrate for their projects.
@@ -248,6 +248,6 @@ class Index extends React.Component {
   }
 }
 
-Index.title = 'Substrate Developer Hub';
+Index.title = 'Official Substrate Documentation for Blockchain Developers';
 Index.description = 'Learn to build blockchains using the next generation blockchain framework.';
 module.exports = Index;

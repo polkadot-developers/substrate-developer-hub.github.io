@@ -23,7 +23,7 @@ class ErrorPage extends React.Component {
   render() {
     return (
       <Container className="text-center">
-        <h1 style={{ "fontSize": "400%" }}>404</h1>
+        <h2 style={{ "fontSize": "400%" }}>404</h2>
         <p>It seems we couldn't come to consensus...</p>
         <hr />
         <p>

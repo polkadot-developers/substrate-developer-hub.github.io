@@ -18,7 +18,7 @@ const React = require("react");
 
 const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash.js`);
 
-const BSContainer = require("../../../../react-bootstrap/Container.js");
+const Container = require("../../../../react-bootstrap/Container.js");
 const Button = require("../../../../react-bootstrap/Button.js");
 const Card = require("../../../../react-bootstrap/Card.js");
 const Col = require("../../../../react-bootstrap/Col.js");
@@ -214,12 +214,12 @@ class Tutorials extends React.Component {
           padding={0}
         />
         <div className="mainContainer">
-          <BSContainer>
+          <Container>
             <RuntimeRecipes />
             <RuntimeTutorials />
             <ContractTutorials />
             <NetworkTutorials />
-          </BSContainer>
+          </Container>
         </div>
       </div>
     );
