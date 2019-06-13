@@ -27,7 +27,7 @@ class Users extends React.Component {
       return null;
     }
 
-    const editUrl = `${siteConfig.repoUrl}/edit/source/website/siteConfig.js`;
+    const editUrl = `${siteConfig.repoUrl}/edit/source/website/data/users.js`;
     const showcase = siteConfig.users.map(user => (
       <a href={user.homepage} key={user.homepage}>
         <img src={user.image} alt={user.name} title={user.name} />
