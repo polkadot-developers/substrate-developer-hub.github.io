@@ -16,7 +16,6 @@
     "Runtime": [
       "runtime/architecture-of-a-runtime",
       "runtime/substrate-runtime-module-library",
-      "tutorials/substrate-runtime-recipes",
       {
         "type": "subcategory",
         "label": "Runtime Macros",

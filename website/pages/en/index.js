@@ -114,7 +114,7 @@ class Index extends React.Component {
         </HotspotCard>
         <HotspotCard
           title="Tutorials"
-          text="Substrate has a range of tutorials to take you from 0-60 in a short amount of time. Learn about runtime development, building smart contracts, setting up a network, and more!"
+          text="Substrate has a range of tutorials which will get you building on Substrate in a short amount of time. You can also find a bunch of different code snippets for common patterns for runtime development in our Substrate Recipes page."
         >
           <Button
             variant="secondary"
@@ -122,6 +122,13 @@ class Index extends React.Component {
             className="m-1 primary-color"
           >
             Tutorial Catalog
+          </Button>
+          <Button
+            variant="secondary"
+            href="/recipes/"
+            className="m-1"
+          >
+            Substrate Recipes
           </Button>
         </HotspotCard>
       </Row>
@@ -242,5 +249,5 @@ class Index extends React.Component {
 }
 
 Index.title = 'Substrate Developer Hub';
-Index.description = 'Learn to build blockchains using the next generation blockchain framework: Substrate.';
+Index.description = 'Learn to build blockchains using the next generation blockchain framework.';
 module.exports = Index;
