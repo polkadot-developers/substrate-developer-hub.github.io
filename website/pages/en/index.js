@@ -41,7 +41,7 @@ class Index extends React.Component {
             ? props.background == `dark`
               ? `bg-dark text-white`
               : `bg-` + props.background
-            : ``) + ` p-5`
+            : ``) + ` p-sm-5`
         }
       >
         <Col
