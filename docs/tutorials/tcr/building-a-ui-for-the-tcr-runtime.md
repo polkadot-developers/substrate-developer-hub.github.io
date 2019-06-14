@@ -142,4 +142,4 @@ Just like we called the `propose` function of the TCR runtime, we can call the `
 
 The [tcrService.js file](https://github.com/substrate-developer-hub/substrate-tcr-ui/blob/master/src/services/tcrService.js) has all the function calls implemented in the same way.
 
-In the next part of the guide, we will learn how we can build an event-based off-chain storage and use it to optimize our DAppChain solution.
+In the [next part](building-an-event-based-off-chain-storage.md) of this guide, we will learn how we can build an event-based off-chain storage and use it to optimize our DAppChain solution.
