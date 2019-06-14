@@ -118,3 +118,5 @@ In the above snippet, the test first initializes the TCR by calling the `init` f
 Similarly, we can write other tests covering more logic in our runtime. We have a few more tests in the TCR sample codebase [here](https://github.com/substrate-developer-hub/substrate-tcr/blob/master/runtime/src/tcr.rs#L470).
 
 When writing the unit tests for your runtime modules, it is recommended to refer to the test written for SRML modules which ship with the Substrate framework. The SRML modules have good code coverage and can provide guidance on how to write tests in more complex scenarios.
+
+In the [next part](building-a-ui-for-the-tcr-runtime.md) of this guide, we will learn how we can call these runtime functions from a `reactjs` frontend using the `PolkadotJS` API.

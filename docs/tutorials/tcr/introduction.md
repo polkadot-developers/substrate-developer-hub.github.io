@@ -15,6 +15,8 @@ This guide is intended for blockchain developers who want to build an _end-to-en
 
 While the guide covers some of the TCR concepts in brief, if interested, you can [get a primer on TCRs](https://www.gautamdhameja.com/token-curated-registries-explain-eli5-a5d4cce0ddbe/). The full [TCR 1.0 paper](https://medium.com/@ilovebagels/token-curated-registries-1-0-61a232f8dac7) is also available.
 
+The code for the sample TCR runtime covered in this guide is available in the [Substrate-TCR GitHub repository](https://github.com/substrate-developer-hub/substrate-tcr/).
+
 The guide is divided into the following five parts.
 
 * **PART 1:** [Building the TCR Substrate runtime](building-the-substrate-tcr-runtime.md)

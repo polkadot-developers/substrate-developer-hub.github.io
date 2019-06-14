@@ -3,7 +3,7 @@ title: "Building the Substrate TCR runtime"
 ---
 This is Part 1 of the guide [Building a Token Curated Registry DAppChain on Substrate](introduction.md). This part covers the implementation of the Substrate runtime modules needed for the Token Curated Registry runtime.
 
-The code for the sample TCR runtime covered in this guide is available in [this GitHub repository](https://github.com/substrate-developer-hub/substrate-tcr/).
+The code for the sample TCR runtime is available in [this GitHub repository](https://github.com/substrate-developer-hub/substrate-tcr/).
 
 ## Step 1: Setup and prerequisites
 
@@ -577,4 +577,4 @@ The core TCR flow is now complete with the `propose`, `challenge`, `vote`, `reso
 
 The code for the TCR runtime modules - `tcr` and `token` covered in this part of the guide, is available [here](https://github.com/substrate-developer-hub/substrate-tcr/tree/master/runtime/src).
 
-In the next part of this guide, we will learn how we can call these runtime functions from a `reactjs` frontend using the `PolkadotJS` API.
+In the [next part](unit-testing-the-tcr-runtime-module.md) of this guide, we will learn how to unit test the functions in a Substrate runtime.

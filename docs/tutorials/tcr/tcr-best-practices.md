@@ -19,7 +19,6 @@ The runtime modules should handle error properly. Following are some of the guid
 
 1. **Never panic** - Your runtime module functions should not panic at all. Panics can make the chain prone to attacks. If a runtime function panics during execution, all state changes will be reverted. The user will not be charged anything for this execution. This can be repeated and thus can become an attack vector. The user can do a DoS attack on a panicking node because they won't be charged for any runtime execution that panics. The best approach is to detect situations where a panic may occur later and early-exit in a graceful manner to minimize computation and state inconsistencies. If it's impossible to detect a potential panic without first doing substantial computation, then ensure that the transactor first pays some fee (that can possibly be returned if all goes well) before that computation is done.
 
-
 2. **Use `ensure`** - The `ensure` macro provided as part of Substrate framework expects a condition and returns an `Err` if the condition gets evaluated to false. Remember from part 1 how we used this macro to check inputs and logic before updating the state in all the runtime functions. The `ensure` macro helps in two ways - keeps the code clean in the runtime module, and automatically exits the function with and `Err` result; reducing chances of unnecessary execution.
 
 ## Updating state only after proper checks

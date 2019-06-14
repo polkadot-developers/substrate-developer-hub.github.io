@@ -87,3 +87,5 @@ When using this approach of maintaining an off-chain store, there could be sync 
 To get a better idea of sync status between the on-chain and off-chain stores, the off chain store could also maintain the latest block number. When querying from the off-chain store, the block numbers in both places (on-chain and off-chain) could be compared to ensure that the data in the off-chain store is not stale.
 
 The off-chain storage approach presented here should not be used _as-is_ in a production application. Solutions for corrective measures (for bringing the stores in sync) should be defined in the context of the use-case, before implementing this approach.
+
+In the [next and final part](tcr-best-practices.md) of this guide, we will learn some of the best practices for building Substrate runtimes.
