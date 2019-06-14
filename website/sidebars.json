@@ -10,6 +10,7 @@
       "overview/extrinsics",
       "overview/transaction-lifecycle",
       "overview/low-level-data-format",
+      "overview/off-chain-workers",
       "overview/session-keys",
       "overview/ss58-address-format",
       "overview/glossary"
