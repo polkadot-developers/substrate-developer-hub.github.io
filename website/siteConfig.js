@@ -129,7 +129,9 @@ const siteConfig = {
   stylesheets: ["https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"],
 
   // Generate CNAME file when building
-  cname: "substrate.dev"
+  cname: "substrate.dev",
+
+  translationRecruitingLink: "https://crowdin.com/project/substrate-developer-hub"
 
 };
 

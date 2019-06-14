@@ -37,6 +37,9 @@
     ],
     "Ecosystem Tools": [
       "ecosystem/subkey"
+    ],
+    "Contribute": [
+      "contribute/help-translate"
     ]
   }
 }
