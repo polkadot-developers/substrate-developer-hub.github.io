@@ -134,7 +134,10 @@ const siteConfig = {
   algolia: {
     apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
     indexName: 'substrate',
-    algoliaOptions: {} // Optional, if provided by Algolia
+    algoliaOptions: {
+      // https://www.algolia.com/doc/api-reference/api-parameters/
+      facetFilters: ["language:LANGUAGE"]
+    }
   }
 
 };
