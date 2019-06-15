@@ -97,11 +97,10 @@ const siteConfig = {
   ogImage: 'img/substrate-dev-hub-card.png',
   twitterImage: 'img/substrate-dev-hub-card.png',
 
-  // Show documentation's last contributor's name.
-  // enableUpdateBy: true,
-
-  // Show documentation's last update time.
-  // enableUpdateTime: true,
+  // Show documentation's last contributor and update time
+  // at the bottom of the page:
+  enableUpdateBy: true,
+  enableUpdateTime: true,
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
@@ -117,10 +116,6 @@ const siteConfig = {
 
   // Edit this page button
   editUrl: "https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/",
-
-  // Add Update by information at the bottom of the page:
-  enableUpdateBy: true,
-  enableUpdateTime: true,
 
   // Scroll to top button at the bottom
   scrollToTop: true,
