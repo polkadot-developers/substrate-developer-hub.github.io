@@ -44,6 +44,7 @@ const siteConfig = {
     {page: 'tutorials', label: 'Tutorials'},
     {page: 'community', label: 'Community'},
     {href: 'https://github.com/paritytech/substrate', label: 'GitHub'},
+    {search: true},
   ],
 
   // If you have users set above, you add it here:
@@ -97,11 +98,10 @@ const siteConfig = {
   ogImage: 'img/substrate-dev-hub-card.png',
   twitterImage: 'img/substrate-dev-hub-card.png',
 
-  // Show documentation's last contributor's name.
-  // enableUpdateBy: true,
-
-  // Show documentation's last update time.
-  // enableUpdateTime: true,
+  // Show documentation's last contributor and update time
+  // at the bottom of the page:
+  enableUpdateBy: true,
+  enableUpdateTime: true,
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
@@ -118,10 +118,6 @@ const siteConfig = {
   // Edit this page button
   editUrl: "https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/",
 
-  // Add Update by information at the bottom of the page:
-  enableUpdateBy: true,
-  enableUpdateTime: true,
-
   // Scroll to top button at the bottom
   scrollToTop: true,
 
@@ -132,7 +128,14 @@ const siteConfig = {
   cname: "substrate.dev",
 
   // Translation recruitment link, appears in the language drop down as "Help Translate"
-  translationRecruitingLink: "https://crowdin.com/project/substrate-developer-hub"
+  translationRecruitingLink: "https://crowdin.com/project/substrate-developer-hub",
+
+  // Algolia Search
+  algolia: {
+    apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+    indexName: 'substrate',
+    algoliaOptions: {} // Optional, if provided by Algolia
+  }
 
 };
 
