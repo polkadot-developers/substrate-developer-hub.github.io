@@ -131,6 +131,7 @@ const siteConfig = {
   // Generate CNAME file when building
   cname: "substrate.dev",
 
+  // Translation recruitment link, appears in the language drop down as "Help Translate"
   translationRecruitingLink: "https://crowdin.com/project/substrate-developer-hub"
 
 };
