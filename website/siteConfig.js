@@ -44,6 +44,7 @@ const siteConfig = {
     {page: 'tutorials', label: 'Tutorials'},
     {page: 'community', label: 'Community'},
     {href: 'https://github.com/paritytech/substrate', label: 'GitHub'},
+    {search: true},
   ],
 
   // If you have users set above, you add it here:
@@ -124,7 +125,14 @@ const siteConfig = {
   stylesheets: ["https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"],
 
   // Generate CNAME file when building
-  cname: "substrate.dev"
+  cname: "substrate.dev",
+
+  // Algolia Search
+  algolia: {
+    apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+    indexName: 'substrate',
+    algoliaOptions: {} // Optional, if provided by Algolia
+  }
 
 };
 
