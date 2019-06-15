@@ -127,6 +127,9 @@ const siteConfig = {
   // Generate CNAME file when building
   cname: "substrate.dev",
 
+  // Translation recruitment link, appears in the language drop down as "Help Translate"
+  translationRecruitingLink: "https://crowdin.com/project/substrate-developer-hub",
+
   // Algolia Search
   algolia: {
     apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',

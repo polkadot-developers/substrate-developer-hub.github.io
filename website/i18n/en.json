@@ -5,6 +5,9 @@
     "previous": "Previous",
     "tagline": "The place for blockchain innovators.",
     "docs": {
+      "contribute/help-translate": {
+        "title": "Help Translate"
+      },
       "ecosystem/subkey": {
         "title": "The `subkey` Tool"
       },
@@ -116,7 +119,8 @@
       "Quick Start": "Quick Start",
       "Substrate Fundamentals": "Substrate Fundamentals",
       "Runtime": "Runtime",
-      "Ecosystem Tools": "Ecosystem Tools"
+      "Ecosystem Tools": "Ecosystem Tools",
+      "Contribute": "Contribute"
     }
   },
   "pages-strings": {
