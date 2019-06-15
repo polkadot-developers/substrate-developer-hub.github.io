@@ -2,10 +2,10 @@
 title: "Help Translate"
 ---
 
-Substrate is a Blockchain toolkit meant to be used by superior developer around the world. We need your help to make this website more friendly in your master language. 
+Substrate is an open source Blockchain framework that is meant to be used by developers around the world. We need **your** help to make this website more friendly for developers of all languages.
 
-Please go to the [Crowdin project](https://crowdin.com/project/substrate-developer-hub), pick the language you love most and start translation.
+If you can help translate the documentation here into another language, please go to [Crowdin](https://crowdin.com/project/substrate-developer-hub) and pick a language to get started.
 
-Once your saved translation gets approved, it will appear in this website. There could be a few days delay.
+Once your translation gets approved, it will appear on this website!
 
-If you are interested to be an Approver, please send email to <substrate-developer-hub@parity.io>.
+If you are interested in approving translations from others, please send email to <substrate-developer-hub@parity.io>.
