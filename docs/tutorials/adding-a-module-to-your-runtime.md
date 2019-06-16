@@ -16,7 +16,7 @@ To install all the prerequisites needed for the Substrate build environment, lik
 curl https://getsubstrate.io -sSf | bash -- -s --fast
 ```
 
-As a part of `getsubstrate` script, we will also install [additional scripts](quickstart/using-the-substrate-node-and-module-setup-scripts.md) which allow you to quickly create a new Substrate node template in your working folder. We will call this chain `constract-chain`:
+As a part of `getsubstrate` script, we will also install [additional scripts](quickstart/using-the-substrate-node-and-module-setup-scripts.md) which allow you to quickly create a new Substrate node template in your working folder. We will call this chain `contract-chain`:
 
 ```bash
 cd /my/working/folder/
@@ -69,7 +69,7 @@ std = [
 
 This section is defining the features of your runtime crate, and as you can imagine, each module crate has a similar configuration defining the default feature for the crate, and what features should be used on downstream dependencies when that feature is enabled. The snippet above should be read as:
 
-> The default feature for this Substrate runtime is `std`. When `std` feature is enabled for the runtime, `parity-codec`, `primatives`, `client`, and all the other listed dependencies should use their `std` feature too.
+> The default feature for this Substrate runtime is `std`. When `std` feature is enabled for the runtime, `parity-codec`, `primitives`, `client`, and all the other listed dependencies should use their `std` feature too.
 
 This is important to enable the Substrate runtime to compile to both native binaries (which support Rust [`std`](https://doc.rust-lang.org/std/)) and Wasm binaries (which do not: [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html)).
 
