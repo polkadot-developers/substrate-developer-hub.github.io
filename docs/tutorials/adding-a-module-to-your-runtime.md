@@ -129,7 +129,7 @@ error: cannot find macro `vec!` in this scope
 error: aborting due to previous error
 ```
 
-But, it also has another feature: `core`.
+If we look closer, it also has another feature: `core`.
 
 **Contract Module `Cargo.toml`**
 ```rust
@@ -183,8 +183,8 @@ impl contract::Trait for Runtime {
 
 To go into a bit more detail here, we see from the documentation that `type Currency` in the Contract module needs to be defined and support the requirements of the trait `Currency`
 
-**From the reference documentation, but also can be found in the Contract module**
 ```
+// From the reference documentation, but also can be found in the Contract module code
 type Currency: Currency<Self::AccountId>
 ```
 
@@ -218,6 +218,33 @@ construct_runtime!(
     }
 );
 ```
+
+### Adding Runtime Hooks
+
+Substrate provides the ability for modules to expose "hooks" where changes in the module can trigger functions in other modules. For example, you could create a module which executes some action every time a new account is created (when it first gains a balance over the [existential deposit](https://substrate.dev/docs/en/overview/glossary#existential-deposit)).
+
+In the case of the Contracts module, we actually want a hook when an account runs out of free balance. Because the Contract module instantiates contracts as "Accounts", it also needs to know when an account is destroyed so that it can clean up any storage that contract was using. You can find that in the Contract module source code:
+
+```rust
+impl<T: Trait> OnFreeBalanceZero<T::AccountId> for Module<T> {
+	fn on_free_balance_zero(who: &T::AccountId) {
+		<CodeHashOf<T>>::remove(who);
+		<AccountInfoOf<T>>::get(who).map(|info| child::kill_storage(&info.trie_id));
+	}
+}
+```
+
+To enable this, we simply need to add `Contract` to the `OnFreeBalanceZero` hook provided by the Balances module:
+
+```rust
+impl balances::Trait for Runtime {
+    /// What to do if an account's free balance gets zeroed.
+    type OnFreeBalanceZero = (Contract);
+    ...
+}
+```
+
+Now, when the balances module detects that the balance of an account has reached zero, it calls the `on_free_balance_zero` function of the contract module.
 
 ## Genesis Configuration
 
