@@ -34,7 +34,7 @@ If you have gotten this far, then you are ready to start adding the new module t
 
 ## Importing a Module Crate
 
-The first thing you need to do to add you new module is to import the crate using your runtime's `Cargo.toml` file. If you want a proper primer into Cargo References, you should check out [their official documentation](https://doc.rust-lang.org/cargo/reference/index.html).
+The first thing you need to do to add the Contract module is to import the `srml_contract` crate in your runtime's `Cargo.toml` file. If you want a proper primer into Cargo References, you should check out [their official documentation](https://doc.rust-lang.org/cargo/reference/index.html).
 
 Open `contract-chain/runtime/Cargo.toml` and you will see a file which lists all the dependencies your runtime has, for example the [Balances module](https://crates.parity.io/srml_balances/index.html):
 
@@ -67,7 +67,7 @@ std = [
 ]
 ```
 
-This section is defining the features of your runtime crate, and as you can imagine, each module crate has a similar configuration defining the default feature for the crate, and what features should be used on downstream dependencies when that feature is enabled. The snippet above should be read as:
+This second line defines the `default` features of your runtime crate as `std`. You can imagine, each module crate has a similar configuration defining the default feature for the crate. Your feature will determine the features that should be used on downstream dependencies. For example, the snippet above should be read as:
 
 > The default feature for this Substrate runtime is `std`. When `std` feature is enabled for the runtime, `parity-codec`, `primitives`, `client`, and all the other listed dependencies should use their `std` feature too.
 
@@ -140,6 +140,7 @@ core = [
 
 We will also need to add this feature into our runtime, so we will add the following to our runtime's `Cargo.toml` file:
 
+**contract-chain `Cargo.toml`**
 ```rust
 core = [
 	"contract/core",
@@ -154,7 +155,7 @@ At this point, you should be able to sanity check that everything compiles corre
 // Build Wasm binaries with `no_std`
 ./scripts/build.sh
 
-// Build Native binaries with `std`
+// Build native binaries with `std`
 cargo build --release
 ```
 
@@ -183,14 +184,14 @@ impl contract::Trait for Runtime {
 
 To go into a bit more detail here, we see from the documentation that `type Currency` in the Contract module needs to be defined and support the requirements of the trait `Currency`
 
-```
+```rust
 // From the reference documentation, but also can be found in the Contract module code
 type Currency: Currency<Self::AccountId>
 ```
 
 Fortunately, the Balances module implements this type, so we can simply reference `Balances` to gain access to it.
 
-Similarly, `type DetermineContractAddress` requires the trait `ContractAddressFor`. The Contract module itself implements a type with this trait in `contract::SimpleAddressDeterminator`, thus can use that implementation to satisfy our `contract::Trait`. At this point, I really recommend you explore the source code of the [Contract module](https://github.com/paritytech/substrate/blob/v1.0/srml/contract/src/lib.rs) if things don't make sense or you want to get a deeper understanding of things.
+Similarly, `type DetermineContractAddress` requires the trait `ContractAddressFor`. The Contract module itself implements a type with this trait in `contract::SimpleAddressDeterminator`, thus can use that implementation to satisfy our `contract::Trait`. At this point, I really recommend you explore the source code of the [Contract module](https://github.com/paritytech/substrate/blob/v1.0/srml/contract/src/lib.rs) if things don't make sense or you want to gain a deeper understanding.
 
 ### Adding Contract to the Construct Runtime Macro
 
@@ -223,8 +224,9 @@ construct_runtime!(
 
 Substrate provides the ability for modules to expose "hooks" where changes in the module can trigger functions in other modules. For example, you could create a module which executes some action every time a new account is created (when it first gains a balance over the [existential deposit](https://substrate.dev/docs/en/overview/glossary#existential-deposit)).
 
-In the case of the Contracts module, we actually want a hook when an account runs out of free balance. Because the Contract module instantiates contracts as "Accounts", it also needs to know when an account is destroyed so that it can clean up any storage that contract was using. You can find that in the Contract module source code:
+In the case of the Contracts module, we actually want a hook when an account runs out of free balance. Because the Contract module instantiates contracts as "Accounts", it also needs to know when an account is destroyed so that it can clean up any storage that contract was using. You can find that logic in the Contract module source code:
 
+**Contract module `lib.rs`**
 ```rust
 impl<T: Trait> OnFreeBalanceZero<T::AccountId> for Module<T> {
 	fn on_free_balance_zero(who: &T::AccountId) {
@@ -236,6 +238,7 @@ impl<T: Trait> OnFreeBalanceZero<T::AccountId> for Module<T> {
 
 To enable this, we simply need to add `Contract` to the `OnFreeBalanceZero` hook provided by the Balances module:
 
+**`contract-chain/runtime/src/lib.rs`**
 ```rust
 impl balances::Trait for Runtime {
     /// What to do if an account's free balance gets zeroed.
@@ -244,7 +247,7 @@ impl balances::Trait for Runtime {
 }
 ```
 
-Now, when the balances module detects that the balance of an account has reached zero, it calls the `on_free_balance_zero` function of the contract module.
+Now, when the Balances module detects that the free balance of an account has reached zero, it calls the `on_free_balance_zero` function of the contract module.
 
 ## Genesis Configuration
 
