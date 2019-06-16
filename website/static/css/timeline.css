@@ -89,3 +89,7 @@
     border-bottom-left-radius:0;
 }
 
+/* When making the text some % of the total width, pull right aligned content */
+.timeline li:nth-child(even) div[class^="col-"] {
+    margin-left: auto;
+}

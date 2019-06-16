@@ -14,25 +14,26 @@
  * limitations under the License.
  */
 
-const React = require('react');
+const React = require("react");
+const Col = require("react-bootstrap/Col.js");
 
 class Timeline extends React.Component {
-    render() {
-        return (
-            <ol className="list-unstyled timeline">{this.props.children}</ol>
-        )
-    }
+  render() {
+    return <ol className="list-unstyled timeline">{this.props.children}</ol>;
+  }
 }
 
 class Timespot extends React.Component {
-    render() {
-        return (
-            <li className="timeline">{this.props.children}</li>
-        )
-    }
+  render() {
+    return (
+      <li className="timeline">
+        <Col lg={8}>{this.props.children}</Col>
+      </li>
+    );
+  }
 }
 
 module.exports = {
-    Timeline,
-    Timespot
-}
+  Timeline,
+  Timespot
+};
