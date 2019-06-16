@@ -5,6 +5,24 @@
     "previous": "Previous",
     "tagline": "The place for blockchain innovators.",
     "docs": {
+      "contracts/adding-the-contract-module": {
+        "title": "Adding the Contract Module to Your Runtime"
+      },
+      "contracts/cargo-contract": {
+        "title": "Cargo Contract: The ink! CLI"
+      },
+      "contracts/deploying-a-contract": {
+        "title": "Deploying a Contract"
+      },
+      "contracts/faq": {
+        "title": "Frequently Asked Questions"
+      },
+      "contracts/installing-ink": {
+        "title": "contracts/installing-ink"
+      },
+      "contracts/introduction": {
+        "title": "Introduction to Smart Contracts on Substrate"
+      },
       "contribute/help-translate": {
         "title": "Help Translate"
       },
@@ -82,6 +100,9 @@
       },
       "tutorials/governance--public--mechanism-with-a-substrate-node-chain": {
         "title": "Governance \"Public\" Mechanism with a Substrate Node Chain"
+      },
+      "tutorials/ink/writing-your-first-contract": {
+        "title": "Writing Your First Contract"
       },
       "tutorials/start-a-private-network-with-substrate": {
         "title": "Start a Private Network with Substrate"

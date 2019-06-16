@@ -12,7 +12,7 @@ Existing smart contract platforms like [Ethereum](https://www.ethereum.org/) hav
 
 ## Contract Module
 
-The SRML Contract module provides the ability for the runtime to deploy and execute WebAssembly smart contracts.
+The SRML Contract module provides the ability for the runtime to deploy and execute WebAssembly smart contracts. Here we will provide a short overview of the common similarities and differences between the Contract module and Ethereum. To really learn all of the fine details, you can take a look at the [reference documentation for `srml_contract`](https://crates.parity.io/srml_contract/index.html).
 
 ### Similarities to Ethereum
 
@@ -27,9 +27,22 @@ The [halting problem](https://en.wikipedia.org/wiki/Halting_problem) is solved b
 
 The Contract module provides safety to the blockchain state by enabling revertable transactions, which rollback any changes to the storage by contract calls which fail.
 
+Contract calls can change alter the storage of the contract, create new contracts, and call other contracts.
+
 ### Differences to Ethereum
 
-Unlike Ethereum, the Contracts module
+Unlike Ethereum, the Contracts module uses a WebAssembly interpreter ([wasmi](https://github.com/paritytech/wasmi/)) to execute smart contracts.
+
+Smart contract deployment in the Contract module uses a two step process:
+
+1. First, the compiled Wasm is placed on the chain, and stored in the Contract module internal storage using the hash of the blob.
+2. Then, an instance of that contract can be deployed, where an account will be created to host the storage and balance for that instance.
+
+This means that unlike Ethereum, standardized contract code like an [ERC-20](https://en.wikipedia.org/wiki/ERC-20) token only need to be uploaded once, reducing the amount of storage space used by the contract platform on your blockchain.
+
+The contract module has implemented storage rent mechanisms which will continually charge contracts for the storage they use. In combination with [existential deposit](overview/glossary.md#existential-deposit), this means that contract storage will be freed when its balance becomes too low.
+
+Because Substrate provides you with the ability to write custom runtime modules, the Contract module enables you to make asynchronous calls directly to those runtime functions on behalf of the contract account.
 
 ## ink!
 
