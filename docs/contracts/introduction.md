@@ -27,7 +27,7 @@ The [halting problem](https://en.wikipedia.org/wiki/Halting_problem) is solved b
 
 The Contract module provides safety to the blockchain state by enabling revertable transactions, which rollback any changes to the storage by contract calls which fail.
 
-Contract calls can change alter the storage of the contract, create new contracts, and call other contracts.
+Contract calls can alter the storage of the contract, create new contracts, and call other contracts.
 
 ### Differences to Ethereum
 
