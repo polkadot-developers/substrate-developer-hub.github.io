@@ -293,7 +293,7 @@ Finally, you are ready to compile your contract capable node with:
 cargo build --release
 ```
 
-## Conclusion
+## Next Steps
 
 We wont actually go into the details of testing the Contract module functionality added to this chain, but if you want to try it out, you can follow our tutorial on [Deploying Your First Smart Contract] (LINK TO BE ADDED).
 
