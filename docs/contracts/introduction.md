@@ -31,7 +31,7 @@ Contract calls can alter the storage of the contract, create new contracts, and 
 
 ### Differences to Ethereum
 
-Unlike Ethereum, the Contracts module uses a WebAssembly interpreter ([wasmi](https://github.com/paritytech/wasmi/)) to execute smart contracts.
+Unlike Ethereum, the Contracts module uses a WebAssembly virtual machine to execute smart contracts.
 
 Smart contract deployment in the Contract module uses a two step process:
 
