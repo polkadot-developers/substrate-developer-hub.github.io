@@ -6,7 +6,11 @@ Many a times, there is a need of querying and/or processing off-chain data befor
 
 To make the off-chain data integration secure and more efficient, Substrate provides off-chain workers. The off-chain worker subsystem allows execution of long-running and possibly non deterministic tasks (web requests, encryption/decryption and signing of data, random number generation, CPU-intensive computations, enumeration/aggregation of on-chain data, etc.) which would otherwise require longer than the block execution time.
 
-The off-chain workers have their own Wasm execution environment outside of the Substrate runtime. This separation of concerns is to make sure that the block production is not impacted by the long-running tasks. However, as the off-chain workers are declared in the same code as the runtime, they can easily access on-chain state for their computations. To communicate results back on chain, off-chain workers can submit extrinsics (signed or inherent) that are later included in subsequent blocks.
+The off-chain workers have their own Wasm execution environment outside of the Substrate runtime. This separation of concerns is to make sure that the block production is not impacted by the long-running tasks. However, as the off-chain workers are declared in the same code as the runtime, they can easily access on-chain state for their computations.
+
+The off-chain workers can be initiated from within a special function in the runtime modules - `offchain_worker(_n: T::BlockNumber)`. The function is executed after block import. To communicate results back on chain, off-chain workers can submit extrinsics (signed or inherent) that are later included in subsequent blocks.
+
+It is to be noted that the results from off-chain workers are not subject to regular consensus. An on-chain verification mechanism should be implemented (i.e. voting, averaging, challenging or simply "trusting").
 
 The following diagram depicts how off-chain workers work within the Substrate node:
 
