@@ -382,8 +382,6 @@ mod tests {
 
 Now that you have gotten a taste for writing smart contracts with ink!, it's time to deploy and test them!
 
-Learn how to [deploy your first smart contract](Deploying-Your-First-Contract).
+Learn how to [deploy a smart contract](contracts/deploying-a-contract).
 
-Join the ink! development community on [Riot](https://riot.im/) you are welcome to ask questions, get help, and talk with others about this exciting new platform.
-
-[>> Parity ink! Chat <<](https://matrix.to/#/!tYUCYdSvSYPMjWNDDD:matrix.parity.io?via=matrix.parity.io)
+Join the ink! development community! Check out our resources on our [community page](/community/).

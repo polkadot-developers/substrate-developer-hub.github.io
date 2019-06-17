@@ -5,9 +5,6 @@
     "previous": "Previous",
     "tagline": "The place for blockchain innovators.",
     "docs": {
-      "contracts/adding-the-contract-module": {
-        "title": "Adding the Contract Module to Your Runtime"
-      },
       "contracts/cargo-contract": {
         "title": "Cargo Contract: The ink! CLI"
       },
@@ -18,10 +15,13 @@
         "title": "Frequently Asked Questions"
       },
       "contracts/installing-ink": {
-        "title": "contracts/installing-ink"
+        "title": "Installing ink!"
       },
       "contracts/introduction": {
         "title": "Introduction to Smart Contracts on Substrate"
+      },
+      "contracts/testing-your-contract": {
+        "title": "Testing Your Contract"
       },
       "contribute/help-translate": {
         "title": "Help Translate"
@@ -95,14 +95,14 @@
       "runtime/types/genesisconfig-struct": {
         "title": "GenesisConfig Struct"
       },
+      "tutorials/creating-your-first-contract": {
+        "title": "Creating Your First Contract"
+      },
       "tutorials/creating-your-first-substrate-chain": {
         "title": "Creating Your First Substrate chain"
       },
       "tutorials/governance--public--mechanism-with-a-substrate-node-chain": {
         "title": "Governance \"Public\" Mechanism with a Substrate Node Chain"
-      },
-      "tutorials/ink/writing-your-first-contract": {
-        "title": "Writing Your First Contract"
       },
       "tutorials/start-a-private-network-with-substrate": {
         "title": "Start a Private Network with Substrate"
@@ -140,6 +140,7 @@
       "Quick Start": "Quick Start",
       "Substrate Fundamentals": "Substrate Fundamentals",
       "Runtime": "Runtime",
+      "Substrate Contracts": "Substrate Contracts",
       "Ecosystem Tools": "Ecosystem Tools",
       "Contribute": "Contribute"
     }

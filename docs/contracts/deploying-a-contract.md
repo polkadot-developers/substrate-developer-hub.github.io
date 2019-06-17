@@ -122,3 +122,7 @@ If the extrinsic was successful, we should then be able to go back to the `get()
 ![An image of println in the terminal for Flipper with true](./images/flipper-println-true.png)
 
 Woohoo! You deployed a smart contract!
+
+## Next Steps
+
+If you are interested to learn how to write ink! smart contracts, check out our [tutorials page](/tutorials/).

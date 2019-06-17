@@ -1,21 +1,14 @@
-## Prerequisites
+---
+title: "Installing ink!"
+---
 
-To follow this guide, you will need to set up some stuff on your computer.
+On this page, we will show you how to set up your computer to build ink! Wasm smart contracts.
 
-### Substrate
-To get started, you need to make sure your computer is set up to build and run Substrate.
+## Rust
 
-If you are using OSX or most popular Linux distros, you can do that with a simple one-liner:
+ink! is based on the Rust programming language, and thus you will need to also set up your computer for Rust development. If you have followed the [instructions to install Substrate](quickstart/installing-substrate.md), then you should be good to go.
 
-```bash
-curl https://getsubstrate.io -sSf | bash
-```
-
-In addition to installing prerequisite libraries, this command will also install the `substrate` command to your path so that you can start a substrate node easily.
-
-If you are using another operating system, like Windows, follow the installation instructions on the [Substrate readme](https://github.com/paritytech/substrate#61-hacking-on-substrate).
-
-### Wasm Utilities
+## Wasm Utilities
 
 Smart contracts in Substrate are compiled to WebAssembly (Wasm). To manipulate these files for use on Substrate, you will need to install some Wasm utilities:
 
@@ -40,7 +33,7 @@ cargo install pwasm-utils-cli --bin wasm-prune
 
 We will be using `wasm2wat` (wabt), `wat2wasm` (wabt), and `wasm-prune` (wasm-utils) later in the guide.
 
-### ink! CLI
+## ink! CLI
 
 The final tool we will be installing is the ink! command line utility which will make setting up Substrate smart contract projects easier.
 
