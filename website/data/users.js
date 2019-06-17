@@ -81,7 +81,7 @@ const usersList = [
     name: "LayerX",
     image: "/img/users/layerx.png",
     homepage: "https://layerx.co.jp/",
-    code: "https://github.com/LayerXcom/zero-chain",
+    github: "https://github.com/LayerXcom/zero-chain",
     pinned: false
   },
   {
