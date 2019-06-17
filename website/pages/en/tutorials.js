@@ -139,7 +139,7 @@ class Tutorials extends React.Component {
               },
               {
                 title: "Adding a Module to Your Runtime",
-                text: "This tutorial will teach you how you can add the Contract module or other SRML modules to your Substrate node template.",
+                text: "Add the Contract module or other SRML modules to your Substrate node template.",
                 difficulty: "medium",
                 length: "2",
                 prerequisite: false,

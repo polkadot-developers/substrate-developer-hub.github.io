@@ -32,11 +32,13 @@ cd contract-chain/
 
 If you have gotten this far, then you are ready to start adding the new module to your runtime.
 
+Remember to stop your node with `control + C`!
+
 ## Importing a Module Crate
 
 The first thing you need to do to add the Contract module is to import the `srml_contract` crate in your runtime's `Cargo.toml` file. If you want a proper primer into Cargo References, you should check out [their official documentation](https://doc.rust-lang.org/cargo/reference/index.html).
 
-Open `contract-chain/runtime/Cargo.toml` and you will see a file which lists all the dependencies your runtime has, for example the [Balances module](https://crates.parity.io/srml_balances/index.html):
+Open `contract-chain/runtime/Cargo.toml` and you will see a file which lists all the dependencies your runtime has. For example, it depends on the [Balances module](https://crates.parity.io/srml_balances/index.html):
 
 ```rust
 [dependencies.balances]
@@ -98,7 +100,7 @@ You can see that at the top of the file, we define that we will use `no_std` whe
 
 Okay, now that we have covered the basics of crate features, we can actually import the Contract module. The Contract module is probably the most complicated module in the SRML, so it makes for a good example of some of the trickiness that can be involved when adding additional modules. To give you a hint as to what is to come, you should take a look at the [`Cargo.toml` file for the Contract module](https://github.com/paritytech/substrate/blob/v1.0/srml/contract/Cargo.toml).
 
-First we will add the new dependency by simply copying an existing module, and changing the values. So based on the `balances` import shown above, my `contract import will look like:
+First we will add the new dependency by simply copying an existing module, and changing the values. So based on the `balances` import shown above, my `contract` import will look like:
 
 ```rust
 [dependencies.contract]
@@ -108,7 +110,7 @@ package = 'srml-contract'
 rev = '783ca1892892454e05e234cda5f7a2e42a54461e'
 ```
 
-You can see that the Contract module has an `std` feature, thus we need to add the `contract/std` feature to the `std` feature of our runtime:
+You [can see](https://github.com/paritytech/substrate/blob/v1.0/srml/contract/Cargo.toml) that the Contract module has an `std` feature, thus we need to add the `contract/std` feature to the `std` feature of our runtime:
 
 ```rust
 std = [
@@ -129,27 +131,7 @@ error: cannot find macro `vec!` in this scope
 error: aborting due to previous error
 ```
 
-If we look closer, it also has another feature: `core`.
-
-**Contract Module `Cargo.toml`**
-```rust
-core = [
-    "wasmi-validation/core",
-]
-```
-
-We will also need to add this feature into our runtime, so we will add the following to our runtime's `Cargo.toml` file:
-
-**contract-chain `Cargo.toml`**
-```rust
-core = [
-	"contract/core",
-]
-```
-
-Thus, when our runtime compiles with the `core` feature, it will use the `contract/core` feature, which will then use the `wasmi-validation/core` feature, and so on.
-
-At this point, you should be able to sanity check that everything compiles correctly with:
+But since you did not forget, you should be able to sanity check that everything compiles correctly with:
 
 ```bash
 // Build Wasm binaries with `no_std`
@@ -163,7 +145,7 @@ cargo build --release
 
 Now that we have successfully imported the Contract module crate, we need to add it to our Runtime.
 
-If you have followed our [other basic tutorials](tutorials/creating-your-first-substrate-chain.md), you would know that we need to implement a `contract::Trait` and also add `Contract: contract::{...}` to our `construct_runtime!` macro.
+If you have followed our [other basic tutorials](tutorials/creating-your-first-substrate-chain.md), you may remember that we need to implement a `contract::Trait` and also add `Contract: contract::{...}` to our `construct_runtime!` macro.
 
 ### Implementing the Contract Trait
 
@@ -191,7 +173,7 @@ type Currency: Currency<Self::AccountId>
 
 Fortunately, the Balances module implements this type, so we can simply reference `Balances` to gain access to it.
 
-Similarly, `type DetermineContractAddress` requires the trait `ContractAddressFor`. The Contract module itself implements a type with this trait in `contract::SimpleAddressDeterminator`, thus can use that implementation to satisfy our `contract::Trait`. At this point, I really recommend you explore the source code of the [Contract module](https://github.com/paritytech/substrate/blob/v1.0/srml/contract/src/lib.rs) if things don't make sense or you want to gain a deeper understanding.
+Similarly, `type DetermineContractAddress` requires the trait `ContractAddressFor`. The Contract module itself implements a type with this trait in `contract::SimpleAddressDeterminator`, thus we can use that implementation to satisfy our `contract::Trait`. At this point, I really recommend you explore the source code of the [Contract module](https://github.com/paritytech/substrate/blob/v1.0/srml/contract/src/lib.rs) if things don't make sense or you want to gain a deeper understanding.
 
 ### Adding Contract to the Construct Runtime Macro
 
@@ -236,7 +218,7 @@ impl<T: Trait> OnFreeBalanceZero<T::AccountId> for Module<T> {
 }
 ```
 
-To enable this, we simply need to add `Contract` to the `OnFreeBalanceZero` hook provided by the Balances module:
+To enable this, we simply need to add `Contract` type that we defined in the `construct_runtime!` macro to the `OnFreeBalanceZero` hook provided by the Balances module:
 
 **`contract-chain/runtime/src/lib.rs`**
 ```rust
@@ -295,11 +277,11 @@ cargo build --release
 
 ## Next Steps
 
-We wont actually go into the details of testing the Contract module functionality added to this chain, but if you want to try it out, you can follow our tutorial on [Deploying Your First Smart Contract] (LINK TO BE ADDED).
+We wont actually go into the details of testing the Contract module functionality added to this chain, but if you want to try it out, you can follow our instructions for [deploying a contract](contracts/deploying-a-contract.md).
 
 Make sure to run `./target/release/contract-chain purge-chain --dev` before you start your chain so that the genesis configuration will be initialized for the Contract module.
 
-### Importing and Adding Other SRML Modules
+### Adding Other SRML Modules
 
 In this guide, we walked through specifically how to import the Contract module, but as mentioned in the beginning of this guide, each module will be a little different. Have no fear, you can always refer to the ["main" Substrate node runtime](https://github.com/paritytech/substrate/blob/v1.0/node/runtime/) which includes nearly every module in the SRML.
 
