@@ -24,6 +24,7 @@ const Card = require("../../../../react-bootstrap/Card.js");
 const Row = require("../../../../react-bootstrap/Row.js");
 const Col = require("../../../../react-bootstrap/Col.js");
 const Image = require("../../../../react-bootstrap/Image.js");
+const translate = require('../../server/translate.js').translate;
 
 class Index extends React.Component {
   render() {
@@ -75,60 +76,60 @@ class Index extends React.Component {
     const Hotspots = () => (
       <Row>
         <HotspotCard
-          title="Documentation"
-          text="Substrate provides both high level documentation which you can find here and reference level documentation as Rust docs."
+          title={<translate>Documentation</translate>}
+          text={<translate>Substrate provides both high level documentation which you can find here and reference level documentation as Rust docs.</translate>}
         >
           <Button
             variant="secondary"
             href={docUrl('quickstart/getting-started')}
             className="m-1 primary-color"
           >
-            High Level Docs
+            <translate>High Level Docs</translate>
           </Button>
           <Button
             variant="secondary"
             href="/rustdocs/v1.0/"
             className="m-1"
           >
-            Reference Docs
+            <translate>Reference Docs</translate>
           </Button>
         </HotspotCard>
         <HotspotCard
-          title="Join the Community"
-          text="Substrate has a rapidly growing, friendly, and technical community. Ask questions and work with others who are building in the space."
+          title={<translate>Join the Community</translate>}
+          text={<translate>Substrate has a rapidly growing, friendly, and technical community. Ask questions and work with others who are building in the space.</translate>}
         >
           <Button
             variant="secondary"
             href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"
             className="m-1 primary-color"
           >
-            Join the Chat!
+            <translate>Join the Chat!</translate>
           </Button>
           <Button
             variant="secondary"
             href="https://stackoverflow.com/questions/tagged/substrate"
             className="m-1"
           >
-            StackOverflow
+            <translate>StackOverflow</translate>
           </Button>
         </HotspotCard>
         <HotspotCard
-          title="Tutorials"
-          text="Substrate has a range of tutorials which will get you building on Substrate in a short amount of time. You can also find a bunch of different code snippets for common patterns for runtime development in our Substrate Recipes page."
+          title={<translate>Tutorials</translate>}
+          text={<translate>Substrate has a range of tutorials which will get you building on Substrate in a short amount of time. You can also find a bunch of different code snippets for common patterns for runtime development in our Substrate Recipes page.</translate>}
         >
           <Button
             variant="secondary"
             href={pageUrl('tutorials')}
             className="m-1 primary-color"
           >
-            Tutorial Catalog
+            <translate>Tutorial Catalog</translate>
           </Button>
           <Button
             variant="secondary"
             href="/recipes/"
             className="m-1"
           >
-            Substrate Recipes
+            <translate>Substrate Recipes</translate>
           </Button>
         </HotspotCard>
       </Row>
@@ -139,7 +140,9 @@ class Index extends React.Component {
         className="productShowcaseSection mb-5 mt-5"
         style={{ textAlign: "center" }}
       >
-        <h2 className="text-dark">What is Substrate?</h2>
+        <h2 className="text-dark">
+          <translate>What is Substrate?</translate>
+        </h2>
         <h2 className="primary-color-text">&#11015;</h2>
       </div>
     );
@@ -148,18 +151,26 @@ class Index extends React.Component {
       <Feature
         image={`${baseUrl}img/undraw_programming.svg`}
         imageAlign="right"
-        title="Everything you Need to Build a Blockchain"
+        title={<translate>Everything you Need to Build a Blockchain</translate>}
         background="light"
       >
         <ul className="lead">
-          <li>Fast and efficient database.</li>
           <li>
-            Modular P2P networking stack in{" "}
+            <translate>Fast and efficient database.</translate>
+          </li>
+          <li>
+            <translate>Modular P2P networking stack in{" "}</translate>
             <a href="https://github.com/libp2p">libp2p</a>.
           </li>
-          <li>Hot-swappable consensus layer.</li>
-          <li>Customizable transaction queue management system.</li>
-          <li>Diverse library of runtime modules.</li>
+          <li>
+            <translate>Hot-swappable consensus layer.</translate>
+          </li>
+          <li>
+            <translate>Customizable transaction queue management system.</translate>
+          </li>
+          <li>
+            <translate>Diverse library of runtime modules.</translate>
+          </li>
         </ul>
       </Feature>
     );
@@ -168,12 +179,14 @@ class Index extends React.Component {
       <Feature
         image={`${baseUrl}img/undraw_mind_map.svg`}
         imageAlign="left"
-        title="Smart Contract Ready"
+        title={<translate>Smart Contract Ready</translate>}
       >
-        Substrate has a Wasm smart contract platform which you can use out of
-        the box. Because Substrate uses Wasm, you can build your smart contracts
-        using any compatible language. We have built ink!, a Rust based eDSL for
-        this purpose.
+        <translate>
+          Substrate has a Wasm smart contract platform which you can use out of
+          the box. Because Substrate uses Wasm, you can build your smart contracts
+          using any compatible language. We have built ink!, a Rust based eDSL for
+          this purpose.
+        </translate>
       </Feature>
     );
 
@@ -182,13 +195,15 @@ class Index extends React.Component {
         background="dark"
         image={`${baseUrl}img/undraw_connected_world.svg`}
         imageAlign="right"
-        title="(Almost) Production Ready"
+        title={<translate>(Almost) Production Ready</translate>}
       >
-        Substrate is the backbone which powers Polkadot, a next generation,
-        heterogeneous, multi-chain network. Most 'parachains' which will connect to
-        this network are also built on Substrate. Substrate is undergoing a security
-        audit in preparation for a 2020 release of the Polkadot network. Take a look
-        below for some of the users who are already using Substrate for their projects.
+        <translate>
+          Substrate is the backbone which powers Polkadot, a next generation,
+          heterogeneous, multi-chain network. Most 'parachains' which will connect to
+          this network are also built on Substrate. Substrate is undergoing a security
+          audit in preparation for a 2020 release of the Polkadot network. Take a look
+          below for some of the users who are already using Substrate for their projects.
+        </translate>
       </Feature>
     );
 
@@ -209,11 +224,13 @@ class Index extends React.Component {
 
       return (
         <div className="productShowcaseSection paddingBottom">
-          <h2>Who is Building on Substrate?</h2>
+          <h2>
+            <translate>Who is Building on Substrate?</translate>
+          </h2>
           <div className="logos">{showcase}</div>
           <div className="more-users">
             <a className="button" href={pageUrl("users.html")}>
-              More Substrate Users
+              <translate>More Substrate Users</translate>
             </a>
           </div>
         </div>
