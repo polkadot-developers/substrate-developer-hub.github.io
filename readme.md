@@ -24,9 +24,9 @@ To add a new markdown document,
 * CD into the `/website` directory.
 * Execute `yarn install` and then `yarn start`.
 
-The Substrate Developer Hub should open in a browser window.
+The Substrate Developer Hub website should open in a browser window.
 
-Once you are done with your changes; feel free to submit a PR.
+Once you are done with your changes, feel free to submit a PR.
 
 ## License
 
