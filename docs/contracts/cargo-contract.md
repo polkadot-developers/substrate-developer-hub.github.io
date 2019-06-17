@@ -98,3 +98,44 @@ target
 ```
 
 The final, optimized `flipper-pruned.wasm` file is what we will actually deploy to our Substrate chain.
+
+### Contract ABI
+
+If you run the build script, you will also notice a JSON file which gets generated:
+
+```
+Flipper.json
+```
+
+This is your contract's application binary interface (ABI). Let's take a look inside:
+
+```json
+{
+  "name": "Flipper",
+  "deploy": { "args": [] },
+  "messages": [
+    {
+      "name": "flip",
+      "selector": 970692492,
+      "mutates": true,
+      "args": [],
+      "return_type": null
+    },
+    {
+      "name": "get",
+      "selector": 4266279973,
+      "mutates": false,
+      "args": [],
+      "return_type": "bool"
+    }
+  ]
+}
+```
+
+You can see that this file describes the interface that can be used to interact with your contract.
+
+If there are any deployment variables needed when instantiating a new contract, those will be defined in the `deploy` section. All the public functions your contract exposes can be found in `messages` along with its function name, function parameters, return type, and whether the function is read-only.
+
+There is also a `selector` which is a hash of the function name and is used to route your contract calls to the correct function.
+
+User interfaces and other contracts can use this file to interact with your contract.
