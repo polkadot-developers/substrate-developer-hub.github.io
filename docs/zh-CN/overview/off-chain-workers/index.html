@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Substrate Off-chain Workers · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;There is often a need to query and/or process off-chain data before it can be included in the on-chain state. The conventional way of doing this is through oracles. Oracles are external services that typically listen to blockchain events and trigger tasks accordingly. When these tasks complete, their result is submitted back to the blockchain using transactions. While this approach works, it still has several flaws with respect to security, scalability, and infrastructure efficiency.&lt;/p&gt;
+"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="Substrate Off-chain Workers · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;There is often a need to query and/or process off-chain data before it can be included in the on-chain state. The conventional way of doing this is through oracles. Oracles are external services that typically listen to blockchain events and trigger tasks accordingly. When these tasks complete, their result is submitted back to the blockchain using transactions. While this approach works, it still has several flaws with respect to security, scalability, and infrastructure efficiency.&lt;/p&gt;
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/zh-CN/quickstart/getting-started" target="_self">文档</a></li><li class=""><a href="https://crates.parity.io" target="_self">参考文档</a></li><li class=""><a href="/zh-CN/tutorials" target="_self">指南</a></li><li class=""><a href="/zh-CN/community" target="_self">社区</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/overview/off-chain-workers">English</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">参与翻译</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Substrate 基础</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">快速开始<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/quickstart/getting-started">开始</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/quickstart/installing-substrate">安装Substrate</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/quickstart/using-the-substrate-node-and-module-setup-scripts">使用Substrate节点和模块构建脚本</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate 基础<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/overview/introduction">简介</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/overview/extrinsics">外部参数</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/overview/transaction-lifecycle">交易生命周期</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/overview/low-level-data-format">底层数据格式</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/overview/off-chain-workers">Substrate Off-chain Workers</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/overview/session-keys">会话秘钥</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/overview/ss58-address-format">SS58 地址格式</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/overview/glossary">术语</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Runtime<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/runtime/architecture-of-a-runtime">Runtime的架构</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/runtime/substrate-runtime-module-library">Substrate Runtime 模块库</a></li><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Macros</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/runtime/macros/construct_runtime">构建一个Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/runtime/macros/decl_module">定义模块</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Types</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/runtime/types/call-enum">Call 枚举类型</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/runtime/types/event-enum">Event 枚举类型</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/runtime/types/genesisconfig-struct">GenesisConfig 结构体</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">常用工具<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/ecosystem/subkey">`subkey` 工具</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Contribute<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/contribute/help-translate">Help Translate</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">Substrate Off-chain Workers</h1></header><article><div><span><p>There is often a need to query and/or process off-chain data before it can be included in the on-chain state. The conventional way of doing this is through oracles. Oracles are external services that typically listen to blockchain events and trigger tasks accordingly. When these tasks complete, their result is submitted back to the blockchain using transactions. While this approach works, it still has several flaws with respect to security, scalability, and infrastructure efficiency.</p>
+<p>To make the off-chain data integration secure and more efficient, Substrate provides off-chain workers. The off-chain worker subsystem allows execution of long-running and possibly non-deterministic tasks (e.g. web requests, encryption/decryption and signing of data, random number generation, CPU-intensive computations, enumeration/aggregation of on-chain data, etc.) which could otherwise require longer than the block execution time.</p>
+<p>Off-chain workers have their own Wasm execution environment outside of the Substrate runtime. This separation of concerns is to make sure that the block production is not impacted by the long-running tasks. However, as the off-chain workers are declared in the same code as the runtime, they can easily access on-chain state for their computations.</p>
+<p>Off-chain workers can be initiated from within a special function in the runtime modules - <code>offchain_worker(_n: T::BlockNumber)</code>. The function is executed after block import. To communicate results back to the chain, off-chain workers can submit extrinsics (signed or inherent) that are later included in subsequent blocks.</p>
+<p>It is to be noted that the results from off-chain workers are not subject to regular consensus. An on-chain verification mechanism (e.g. voting, averaging, challenging or simply &quot;trusting&quot;) should be implemented to determine what information gets into the chain.</p>
+<p>The following diagram depicts how off-chain workers work within the Substrate node:</p>
+<p><img src="/docs/assets/off-chain-workers.png" alt="Off-chain Workers"></p>
+<p>Here are some of the advantages of using off-chain workers in comparison to using external oracles:</p>
+<ol>
+<li>Off-chain workers, being part of the Substrate node, provide more decentralization as compared to a centralized oracle service.</li>
+<li>With a sandboxed Wasm execution environment, off-chain workers are fully secure while still providing seamless integration with the runtime using extrinsics.</li>
+<li>No need for maintaining external &quot;glue&quot; services and infrastructure. This reduces maintenance and infrastructure costs for the node operators.</li>
+<li>Off-chain workers' code is also stored on-chain, which allows off-chain logic updates via standard governance mechanism and seamless upgrades (using Wasm execution fallback logic).</li>
+</ol>
+<p>The following APIs are planned to be supported by off-chain workers:</p>
+<ol>
+<li>Encryption and decryption</li>
+<li>Signing</li>
+<li>Local storage - get and set</li>
+<li>HTTP requests</li>
+<li>Key generation</li>
+<li>Random number generation</li>
+</ol>
+<p><strong>Note:</strong> Some of these APIs are still under development. More information and usage documentation will be published as and when the APIs are available for use.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/overview/low-level-data-format"><span class="arrow-prev">← </span><span>底层数据格式</span></a><a class="docs-next button" href="/docs/zh-CN/overview/session-keys"><span>会话秘钥</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/quickstart/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="https://crates.parity.io">Reference Docs</a></div><div><h5>Community</h5><a href="/zh-CN/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a class="github-button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-CN"]}
+              });
+            </script></body></html>
