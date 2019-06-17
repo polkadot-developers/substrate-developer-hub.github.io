@@ -32,158 +32,246 @@ const usersList = [
     name: "Edgeware",
     image: "/img/users/edgeware.png",
     homepage: "https://edgewa.re/",
-    pinned: true
+    github: "https://github.com/hicommonwealth",
+    team: "https://commonwealth.im/",
+    telemetry: "https://polkascan.io/pre/edgeware-testnet/dashboard",
+    pinned: true,
+    type: "chain",
   },
   {
     name: "Polkascan",
     image: "/img/users/polkascan.png",
     homepage: "https://polkascan.io/",
-    pinned: true
+    pinned: true,
+    type: "infra",
   },
   {
     name: "AdEx",
     image: "/img/users/adex.png",
     homepage: "https://www.adex.network/",
-    pinned: true
+    github: "https://github.com/AdExNetwork/adex-protocol-substrate",
+    pinned: true,
+    type: "chain",
   },
   {
     name: "ChainX",
     image: "/img/users/chainx.png",
     homepage: "https://chainx.org/",
-    pinned: true
-  },
-  {
-    name: "Energy Web Foundation",
-    image: "/img/users/ewf.svg",
-    homepage: "http://energyweb.org/",
-    pinned: true
+    github: "https://github.com/chainx-org",
+    telemetry: "https://telemetry.polkadot.io/#/ChainX",
+    pinned: true,
+    type: "chain",
   },
   {
     name: "Ocean Protocol",
     image: "/img/users/oceanprotocol.svg",
     homepage: "https://oceanprotocol.com/",
-    pinned: true
+    pinned: true,
+    type: "chain",
   },
   {
     name: "ChainLink",
     image: "/img/users/chainlink.png",
     homepage: "https://chain.link/",
-    pinned: true
+    pinned: true,
+    type: "chain",
   },
   {
     name: "iExec",
     image: "/img/users/iexec.png",
     homepage: "https://iex.ec/",
-    pinned: false
+    github: "https://github.com/iExecBlockchainComputing/iexec-substrate-poc",
+    pinned: false,
+    type: "chain",
   },
   {
     name: "LayerX",
     image: "/img/users/layerx.png",
     homepage: "https://layerx.co.jp/",
-    pinned: false
+    github: "https://github.com/LayerXcom/zero-chain",
+    pinned: false,
+    type: "chain",
   },
   {
     name: "Robonomics",
     image: "/img/users/robonomics.png",
     homepage: "https://robonomics.network/en/",
-    pinned: true
+    github: "https://github.com/airalab",
+    team: "https://aira.life/en/",
+    telemetry: "https://telemetry.polkadot.io/#/Robonomics",
+    pinned: true,
+    type: "chain",
   },
   {
     name: "MXC",
     image: "/img/users/mxc.png",
     homepage: "https://www.mxc.org/",
-    pinned: false
+    pinned: false,
+    type: "chain",
   },
   {
     name: "Katallasos",
     image: "/img/users/katallassos.png",
     homepage: "https://katal.io/",
-    pinned: false
+    github: "https://github.com/Trinkler/",
+    team: "https://ipfs.io/ipns/trinkler.software/",
+    pinned: false,
+    type: "chain",
   },
   {
     name: "Joystream",
     image: "/img/users/joystream.svg",
     homepage: "https://www.joystream.org/",
-    pinned: false
+    github: "https://github.com/Joystream",
+    team: "https://www.jsgenesis.com/",
+    pinned: false,
+    type: "chain",
   },
   {
     name: "Ladder Network",
     image: "/img/users/laddernetwork.png",
     homepage: "http://laddernetwork.io/",
-    pinned: false
+    github: "https://github.com/laddernetwork/",
+    telemetry: "https://telemetry.polkadot.io/#list/Ladder%20Testnet%20v0.5.0",
+    pinned: false,
+    type: "chain",
   },
   {
     name: "Asure Network",
     image: "/img/users/asurenetwork.svg",
     homepage: "https://www.asure.network/",
-    pinned: false
+    pinned: false,
+    type: "chain",
   },
   {
     name: "Kilt Protocol",
     image: "/img/users/kiltprotocol.png",
     homepage: "https://kilt.io/",
-    pinned: false
+    github: "https://github.com/KILTprotocol/",
+    team: "https://botlabs.org/",
+    pinned: false,
+    type: "chain",
   },
   {
     name: "PACTCare Starlog",
     image: "/img/users/starlog.png",
     homepage: "https://pact.care/",
-    pinned: false
-  },
-  {
-    name: "0x Protocol",
-    image: "/img/users/0xprotocol.png",
-    homepage: "https://0x.org/",
-    pinned: false
-  },
-  {
-    name: "Blink Network",
-    image: "/img/users/blinknetwork.png",
-    homepage: "https://blink.network/",
-    pinned: false
+    github: "https://github.com/PACTCare/Starlog",
+    pinned: false,
+    type: "chain",
   },
   {
     name: "Akropolis",
     image: "/img/users/akropolis.png",
     homepage: "https://akropolis.io/",
-    pinned: false
+    pinned: false,
+    type: "chain",
   },
   {
     name: "Staked Technologies",
     image: "/img/users/plasm.png",
     homepage: "https://staked.co.jp/",
-    pinned: false
+    github: "https://github.com/stakedtechnologies",
+    pinned: false,
+    type: "chain",
   },
   {
     name: "Speckle OS",
     image: "/img/users/speckleos.png",
     homepage: "https://www.speckleos.io/",
-    pinned: false
+    pinned: false,
+    type: "infra",
   },
   {
     name: "Agora.Trade",
     image: "/img/users/agoratrade.png",
     homepage: "https://agora.trade/",
-    pinned: false
+    pinned: false,
+    type: "chain",
   },
   {
     name: "Clovyr",
     image: "/img/users/clovyr.svg",
     homepage: "https://clovyr.io/",
-    pinned: true
+    pinned: true,
+    type: "chain",
   },
   {
     name: "Aragon",
     image: "/img/users/aragon.svg",
     homepage: "https://aragon.org/",
-    pinned: false
+    pinned: true,
+    type: "chain",
   },
   {
-    name: "Melon Protocol",
-    image: "/img/users/melonprotocol.png",
-    homepage: "https://melonport.com/",
-    pinned: true
-  }
+    name: "Centrifuge",
+    image: "/img/users/centrifuge.svg",
+    homepage: "https://centrifuge.io/",
+    github: "https://github.com/centrifuge",
+    pinned: false,
+    type: "chain",
+  },
+  {
+    name: "Parity Ethereum 2.0",
+    image: "/img/users/paritytech2.svg",
+    homepage: "https://www.parity.io/",
+    github: "https://github.com/paritytech/shasper",
+    team: "https://www.parity.io/",
+    pinned: true,
+    type: "chain",
+  },
+  {
+    name: "Horizon Games",
+    image: "/img/users/horizongames.svg",
+    homepage: "https://horizongames.net/",
+    github: "https://github.com/horizon-games",
+    pinned: false,
+    type: "chain",
+  },
+  {
+    name: "Polkadot Network",
+    image: "/img/users/polkadot.svg",
+    homepage: "https://polkadot.network/",
+    github: "https://github.com/paritytech/polkadot",
+    team: "https://www.parity.io/",
+    telemetry: "https://telemetry.polkadot.io/",
+    pinned: true,
+    type: "chain",
+  },
+  {
+    name: "Totem Accounting",
+    image: "/img/users/totem.png",
+    homepage: "https://totemaccounting.com/",
+    github: "https://gitlab.com/totem-tech",
+    pinned: false,
+    type: "chain",
+  },
+  {
+    name: "Enzyme",
+    image: "/img/users/enzyme.png",
+    homepage: "https://getenzyme.dev/",
+    github: "https://github.com/blockxlabs/enzyme",
+    team: "https://blockxlabs.com/",
+    pinned: false,
+    type: "infra",
+  },
+  {
+    name: "Protos",
+    image: "/img/users/protos.gif",
+    homepage: "http://protosmanagement.com/",
+    github: "https://github.com/protos-research/polkadot-node-explorer",
+    pinned: false,
+    type: "infra",
+  },
+  {
+    name: "substraTEE",
+    image: "/img/users/SCS.svg",
+    homepage: "https://www.scs.ch/",
+    github: "https://github.com/scs/substraTEE",
+    pinned: false,
+    type: "infra",
+  },
+
 ];
 
 function alphabetize(a, b) {
