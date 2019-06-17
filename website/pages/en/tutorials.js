@@ -138,6 +138,7 @@ class Tutorials extends React.Component {
                 href: "https://github.com/substrate-developer-hub/utxo-workshop"
               },
               {
+                img: `${baseUrl}img/plasm.png`,
                 title: "Substrate Plasma Chain Workshop",
                 text: "A tutrial for creating a scalable Plasma chain using Plasm, Plasma Modules",
                 difficulty: "medium",
