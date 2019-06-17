@@ -22,6 +22,7 @@ const { Timeline, Timespot } = require(`${process.cwd()}` +
 
 const Container = require("../../../../../react-bootstrap/Container.js");
 const Button = require("../../../../../react-bootstrap/Button.js");
+const translate = require('../../../server/translate.js').translate;
 
 class RuntimeDeveloper extends React.Component {
   render() {
@@ -35,23 +36,32 @@ class RuntimeDeveloper extends React.Component {
     const RuntimeDeveloperTimeline = () => (
       <Timeline>
         <Timespot>
-          <h3 className="mt-3">It's dangerous to go alone!</h3>
+          <h3 className="mt-3">
+            <translate>It's dangerous to go alone!</translate>
+          </h3>
           <p>
-            Before you start your journey you should become familiar with
-            resources that can help you along the way. We have high level
-            documentation which can help clarify unknown terms or give you a
-            bigger picture about what Substrate is. We have a{" "}
-            <code>[substrate]</code> StackOverflow tag which you can use to ask
-            technical questions or find existing answers. Finally we have a
-            friendly and technical chat room of developers who are happy to help
-            you at any point during your journey.
+            <translate>
+              Before you start your journey you should become familiar with
+              resources that can help you along the way. We have high level
+              documentation which can help clarify unknown terms or give you a
+              bigger picture about what Substrate is. We have a
+            </translate>
+            {" "}
+            <code>[substrate]</code>
+            {" "}
+            <translate>
+              StackOverflow tag which you can use to ask
+              technical questions or find existing answers. Finally we have a
+              friendly and technical chat room of developers who are happy to help
+              you at any point during your journey.
+            </translate>
           </p>
           <Button
             variant="secondary"
             href={docUrl("quickstart/getting-started")}
             className="m-1 primary-color"
           >
-            High Level Docs
+            <translate>High Level Docs</translate>
           </Button>
           <Button
             variant="secondary"
@@ -65,73 +75,87 @@ class RuntimeDeveloper extends React.Component {
             href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"
             className="m-1 primary-color"
           >
-            Riot Chat
+            <translate>Riot Chat</translate>
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Install Substrate</h3>
+          <h3 className="mt-3">
+            <translate>Install Substrate</translate>
+          </h3>
           <p>
-            The first thing you need to do is set up Substrate on your computer!
-            The instructions vary depending on which operating system you use,
-            so take a look at the guide here to find the instructions that work
-            for you.
+            <translate>
+              The first thing you need to do is set up Substrate on your computer!
+              The instructions vary depending on which operating system you use,
+              so take a look at the guide here to find the instructions that work
+              for you.
+            </translate>
           </p>
           <Button
             variant="secondary"
             href={docUrl("quickstart/installing-substrate")}
             className="m-1 primary-color"
           >
-            Installation Instructions
+            <translate>Installation Instructions</translate>
           </Button>
         </Timespot>
         <Timespot>
           <h3 className="mt-3">Substrate Collectables Workshop</h3>
           <p>
-            Next follow our Substrate Collectables Workshop to get a deep dive
-            into runtime development. We will walk you through the end to end
-            process of building a non-fungible token DApp chain, running your
-            chain, and even building a user interface!
+            <translate>
+              Next follow our Substrate Collectables Workshop to get a deep dive
+              into runtime development. We will walk you through the end to end
+              process of building a non-fungible token DApp chain, running your
+              chain, and even building a user interface!
+            </translate>
           </p>
           <Button
             variant="secondary"
             href="https://substrate-developer-hub.github.io/substrate-collectables-workshop/"
             className="m-1 primary-color"
           >
-            Start the Workshop
+            <translate>Start the Workshop</translate>
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Reference Level Documentation</h3>
+          <h3 className="mt-3">
+            <translate>Reference Level Documentation</translate>
+          </h3>
           <p>
-            Now that you are more familiar with Substrate and runtime
-            development, you can jump into the reference level documentation
-            which lives next to the core Substrate code. To start, you can try
-            investigating our Substrate Runtime Module Library (SRML) by
-            searching for "srml". You should now be able to read the code which
-            powers these modules and extend your knowledge by looking at common
-            patterns found within them.
+            <translate>
+              Now that you are more familiar with Substrate and runtime
+              development, you can jump into the reference level documentation
+              which lives next to the core Substrate code. To start, you can try
+              investigating our Substrate Runtime Module Library (SRML) by
+              searching for "srml". You should now be able to read the code which
+              powers these modules and extend your knowledge by looking at common
+              patterns found within them.
+            </translate>
           </p>
           <Button
             variant="secondary"
             href="/rustdocs/v1.0/"
             className="m-1 primary-color"
           >
-            Reference Docs
+            <translate>Reference Docs</translate>
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Buidl</h3>
+          <h3 className="mt-3">
+            <translate>Build</translate>
+          </h3>
           <p>
-            You are now ready to start building your own Runtime logic! Do not
-            forget about the community and documentation resources that we have
-            equipped you with on this journey.
+            <translate>
+              You are now ready to start building your own Runtime logic! Do not
+              forget about the community and documentation resources that we have
+              equipped you with on this journey.
+            </translate>
           </p>
           <Button
             variant="secondary"
             href={baseUrl}
             className="m-1 primary-color"
             >
-            Back to Home
+            <translate>Back to Home</translate>
           </Button>
         </Timespot>
       </Timeline>
@@ -142,8 +166,8 @@ class RuntimeDeveloper extends React.Component {
         <HomeSplash
           siteConfig={siteConfig}
           language={language}
-          title="Runtime Developer"
-          tagline="So you wanna build blockchains..."
+          title={<translate>Runtime Developer</translate>}
+          tagline={<translate>So you wanna build blockchains...</translate>}
           padding={0}
         />
         <Container>

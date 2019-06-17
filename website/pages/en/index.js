@@ -159,7 +159,7 @@ class Index extends React.Component {
             <translate>Fast and efficient database.</translate>
           </li>
           <li>
-            <translate>Modular P2P networking stack in{" "}</translate>
+            <translate>Modular P2P networking stack in</translate>{" "}
             <a href="https://github.com/libp2p">libp2p</a>.
           </li>
           <li>

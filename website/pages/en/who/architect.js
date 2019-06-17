@@ -22,6 +22,7 @@ const { Timeline, Timespot } = require(`${process.cwd()}` +
 
 const Container = require("../../../../../react-bootstrap/Container.js");
 const Button = require("../../../../../react-bootstrap/Button.js");
+const translate = require('../../../server/translate.js').translate;
 
 class Architect extends React.Component {
   render() {
@@ -35,124 +36,146 @@ class Architect extends React.Component {
     const ArchitectTimeline = () => (
       <Timeline>
         <Timespot>
-          <h3 className="mt-3">High Level Overview</h3>
+          <h3 className="mt-3">
+            <translate>
+              High Level Overview
+            </translate>
+            </h3>
           <p>
-            To start your journey, first we want to make sure you have a high
-            level overview of what Substrate even is. Explore our Substrate
-            Overview starting with the Introduction page. Also take a look at
-            our Glossary so you can make sure that you can become familiar with
-            all the terms you encounter!
+            <translate>
+              To start your journey, first we want to make sure you have a high
+              level overview of what Substrate even is. Explore our Substrate
+              Overview starting with the Introduction page. Also take a look at
+              our Glossary so you can make sure that you can become familiar with
+              all the terms you encounter!
+            </translate>
           </p>
           <Button
             variant="secondary"
             href={docUrl("overview/introduction")}
             className="m-1 primary-color"
           >
-            Introduction
+            <translate>Introduction</translate>
           </Button>
           <Button
             variant="secondary"
             href={docUrl("overview/glossary")}
             className="m-1 primary-color"
           >
-            Glossary
+            <translate>Glossary</translate>
           </Button>
         </Timespot>
         <Timespot>
           <h3 className="mt-3">Architecture of a Runtime</h3>
           <p>
-            Next, take a look at the architecture of a Substrate runtime. You
-            can explore how the modules included in your Runtime are turned into
-            primitive Substrate types which ultimately get exposed via our JSON
-            RPC.
+            <translate>
+              Next, take a look at the architecture of a Substrate runtime. You
+              can explore how the modules included in your Runtime are turned into
+              primitive Substrate types which ultimately get exposed via our JSON
+              RPC.
+            </translate>
           </p>
           <Button
             variant="secondary"
             href={docUrl("runtime/architecture-of-a-runtime")}
             className="m-1 primary-color"
           >
-            Architecture of a Runtime
+            <translate>Architecture of a Runtime</translate>
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Transaction Lifecycle</h3>
+          <h3 className="mt-3">
+            <translate>Transaction Lifecycle</translate>
+          </h3>
           <p>
-            We will now take a look at the lifecycle of a transaction made on
-            Substrate, including block production, transaction validation, and
-            even handling of inherents.
+            <translate>
+              We will now take a look at the lifecycle of a transaction made on
+              Substrate, including block production, transaction validation, and
+              even handling of inherents.
+            </translate>
           </p>
           <Button
             variant="secondary"
             href={docUrl("overview/transaction-lifecycle")}
             className="m-1 primary-color"
           >
-            Transaction Lifecycle
+            <translate>Transaction Lifecycle</translate>
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Integration Tools</h3>
+          <h3 className="mt-3">
+            <translate>Integration Tools</translate>
+          </h3>
           <p>
-            The Substrate framework provides a number of tools to make it easy
-            for you to integrate your project. Become familiar with the
-            underlying `parity-scale-codec` which gets used to serialize and
-            deserialize messages. Learn about our home grown Wasm interpreter
-            used for our Runtime and Smart Contract layer. Finally, take a look
-            at our generic and extensible JSON-RPC proxy, which supports caching
-            and load-balancing.
+            <translate>
+              The Substrate framework provides a number of tools to make it easy
+              for you to integrate your project. Become familiar with the
+              underlying `parity-scale-codec` which gets used to serialize and
+              deserialize messages. Learn about our home grown Wasm interpreter
+              used for our Runtime and Smart Contract layer. Finally, take a look
+              at our generic and extensible JSON-RPC proxy, which supports caching
+              and load-balancing.
+            </translate>
           </p>
           <Button
             variant="secondary"
             href="https://github.com/paritytech/parity-scale-codec"
             className="m-1 primary-color"
           >
-            Parity Scale Codec
+            <translate>Parity Scale Codec</translate>
           </Button>
           <Button
             variant="secondary"
             href="https://github.com/paritytech/wasmi"
             className="m-1 primary-color"
           >
-            Wasmi
+            <translate>Wasmi</translate>
           </Button>
           <Button
             variant="secondary"
             href="https://github.com/tomusdrw/jsonrpc-proxy"
             className="m-1 primary-color"
           >
-            JSON RPC Proxy
+            <translate>JSON RPC Proxy</translate>
           </Button>
         </Timespot>
         <Timespot>
           <h3 className="mt-3">
-            Building decentralized solutions with Substrate
+            <translate>Building decentralized solutions with Substrate</translate>
           </h3>
-          <p>We are working on this step.</p>
+          <p>
+            <translate>We are working on this step.</translate>
+          </p>
           <Button variant="secondary" href="#" className="m-1 primary-color">
-            TODO
+            <translate>TODO</translate>
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Get in Touch!</h3>
+          <h3 className="mt-3">
+            <translate>Get in Touch!</translate>
+          </h3>
           <p>
-            Now that you have a grasp of all the basics, we want to talk with
-            you! We are always looking to form new partnerships or
-            collaborations with other visionaries. Tell us about your project
-            and let us know what we can do to help you accomplish your goals!
-            Otherwise restart your journey through our Substrate Developer Hub.
+            <translate>
+              Now that you have a grasp of all the basics, we want to talk with
+              you! We are always looking to form new partnerships or
+              collaborations with other visionaries. Tell us about your project
+              and let us know what we can do to help you accomplish your goals!
+              Otherwise restart your journey through our Substrate Developer Hub.
+            </translate>
           </p>
           <Button
             variant="secondary"
             href="mailto:solutions.parity.io"
             className="m-1 primary-color"
           >
-            Contact Us
+            <translate>Contact Us</translate>
           </Button>
           <Button
             variant="secondary"
             href={baseUrl}
             className="m-1 primary-color"
           >
-            Back to Home
+            <translate>Back to Home</translate>
           </Button>
         </Timespot>
       </Timeline>
@@ -163,8 +186,8 @@ class Architect extends React.Component {
         <HomeSplash
           siteConfig={siteConfig}
           language={language}
-          title="Architect"
-          tagline="So you wanna change the future..."
+          title={<translate>Architect</translate>}
+          tagline={<translate>So you wanna change the future...</translate>}
           padding={0}
         />
         <Container>

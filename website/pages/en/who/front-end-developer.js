@@ -22,6 +22,7 @@ const { Timeline, Timespot } = require(`${process.cwd()}` +
 
 const Container = require("../../../../../react-bootstrap/Container.js");
 const Button = require("../../../../../react-bootstrap/Button.js");
+const translate = require('../../../server/translate.js').translate;
 
 class FrontEndDeveloper extends React.Component {
   render() {
@@ -35,17 +36,23 @@ class FrontEndDeveloper extends React.Component {
     const FrontEndDeveloperTimeline = () => (
       <Timeline>
         <Timespot>
-          <h3 className="mt-3">Background</h3>
+          <h3 className="mt-3">
+            <translate>Background</translate>
+          </h3>
           <p>
-            We provides two different JavaScript libraries that you can work
-            with to build user experiences for Substrate.
+            <translate>
+              We provides two different JavaScript libraries that you can work
+              with to build user experiences for Substrate.
+            </translate>
           </p>
           <p>
-            The "Bonds" API is a ReactJS based library which makes it extremely
-            simple to start new projects from existing templates. The
-            Polkadot-API is a more traditional promise-based library which is a
-            bit more robust and better documented for larger projects looking to
-            build from the ground up. We will explore both on this journey.
+            <translate>
+              The "Bonds" API is a ReactJS based library which makes it extremely
+              simple to start new projects from existing templates. The
+              Polkadot-API is a more traditional promise-based library which is a
+              bit more robust and better documented for larger projects looking to
+              build from the ground up. We will explore both on this journey.
+            </translate>
           </p>
           <Button
             variant="secondary"
@@ -63,14 +70,18 @@ class FrontEndDeveloper extends React.Component {
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Launch and Interact with the Substrate UI</h3>
+          <h3 className="mt-3">
+            <translate>Launch and Interact with the Substrate UI</translate>
+          </h3>
           <p>
-            The Substrate UI is a prebuilt template based on the oo7-substrate
-            API. It is small, simple, and probably the fastest way to start
-            hacking on Substrate user experiences. Clone the repository and
-            follow the instructions to start the UI and connect to the public
-            network. Then, start a local Substrate node and connect and interact
-            with that. TODO: Tutorial.
+            <translate>
+              The Substrate UI is a prebuilt template based on the oo7-substrate
+              API. It is small, simple, and probably the fastest way to start
+              hacking on Substrate user experiences. Clone the repository and
+              follow the instructions to start the UI and connect to the public
+              network. Then, start a local Substrate node and connect and interact
+              with that. TODO: Tutorial.
+            </translate>
           </p>
           <Button
             variant="secondary"
@@ -81,18 +92,26 @@ class FrontEndDeveloper extends React.Component {
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Make Your First Substrate UI Component</h3>
-          <p>To be created...</p>
+          <h3 className="mt-3">
+            <translate>Make Your First Substrate UI Component</translate>
+          </h3>
+          <p>
+            <translate>To be created...</translate>
+          </p>
           <Button variant="secondary" href="#" className="m-1 primary-color">
             TODO
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Launch and Interact with the Polkadot-JS Apps</h3>
+          <h3 className="mt-3">
+            <translate>Launch and Interact with the Polkadot-JS Apps</translate>
+          </h3>
           <p>
-            The Polkadot-JS Apps (also called the Polkadot UI) is a feature
-            packed product which uses the Polkadot-JS API. More to be added
-            TODO.
+            <translate>
+              The Polkadot-JS Apps (also called the Polkadot UI) is a feature
+              packed product which uses the Polkadot-JS API. More to be added
+              TODO.
+            </translate>
           </p>
           <Button
             variant="secondary"
@@ -103,31 +122,39 @@ class FrontEndDeveloper extends React.Component {
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Build your first Polkadot-JS App</h3>
+          <h3 className="mt-3">
+            <translate>Build your first Polkadot-JS App</translate>
+          </h3>
           <p>
-            Now it is time to actually get your hands dirty and build your own
-            "App" for the Polkadot UI. TODO
+            <translate>
+              Now it is time to actually get your hands dirty and build your own
+              "App" for the Polkadot UI. TODO
+            </translate>
           </p>
           <Button
             variant="secondary"
             href="https://github.com/polkadot-js/apps/tree/master/packages/app-123code"
             className="m-1 primary-color"
           >
-            App 123 Code TODO
+            <translate>App 123 Code TODO</translate>
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Buidl</h3>
+          <h3 className="mt-3">
+            <translate>Build</translate>
+          </h3>
           <p>
-            You are now ready to start building your own user experiences! TODO
-            community links
+            <translate>
+              You are now ready to start building your own user experiences! TODO
+              community links
+            </translate>
           </p>
           <Button
             variant="secondary"
             href={baseUrl}
             className="m-1 primary-color"
           >
-            Back to Home
+            <translate>Back to Home</translate>
           </Button>
         </Timespot>
       </Timeline>
@@ -138,8 +165,8 @@ class FrontEndDeveloper extends React.Component {
         <HomeSplash
           siteConfig={siteConfig}
           language={language}
-          title="Front-End Developer"
-          tagline="So you wanna build amazing user experiences..."
+          title={<translate>Front-End Developer</translate>}
+          tagline={<translate>So you wanna build amazing user experiences...</translate>}
           padding={0}
         />
         <Container>

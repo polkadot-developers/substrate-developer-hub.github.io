@@ -22,6 +22,7 @@ const { Timeline, Timespot } = require(`${process.cwd()}` +
 
 const Container = require("../../../../../react-bootstrap/Container.js");
 const Button = require("../../../../../react-bootstrap/Button.js");
+const translate = require('../../../server/translate.js').translate;
 
 class NotSure extends React.Component {
   render() {
@@ -31,7 +32,9 @@ class NotSure extends React.Component {
     const NotSureTimeline = () => (
       <Timeline>
         <Timespot>
-          <h3 className="mt-3">The Past, Present, and Future of Substrate</h3>
+          <h3 className="mt-3">
+            <translate>The Past, Present, and Future of Substrate</translate>
+          </h3>
           <iframe
             src="https://www.youtube-nocookie.com/embed/X40Duo7kWOI"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -42,7 +45,9 @@ class NotSure extends React.Component {
           />
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Substrate Runtime Module Library Overview</h3>
+          <h3 className="mt-3">
+            <translate>Substrate Runtime Module Library Overview</translate>
+          </h3>
           <iframe
             src="https://www.youtube-nocookie.com/embed/kpUO8g_Ig0A?start=0&amp;end=2452"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -53,7 +58,9 @@ class NotSure extends React.Component {
           />
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Getting Started with Substrate Smart Contracts</h3>
+          <h3 className="mt-3">
+            <translate>Getting Started with Substrate Smart Contracts</translate>
+          </h3>
           <iframe
             src="https://www.youtube-nocookie.com/embed/-EJHu0u6hT8?start=0&amp;end=1059"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -64,13 +71,15 @@ class NotSure extends React.Component {
           />
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Restart your journey through the Substrate Developer Hub</h3>
+          <h3 className="mt-3">
+            <translate>Restart your journey through the Substrate Developer Hub</translate>
+          </h3>
           <Button
             variant="secondary"
             href={baseUrl}
             className="m-1 primary-color"
             >
-            Back to Home
+            <translate>Back to Home</translate>
           </Button>
         </Timespot>
       </Timeline>
@@ -81,8 +90,8 @@ class NotSure extends React.Component {
         <HomeSplash
           siteConfig={siteConfig}
           language={language}
-          title="Learn About Substrate"
-          tagline="Watch these videos to get up to speed!"
+          title={<translate>Learn About Substrate</translate>}
+          tagline={<translate>Watch these videos to get up to speed!</translate>}
           padding={0}
         />
         <Container>
