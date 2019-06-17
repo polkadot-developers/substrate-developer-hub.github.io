@@ -137,6 +137,14 @@ class Tutorials extends React.Component {
                 prerequisite: true,
                 href: "https://github.com/substrate-developer-hub/utxo-workshop"
               },
+              {
+                title: "Adding a Module to Your Runtime",
+                text: "Add the Contract module or other SRML modules to your Substrate node template.",
+                difficulty: "medium",
+                length: "2",
+                prerequisite: false,
+                href: `${docUrl("tutorials/adding-a-module-to-your-runtime")}`
+              },
             ]}
           />
         </Row>

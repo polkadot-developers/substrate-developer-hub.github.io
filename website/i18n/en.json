@@ -80,6 +80,9 @@
       "runtime/types/genesisconfig-struct": {
         "title": "GenesisConfig Struct"
       },
+      "tutorials/adding-a-module-to-your-runtime": {
+        "title": "Adding a Module to Your Runtime"
+      },
       "tutorials/creating-your-first-contract": {
         "title": "Creating Your First Contract"
       },
