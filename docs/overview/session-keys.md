@@ -8,7 +8,7 @@ The default substrate node uses session keys thanks in part to the [Session modu
 
 
 ## BLS (Boneh-Lynn-Shacham) key
-This first key is used for consensus signatures when voting since it is desirable to be used with the GRANDPA finality gadget. BLS is preferred for voting in consensus algorithms and threshold signatures. It allows more efficient signature aggregation than when using Schnorr signatures. It will be used by validators in Substrate and Polkadot since they are more efficient than Schnorr signatures in some ways.
+This first key is used for consensus signatures when voting since it is desirable to be used with the GRANDPA finality gadget. BLS is preferred for voting in consensus algorithms and threshold signatures as it allows more efficient signature aggregation than when using Schnorr signatures.
 
 
 ## Schnorrkel/Ristretto x25519 ("Sr25519") key
