@@ -4,7 +4,7 @@ title: "Cargo Contract: The ink! CLI"
 
 To help simplify the process of creating ink! projects, we provide `cargo contract`: an ink! CLI.
 
-> Note: The ink! CLI is under heavy development and most of its commands are not implemented, yet!
+> Note: The ink! CLI is under heavy development and **most** of its commands are not implemented, yet!
 
 ## Installation
 
@@ -23,10 +23,10 @@ We are going to use the ink! CLI to generate the files we need for a Substrate s
 Make sure you are in your working directory, and then run:
 
 ```bash
-cargo contract new flipper
+cargo contract new <name>
 ```
 
-This command will create a new project folder named `flipper` which will contain the following files:
+This command will create a new project folder with the specified name which will contain [the following files](https://github.com/paritytech/ink/tree/master/cli/template):
 
 ```
 flipper
@@ -41,17 +41,60 @@ flipper
 |
 +-- build.sh        <-- Wasm Build Script
 |
-+-- rust-toolchain
++-- rust-toolchain  <-- Rust Version Used
 |
 +-- Cargo.toml
 |
 +-- .gitignore
 ```
 
-## The Flipper Contract Template
+### Rust Toolchain
 
-The ink CLI automatically generates the source code for the "Flipper" contract, which is about the simplest "smart" contract you can build. You can take a sneak peak as to what will come by looking at the source code here:
+In order to reduce the negative effects of breaking changes in Rust, your generated ink! project will be tied to a specific nightly version of the compiler using the [`rust-toolchain`](https://github.com/paritytech/ink/blob/master/cli/template/rust-toolchain) file. This means that you also need to make sure that you have the `wasm32-unknown-unknown` installed for this specific compiler version, or else you will get an error like:
 
-[Flipper Example Source Code](https://github.com/paritytech/ink/blob/master/examples/lang/flipper/src/lib.rs)
+```bash
+error[E0463]: can't find crate for `core`
+  |
+  = note: the `wasm32-unknown-unknown` target may not be installed
+```
 
-The Flipper contract is nothing more than a `bool` which gets flipped from true to false through the `flip()` function. We won't go so deep into the details of this source code because we will be walking you through the steps to build a more advanced contract!
+To resolve this error, you should check the rust version being used in the `rust-toolchain` file, and run the following:
+
+```bash
+rustup install <version>
+rustup target add wasm32-unknown-unknown --toolchain <version>
+```
+
+### Cargo Config
+
+Your generated ink! project will contain a [`/.cargo/config`](https://github.com/paritytech/ink/blob/master/cli/template/.cargo/config) file which is used to set `rustflags` for the project.
+
+One important setting to call out is `overflow-checks=on` which tells the rust compiler to panic in the case of unintended overflows. This means that contract math is inherently "safe" from all overflow and underflow behaviors without the need for supplemental libraries.
+
+### The Flipper Contract Template
+
+The ink CLI automatically generates the [source code for the "Flipper" contract](https://github.com/paritytech/ink/blob/master/cli/template/src/lib.rs) as a template for you to hack on.
+
+The Flipper contract is nothing more than a `bool` which gets flipped from true to false through the `flip()` function. If you want to understand how this contract was built from scratch, take a look at [Creating Your First Contract](tutorials/creating-your-first-contract.md).
+
+### Wasm Build Script
+
+The ink! CLI also generates a build script called [`build.sh`](https://github.com/paritytech/ink/blob/master/cli/template/build.sh). This file is used to help you compile your contract source code to Wasm. It depends on the various Wasm utilities you installed to set up the ink! environment.
+
+You simply run:
+
+```bash
+./build.sh
+```
+
+If all went well, you should see a `target` folder being created with 4 relevant files corresponding to the steps in the script:
+
+```
+target
+├── flipper.wasm
+├── flipper.wat
+├── flipper-fixed.wat
+└── flipper-pruned.wasm
+```
+
+The final, optimized `flipper-pruned.wasm` file is what we will actually deploy to our Substrate chain.
