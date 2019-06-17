@@ -1,5 +1,5 @@
 ---
-title: "Writing Your First Contract"
+title: "Creating Your First Contract"
 ---
 
 This guide will cover the basics of smart contract development on Substrate using ink!.
