@@ -8,45 +8,81 @@ Here you can lean how to write WebAssembly ([Wasm](overview/glossary.md#webassem
 
 Because Substrate supports Wasm smart contracts, it means that any language that can compile to Wasm could be used to write these contracts. ink! is Parity's answer for writing smart contracts using the Rust programming language.
 
-Existing smart contract platforms like [Ethereum](https://www.ethereum.org/) have heavily influenced the design of both the Contract module and the ink! programming language. The documentation in this section may make assumptions that you have previous knowledge of common concepts and patterns of these platforms.
-
 ## Contract Module
 
-The SRML Contract module provides the ability for the runtime to deploy and execute WebAssembly smart contracts. Here we will provide a short overview of the common similarities and differences between the Contract module and Ethereum. To really learn all of the fine details, you can take a look at the [reference documentation for `srml_contract`](https://crates.parity.io/srml_contract/index.html).
+The SRML Contract module provides the ability for the runtime to deploy and execute WebAssembly smart contracts. Here we will provide a short overview of the major features of the contracts module. To really learn all of the fine details, you can take a look at the [reference documentation for `srml_contract`](https://crates.parity.io/srml_contract/index.html).
 
-### Similarities to Ethereum
+### Account Based
 
-As mentioned above, the Contract module shares many similarities to Ethereum:
+The Contract module uses an account based system similar to many existing smart contract platforms. To the Substrate runtime, contract accounts are just like normal user accounts; however in addition to an `AccountID` and `Balance` that normal accounts have, a contract account can also have associated contract code and some persistent contract storage.
 
-* It uses an account based system where each smart contract instance has:
+### Two Step Deployment
 
-    * AccountId
-    * Balance
-    * Associated Code
-    * Storage
+Deploying a contract with the Contract module takes two steps:
 
-* To solve the [halting problem](https://en.wikipedia.org/wiki/Halting_problem), the Contract module uses a similar gas and fee mechanism.
+1. Store the Wasm contract on the blockchain.
+2. Instantiate a new account, with new storage, associated with that Wasm contract.
 
-* The Contract module provides safety to the blockchain state by enabling revertable transactions, which rollback any changes to the storage by contract calls which fail.
+This means that multiple contract instances can be initialized using the same Wasm code, reducing the amount of storage space needed by the Contract module on your blockchain.
 
-* Contract calls can alter the storage of the contract, create new contracts, and call other contracts.
+### Contract Calls
 
-### Differences to Ethereum
+Calls to contracts can alter the storage of the contract, create new contracts, and call other contracts. Because Substrate provides you with the ability to write custom runtime modules, the Contract module also enables you to make asynchronous calls directly to those runtime functions on behalf of the contract's account.
 
-Unlike Ethereum:
+### Sandboxed
 
-* The Contracts module uses a WebAssembly virtual machine to execute smart contracts.
+The Contract module is intended to be used by any user on a public network. This means that contracts only have the ability to directly modify their own storage. To provide safety to the underlying blockchain state, the Contract module enables revertable transactions, which rollback any changes to the storage by contract calls which do not complete successfully.
 
-* Smart contract deployment in the Contract module uses a two step process:
+### Gas
 
-    1. First, the compiled Wasm is placed on the chain, and stored in the Contract module internal storage using the hash of the blob.
-    2. Then, an instance of that contract can be deployed, where an account will be created to host the storage and balance for that instance.
+Contract calls are charged gas fee to limit the amount of computational resources a transaction can use. When forming a contract transaction, a gas limit is specified. As the contract executes, gas is incrementally used up depending on the complexity of the computation. If the gas limit is reached before the contract execution completes, the transaction fails, contract storage is reverted, and the gas fee is **not** returned to the user. If the contract executed completes with extra gas, it is returned to the user at the end of the transaction.
 
-    This means that unlike Ethereum, standardized contract code like an [ERC-20](https://en.wikipedia.org/wiki/ERC-20) token only need to be uploaded once, reducing the amount of storage space used by the contract platform on your blockchain.
+The Contract module determines the gas price, which is a conversion between the Substrate `Currency` and a single unit of gas, thus to execute a transaction, a user must have a free balance of at least `gas price` * `gas limit` which can be spent.
 
-* The contract module has implemented storage rent mechanisms which will continually charge contracts for the storage they use. In combination with [existential deposit](overview/glossary.md#existential-deposit), this means that contract storage will be freed when its balance becomes too low.
+### Storage Rent
 
-* Because Substrate provides you with the ability to write custom runtime modules, the Contract module enables you to make asynchronous calls directly to those runtime functions on behalf of the contract account.
+Similar to how gas limits the amount of computational resources that can be used during a transaction, storage rent limits the footprint that a contract can have on the blockchain storage. Contracts accounts are charged proportionally to the amount of storage their account uses, and when a contract account's balance goes below the [existential deposit](overview/glossary.md#existential-deposit), the account and storage is cleaned up. 
+
+### Comparison to Ethereum
+
+Substrate is heavily influenced by existing contract platforms like Ethereum. Here is a comparison showing similarities and differences between these two platforms:
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Substrate Contract Module</th>
+      <th scope="col">Ethereum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Virtual Machine</th>
+      <td>Wasm</td>
+      <td>EVM</td>
+    </tr>
+    <tr>
+      <th scope="row">Contract Instance</th>
+      <td>Account Based</td>
+      <td>Account Based</td>
+    </tr>
+    <tr>
+      <th scope="row">Computational Limits</th>
+      <td>Gas/Fee System</td>
+      <td>Gas/Fee System</td>
+    </tr>
+    <tr>
+      <th scope="row">Storage Limits</th>
+      <td>Storage Rent</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th scope="row">Primary Development Language</th>
+      <td>Rust</td>
+      <td>Solidity</td>
+    </tr>
+  </tbody>
+</table>
 
 ## ink!
 
