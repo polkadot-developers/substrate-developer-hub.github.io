@@ -23,6 +23,9 @@
       "overview/low-level-data-format": {
         "title": "Low-level Data Format"
       },
+      "overview/off-chain-workers": {
+        "title": "Substrate Off-chain Workers"
+      },
       "overview/session-keys": {
         "title": "Session Keys"
       },
