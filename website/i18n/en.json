@@ -77,6 +77,9 @@
       "runtime/types/genesisconfig-struct": {
         "title": "GenesisConfig Struct"
       },
+      "tutorials/creating-your-first-contract": {
+        "title": "Creating Your First Contract"
+      },
       "tutorials/creating-your-first-substrate-chain": {
         "title": "Creating Your First Substrate chain"
       },

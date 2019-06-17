@@ -213,8 +213,8 @@ const usersList = [
   },
   {
     name: "Parity Ethereum 2.0",
-    image: "/img/users/paritytech2.svg",
-    homepage: "https://www.parity.io/",
+    image: "/img/users/parity-ethereum.svg",
+    homepage: "https://www.parity.io/ethereum/",
     github: "https://github.com/paritytech/shasper",
     team: "https://www.parity.io/",
     pinned: true,
