@@ -14,7 +14,7 @@ The SRML Contract module provides the ability for the runtime to deploy and exec
 
 ### Account Based
 
-The Contract module uses an account based system similar to many existing smart contract platforms. To the Substrate runtime, contract accounts are just like normal user accounts; however in addition to an `AccountID` and `Balance` that normal accounts have, a contract account can also have associated contract code and some persistent contract storage.
+The Contract module uses an account based system similar to many existing smart contract platforms. To the Substrate runtime, contract accounts are just like normal user accounts; however in addition to an `AccountID` and `Balance` that normal accounts have, a contract account also has associated contract code and some persistent contract storage.
 
 ### Two Step Deployment
 
@@ -23,7 +23,7 @@ Deploying a contract with the Contract module takes two steps:
 1. Store the Wasm contract on the blockchain.
 2. Instantiate a new account, with new storage, associated with that Wasm contract.
 
-This means that multiple contract instances can be initialized using the same Wasm code, reducing the amount of storage space needed by the Contract module on your blockchain.
+This means that multiple contract instances, with different constructor arguments, can be initialized using the same Wasm code, reducing the amount of storage space needed by the Contract module on your blockchain.
 
 ### Contract Calls
 
