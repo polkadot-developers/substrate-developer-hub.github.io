@@ -41,48 +41,7 @@ The Contract module determines the gas price, which is a conversion between the 
 
 ### Storage Rent
 
-Similar to how gas limits the amount of computational resources that can be used during a transaction, storage rent limits the footprint that a contract can have on the blockchain storage. Contracts accounts are charged proportionally to the amount of storage their account uses, and when a contract account's balance goes below the [existential deposit](overview/glossary.md#existential-deposit), the account and storage is cleaned up. 
-
-### Comparison to Ethereum
-
-Substrate is heavily influenced by existing contract platforms like Ethereum. Here is a comparison showing similarities and differences between these two platforms:
-
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">Substrate Contract Module</th>
-      <th scope="col">Ethereum</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">Virtual Machine</th>
-      <td>Wasm</td>
-      <td>EVM</td>
-    </tr>
-    <tr>
-      <th scope="row">Contract Instance</th>
-      <td>Account Based</td>
-      <td>Account Based</td>
-    </tr>
-    <tr>
-      <th scope="row">Computational Limits</th>
-      <td>Gas/Fee System</td>
-      <td>Gas/Fee System</td>
-    </tr>
-    <tr>
-      <th scope="row">Storage Limits</th>
-      <td>Storage Rent</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th scope="row">Primary Development Language</th>
-      <td>Rust</td>
-      <td>Solidity</td>
-    </tr>
-  </tbody>
-</table>
+Similar to how gas limits the amount of computational resources that can be used during a transaction, storage rent limits the footprint that a contract can have on the blockchain storage. Contracts accounts are charged proportionally to the amount of storage their account uses. When a Contract's balance goes below a defined limit, the contract account is turned into a "tombstone", and the storage is cleaned up. A tombstone contract can be restored to normal by providing the data that was cleaned up when it became a tombstone as well as any additional funds needed to keep the contract alive.
 
 ## ink!
 
@@ -96,30 +55,30 @@ The ink! language is composed of three different layers of abstractions with whi
 * [Model](https://paritytech.github.io/ink/ink_model/index.html): Medium-level abstractions to write smart contracts heavily inspired by [Fleetwood](https://github.com/paritytech/fleetwood).
 * [Core](https://paritytech.github.io/ink/ink_core/index.html): The core utilities and APIs used to interact with the Contract module.
 
-### Similarities to Solidity
+We expect that most users will develop using the language layer, but thanks to the other abstractions, it is possible for developers to create their own Rust eDSL for their specific needs.
 
-ink! should feel familiar in structure to developers who have used Solidity:
+### Contract Components
 
-* The skeleton of a contract has all of the same components that you might expect:
+ink! should feel familiar to developers who have programmed using other modern smart contract languages. The skeleton of a contract has all of the same components that you might expect:
 
-    * Events
-    * Storage
-    * Deployment (Constructor) Function
-    * Public Functions
-    * Internal functions
+  * Events
+  * Storage
+  * Deployment (Constructor) Function
+  * Public Functions
+  * Internal functions
 
-* Just like Ethereum, function mutability and visibility are explicit in ink!.
+In ink!, mutability and visibility are explicitly defined per contract function. In these functions, you cain access to a number of common Substrate types like `AccountId`, `Balances`, `Hash`, etc... Additionally, you gain access to commonly used environment variables like the `caller`, `balance`, `gas_left`, and more!
 
-* ink! exposes a number of environment variables to the contract developer like the `caller`, `balance`, `gas_left`, and more!
+### Rust
 
-### Differences to Solidity
+Being written in Rust, ink! can provide compile time overflow/underflow safety. Using a Rust compiler configuration, you can specify whether you want to support overflowing math, or if you want contract execution to panic when overflows occur. No need to continually import "Safe Math" libraries, although Rust also provides [integrated checked, wrapped, and saturated math functions](https://doc.rust-lang.org/std/primitive.u32.html).
 
-Being based in Rust, the list of differences to Solidity far surpass what can be written here, but we will touch on some notable ones:
+Additionally, Rust provides a safe API for describing values which are not set with the [Option](https://doc.rust-lang.org/std/option/index.html) type. This means when a you specify a value as `None`, there is no unambiguous meaning to what that value represents.
 
-* Through Rust, ink! can provide compile time overflow/underflow safety. Using a Rust compiler configuration, you can specify whether you want to support overflowing math, or if you want contract execution to panic when overflows occur. No need to continually import "Safe Math" libraries, although Rust also provides [integrated checked, wrapped, and saturated math functions](https://doc.rust-lang.org/std/primitive.u32.html).
+### Test Environment
 
-* Rust also provides a safe API for describing values which are not set with the [Option](https://doc.rust-lang.org/std/option/index.html) type. In Ethereum, you would use the `0x0` address to represent "no one" when checking ownership of an asset or burning tokens. With ink! and Rust, you can explicitly specify a value as `None` which has no disambiguous meaning.
+ink! provides a built in test environment which can be used to perform off-chain unit testing with the Rust framework. This makes it simple and easy to ensure that your contract code functions as expected, without the need for third party testing platforms.
 
-* Through Substrate, ink! gains access to a ["low influence" random number generator](https://crates.parity.io/srml_system/struct.Module.html#method.random). 
+### Random Number Generation
 
-* Finally, ink! provides a built in test environment which can be used to perform off-chain unit testing with the Rust framework.
+Through Substrate, ink! gains access to a ["low influence" random number generator](https://crates.parity.io/srml_system/struct.Module.html#method.random). This is initially implemented through a low-influence "triplet mix" convolution of previous block hash values, but in the future it will be generated from a secure verifiable random function.
