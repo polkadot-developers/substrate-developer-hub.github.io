@@ -87,7 +87,7 @@ class Index extends React.Component {
           </Button>
           <Button
             variant="secondary"
-            href="https://crates.parity.io"
+            href="/rustdocs/v1.0/"
             className="m-1"
           >
             Reference Docs

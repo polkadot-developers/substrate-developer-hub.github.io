@@ -40,7 +40,7 @@ A few chain identifier values are known to have been used. This list is for conv
 
 ## Public Key Formats
 
-The [Ss58Codec](https://crates.parity.io/substrate_primitives/crypto/trait.Ss58Codec.html) itself is designed to handle input data of arbitrary length. Substrate uses 32-byte Ed25519 and Sr25519 public keys.
+The [Ss58Codec](/rustdocs/v1.0/substrate_primitives/crypto/trait.Ss58Codec.html) itself is designed to handle input data of arbitrary length. Substrate uses 32-byte Ed25519 and Sr25519 public keys.
 
 After being prepended with a 1-byte chain identifier and appended with a 2-byte checksum, the raw data that is to be SS58 encoded will always be 3 bytes longer than the raw public key. That condition is checked when determining an address's validity.
 

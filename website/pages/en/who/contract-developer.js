@@ -38,7 +38,7 @@ class ContractDeveloper extends React.Component {
           <h3 className="mt-3">It's dangerous to go alone!</h3>
           <p>
             Substrate provides Wasm smart contract functionality through the{" "}
-            <a href="https://crates.parity.io/srml_contract/index.html">
+            <a href="/rustdocs/v1.0/srml_contract/index.html">
               Contract module
             </a>
             . <a href="https://github.com/paritytech/ink">ink!</a> is a Rust

@@ -52,7 +52,7 @@ class Footer extends React.Component {
             <a href={this.pageUrl("tutorials", this.props.language)}>
               Tutorials
             </a>
-            <a href="https://crates.parity.io">
+            <a href="/rustdocs/v1.0/">
               Reference Docs
             </a>
           </div>
