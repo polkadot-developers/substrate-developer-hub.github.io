@@ -61,6 +61,11 @@
     padding: 0;
 }
 
+/* Fix search icon in search box */
+.navSearchWrapper::before {
+    box-sizing: unset;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
