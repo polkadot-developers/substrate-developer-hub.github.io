@@ -101,7 +101,7 @@ class Tutorials extends React.Component {
           </translate>
         </p>
         <p>
-          <Button variant="secondary" className="primary-color" href="/recipes/">
+          <Button variant="secondary" className="primary-color" href="https://substrate.dev/recipes">
             <translate>
               Substrate Runtime Recipes >
             </translate>

@@ -128,10 +128,12 @@ function Community(props) {
 
   const TwitchStream = () => (
     <CommunityResource title={<translate>Twitch Stream</translate>}>
-      <translate>
-        You might catch us streaming cool live coding sessions. Follow our channel
-        to make sure you never miss a stream!
-      </translate>
+      <p>
+        <translate>
+          You might catch us streaming cool live coding sessions. Follow our channel
+          to make sure you never miss a stream!
+        </translate>
+      </p>
       <iframe
         src="https://player.twitch.tv/?channel=paritylivecoding"
         frameBorder="0"

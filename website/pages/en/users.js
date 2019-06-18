@@ -19,6 +19,7 @@ const React = require('react');
 const CompLibrary = require('../../core/CompLibrary.js');
 
 const Container = CompLibrary.Container;
+const translate = require('../../server/translate.js').translate;
 
 class Users extends React.Component {
   render() {
