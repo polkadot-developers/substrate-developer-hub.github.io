@@ -22,6 +22,7 @@ const { Timeline, Timespot } = require(`${process.cwd()}` +
 
 const Container = require("../../../../../react-bootstrap/Container.js");
 const Button = require("../../../../../react-bootstrap/Button.js");
+const translate = require('../../../server/translate.js').translate;
 
 class ContractDeveloper extends React.Component {
   render() {
@@ -35,22 +36,32 @@ class ContractDeveloper extends React.Component {
     const ContractDeveloperTimeline = () => (
       <Timeline>
         <Timespot>
-          <h3 className="mt-3">It's dangerous to go alone!</h3>
+          <h3 className="mt-3">
+            <translate>It's dangerous to go alone!</translate>
+          </h3>
           <p>
-            Substrate provides Wasm smart contract functionality through the{" "}
+            <translate>
+            Substrate provides Wasm smart contract functionality through the
+            </translate>
+            {" "}
             <a href="/rustdocs/v1.0/srml_contract/index.html">
-              Contract module
+              <translate>Contract module</translate>
             </a>
-            . <a href="https://github.com/paritytech/ink">ink!</a> is a Rust
-            based eDSL for writing smart contracts on this platform. The
-            resources below will help you get up to speed on how to use
-            Substrate and ink! in the context of writing smart contracts.
+            .{" "}
+            <a href="https://github.com/paritytech/ink">ink!</a>{" "}
+            <translate desc="description is for ink">
+              is a Rust based eDSL for writing smart contracts on this platform. The
+              resources below will help you get up to speed on how to use
+              Substrate and ink! in the context of writing smart contracts.
+            </translate>
           </p>
           <p>
-            Both platforms are still in rapid development and may run into
-            braking changes in the near future. So join our community on riot
-            and ask questions using the <code>[ink]</code> tag on StackOverflow
-            so you can get the help you need.
+            <translate>
+              Both platforms are still in rapid development and may run into
+              braking changes in the near future. So join our community on riot
+              and ask questions using the <code>[ink]</code> tag on StackOverflow
+              so you can get the help you need.
+            </translate>
           </p>
           <Button
             variant="secondary"
@@ -64,72 +75,86 @@ class ContractDeveloper extends React.Component {
             href="https://riot.im/app/#/room/!tYUCYdSvSYPMjWNDDD:matrix.parity.io"
             className="m-1 primary-color"
           >
-            Riot Chat
+            <translate>Riot Chat</translate>
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Deploy Your First Contract</h3>
+          <h3 className="mt-3">
+            <translate>Deploy Your First Contract</translate>
+          </h3>
           <p>
-            Let's get off the ground running by deploying your first contract to
-            a local Substrate chain. No development experience is needed here,
-            we will just have you set up Substrate and the ink! build
-            environment so that you can compile and deploy a simple "flipper"
-            contract. You will even use the Polkadot UI to interact with your
-            contract in real time!
+            <translate>
+              Let's get off the ground running by deploying your first contract to
+              a local Substrate chain. No development experience is needed here,
+              we will just have you set up Substrate and the ink! build
+              environment so that you can compile and deploy a simple "flipper"
+              contract. You will even use the Polkadot UI to interact with your
+              contract in real time!
+            </translate>
           </p>
           <Button
             variant="secondary"
             href="https://github.com/paritytech/ink/wiki/Deploying-Your-First-Contract"
             className="m-1 primary-color"
           >
-            Start Deploying!
+            <translate>Start Deploying!</translate>
           </Button>
         </Timespot>
         <Timespot>
           <h3 className="mt-3">Writing Your First Contract</h3>
           <p>
-            Next we will walk you through the basics of contract development on
-            ink!. For this we will assume you have some background in Solidity,
-            the language used for building smart contracts on Ethereum.
+            <translate>
+              Next we will walk you through the basics of contract development on
+              ink!. For this we will assume you have some background in Solidity,
+              the language used for building smart contracts on Ethereum.
+            </translate>
           </p>
           <Button
             variant="secondary"
             href="https://github.com/paritytech/ink/wiki/Writing-Your-First-Contract"
             className="m-1 primary-color"
           >
-            Start Writing!
+            <translate>Start Writing!</translate>
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Substrate Contracts Workshop</h3>
+          <h3 className="mt-3">
+            <translate>Substrate Contracts Workshop</translate>
+          </h3>
           <p>
-            Now that you have gotten the basics down, you can jump into our end
-            to end workshop where we will teach you in detail how to build more
-            complicated contracts like an incrementer and ultimately an ERC20
-            token.
+            <translate>
+              Now that you have gotten the basics down, you can jump into our end
+              to end workshop where we will teach you in detail how to build more
+              complicated contracts like an incrementer and ultimately an ERC20
+              token.
+            </translate>
           </p>
           <Button
             variant="secondary"
             href="https://substrate-developer-hub.github.io/substrate-contracts-workshop"
             className="m-1 primary-color"
           >
-            Start the Workshop
+            <translate>Start the Workshop</translate>
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Buidl</h3>
+          <h3 className="mt-3">
+            <translate>Build</translate>
+          </h3>
           <p>
-            You are now ready to start building your own smart contracts!
-            Remember that ink! is still a rapidly developing platform, so take
-            advantage of the community resources linked at the beginning of your
-            journey and share your experiences!
+            <translate>
+              You are now ready to start building your own smart contracts!
+              Remember that ink! is still a rapidly developing platform, so take
+              advantage of the community resources linked at the beginning of your
+              journey and share your experiences!
+            </translate>
           </p>
           <Button
             variant="secondary"
             href={baseUrl}
             className="m-1 primary-color"
           >
-            Back to Home
+            <translate>Back to Home</translate>
           </Button>
         </Timespot>
       </Timeline>
@@ -140,8 +165,8 @@ class ContractDeveloper extends React.Component {
         <HomeSplash
           siteConfig={siteConfig}
           language={language}
-          title="Contract Developer"
-          tagline="So you wanna build Wasm smart contracts..."
+          title={<translate>Contract Developer</translate>}
+          tagline={<translate>So you wanna build Wasm smart contracts...</translate>}
           padding={0}
         />
         <Container>
