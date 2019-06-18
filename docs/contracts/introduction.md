@@ -4,7 +4,7 @@ title: "Introduction to Smart Contracts on Substrate"
 
 Welcome to the smart contracts section of the Developer Hub!
 
-Here you can lean how to write WebAssembly ([Wasm](overview/glossary.md#webassembly-wasm)) smart contracts for Substrate block chains using the [Contract](https://github.com/paritytech/substrate/tree/master/srml/contract) module from the Substrate Module Runtime Library ([SRML](https://substrate.dev/docs/en/overview/glossary#srml-substrate-runtime-module-library)).
+Here you can learn how to write WebAssembly ([Wasm](overview/glossary.md#webassembly-wasm)) smart contracts for Substrate blockchains using the [Contract](https://github.com/paritytech/substrate/tree/master/srml/contract) module from the Substrate Module Runtime Library ([SRML](https://substrate.dev/docs/en/overview/glossary#srml-substrate-runtime-module-library)).
 
 Because Substrate supports Wasm smart contracts, it means that any language that can compile to Wasm could be used to write these contracts. ink! is Parity's answer for writing smart contracts using the Rust programming language.
 
@@ -92,7 +92,7 @@ ink! is Rust based embedded domain specific language ([eDSL](https://wiki.haskel
 
 The ink! language is composed of three different layers of abstractions with which you can write smart contracts:
 
-* Lang: The actual eDSL to provide a user friendly interface to writing smart contract code.
+* [Lang](https://github.com/paritytech/ink/tree/master/lang): The actual eDSL to provide a user friendly interface to writing smart contract code.
 * [Model](https://paritytech.github.io/ink/ink_model/index.html): Medium-level abstractions to write smart contracts heavily inspired by [Fleetwood](https://github.com/paritytech/fleetwood).
 * [Core](https://paritytech.github.io/ink/ink_core/index.html): The core utilities and APIs used to interact with the Contract module.
 
