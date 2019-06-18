@@ -42,9 +42,7 @@ class Users extends React.Component {
           <div className="showcaseSection">
             <div>
               <h1>
-                <translate>
-                  Who is building on Substrate?
-                </translate>
+                <translate>Who is building on Substrate?</translate>
               </h1>
               <p>
                 <translate>These projects are shaping the future of Web3.</translate>

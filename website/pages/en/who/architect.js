@@ -37,9 +37,7 @@ class Architect extends React.Component {
       <Timeline>
         <Timespot>
           <h3 className="mt-3">
-            <translate>
-              High Level Overview
-            </translate>
+            <translate>High Level Overview</translate>
             </h3>
           <p>
             <translate>
