@@ -36,11 +36,15 @@
         ]
       }
     ],
-    "Ecosystem Tools": [
-      "ecosystem/subkey"
+    "Substrate Contracts": [
+      "contracts/introduction",
+      "contracts/installing-ink",
+      "contracts/cargo-contract",
+      "contracts/testing-your-contract",
+      "contracts/deploying-a-contract",
+      "contracts/faq"
     ],
-    "Contribute": [
-      "contribute/help-translate"
-    ]
+    "Ecosystem Tools": ["ecosystem/subkey"],
+    "Contribute": ["contribute/help-translate"]
   }
 }

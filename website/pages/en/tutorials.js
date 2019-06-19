@@ -195,7 +195,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "1",
                 prerequisite: false,
-                href: "https://github.com/paritytech/ink/wiki/Deploying-Your-First-Contract"
+                href: `${docUrl("contracts/deploying-a-contract")}`
               },
               {
                 img: `${baseUrl}img/ink-placeholder.png`,
@@ -204,7 +204,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "1",
                 prerequisite: false,
-                href: "https://github.com/paritytech/ink/wiki/Writing-Your-First-Contract"
+                href: `${docUrl("tutorials/creating-your-first-contract")}`
               },
             ]}
           />
