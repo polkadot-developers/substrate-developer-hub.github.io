@@ -19,6 +19,14 @@ To add a new markdown document,
 * Documentation should follow our [styleguide](style-guide.md).
 * If you want your document to appear in the sidebar, add its reference in the `/website/sidebar.json` file under the corresponding section.
 
+### Rename an existing document
+
+To rename an existing document,
+
+* Change the name or path of the document.
+* Go to [Crowdin project settings](https://crowdin.com/project/substrate-developer-hub/settings#files), remove the old source file in `Files` tab.
+* If you don't have access to the Crowdin project, please send email to <substrate-developer-hub@parity.io> with the file information you want to remove.
+
 ### Local Testing
 
 * `cd` into the `/website` directory.
