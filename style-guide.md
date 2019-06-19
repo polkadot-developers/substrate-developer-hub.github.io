@@ -140,11 +140,8 @@ There are a few ways to solve this:
 > **Remove the pronoun (clearest)**</br>
 > When the user submits a transaction, the user will need to sign the message.
 > 
-> **"He or she"**</br>
-> When the user submits a transaction, he or she will need to sign the message.
-> 
-> **Pick a gender**</br>
-> When the user submits a transaction, she will need to sign the message.
+> **Use the Singular They**</br>
+> When the user submits a transaction, they will need to sign the message.
 > 
 > **Change the subject**</br>
 > When users submit a transaction, they will need to sign the message.
