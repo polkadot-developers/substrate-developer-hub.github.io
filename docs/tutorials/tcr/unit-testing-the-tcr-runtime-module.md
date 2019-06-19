@@ -1,7 +1,7 @@
 ---
 title: "Unit testing the TCR runtime module"
 ---
-This is Part 2 of the guide [Building a Token Curated Registry DAppChain on Substrate](introduction.md). In [part 1](building-the-substrate-tcr-runtime.md), we built a Substrate runtime module for a simple Token Curated Registry implementation. In this part, we cover unit testing of the TCR runtime module.
+This is Part 2 of the guide [Building a Token Curated Registry DAppChain on Substrate](index.md). In [part 1](building-the-substrate-tcr-runtime.md), we built a Substrate runtime module for a simple Token Curated Registry implementation. In this part, we cover unit testing of the TCR runtime module.
 
 ## Setup and mocks
 

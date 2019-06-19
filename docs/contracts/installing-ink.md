@@ -6,7 +6,7 @@ On this page, we will show you how to set up your computer to build ink! Wasm sm
 
 ## Rust
 
-ink! is based on the Rust programming language, and thus you will need to also set up your computer for Rust development. If you have followed the [instructions to install Substrate](quickstart/installing-substrate.md), then you should be good to go.
+ink! is based on the Rust programming language, and thus you will need to also set up your computer for Rust development. If you have followed the [instructions to install Substrate](getting-started/installing-substrate.md), then you should be good to go.
 
 ## Wasm Utilities
 
