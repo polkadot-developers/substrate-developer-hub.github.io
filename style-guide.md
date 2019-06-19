@@ -131,11 +131,8 @@ This is incorrect because "an account" is singular and "their" is plural.
 
 > Correct: The process of an account removing its entire holding of an asset.
 
-This problem can arise when talking about people because English does not have a gender-neutral, singular pronoun.
-
-> Incorrect: When the user submits a transaction, they will need to sign the message.
-
-There are a few ways to solve this:
+Finding the correct pronoun when talking about people can also be problematic.
+There are a few options to solve this in a gender neutral language way:
 
 > **Remove the pronoun (clearest)**</br>
 > When the user submits a transaction, the user will need to sign the message.
