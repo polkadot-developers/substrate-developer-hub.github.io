@@ -74,7 +74,7 @@ class ContractDeveloper extends React.Component {
             a local Substrate chain. No development experience is needed here,
             we will just have you set up Substrate and the ink! build
             environment so that you can compile and deploy a simple "flipper"
-            contract. You will even use the Polkadot UI to interact with your
+            contract. You will even use the Polkadot Apps to interact with your
             contract in real time!
           </p>
           <Button
