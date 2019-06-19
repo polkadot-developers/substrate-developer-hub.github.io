@@ -1,7 +1,7 @@
 ---
 title: "Building an event based off-chain storage"
 ---
-This is Part 4 of the guide [Building a Token Curated Registry DAppChain on Substrate](introduction.md). In [part 1](building-the-substrate-tcr-runtime.md), we implemented a substrate runtime module for a TCR. In [part 2](unit-testing-the-tcr-runtime-module.md), we wrote unit tests for our runtime. In [part 3](building-a-ui-for-the-tcr-runtime.md), we built a simple UI to interact with the Substrate TCR runtime. In this part, we will look at how we can further optimize our TCR DAppChain solution by building an off-chain storage.
+This is Part 4 of the guide [Building a Token Curated Registry DAppChain on Substrate](index.md). In [part 1](building-the-substrate-tcr-runtime.md), we implemented a substrate runtime module for a TCR. In [part 2](unit-testing-the-tcr-runtime-module.md), we wrote unit tests for our runtime. In [part 3](building-a-ui-for-the-tcr-runtime.md), we built a simple UI to interact with the Substrate TCR runtime. In this part, we will look at how we can further optimize our TCR DAppChain solution by building an off-chain storage.
 
 ## Purpose
 

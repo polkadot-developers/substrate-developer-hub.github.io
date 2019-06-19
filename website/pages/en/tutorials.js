@@ -144,7 +144,7 @@ class Tutorials extends React.Component {
                 difficulty: "medium",
                 length: "3",
                 prerequisite: true,
-                href: `${docUrl("tutorials/tcr/introduction")}`
+                href: `${docUrl("tutorials/tcr/")}`
               },
               {
                 title: <translate>UTXO Workshop</translate>,

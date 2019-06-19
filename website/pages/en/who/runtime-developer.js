@@ -58,7 +58,7 @@ class RuntimeDeveloper extends React.Component {
           </p>
           <Button
             variant="secondary"
-            href={docUrl("quickstart/getting-started")}
+            href={docUrl("getting-started")}
             className="m-1 primary-color"
           >
             <translate>High Level Docs</translate>
@@ -92,7 +92,7 @@ class RuntimeDeveloper extends React.Component {
           </p>
           <Button
             variant="secondary"
-            href={docUrl("quickstart/installing-substrate")}
+            href={docUrl("getting-started/installing-substrate")}
             className="m-1 primary-color"
           >
             <translate>Installation Instructions</translate>

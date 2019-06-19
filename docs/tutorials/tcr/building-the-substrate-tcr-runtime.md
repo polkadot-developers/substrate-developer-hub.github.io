@@ -1,7 +1,7 @@
 ---
 title: "Building the Substrate TCR runtime"
 ---
-This is Part 1 of the guide [Building a Token Curated Registry DAppChain on Substrate](introduction.md). This part covers the implementation of the Substrate runtime modules needed for the Token Curated Registry runtime.
+This is Part 1 of the guide [Building a Token Curated Registry DAppChain on Substrate](index.md). This part covers the implementation of the Substrate runtime modules needed for the Token Curated Registry runtime.
 
 The code for the sample TCR runtime is available in [this GitHub repository](https://github.com/substrate-developer-hub/substrate-tcr/).
 
@@ -9,7 +9,7 @@ The code for the sample TCR runtime is available in [this GitHub repository](htt
 
 In this guide, we will directly jump into the TCR runtime development using Substrate node bootstrapped using the `substrate-node-new` script. This guide is intended to walk you through the overall process of creating a DAppChain using Substrate. It does not cover the "getting started" and other basic concepts about Substrate. To get an overview of these concepts, it is highly recommended that you go through the [Substrate Collectibles tutorial](https://shawntabrizi.github.io/substrate-collectables-workshop/) before proceeding further.
 
-Let's start with a new Substrate runtime node. We recommend going through the [Substrate setup scripts tutorial](quickstart/using-the-substrate-node-and-module-setup-scripts.md) to spin up a hack-ready node runtime using the `substrate-node-new` script.
+Let's start with a new Substrate runtime node. We recommend going through the [Substrate setup scripts tutorial](getting-started/using-the-substrate-scripts.md) to spin up a hack-ready node runtime using the `substrate-node-new` script.
 
 ## Step 2: Module trait and types
 

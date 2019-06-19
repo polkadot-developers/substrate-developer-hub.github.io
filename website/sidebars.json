@@ -1,12 +1,12 @@
 {
   "docs": {
-    "Quick Start": [
-      "quickstart/getting-started",
-      "quickstart/installing-substrate",
-      "quickstart/using-the-substrate-node-and-module-setup-scripts"
+    "Getting Started": [
+      "getting-started/index",
+      "getting-started/installing-substrate",
+      "getting-started/using-the-substrate-scripts"
     ],
     "Substrate Fundamentals": [
-      "overview/introduction",
+      "overview/index",
       "overview/extrinsics",
       "overview/transaction-lifecycle",
       "overview/low-level-data-format",
@@ -37,7 +37,7 @@
       }
     ],
     "Substrate Contracts": [
-      "contracts/introduction",
+      "contracts/index",
       "contracts/installing-ink",
       "contracts/cargo-contract",
       "contracts/testing-your-contract",
@@ -46,5 +46,15 @@
     ],
     "Ecosystem Tools": ["ecosystem/subkey"],
     "Contribute": ["contribute/help-translate"]
+  },
+  "tcr": {
+    "Token Curated Registry Tutorial": [
+      "tutorials/tcr/index",
+      "tutorials/tcr/building-the-substrate-tcr-runtime",
+      "tutorials/tcr/unit-testing-the-tcr-runtime-module",
+      "tutorials/tcr/building-a-ui-for-the-tcr-runtime",
+      "tutorials/tcr/building-an-event-based-off-chain-storage",
+      "tutorials/tcr/tcr-best-practices"
+    ]
   }
 }

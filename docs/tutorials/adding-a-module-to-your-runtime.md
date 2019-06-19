@@ -16,7 +16,7 @@ To install all the prerequisites needed for the Substrate build environment, lik
 curl https://getsubstrate.io -sSf | bash -- -s --fast
 ```
 
-As a part of `getsubstrate` script, we will also install [additional scripts](quickstart/using-the-substrate-node-and-module-setup-scripts.md) which allow you to quickly create a new Substrate node template in your working folder. We will call this chain `contract-chain`:
+As a part of `getsubstrate` script, we will also install [additional scripts](getting-started/using-the-substrate-scripts.md) which allow you to quickly create a new Substrate node template in your working folder. We will call this chain `contract-chain`:
 
 ```bash
 cd /my/working/folder/

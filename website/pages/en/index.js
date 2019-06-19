@@ -81,7 +81,7 @@ class Index extends React.Component {
         >
           <Button
             variant="secondary"
-            href={docUrl('quickstart/getting-started')}
+            href={docUrl('getting-started')}
             className="m-1 primary-color"
           >
             <translate>High Level Docs</translate>
@@ -245,7 +245,7 @@ class Index extends React.Component {
           title={siteConfig.title}
           tagline={siteConfig.tagline}
           buttons={[
-            { name: "Get Started", href: `${docUrl('quickstart/getting-started')}` },
+            { name: "Get Started", href: `${docUrl('getting-started')}` },
             { name: "Try a Tutorial", href: `${pageUrl('tutorials')}`},
           ]}
           padding={5}

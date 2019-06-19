@@ -6,7 +6,7 @@ Here we will show you how you can deploy and interact with a smart contract on S
 
 ## Starting Your Node
 
-After successfully [installing Substrate](quickstart/installing-substrate.md), you can start a local development chain by running:
+After successfully [installing Substrate](getting-started/installing-substrate.md), you can start a local development chain by running:
 
 ```bash
 substrate --dev

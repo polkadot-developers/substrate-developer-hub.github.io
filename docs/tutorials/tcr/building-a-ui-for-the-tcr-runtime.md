@@ -1,7 +1,7 @@
 ---
 title: "Building a UI for the TCR runtime"
 ---
-This is Part 3 of the guide [Building a Token Curated Registry DAppChain on Substrate](introduction.md). In [part 1](building-the-substrate-tcr-runtime.md), we implemented a substrate runtime module for a TCR. In [part 2](unit-testing-the-tcr-runtime-module.md), we wrote unit tests for our runtime.
+This is Part 3 of the guide [Building a Token Curated Registry DAppChain on Substrate](index.md). In [part 1](building-the-substrate-tcr-runtime.md), we implemented a substrate runtime module for a TCR. In [part 2](unit-testing-the-tcr-runtime-module.md), we wrote unit tests for our runtime.
 
 As part of the samples, we've created a `reactjs` based web app as a simple frontend for the TCR runtime. The [complete code](https://github.com/substrate-developer-hub/substrate-tcr-ui) is available, although slightly outdated.
 
