@@ -52,8 +52,8 @@ ink! is Rust based embedded domain specific language ([eDSL](https://wiki.haskel
 The ink! language is composed of three different layers of abstractions with which you can write smart contracts:
 
 * [Lang](https://github.com/paritytech/ink/tree/master/lang): The actual eDSL to provide a user friendly interface to writing smart contract code.
-* [Model](https://paritytech.github.io/ink/ink_model/index.html): Medium-level abstractions to write smart contracts heavily inspired by [Fleetwood](https://github.com/paritytech/fleetwood).
-* [Core](https://paritytech.github.io/ink/ink_core/index.html): The core utilities and APIs used to interact with the Contract module.
+* [Model](https://github.com/paritytech/ink/tree/master/model): Medium-level abstractions to write smart contracts heavily inspired by [Fleetwood](https://github.com/paritytech/fleetwood).
+* [Core](https://github.com/paritytech/ink/tree/master/core): The core utilities and APIs used to interact with the Contract module.
 
 We expect that most users will develop using the language layer, but thanks to the other abstractions, it is possible for developers to create their own Rust eDSL for their specific needs.
 
