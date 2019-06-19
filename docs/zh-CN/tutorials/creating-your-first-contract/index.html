@@ -1,0 +1,351 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Creating Your First Contract · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This guide will cover the basics of smart contract development on Substrate using ink!.&lt;/p&gt;
+"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="Creating Your First Contract · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;This guide will cover the basics of smart contract development on Substrate using ink!.&lt;/p&gt;
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/zh-CN/quickstart/getting-started" target="_self">文档</a></li><li class=""><a href="/rustdocs/v1.0/" target="_self">参考文档</a></li><li class=""><a href="/zh-CN/tutorials" target="_self">指南</a></li><li class=""><a href="/zh-CN/community" target="_self">社区</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/tutorials/creating-your-first-contract">English</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">参与翻译</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">Creating Your First Contract</h1></header><article><div><span><p>This guide will cover the basics of smart contract development on Substrate using ink!.</p>
+<h2><a class="anchor" aria-hidden="true" id="ink"></a><a href="#ink" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ink!</h2>
+<p>ink! is an <a href="https://wiki.haskell.org/Embedded_domain_specific_language">eDSL</a> to write WebAssembly based smart contracts in the Rust programming language.</p>
+<p>ink! exists at 3 different layers:</p>
+<ul>
+<li>Core: The core utilities used to write smart contracts.</li>
+<li>Model: Medium-level abstractions to write smart contracts heavily inspired by <a href="https://github.com/paritytech/fleetwood">Fleetwood</a>.</li>
+<li>Language (Lang): The actual eDSL based on ink! Core and ink! Model to provide a user friendly interface to writing smart contract code.</li>
+</ul>
+<p>The Language layer of ink! relies on a single, heavy macro called <code>contract!</code>. At compile time, this macro expands to generate code at the Model and Core level. For the purposes of this guide, we will be focusing on the Language layer of ink! where we expect most contract development to take place.</p>
+<h2><a class="anchor" aria-hidden="true" id="skeleton-of-a-smart-contract"></a><a href="#skeleton-of-a-smart-contract" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Skeleton of a Smart Contract</h2>
+<p>Let's take a look at a high level what is available to you when developing a smart contract using the ink!:</p>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#![no_std]</span>
+
+<span class="token comment">// Import to interact with contract storage</span>
+<span class="token keyword">use</span> ink_core<span class="token punctuation">:</span><span class="token punctuation">:</span>storage<span class="token punctuation">;</span>
+<span class="token comment">// Import the `contract!` macro</span>
+<span class="token keyword">use</span> ink_lang<span class="token punctuation">:</span><span class="token punctuation">:</span>contract<span class="token punctuation">;</span>
+
+<span class="token comment">// The code for your contract will live entirely in the `contract!` macro</span>
+<span class="token macro-rules function">contract!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> ContractName <span class="token punctuation">{</span>
+        <span class="token comment">// Contract Storage</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">impl</span> Deploy <span class="token keyword">for</span> ContractName <span class="token punctuation">{</span>
+        <span class="token keyword">fn</span> <span class="token function">deploy</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// Deployment logic that runs once upon contract creation</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">impl</span> ContractName <span class="token punctuation">{</span>
+        <span class="token comment">// Public/Private Function Definitions</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Let's walk through each part of the contract structure.</p>
+<h2><a class="anchor" aria-hidden="true" id="contract-storage"></a><a href="#contract-storage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contract Storage</h2>
+<p>The entire ink! smart contract is built off of a <code>struct</code> which defines your contract storage.</p>
+<p>Here is how you would store some simple values in storage:</p>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">contract!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> MyContract <span class="token punctuation">{</span>
+        <span class="token comment">// Store a bool</span>
+        my_bool<span class="token punctuation">:</span> storage<span class="token punctuation">:</span><span class="token punctuation">:</span>Value<span class="token operator">&lt;</span>bool<span class="token operator">></span><span class="token punctuation">,</span>
+        <span class="token comment">// Store some number</span>
+        my_number<span class="token punctuation">:</span> storage<span class="token punctuation">:</span><span class="token punctuation">:</span>Value<span class="token operator">&lt;</span>u32<span class="token operator">></span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Contract storage like <code>storage::Value&lt;T&gt;</code> is allowed to be generic over types that are encodable and decodable which includes the most common types such as <code>bool</code>, <code>u{8,16,32,64,128}</code> and <code>i{8,16,32,64,128}</code>, <code>AccountId</code>, <code>Balance</code> as well as tuples and arrays.</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// Note that you will need to import `AccountId` and/or `Balance` to use them</span>
+<span class="token keyword">use</span> ink_core<span class="token punctuation">:</span><span class="token punctuation">:</span>env<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>AccountId<span class="token punctuation">,</span> Balance<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token macro-rules function">contract!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> MyContract <span class="token punctuation">{</span>
+        <span class="token comment">// Store some AccountId</span>
+        my_address<span class="token punctuation">:</span> storage<span class="token punctuation">:</span><span class="token punctuation">:</span>Value<span class="token operator">&lt;</span>AccountId<span class="token operator">></span><span class="token punctuation">,</span>
+        <span class="token comment">// Store some Balance</span>
+        my_balance<span class="token punctuation">:</span> storage<span class="token punctuation">:</span><span class="token punctuation">:</span>Value<span class="token operator">&lt;</span>Balance<span class="token operator">></span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>You can also store some more complex values like <code>String</code> or a mapping:</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">use</span> ink_core<span class="token punctuation">:</span><span class="token punctuation">:</span>env<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>AccountId<span class="token punctuation">,</span> Balance<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// Note that you will need to import the `String` type to use it</span>
+<span class="token keyword">use</span> ink_core<span class="token punctuation">:</span><span class="token punctuation">:</span>memory<span class="token punctuation">:</span><span class="token punctuation">:</span>string<span class="token punctuation">:</span><span class="token punctuation">:</span>String<span class="token punctuation">;</span>
+
+<span class="token macro-rules function">contract!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> MyContract <span class="token punctuation">{</span>
+        <span class="token comment">// Store a string</span>
+        my_string<span class="token punctuation">:</span> storage<span class="token punctuation">:</span><span class="token punctuation">:</span>Value<span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">,</span>
+        <span class="token comment">// Store a key/value map; AccountId -> Balance</span>
+        my_map<span class="token punctuation">:</span> storage<span class="token punctuation">:</span><span class="token punctuation">:</span>HashMap<span class="token operator">&lt;</span>AccountId<span class="token punctuation">,</span> Balance<span class="token operator">></span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="contract-deployment"></a><a href="#contract-deployment" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contract Deployment</h2>
+<p>Every ink! smart contract must implement the <code>Deploy</code> trait which consists of a single function, <code>deploy</code>, which is run once when a contract is created.</p>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">contract!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> MyContract <span class="token punctuation">{</span>
+        <span class="token punctuation">...</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">impl</span> Deploy <span class="token keyword">for</span> MyContract <span class="token punctuation">{</span>
+        <span class="token keyword">fn</span> <span class="token function">deploy</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// Deployment logic that runs once upon contract creation</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> If you are familiar with Solidity, this is similar to the <code>constructor</code> function, however in ink!, <code>deploy</code> is not optional.</p>
+<p><strong>Note:</strong> <code>deploy</code> can take an arbitrary number of parameters. If you wish to deploy a contract using multiple parameters you can do that like this:</p>
+</blockquote>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">contract!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> MyContract <span class="token punctuation">{</span>
+        <span class="token punctuation">...</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">impl</span> Deploy <span class="token keyword">for</span> MyContract <span class="token punctuation">{</span>
+        <span class="token keyword">fn</span> <span class="token function">deploy</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">,</span> a<span class="token punctuation">:</span> bool<span class="token punctuation">,</span> b<span class="token punctuation">:</span> i32<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// Deployment logic that runs once upon contract creation using `a` and `b`</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> Parameter types of <code>deploy</code> and other contract messages are very restricted. We currently only allow users to pass primitives such as <code>bool</code>, <code>u{8,16,32,64,128}</code>, <code>i{8,16,32,64,128}</code> as well as SRML primitives such as <code>AccountId</code> and <code>Balance</code>.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="must-initialize-value-state"></a><a href="#must-initialize-value-state" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>MUST Initialize Value State</h3>
+<p>In order to correctly access and interact with <code>Value</code> in your storage, your <code>deploy</code> function must initialize the state of each <code>storage::Value</code> item you declared.</p>
+<p><strong>IMPORTANT: If you do not initialize your <code>storage::Value</code> items before using them, your contract will panic!</strong></p>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">contract!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> MyContract <span class="token punctuation">{</span>
+        <span class="token comment">// Store a bool</span>
+        my_bool<span class="token punctuation">:</span> storage<span class="token punctuation">:</span><span class="token punctuation">:</span>Value<span class="token operator">&lt;</span>bool<span class="token operator">></span><span class="token punctuation">,</span>
+        <span class="token comment">// Store a key/value map</span>
+        my_map<span class="token punctuation">:</span> storage<span class="token punctuation">:</span><span class="token punctuation">:</span>HashMap<span class="token operator">&lt;</span>AccountId<span class="token punctuation">,</span> Balance<span class="token operator">></span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">impl</span> Deploy <span class="token keyword">for</span> MyContract <span class="token punctuation">{</span>
+        <span class="token comment">/// Initializes our state to `false` upon deploying our smart contract.</span>
+        <span class="token keyword">fn</span> <span class="token function">deploy</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">self</span><span class="token punctuation">.</span>my_bool<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token keyword">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="deployment-variables"></a><a href="#deployment-variables" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Deployment Variables</h3>
+<p>You can also deploy a contract with some configurable parameters so that users can customize the contract they are instantiating.</p>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">contract!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> MyContract <span class="token punctuation">{</span>
+        <span class="token comment">// Store a number</span>
+        my_number<span class="token punctuation">:</span> storage<span class="token punctuation">:</span><span class="token punctuation">:</span>Value<span class="token operator">&lt;</span>u32<span class="token operator">></span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">impl</span> Deploy <span class="token keyword">for</span> MyContract <span class="token punctuation">{</span>
+        <span class="token comment">/// Allows the user to initialize `my_number` with an input value</span>
+        <span class="token keyword">fn</span> <span class="token function">deploy</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">,</span> init_value<span class="token punctuation">:</span> u32<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">self</span><span class="token punctuation">.</span>my_number<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>init_value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="contract-caller"></a><a href="#contract-caller" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contract Caller</h3>
+<p>When developing a smart contract, you always have access to the contract caller through an environment variable <code>env.caller()</code>. This can be used a number of different ways, such as defining a contract owner during contract deployment:</p>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">contract!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> MyContract <span class="token punctuation">{</span>
+        <span class="token comment">// Store a number</span>
+        owner<span class="token punctuation">:</span> storage<span class="token punctuation">:</span><span class="token punctuation">:</span>Value<span class="token operator">&lt;</span>AccountId<span class="token operator">></span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">impl</span> Deploy <span class="token keyword">for</span> MyContract <span class="token punctuation">{</span>
+        <span class="token comment">/// Allows the user to initialize `owner` with the contract caller</span>
+        <span class="token keyword">fn</span> <span class="token function">deploy</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">self</span><span class="token punctuation">.</span>owner<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>env<span class="token punctuation">.</span><span class="token function">caller</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="contract-functions"></a><a href="#contract-functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contract Functions</h2>
+<p>If you have made it this far, it is time to actually start writing the meat of your contract.</p>
+<p>All of your contract functions go into an implementation of your contract's <code>struct</code>:</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">impl</span> MyContract <span class="token punctuation">{</span>
+    <span class="token comment">// Public and Private functions can go here</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="public-and-private-functions"></a><a href="#public-and-private-functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Public and Private Functions</h3>
+<p>As a stylistic choice, we recommend breaking up your implementation definitions for your private and public functions:</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">impl</span> MyContract <span class="token punctuation">{</span>
+    <span class="token comment">// Public functions go here</span>
+    <span class="token keyword">pub</span><span class="token punctuation">(</span>external<span class="token punctuation">)</span> <span class="token keyword">fn</span> <span class="token function">my_public_function</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">...</span>
+    <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span> MyContract <span class="token punctuation">{</span>
+    <span class="token comment">// Private functions go here</span>
+    <span class="token keyword">fn</span> <span class="token function">my_private_function</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">...</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Note that all public functions must be prefixed with <code>pub(external)</code>, not just <code>pub</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="mutable-and-immutable-functions"></a><a href="#mutable-and-immutable-functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Mutable and Immutable Functions</h3>
+<p>You may have noticed that the function templates included <code>self</code> as the first parameter of the contract functions. It is through <code>self</code> that you gain access to all your contract functions and storage items.</p>
+<p>If you are simply reading from the contract storage, you only need to pass <code>&amp;self</code>. But if you want to modify storage items, you will need to explicitly mark it as mutable, <code>&amp;mut self</code>.</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">impl</span> MyContract <span class="token punctuation">{</span>
+    <span class="token comment">// Public functions go here</span>
+    <span class="token keyword">pub</span><span class="token punctuation">(</span>external<span class="token punctuation">)</span> <span class="token keyword">fn</span> <span class="token function">my_getter</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> u32<span class="token punctuation">{</span>
+        <span class="token operator">*</span><span class="token keyword">self</span><span class="token punctuation">.</span>my_number
+    <span class="token punctuation">}</span> 
+
+    <span class="token keyword">pub</span><span class="token punctuation">(</span>external<span class="token punctuation">)</span> <span class="token keyword">fn</span> <span class="token function">my_setter</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">,</span> some_value<span class="token punctuation">:</span> u32<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">self</span><span class="token punctuation">.</span>my_number <span class="token operator">=</span> some_value<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="the-flipper-contract"></a><a href="#the-flipper-contract" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Flipper Contract</h2>
+<p>We now have all the tools needed to build our first smart contract. A simple flipper contract, which stores a boolean value and allows you to &quot;flip&quot; it.</p>
+<p>Let's build it starting from our skeleton:</p>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#![no_std]</span>
+
+<span class="token keyword">use</span> ink_core<span class="token punctuation">:</span><span class="token punctuation">:</span>storage<span class="token punctuation">;</span>
+<span class="token keyword">use</span> ink_lang<span class="token punctuation">:</span><span class="token punctuation">:</span>contract<span class="token punctuation">;</span>
+
+<span class="token macro-rules function">contract!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> Flipper <span class="token punctuation">{</span>
+        <span class="token comment">// Contract Storage</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">impl</span> Deploy <span class="token keyword">for</span> Flipper <span class="token punctuation">{</span>
+        <span class="token keyword">fn</span> <span class="token function">deploy</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// Deployment logic that runs once upon contract creation</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">impl</span> Flipper <span class="token punctuation">{</span>
+        <span class="token comment">// Public/Private Function Definitions</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Let's quickly add our boolean to storage and set an initial value:</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">struct</span> Flipper <span class="token punctuation">{</span>
+    <span class="token comment">/// Store a bool</span>
+    value<span class="token punctuation">:</span> storage<span class="token punctuation">:</span><span class="token punctuation">:</span>Value<span class="token operator">&lt;</span>bool<span class="token operator">></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span> Deploy <span class="token keyword">for</span> Flipper <span class="token punctuation">{</span>
+    <span class="token comment">/// Initializes our state to `false` upon deploying our smart contract.</span>
+    <span class="token keyword">fn</span> <span class="token function">deploy</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">self</span><span class="token punctuation">.</span>value<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token keyword">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Then all we have left to write is a simple function that flips the value of this boolean; remember that this function will modify storage. We can also add a function to get the value that will not.</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">impl</span> Flipper <span class="token punctuation">{</span>
+    <span class="token comment">/// Flips the current state of our smart contract.</span>
+    <span class="token keyword">pub</span><span class="token punctuation">(</span>external<span class="token punctuation">)</span> <span class="token keyword">fn</span> <span class="token function">flip</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token operator">*</span><span class="token keyword">self</span><span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token operator">!</span><span class="token operator">*</span><span class="token keyword">self</span><span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/// Returns the current state.</span>
+    <span class="token keyword">pub</span><span class="token punctuation">(</span>external<span class="token punctuation">)</span> <span class="token keyword">fn</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> bool <span class="token punctuation">{</span>
+        <span class="token operator">*</span><span class="token keyword">self</span><span class="token punctuation">.</span>value
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>If we put everything together, this will be our final Flipper contract code, including a test to verify everything is working:</p>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#![no_std]</span>
+
+<span class="token keyword">use</span> ink_core<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+    env<span class="token punctuation">:</span><span class="token punctuation">:</span>println<span class="token punctuation">,</span>
+    memory<span class="token punctuation">:</span><span class="token punctuation">:</span>format<span class="token punctuation">,</span>
+    storage<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> ink_lang<span class="token punctuation">:</span><span class="token punctuation">:</span>contract<span class="token punctuation">;</span>
+
+<span class="token macro-rules function">contract!</span> <span class="token punctuation">{</span>
+    <span class="token comment">/// This simple dummy contract has a `bool` value that can</span>
+    <span class="token comment">/// alter between `true` and `false` using the `flip` message.</span>
+    <span class="token comment">/// Users can retrieve its current state using the `get` message.</span>
+    <span class="token keyword">struct</span> Flipper <span class="token punctuation">{</span>
+        <span class="token comment">/// The current state of our flag.</span>
+        value<span class="token punctuation">:</span> storage<span class="token punctuation">:</span><span class="token punctuation">:</span>Value<span class="token operator">&lt;</span>bool<span class="token operator">></span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">impl</span> Deploy <span class="token keyword">for</span> Flipper <span class="token punctuation">{</span>
+        <span class="token comment">/// Initializes our state to `false` upon deploying our smart contract.</span>
+        <span class="token keyword">fn</span> <span class="token function">deploy</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">self</span><span class="token punctuation">.</span>value<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token keyword">false</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">impl</span> Flipper <span class="token punctuation">{</span>
+        <span class="token comment">/// Flips the current state of our smart contract.</span>
+        <span class="token keyword">pub</span><span class="token punctuation">(</span>external<span class="token punctuation">)</span> <span class="token keyword">fn</span> <span class="token function">flip</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token operator">*</span><span class="token keyword">self</span><span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token operator">!</span><span class="token operator">*</span><span class="token keyword">self</span><span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">/// Returns the current state.</span>
+        <span class="token keyword">pub</span><span class="token punctuation">(</span>external<span class="token punctuation">)</span> <span class="token keyword">fn</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> bool <span class="token punctuation">{</span>
+            <span class="token function">println</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token function">format!</span><span class="token punctuation">(</span><span class="token string">"Flipper Value: {:?}"</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token keyword">self</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token operator">*</span><span class="token keyword">self</span><span class="token punctuation">.</span>value
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token attribute attr-name">#[cfg(test)]</span>
+<span class="token keyword">mod</span> tests <span class="token punctuation">{</span>
+    <span class="token keyword">use</span> <span class="token keyword">super</span><span class="token punctuation">:</span><span class="token punctuation">:</span>Flipper<span class="token punctuation">;</span>
+
+    <span class="token attribute attr-name">#[test]</span>
+    <span class="token keyword">fn</span> <span class="token function">it_works</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> <span class="token keyword">mut</span> flipper <span class="token operator">=</span> Flipper<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">deploy_mock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">assert_eq!</span><span class="token punctuation">(</span>flipper<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        flipper<span class="token punctuation">.</span><span class="token function">flip</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">assert_eq!</span><span class="token punctuation">(</span>flipper<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="next-steps"></a><a href="#next-steps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Next Steps</h2>
+<p>Now that you have gotten a taste for writing smart contracts with ink!, it's time to deploy and test them!</p>
+<p>Learn how to <a href="contracts/deploying-a-contract">deploy a smart contract</a>.</p>
+<p>Join the ink! development community! Check out our resources on our <a href="/community/">community page</a>.</p>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#ink">ink!</a></li><li><a href="#skeleton-of-a-smart-contract">Skeleton of a Smart Contract</a></li><li><a href="#contract-storage">Contract Storage</a></li><li><a href="#contract-deployment">Contract Deployment</a><ul class="toc-headings"><li><a href="#must-initialize-value-state">MUST Initialize Value State</a></li><li><a href="#deployment-variables">Deployment Variables</a></li><li><a href="#contract-caller">Contract Caller</a></li></ul></li><li><a href="#contract-functions">Contract Functions</a><ul class="toc-headings"><li><a href="#public-and-private-functions">Public and Private Functions</a></li><li><a href="#mutable-and-immutable-functions">Mutable and Immutable Functions</a></li></ul></li><li><a href="#the-flipper-contract">The Flipper Contract</a></li><li><a href="#next-steps">Next Steps</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/quickstart/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a></div><div><h5>Community</h5><a href="/zh-CN/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a class="github-button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-CN"]}
+              });
+            </script></body></html>
