@@ -35,7 +35,7 @@ The Contract module is intended to be used by any user on a public network. This
 
 ### Gas
 
-Contract calls are charged gas fee to limit the amount of computational resources a transaction can use. When forming a contract transaction, a gas limit is specified. As the contract executes, gas is incrementally used up depending on the complexity of the computation. If the gas limit is reached before the contract execution completes, the transaction fails, contract storage is reverted, and the gas fee is **not** returned to the user. If the contract executed completes with extra gas, it is returned to the user at the end of the transaction.
+Contract calls are charged gas fee to limit the amount of computational resources a transaction can use. When forming a contract transaction, a gas limit is specified. As the contract executes, gas is incrementally used up depending on the complexity of the computation. If the gas limit is reached before the contract execution completes, the transaction fails, contract storage is reverted, and the gas fee is **not** returned to the user. If the contract executed completes with remaining gas, it is returned to the user at the end of the transaction.
 
 The Contract module determines the gas price, which is a conversion between the Substrate `Currency` and a single unit of gas, thus to execute a transaction, a user must have a free balance of at least `gas price` * `gas limit` which can be spent.
 
@@ -67,18 +67,12 @@ ink! should feel familiar to developers who have programmed using other modern s
   * Public Functions
   * Internal functions
 
-In ink!, mutability and visibility are explicitly defined per contract function. In these functions, you cain access to a number of common Substrate types like `AccountId`, `Balances`, `Hash`, etc... Additionally, you gain access to commonly used environment variables like the `caller`, `balance`, `gas_left`, and more!
+In ink!, mutability and visibility are explicitly defined per contract function. In these functions, you gain access to a number of common Substrate types like `AccountId`, `Balances`, `Hash`, etc... Additionally, you gain access to commonly used environment variables like the `caller`, `balance`, `gas_left`, and more!
 
-### Rust
+### Overflow Safety
 
 Being written in Rust, ink! can provide compile time overflow/underflow safety. Using a Rust compiler configuration, you can specify whether you want to support overflowing math, or if you want contract execution to panic when overflows occur. No need to continually import "Safe Math" libraries, although Rust also provides [integrated checked, wrapped, and saturated math functions](https://doc.rust-lang.org/std/primitive.u32.html).
-
-Additionally, Rust provides a safe API for describing values which are not set with the [Option](https://doc.rust-lang.org/std/option/index.html) type. This means when a you specify a value as `None`, there is no unambiguous meaning to what that value represents.
 
 ### Test Environment
 
 ink! provides a built in test environment which can be used to perform off-chain unit testing with the Rust framework. This makes it simple and easy to ensure that your contract code functions as expected, without the need for third party testing platforms.
-
-### Random Number Generation
-
-Through Substrate, ink! gains access to a ["low influence" random number generator](https://crates.parity.io/srml_system/struct.Module.html#method.random). This is initially implemented through a low-influence "triplet mix" convolution of previous block hash values, but in the future it will be generated from a secure verifiable random function.
