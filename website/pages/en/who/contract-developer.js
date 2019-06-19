@@ -79,7 +79,7 @@ class ContractDeveloper extends React.Component {
           </p>
           <Button
             variant="secondary"
-            href="https://github.com/paritytech/ink/wiki/Deploying-Your-First-Contract"
+            href={docUrl("contracts/deploying-a-contract")}
             className="m-1 primary-color"
           >
             Start Deploying!
@@ -94,7 +94,7 @@ class ContractDeveloper extends React.Component {
           </p>
           <Button
             variant="secondary"
-            href="https://github.com/paritytech/ink/wiki/Writing-Your-First-Contract"
+            href={docUrl("tutorials/creating-your-first-contract")}
             className="m-1 primary-color"
           >
             Start Writing!
