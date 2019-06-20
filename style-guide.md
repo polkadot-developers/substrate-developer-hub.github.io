@@ -123,7 +123,7 @@ Readers can often infer when a "which" clause is restrictive versus unrestrictiv
 
 ### Subject and Pronoun Disagreement
 
-Singular "they" is acceptable as a pronoun. Make sure that there is no possibility of confusion about to what the pronoun refers (subject vs. object).
+When referring to a human subject (e.g. a developer, a user), use "they" as the singular pronoun. Make sure that there is no possibility of confusion about to what the pronoun refers (subject vs. object).
 
 Options:
 
