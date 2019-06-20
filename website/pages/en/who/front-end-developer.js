@@ -22,6 +22,7 @@ const { Timeline, Timespot } = require(`${process.cwd()}` +
 
 const Container = require("../../../../../react-bootstrap/Container.js");
 const Button = require("../../../../../react-bootstrap/Button.js");
+const translate = require('../../../server/translate.js').translate;
 
 class FrontEndDeveloper extends React.Component {
   render() {
@@ -35,149 +36,153 @@ class FrontEndDeveloper extends React.Component {
     const FrontEndDeveloperTimeline = () => (
       <Timeline>
         <Timespot>
-          <h3 className="mt-3">Background</h3>
+          <h3 className="mt-3"><translate>Background</translate></h3>
           <p>
-            Substrate exposes an number of endpoints over JSON-RPC. To be able to interact with these endpoints, your data needs to be decoded and encoded following a standardized codec.
+          <translate>Substrate exposes an number of endpoints over JSON-RPC. To be able to interact with these endpoints, your data needs to be decoded and encoded following a standardized codec.</translate>
           </p>
           <p>
-            To make your life easier, we provide you with a reactive Javascript API that wraps all RPC methods exposed
-            by a Polkadot or Substrate client and handles all the decoding and encoding for you.
+            <translate>To make your life easier, we provide you with a reactive Javascript API that wraps all RPC methods exposed
+            by a Polkadot or Substrate client and handles all the decoding and encoding for you.</translate>
           </p>
           <p>
-            Following the steps below, you'll be fit to write your own frontend applications for Substrate and Polkadot. 
-            Please join our community on Riot if you have any questions or ask them tagged with <code>[substrate]</code> on StackOverflow.
+            <translate>Following the steps below, you'll be fit to write your own frontend applications for Substrate and Polkadot. 
+            Please join our community on Riot if you have any questions or ask them tagged with <code>[substrate]</code> on StackOverflow.</translate>
           </p>
           <Button
             variant="secondary"
             href="https://stackoverflow.com/questions/tagged/ink"
             className="m-1 primary-color"
           >
-            StackOverflow
+            <translate>StackOverflow</translate>
           </Button>
           <Button
             variant="secondary"
             href="https://riot.im/app/#/room/!tYUCYdSvSYPMjWNDDD:matrix.parity.io"
             className="m-1 primary-color"
           >
-            Riot Chat
+            <translate>Riot Chat</translate>
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Get familiar with Substrate using the Polkadot-JS Apps</h3>
+          <h3 className="mt-3"><translate>Get familiar with Substrate using the Polkadot-JS Apps</translate></h3>
           <p>
-            Before writing your own code, you should get familiar with what Substrate has to offer. The Polkadot-JS Apps are a set of applications that reflect Substrates standard runtime modules. They let you explore all built-in features, provide lot's of additional information and even let you interact with your custom runtime modules.
+            <translate>Before writing your own code, you should get familiar with what Substrate has to offer. The Polkadot-JS Apps are a set of applications that reflect Substrates standard runtime modules. They let you explore all built-in features, provide lot's of additional information and even let you interact with your custom runtime modules.</translate>
           </p>
           <p>
-            You don't even need to install anything, just start with the Parity hosted Polkadot and Substrate nodes!
+            <translate>You don't even need to install anything, just start with the Parity hosted Polkadot and Substrate nodes!</translate>
           </p>
           <Button
             variant="secondary"
             href="https://polkadot.js.org/apps"
             className="m-1 primary-color"
           >
-            Polkdot-JS Apps
+            <translate>Polkdot-JS Apps</translate>
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Dive into the Polkadot-JS ecosystem</h3>
+          <h3 className="mt-3"><translate>Dive into the Polkadot-JS ecosystem</translate></h3>
           <p>
-          The Polkadot-JS Apps are built on top of the Polkadot-JS API - a type-safe Javascript API that works with both Polkadot and Substrate chains. In addition to that, we're providing you with a rich set of modules and components to make your life as a Frontend Developer as easy as possible. All are published as modules on npmjs.com and documented on the Polkadot-JS developer portal.
+          <translate>The Polkadot-JS Apps are built on top of the Polkadot-JS API - a type-safe Javascript API that works with both Polkadot and Substrate chains. In addition to that, we're providing you with a rich set of modules and components to make your life as a Frontend Developer as easy as possible. All are published as modules on npmjs.com and documented on the Polkadot-JS developer portal.</translate>
           </p>
-          <p>Have a look around and explore your tools as a future Substrate Application Developer.</p>
+          <p><translate>Have a look around and explore your tools as a future Substrate Application Developer.</translate></p>
           <Button
             variant="secondary"
             href="https://polkadot.js.org/"
             className="m-1 primary-color"
           >
-            Developer Portal
+            <translate>Developer Portal</translate>
           </Button>
           <Button
             variant="secondary"
             href="https://polkadot.js.org/api/"
             className="m-1 primary-color"
           >
-            API & Type Docs
+            <translate>API & Type Docs</translate>
           </Button>
           <Button
             variant="secondary"
             href="https://polkadot.js.org/ui/"
             className="m-1 primary-color"
           >
-            UI packages & libraries
+            <translate>UI packages & libraries</translate>
           </Button>
           <Button
             variant="secondary"
             href="https://polkadot.js.org/"
             className="m-1 primary-color"
           >
-            Common Utilities
+            <translate>Common Utilities</translate>
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Learn how to interact with the Polkadot-JS API</h3>
+          <h3 className="mt-3"><translate>Learn how to interact with the Polkadot-JS API</translate></h3>
           <p>
-            Now it's time to get your hands dirty and to start coding! Download our quick-start template to write your first API calls and learn how to communicate with your Substrate node.
+            <translate>Now it's time to get your hands dirty and to start coding! Download our quick-start template to write your first API calls and learn how to communicate with your Substrate node.</translate>
           </p>
-          <p>TODO: Write simple template & tutorial</p>
+          <p><translate>TODO: Write simple template & tutorial</translate></p>
           <Button
             variant="secondary"
             href="https://github.com/polkadot-js/api/"
             className="m-1 primary-color"
           >
-            polkadot-js/api
+            <translate>polkadot-js/api</translate>
           </Button>
           <Button
             variant="secondary"
             href="#"
             className="m-1 primary-color"
           >
-            TODO Link to starter template
+            <translate>TODO Link to starter template</translate>
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Build your own Application for the Polkadot-JS Apps</h3>
+          <h3 className="mt-3"><translate>Build your own Application for the Polkadot-JS Apps</translate></h3>
           <p>
+            <translate>
             If you don't want to start from scratch and are familiar with Typescript, give it a shot and build your own
             "App" for the Polkadot-JS Apps. The repository comes with a boilerplate application. Just follow the instructions in the README to get strated!
+            </translate>
           </p>
           <Button
             variant="secondary"
             href="https://github.com/polkadot-js/apps/tree/master/packages/app-123code"
             className="m-1 primary-color"
           >
-            Boilerplate  App
+            <translate>Boilerplate  App</translate>
           </Button>
           <Button
             variant="secondary"
             href="https://github.com/polkadot-js/apps/tree/master/packages/app-123code"
             className="m-1 primary-color"
           >
-            TODO Example code for `app-123`
+            <translate>TODO Example code for `app-123`</translate>
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Explore beyond Polkadot-JS</h3>
+          <h3 className="mt-3"><translate>Explore beyond Polkadot-JS</translate></h3>
           <p>
-            If you're interested in having a look at an alternate Javascript API, start exploring the
-            `oo7-bonds` repository.
-            "Bonds" is an alternative JSON-RPC wrapper around Substrate and Polkadot. It's written in
+            <translate>If you're interested in having a look at an alternate Javascript API, start exploring the
+            `oo7-bonds` repository.</translate>
+          </p>
+          <p>
+           <translate> "Bonds" is an alternative JSON-RPC wrapper around Substrate and Polkadot. It's written in
             plain Javascript and comes with it's own implementation of the SCALE Codec.
             The "Bonds" API is best used together with the "Substrate UI", which is a React based
-            single page application.
+            single page application.</translate>
           </p>
           <Button
             variant="secondary"
             href="https://github.com/paritytech/oo7/tree/master/packages/oo7-substrate"
             className="m-1 primary-color"
           >
-            oo7-substrate
+            <translate>oo7-substrate</translate>
           </Button>
           <Button
             variant="secondary"
             href="https://github.com/paritytech/substrate-ui"
             className="m-1 primary-color"
           >
-            Substrate UI
+            <translate>Substrate UI</translate>
           </Button>
         </Timespot>
       </Timeline>
