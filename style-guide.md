@@ -123,28 +123,15 @@ Readers can often infer when a "which" clause is restrictive versus unrestrictiv
 
 ### Subject and Pronoun Disagreement
 
-Ensure that pronouns and possessives match the subject they are referring to.
+When referring to a human subject (e.g. a developer, a user), use "they" as the singular pronoun. Make sure that there is no possibility of confusion about to what the pronoun refers (subject vs. object).
 
-> Incorrect: The process of an account removing their entire holding of an asset.
-
-This is incorrect because "an account" is singular and "their" is plural.
-
-> Correct: The process of an account removing its entire holding of an asset.
-
-This problem can arise when talking about people because English does not have a gender-neutral, singular pronoun.
-
-> Incorrect: When the user submits a transaction, they will need to sign the message.
-
-There are a few ways to solve this:
+Options:
 
 > **Remove the pronoun (clearest)**</br>
 > When the user submits a transaction, the user will need to sign the message.
 > 
-> **"He or she"**</br>
-> When the user submits a transaction, he or she will need to sign the message.
-> 
-> **Pick a gender**</br>
-> When the user submits a transaction, she will need to sign the message.
+> **"They"**</br>
+> When the user submits a transaction, they will need to sign the message.
 > 
 > **Change the subject**</br>
 > When users submit a transaction, they will need to sign the message.
