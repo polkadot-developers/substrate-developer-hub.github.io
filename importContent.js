@@ -28,7 +28,7 @@ removeSync(`${workingDir}/Substrate OAS3`);
 removeSync(`${workingDir}/Contact Us`);
 
 // Rename a few directories
-moveSync(`${workingDir}/Quick Start`, `${workingDir}/quickstart`);
+moveSync(`${workingDir}/Quick Start`, `${workingDir}/getting-started`);
 moveSync(`${workingDir}/Substrate Overview`, `${workingDir}/overview`);
 moveSync(`${workingDir}/Runtime/Runtime Types`, `${workingDir}/Runtime/types`);
 moveSync(`${workingDir}/Runtime/Runtime Macros`, `${workingDir}/Runtime/macros`);

@@ -24,6 +24,7 @@ const Card = require("../../../../react-bootstrap/Card.js");
 const Col = require("../../../../react-bootstrap/Col.js");
 const Row = require("../../../../react-bootstrap/Row.js");
 const Badge = require("../../../../react-bootstrap/Badge.js");
+const translate = require('../../server/translate.js').translate;
 
 class Tutorials extends React.Component {
   render() {
@@ -88,54 +89,78 @@ class Tutorials extends React.Component {
 
     const RuntimeRecipes = () => (
       <div>
-        <h2>Runtime Recipes</h2>
+        <h2>
+          <translate>
+            Runtime Recipes
+          </translate>
+        </h2>
         <hr />
-        <p>Find code samples for common patterns and best practices when developing runtime modules on Substrate:</p>
         <p>
-          <Button variant="secondary" className="primary-color" href="/recipes/">Substrate Runtime Recipes ></Button>
+          <translate>
+            Find code samples for common patterns and best practices when developing runtime modules on Substrate:
+          </translate>
+        </p>
+        <p>
+          <Button variant="secondary" className="primary-color" href="https://substrate.dev/recipes">
+            <translate>
+              Substrate Runtime Recipes >
+            </translate>
+          </Button>
         </p>
       </div>
     )
 
     const RuntimeTutorials = () => (
       <div>
-        <h2>Runtime Development</h2>
+        <h2>
+          <translate>
+            Runtime Development
+          </translate>
+        </h2>
         <hr />
         <Row>
           <TutorialCards
             data={[
               {
                 img: `${baseUrl}img/substrate-collectables-workshop.png`,
-                title: "Substrate Collectables Workshop",
-                text: "A comprehensive end to end tutorial for creating a non-fungible tokens chain. Learn all the basics of Substrate runtime development here!",
+                title: <translate>Substrate Collectables Workshop</translate>,
+                text: <translate>A comprehensive end to end tutorial for creating a non-fungible tokens chain. Learn all the basics of Substrate runtime development here!</translate>,
                 difficulty: "easy",
                 length: "5",
                 prerequisite: false,
                 href: "https://substrate-developer-hub.github.io/substrate-collectables-workshop/"
               },
               {
-                title: "Creating Your First Substrate Chain",
-                text: "A minimal end to end guide to build and interact with your first custom Substrate chain.",
+                title: <translate>Creating Your First Substrate Chain</translate>,
+                text: <translate>A minimal end to end guide to build and interact with your first custom Substrate chain.</translate>,
                 difficulty: "easy",
                 length: "< 1",
                 prerequisite: false,
                 href: `${docUrl("tutorials/creating-your-first-substrate-chain")}`
               },
               {
-                title: "Substrate Token Curated Registry",
-                text: "Build a TCR module using Substrate.",
+                title: <translate>Substrate Token Curated Registry</translate>,
+                text: <translate>Build a TCR module using Substrate.</translate>,
                 difficulty: "medium",
                 length: "3",
                 prerequisite: true,
-                href: `${docUrl("tutorials/tcr/introduction")}`
+                href: `${docUrl("tutorials/tcr/")}`
               },
               {
-                title: "UTXO Workshop",
-                text: "A tutorial teaching you how to build a UTXO chain like Bitcoin using Substrate.",
+                title: <translate>UTXO Workshop</translate>,
+                text: <translate>A tutorial teaching you how to build a UTXO chain like Bitcoin using Substrate.</translate>,
                 difficulty: "medium",
                 length: "2",
                 prerequisite: true,
                 href: "https://github.com/substrate-developer-hub/utxo-workshop"
+              },
+              {
+                title: "Adding a Module to Your Runtime",
+                text: "Add the Contract module or other SRML modules to your Substrate node template.",
+                difficulty: "medium",
+                length: "2",
+                prerequisite: false,
+                href: `${docUrl("tutorials/adding-a-module-to-your-runtime")}`
               },
             ]}
           />
@@ -145,15 +170,19 @@ class Tutorials extends React.Component {
 
     const ContractTutorials = () => (
       <div className="mt-4">
-        <h2>Smart Contract Development</h2>
+        <h2>
+          <translate>
+            Smart Contract Development
+          </translate>
+        </h2>
         <hr />
         <Row>
           <TutorialCards
             data={[
               {
                 img: `${baseUrl}img/substrate-contracts-workshop.png`,
-                title: "Substrate Contracts Workshop",
-                text: "A comprehensive end to end tutorial for building an ERC20 token using Parity Substrate and ink!.",
+                title: <translate>Substrate Contracts Workshop</translate>,
+                text: <translate>A comprehensive end to end tutorial for building an ERC20 token using Parity Substrate and ink!.</translate>,
                 difficulty: "easy",
                 length: "4",
                 prerequisite: false,
@@ -161,21 +190,21 @@ class Tutorials extends React.Component {
               },
               {
                 img: `${baseUrl}img/ink-placeholder.png`,
-                title: "Deploying Your First Contract",
-                text: "A simple guide which helps you understand the process of deploying smart contracts on Substrate.",
+                title: <translate>Deploying Your First Contract</translate>,
+                text: <translate>A simple guide which helps you understand the process of deploying smart contracts on Substrate.</translate>,
                 difficulty: "easy",
                 length: "1",
                 prerequisite: false,
-                href: "https://github.com/paritytech/ink/wiki/Deploying-Your-First-Contract"
+                href: `${docUrl("contracts/deploying-a-contract")}`
               },
               {
                 img: `${baseUrl}img/ink-placeholder.png`,
-                title: "Writing Your First Contract",
-                text: "A simple guide which helps you write your first 'flipper' contract.",
+                title: <translate>Writing Your First Contract</translate>,
+                text: <translate>A simple guide which helps you write your first 'flipper' contract.</translate>,
                 difficulty: "easy",
                 length: "1",
                 prerequisite: false,
-                href: "https://github.com/paritytech/ink/wiki/Writing-Your-First-Contract"
+                href: `${docUrl("tutorials/creating-your-first-contract")}`
               },
             ]}
           />
@@ -185,14 +214,18 @@ class Tutorials extends React.Component {
 
     const NetworkTutorials = () => (
       <div className="mt-4">
-        <h2>Running a Network</h2>
+        <h2>
+          <translate>
+            Running a Network
+          </translate>
+        </h2>
         <hr />
         <Row>
           <TutorialCards
             data={[
               {
-                title: "Start a Private Network with Substrate",
-                text: "Learn to start a blockchain network with a validator/authority set of your choosing using Substrate.",
+                title: <translate>Start a Private Network with Substrate</translate>,
+                text: <translate>Learn to start a blockchain network with a validator/authority set of your choosing using Substrate.</translate>,
                 difficulty: "easy",
                 length: "2",
                 prerequisite: false,
@@ -209,8 +242,8 @@ class Tutorials extends React.Component {
         <HomeSplash
           siteConfig={siteConfig}
           language={language}
-          title="Tutorial Catalog"
-          tagline="Let's learn together!"
+          title={<translate>Tutorial Catalog</translate>}
+          tagline={<translate>Let's learn together!</translate>}
           padding={0}
         />
         <div className="mainContainer">

@@ -19,6 +19,7 @@ const React = require('react');
 const CompLibrary = require('../../core/CompLibrary.js');
 
 const Container = CompLibrary.Container;
+const translate = require('../../server/translate.js').translate;
 
 class Users extends React.Component {
   render() {
@@ -40,15 +41,21 @@ class Users extends React.Component {
         <Container padding={['bottom', 'top']}>
           <div className="showcaseSection">
             <div>
-              <h1>Who is building on Substrate?</h1>
-              <p>These projects are shaping the future of Web3.</p>
+              <h1>
+                <translate>Who is building on Substrate?</translate>
+              </h1>
+              <p>
+                <translate>These projects are shaping the future of Web3.</translate>
+              </p>
             </div>
             <hr />
             <div className="logos">{showcase}</div>
             <hr />
-            <p>Are you using Substrate?</p>
+            <p>
+              <translate>Are you using Substrate?</translate>
+            </p>
             <a href={editUrl} className="button">
-              Add your project
+              <translate>Add your project</translate>
             </a>
           </div>
         </Container>

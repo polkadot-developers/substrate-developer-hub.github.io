@@ -4,7 +4,7 @@ title: "Session Keys"
 
 A Session key (technically a Session Certificate) is comprised of three key-pairs that are used by validators for network operations and signing.
 
-The default substrate node uses session keys thanks in part to the [Session module](https://crates.parity.io/srml_session/index.html).
+The default substrate node uses session keys thanks in part to the [Session module](/rustdocs/v1.0/srml_session/index.html).
 
 
 ## BLS (Boneh-Lynn-Shacham) key

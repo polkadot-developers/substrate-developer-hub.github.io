@@ -39,8 +39,8 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'quickstart/getting-started', label: 'Docs'},
-    {href: 'https://crates.parity.io', label: 'Reference Docs'},
+    {doc: 'getting-started/index', label: 'Docs'},
+    {href: '/rustdocs/v1.0/', label: 'Reference Docs'},
     {page: 'tutorials', label: 'Tutorials'},
     {page: 'community', label: 'Community'},
     {href: 'https://github.com/paritytech/substrate', label: 'GitHub'},

@@ -23,6 +23,7 @@ const Button = require("../../../../../react-bootstrap/Button.js");
 const Card = require("../../../../../react-bootstrap/Card.js");
 const Row = require("../../../../../react-bootstrap/Row.js");
 const Col = require("../../../../../react-bootstrap/Col.js");
+const translate = require('../../../server/translate.js').translate;
 
 class WhoIndex extends React.Component {
   render() {
@@ -57,27 +58,35 @@ class WhoIndex extends React.Component {
         <Persona
           data={[
             {
-              name: "Runtime Developer",
+              name: <translate>Runtime Developer</translate>,
               text:
-                "Are you interested to learn more about the modular Substrate runtime, and how you can build custom runtime logic using the Substrate framework?",
+                <translate>
+                  Are you interested to learn more about the modular Substrate runtime, and how you can build custom runtime logic using the Substrate framework?
+                </translate>,
               href: "./runtime-developer/"
             },
             {
-              name: "Contract Developer",
+              name: <translate>Contract Developer</translate>,
               text:
-                "Are you interested to learn about the Contracts module provided by Substrate and how you can build Wasm smart contracts using ink!?",
+                <translate>
+                  Are you interested to learn about the Contracts module provided by Substrate and how you can build Wasm smart contracts using ink!?
+                </translate>,
               href: "./contract-developer/"
             },
             {
-              name: "Front-End Developer",
+              name: <translate>Front-End Developer</translate>,
               text:
-                "Are you interested to learn how to build first class user experiences for Substrate?",
+                <translate>
+                  Are you interested to learn how to build first class user experiences for Substrate?
+                </translate>,
               href: "./front-end-developer/"
             },
             {
-              name: "Architect",
+              name: <translate>Architect</translate>,
               text:
-                "Are you a solutions designer interested to learn more about how Substrate is built and whether it is the right tool for your project?",
+                <translate>
+                  Are you a solutions designer interested to learn more about how Substrate is built and whether it is the right tool for your project?
+                </translate>,
               href: "./architect/"
             }
           ]}
@@ -90,8 +99,8 @@ class WhoIndex extends React.Component {
         <HomeSplash
           siteConfig={siteConfig}
           language={language}
-          title="Tell us about you!"
-          tagline="Let us help you dive into Substrate."
+          title={<translate>Tell us about you!</translate>}
+          tagline={<translate>Let us help you dive into Substrate.</translate>}
           buttons={[{ name: "Not Sure?", href: "./not-sure/" }]}
           padding={0}
         />

@@ -20,6 +20,7 @@ const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash.js`);
 
 const Container = require("../../../../react-bootstrap/Container.js");
 const Button = require("../../../../react-bootstrap/Button.js");
+const translate = require('../../server/translate.js').translate;
 
 function Community(props) {
   const { config: siteConfig, language = "" } = props;
@@ -42,7 +43,7 @@ function Community(props) {
       stuck with a specific error. Read through the existing questions/answers
       or ask your own!
       <p>
-        Tags:
+        <translate>Tags:</translate>
         <Button
           variant="info"
           size="sm"
@@ -80,13 +81,15 @@ function Community(props) {
   );
 
   const RiotChat = () => (
-    <CommunityResource title="Riot Chat">
-      Riot is the main form of communication between employees at Parity and the
-      community of people who use Parity products. Drop in to ask technical
-      question, meet others who share your interests, or to keep an eye on whats
-      going on.
+    <CommunityResource title={<translate>Riot Chat</translate>}>
+      <translate>
+        Riot is the main form of communication between employees at Parity and the
+        community of people who use Parity products. Drop in to ask technical
+        question, meet others who share your interests, or to keep an eye on whats
+        going on.
+      </translate>
       <p>
-        Channels:
+        <translate>Channels:</translate>
         <Button
           variant="dark"
           size="sm"
@@ -124,9 +127,13 @@ function Community(props) {
   );
 
   const TwitchStream = () => (
-    <CommunityResource title="Twitch Stream">
-      You might catch us streaming cool live coding sessions. Follow our channel
-      to make sure you never miss a stream!
+    <CommunityResource title={<translate>Twitch Stream</translate>}>
+      <p>
+        <translate>
+          You might catch us streaming cool live coding sessions. Follow our channel
+          to make sure you never miss a stream!
+        </translate>
+      </p>
       <iframe
         src="https://player.twitch.tv/?channel=paritylivecoding"
         frameBorder="0"
@@ -154,15 +161,17 @@ function Community(props) {
       <HomeSplash
         siteConfig={siteConfig}
         language={language}
-        title="Community"
-        tagline="Join the Conversation!"
+        title={<translate>Community</translate>}
+        tagline={<translate>Join the Conversation!</translate>}
         padding={0}
       />
       <div className="mainContainer">
         <Container>
           <p>
-            The Substrate community is both technical and friendly, and we would
-            be happy for you to join!
+            <translate>
+              The Substrate community is both technical and friendly, and we would
+              be happy for you to join!
+            </translate>
           </p>
           <StackOverflow />
           <RiotChat />

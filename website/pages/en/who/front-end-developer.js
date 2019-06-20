@@ -81,7 +81,7 @@ class FrontEndDeveloper extends React.Component {
         <Timespot>
           <h3 className="mt-3">Dive into the Polkadot-JS ecosystem</h3>
           <p>
-            In addition to the JS-API, we're providing you with a rich set of modules and components to make your life as a Frontend Developer as easy as possible. All are published as modules on npmjs.com and documented on the Polkadot-JS developer portal.
+          The Polkadot-JS Apps are built on top of the Polkadot-JS API - a type-safe Javascript API that works with both Polkadot and Substrate chains. In addition to that, we're providing you with a rich set of modules and components to make your life as a Frontend Developer as easy as possible. All are published as modules on npmjs.com and documented on the Polkadot-JS developer portal.
           </p>
           <p>Have a look around and explore your tools as a future Substrate Application Developer.</p>
           <Button
@@ -116,7 +116,7 @@ class FrontEndDeveloper extends React.Component {
         <Timespot>
           <h3 className="mt-3">Learn how to interact with the Polkadot-JS API</h3>
           <p>
-            The Polkadot-JS Apps are built on top of the Polkadot-JS API — a type-safe Javascript API that works with both Polkadot and Substrate chains. Download our quick-start template to write your first API calls and learn how to communicate with your Substrate node.
+            Now it's time to get your hands dirty and to start coding! Download our quick-start template to write your first API calls and learn how to communicate with your Substrate node.
           </p>
           <p>TODO: Write simple template & tutorial</p>
           <Button
@@ -137,8 +137,8 @@ class FrontEndDeveloper extends React.Component {
         <Timespot>
           <h3 className="mt-3">Build your own Applocation for the Polkadot-JS Apps</h3>
           <p>
-            If you don't want to start from scratch and are familiar with Typescript, you can build your own
-            "App" for the Polkadot Apps. The repository comes with a boilerplate application. Just follow the instructions in the README to get strated!
+            If you don't want to start from scratch and are familiar with Typescript, give it a shot and build your own
+            "App" for the Polkadot-JS Apps. The repository comes with a boilerplate application. Just follow the instructions in the README to get strated!
           </p>
           <Button
             variant="secondary"
@@ -156,7 +156,7 @@ class FrontEndDeveloper extends React.Component {
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Explore</h3>
+          <h3 className="mt-3">Explore beyond Polkadot-JS</h3>
           <p>
             If you're interested in having a look at an alternate Javascript API, start exploring the
             `oo7-bonds` repository.
