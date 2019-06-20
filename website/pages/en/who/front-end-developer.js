@@ -154,7 +154,7 @@ class FrontEndDeveloper extends React.Component {
           <p>
             <translate>
               If you don't want to start from scratch and are familiar with Typescript, give it a shot and build your own
-              "App" for the Polkadot-JS Apps. The repository comes with a boilerplate application. Just follow the instructions in the README to get strated!
+              "App" for the Polkadot-JS Apps. The repository comes with a boilerplate application. Just follow the instructions in the README to get started!
             </translate>
           </p>
           <Button
