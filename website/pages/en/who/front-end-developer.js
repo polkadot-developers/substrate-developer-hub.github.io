@@ -135,7 +135,7 @@ class FrontEndDeveloper extends React.Component {
           </Button>
         </Timespot>
         <Timespot>
-          <h3 className="mt-3">Build your own Applocation for the Polkadot-JS Apps</h3>
+          <h3 className="mt-3">Build your own Application for the Polkadot-JS Apps</h3>
           <p>
             If you don't want to start from scratch and are familiar with Typescript, give it a shot and build your own
             "App" for the Polkadot-JS Apps. The repository comes with a boilerplate application. Just follow the instructions in the README to get strated!
