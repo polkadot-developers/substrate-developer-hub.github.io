@@ -88,6 +88,14 @@ class WhoIndex extends React.Component {
                   Are you a solutions designer interested to learn more about how Substrate is built and whether it is the right tool for your project?
                 </translate>,
               href: "./architect/"
+            },
+            {
+              name: <translate>Not Sure?</translate>,
+              text:
+                <translate>
+                  Not sure where to get started? Take a look at few guided videos which will introduce you to Substrate and its various core components.
+                </translate>,
+              href: "./not-sure/"
             }
           ]}
         />
@@ -101,7 +109,6 @@ class WhoIndex extends React.Component {
           language={language}
           title={<translate>Tell us about you!</translate>}
           tagline={<translate>Let us help you dive into Substrate.</translate>}
-          buttons={[{ name: "Not Sure?", href: "./not-sure/" }]}
           padding={0}
         />
         <div className="mainContainer">

@@ -77,7 +77,7 @@ class Index extends React.Component {
       <Row>
         <HotspotCard
           title={<translate>Documentation</translate>}
-          text={<translate>Substrate provides both high level documentation which you can find here and reference level documentation as Rust docs.</translate>}
+          text={<translate>Substrate provides both high level documentation which you can find here and reference level documentation in the form of Rust docs.</translate>}
         >
           <Button
             variant="secondary"
@@ -115,7 +115,7 @@ class Index extends React.Component {
         </HotspotCard>
         <HotspotCard
           title={<translate>Tutorials</translate>}
-          text={<translate>Substrate has a range of tutorials which will get you building on Substrate in a short amount of time. You can also find a bunch of different code snippets for common patterns for runtime development in our Substrate Recipes page.</translate>}
+          text={<translate>Substrate has a range of tutorials which will get you building in a short amount of time. You can also find a bunch of different code snippets for common patterns for runtime development in our Substrate Recipes page.</translate>}
         >
           <Button
             variant="secondary"

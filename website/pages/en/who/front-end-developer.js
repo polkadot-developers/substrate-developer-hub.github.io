@@ -56,14 +56,14 @@ class FrontEndDeveloper extends React.Component {
           </p>
           <Button
             variant="secondary"
-            href="https://stackoverflow.com/questions/tagged/ink"
+            href="https://stackoverflow.com/questions/tagged/substrate"
             className="m-1 primary-color"
           >
             <translate>StackOverflow</translate>
           </Button>
           <Button
             variant="secondary"
-            href="https://riot.im/app/#/room/!tYUCYdSvSYPMjWNDDD:matrix.parity.io"
+            href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"
             className="m-1 primary-color"
           >
             <translate>Riot Chat</translate>
@@ -201,6 +201,21 @@ class FrontEndDeveloper extends React.Component {
             className="m-1 primary-color"
           >
             <translate>Substrate UI</translate>
+          </Button>
+        </Timespot>
+        <Timespot>
+          <h3 className="mt-3"><translate>Continue your journey through the Developer Hub!</translate></h3>
+          <p>
+            <translate>
+              Substrate still has much more to offer beyond what you see here! Continue to explore our developer hub to expand your knowledge about this next generation blockchain development framework.
+            </translate>
+          </p>
+          <Button
+            variant="secondary"
+            href={baseUrl}
+            className="m-1 primary-color"
+          >
+            <translate>Back to Home</translate>
           </Button>
         </Timespot>
       </Timeline>
