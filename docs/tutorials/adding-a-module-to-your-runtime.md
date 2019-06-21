@@ -13,7 +13,7 @@ Before you can follow this guide, you need to make sure that your computer is se
 To install all the prerequisites needed for the Substrate build environment, like Rust, you can run:
 
 ```bash
-curl https://getsubstrate.io -sSf | bash -- -s --fast
+curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
 
 As a part of `getsubstrate` script, we will also install [additional scripts](getting-started/using-the-substrate-scripts.md) which allow you to quickly create a new Substrate node template in your working folder. We will call this chain `contract-chain`:
