@@ -50,7 +50,7 @@ class Architect extends React.Component {
           </p>
           <Button
             variant="secondary"
-            href={docUrl("overview/introduction")}
+            href={docUrl("overview/index")}
             className="m-1 primary-color"
           >
             <translate>Introduction</translate>

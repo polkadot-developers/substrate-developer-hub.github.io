@@ -25,7 +25,7 @@ If you get that, then you're ready to proceed!
 If you plan to create your own substrate node, and don't need to compile the entire standard node, you may run the faster version of the installation.
 
 ```bash
-curl https://getsubstrate.io -sSf | bash -- -s --fast
+curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
 
 This command will still install the substrate up commands for creating your own nodes and rmodules, but will not spend time compiling the default substrate node or subkey utility.
