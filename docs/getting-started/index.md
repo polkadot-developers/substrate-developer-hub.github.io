@@ -4,6 +4,8 @@ title: "Getting Started"
 
 This is the high level documentation for Substrate, a next generation blockchain development framework.
 
+You might be looking for the reference documentation for Substrate's Rust codebase. You can find those `rustdocs` in our [Reference Documentation](/rustdocs/).
+
 ## Guided User Stories
 
 If you are not sure where you should get started, check out our **Guided User Stories** which are designed to take you down the quickest path to get you started with Substrate.
