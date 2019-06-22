@@ -27,8 +27,7 @@
 // "github": (optional) If included, we will add an additional link to your GitHub project.
 // "pinned": Set to 'false'. If you think it should be 'true', contact us.
 
-const usersList = [
-  {
+const usersList = [{
     name: "Edgeware",
     image: "/img/users/edgeware.png",
     homepage: "https://edgewa.re/",
@@ -110,10 +109,10 @@ const usersList = [
     type: "chain",
   },
   {
-    name: "Katallasos",
-    image: "/img/users/katallassos.png",
+    name: "Katal",
+    image: "/img/users/katal.png",
     homepage: "https://katal.io/",
-    github: "https://github.com/Trinkler/",
+    github: "https://github.com/Trinkler/katal-chain",
     team: "https://ipfs.io/ipns/trinkler.software/",
     pinned: false,
     type: "chain",
@@ -181,13 +180,6 @@ const usersList = [
     homepage: "https://www.speckleos.io/",
     pinned: false,
     type: "infra",
-  },
-  {
-    name: "Agora.Trade",
-    image: "/img/users/agoratrade.png",
-    homepage: "https://agora.trade/",
-    pinned: false,
-    type: "chain",
   },
   {
     name: "Clovyr",
