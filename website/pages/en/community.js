@@ -155,6 +155,27 @@ function Community(props) {
       </p>
     </CommunityResource>
   );
+  
+  
+  const AwesomeSubstrate = () => (
+    <CommunityResource title={<translate>Awesome Substrate</translate>}>
+      <p>
+        <translate>
+          An "awesome list" of up-to-date news, events, and onboarding materials for Substrate.
+        </translate>
+      </p>
+      <p>
+        <Button
+          variant="secondary"
+          size="sm"
+          href="https://substrate.dev/awesome-substrate/"
+          className="m-1 primary-color"
+        >
+          Awesome Substrate
+        </Button>
+      </p>
+    </CommunityResource>
+  );
 
   return (
     <div>
@@ -175,6 +196,7 @@ function Community(props) {
           </p>
           <StackOverflow />
           <RiotChat />
+          <AwesomeSubstrate />
           <TwitchStream />
         </Container>
       </div>
