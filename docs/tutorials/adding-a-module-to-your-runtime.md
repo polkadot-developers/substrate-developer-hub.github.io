@@ -45,7 +45,7 @@ Open `contract-chain/runtime/Cargo.toml` and you will see a file which lists all
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'srml-balances'
-rev = '783ca1892892454e05e234cda5f7a2e42a54461e'
+rev = '<git-commit>'
 ```
 
 > Note: The `substrate-node-new` script generates a node template which is fixed to a specific commit (`rev`) of the Substrate repository. This is to prevent updates to the GitHub from breaking your working project.
@@ -107,7 +107,7 @@ First we will add the new dependency by simply copying an existing module, and c
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'srml-contract'
-rev = '783ca1892892454e05e234cda5f7a2e42a54461e'
+rev = '<git-commit>'
 ```
 
 You [can see](https://github.com/paritytech/substrate/blob/v1.0/srml/contract/Cargo.toml) that the Contract module has an `std` feature, thus we need to add the `contract/std` feature to the `std` feature of our runtime:
@@ -149,7 +149,7 @@ If you have followed our [other basic tutorials](tutorials/creating-your-first-s
 
 ### Implementing the Contract Trait
 
-To figure out what we need to implement, you can take a [look at the `srml_contract::Trait`](/rustdocs/v1.0/srml_contract/trait.Trait.html) documentation. For our runtime, the implementation will look like this:
+To figure out what we need to implement, you can take a look at the [`srml_contract::Trait` documentation](/rustdocs/v1.0/srml_contract/trait.Trait.html) or the [Contract module source code](https://github.com/paritytech/substrate/blob/v1.0/srml/contract/src/lib.rs). For our runtime, the implementation will look like this:
 
 ```rust
 impl contract::Trait for Runtime {
@@ -177,15 +177,15 @@ Similarly, `type DetermineContractAddress` requires the trait `ContractAddressFo
 
 ### Adding Contract to the Construct Runtime Macro
 
-Next, we need to add the module to the `construct_runtime!` macro.
+Next, we need to add the module to the `construct_runtime!` macro. For this, we need to determine the types that the module exposes so that we can tell the our runtime that they exist. The complete list of possible types can be found in the [`construct_runtime!` macro documentation](https://substrate.dev/rustdocs/v1.0/srml_support/macro.construct_runtime.html).
 
 If we look at the Contract module in detail, we know it has:
 
-* Module **Storage**
-* Module **Event**s
-* **Call**able Functions (dispatchable functions defined in `decl_module!`)
-* Genesis **Config**uration Options
-* (and it is a **Module**)
+* Module **Storage**: Because it uses the `decl_storage!` macro.
+* Module **Event**s: Because it uses the `decl_event!` macro.
+* **Call**able Functions: Because it has dispatchable functions in the `decl_module!` macro.
+* **Config**uration Values: Because the `decl_storage!` macro has `config()` parameters.
+* The **Module** type from the `decl_module!` macro.
 
 Thus, when we add the module, it will look like this:
 
@@ -201,6 +201,8 @@ construct_runtime!(
     }
 );
 ```
+
+Note that not all modules will expose all of these runtime types, and some may expose more! You always look at the source code of a module or the documentation of the module to determine which of these types you need to expose.
 
 ### Adding Runtime Hooks
 
@@ -233,7 +235,7 @@ Now, when the Balances module detects that the free balance of an account has re
 
 ## Genesis Configuration
 
-The last thing we need to do in order to get your node up and running is to establish a genesis configuration for the Contract module. This is controlled in `contract-chain/src/chain_spec.rs`. We need to modify this file to include the `ContractConfig` type:
+The last thing we need to do in order to get your node up and running is to establish a genesis configuration for the Contract module. Not all modules will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`srml_contract::GenesisConfig` documentation](https://substrate.dev/rustdocs/v1.0/srml_contract/struct.GenesisConfig.html) describes all the fields you need to define for the Contract module. This definition is controlled in `contract-chain/src/chain_spec.rs`. We need to modify this file to include the `ContractConfig` type:
 
 ```rust
 use contract_chain_runtime::ContractConfig;
@@ -259,7 +261,7 @@ let mut contract_config = ContractConfig {
 contract_config.current_schedule.enable_println = true;
 ```
 
-Note that you can tweak these numbers to your needs, but these are the values set at the genesis configuration of the main Substrate node. You should place that code block into the `testnet_genesis` function, and then in the `GenesisConfig` object, add:
+Note that you can tweak these numbers to your needs, but these are the values set at the [genesis configuration of the main Substrate node](https://github.com/paritytech/substrate/blob/master/node/cli/src/chain_spec.rs). You should place that code block into the `testnet_genesis` function, and then in the `GenesisConfig` object, add:
 
 ```rust
 GenesisConfig {
