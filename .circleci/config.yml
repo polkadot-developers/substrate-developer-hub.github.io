@@ -35,7 +35,14 @@ jobs:
 
 workflows:
   version: 2
-  build_and_deploy:
+  commit_deploy:
     jobs:
       - deploy-website:
           filters: *filter-only-source
+  nightly_deploy:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters: *filter-only-source
+    jobs:
+      - deploy-website
