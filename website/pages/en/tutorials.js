@@ -1,6 +1,6 @@
 /**
  * Copyright 2019 Parity Technologies
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -145,6 +145,15 @@ class Tutorials extends React.Component {
                 length: "3",
                 prerequisite: true,
                 href: `${docUrl("tutorials/tcr/")}`
+              },
+              {
+                img: `${baseUrl}img/crates.png`,
+                title: <translate>Write a Runtime Module in its Own Crate</translate>,
+                text: <translate>Make your runtime modules more re-usable by packaging them in their own rust crate.</translate>,
+                difficulty: "medium",
+                length: "2",
+                prerequisite: false,
+                href: `${docUrl("tutorials/runtime-module-in-own-crate")}`
               },
               {
                 title: <translate>UTXO Workshop</translate>,
