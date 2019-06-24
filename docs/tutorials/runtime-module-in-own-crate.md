@@ -5,7 +5,7 @@ title: "Write a Runtime Module in its Own Crate"
 In this tutorial you'll write substrate runtime module that lives in its own crate, and include it in a node based on the node-template. If you prefer you can follow along with the [video walkthrough](todo record after initial feedback).
 
 ## Setup a Development Environment
-If you haven't already, follow the guide to [install substrate](../getting-started/installing-substrate). You'll need the substrate-up scripts, but not the standard substrate node, so the `--fast` option is what you want here.
+If you haven't already, follow the guide to [install substrate](getting-started/installing-substrate.md). You'll need the substrate-up scripts, but not the standard substrate node, so the `--fast` option is what you want here.
 
 ## Create a new Node Template
 We'll begin by creating a brand new node template.
@@ -20,19 +20,23 @@ In this tutorial, we're not going to write our module directly as part of the no
 
 We do still need the node template, however, to actually run our module.
 
-## Create a Rust Library Crate
-So if our module isn't going to live in the node template, where _is_ it going to live? In a rust library crate. We can create a blank one with
+## Clone the Module Template Repository
+So if our module isn't going to live in the node template, where _is_ it going to live? If you aren't familiar with library crates or how to use them in other rust projects, it's may be worth reading the [cargo docs](https://doc.rust-lang.org/cargo/guide/creating-a-new-project.html).
+
+While it's perfectly possible to create a new crate from scratch, the fastest way to get going with a new module is to clone the template repository.
+
 ```bash
-cargo new --lib test_module
+git clone https://github.com/shawntabrizi/substrate-module-template
 ```
 
-If you aren't familiar with library crates or how to use them in other rust projects, it's probably worth reading the [cargo docs](https://doc.rust-lang.org/cargo/guide/creating-a-new-project.html). In the video walkthrough of this tutorial, I briefly describe a simple number doubling program that uses a library crate for the doubling.
+You should be able to immediately compile this template module with
+```bash
+cargo build --release
+```
 
-## Make the Crate a Runtime Module
-The cargo command has created the appropriate files and directories for us.
-Let's replace the contents of `lib.rs` in our new crate with the module template from `runtime/template.rs`. (You can also use `substrate-module-new` to create such a file.)
+But before we jump straight to including our module in a runtime, let's take a look at the `Cargo.toml` file.
 
-Go ahead and compile your new crate with `cargo build`. It won't compile yet, because that template module has some dependencies from substrate itself. The compiler errors give you clues about what you need to include. We can just copy the relevant dependencies from the original node template runtime's `Cargo.toml`. Add these lines to your crate's `Cargo.toml`.
+After the standard naming and authorship information, we see a few lines about the `std` feature. Because substrate runtime code targets wasm, all the dependencies we use must be able to compile with `no_std`. Our `Cargo.toml` file begins by telling dependencies to only use their `std` feature when this module also uses its `std` feature. You will need to add each dependency you include here.
 
 ```toml
 [features]
@@ -42,55 +46,65 @@ std = [
     'support/std',
     'system/std',
 ]
+```
+Our module will depend on low level features such as `system` and `support` from substrate itself. It will also be depended upon by a substrate-based runtime from above. So some care may be needed to ensure version compatibility on both sides. Substrate does not yet have releases published on crates.io, so instead we'll use git-based versioning.
+If you plan for third parties to use your module, you should develop against the `v1.0` branch as the template demonstrates. It is also acceptable to develop against specific git commit revisions.
 
+```toml
+# This dependency is published on crates.io so just use a version
 [dependencies.parity-codec]
 default-features = false
 features = ['derive']
 version = '3.5'
 
+# These dependencies specify a git branch
 [dependencies.support]
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'srml-support'
-rev = 'bb68456966bf9d767651773dbaadd6787bce1884'
+branch = 'v1.0'
 
 [dependencies.system]
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'srml-system'
-rev = 'bb68456966bf9d767651773dbaadd6787bce1884'
+branch = 'v1.0'
+# Could also use a specific revision
+# rev = '<commit hash>'
 ```
 
-At this point we have a runtime module that compiles. It comes with a test, so let's see if that test passes .
+The final section of the `Cargo.toml` file specifies the dev dependencies, and is not necessary to make the template compile. Remove that final section to confirm this for yourself.
+
+At this point we have a runtime module that compiles. It comes with a test, so let's see if that test passes.
 ```bash
 cargo test
 ```
 
-Turns out we'll need some additional dependencies to make the test pass. You can see this from the error messages, or by looking at the test module itself. Let's add `primitives`, `runtime-primitives`, and `runtime-io` as dev dependencies. The dev dependencies do not need to be listed as part of `std`. TODO is that even proper phrasing?
+Turns out we'll need some additional dependencies to make the test pass. You can see this from the error messages, or by looking at the test module itself. Let's add `primitives`, `runtime-primitives`, and `runtime-io` as dev dependencies. The dev dependencies do not need to be listed as part of the `std` feature because they will not be part of the release.
 
-Add these lines to your `Cargo.toml`.
+Add these lines back to your `Cargo.toml`.
 ```toml
 
 [dev-dependencies.primitives]
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'substrate-primitives'
-rev = 'bb68456966bf9d767651773dbaadd6787bce1884'
+branch = 'v1.0'
 
 [dev-dependencies.runtime-primitives]
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'sr-primitives'
-rev = 'bb68456966bf9d767651773dbaadd6787bce1884'
+branch = 'v1.0'
 
 [dev-dependencies.runtime-io]
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'sr-io'
-rev = 'bb68456966bf9d767651773dbaadd6787bce1884'
+branch = 'v1.0'
 ```
 
-We're now good to go for this particular module. It will take a little experimentation to gain familiarity with what dependencies you need for each module you dream up. So the take-away from this section is not that `Cargo.toml` should always look like it did today. Rather, `Cargo.toml` needs to have the correct dependencies and you now know a few places to look for how to specify them when you get stuck.
+It will take a little experimentation to gain familiarity with what dependencies you need for each module you dream up. So the take-away from this section is not that `Cargo.toml` should always look like it does in the template. Rather, `Cargo.toml` needs to have the correct dependencies and you now know how to specify them.
 
 ## Add your Runtime Module to your Node
 With our runtime module now compiling and passing tests (well, passing test anyway) we're ready to add it to our node template.
@@ -105,12 +119,15 @@ path = "../../test_module"
 # version = "0.1.0"
 ```
 
-And remember to update the `std` section/
+And just as before, we need to tell the module to only build its `std` feature when the runtime itself does.
 ```toml
-'test_module/std'
+std = [
+  ...
+  'test_module/std',
+]
 ```
 
-Next we'll update `runtime/lib.rs` in modular-chain to actually use the new runtime module. The lines that bring in the template module from when it was coded directly in the node runtime are still there, so we just need to update them in three places.
+Next we'll update `runtime/lib.rs` in modular-chain to actually use the new runtime module. The lines that bring in the template module that is coded directly in the node runtime are still there, so we just need to update them in three places.
 
 1. Remove `mod template` as we've already brought that dependency in via `Cargo.toml`
 2. Update the trait implementation
@@ -127,7 +144,24 @@ TestModule: test_module::{Module, Call, Storage, Event<T>},
 ```
 
 ## Appreciate your Work
-At this point you have the template module packaged up as it's own crate, and running as part of your `modular-node`. You can now run your chain with `./target/release/modular-chain --dev` and start the [Apps UI](https://polkadot.js.org/apps/#/explorer) to confirm that the module is working as expected. If you aren't familiar with the Apps UI, you will need to navigate to the settings tab, and select 'Local Node'.
+At this point you have the template module packaged up as it's own crate, and included in your `modular-chain` runtime.
+
+Build the `modular-chain` node with
+```bash
+./scripts/build.sh
+cargo build --release
+```
+
+And run your node with
+```bash
+# Clear the data directory in case you've done this before
+./target/release/modular-chain purge-chain --dev
+
+# Start the chain
+./target/release/modular-chain --dev
+```
+
+Finally, start the [Apps UI](https://polkadot.js.org/apps/#/explorer) to confirm that the module is working as expected. If you aren't familiar with the Apps UI, you will need to navigate to the settings tab, and select 'Local Node'.
 
 ## Customize your Module
 In this tutorial you've learned to create a runtime module as a it's own crate. You're now ready to replace the template module logic with your own logic. If you're not sure what to code, check out one of our runtime module [tutorials](https://substrate.dev/en/tutorials).
