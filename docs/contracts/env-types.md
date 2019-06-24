@@ -1,4 +1,6 @@
-# Smart Contract Runtime Environment Types
+---
+title: "Smart Contract Runtime Environment Types"
+---
 
 `ink!` provides a set of types for interacting with the runtime environment (currently:`AccountId`, `Balance`, `Hash`, `Moment`).
 
@@ -26,7 +28,7 @@ contract! {
 }
 ```
 
-A full example of implementing this as a library is here: https://github.com/paritytech/ink-types-node-runtime.
+A full example of implementing this as a library can be found [here](https://github.com/paritytech/ink-types-node-runtime).
 
 ## Converting existing contracts
 
@@ -59,7 +61,5 @@ New:
 env::test::set_caller::<DefaultSrmlTypes>(bob);
 env::test::emitted_events::<DefaultSrmlTypes>();
 ```
-This api is subject to change, we're planning to review this to make it more ergonomic. See https://github.com/paritytech/ink/issues/125. 
 
-
-
+> **Note:** This api is subject to change, we're planning to review this to make it more ergonomic. See https://github.com/paritytech/ink/issues/125. 
