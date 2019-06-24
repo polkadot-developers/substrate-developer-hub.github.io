@@ -25,6 +25,10 @@ Deploying a contract with the Contract module takes two steps:
 
 This means that multiple contract instances, with different constructor arguments, can be initialized using the same Wasm code, reducing the amount of storage space needed by the Contract module on your blockchain.
 
+### Runtime Environemt Types
+
+For writing contracts and interacting with the runtime, a set of types are available (e.g. `AccountId`, `Balance`, `Hash`, `Moment`). These types can be user defined for custom runtimes, or the supplied defaults can be used. See: [EnvTypes](contracts/env-types.md)
+
 ### Contract Calls
 
 Calls to contracts can alter the storage of the contract, create new contracts, and call other contracts. Because Substrate provides you with the ability to write custom runtime modules, the Contract module also enables you to make asynchronous calls directly to those runtime functions on behalf of the contract's account.
