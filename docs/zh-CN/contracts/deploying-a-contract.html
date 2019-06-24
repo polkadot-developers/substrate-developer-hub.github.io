@@ -112,17 +112,20 @@
 <h3><a class="anchor" aria-hidden="true" id="putting-your-code-on-the-blockchain"></a><a href="#putting-your-code-on-the-blockchain" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Putting Your Code on the Blockchain</h3>
 <p>With your Substrate development node running, you can go back to the <a href="https://polkadot.js.org/apps/">Polkadot UI</a> where you will be able to interact with your blockchain.</p>
 <p>Open the specially designed <strong>Contracts</strong> section of the UI.</p>
-<p>In the <strong>Code</strong> section, select a <em>deployment account</em> with some account balance like Alice. In <em>compiled contract WASM</em>, select the <code>flipper-pruned.wasm</code> file we generated. For the <em>contract ABI</em>, select the JSON file. Finally, set the <em>maximum gas allowed</em> to <code>500,000</code> units.</p>
+<p>In the <strong>Code</strong> section, select <em>upload WASM</em>.</p>
 <p><img src="/img/flipper-code-page.png" alt="Contracts code page for deploying Flipper"></p>
-<p>After you press <strong>Deploy</strong> and a new block is formed, an extrinsic event is emitted with <code>contract.codeStored</code>. This means that you have successfully stored your WASM contract on your Substrate blockchain!</p>
+<p>Choose a <em>deployment account</em> with some account balance like Alice. In <em>compiled contract WASM</em>, select the <code>flipper-pruned.wasm</code> file we generated. For the <em>contract ABI</em>, select the JSON file generated for your contract. Finally, set the <em>maximum gas allowed</em> to <code>500,000</code> units.</p>
+<p><img src="/img/flipper-upload-page.png" alt="Contracts upload page for deploying Flipper"></p>
+<p>After you press <strong>Upload</strong> and a new block is formed, an extrinsic event is emitted with <code>contract.codeStored</code>. This means that you have successfully stored your Wasm contract on your Substrate blockchain!</p>
 <h3><a class="anchor" aria-hidden="true" id="creating-an-instance-of-your-contract"></a><a href="#creating-an-instance-of-your-contract" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating an Instance of Your Contract</h3>
 <p>Like Ethereum, smart contracts exist as an extension of the account system on the blockchain. Thus creating an instance of this contract will create a new <code>AccountId</code> which will store any balance managed by the smart contract and allow us to interact with the contract.</p>
-<p>You will notice on the <strong>Contracts</strong> tab there is a new section called <strong>Instance</strong> where we will now create an instance of this smart contract.</p>
-<p><img src="/img/flipper-instance-page.png" alt="An image of the Contracts Instance Page"></p>
-<p>The <em>code for this contract</em> is automatically set to the flipper contract you published, but you can imagine if you created multiple contracts, that you would be able to choose from a drop down of options.</p>
-<p>To instantiate our contract we just need to give this contract account an <em>endowment</em> of 1000 and again set the <em>maximum gas allowed</em> to <code>500,000</code> units.</p>
+<p>You will notice the contract you uploaded is now available to you on the <strong>Code</strong> section:</p>
+<p><img src="/img/flipper-code-uploaded-page.png" alt="An image of the Contracts Uploaded Contract Page"></p>
+<p>To create an instance of your contract, press the <em>Deploy</em> button, which will bring you to the deployment page:</p>
+<p><img src="/img/flipper-deploy-page.png" alt="An image of the Contracts Deploy Page"></p>
+<p>To instantiate our contract we just need to give this contract account an <em>endowment</em> of <code>10,000</code> and again set the <em>maximum gas allowed</em> to <code>500,000</code> units.</p>
 <blockquote>
-<p><strong>Note:</strong> As mentioned earlier, contract creation involves creation of a new Account. As such, you must be sure to give the contract account at least the existential deposit defined by your blockchain. This is why we set the <code>endowment</code> to <code>1000</code>.</p>
+<p><strong>Note:</strong> As mentioned earlier, contract creation involves creation of a new Account. As such, you must be sure to give the contract account at least the existential deposit defined by your blockchain. This is why we set the <code>endowment</code> to <code>10,000</code>.</p>
 </blockquote>
 <p>When you press <strong>Instantiate</strong>, you should see a flurry of events appear including the creation of a new account (<code>balances.NewAccount</code>) and the instantiation of the contract (<code>contract.Instantiated</code>):</p>
 <p><img src="/img/flipper-instance-events.png" alt="An image of events from instantiation of Flipper"></p>
@@ -130,10 +133,9 @@
 <p>Now that your contract has been fully deployed, we can start to interact with it! Flipper only has two functions, so we will show you what it's like to play with both of them.</p>
 <h3><a class="anchor" aria-hidden="true" id="get"></a><a href="#get" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>get()</code></h3>
 <p>If you take a look back at our contract's <code>deploy()</code> function, we set the initial value of the Flipper contract to <code>false</code>. Let's check that this is the case.</p>
-<p>In the <strong>Call</strong> section, set the <em>message to send</em> to <code>get(): bool</code>. Send a <em>value</em> of <code>1</code> with the <em>maximum gas allowed</em> set to <code>100,000</code>.</p>
-<blockquote>
-<p><strong>NOTE:</strong> You should not need to send any <em>value</em> when making a contract call, but there is a temporary bug in the UI requiring it, so we just put <code>1</code>.</p>
-</blockquote>
+<p>In the <strong>Contracts</strong> section, press <em>execute</em>.</p>
+<p><img src="/img/flipper-instance-page.png" alt="An image of instance page"></p>
+<p>Set the <em>message to send</em> to <code>get(): bool</code>. Set the <em>maximum gas allowed</em> to <code>100,000</code>. You do not need to set a <em>value</em> here since we don't want to transfer any tokens to the contract.</p>
 <p><img src="/img/flipper-call-page.png" alt="An image of the Contracts call page"></p>
 <p>Contract calls cannot return a value to the outside world. So when you press <strong>Call</strong>, you will get a pretty unsatisfying <code>system.ExtrinsicSuccess</code> message. However, ink! provides a debugging tool to enable you to print messages to your node's terminal.</p>
 <p>If we take a look, we can actually see our storage value:</p>
