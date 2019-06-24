@@ -63,25 +63,31 @@ With your Substrate development node running, you can go back to the [Polkadot U
 
 Open the specially designed **Contracts** section of the UI.
 
-In the **Code** section, select a _deployment account_ with some account balance like Alice. In _compiled contract WASM_, select the `flipper-pruned.wasm` file we generated. For the _contract ABI_, select the JSON file. Finally, set the _maximum gas allowed_ to `500,000` units.
+In the **Code** section, select _upload WASM_.
 
 ![Contracts code page for deploying Flipper](/img/flipper-code-page.png)
 
-After you press **Deploy** and a new block is formed, an extrinsic event is emitted with `contract.codeStored`. This means that you have successfully stored your WASM contract on your Substrate blockchain!
+Choose a _deployment account_ with some account balance like Alice. In _compiled contract WASM_, select the `flipper-pruned.wasm` file we generated. For the _contract ABI_, select the JSON file generated for your contract. Finally, set the _maximum gas allowed_ to `500,000` units.
+
+![Contracts upload page for deploying Flipper](/img/flipper-upload-page.png)
+
+After you press **Upload** and a new block is formed, an extrinsic event is emitted with `contract.codeStored`. This means that you have successfully stored your Wasm contract on your Substrate blockchain!
 
 ### Creating an Instance of Your Contract
 
 Like Ethereum, smart contracts exist as an extension of the account system on the blockchain. Thus creating an instance of this contract will create a new `AccountId` which will store any balance managed by the smart contract and allow us to interact with the contract.
 
-You will notice on the **Contracts** tab there is a new section called **Instance** where we will now create an instance of this smart contract.
+You will notice the contract you uploaded is now available to you on the **Code** section:
 
-![An image of the Contracts Instance Page](/img/flipper-instance-page.png)
+![An image of the Contracts Uploaded Contract Page](/img/flipper-code-uploaded-page.png)
 
-The _code for this contract_ is automatically set to the flipper contract you published, but you can imagine if you created multiple contracts, that you would be able to choose from a drop down of options.
+To create an instance of your contract, press the _Deploy_ button, which will bring you to the deployment page:
 
-To instantiate our contract we just need to give this contract account an _endowment_ of 1000 and again set the _maximum gas allowed_ to `500,000` units.
+![An image of the Contracts Deploy Page](/img/flipper-deploy-page.png)
 
-> **Note:** As mentioned earlier, contract creation involves creation of a new Account. As such, you must be sure to give the contract account at least the existential deposit defined by your blockchain. This is why we set the `endowment` to `1000`.
+To instantiate our contract we just need to give this contract account an _endowment_ of `10,000` and again set the _maximum gas allowed_ to `500,000` units.
+
+> **Note:** As mentioned earlier, contract creation involves creation of a new Account. As such, you must be sure to give the contract account at least the existential deposit defined by your blockchain. This is why we set the `endowment` to `10,000`.
 
 When you press **Instantiate**, you should see a flurry of events appear including the creation of a new account (`balances.NewAccount`) and the instantiation of the contract (`contract.Instantiated`):
 
@@ -95,9 +101,11 @@ Now that your contract has been fully deployed, we can start to interact with it
 
 If you take a look back at our contract's `deploy()` function, we set the initial value of the Flipper contract to `false`. Let's check that this is the case.
 
-In the **Call** section, set the _message to send_ to `get(): bool`. Send a _value_ of `1` with the _maximum gas allowed_ set to `100,000`.
+In the **Contracts** section, press _execute_. 
 
-> **NOTE:** You should not need to send any _value_ when making a contract call, but there is a temporary bug in the UI requiring it, so we just put `1`.
+![An image of instance page](/img/flipper-instance-page.png)
+
+Set the _message to send_ to `get(): bool`. Set the _maximum gas allowed_ to `100,000`. You do not need to set a _value_ here since we don't want to transfer any tokens to the contract.
 
 ![An image of the Contracts call page](/img/flipper-call-page.png)
 
