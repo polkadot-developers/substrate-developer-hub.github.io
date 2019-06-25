@@ -95,9 +95,9 @@
 <p>It is encoded with the two least significant bits denoting the mode:</p>
 <ul>
 <li><code>0b00</code>: single-byte mode; upper six bits are the LE encoding of the value (valid only for values of 0-63).</li>
-<li><code>0x01</code>: two-byte mode: upper six bits and the following byte is the LE encoding of the value (valid only for values <code>64-(2**14-1)</code>).</li>
-<li><code>0x02</code>: four-byte mode: upper six bits and the following three bytes are the LE encoding of the value (valid only for values <code>(2**14-1)-(2**30-1)</code>).</li>
-<li><code>0x03</code>: Big-integer mode: The upper six bits are the number of bytes following, less four. The value is contained, LE encoded, in the bytes following. The final (most significant) byte must be non-zero. Valid only for values <code>(2**30-1)-(2**536-1)</code>.</li>
+<li><code>0b01</code>: two-byte mode: upper six bits and the following byte is the LE encoding of the value (valid only for values <code>64-(2**14-1)</code>).</li>
+<li><code>0b10</code>: four-byte mode: upper six bits and the following three bytes are the LE encoding of the value (valid only for values <code>(2**14-1)-(2**30-1)</code>).</li>
+<li><code>0b11</code>: Big-integer mode: The upper six bits are the number of bytes following, less four. The value is contained, LE encoded, in the bytes following. The final (most significant) byte must be non-zero. Valid only for values <code>(2**30-1)-(2**536-1)</code>.</li>
 </ul>
 <p>Examples:</p>
 <ul>
