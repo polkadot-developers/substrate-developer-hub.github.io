@@ -1,11 +1,11 @@
 ---
 title: "Using the Substrate node and module setup scripts"
 ---
-The [`substrate-up` scripts](https://github.com/paritytech/substrate-up) allow you to set up ready-to-hack Substrate node or runtime module.
+The [substrate-up](https://github.com/paritytech/substrate-up) scripts allow you to set up ready-to-hack Substrate node or runtime module.
 
-Before you use these scripts, make sure you have [installed the prerequisites](getting-started/installing-substrate.md#fast-installation) for running Substrate.
+Before you use these scripts, make sure you have done the [Fast Installation](getting-started/installing-substrate.md#fast-installation) for running Substrate.
 
-These scripts update from time to time, so before you run them locally, make sure they are up to date by running:
+These scripts update from time to time, you can update them by running:
 
 ```bash
 f=`mktemp -d`
@@ -26,9 +26,9 @@ substrate-node-new <node-name> <author>
 
 where,
 
-`<node-name>` is the name for your substrate runtime. This is a _required_ parameter.
+* `<node-name>` is the name for your Substrate runtime. This is a _required_ parameter.
 
-`<author>` is the name of the author of this node runtime. This is a _required_ parameter.
+* `<author>` shows the people or team who maintains this node runtime. This is a _required_ parameter.
 
 Once you run the `substrate-node-new` command, it will take a few minutes (depending on your hardware) to finish compilation.
 
@@ -42,8 +42,8 @@ The `substrate-module-new` script creates a new runtime module based on a [templ
 To use the `substrate-module-new` script,
 
 1. Make sure you have Substrate installed, have a local runtime created using `substrate-node-new`.
-1. `cd` into the node runtime directory
-1. Run `substrate-module-new` command with the following parameters,
+2. Go to the node runtime source directory by running `cd runtime/src`.
+3. Run `substrate-module-new` command with the following parameters,
 
 ```
 substrate-module-new <module-name> <author>
@@ -51,11 +51,11 @@ substrate-module-new <module-name> <author>
 
 where,
 
-`<module-name>` is the name for your new module. This is a _required_ parameter.
+* `<module-name>` is the name for your new module. This is a _required_ parameter.
 
-`<author>` is the name of the author of this module. This is _optional_.
+* `<author>` show the people or team who maintains this module. This is _optional_.
 
-This will create a new file named `<module-name>.rs` inside `runtime/src` sub-directory in your node runtime directory. Make sure you add references to this module in the `lib.rs` file of your node runtime.
+This will create a new file named `<module-name>.rs` inside `runtime/src` sub-directory in your node runtime directory. In order to enable this module, you need to add references to this module in the `lib.rs` file of your node runtime.
 
 For example, if you create a module as,
 
