@@ -2,11 +2,11 @@
 title: SS58 Address Format
 ---
 
-Most of this content is maintained at [the github wiki](https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58) and duplicated here for convenience.
-
 SS58 is a simple address format designed for Substrate based chains. There's no problem with using other address formats for a chain, but this serves as a robust default. It is heavily based on Bitcoin's Base-58-check format with a few alterations.
 
 The basic idea is a base-58 encoded value which can identify a specific account on the Substrate chain. Different chains have different means of identifying accounts. SS58 is designed to be extensible for this reason.
+
+> **Note:** The source of this content can be found on [the Substrate GitHub wiki](https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58) and has been duplicated here for convenience.
 
 ## Basic Format
 
@@ -29,6 +29,8 @@ Currently, there exist four valid values:
 - 00101010b (42) Generic Substrate wildcard (SS58 checksum preimage)
 - 00101011b (43) Generic Substrate wildcard (AccountId checksum preimage)
 - 01000000b - 11111111b (64-255) Reserved for future address format extensions.
+
+> **Note:** To see the latest list of valid values visit the [Substrate GitHub wiki](https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58)).
 
 The latter two are "wildcard" addresses that are meant to be equally valid on all Substrate networks that support fixed-length addresses and/or indexed addresses. For production networks, however, a network-specific version may be desirable to help avoid the key-reuse between networks and some of the problems that it can cause. Substrate Node will default to printing keys in address type 42, though alternative Substrate-based node implementations (e.g. Polkadot) may elect to default to some other type.
 
@@ -68,7 +70,7 @@ In both cases, a context prefix of `0x53533538505245`, (the string `SS58PRE`) is
 
 The advantage of using more checksum bytes is simply that more bytes provide a greater degree of protection against input errors and index alteration at the cost of widening the textual address by an extra few characters. For the account ID form, this is insignificant and therefore no 1-byte alternative is provided. For the shorter account-index formats, the extra byte represents a far greater portion of the final address and so it is left for further up the stack (though not necessarily the user themself) to determine the best tradeoff for their purposes.
 
-The advantages of using the SS58 preimage format is that the resultant address may be trivially checked for validity, even when offline. However, when combining this with the account-index short-forms, the format doesn't manage the concern that the same index may eventually represent a different underlying address, perhaps one that the original owner doesn't hold. Using the AccountID preimage format means that any change in the underlying account-id must have the same initial portion of hash-output as the original account-id. At lower sizes of checksum, this does little more than prevent accidentally using an old SS58 address. For higher sizes it provides modest, but quantifiable, security against a casual attacker, requiring the attacker to find an address whose Blake2 hash that shares upto 8 bytes with the original.
+The advantages of using the SS58 preimage format is that the resultant address may be trivially checked for validity, even when offline. However, when combining this with the account-index short-forms, the format doesn't manage the concern that the same index may eventually represent a different underlying address, perhaps one that the original owner doesn't hold. Using the AccountID preimage format means that any change in the underlying account-id must have the same initial portion of hash-output as the original account-id. At lower sizes of checksum, this does little more than prevent accidentally using an old SS58 address. For higher sizes it provides modest, but quantifiable, security against a casual attacker, requiring the attacker to find an address whose Blake2 hash that shares up to 8 bytes with the original.
 
 
 ## 32-byte Sr25519 and Ed25519 keys
