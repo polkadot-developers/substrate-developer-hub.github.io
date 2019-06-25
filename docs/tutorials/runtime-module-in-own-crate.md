@@ -7,7 +7,7 @@ In this tutorial, you'll write a Substrate runtime module that lives in its own 
 ## Setup a Development Environment
 If you haven't already, follow the guide to [install substrate](getting-started/installing-substrate.md). You'll need the substrate-up scripts, but not the standard substrate node, so the `--fast` option is what you want here.
 
-## Create your node
+## Create your Node
 We'll begin by creating a brand new node template.
 ```bash
 substrate-node-new modular-chain <your name>
@@ -36,6 +36,7 @@ cargo build --release
 
 But before we jump straight to including our module in a runtime, let's take a look at the `Cargo.toml` file.
 
+### Your Module's std Feature
 After the standard naming and authorship information, we see a few lines about the `std` feature, which enables use of [the Rust standard libraries](https://doc.rust-lang.org/std/). Because Substrate runtime code targets Wasm, all the dependencies we use must be able to compile with [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html). Our `Cargo.toml` file begins by telling dependencies to only use their `std` feature when this module also uses its `std` feature. You will need to add each dependency you include here.
 
 ```toml
@@ -47,6 +48,8 @@ std = [
     'system/std',
 ]
 ```
+
+### Your Module's Dependencies
 Our module will depend on low level Substrate module libraries such as `system` and `support`. It will also be a dependency by the Substrate-based runtime from above. So some care may be needed to ensure version compatibility on both sides. Substrate does not yet have releases published on crates.io, so instead we need to use git-based versioning.
 If you plan for third parties to use your module, you should develop against the `v1.0` branch as the template demonstrates. It is also acceptable to develop against specific git commit revisions.
 
@@ -73,16 +76,11 @@ branch = 'v1.0'
 # rev = '<commit hash>'
 ```
 
-The final section of the `Cargo.toml` file specifies the dev dependencies, and is not necessary to make the template compile. Remove that final section to confirm this for yourself.
+### Your Module's Dev Dependencies
 
-At this point we have a runtime module that compiles. It comes with a test, so let's see if that test passes.
-```bash
-cargo test
-```
+The final section of the `Cargo.toml` file specifies the dev dependencies. These dependencies are not necessary to make the module compile, but are necessary to compile the tests.
 
-Turns out we'll need some additional dependencies to make the test pass. You can see this from the error messages, or by looking at the test module itself. Let's add `primitives`, `runtime-primitives`, and `runtime-io` as dev dependencies. The dev dependencies do not need to be listed as part of the `std` feature because they will not be part of the release.
 
-Add these lines back to your `Cargo.toml`.
 ```toml
 
 [dev-dependencies.primitives]
@@ -104,6 +102,14 @@ package = 'sr-io'
 branch = 'v1.0'
 ```
 
+You may confirm for yourself that the module's test passes with:
+```bash
+cargo test
+```
+
+
+Optional: remove the dev dependencies and confirm that the module still compiles but the test doesn't. If you do this experiment, remember to restore the dev dependencies afterward.
+
 It will take a little experimentation to gain familiarity with what dependencies you need for each module you dream up. So the take-away from this section is not that `Cargo.toml` should always look like it does in the template. Rather, `Cargo.toml` needs to have the correct dependencies and you now know how to specify them.
 
 ## Add your Runtime Module to your Node
@@ -115,8 +121,6 @@ First we need to add our newly-created crate as a dependency in the node runtime
 [dependencies.test_module]
 default_features = false
 path = "../../test_module"
-# Optionally specify a version
-# version = "0.1.0"
 ```
 
 And just as before, we need to tell the module to only build its `std` feature when the runtime itself does.
