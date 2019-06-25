@@ -51,7 +51,13 @@ std = [
 
 ### Your Module's Dependencies
 Our module will depend on low level Substrate module libraries such as `system` and `support`. It will also be a dependency by the Substrate-based runtime from above. So some care may be needed to ensure version compatibility on both sides. Substrate does not yet have releases published on crates.io, so instead we need to use git-based versioning.
-If you plan for third parties to use your module, you should develop against the `v1.0` branch as the template demonstrates. It is also acceptable to develop against specific git commit revisions.
+
+** Option 1**
+Develop against the `v1.0` branch as the template demonstrates. In this case you will need to change your node template's `Cargo.toml` dependencies to say `branch = 'v1.0'` like the module template currently does.
+
+** Option 2**
+It is also acceptable to develop against specific git commit revisions. In this case you'll need to change your module template's `Cargo.toml` dependencies to say `rev = <git commit hash>` like the node template. You should use the same hash in all cases.
+
 
 ```toml
 # This dependency is published on crates.io so just use a version
