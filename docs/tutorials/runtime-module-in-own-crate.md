@@ -1,5 +1,5 @@
 ---
-title: "Write a Runtime Module in its Own Crate"
+title: "Write a Runtime Module as a Rust crate"
 ---
 
 In this tutorial, you'll write a Substrate runtime module that lives in its own crate, and include it in a node based on the node-template. If you prefer you can follow along with the [video walkthrough](todo record after initial feedback).
