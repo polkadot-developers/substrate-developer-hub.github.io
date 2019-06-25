@@ -27,9 +27,9 @@ A "compact" or general integer encoding is sufficient for encoding large integer
 It is encoded with the two least significant bits denoting the mode:
 
 - `0b00`: single-byte mode; upper six bits are the LE encoding of the value (valid only for values of 0-63).
-- `0x01`: two-byte mode: upper six bits and the following byte is the LE encoding of the value (valid only for values `64-(2**14-1)`).
-- `0x02`: four-byte mode: upper six bits and the following three bytes are the LE encoding of the value (valid only for values `(2**14-1)-(2**30-1)`).
-- `0x03`: Big-integer mode: The upper six bits are the number of bytes following, less four. The value is contained, LE encoded, in the bytes following. The final (most significant) byte must be non-zero. Valid only for values `(2**30-1)-(2**536-1)`.
+- `0b01`: two-byte mode: upper six bits and the following byte is the LE encoding of the value (valid only for values `64-(2**14-1)`).
+- `0b10`: four-byte mode: upper six bits and the following three bytes are the LE encoding of the value (valid only for values `(2**14-1)-(2**30-1)`).
+- `0b11`: Big-integer mode: The upper six bits are the number of bytes following, less four. The value is contained, LE encoded, in the bytes following. The final (most significant) byte must be non-zero. Valid only for values `(2**30-1)-(2**536-1)`.
 
 Examples:
 - unsigned integer 0: `0x00`
