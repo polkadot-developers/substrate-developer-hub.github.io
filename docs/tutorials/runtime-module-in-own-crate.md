@@ -36,7 +36,7 @@ cargo build --release
 
 But before we jump straight to including our module in a runtime, let's take a look at the `Cargo.toml` file.
 
-After the standard naming and authorship information, we see a few lines about the `std` feature. Because substrate runtime code targets wasm, all the dependencies we use must be able to compile with `no_std`. Our `Cargo.toml` file begins by telling dependencies to only use their `std` feature when this module also uses its `std` feature. You will need to add each dependency you include here.
+After the standard naming and authorship information, we see a few lines about the `std` feature, which enables use of [the Rust standard libraries](https://doc.rust-lang.org/std/). Because Substrate runtime code targets Wasm, all the dependencies we use must be able to compile with [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html). Our `Cargo.toml` file begins by telling dependencies to only use their `std` feature when this module also uses its `std` feature. You will need to add each dependency you include here.
 
 ```toml
 [features]
