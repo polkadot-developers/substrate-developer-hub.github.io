@@ -14,7 +14,7 @@ substrate-node-new modular-chain <your name>
 ```
 If you've followed other runtime tutorials, you've probably started this way.
 
-In this tutorial, we're not going to write our module directly as part of the node template, but rather as a separate rust crate. This approach provides a few advantages:
+In this tutorial, we're not going to write our module directly as part of the node template, but rather as a separate Rust crate. This approach provides a few advantages:
 1. Our module can be easily imported into other nodes in the future.
 2. Our module can be published to places like github or crates.io without publishing our entire node in the same place.
 
