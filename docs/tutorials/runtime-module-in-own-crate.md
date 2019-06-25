@@ -7,7 +7,7 @@ In this tutorial, you'll write a Substrate runtime module that lives in its own 
 ## Setup a Development Environment
 If you haven't already, follow the guide to [install substrate](getting-started/installing-substrate.md). You'll need the substrate-up scripts, but not the standard substrate node, so the `--fast` option is what you want here.
 
-## Create a new Node Template
+## Create your node
 We'll begin by creating a brand new node template.
 ```bash
 substrate-node-new modular-chain <your name>
