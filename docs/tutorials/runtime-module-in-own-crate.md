@@ -2,7 +2,7 @@
 title: "Write a Runtime Module in its Own Crate"
 ---
 
-In this tutorial you'll write substrate runtime module that lives in its own crate, and include it in a node based on the node-template. If you prefer you can follow along with the [video walkthrough](todo record after initial feedback).
+In this tutorial, you'll write a Substrate runtime module that lives in its own crate, and include it in a node based on the node-template. If you prefer you can follow along with the [video walkthrough](todo record after initial feedback).
 
 ## Setup a Development Environment
 If you haven't already, follow the guide to [install substrate](getting-started/installing-substrate.md). You'll need the substrate-up scripts, but not the standard substrate node, so the `--fast` option is what you want here.
