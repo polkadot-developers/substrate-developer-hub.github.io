@@ -164,4 +164,4 @@ And run your node with
 Finally, start the [Apps UI](https://polkadot.js.org/apps/#/explorer) to confirm that the module is working as expected. If you aren't familiar with the Apps UI, you will need to navigate to the settings tab, and select 'Local Node'.
 
 ## Customize your Module
-In this tutorial you've learned to create a runtime module as a it's own crate. You're now ready to replace the template module logic with your own logic. If you're not sure what to code, check out one of our runtime module [tutorials](https://substrate.dev/en/tutorials).
+In this tutorial you've learned to create a runtime module as a Rust crate. You're now ready to replace the template module logic with your own logic. If you're not sure what to code, check out one of our runtime modules in [tutorials](https://substrate.dev/en/tutorials).
