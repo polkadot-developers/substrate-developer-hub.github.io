@@ -49,7 +49,7 @@ Then you can build the node with
 cargo build
 ```
 
-You can slo build the subkey utility with
+You can also build the subkey utility with
 ```
 cargo build -p subkey
 ```
