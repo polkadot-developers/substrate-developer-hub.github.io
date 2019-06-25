@@ -15,7 +15,7 @@ This command will download and compile the complete substrate node, and the subk
 It will take 20 - 40 minutes to finish. Once it is done, check that Substrate is properly installed by running `substrate --version`. You should see something like this:
 ```
 $ substrate --version
-substrate 0.10.0-fdb3a846-x86_64-linux-gnu
+substrate 2.0.0-6f0d28863-x86_64-macos
 ```
 
 If you get that, then you're ready to proceed!
@@ -28,7 +28,7 @@ If you plan to create your own substrate node, and don't need to compile the ent
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
 
-This command will still install the substrate up commands for creating your own nodes and rmodules, but will not spend time compiling the default substrate node or subkey utility.
+This command will still install the substrate-up commands for creating your own nodes and modules, but will not spend time compiling the default substrate node or subkey utility.
 
 ## Manual Build
 

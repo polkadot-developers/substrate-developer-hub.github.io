@@ -14,9 +14,9 @@ If you are not sure where you should get started, check out our **Guided User St
 
 ## Products
 
-Within the Substrate ecosystem, you can build blockchains, smart contracts, and even user interfaces! Here is a high level overview of the different products which comprise these space:
+Within the Substrate ecosystem, you can build blockchains, smart contracts, and even user interfaces! Here is a quick overview of the different products which comprise these spaces:
 
-* [Substrate](https://github.com/paritytech/substrate): A next generation blockchain development framework built using Rust and Wasm.
+* [Substrate](https://github.com/paritytech/substrate): A next generation blockchain development framework built using Rust and WebAssembly.
 * [ink!](https://github.com/paritytech/ink): A Rust based eDSL for building Wasm smart contracts compatible with Substrate's Contract module.
 * [Polkadot-JS/API](https://github.com/polkadot-js/api): Promise and RxJS APIs for interacting with Substrate-based chains via RPC calls.
 * [Polkadot-JS/Apps](https://github.com/polkadot-js/apps): A basic UI for interacting with all features of a Substrate node. Powered by Polkadot-JS/API.
