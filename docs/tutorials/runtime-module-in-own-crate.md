@@ -47,7 +47,7 @@ std = [
     'system/std',
 ]
 ```
-Our module will depend on low level features such as `system` and `support` from substrate itself. It will also be depended upon by a substrate-based runtime from above. So some care may be needed to ensure version compatibility on both sides. Substrate does not yet have releases published on crates.io, so instead we'll use git-based versioning.
+Our module will depend on low level Substrate module libraries such as `system` and `support`. It will also be a dependency by the Substrate-based runtime from above. So some care may be needed to ensure version compatibility on both sides. Substrate does not yet have releases published on crates.io, so instead we need to use git-based versioning.
 If you plan for third parties to use your module, you should develop against the `v1.0` branch as the template demonstrates. It is also acceptable to develop against specific git commit revisions.
 
 ```toml
