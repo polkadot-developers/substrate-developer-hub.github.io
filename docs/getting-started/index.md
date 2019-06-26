@@ -24,7 +24,7 @@ If you are not sure where you should get started, check out our **Guided User St
 
 ## Products
 
-Within the Substrate ecosystem, you can build blockchains, smart contracts, and even user interfaces! Here is a quick overview of the different products which comprise these spaces:
+Within the Substrate ecosystem, you can build blockchains, smart contracts, and even user interfaces! Here is a quick overview of the different products which comprise this space:
 
 * [Substrate](https://github.com/paritytech/substrate): A next generation blockchain development framework built using WebAssembly, Libp2p and GRANDPA Consensus.
 * [ink!](https://github.com/paritytech/ink): A Rust based eDSL for building WebAssembly based smart contracts compatible with Substrate's Contract module.
