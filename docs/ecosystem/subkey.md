@@ -30,10 +30,10 @@ Phrase `mosquito sketch face supreme side tourist monkey damp idea warm luggage 
 
 Subkey has just consumed some entropy and generated a cryptographic SR25519 key-pair. The output tells us a few properties of our key.
 
-Phrase (aka **Mnemonic Phrase**) - A series of English words that encodes the seed in a more human-friendly way.
-Seed (aka **Private Key / Raw Seed**) - The minimum necessary information to restore the key pair. All other information is calculated from the seed.
-**Public Key** - The public half of the cryptographic key-pair in hexadecimal.
-Address (aka **Public Address**) - An SS58-encoded address based on the public key.
+- Phrase (aka **Mnemonic Phrase**) - A series of English words that encodes the seed in a more human-friendly way.
+- Seed (aka **Private Key / Raw Seed**) - The minimum necessary information to restore the key pair. All other information is calculated from the seed.
+- **Public Key** - The public half of the cryptographic key-pair in hexadecimal.
+- Address (aka **Public Address**) - An SS58-encoded address based on the public key.
 
 (See [this issue](https://github.com/paritytech/substrate/pull/2669#issuecomment-495702589) for why `subkey` still outputs the old jargon for now.)
 
