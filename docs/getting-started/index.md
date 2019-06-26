@@ -6,11 +6,15 @@ Welcome to the Substrate Developer Hub.
 
 As a next generation blockchain framework, Substrate is designed to help majority of developers build decentralized application to improve their business value. 
 
-There are two ways to build decentralized application in Substrate ecosystem, one is to build your own business specific blockchain, the other is to run your business with Smart Contract. As you walk through the documents, you will learn more details.
+Within Substrate ecosystem, developers can build decentralized application in two forms, one is to build your own business specific blockchain, the other is to run your business with Smart Contract. As you walk through the documents, you will learn more details.
+
+## Reference documents
+
+You might be looking for the reference documentation for Substrate's Rust codebase. You can find those crate docs in our [Reference Documentation](https://substrate.dev/rustdocs).
 
 ## Tutorials
 
-We have provided many end to end workshops to help you learn different parts of Substrate. Go to [Tutorials](/tutorials/) page, pick the one your are interested most and get your hands dirty!
+We have provided many end to end tutorials to help you learn about the different parts of Substrate. Go to [Tutorials](/tutorials/) page, pick the one you are most interested in and get your hands dirty!
 
 ## Guided User Stories
 
@@ -28,10 +32,6 @@ Within the Substrate ecosystem, you can build blockchains, smart contracts, and 
 * [Polkadot-JS/Apps](https://github.com/polkadot-js/apps): A basic UI for interacting with all features of a Substrate node. Powered by Polkadot-JS/API.
 * [oo7-substrate](https://github.com/paritytech/oo7/tree/master/packages/oo7-substrate): A ReactJS based API for interacting with Substrate-based chains via RPC Calls.
 * [Substrate UI](https://github.com/paritytech/substrate-ui): A basic ReactJS based UI built for quickly building new interfaces for Substrate chains. Powered by oo7-substrate.
-
-## Reference documents
-
-You might be looking for the reference documentation for Substrate's Rust codebase. You can find those crate docs in our [Reference Documentation](https://substrate.dev/rustdocs).
 
 ## Join the Community
 

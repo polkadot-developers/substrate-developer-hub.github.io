@@ -2,7 +2,7 @@
 title: "Installing Substrate"
 ---
 
-Following ways to install Substrate assume you are running Mac OS, Arch, or a Debian-based OS like Ubuntu. For Windows users, you can try it [here](https://github.com/paritytech/substrate#612-windows).
+Here are instructions to install Substrate for Mac OS, Arch, or a Debian-based OS like Ubuntu. For Windows users, you can try it [here](https://github.com/paritytech/substrate#612-windows).
 
 ## Fast Installation
 
@@ -12,24 +12,25 @@ If you plan to create your own blockchain, then run this simple one-liner:
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
 
-This command will install the [substrate-up](https://github.com/paritytech/substrate-up) commands for creating your own nodes and modules.
+This command will install:
+* All the dependencies required to start a Substrate node, includes OpenSSL, CMake, LLVM, etc.
+* The [substrate-up](https://github.com/paritytech/substrate-up) commands for creating your own nodes and modules.
 
 This is the most common way to start your Substrate's journey.
 
 ## Full Installation
 
-If you want to experience the latest Substrate's features and **have a good internet connection**, then run command:
+If you want to experience the latest Substrate's features, you should install Substrate without the `--fast` flag:
 
 ```bash
 curl https://getsubstrate.io -sSf | bash
 ```
 
-This command will:
-* Install latest [subkey](https://github.com/paritytech/substrate/tree/master/subkey) which generate or restore the keys used for Substrate chains.
-* Install latest Substrate [node](https://github.com/paritytech/substrate/tree/master/node) for you to have a taste of all the available Substrate's features.
-* Install the [substrate-up](https://github.com/paritytech/substrate-up) scripts for quickly creating your own nodes and modules.
+Besides the dependencies and `substrate-up` scripts installed in [Fast Installation](#fast-installation), this command will also install:
+* Latest [subkey](https://github.com/paritytech/substrate/tree/master/subkey) which generate or restore the keys used for Substrate chains.
+* Latest Substrate [node](https://github.com/paritytech/substrate/tree/master/node) for you to have a taste of all the available Substrate's features.
 
-It will take 20 ~ 40 minutes to finish, depends on your hardware and network connection. Once it is done, check that Substrate is properly installed by running `substrate --version`. You should see something like this:
+It will take 20 to 40 minutes to finish, depending on your hardware and network connection. Once it is done, check that Substrate is properly installed by running `substrate --version`. You should see something like this:
 ```
 $ substrate --version
 substrate 2.0.0-6f0d28863-x86_64-macos
