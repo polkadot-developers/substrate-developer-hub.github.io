@@ -193,4 +193,23 @@ And run your node with
 Finally, start the [Apps UI](https://polkadot.js.org/apps/#/explorer) to confirm that the module is working as expected. If you aren't familiar with the Apps UI, you will need to navigate to the settings tab, and select 'Local Node'.
 
 ## Customize your Module
-In this tutorial you've learned to create a runtime module as a Rust crate. You're now ready to replace the template module logic with your own logic. If you're not sure what to code, check out one of our runtime modules in [tutorials](https://substrate.dev/en/tutorials).
+So far in this tutorial you've learned to create a runtime module as a Rust crate. You're now ready to replace the template logic with your own. If you're not sure what to code, check out one of our runtime modules in [tutorials](https://substrate.dev/en/tutorials).
+
+## Publish your Module
+Once your module is no longer just a template, you should consider publishing it. We'll cover publishing your module to github here, but crates.io is another good option. Go ahead and [create a github repository](https://help.github.com/en/articles/create-a-repo) and [push your module's code](https://help.github.com/en/articles/pushing-to-a-remote) to it.
+
+With the code on github, your module is properly published. Congratulations! We now need to update your node to use the code that is on github instead of a hard-coded file system path.
+
+The final edit to your runtime's `Cargo.toml` file will update its dependency on your module. The new code is
+```toml
+[dependencies.test_module]
+default_features = false
+git = "https://github.com/<you>/<your-module>"
+branch = "master"
+
+# You may choose a specific commit or tag instead of branch
+# rev = "<some commit hash>"
+# tag = "<some tag>"
+```
+
+Congratulations, you've now written a runtime module in its own Rust crate, and published that crate to github. Other blockchain developers can easily use your module in their runtimes.
