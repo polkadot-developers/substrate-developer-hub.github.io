@@ -153,7 +153,7 @@ class Tutorials extends React.Component {
                 difficulty: "medium",
                 length: "2",
                 prerequisite: false,
-                href: `${docUrl("tutorials/runtime-module-in-own-crate")}`
+                href: `${docUrl("tutorials/creating-a-runtime-module")}`
               },
               {
                 title: <translate>UTXO Workshop</translate>,
