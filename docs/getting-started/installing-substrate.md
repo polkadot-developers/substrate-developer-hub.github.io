@@ -13,8 +13,8 @@ curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
 
 This command will install:
-* All the dependencies required to start a Substrate node, includes OpenSSL, CMake, LLVM, etc.
-* The [substrate-up](https://github.com/paritytech/substrate-up) commands for creating your own nodes and modules.
+* all the dependencies required to start a Substrate node, includes OpenSSL, CMake, LLVM, etc.
+* the [substrate-up](https://github.com/paritytech/substrate-up) commands for creating your own nodes and modules.
 
 This is the most common way to start your Substrate's journey.
 
@@ -27,8 +27,8 @@ curl https://getsubstrate.io -sSf | bash
 ```
 
 Besides the dependencies and `substrate-up` scripts installed in [Fast Installation](#fast-installation), this command will also install:
-* Latest [subkey](https://github.com/paritytech/substrate/tree/master/subkey) which generate or restore the keys used for Substrate chains.
-* Latest Substrate [node](https://github.com/paritytech/substrate/tree/master/node) for you to have a taste of all the available Substrate's features.
+* latest [subkey](https://github.com/paritytech/substrate/tree/master/subkey) which generate or restore the keys used for Substrate chains.
+* latest Substrate [node](https://github.com/paritytech/substrate/tree/master/node) for you to have a taste of all the available Substrate's features.
 
 It will take 20 to 40 minutes to finish, depending on your hardware and network connection. Once it is done, check that Substrate is properly installed by running `substrate --version`. You should see something like this:
 ```
