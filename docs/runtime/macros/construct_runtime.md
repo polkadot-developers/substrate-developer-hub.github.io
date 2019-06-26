@@ -253,32 +253,34 @@ For example, in the [`Timestamp` module](https://github.com/paritytech/substrate
 
 ```rust
 impl<T: Trait> ProvideInherent for Module<T> {
-	type Inherent = T::Moment;
 	type Call = Call<T>;
+	type Error = InherentError;
+	const INHERENT_IDENTIFIER: InherentIdentifier = INHERENT_IDENTIFIER;
 
-	fn create_inherent_extrinsics(data: Self::Inherent) -> Vec<(u32, Self::Call)> {
-		let next_time = ::rstd::cmp::max(data, Self::now() + Self::block_period());
-		vec![(T::TIMESTAMP_SET_POSITION, Call::set(next_time.into()))]
+	fn create_inherent(data: &InherentData) -> Option<Self::Call> {
+		let data: T::Moment = extract_inherent_data(data)
+			.expect("Gets and decodes timestamp inherent data")
+			.saturated_into();
+
+		let next_time = cmp::max(data, Self::now() + <MinimumPeriod<T>>::get());
+		Some(Call::set(next_time.into()))
 	}
 
-	fn check_inherent<Block: BlockT, F: Fn(&Block::Extrinsic) -> Option<&Self::Call>>(
-			block: &Block, data: Self::Inherent, extract_function: &F
-	) -> result::Result<(), CheckInherentError> {
+	fn check_inherent(call: &Self::Call, data: &InherentData) -> result::Result<(), Self::Error> {
 		const MAX_TIMESTAMP_DRIFT: u64 = 60;
 
-		let xt = block.extrinsics().get(T::TIMESTAMP_SET_POSITION as usize)
-			.ok_or_else(|| CheckInherentError::Other("No valid timestamp inherent in block".into()))?;
+		let t: u64 = match call {
+			Call::set(ref t) => t.clone().saturated_into::<u64>(),
+			_ => return Ok(()),
+		};
 
-		let t = match (xt.is_signed(), extract_function(&xt)) {
-			(Some(false), Some(Call::set(ref t))) => t.clone(),
-			_ => return Err(CheckInherentError::Other("No valid timestamp inherent in block".into())),
-		}.into().as_();
+		let data = extract_inherent_data(data).map_err(|e| InherentError::Other(e))?;
 
-		let minimum = (Self::now() + Self::block_period()).as_();
-		if t > data.as_() + MAX_TIMESTAMP_DRIFT {
-			Err(CheckInherentError::Other("Timestamp too far in future to accept".into()))
+		let minimum = (Self::now() + <MinimumPeriod<T>>::get()).saturated_into::<u64>();
+		if t > data + MAX_TIMESTAMP_DRIFT {
+			Err(InherentError::Other("Timestamp too far in future to accept".into()))
 		} else if t < minimum {
-			Err(CheckInherentError::ValidAtTimestamp(minimum))
+			Err(InherentError::ValidAtTimestamp(minimum))
 		} else {
 			Ok(())
 		}
