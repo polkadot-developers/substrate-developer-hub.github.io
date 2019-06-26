@@ -4,7 +4,10 @@ title: "Getting Started"
 
 Welcome to the Substrate Developer Hub. 
 
-As a next generation blockchain framework, Substrate is designed to help majority of developers build decentralized application to improve their business value. 
+As a next generation blockchain framework, Substrate has three distinct features:
+* a dynamic, self-defining state-transition function; 
+* light-client functionality from day one;
+* a progressive consensus algorithm with fast block production and adaptive, definite finality.
 
 Within Substrate ecosystem, developers can build decentralized application in two forms, one is to build your own business specific blockchain, the other is to run your business with Smart Contract. As you walk through the documents, you will learn more details.
 
