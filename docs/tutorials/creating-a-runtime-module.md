@@ -214,4 +214,4 @@ branch = "master"
 
 Compile one more time and notice that cargo now grabs your module from github instead of using the local files. You
 
-Congratulations, you've written a runtime module in its own Rust crate, and published that crate to github. Other blockchain developers can now easily use your module in their runtimes by simply including those same four lines of code in their runtimes' `Cargo.toml` files.
+Congratulations! You've written a Substrate runtime module in its own Rust crate, and published that crate to GitHub. Other blockchain developers can now easily use your module in their runtime by simply including those same four lines of code in their runtime's `Cargo.toml` files and updating their runtime's `lib.rs` file.
