@@ -196,7 +196,7 @@ Finally, start the [Apps UI](https://polkadot.js.org/apps/#/explorer) to confirm
 So far in this tutorial you've learned to create a runtime module as a Rust crate. You're now ready to replace the template logic with your own. If you're not sure what to code, check out one of our runtime modules in [tutorials](https://substrate.dev/en/tutorials).
 
 ## Publish your Module
-Once your module is no longer just a template, you should consider publishing it. We'll cover publishing your module to github here, but crates.io is another good option. Go ahead and [create a github repository](https://help.github.com/en/articles/create-a-repo) and [push your module's code](https://help.github.com/en/articles/pushing-to-a-remote) to it.
+Once your module is no longer just a template, you should consider publishing it. We'll cover publishing your module to GitHub here, but Crates.io is another good option. Go ahead and [create a GitHub repository](https://help.github.com/en/articles/create-a-repo) and [push your module's code](https://help.github.com/en/articles/pushing-to-a-remote) to it.
 
 With the code on github, your module is properly published. Congratulations! We now need to update your node to use the code that is on github instead of a hard-coded file system path.
 
