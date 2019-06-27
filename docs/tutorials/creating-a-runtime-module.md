@@ -35,6 +35,16 @@ While it's perfectly possible to create a new Substrate runtime module from scra
 git clone https://github.com/shawntabrizi/substrate-module-template
 ```
 
+In the `Cargo.toml` file, update the module's name and authorship to something meaningful. In this tutorial we're focusing on how to create and use the module rather than writing interesting module logic, so I'll call mine `test_module`. The beginning of my `Cargo.toml` now looks like.
+
+```toml
+[package]
+name = "test_module"
+version = "0.1.0"
+authors = ["Joshy Orndorff"]
+edition = "2018"
+```
+
 You should be able to successfully compile this template module with:
 
 ```bash
@@ -193,4 +203,25 @@ And run your node with
 Finally, start the [Apps UI](https://polkadot.js.org/apps/#/explorer) to confirm that the module is working as expected. If you aren't familiar with the Apps UI, you will need to navigate to the settings tab, and select 'Local Node'.
 
 ## Customize your Module
-In this tutorial you've learned to create a runtime module as a Rust crate. You're now ready to replace the template module logic with your own logic. If you're not sure what to code, check out one of our runtime modules in [tutorials](https://substrate.dev/en/tutorials).
+So far in this tutorial you've learned to create a runtime module as a Rust crate. You're now ready to replace the template logic with your own. If you're not sure what to code, check out one of our runtime modules in [tutorials](https://substrate.dev/en/tutorials).
+
+## Publish your Module
+Once your module is no longer just a template, you should consider publishing it. We'll cover publishing your module to GitHub here, but Crates.io is another good option. Go ahead and [create a GitHub repository](https://help.github.com/en/articles/create-a-repo) and [push your module's code](https://help.github.com/en/articles/pushing-to-a-remote) to it.
+
+With the code on GitHub, your module is properly published. Congratulations! We now need to update your node to use the code that is on GitHub instead of a hard-coded file system path.
+
+The final edit to your runtime's `Cargo.toml` file will update its dependency on your module. The new code is
+```toml
+[dependencies.<your-module-name>]
+default_features = false
+git = "https://github.com/<you>/<your-module>"
+branch = "master"
+
+# You may choose a specific commit or tag instead of branch
+# rev = "<some commit hash>"
+# tag = "<some tag>"
+```
+
+Compile one more time and notice that Cargo now grabs your module from GitHub instead of using the local files.
+
+Congratulations! You've written a Substrate runtime module in its own Rust crate, and published that crate to GitHub. Other blockchain developers can now easily use your module in their runtime by simply including those same four lines of code in their runtime's `Cargo.toml` files and updating their runtime's `lib.rs` file.
