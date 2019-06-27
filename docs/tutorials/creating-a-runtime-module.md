@@ -198,7 +198,7 @@ So far in this tutorial you've learned to create a runtime module as a Rust crat
 ## Publish your Module
 Once your module is no longer just a template, you should consider publishing it. We'll cover publishing your module to GitHub here, but Crates.io is another good option. Go ahead and [create a GitHub repository](https://help.github.com/en/articles/create-a-repo) and [push your module's code](https://help.github.com/en/articles/pushing-to-a-remote) to it.
 
-With the code on github, your module is properly published. Congratulations! We now need to update your node to use the code that is on github instead of a hard-coded file system path.
+With the code on GitHub, your module is properly published. Congratulations! We now need to update your node to use the code that is on GitHub instead of a hard-coded file system path.
 
 The final edit to your runtime's `Cargo.toml` file will update its dependency on your module. The new code is
 ```toml
