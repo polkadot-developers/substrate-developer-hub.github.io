@@ -35,6 +35,16 @@ While it's perfectly possible to create a new Substrate runtime module from scra
 git clone https://github.com/shawntabrizi/substrate-module-template
 ```
 
+In the `Cargo.toml` file, update the module's name and authorship to something meaningful. In this tutorial we're focusing on how to create and use the module rather than writing interesting module logic, so I'll call mine `test_module`. The beginning of my `Cargo.toml` now looks like.
+
+```toml
+[package]
+name = "test_module"
+version = "0.1.0"
+authors = ["Joshy Orndorff"]
+edition = "2018"
+```
+
 You should be able to successfully compile this template module with:
 
 ```bash
