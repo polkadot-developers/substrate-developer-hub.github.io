@@ -212,7 +212,7 @@ With the code on GitHub, your module is properly published. Congratulations! We 
 
 The final edit to your runtime's `Cargo.toml` file will update its dependency on your module. The new code is
 ```toml
-[dependencies.test_module]
+[dependencies.<your-module-name>]
 default_features = false
 git = "https://github.com/<you>/<your-module>"
 branch = "master"
