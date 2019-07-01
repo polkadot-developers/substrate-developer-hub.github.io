@@ -43,7 +43,7 @@ The following are the modules that ship with the SRML.
 * [Aura](/rustdocs/v1.0/srml_aura/index.html)
 * [Balances](/rustdocs/v1.0/srml_balances/index.html)
 * [Consensus](/rustdocs/v1.0/srml_consensus/index.html)
-* [Contract](/rustdocs/v1.0/srml_contract/index.html)
+* [Contracts](/rustdocs/v1.0/srml_contracts/index.html)
 * [Council](/rustdocs/v1.0/srml_council/index.html)
 * [Democracy](/rustdocs/v1.0/srml_democracy/index.html)
 * [Finality Tracker](/rustdocs/v1.0/srml_finality_tracker/index.html)

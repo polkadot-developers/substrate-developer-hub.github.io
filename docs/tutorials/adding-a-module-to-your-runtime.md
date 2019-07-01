@@ -36,7 +36,7 @@ Remember to stop your node with `control + C`!
 
 ## Importing a Module Crate
 
-The first thing you need to do to add the Contract module is to import the `srml_contract` crate in your runtime's `Cargo.toml` file. If you want a proper primer into Cargo References, you should check out [their official documentation](https://doc.rust-lang.org/cargo/reference/index.html).
+The first thing you need to do to add the Contract module is to import the `srml_contracts` crate in your runtime's `Cargo.toml` file. If you want a proper primer into Cargo References, you should check out [their official documentation](https://doc.rust-lang.org/cargo/reference/index.html).
 
 Open `contract-chain/runtime/Cargo.toml` and you will see a file which lists all the dependencies your runtime has. For example, it depends on the [Balances module](/rustdocs/v1.0/srml_balances/index.html):
 
@@ -149,7 +149,7 @@ If you have followed our [other basic tutorials](tutorials/creating-your-first-s
 
 ### Implementing the Contract Trait
 
-To figure out what we need to implement, you can take a look at the [`srml_contract::Trait` documentation](/rustdocs/v1.0/srml_contract/trait.Trait.html) or the [Contract module source code](https://github.com/paritytech/substrate/blob/v1.0/srml/contract/src/lib.rs). For our runtime, the implementation will look like this:
+To figure out what we need to implement, you can take a look at the [`srml_contracts::Trait` documentation](/rustdocs/v1.0/srml_contracts/trait.Trait.html) or the [Contract module source code](https://github.com/paritytech/substrate/blob/v1.0/srml/contract/src/lib.rs). For our runtime, the implementation will look like this:
 
 ```rust
 impl contract::Trait for Runtime {
@@ -235,7 +235,7 @@ Now, when the Balances module detects that the free balance of an account has re
 
 ## Genesis Configuration
 
-The last thing we need to do in order to get your node up and running is to establish a genesis configuration for the Contract module. Not all modules will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`srml_contract::GenesisConfig` documentation](https://substrate.dev/rustdocs/v1.0/srml_contract/struct.GenesisConfig.html) describes all the fields you need to define for the Contract module. This definition is controlled in `contract-chain/src/chain_spec.rs`. We need to modify this file to include the `ContractConfig` type:
+The last thing we need to do in order to get your node up and running is to establish a genesis configuration for the Contract module. Not all modules will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`srml_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/v1.0/srml_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contract module. This definition is controlled in `contract-chain/src/chain_spec.rs`. We need to modify this file to include the `ContractConfig` type:
 
 ```rust
 use contract_chain_runtime::ContractConfig;

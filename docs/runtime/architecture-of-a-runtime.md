@@ -46,7 +46,7 @@ documentation about that part of the runtime.
             <div class="substrate-srml-row">Balances</div>
         </a><a href="/rustdocs/v1.0/srml_consensus/index.html">
             <div class="substrate-srml-row">Consensus</div>
-        </a><a href="/rustdocs/v1.0/srml_contract/index.html">
+        </a><a href="/rustdocs/v1.0/srml_contracts/index.html">
             <div class="substrate-srml-row">Contract</div>
         </a><a href="/rustdocs/v1.0/srml_council/index.html">
             <div class="substrate-srml-row">Council</div>

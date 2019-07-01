@@ -93,7 +93,7 @@ class WhoIndex extends React.Component {
               name: <translate>Not Sure?</translate>,
               text:
                 <translate>
-                  Not sure where to get started? Take a look at few guided videos which will introduce you to Substrate and its various core components.
+                  Not sure where to get started? Take a look at a few guided videos that will introduce you to Substrate and its various core components.
                 </translate>,
               href: "./not-sure/"
             }

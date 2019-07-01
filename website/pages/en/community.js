@@ -85,7 +85,7 @@ function Community(props) {
       <translate>
         Riot is the main form of communication between employees at Parity and the
         community of people who use Parity products. Drop in to ask technical
-        question, meet others who share your interests, or to keep an eye on whats
+        questions, meet others who share your interests, or keep an eye on what's
         going on.
       </translate>
       <p>

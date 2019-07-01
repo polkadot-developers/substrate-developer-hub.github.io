@@ -44,13 +44,13 @@ class ContractDeveloper extends React.Component {
             Substrate provides Wasm smart contract functionality through the
             </translate>
             {" "}
-            <a href="/rustdocs/v1.0/srml_contract/index.html">
-              <translate>Contract module</translate>
+            <a href="/rustdocs/v1.0/srml_contracts/index.html">
+              <translate>Contracts module</translate>
             </a>
             .{" "}
             <a href="https://github.com/paritytech/ink">ink!</a>{" "}
             <translate desc="description is for ink">
-              is a Rust based eDSL for writing smart contracts on this platform. The
+              is a Rust-based eDSL for writing smart contracts on this platform. The
               resources below will help you get up to speed on how to use
               Substrate and ink! in the context of writing smart contracts.
             </translate>
@@ -58,7 +58,7 @@ class ContractDeveloper extends React.Component {
           <p>
             <translate>
               Both platforms are still in rapid development and may run into
-              braking changes in the near future. So join our community on riot
+              breaking changes in the near future. So join our community on Riot
               and ask questions using the <code>[ink]</code> tag on StackOverflow
               so you can get the help you need.
             </translate>
@@ -84,7 +84,7 @@ class ContractDeveloper extends React.Component {
           </h3>
           <p>
             <translate>
-              Let's get off the ground running by deploying your first contract to
+              Let's hit the ground running by deploying your first contract to
               a local Substrate chain. No development experience is needed here,
               we will just have you set up Substrate and the ink! build
               environment so that you can compile and deploy a simple "flipper"
@@ -104,7 +104,7 @@ class ContractDeveloper extends React.Component {
           <h3 className="mt-3">Writing Your First Contract</h3>
           <p>
             <translate>
-              Next we will walk you through the basics of contract development on
+              Next, we will walk you through the basics of contract development on
               ink!. For this we will assume you have some background in Solidity,
               the language used for building smart contracts on Ethereum.
             </translate>
@@ -123,8 +123,8 @@ class ContractDeveloper extends React.Component {
           </h3>
           <p>
             <translate>
-              Now that you have gotten the basics down, you can jump into our end
-              to end workshop where we will teach you in detail how to build more
+              Now that you have gotten the basics down, you can jump into our
+              end-to-end workshop where we will teach you in detail how to build more
               complicated contracts like an incrementer and ultimately an ERC20
               token.
             </translate>
