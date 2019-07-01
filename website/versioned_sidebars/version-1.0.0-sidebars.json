@@ -1,0 +1,65 @@
+{
+  "version-1.0.0-docs": {
+    "Getting Started": [
+      "version-1.0.0-getting-started/index",
+      "version-1.0.0-getting-started/installing-substrate",
+      "version-1.0.0-getting-started/using-the-substrate-scripts"
+    ],
+    "Substrate Fundamentals": [
+      "version-1.0.0-overview/index",
+      "version-1.0.0-overview/extrinsics",
+      "version-1.0.0-overview/transaction-lifecycle",
+      "version-1.0.0-overview/low-level-data-format",
+      "version-1.0.0-overview/off-chain-workers",
+      "version-1.0.0-overview/session-keys",
+      "version-1.0.0-overview/ss58-address-format",
+      "version-1.0.0-overview/glossary"
+    ],
+    "Runtime": [
+      "version-1.0.0-runtime/architecture-of-a-runtime",
+      "version-1.0.0-runtime/substrate-runtime-module-library",
+      {
+        "type": "subcategory",
+        "label": "Runtime Macros",
+        "ids": [
+          "version-1.0.0-runtime/macros/construct_runtime",
+          "version-1.0.0-runtime/macros/decl_module"
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "Runtime Types",
+        "ids": [
+          "version-1.0.0-runtime/types/call-enum",
+          "version-1.0.0-runtime/types/event-enum",
+          "version-1.0.0-runtime/types/genesisconfig-struct"
+        ]
+      }
+    ],
+    "Substrate Contracts": [
+      "version-1.0.0-contracts/index",
+      "version-1.0.0-contracts/installing-ink",
+      "version-1.0.0-contracts/cargo-contract",
+      "version-1.0.0-contracts/testing-your-contract",
+      "version-1.0.0-contracts/deploying-a-contract",
+      "version-1.0.0-contracts/env-types",
+      "version-1.0.0-contracts/faq"
+    ],
+    "Ecosystem Tools": [
+      "version-1.0.0-ecosystem/subkey"
+    ],
+    "Contribute": [
+      "version-1.0.0-contribute/help-translate"
+    ]
+  },
+  "version-1.0.0-tcr": {
+    "Token Curated Registry Tutorial": [
+      "version-1.0.0-tutorials/tcr/index",
+      "version-1.0.0-tutorials/tcr/building-the-substrate-tcr-runtime",
+      "version-1.0.0-tutorials/tcr/unit-testing-the-tcr-runtime-module",
+      "version-1.0.0-tutorials/tcr/building-a-ui-for-the-tcr-runtime",
+      "version-1.0.0-tutorials/tcr/building-an-event-based-off-chain-storage",
+      "version-1.0.0-tutorials/tcr/tcr-best-practices"
+    ]
+  }
+}
