@@ -8,4 +8,4 @@ If you can help translate the documentation here into another language, please g
 
 Once your translation gets approved, it will appear on this website!
 
-If you are interested in approving translations from others, please send email to <substrate-developer-hub@parity.io>.
+If you are interested in approving translations from others, please send an email to <substrate-developer-hub@parity.io>.

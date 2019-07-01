@@ -43,8 +43,8 @@ To run this test, type the following command:
 cargo test --features test-env
 ```
 
-## Contract Module
+## Contracts Module
 
-### How do I add the Contract module to my custom chain?
+### How do I add the Contracts module to my custom chain?
 
-You can follow [our guide here](tutorials/adding-a-module-to-your-runtime.md) for instructions to add the Contract module and other SRML modules to your blockchain runtime.
+You can follow [our guide here](tutorials/adding-a-module-to-your-runtime.md) for instructions to add the Contracts module and other SRML modules to your blockchain runtime.

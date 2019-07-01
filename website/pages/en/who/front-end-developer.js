@@ -39,7 +39,7 @@ class FrontEndDeveloper extends React.Component {
           <h3 className="mt-3"><translate>Background</translate></h3>
           <p>
             <translate>
-              Substrate exposes an number of endpoints over JSON-RPC. To be able to interact with these endpoints, your data needs to be decoded and encoded following a standardized codec.
+              Substrate exposes a number of endpoints over JSON-RPC. To be able to interact with these endpoints, your data needs to be decoded and encoded following a standardized codec.
             </translate>
           </p>
           <p>
@@ -73,11 +73,11 @@ class FrontEndDeveloper extends React.Component {
           <h3 className="mt-3"><translate>Get familiar with Substrate using the Polkadot-JS Apps</translate></h3>
           <p>
             <translate>
-              Before writing your own code, you should get familiar with what Substrate has to offer. The Polkadot-JS Apps are a set of applications that reflect Substrates standard runtime modules. They let you explore all built-in features, provide lot's of additional information and even let you interact with your custom runtime modules.
+              Before writing your own code, you should get familiar with what Substrate has to offer. The Polkadot-JS Apps are a set of applications that reflect Substrate's standard runtime modules. They let you explore all built-in features, provide a lot of additional information, and even let you interact with your custom runtime modules.
             </translate>
           </p>
           <p>
-            <translate>You don't even need to install anything, just start with the Parity hosted Polkadot and Substrate nodes!</translate>
+            <translate>You don't even need to install anything, just start with the Parity-hosted Polkadot and Substrate nodes!</translate>
           </p>
           <Button
             variant="secondary"
@@ -95,7 +95,7 @@ class FrontEndDeveloper extends React.Component {
             </translate>
           </p>
           <p>
-            <translate>Have a look around and explore your tools as a future Substrate Application Developer.</translate>
+            <translate>Have a look around and explore your tools as a future Substrate application developer.</translate>
           </p>
           <Button
             variant="secondary"
@@ -183,9 +183,9 @@ class FrontEndDeveloper extends React.Component {
           <p>
            <translate>
               "Bonds" is an alternative JSON-RPC wrapper around Substrate and Polkadot. It's written in
-              plain Javascript and comes with it's own implementation of the SCALE Codec.
-              The "Bonds" API is best used together with the "Substrate UI", which is a React based
-              single page application.
+              plain Javascript and comes with its own implementation of the SCALE Codec.
+              The "Bonds" API is best used together with the "Substrate UI", which is a React-based,
+              single-page application.
             </translate>
           </p>
           <Button

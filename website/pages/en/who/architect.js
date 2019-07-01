@@ -42,10 +42,10 @@ class Architect extends React.Component {
           <p>
             <translate>
               To start your journey, first we want to make sure you have a high
-              level overview of what Substrate even is. Explore our Substrate
-              Overview starting with the Introduction page. Also take a look at
-              our Glossary so you can make sure that you can become familiar with
-              all the terms you encounter!
+              level overview of what Substrate is. Explore our Substrate
+              Overview, starting with the Introduction page. Also take a look at
+              our Glossary so you can become familiar with
+              all the terms you encounter.
             </translate>
           </p>
           <Button
@@ -69,7 +69,7 @@ class Architect extends React.Component {
             <translate>
               Next, take a look at the architecture of a Substrate runtime. You
               can explore how the modules included in your Runtime are turned into
-              primitive Substrate types which ultimately get exposed via our JSON
+              primitive Substrate types, which ultimately get exposed via our JSON
               RPC.
             </translate>
           </p>
@@ -89,7 +89,7 @@ class Architect extends React.Component {
             <translate>
               We will now take a look at the lifecycle of a transaction made on
               Substrate, including block production, transaction validation, and
-              even handling of inherents.
+              handling of inherents.
             </translate>
           </p>
           <Button
@@ -108,8 +108,8 @@ class Architect extends React.Component {
             <translate>
               The Substrate framework provides a number of tools to make it easy
               for you to integrate your project. Become familiar with the
-              underlying `parity-scale-codec` which gets used to serialize and
-              deserialize messages. Learn about our home grown Wasm interpreter
+              underlying `parity-scale-codec`, which gets used to serialize and
+              deserialize messages. Learn about our home-grown Wasm interpreter
               used for our Runtime and Smart Contract layer. Finally, take a look
               at our generic and extensible JSON-RPC proxy, which supports caching
               and load-balancing.
@@ -156,9 +156,8 @@ class Architect extends React.Component {
             <translate>
               Now that you have a grasp of all the basics, we want to talk with
               you! We are always looking to form new partnerships or
-              collaborations with other visionaries. Tell us about your project
+              collaborations. Tell us about your project
               and let us know what we can do to help you accomplish your goals!
-              Otherwise restart your journey through our Substrate Developer Hub.
             </translate>
           </p>
           <Button
