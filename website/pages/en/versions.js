@@ -28,31 +28,27 @@ function Versions(props) {
           <header className="postHeader">
             <h1>{siteConfig.title} Versions</h1>
           </header>
-          <p>New versions of this project are released every so often.</p>
+          <p>Substrate is under very active development.</p>
           <h3 id="latest">Current version (Stable)</h3>
           <table className="versions">
             <tbody>
               <tr>
                 <th>{latestVersion}</th>
                 <td>
-                  {/* You are supposed to change this href where appropriate
-                        Example: href="<baseUrl>/docs(/:language)/:id" */}
                   <a
                     href={`${siteConfig.baseUrl}${siteConfig.docsUrl}/${
                       props.language ? props.language + '/' : ''
-                    }doc1`}>
+                    }getting-started`}>
                     Documentation
                   </a>
                 </td>
                 <td>
-                  <a href="">Release Notes</a>
+                  <a href="https://github.com/paritytech/substrate/releases/tag/untagged-6dcad12c03fc00d301ad">Release Notes</a>
                 </td>
               </tr>
             </tbody>
           </table>
-          <p>
-            This is the version that is configured automatically when you first
-            install this project.
+          <p>Version 1.0.0 aims to be a stable target to develop against. These are the most complete docs currently available.
           </p>
           <h3 id="rc">Pre-release versions</h3>
           <table className="versions">
@@ -60,22 +56,25 @@ function Versions(props) {
               <tr>
                 <th>master</th>
                 <td>
-                  {/* You are supposed to change this href where appropriate
-                        Example: href="<baseUrl>/docs(/:language)/next/:id" */}
                   <a
                     href={`${siteConfig.baseUrl}${siteConfig.docsUrl}/${
                       props.language ? props.language + '/' : ''
-                    }next/doc1`}>
+                    }next/getting-started`}>
                     Documentation
                   </a>
                 </td>
                 <td>
-                  <a href={repoUrl}>Source Code</a>
+                  <a href="https://github.com/paritytech/substrate">Source Code</a>
                 </td>
               </tr>
             </tbody>
           </table>
-          <p>Other text describing this section.</p>
+          <p>New code is committed to the master branch daily, and these docs will certainly lag behind in some places. They are updated on a best-effort basis and contributions are welcome. For a more stable target, use 1.0.0</p>
+          {
+            // Joshy commented this section out because the empy
+            // Table was confusing. It should be re-enables if
+            // or when we have more versions of the docs.
+            /*
           <h3 id="archive">Past Versions</h3>
           <p>Here you can find previous versions of the documentation.</p>
           <table className="versions">
@@ -86,12 +85,10 @@ function Versions(props) {
                     <tr>
                       <th>{version}</th>
                       <td>
-                        {/* You are supposed to change this href where appropriate
-                        Example: href="<baseUrl>/docs(/:language)/:version/:id" */}
                         <a
                           href={`${siteConfig.baseUrl}${siteConfig.docsUrl}/${
                             props.language ? props.language + '/' : ''
-                          }${version}/doc1`}>
+                          }${version}/getting-started`}>
                           Documentation
                         </a>
                       </td>
@@ -105,10 +102,7 @@ function Versions(props) {
               )}
             </tbody>
           </table>
-          <p>
-            You can find past versions of this project on{' '}
-            <a href={repoUrl}>GitHub</a>.
-          </p>
+          */}
         </div>
       </Container>
     </div>
