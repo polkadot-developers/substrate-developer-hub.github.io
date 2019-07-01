@@ -44,7 +44,7 @@ class ContractDeveloper extends React.Component {
             Substrate provides Wasm smart contract functionality through the
             </translate>
             {" "}
-            <a href="/rustdocs/v1.0/srml_contracts/index.html">
+            <a href="/rustdocs/v1.0/srml_contract/index.html">
               <translate>Contracts module</translate>
             </a>
             .{" "}
