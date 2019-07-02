@@ -2,13 +2,13 @@
 title: "Initializing Runtime Storage"
 ---
 
-Most runtime modules contain storage values that may be changed or updated as the blockchain runs and users interact with the module. The ways that data may change are coded in the runtime module's functions (both dispatchable and not), and are covered in several tutorials.
+Most runtime modules contain storage values that may be changed or updated as the blockchain runs and users interact with the module. The ways that data may change are coded in the runtime module's functions (both dispatchable and not), and are covered in several [tutorials](/tutorials).
 
 In some cases storage should be initialized with a value before any user has interacted with it. This is primarily the job of the genesis configuration. There are four ways runtime developers may specify initial values for their storage items, and this article will cover all four. Another article discusses how the genesis configuration works [behind the macros](runtime/types/genesisconfig-struct.md).
 
 ## Hard-Code Specific Values
 
-The simplest way (and one that technically does not use genesis config) to initialize storage is simply to hard-code specific values for each parameter. This option is best when there are clear default values that all deployments of the module will want to use. The runtime developer can choose this option by including `config()` in the `decl_storage!` marco, and an initial value at the end of the line.
+The simplest way (and one that technically does not use genesis configuration) to initialize storage is simply to hard-code specific values for each parameter. This option is best when there are clear default values that all deployments of the module will want to use. The runtime developer can choose this option by including `config()` in the `decl_storage!` marco, and an initial value at the end of the line.
 
 Consider this example module where players ante to play a game and add to the pot by raising.
 
@@ -73,11 +73,11 @@ GenesisConfig {
 }
 ```
 
-> A bug in the v1.0 branch, occasionally causes a compilation error when specifying the genesis config this way. Adding an additional field will resolve it.
+> A bug in the v1.0 branch, occasionally causes a compilation error when specifying the genesis configuration this way. Adding an additional field will resolve it.
 >
 > `_genesis_phantom_data: Default::default(),`
 
-### Enter Values in JSON Config
+### Enter Values in Configuration File
 
 While there must always be some value specified in code, the deployer may choose to override those values via a configuration file. In Substrate-based chains a chainspec can be generated with `substrate build-spec > chainspec.json`. For our example module, the configuration would look like this.
 
@@ -112,13 +112,13 @@ decl_storage! {
   }
 }
 ```
-> A bug in the v1.0 branch, occasionally causes a compilation error when specifying the genesis config this way. Adding an additional field will resolve it.
+> A bug in the v1.0 branch, occasionally causes a compilation error when specifying the genesis configuration this way. Adding an additional field will resolve it.
 >
 > `_genesis_phantom_data: Default::default(),`
 
 ## Calculate Multiple Values with `add-extra-genesis`
 
-A final option available to runtime developers is to manually add additional fields to the genesis config that are not associated with specific storage values. This is useful when all of the initial storage values can be calculated, and they can be calculated from parameters configurable by the deployer. The subtlety here is that the deployer _does_ specify parameters, but those parameters are not, themselves, put into storage. Rather they are used to calculate the values that are put into storage.
+A final option available to runtime developers is to manually add additional fields to the genesis configuration that are not associated with specific storage values. This is useful when all of the initial storage values can be calculated, and they can be calculated from parameters configurable by the deployer. The subtlety here is that the deployer _does_ specify parameters, but those parameters are not, themselves, put into storage. Rather they are used to calculate the values that are put into storage.
 
 In our example game, the module author may want to allow the deployer to specify the smallest number of points worth considering, and calculate both the initial ante and minimum raise from those values.
 
