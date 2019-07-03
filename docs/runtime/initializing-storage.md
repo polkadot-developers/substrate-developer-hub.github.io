@@ -138,3 +138,5 @@ decl_storage! {
   }
 }
 ```
+
+It is also possible to use `build()` inside of `add_extra_genesis`. Doing so is not necessary in our simple game, but there is an [excellent example](https://github.com/paritytech/substrate/blob/v1.0/srml/staking/src/lib.rs#L525) in the SRML's Staking module. The module deployer specifies a `Vec` of stakers and their roles. Then different parts of storage are modified depending on whether each staker is a nominator or validator.
