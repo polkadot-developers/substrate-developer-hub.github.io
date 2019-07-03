@@ -46,7 +46,7 @@ The runtime developer has explicitly chosen not to initialize storage values, bu
 >
 > `pub Ante get(ante) config(value_to_ante): u32;`
 >
-> If no custom name is supplied, the [snake_case](https://en.wikipedia.org/wiki/Snake_case) version of the storage field is used.
+> If no name is supplied in `config`, the same name from `get` is used. When no getter is specified, `config` _must_ supply a name.
 
 For this option, and all remaining options, the deployer must use `Config<T>` when installing the module in their runtime with something like.
 
