@@ -6,9 +6,9 @@ Most runtime modules contain storage values that may be changed or updated as th
 
 In some cases storage should be initialized with a value before any user has interacted with it. This is primarily the job of the genesis configuration. There are four ways runtime developers may specify initial values for their storage items, and this article will cover all four. Another article discusses how the genesis configuration works [behind the macros](runtime/types/genesisconfig-struct.md).
 
-## Hard-Code Specific Values
+## Hard-Code Default Values
 
-The simplest way (and one that technically does not use genesis configuration) to initialize storage is simply to hard-code specific values for each parameter. This option is best when there are clear default values that all deployments of the module will want to use. The runtime developer can choose this option by including `config()` in the `decl_storage!` marco, and an initial value at the end of the line.
+The simplest way (and one that technically does not use genesis configuration) to initialize storage is simply to hard-code default values for each parameter. This option is best when there are clear default values that all deployments of the module will want to use. The runtime developer can choose this option by including `config()` in the `decl_storage!` marco, and an initial value at the end of the line.
 
 Consider this example module where players ante to play a game and add to the pot by raising.
 
@@ -23,6 +23,8 @@ decl_storage! {
   }
 }
 ```
+
+> Specifying default values this way has the effect that if you ever [`kill`](https://substrate.dev/rustdocs/v1.0/srml_support/storage/trait.StorageValue.html#tymethod.kill) your storage value, it will revert to the default.
 
 ## Defer until Deploy Time with `config()`
 
