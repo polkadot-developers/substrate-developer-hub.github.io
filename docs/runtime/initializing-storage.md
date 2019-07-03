@@ -107,8 +107,8 @@ decl_storage! {
     // Points ante'd to play the game
     pub Ante get(ante) config(): u32;
 
-      // Minimum raise on each turn
-      pub MinRaise get(min_raise) build(|config: &GenesisConfig<T>| config.ante * 2): u32;
+    // Minimum raise on each turn
+    pub MinRaise get(min_raise) build(|config: &GenesisConfig<T>| config.ante * 2): u32;
   }
 }
 ```
