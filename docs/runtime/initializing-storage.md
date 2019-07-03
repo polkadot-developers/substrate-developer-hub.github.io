@@ -14,7 +14,7 @@ Consider this example module where players ante to play a game and add to the po
 
 ```rust
 decl_storage! {
-  trait Store for Module<T: Trait> as TemplateModule {
+  trait Store for Module<T: Trait> as MyModule {
     // Points ante'd to play the game
     pub Ante get(ante) config(): u32 = 5;
 
@@ -30,7 +30,7 @@ The second option available to runtime developers is to actually _not_ specify t
 
 ```rust
 decl_storage! {
-  trait Store for Module<T: Trait> as TemplateModule {
+  trait Store for Module<T: Trait> as MyModule {
     // Points ante'd to play the game
     pub Ante get(ante) config(): u32;
 
@@ -65,7 +65,7 @@ use my_blockchain_runtime::MyModuleConfig;
 ...
 GenesisConfig {
   ...
-  template: Some(TemplateModuleConfig {
+  my_module: Some(MyModuleConfig {
       ante: 5,
       min_raise: 7,
   }),
@@ -103,7 +103,7 @@ The third option is ideal when the runtime module developer wants to specify the
 In our example game, the minimum raise must always be twice the ante. But the ante may be configured by the module deployer.
 ```rust
 decl_storage! {
-  trait Store for Module<T: Trait> as TemplateModule {
+  trait Store for Module<T: Trait> as MyModule {
     // Points ante'd to play the game
     pub Ante get(ante) config(): u32;
 
@@ -124,7 +124,7 @@ In our example game, the module author may want to allow the deployer to specify
 
 ```rust
 decl_storage! {
-  trait Store for Module<T: Trait> as TemplateModule {
+  trait Store for Module<T: Trait> as MyModule {
     // Points ante'd to play the game
     pub Ante get(ante) build(|config: &GenesisConfig<T>| config.atom * 2): u32;
 
