@@ -2,7 +2,7 @@
 title: "Creating a Runtime Module"
 ---
 
-In this tutorial, you'll write a Substrate runtime module that lives in its own crate, and include it in a node based on the node-template. If you prefer you can follow along with the [video walkthrough](todo record after initial feedback).
+In this tutorial, you'll write a Substrate runtime module that lives in its own crate, and include it in a node based on the node-template.
 
 ## Setup Your Development Environment
 
