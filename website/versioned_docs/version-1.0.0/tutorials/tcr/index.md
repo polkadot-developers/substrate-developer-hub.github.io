@@ -1,5 +1,5 @@
 ---
-title: Introduction: Building a Token Curated Registry DAppChain
+title: "Introduction: Building a Token Curated Registry DAppChain"
 id: version-1.0.0-index
 original_id: index
 ---
