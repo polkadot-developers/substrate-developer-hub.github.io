@@ -1,5 +1,5 @@
 ---
-title: "Cargo Contract: The ink! CLI"
+title: "The ink! CLI"
 ---
 
 To help simplify the process of creating ink! projects, we provide `cargo contract`: an ink! CLI.
