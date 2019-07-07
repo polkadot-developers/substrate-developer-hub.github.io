@@ -1,3 +1,0 @@
----
-title: "decl_storage!"
----
