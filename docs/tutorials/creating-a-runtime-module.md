@@ -118,19 +118,16 @@ The final section of the `Cargo.toml` file specifies the dev dependencies. These
 ```toml
 
 [dev-dependencies.primitives]
-default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'substrate-primitives'
 branch = 'v1.0'
 
 [dev-dependencies.runtime-primitives]
-default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'sr-primitives'
 branch = 'v1.0'
 
 [dev-dependencies.runtime-io]
-default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'sr-io'
 branch = 'v1.0'
