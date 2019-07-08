@@ -124,7 +124,7 @@ class Tutorials extends React.Component {
               {
                 img: `${baseUrl}img/substrate-collectables-workshop.png`,
                 title: <translate>Substrate Collectables Workshop</translate>,
-                text: <translate>A comprehensive end to end tutorial for creating a non-fungible tokens chain. Learn all the basics of Substrate runtime development here!</translate>,
+                text: <translate>A comprehensive, end-to-end tutorial for creating a non-fungible token chain. Learn all the basics of Substrate runtime development here!</translate>,
                 difficulty: "easy",
                 length: "5",
                 prerequisite: false,
@@ -132,7 +132,7 @@ class Tutorials extends React.Component {
               },
               {
                 title: <translate>Creating Your First Substrate Chain</translate>,
-                text: <translate>A minimal end to end guide to build and interact with your first custom Substrate chain.</translate>,
+                text: <translate>A minimal, end-to-end guide to build and interact with your first custom Substrate chain.</translate>,
                 difficulty: "easy",
                 length: "< 1",
                 prerequisite: false,
@@ -149,7 +149,7 @@ class Tutorials extends React.Component {
               {
                 img: `${baseUrl}img/crates.png`,
                 title: <translate>Write a Runtime Module in its Own Crate</translate>,
-                text: <translate>Make your runtime modules more re-usable by packaging them in their own rust crate.</translate>,
+                text: <translate>Make your runtime modules re-usable by packaging them in their own rust crate.</translate>,
                 difficulty: "medium",
                 length: "2",
                 prerequisite: false,
@@ -165,7 +165,7 @@ class Tutorials extends React.Component {
               },
               {
                 title: "Adding a Module to Your Runtime",
-                text: "Add the Contract module or other SRML modules to your Substrate node template.",
+                text: "Add the Contracts module or other SRML modules to your Substrate node template.",
                 difficulty: "medium",
                 length: "2",
                 prerequisite: false,
@@ -191,7 +191,7 @@ class Tutorials extends React.Component {
               {
                 img: `${baseUrl}img/substrate-contracts-workshop.png`,
                 title: <translate>Substrate Contracts Workshop</translate>,
-                text: <translate>A comprehensive end to end tutorial for building an ERC20 token using Parity Substrate and ink!.</translate>,
+                text: <translate>A comprehensive, end-to-end tutorial for building an ERC20 token using Parity Substrate and ink!.</translate>,
                 difficulty: "easy",
                 length: "4",
                 prerequisite: false,
@@ -200,7 +200,7 @@ class Tutorials extends React.Component {
               {
                 img: `${baseUrl}img/ink-placeholder.png`,
                 title: <translate>Deploying Your First Contract</translate>,
-                text: <translate>A simple guide which helps you understand the process of deploying smart contracts on Substrate.</translate>,
+                text: <translate>A simple guide that helps you understand the process of deploying smart contracts on Substrate.</translate>,
                 difficulty: "easy",
                 length: "1",
                 prerequisite: false,
@@ -209,7 +209,7 @@ class Tutorials extends React.Component {
               {
                 img: `${baseUrl}img/ink-placeholder.png`,
                 title: <translate>Writing Your First Contract</translate>,
-                text: <translate>A simple guide which helps you write your first 'flipper' contract.</translate>,
+                text: <translate>A simple guide that helps you write your first 'flipper' contract.</translate>,
                 difficulty: "easy",
                 length: "1",
                 prerequisite: false,

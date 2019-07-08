@@ -2,7 +2,7 @@
 title: "Creating a Runtime Module"
 ---
 
-In this tutorial, you'll write a Substrate runtime module that lives in its own crate, and include it in a node based on the node-template. If you prefer you can follow along with the [video walkthrough](todo record after initial feedback).
+In this tutorial, you'll write a Substrate runtime module that lives in its own crate, and include it in a node based on the node-template.
 
 ## Setup Your Development Environment
 
@@ -118,19 +118,16 @@ The final section of the `Cargo.toml` file specifies the dev dependencies. These
 ```toml
 
 [dev-dependencies.primitives]
-default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'substrate-primitives'
 branch = 'v1.0'
 
 [dev-dependencies.runtime-primitives]
-default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'sr-primitives'
 branch = 'v1.0'
 
 [dev-dependencies.runtime-io]
-default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'sr-io'
 branch = 'v1.0'

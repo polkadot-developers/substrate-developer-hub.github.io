@@ -77,7 +77,7 @@ class Index extends React.Component {
       <Row>
         <HotspotCard
           title={<translate>Documentation</translate>}
-          text={<translate>Substrate provides both high level documentation which you can find here and reference level documentation in the form of Rust docs.</translate>}
+          text={<translate>Substrate has both high-level documentation, which you can find here, and reference documentation in the form of Rust docs.</translate>}
         >
           <Button
             variant="secondary"
@@ -115,7 +115,7 @@ class Index extends React.Component {
         </HotspotCard>
         <HotspotCard
           title={<translate>Tutorials</translate>}
-          text={<translate>Substrate has a range of tutorials which will get you building in a short amount of time. You can also find a bunch of different code snippets for common patterns for runtime development in our Substrate Recipes page.</translate>}
+          text={<translate>Substrate has a range of tutorials that will get you building in a short amount of time. You can also find code snippets for common runtime development patterns on our Substrate Recipes page.</translate>}
         >
           <Button
             variant="secondary"
@@ -182,9 +182,9 @@ class Index extends React.Component {
         title={<translate>Smart Contract Ready</translate>}
       >
         <translate>
-          Substrate has a Wasm smart contract platform which you can use out of
+          Substrate has a Wasm smart contract platform that you can use out of
           the box. Because Substrate uses Wasm, you can build your smart contracts
-          using any compatible language. We have built ink!, a Rust based eDSL for
+          using any compatible language. We have built ink!, a Rust-based eDSL for
           this purpose.
         </translate>
       </Feature>
@@ -198,8 +198,8 @@ class Index extends React.Component {
         title={<translate>(Almost) Production Ready</translate>}
       >
         <translate>
-          Substrate is the backbone which powers Polkadot, a next generation,
-          heterogeneous, multi-chain network. Most 'parachains' which will connect to
+          Substrate is the backbone that powers Polkadot, a next generation,
+          heterogeneous, multi-chain network. Most 'parachains' that will connect to
           this network are also built on Substrate. Substrate is undergoing a security
           audit in preparation for a 2020 release of the Polkadot network. Take a look
           below for some of the users who are already using Substrate for their projects.

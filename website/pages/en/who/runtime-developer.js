@@ -43,15 +43,15 @@ class RuntimeDeveloper extends React.Component {
             <translate>
               Before you start your journey you should become familiar with
               resources that can help you along the way. We have high level
-              documentation which can help clarify unknown terms or give you a
+              documentation that can help clarify unknown terms or give you a
               bigger picture about what Substrate is. We have a
             </translate>
             {" "}
             <code>[substrate]</code>
             {" "}
             <translate>
-              StackOverflow tag which you can use to ask
-              technical questions or find existing answers. Finally we have a
+              StackOverflow tag that you can use to ask
+              technical questions or find existing answers. Finally, we have a
               friendly and technical chat room of developers who are happy to help
               you at any point during your journey.
             </translate>
@@ -84,7 +84,7 @@ class RuntimeDeveloper extends React.Component {
           </h3>
           <p>
             <translate>
-              The first thing you need to do is set up Substrate on your computer!
+              The first thing you need to do is set up Substrate on your computer.
               The instructions vary depending on which operating system you use,
               so take a look at the guide here to find the instructions that work
               for you.
@@ -102,8 +102,8 @@ class RuntimeDeveloper extends React.Component {
           <h3 className="mt-3">Substrate Collectables Workshop</h3>
           <p>
             <translate>
-              Next follow our Substrate Collectables Workshop to get a deep dive
-              into runtime development. We will walk you through the end to end
+              Next, follow our Substrate Collectables Workshop to get a deep dive
+              into runtime development. We will walk you through the end-to-end
               process of building a non-fungible token DApp chain, running your
               chain, and even building a user interface!
             </translate>
@@ -118,15 +118,15 @@ class RuntimeDeveloper extends React.Component {
         </Timespot>
         <Timespot>
           <h3 className="mt-3">
-            <translate>Reference Level Documentation</translate>
+            <translate>Reference Documentation</translate>
           </h3>
           <p>
             <translate>
               Now that you are more familiar with Substrate and runtime
-              development, you can jump into the reference level documentation
+              development, you can jump into the reference documentation,
               which lives next to the core Substrate code. To start, you can try
               investigating our Substrate Runtime Module Library (SRML) by
-              searching for "srml". You should now be able to read the code which
+              searching for "srml". You should now be able to read the code that
               powers these modules and extend your knowledge by looking at common
               patterns found within them.
             </translate>
@@ -146,8 +146,8 @@ class RuntimeDeveloper extends React.Component {
           <p>
             <translate>
               You are now ready to start building your own Runtime logic! Do not
-              forget about the community and documentation resources that we have
-              equipped you with on this journey.
+              forget about the community and documentation resources available to you
+              on this journey.
             </translate>
           </p>
           <Button
