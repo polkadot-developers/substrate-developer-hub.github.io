@@ -1,5 +1,7 @@
 ---
-title: "Introduction"
+title: Introduction
+id: version-1.0.0-index
+original_id: index
 ---
 
 This is an intermediate level guide to help you get started with building complex DAppChains using the Substrate framework. If you are new to Substrate, we recommend you first start with any of the following beginner level tutorials to have the basic concepts covered.
