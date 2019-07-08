@@ -18,6 +18,7 @@
     "Runtime": [
       "version-1.0.0-runtime/architecture-of-a-runtime",
       "version-1.0.0-runtime/substrate-runtime-module-library",
+      "version-1.0.0-runtime/initializing-storage",
       {
         "type": "subcategory",
         "label": "Runtime Macros",

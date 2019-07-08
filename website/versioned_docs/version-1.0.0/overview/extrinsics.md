@@ -17,7 +17,7 @@ Inherents are, generally speaking, not signed nor do they have any other cryptog
 
 To give an example, there is the timestamp inherent, which sets the current timestamp of the block. This is not a fixed part of Substrate, but does come as part of the <<glossary:SRML>> to be used as desired. No signature could fundamentally prove that a block were authored at a given time in quite the same way that a signature can "prove" the desire to transfer some particular funds. Rather, it is the business of each validator to ensure that they believe the timestamp is set to something reasonable before they agree that the block candidate is valid.
 
-Another example is the the "note-missed-proposal" extrinsic used in the <<glossary:SRML>> to determine and punish or deactivate offline validators. Again, this is little more than the declaration of a validator's opinion and it is up to the chain's runtime logic to determine what action to take on that "opinion", if any.
+Another example is the "note-missed-proposal" extrinsic used in the <<glossary:SRML>> to determine and punish or deactivate offline validators. Again, this is little more than the declaration of a validator's opinion and it is up to the chain's runtime logic to determine what action to take on that "opinion", if any.
 
 ## Blocks and the Extrinsic Trie
 

@@ -1,5 +1,5 @@
 ---
-title: "Cargo Contract: The ink! CLI"
+title: The ink! CLI
 id: version-1.0.0-cargo-contract
 original_id: cargo-contract
 ---

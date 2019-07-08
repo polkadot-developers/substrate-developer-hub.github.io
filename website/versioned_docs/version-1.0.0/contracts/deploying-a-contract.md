@@ -91,7 +91,7 @@ To instantiate our contract we just need to give this contract account an _endow
 
 > **Note:** As mentioned earlier, contract creation involves creation of a new Account. As such, you must be sure to give the contract account at least the existential deposit defined by your blockchain. This is why we set the `endowment` to `10,000`.
 
-When you press **Instantiate**, you should see a flurry of events appear including the creation of a new account (`balances.NewAccount`) and the instantiation of the contract (`contract.Instantiated`):
+When you press **Deploy**, you should see a flurry of events appear including the creation of a new account (`balances.NewAccount`) and the instantiation of the contract (`contract.Instantiated`):
 
 ![An image of events from instantiation of Flipper](/img/flipper-instance-events.png)
 

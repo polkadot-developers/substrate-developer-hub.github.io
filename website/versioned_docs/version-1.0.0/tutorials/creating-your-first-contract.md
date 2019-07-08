@@ -384,6 +384,6 @@ mod tests {
 
 Now that you have gotten a taste for writing smart contracts with ink!, it's time to deploy and test them!
 
-Learn how to [deploy a smart contract](contracts/deploying-a-contract).
+Learn how to [deploy a smart contract](contracts/deploying-a-contract.md).
 
 Join the ink! development community! Check out our resources on our [community page](/community/).

@@ -24,18 +24,18 @@ If you are not sure where you should get started, check out our **Guided User St
 
 ## Tutorials
 
-We have created many end to end tutorials to help you learn about the different parts of Substrate. Go to [Tutorials](/tutorials/) page and start building today!
+We have created many end-to-end tutorials to help you learn about the different parts of Substrate. Go to the [Tutorials](/tutorials/) page and start building today!
 
 ## Products
 
-Within the Substrate ecosystem, you can build blockchains, smart contracts, and even user interfaces! Here is a quick overview of the different products which comprise this space:
+Within the Substrate ecosystem, you can build blockchains, smart contracts, and even user interfaces! Here is a quick overview of the different products that comprise this space:
 
-* [Substrate](https://github.com/paritytech/substrate): A next generation blockchain development framework built using WebAssembly, Libp2p and GRANDPA Consensus.
-* [ink!](https://github.com/paritytech/ink): A Rust based eDSL for building WebAssembly smart contracts compatible with Substrate's Contract module.
+* [Substrate](https://github.com/paritytech/substrate): A next generation blockchain development framework built using WebAssembly, Libp2p, and GRANDPA consensus.
+* [ink!](https://github.com/paritytech/ink): A Rust-based eDSL for building WebAssembly smart contracts compatible with Substrate's Contracts module.
 * [Polkadot-JS/API](https://github.com/polkadot-js/api): Promise and RxJS APIs for interacting with Substrate-based chains via RPC calls.
 * [Polkadot-JS/Apps](https://github.com/polkadot-js/apps): A basic UI for interacting with all features of a Substrate node. Powered by Polkadot-JS/API.
 * [oo7-substrate](https://github.com/paritytech/oo7/tree/master/packages/oo7-substrate): A ReactJS based API for interacting with Substrate-based chains via RPC Calls. Also known as the "Bonds" library.
-* [Substrate UI](https://github.com/paritytech/substrate-ui): A basic ReactJS based UI built for quickly building new interfaces for Substrate chains. Powered by oo7-substrate.
+* [Substrate UI](https://github.com/paritytech/substrate-ui): A basic ReactJS-based UI built for quickly building new interfaces for Substrate chains. Powered by oo7-substrate.
 
 ## Join the Community
 
@@ -43,4 +43,4 @@ Substrate has a rapidly growing, friendly, and technical community. Ask question
 
 ## Something Missing?
 
-If you find something missing in our developer hub, have a suggestion for additional docs, or find some part confusing, please [open an issue on our documentation repository](https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues) with your suggestions for improvement. We would love to continually improve our developer hub.
+If you find something missing in our Developer Hub, have a suggestion for additional docs, or find some part confusing, please [open an issue on our documentation repository](https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues) with your suggestions for improvement. We would love to continually improve our Developer Hub.
