@@ -157,6 +157,8 @@ default_features = false
 path = "../../test_module"
 ```
 
+> You **must** set `default_features = false` so that your runtime will successfully compile to wasm.
+
 And just as before, we need to tell the module to only build its `std` feature when the runtime itself does.
 ```toml
 std = [
