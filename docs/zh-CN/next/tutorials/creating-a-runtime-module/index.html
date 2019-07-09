@@ -120,6 +120,9 @@
 <span class="token key property">default_features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
 <span class="token key property">path</span> <span class="token punctuation">=</span> <span class="token string">"../../test_module"</span>
 </code></pre>
+<blockquote>
+<p>You <strong>must</strong> set <code>default_features = false</code> so that your runtime will successfully compile to wasm.</p>
+</blockquote>
 <p>And just as before, we need to tell the module to only build its <code>std</code> feature when the runtime itself does.</p>
 <pre><code class="hljs css language-toml"><span class="token key property">std</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span>
   <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
