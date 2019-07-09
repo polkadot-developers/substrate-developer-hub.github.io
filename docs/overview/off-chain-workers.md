@@ -1,5 +1,5 @@
 ---
-title: "Substrate Off-Chain Workers"
+title: "Off-Chain Workers"
 ---
 
 There is often a need to query and/or process off-chain data before it can be included in the on-chain state. The conventional way of doing this is through oracles. Oracles are external services that typically listen to blockchain events and trigger tasks accordingly. When these tasks complete, their result is submitted back to the blockchain using transactions. While this approach works, it still has several flaws with respect to security, scalability, and infrastructure efficiency.
