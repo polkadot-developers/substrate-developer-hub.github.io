@@ -10,7 +10,7 @@ To make the off-chain data integration secure and more efficient, Substrate prov
 
 Off-chain workers have their own Wasm execution environment outside of the Substrate runtime. This separation of concerns is to make sure that the block production is not impacted by the long-running tasks. However, as the off-chain workers are declared in the same code as the runtime, they can easily access on-chain state for their computations.
 
-Off-chain workers can be initiated from within a special function in the runtime modules - `offchain_worker(_n: T::BlockNumber)`. The function is executed after block import. To communicate results back to the chain, off-chain workers can submit extrinsics (signed or inherent) that are later included in subsequent blocks.
+Off-chain workers can be initiated from within a special function in the runtime modules - `offchain_worker(_n: T::BlockNumber)`. The function is executed after block import. To communicate results back to the chain, off-chain workers can submit extrinsics that are later included in subsequent blocks.
 
 It is to be noted that the results from off-chain workers are not subject to regular consensus. An on-chain verification mechanism (e.g. voting, averaging, challenging or simply "trusting") should be implemented to determine what information gets into the chain.
 
@@ -37,5 +37,6 @@ The following APIs are planned to be supported by off-chain workers:
 4. HTTP requests
 5. Key generation
 6. Random number generation
+7. Timestamp
 
 **Note:** Some of these APIs are still under development. More information and usage documentation will be published as and when the APIs are available for use.
