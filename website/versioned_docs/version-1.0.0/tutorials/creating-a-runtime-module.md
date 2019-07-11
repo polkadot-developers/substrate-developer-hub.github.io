@@ -57,9 +57,11 @@ Let's explore some of the things we did for you in this Substrate module templat
 
 ### Your Module's `std` Feature
 
-In your `Cargo.toml` file, you will notice a few lines about the "`std` feature". In Rust, when you enable `std`, you give your project access to [the Rust standard libraries](https://doc.rust-lang.org/std/). This works just fine when building native binaries for your computer to run a Substrate node.
+In your `Cargo.toml` file, you will notice a few lines about the "`std` feature". In Rust, when you enable `std`, you give your project access to [the Rust standard libraries](https://doc.rust-lang.org/std/). This works just fine when building native binaries.
 
-However, Substrate also builds the runtime code to Wasm, which does not use the Rust standard libraries. Thus, all the dependencies we use for our module and our entire runtime must be able to compile with [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html). Our `Cargo.toml` file tells our module's dependencies to only use their `std` feature when this module also uses its `std` feature. You may need to configure your additional dependencies like so:
+However, Substrate also builds the runtime code to Wasm. In this case we use cargo features to disable the Rust standard library when compiling for Wasm because [wasm-unknown-unknown](https://github.com/rust-lang/rust/pull/45905) does not know which allocator to use.
+
+Thus, all the dependencies we use for our module, and our entire runtime, must be able to compile with [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html). Our `Cargo.toml` file tells our module's dependencies to only use their `std` feature when this module also uses its `std` feature like so:
 
 ```toml
 [features]
@@ -70,6 +72,12 @@ std = [
     'system/std',
 ]
 ```
+
+> In general, when adding dependencies to your runtime, follow this pattern.
+>
+> 1. Add a feature called `std`
+> 2. Enable this feature by default in your Cargo.toml
+> 3. When compiling for Wasm, the feature is disabled
 
 ### Consistent Substrate Dependencies
 
