@@ -75,7 +75,7 @@ std = [
 
 All Substrate modules will depend on some low level module libraries such as `srml-system` and `srml-support`. These libraries are pulled from the main Substrate GitHub repository. When people build their own Substrate nodes, they will also have dependencies on the main Substrate repository.
 
-Because of this, you will need to be careful to ensure consistant dependencies from your module and the node integrating your module to the Substrate repository. If your module is depdendent on one version of Substrate, and the node is dependent on another, compilation will run into errors where the Substrate versions may be incompatible, or the two versions of the same library are being used. Ultimately Cargo will not be able to resolve those conflicts and you will get a compile time error.
+Because of this, you will need to be careful to ensure consistent dependencies from your module and the node integrating your module to the Substrate repository. If your module is dependent on one version of Substrate, and the node is dependent on another, compilation will run into errors where the Substrate versions may be incompatible, or the two versions of the same library are being used. Ultimately Cargo will not be able to resolve those conflicts and you will get a compile time error.
 
 So when building your module have two options:
 
