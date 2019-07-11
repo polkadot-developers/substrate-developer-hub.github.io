@@ -1,5 +1,5 @@
 ---
-title: Using the Substrate node and module setup scripts
+title: Using the Substrate Scripts
 id: version-1.0.0-using-the-substrate-scripts
 original_id: using-the-substrate-scripts
 ---
