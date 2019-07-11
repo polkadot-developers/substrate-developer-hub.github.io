@@ -49,8 +49,9 @@
 </code></pre>
 <p>Let's explore some of the things we did for you in this Substrate module template. We will start by looking at the <code>Cargo.toml</code> file.</p>
 <h3><a class="anchor" aria-hidden="true" id="your-module-s-std-feature"></a><a href="#your-module-s-std-feature" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Your Module's <code>std</code> Feature</h3>
-<p>In your <code>Cargo.toml</code> file, you will notice a few lines about the &quot;<code>std</code> feature&quot;. In Rust, when you enable <code>std</code>, you give your project access to <a href="https://doc.rust-lang.org/std/">the Rust standard libraries</a>. This works just fine when building native binaries for your computer to run a Substrate node.</p>
-<p>However, Substrate also builds the runtime code to Wasm, which does not use the Rust standard libraries. Thus, all the dependencies we use for our module and our entire runtime must be able to compile with <a href="https://rust-embedded.github.io/book/intro/no-std.html"><code>no_std</code></a>. Our <code>Cargo.toml</code> file tells our module's dependencies to only use their <code>std</code> feature when this module also uses its <code>std</code> feature. You may need to configure your additional dependencies like so:</p>
+<p>In your <code>Cargo.toml</code> file, you will notice a few lines about the &quot;<code>std</code> feature&quot;. In Rust, when you enable <code>std</code>, you give your project access to <a href="https://doc.rust-lang.org/std/">the Rust standard libraries</a>. This works just fine when building native binaries.</p>
+<p>However, Substrate also builds the runtime code to Wasm. In this case we use cargo features to disable the Rust standard library when compiling for Wasm because <a href="https://github.com/rust-lang/rust/pull/45905">wasm-unknown-unknown</a> does not know which allocator to use.</p>
+<p>Thus, all the dependencies we use for our module, and our entire runtime, must be able to compile with <a href="https://rust-embedded.github.io/book/intro/no-std.html"><code>no_std</code></a>. Our <code>Cargo.toml</code> file tells our module's dependencies to only use their <code>std</code> feature when this module also uses its <code>std</code> feature like so:</p>
 <pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">features</span><span class="token punctuation">]</span>
 <span class="token key property">default</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token table class-name">'std'</span><span class="token punctuation">]</span>
 <span class="token key property">std</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span>
@@ -59,6 +60,14 @@
     <span class="token string">'system/std'</span><span class="token punctuation">,</span>
 <span class="token punctuation">]</span>
 </code></pre>
+<blockquote>
+<p>In general, when adding dependencies to your runtime, follow this pattern.</p>
+<ol>
+<li>Add a feature called <code>std</code></li>
+<li>Enable this feature by default in your Cargo.toml</li>
+<li>When compiling for Wasm, the feature is disabled</li>
+</ol>
+</blockquote>
 <h3><a class="anchor" aria-hidden="true" id="consistent-substrate-dependencies"></a><a href="#consistent-substrate-dependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Consistent Substrate Dependencies</h3>
 <p>All Substrate modules will depend on some low level module libraries such as <code>srml-system</code> and <code>srml-support</code>. These libraries are pulled from the main Substrate GitHub repository. When people build their own Substrate nodes, they will also have dependencies on the main Substrate repository.</p>
 <p>Because of this, you will need to be careful to ensure consistent dependencies from your module and the node integrating your module to the Substrate repository. If your module is dependent on one version of Substrate, and the node is dependent on another, compilation will run into errors where the Substrate versions may be incompatible, or the two versions of the same library are being used. Ultimately Cargo will not be able to resolve those conflicts and you will get a compile time error.</p>
