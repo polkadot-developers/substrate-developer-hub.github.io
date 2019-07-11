@@ -1,5 +1,5 @@
 ---
-title: "Using the Substrate node and module setup scripts"
+title: "Using the Substrate Scripts"
 ---
 
 The [`substrate-up`](https://github.com/paritytech/substrate-up) scripts allow you to set up ready-to-hack Substrate nodes or runtime modules.

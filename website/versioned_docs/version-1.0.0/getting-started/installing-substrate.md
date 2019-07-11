@@ -115,6 +115,8 @@ If you want to hack on Substrate itself, or manually build the node, you can clo
 git clone https://github.com/paritytech/substrate.git
 ```
 
+Before you can compile the project, you will need to install build prerequisites. You can take a look at [getsubstrate.io](https://getsubstrate.io/) to see the exact prerequisites needed for your operating system.
+
 Then you can build the node with
 
 ```bash
