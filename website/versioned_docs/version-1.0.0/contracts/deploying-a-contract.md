@@ -13,6 +13,7 @@ After successfully [installing Substrate](getting-started/installing-substrate.m
 ```bash
 substrate --dev
 ```
+> **Note:** For compatibility be sure you are using [stable, known working version of the Substrate Node Template for this tutorial, `contract` branch](https://github.com/shawntabrizi/substrate-package/tree/contract) 
 
 ![An image of the terminal starting a Substrate node](/img/start-substrate-node.png)
 
