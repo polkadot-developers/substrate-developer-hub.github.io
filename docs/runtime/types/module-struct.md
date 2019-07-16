@@ -65,20 +65,6 @@ impl<T: Trait> ::srml_support::dispatch::Callable for Module<T> {
 }
 ```
 
-There is also a `dispatch` function that redirect the request to the module's `Call` enum:
-
-```rust
-impl<T: Trait> Module<T> {
-    #[doc(hidden)]
-    pub fn dispatch<D: ::srml_support::dispatch::Dispatchable<Trait=T>>(
-        d: D,
-        origin: D::Origin,
-    ) -> ::srml_support::dispatch::Result {
-        d.dispatch(origin)
-    }
-}
-```
-
 ### Implementations for Storage
 
 Our `Module` struct implements the `Store` trait by specifying the concrete types like `Something<T>` struct to the associate types in `Store` trait. Go to [Store Trait](TODO) page for more knowledge around module's storage.
