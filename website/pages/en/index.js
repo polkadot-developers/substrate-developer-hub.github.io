@@ -160,7 +160,7 @@ class Index extends React.Component {
           </li>
           <li>
             <translate>Modular P2P networking stack in</translate>{" "}
-            <a href="https://github.com/libp2p">libp2p</a>.
+            <a href="https://github.com/libp2p">libp2p</a><translate>.</translate>
           </li>
           <li>
             <translate>Hot-swappable consensus layer.</translate>
@@ -242,11 +242,11 @@ class Index extends React.Component {
         <HomeSplash
           siteConfig={siteConfig}
           language={language}
-          title={siteConfig.title}
-          tagline={siteConfig.tagline}
+          title={<translate>Substrate Developer Hub</translate>}
+          tagline={<translate>The place for blockchain innovators.</translate>}
           buttons={[
-            { name: "Get Started", href: `${docUrl('getting-started')}` },
-            { name: "Try a Tutorial", href: `${pageUrl('tutorials')}`},
+            { name: <translate>Get Started</translate>, href: `${docUrl('getting-started')}` },
+            { name: <translate>Try a Tutorial</translate>, href: `${pageUrl('tutorials')}`},
           ]}
           padding={5}
         />
