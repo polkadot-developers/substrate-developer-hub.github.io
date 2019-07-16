@@ -6,7 +6,7 @@ When developing runtime in Substrate, you need to declare a `Module` struct for 
 
 There are a few code snippets in following sections to show parts of `Module` struct implementations. If you are interested in what's fully expanded code look like for your module, try using [cargo-expand](https://github.com/dtolnay/cargo-expand) by following its instructions.
 
-## The Definition of  Module Struct
+## The Definition of Module Struct
 
 Here is template runtime module provided by the node-template, it contains following code along with `decl_module!` macro:
 
@@ -31,17 +31,14 @@ decl_module! {
 Let's look at the code that shows the definition of `Module` struct after expanded. It has a type parameter `T` which bounds to the module's configuration `Trait`. [PhantomData](https://doc.rust-lang.org/beta/std/marker/struct.PhantomData.html) is used to indicate what type of data our `Module` struct is "tied" to, but not found in our struct.
 
 ```rust
-#[cfg(feature = "std")]
-#[structural_match]
-#[rustc_copy_clone_marker]
+/// The module's configuration trait.
+pub trait Trait: system::Trait {
+    /// The overarching event type.
+    type Event: From<Event<Self>> + Into<<Self as system::Trait>::Event>;
+}
+    
 pub struct Module<T: Trait>(::std::marker::PhantomData<(T)>);
 ```
-
-> *Notes:*
->
-> * The attribute `#[cfg(feature = "std")]` tells the Rust compiler to only compile our struct when using along with the Rust standard library.
-> * [`structural_match`](https://github.com/rust-lang/rfcs/pull/1445) is used to indicates that instances of the `Module` struct can be used within patterns.
-> * `rustc_copy_clone_marker` indicates the `Module` struct is able to be either copied or cloned.
 
 ## Functions and Implementations
 
@@ -60,7 +57,7 @@ impl<T: Trait> Module<T> {
 }
 ```
 
-`Module` struct implements the `Callable` trait in `srml-support` by specifying the associate type to be the module's `Call` enum. Above dispatchable functions will be exposed through this enum, go to its own page for more details about [`Call` enum]((runtime/types/call-enum.md)).
+`Module` struct implements the `Callable` trait in `srml-support` by specifying the associate type to be the module's `Call` enum. Above dispatchable functions will be exposed through this enum, go to its own page for more details about [`Call` Enum](runtime/types/call-enum.md).
 
 ```rust
 impl<T: Trait> ::srml_support::dispatch::Callable for Module<T> {
@@ -84,41 +81,17 @@ impl<T: Trait> Module<T> {
 
 ### Implementations for Storage
 
-The input codes for the `decl_storage!` procedure macro in template module are:
+Our `Module` struct implements the `Store` trait by specifying the concrete types like `Something<T>` struct to the associate types in `Store` trait. Go to [Store Trait](TODO) page for more knowledge around module's storage.
 
 ```rust
-/// This module's storage items.
-decl_storage! {
-    trait Store for Module<T: Trait> as TemplateModule {
-        // Just a dummy storage item. 
-        // Here we are declaring a StorageValue, `Something` as a Option<u32>
-        // `get(something)` is the default getter which returns either the stored `u32` or `None` if nothing stored
-        Something get(something): Option<u32>;
-    }
-}
-```
-
-After expanded, we'll see a `Store` implementation for `Module` struct. The `Store` trait here is an abstract layer that places all the associate types for module's available storage items. `Module` struct implements this trait by specifying the concrete types like `Something<T>` struct.
-
-```rust
-trait Store {
-    type Something;
-}
-
-struct Something<T: Trait>(
-    self::sr_api_hidden_includes_decl_storage::hidden_include::storage::generator::PhantomData<
-        (T),
-    >,
-);
-
 impl<T: Trait> Store for Module<T> {
     type Something = Something<T>;
 }
 ```
 
-The `Module` struct also implements the default getter functions for storage items and the query for storage metadata. Go to [Metadata of Your Module](#metadata-of-your-module) section to give a glimpse at details. 
+It also provides the default getter functions for storage items and the query functions for storage metadata. [Metadata of Your Module](#metadata-of-your-module) section gives an overview of module's metadata.
 
-### Deposit Event in Module
+### Implementations for Event
 
 Remember the `deposit_event` function defined in the `decl_module!` macro? It will call the `deposit_event` function in `srml-system` runtime module to deposit an event into block's event record.
 
@@ -134,7 +107,7 @@ Refer to [Event Enum](runtime/types/event-enum.md) for more knowledge around eve
 
 ### Utilities for Block Execution
 
-There is three privileged functions that can be define in runtime modules:
+There are three reserved functions that can be defined in runtime modules:
 
 1. `on_initialize` function lets you express what should happen for your module when the block is beginning (right before the first extrinsic is applied).
 2. `on_finalize` function lets you express what should happen for your module when the block is ending.
