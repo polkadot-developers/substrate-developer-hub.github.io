@@ -30,7 +30,7 @@ decl_module! {
 }
 ```
 
-Let's look at the code that shows the definition of `Module` struct after expanded. It has a type parameter `T` which bounds to the module's configuration `Trait`. [PhantomData](https://doc.rust-lang.org/beta/std/marker/struct.PhantomData.html) is used to indicate what type of data our `Module` struct is "tied" to, but not found in our struct.
+Let's look at the code that shows the definition of `Module` struct after expanded. It has a type parameter `T` which bounds to the module's configuration `Trait`.
 
 ```rust
 /// The module's configuration trait.
@@ -39,7 +39,7 @@ pub trait Trait: system::Trait {
     type Event: From<Event<Self>> + Into<<Self as system::Trait>::Event>;
 }
     
-pub struct Module<T: Trait>(::std::marker::PhantomData<(T)>);
+pub struct Module<T: Trait>;
 ```
 
 ## Functions and Implementations
@@ -119,7 +119,7 @@ impl<T: Trait> ::srml_support::runtime_primitives::traits::OffchainWorker<T::Blo
 
 ## Tuple of All The Modules
 
-Your `Module` struct then comes along with other used SRML modules to form a tuple called `AllModules` which will be tied to the `Executive` struct in `srml-executive`. 
+Your `Module` struct then comes along with other used SRML modules to form a tuple called `AllModules` which will be passed to the Executive module, handling dispatch to the various modules.
 
 ```rust
 pub type System = system::Module<Runtime>;

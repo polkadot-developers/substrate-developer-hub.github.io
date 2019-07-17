@@ -28,7 +28,7 @@ decl_module! {
 }
 ```
 
-Let's look at the code that shows the definition of `Module` struct after expanded. It has a type parameter `T` which bounds to the module's configuration `Trait`. [PhantomData](https://doc.rust-lang.org/beta/std/marker/struct.PhantomData.html) is used to indicate what type of data our `Module` struct is "tied" to, but not found in our struct.
+Let's look at the code that shows the definition of `Module` struct after expanded. It has a type parameter `T` which bounds to the module's configuration `Trait`.
 
 ```rust
 /// The module's configuration trait.
@@ -37,7 +37,7 @@ pub trait Trait: system::Trait {
     type Event: From<Event<Self>> + Into<<Self as system::Trait>::Event>;
 }
     
-pub struct Module<T: Trait>(::std::marker::PhantomData<(T)>);
+pub struct Module<T: Trait>;
 ```
 
 ## Functions and Implementations
