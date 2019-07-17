@@ -117,7 +117,7 @@ impl<T: Trait> ::srml_support::runtime_primitives::traits::OffchainWorker<T::Blo
 
 ## Tuple of All The Modules
 
-Your `Module` struct then comes along with other used SRML modules to form a tuple called `AllModules` which will be tied to the `Executive` struct in `srml-executive`. 
+Your `Module` struct then comes along with other used SRML modules to form a tuple called `AllModules` which will be passed to the Executive module, handling dispatch to the various modules.
 
 ```rust
 pub type System = system::Module<Runtime>;
