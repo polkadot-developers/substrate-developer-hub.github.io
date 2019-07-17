@@ -23,7 +23,7 @@ Using the events, we can insert into and update the off-chain storage either by 
 
 The following diagram shows how the event listener approach works.
 
-![substrate-listener](https://raw.githubusercontent.com/parity-samples/substrate-events-listener/master/img/substrate-listener.png)
+![substrate-listener](/docs/assets/substrate-listener.png)
 
 ## Sample code
 
