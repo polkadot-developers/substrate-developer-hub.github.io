@@ -27,7 +27,7 @@ Deploying a contract with the Contracts module takes two steps:
 
 This means that multiple contract instances, with different constructor arguments, can be initialized using the same Wasm code, reducing the amount of storage space needed by the Contracts module on your blockchain.
 
-### Runtime Environemt Types
+### Runtime Environment Types
 
 For writing contracts and interacting with the runtime, a set of types are available (e.g. `AccountId`, `Balance`, `Hash`, `Moment`). These types can be user defined for custom runtimes, or the supplied defaults can be used. See: [EnvTypes](contracts/env-types.md)
 
