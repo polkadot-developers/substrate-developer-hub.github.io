@@ -39,7 +39,7 @@ pub trait Trait: system::Trait {
     type Event: From<Event<Self>> + Into<<Self as system::Trait>::Event>;
 }
     
-pub struct Module<T: Trait>;
+pub struct Module<T: Trait>(PhantomData<(T)>);
 ```
 
 ## Functions and Implementations
@@ -62,7 +62,7 @@ impl<T: Trait> Module<T> {
 `Module` struct implements the `Callable` trait in `srml-support` by specifying the associate type to be the module's `Call` enum. Above dispatchable functions will be exposed through this enum, go to its own page for more details about [`Call` Enum](runtime/types/call-enum.md).
 
 ```rust
-impl<T: Trait> ::srml_support::dispatch::Callable for Module<T> {
+impl<T: Trait> Callable for Module<T> {
     type Call = Call<T>;
 }
 ```
@@ -104,15 +104,15 @@ There are three reserved functions that can be defined in runtime modules:
 The `decl_module!` macro will generate default implementations if you didn't provide your own:
 
 ```rust
-impl<T: Trait> ::srml_support::runtime_primitives::traits::OnInitialize<T::BlockNumber>
+impl<T: Trait> OnInitialize<T::BlockNumber>
     for Module<T>
 {}
 
-impl<T: Trait> ::srml_support::runtime_primitives::traits::OnFinalize<T::BlockNumber>
+impl<T: Trait> OnFinalize<T::BlockNumber>
     for Module<T>
 {}
 
-impl<T: Trait> ::srml_support::runtime_primitives::traits::OffchainWorker<T::BlockNumber>
+impl<T: Trait> OffchainWorker<T::BlockNumber>
     for Module<T>
 {}
 ```
@@ -149,7 +149,7 @@ pub type Executive = executive::Executive<Runtime, Block, Context, Balances, All
 
 ## Metadata of Your Module
 
-`Module` struct provides query functions for metadata of module's dispatchable functions and storage, the metadata for `Event` enum is actually in its own implementation. The following json shows the metadata of our template runtime module. Go to [this page](TODO) for more details around Substrate runtime metadata.
+`Module` struct provides functions to query the metadata of module's dispatchable functions and storage. For `Event` enum, the metadata is actually composed in its own implementation. Following content shows what the metadata looks like in JSON format for our template runtime module. Go to [The Metadata of Runtime](TODO) page for more details.
 
 ```json
 {
