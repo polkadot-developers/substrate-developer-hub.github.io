@@ -69,7 +69,7 @@ impl<T: Trait> Callable for Module<T> {
 
 ### Implementations for Storage
 
-Our `Module` struct implements the `Store` trait by specifying the concrete types like `Something<T>` struct to the associate types in `Store` trait. Go to [Store Trait](TODO) page for more knowledge around module's storage.
+Our `Module` struct implements the `Store` trait by specifying the concrete types like `Something<T>` struct to the associate types in `Store` trait. Go to [Store Trait](https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/15) page for more knowledge around module's storage.
 
 ```rust
 impl<T: Trait> Store for Module<T> {
@@ -149,7 +149,7 @@ pub type Executive = executive::Executive<Runtime, Block, Context, Balances, All
 
 ## Metadata of Your Module
 
-`Module` struct provides functions to query the metadata of module's dispatchable functions and storage. For `Event` enum, the metadata is actually composed in its own implementation. Following content shows what the metadata looks like in JSON format for our template runtime module. Go to [The Metadata of Runtime](TODO) page for more details.
+`Module` struct provides functions to query the metadata of module's dispatchable functions and storage. For `Event` enum, the metadata is actually composed in its own implementation. Following content shows what the metadata looks like in JSON format for our template runtime module. Go to [The Metadata of Runtime](https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/34) page for more details.
 
 ```json
 {
