@@ -8,7 +8,7 @@ The default Substrate node implements Session keys in the [Session module](/rust
 
 ## GRANDPA Key
 
-GRANDPA uses a BLS12-381 (Barreto-Lynn-Scott) key-pair for voting as it allows efficient signature aggregation with [BLS (Boneh-Lynn-Shachman) signatures](https://github.com/w3f/bls).
+GRANDPA uses a BLS12-381 (Barreto-Lynn-Scott) key-pair for voting, as it allows efficient signature aggregation with [BLS (Boneh-Lynn-Shachman) signatures](https://github.com/w3f/bls).
 
 ## VRF Key
 
