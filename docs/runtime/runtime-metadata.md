@@ -191,6 +191,4 @@ The response looks like following content, but with much more information in `re
 }
 ```
 
-The hexadecimal string in `result` field conforms to SCALE data format. Unfortunately there are no existing tools for languages except Rust and Javascript, which help you encode your request data and decode the response blob.
-
-If you need another implementation, chat with the community in [Substrate Technical](https://riot.im/app/#/room/#substrate-technical:matrix.org) room using Riot. You can even build your own codec for SCALE data format by following the specification in [parity-scale-codec](https://github.com/paritytech/parity-scale-codec). Don't be shy to ask any questions when you encounter problems.
+The hexadecimal string in `result` field conforms to SCALE data format. Go to [parity-scale-codec](https://github.com/paritytech/parity-scale-codec) project to learn how to decode the value and get more information about specification and implementations.
