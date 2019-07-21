@@ -1,24 +1,23 @@
 ---
-title: "Session Keys"
+title: "Session Certificate"
 ---
 
-A Session key (technically a Session Certificate) is comprised of three key-pairs that are used by validators for network operations and signing.
+The Session certificate is a set of three key-pairs that are used by nodes and validators for network operations and signing.
 
-The default substrate node uses session keys thanks in part to the [Session module](/rustdocs/v1.0/srml_session/index.html).
+The default Substrate node implements Session keys in the [Session module](/rustdocs/v1.0/srml_session/index.html).
 
+## GRANDPA Key
 
-## BLS (Boneh-Lynn-Shacham) key
-This first key is used for consensus signatures when voting since it is desirable to be used with the GRANDPA finality gadget. BLS is preferred for voting in consensus algorithms and threshold signatures as it allows more efficient signature aggregation than when using Schnorr signatures.
+GRANDPA uses a BLS12-381 (Barreto-Lynn-Scott) key-pair for voting as it allows efficient signature aggregation with [BLS (Boneh-Lynn-Shachman) signatures](https://github.com/w3f/bls).
 
+## VRF Key
 
-## Schnorrkel/Ristretto x25519 ("Sr25519") key
-This second key is used for producing blocks with BABE (using Schnorr signatures). It was created specifically to handle Substrate and Polkadot use cases. "Sr25519" is based on the same underlying Curve25519 as its EdDSA counterpart, Ed25519, but it uses Schnorr signatures instead of the EdDSA scheme, since they are more efficient, retain the same feature set and security assumptions, and allow for native multisignature through signature aggregation. It is superior to Ed25519 for implementing complex protocols.
+A [Schnorr/Ristretto x25519 ("sr25519")](https://github.com/w3f/schnorrkel) key is used for evaluating the verifiable random function (VRF) in BABE, a block production algorithm. It was created specifically to handle Substrate and Polkadot use cases. Sr25519 implements Schnorr signatures on a [Ristretto-compressed](https://ristretto.group) ed25519 curve.
 
-## Ed25519 key (using Schnorr signatures)
-This third key is used for identifying itself to other nodes over libp2p. It is used for simpler implementations like account keys that only need to provide signature capabilities. It has a broader support ecosystem (i.e. HSMs are already available for it).
+## Network Key
 
+A Substrate node uses an ed25519 key to identify itself to other nodes over [libp2p](https://github.com/libp2p/rust-libp2p). If you run a non-validating full node, we recommend using a self-generated network key in your configuration. However, if you don't provide one, then the client will generate one for you.
 
 ## Generation and Use
-The "Seed" of an account generated with `subkey` may be used as the Session key of only a single Substrate validator at any one time (i.e. using `substrate --key <SEED>`).
 
-Session keys are hot keys that must be kept online, so it is not recommended to store funds on accounts used for a Session key, as they may be cycled through (possibly automatically), and if the Session key is leaked or the validator node that uses the Session key is compromised then theft of funds may occur.
+Session keys are hot keys that must be kept online. They are not meant to be used as account keys. If one of the Session keys is compromised, the attacker could commit slashable behavior. Session keys may be changed regularly (e.g. every session) for increased security.
