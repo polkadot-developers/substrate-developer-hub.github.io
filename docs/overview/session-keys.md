@@ -8,7 +8,7 @@ The default Substrate node implements Session keys in the [Session module](/rust
 
 ## GRANDPA Key
 
-GRANDPA uses a BLS12-381 (Barreto-Lynn-Scott) key-pair for voting, as it allows efficient signature aggregation with [BLS (Boneh-Lynn-Shachman) signatures](https://github.com/w3f/bls).
+GRANDPA currently uses an ed25519 key for voting. In the future, it will use a BLS12-381 (Barreto-Lynn-Scott) key, as it allows efficient signature aggregation with [BLS (Boneh-Lynn-Shachman) signatures](https://github.com/w3f/bls).
 
 ## VRF Key
 
@@ -16,7 +16,7 @@ A [Schnorr/Ristretto x25519 ("sr25519")](https://github.com/w3f/schnorrkel) key 
 
 ## Network Key
 
-A Substrate node uses an ed25519 key to identify itself to other nodes over [libp2p](https://github.com/libp2p/rust-libp2p). If you run a non-validating full node, we recommend using a self-generated network key in your configuration. However, if you don't provide one, then the client will generate one for you.
+A Substrate node uses an ed25519 key to identify itself to other nodes over [libp2p](https://github.com/libp2p/rust-libp2p).
 
 ## Generation and Use
 
