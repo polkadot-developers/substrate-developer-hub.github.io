@@ -144,6 +144,6 @@ The response looks like following content, but with much more information in `re
 
 The hexadecimal string in `result` field wraps the runtime metadata in SCALE format. Go to [Low-level Data Format](overview/low-level-data-format.md) page to learn how to decode the value and get more information about the specification and implementations.
 
-> Notes: The encoded hex-string also wraps the information of metadata version and the hard coded metadata identifier. Check the [code](https://github.com/paritytech/substrate/blob/master/srml/metadata/src/lib.rs#L292) if you are interested.
+> Notes: The encoded hex-string also wraps the information of metadata version and the hard coded metadata identifier. Check the [code](https://github.com/paritytech/substrate/blob/v1.0/srml/metadata/src/lib.rs#L321) if you are interested.
 
 After decoding, you should be able to see similar metadata in above example.
