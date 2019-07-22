@@ -2,99 +2,18 @@
 title: "The Metadata of Runtime"
 ---
 
-In blockchain, the logic to process transactions and modify storage is usually called STF (State Transition Function). The more popular name among Substrate developers is runtime. 
+The metadata of runtime can really help you out in following scenarios:
 
-Substrate module-based metadata provides an overview of blockchain runtime. It helps external code introspect modules, storage items, dispatchable functions and events.
+* You want to interact with a Substrate blockchain, but don't have much idea about what features the blockchain provides.
+* You want to show the available storage entries and dispatchable functions for users who are using the GUI.
+
+Substrate provides module-based metadata to give an overview of your blockchain runtime. It helps external client to introspect modules, storage items, dispatchable functions and events.
 
 ## SRML Metadata
 
-**[Srml-metadata](https://github.com/paritytech/substrate/tree/master/srml/metadata)** is not a "well-known" component of [SRML](runtime/substrate-runtime-module-library.md), since it doesn't provide additional storage entries, dispatchable functions and events. 
+In Substrate, runtime metadata is consolidated and encoded automatically when developing runtime modules. The build-in **[srml-metadata](https://substrate.dev/rustdocs/v1.0/srml_metadata/index.html)** doesn't provide any additional storage entries, dispatchable functions or events. It simply provides the data structure to store the metadata of your blockchain runtime, and related codec to convert between raw data and bytes literal in [SCALE (Simple Concatenated Aggregate Little-Endian)](overview/low-level-data-format.md) format.
 
-It simply provides the data structure to store the overall runtime's metadata, and related codec to convert between raw data and bytes literal. Substrate framework uses the data format called SCALE (Simple Concatenated Aggregate Little-Endian), refer to [Low-level Data Format](overview/low-level-data-format.md) page for more information. 
-
-The structure of the runtime metadata could be changed in the future since Substrate framework is still in rapid evolvement. Here we are using `RuntimeMetadataV4` with Substrate v1.0 branch.
-
-```rust
-pub struct RuntimeMetadataV4 {
-    pub modules: DecodeDifferentArray<ModuleMetadata>,
-}
-```
-
-As you can see, the overall runtime's metadata is an array of module's metadata. These modules includes predefined SRML and your custom runtime modules. Each runtime module is mainly composed by storage entries, dispatchable functions and events.
-
-```rust
-pub struct ModuleMetadata {
-    pub name: DecodeDifferentStr,
-    pub prefix: DecodeDifferent<FnEncode<&'static str>, StringBuf>,
-    pub storage: ODFnA<StorageFunctionMetadata>,
-    pub calls: ODFnA<FunctionMetadata>,
-    pub event: ODFnA<EventMetadata>,
-}
-```
-
-Let's dig into the detail:
-* `name`: a string shows module's name.
-* `prefix`: an encodable function that produces store's metadata name.
-* `storage`: an array of storage entry's metadata which described in `StorageFunctionMetadata`. 
-* `calls`: an array of dispatchable function's metadata which described in `FunctionMetadata`.
-* `event`: an array of event's metadata which described in `EventMetadata`.
-
-```rust
-// The metadata about one storage entry
-pub struct StorageFunctionMetadata {
-    // The name of the storage entry
-    pub name: DecodeDifferentStr,
-    // The storage entry modifier: Optional or Default
-    pub modifier: StorageFunctionModifier,
-    // The storage entry type: Plain, Map or DoubleMap
-    pub ty: StorageFunctionType,
-    // The initiated byte value for this entry
-    pub default: ByteGetter,
-    // The documents of the storage entry
-    pub documentation: DecodeDifferentArray<&'static str, StringBuf>,
-}
-
-// The metadata about a function
-pub struct FunctionMetadata {
-    // The name of the function
-    pub name: DecodeDifferentStr,
-    // The arguments in function's definition, each includes parameter name and type.
-    pub arguments: DecodeDifferentArray<FunctionArgumentMetadata>,
-    // The documents of the function
-    pub documentation: DecodeDifferentArray<&'static str, StringBuf>,
-}
-
-// The metadata about an event
-pub struct EventMetadata {
-    // The name of the event
-    pub name: DecodeDifferentStr,
-    // The arguments of the event
-    pub arguments: DecodeDifferentArray<&'static str, StringBuf>,
-    // The documents of the event
-    pub documentation: DecodeDifferentArray<&'static str, StringBuf>,
-}
-```
-
-Substrate framework then prefixes the runtime metadata with a hard coded `u32` for reserved usage, and encodes to `Vec<u8>` blob for transferring.
-
-## How to Use The Metadata
-
-The metadata of runtime is consolidated and encoded automatically when developing runtime modules. There are a few scenarios that the metadata can really help you out:
-
-* You want to interact with a Substrate blockchain, but don't have much idea about what features the blockchain provides.
-* Show the available storage entries and dispatchable functions for blockchain users on your GUI.
-
-If you are using **Javascript**,  [polkadot-js/api](https://polkadot.js.org/api/) already provides friendly APIs to interact with Substrate blockchain, includes the function [getMetadata](https://polkadot.js.org/api/METHODS_RPC.html#json-rpc) to fetch the metadata of runtime.
-You can try following code snippets to fetch the metadata in this [Substrate UI](https://polkadot.js.org/apps/#/js) page:
-
-```javascript
-const { magicNumber, metadata } = await api.rpc.state.getMetadata();
-
-console.log( 'Magic number: ' + magicNumber );
-console.log( 'Metadata: ' + metadata.raw );
-```
-
-For demo purpose, we will show the metadata only includes `sudo` runtime module in JSON format:
+Before we dive into more detail, let's have a quick look at what information is included in the metadata. For demo purpose, we'll only show the metadata of [srml-sudo](https://substrate.dev/rustdocs/v1.0/srml_sudo/index.html) module in JSON format:
 
 ```json
 {
@@ -170,7 +89,39 @@ For demo purpose, we will show the metadata only includes `sudo` runtime module 
 }
 ```
 
-If you are using other languages to build your client, you can easily send **WebSocket message** or **HTTP POST request** to Substrate node endpoint with any existing client. The message or body for `getMetadata` is:
+As you can see, the metadata of overall runtime is an array of module's metadata. The included modules contain all the dependent SRML and custom runtime modules in your blockchain. 
+
+Now let's walk through each field in module's metadata:
+
+* `name`: the module's name.
+* `prefix`: the name of module's store.
+* `storage`: all the available storage entries in one module, each storage entry is then composed by:
+  * `name`: the storage entry's name.
+  * `modifier`: whether the entry is `Optional` or `Default`.
+  * `type`: the type of the storage entry, could be `PlainType`, `MapType` or `DoubleMapType`.
+  * `documentation`: notes for the entry.
+* `calls`: an array of dispatchable functions:
+  * `name`: the function's name.
+  * `args`: the arguments in function's definition, each includes parameter name and type.
+  * `documentation`: notes for the function.
+* `event`: all the defined events in a module:
+  * `name`: the event's name.
+  * `args`: the arguments in the event definition.
+  * `documentation`: notes for the event.
+  
+## Fetch The Metadata
+
+If you are using **Javascript**,  [polkadot-js/api](https://polkadot.js.org/api/) already provides friendly APIs to interact with Substrate blockchain, includes the [getMetadata](https://polkadot.js.org/api/METHODS_RPC.html#json-rpc) function.
+You can try following code snippets to fetch the metadata in this [Substrate UI](https://polkadot.js.org/apps/#/js) page:
+
+```javascript
+const { magicNumber, metadata } = await api.rpc.state.getMetadata();
+
+console.log( 'Magic number: ' + magicNumber );
+console.log( 'Metadata: ' + metadata.raw );
+```
+
+If you are using **other languages** to build your client, you can easily send **WebSocket message** or **HTTP POST request** to Substrate node endpoint by using any existing client. The message or body for `getMetadata` is:
 
 ```json
 {
@@ -191,4 +142,8 @@ The response looks like following content, but with much more information in `re
 }
 ```
 
-The hexadecimal string in `result` field conforms to SCALE data format. Go to [parity-scale-codec](https://github.com/paritytech/parity-scale-codec) project to learn how to decode the value and get more information about specification and implementations.
+The hexadecimal string in `result` field wraps the runtime metadata in SCALE format. Go to [Low-level Data Format](overview/low-level-data-format.md) page to learn how to decode the value and get more information about the specification and implementations.
+
+> Notes: The encoded hex-string also wraps the information of metadata version and the hard coded metadata identifier. Check the [code](https://github.com/paritytech/substrate/blob/master/srml/metadata/src/lib.rs#L292) if you are interested.
+
+After decoding, you should be able to see similar metadata in above example.
