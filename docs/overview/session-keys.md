@@ -2,7 +2,7 @@
 title: "Session Certificate"
 ---
 
-The Session certificate is a set of keys that validators use to sign messages. `SessionKeys` is a generic, indexable type that is made concrete in the runtime. You can declare any number of keys in the Session certificate. Polkadot, for example, uses [three keys](https://wiki.polkadot.network/en/latest/polkadot/learn/keys/#session-key) in its Session certificate: one for GRANDPA, one for BABE, and one for [libp2p](https://github.com/libp2p/rust-libp2p).
+The Session certificate is a set of keys that validators use to sign messages. `SessionKeys` is a generic, indexable type that is made concrete in the runtime. You can declare any number of keys in the Session certificate. Polkadot, for example, uses [three keys](https://wiki.polkadot.network/en/latest/polkadot/learn/keys/#session-key) in its Session certificate. Other chains could have more or fewer depending on what operations the chain expects its validators to perform.
 
 The default Substrate node implements Session keys in the [Session module](/rustdocs/v1.0/srml_session/index.html).
 
