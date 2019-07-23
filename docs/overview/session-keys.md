@@ -2,21 +2,9 @@
 title: "Session Certificate"
 ---
 
-The Session certificate is a set of three key-pairs that are used by nodes and validators for network operations and signing.
+The Session certificate is a set of keys that validators use to sign messages. `SessionKeys` is a generic, indexable type that is made concrete in the runtime. You can declare any number of keys in the Session certificate. Polkadot, for example, uses [three keys](https://wiki.polkadot.network/en/latest/polkadot/learn/keys/#session-key) in its Session certificate: one for GRANDPA, one for BABE, and one for [libp2p](https://github.com/libp2p/rust-libp2p).
 
 The default Substrate node implements Session keys in the [Session module](/rustdocs/v1.0/srml_session/index.html).
-
-## GRANDPA Key
-
-GRANDPA currently uses an ed25519 key for voting. In the future, it will use a BLS12-381 (Barreto-Lynn-Scott) key, as it allows efficient signature aggregation with [BLS (Boneh-Lynn-Shachman) signatures](https://github.com/w3f/bls).
-
-## VRF Key
-
-A [Schnorr/Ristretto x25519 ("sr25519")](https://github.com/w3f/schnorrkel) key is used for evaluating the verifiable random function (VRF) in BABE, a block production algorithm. It was created specifically to handle Substrate and Polkadot use cases. Sr25519 implements Schnorr signatures on a [Ristretto-compressed](https://ristretto.group) ed25519 curve.
-
-## Network Key
-
-A Substrate node uses an ed25519 key to identify itself to other nodes over [libp2p](https://github.com/libp2p/rust-libp2p).
 
 ## Generation and Use
 
