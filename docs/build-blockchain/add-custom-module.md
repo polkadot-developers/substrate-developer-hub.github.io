@@ -1,37 +1,6 @@
 ---
-title: "Using the Substrate Scripts"
+title: "Add Your Runtime Module"
 ---
-
-The [`substrate-up`](https://github.com/paritytech/substrate-up) scripts allow you to set up ready-to-hack Substrate nodes or runtime modules.
-
-To use these scripts, make sure you have completed the [Fast Installation](getting-started/installing-substrate.md#fast-installation) for running Substrate.
-
-These scripts update from time to time, so before you run them locally, make sure they are up to date by running:
-
-```bash
-f=`mktemp -d`
-git clone https://github.com/paritytech/substrate-up $f
-cp -a $f/substrate-* ~/.cargo/bin
-cp -a $f/polkadot-* ~/.cargo/bin
-```
-
-## substrate-node-new
-
-The `substrate-node-new` script downloads and compiles a copy of the [Substrate node template](https://github.com/paritytech/substrate/tree/v1.0/node-template). This gives you a ready-to-hack Substrate node with a template runtime module.
-
-Run the `substrate-node-new` command with the following parameters:
-
-```bash
-substrate-node-new <node-name> <author>
-```
-
-Where:
-
-* `<node-name>` is the name for your Substrate runtime. This is a _required_ parameter.
-
-* `<author>` shows the people or team who maintains this node runtime. This is a _required_ parameter.
-
-Once you run the `substrate-node-new` command, it will take a few minutes (depending on your hardware) to finish compilation.
 
 ## substrate-module-new
 
