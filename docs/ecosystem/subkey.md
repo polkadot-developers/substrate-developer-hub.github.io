@@ -8,10 +8,11 @@ Subkey is a key-generation utility that is developed alongside Substrate. Its ma
 
 ### One-line Install
 
-The Subkey binary, `subkey`, is also installed along with the [Substrate installation](getting-started/installing-substrate.md). If you want to play with just Subkey (and not Substrate), you can compile and install it with this one-line command:
+The Subkey binary, `subkey`, is also installed along with the [Substrate installation](getting-started/installing-substrate.md). If you want to play with just Subkey (and not Substrate), you will need to have the Substrate dependencies installed. Use the following two commands to install the dependences and Subkey, respectively:
 
 ```bash
-cargo install --force --git https://github.com/paritytech/substrate subkey
+$ curl https://getsubstrate.io -sSf | bash -s -- --fast
+$ cargo install --force --git https://github.com/paritytech/substrate subkey
 ```
 
 ### Compiling with Cargo
@@ -19,7 +20,7 @@ cargo install --force --git https://github.com/paritytech/substrate subkey
 If you already have the [Substrate repository](https://github.com/paritytech/substrate), you can build Subkey with:
 
 ```bash
-cargo build -p subkey
+$ cargo build -p subkey
 ```
 
 This will install `subkey` in `./target/debug/subkey`.
