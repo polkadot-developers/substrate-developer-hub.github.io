@@ -40,7 +40,7 @@ export default function Transfer (props) {
   };
 ```
 
-We will then create our function to actually submit the form. To do so we need to create the transaction, then sign it with our private key and finally send it. The `api` provides all we need here again, with `api.tx.balances` and the `transfer` and `signAndSend` methods. The latter takes the Keypair as first parameter and a callbacl as second parameter, passing to the callback the `status` of the transaction that we will show to the user.
+We will then create our function to actually submit the form. To do so we need to create the transaction, then sign it with our private key and finally send it. The `api` provides all we need here again, with `api.tx.balances` and the `transfer` and `signAndSend` methods. The latter takes the Keypair as first parameter and a callback as second parameter, passing to the callback the `status` of the transaction that we will use to see if our transaction is executed successfully thanks to the `isFinalized` flag. In the example below, we will show our users if the transaction is successful or not and in case it is successful at what block it was executed. 
 
 ```js
 const makeTransfer = () => {
@@ -65,7 +65,7 @@ const makeTransfer = () => {
 ```
 
 This is it, nothing particularly crazy right?
-Similarly to the `Balances` component, we will import it in Apps.js
+Similarly to the `Balances` component, we need import it in `Apps.js` and tell where it should be rendered.
 
 ```js
 // at the top of the file
@@ -85,12 +85,11 @@ cd part-3-1;
 yarn;
 yarn start;
 ```
-//TODO screenshot
-If you run this example, you will get a table with all our testing accounts and their address and their balance.
+If you run this example, you will get find our `Transfert` component below the Balance table.
 ![All balances](./assets/part-3-1.jpg)
 
-# 3.2 Extract the send button into its own component
+# 3.2 Good to know
 
+In this tutorial, we do no show how to create accounts using this `api` although it's possible. The reason is simple, we do not want to encourage developpers to manage accounts in the browser. DNS attacks, pishing and other commons attack put users at risk. We will handle this exact use case in the part 4.
 
-
-[Part 4 - Transfer funds ->](part-3-transfer-funds.md)
+[Part 4 - Use external accounts ->](part-4-use-external-accounts.md)

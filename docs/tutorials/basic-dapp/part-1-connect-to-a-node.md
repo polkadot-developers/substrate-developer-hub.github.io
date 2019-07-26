@@ -6,18 +6,20 @@ title: "Part 1 Connect to a node"
 
 In this tutorial we will build a React application. To focus as much as possible on the actual use of `polkadot-js` api ([see its documentation](https://polkadot.js.org/api/api/#api-selection)), we do not want to spend too much time to make the app pretty, we will therefore use the `semantic-ui-react` package to render UI component nicely for us.
 
-Building an application on top of Substrate means that we need to connect to a Substrate node. To get started as quickly as possible on the actual app development, this guide will provide you with a development endpoint to connect your application to. To be more flexible and run your own node, please read [installing Substrate](https://substrate.dev/docs/en/getting-started/installing-substrate). The node provided in this tutorial is run with `--dev` and its database is reset every full hour (at 1:00 am, 2:00 am, 3:00 am...), so don't be surprised if things like the balance of accounts "reset" regularly. The advantage of running your own node is that you can eventually read runtime errors in the console.
+Building an application on top of Substrate means that we need to connect to a Substrate node. To get started as quickly as possible on the actual app development, this guide will provide you with a development endpoint to connect your application to. To be more flexible and run your own node, please read [installing Substrate](https://substrate.dev/docs/en/getting-started/installing-substrate).
 
-This application is created using the `create-react-app` scaffolding command. We will use `yarn` package manager througout this guid. Go ahead and clone the basic-dapp repo:
+The node provided in this tutorial accessible at `wss://dev-node.substrate.dev:9944` is run with `--dev` and its database is reset every full hour (at 1:00 am, 2:00 am, 3:00 am...), so don't be surprised if things like the balance of accounts "reset" regularly. The advantage of running your own node is that you can eventually read runtime errors in the console. 
+
+This application is created using the `create-react-app` scaffolding command. We will use `yarn` package manager througout this guide. Go ahead and clone the basic-dapp repo:
 
 ```bash
 git clone https://github.com/substrate-developer-hub/basic-dapp.git
 cd basic-dapp
 ```
 
-After removing the boilerplates code we have added the our first dependancies to the repo: `@polkadot/api@beta`, `semantic-ui-react`, `semantic-ui-css`
+After removing the boilerplates code, we have added the our first dependancies to the repo: `@polkadot/api@beta`, `semantic-ui-react`, `semantic-ui-css`
 
-Substrate code is evolving very quickly, intoducing breaking changes regularly, Polkadot-js api follows this path as well. We will use the `beta` branch for Polkadot-js here because the dapp we are building is basic and adapting it to breaking changes shouldn't require too much work. It is however advised to use the stable branch for any production app.
+Substrate code is evolving very quickly, intoducing breaking changes regularly. Polkadot-js api follows this path as well, so sometimes things break. We will use the `beta` branch for Polkadot-js here because the dapp we are building is basic and adapting it to breaking changes shouldn't require too much work. It is however advised to use the stable branch for any production app.
 
 ## 1.1 Connect to a node
 
@@ -35,7 +37,7 @@ This application will make use of React hooks. They let us use state and other R
 ```js
   const [api, setApi] = useState();
   const [apiReady, setApiReady] = useState();
-  const WS_PROVIDER = 'ws://dev-node.substrate.dev:9944';
+  const WS_PROVIDER = 'wss://dev-node.substrate.dev:9944';
 
   useEffect(() => {
     const provider = new WsProvider(WS_PROVIDER);
