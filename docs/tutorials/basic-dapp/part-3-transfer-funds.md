@@ -1,3 +1,96 @@
 ---
-title: "Part 3 - Send funds"
+title: "Part 3 - Transfer funds"
 ---
+
+Now that we have all of our account balance displayed, let's get them moving. In this part, we will create a `Tranfer` React component that will allow to send fund from the accounts we own the privte key of to any other account. We will have a "from" field, a "to" field and a button to transfer.
+
+
+## 3.1 Transfer funds
+
+Because you can only send funds from your own accounts, the "from" field will actually be a dropdown. The receiver of our funds can be any valid address though.
+
+In this component we don't need to fetch any data from the `api`, so there is no hook, however we will use the `api` to do the transfer. Just like for `Balances` we will pass the `api` and `keyring` through the props. We will have only one state variable, an object containing the form information to be submited as we click the *Send* button.
+To generate the options from our dropdown of our accounts `keyringOptions`, we will simply iterate from the `keyring.getPairs()`.
+
+```js
+export default function Transfer (props) {
+  const { api, keyring } = props;
+  const [status, setStatus] = useState('');
+  const initialState = {
+    addressFrom: '',
+    addressTo: '',
+    amount: 0
+  };
+  const [formState, setFormState] = useState(initialState);
+
+  // get the list of accounts we possess the private key for
+  const keyringOptions = keyring.getPairs().map((account) => ({
+    key: account.address,
+    value: account.address,
+    text: account.meta.name.toUpperCase()
+  }));
+
+  const onChange = (_, data) => {
+    setFormState(formState => {
+      return {
+        ...formState,
+        [data.state]: data.value
+      };
+    });
+  };
+```
+
+We will then create our function to actually submit the form. To do so we need to create the transaction, then sign it with our private key and finally send it. The `api` provides all we need here again, with `api.tx.balances` and the `transfer` and `signAndSend` methods. The latter takes the Keypair as first parameter and a callbacl as second parameter, passing to the callback the `status` of the transaction that we will show to the user.
+
+```js
+const makeTransfer = () => {
+    const { addressTo, addressFrom, amount } = formState;
+    const fromPair = keyring.getPair(addressFrom);
+
+    setStatus('Sending...');
+
+    api.tx.balances
+    .transfer(addressTo, amount)
+    .signAndSend(fromPair, ({ status }) => {
+        if (status.isFinalized) {
+        setStatus(`Completed at block hash #${status.asFinalized.toString()}`);
+        } else {
+        setStatus(`Current transfer status: ${status.type}`);
+        }
+    }).catch((e) => {
+        setStatus(':( transaction failed');
+        console.error('ERROR:', e);
+    });
+};
+```
+
+This is it, nothing particularly crazy right?
+Similarly to the `Balances` component, we will import it in Apps.js
+
+```js
+// at the top of the file
+import Transfer from './Transfer';
+
+// right after our Balances component
+<Transfer
+    api={api}
+    keyring={keyring}
+/>
+```
+
+You can get the working version of this code by visiting `part-3-1` directory:
+
+```bash
+cd part-3-1;
+yarn;
+yarn start;
+```
+//TODO screenshot
+If you run this example, you will get a table with all our testing accounts and their address and their balance.
+![All balances](./assets/part-3-1.jpg)
+
+# 3.2 Extract the send button into its own component
+
+
+
+[Part 4 - Transfer funds ->](part-3-transfer-funds.md)

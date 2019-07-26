@@ -2,7 +2,7 @@
 title: "Introduction"
 ---
 
-This is a beginner level guide to help you get started with building a basic decentralized application (later called DApp) on top of the Substrate based blockchain, using [polkadot{.js} api](https://github.com/polkadot-js). This tutorial does not require any previous knowledge about the Substrate framework or rust language, it does however require knowledge of Javascript as well a basic knowledge of the React framework.
+This is a beginner level guide to help you get started with building a basic decentralized application (later called DApp) on top of the Substrate based blockchain, using [polkadot{.js} api (aka polkadot-js api)](https://github.com/polkadot-js). This tutorial does not require any previous knowledge about the Substrate framework or rust language, it does however require knowledge of Javascript as well a basic knowledge of the React framework.
 
 ## What does this guide cover?
 
@@ -15,13 +15,14 @@ The guide is divided into the following parts:
     * Connect to a node
     * Display node information
 
-* **PART 2:** [Display balances](part-2-display-balances.md)
+* **PART 2:** [Query and display balances](part-2-query-balances.md)
     * Get testing accounts
-    * Display balances
+    * Query and display Alice's balance
+    * Query and display all balances
 
 * **PART 3:** [Transfer funds](part-3-transfer-funds.md)
-    * Add Transfer component
-    * Build the transfer feature
+    * Transfer funds
+    * Extract the send button into its own component
 
 * **PART 4:** [Use external account](part-4-use-external-accounts.md)
     * Display externally injected accounts

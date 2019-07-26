@@ -79,9 +79,9 @@ Here is how we will render things.
 As described before, this code will verify that the `api` from the state is initialized and ready before showing "Connected" to our users
 The `loader` function returns a nice looking loader with any text we want. This loader logic has been extracted into its own function because we will reuse it later in the tutorial.
 
-To build this code and see the results checkout the `part-1-1` branch and launch it with:
+You can get the working version of this code by visiting `part-1-1` directory and launch it with:
 ```bash
-git checkout part-1-1;
+cd part-1-1;
 yarn;
 yarn start;
 ```
@@ -98,6 +98,7 @@ All we need to import are the usual `React` component and the hook functions.
 import React, {useEffect, useState} from 'react';
 ```
 
+The [Polkadot-js api](https://polkadot.js.org/api/api/) allows you to send RPC queries to the node.
 To get the node's information we want, we will use the `rpc.system` method and section given by the `api` promise.
 We will persist in the state the information returned as an object, to display it later on.
 ```js
@@ -133,13 +134,13 @@ Finally we'll display these info at the top of the page:
   )
 }
 ```
-To build this code and see the results checkout the `part-1-2` branch and launch it with:
+You can get the working version of this code by visiting `part-1-2` directory and launch it with:
 ```bash
-git checkout part-1-2;
+cd part-1-2;
 yarn;
 yarn start;
 ```
 
 You should see something like: "Development - substrate-node (v2.0.0)"
 
-[Part 2 - Display balances ->](part-2-display-balances.md)
+[Part 2 - Query and display balances ->](part-2-display-balances.md)
