@@ -1,188 +1,265 @@
 ---
 title: "The `subkey` Tool"
 ---
-Subkey is a key-generation utility that is developed alongside substrate. Its main features are generating Ed25519 and Sr25519 key pairs, encoding SS58 addresses, and restoring keys from mnemonics and raw seeds. This guide serves as an introduction and tour of the tool. Once you are familiar with `subkey`, it will be more time-efficient to refresh your memory by looking at `subkey help` than by re-reading this intro.
+
+Subkey is a key-generation utility that is developed alongside Substrate. Its main features are generating [sr25519](https://github.com/w3f/schnorrkel) and ed25519 key pairs, encoding SS58 addresses, and restoring keys from mnemonics and raw seeds. It can also create and verify signatures, including for encoded transactions.
 
 ## Building the Subkey Binary
 
 ### One-line Install
-The Subkey binary, `subkey`, is also installed along with the [Substrate installation](getting-started/installing-substrate.md). If you want to play with just subkey (and not Substrate), you can compile and install it with this one-line command.
+
+The Subkey binary, `subkey`, is also installed along with the [Substrate installation](getting-started/installing-substrate.md). If you want to play with just Subkey (and not Substrate), you can compile and install it with this one-line command:
+
 ```bash
 cargo install --force --git https://github.com/paritytech/substrate subkey
 ```
 
 ### Compiling with Cargo
-If you already have the [Substrate repository](https://github.com/paritytech/substrate) cloned, you can build it with
+
+If you already have the [Substrate repository](https://github.com/paritytech/substrate), you can build Subkey with:
+
 ```bash
 cargo build -p subkey
 ```
 
-## Generating Your First Key
-Generate an Sr25519 key by running:
-```bash
-satoshi@jambox$ subkey generate
+This will install `subkey` in `./target/debug/subkey`.
 
-Phrase `mosquito sketch face supreme side tourist monkey damp idea warm luggage better` is account:
-  Seed: 0xe35fdbf9b9ddf8e54e0c1d49fe50561a5a7fd31728450f7a9f8663820c09401e
-  Public key (hex): 0xec57cf6230ce7e675123d056eda9ab331aa6fb3ba422c5fd194721ddc6b69a14
-  Address (SS58): 5HQbF3hCugq71XdCk43FcxVqduhu7JojGiBfzD8iEFW22kiy
+## Generating Keys
+
+Generate an sr25519 key by running:
+
+```bash
+$ subkey generate
+
+Secret phrase `favorite liar zebra assume hurt cage any damp inherit rescue delay panic` is account:
+  Secret seed: 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
+  Public key (hex): 0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
+  Address (SS58): 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
 ```
 
-Subkey has just consumed some entropy and generated a cryptographic Sr25519 key pair. The output tells us a few properties of our key.
+For even more security, use `--words 24` (supports 12, 15, 18, 21, and 24):
 
-- Phrase (aka **Mnemonic Phrase**) - A series of English words that encodes the seed in a more human-friendly way.
-- Seed (aka **Private Key / Raw Seed**) - The minimum necessary information to restore the key pair. All other information is calculated from the seed.
-- **Public Key** - The public half of the cryptographic key pair in hexadecimal.
-- Address (aka **Public Address**) - An SS58-encoded address based on the public key.
+```bash
+$ subkey generate --words 24
+Secret phrase `engine ghost pave tip coil undo when next finish between ignore mystery spread model mercy body sphere sense verify crumble ethics garment soon gold` is account:
+  Secret seed: 0xddd41c017dd60770a48f7aa50aee940b591726117769bc0740b19c5acfbf24d8
+  Public key (hex): 0x8ae95a30cb9daa11db449eeb3243ec2e8937df3620c607d66a7f330a9d48cf01
+  Address (SS58): 5FCqnWDeL8KFEhy9ccdeRw64kJbfPLfKgA45kMeo6THj1tkz
+```
 
-(See [this issue](https://github.com/paritytech/substrate/pull/2669#issuecomment-495702589) for why `subkey` still outputs the old jargon for now.)
+Subkey encodes the address depending on the network. You can use the `-n` or `--network` flag to change this. See `subkey help` for supported networks.
 
-## Inspecting keys
+To generate an ed25519 key, pass the `-e` or `--ed25519` flag:
+
+```bash
+$ subkey -e generate
+Secret phrase `expire stage crawl shell boss any story swamp skull yellow bamboo copy` is account:
+  Secret seed: 0xb034ad2704defa9dc0bea4ac8019fb0f805018f1be587cf04a03f9a033e3656b
+  Public key (hex): 0x3ff0766f9ebbbceee6c2f40d9323164d07e70c70994c9d00a9512be6680c2394
+  Address (SS58): 5DWYJiPBSFBUFah2W49oPPSsrCRvrY4N4VmLcSH9XfjKfZvh
+```
+
+The output gives us the following information about our key:
+
+- **Secret phrase** (aka "Mnemonic Phrase") - A series of English words that encodes the seed in a more human-friendly way. Mnemonic phrases were first introduced in Bitcoin (see [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)) and make it much easier to write down your key by hand.
+- **Secret Seed** (aka "Private Key" or "Raw Seed") - The minimum necessary information to restore the key pair. All other information is calculated from the seed.
+- **Public Key (hex)** - The public half of the cryptographic key pair in hexadecimal.
+- **Address (SS58)** (aka "Public Address") - An SS58-encoded address based on the public key.
+
+You can also create a vanity address, although you will not receive a mnemonic seed:
+
+```bash
+$ subkey vanity joe
+Generating key containing pattern 'joe'
+best: 189 == top: 189
+Secret Key URI `0xc645213712dc218e851ac0a47e987ee3f8e1cbbbad85522dbbf86e51963de434` is account:
+  Public key (hex): 0xfaff3b483564c4d2dab7229e4369841d3650a4ca9c36094e9faece3839ac6e06
+  Address (SS58): 5HjoeXxUokiJwQPRucDXCgGzKwwf74q9srJcmsaFssUW2UHn
+```
+
+## Password Protected Keys
+
+To generate a key that is password protected, use the `-p <password>` or `--password <password>` flag:
+
+```bash
+$ subkey --password "correct horse battery staple" generate
+Secret phrase `razor blouse enroll maximum lobster bacon raccoon ocean law question worry length` is account:
+  Secret seed: 0x806e324821f6b09fa0329b7da35b8056b452fdcaadeac463ff2b8db1fc020c3e
+  Public key (hex): 0xe2b410bdc959fcc7f756e6eefdb051000c80be339acd3a8dc6d941211160b266
+  Address (SS58): 5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y
+```
+
+Note that the "Secret seed" is _not_ password protected and can still recover the account. The "Secret phrase," however, is not sufficient to recover the account without the password.
+
+## Inspecting Keys
+
 The inspect command recalculates a key pair's public key and public address given its seed. This shows that it is sufficient to back up the seed alone.
-```bash
-satoshi@jambox$ subkey inspect 0xe35fdbf9b9ddf8e54e0c1d49fe50561a5a7fd31728450f7a9f8663820c09401e
 
-Secret Key URI `0xe35fdbf9b9ddf8e54e0c1d49fe50561a5a7fd31728450f7a9f8663820c09401e` is account:
-  Public key (hex): 0xec57cf6230ce7e675123d056eda9ab331aa6fb3ba422c5fd194721ddc6b69a14
-  Address (SS58): 5HQbF3hCugq71XdCk43FcxVqduhu7JojGiBfzD8iEFW22kiy
+```bash
+$ subkey inspect 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
+Secret Key URI `0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2` is account:
+  Public key (hex): 0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
+  Address (SS58): 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
 ```
 
-You can also inspect the key by its mnemonic phrase. Mind the quotes.
-```bash
-satoshi@jambox$ subkey inspect "mosquito sketch face supreme side tourist monkey damp idea warm luggage better"
+You can also inspect the key by its mnemonic phrase.
 
-Secret Key URI `mosquito sketch face supreme side tourist monkey damp idea warm luggage better` is account:
-  Public key (hex): 0xec57cf6230ce7e675123d056eda9ab331aa6fb3ba422c5fd194721ddc6b69a14
-  Address (SS58): 5HQbF3hCugq71XdCk43FcxVqduhu7JojGiBfzD8iEFW22kiy
+```bash
+$ subkey inspect "favorite liar zebra assume hurt cage any damp inherit rescue delay panic"
+Secret phrase `favorite liar zebra assume hurt cage any damp inherit rescue delay panic` is account:
+  Secret seed: 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
+  Public key (hex): 0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
+  Address (SS58): 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
 ```
 
-Mnemonic phrases were first introduced in Bitcoin (see [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)) and make it much easier to manually write down your key. They also allow cool things like "memorizing" your life savings.
-
-## Ed25519 keys
-So far we've been using Sr25519 keys. Substrate uses those keys in most places, which is why they are the default for `subkey`. Ed25519 keys may be generated by providing the `-e` or `--ed25519` flag (see `subkey help`):
+You can inspect password protected keys either by passing the `--password` flag or using `///` at the end of the mnemonic:
 
 ```bash
-satoshi@jambox:~$ subkey -e generate
-Phrase `kick raw cram palm fiction term two salt allow document hidden mix` is account:
-  Seed: 0x8167e5997afeed9886bc88ebb94d8905b330540bfa4624dcc6d0e983171e67ed
-  Public key (hex): 0x61319aa2d62a87bb1adbe18ab436bc60ab949dea07a1b7859deb13bdfbb85f53
-  Address (SS58): 5EG9Ej4JPcb1YHn8R2ai5p7EApwTyXMVYiCzueY7yRLwGEAf
+$ subkey inspect "razor blouse enroll maximum lobster bacon raccoon ocean law question worry length///correct horse battery staple"
+Secret Key URI `razor blouse enroll maximum lobster bacon raccoon ocean law question worry length///correct horse battery staple` is account:
+  Public key (hex): 0xe2b410bdc959fcc7f756e6eefdb051000c80be339acd3a8dc6d941211160b266
+  Address (SS58): 5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y
 ```
 
-## Password Protected keys
-You can put a password on a key by using the `--password` option (in the example below the password is "pass" followed by the `generate` subcommand, see `subkey help`). The output looks exactly the same as before.
-```bash
-satoshi@jambox:~$ subkey --password pass generate
+Let's say you want to use the same private key on Polkadot. Use `-n` to get your address formatted for Polkadot. Notice that the public key is the same, but the address has a different format.
 
-Phrase `certain notable bacon broken reflect fragile accuse march bamboo isolate call gate` is account:
-  Seed: 0xf4e6c7f224705dc0c803f29a7f721238a23489f4bedd70e9faa839e0a1d1a392
-  Public key (hex): 0x229b59387b74aa45eeda235b461b655b84f9694a3e280775d5438d64d477673a
-  Address (SS58): 5Cr5dgyZD16Uc6rDNHs494wNCEwD4wfjQvUGG6wdma9EMib8
+```bash
+$ subkey --network polkadot inspect "favorite liar zebra assume hurt cage any damp inherit rescue delay panic"
+Secret phrase `favorite liar zebra assume hurt cage any damp inherit rescue delay panic` is account:
+  Secret seed: 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
+  Public key (hex): 0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
+  Address (SS58): 13ToWeAsFe55Z7qGxwV8uJFch73aCEyHhhQb2hVAsspp4Xuo
 ```
 
-Indeed we can still restore the key with nothing but its seed. This shows that even if the key is generated with a password, the seed alone _still_ holds all the information about the key.
-```bash
-satoshi@jambox:~$ subkey inspect 0xf4e6c7f224705dc0c803f29a7f721238a23489f4bedd70e9faa839e0a1d1a392
+## HD Derivation
 
-Secret Key URI `0xf4e6c7f224705dc0c803f29a7f721238a23489f4bedd70e9faa839e0a1d1a392` is account:
-  Public key (hex): 0x229b59387b74aa45eeda235b461b655b84f9694a3e280775d5438d64d477673a
-  Address (SS58): 5Cr5dgyZD16Uc6rDNHs494wNCEwD4wfjQvUGG6wdma9EMib8
+Subkey supports hard and soft hierarchical deterministic (HD) key derivation compliant with [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki). HD keys allow you to have a master seed and define a tree with a key pair at each leaf. The tree has a similar structure to a filesystem and can have any depth you please.
+
+Hard and soft key derivation both support:
+
+- `parent private key + path --> child private key`
+- `parent private key + path --> child public key`
+
+Further, soft key derivation supports:
+
+- `parent public key + path --> child public key`
+
+### Hard Key Derivation
+
+You can derive a hard key child using `//` after the mnemonic phrase:
+
+```bash
+$ subkey inspect "favorite liar zebra assume hurt cage any damp inherit rescue delay panic//joe//polkadot//0"
+Secret Key URI `favorite liar zebra assume hurt cage any damp inherit rescue delay panic//joe//polkadot//0` is account:
+  Public key (hex): 0xb660386488b17fb0989204820ab43c2eae3053f2882dede1688ce9ee48bd0e0a
+  Address (SS58): 5GBq9ybWHynecioAmQtuBXjw7vKwzhm72mURRmK2sDpsBRdk
 ```
 
-But notice what happens when we try to restore the key from the mnemonic phrase. Although the output looks _similar_ it is _not_ identical. We are restoring a completely different key pair. Notice the public key and address don't match.
-```bash
-satoshi@jambox$ subkey inspect "certain notable bacon broken reflect fragile accuse march bamboo isolate call gate"
+### Soft Key Derivation
 
-Secret Key URI `certain notable bacon broken reflect fragile accuse march bamboo isolate call gate` is account:
-  Public key (hex): 0x08898f67df39ba5a5a9f6fd1ed1273cabce440851b537a07fad152f85649ce66
-  Address (SS58): 5CFu6zbvJ9Z49w4RXM3FqrkmseSi5aFAUVbvW6jRnZzsZjYG
+Likewise, you can derive a soft key child using a single `/` after the mnemonic phrase:
+
+```bash
+$ subkey inspect "favorite liar zebra assume hurt cage any damp inherit rescue delay panic/joe/polkadot/0"
+Secret Key URI `favorite liar zebra assume hurt cage any damp inherit rescue delay panic/joe/polkadot/0` is account:
+  Public key (hex): 0x34ba6dcb945ff69d1457d1488d6b506738f8ce0a5a3e838ed91a5fa813624272
+  Address (SS58): 5DFqjBd9BEsLaRdSqfWiDnPvomu5VaDmW4u5YWb1d176hTfC
 ```
 
-This is because the password we supplied when generating the key-pair is necessary to restore the key from the mnemonic phrase.
-```bash
-satoshi@jambox$ subkey -p pass inspect "certain notable bacon broken reflect fragile accuse march bamboo isolate call gate"
+Recall the address from the same seed phrase, `5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68`. We can use that to derive the same child address.
 
-Secret Key URI `certain notable bacon broken reflect fragile accuse march bamboo isolate call gate` is account:
-  Public key (hex): 0x229b59387b74aa45eeda235b461b655b84f9694a3e280775d5438d64d477673a
-  Address (SS58): 5Cr5dgyZD16Uc6rDNHs494wNCEwD4wfjQvUGG6wdma9EMib8
+```bash
+$ subkey inspect 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68/joe/polkadot/0
+Public Key URI `5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68/joe/polkadot/0` is account:
+  Network ID/version: substrate
+  Public key (hex): 0x34ba6dcb945ff69d1457d1488d6b506738f8ce0a5a3e838ed91a5fa813624272
+  Address (SS58): 5DFqjBd9BEsLaRdSqfWiDnPvomu5VaDmW4u5YWb1d176hTfC
 ```
 
-## Well-known keys
-If you've worked with Substrate previously, you likely encountered the ubiquitous accounts for Alice, Bob, and their friends. These keys are not at all private, but are useful for playing with Substrate without always generating new key pairs. You can inspect these "well-known" keys with `subkey`.
+Note that the two addresses here match. This is not the case in hard key derivation.
+
+## Putting it All Together
+
+You can mix and match hard and soft key paths (although it doesn't make much sense to have hard paths as children of soft paths). For example:
 
 ```bash
-satoshi@jambox$ subkey inspect //Alice
+$ subkey inspect "favorite liar zebra assume hurt cage any damp inherit rescue delay panic//joe//polkadot/0"
+Secret Key URI `favorite liar zebra assume hurt cage any damp inherit rescue delay panic//joe//polkadot/0` is account:
+  Public key (hex): 0xd09ab65c743e91b30d024469e8a8b823a3aa7e8f5b4791187adf531ac2af140f
+  Address (SS58): 5GnDmyt7qnEN4esrLNRtjM7xHyRe4jQsbbAHpaNSsPNws7EB
+```
 
+The first two levels (`//joe//polkadot`) are hard-derived, while the leaf (`/0`) is soft-derived.
+
+To use key derivation with a password protected key, add your password to the end:
+
+```bash
+$ subkey inspect "razor blouse enroll maximum lobster bacon raccoon ocean law question worry length/joe/polkadot/0///correct horse battery staple"
+Secret Key URI `razor blouse enroll maximum lobster bacon raccoon ocean law question worry length/joe/polkadot/0///correct horse battery staple` is account:
+  Public key (hex): 0x0816fe0689322e26cd2aa9c0dccb6c44851345e96f969ae85c8f1aec9fb4703d
+  Address (SS58): 5CFK52zU59zUhC3s6mRobEJ3zm7JeXQZaS6ybvcuCDDhWwGG
+
+$ subkey inspect 5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y/joe/polkadot/0
+Public Key URI `5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y/joe/polkadot/0` is account:
+  Network ID/version: substrate
+  Public key (hex): 0x0816fe0689322e26cd2aa9c0dccb6c44851345e96f969ae85c8f1aec9fb4703d
+  Address (SS58): 5CFK52zU59zUhC3s6mRobEJ3zm7JeXQZaS6ybvcuCDDhWwGG
+```
+
+Notice that the "address plus derivation path" produces the same address as the "mnemonic phrase plus derivation path plus password." As such, you can reveal your parent address and derivation paths without revealing your mnemonic phrase or password, while retaining control of all derived addresses.
+
+## Well-Known Keys
+
+If you've worked with Substrate previously, you have likely encountered the ubiquitous accounts for Alice, Bob, and their friends. These keys are not at all private, but are useful for playing with Substrate without always generating new key pairs. You can inspect these "well-known" keys with `subkey`.
+
+```bash
+$ subkey inspect //Alice
 Secret Key URI `//Alice` is account:
   Public key (hex): 0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
   Address (SS58): 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
 ```
 
 There is nothing special about the name Alice. You can do the same trick with your own name. But remember that keys like this are _not_ secure, and are only useful for experimenting.
-```bash
-satoshi@jambox$ subkey inspect //Joshy
 
+```bash
+$ subkey inspect //Joshy
 Secret Key URI `//Joshy` is account:
   Public key (hex): 0x006f5081d495811a16724b317fcd70b8e42c9317da2ba1f5c36756a41fadec67
   Address (SS58): 5C5GvaAWfruRLnCJYgJrut1JovGeMMXV2VzXeiua7f691J9R
 ```
 
-## Derivation Paths
-Commonly one will need multiple keys to work together. For example you may need to use an Sr25519 key along with an Ed25519 key. When the keys are intended to be used together, it is convenient to only remember a single mnemonic phrase. Luckily `subkey` provides derivation paths for that.
+## Signing and Verifying Messages
 
-### Hard Paths
-`subkey` supports both hard and soft derivation paths. Let's start by looking at hard paths, and then explain the difference when we get to soft paths.
+### Signing
 
-```bash
-satoshi@jambox$ subkey inspect "certain notable bacon broken reflect fragile accuse march bamboo isolate call gate"//DerivationPath
-
-Secret Key URI `certain notable bacon broken reflect fragile accuse march bamboo isolate call gate//DerivationPath` is account:
-  Public key (hex): 0x62036ec7a705c7764efdd84258e2099d528753333d206e69ab038354cca59375
-  Address (SS58): 5EHDZzNkfijCrJFk94HuG8s3F9Jdz539vnJaNj6Uu22bomnB
-```
-
-Now we can derive a second key from the same mnemonic. It can even be an Ed25519 key.
-```bash
-satoshi@jambox$ subkey -e inspect "certain notable bacon broken reflect fragile accuse march bamboo isolate call gate"//OtherPath
-
-Secret Key URI `certain notable bacon broken reflect fragile accuse march bamboo isolate call gate//OtherPath` is account:
-  Seed: 0x48f229d1588c1b0975f76d63b7a1235aad96060402c374b7d57680cd65699b1c
-  Public key (hex): 0xaa75292d215127795416b4546949fa2b46f11a211260616ceb085dec7f35b6fa
-  Address (SS58): 5FvCoSqcEpmTJ8ucrmMv2FpK7TcmZAx6uhX26UhBfJW4CnLg
-```
-
-### Soft Paths
-Soft paths are mostly similar, but have some differences.
-
-For one, they are written with a single slash instead of double.
-```bash
-satoshi@jambox$ subkey inspect "certain notable bacon broken reflect fragile accuse march bamboo isolate call gate"/SoftPath
-
-Secret Key URI `certain notable bacon broken reflect fragile accuse march bamboo isolate call gate/SoftPath` is account:
-  Public key (hex): 0x54be520bcb4ae8ad032e4abd075c9ebf68e5baf11154e82cacd8d5f438d73066
-  Address (SS58): 5DypR7GB9fvsVuFUqPKowbEjecnF62FX7wRrftGsRrW4LaxE
-```
-
-Another difference is that soft paths don't work with Ed25519 keys
+You can sign a message by passing the message to Subkey on STDIN. You can sign with either your seed or mnemonic phrase.
 
 ```bash
-# No output is expected
-satoshi@jambox$ subkey -e inspect "certain notable bacon broken reflect fragile accuse march bamboo isolate call gate"/SoftPath
+$ echo "message" | subkey sign 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
+50192c7f1a49dd169fa69f7fc703b3fe2e8c0b71871117e59b59b59e16462031d970b8a927d0e265e441a99f70203e0a2e0428add445970e257f4c536689e60c
 ```
-
-But the biggest difference is that soft paths allow you to calculate the derived public keys from just the original _public_ address and the path. They don't require knowing any private information to derive.
 
 ```bash
-# Public address taken from when we first generated this key
-satoshi@jambox subkey inspect 5CFu6zbvJ9Z49w4RXM3FqrkmseSi5aFAUVbvW6jRnZzsZjYG/SoftPath
-Public Key URI `5CFu6zbvJ9Z49w4RXM3FqrkmseSi5aFAUVbvW6jRnZzsZjYG/SoftPath` is account:
-  Public key (hex): 0x54be520bcb4ae8ad032e4abd075c9ebf68e5baf11154e82cacd8d5f438d73066
-  Address (SS58): 5DypR7GB9fvsVuFUqPKowbEjecnF62FX7wRrftGsRrW4LaxE
+$ echo "message" | subkey sign "favorite liar zebra assume hurt cage any damp inherit rescue delay panic"
+50d830ac6ce90207584fcd46ada1db06d20db46370e440ae326e71c602d03641747031d66a9514b95a28462166336244bd401f25eb5e2e27b3f9dd5457b80d02
 ```
 
-Try to restore a key derived from a hard path using only public information to confirm for yourself that it is not possible.
+### Verifying
 
-## More `subkey` to Explore
-`subkey` is getting more robust all the time. Recently it has added features to sign messages, verify signatures over messages, and create signed token transfer transactions. Learn more by running `subkey help`.
+Although the signatures above are different, they both verify with the address:
 
-Key-pairs can also be generated in the [PolkadotJS Apps UI](https://github.com/polkadot-js/apps). Try creating keys with the UI and restoring them with `subkey` or vice versa.
+```bash
+$ echo "message" | subkey verify 501...60c 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
+Signature verifies correctly.
+```
+
+```bash
+$ echo "message" | subkey verify 50d...d02 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
+Signature verifies correctly.
+```
+
+## More Subkey to Explore
+
+Learn more by running `subkey help` or see the [README](https://github.com/paritytech/substrate/tree/master/subkey).
+
+Key pairs can also be generated in the [PolkadotJS Apps UI](https://github.com/polkadot-js/apps). Try creating keys with the UI and restoring them with `subkey` or vice versa.
