@@ -5,6 +5,13 @@
       "getting-started/installing-substrate",
       "getting-started/using-the-substrate-scripts"
     ],
+    "Build Blockchain": [
+      "build-blockchain/initialize-your-blockchain",
+      "build-blockchain/add-custom-module",
+      "build-blockchain/interact-with-your-blockchain",
+      "build-blockchain/deploy-as-parachain",
+      "build-blockchain/deploy-standalone-chain"
+    ],
     "Substrate Fundamentals": [
       "overview/index",
       "overview/extrinsics",
