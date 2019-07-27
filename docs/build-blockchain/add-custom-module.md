@@ -2,19 +2,29 @@
 title: "Add Your Runtime Module"
 ---
 
-## substrate-module-new
+After completing [Initialize Your Blockchain](./initialize-your-blockchain.md), you are now ready to write your own runtime module. A runtime module is usually a wrapper for the certain features of blockchain, includes storage, dispatchable functions and events. Take a look at the pre-defined `template` module in the node that you just initialized, the path is `runtime/src/template.rs`:
+* Storage: `Something get(something): Option<u32>`
+* Dispatchable function:
+  ```rust
+  pub fn do_something(origin, something: u32) -> Result {
+      // --snip--
+  }
+  ```
+* Event: `SomethingStored(u32, AccountId)`
 
-Once you have your local node up and running using the `substrate-node-new` script, you can add more modules to your runtime using the `substrate-module-new` script.
+## Create a new module
 
-The `substrate-module-new` script creates a new runtime module based on a [template](https://github.com/paritytech/substrate/blob/v1.0/node-template/runtime/src/template.rs). This gives you a ready-to-hack runtime module with all necessary imports, entry-points and sample tests. We recommend using this script to create new modules, especially for users who are just getting started with Substrate, as it also gives you good information on how a typical Substrate runtime module is structured.
+Do you still remember the `substrate-up` scripts that help us initialize a new node with `substrate-node-new` command? It also provides a command named `substrate-module-new` to ease the process to create a module.
 
-To use the `substrate-module-new` script,
+The `substrate-module-new` command creates a new runtime module based on a [template](https://github.com/paritytech/substrate/blob/v1.0/node-template/runtime/src/template.rs). This gives you a ready-to-hack runtime module with all necessary imports, entry-points and sample tests. We recommend using this script to create new modules, especially for users who are just getting started with Substrate, as it also gives you good information on how a typical Substrate runtime module is structured.
+
+To use the `substrate-module-new` command,
 
 1. Make sure you have Substrate installed, have a local runtime created using `substrate-node-new`.
 2. Go to the node runtime source directory by running `cd runtime/src`.
 3. Run `substrate-module-new` command with the following parameters,
 
-```
+```bash
 substrate-module-new <module-name>
 ```
 

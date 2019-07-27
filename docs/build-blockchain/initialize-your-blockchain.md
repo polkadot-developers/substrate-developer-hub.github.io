@@ -88,4 +88,16 @@ Now you already have a working "blockchain" maintained by only one node. Let's s
 
 There is a pre-build [Polkadot/Substrate UI](https://github.com/polkadot-js/apps) to help you interact with Substrate blockchain. You can choose to use it in local machine by following its instruction, or simply visit this public host [web page](https://polkadot.js.org/apps).
 
-In the **Settings** page, configure `remote node` to be `127.0.0.1:9944`.
+In the **Settings** page, configure `remote node` to be `127.0.0.1:9944`. After saving the new configuration, you should be able to see other items in the sidebar. 
+
+Go to **Extrinsics** page:
+* use `ALICE` account,
+* configure **submit the following extrinsic** to be `template` `doSomething(something)`, 
+* configure **something** to be any integer you want,
+* click **Submit Transaction**. After a few seconds, you should notice the success events showing up.
+
+Then, go to **Chain state** page:
+* configure **selected state query** to be `template` `something(): Option<u32>`
+* click the plus button, you should see the number you just input.
+
+Now you have interacted with your node successfully. Get yourself familiar with all the pages and enjoy your first blockchain!
