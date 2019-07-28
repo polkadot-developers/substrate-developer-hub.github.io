@@ -2,7 +2,7 @@
 title: "Part 2 - Display balances"
 ---
 
-Now that we have the connection to our node let's play with some accounts. Because we are connecting to a `--dev` node, we can get access to accounts who are pre-funded, and which private key is known to us. Acounts are organised in a so called keyring. From this keyring, you can get the address of an account, its associated name, its cryptographic keypair if this account is managed locally. The [`@polkadot/ui-keyring`](https://polkadot.js.org/ui/ui-keyring/) package contains many utilities to manage accounts, we will make use of them in the following sections.
+Now that we have the connection to our node let's play with some accounts. Because we are connecting to a `--dev` node, we can get access to accounts who are pre-funded, and which private key is known to us. Accounts are organised in a so-called keyring. From this keyring, you can get the address of an account, its associated name, its cryptographic keypair if this account is managed locally. The [`@polkadot/ui-keyring`](https://polkadot.js.org/ui/ui-keyring/) package contains many utilities to manage accounts, we will make use of them in the following sections.
 
 We needed to add `@polkadot/keyring`, `@polkadot/ui-identicon`, `@polkadot/ui-keyring` as dependencies to our project to get access to the keyring utilities.
 
@@ -14,7 +14,7 @@ First things first, let's import the `keyring` object;
 import keyring from '@polkadot/ui-keyring';
 ```
 
-Initializing this keyring is super simple, all we need to do it call `loadAll`. To get access to the testing accouts, we can simply passe the object `{isDevelopment: true}` as parameter. We will add a new `useEffect` function to initialize our keyring. Let's `console.log` it to inspect what it gives us.
+Initializing this keyring is super simple, all we need to do it call `loadAll`. To get access to the testing accounts, we can simply passe the object `{isDevelopment: true}` as parameter. We will add a new `useEffect` function to initialize our keyring. Let's `console.log` it to inspect what it gives us.
 
 This is the code we added:
 ```js
@@ -42,7 +42,7 @@ encodeAddress: function encodeAddress()​
 stores: Object { address: address(), contract: contract(), account: account() }
 ```
 
-If you developp the `_keyring` and `_pairs` objects, you'll see that we have some key pairs here. Those are the testing accounts that were initialized thanks to the `isDevelopment` flag. We will now build a Balances component so that we can display those accounts. This Balances component will very soon show all our accounts with the amount of funds.
+If you develop the `_keyring` and `_pairs` objects, you'll see that we have some key pairs here. Those are the testing accounts that were initialized thanks to the `isDevelopment` flag. We will now build a Balances component so that we can display those accounts. This Balances component will very soon show all our accounts with the amount of funds.
 
 Let's start by listing the account names and their address.
 Nothing fancy here other than what we talked about before, `getPairs()` will give us the array of the accounts in our keyring. Mapping through this array lets us display the name and address of each of our accounts.
@@ -75,7 +75,7 @@ export default function Balances (props) {
 }
 ```
 
-Of course we need to amend the entry point of our DApp, `Apps.js`, to import This new component and render it. Note that we also passed the `api` as props, this is not needed at this exact moment in the tutorial, but we will make use of it right after.
+Of course, we need to amend the entry point of our DApp, `Apps.js`, to import This new component and render it. Note that we also passed the `api` as props, this is not needed at this exact moment in the tutorial, but we will make use of it right after.
 
 ```js
 // at the top of the file
@@ -101,7 +101,7 @@ If you run this example, you will get a table with "Alice", "Alice_stash", "Bob"
 
 ## 2.2 Query and display Alice's balance
 
-Now that we have our accounts, we can query the balance for each one of them. The substrate node that you connect to has a `Balances` module that keeps track of the balance of each account on the blockchain. What we will watch is the `freeBalance` of an account. The [Polkadot-js api](https://polkadot.js.org/api/api/) allows you to query the storage from an module with `api.query`. This is how we can get access to this `freeBalance` information.
+Now that we have our accounts, we can query the balance for each one of them. The substrate node that you connect to has a `Balances` module that keeps track of the balance of each account on the blockchain. What we will watch is the `freeBalance` of an account. The [Polkadot-js api](https://polkadot.js.org/api/api/) allows you to query the storage from a module with `api.query`. This is how we can get access to this `freeBalance` information.
 
 Let's start small and query the balance for one account, Alice.
 
@@ -125,9 +125,9 @@ export default function Balances (props) {
   }, [accounts, api.query.balances, api.query.balances.freeBalance]);
 ```
 
-We start by creating a `balance` state, that we will initialize at `0`. Then, as we did in the previous part, we will make the query in a React hook, with `useEffect`. However we will want to display if the balance changes, this `api.query.balances.freeBalance` takes as first argument the account's address you want to request, and you can pass a callbacl as second argument. This callback receives the current balance for the given account. This is where we will perssist it in the state.
+We start by creating a `balance` state, that we will initialize at `0`. Then, as we did in the previous part, we will make the query in a React hook, with `useEffect`. However, we will want to display if the balance changes, this `api.query.balances.freeBalance` takes as first argument the account's address you want to request, and you can pass a callback as the second argument. This callback receives the current balance for the given account. This is where we will persist it in the state.
 
-This `query` is a subscription to the storage, this is what will allow us to see the balance change without reloading the page! Because it's a subscription, we must unsubscribe whenever our `Balances` React component unmounts. The `unsubscribe` function is what is actually returned by the `query`. This one must be called in the `return` statement of the `useEffect` that will be called whenever the component unmounts, in our case it's when we close the tab or refresh out app's page manually.
+This `query` is a subscription to the storage, this is what will allow us to see the balance change without reloading the page! Because it's a subscription, we must unsubscribe whenever our `Balances` React component unmounts. The `unsubscribe` function is what is actually returned by the `query`. This one must be called in the `return` statement of the `useEffect` that will be called whenever the component unmounts, in our case, it's when we close the tab or refresh out app's page manually.
 
 Let's strip down the table we return to only show Alice and the account's associated balance.
 
@@ -164,7 +164,7 @@ If you run this example, you will get a table with "Alice" account and balance.
 
 ## 2.3 Query and display all balances
 
-Now that we know how querying the state of a module works, we can map through all of our accounts and query the state for each one. The `api` has a handy function to batch multiple queries at the same time, it's called `multi`. You can pass an array of arguments and it will return an array of result.
+Now that we know how querying the state of a module works, we can map through all of our accounts and query the state for each one. The `api` has a handy function to batch multiple queries at the same time, it's called `multi`. You can pass an array of arguments and it will return an array of the result.
 
 Instead of having just the balance of Alice in the state, we will change it an object mapping `address` with `freeBalance` so that we can use it to display each account's balance. Because the `multi` remains one subscription, the logic for unsubscribing remains the same.
 
@@ -230,10 +230,10 @@ If you run this example, you will get a table with all our testing accounts, the
 
 # 2.4 Good to know
 
-It is worth mentionning that the funds in `freeBalancee` of an account might **not** be available to transfer. An account could very well have funds, but if for example those are staked (a.k.a bonded) for validating, you might not be able to transfer them although `freeBalance` is not null. If you want to show the balance available to transfer, this is computed in a so called derive `api`, have a look at the `available` field returned by [`derive.balances.all`](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/balances/all.ts).
+It is worth mentioning that the funds in `freeBalancee` of an account might **not** be available to transfer. An account could very well have funds, but if for example those are staked (a.k.a bonded) for validating, you might not be able to transfer them although `freeBalance` is not null. If you want to show the balance available to transfer, this is computed in a so-called derive `api`, have a look at the `available` field returned by [`derive.balances.all`](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/balances/all.ts).
 
-The `derive api` as its name suggest is not a direct query to the node. It is rather a concatenation, and derivation of multiple queries, to end up serving an information that wasn't directly accessible by the node. A popular one is [`derive.chain.bestNumber`](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/chain/bestNumber.ts) to get the latest block number. Have a look in [the repo](](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/). Unfortunately, those `api` endpoint are undocumented for now.
+The `derive api` as its name suggest is not a direct query to the node. It is rather a concatenation, and derivation of multiple queries, to end up serving information that wasn't directly accessible by the node. A popular one is [`derive.chain.bestNumber`](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/chain/bestNumber.ts) to get the latest block number. Have a look in [the repo](](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/). Unfortunately, those `api` endpoints are undocumented for now.
 
-Substrate is a framework to build blockchains. The `--dev` node that we are querying in this part contains a `Balances` [*S*ubstrate *R*untime *M*odule *L*ibrary a.k.a srml](https://substrate.dev/rustdocs/v1.0/srml_balances/index.html) that  keeps track of the balance of each account on the blockchain. Not every Substrate chain will have this `Balances` module. However, any module that is integrated into a Substrate node can be queried using `api.query.section.method`.
+Substrate is a framework to build blockchains. The `--dev` node that we are querying in this part contains a `Balances` [*S*ubstrate *R*untime *M*odule *L*ibrary a.k.a srml](https://substrate.dev/rustdocs/v1.0/srml_balances/index.html) that keeps track of the balance of each account on the blockchain. Not every Substrate chain will have this `Balances` module. However, any module that is integrated into a Substrate node can be queried using `api.query.section.method`.
 
 [Part 3 - Transfer funds ->](part-3-transfer-funds.md)
