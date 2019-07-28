@@ -88,8 +88,4 @@ yarn start;
 If you run this example, you will get find our `Transfert` component below the Balance table.
 ![All balances](./assets/part-3-1.jpg)
 
-# 3.2 Good to know
-
-In this tutorial, we do no show how to create accounts using this `api` although it's possible. The reason is simple, we do not want to encourage developpers to manage accounts in the browser. DNS attacks, pishing and other commons attack put users at risk. We will handle this exact use case in the part 4.
-
 [Part 4 - Use external accounts ->](part-4-use-external-accounts.md)
