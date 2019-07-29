@@ -69,7 +69,7 @@ We're keen to use some governance mechanisms, but we're stumped because we can't
 
 Fortunately we were tipped by an insider who confirmed that the 'governance' modules that we need aren't yet contained in the Substrate Node's Runtime that we setup in the directory '~/code/paritytech/my-substrate-node-template-1'.
 
-We're reminded of the advantages of the **Substrate (<<glossary:SRML>>)**. We'd like to plugin the 'Referenda' Module and associated configuration from this library into our **Substrate Node's** Runtime, and then tweak it to our liking.
+We're reminded of the advantages of the **Substrate ([SRML](overview/glossary.md#srml-substrate-runtime-module-library))**. We'd like to plugin the 'Referenda' Module and associated configuration from this library into our **Substrate Node's** Runtime, and then tweak it to our liking.
 
 ![Source: https://youtu.be/0IoUZdDi5Is?t=1377](https://files.readme.io/bd2f854-53b8dc8-Screen_Shot_2018-11-18_at_15.31.20.png)
 

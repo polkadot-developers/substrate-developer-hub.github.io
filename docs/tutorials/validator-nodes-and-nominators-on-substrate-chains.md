@@ -59,7 +59,7 @@ We're keen to use some 'governance' and 'staking' mechanisms, but we're stumped 
 
 Fortunately we were tipped by an insider who confirmed that the 'democracy' and 'staking' modules that we need aren't yet contained in the Substrate Node's Runtime that we setup in the directory `~/code/paritytech/my-substrate-node-template-1`.
 
-We're reminded of the advantages of the Substrate (<<glossary:SRML>>). We'd like to plugin the 'Referenda' Module and the 'Staking' Module and associated configuration from this library into our Substrate Node's Runtime, and then tweak it to our liking.
+We're reminded of the advantages of the Substrate ([SRML](overview/glossary.md#srml-substrate-runtime-module-library)). We'd like to plugin the 'Referenda' Module and the 'Staking' Module and associated configuration from this library into our Substrate Node's Runtime, and then tweak it to our liking.
 
 ![todo](https://files.readme.io/ebdb5e9-53b8dc8-Screen_Shot_2018-11-18_at_15.31.20.png)
 
