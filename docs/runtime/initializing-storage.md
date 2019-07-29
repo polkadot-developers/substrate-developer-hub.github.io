@@ -8,7 +8,7 @@ In some cases storage should be initialized with a value before any user has int
 
 ## Hard-Code Default Values
 
-The simplest way (and one that technically does not use genesis configuration) to initialize storage is simply to hard-code default values for each parameter. This option is best when there are clear default values that all deployments of the module will want to use. The runtime developer can choose this option by including `config()` in the `decl_storage!` marco, and an initial value at the end of the line.
+The simplest way (and one that technically does not use genesis configuration) to initialize storage is simply to hard-code default values for each parameter. This option is best when there are clear default values that all deployments of the module will want to use. The runtime developer can choose this option by including `config()` in the `decl_storage!` macro, and an initial value at the end of the line.
 
 Consider this example module where players ante to play a game and add to the pot by raising.
 
@@ -28,7 +28,7 @@ decl_storage! {
 
 ## Defer until Deploy Time with `config()`
 
-The second option available to runtime developers is to actually _not_ specify their own genesis values, but to leave that option up to whomever actually deploys the module in a blockchain. This option makes sense when different deployments of the module, may reasonably want different configuration values, and the various storage values do not need to maintain a particular relationship to one another. The runtime developer can choose this option by including `config()` in the `decl_storage!` marco, and nothing more.
+The second option available to runtime developers is to actually _not_ specify their own genesis values, but to leave that option up to whomever actually deploys the module in a blockchain. This option makes sense when different deployments of the module, may reasonably want different configuration values, and the various storage values do not need to maintain a particular relationship to one another. The runtime developer can choose this option by including `config()` in the `decl_storage!` macro, and nothing more.
 
 ```rust
 decl_storage! {
