@@ -31,6 +31,7 @@
         "type": "subcategory",
         "label": "Runtime Types",
         "ids": [
+          "version-1.0.0-runtime/types/module-struct",
           "version-1.0.0-runtime/types/call-enum",
           "version-1.0.0-runtime/types/event-enum",
           "version-1.0.0-runtime/types/genesisconfig-struct"
