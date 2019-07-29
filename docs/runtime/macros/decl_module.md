@@ -68,7 +68,7 @@ You will have to be conscious of any changes you make to the state of your block
 
 Dispatchable functions in your module cannot return a value. Instead it can only return a `Result` which accepts either `Ok(())` when everything has completed successfully or `Err(&'static str)` if something goes wrong.
 
-If you not specify `Result` explicitly as return value, it will be added automatically for you by the `decl_module!` macro and `Ok(())` will be returned at the end.
+If you do not specify `Result` explicitly as return value, it will be added automatically for you by the `decl_module!` macro and `Ok(())` will be returned at the end.
 
 Thus, this function definition is equivalent to the above example:
 
