@@ -31,5 +31,6 @@ The guide is divided into the following parts:
     * Install an extension to manage accounts
     * Display externally injected accounts
     * Adapt our `Transfer` component
+    * Good to know
     * Getting further: Extract the send button into its own component
 
