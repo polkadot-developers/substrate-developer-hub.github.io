@@ -91,7 +91,7 @@ There is a pre-build [Polkadot/Substrate UI](https://github.com/polkadot-js/apps
 In the **Settings** page, configure `remote node` to be `127.0.0.1:9944`. After saving the new configuration, you should be able to see other items in the sidebar. 
 
 Go to **Extrinsics** page:
-* use `ALICE` account,
+* use `ALICE` account which is build in the genesis block configuration,
 * configure **submit the following extrinsic** to be `template` `doSomething(something)`, 
 * configure **something** to be any integer you want,
 * click **Submit Transaction**. After a few seconds, you should notice the success events showing up.

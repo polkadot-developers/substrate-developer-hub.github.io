@@ -1,5 +1,5 @@
 ---
-title: "Deploy a Parachain"
+title: "Deploy As Parachain"
 ---
 
 *TODO*
