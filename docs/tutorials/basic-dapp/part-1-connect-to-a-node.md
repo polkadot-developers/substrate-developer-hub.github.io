@@ -93,7 +93,7 @@ You should see the loader for a couple of seconds, and then "Connected" 🚀.
 
 ## 1.2 Retrieve node information
 
-Now that we are successfully connected to our node let's present some information about it.
+Now that we are successfully connected to our node, let's present some information about it.
 We will create a new component called `NodeInfo` responsible for displaying this information, and we will pass the `api` in the props.
 All we need to import are the usual `React` component and the hook functions.
 
