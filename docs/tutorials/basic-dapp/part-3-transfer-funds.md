@@ -9,7 +9,7 @@ Now that we have all of our account balance displayed, let's get them moving. In
 
 Because you can only send funds from your own accounts, the "from" field will be a dropdown. The receiver of our funds can be any valid address though.
 
-In this component, we don't need to fetch any data from the `api`, so there is no hook, however, we will use the `api` to do the transfer. Just like for `Balances` we will pass the `api` and `keyring` through the props. We will have only one state variable, an object containing the form information to be submitted as we click the *Send* button.
+In this component, we don't need to fetch any data from the `api`, so there is no hook, however, we will use the `api` to do the transfer. Just like for `Balances` we will pass the `api` and `keyring` to the props. We will have only one state variable, an object containing the form information to be submitted as we click the *Send* button.
 To generate the options from the dropdown of our accounts `keyringOptions`, we will simply iterate from the `keyring.getPairs()`.
 
 ```js
