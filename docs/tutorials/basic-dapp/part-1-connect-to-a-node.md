@@ -100,7 +100,7 @@ All we need to import are the usual `React` component and the hook functions.
 import React, {useEffect, useState} from 'react';
 ```
 
-The [Polkadot-js api](https://polkadot.js.org/api/api/) allows you to send RPC queries to the node.
+The [Polkadot-js api](https://polkadot.js.org/api/api/) allows you to send RPC calls to the node.
 To get the node's information we want, we will use the `rpc.system` methods provided by the `api`.
 We will add the information returned by the API to the components state to be able to access and display it later on.
 ```js
