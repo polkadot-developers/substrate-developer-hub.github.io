@@ -101,7 +101,7 @@ If you run this example, you will get a table with "Alice", "Alice_stash", "Bob"
 
 ## 2.2 Query and display Alice's balance
 
-Now that we have our accounts, we can query the balance for each one of them. The substrate node that you connect to has a `Balances` module that keeps track of the balance of each account on the blockchain. What we will watch is the `freeBalance` of an account. The [Polkadot-js api](https://polkadot.js.org/api/api/) allows you to query the storage from a module with `api.query`. This is how we can get access to this `freeBalance` information.
+Now that we have our accounts, we can query the balance for each one of them. The substrate node that you are connected to has a `Balances` module that keeps track of the balance of every account on the blockchain. What we will watch is the `freeBalance` of an account. The [Polkadot-js api](https://polkadot.js.org/api/api/) allows you to query the storage of a module with `api.query` and to subscribe to updates of these values. This is how we can get access to this `freeBalance` information.
 
 Let's start small and query the balance for one account, Alice.
 
