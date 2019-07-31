@@ -126,7 +126,7 @@ export default function NodeInfo(props) {
 ```
 Remember what we said in the previous part? The second argument of `useEffect` is an array that presents the variables to watch. In this case, `useEffect` will be triggered when the component loads and whenever `api.rpc.system` changes. It should not but we never know (and if you don't specify this argument the component will work surely as well but you'll see a warning in the console).
 
-Finally, we'll display these info at the top of the page:
+Finally, we'll display our node information at the top of the page:
 ```js
   return (
     <>
