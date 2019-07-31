@@ -124,7 +124,8 @@ export default function NodeInfo(props) {
     .catch((e) => console.error(e));
   },[api.rpc.system]);
 ```
-Remember what we said in the previous part? The second argument of `useEffect` is an array that presents the variables to watch. In this case, `useEffect` will be triggered when the component loads and whenever `api.rpc.system` changes. It should not but we never know (and if you don't specify this argument the component will work surely as well but you'll see a warning in the console).
+Remember what we said in the previous part? The second argument of `useEffect` is an array that presents the variables to watch. In this case, `useEffect` will be triggered when the component loads and whenever `api.rpc.system` changes.
+The API endpoints do not change unless there's a runtime upgrade of the node. Even though this will not happen in our development environment and the component will work without specifying this argument, we are still passing the `api.rpc.system` to `useEffect` to make our examples as realistic as possible.
 
 Finally, we'll display our node information at the top of the page:
 ```js
