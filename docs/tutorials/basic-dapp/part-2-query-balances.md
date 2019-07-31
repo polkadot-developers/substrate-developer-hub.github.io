@@ -44,7 +44,7 @@ stores: Object { address: address(), contract: contract(), account: account() }
 
 If you develop the `_keyring` and `_pairs` objects, you'll see that we have some key pairs here. Those are the testing accounts that were initialized thanks to the `isDevelopment` flag. We will now build a Balances component so that we can display those accounts. This Balances component will very soon show all our accounts with the amount of funds.
 
-Let's start by listing the account names and their address.
+Let's start by listing the account names and their addresses.
 Nothing fancy here other than what we talked about before, `getPairs()` will give us the array of the accounts in our keyring. Mapping through this array lets us display the name and address of each of our accounts.
 
 ```js
