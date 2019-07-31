@@ -40,7 +40,8 @@ export default function Transfer (props) {
   };
 ```
 
-We will then create our function to actually submit the form. To do so we need to create the transaction, then sign it with our private key and finally send it. The `api` provides all we need here again, with `api.tx.balances` and the `transfer` and `signAndSend` methods. The latter takes the Keypair as the first parameter and a callback as the second parameter, passing to the callback the `status` of the transaction that we will use to see if our transaction is executed successfully thanks to the `isFinalized` flag. In the example below, we will show our users if the transaction is successful or not and in case it is successful at what block it was executed. 
+We will then create our function to actually submit the form. To do so we need to create the transaction, then sign it with our private key and finally send it. The `api` provides all we need here again, with `api.tx.balances` and the `transfer` and `signAndSend` methods. The latter takes the Keypair as the first parameter and a callback as the second parameter.
+The the `status` of the transaction is passed to the callback function. We will use it to see if our transaction is executed successfully. In the example below, we will show our users if the transaction was successfully finalized using the `isFinalized` status value. If it was successful executed, we're showing at which block it was finalized.
 
 ```js
 const makeTransfer = () => {
