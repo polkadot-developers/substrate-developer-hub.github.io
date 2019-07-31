@@ -1,10 +1,10 @@
 ---
-title: "Part 1 Connect to a node"
+title: "Part 1 - Connect to a node"
 ---
 
-## 1.0 Frameworks and tools
+## 1.1 Frameworks and tools
 
-In this tutorial, we will build a React application. To focus as much as possible on the actual use of  the Polkadot JS API ([see its documentation](https://polkadot.js.org/api/api/#api-selection)), we do not want to spend too much time to make the app pretty, we will, therefore, use the `semantic-ui-react` package to render UI component nicely for us.
+In this tutorial, we will build a React application. To focus as much as possible on the actual use of  the Polkadot-js api ([see its documentation](https://polkadot.js.org/api/api/#api-selection)), we do not want to spend too much time to make the app pretty, we will, therefore, use the `semantic-ui-react` package to render UI component nicely for us.
 
 Building an application on top of Substrate means that we need to connect to a Substrate node. To get started as quickly as possible on the actual app development, this guide will provide you with a development endpoint to connect your application to. To be more flexible and run your own node, please read [installing Substrate](https://substrate.dev/docs/en/getting-started/installing-substrate).
 
@@ -19,9 +19,9 @@ cd basic-dapp
 
 After removing the boilerplates code, we have added our first dependencies to the repo: `@polkadot/api@beta`, `semantic-ui-react`, `semantic-ui-css`
 
-Substrate code is evolving very quickly, introducing breaking changes regularly. Polkadot-js api follows this path as well, so sometimes things break. We will use the `beta` versions of all Polkadot JS modules here because the DApp we are building is basic and adapting it to breaking changes shouldn't require too much work. It is however advised to use the stable releases for any production app.
+Substrate code is evolving very quickly, introducing breaking changes regularly. Polkadot-js api follows this path as well, so sometimes things break. We will use the `beta` versions of all Polkadot-js modules here because the DApp we are building is basic and adapting it to breaking changes shouldn't require too much work. It is however advised to use the stable releases for any production app.
 
-## 1.1 Connect to a node
+## 1.2 Connect to a node
 
 Head to the `src/App.js` file to get started. We start by importing the following packages:
 ```js
@@ -82,16 +82,16 @@ Here is how we will render things.
 As described before, this code will verify that the `api` from the state is initialized and ready before showing "Connected" to our users
 The `loader` function returns a nice looking loader with any text we want. This loader logic has been extracted into its own function because we will reuse it later in the tutorial.
 
-You can get the working version of this code by visiting `part-1-1` directory and launch it with:
+You can get the working version of this code by visiting `part-1-2` directory and launch it with:
 ```bash
-cd part-1-1;
+cd part-1-2;
 yarn;
 yarn start;
 ```
 
 You should see the loader for a couple of seconds, and then "Connected" 🚀.
 
-## 1.2 Retrieve node information
+## 1.3 Retrieve node information
 
 Now that we are successfully connected to our node, let's present some information about it.
 We will create a new component called `NodeInfo` which will be responsible for displaying this information. We will pass the `api` object that we added to the `App`'s component state to the props of this component.
@@ -104,7 +104,7 @@ import React, {useEffect, useState} from 'react';
 
 The [Polkadot-js api](https://polkadot.js.org/api/api/) allows you to send RPC calls to the node.
 To get the node's information we want, we will use the `rpc.system` methods provided by the `api`.
-We will add the information returned by the API to the components state to be able to access and display it later on.
+We will add the information returned by the api to the components state to be able to access and display it later on.
 ```js
 export default function NodeInfo(props) {
   const {api} = props;
@@ -127,7 +127,7 @@ export default function NodeInfo(props) {
   },[api.rpc.system]);
 ```
 Remember what we said in the previous part? The second argument of `useEffect` is an array that presents the variables to watch. In this case, `useEffect` will be triggered when the component loads and whenever `api.rpc.system` changes.
-The API endpoints do not change unless there's a runtime upgrade of the node. Even though this will not happen in our development environment and the component will work without specifying this argument, we are still passing the `api.rpc.system` to `useEffect` to make our examples as realistic as possible.
+The api endpoints do not change unless there's a runtime upgrade of the node. Even though this will not happen in our development environment and the component will work without specifying this argument, we are still passing the `api.rpc.system` to `useEffect` to make our examples as realistic as possible.
 
 Finally, we'll display our node information at the top of the page:
 ```js
@@ -139,13 +139,13 @@ Finally, we'll display our node information at the top of the page:
   )
 }
 ```
-You can get the working version of this code by visiting `part-1-2` directory and launch it with:
+You can get the working version of this code by visiting `part-1-3` directory and launch it with:
 ```bash
-cd part-1-2;
+cd part-1-3;
 yarn;
 yarn start;
 ```
 
 You should see something like: "Development - substrate-node (v2.0.0)"
 
-[Part 2 - Query and display balances ->](part-2-display-balances.md)
+[Part 2 - Query and display balances ->](part-2-query-balances.md)

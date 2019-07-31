@@ -97,7 +97,7 @@ yarn start;
 ```
 
 If you run this example, you will get a table with "Alice", "Alice_stash", "Bob".. and their address.
-![Testing accounts name and address](./assets/part-2-1.jpg)
+![Testing accounts name and address](/docs/tutorials/basic-dapp/assets/part-2-1.jpg)
 
 ## 2.2 Query and display Alice's balance
 
@@ -160,7 +160,7 @@ yarn start;
 ```
 
 If you run this example, you will get a table with "Alice" account and balance.
-![Alice balance](./assets/part-2-2.jpg)
+![Alice balance](/docs/tutorials/basic-dapp/assets/part-2-2.jpg)
 
 ## 2.3 Query and display all balances
 
@@ -226,13 +226,13 @@ yarn start;
 ```
 
 If you run this example, you will get a table with all our testing accounts, their address and their balance.
-![All balances](./assets/part-2-3.jpg)
+![All balances](/docs/tutorials/basic-dapp/assets/part-2-3.jpg)
 
-# 2.4 Good to know
+## 2.4 Good to know
 
 It is worth mentioning that the funds in `freeBalancee` of an account might **not** be available to transfer. An account could very well have funds, but if for example those are staked (a.k.a bonded) for validating, you might not be able to transfer them although `freeBalance` is not null. If you want to show the balance available to transfer, this is computed in a so-called derive `api`, have a look at the `available` field returned by [`derive.balances.all`](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/balances/all.ts).
 
-The `derive api` as its name suggest is not a direct query to the node. It is rather a concatenation, and derivation of multiple queries, to end up serving information that wasn't directly accessible by the node. A popular one is [`derive.chain.bestNumber`](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/chain/bestNumber.ts) to get the latest block number. Have a look in [the repo](](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/). Unfortunately, those `api` endpoints are undocumented for now.
+The `derive api` as its name suggest is not a direct query to the node. It is rather a concatenation, and derivation of multiple queries, to end up serving information that wasn't directly accessible by the node. A popular one is [`derive.chain.bestNumber`](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/chain/bestNumber.ts) to get the latest block number. Have a look in [the repo](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/). Unfortunately, those `api` endpoints are undocumented for now.
 
 Substrate is a framework to build blockchains. The `--dev` node that we are querying in this part contains a `Balances` [*S*ubstrate *R*untime *M*odule *L*ibrary a.k.a srml](https://substrate.dev/rustdocs/v1.0/srml_balances/index.html) that keeps track of the balance of each account on the blockchain. Not every Substrate chain will have this `Balances` module. However, any module that is integrated into a Substrate node can be queried using `api.query.section.method`.
 

@@ -4,7 +4,7 @@ title: "Part 4 - Use external accounts"
 
 In this tutorial, we do no show how to create accounts using this `api` although it's possible. The reason is simple, we do not want to encourage developers to manage accounts in the browser. DNS attacks, pishing and other common attacks put users at risk. If the use case of the DApp allows it, we suggest using injected accounts instead. Users will create and manage their accounts externally to the DApp, we will simply use these accounts if the user accepts it. In this Part, we will show how you can show external accounts balance and send a transaction.
 
-# 4.1 Get Polkadot-js extension
+## 4.1 Get Polkadot-js extension
 
 Get into our user's shoes and install the [Polkadot-js enxtension](https://github.com/polkadot-js/extension) from the [Chrome](https://chrome.google.com/webstore/detail/polkadot%7Bjs%7D-extension/mopnmbcafieddcagagdcbnhejhlodfdd?hl=en) or [Firefox](https://addons.mozilla.org/en-US/firefox/addon/polkadot-js-extension/) store. 
 Create an account using the extension and give it a name.
@@ -12,9 +12,9 @@ Create an account using the extension and give it a name.
 We will now adapt our application to inject any account created externally in our current interface.
 
 This is how the extension looks like with 2 accounts creatively named Bob and Alice:
-![Pokadot-js extension](./assets/part-3-1.jpg)
+![Pokadot-js extension](/docs/tutorials/basic-dapp/assets/part-3-1.jpg)
 
-# 4.2 Display external account's balances
+## 4.2 Display external account's balances
 
 Externally generated accounts loaded thank to [`@polkadot/extension-dapp`](https://github.com/polkadot-js/extension/tree/master/packages/extension-dapp).
 ```bash
@@ -112,10 +112,10 @@ yarn;
 yarn start;
 ```
 If you run this example, you will get prompted with an authorization request from `basic-dapp-tutorial`.
-![Extension authorization popup](./assets/part-4-2-auth.jpg)
+![Extension authorization popup](/docs/tutorials/basic-dapp/assets/part-4-2-auth.jpg)
 
 And you should see the balances of your external accounts below the testing accounts is you accepted the request.
-![External account balances](./assets/part-4-2-external-balances.jpg)
+![External account balances](/docs/tutorials/basic-dapp/assets/part-4-2-external-balances.jpg)
 
 Also if you open the console, you will see something similar to:
 ```bash
@@ -123,7 +123,7 @@ web3Enable: Enabled 1 extension: polkadot-js/0.5.1 index.js:135
 web3Accounts: Found 2 addresses: 5ECyNdxrwuzmsmfPJU64zMyJo8dV86hXfjjxK3PmZx1YCurj, 5ExttMT4rtnYJ7TLn19d8C8sVdTH8exj7pxWPC5xepz7J9KF
 ```
 
-# 4.3 Send fund from external accounts
+## 4.3 Send fund from external accounts
 
 Although the `Balances` component doesn't have to be modified to cater for the external accounts, our `Transfer` component will need some changes. The reason is simple, our DApp doesn't have the cryptographic key pairs for those external accounts. Those are more securely handled by an extension, and we will not have access to it. To make a transfer, we will have to send the transaction to the extension, the user will then be prompted to sign it.
 
@@ -165,9 +165,9 @@ yarn;
 yarn start;
 ```
 If you run this example and send funds from an external account, you will get prompted with an authorization request from `basic-dapp-tutorial`.
-![Extension authorization popup](./assets/part-4-3.jpg)
+![Extension authorization popup](/docs/tutorials/basic-dapp/assets/part-4-3.jpg)
 
-# 4.4 Good to know
+## 4.4 Good to know
 
 If you play around with this DApp and send for example 1 "unit" from Alice to your newly created extension account, you will realize a couple of things. First of all, Alice account gets decreased by more than 1 unit. You probably got it, you have paid fees for the transfer.
 
@@ -176,7 +176,7 @@ The Substrate node we are querying has a `Balances` module. This module is respo
 
 Also if you transfer funds to a newly created account, there will be a so-called creation fee applied. To have an overview of all the fees that may apply, there's a derive query for that [`api.derive.balances.fees`](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/balances/fees.ts)!
 
-# 4.5 Getting further - Extract the send button into its own component
+## 4.5 Getting further - Extract the send button into its own component
 
 The transaction we performed earlier was using `api.tx.balances.transfer`. The transfer function is exposed by the `balanced` srml. In the future, you will very likely use different methods from different srml. It is, therefore, a good idea to extract the logic from the `makeTransfer` function into its own component and make it generic regarding what method will be used.
 

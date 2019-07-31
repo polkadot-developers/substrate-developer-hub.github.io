@@ -2,11 +2,11 @@
 title: "Introduction"
 ---
 
-This is a beginner level guide to help you get started with building a basic decentralized application (later called DApp) on top of the Substrate based blockchain, using [polkadot{.js} api (aka polkadot-js api)](https://github.com/polkadot-js). This tutorial does not require any previous knowledge about the Substrate framework or rust language, it does, however, require knowledge of Javascript as well a basic knowledge of the React framework.
+This is a beginner level guide to help you get started with building a basic decentralized application (later called DApp) on top of the Substrate based blockchain, using [Polkadot-js api](https://github.com/polkadot-js). This tutorial does not require any previous knowledge about the Substrate framework or rust language, it does, however, require knowledge of Javascript as well a basic knowledge of the React framework.
 
 ## What does this guide cover?
 
-This tutorial is for front-end developers who want to be guided towards the use of the [Polkadot JS API](https://github.com/polkadot-js) and the best practices for UI development on top of a Substrate based chain. The goal is to build an application that allows to display a users accounts, to see their balances and finally to send funds between accounts. The code for this application is available in the [`basic-dapp` repo](https://github.com/substrate-developer-hub/basic-dapp).
+This tutorial is for front-end developers who want to be guided towards the use of the [Polkadot-js api](https://github.com/polkadot-js) and the best practices for UI development on top of a Substrate based chain. The goal is to build an application that allows to display a users accounts, to see their balances and finally to send funds between accounts. The code for this application is available in the [`basic-dapp` repo](https://github.com/substrate-developer-hub/basic-dapp).
 
 If you run into a problem following this tutorial, or find anything that is not working as expected, please reach out on [Riot](https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org), submit an issue/PR to this doc by clicking on *Edit* at the top right end corner of any article, or submit an issue/PR for the code in the [`basic-dapp` repo](https://github.com/substrate-developer-hub/basic-dapp/issues/new) :)
 

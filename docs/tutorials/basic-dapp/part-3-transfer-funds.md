@@ -86,6 +86,6 @@ yarn;
 yarn start;
 ```
 If you run this example, you will get find our `Transfert` component below the Balance table.
-![All balances](./assets/part-3-1.jpg)
+![All balances](/docs/tutorials/basic-dapp/assets/part-3-1.jpg)
 
 [Part 4 - Use external accounts ->](part-4-use-external-accounts.md)
