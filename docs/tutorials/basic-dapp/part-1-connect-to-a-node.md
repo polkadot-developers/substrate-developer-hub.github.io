@@ -32,7 +32,7 @@ import { Container, Dimmer, Loader} from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css'
 ```
 
-This application will make use of React hooks. They let us use state and other React features without writing a class. `WsProvide` and `ApiPromise` Polkadot-js api allow us to connect to a node and expose the functions from the node in our application. Let's get started and connect to a node on the default Websockets port 9944.
+This application will make use of React hooks. They let us use state and other React features without writing a class. `WsProvide` and `ApiPromise` Polkadot-js api allow us to connect to a node and expose the functions from the node in our application. Let's get started and connect to a node on the default WebSocket port 9944.
 
 ```js
   const [api, setApi] = useState();
