@@ -200,9 +200,9 @@ useEffect(() => {
 }, [addresses, api.query.balances.freeBalance, setBalances]);
 ```
 
-We call `api.query.balances.freeBalance.multi` and pass our array of addresses, the callback then received an array of results. From there we create with `reduce` an object with the address and balance of each account, this is what we will persist in the state.
+We call `api.query.balances.freeBalance.multi` and pass our array of addresses, the callback then receives an array of results. From there we create an object  with `reduce` that contains the address and balance of each account. This object is what we will persist in the state.
 
-Displaying the accounts with their balance is now easy, we will go through our list of addresses and display the names and balances. 
+Displaying the accounts with their balance is now easy, we will map through our list of addresses and display the names and balances. 
 
 ```js
   return (
@@ -237,7 +237,7 @@ If you run this example, you will get a table with all our testing accounts, the
 
 ## 2.4 Good to know
 
-It is worth mentioning that the funds in `freeBalancee` of an account might **not** be available to transfer. An account could very well have funds, but if for example those are staked (a.k.a bonded) for validating, you might not be able to transfer them although `freeBalance` is not null. If you want to show the balance available to transfer, this is computed in a so-called derive `api`, have a look at the `available` field returned by [`derive.balances.all`](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/balances/all.ts).
+It is worth mentioning that the funds in `freeBalancee` of an account might **not** be available to transfer. An account could very well have funds, but if for example those are staked (a.k.a bonded) for validating, you might not be able to transfer them although `freeBalance` is not null. If you want to show the balance available to transfer, this is computed in a so-called `api-derive`, have a look at the `available` field returned by [`derive.balances.all`](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/balances/all.ts).
 
 The `derive api`, as its name suggest, is not a direct query to the node. It is rather a concatenation and derivation of multiple queries, to end up serving information that are not directly accessible by the node. A popular one is [`derive.chain.bestNumber`](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/chain/bestNumber.ts) to get the latest block number. Have a look at [the repo](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/). Unfortunately, those `api` endpoints are only documented in the code for now.
 
