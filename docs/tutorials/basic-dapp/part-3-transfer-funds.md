@@ -2,7 +2,7 @@
 title: "Part 3 - Transfer funds"
 ---
 
-Now that we have all of our account balance displayed, let's get them moving. In this part, we will create a `Transfer` React component that will allow sending fund from the accounts we own the private key of to any other account. We will have a "from" field, a "to" field and a button to transfer.
+Now that we have all of our account balance displayed, let's get them moving. In this part, we will create a `Transfer` React component that will allow sending funds from the accounts we own the private key of to any other account. We will have a "from" field, a "to" field and a button to transfer.
 
 
 ## 3.1 Transfer funds
