@@ -52,7 +52,8 @@ This application will make use of React hooks. They let us use state and other R
 ```
 
 The first hook we will use is `useEffect`. This function will be triggered when our `App` component loads, just like `componentDidMount` would do. 
-The first thing you need to do is to define your provider, in our case the dev node. If you connect to a local node you can set it to `ws://127.0.0.1:9944`. Then we create an `api` variable that is returned by `ApiPromise.create`, in our case, we will store it in the state variable it will be used heavily to interact with our blockchain node.
+The first thing you need to do is to define your provider, in our case the dev node `wss://dev-node.substrate.dev:9944`. If you want to connect to a local node you can set it to `ws://127.0.0.1:9944`. 
+Then we create an `api` variable that is returned by `ApiPromise.create`. We will add it to the components state to make it easily accessible because it will be heavily used to interact with our blockchain node.
 
 To know if our application is successfully connected to the node, `api` provides a promise `isReady` that will resolve when the connection with the node is established. As soon as it resolves we will set another state variable `apiReady`. Since our application will not be able to access any node or blockchain information before the connection is established, we will show a loader to our users to let them know that we are currently connecting to a node.
 
