@@ -2,7 +2,7 @@
 title: "Part 2 - Display balances"
 ---
 
-Now that we have the connection to our node let's play with some accounts. Because we are connecting to a `--dev` node, we can get access to accounts who are pre-funded, and which private key is known to us. Accounts are organised in a so-called keyring. From this keyring, you can get the address of an account, its associated name, its cryptographic keypair if this account is managed locally. The [`@polkadot/ui-keyring`](https://polkadot.js.org/ui/ui-keyring/) package contains many utilities to manage accounts, we will make use of them in the following sections.
+Now that we have the connection to our node, let's play with some accounts. Because we are connected to a `--dev` node, we can get access to accounts which are pre-funded and whose private keys are known to us. Accounts are organised in a so-called keyring. From this keyring, you can get the address of an account, its associated name and its cryptographic keypair if this account is managed locally. The [`@polkadot/ui-keyring`](https://polkadot.js.org/ui/ui-keyring/) package contains many utilities to manage accounts, we will make use of them in the following sections.
 
 We needed to add `@polkadot/keyring`, `@polkadot/ui-identicon`, `@polkadot/ui-keyring` as dependencies to our project to get access to the keyring utilities.
 
