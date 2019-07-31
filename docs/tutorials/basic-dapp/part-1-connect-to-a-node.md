@@ -19,7 +19,7 @@ cd basic-dapp
 
 After removing the boilerplates code, we have added our first dependencies to the repo: `@polkadot/api@beta`, `semantic-ui-react`, `semantic-ui-css`
 
-Substrate code is evolving very quickly, introducing breaking changes regularly. Polkadot-js api follows this path as well, so sometimes things break. We will use the `beta` branch for Polkadot-js here because the dapp we are building is basic and adapting it to breaking changes shouldn't require too much work. It is however advised to use the stable branch for any production app.
+Substrate code is evolving very quickly, introducing breaking changes regularly. Polkadot-js api follows this path as well, so sometimes things break. We will use the `beta` versions of all Polkadot JS modules here because the DApp we are building is basic and adapting it to breaking changes shouldn't require too much work. It is however advised to use the stable releases for any production app.
 
 ## 1.1 Connect to a node
 
