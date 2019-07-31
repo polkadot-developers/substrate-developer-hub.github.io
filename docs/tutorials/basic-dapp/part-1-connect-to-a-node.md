@@ -8,7 +8,7 @@ In this tutorial, we will build a React application. To focus as much as possibl
 
 Building an application on top of Substrate means that we need to connect to a Substrate node. To get started as quickly as possible on the actual app development, this guide will provide you with a development endpoint to connect your application to. To be more flexible and run your own node, please read [installing Substrate](https://substrate.dev/docs/en/getting-started/installing-substrate).
 
-The node provided in this tutorial accessible at `wss://dev-node.substrate.dev:9944` is run with `--dev` and its database is reset every full hour (at 1:00 am, 2:00 am, 3:00 am...), so don't be surprised if things like the balance of accounts "reset" regularly. The advantage of running your own node is that you can eventually read runtime errors in the console. 
+The node provided in this tutorial accessible at `wss://dev-node.substrate.dev:9944` is run with the `--dev` option and its database is reset every full hour (at 1:00 am, 2:00 am, 3:00 am...), so don't be surprised if things like the balance of accounts "reset" regularly. The advantage of running your own node is that you can read runtime errors in the console and have full control over your chains configuration. 
 
 This application is created using the `create-react-app` scaffolding command. We will use `yarn` package manager throughout this guide. Go ahead and clone the basic-dapp repo:
 
