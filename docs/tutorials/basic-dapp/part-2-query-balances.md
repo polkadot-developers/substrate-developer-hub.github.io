@@ -75,7 +75,7 @@ export default function Balances (props) {
 }
 ```
 
-Of course, we need to amend the entry point of our DApp, `Apps.js`, to import This new component and render it. Note that we also passed the `api` as props, this is not needed at this exact moment in the tutorial, but we will make use of it right after.
+Of course we need to amend the entry point of our DApp, `Apps.js`, to import this new component and render it. Note that we also passed the `api` as a prop, this is not needed at this exact moment in the tutorial, but we will make use of it right after.
 
 ```js
 // at the top of the file
