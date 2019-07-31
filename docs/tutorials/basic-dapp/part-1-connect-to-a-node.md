@@ -94,7 +94,8 @@ You should see the loader for a couple of seconds, and then "Connected" 🚀.
 ## 1.2 Retrieve node information
 
 Now that we are successfully connected to our node, let's present some information about it.
-We will create a new component called `NodeInfo` responsible for displaying this information, and we will pass the `api` in the props.
+We will create a new component called `NodeInfo` which will be responsible for displaying this information. We will pass the `api` object that we added to the `App`'s component state to the props of this component.
+This way, we're getting access to all methods and functions exposed by the Substrate node we're connected to. 
 All we need to import are the usual `React` component and the hook functions.
 
 ```js
