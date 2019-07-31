@@ -129,7 +129,7 @@ We start by creating a state variable called `balance`, that we will initialize 
 We want to display the balance and subscribe to all changes populated by the Substrate node.
 
 **Subscribe**
-The API method `api.query.balances.freeBalance()` takes  an accounts address as its first argument and you can pass an optional callback as the second argument to subscribe to any updates. The callback function is then listening to changes of the `freeBalance` value  of the given account.
+The API method `api.query.balances.freeBalance()` takes  an account address as its first argument and you can pass an optional callback as the second argument to subscribe to any update. The callback function is then listening to changes of the `freeBalance` value  of the given account.
 
 We're updating the components state with the values we're getting from the API and that's what allows us to see the balance change without reloading the page! 
 
