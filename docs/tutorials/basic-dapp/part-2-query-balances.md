@@ -14,7 +14,7 @@ First things first, let's import the `keyring` object;
 import keyring from '@polkadot/ui-keyring';
 ```
 
-Initializing this keyring is super simple, all we need to do it call `loadAll`. To get access to the testing accounts, we can simply passe the object `{isDevelopment: true}` as parameter. We will add a new `useEffect` function to initialize our keyring. Let's `console.log` it to inspect what it gives us.
+Initializing this keyring is super simple, all we need to do is to call `loadAll()`. To get access to the testing accounts, we can simply pass the object `{isDevelopment: true}` as parameter. We will add a new `useEffect` function to initialize our keyring. Let's `console.log` it to inspect what it gives us.
 
 This is the code we added:
 ```js
