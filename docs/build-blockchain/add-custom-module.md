@@ -93,7 +93,7 @@ Now you should be able to interact with the new runtime module `mymodule` with [
 
 ## Add real business logic
 
-In this example, we will create a simple "coin flip" game. Users will pay an entry fee to play the game and then "flip a coin". If they win, they will get the contents of the "pot". If they don't win, they will get nothing. No matter the outcome, their fee will be placed into the "pot" after the game resolves for the next user to try and win.
+In this example, we will create a simple "coin flip" game. Users will pay an entry fee to play the game and then "flip a coin". If they win, they will get the contents of the "pot". If they don't win, they will get nothing. No matter what's the outcome, their fee will be placed into the "pot" after the game resolves and waiting for next user to try and win.
 
 
 ### Add storage items
@@ -111,16 +111,25 @@ decl_storage! {
 }
 ```
 
-> Here we have introduced `decl_storage!` macro and custom syntax to make the declaration of storage simple and easy to read. This macro will take care of generating all of the proper code needed to actually interact with the Substrate storage database.
+> Here we have introduced `decl_storage!` macro and the specific syntax provided by Substrate. It makes our storage code simple and easy to read. The macro itself takes care of generating all of the proper code needed to actually interact with the Substrate storage database behind the scene.
 
 You can see in our storage, we have three items:
-* `Payment` item has a type of `Option<Balance>`. It uses an `Option` to wrap the balance so that we can represent whether or not the `Payment` has been initialized with a value.
-* `Pot` item has a type of `Balance`.
-* `Nonce` item is just an integer in `u64`.
+* `Payment` item has a type of `Option<Balance>` that maintains the entry fee to play the game. It uses an `Option` to wrap the balance so that we can represent whether or not the fee has been initialized with a value.
+* `Pot` item has a type of `Balance` that keeps all the fees since the last winner.
+* `Nonce` item is just an integer in `u64` that will be used to generate random number.
+
+The `Balance` type is provided by [SRML balances](https://substrate.dev/rustdocs/v1.0/srml_balances/index.html) module and holds the balance of an account. To use it, we need to make our module's configuration trait require [balances Trait](https://substrate.dev/rustdocs/v1.0/srml_balances/trait.Trait.html):
+```rust
+pub trait Trait: balances::Trait {
+    // --snip--
+}
+```
+
+We also defined an alternative getter function for `Payment` storage item by using `get(payment)`. Wanna know how to use it? Read on to find out. 
 
 ### Define callable functions
 
-Next we will need to define our callable functions: the ones that a user can use to call into our blockchain system. Our game will have two functions the user can interact with: one that lets us set the initial payment, and one that lets us play the game.
+In this section, we will define our callable functions: the ones that a user can use to call into our blockchain system. Our game will have two functions the user can interact with: one that lets us set the initial payment, and one that lets us play and resolve the game.
 
 ```rust
 decl_module! {
@@ -136,7 +145,8 @@ decl_module! {
 }
 ```
 
-Now that we have established our module structure, we can add the logic which powers these functions. First, we will write the logic for initializing our storage items:
+Now that we have established our module structure, we can add the logic that powers these functions. First, let's write the logic for initializing our storage items within `set_payment` function:
+
 ```rust
 // This function initializes the `payment` storage item
 // It also populates the pot with an initial value
@@ -157,8 +167,9 @@ fn set_payment(origin, value: T::Balance) -> Result {
     Ok(())
 }
 ```
+Our `set_payment` function needs two parameters, one is `orgin`, another one is `value`.
 
-Then we will write the `play()` function which will actually allow users to play our game.
+Then, we will write the `play` function which will actually allow users to play our game.
 ```rust
 // This function is allows a user to play our coin-flip game
 fn play(origin) -> Result {
@@ -204,7 +215,7 @@ fn play(origin) -> Result {
 }
 ```
 
-And that's it! This is how easy it can be to build new runtime modules using Substrate. You can also reference a [complete version](https://github.com/shawntabrizi/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/demo.rs) of this file to check your work.
+And that's it! This is how easy it can be to build new runtime modules using Substrate. You can also reference a [complete version](https://github.com/shawntabrizi/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/demo.rs) of this module to check your work.
 
 
 ## How to write test
