@@ -167,7 +167,7 @@ If you run this example, you will get a table with "Alice" account and balance.
 
 ## 2.3 Query and display all balances
 
-Now that we know how querying the state of a module works, we can map through all of our accounts and query the state for each one. The `api` has a handy function to batch multiple queries at the same time, it's called `multi`. You can pass an array of arguments and it will return an array of the result.
+Now that we know how querying the state of a module works, we can map through all of our accounts and query the state for each one. The `api` has a handy function to batch multiple queries at the same time, it's called `multi`. You can pass an array of arguments and it will return the results as an array.
 
 Instead of having just the balance of Alice in the state, we will change it an object mapping `address` with `freeBalance` so that we can use it to display each account's balance. Because the `multi` remains one subscription, the logic for unsubscribing remains the same.
 
