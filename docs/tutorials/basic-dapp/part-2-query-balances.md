@@ -127,7 +127,10 @@ export default function Balances (props) {
 
 We start by creating a `balance` state, that we will initialize at `0`. Then, as we did in the previous part, we will make the query in a React hook, with `useEffect`. However, we will want to display if the balance changes, this `api.query.balances.freeBalance` takes as first argument the account's address you want to request, and you can pass a callback as the second argument. This callback receives the current balance for the given account. This is where we will persist it in the state.
 
-This `query` is a subscription to the storage, this is what will allow us to see the balance change without reloading the page! Because it's a subscription, we must unsubscribe whenever our `Balances` React component unmounts. The `unsubscribe` function is what is actually returned by the `query`. This one must be called in the `return` statement of the `useEffect` that will be called whenever the component unmounts, in our case, it's when we close the tab or refresh out app's page manually.
+We're updating the components state with the values we're getting from the API and that's what allows us to see the balance change without reloading the page! 
+
+**Unsubscribe**
+But because it's a subscription, we must unsubscribe whenever our `Balances` React component unmounts. The `unsubscribe` function is what is actually returned by the `query`. This one must be called in the `return` statement of the `useEffect` that will be called whenever the component unmounts. In our case, it's when we close the tab or refresh our applications manually.
 
 Let's strip down the table we return to only show Alice and the account's associated balance.
 
