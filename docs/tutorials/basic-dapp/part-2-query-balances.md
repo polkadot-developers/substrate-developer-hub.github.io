@@ -136,7 +136,7 @@ We're updating the components state with the values we're getting from the API a
 **Unsubscribe**
 But because it's a subscription, we must unsubscribe whenever our `Balances` React component unmounts. The `unsubscribe` function is what is actually returned by the `query`. This one must be called in the `return` statement of the `useEffect` that will be called whenever the component unmounts. In our case, it's when we close the tab or refresh our applications manually.
 
-Let's strip down the table we return to only show Alice and the account's associated balance.
+Let's strip down the table we return to only show the balance for Alice.
 
  ```js
   // the end of the Balance.js file
