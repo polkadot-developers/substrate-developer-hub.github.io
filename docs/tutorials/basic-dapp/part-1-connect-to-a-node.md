@@ -101,7 +101,7 @@ import React, {useEffect, useState} from 'react';
 ```
 
 The [Polkadot-js api](https://polkadot.js.org/api/api/) allows you to send RPC queries to the node.
-To get the node's information we want, we will use the `rpc.system` method and section given by the `api` promise.
+To get the node's information we want, we will use the `rpc.system` methods provided by the `api`.
 We will persist in the state the information returned as an object, to display it later on.
 ```js
 export default function NodeInfo(props) {
