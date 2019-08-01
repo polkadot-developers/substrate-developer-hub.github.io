@@ -10,7 +10,7 @@
       "build-blockchain/add-custom-module",
       "build-blockchain/interact-with-your-blockchain",
       "build-blockchain/deploy-as-parachain",
-      "build-blockchain/deploy-standalone-chain"
+      "build-blockchain/deploy-as-sovereign-chain"
     ],
     "Substrate Fundamentals": [
       "overview/index",
