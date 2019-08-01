@@ -121,9 +121,6 @@ Then you can build the node with
 # Update your rust toolchain
 ./scripts/init.sh
 
-# Build the wasm runtime
-./scripts/build.sh
-
 # Build the native node
 cargo build
 ```
