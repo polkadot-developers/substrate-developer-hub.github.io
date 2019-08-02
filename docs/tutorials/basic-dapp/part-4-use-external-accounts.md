@@ -39,7 +39,7 @@ return loader('Loading accounts (please review any extension\'s authorization)')
 }
 ```
 
-We will declare our DApp and request access to the external accounts in a `useEffect` React hook that we are now familiar with. We used to call `loadAccounts()` to initialize the keyring. This function also accepts injected accounts as arguments, so all we'll have to do is `loadAccounts(injectedAccounts)`. Quite handy isn't it?
+We will declare our DApp and request access to the external accounts in a `useEffect` React hook that we are now familiar with. We used to call `loadAccounts()` to initialize the keyring. This function also accepts injected accounts as arguments, so all we'll have to do is `loadAccounts(injectedAccounts)`. Quite handy, isn't it?
 
 Instead of calling `loadAccounts()` in its own `useEffect` React hook, we will call it once we have collected the external accounts and the user has granted us access. Then we can call `loadAccounts()` with the correct parameters.
 
