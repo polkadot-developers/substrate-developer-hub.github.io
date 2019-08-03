@@ -11,7 +11,7 @@ Get into our user's shoes and install the [Polkadot-js extension](https://github
 We will now adapt our application to inject any externally-created account in our current interface.
 
 This is how the extension looks with 2 accounts creatively named Bob and Alice:
-![Pokadot-js extension](/docs/tutorials/basic-dapp/assets/part-3-1.jpg)
+![Pokadot-js extension](/docs/tutorials/substrate-front-end/assets/part-3-1.jpg)
 
 ## 4.2 Display external accounts' balances
 
@@ -50,7 +50,7 @@ import { isWeb3Injected, web3Accounts, web3Enable } from '@polkadot/extension-da
 
 // new hook to get injected accounts
 useEffect(() => {
-    web3Enable('basic-dapp-tutorial')
+    web3Enable('substrate-front-end-tutorial')
     .then((extensions) => {
     // web3Account promise only resolves if there are accounts to inject
     web3Accounts()
@@ -112,11 +112,11 @@ yarn;
 yarn start;
 ```
 
-If you run this example, you will get prompted with an authorization request from `basic-dapp-tutorial`.
-![Extension authorization popup](/docs/tutorials/basic-dapp/assets/part-4-2-auth.jpg)
+If you run this example, you will get prompted with an authorization request from `substrate-front-end-tutorial`.
+![Extension authorization popup](/docs/tutorials/substrate-front-end/assets/part-4-2-auth.jpg)
 
 You should see the balances of your external accounts below the testing accounts if you accepted the request.
-![External account balances](/docs/tutorials/basic-dapp/assets/part-4-2-external-balances.jpg)
+![External account balances](/docs/tutorials/substrate-front-end/assets/part-4-2-external-balances.jpg)
 
 Also, if you open the console, you will see something similar to:
 
@@ -169,8 +169,8 @@ yarn;
 yarn start;
 ```
 
-If you run this example and send funds from an external account, you will get prompted with an authorization request from `basic-dapp-tutorial`.
-![Extension authorization popup](/docs/tutorials/basic-dapp/assets/part-4-3.jpg)
+If you run this example and send funds from an external account, you will get prompted with an authorization request from `substrate-front-end-tutorial`.
+![Extension authorization popup](/docs/tutorials/substrate-front-end/assets/part-4-3.jpg)
 
 ## 4.4 Good to know
 

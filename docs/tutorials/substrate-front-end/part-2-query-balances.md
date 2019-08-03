@@ -98,7 +98,7 @@ yarn start;
 ```
 
 If you run this example, you will get a table with "Alice", "Alice_stash", "Bob", and their addresses.
-![Testing accounts name and address](/docs/tutorials/basic-dapp/assets/part-2-1.jpg)
+![Testing accounts name and address](/docs/tutorials/substrate-front-end/assets/part-2-1.jpg)
 
 ## 2.2 Query and display Alice's balance
 
@@ -169,7 +169,7 @@ yarn start;
 ```
 
 If you run this example, you will get a table with Alice's account and balance.
-![Alice balance](/docs/tutorials/basic-dapp/assets/part-2-2.jpg)
+![Alice balance](/docs/tutorials/substrate-front-end/assets/part-2-2.jpg)
 
 ## 2.3 Query and display all balances
 
@@ -235,7 +235,7 @@ yarn start;
 ```
 
 If you run this example, you will get a table with all our testing accounts, their addresses, and their balances.
-![All balances](/docs/tutorials/basic-dapp/assets/part-2-3.jpg)
+![All balances](/docs/tutorials/substrate-front-end/assets/part-2-3.jpg)
 
 ## 2.4 Good to know
 

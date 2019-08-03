@@ -10,11 +10,11 @@ Building an application on top of Substrate means that we need to connect to a S
 
 The node provided in this tutorial is accessible at `wss://dev-node.substrate.dev:9944`, is run with the `--dev` option, and its database is reset every hour on the hour, so don't be surprised if things like account balances "reset" regularly. The advantage of running your own node is that you can read runtime errors in the console and have full control over your chain's configuration. 
 
-This application is created using the `create-react-app` scaffolding command. We will use the `yarn` package manager throughout this guide. Go ahead and clone the basic-dapp repo:
+This application is created using the `create-react-app` scaffolding command. We will use the `yarn` package manager throughout this guide. Go ahead and clone the [`substrate-front-end` repo](https://github.com/substrate-developer-hub/substrate-front-end):
 
 ```bash
-git clone https://github.com/substrate-developer-hub/basic-dapp.git
-cd basic-dapp
+git clone https://github.com/substrate-developer-hub/substrate-front-end.git
+cd substrate-front-end
 ```
 
 After removing the boilerplate code, we add our first dependencies to the repo: `@polkadot/api@beta`, `semantic-ui-react`, `semantic-ui-css`
