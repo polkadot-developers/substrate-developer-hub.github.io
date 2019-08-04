@@ -28,7 +28,7 @@ This package gives us access to:
 
 To keep things simple, we will not display anything other than a loader to our users while authorization is requested. This is a blocking experience that should not be reproduced in a real DApp. Rather, show something useful to your users and patiently wait for them to accept the extension request.
 
-We will introduce a new state variable `accountLoaded` to remove the loader as soon as our users have granted us access. Bear in mind that we still want to let our users access the application even if they have no extension, of if they don't grant us access. We would simply show them the test keyring, and nothing else.
+We will introduce a new state variable `accountLoaded` to remove the loader as soon as our users have granted us access. Bear in mind that we still want to let our users access the application even if they have no extension, of if they don't grant us access. We would simply show them the test accounts, and nothing else.
 
 ```js
 // Toward the top of Apps.js
@@ -130,7 +130,7 @@ web3Accounts: Found 2 addresses: 5ECyNdxrwuzmsmfPJU64zMyJo8dV86hXfjjxK3PmZx1YCur
 
 ## 4.3 Send funds from external accounts
 
-Although the `Balances` component doesn't have to be modified to cater to the external accounts, our `Transfer` component will need some changes. The reason is simple, our DApp doesn't have the cryptographic key pairs for those external accounts. Those are more securely handled by an extension and we will not have access to it. To make a transfer, we will have to send the transaction to the extension; the user will then be prompted to sign it.
+Although the `Balances` component doesn't have to be modified to cater for the external accounts, our `Transfer` component will need some changes. The reason is simple, our DApp doesn't have the cryptographic key pairs for those external accounts. Those are more securely handled by an extension and we will not have access to their private key. To make a transfer, we will have to send the transaction to the extension; the user will then be prompted to sign it.
 
 To detect if an account is an external account, we can read the `meta.isInjected` from an account in our Keyring. This flag will be set to `true` for external accounts. The `api` allows us to set a `signer` for a transaction. The `signer` for the extension can be retrieved from the `web3FromSource` promise. 
 
