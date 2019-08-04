@@ -66,7 +66,7 @@
       "tutorials/substrate-front-end/part-1-connect-to-a-node",
       "tutorials/substrate-front-end/part-2-query-balances",
       "tutorials/substrate-front-end/part-3-transfer-funds",
-      "tutorials/substrate-front-end/part-4-use-external-accounts",
-      "tutorials/tcr/tcr-best-practices"
+      "tutorials/substrate-front-end/part-4-use-external-accounts"
     ]
+  }
 }

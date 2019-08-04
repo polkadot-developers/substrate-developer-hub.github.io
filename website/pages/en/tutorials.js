@@ -258,7 +258,8 @@ class Tutorials extends React.Component {
           <TutorialCards
             data={[
               {
-                title: <translate>Build a Front-end on top of a Substrate based chain</translate>,
+                img: `${baseUrl}img/polkadot-js-tutorial.png`,
+                title: <translate>Build a Front-end with Polkadot-js API</translate>,
                 text: <translate>Learn to build a Front-end application interracting with a Substrate based blockchain.</translate>,
                 difficulty: "easy",
                 length: "2",
