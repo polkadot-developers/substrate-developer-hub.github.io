@@ -97,8 +97,9 @@ yarn;
 yarn start;
 ```
 
-If you run this example, you will get a table with "Alice", "Alice_stash", "Bob", and their addresses.
-![Testing accounts name and address](/docs/tutorials/substrate-front-end/assets/part-2-1.jpg)
+If you run this example, you will get a table with "Alice", "Alice_stash", "Bob", and their addresses.  
+
+![Testing accounts name and address](/docs/assets/tutorials/substrate-front-end/part-2-1.jpg)
 
 ## 2.2 Query and display Alice's balance
 
@@ -168,8 +169,9 @@ yarn;
 yarn start;
 ```
 
-If you run this example, you will get a table with Alice's account and balance.
-![Alice balance](/docs/tutorials/substrate-front-end/assets/part-2-2.jpg)
+If you run this example, you will get a table with Alice's account and balance.  
+
+![Alice balance](/docs/assets/tutorials/substrate-front-end/part-2-2.jpg)
 
 ## 2.3 Query and display all balances
 
@@ -234,8 +236,9 @@ yarn;
 yarn start;
 ```
 
-If you run this example, you will get a table with all our testing accounts, their addresses, and their balances.
-![All balances](/docs/tutorials/substrate-front-end/assets/part-2-3.jpg)
+If you run this example, you will get a table with all our testing accounts, their addresses, and their balances.  
+
+![All balances](/docs/assets/tutorials/substrate-front-end/part-2-3.jpg)
 
 ## 2.4 Good to know
 
@@ -245,4 +248,3 @@ The `derive api`, as its name suggests, is not a direct query to the node. It is
 
 Substrate is a framework to build blockchains. The `--dev` node that we are querying in this part contains a Balances module from the [**S**ubstrate **R**untime **M**odule **L**ibrary a.k.a SRML](https://substrate.dev/rustdocs/v1.0/srml_balances/index.html), which keeps track of the balance of each account on the blockchain. Not every Substrate chain will have this Balances module. However, any module that is integrated into a Substrate node can be queried using `api.query.section.method`.
 
-[Part 3 - Transfer funds ->](part-3-transfer-funds.md)

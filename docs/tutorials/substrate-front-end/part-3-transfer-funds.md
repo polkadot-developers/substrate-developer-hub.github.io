@@ -90,7 +90,8 @@ yarn;
 yarn start;
 ```
 
-If you run this example, you will find our `Transfer` component below the Balance table.
-![All balances](/docs/tutorials/substrate-front-end/assets/part-3-1.jpg)
+If you run this example, you will find our `Transfer` component below the Balance table.  
 
-[Part 4 - Use external accounts ->](part-4-use-external-accounts.md)
+![All balances](/docs/assets/tutorials/substrate-front-end/part-3-1.jpg)
+
+

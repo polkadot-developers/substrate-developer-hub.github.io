@@ -162,5 +162,3 @@ yarn start;
 ```
 
 You should see something like: "Development - substrate-node (v2.0.0)"
-
-[Part 2 - Query and display balances ->](part-2-query-balances.md)
