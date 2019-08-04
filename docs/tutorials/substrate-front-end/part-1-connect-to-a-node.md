@@ -21,6 +21,8 @@ After removing the boilerplate code, we add our first dependencies to the repo: 
 
 Substrate code is evolving quickly with regular breaking changes. The Polkadot-js API follows this path as well, so sometimes things break. We will use the `beta` versions of all Polkadot-js modules here because the DApp we are building is basic and adapting it to breaking changes shouldn't require too much work. It is, however, advised to use the stable releases for any production app.
 
+To get started, we will connect our application to our development node using the built-in methods from [`@polkadot/api`](https://polkadot.js.org/api/api/#api-selection). We will then request node information using [`rpc.system`](https://polkadot.js.org/api/METHODS_RPC.html#system) methods available from the `api`.
+
 ## 1.2 Connect to a node
 
 Head to the `src/App.js` file to get started. We start by importing the following packages:

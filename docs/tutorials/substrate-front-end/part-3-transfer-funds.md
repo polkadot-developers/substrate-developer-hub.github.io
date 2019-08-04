@@ -4,6 +4,8 @@ title: "Part 3 - Transfer funds"
 
 Now that we have all of our account balances displayed, let's get them moving. In this part, we will create a `Transfer` React component that will allow sending funds from the accounts for which we own the private key to any other account. We will have a "from" field, a "to" field, and a button to transfer.
 
+In this part we will use the [`api.tx`](https://polkadot.js.org/api/METHODS_EXTRINSICS.html) method to submit a transaction for the `balances` blockchain module.
+
 ## 3.1 Transfer funds
 
 Because you can only send funds from your own accounts, the "from" field will be a dropdown. The receiver of our funds can be any valid address though.

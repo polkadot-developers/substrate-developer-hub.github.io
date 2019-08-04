@@ -2,13 +2,13 @@
 title: "Part 2 - Display balances"
 ---
 
-Now that we have the connection to our node, let's play with some accounts. Because we are connected to a `--dev` node, we can get access to accounts that are pre-funded and whose private keys are known to us. Accounts are organized in a so-called keyring. From this keyring, you can get the address of an account, its associated name, and its cryptographic keypair if this account is managed locally. The [`@polkadot/ui-keyring`](https://polkadot.js.org/ui/ui-keyring/) package contains many utilities to manage accounts. We will make use of them in the following sections.
+Now that we have the connection to our node, let's play with some accounts. Because we are connected to a node launched with the `--dev` flag, we can get access to accounts that are pre-funded and whose private keys are known to us. Accounts are organized in a so-called keyring. From this keyring, you can get the address of an account, its associated name, and its cryptographic keypair if this account is managed locally. The [`@polkadot/ui-keyring`](https://polkadot.js.org/ui/ui-keyring/) package contains many utilities to manage accounts. We will make use of them in the following sections.
 
-We needed to add `@polkadot/keyring`, `@polkadot/ui-identicon`, `@polkadot/ui-keyring` as dependencies to our project to get access to the keyring utilities.
+In this part we will use the [`api.query`](https://polkadot.js.org/api/METHODS_STORAGE.html) method to access the storage of the `balances` blockchain component. 
 
 ## 2.1 Get testing accounts
 
-First things first, let's import the `keyring` object;
+First things first, let's import the `keyring` object; We needed to add `@polkadot/keyring`, `@polkadot/ui-identicon`, `@polkadot/ui-keyring` as dependencies to our project to get access to the keyring utilities.
 
 ```js
 import keyring from '@polkadot/ui-keyring';
@@ -243,6 +243,6 @@ It is worth mentioning that the funds in `freeBalancee` of an account might **no
 
 The `derive api`, as its name suggests, is not a direct query to the node. It is rather a concatenation and derivation of multiple queries to serve information that is not directly accessible by the node. A popular one is [`derive.chain.bestNumber`](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/chain/bestNumber.ts) to get the latest block number. Have a look at [the repo](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/). Unfortunately, those `api` endpoints are only documented in the code for now.
 
-Substrate is a framework to build blockchains. The `--dev` node that we are querying in this part contains a Balances module from the [*S*ubstrate *R*untime *M*odule *L*ibrary a.k.a SRML](https://substrate.dev/rustdocs/v1.0/srml_balances/index.html), which keeps track of the balance of each account on the blockchain. Not every Substrate chain will have this Balances module. However, any module that is integrated into a Substrate node can be queried using `api.query.section.method`.
+Substrate is a framework to build blockchains. The `--dev` node that we are querying in this part contains a Balances module from the [**S**ubstrate **R**untime **M**odule **L**ibrary a.k.a SRML](https://substrate.dev/rustdocs/v1.0/srml_balances/index.html), which keeps track of the balance of each account on the blockchain. Not every Substrate chain will have this Balances module. However, any module that is integrated into a Substrate node can be queried using `api.query.section.method`.
 
 [Part 3 - Transfer funds ->](part-3-transfer-funds.md)

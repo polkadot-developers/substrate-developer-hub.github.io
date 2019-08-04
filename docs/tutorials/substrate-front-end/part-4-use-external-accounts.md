@@ -2,7 +2,7 @@
 title: "Part 4 - Use external accounts"
 ---
 
-In this tutorial, we do not show how to create accounts using this `api` although it's possible. The reason is simple, we do not want to encourage developers to manage accounts in the browser. DNS attacks, phishing, and other common attacks put users at risk. If the use case of the DApp allows it, we suggest using injected accounts instead. Users will create and manage their accounts externally to the DApp, we will simply use these accounts if the user accepts it. In this part, we will show you how to show external accounts' balances and send a transaction.
+In this tutorial, we do not show how to create accounts using this `api` although it's possible. The reason is simple, we do not want to encourage developers to manage accounts in the browser. DNS attacks, phishing, and other common attacks put users at risk. If the use case of the DApp allows it, we suggest using injected accounts instead. Users will create and manage their accounts externally to the DApp, we will simply use these accounts if the user accepts it. In this part, we will show you how to access external accounts' balances and send transactions from these accounts.
 
 ## 4.1 Get Polkadot-js extension
 
@@ -15,15 +15,18 @@ This is how the extension looks with 2 accounts creatively named Bob and Alice:
 
 ## 4.2 Display external accounts' balances
 
-Externally-generated accounts loaded thanks to [`@polkadot/extension-dapp`](https://github.com/polkadot-js/extension/tree/master/packages/extension-dapp).
+Externally-generated accounts can be accessed thanks to [`@polkadot/extension-dapp`](https://github.com/polkadot-js/extension/tree/master/packages/extension-dapp. Let's add it to our application:
 
 ```bash
 yarn add @polkadot/extension-dapp@beta
 ```
 
-This package gives us access to `web3Enable` to declare our DApp and request the right to read the accounts from our users. `isWeb3Injected` lets us know if our users have an extension supporting the `@polkadot/extension-dapp` protocol, and finally the `web3Accounts` function that should be called if users have a compatible extension and have granted us access to their accounts.
+This package gives us access to:
+- `web3Enable` to declare our DApp and request the right to read the accounts from our users.
+- `isWeb3Injected` to let us know if our users have an extension supporting the `@polkadot/extension-dapp` protocol.
+- `web3Accounts` that should be called if users have a compatible extension and have granted us access to their accounts.
 
-To keep things simple, we will not display anything other than a loader to our users while authorization is requested. This is a blocking experience that should not be reproduced in a real DApp. Rather, show something to your users and patiently wait for them to accept the extension request.
+To keep things simple, we will not display anything other than a loader to our users while authorization is requested. This is a blocking experience that should not be reproduced in a real DApp. Rather, show something useful to your users and patiently wait for them to accept the extension request.
 
 We will introduce a new state variable `accountLoaded` to show this loader in case our user has an extension but hasn't granted us access to their accounts.
 
@@ -41,7 +44,7 @@ return loader('Loading accounts (please review any extension\'s authorization)')
 
 We will declare our DApp and request access to the external accounts in a `useEffect` React hook that we are now familiar with. We used to call `loadAccounts()` to initialize the keyring. This function also accepts injected accounts as arguments, so all we'll have to do is `loadAccounts(injectedAccounts)`. Quite handy, isn't it?
 
-Instead of calling `loadAccounts()` in its own `useEffect` React hook, we will call it once we have collected the external accounts and the user has granted us access. Then we can call `loadAccounts()` with the correct parameters.
+Instead of calling the `loadAccounts` function in its own `useEffect` React hook, we will call it once we have collected the external accounts and the user has granted us access.
 
 ```js
 // beginning of Apps.js
@@ -100,7 +103,7 @@ We have added yet a little overhead to the above code, this part is not mandator
 })
 ```
 
-What it does is extract the injected accounts' info to modify the displayed name and add the `meta.source` to it. This way, our external Alice and Bob will be clearly identified as coming from the extension.
+What it does is extract the injected accounts' info to modify the displayed name and add the `meta.source` to it in brackets. This way, our external Alice and Bob will be clearly identified as coming from the `polkadot-js` extension.
 
 Because everything is nicely integrated into our Keyring, we don't have to touch our `Balances` component, it will manage external accounts just like the internal ones.
 
