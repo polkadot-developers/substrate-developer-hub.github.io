@@ -2,7 +2,7 @@
 title: "Part 4 - Use external accounts"
 ---
 
-In this tutorial, we do not show how to create accounts using this `api` although it's possible. The reason is simple, we do not want to encourage developers to manage accounts in the browser. DNS attacks, phishing, and other common attacks put users at risk. If the use case of the DApp allows it, we suggest using injected accounts instead. Users will create and manage their accounts externally to the DApp, we will simply use these accounts if the user accepts it. In this part, we will show you how to access external accounts' balances and send transactions from these accounts.
+In this tutorial, we won't show how to create accounts using this `api`. The reason is simple, we do not want to encourage developers to manage accounts in the browser. DNS attacks, phishing, and other common attacks put users at risk. If the use case of the DApp allows it, we suggest using injected accounts instead. Users will create and manage their accounts externally to the DApp, we will simply use these accounts if the user accepts it. In this part, we will show you how to access external accounts' balances and send transactions from these accounts.
 
 ## 4.1 Get Polkadot-js extension
 
@@ -28,7 +28,7 @@ This package gives us access to:
 
 To keep things simple, we will not display anything other than a loader to our users while authorization is requested. This is a blocking experience that should not be reproduced in a real DApp. Rather, show something useful to your users and patiently wait for them to accept the extension request.
 
-We will introduce a new state variable `accountLoaded` to show this loader in case our user has an extension but hasn't granted us access to their accounts.
+We will introduce a new state variable `accountLoaded` to remove the loader as soon as our users have granted us access. Bear in mind that we still want to let our users access the application even if they have no extension, of if they don't grant us access. We would simply show them the test keyring, and nothing else.
 
 ```js
 // Toward the top of Apps.js
