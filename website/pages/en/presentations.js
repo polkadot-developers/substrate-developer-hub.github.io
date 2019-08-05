@@ -70,7 +70,7 @@ class Presentations extends React.Component {
               {presentation.location} -{" "}
               {new Date(presentation.date).toLocaleDateString()}
             </Card.Text>
-            <Button variant="info" href={presentation.link}>
+            <Button variant="info" href={presentation.link} target="_blank">
               View Presentation
             </Button>
           </Card.Body>
