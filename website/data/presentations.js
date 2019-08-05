@@ -47,7 +47,7 @@ const presentationList = [
   },
 ];
 
-function weight_then_title(a, b) {
+function weight_then_date(a, b) {
   // First sort by weight
   if (a.weight < b.weight) {
     return -1;
@@ -65,4 +65,4 @@ function weight_then_title(a, b) {
   return 0;
 }
 
-module.exports = presentationList.sort(weight_then_title);
+module.exports = presentationList.sort(weight_then_date);
