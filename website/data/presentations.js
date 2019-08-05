@@ -35,16 +35,16 @@
 const presentationList = [
   {
     name: "Shawn Tabrizi",
-	company: "Parity Technologies",
-	homepage: "https://parity.io",
-	title: "Enabling Forkless Upgrades with Substrate",
-	summary: "Learn how the Substrate framework is built to enable forkless runtime upgrades.",
+    company: "Parity Technologies",
+    homepage: "https://parity.io",
+    title: "Enabling Forkless Upgrades with Substrate",
+    summary: "Learn how the Substrate framework is built to enable forkless runtime upgrades.",
     youtube: "https://www.youtube.com/embed/0aTnxHrV_j4",
     link: "/presentations/Shawn Tabrizi - Substrate - Forkless Upgrades.pdf",
     date: Date.parse("Feb 3, 2019"),
-	location: "DOT Day: Seoul, Korea",
+    location: "DOT Day: Seoul, Korea",
     weight: -1
-  },
+  }
 ];
 
 function weight_then_date(a, b) {
