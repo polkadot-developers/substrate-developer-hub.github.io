@@ -20,6 +20,9 @@
 // List of projects listed on the "users" page.
 const users = require('./data/users');
 
+// List of presentations on the "presentations" page
+const presentations = require('./data/presentations');
+
 const siteConfig = {
   title: 'Substrate Developer Hub', // Title for your website.
   tagline: 'The place for blockchain innovators.',
@@ -49,6 +52,9 @@ const siteConfig = {
 
   // If you have users set above, you add it here:
   users,
+
+  // Presentations
+  presentations,
 
   /* path to images for header/footer */
   headerIcon: 'img/Substrate-logo.svg',
