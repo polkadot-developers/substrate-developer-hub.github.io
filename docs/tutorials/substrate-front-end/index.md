@@ -8,7 +8,7 @@ This is a beginner-level guide to help you get started with building the front-e
 
 This tutorial is for front-end developers who want to be guided through the use of the [Polkadot-js API](https://github.com/polkadot-js) and the best practices for UI development on top of a Substrate-based chain. The goal is to build an application that lets you display users' accounts, see their balances, and send funds between accounts. The code for this application is available in the [`substrate-front-end` repo](https://github.com/substrate-developer-hub/substrate-front-end).
 
-If you run into a problem following this tutorial or find anything that is not working as expected, please reach out on [Riot](https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org), submit an issue/PR to this doc by clicking on *Edit* at the top-right corner of any article, or submit an issue/PR for the code in the [`substrate-front-endfront-end` repo](https://github.com/substrate-developer-hub/substrate-front-end/issues/new).
+If you run into a problem following this tutorial or find anything that is not working as expected, please reach out on [Riot](https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org), submit an issue/PR to this doc by clicking on *Edit* at the top-right corner of any article, or submit an issue/PR for the code in the [`substrate-front-end` repo](https://github.com/substrate-developer-hub/substrate-front-end/issues/new).
 
 The guide is divided into the following parts:
 
