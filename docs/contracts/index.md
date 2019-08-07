@@ -4,7 +4,7 @@ title: "Introduction to Smart Contracts on Substrate"
 
 Welcome to the smart contracts section of the Developer Hub!
 
-Here you can learn how to write ([WebAssembly](overview/glossary.md#webassembly-wasm)) smart contracts for Substrate blockchains using the [Contracts](https://github.com/paritytech/substrate/tree/master/srml/contracts) module from the Substrate Module Runtime Library ([SRML](https://substrate.dev/docs/en/overview/glossary#srml-substrate-runtime-module-library)).
+Here you can learn how to write ([WebAssembly](overview/glossary.md#webassembly-wasm)) smart contracts for Substrate blockchains using the [Contracts](https://github.com/paritytech/substrate/tree/master/srml/contracts) module from the Substrate Runtime Module Library ([SRML](https://substrate.dev/docs/en/overview/glossary#srml-substrate-runtime-module-library)).
 
 Because Substrate supports Wasm smart contracts, it means that any language that can compile to Wasm could be used to write these contracts. ink! is Parity's answer for writing smart contracts using the Rust programming language.
 
@@ -35,11 +35,11 @@ Calls to contracts can alter the storage of the contract, create new contracts, 
 
 ### Sandboxed
 
-The Contracts module is intended to be used by any user on a public network. This means that contracts only have the ability to directly modify their own storage. To provide safety to the underlying blockchain state, the Contracts module enables revertable transactions, which roll back any changes to the storage by contract calls that do not complete successfully.
+The Contracts module is intended to be used by any user on a public network. This means that contracts only have the ability to directly modify their own storage. To provide safety to the underlying blockchain state, the Contracts module enables revertible transactions, which roll back any changes to the storage by contract calls that do not complete successfully.
 
 ### Gas
 
-Contract calls are charged a gas fee to limit the amount of computational resources a transaction can use. When forming a contract transaction, a gas limit is specified. As the contract executes, gas is incrementally used up depending on the complexity of the computation. If the gas limit is reached before the contract execution completes, the transaction fails, contract storage is reverted, and the gas fee is **not** returned to the user. If the contract executed completes with remaining gas, it is returned to the user at the end of the transaction.
+Contract calls are charged a gas fee to limit the amount of computational resources a transaction can use. When forming a contract transaction, a gas limit is specified. As the contract executes, gas is incrementally used up depending on the complexity of the computation. If the gas limit is reached before the contract execution completes, the transaction fails, contract storage is reverted, and the gas fee is **not** returned to the user. If the contract execution completes with remaining gas, it is returned to the user at the end of the transaction.
 
 The Contracts module determines the gas price, which is a conversion between the Substrate `Currency` and a single unit of gas. Thus, to execute a transaction, a user must have a free balance of at least `gas price` * `gas limit` which can be spent.
 
