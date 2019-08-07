@@ -1,7 +1,7 @@
 ---
 title: "Low-level Data Format"
 ---
-Substrate encodes data in the "Simple Concatenated Aggregate Little-Endian" (SCALE) data format, as implemented by the `parity-codec` crate and several JavaScript modules.
+Substrate encodes data in the "Simple Concatenated Aggregate Little-Endian" (SCALE) data format, as implemented by the `parity-scale-codec` crate and several JavaScript modules.
 
 It is an extremely light-weight encoding format designed for high-performance, copy-free encoding and decoding of data in resource-constrained execution contexts like the Substrate runtime. It is not self-describing in any way and assumes the decoding context has all type knowledge about the encoded data.
 
