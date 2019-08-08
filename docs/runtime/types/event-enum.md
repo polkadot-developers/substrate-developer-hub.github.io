@@ -1,7 +1,7 @@
 ---
 title: "Event Enum"
 ---
-Substrate runtimes provide events to communicate information for end-users and clients.
+Substrate runtimes provide events to communicate information for end users and clients.
 
 ## Declaring Events
 

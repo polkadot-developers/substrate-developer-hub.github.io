@@ -93,7 +93,7 @@ cargo build --release
 
 Now you should be able to interact with the new runtime module `mymodule` with [Polkadot/Substrate UI](https://github.com/polkadot-js/apps) just like what you did in [Initialize Your Blockchain](./initialize-your-blockchain.md#interact-with-your-node).
 
-## Add real business logic
+## Add business logic
 
 In this example, we will create a simple "coin flip" game. Users will pay an entry fee to play the game and then "flip a coin". If they win, they will get the contents of the "pot". If they don't win, they will get nothing. No matter what's the outcome, their fee will be placed into the "pot" after the game resolves and wait for next user to try and win.
 
@@ -236,6 +236,74 @@ use parity_codec::Encode;
 
 <!-- TODO: move generate random data page into dev hub -->
 
-And that's it! This is how easy it can be to build new runtime modules using Substrate. You can also reference a [complete version](https://github.com/shawntabrizi/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/demo.rs) of this module to check your work.
+### Send events
 
-To play the game, we can interact with the above callable functions within [Polkadot/Substrate UI](https://github.com/polkadot-js/apps) by applying Extrinsics. After that, check the Chain state to find out what stores in our module's storage items. Giving yourself some fun!
+Due to the asynchronous execution of blockchain, the client has no idea when a callable function will be executed until new block generated. To notify the off-chain world of the result of a function call, Substrate allows developer to deposit an event during function execution. These events will then be listened by clients to build off-chain storage or interact with end users. 
+
+In our example, there are two callable functions `set_payment` and `play`. Let's define an event for each of them:
+
+```rust
+decl_event!(
+    pub enum Event<T> where
+        AccountId = <T as system::Trait>::AccountId,
+        Balance = <T as balances::Trait>::Balance {
+        // --snip--
+        // Deposit this event with the actual value that the Payment storage was set to
+        PaymentSet(Balance),
+        // Deposit an event which includes player's account id and winnings just before the play function return a success result
+        PlayResult(AccountId, Balance),
+    }
+);
+```
+
+We have defined new event type `PaymentSet` and `PlayResult` by putting them in module's `Event` enum and then passing the whole enum code as parameter to `decl_event!` macro. You can find more knowledge in [Event Enum](../runtime/types/event-enum.md) page.
+
+In order to deposit an event, we need to call the predefined `deposit_event` function in our module with the event type that we need. For `set_payment` function, we only need to add one line at the end of the if statement:
+```rust
+fn set_payment(origin, value: T::Balance) -> Result {
+    // --snip--
+    if Self::payment().is_none() {
+        // --snip--
+        // Deposit PaymentSet event with the value
+        Self::deposit_event(RawEvent::PaymentSet(value));
+    }
+    // --snip--
+}
+```
+
+For `play` function,
+* We first initialize the winnings for the player to be zero,
+* If the player wins the game, the winnings will be set to the balance in pot,
+* The `PlayResult` event is deposited before the function returns no matter what the winnings is.
+
+```rust
+fn play(origin) -> Result {
+    let sender = ensure_signed(origin)?;
+    // --snip--
+    // Initialize the winnings to be zero
+    let mut winnings = Zero::zero();
+    
+    if (<system::Module<T>>::random_seed(), &sender, nonce)
+      .using_encoded(<T as system::Trait>::Hashing::hash)
+      .using_encoded(|e| e[0] < 128)
+    {
+        // --snip--
+        // Set the winnings to the balance in pot
+        winnings = pot;
+        // Reduce the pot to zero
+        pot = Zero::zero();
+    }
+    // --snip--
+    // Deposit PlayResult event with player's account id and winnings
+    Self::deposit_event(RawEvent::PlayResult(sender, winnings));
+
+    // Return Ok(()) when everything happens successfully
+    Ok(())
+}
+```
+
+## Summary
+
+That's it! This is how easy it can be to build new runtime modules using Substrate. You can also reference a [complete version](https://github.com/shawntabrizi/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/demo.rs) of this module to check your work.
+
+To play our game, we can interact with the callable functions within [Polkadot/Substrate UI](https://github.com/polkadot-js/apps) by applying Extrinsics. After that, check the Chain state to find out what stores in our module's storage items. Giving yourself some fun!

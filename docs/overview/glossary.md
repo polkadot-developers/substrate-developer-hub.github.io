@@ -129,7 +129,7 @@ Within the SRML Balances module, this is the minimum balance an account may have
 >
 > If the amount transferred is less than the existential deposit and the destination account did not previously exist, then the transfer will "succeed" without actually creating and crediting the destination account; this appears to essentially just burn the transfer balance from the sender. If the transfer takes the sender to below the existential balance, then its account will be deleted. In this way, a transfer can even "successfully" result in the sender account being completely deleted, with the receiver account never being created.
 >
-> It is up to middleware to ensure that end-users are made aware of and/or protected from these edge cases.
+> It is up to middleware to ensure that end users are made aware of and/or protected from these edge cases.
 
 ## Finality
 A part of consensus dealing with making a progression be irreversible. If a block is finalised, then any real-world repercussions can be effected. The consensus algorithm must guarantee that finalised blocks never need reverting.
