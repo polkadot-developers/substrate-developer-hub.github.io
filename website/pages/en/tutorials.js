@@ -246,6 +246,32 @@ class Tutorials extends React.Component {
       </div>
     );
 
+    const FrontEndTutorials = () => (
+      <div className="mt-4">
+        <h2>
+          <translate>
+            Front-end Development
+          </translate>
+        </h2>
+        <hr />
+        <Row>
+          <TutorialCards
+            data={[
+              {
+                img: `${baseUrl}img/polkadot-js-tutorial.png`,
+                title: <translate>Build a Front-end with Polkadot-js API</translate>,
+                text: <translate>Learn to build a Front-end application interracting with a Substrate based blockchain.</translate>,
+                difficulty: "easy",
+                length: "2",
+                prerequisite: false,
+                href: `${docUrl("tutorials/substrate-front-end")}`
+              },
+            ]}
+          />
+        </Row>
+      </div>
+    );
+
     return (
       <div>
         <HomeSplash
@@ -261,6 +287,7 @@ class Tutorials extends React.Component {
             <RuntimeTutorials />
             <ContractTutorials />
             <NetworkTutorials />
+            <FrontEndTutorials />
           </Container>
         </div>
       </div>

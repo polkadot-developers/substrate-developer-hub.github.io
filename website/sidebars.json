@@ -31,6 +31,7 @@
         "type": "subcategory",
         "label": "Runtime Types",
         "ids": [
+          "runtime/types/module-struct",
           "runtime/types/call-enum",
           "runtime/types/event-enum",
           "runtime/types/genesisconfig-struct"
@@ -57,6 +58,15 @@
       "tutorials/tcr/building-a-ui-for-the-tcr-runtime",
       "tutorials/tcr/building-an-event-based-off-chain-storage",
       "tutorials/tcr/tcr-best-practices"
+    ]
+  },
+  "substrate-front-end": {
+    "Substrate Front-end Tutorial": [
+      "tutorials/substrate-front-end/index",
+      "tutorials/substrate-front-end/part-1-connect-to-a-node",
+      "tutorials/substrate-front-end/part-2-query-balances",
+      "tutorials/substrate-front-end/part-3-transfer-funds",
+      "tutorials/substrate-front-end/part-4-use-external-accounts"
     ]
   }
 }
