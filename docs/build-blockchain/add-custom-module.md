@@ -2,9 +2,9 @@
 title: "Add Custom Runtime Module"
 ---
 
-After completing [Initialize Your Blockchain](./initialize-your-blockchain.md), you are now ready to write your own runtime module. A runtime module is usually a wrapper for certain features of blockchain, includes storage, callable functions and events. 
+After completing [Initialize Your Blockchain](./initialize-your-blockchain.md), you are now ready to write your own runtime module. A typical runtime module encapsulates specific features of blockchain by providing storage, callable functions, and events. 
 
-Take a look at the pre-defined [template](https://github.com/paritytech/substrate/blob/v1.0/node-template/runtime/src/template.rs) module in the node that you just initialized, the path is `runtime/src/template.rs`. You should see following parts:
+Take a look at the pre-defined [template](https://github.com/paritytech/substrate/blob/v1.0/node-template/runtime/src/template.rs) module in the node that we just initialized, the path is `runtime/src/template.rs`. You should be able to see following contents:
 * Storage: `Something get(something): Option<u32>`
 * Callable function:
   ```rust
@@ -14,11 +14,11 @@ Take a look at the pre-defined [template](https://github.com/paritytech/substrat
   ```
 * Event: `SomethingStored(u32, AccountId)`
 
-We will walk you through by writing each part to finish your first runtime module. 
+Now let's go through each part by writing our first runtime module. 
 
 ## Create a new module
 
-The `substrate-up` scripts that help us initialize a new node also provides a command `substrate-module-new` to ease the process to create a module based on the **template** module we just mentioned. 
+The `substrate-up` scripts that help us initialize a new node also provides a command `substrate-module-new` to ease the process to create a module based on the template module. 
 
 This gives you a ready-to-hack runtime module with all necessary imports, entry-points and sample tests. We recommend using this script to create new modules, especially for users who are just getting started with Substrate, as it also gives you good information on how a typical Substrate runtime module is structured.
 
@@ -40,19 +40,19 @@ This will create a new file named `<module-name>.rs` in your working directory. 
 
 For example, if you create a module as,
 
-```
+```bash
 substrate-module-new mymodule
 ```
 
-Then add the following line in the `lib.rs` to have this module initialized in your runtime,
+Then add the following line in the `lib.rs` to declare the new module in our runtime library,
 
-```
+```rust
 mod mymodule;
 ```
 
-Further, implement the module trait for your module in the `lib.rs`
+Further, implement the module's configuration trait in the `lib.rs`
 
-```
+```rust
 impl mymodule::Trait for Runtime {
     type Event = Event;
 }
@@ -113,7 +113,7 @@ decl_storage! {
 }
 ```
 
-> Here we have introduced `decl_storage!` macro and the specific syntax provided by Substrate. It makes our storage code simple and easy to read. The macro itself takes care of generating all of the proper code needed to actually interact with the Substrate storage database behind the scene.
+> Here we have introduced `decl_storage!` macro and the specific syntax provided by Substrate. It makes our storage code simple and easy to read. The macro itself takes care of generating all of the proper code needed to interact with the Substrate storage database behind the scene.
 
 You can see in our storage, we have three items:
 * `Payment` item has a type of `Option<T::Balance>` that maintains the entry fee to play the game. It uses an `Option` to wrap the balance so that we can represent whether or not the fee has been initialized with a value.
@@ -219,14 +219,14 @@ fn play(origin) -> Result {
 }
 ```
 
-Our `play` function only accepts `orgin` parameter. It then checks a few prerequisites like transaction should be signed and payment is not empty. Here we are using `Self::payment()` to get the value from storage, that's how we use the alternative getter function defined as `get(payment)` along with the definition of storage item. Another function to get storage value is using `<Payment<T>>::get()`.
+Our `play` function only accepts `orgin` parameter. It then checks a few prerequisites like transaction should be signed and payment is not empty. Here we are using `Self::payment()` to get the value from storage, that's how we use the getter function defined as `get(payment)` along with the definition of storage item. Another function to get storage value is using `<Payment<T>>::get()`.
 
-Before throwing the coin in the air, we need to withdraw the entry fee from sender's account so that it can be put into the pot after the game resolves. To use `withdraw` function, import dependencies with:
+Before flipping the coin in the air, we need to withdraw the entry fee from the sender's account so that it can be put into the pot after the game resolves. To use `withdraw` function, import dependencies with:
  ```rust
  use support::traits::{Currency, WithdrawReason, ExistenceRequirement};
  ```
 
-Once the coin is flipped, the user has a 50/50 chance of winning. To simulate this situation, we generate a random number from 0 to 255. If it's smaller than 128, the user wins and deposits the contents in pot. Otherwise the user gets nothing. Finally we can update the storage items for next play. Refer to [Generating Random Data](https://substrate.dev/substrate-collectables-workshop/#/2/generating-random-data) page for more knowledge around randomness in Substrate. 
+Once the coin is flipped, the player has a 50/50 chance of winning. To simulate this situation, we generate a random number from 0 to 255. If it's smaller than 128, the user wins and deposits the contents in the pot. Otherwise, the user gets nothing. Finally, we can update the storage items for next play. Refer to [Generating Random Data](https://substrate.dev/substrate-collectables-workshop/#/2/generating-random-data) page for more knowledge around randomness in Substrate. 
 
 Now let's add the last missing dependencies:
 ```rust
@@ -238,7 +238,7 @@ use parity_codec::Encode;
 
 ### Send events
 
-Due to the asynchronous execution of blockchain, the client has no idea when a callable function will be executed until new block generated. To notify the off-chain world of the result of a function call, Substrate allows developer to deposit an event during function execution. These events will then be listened by clients to build off-chain storage or interact with end users. 
+Due to the asynchronous execution of blockchain, the client has no idea when a callable function will be executed until a new block generated. To notify the off-chain world of the result of a function call, Substrate allows the developer to deposit an event during function execution. These events will then be listened by clients to build off-chain storage or interact with end users. 
 
 In our example, there are two callable functions `set_payment` and `play`. Let's define an event for each of them:
 
@@ -256,9 +256,9 @@ decl_event!(
 );
 ```
 
-We have defined new event type `PaymentSet` and `PlayResult` by putting them in module's `Event` enum and then passing the whole enum code as parameter to `decl_event!` macro. You can find more knowledge in [Event Enum](../runtime/types/event-enum.md) page.
+We have defined new event type `PaymentSet` and `PlayResult` by putting them in the module's `Event` enum and then passing the whole enum code as the parameter to `decl_event!` macro. You can find more knowledge in [Event Enum](../runtime/types/event-enum.md) page.
 
-In order to deposit an event, we need to call the predefined `deposit_event` function in our module with the event type that we need. For `set_payment` function, we only need to add one line at the end of the if statement:
+To deposit an event, we need to call the predefined `deposit_event` function in our module with the event type that we need. For `set_payment` function, we only need to add one line at the end of the if condition statement:
 ```rust
 fn set_payment(origin, value: T::Balance) -> Result {
     // --snip--
@@ -274,7 +274,7 @@ fn set_payment(origin, value: T::Balance) -> Result {
 For `play` function,
 * We first initialize the winnings for the player to be zero,
 * If the player wins the game, the winnings will be set to the balance in pot,
-* The `PlayResult` event is deposited before the function returns no matter what the winnings is.
+* The `PlayResult` event is deposited before the function returns no matter what the winnings are.
 
 ```rust
 fn play(origin) -> Result {
@@ -306,4 +306,4 @@ fn play(origin) -> Result {
 
 That's it! This is how easy it can be to build new runtime modules using Substrate. You can also reference a [complete version](https://github.com/shawntabrizi/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/demo.rs) of this module to check your work.
 
-To play our game, we can interact with the callable functions within [Polkadot/Substrate UI](https://github.com/polkadot-js/apps) by applying Extrinsics. After that, check the Chain state to find out what stores in our module's storage items. Giving yourself some fun!
+Don't forget to re-build our project once you finish all the code. To play the game, we can interact with the callable functions using [Polkadot/Substrate UI](https://github.com/polkadot-js/apps) by applying the corresponding extrinsics. After that, check the chain state to find out what stores in our module's storage items. Giving yourself some fun!

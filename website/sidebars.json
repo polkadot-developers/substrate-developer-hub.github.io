@@ -7,10 +7,7 @@
     ],
     "Build Blockchain": [
       "build-blockchain/initialize-your-blockchain",
-      "build-blockchain/add-custom-module",
-      "build-blockchain/interact-with-your-blockchain",
-      "build-blockchain/deploy-as-parachain",
-      "build-blockchain/deploy-as-sovereign-chain"
+      "build-blockchain/add-custom-module"
     ],
     "Substrate Fundamentals": [
       "overview/index",

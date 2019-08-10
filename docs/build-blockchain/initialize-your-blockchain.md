@@ -6,7 +6,7 @@ Although Substrate has provided all the components to build a blockchain, as a d
 
 To ease the life for beginners, Substrate offers two kinds of build-in nodes to do the assembly work:
 * [Template Node](https://github.com/paritytech/substrate/tree/v1.0/node-template): includes the minimum components to have a taste around blockchain.
-* [Node](https://github.com/paritytech/substrate/tree/v1.0/node): includes most of the components to let you try all Substrate build-in features.
+* [Node](https://github.com/paritytech/substrate/tree/v1.0/node): includes most of the components to let you try all the Substrate build-in features.
 
 A node (aka peer-to-peer node or full node) usually serves as a reference implementation for blockchain specification. You can think of it as a backend service in traditional web, but in a decentralized way.
 
@@ -46,8 +46,8 @@ cd demo-node
 ./target/release/demo-node --dev
 ```
 
-You should be able to see outputs in terminal similar to following content:
-```
+You should be able to see outputs in terminal similar to following contents:
+```text
 2019-07-27 18:03:45 Substrate Node
 2019-07-27 18:03:45   version 1.0.0-2857a44-x86_64-macos
 2019-07-27 18:03:45   by demo-author, 2017, 2018
@@ -72,15 +72,15 @@ ously 0x2d84be81477309b475af22c457f850174c498d1b0d19032f18fe7f7656233dad.
 2019-07-27 18:03:50 Imported #1 (0x1d70…5302)
 2019-07-27 18:03:50 Idle (0 peers), best: #1 (0x1d70…5302), finalized #0 (0xacb5…bb17), ⬇ 0 ⬆ 0
 ```
-These outputs show us some important information like:
+The outputs show us some important information like:
 * Chain specification: `Development`. Here we are using build-in dev mode chain spec.
 * Node identity: `QmZH4oHKH4nwaP4apeYCM7EJXkxAjv4AqnJt29MrMNhWBV`, will probably be different in your outputs.
 * Authority key: `5FA9nQDVg267DEd8m1ZypXLBnvN7SFxYwV7ndqSYGiN9TTpu`, which is the validator's public key.
 * WebSocket RPC endpoint: `127.0.0.1:9944`.
 * Current block: `best: #1 (0x1d70…5302)`.
-* Current finalized block: `finalized #0 (0xacb5…bb17)`. It always shows `0` because **Template Node** doesn't pre-include [GRANDPA finality gadget](https://wiki.polkadot.network/en/latest/polkadot/learn/consensus/#what-is-grandpababe).
+* Current finalized block: `finalized #0 (0xacb5…bb17)`. It always shows `0` because Template Node doesn't pre-include [GRANDPA finality gadget](https://wiki.polkadot.network/en/latest/polkadot/learn/consensus/#what-is-grandpababe).
 
-> Substrate conforms the design of Polkadot's **hybrid consensus** which splits the finality gadget from the block production, go [here](https://wiki.polkadot.network/en/latest/polkadot/learn/consensus/) for more information.
+> Substrate conforms the design of Polkadot's **hybrid consensus** which splits the finality gadget from the block production, refer [here](https://wiki.polkadot.network/en/latest/polkadot/learn/consensus/) for more information.
 
 Now you already have a working "blockchain" maintained by only one node. Let's see how can we interact with it.
 
@@ -91,13 +91,13 @@ There is a pre-build [Polkadot/Substrate UI](https://github.com/polkadot-js/apps
 In the **Settings** page, configure `remote node` to be `127.0.0.1:9944`. After saving the new configuration, you should be able to see other items in the sidebar. 
 
 Go to **Extrinsics** page:
-* use `ALICE` account which is build in the genesis block configuration,
+* choose `ALICE` account. This account is hard-coded in the genesis block configuration, automatically pre-funded with currency, and serves as a "super user" to your blockchain.
 * configure **submit the following extrinsic** to be `template` `doSomething(something)`, 
 * configure **something** to be any integer you want,
-* click **Submit Transaction**. After a few seconds, you should notice the success events showing up.
+* click **Submit Transaction**. After a few seconds, you will notice the success events showing up.
 
 Then, go to **Chain state** page:
 * configure **selected state query** to be `template` `something(): Option<u32>`
-* click the plus button, you should see the number you just input.
+* click the plus button, you should be able to see the number you just input.
 
 Now you have interacted with your node successfully. Get yourself familiar with all the pages and enjoy your first blockchain!
