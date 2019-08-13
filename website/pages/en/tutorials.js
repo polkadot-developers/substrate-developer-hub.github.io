@@ -137,7 +137,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "3",
                 prerequisite: false,
-                href: "https://substrate.dev/substrate-verifiable-credentials/#/"
+                href: "https://substrate.dev/substrate-verifiable-credentials/"
               },
               {
                 title: <translate>Creating Your First Substrate Chain</translate>,
