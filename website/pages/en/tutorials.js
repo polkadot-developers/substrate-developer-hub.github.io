@@ -130,6 +130,15 @@ class Tutorials extends React.Component {
                 prerequisite: false,
                 href: "https://substrate-developer-hub.github.io/substrate-collectables-workshop/"
               },
+
+              {
+                title: <translate>Substrate Verifiable Credentials Workshop</translate>,
+                text: <translate>A comprehensive, end-to-end tutorial for creating an infrastructure chain for verifiable credentials. Learn all the basics of Substrate runtime development here!</translate>,
+                difficulty: "easy",
+                length: "3",
+                prerequisite: false,
+                href: "https://substrate.dev/substrate-verifiable-credentials/"
+              },
               {
                 title: <translate>Creating Your First Substrate Chain</translate>,
                 text: <translate>A minimal, end-to-end guide to build and interact with your first custom Substrate chain.</translate>,
