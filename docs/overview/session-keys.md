@@ -1,10 +1,12 @@
 ---
-title: "Session Certificate"
+title: "Session Keys"
 ---
 
-The Session certificate is a set of keys that validators use to sign messages. `SessionKeys` is a generic, indexable type that is made concrete in the runtime. You can declare any number of keys in the Session certificate.
+Session keys are used by validators to sign consensus-related messages. `SessionKeys` is a generic, indexable type that is made concrete in the runtime.
 
-For example, the default Substrate node uses three keys in its Session certificate. Other chains could have more or fewer depending on what operations the chain expects its validators to perform.
+To create a Session key, validator operators must attest that a key acts on behalf their Stash account (stake) and nominators. To do so, they create a certificate by signing the key with their Controller key. Then, they inform the chain that this key represents their Controller key by publishing the Session certificate in a transaction on the chain.
+
+You can declare any number Session keys. For example, the default Substrate node uses three. Other chains could have more or fewer depending on what operations the chain expects its validators to perform.
 
 ```rust
 pub struct SessionKeys {
@@ -23,4 +25,6 @@ The default Substrate node implements Session keys in the [Session module](/rust
 
 ## Generation and Use
 
-Session keys are hot keys that must be kept online. They are not meant to be used as account keys. If one of the Session keys is compromised, the attacker could commit slashable behavior. Session keys may be changed regularly (e.g. every session) via RPC for increased security.
+Session keys are hot keys that must be kept online. They are not meant to be used as account keys. If one of the Session keys is compromised, the attacker could commit slashable behavior. Session keys may be changed regularly (e.g. every session) via [RPC](https://crates.parity.io/substrate_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys) for increased security.
+
+<!--Note: RPC link is to master and may break. v1.0 docs do not have the requisite endpoints.-->
