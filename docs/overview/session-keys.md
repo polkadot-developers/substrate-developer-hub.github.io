@@ -4,7 +4,7 @@ title: "Session Keys"
 
 Session keys are used by validators to sign consensus-related messages. `SessionKeys` is a generic, indexable type that is made concrete in the runtime.
 
-To create a Session key, validator operators must attest that a key acts on behalf their Stash account (stake) and nominators. To do so, they create a certificate by signing the key with their Controller key. Then, they inform the chain that this key represents their Controller key by publishing the Session certificate in a transaction on the chain.
+To create a Session key, validator operators must attest that a key acts on behalf of their Stash account (stake) and nominators. To do so, they create a certificate by signing the key with their Controller key. Then, they inform the chain that this key represents their Controller key by publishing the Session certificate in a transaction on the chain.
 
 You can declare any number Session keys. For example, the default Substrate node uses three. Other chains could have more or fewer depending on what operations the chain expects its validators to perform.
 
