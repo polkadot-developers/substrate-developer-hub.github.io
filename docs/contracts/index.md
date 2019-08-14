@@ -45,7 +45,7 @@ The Contracts module determines the gas price, which is a conversion between the
 
 ### Storage Rent
 
-Similar to how gas limits the amount of computational resources that can be used during a transaction, storage rent limits the footprint that a contract can have on the blockchain's storage. Contract accounts are charged proportionally to the amount of storage their account uses. When a contract's balance goes below a defined limit, the contract's account is turned into a "tombstone," and the storage is cleaned up. A tombstone contract can be restored by providing the data that was cleaned up when it became a tombstone as well as any additional funds needed to keep the contract alive.
+Similar to how gas limits the amount of computational resources that can be used during a transaction, storage rent limits the footprint that a contract can have on the blockchain's storage. A contract account is charged proportionally to the amount of storage its account uses. When a contract's balance goes below a defined limit, the contract's account is turned into a "tombstone" and its storage is cleaned up. A tombstone contract can be restored by providing the data that was cleaned up when it became a tombstone as well as any additional funds needed to keep the contract alive.
 
 ## ink!
 
