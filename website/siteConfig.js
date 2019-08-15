@@ -19,6 +19,7 @@
 
 // List of projects listed on the "users" page.
 const users = require('./data/users');
+const events = require('./data/events');
 
 const siteConfig = {
   title: 'Substrate Developer Hub', // Title for your website.
@@ -49,6 +50,8 @@ const siteConfig = {
 
   // If you have users set above, you add it here:
   users,
+
+  events,
 
   /* path to images for header/footer */
   headerIcon: 'img/Substrate-logo.svg',
