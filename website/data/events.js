@@ -17,8 +17,8 @@
 const eventsList = [
   {
     img: '/img/events/dotcon_2019.png',
-    title: "DOTCON",
-    description: "The Second Annual DOTCon will be an afternoon of in-depth presentations, demos, talks and workshops on all things Polkadot.",
+    title: "DOTCon",
+    description: "The second annual DOTCon will be an afternoon of in-depth presentations, demos, talks, and workshops on all things Polkadot.",
     startDate: new Date("Aug 18, 2019"),
     endDate: new Date("Aug 18, 2019"),
     featured: true,

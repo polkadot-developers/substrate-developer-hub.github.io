@@ -180,7 +180,7 @@ function Community(props) {
     <CommunityResource title={<translate>Events & Meetups</translate>}>
       <p>
         <translate>
-          Find recent events and meetups that you love, and get together to talk with other developers and researchers.
+          Find recent events and meetups that you love and get together to talk with other developers and researchers.
         </translate>
       </p>
       <p>
