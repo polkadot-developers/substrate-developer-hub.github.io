@@ -25,15 +25,6 @@ const eventsList = [
     href: "https://polkadot.network/dotcon/"
   },
   {
-    img: `/img/substrate-placeholder.png`,
-    title: "14Web3 Summit 2019",
-    description: "Web3 Summit is organized around a single rallying call: to facilitate a fully functional and user-friendly decentralized web.",
-    startDate: new Date("Aug 12, 2019"),
-    endDate: new Date("Aug 14, 2019"),
-    featured: true,
-    href: "https://web3summit.com/"
-  },
-  {
     img: "/img/events/web3summit_2019.png",
     title: "Web3 Summit 2019",
     description: "Web3 Summit is organized around a single rallying call: to facilitate a fully functional and user-friendly decentralized web.",
