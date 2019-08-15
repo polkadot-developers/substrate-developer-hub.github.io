@@ -108,7 +108,7 @@ class Index extends React.Component {
           <Button
             variant="secondary"
             href={`${baseUrl}${langPart}events`}
-            className="m-1 primary-color"
+            className="m-1 secondary-color"
           >
             <translate>Events</translate>
           </Button>

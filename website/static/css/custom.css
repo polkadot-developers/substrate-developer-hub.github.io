@@ -35,6 +35,12 @@
     color: #ffffff;
 }
 
+.secondary-color {
+    background-color: $secondaryColor;
+    border-color: $secondaryColor;
+    color: #ffffff;
+}
+
 .primary-color-text {
     color: $primaryColor!important;
 }
