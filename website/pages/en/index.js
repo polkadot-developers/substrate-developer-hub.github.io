@@ -103,7 +103,7 @@ class Index extends React.Component {
             href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"
             className="m-1 primary-color"
           >
-            <translate>Join the chat!</translate>
+            <translate>Join the Chat!</translate>
           </Button>
           <Button
             variant="secondary"
