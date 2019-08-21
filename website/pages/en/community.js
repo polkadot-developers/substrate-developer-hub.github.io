@@ -188,7 +188,7 @@ function Community(props) {
         <Button
           variant="secondary"
           size="sm"
-          href="https://www.meetup.com/pro/polkadot/"
+          href="https://www.meetup.com/parity/"
           className="m-1 primary-color"
         >
           Events
