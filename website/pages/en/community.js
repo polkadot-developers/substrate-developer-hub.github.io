@@ -180,14 +180,15 @@ function Community(props) {
     <CommunityResource title={<translate>Events & Meetups</translate>}>
       <p>
         <translate>
-          Find recent events and meetups that you love and get together to talk with other developers and researchers.
+          Find upcoming events where you can get together and talk with other
+          Substrate developers.
         </translate>
       </p>
       <p>
         <Button
           variant="secondary"
           size="sm"
-          href={`${baseUrl}${langPart}events`}
+          href="https://www.meetup.com/pro/polkadot/"
           className="m-1 primary-color"
         >
           Events
