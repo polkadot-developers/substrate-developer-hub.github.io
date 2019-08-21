@@ -156,7 +156,6 @@ function Community(props) {
     </CommunityResource>
   );
   
-  
   const AwesomeSubstrate = () => (
     <CommunityResource title={<translate>Awesome Substrate</translate>}>
       <p>
@@ -172,6 +171,27 @@ function Community(props) {
           className="m-1 primary-color"
         >
           Awesome Substrate
+        </Button>
+      </p>
+    </CommunityResource>
+  );
+
+  const Events = () => (
+    <CommunityResource title={<translate>Events & Meetups</translate>}>
+      <p>
+        <translate>
+          Find upcoming events where you can get together and talk with other
+          Substrate developers.
+        </translate>
+      </p>
+      <p>
+        <Button
+          variant="secondary"
+          size="sm"
+          href="https://www.meetup.com/parity/"
+          className="m-1 primary-color"
+        >
+          Events
         </Button>
       </p>
     </CommunityResource>
@@ -196,6 +216,7 @@ function Community(props) {
           </p>
           <StackOverflow />
           <RiotChat />
+          <Events />
           <AwesomeSubstrate />
           <TwitchStream />
         </Container>
