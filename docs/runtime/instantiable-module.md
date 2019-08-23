@@ -6,7 +6,7 @@ Substrate runtimes are typically created by composing multiple runtime modules. 
 
 
 ## What is an Instantiable Module?
-An instantiable runtime module is, in most ways, just like any other runtime module. It defines storage items, events, dispatchable calls, and a genesis configuration. But with just a few extra bits of syntax, the module can be made instantiable which means it can be deployed multiple times in the same runtime.
+An instantiable runtime module is, in most ways, just like any other runtime module. It defines storage items, events, dispatchable calls, and a genesis configuration. However, instantiable modules can have multiple instances included in a single runtime. Each instance of the module has its own independent storage, and extrinsics must specify which instance of the module they are intended for.
 
 Some use cases:
 
@@ -14,10 +14,14 @@ Some use cases:
 * Marketplace track users' reputations as buyers separately from their reputations as sellers.
 * Governance has two (or more) houses which act similarly internally.
 
-The SRML's Balances and Collective modules are good examples of real-world code using this technique.
+The SRML's Balances and Collective modules are good examples of real-world code using this technique. The default Substrate node has two instances of the Collectives module that make up its Council and Technical Committee. Each collective has its own storage, events, and configuration.
 
 ## Writing an Instantiable Module
 Writing an instantiable module is almost entirely the same process as writing a plain non-instantiable module. There are just a few places where the syntax differs. If you prefer video walkthroughs, you can see a [recording](https://www.youtube.com/watch?v=XEl59hVcyI8) of making these changes.
+
+> You must call `decl_storage!`
+>
+> Instantiable modules _must_ call the `decl_storage!` macro so that the `Instance` type is created.
 
 ### Configuration Trait
 ```rust
@@ -69,20 +73,20 @@ decl_event!(
 }
 ```
 
-## Deploying an Instantiable Module
+## Installing a Module Instsance in a Runtime
 
-When composing a runtime, one must take care to use the proper syntax for instantiable modules. As before it is slightly different.
+The syntax for including an instance of an instantiable module in a runtime is slightly different than for a regular module. The only exception is for modules that use the [Default Instance](#defualt-instance) feature described below.
 
-### Implementing the Configuration Trait
-When implementing the module's configuration trait, you need to be explicit which instance you are configuring, because in general the instances need not have identical configurations. In this snippet we've named the instance `Instance1`.
+### Implementing Configuration Traits
+Each instance needs to be configured individually. You must implement the module's configuration trait once for each instance you have installed, and you must specify which instance the configuration is for. In the following snippet we are configuring `Instance1`.
 ```rust
 impl template::Trait<template::Instance1> for Runtime {
 	type Event = Event;
 }
 ```
 
-### In the `construct_runtime!` Macro
-Finally, in the `construct_runtime!` macro, we give a more human-friendly name to each instance of the module. Here I've called `Instance1` `FirstTemplate`.
+### Using the `construct_runtime!` Macro
+The final step of installing the module instance in your runtime is updating the `construct_runtime!` macro. You may give each instance a meaningful name. Here I've called `Instance1` `FirstTemplate`.
 ```rust
 FirstTemplate: template::<Instance1>::{Module, Call, Storage, Event<T>, Config},
 ```
@@ -94,7 +98,7 @@ TechnicalCommittee: collective::<Instance2>::{Module, Call, Storage, Origin<T>, 
 ```
 
 ## Default Instance
-One drawback of instantiable modules, as we've presented them so far is that they require the deployer to use the more elaborate syntax even if they only desire a single instance of the module. To alleviate this inconvenience, Substrate provides a feature known as DefaultInstance. This allows runtime developers to deploy an instantiable module exactly as they would if it were not instantiable provided they **only use a single instance**.
+One drawback of instantiable modules, as we've presented them so far is that they require the runtime designer to use the more elaborate syntax even if they only desire a single instance of the module. To alleviate this inconvenience, Substrate provides a feature known as DefaultInstance. This allows runtime developers to deploy an instantiable module exactly as they would if it were not instantiable provided they **only use a single instance**.
 
 To make your instantiable module support DefaultInstance, you must specify it in three places.
 
@@ -104,7 +108,7 @@ pub trait Trait<I=DefaultInstance>: system::Trait {
 
 ```rust
 decl_storage! {
-  trait Store for Module<T: Trait<I>, I: Instance=DefaultInstance> as TemplateModule {
+  trait Store for Module<T: Trait<I>, I: Instance=Instance> as TemplateModule {
     ...
   }
 }
