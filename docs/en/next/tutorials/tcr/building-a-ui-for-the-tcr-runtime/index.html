@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Building a UI for the TCR runtime · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This is Part 3 of the guide &lt;a href=&quot;/docs/en/next/tutorials/tcr/&quot;&gt;Building a Token Curated Registry DAppChain on Substrate&lt;/a&gt;. In &lt;a href=&quot;/docs/en/next/tutorials/tcr/building-the-substrate-tcr-runtime&quot;&gt;part 1&lt;/a&gt;, we implemented a substrate runtime module for a TCR. In &lt;a href=&quot;/docs/en/next/tutorials/tcr/unit-testing-the-tcr-runtime-module&quot;&gt;part 2&lt;/a&gt;, we wrote unit tests for our runtime.&lt;/p&gt;
+"/><meta name="docsearch:version" content="next"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Building a UI for the TCR runtime · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;This is Part 3 of the guide &lt;a href=&quot;/docs/en/next/tutorials/tcr/&quot;&gt;Building a Token Curated Registry DAppChain on Substrate&lt;/a&gt;. In &lt;a href=&quot;/docs/en/next/tutorials/tcr/building-the-substrate-tcr-runtime&quot;&gt;part 1&lt;/a&gt;, we implemented a substrate runtime module for a TCR. In &lt;a href=&quot;/docs/en/next/tutorials/tcr/unit-testing-the-tcr-runtime-module&quot;&gt;part 2&lt;/a&gt;, we wrote unit tests for our runtime.&lt;/p&gt;
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/en/versions"><h3>next</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/en/next/getting-started/" target="_self">Docs</a></li><li class=""><a href="/rustdocs/v1.0/" target="_self">Reference Docs</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/en/community" target="_self">Community</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/zh-CN/next/tutorials/tcr/building-a-ui-for-the-tcr-runtime">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Token Curated Registry Tutorial</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Token Curated Registry Tutorial<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/tcr/">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/tcr/building-the-substrate-tcr-runtime">Building the Substrate TCR runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/tcr/unit-testing-the-tcr-runtime-module">Unit testing the TCR runtime module</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/next/tutorials/tcr/building-a-ui-for-the-tcr-runtime">Building a UI for the TCR runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/tcr/building-an-event-based-off-chain-storage">Building an event based off-chain storage</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/tcr/tcr-best-practices">Best Practices</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/tutorials/tcr/building-a-ui-for-the-tcr-runtime.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Building a UI for the TCR runtime</h1></header><article><div><span><p>This is Part 3 of the guide <a href="/docs/en/next/tutorials/tcr/">Building a Token Curated Registry DAppChain on Substrate</a>. In <a href="/docs/en/next/tutorials/tcr/building-the-substrate-tcr-runtime">part 1</a>, we implemented a substrate runtime module for a TCR. In <a href="/docs/en/next/tutorials/tcr/unit-testing-the-tcr-runtime-module">part 2</a>, we wrote unit tests for our runtime.</p>
+<p>As part of the samples, we've created a <code>reactjs</code> based web app as a simple frontend for the TCR runtime. The <a href="https://github.com/substrate-developer-hub/substrate-tcr-ui">complete code</a> is available.</p>
+<p>In this part of the guide, we will be covering the framework agnostic parts of the UI sample which are mainly used for interaction with the Substrate node and the TCR runtime extrinsic functions. We will not be going into the react specific parts - components, etc. The sample is created using the <code>create-react-app</code> scaffolding command. We have added a simple react component to display a list of items (TCR listings) and the corresponding TCR actions. We also have a couple of modals to take input for the <code>propose</code>, <code>challenge</code> and <code>vote</code> actions on a listing.</p>
+<p>What's more important for this guide is the javascript code which interacts with the Substrate TCR runtime. We have used the <a href="https://polkadot.js.org/api/">PolkadotJS API</a> for this.</p>
+<p>In the sample, we have the <a href="https://github.com/substrate-developer-hub/substrate-tcr-ui/blob/master/src/services/tcrService.js">tcrService.js file</a> which contains all the relevant functions for interaction with the runtime.</p>
+<p>Firstly, let's look at the packages and imports that we need from the PolkadotJS API to support this javascript code.</p>
+<pre><code class="hljs css language-javascript"><span class="token keyword">const</span> <span class="token punctuation">{</span> ApiPromise <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'@polkadot/api'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">{</span> Keyring <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'@polkadot/keyring'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">{</span> stringToU8a <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'@polkadot/util'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>The <a href="https://polkadot.js.org/api/">PolkadotJS API</a> is very well documented, with examples, so we will not be going into the details of the internals of those functions in this guide.</p>
+<h2><a class="anchor" aria-hidden="true" id="signing-keys"></a><a href="#signing-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Signing Keys</h2>
+<p>To begin with, let's first look at how we represent the <code>origin</code> for the TCR runtime functions. All runtime functions are signed extrinsics. To sign the function calls from the UI before sending it to the Substrate node, we need signing keys of the user interacting with the UI. To do it, we take the seed from the user and create a keypair from it. In the following code snippet, we have a function that takes a seed string as a parameter and converts it into a keypair using the <code>keyring</code> object from the <code>@polkadot/keyring</code> package.</p>
+<pre><code class="hljs css language-javascript"><span class="token keyword">function</span> <span class="token function">_getKeysFromSeed</span><span class="token punctuation">(</span><span class="token parameter">_seed</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>_seed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"Seed not valid."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+
+ <span class="token keyword">const</span> keyring <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Keyring</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token punctuation">:</span> <span class="token string">'sr25519'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">const</span> paddedSeed <span class="token operator">=</span> _seed<span class="token punctuation">.</span><span class="token function">padEnd</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">return</span> keyring<span class="token punctuation">.</span><span class="token function">addFromSeed</span><span class="token punctuation">(</span><span class="token function">stringToU8a</span><span class="token punctuation">(</span>paddedSeed<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="api-connection-and-registering-custom-types"></a><a href="#api-connection-and-registering-custom-types" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>API Connection and registering custom types</h2>
+<p>To call the Substrate runtime functions from our javascript code, we will need an <a href="https://polkadot.js.org/api/examples/promise/">API promise</a> object. We will also need to register our custom types so that the javascript code can infer the right values returned from the runtime events. Remember all those structs that we created to represent the TCR primitives in part 1 of this guide? Those are all the custom types that we need to register with the API promise object.</p>
+<p>The following function creates and returns an API promise object with custom <a href="https://polkadot.js.org/api/api/#registering-custom-types">types</a>,</p>
+<pre><code class="hljs css language-javascript"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">_createApiWithTypes</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token keyword">return</span> <span class="token keyword">await</span> ApiPromise<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+     types<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      Listing<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+         <span class="token string">"id"</span><span class="token punctuation">:</span> <span class="token string">"u32"</span><span class="token punctuation">,</span>
+         <span class="token string">"data"</span><span class="token punctuation">:</span> <span class="token string">"Vec&lt;u8>"</span><span class="token punctuation">,</span>
+         <span class="token string">"deposit"</span><span class="token punctuation">:</span> <span class="token string">"Balance"</span><span class="token punctuation">,</span>
+         <span class="token string">"owner"</span><span class="token punctuation">:</span> <span class="token string">"AccountId"</span><span class="token punctuation">,</span>
+         <span class="token string">"application_expiry"</span><span class="token punctuation">:</span> <span class="token string">"Moment"</span><span class="token punctuation">,</span>
+         <span class="token string">"whitelisted"</span><span class="token punctuation">:</span> <span class="token string">"bool"</span><span class="token punctuation">,</span>
+         <span class="token string">"challenge_id"</span><span class="token punctuation">:</span> <span class="token string">"u32"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      Challenge<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"listing_hash"</span><span class="token punctuation">:</span> <span class="token string">"Hash"</span><span class="token punctuation">,</span>
+          <span class="token string">"deposit"</span><span class="token punctuation">:</span> <span class="token string">"Balance"</span><span class="token punctuation">,</span>
+          <span class="token string">"owner"</span><span class="token punctuation">:</span> <span class="token string">"AccountId"</span><span class="token punctuation">,</span>
+          <span class="token string">"voting_ends"</span><span class="token punctuation">:</span> <span class="token string">"Moment"</span><span class="token punctuation">,</span>
+          <span class="token string">"resolved"</span><span class="token punctuation">:</span> <span class="token string">"bool"</span><span class="token punctuation">,</span>
+          <span class="token string">"reward_pool"</span><span class="token punctuation">:</span> <span class="token string">"Balance"</span><span class="token punctuation">,</span>
+          <span class="token string">"total_tokens"</span><span class="token punctuation">:</span> <span class="token string">"Balance"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      Poll<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"listing_hash"</span><span class="token punctuation">:</span> <span class="token string">"Hash"</span><span class="token punctuation">,</span>
+          <span class="token string">"votes_for"</span><span class="token punctuation">:</span> <span class="token string">"Balance"</span><span class="token punctuation">,</span>
+          <span class="token string">"votes_against"</span><span class="token punctuation">:</span> <span class="token string">"Balance"</span><span class="token punctuation">,</span>
+          <span class="token string">"passed"</span><span class="token punctuation">:</span> <span class="token string">"bool"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      Vote<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"value"</span><span class="token punctuation">:</span> <span class="token string">"bool"</span><span class="token punctuation">,</span>
+          <span class="token string">"deposit"</span><span class="token punctuation">:</span> <span class="token string">"Balance"</span><span class="token punctuation">,</span>
+          <span class="token string">"claimed"</span><span class="token punctuation">:</span> <span class="token string">"bool"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      TokenBalance<span class="token punctuation">:</span> <span class="token string">"u128"</span>
+    <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="calling-the-tcr-runtime-functions"></a><a href="#calling-the-tcr-runtime-functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Calling the TCR runtime functions</h2>
+<p>Now that we have our signing keys and a connection to the Substrate node, we are good to proceed with the TCR runtime function calls.</p>
+<h3><a class="anchor" aria-hidden="true" id="propose"></a><a href="#propose" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Propose</h3>
+<p>In the following code snippet, we have a function that first gets a new API promise object created using the <code>_createApiWithTypes</code> function described above. It then gets the keypair from the seed by calling the <code>_getKeysFromSeed</code> function, also described before.</p>
+<blockquote>
+<p>In the sample, we are storing the seed in the browser local storage so that the user does not have to enter it again. However, in a real production app, we should find a more secure way of handling the seed at the client side.</p>
+</blockquote>
+<p>The <code>propose</code> function takes a listing name and deposit amount as parameters. After creating the keypair and API promise objects, we call the <code>propose</code> function of the TCR runtime module. Note the dynamic binding on the runtime module name and function name in the <code>api.tx.tcr.propose</code> call. The PolkadotJS API automatically binds the runtime module name and the function name. This is also described as part of the <a href="https://polkadot.js.org/api/api/#dynamic-by-default">API documentation</a>. Then we call the <code>sign</code> and <code>send</code> functions.</p>
+<pre><code class="hljs css language-javascript"><span class="token keyword">export</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">applyListing</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> deposit</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> api <span class="token operator">=</span> <span class="token keyword">await</span> ApiPromise<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> keys <span class="token operator">=</span> <span class="token function">_getKeysFromSeed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> nonce <span class="token operator">=</span> <span class="token keyword">await</span> api<span class="token punctuation">.</span>query<span class="token punctuation">.</span>system<span class="token punctuation">.</span><span class="token function">accountNonce</span><span class="token punctuation">(</span>keys<span class="token punctuation">.</span>address<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// create, sign and send transaction</span>
+    api<span class="token punctuation">.</span>tx<span class="token punctuation">.</span>tcr
+      <span class="token comment">// create transaction</span>
+      <span class="token punctuation">.</span><span class="token function">propose</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> deposit<span class="token punctuation">)</span>
+      <span class="token comment">// Sign and send the transcation</span>
+      <span class="token punctuation">.</span><span class="token function">sign</span><span class="token punctuation">(</span>keys<span class="token punctuation">,</span> <span class="token punctuation">{</span> nonce <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> events <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> status <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>status<span class="token punctuation">.</span>isFinalized<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>status<span class="token punctuation">.</span>asFinalized<span class="token punctuation">.</span><span class="token function">toHex</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          events<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> phase<span class="token punctuation">,</span> event<span class="token punctuation">:</span> <span class="token punctuation">{</span> data<span class="token punctuation">,</span> method<span class="token punctuation">,</span> section <span class="token punctuation">}</span> <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'\t'</span><span class="token punctuation">,</span> phase<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token template-string"><span class="token string">`: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>section<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>method<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">,</span> data<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// check if the tcr proposed event was emitted by Substrate runtime</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>section<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">"tcr"</span> <span class="token operator">&amp;&amp;</span> method<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">"Proposed"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token comment">// insert metadata in off-chain store</span>
+              <span class="token keyword">const</span> datajson <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token keyword">const</span> listingInstance <span class="token operator">=</span> <span class="token punctuation">{</span>
+                  name<span class="token punctuation">:</span> name<span class="token punctuation">,</span>
+                  owner<span class="token punctuation">:</span> datajson<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                  hash<span class="token punctuation">:</span> datajson<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                  deposit<span class="token punctuation">:</span> datajson<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                  isWhitelisted<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+                  challengeId<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                  rejected<span class="token punctuation">:</span> <span class="token boolean">false</span>
+              <span class="token punctuation">}</span>
+              <span class="token keyword">await</span> dataService<span class="token punctuation">.</span><span class="token function">insertListing</span><span class="token punctuation">(</span>listingInstance<span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token comment">// resolve the promise with listing data</span>
+              <span class="token function">resolve</span><span class="token punctuation">(</span>listingInstance<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">err</span> <span class="token operator">=></span> <span class="token function">reject</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The <code>sign</code> function takes the keypair and the account nonce and signs the extrinsic. The <code>send</code> function finally makes the extrinsic call and also listens to the result and events using a callback. These events are the same that we declared in part 1 of the guide. Remember from part 1 that the <code>propose</code> function of the runtime emitted the <code>Proposed</code> event with the hash, owner and deposit of the listing. We are expecting and handling this event when we call the <code>propose</code> function from the javascript code. If the event section is <code>tcr</code> and its method is <code>Proposed</code>, it means that the <code>propose</code> function in the runtime executed successfully and the listing got created in the TCR in the proposed state.</p>
+<p>Ideally, in a real production app, we should subscribe to the events in a separate listener and should update the client side state in that. We should exit the <code>send</code> function with something like a <em>submitted</em> state. Then, when the extrinsic gets finalized and when we handle the event, we should update the status as <em>proposed</em>.</p>
+<p>Notice that when we handle the <code>Proposed</code> event, we create a listing object and call the <code>insertListing</code> function in <code>dataService</code>. This is what we call priming off-chain storage based on events. We will cover more on this in the part 4 of the guide.</p>
+<h3><a class="anchor" aria-hidden="true" id="calling-other-runtime-functions"></a><a href="#calling-other-runtime-functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Calling other runtime functions</h3>
+<p>Just like we called the <code>propose</code> function of the TCR runtime, we can call the <code>challenge</code>, <code>vote</code>, <code>resolve</code> and <code>claim_reward</code> functions also. In the exact same way, we call the functions using the <code>api.tx.&lt;module name&gt;.&lt;function name&gt;</code> convention and handle the corresponding events to update the UI and the off-chain state.</p>
+<p>The <a href="https://github.com/substrate-developer-hub/substrate-tcr-ui/blob/master/src/services/tcrService.js">tcrService.js file</a> has all the function calls implemented in the same way.</p>
+<p>In the <a href="/docs/en/next/tutorials/tcr/building-an-event-based-off-chain-storage">next part</a> of this guide, we will learn how we can build an event-based off-chain storage and use it to optimize our DAppChain solution.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/19/2019 by Gautam Dhameja</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/next/tutorials/tcr/unit-testing-the-tcr-runtime-module"><span class="arrow-prev">← </span><span>Unit testing the TCR runtime module</span></a><a class="docs-next button" href="/docs/en/next/tutorials/tcr/building-an-event-based-off-chain-storage"><span>Building an event based off-chain storage</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#signing-keys">Signing Keys</a></li><li><a href="#api-connection-and-registering-custom-types">API Connection and registering custom types</a></li><li><a href="#calling-the-tcr-runtime-functions">Calling the TCR runtime functions</a><ul class="toc-headings"><li><a href="#propose">Propose</a></li><li><a href="#calling-other-runtime-functions">Calling other runtime functions</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/getting-started">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a class="github-button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:en"]}
+              });
+            </script></body></html>
