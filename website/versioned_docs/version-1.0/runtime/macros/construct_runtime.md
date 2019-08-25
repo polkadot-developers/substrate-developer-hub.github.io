@@ -1,5 +1,7 @@
 ---
-title: "Constructing a Runtime!"
+title: Constructing a Runtime!
+id: version-1.0-construct_runtime
+original_id: construct_runtime
 ---
 
 The `construct_runtime!` macro is where you declare all the runtime modules you would like to include into your blockchain's runtime. This includes any modules from the Substrate Runtime Module Library (SRML) or even custom modules you may have written.
