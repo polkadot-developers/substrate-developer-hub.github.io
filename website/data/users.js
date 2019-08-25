@@ -111,7 +111,7 @@ const usersList = [{
   {
     name: "Katal",
     image: "/img/users/katal.png",
-    homepage: "https://katal.io/",
+    homepage: "https://katal.dev/",
     github: "https://github.com/Trinkler/katal-chain",
     team: "https://ipfs.io/ipns/trinkler.software/",
     pinned: false,
