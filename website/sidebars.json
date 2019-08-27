@@ -36,7 +36,8 @@
           "runtime/types/event-enum",
           "runtime/types/genesisconfig-struct"
         ]
-      }
+      },
+      "runtime/instantiable-module"
     ],
     "Substrate Contracts": [
       "contracts/index",
