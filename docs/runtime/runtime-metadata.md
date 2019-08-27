@@ -117,13 +117,15 @@ The response looks like following contents, but with much more information in `r
 ```json
 {
     "jsonrpc": "2.0",
-    "result": "0x6d6574610324187379737......44964244163636f756e74496400",
+    "result": "0x6d65746104241873797374656d1853797374656d012c304163636f756e744e6f6e636501010130543a3a4163636f756e74...",
     "id": 1
 }
 ```
 
-The hexadecimal string in `result` field wraps the runtime metadata in SCALE format. Go to [Low-level Data Format](overview/low-level-data-format.md) page to learn how to decode the value and get more information about the specification and implementations.
+The hexadecimal string in `result` field wraps the runtime metadata in SCALE format. Go to [Low-level Data Format](overview/low-level-data-format.md) page to learn how to decode different types and get more information about the specification and implementations. 
 
-> Notes: The encoded hex-string also wraps the information of metadata version and the hard-coded metadata identifier. Check the [code](https://github.com/paritytech/substrate/blob/v1.0/srml/metadata/src/lib.rs) if you are interested.
+Our hex blob starts with a hard coded magic number `6d657461` which represents *meta* in plain text. The next piece of data shows the version number of the metadata, here we are using `04` to represent version 4. We already mentioned that runtime metadata is composed by available modules. In our case we have 9 modules, after shift 9 in binary representation two bits to the left, we get `24` in hex to represent the length of the array. 
 
-After decoding, you should be able to see similar metadata in the above example.
+The remaining blob encodes the metadata of each module. Learning more about decoding different types in the [struct](https://substrate.dev/rustdocs/v1.0/srml_metadata/struct.ModuleMetadata.html), please refer to the [reference docs](https://substrate.dev/rustdocs/v1.0/srml_metadata/index.html) and [Low-level Data Format](overview/low-level-data-format.md) page.
+
+After decoding the hex blob successfully, you should be able to see similar metadata in the above example.
