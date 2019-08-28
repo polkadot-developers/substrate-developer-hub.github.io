@@ -64,7 +64,7 @@ Now it's time to create our own runtime.
 Open up the `substrate-node-template` folder and create a new file:
 
 ```bash
-./runtime/src/demo.rs
+touch ./runtime/src/demo.rs
 ```
 
 This is where our new runtime module will live. Inline comments will hopefully give you insight to what the code is doing.
