@@ -201,7 +201,7 @@ fn play(origin) -> Result {
 }
 ```
 
-And that's it! This is how easy it can be to build new runtime modules using Substrate. You can also reference a [complete version](https://github.com/shawntabrizi/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/demo.rs) of this file to check your work.
+And that's it! This is how easy it can be to build new runtime modules using Substrate. You can also reference a [complete version](https://github.com/substrate-developer-hub/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/demo.rs) of this file to check your work.
 
 ## Step 4: Integrate our new module into our runtime
 
@@ -260,7 +260,7 @@ To make it more clear when our upgrade is successful, we can also update the nam
 };
 ```
 
-Again, you can find a [complete version](https://github.com/shawntabrizi/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/lib.rs) of this file.
+Again, you can find a [complete version](https://github.com/substrate-developer-hub/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/lib.rs) of this file.
 
 ## Step 5: Upgrade our chain
 
