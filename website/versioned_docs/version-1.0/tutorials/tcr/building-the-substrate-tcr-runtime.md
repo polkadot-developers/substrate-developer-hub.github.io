@@ -9,7 +9,7 @@ The code for the sample TCR runtime is available in [this GitHub repository](htt
 
 ## Step 1: Setup and prerequisites
 
-In this guide, we will directly jump into the TCR runtime development using Substrate node bootstrapped using the `substrate-node-new` script. This guide is intended to walk you through the overall process of creating a DAppChain using Substrate. It does not cover the "getting started" and other basic concepts about Substrate. To get an overview of these concepts, it is highly recommended that you go through the [Substrate Collectibles tutorial](https://shawntabrizi.github.io/substrate-collectables-workshop/) before proceeding further.
+In this guide, we will directly jump into the TCR runtime development using Substrate node bootstrapped using the `substrate-node-new` script. This guide is intended to walk you through the overall process of creating a DAppChain using Substrate. It does not cover the "getting started" and other basic concepts about Substrate. To get an overview of these concepts, it is highly recommended that you go through the [Substrate Collectibles tutorial](https://substrate.dev/substrate-collectables-workshop/) before proceeding further.
 
 Let's start with a new Substrate runtime node. We recommend going through the [Substrate setup scripts tutorial](getting-started/using-the-substrate-scripts.md) to spin up a hack-ready node runtime using the `substrate-node-new` script.
 
@@ -309,7 +309,7 @@ fn propose(origin, data: Vec<u8>, #[compact] deposit: T::TokenBalance) -> Result
 }
 ```
 
-It is worth noting that we are doing all the checks and validations before touching the storage. This is **very important** as the state of the blockchain cannot be reversed if the logic fails or errors out. We need to be extremely careful before updating the storage. This is well described in the [Substrate-Collectibles tutorial](https://github.com/shawntabrizi/substrate-collectables-workshop/blob/master/2/tracking-all-kitties.md#verify-first-write-last) also.
+It is worth noting that we are doing all the checks and validations before touching the storage. This is **very important** as the state of the blockchain cannot be reversed if the logic fails or errors out. We need to be extremely careful before updating the storage. This is well described in the [Substrate-Collectibles tutorial](https://github.com/substrate-developer-hub/substrate-collectables-workshop/blob/master/2/tracking-all-kitties.md#verify-first-write-last) also.
 
 If you are using external modules in your module, make sure to check whether the functions from these external modules are doing any validations. If yes, make these function calls before updating any storage in your module. In this case, we are calling the `lock` function of the `token` module from the `propose` function of the `TCR` module. The `lock` function is verifying if the token balance of the proposer (origin) is more than the deposit. That's why we are calling it before inserting the listing. The `lock` function also updates storage (locking the user's funds), so it is important not to have any more operations that can fail after the user's funds are locked.
 
