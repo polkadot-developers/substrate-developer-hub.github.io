@@ -200,6 +200,14 @@ function Community(props) {
         >
           Google Calendar
         </Button>
+        <Button
+          variant="secondary"
+          size="sm"
+          href="https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx"
+          className="m-1 primary-color"
+        >
+          Previous Recordings
+        </Button>
       </p>
     </CommunityResource>
   );
