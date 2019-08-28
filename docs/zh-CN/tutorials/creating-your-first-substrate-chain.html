@@ -166,7 +166,7 @@ substrate-ui-new substrate
   <span class="token function">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>And that's it! This is how easy it can be to build new runtime modules using Substrate. You can also reference a <a href="https://github.com/shawntabrizi/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/demo.rs">complete version</a> of this file to check your work.</p>
+<p>And that's it! This is how easy it can be to build new runtime modules using Substrate. You can also reference a <a href="https://github.com/substrate-developer-hub/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/demo.rs">complete version</a> of this file to check your work.</p>
 <h2><a class="anchor" aria-hidden="true" id="step-4-integrate-our-new-module-into-our-runtime"></a><a href="#step-4-integrate-our-new-module-into-our-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Step 4: Integrate our new module into our runtime</h2>
 <p>To actually use our module, we need to tell our runtime that it exists. To do this we will be modifying the <code>./runtime/src/lib.rs</code> file:</p>
 <p>First, we need to include the new file we created into our project:</p>
@@ -214,7 +214,7 @@ substrate-ui-new substrate
   apis<span class="token punctuation">:</span> RUNTIME_API_VERSIONS<span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>Again, you can find a <a href="https://github.com/shawntabrizi/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/lib.rs">complete version</a> of this file.</p>
+<p>Again, you can find a <a href="https://github.com/substrate-developer-hub/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/lib.rs">complete version</a> of this file.</p>
 <h2><a class="anchor" aria-hidden="true" id="step-5-upgrade-our-chain"></a><a href="#step-5-upgrade-our-chain" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Step 5: Upgrade our chain</h2>
 <p>Now that we have created a new runtime module, it's time for us to upgrade our blockchain.</p>
 <p>To do this, first we will need to compile our new runtime into a Wasm binary. Go into <code>substrate-node-template</code> and run:</p>
