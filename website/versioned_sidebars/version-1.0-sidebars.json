@@ -37,7 +37,7 @@
           "version-1.0-runtime/types/genesisconfig-struct"
         ]
       },
-      "version-1.0-runtime/instantiable-module",
+      "version-1.0-runtime/instantiable-module"
     ],
     "Substrate Contracts": [
       "version-1.0-contracts/index",
