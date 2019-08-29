@@ -23,7 +23,7 @@ Depending on your operating system, the installation instruction may be differen
 brew install wabt
 ```
 ```bash
-cargo install
+cargo install pwasm-utils-cli --bin wasm-prune --force
 ```
 
 **Arch Linux**:
