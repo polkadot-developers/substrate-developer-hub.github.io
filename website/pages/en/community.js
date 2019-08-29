@@ -180,7 +180,7 @@ function Community(props) {
     <CommunityResource title={<translate>Substrate Collaborative Learning</translate>}>
       <p>
         <translate>
-          Substrate Collaborative Learning is an open video call where we learn Substrate together. We Meet every other Monday at 16:00UTC. The next several meetings are September 9th, September 23rd, October 7th, and October 21st. Ask for help, show off your project, learn Substrate, and make friends!
+          Substrate Collaborative Learning is an open video call where we learn about Substrate together. We meet every other Monday at 16:00UTC. Ask for help, show off your project, learn about Substrate, and make friends!
         </translate>
       </p>
       <p>
