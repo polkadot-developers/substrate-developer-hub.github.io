@@ -1,5 +1,13 @@
 ---
-title: "Instantiable Modules"
+title: Instantiable Modules
+id: version-1.0-instantiable-module
+original_id: instantiable-module
+---
+
+---
+title: Initializing Runtime Storage
+id: version-1.0-initializing-storage
+original_id: initializing-storage
 ---
 
 Unlike other runtime modules, instantiable modules enable multiple instances of the same module logic within a single runtime. Each instance of the module has its own independent storage, and extrinsics must specify which instance of the module they are intended for.
