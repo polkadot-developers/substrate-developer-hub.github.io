@@ -17,18 +17,34 @@ Smart contracts in Substrate are compiled to WebAssembly (Wasm). To manipulate t
 
 Depending on your operating system, the installation instruction may be different:
 
-**Linux**:
-
-```
-apt install wabt
-cargo install pwasm-utils-cli --bin wasm-prune
-```
-
 **Mac OS**:
 
 ```bash
 brew install wabt
-cargo install pwasm-utils-cli --bin wasm-prune
+```
+```bash
+cargo install
+```
+
+**Arch Linux**:
+
+```bash
+sudo pacman -Syu wabt
+```
+```bash
+cargo install pwasm-utils-cli --bin wasm-prune --force
+```
+
+**Ubuntu/Debian**:
+
+```bash
+sudo apt install -y curl jq tar
+```
+```bash
+curl https://raw.githubusercontent.com/paritytech/scripts/master/install-wasm-binaries.sh -sSf |bash -s
+```
+```bash
+cargo install pwasm-utils-cli --bin wasm-prune --force
 ```
 
 We will be using `wasm2wat` (wabt), `wat2wasm` (wabt), and `wasm-prune` (wasm-utils) later in the guide.

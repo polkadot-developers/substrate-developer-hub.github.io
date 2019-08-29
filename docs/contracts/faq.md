@@ -40,7 +40,7 @@ For example, in the minimal [flipper contract](https://github.com/paritytech/ink
 To run this test, type the following command:
 
 ```bash
-cargo test --features test-env
+cargo test
 ```
 
 ## Contracts Module

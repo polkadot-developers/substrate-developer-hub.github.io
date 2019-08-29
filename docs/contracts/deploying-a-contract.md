@@ -85,9 +85,9 @@ To create an instance of your contract, press the _Deploy_ button, which will br
 
 ![An image of the Contracts Deploy Page](/img/flipper-deploy-page.png)
 
-To instantiate our contract we just need to give this contract account an _endowment_ of `10,000` and again set the _maximum gas allowed_ to `500,000` units.
+To instantiate our contract we just need to give this contract account an _endowment_ of `1,000` and again set the _maximum gas allowed_ to `500,000` units.
 
-> **Note:** As mentioned earlier, contract creation involves creation of a new Account. As such, you must be sure to give the contract account at least the existential deposit defined by your blockchain. This is why we set the `endowment` to `10,000`.
+> **Note:** As mentioned earlier, contract creation involves creation of a new Account. As such, you must be sure to give the contract account at least the existential deposit defined by your blockchain. This is why we set the `endowment` to `1,000`.
 
 When you press **Deploy**, you should see a flurry of events appear including the creation of a new account (`balances.NewAccount`) and the instantiation of the contract (`contract.Instantiated`):
 
@@ -123,7 +123,7 @@ While this is not a great long term solution, it works very well for debugging c
 
 So let's make the value turn `true` now!
 
-The alternative _message to send_ we can make with the UI is `flip()`. Again, we will send a _value_ of `1` and a _maximum gas allowed_ of `100,000`.
+The alternative _message to send_ we can make with the UI is `flip()`. We will set a _maximum gas allowed_ of `500,000`.
 
 If the extrinsic was successful, we should then be able to go back to the `get()` function and see our updated storage:
 
