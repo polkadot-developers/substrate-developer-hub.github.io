@@ -123,9 +123,9 @@
 <p><img src="/img/flipper-code-uploaded-page.png" alt="An image of the Contracts Uploaded Contract Page"></p>
 <p>To create an instance of your contract, press the <em>Deploy</em> button, which will bring you to the deployment page:</p>
 <p><img src="/img/flipper-deploy-page.png" alt="An image of the Contracts Deploy Page"></p>
-<p>To instantiate our contract we just need to give this contract account an <em>endowment</em> of <code>10,000</code> and again set the <em>maximum gas allowed</em> to <code>500,000</code> units.</p>
+<p>To instantiate our contract we just need to give this contract account an <em>endowment</em> of <code>1,000</code> and again set the <em>maximum gas allowed</em> to <code>500,000</code> units.</p>
 <blockquote>
-<p><strong>Note:</strong> As mentioned earlier, contract creation involves creation of a new Account. As such, you must be sure to give the contract account at least the existential deposit defined by your blockchain. This is why we set the <code>endowment</code> to <code>10,000</code>.</p>
+<p><strong>Note:</strong> As mentioned earlier, contract creation involves creation of a new Account. As such, you must be sure to give the contract account at least the existential deposit defined by your blockchain. This is why we set the <code>endowment</code> to <code>1,000</code>.</p>
 </blockquote>
 <p>When you press <strong>Deploy</strong>, you should see a flurry of events appear including the creation of a new account (<code>balances.NewAccount</code>) and the instantiation of the contract (<code>contract.Instantiated</code>):</p>
 <p><img src="/img/flipper-instance-events.png" alt="An image of events from instantiation of Flipper"></p>
@@ -146,7 +146,7 @@
 <p>While this is not a great long term solution, it works very well for debugging contracts, and is a placeholder for more mature solutions like contract events and dedicated view RPCs which are still under development.</p>
 <h3><a class="anchor" aria-hidden="true" id="flip"></a><a href="#flip" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>flip()</code></h3>
 <p>So let's make the value turn <code>true</code> now!</p>
-<p>The alternative <em>message to send</em> we can make with the UI is <code>flip()</code>. Again, we will send a <em>value</em> of <code>1</code> and a <em>maximum gas allowed</em> of <code>100,000</code>.</p>
+<p>The alternative <em>message to send</em> we can make with the UI is <code>flip()</code>. We will set a <em>maximum gas allowed</em> of <code>500,000</code>.</p>
 <p>If the extrinsic was successful, we should then be able to go back to the <code>get()</code> function and see our updated storage:</p>
 <p><img src="/img/flipper-println-true.png" alt="An image of println in the terminal for Flipper with true"></p>
 <p>Woohoo! You deployed a smart contract!</p>
