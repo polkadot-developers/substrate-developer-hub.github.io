@@ -2,23 +2,29 @@
 title: "Session Keys"
 ---
 
-A Session key (technically a Session Certificate) is comprised of three key-pairs that are used by validators for network operations and signing.
+Session keys are used by validators to sign consensus-related messages. `SessionKeys` is a generic, indexable type that is made concrete in the runtime.
 
-The default substrate node uses session keys thanks in part to the [Session module](/rustdocs/v1.0/srml_session/index.html).
+To create a Session key, validator operators must attest that a key acts on behalf of their Stash account (stake) and nominators. To do so, they create a certificate by signing the key with their Controller key. Then, they inform the chain that this key represents their Controller key by publishing the Session certificate in a transaction on the chain.
 
+You can declare any number Session keys. For example, the default Substrate node uses three. Other chains could have more or fewer depending on what operations the chain expects its validators to perform.
 
-## BLS (Boneh-Lynn-Shacham) key
-This first key is used for consensus signatures when voting since it is desirable to be used with the GRANDPA finality gadget. BLS is preferred for voting in consensus algorithms and threshold signatures as it allows more efficient signature aggregation than when using Schnorr signatures.
+```rust
+pub struct SessionKeys {
+	#[id(key_types::GRANDPA)]
+	pub grandpa: GrandpaId,
+	#[id(key_types::BABE)]
+	pub babe: BabeId,
+	#[id(key_types::IM_ONLINE)]
+	pub im_online: ImOnlineId,
+}
+```
 
+> **NOTE:** This code is just an example of the Substrate node at the time of writing. Refer to the runtime for the most up-to-date implementation.
 
-## Schnorrkel/Ristretto x25519 ("Sr25519") key
-This second key is used for producing blocks with BABE (using Schnorr signatures). It was created specifically to handle Substrate and Polkadot use cases. "Sr25519" is based on the same underlying Curve25519 as its EdDSA counterpart, Ed25519, but it uses Schnorr signatures instead of the EdDSA scheme, since they are more efficient, retain the same feature set and security assumptions, and allow for native multisignature through signature aggregation. It is superior to Ed25519 for implementing complex protocols.
-
-## Ed25519 key (using Schnorr signatures)
-This third key is used for identifying itself to other nodes over libp2p. It is used for simpler implementations like account keys that only need to provide signature capabilities. It has a broader support ecosystem (i.e. HSMs are already available for it).
-
+The default Substrate node implements Session keys in the [Session module](/rustdocs/v1.0/srml_session/index.html).
 
 ## Generation and Use
-The "Seed" of an account generated with `subkey` may be used as the Session key of only a single Substrate validator at any one time (i.e. using `substrate --key <SEED>`).
 
-Session keys are hot keys that must be kept online, so it is not recommended to store funds on accounts used for a Session key, as they may be cycled through (possibly automatically), and if the Session key is leaked or the validator node that uses the Session key is compromised then theft of funds may occur.
+Session keys are hot keys that must be kept online. They are not meant to be used as account keys. If one of the Session keys is compromised, the attacker could commit slashable behavior. Session keys may be changed regularly (e.g. every session) via [RPC](https://crates.parity.io/substrate_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys) for increased security.
+
+<!--Note: RPC link is to master and may break. v1.0 docs do not have the requisite endpoints.-->

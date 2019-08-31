@@ -36,6 +36,24 @@ jobs:
             # build and publish website
             cd website && USE_SSH=true GIT_USER=git yarn run publish-gh-pages
 
+  check-build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:10.15.2
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            # This key added by @paritytech-ci
+            - "a1:f6:36:72:14:54:c0:37:47:fe:0f:c1:01:7f:21:f5"
+            # Old key added by Joshy
+            #- "db:18:fc:b1:b6:20:68:47:61:df:13:d7:c6:24:12:1e"
+      - checkout
+      - run:
+          name: Check if Site Builds
+          command: |
+            cd website && yarn install && yarn run write-translations && yarn build
+
 workflows:
   version: 2
   commit_deploy:
@@ -49,3 +67,6 @@ workflows:
           filters: *filter-only-source
     jobs:
       - deploy-website
+  check_build:
+    jobs:
+      - check-build

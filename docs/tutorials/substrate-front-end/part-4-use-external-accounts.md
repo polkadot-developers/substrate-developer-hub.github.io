@@ -24,8 +24,7 @@ yarn add @polkadot/extension-dapp@beta
 
 This package gives us access to:
 - `web3Enable` to declare our DApp and request the right to read the accounts from our users.
-- `isWeb3Injected` to let us know if our users have an extension supporting the `@polkadot/extension-dapp` protocol.
-- `web3Accounts` that should be called if users have a compatible extension and have granted us access to their accounts.
+- `web3Accounts` that should be called after `web3Enable`. It will return an array of accounts: if users have a compatible extension and have granted us access to their accounts. Otherwise, `web3Accounts` will return an empty array.
 
 To keep things simple, we will not display anything other than a loader to our users while authorization is requested. This is a blocking experience that should not be reproduced in a real DApp. Rather, show something useful to your users and patiently wait for them to accept the extension request.
 
@@ -49,16 +48,18 @@ Instead of calling the `loadAccounts` function in its own `useEffect` React hook
 
 ```js
 // beginning of Apps.js
-import { isWeb3Injected, web3Accounts, web3Enable } from '@polkadot/extension-dapp';
+import { web3Accounts, web3Enable } from '@polkadot/extension-dapp';
 
 
 // new hook to get injected accounts
 useEffect(() => {
-    web3Enable('substrate-front-end-tutorial')
-    .then((extensions) => {
-    // web3Account promise only resolves if there are accounts to inject
-    web3Accounts()
-        .then((accounts) => {
+web3Enable('substrate-front-end-tutorial')
+.then((extensions) => {
+// web3Accounts promise returns an array of accounts
+// or an empty array if our user doesn't have an extension or hasn't given the
+// access to any of their account.
+web3Accounts()
+    .then((accounts) => {
         // add the source to the name to avoid confusion
         return accounts.map(({ address, meta }) => ({
             address,
@@ -67,25 +68,21 @@ useEffect(() => {
             name: `${meta.name} (${meta.source})`
             }
         }));
-        })
-        // load our keyring with the newly injected accounts
-        .then((injectedAccounts) => {
-            loadAccounts(injectedAccounts);
-        })
-        .catch(console.error);
+    })
+    // load our keyring with the newly injected accounts
+    .then((injectedAccounts) => {
+        loadAccounts(injectedAccounts);
     })
     .catch(console.error);
-
-// if there is no injection, or the user hasn't accepted it,
-// load any local account
-!isWeb3Injected && loadAccounts();
+})
+.catch(console.error);
 }, []);
 
 const loadAccounts = (injectedAccounts) => {
-    keyring.loadAll({
-        isDevelopment: true
-    }, injectedAccounts);
-    setaccountLoaded(true);
+keyring.loadAll({
+    isDevelopment: true
+}, injectedAccounts);
+setaccountLoaded(true);
 };
 ```
 

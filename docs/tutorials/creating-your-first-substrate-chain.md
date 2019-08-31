@@ -64,7 +64,7 @@ Now it's time to create our own runtime.
 Open up the `substrate-node-template` folder and create a new file:
 
 ```bash
-./runtime/src/demo.rs
+touch ./runtime/src/demo.rs
 ```
 
 This is where our new runtime module will live. Inline comments will hopefully give you insight to what the code is doing.
@@ -99,7 +99,7 @@ pub trait Trait: balances::Trait {}
 
 In this example, we will create a simple coin flip game. Users will pay an entry fee to play the game and then "flip a coin". If they win they will get the contents of the pot. If they don't win, they will get nothing. No matter the outcome, their fee will be placed into the pot after the game resolves for the next user to try and win.
 
-To start, we can define the storage items our module needs to track with the [`decl_storage!` macro](../runtime/macros/decl_storage.md):
+To start, we can define the storage items our module needs to track with the [`decl_storage!` macro](https://crates.parity.io/srml_support_procedural/macro.decl_storage.html):
 
 ```rust
 decl_storage! {
@@ -199,7 +199,7 @@ fn play(origin) -> Result {
 }
 ```
 
-And that's it! This is how easy it can be to build new runtime modules using Substrate. You can also reference a [complete version](https://github.com/shawntabrizi/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/demo.rs) of this file to check your work.
+And that's it! This is how easy it can be to build new runtime modules using Substrate. You can also reference a [complete version](https://github.com/substrate-developer-hub/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/demo.rs) of this file to check your work.
 
 ## Step 4: Integrate our new module into our runtime
 
@@ -258,7 +258,7 @@ To make it more clear when our upgrade is successful, we can also update the nam
 };
 ```
 
-Again, you can find a [complete version](https://github.com/shawntabrizi/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/lib.rs) of this file.
+Again, you can find a [complete version](https://github.com/substrate-developer-hub/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/lib.rs) of this file.
 
 ## Step 5: Upgrade our chain
 

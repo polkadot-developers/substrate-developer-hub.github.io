@@ -130,7 +130,7 @@ const siteConfig = {
       // https://www.algolia.com/doc/api-reference/api-parameters/
       facetFilters: ["language:LANGUAGE"]
     }
-  }
+  },
 
 };
 

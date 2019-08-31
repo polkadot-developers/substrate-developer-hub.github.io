@@ -1,6 +1,6 @@
 /**
  * Copyright 2019 Parity Technologies
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -155,8 +155,7 @@ function Community(props) {
       </p>
     </CommunityResource>
   );
-  
-  
+
   const AwesomeSubstrate = () => (
     <CommunityResource title={<translate>Awesome Substrate</translate>}>
       <p>
@@ -172,6 +171,63 @@ function Community(props) {
           className="m-1 primary-color"
         >
           Awesome Substrate
+        </Button>
+      </p>
+    </CommunityResource>
+  );
+
+  const SubstrateCollaborativeLearning = () => (
+    <CommunityResource title={<translate>Substrate Collaborative Learning</translate>}>
+      <p>
+        <translate>
+          Substrate Collaborative Learning is an open video call where we learn about Substrate together. We meet every other Monday at 16:00UTC. Ask for help, show off your project, learn about Substrate, and make friends!
+        </translate>
+      </p>
+      <p>
+        <Button
+          variant="secondary"
+          size="sm"
+          href="https://zoom.us/j/440029011"
+          className="m-1 primary-color"
+        >
+          Join the Call
+        </Button>
+        <Button
+          variant="secondary"
+          size="sm"
+          href="https://calendar.google.com/calendar/r/eventedit/aTI4MDRrZ2FpcGpzb2NmMmo4cGJqNXMyc2dfMjAxOTA4MjZUMTYwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw?cid=cGFyaXR5LmlvXzM5Mzc5MzQzaDA3M3YwNnFodDF2cHFjZWZjQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
+          className="m-1 primary-color"
+        >
+          Google Calendar
+        </Button>
+        <Button
+          variant="secondary"
+          size="sm"
+          href="https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx"
+          className="m-1 primary-color"
+        >
+          Previous Recordings
+        </Button>
+      </p>
+    </CommunityResource>
+  );
+
+  const Events = () => (
+    <CommunityResource title={<translate>Events & Meetups</translate>}>
+      <p>
+        <translate>
+          Find upcoming events where you can get together and talk with other
+          Substrate developers.
+        </translate>
+      </p>
+      <p>
+        <Button
+          variant="secondary"
+          size="sm"
+          href="https://www.meetup.com/parity/"
+          className="m-1 primary-color"
+        >
+          Events
         </Button>
       </p>
     </CommunityResource>
@@ -196,6 +252,8 @@ function Community(props) {
           </p>
           <StackOverflow />
           <RiotChat />
+          <SubstrateCollaborativeLearning />
+          <Events />
           <AwesomeSubstrate />
           <TwitchStream />
         </Container>

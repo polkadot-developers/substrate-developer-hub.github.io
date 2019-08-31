@@ -33,7 +33,13 @@ flipper
 |
 +-- .cargo
 |   |
-|   +-- config      <-- Compiler Configuration (Safe Math Flag)
+|   +-- config      <-- Compiler Configuration
++-- .ink
+|   |
+|   +-- abi_gen 
+|       |
+|       +-- Cargo.toml
+|       +-- main.rs
 |
 +-- src
 |   |
@@ -41,7 +47,7 @@ flipper
 |
 +-- build.sh        <-- Wasm Build Script
 |
-+-- rust-toolchain  <-- Rust Version Used
++-- rust-toolchain
 |
 +-- Cargo.toml
 |
@@ -101,10 +107,20 @@ The final, optimized `flipper-pruned.wasm` file is what we will actually deploy 
 
 ### Contract ABI
 
-If you run the build script, you will also notice a JSON file which gets generated:
-
+By running the next command we'll generate the Application Binary Interface (ABI):
+``` bash
+cargo +nightly build --features ink-generate-abi
 ```
-Flipper.json
+
+You should have a new JSON file in the same target directory. This is your contract's ABI. 
+
+``` bash
+target
+├── flipper-fixed.wat
+├── flipper-pruned.wasm
+├── flipper.wasm
+├── flipper.wat
+└── old_abi.json
 ```
 
 This is your contract's application binary interface (ABI). Let's take a look inside:

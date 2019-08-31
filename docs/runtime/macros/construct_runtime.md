@@ -140,7 +140,7 @@ decl_storage! {
 }
 ```
 
-You can learn more about [`decl_storage!`](https://github.com/paritytech/wiki/blob/master/decl_storage.md)
+You can learn more about [`decl_storage!`](https://crates.parity.io/srml_support_procedural/macro.decl_storage.html)
 
 ### Event
 
