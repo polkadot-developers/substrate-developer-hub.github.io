@@ -35,7 +35,7 @@ jobs:
             crowdin --config crowdin.yaml download -b master
             # build and publish website
             cd website && USE_SSH=true GIT_USER=git yarn run publish-gh-pages
-  
+
   check-build:
     docker:
       # specify the version you desire here
@@ -67,3 +67,6 @@ workflows:
           filters: *filter-only-source
     jobs:
       - deploy-website
+  check_build:
+    jobs:
+      - check-build
