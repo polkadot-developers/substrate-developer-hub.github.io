@@ -21,8 +21,8 @@
 // Must include a YouTube videos and a presentation slide deck.
 // Presentations are ordered first by weight, and then by date.
 //
-// "name": Presenter Name.
-// "company": Presenter Company
+// "name": Presenter name
+// "company": Presenter company
 // "homepage": Homepage link for company
 // "title": Title of the presentation
 // "summary": Summary of the presentation content.
