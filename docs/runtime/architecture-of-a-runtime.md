@@ -1,6 +1,9 @@
 ---
 title: "Architecture of a Runtime"
 ---
+Bogus bogus bogus bogus
+
+
 Use this diagram to learn and explore the architecture of a runtime. Click on the sections below to be taken to
 documentation about that part of the runtime.
 
