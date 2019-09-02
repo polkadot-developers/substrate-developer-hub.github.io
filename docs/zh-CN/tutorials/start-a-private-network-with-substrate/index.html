@@ -41,7 +41,7 @@
 <p>仓库包含了一个名为 <code>subkey</code> 的工具，我们可以选择用它来生成和检查密钥对。 让我们先编译它。 <code>--force</code> 选项意味着我们将移除之前安装的版本，重新安装此版本。</p>
 <pre><code class="hljs css language-bash">cargo <span class="token function">install</span> --force --path subkey subkey
 </code></pre>
-<p>现在让我们编译我们将要运行的区块链节点。 Because Substrate is a framework, most real-world blockchains that use it will write custom runtime code. 有 <a href="/tutorials/">其他教程</a> 详细涵盖这方面的内容。 幸运的是，Substrate 仓库本身已经有两个随时可以运行的节点环境。 The first lives in the <code>node</code> directory and includes many features to be a practical blockchain. In fact it looks quite similar to <a href="https://polkadot.network">Polkadot</a> which is also built on Substrate. The second is a minimalistic runtime that lives in the <code>node-template</code> directory. We'll be using the node template in this tutorial because of its simplicity and because it is the usual starting point when writing your own custom runtime.</p>
+<p>现在让我们编译我们将要运行的区块链节点。 由于 Substrate 是一个框架，大多数现实世界中的区块链将使用它编写自定义的 runtime 代码。 有 <a href="/tutorials/">其他教程</a> 详细涵盖这方面的内容。 幸运的是，Substrate 仓库本身已经有两个随时可以运行的节点环境。 第一个在 <code>node</code> 目录，它包含了许多功能，可以构建实际可行的区块链。 事实上，它看起来和 <a href="https://polkadot.network">Polkadot</a> 类似，Polkadot 也是基于 Substrate 构建的。 第二个是在 <code>node-template</code> 目录下的最小化 runtime 代码。 我们将在本教程中使用节点模板 <code>node-template</code> ，因为它比较简单，通常是编写自定义 runtime 的起点。</p>
 <pre><code class="hljs css language-bash"><span class="token comment"># 切换到 node-template 目录</span>
 <span class="token function">cd</span> node-template
 
@@ -55,14 +55,14 @@
 cargo build
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="下次更新"></a><a href="#下次更新" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>下次更新</h3>
-<p>更新或改变 Substrate 版本时，这个过程类似，但构建速度更快。 Start by grabbing all the latest code, even if you will ultimately use an older version.</p>
+<p>更新或改变 Substrate 版本时，这个过程类似，但构建速度更快。 首先，获取最新代码，即使你最终会使用某个旧版本。</p>
 <pre><code class="hljs css language-bash"><span class="token comment"># 确保在 v1.0 分支</span>
 <span class="token function">git</span> checkout v1.0
 
 <span class="token comment"># 获取最新代码</span>
 <span class="token function">git</span> pull
 </code></pre>
-<p>Subkey doesn't change nearly as quickly as Substrate itself, so you can often skip rebuilding it. If your get checksum errors or key-compatibility errors, ensure subkey is up to date.</p>
+<p>Subkey doesn't change nearly as quickly as Substrate itself, so you can often skip rebuilding it. 如果你收到 checksum 错误或密钥兼容性错误，请确保 subkey 是最新的。</p>
 <pre><code class="hljs css language-bash"><span class="token comment"># 可选: 重新编译 subkey</span>
 cargo <span class="token function">install</span> --force --path subkey subkey
 </code></pre>
@@ -72,11 +72,11 @@ cargo <span class="token function">install</span> --force --path subkey subkey
 ./scripts/build.sh
 cargo build
 </code></pre>
-<p>Protip: If you'd like <code>node-template</code> to end up on your path, you may use <code>cargo install</code> instead of <code>cargo build</code> in the last step.</p>
+<p>提示：如果想要 <code>node-template</code> 安装在可执行文件路径下，你可以在上一步使用 <code>cargo install</code> 代替 <code>cargo build</code>。</p>
 <h2><a class="anchor" aria-hidden="true" id="alice-和-bob-启动区块链"></a><a href="#alice-和-bob-启动区块链" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Alice 和 Bob 启动区块链</h2>
-<p>Before we generate our own keys, and start a truly unique Substrate network, let's learn the fundamentals by starting with a pre-defined network specification called <code>local</code> with two pre-defined (and definitely not private!) keys known as Alice and Bob.</p>
-<h3><a class="anchor" aria-hidden="true" id="alice-starts-first"></a><a href="#alice-starts-first" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Alice Starts first</h3>
-<p>Alice (or whomever is playing her) should run this command from Substrate repository root.</p>
+<p>在我们生成自己的密钥并开始一个真正独特的 Substrate 网络之前，让我们了解下基础知识，首先使用一个预先定义的网络规范，称为 <code>local</code> ，使用两个预先定义的密钥 (当然不是私人的!)，称为 Alice 和 Bob。</p>
+<h3><a class="anchor" aria-hidden="true" id="alice-首先启动"></a><a href="#alice-首先启动" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Alice 首先启动</h3>
+<p>Alice 应该从 Substrate 仓库的根目录运行此命令。</p>
 <pre><code class="hljs css language-bash"><span class="token comment"># 如果你仍然在 node-template/ 目录</span>
 <span class="token function">cd</span> <span class="token punctuation">..</span>
 
@@ -92,15 +92,15 @@ cargo build
 </code></pre>
 <p>Let's look at those flags in detail:</p>
 <ul>
-<li><code>--base-path</code> Specifies a directory where Substrate should store all the data related to this chain. 如果目录不存在，将创建它。 If other blockchain data already exists there you will get an error. Either clear the directory or choose a different one.</li>
-<li><code>--chain=local</code> Specifies which chain specification to use. There are a few pre-packaged options including <code>local</code> <code>development</code> and <code>staging</code> but generally one specifies their own chainspec file. 我们将在稍后阶段指定自己的文件。</li>
-<li><code>--key //Alice</code> 指定我们正在使用预定义的 Alice 密钥作为此节点的验证者。 Generally one should generate their own key with <code>subkey</code> and then the flag would look like <code>--key &quot;enroll mechanic science ...&quot;&quot;</code>. We'll generate our own keys in a later step.</li>
+<li><code>--base-path</code> 指定一个目录，Substrate 用它来存储与此链有关的所有数据。 如果目录不存在，将创建它。 如果已经存在其它区块链的数据，启动将会报错。 这种情况下，要么清除目录，要么选择不同的目录。</li>
+<li><code>--chain=local</code> 指定要使用的链规范。 有几个预先准备的选项，包括 <code>local</code> <code>development</code> 和 <code>staging</code> ，但更常见的是我们指定自己的 chainspec 文件。 我们将在稍后阶段指定自己的文件。</li>
+<li><code>--key //Alice</code> 指定我们正在使用预定义的 Alice 密钥作为此节点的验证者。 Generally one should generate their own key with <code>subkey</code> and then the flag would look like <code>--key &quot;enroll mechanic science ...&quot;&quot;</code>. 我们将在稍后阶段指定自己的秘钥。</li>
 <li><code>--port 30333</code> 指定节点将监听的 p2p 端口。 30333 is the default and this flag can be omitted if you're happy with the default. 如果 Bob 的节点在同一物理机上运行，您需要明确指定一个不同的端口。</li>
-<li><code>--telemetry-url</code> 告诉节点，将监测数据发送到特定的服务器。 The one we've chosen here is hosted by Parity and is available for anyone to use. You may host your own (beyond the scope of this article) or omit this flag entirely.</li>
-<li><code>--validator</code> Means that we want to participate in block production rather than just sync the network.</li>
-<li><code>--name</code> Attaches a human readable name to the node. This flag is optional and if you omit it a human-readable name will be generated for you. If you aren't using telemetry, you likely won't find much value in assigning a name to the node.</li>
+<li><code>--telemetry-url</code> 告诉节点，将监测数据发送到特定的服务器。 我们在这里选择了由 Parity 维护、可供任何人使用的监测服务器。 You may host your own (beyond the scope of this article) or omit this flag entirely.</li>
+<li><code>--validator</code> 表示我们的节点将参与生产区块而不是仅仅同步网络数据。</li>
+<li><code>--name</code> 给节点添加一个可读性高的名字。 This flag is optional and if you omit it a human-readable name will be generated for you. 如果你不使用监测服务器，你会发现为节点指定名字没有多少价值。</li>
 </ul>
-<p>When the node starts you should see output similar to this.</p>
+<p>当节点启动后，你应该看到类似下面的输出：</p>
 <pre><code class="hljs">2019-05-08 11:15:38 Substrate Node
 2019-05-08 11:15:38   version 1.0.0-17dcbe6c-x86_64-linux-gnu
 2019-05-08 11:15:38   by Anonymous, 2017, 2018
@@ -116,25 +116,25 @@ cargo build
 2019-05-08 11:15:41 Libp2p =&gt; Random Kademlia query has yielded empty results
 2019-05-08 11:15:43 Idle (0 peers), best: #0 (0x8a3c…b693), finalized #0 (0xdb6e…679d), ⬇ 0 ⬆ 0
 </code></pre>
-<p>A few lines to take note of: <code>Node name: AlicesNode</code> shows the human-readable name you specified or an autogenerated one <code>Local node identity is: QmNTx7qYd5JiasUTzjaAbTCUeH5ot9xMjRePRjkSEdD7MY</code> shows the node ID that Bob will need when booting from Alice's node <code>Listening for new connections on 127.0.0.1:9944.</code> shows that the node is listening for RPC connections on port 9944. By default only connections from localhost will be accepted, but you can change that behavior by specifying <code>--ws-external</code>. You can change the port by specifying <code>--ws-port 12345</code>.</p>
+<p>需要注意的几行： <code>Node name: AlicesNode</code>显示你指定的易读名称或自动生成的名称 <code>Local node identity is: QmNTx7qYd5JiasUTzjaAbTCUeH5ot9xMjRePRjkSEdD7MY</code>Alice 节点ID，Bob节点启动时需要依赖此ID <code>Listening for new connections on 127.0.0.1:9944.</code>表示该节点正在监听9944端口上的RPC连接。 默认情况下，只有本地主机的连接会被接受，但你可以通过指定 <code>--ws-external</code> 改变此行为。 你可以通过指定 <code>--ws-port 12345</code> 更改端口。</p>
 <p>More details about all of these flags and others that I haven't mentioned are available by running <code>./target/debug/node-template --help</code>.</p>
-<h3><a class="anchor" aria-hidden="true" id="attach-a-ui"></a><a href="#attach-a-ui" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Attach a UI</h3>
-<p>You can tell a lot about your node by watching the output it produces in your terminal. There is also a nice graphical user interface known as the <a href="https://polkadot.js.org/apps/">Polkadot Js Apps UI</a> which you can connect to your node. That link goes to the hosted version of the user interface, which is super convenient when it works, but is often out of date compared to the version of Substrate you're running. In the likely scenario that the hosted interface is out of date, you can run the interface locally by grabbing the code from <a href="https://github.com/polkadot-js/apps">github</a>. In general the instructions in that repository will be your best guide, but the process should be something like this.</p>
-<pre><code class="hljs css language-bash"><span class="token comment"># Grab the code</span>
+<h3><a class="anchor" aria-hidden="true" id="连接ui"></a><a href="#连接ui" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>连接UI</h3>
+<p>你可以通过节点在命令行中产生的输出了解很多信息。 还有一个很好的图形用户界面，称为<a href="https://polkadot.js.org/apps/"> Polkadot Js Apps UI </a>，可以将它连接到你的节点。 此链接会跳转到该UI的官方托管网页，非常方便，但与你正在运行的 Substrate 版本相比可能已经过时。 在托管的UI页面过期的情况下，你可以通过从<a href="https://github.com/polkadot-js/apps"> github </a>获取代码在本地运行该应用。 一般来说，该仓库中的指令将是你的最佳指南，但过程应该是这样的。</p>
+<pre><code class="hljs css language-bash"><span class="token comment"># 抓取代码</span>
 <span class="token function">git</span> clone https://github.com/polkadot-js/apps
 <span class="token function">cd</span> apps
 
-<span class="token comment"># Install dependencies (you MUST use yarn, not npm)</span>
+<span class="token comment"># 安装依赖</span>
 <span class="token function">yarn</span>
 
-<span class="token comment"># Start the project</span>
+<span class="token comment"># 启动项目</span>
 <span class="token function">yarn</span> run start
 </code></pre>
-<p>Point your favorite web browser at localhost:3000, and on the settings page, choose &quot;local node&quot;. You should see something like this.</p>
+<p>在你常用的Web浏览器输入 localhost:3000，然后在设置页面上选择“本地节点”。 你应该看到类似下面的内容：</p>
 <p><img src="https://cdn.discordapp.com/attachments/559788157239951376/580368220364603392/unknown.png" alt="No blocks in polkadot-js-apps"></p>
-<p>You'll notice, both in the terminal and the UI, that no blocks are being produced yet. Curious learners can <a href="https://github.com/paritytech/substrate/blob/ae350506053b186a15fe5ffe2c1e85088b13a619/core/consensus/aura/src/lib.rs#L341">see why</a>. Blocks will start being produced once another validator joins the network.</p>
-<h3><a class="anchor" aria-hidden="true" id="bob-joins-in"></a><a href="#bob-joins-in" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Bob Joins In</h3>
-<p>Now that Alice's node is up and running, Bob can join the network by bootstrapping from her node. His command will look very similar.</p>
+<p>你会注意到，在命令行和用户界面中，还没有生产任何块。 好奇的学习者请参考 <a href="https://github.com/paritytech/substrate/blob/ae350506053b186a15fe5ffe2c1e85088b13a619/core/consensus/aura/src/lib.rs#L341">这里</a>。 一旦另一个验证者加入网络，块将开始生成。</p>
+<h3><a class="anchor" aria-hidden="true" id="bob-加入"></a><a href="#bob-加入" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Bob 加入</h3>
+<p>现在，Alice节点已经启动并运行，Bob 可以通过引导节点来加入网络。 他的命令看起来非常类似下面：</p>
 <pre><code class="hljs css language-bash">./target/debug/node-template \
   --base-path /tmp/bob \
   --chain<span class="token operator">=</span>local \
@@ -145,33 +145,33 @@ cargo build
   --name BobsNode \
   --bootnodes /ip4/<span class="token operator">&lt;</span>Alices IP Address<span class="token operator">></span>/tcp/<span class="token operator">&lt;</span>Alices Port<span class="token operator">></span>/p2p/<span class="token operator">&lt;</span>Alices Node ID<span class="token operator">></span>
 </code></pre>
-<p>Most of these options are already explained above, but there are a few tripping points.</p>
+<p>上面已经解释了大多数这些选项，但有几个要点。</p>
 <ul>
-<li>If these two nodes are running on the same physical machine, Bob MUST specify a different <code>--base-path</code> and <code>--port</code>.</li>
-<li>Bob has added the <code>--bootnodes</code> flag and specified a single boot node, namely Alice's. He must correctly specify these three pieces of information which Alice can supply for him.
+<li>如果这两个节点在同一物理机器上运行，Bob 必须指定了一个不同的 <code>--base-path</code> 和 <code>--port</code>。</li>
+<li>Bob has added the <code>--bootnodes</code> flag and specified a single boot node, namely Alice's. 他必须正确指定这三项，Alice 可以为他提供的这三条信息。
 <ul>
-<li>Alice's IP Address in the form <code>192.168.1.1</code></li>
-<li>Alice's Port, probably 30333</li>
-<li>Alice's node ID, copied from her log output. (<code>QmNTx7qYd5JiasUTzjaAbTCUeH5ot9xMjRePRjkSEdD7MY</code> in the output above.)</li>
+<li>Alice IP Address 的格式 <code>192.168.1.1</code></li>
+<li>Alice的端口，可能为30333</li>
+<li>Alice节点ID，从她的日志输出中复制。 (<code>QmNTx7qyy5yd5JisUTzjaAbTCUeH5ot9xMjRejRejPRjljlSED7MY</code> 在上面的输出。)</li>
 </ul></li>
 </ul>
-<p>If all is going well, after a few seconds, the nodes should peer together and start producing blocks. You should see some lines like</p>
+<p>如果所有进展顺利，在几秒之后，节点应该相互连接，开始生成区块。 你应该看到类似下面的内容：</p>
 <pre><code class="hljs">Idle (1 peers), best: #1 (0x9f1b…9b57), finalized #0 (0x28be…45e5), ⬇ 1.7kiB/s ⬆ 1.4kiB/s
 </code></pre>
-<p>This line shows that Bob has peered with Alice (<code>1 peers</code>), they have produced a block (<code>best: #1 (0x9f1b…9b57)</code>), and the block is not finalized (<code>finalized #0 (0x28be…45e5)</code>). In this network, only the genesis block will ever be finalized because there is no finality gadget in the node-template. Finality is beyond the scope of this tutorial.</p>
-<h2><a class="anchor" aria-hidden="true" id="generate-your-own-keys"></a><a href="#generate-your-own-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generate Your Own Keys</h2>
-<p>Now that we know the fundamentals and the command line options, it's time to generate our own keys rather than using the well-known Alice and Bob keys.</p>
-<p>Each person who wants to participate in the blockchain can generate their own key using the <a href="ecosystem/subkey">subkey tool</a> or the Polkadot JS Apps UI that we used previously. In this tutorial, we'll use the UI.</p>
-<p>Navigate to the &quot;Accounts&quot; tab, and choose &quot;Add Account&quot;. For this kind of session key, we'll need to select Edwards Curve near the bottom, and copy-paste the public address and the raw seed.</p>
+<p>此行显示，Bob 有对等节点 Alice (<code>1 peers</code>)，它们生产了一个模块(<code>best: #1 (0x9f1b…9b57)</code>)，并且区块尚未最后确定/敲定 (<code>finalized #0 (0x28be…45e5)</code>)。 在这个网络中，只有创世区块被最终敲定，因为节点模板中没有最终性模块（finality gadget）。 最终性（Finality）超出本教程的范围。</p>
+<h2><a class="anchor" aria-hidden="true" id="生成密钥"></a><a href="#生成密钥" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>生成密钥</h2>
+<p>现在我们知道了基本原理和命令行选项，现在是时候生成我们自己的密钥而不是使用众所周知的 Alice 和 Bob 密钥。</p>
+<p>每个想要参与区块链的人都可以使用我们之前使用的<a href="ecosystem/subkey">subkey工具</a>或Polkadot JS Apps UI生成自己的密钥。 在这个教程中，我们将使用 UI。</p>
+<p>导航到 &quot;Accounts&quot;（账户）选项卡，并选择 &quot;Add Account&quot;（添加帐户）。 对于这种会话密钥（session key），我们需要选择底部附近的 Edwards Curve，并复制粘贴公钥地址和原始种子。</p>
 <p><img src="https://cdn.discordapp.com/attachments/559788157239951376/583363719753367567/unknown.png" alt="Screenshot of key generation"></p>
-<p>When you have generated a key pair, store the entire output somewhere safe. Share your public address with the other validators who will be in your network. When everyone in the network knows everyone else's addresses, you can proceed to launch your own chain.</p>
-<h2><a class="anchor" aria-hidden="true" id="start-your-private-blockchain"></a><a href="#start-your-private-blockchain" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Start Your Private Blockchain</h2>
-<p>Last time around, we used <code>--chain=local</code> which is a predefined &quot;chainspec&quot; that has Alice and Bob specified as validators along with many other useful defaults.</p>
-<h3><a class="anchor" aria-hidden="true" id="creating-the-chainspec"></a><a href="#creating-the-chainspec" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating the chainspec</h3>
-<p>Rather than writing our chainspec completely from scratch, we'll just make a few modifications to the the one we used before. To start we need to export the chainspec to a json file. Remember, further details about all of these commands are available by running <code>node-template --help</code>.</p>
+<p>当您生成了一个密钥对，将整个输出存储在安全位置。 与网络中的其他验证人共享你的公钥地址。 当网络中的每个人都知道其他人的地址时，你就可以发布自己的链了。</p>
+<h2><a class="anchor" aria-hidden="true" id="启动你的私有区块链"></a><a href="#启动你的私有区块链" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>启动你的私有区块链</h2>
+<p>上一次，我们使用<code>--chain=local</code>这是一个预定义的“chainspec”，它将 Alice 和 Bob 指定为验证人以及许多其他有用的默认值。</p>
+<h3><a class="anchor" aria-hidden="true" id="创建-chainspec"></a><a href="#创建-chainspec" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>创建 chainspec</h3>
+<p>我们不是从头开始完全编写 chainpec，而是对我们之前使用的那些进行一些修改。 首先，我们需要将 chainspec 导出到 json 文件。 请记住，运行<code>node-template --help</code>可以获得有关所有这些命令的更多详细信息。</p>
 <pre><code class="hljs css language-bash">./target/debug/node-template build-spec --chain<span class="token operator">=</span>local <span class="token operator">></span> customSpec.json
 </code></pre>
-<p>The file we just created contains several fields, and one can learn a lot by exploring them. By far the largest field is a single hex number that is the wasm binary of our runtime. It is what you built earlier when you ran the <code>build.sh</code> script. Learn more about why it's useful to have that info on-chain from <a href="https://www.youtube.com/watch?v=0IoUZdDi5Is">Gav's web3 summit demo</a>.</p>
+<p>我们刚创建的文件包含几个字段，人们可以通过探索它们来学习很多东西。 到目前为止，最长的字段是一个十六进制编码的数据，它是我们runtime的wasm二进制。 这是你在运行<code>build.sh</code>脚本时构建的。 从<a href="https://www.youtube.com/watch?v=0IoUZdDi5Is"> Gav的web3峰会演示</a>详细了解那些信息上链有用的原因。</p>
 <p>The portion of the file we're interested in is the authorities which looks like this</p>
 <pre><code class="hljs css language-json">  <span class="token property">"consensus"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
       <span class="token property">"authorities"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
@@ -181,14 +181,14 @@ cargo build
       <span class="token property">"code"</span><span class="token operator">:</span> &lt;snip>
     <span class="token punctuation">}</span>
 </code></pre>
-<p>All we need to do is change the authority addresses listed (currently Alice and Bob) to our own addresses that we generated in the previous step. A single person should do these steps and share the resulting file. with their fellow validators. (Because rust -&gt; wasm builds aren't &quot;reproducible&quot;, each person will get a slightly different wasm blob which will break consensus if each participant generates the file themselves.)</p>
-<p>Once the chainspec is prepared, convert it to a &quot;raw&quot; chainspec. The distinction between regular and raw is just that all the field names are encoded as hex in the raw chainspec. Not much interesting to explore there.</p>
+<p>All we need to do is change the authority addresses listed (currently Alice and Bob) to our own addresses that we generated in the previous step. 一个人应该执行这些步骤并共享生成的文件。 与其他验证人一起。 （因为 rust - &gt; wasm 构建不是“可重现的”，每个人都会得到一个略有不同的wasm blob，如果每个参与者自己生成文件，这将破坏共识。）</p>
+<p>准备好 chainspec 后，将其转换为“raw” chainspec。 regular 和 raw 之间的区别只是所有字段名称在 raw chainspec 中编码为十六进制。 在那里探索没什么好玩的。</p>
 <pre><code class="hljs css language-bash">./target/debug/node-template build-spec --chain customSpec.json --raw <span class="token operator">></span> customSpecRaw.json
 </code></pre>
-<p>Finally share the <code>customSpecRaw.json</code> with your all the other validators in the network.</p>
-<h3><a class="anchor" aria-hidden="true" id="launching-the-chain"></a><a href="#launching-the-chain" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Launching the chain</h3>
-<p>You've completed all the necessary prep work and you're now ready to launch your chain. This process is very similar to when you launched a chain earlier as Alice and Bob. It's important to start with a clean base path, so if you plan to use the same path that you've used previously, please delete all contents from that directory.</p>
-<p>The first participant can launch her node with</p>
+<p>最后与网络中的所有其他验证人共享<code>customSpecRaw.json</code>。</p>
+<h3><a class="anchor" aria-hidden="true" id="启动链"></a><a href="#启动链" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>启动链</h3>
+<p>你已完成所有必要的准备工作，现在准备好启动链。 此过程非常类似于之前以 Alice 和 Bob 的身份启动链。 从干净的基础路径开始非常重要，如果你打算使用之前的路径，请删除该目录中的所有内容。</p>
+<p>第一位参与者启动节点</p>
 <pre><code class="hljs css language-bash">./target/debug/node-template \
   --chain ./customSpecRaw.json \
   --key <span class="token string">"enroll mechanic ... embody"</span> \
@@ -196,24 +196,24 @@ cargo build
   --telemetry-url ws://telemetry.polkadot.io:1024 \
   --validator
 </code></pre>
-<p>Here are some differences from when we launched as Alice.</p>
+<p>以下是我们启动 Alice 时的一些不同之处。</p>
 <ul>
-<li>I've omitted the <code>--base-path</code> flag, so Substrate will use a default location. You're still free to specify your own base path.</li>
-<li>For the key, I've used the mnemonic phrase that we generated previously. This must be a phrase that corresponds to one of the addresses in your chainspec.</li>
+<li>I've omitted the <code>--base-path</code> flag, so Substrate will use a default location. 你仍然可以自由地指定路径。</li>
+<li>对于密钥，我使用了之前生成的助记词。 这必须是与你的 chainspec 中的某个地址对应的助记词。</li>
 <li>The <code>--chain</code> flag has changed to use our custom chainspec.</li>
 </ul>
-<p>Subsequent validators can now join the network just as Bob did previously. You may bootstrap from <em>any</em> of the nodes already in the network, not just the one that went first.</p>
-<h2><a class="anchor" aria-hidden="true" id="next-steps"></a><a href="#next-steps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Next Steps</h2>
-<p>Congratulations! You've started your own blockchain!</p>
-<p>In this tutorial you've learned to compile the node-template, generate your own keypairs, create a custom chainspec that uses those keypairs, and start a private network based on your custom chainspec and the node-template.</p>
-<p>Here are some ideas for what to learn next.</p>
-<h3><a class="anchor" aria-hidden="true" id="use-the-full-node"></a><a href="#use-the-full-node" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Use the Full Node</h3>
-<p>You can go through a very similar process using Substrate's full node that lives in the <code>node</code> directory rather than the <code>node-template</code> that we used. The process should be familiar to you, and you'll get to explore more runtime modules that are included in the full node.</p>
-<h3><a class="anchor" aria-hidden="true" id="add-validators-after-genesis"></a><a href="#add-validators-after-genesis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add Validators After Genesis</h3>
-<p>What if you want to add more validators after starting the blockchain? You can't just go back and edit the chainspec at that point. The authority set can be changed after genesis by calling the consensus module's <a href="https://github.com/paritytech/substrate/blob/master/srml/consensus/src/lib.rs#L356-L362"><code>set_authorities</code> function</a>. However, that function can only be called from other runtime modules. If you've built the full node, you can use the democracy module for this task. Or check out the <a href="https://github.com/gautamdhameja/substrate-poa">Substrate POA runtime</a>.</p>
-<h3><a class="anchor" aria-hidden="true" id="write-a-custom-runtime"></a><a href="#write-a-custom-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Write a Custom Runtime</h3>
-<p>Substrate is all about writing your own runtimes, and now that you've gotten your hands dirty, I encourage you to try writing one. Consider one of the <a href="/tutorials/">tutorials</a>.</p>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#编译所需工具">编译所需工具</a><ul class="toc-headings"><li><a href="#首次操作">首次操作</a></li><li><a href="#下次更新">下次更新</a></li></ul></li><li><a href="#alice-和-bob-启动区块链">Alice 和 Bob 启动区块链</a><ul class="toc-headings"><li><a href="#alice-starts-first">Alice Starts first</a></li><li><a href="#attach-a-ui">Attach a UI</a></li><li><a href="#bob-joins-in">Bob Joins In</a></li></ul></li><li><a href="#generate-your-own-keys">Generate Your Own Keys</a></li><li><a href="#start-your-private-blockchain">Start Your Private Blockchain</a><ul class="toc-headings"><li><a href="#creating-the-chainspec">Creating the chainspec</a></li><li><a href="#launching-the-chain">Launching the chain</a></li></ul></li><li><a href="#next-steps">Next Steps</a><ul class="toc-headings"><li><a href="#use-the-full-node">Use the Full Node</a></li><li><a href="#add-validators-after-genesis">Add Validators After Genesis</a></li><li><a href="#write-a-custom-runtime">Write a Custom Runtime</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a></div><div><h5>Community</h5><a href="/zh-CN/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a class="github-button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+<p>后续验证人现在可以像 Bob 之前一样加入网络。 你可以从<em>任意</em>网络中已有的节点引导，而不仅仅是先前的节点。</p>
+<h2><a class="anchor" aria-hidden="true" id="后续步骤"></a><a href="#后续步骤" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>后续步骤</h2>
+<p>恭喜你！ 你已启动了自己的区块链！</p>
+<p>在这个教程中，你学会了编译节点模板，生成自己的公私钥对，创建一个自定义的链，使用这些密钥对，并根据自定义 chainspec 和节点模板启动了一个私有区块链网络。</p>
+<p>以下是接下来要学习的内容的一些想法。</p>
+<h3><a class="anchor" aria-hidden="true" id="使用全节点"></a><a href="#使用全节点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用全节点</h3>
+<p>你可以使用位于<code>node</code>目录中的 Substrate 的全节点，而不是我们使用的<code>node-template</code>，完成一个非常类似的过程。 你应该熟悉该过程，并且将开始探索全节点中包含的更多 runtime 模块。</p>
+<h3><a class="anchor" aria-hidden="true" id="创世后添加验证人"></a><a href="#创世后添加验证人" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>创世后添加验证人</h3>
+<p>如果想在启动区块链后添加更多验证人，该怎么办？ 你不能再返回并编辑那里的 chainspec。 The authority set can be changed after genesis by calling the consensus module's <a href="https://github.com/paritytech/substrate/blob/master/srml/consensus/src/lib.rs#L356-L362"><code>set_authorities</code> function</a>. 但是，该函数只能从其它 runtime 模块调用。 如果你已构建全节点，则可以使用 democracy 模块完成该任务。 或者查看<a href="https://github.com/gautamdhameja/substrate-poa">Substrate POA runtime</a>。</p>
+<h3><a class="anchor" aria-hidden="true" id="编写一个自定义-runtime"></a><a href="#编写一个自定义-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>编写一个自定义 Runtime</h3>
+<p>Substrate 其实就是写自己的 runtime，现在你已经上手了，我鼓励你尝试写一个。 Consider one of the <a href="/tutorials/">tutorials</a>.</p>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#编译所需工具">编译所需工具</a><ul class="toc-headings"><li><a href="#首次操作">首次操作</a></li><li><a href="#下次更新">下次更新</a></li></ul></li><li><a href="#alice-和-bob-启动区块链">Alice 和 Bob 启动区块链</a><ul class="toc-headings"><li><a href="#alice-首先启动">Alice 首先启动</a></li><li><a href="#连接ui">连接UI</a></li><li><a href="#bob-加入">Bob 加入</a></li></ul></li><li><a href="#生成密钥">生成密钥</a></li><li><a href="#启动你的私有区块链">启动你的私有区块链</a><ul class="toc-headings"><li><a href="#创建-chainspec">创建 chainspec</a></li><li><a href="#启动链">启动链</a></li></ul></li><li><a href="#后续步骤">后续步骤</a><ul class="toc-headings"><li><a href="#使用全节点">使用全节点</a></li><li><a href="#创世后添加验证人">创世后添加验证人</a></li><li><a href="#编写一个自定义-runtime">编写一个自定义 Runtime</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a></div><div><h5>Community</h5><a href="/zh-CN/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a class="github-button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
