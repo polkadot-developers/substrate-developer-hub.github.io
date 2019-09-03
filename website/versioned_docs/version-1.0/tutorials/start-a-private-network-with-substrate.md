@@ -249,7 +249,6 @@ Subsequent validators can now join the network as Bob did previously, making sur
 
 > All validators must be using identical chain specifications in order to peer together.
 
-
 Next Steps
 ----------
 Congratulations! You've started your own blockchain!
