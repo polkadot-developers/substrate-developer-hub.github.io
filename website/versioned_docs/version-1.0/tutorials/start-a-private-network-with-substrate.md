@@ -245,8 +245,9 @@ Here are some differences from when we launched as Alice.
 * For the key, I've used the mnemonic phrase that we generated previously. This must be a phrase that corresponds to one of the addresses in your chainspec.
 * The `--chain` flag has changed to use our custom chainspec.
 
-Subsequent validators can now join the network just as Bob did previously. You may bootstrap from _any_ of the nodes already in the network, not just the one that went first.
+Subsequent validators can now join the network as Bob did previously, making sure to use the new chainspec and key. You may bootstrap from _any_ of the nodes already in the network, not just the one that went first.
 
+> All validators must be using identical chain specifications in order to peer together.
 
 Next Steps
 ----------
