@@ -27,7 +27,7 @@ const Button = require("../../../../react-bootstrap/Button.js");
 const Col = require("../../../../react-bootstrap/Col.js");
 const Row = require("../../../../react-bootstrap/Row.js");
 
-class Presentations extends React.Component {
+class Videos extends React.Component {
   render() {
     const { config: siteConfig, language = "" } = this.props;
     const { baseUrl, docsUrl } = siteConfig;
@@ -36,41 +36,41 @@ class Presentations extends React.Component {
     const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
     const pageUrl = page => baseUrl + (language ? `${language}/` : "") + page;
 
-    if ((siteConfig.presentations || []).length === 0) {
+    if ((siteConfig.videos || []).length === 0) {
       return null;
     }
 
-    function isFeatured(presentation) {
-      if (presentation.weight < 0) {
+    function isFeatured(video) {
+      if (video.weight < 0) {
         return <Card.Header>Featured</Card.Header>;
       }
     }
 
-    const presentations = siteConfig.presentations.map(presentation => (
+    const videos = siteConfig.videos.map(video => (
       <Col md="6" className="mb-3 d-flex align-items-stretch">
         <Card className="w-100">
-          {isFeatured(presentation)}
+          {isFeatured(video)}
           <div class="embed-responsive embed-responsive-16by9">
             <iframe
-              src={presentation.youtube}
+              src={video.youtube}
               frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
           </div>
           <Card.Body className="d-flex flex-column">
-            <Card.Title>{presentation.title}</Card.Title>
+            <Card.Title>{video.title}</Card.Title>
             <Card.Subtitle>
-              {presentation.name} -{" "}
-              <a href={presentation.homepage}>{presentation.company}</a>
+              {video.name} -{" "}
+              <a href={video.homepage}>{video.company}</a>
             </Card.Subtitle>
             <br />
-            <Card.Text>{presentation.summary}</Card.Text>
+            <Card.Text>{video.summary}</Card.Text>
             <Card.Text>
-              {presentation.location} -{" "}
-              {new Date(presentation.date).toLocaleDateString()}
+              {video.location} -{" "}
+              {new Date(video.date).toLocaleDateString()}
             </Card.Text>
-            <Button variant="info" href={presentation.link} target="_blank">
+            <Button variant="info" href={video.link} target="_blank">
               View Presentation
             </Button>
           </Card.Body>
@@ -83,13 +83,13 @@ class Presentations extends React.Component {
         <HomeSplash
           siteConfig={siteConfig}
           language={language}
-          title={<translate>Presentations</translate>}
+          title={<translate>Videos</translate>}
           tagline={<translate>Find great content about Substrate!</translate>}
           padding={0}
         />
         <div className="mainContainer">
           <Container>
-            <Row>{presentations}</Row>
+            <Row>{videos}</Row>
           </Container>
         </div>
       </div>
@@ -97,6 +97,6 @@ class Presentations extends React.Component {
   }
 }
 
-Presentations.title = "Presentations";
-Presentations.description = "View great content about Substrate.";
-module.exports = Presentations;
+Videos.title = "Videos";
+Videos.description = "View great content about Substrate.";
+module.exports = Videos;

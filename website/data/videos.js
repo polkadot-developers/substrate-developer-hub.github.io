@@ -32,17 +32,42 @@
 // "location": Location of presentation
 // "weight": Set to 100 by default. Videos with weight less than 0 will be "featured".
 
-const presentationList = [
+const videoList = [
   {
     name: "Shawn Tabrizi",
     company: "Parity Technologies",
     homepage: "https://parity.io",
     title: "Enabling Forkless Upgrades with Substrate",
-    summary: "Learn how the Substrate framework is built to enable forkless runtime upgrades.",
+    summary:
+      "Learn how the Substrate framework is built to enable forkless runtime upgrades.",
     youtube: "https://www.youtube.com/embed/0aTnxHrV_j4",
-    link: "/presentations/Shawn Tabrizi - Substrate - Forkless Upgrades.pdf",
+    link: "/presentations/Forkless Upgrades - Shawn Tabrizi.pdf",
     date: Date.parse("Feb 3, 2019"),
-    location: "DOT Day: Seoul, Korea",
+    location: "DOT Day // Seoul, Korea",
+    weight: -1
+  },
+  {
+    name: "Robert Habermeier",
+    company: "Parity Technologies",
+    homepage: "https://parity.io",
+    title: "Consensus in Substrate",
+    summary: "Hear Rob discuss Consensus on Substrate",
+    youtube: "https://www.youtube.com/embed/QE8svRKVYOU",
+    link: "/presentations/Consensus in Substrate - Robert Habermeier.pdf",
+    date: Date.parse("Apr 24, 2019"),
+    location: "Sub0: Substrate Developer Conference // Berlin Germany",
+    weight: -1
+  },
+  {
+    name: "Maciej Hirsz",
+    company: "Parity Technologies",
+    homepage: "https://parity.io",
+    title: "Intro to Rust for Substrate Developers",
+    summary: "Tips for coding with Rust on Substrate.",
+    youtube: "https://www.youtube.com/embed/rPOA_ycranc",
+    link: "/presentations/Intro to Rust - Maciej Hirsz.pdf",
+    date: Date.parse("Apr 24, 2019"),
+    location: "Sub0: Substrate Developer Conference // Berlin, Germany",
     weight: -1
   }
 ];
@@ -65,4 +90,4 @@ function weight_then_date(a, b) {
   return 0;
 }
 
-module.exports = presentationList.sort(weight_then_date);
+module.exports = videoList.sort(weight_then_date);

@@ -20,8 +20,8 @@
 // List of projects listed on the "users" page.
 const users = require('./data/users');
 
-// List of presentations on the "presentations" page
-const presentations = require('./data/presentations');
+// List of videos on the "videos" page
+const videos = require('./data/videos');
 
 const siteConfig = {
   title: 'Substrate Developer Hub', // Title for your website.
@@ -54,7 +54,7 @@ const siteConfig = {
   users,
 
   // Presentations
-  presentations,
+  videos,
 
   /* path to images for header/footer */
   headerIcon: 'img/Substrate-logo.svg',
