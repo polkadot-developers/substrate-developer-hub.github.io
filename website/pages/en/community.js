@@ -28,6 +28,7 @@ function Community(props) {
   const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
   const langPart = `${language ? `${language}/` : ""}`;
   const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
+  const pageUrl = doc => `${baseUrl}${langPart}${doc}`
 
   const CommunityResource = props => (
     <div>
@@ -176,6 +177,26 @@ function Community(props) {
     </CommunityResource>
   );
 
+  const Videos = () => (
+    <CommunityResource title={<translate>Videos</translate>}>
+      <p>
+        <translate>
+          A list of great videos to help you learn about Substrate.
+        </translate>
+      </p>
+      <p>
+        <Button
+          variant="secondary"
+          size="sm"
+          href={pageUrl("videos")}
+          className="m-1 primary-color"
+        >
+          Videos
+        </Button>
+      </p>
+    </CommunityResource>
+  );
+
   const SubstrateCollaborativeLearning = () => (
     <CommunityResource title={<translate>Substrate Collaborative Learning</translate>}>
       <p>
@@ -252,6 +273,7 @@ function Community(props) {
           </p>
           <StackOverflow />
           <RiotChat />
+          <Videos />
           <SubstrateCollaborativeLearning />
           <Events />
           <AwesomeSubstrate />

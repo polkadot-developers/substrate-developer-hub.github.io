@@ -58,8 +58,8 @@ class Footer extends React.Component {
           </div>
           <div>
             <h5>Community</h5>
-            <a href={this.pageUrl("users.html", this.props.language)}>
-              User Showcase
+            <a href={this.pageUrl("videos", this.props.language)}>
+              Videos
             </a>
             <a
               href="http://stackoverflow.com/questions/tagged/substrate"
@@ -75,6 +75,13 @@ class Footer extends React.Component {
               rel="noreferrer noopener"
             >
               Twitter
+            </a>
+            <a
+              href="https://www.meetup.com/parity/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Events
             </a>
           </div>
           <div>
