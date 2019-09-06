@@ -77,7 +77,18 @@ const siteConfig = {
   },
 
   // Add custom scripts here that would be placed in <script> tags.
-  scripts: ['https://buttons.github.io/buttons.js'],
+  scripts: [
+    'https://buttons.github.io/buttons.js',
+    'js/load.js',
+    {
+      src: 'js/config.js',
+      defer: true,
+    },
+    {
+      src: 'js/klaro.js',
+      defer: true,
+    },
+  ],
 
   // On page navigation for the current documentation page.
   onPageNav: 'separate',
