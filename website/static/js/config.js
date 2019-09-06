@@ -25,7 +25,7 @@ var klaroConfig = {
   // store user consent. If undefined, Klaro will use 'klaro'.
 
   // Put a link to your privacy policy here (relative or absolute).
-  privacyPolicy: 'https://substrate.dev/privacy/',
+  privacyPolicy: 'https://www.parity.io/privacy/',
 
   // Defines the default state for applications (true=enabled by default).
   default: true,

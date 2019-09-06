@@ -82,6 +82,21 @@
     display: none !important;
 }
 
+.nav-footer .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav-footer .row .item {
+    padding-left: 16px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.nav-footer .row .item:hover {
+    color: #ffffff;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
