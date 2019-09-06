@@ -72,6 +72,16 @@
     box-sizing: unset;
 }
 
+/* Fix the klaro */
+.klaro .cookie-modal .cm-modal .hide {
+    top: 20px !important;
+    display: inline-block;
+}
+
+.cm-toggle-all {
+    display: none !important;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 

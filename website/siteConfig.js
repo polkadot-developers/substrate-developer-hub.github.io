@@ -85,7 +85,7 @@ const siteConfig = {
       defer: true,
     },
     {
-      src: 'js/klaro.js',
+      src: 'js/klaro.min.js',
       defer: true,
     },
   ],
