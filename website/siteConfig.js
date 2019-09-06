@@ -79,13 +79,13 @@ const siteConfig = {
   // Add custom scripts here that would be placed in <script> tags.
   scripts: [
     'https://buttons.github.io/buttons.js',
-    'js/load.js',
+    '/js/load.js',
     {
-      src: 'js/config.js',
+      src: '/js/config.js',
       defer: true,
     },
     {
-      src: 'js/klaro.min.js',
+      src: '/js/klaro.min.js',
       defer: true,
     },
   ],
