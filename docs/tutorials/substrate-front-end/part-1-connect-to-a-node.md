@@ -4,7 +4,7 @@ title: "Part 1 - Connect to a node"
 
 ## 1.1 Frameworks and tools
 
-In this tutorial, we will build a React application. To focus as much as possible on the actual use of the Polkadot-js API ([see its documentation](https://polkadot.js.org/api/api/#api-selection)), we do not want to spend too much time making the app pretty. We will, therefore, use the `semantic-ui-react` package to render UI components nicely for us.
+In this tutorial, we will build a React application. To focus as much as possible on the actual use of the Polkadot-js API ([see its documentation](https://polkadot.js.org/api/api/#api-selection)), we do not want to spend too much time making the app pretty. We will, therefore, use the `semantic-ui-react` package ([see its documentation](https://react.semantic-ui.com/)) to render UI components nicely for us.
 
 Building an application on top of Substrate means that we need to connect to a Substrate node. To get started as quickly as possible on the actual app development, this guide will provide you with a development endpoint to connect your application to. To be more flexible and run your own node, please read [installing Substrate](https://substrate.dev/docs/en/getting-started/installing-substrate).
 
