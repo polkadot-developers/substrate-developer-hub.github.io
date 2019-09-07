@@ -59,9 +59,6 @@ var klaroConfig = {
       googleAnalytics: {
         description: 'Sammeln von Besucherstatistiken',
       },
-      cloudflare: {
-        description: 'Schutz gegen DDoS-Angriffe',
-      },
       purposes: {
         analytics: 'Besucher-Statistiken',
         security: 'Sicherheit',
@@ -75,9 +72,6 @@ var klaroConfig = {
       googleAnalytics: {
         description: 'Collection of information about how visitors use our website',
       },
-      cloudflare: {
-        description: 'Protection against DDoS attacks',
-      },
       purposes: {
         analytics: 'analytics and improvement of our sites',
         security: 'security',
@@ -90,9 +84,6 @@ var klaroConfig = {
       },
       googleAnalytics: {
         description: 'Ziyaretçi istatistiklerini toplama',
-      },
-      cloudflare: {
-        description: 'DDoS saldırılarına karşı koruma',
       },
       purposes: {
         analytics: 'Analitik',
