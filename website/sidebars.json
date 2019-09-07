@@ -18,6 +18,7 @@
     "Runtime": [
       "runtime/architecture-of-a-runtime",
       "runtime/substrate-runtime-module-library",
+      "runtime/runtime-metadata",
       "runtime/initializing-storage",
       {
         "type": "subcategory",

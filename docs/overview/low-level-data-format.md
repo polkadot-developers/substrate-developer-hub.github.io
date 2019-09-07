@@ -1,7 +1,14 @@
 ---
 title: "Low-level Data Format"
 ---
-Substrate encodes data in the "Simple Concatenated Aggregate Little-Endian" (SCALE) data format, as implemented by the `parity-scale-codec` crate and several JavaScript modules.
+
+Substrate encodes data in the "Simple Concatenated Aggregate Little-Endian" (SCALE) data format, as implemented by:
+* [parity-scale-codec](https://github.com/paritytech/parity-scale-codec) in Rust
+* [@polkadot/types](https://github.com/polkadot-js/api/tree/master/packages/types) in Javascript
+* [ChainSafe/gossamer](https://github.com/ChainSafe/gossamer/tree/development/codec) in Go
+* [opennetsys/golkadot](https://github.com/opennetsys/golkadot/tree/develop/common/codec) in Go
+* [soramitsu/kagome](https://github.com/soramitsu/kagome/tree/master/core/scale) in C++
+* [polkascan/py-scale-codec](https://github.com/polkascan/py-scale-codec) in Python
 
 It is an extremely light-weight encoding format designed for high-performance, copy-free encoding and decoding of data in resource-constrained execution contexts like the Substrate runtime. It is not self-describing in any way and assumes the decoding context has all type knowledge about the encoded data.
 
