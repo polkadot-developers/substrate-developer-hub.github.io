@@ -197,7 +197,7 @@
     <span class="token comment">// Public functions go here</span>
     <span class="token keyword">pub</span><span class="token punctuation">(</span>external<span class="token punctuation">)</span> <span class="token keyword">fn</span> <span class="token function">my_public_function</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token punctuation">...</span>
-    <span class="token punctuation">}</span> 
+    <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">impl</span> MyContract <span class="token punctuation">{</span>
@@ -215,7 +215,7 @@
     <span class="token comment">// Public functions go here</span>
     <span class="token keyword">pub</span><span class="token punctuation">(</span>external<span class="token punctuation">)</span> <span class="token keyword">fn</span> <span class="token function">my_getter</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> u32<span class="token punctuation">{</span>
         <span class="token operator">*</span><span class="token keyword">self</span><span class="token punctuation">.</span>my_number
-    <span class="token punctuation">}</span> 
+    <span class="token punctuation">}</span>
 
     <span class="token keyword">pub</span><span class="token punctuation">(</span>external<span class="token punctuation">)</span> <span class="token keyword">fn</span> <span class="token function">my_setter</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">,</span> some_value<span class="token punctuation">:</span> u32<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">self</span><span class="token punctuation">.</span>my_number <span class="token operator">=</span> some_value<span class="token punctuation">;</span>
@@ -276,13 +276,14 @@
 <pre><code class="hljs css language-rust"><span class="token attribute attr-name">#![no_std]</span>
 
 <span class="token keyword">use</span> ink_core<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
-    env<span class="token punctuation">:</span><span class="token punctuation">:</span>println<span class="token punctuation">,</span>
     memory<span class="token punctuation">:</span><span class="token punctuation">:</span>format<span class="token punctuation">,</span>
     storage<span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token keyword">use</span> ink_lang<span class="token punctuation">:</span><span class="token punctuation">:</span>contract<span class="token punctuation">;</span>
 
 <span class="token macro-rules function">contract!</span> <span class="token punctuation">{</span>
+    <span class="token attribute attr-name">#![env = ink_core::env::DefaultSrmlTypes]</span>
+
     <span class="token comment">/// This simple dummy contract has a `bool` value that can</span>
     <span class="token comment">/// alter between `true` and `false` using the `flip` message.</span>
     <span class="token comment">/// Users can retrieve its current state using the `get` message.</span>
@@ -306,7 +307,7 @@
 
         <span class="token comment">/// Returns the current state.</span>
         <span class="token keyword">pub</span><span class="token punctuation">(</span>external<span class="token punctuation">)</span> <span class="token keyword">fn</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> bool <span class="token punctuation">{</span>
-            <span class="token function">println</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token function">format!</span><span class="token punctuation">(</span><span class="token string">"Flipper Value: {:?}"</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token keyword">self</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            env<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token function">format!</span><span class="token punctuation">(</span><span class="token string">"Flipper Value: {:?}"</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token keyword">self</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token operator">*</span><span class="token keyword">self</span><span class="token punctuation">.</span>value
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
