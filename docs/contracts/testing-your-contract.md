@@ -8,7 +8,12 @@ In your project folder run:
 
 ```bash
 cargo test
-```
+```  
+
+Or, if nightly is not the (project) default:  
+```bash
+cargo +nightly test
+```  
 
 To which you should see a successful test completion:
 

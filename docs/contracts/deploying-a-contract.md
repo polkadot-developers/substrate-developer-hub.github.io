@@ -67,7 +67,21 @@ In the **Code** section, select _upload WASM_.
 
 ![Contracts code page for deploying Flipper](/img/flipper-code-page.png)
 
-Choose a _deployment account_ with some account balance like Alice. In _compiled contract WASM_, select the `flipper-pruned.wasm` file we generated. For the _contract ABI_, select the JSON file generated for your contract. Finally, set the _maximum gas allowed_ to `500,000` units.
+Choose a _deployment account_ with some account balance like Alice. In _compiled contract WASM_, select the `flipper-pruned.wasm` file we generated. For the _contract ABI_, select the JSON file generated for your contract. Finally, set the _maximum gas allowed_ to `500,000` units.  
+
+You generate the ABI with:  
+
+```bash
+cargo run --package abi-gen
+```  
+
+or  
+
+```bash
+cargo +nightly run --package abi-gen
+```  
+if nightly is not your (project) default. The corresponding `abi.json` can be found in /target. Please note that for backwward compatibility, a `old_abi.json` file is also generated. If the UI complains about an invalid ABI file, try the `old_abi.json` file.  
+
 
 ![Contracts upload page for deploying Flipper](/img/flipper-upload-page.png)
 
@@ -101,7 +115,7 @@ Now that your contract has been fully deployed, we can start to interact with it
 
 If you take a look back at our contract's `deploy()` function, we set the initial value of the Flipper contract to `false`. Let's check that this is the case.
 
-In the **Contracts** section, press _execute_. 
+In the **Contracts** section, press _execute_.
 
 ![An image of instance page](/img/flipper-instance-page.png)
 
