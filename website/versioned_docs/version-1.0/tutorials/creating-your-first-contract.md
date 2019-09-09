@@ -229,7 +229,7 @@ impl MyContract {
     // Public functions go here
     pub(external) fn my_public_function(&self) {
         ...
-    } 
+    }
 }
 
 impl MyContract {
@@ -253,7 +253,7 @@ impl MyContract {
     // Public functions go here
     pub(external) fn my_getter(&self) -> u32{
         *self.my_number
-    } 
+    }
 
     pub(external) fn my_setter(&mut self, some_value: u32) {
         self.my_number = some_value;
@@ -328,13 +328,14 @@ If we put everything together, this will be our final Flipper contract code, inc
 #![no_std]
 
 use ink_core::{
-    env::println,
     memory::format,
     storage,
 };
 use ink_lang::contract;
 
 contract! {
+    #![env = ink_core::env::DefaultSrmlTypes]
+
     /// This simple dummy contract has a `bool` value that can
     /// alter between `true` and `false` using the `flip` message.
     /// Users can retrieve its current state using the `get` message.
@@ -358,7 +359,7 @@ contract! {
 
         /// Returns the current state.
         pub(external) fn get(&self) -> bool {
-            println(&format!("Flipper Value: {:?}", *self.value));
+            env.println(&format!("Flipper Value: {:?}", *self.value));
             *self.value
         }
     }

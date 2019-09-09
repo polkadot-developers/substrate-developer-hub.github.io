@@ -69,19 +69,6 @@ In the **Code** section, select _upload WASM_.
 
 Choose a _deployment account_ with some account balance like Alice. In _compiled contract WASM_, select the `flipper-pruned.wasm` file we generated. For the _contract ABI_, select the JSON file generated for your contract. Finally, set the _maximum gas allowed_ to `500,000` units.  
 
-You generate the ABI with:  
-
-```bash
-cargo run --package abi-gen
-```  
-
-or  
-
-```bash
-cargo +nightly run --package abi-gen
-```  
-if nightly is not your (project) default. The corresponding `abi.json` can be found in /target. Please note that for backwward compatibility, a `old_abi.json` file is also generated. If the UI complains about an invalid ABI file, try the `old_abi.json` file.  
-
 
 ![Contracts upload page for deploying Flipper](/img/flipper-upload-page.png)
 
