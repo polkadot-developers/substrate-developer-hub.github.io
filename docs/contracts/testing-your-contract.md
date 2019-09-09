@@ -7,18 +7,13 @@ You will see at the bottom of the source code there is a simple test which verif
 In your project folder run:
 
 ```bash
-cargo test
-```  
-
-Or, if nightly is not the (project) default:  
-```bash
 cargo +nightly test
 ```  
 
 To which you should see a successful test completion:
 
 ```bash
-$ cargo test
+$ cargo +nightly test
     Finished dev [unoptimized + debuginfo] target(s) in 0.20s
      Running target/debug/deps/flipper-03a085eedcb655b9
 
