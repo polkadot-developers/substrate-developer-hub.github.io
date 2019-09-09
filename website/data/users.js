@@ -263,7 +263,14 @@ const usersList = [{
     pinned: false,
     type: "infra",
   },
-
+  {
+    name: "Kusama",
+    image: "/img/users/kusama_01.png",
+    homepage: "https://kusama.network/",
+    github: "https://github.com/paritytech/polkadot",
+    pinned: false,
+    type: "infra",
+  },
 ];
 
 function alphabetize(a, b) {
