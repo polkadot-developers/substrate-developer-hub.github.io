@@ -1,0 +1,164 @@
+<!DOCTYPE html><html lang="ru"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Building an event based off-chain storage · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This is Part 4 of the guide &lt;a href=&quot;/docs/ru/next/tutorials/tcr/&quot;&gt;Building a Token Curated Registry DAppChain on Substrate&lt;/a&gt;. In &lt;a href=&quot;/docs/ru/next/tutorials/tcr/building-the-substrate-tcr-runtime&quot;&gt;part 1&lt;/a&gt;, we implemented a substrate runtime module for a TCR. In &lt;a href=&quot;/docs/ru/next/tutorials/tcr/unit-testing-the-tcr-runtime-module&quot;&gt;part 2&lt;/a&gt;, we wrote unit tests for our runtime. In &lt;a href=&quot;/docs/ru/next/tutorials/tcr/building-a-ui-for-the-tcr-runtime&quot;&gt;part 3&lt;/a&gt;, we built a simple UI to interact with the Substrate TCR runtime. In this part, we will look at how we can further optimize our TCR DAppChain solution by building an off-chain storage.&lt;/p&gt;
+"/><meta name="docsearch:version" content="next"/><meta name="docsearch:language" content="ru"/><meta property="og:title" content="Building an event based off-chain storage · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;This is Part 4 of the guide &lt;a href=&quot;/docs/ru/next/tutorials/tcr/&quot;&gt;Building a Token Curated Registry DAppChain on Substrate&lt;/a&gt;. In &lt;a href=&quot;/docs/ru/next/tutorials/tcr/building-the-substrate-tcr-runtime&quot;&gt;part 1&lt;/a&gt;, we implemented a substrate runtime module for a TCR. In &lt;a href=&quot;/docs/ru/next/tutorials/tcr/unit-testing-the-tcr-runtime-module&quot;&gt;part 2&lt;/a&gt;, we wrote unit tests for our runtime. In &lt;a href=&quot;/docs/ru/next/tutorials/tcr/building-a-ui-for-the-tcr-runtime&quot;&gt;part 3&lt;/a&gt;, we built a simple UI to interact with the Substrate TCR runtime. In this part, we will look at how we can further optimize our TCR DAppChain solution by building an off-chain storage.&lt;/p&gt;
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/ru"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/ru/versions"><h3>next</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/ru/next/getting-started/" target="_self">Docs</a></li><li class=""><a href="/rustdocs/v1.0/" target="_self">Reference Docs</a></li><li class=""><a href="/ru/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/ru/community" target="_self">Community</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>Русский</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/next/tutorials/tcr/building-an-event-based-off-chain-storage">English</a></li><li><a href="/docs/zh-CN/next/tutorials/tcr/building-an-event-based-off-chain-storage">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Token Curated Registry Tutorial</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Token Curated Registry Tutorial<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/next/tutorials/tcr/">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/next/tutorials/tcr/building-the-substrate-tcr-runtime">Building the Substrate TCR runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/next/tutorials/tcr/unit-testing-the-tcr-runtime-module">Unit testing the TCR runtime module</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/next/tutorials/tcr/building-a-ui-for-the-tcr-runtime">Building a UI for the TCR runtime</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/ru/next/tutorials/tcr/building-an-event-based-off-chain-storage">Building an event based off-chain storage</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/next/tutorials/tcr/tcr-best-practices">Best Practices</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">Building an event based off-chain storage</h1></header><article><div><span><p>This is Part 4 of the guide <a href="/docs/ru/next/tutorials/tcr/">Building a Token Curated Registry DAppChain on Substrate</a>. In <a href="/docs/ru/next/tutorials/tcr/building-the-substrate-tcr-runtime">part 1</a>, we implemented a substrate runtime module for a TCR. In <a href="/docs/ru/next/tutorials/tcr/unit-testing-the-tcr-runtime-module">part 2</a>, we wrote unit tests for our runtime. In <a href="/docs/ru/next/tutorials/tcr/building-a-ui-for-the-tcr-runtime">part 3</a>, we built a simple UI to interact with the Substrate TCR runtime. In this part, we will look at how we can further optimize our TCR DAppChain solution by building an off-chain storage.</p>
+<h2><a class="anchor" aria-hidden="true" id="purpose"></a><a href="#purpose" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Purpose</h2>
+<p>In scenarios where we have to analyze the on-chain data and query it from client applications, we need a more optimized way of accessing it. In the TCR use case, what if there is a stake-holder looking for answers to the following questions?</p>
+<ol>
+<li>How many listings are proposed in a sample time duration?</li>
+<li>What's the average time for listings to reach resolved state?</li>
+<li>What was the total staked deposit at a point in time?</li>
+</ol>
+<p>The answers to these questions will require several queries on the TCR data. Directly querying the on-chain data can hamper the performance of the node. Also, the node and the APIs are generally not optimized for analytics queries.</p>
+<p>In scenarios like these, it is preferred to have an off-chain storage syncing with the on-chain data so that the data can be more accessible for analytics and other needs.</p>
+<h2><a class="anchor" aria-hidden="true" id="event-based-syncing"></a><a href="#event-based-syncing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Event based syncing</h2>
+<p>Now that we have a reason to setup an off-chain storage for our DAppChain, we need a way to make sure that the on-chain and off-chain stores are always in sync. This can be easily achieved using the runtime events. Remember from part 1 that we declared several events to communicate the state changes on the TCR data. Also, remember from part 2 that we handled these events in the client side when they were emitted through the runtime extrinsic calls. We can use these events to build an off-chain store without querying any data from the chain.</p>
+<p>Using the events, we can insert into and update the off-chain storage either by using the client-side code or by using a background listener. The approach using the client side won't work if the client is not always connected, because then it will miss the events and the off-chain store would become stale. The background listener approach would be more suitable in production scenarios.</p>
+<p>The following diagram shows how the event listener approach works.</p>
+<p><img src="/docs/assets/substrate-listener.png" alt="substrate-listener"></p>
+<h2><a class="anchor" aria-hidden="true" id="sample-code"></a><a href="#sample-code" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Sample code</h2>
+<p>We created a sample <a href="https://github.com/parity-samples/substrate-events-listener">Substrate events listener</a> to showcase this approach. The listener sample is a simple node.js based web-socket client which subscribes to Parity Substrate runtime events and stores them in a data store.</p>
+<p>In the following code snippet, a function listens to all the Substrate events using a web-socket connection, filters the event data based on custom rules and inserts them into a configured data store. The functions use the same PolkadotJS API which we also used in part 2 of the guide to connect to the Substrate node and runtime. The full code is available as part of the <a href="https://github.com/parity-samples/substrate-events-listener/blob/master/server.js">server.js</a> file of the listener sample.</p>
+<pre><code class="hljs css language-javascript"><span class="token comment">// code from https://polkadot.js.org/api/examples/rx/08_system_events/</span>
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// get event filters from config</span>
+  <span class="token keyword">const</span> eventsFilter <span class="token operator">=</span> utils<span class="token punctuation">.</span><span class="token function">getEventSections</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// initialize the data service</span>
+  <span class="token comment">// internally connects to all storage sinks</span>
+  <span class="token keyword">await</span> dataService<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Create API with connection to the local Substrate node</span>
+  <span class="token comment">// If your Substrate node is running elsewhere, add the config (server + port) in .env</span>
+  <span class="token comment">// Use the config in the create function below</span>
+  ApiRx<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>
+      <span class="token function">switchMap</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">api</span><span class="token punctuation">)</span> <span class="token operator">=></span>
+        api<span class="token punctuation">.</span>query<span class="token punctuation">.</span>system<span class="token punctuation">.</span><span class="token function">events</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment">// subscribe to system events via storage</span>
+    <span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">events</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      events<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">record</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        <span class="token comment">// extract the event object</span>
+        <span class="token keyword">const</span> <span class="token punctuation">{</span> event<span class="token punctuation">,</span> phase <span class="token punctuation">}</span> <span class="token operator">=</span> record<span class="token punctuation">;</span>
+        <span class="token comment">// check section filter</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>eventsFilter<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>section<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">||</span> eventsFilter<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">"all"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token comment">// create event object for data sink</span>
+          <span class="token keyword">const</span> eventObj <span class="token operator">=</span> <span class="token punctuation">{</span>
+            section<span class="token punctuation">:</span> event<span class="token punctuation">.</span>section<span class="token punctuation">,</span>
+            method<span class="token punctuation">:</span> event<span class="token punctuation">.</span>method<span class="token punctuation">,</span>
+            meta<span class="token punctuation">:</span> event<span class="token punctuation">.</span>meta<span class="token punctuation">.</span>documentation<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            data<span class="token punctuation">:</span> event<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+          <span class="token punctuation">}</span>
+
+          <span class="token comment">// remove this log if not needed</span>
+          console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Event Received: '</span> <span class="token operator">+</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">": "</span> <span class="token operator">+</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>eventObj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+          <span class="token comment">// insert in data sink</span>
+          <span class="token comment">// can have some error handling here</span>
+          <span class="token comment">// should not fail or catch exceptions gracefully</span>
+          <span class="token keyword">await</span> dataService<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>eventObj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>In the <a href="https://github.com/parity-samples/substrate-events-listener">Substrate events listener</a> sample, we have a <a href="https://github.com/parity-samples/substrate-events-listener/blob/master/lib/dataService.js">pre-configured MongoDB client</a> to insert data into a MongoDB instance. More clients can be configured in addition to or in place of the existing MongoDB client.</p>
+<p>After the off-chain storage sync is setup using the event listener, we can use this store for querying, analytics and other requirements.</p>
+<h2><a class="anchor" aria-hidden="true" id="potential-issues"></a><a href="#potential-issues" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Potential Issues</h2>
+<p>When using this approach of maintaining an off-chain store, there could be sync issues because of network partitions or temporary forks on the chain.</p>
+<p>To get a better idea of sync status between the on-chain and off-chain stores, the off chain store could also maintain the latest block number. When querying from the off-chain store, the block numbers in both places (on-chain and off-chain) could be compared to ensure that the data in the off-chain store is not stale.</p>
+<p>The off-chain storage approach presented here should not be used <em>as-is</em> in a production application. Solutions for corrective measures (for bringing the stores in sync) should be defined in the context of the use-case, before implementing this approach.</p>
+<p>In the <a href="/docs/ru/next/tutorials/tcr/tcr-best-practices">next and final part</a> of this guide, we will learn some of the best practices for building Substrate runtimes.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/next/tutorials/tcr/building-a-ui-for-the-tcr-runtime"><span class="arrow-prev">← </span><span>Building a UI for the TCR runtime</span></a><a class="docs-next button" href="/docs/ru/next/tutorials/tcr/tcr-best-practices"><span>Best Practices</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#purpose">Purpose</a></li><li><a href="#event-based-syncing">Event based syncing</a></li><li><a href="#sample-code">Sample code</a></li><li><a href="#potential-issues">Potential Issues</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/ru/getting-started">Getting Started</a><a href="/ru/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a></div><div><h5>Community</h5><a href="/ru/videos">Videos</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a class="github-button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:ru"]}
+              });
+            </script></body></html>
