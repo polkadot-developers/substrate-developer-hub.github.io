@@ -112,7 +112,7 @@ By running the next command we'll generate the Application Binary Interface (ABI
 ```bash
 cargo +nightly run --package abi-gen
 ```
-The corresponding `abi.json` can be found in /target. Please note that for backward compatibility, a `old_abi.json` file is also generated. If the UI complains about an invalid ABI file, try the `old_abi.json` file.
+The corresponding `abi.json` can be found in `/target`. Please note that for backward compatibility, an `old_abi.json` file is also generated. If the UI complains about an invalid ABI file, try the `old_abi.json` file.
 
 You should have a new JSON file in the same target directory. This is your contract's ABI. 
 
