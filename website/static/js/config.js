@@ -63,6 +63,7 @@ var klaroConfig = {
         analytics: 'analytics and improvement of our sites',
         security: 'security',
       },
+      close: "Save settings"
     },
   },
 
