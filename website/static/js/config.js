@@ -59,6 +59,9 @@ var klaroConfig = {
       googleAnalytics: {
         description: 'Collection of information about how visitors use our website',
       },
+      cloudflare: {
+        description: 'Protection against DDoS attacks',
+      },
       purposes: {
         analytics: 'analytics and improvement of our sites',
         security: 'security',
@@ -115,5 +118,11 @@ var klaroConfig = {
     },
 
     // The apps will appear in the modal in the same order as defined here.
+    {
+      name: 'cloudflare',
+      title: 'Cloudflare',
+      purposes: ['security'],
+      required: true,
+    },
   ],
 };
