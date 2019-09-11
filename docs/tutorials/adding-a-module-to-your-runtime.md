@@ -147,7 +147,7 @@ But since you did not forget, you should be able to sanity check that everything
 cargo run --release -- --dev
 ```
 
-## Adding the Contracts module
+## Adding the Contracts Module
 
 Now that we have successfully imported the Contracts module crate, we need to add it to our Runtime. The first thing we will add to our runtime is the Gas type.
 
