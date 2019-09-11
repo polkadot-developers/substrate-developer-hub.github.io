@@ -15,7 +15,7 @@ To install all the prerequisites needed for the Substrate build environment, lik
 ```bash
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
-#### Get the node template
+#### Get the Node Template
 ```bash
 git clone https://github.com/substrate-developer-hub/substrate-node-template
 
