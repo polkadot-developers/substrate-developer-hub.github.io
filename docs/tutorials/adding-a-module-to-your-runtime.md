@@ -19,7 +19,8 @@ curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```bash
 git clone https://github.com/substrate-developer-hub/substrate-node-template
 
-./substrate-node-template/substrate-node-rename.sh contracts-chain <YourName> # Personalize your project
+# Personalize your project
+./substrate-node-template/substrate-node-rename.sh contracts-chain <YourName>
 ```
 
 #### Run your node.
