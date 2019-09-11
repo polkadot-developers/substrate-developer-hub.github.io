@@ -103,7 +103,21 @@ class Footer extends React.Component {
           </div>
         </section>
 
-        <section className="copyright">{this.props.config.copyright}</section>
+        <section className="row">
+          <div className="copyright">{this.props.config.copyright}</div>
+          <a className="item" href="https://www.parity.io/privacy/">Privacy Policy</a>
+          <a className="item" href="#" id="cookie-settings">Cookie Settings</a>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              `,
+            }}
+          />
+        </section>
       </footer>
     );
   }
