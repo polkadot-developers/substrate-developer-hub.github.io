@@ -73,7 +73,7 @@ cd node-template
 cargo build --release
 ```
 
-Protip: If you'd like `node-template` to end up on your path, you may use `cargo install` instead of `cargo build` in the last step.
+> Protip: If you'd like `node-template` to end up on your path, you may use `cargo install` instead of `cargo build` in the last step.
 
 
 
