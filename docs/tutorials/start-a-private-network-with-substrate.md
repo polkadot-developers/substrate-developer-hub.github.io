@@ -34,17 +34,17 @@ cargo install --force --path subkey subkey
 Now let's compile the actual blockchain node that we'll be running. Because Substrate is a framework, most real-world blockchains that use it will write custom runtime code. There are [other tutorials](/tutorials/) that cover that process in detail. Luckily the Substrate repository itself already comes with two ready-to-run node environments. The first lives in the `node` directory and includes many features to be a practical blockchain. In fact it looks quite similar to [Polkadot](https://polkadot.network) which is also built on Substrate. The second is a minimalistic runtime that lives in the `node-template` directory. We'll be using the node template in this tutorial because of its simplicity and because it is the usual starting point when writing your own custom runtime.
 
 ```bash
-# Switch to note-template directory
+# Switch to node-template directory
 cd node-template
 
-# Ensure your rust toolchain is up to date
+# Ensure your Rust toolchain is up to date
 ./scripts/init.sh
 
-# Compile the wasm version of the runtime code
+# Compile the Wasm version of the runtime code
 ./scripts/build.sh
 
 # Compile the native version of the node
-cargo build
+cargo build --release
 ```
 
 ### Updating Later
@@ -68,7 +68,7 @@ Now we're ready to rebuild the node template. This process is identical to befor
 cd node-template
 ./scripts/init.sh
 ./scripts/build.sh
-cargo build
+cargo build --release
 ```
 
 Protip: If you'd like `node-template` to end up on your path, you may use `cargo install` instead of `cargo build` in the last step.
@@ -87,7 +87,7 @@ Alice (or whomever is playing her) should run this command from Substrate reposi
 cd ..
 
 # Start the node
-./target/debug/node-template \
+./target/release/node-template \
   --base-path /tmp/alice \
   --chain=local \
   --key //Alice \
@@ -128,7 +128,7 @@ A few lines to take note of:
 `Local node identity is: QmNTx7qYd5JiasUTzjaAbTCUeH5ot9xMjRePRjkSEdD7MY` shows the node ID that Bob will need when booting from Alice's node
 `Listening for new connections on 127.0.0.1:9944.` shows that the node is listening for RPC connections on port 9944. By default only connections from localhost will be accepted, but you can change that behavior by specifying `--ws-external`. You can change the port by specifying `--ws-port 12345`.
 
-More details about all of these flags and others that I haven't mentioned are available by running `./target/debug/node-template --help`.
+More details about all of these flags and others that I haven't mentioned are available by running `./target/release/node-template --help`.
 
 ### Attach a UI
 You can tell a lot about your node by watching the output it produces in your terminal. There is also a nice graphical user interface known as the [Polkadot Js Apps UI](https://polkadot.js.org/apps/) which you can connect to your node. That link goes to the hosted version of the user interface, which is super convenient when it works, but is often out of date compared to the version of Substrate you're running. In the likely scenario that the hosted interface is out of date, you can run the interface locally by grabbing the code from [github](https://github.com/polkadot-js/apps). In general the instructions in that repository will be your best guide, but the process should be something like this.
@@ -154,7 +154,7 @@ You'll notice, both in the terminal and the UI, that no blocks are being produce
 ### Bob Joins In
 Now that Alice's node is up and running, Bob can join the network by bootstrapping from her node. His command will look very similar.
 ```bash
-./target/debug/node-template \
+./target/release/node-template \
   --base-path /tmp/bob \
   --chain=local \
   --key //Bob \
@@ -199,10 +199,10 @@ Last time around, we used `--chain=local` which is a predefined "chainspec" that
 Rather than writing our chainspec completely from scratch, we'll just make a few modifications to the the one we used before. To start we need to export the chainspec to a json file. Remember, further details about all of these commands are available by running `node-template --help`.
 
 ```bash
-./target/debug/node-template build-spec --chain=local > customSpec.json
+./target/release/node-template build-spec --chain=local > customSpec.json
 ```
 
-The file we just created contains several fields, and one can learn a lot by exploring them. By far the largest field is a single hex number that is the wasm binary of our runtime. It is what you built earlier when you ran the `build.sh` script. Learn more about why it's useful to have that info on-chain from [Gav's web3 summit demo](https://www.youtube.com/watch?v=0IoUZdDi5Is).
+The file we just created contains several fields, and one can learn a lot by exploring them. By far the largest field is a single hex number that is the Wasm binary of our runtime. It is what you built earlier when you ran the `build.sh` script. Learn more about why it's useful to have that info on-chain from [Gav's web3 summit demo](https://www.youtube.com/watch?v=0IoUZdDi5Is).
 
 The portion of the file we're interested in is the authorities which looks like this
 ```json
@@ -215,12 +215,12 @@ The portion of the file we're interested in is the authorities which looks like 
     }
 ```
 
-All we need to do is change the authority addresses listed (currently Alice and Bob) to our own addresses that we generated in the previous step. A single person should do these steps and share the resulting file. with their fellow validators. (Because rust -> wasm builds aren't "reproducible", each person will get a slightly different wasm blob which will break consensus if each participant generates the file themselves.)
+All we need to do is change the authority addresses listed (currently Alice and Bob) to our own addresses that we generated in the previous step. A single person should do these steps and share the resulting file. with their fellow validators. (Because Rust -> Wasm builds aren't "reproducible", each person will get a slightly different Wasm blob which will break consensus if each participant generates the file themselves.)
 
 Once the chainspec is prepared, convert it to a "raw" chainspec. The distinction between regular and raw is just that all the field names are encoded as hex in the raw chainspec. Not much interesting to explore there.
 
 ```bash
-./target/debug/node-template build-spec --chain customSpec.json --raw > customSpecRaw.json
+./target/release/node-template build-spec --chain customSpec.json --raw > customSpecRaw.json
 ```
 
 Finally share the `customSpecRaw.json` with your all the other validators in the network.
@@ -231,7 +231,7 @@ You've completed all the necessary prep work and you're now ready to launch your
 
 The first participant can launch her node with
 ```bash
-./target/debug/node-template \
+./target/release/node-template \
   --chain ./customSpecRaw.json \
   --key "enroll mechanic ... embody" \
   --port 30333 \
