@@ -143,8 +143,8 @@ const usersList = [{
     type: "chain",
   },
   {
-    name: "Kilt Protocol",
-    image: "/img/users/kiltprotocol.png",
+    name: "KILT Protocol",
+    image: "/img/users/kiltprotocol_full.png",
     homepage: "https://kilt.io/",
     github: "https://github.com/KILTprotocol/",
     team: "https://botlabs.org/",
