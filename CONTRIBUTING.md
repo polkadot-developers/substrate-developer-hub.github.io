@@ -435,7 +435,7 @@ These are general style guidelines that can help create clearer documentation:
 
 - **Avoid using uncommon words, highly technical words, or jargon that users might not understand.**
   Also, avoid using idioms such as "that's the way the cookie crumbles", while it might make sense
-  to you, it could not translate well into another language. Keep in mind that a lot of users are
+  to you, it may not translate well into another language. Keep in mind that a lot of users are
   non-native English speakers.
 
 - **Use compound words correctly.** Use the compound words that give the correct meaning.
