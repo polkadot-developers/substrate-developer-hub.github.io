@@ -422,7 +422,7 @@ These are general style guidelines that can help create clearer documentation:
       is still made into the subject of the sentence which indicates passive voice. Passive voice
       tends to be wordier than active voice, which can make your sentence unclear. In most cases,
       if you use "by" this indicates that your sentence might be still be in passive voice. A
-      correct way of writing this example is "The operating systems runs the process."
+      correct way of writing this example is, "The operating systems runs the process."
 
 - **Do not list future plans for a product/feature.** "In the future, the product will have no
   bugs." This leads to the question as to when this would happen, but most importantly this is not
