@@ -29,11 +29,12 @@ We have created many end-to-end tutorials to help you learn about the different 
 Within the Substrate ecosystem, you can build blockchains, smart contracts, and even user interfaces! Here is a quick overview of the different products that comprise this space:
 
 * [Substrate](https://github.com/paritytech/substrate): A next generation blockchain development framework built using WebAssembly, Libp2p, and GRANDPA consensus.
+	* [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template): A minimal blockchain node, ready to power your next Substrate project!
+	* [Substrate Module Template](https://github.com/substrate-developer-hub/substrate-module-template): A template for building independent runtime modules which can easily be shared with others.
 * [ink!](https://github.com/paritytech/ink): A Rust-based eDSL for building WebAssembly smart contracts compatible with Substrate's Contracts module.
-* [Polkadot-JS/API](https://github.com/polkadot-js/api): Promise and RxJS APIs for interacting with Substrate-based chains via RPC calls.
-* [Polkadot-JS/Apps](https://github.com/polkadot-js/apps): A basic UI for interacting with all features of a Substrate node. Powered by Polkadot-JS/API.
-* [oo7-substrate](https://github.com/paritytech/oo7/tree/master/packages/oo7-substrate): A ReactJS based API for interacting with Substrate-based chains via RPC Calls. Also known as the "Bonds" library.
-* [Substrate UI](https://github.com/paritytech/substrate-ui): A basic ReactJS-based UI built for quickly building new interfaces for Substrate chains. Powered by oo7-substrate.
+* [Polkadot-JS/API](https://polkadot.js.org/api/start/): Promise and RxJS APIs for interacting with Substrate-based chains via RPC calls.
+	* [Polkadot-JS/Apps](https://github.com/polkadot-js/apps): A basic UI for interacting with all features of a Substrate node. Powered by Polkadot-JS/API.
+	* [Substrate Front-End Template](https://github.com/substrate-developer-hub/substrate-front-end-template): A Polkadot.js API + React based template for building Substrate front ends.
 
 ## Join the Community
 

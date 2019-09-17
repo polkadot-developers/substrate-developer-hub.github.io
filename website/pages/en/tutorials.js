@@ -354,22 +354,6 @@ class Tutorials extends React.Component {
                 length: "2",
                 prerequisite: false,
                 href: `${docUrl("tutorials/substrate-front-end")}`
-              },
-              {
-                img: `${baseUrl}img/polkadot-js-api-tutorial.png`,
-                title: (
-                  <translate>Getting started with Polkadot-js API</translate>
-                ),
-                text: (
-                  <translate>
-                    This guide should provide you with all the information
-                    needed to install, understand, and use the @polkadot/api.
-                  </translate>
-                ),
-                difficulty: "easy",
-                length: "2",
-                prerequisite: false,
-                href: "https://polkadot.js.org/api/start/"
               }
             ]}
           />
