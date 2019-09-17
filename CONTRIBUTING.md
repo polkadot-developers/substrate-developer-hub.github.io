@@ -63,7 +63,7 @@ Substrate documentation is split into three projects:
 
 * Substrate Rust Documentation - `substrate.dev/rustdocs/`
 
-   Auto-generated Rust documentation from the Substrate repository. See [Documentation Comments](#documentation-comments)
+   Auto-generated Rust documentation from the Substrate repository. See [Documentation Comments](#documentation-comments).
 
 * Substrate Developer Documentation - `substrate.dev/docs/`
 
