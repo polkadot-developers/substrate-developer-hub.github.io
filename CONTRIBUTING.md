@@ -129,7 +129,7 @@ greatly improves the chances that someone can find your documentation.
 
 Tips for leaving breadcrumbs:
 
-- Table of contents: Add links to documentation in the left sided navigation
+- Table of contents: Add links to documentation in the left side navigation
   on substrate.dev.
 
 - Top-down linkage: Add links from more general documents to more specific documents to help
