@@ -445,7 +445,7 @@ These are general style guidelines that can help create clearer documentation:
   prove that "this operating system is the best?"
 
 - **Avoid referencing proprietary information.** This can refer to any potential terminology or
-  product names that may be trademarked or any internal information (API keys, machine names, etc…)
+  product names that may be trademarked or any internal information (API keys, machine names, etc…).
 
 - **Avoid starting a sentence with "this" since it is unclear what "this" references.**
 
