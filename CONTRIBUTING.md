@@ -419,7 +419,7 @@ These are general style guidelines that can help create clearer documentation:
 
     - "A process is being run." This sentence is unclear about who or what is running the process.
       You might consider "a process is run by the operating system", but the object of the action
-      is still made into the subject of the sentence which indicates passive voice. Passive voice
+      is still made into the subject of the sentence, which indicates passive voice. Passive voice
       tends to be wordier than active voice, which can make your sentence unclear. In most cases,
       if you use "by" this indicates that your sentence might be still be in passive voice. A
       correct way of writing this example is, "The operating systems runs the process."
