@@ -394,7 +394,7 @@ These are general style guidelines that can help create clearer documentation:
 
 - **Avoid using pronouns such as "I" or "we".** These can be quite ambiguous when someone reads the
   documentation. It is better to say "You should do…." instead of "We recommend that you do….". It
-  is ok to use "you" as this allows the documentation to speak to a user.
+  is OK to use "you" as this allows the documentation to speak to a user.
 
 - **If you plan on using acronyms, you should define them the first time you write about them.** For
   example, looks good to me (LGTM). Don't assume that everyone will understand all acronyms. You do
