@@ -109,7 +109,7 @@ related to comments for your code.
 
 ### What documentation style guidelines should I follow?
 
-It is important to try to follow documentation style guidelines to ensure that the documentation
+It is important to follow documentation style guidelines to ensure that the documentation
 created by a large number of contributors can flow together. See
 [Documentation Style Guide](#documentation-style).
 
