@@ -5,11 +5,11 @@ these contribution guidelines.
 
 We lovingly stole these guidelines from [Google's Fuchsia project](https://fuchsia.dev/), and modified them for our needs.
 
-* [Documentation Standards](#documentation-types)
+* [Documentation Standards](#documentation-standards)
 
 * [Documentation Types](#documentation-types)
 
-* [Documentation Comments](#documentation-types)
+* [Documentation Comments](#documentation-comments)
 
 * [Documentation Style](#documentation-style)
 
@@ -228,8 +228,6 @@ indicate if a parameter is required or optional, and show examples of the use of
 examples should be very generic and simple. If you feel like you need a more elaborate example,
 consider creating a procedural document to reinforce your reference documentation.
 
-For the style guide for API documentation, see
-[API style guide](../development/api/documentation.md).
 ### Conceptual documentation
 
 Conceptual documentation should try to be brief and for the most part should not go above 1 page.
@@ -383,14 +381,11 @@ Tips for writing effective documentation comments:
 ## Documentation Style
 
 It is important to create documentation that follows similar guidelines. This allows documentation
-to be clear and concise while allowing users to easily find necessary information. For information
-about the complete documentation standards, see
-[Documentation Standards](documentation_standards.md).
+to be clear and concise while allowing users to easily find necessary information.
 
 These are general style guidelines that can help create clearer documentation:
 
-- **Write in plain U.S. English.** You should write in plain U.S. English and try to avoid over
-  complicated words when you describe something.
+- **Write in plain U.S. English.** You should write in plain U.S. English and try to avoid over-complicated words when you describe something.
 
 - **Avoid using pronouns such as "I" or "we".** These can be quite ambiguous when someone reads the
   documentation. It is better to say "You should do…." instead of "We recommend that you do….". It
