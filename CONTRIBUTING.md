@@ -276,7 +276,7 @@ Then, add your feedback into your document.
 
 Procedural documents are divided into two categories:
 
-- **How-to** - Consider writing a how to when you want to help the user accomplish a very specific
+- **How-to** - Consider writing a how-to when you want to help the user accomplish a very specific
   goal.
 
 - **Tutorial** - Consider writing a tutorial when you want to help the user learn about a bigger goal
