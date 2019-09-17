@@ -137,7 +137,7 @@ Tips for leaving breadcrumbs:
   starting point for top-down linkage.
 
 - Bottom-up linkage: Add links from more specific documents to more general documents to help
-  readers understand the full context context of the topics being discussed. Adding links from
+  readers understand the full context of the topics being discussed. Adding links from
   module, class, or protocol documentation comments to conceptual documentation overviews can be
   particularly effective.
 
