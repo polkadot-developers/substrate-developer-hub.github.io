@@ -451,7 +451,7 @@ These are general style guidelines that can help create clearer documentation:
 
   - For example: "The operating system is fast and efficient. This is what makes it well designed."
     Does "this" refer to fast, efficient, or operating system? Consider using: "The operating system
-    is well designed because it is fast and efficient".
+    is well designed because it is fast and efficient."
 
 - **Keep sentences fairly short and concrete.** Using punctuation allows your reader to follow
   instructions or concepts. If by the time you read the last word of your sentence, you can't
