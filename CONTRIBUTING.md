@@ -72,7 +72,7 @@ Substrate documentation is split into three projects:
     
    *  `development`
         Instructions, tutorials, and procedural documentation for developers
-        that are working on Substrate. This directory includes documentation
+        who are working on Substrate. This directory includes documentation
         on how to get started, build, run, and test Substrate. You should organize the content
         that you create by specific activities, such as testing, getting
         started, or by workflow topic.
