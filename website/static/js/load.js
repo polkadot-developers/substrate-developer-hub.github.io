@@ -11,7 +11,14 @@ head.appendChild(gtagScript);
 
 var dataLayerScript = document.createElement('script');
 dataLayerScript.type = 'opt-in';
-dataLayerScript.src = 'js/datalayer.js';
+dataLayerScript.text = `
+window.dataLayer = window.dataLayer || [];
+function gtag(){
+  dataLayer.push(arguments);
+}
+gtag('js', new Date());
+gtag('config', 'UA-145158313-2');
+`;
 dataLayerScript.setAttribute('data-type', 'application/javascript');
-gtagScript.setAttribute('data-name', 'googleAnalytics');
+dataLayerScript.setAttribute('data-name', 'googleAnalytics');
 head.appendChild(dataLayerScript);
