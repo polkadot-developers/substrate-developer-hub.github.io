@@ -459,7 +459,7 @@ These are general style guidelines that can help create clearer documentation:
   to translate correctly.
 
 - **Know your audience.** It is good practice to know your audience before you write documentation.
-  Your audience can be, for example, developers, end-users, integrators, and they can have varying
+  Your audience can be, for example, developers, end-users, integrators, etc. and they can have varying
   degrees of expertise and knowledge about a specific topic. Knowing your audience allows you to
   understand what information your audience should be familiar with. When a document is meant for a
   more advanced audience, it is best practice to state it up front and let the user know
