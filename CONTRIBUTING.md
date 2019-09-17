@@ -120,7 +120,9 @@ Never use relative paths with ".." that point to content outside of `/docs`.
 
 ### How can I link to source code in my documentation?
 
-Use the `/rustdocs` to link to specific parts of the Substrate source code, for example a module's `trait`. When referencing specific lines of code, copy those lines into the documentation. However, use this sparingly.
+Use the `/rustdocs` to link to specific parts of the Substrate source code, for example a module's `trait`. When referencing specific lines of code, copy those lines into the documentation. 
+
+DO NOT link to specific lines of code -- substrate changes often and links that reference specific locations in the code become inaccurate fast and are not easily maintainable.
 
 ### How can I expose my documentation?
 
