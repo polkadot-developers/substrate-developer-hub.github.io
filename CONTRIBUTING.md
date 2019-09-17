@@ -314,7 +314,7 @@ Consider the following when you think that you might need to create a tutorial:
   whole documentation set to just be tutorials, use them in moderation.
 
 - Tutorials should be self-contained, avoid creating links to other tutorials, other how-tos or
-  other information that might have a user leave the actual tutorial. It is ok to provide links to
+  other information that might have a user leave the actual tutorial. It is OK to provide links to
   conceptual documents that can enhance a user's knowledge for a given topic.
 
 - Would this procedural documentation benefit from having a very specific example through a
