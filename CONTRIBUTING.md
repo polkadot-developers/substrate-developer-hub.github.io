@@ -268,7 +268,7 @@ questions:
 
 - Is there unnecessary detail about how things might work in the background?
 
-- If I am the user, is there additional I would have liked to know?
+- If I am the user, is there additional information I would have liked to know?
 
 Then, add your feedback into your document.
 
