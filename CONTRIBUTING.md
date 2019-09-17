@@ -305,7 +305,7 @@ a dog, you might have a table of content that looks like this:
 At a very high-level, a tutorial is essentially a large how-to, composed of various smaller how-tos.
 Tutorials are great when you want to give the user a hand-held experience of working through a task,
 especially if this task is considered a little more complicated and might involve working with
-various areas of a product. On the other hand, a how to should describe the steps on how to work
+various areas of a product. On the other hand, a how-to should describe the steps on how to work
 through a minor task that should only involve a single area of a product.
 
 Consider the following when you think that you might need to create a tutorial:
