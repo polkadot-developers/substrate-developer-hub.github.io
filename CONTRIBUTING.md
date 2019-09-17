@@ -302,7 +302,7 @@ a dog, you might have a table of content that looks like this:
 
 #### Difference between a tutorial and a how to
 
-At a very high-level, a tutorial is essentially a large how to, composed of various smaller how tos.
+At a very high-level, a tutorial is essentially a large how-to, composed of various smaller how-tos.
 Tutorials are great when you want to give the user a hand-held experience of working through a task,
 especially if this task is considered a little more complicated and might involve working with
 various areas of a product. On the other hand, a how to should describe the steps on how to work
