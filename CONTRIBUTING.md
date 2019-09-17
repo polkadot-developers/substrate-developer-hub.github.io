@@ -247,7 +247,7 @@ high-level headings after this first paragraph.
 You should use graphics, images, or diagrams to reinforce certain concepts. The text that comes
 before and after the graphic should explain what the graphic shows. Images should be saved in
 a feature specific `images/` directory or a common `images/` directory. You should also save
-the source file of your images in a `images/src/` directory.
+the source file of your images in an `images/src/` directory.
 
 Good conceptual documentation usually includes:
 
