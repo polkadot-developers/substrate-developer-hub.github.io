@@ -24,7 +24,7 @@ const Card = require("../../../../react-bootstrap/Card.js");
 const Col = require("../../../../react-bootstrap/Col.js");
 const Row = require("../../../../react-bootstrap/Row.js");
 const Badge = require("../../../../react-bootstrap/Badge.js");
-const translate = require('../../server/translate.js').translate;
+const translate = require("../../server/translate.js").translate;
 
 class Tutorials extends React.Component {
   render() {
@@ -39,7 +39,14 @@ class Tutorials extends React.Component {
       props.data.map(tutorial => (
         <Col md={3} className="mb-3 d-flex align-items-stretch">
           <Card>
-            <Card.Img variant="top" src={tutorial.img ? tutorial.img : `${baseUrl}img/substrate-placeholder.png`} />
+            <Card.Img
+              variant="top"
+              src={
+                tutorial.img
+                  ? tutorial.img
+                  : `${baseUrl}img/substrate-placeholder.png`
+              }
+            />
             <Card.Body className="d-flex flex-column">
               <Card.Title>{tutorial.title}</Card.Title>
               <Card.Text>{tutorial.text}</Card.Text>
@@ -54,34 +61,41 @@ class Tutorials extends React.Component {
                   }
                   className="m-1"
                 >
-                  {tutorial.difficulty.charAt(0).toUpperCase() + tutorial.difficulty.slice(1)}
+                  {tutorial.difficulty.charAt(0).toUpperCase() +
+                    tutorial.difficulty.slice(1)}
                 </Badge>
-                <Badge variant={
+                <Badge
+                  variant={
                     tutorial.length > 4
                       ? `danger`
                       : tutorial.length > 2
                       ? `warning`
                       : `success`
                   }
-                  className="m-1">
+                  className="m-1"
+                >
                   {tutorial.length} Hour{tutorial.length > 1 ? `s` : ``}
                 </Badge>
-                <Badge variant={
-                    tutorial.prerequisite == true
-                      ? `warning`
-                      : `success`
+                <Badge
+                  variant={
+                    tutorial.prerequisite == true ? `warning` : `success`
                   }
-                  className="m-1">
-                  {
-                    tutorial.prerequisite == true
-                      ? `Prerequisites`
-                      : `No Prerequisites`
-                  }
+                  className="m-1"
+                >
+                  {tutorial.prerequisite == true
+                    ? `Prerequisites`
+                    : `No Prerequisites`}
                 </Badge>
               </div>
             </Card.Body>
             <Card.Footer>
-              <Button variant="secondary" className="primary-color" href={tutorial.href}>Try it now!</Button>
+              <Button
+                variant="secondary"
+                className="primary-color"
+                href={tutorial.href}
+              >
+                Try it now!
+              </Button>
             </Card.Footer>
           </Card>
         </Col>
@@ -90,32 +104,31 @@ class Tutorials extends React.Component {
     const RuntimeRecipes = () => (
       <div>
         <h2>
-          <translate>
-            Runtime Recipes
-          </translate>
+          <translate>Runtime Recipes</translate>
         </h2>
         <hr />
         <p>
           <translate>
-            Find code samples for common patterns and best practices when developing runtime modules on Substrate:
+            Find code samples for common patterns and best practices when
+            developing runtime modules on Substrate:
           </translate>
         </p>
         <p>
-          <Button variant="secondary" className="primary-color" href="https://substrate.dev/recipes">
-            <translate>
-              Substrate Runtime Recipes >
-            </translate>
+          <Button
+            variant="secondary"
+            className="primary-color"
+            href="https://substrate.dev/recipes"
+          >
+            <translate>Substrate Runtime Recipes ></translate>
           </Button>
         </p>
       </div>
-    )
+    );
 
     const RuntimeTutorials = () => (
       <div>
         <h2>
-          <translate>
-            Runtime Development
-          </translate>
+          <translate>Runtime Development</translate>
         </h2>
         <hr />
         <Row>
@@ -124,32 +137,60 @@ class Tutorials extends React.Component {
               {
                 img: `${baseUrl}img/substrate-collectables-workshop.png`,
                 title: <translate>Substrate Collectables Workshop</translate>,
-                text: <translate>A comprehensive, end-to-end tutorial for creating a non-fungible token chain. Learn all the basics of Substrate runtime development here!</translate>,
+                text: (
+                  <translate>
+                    A comprehensive, end-to-end tutorial for creating a
+                    non-fungible token chain. Learn all the basics of Substrate
+                    runtime development here!
+                  </translate>
+                ),
                 difficulty: "easy",
                 length: "5",
                 prerequisite: false,
-                href: "https://substrate-developer-hub.github.io/substrate-collectables-workshop/"
+                href:
+                  "https://substrate-developer-hub.github.io/substrate-collectables-workshop/"
               },
 
               {
-                title: <translate>Substrate Verifiable Credentials Workshop</translate>,
-                text: <translate>A comprehensive, end-to-end tutorial for creating an infrastructure chain for verifiable credentials. Learn all the basics of Substrate runtime development here!</translate>,
+                title: (
+                  <translate>
+                    Substrate Verifiable Credentials Workshop
+                  </translate>
+                ),
+                text: (
+                  <translate>
+                    A comprehensive, end-to-end tutorial for creating an
+                    infrastructure chain for verifiable credentials. Learn all
+                    the basics of Substrate runtime development here!
+                  </translate>
+                ),
                 difficulty: "easy",
                 length: "3",
                 prerequisite: false,
                 href: "https://substrate.dev/substrate-verifiable-credentials/"
               },
               {
-                title: <translate>Creating Your First Substrate Chain</translate>,
-                text: <translate>A minimal, end-to-end guide to build and interact with your first custom Substrate chain.</translate>,
+                title: (
+                  <translate>Creating Your First Substrate Chain</translate>
+                ),
+                text: (
+                  <translate>
+                    A minimal, end-to-end guide to build and interact with your
+                    first custom Substrate chain.
+                  </translate>
+                ),
                 difficulty: "easy",
                 length: "< 1",
                 prerequisite: false,
-                href: `${docUrl("tutorials/creating-your-first-substrate-chain")}`
+                href: `${docUrl(
+                  "tutorials/creating-your-first-substrate-chain"
+                )}`
               },
               {
                 title: <translate>Substrate Token Curated Registry</translate>,
-                text: <translate>Build a TCR module using Substrate.</translate>,
+                text: (
+                  <translate>Build a TCR module using Substrate.</translate>
+                ),
                 difficulty: "medium",
                 length: "3",
                 prerequisite: true,
@@ -157,8 +198,15 @@ class Tutorials extends React.Component {
               },
               {
                 img: `${baseUrl}img/crates.png`,
-                title: <translate>Write a Runtime Module in its Own Crate</translate>,
-                text: <translate>Make your runtime modules re-usable by packaging them in their own rust crate.</translate>,
+                title: (
+                  <translate>Write a Runtime Module in its Own Crate</translate>
+                ),
+                text: (
+                  <translate>
+                    Make your runtime modules re-usable by packaging them in
+                    their own rust crate.
+                  </translate>
+                ),
                 difficulty: "medium",
                 length: "2",
                 prerequisite: false,
@@ -166,7 +214,12 @@ class Tutorials extends React.Component {
               },
               {
                 title: <translate>UTXO Workshop</translate>,
-                text: <translate>A tutorial teaching you how to build a UTXO chain like Bitcoin using Substrate.</translate>,
+                text: (
+                  <translate>
+                    A tutorial teaching you how to build a UTXO chain like
+                    Bitcoin using Substrate.
+                  </translate>
+                ),
                 difficulty: "medium",
                 length: "2",
                 prerequisite: true,
@@ -174,12 +227,13 @@ class Tutorials extends React.Component {
               },
               {
                 title: "Adding a Module to Your Runtime",
-                text: "Add the Contracts module or other SRML modules to your Substrate node template.",
+                text:
+                  "Add the Contracts module or other SRML modules to your Substrate node template.",
                 difficulty: "medium",
                 length: "2",
                 prerequisite: false,
                 href: `${docUrl("tutorials/adding-a-module-to-your-runtime")}`
-              },
+              }
             ]}
           />
         </Row>
@@ -189,9 +243,7 @@ class Tutorials extends React.Component {
     const ContractTutorials = () => (
       <div className="mt-4">
         <h2>
-          <translate>
-            Smart Contract Development
-          </translate>
+          <translate>Smart Contract Development</translate>
         </h2>
         <hr />
         <Row>
@@ -200,16 +252,27 @@ class Tutorials extends React.Component {
               {
                 img: `${baseUrl}img/substrate-contracts-workshop.png`,
                 title: <translate>Substrate Contracts Workshop</translate>,
-                text: <translate>A comprehensive, end-to-end tutorial for building an ERC20 token using Parity Substrate and ink!.</translate>,
+                text: (
+                  <translate>
+                    A comprehensive, end-to-end tutorial for building an ERC20
+                    token using Parity Substrate and ink!.
+                  </translate>
+                ),
                 difficulty: "easy",
                 length: "4",
                 prerequisite: false,
-                href: "https://substrate-developer-hub.github.io/substrate-contracts-workshop/"
+                href:
+                  "https://substrate-developer-hub.github.io/substrate-contracts-workshop/"
               },
               {
                 img: `${baseUrl}img/ink-placeholder.png`,
                 title: <translate>Deploying Your First Contract</translate>,
-                text: <translate>A simple guide that helps you understand the process of deploying smart contracts on Substrate.</translate>,
+                text: (
+                  <translate>
+                    A simple guide that helps you understand the process of
+                    deploying smart contracts on Substrate.
+                  </translate>
+                ),
                 difficulty: "easy",
                 length: "1",
                 prerequisite: false,
@@ -218,12 +281,17 @@ class Tutorials extends React.Component {
               {
                 img: `${baseUrl}img/ink-placeholder.png`,
                 title: <translate>Writing Your First Contract</translate>,
-                text: <translate>A simple guide that helps you write your first 'flipper' contract.</translate>,
+                text: (
+                  <translate>
+                    A simple guide that helps you write your first 'flipper'
+                    contract.
+                  </translate>
+                ),
                 difficulty: "easy",
                 length: "1",
                 prerequisite: false,
                 href: `${docUrl("tutorials/creating-your-first-contract")}`
-              },
+              }
             ]}
           />
         </Row>
@@ -233,22 +301,29 @@ class Tutorials extends React.Component {
     const NetworkTutorials = () => (
       <div className="mt-4">
         <h2>
-          <translate>
-            Running a Network
-          </translate>
+          <translate>Running a Network</translate>
         </h2>
         <hr />
         <Row>
           <TutorialCards
             data={[
               {
-                title: <translate>Start a Private Network with Substrate</translate>,
-                text: <translate>Learn to start a blockchain network with a validator/authority set of your choosing using Substrate.</translate>,
+                title: (
+                  <translate>Start a Private Network with Substrate</translate>
+                ),
+                text: (
+                  <translate>
+                    Learn to start a blockchain network with a
+                    validator/authority set of your choosing using Substrate.
+                  </translate>
+                ),
                 difficulty: "easy",
                 length: "2",
                 prerequisite: false,
-                href: `${docUrl("tutorials/start-a-private-network-with-substrate")}`
-              },
+                href: `${docUrl(
+                  "tutorials/start-a-private-network-with-substrate"
+                )}`
+              }
             ]}
           />
         </Row>
@@ -258,23 +333,44 @@ class Tutorials extends React.Component {
     const FrontEndTutorials = () => (
       <div className="mt-4">
         <h2>
-          <translate>
-            Front-end Development
-          </translate>
+          <translate>Front-end Development</translate>
         </h2>
         <hr />
         <Row>
           <TutorialCards
             data={[
               {
-                img: `${baseUrl}img/polkadot-js-tutorial.png`,
-                title: <translate>Build a Front-end with Polkadot-js API</translate>,
-                text: <translate>Learn to build a Front-end application interracting with a Substrate based blockchain.</translate>,
+                img: `${baseUrl}img/polkadot-js-substrate-tutorial.png`,
+                title: (
+                  <translate>Build a Front-end with Polkadot-js API</translate>
+                ),
+                text: (
+                  <translate>
+                    Learn to build a Front-end application interracting with a
+                    Substrate based blockchain.
+                  </translate>
+                ),
                 difficulty: "easy",
                 length: "2",
                 prerequisite: false,
                 href: `${docUrl("tutorials/substrate-front-end")}`
               },
+              {
+                img: `${baseUrl}img/polkadot-js-api-tutorial.png`,
+                title: (
+                  <translate>Getting started with Polkadot-js API</translate>
+                ),
+                text: (
+                  <translate>
+                    This guide should provide you with all the information
+                    needed to install, understand, and use the @polkadot/api.
+                  </translate>
+                ),
+                difficulty: "easy",
+                length: "2",
+                prerequisite: false,
+                href: "https://polkadot.js.org/api/start/"
+              }
             ]}
           />
         </Row>
@@ -304,6 +400,6 @@ class Tutorials extends React.Component {
   }
 }
 
-Tutorials.title = 'Tutorials';
-Tutorials.description = 'Find the latest tutorials for Substrate.';
+Tutorials.title = "Tutorials";
+Tutorials.description = "Find the latest tutorials for Substrate.";
 module.exports = Tutorials;
