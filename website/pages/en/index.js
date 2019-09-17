@@ -245,7 +245,7 @@ class Index extends React.Component {
           title={<translate>Substrate Developer Hub</translate>}
           tagline={<translate>The place for blockchain innovators.</translate>}
           buttons={[
-            { name: <translate>Get Started</translate>, href: `${pageUrl('who')}` },
+            { name: <translate>Get Started</translate>, href: `${pageUrl('who/')}` },
           ]}
           padding={5}
         />
