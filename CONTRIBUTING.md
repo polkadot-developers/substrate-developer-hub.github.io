@@ -178,7 +178,7 @@ Conceptual documents explain a specific concept, but for the most part they do n
 examples. They provide essential facts, background, and diagrams to help your readers build a
 foundational understanding of a product or topic. You should not explain industry standards that
 your audience should be familiar with, for example, TCP/IP. You might explain how this concept ties
-in with your feature, but you should not explain the basics behind that industry standard concept.
+in with your feature, but you should not explain the basics behind that industry-standard concept.
 
 **You should write a procedural document** if you plan on explaining to a user how to use a specific
 feature and are able to guide a user through simple numbered steps. Procedural documents tend to
