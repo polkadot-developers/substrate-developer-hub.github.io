@@ -57,7 +57,7 @@ Substrate documentation is split into three projects:
 * Substrate Recipes - `substrate.dev/recipes/`
 
    General best practice guidelines on how to develop with Substrate.
-   If you create best practice documentation about about using a specific
+   If you create best practice documentation about using a specific
    feature of Substrate, you should create the documentation in the same
    directory as the other documentation for that specific feature.
 
