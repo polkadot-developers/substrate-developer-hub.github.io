@@ -337,7 +337,7 @@ Consider the following when you think that you might need to create a tutorial:
    > Configure the server with the appropriate configuration. For more information about server
    configurations, see "server configuration".
 
-- Avoid giving the users multiple paths to select when working through procedures. When you avoid
+- Avoid giving the user multiple paths to select from when working through procedures. When you avoid
   giving the user choices, your documentation should lead all users to the same end result (for
   example, starting the server).
 
