@@ -238,7 +238,7 @@ sub-concepts by using headings. By keeping your document brief you achieve the f
 
 - You do not overwhelm your reader with a wall of text.
 
-- Avoid losing the reader while they read your document.
+- You avoid losing the reader while they read your document.
 
 The first paragraph should try to be a brief summary of your document, this should allow the user to
 quickly read through it, determine what the document covers, and if this is relevant to what they
