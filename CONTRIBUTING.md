@@ -59,7 +59,7 @@ Substrate documentation is split into three projects:
    General best practice guidelines on how to develop with Substrate.
    If you create best practice documentation about using a specific
    feature of Substrate, you should create the documentation in the same
-   directory as the other documentation for that specific feature.
+   directory as the other documentation for that specific feature. See the [contribution guidelines](https://github.com/substrate-developer-hub/recipes/blob/master/CONTRIBUTING.md) for more details.
 
 * Substrate Rust Documentation - `substrate.dev/rustdocs/`
 
