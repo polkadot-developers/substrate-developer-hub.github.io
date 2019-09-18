@@ -1,5 +1,5 @@
 ---
-title: Frequently Asked Questions
+title: ink! FAQ
 id: version-1.0-faq
 original_id: faq
 ---
@@ -29,7 +29,7 @@ While a `storage::Vec<T>` stores every of its elements in a different cell in th
 
 ### What is the test environment?
 
-Ink provides a test environment ([test_env](https://github.com/paritytech/ink/blob/master/core/src/env/test_env.rs)) which is used to emulate contract execution off-chain. This can be enabled by the crate feature `test-env` and is mainly useful for running tests off-chain.
+ink provides a test environment ([test_env](https://github.com/paritytech/ink/blob/master/core/src/env/test_env.rs)) which is used to emulate contract execution off-chain. This can be enabled by the crate feature `test-env` and is mainly useful for running tests off-chain.
 
 See [running off-chain tests](#running-off-chain-tests) for more information.
 

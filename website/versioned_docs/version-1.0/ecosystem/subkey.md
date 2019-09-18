@@ -1,5 +1,5 @@
 ---
-title: The `subkey` Tool
+title: The subkey Tool
 id: version-1.0-subkey
 original_id: subkey
 ---

@@ -39,17 +39,16 @@
       },
       "version-1.0-runtime/instantiable-module"
     ],
-    "Substrate Contracts": [
-      "version-1.0-contracts/index",
-      "version-1.0-contracts/installing-ink",
-      "version-1.0-contracts/cargo-contract",
-      "version-1.0-contracts/testing-your-contract",
-      "version-1.0-contracts/deploying-a-contract",
-      "version-1.0-contracts/env-types",
-      "version-1.0-contracts/faq"
-    ],
     "Ecosystem Tools": [
-      "version-1.0-ecosystem/subkey"
+      "version-1.0-ecosystem/subkey",
+      "version-1.0-ecosystem/contracts/ink",
+      {
+        "type": "subcategory",
+        "label": "Frequently Asked Questions",
+        "ids": [
+          "version-1.0-ecosystem/contracts/faq"
+        ]
+      }
     ],
     "Contribute": [
       "version-1.0-contribute/help-translate"
