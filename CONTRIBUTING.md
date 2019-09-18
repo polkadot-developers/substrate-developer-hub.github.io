@@ -262,13 +262,13 @@ After writing your document, it is good practice to proofread the document, put 
 user's shoes (no longer being the expert that developed the feature), and try to answer these
 questions:
 
-- Does the information in the document explain the concept completely?
+  - Does the information in the document explain the concept completely?
 
-- Is there information that is not needed for this concept? If so, remove it.
+  - Is there information that is not needed for this concept? If so, remove it.
 
-- Is there unnecessary detail about how things might work in the background?
+  - Is there unnecessary detail about how things might work in the background?
 
-- If I am the user, is there additional information I would have liked to know?
+  - If I am the user, is there additional information I would have liked to know?
 
 Then, add your feedback into your document.
 
