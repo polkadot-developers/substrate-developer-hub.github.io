@@ -1,74 +1,46 @@
 {
   "docs": {
-    "Getting Started": [
-      "getting-started/index",
-      "getting-started/installing-substrate",
-      "getting-started/using-the-substrate-scripts"
-    ],
-    "Substrate Fundamentals": [
-      "overview/index",
-      "overview/extrinsics",
-      "overview/transaction-lifecycle",
-      "overview/low-level-data-format",
-      "overview/off-chain-workers",
-      "overview/session-keys",
-      "overview/ss58-address-format",
-      "overview/glossary"
-    ],
-    "Runtime": [
-      "runtime/architecture-of-a-runtime",
-      "runtime/substrate-runtime-module-library",
-      "runtime/runtime-metadata",
-      "runtime/initializing-storage",
+    "Overview": ["index", "getting-started", "glossary"],
+    "Conceptual": [
+      "conceptual/index",
       {
         "type": "subcategory",
-        "label": "Runtime Macros",
+        "label": "Substrate Core",
         "ids": [
-          "runtime/macros/construct_runtime",
-          "runtime/macros/decl_module"
+          "conceptual/core/index",
+          "conceptual/core/consensus",
+          "conceptual/core/executor",
+          "conceptual/core/networking",
+          "conceptual/core/storage"
         ]
       },
       {
         "type": "subcategory",
-        "label": "Runtime Types",
+        "label": "Substrate Nodes",
         "ids": [
-          "runtime/types/module-struct",
-          "runtime/types/call-enum",
-          "runtime/types/event-enum",
-          "runtime/types/genesisconfig-struct"
+          "node/index",
+          "conceptual/node/client",
+          "conceptual/node/extrinsics",
+          "conceptual/node/rpc",
+          "conceptual/node/tx-pool"
         ]
       },
-      "runtime/instantiable-module"
+      {
+        "type": "subcategory",
+        "label": "Substrate Runtime",
+        "ids": [
+          "conceptual/runtime/srml",
+          "conceptual/runtime/codec",
+          "conceptual/runtime/primitives"
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "Keyring",
+        "ids": ["conceptual/keyring/cryptography", "conceptual/keyring/subkey"]
+      }
     ],
-    "Substrate Contracts": [
-      "contracts/index",
-      "contracts/installing-ink",
-      "contracts/cargo-contract",
-      "contracts/testing-your-contract",
-      "contracts/deploying-a-contract",
-      "contracts/env-types",
-      "contracts/faq"
-    ],
-    "Ecosystem Tools": ["ecosystem/subkey"],
-    "Contribute": ["contribute/help-translate"]
-  },
-  "tcr": {
-    "Token Curated Registry Tutorial": [
-      "tutorials/tcr/index",
-      "tutorials/tcr/building-the-substrate-tcr-runtime",
-      "tutorials/tcr/unit-testing-the-tcr-runtime-module",
-      "tutorials/tcr/building-a-ui-for-the-tcr-runtime",
-      "tutorials/tcr/building-an-event-based-off-chain-storage",
-      "tutorials/tcr/tcr-best-practices"
-    ]
-  },
-  "substrate-front-end": {
-    "Substrate Front-end Tutorial": [
-      "tutorials/substrate-front-end/index",
-      "tutorials/substrate-front-end/part-1-connect-to-a-node",
-      "tutorials/substrate-front-end/part-2-query-balances",
-      "tutorials/substrate-front-end/part-3-transfer-funds",
-      "tutorials/substrate-front-end/part-4-use-external-accounts"
-    ]
+    "Development": ["development/index"],
+    "Deployment": ["deployment/index"]
   }
 }
