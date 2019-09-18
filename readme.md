@@ -8,15 +8,15 @@ The docs are written in markdown, processed by docusaurus, and hosted at the Sub
 
 ### Directory Structure
 
-The repository is structured as a docusaurus project with the markdown files organized in the `/docs` directory. The images and other assets are in the `/docs/assets/` directory.
+The repository is structured as a docusaurus project with the markdown files organized in the `/docs` directory. The images and other assets are in the `/docs/assets/` directory. Follow our [contribution guidelines](CONTRIBUTING.md).
 
 ### Adding a new document
 
 To add a new markdown document,
 
 * Create your markdown document in a suitable directory inside `/docs`.
-* If you have images in your document, put them in the `/docs/assets/` directory.
-* Documentation should follow our [styleguide](style-guide.md).
+* If you have images in your document, put them in the `/docs/images/` directory.
+* Documentation should follow our [contribution guidelines](CONTRIBUTING.md).
 * If you want your document to appear in the sidebar, add its reference in the `/website/sidebar.json` file under the corresponding section.
 
 ### Rename an existing document
