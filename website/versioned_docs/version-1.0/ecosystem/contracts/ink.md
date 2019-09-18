@@ -27,7 +27,7 @@ This means that multiple contract instances, with different constructor argument
 
 ### Runtime Environment Types
 
-For writing contracts and interacting with the runtime, a set of types are available (e.g. `AccountId`, `Balance`, `Hash`, `Moment`). These types can be user defined for custom runtimes, or the supplied defaults can be used.
+For writing contracts and interacting with the runtime, a set of types are available (e.g. `AccountId`, `Balance`, `Hash`, `Moment`). These types can be user defined for custom runtimes, or the supplied defaults can be used. See: [EnvTypes](env-types.md)
 
 ### Contract Calls
 
