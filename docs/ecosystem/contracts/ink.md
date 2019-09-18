@@ -1,5 +1,5 @@
 ---
-title: "Ink! Smart Contracts"
+title: "ink! Smart Contracts"
 ---
 
 Welcome to the smart contracts section of the Developer Hub!

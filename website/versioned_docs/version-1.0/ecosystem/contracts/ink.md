@@ -1,5 +1,5 @@
 ---
-title: "Ink! Smart Contracts"
+title: "ink! Smart Contracts"
 id: version-1.0-ink
 original_id: ink
 ---
