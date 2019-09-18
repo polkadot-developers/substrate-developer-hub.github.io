@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ink! FAQ · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This page will answer a number of common questions you may have when starting to build smart contracts for Substrate.&lt;/p&gt;
+"/><meta name="docsearch:version" content="next"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="ink! FAQ · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;This page will answer a number of common questions you may have when starting to build smart contracts for Substrate.&lt;/p&gt;
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/zh-CN/versions"><h3>next</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/zh-CN/next/getting-started/" target="_self">文档</a></li><li class=""><a href="/rustdocs/v1.0/" target="_self">参考文档</a></li><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class=""><a href="/zh-CN/community" target="_self">社区</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/next/ecosystem/contracts/faq">English</a></li><li><a href="/docs/ru/next/ecosystem/contracts/faq">Русский</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">参与翻译</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Frequently Asked Questions</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">开始<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/getting-started/">开始</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/getting-started/installing-substrate">安装 Substrate</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/getting-started/using-the-substrate-scripts">使用 Substrate 脚本</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate 基础<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/overview/">介绍</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/overview/extrinsics">外部参数</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/overview/transaction-lifecycle">交易生命周期</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/overview/low-level-data-format">底层数据格式</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/overview/off-chain-workers">链外计算</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/overview/session-keys">会话秘钥</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/overview/ss58-address-format">SS58 地址格式</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/overview/glossary">术语</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Runtime<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/runtime/architecture-of-a-runtime">Runtime的架构</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/runtime/substrate-runtime-module-library">Substrate Runtime 模块库</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/runtime/runtime-metadata">Runtime Metadata</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/runtime/initializing-storage">初始化 Runtime 存储</a></li><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Macros</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/runtime/macros/construct_runtime">构建一个Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/runtime/macros/decl_module">定义模块</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Types</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/runtime/types/module-struct">Module Struct</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/runtime/types/call-enum">Call 枚举类型</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/runtime/types/event-enum">Event 枚举类型</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/runtime/types/genesisconfig-struct">GenesisConfig 结构体</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/runtime/instantiable-module">Instantiable Modules</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">常用工具<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/ecosystem/subkey">The subkey Tool</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/ecosystem/contracts/ink">ink! Smart Contracts</a></li><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Frequently Asked Questions</h4><ul><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/next/ecosystem/contracts/faq">ink! FAQ</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">贡献<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/contribute/help-translate">参与翻译</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">ink! FAQ</h1></header><article><div><span><p>This page will answer a number of common questions you may have when starting to build smart contracts for Substrate.</p>
+<h2><a class="anchor" aria-hidden="true" id="ink-faq"></a><a href="#ink-faq" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ink! FAQ</h2>
+<h3><a class="anchor" aria-hidden="true" id="how-do-i-use-env-in-non-message-functions"></a><a href="#how-do-i-use-env-in-non-message-functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How do I use <code>env</code> in non-message functions?</h3>
+<p>Currently, ink! hides some special details about calling messages that allows users to easily work with the environment like <code>env.caller()</code>. However, this support only works for message functions; those which are <code>pub(external)</code>.</p>
+<p>To use the <code>env</code> module in <code>non-message</code> functions, the user has to add an additional argument to their function declaration.</p>
+<ul>
+<li>For <code>&amp;self</code> methods, you must include <code>env: &amp;ink_model::EnvHandler</code>.</li>
+<li>For <code>&amp;mut self</code> methods, you must include <code>env: &amp;mut ink_model::EnvHandler</code>.</li>
+</ul>
+<p>Additionally, you need to pass this <code>env</code> variable from your message function to your non-message function. Look at <a href="https://github.com/paritytech/ink/blob/master/examples/lang/events/src/lib.rs">examples/lang/events</a> to see how this is done.</p>
+<h3><a class="anchor" aria-hidden="true" id="what-is-the-difference-between-memory-and-storage"></a><a href="#what-is-the-difference-between-memory-and-storage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is the difference between memory and storage?</h3>
+<p>In ink! we refer <code>memory</code> to being the computer memory that is commonly known to programmers while with <code>storage</code> we refer to the contract instance's memory. The <code>storage</code> is backed up by the runtime in a data base. Accesses to it are considered to be slow.</p>
+<h4><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h4>
+<p>While a <code>storage::Vec&lt;T&gt;</code> stores every of its elements in a different cell in the contract storage, a <code>storage::Value&lt;memory::Vec&lt;T&gt;&gt;</code> would store all elements (and a length info) in a single cell. Smart contract writers can use this to optimize for certain use cases. Using a <code>storage::Value&lt;memory::Vec&lt;T&gt;&gt;</code> could probably be more efficient for a small amount of elements in the <code>memory::Vec&lt;T&gt;</code>. We advise to use the more general <code>storage::Vec</code> for storing information on the contract instance.</p>
+<h3><a class="anchor" aria-hidden="true" id="what-is-the-test-environment"></a><a href="#what-is-the-test-environment" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is the test environment?</h3>
+<p>ink provides a test environment (<a href="https://github.com/paritytech/ink/blob/master/core/src/env/test_env.rs">test_env</a>) which is used to emulate contract execution off-chain. This can be enabled by the crate feature <code>test-env</code> and is mainly useful for running tests off-chain.</p>
+<p>See <a href="#running-off-chain-tests">running off-chain tests</a> for more information.</p>
+<h3><a class="anchor" aria-hidden="true" id="how-do-i-run-off-chain-tests"></a><a href="#how-do-i-run-off-chain-tests" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How do I run off-chain tests?</h3>
+<p>When building a smart contract with ink, you can define a set of tests that can be run using the off-chain test environment.</p>
+<p>For example, in the minimal <a href="https://github.com/paritytech/ink/blob/master/examples/lang/flipper/src/lib.rs">flipper contract</a>, you can find a small off-chain test at the bottom of the contract.</p>
+<p>To run this test, type the following command:</p>
+<pre><code class="hljs css language-bash">cargo <span class="token function">test</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="contracts-module"></a><a href="#contracts-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contracts Module</h2>
+<h3><a class="anchor" aria-hidden="true" id="how-do-i-add-the-contracts-module-to-my-custom-chain"></a><a href="#how-do-i-add-the-contracts-module-to-my-custom-chain" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How do I add the Contracts module to my custom chain?</h3>
+<p>You can follow <a href="/docs/zh-CN/next/tutorials/adding-a-module-to-your-runtime">our guide here</a> for instructions to add the Contracts module and other SRML modules to your blockchain runtime.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/next/ecosystem/contracts/ink"><span class="arrow-prev">← </span><span>ink! Smart Contracts</span></a><a class="docs-next button" href="/docs/zh-CN/next/contribute/help-translate"><span>参与翻译</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#ink-faq">ink! FAQ</a><ul class="toc-headings"><li><a href="#how-do-i-use-env-in-non-message-functions">How do I use <code>env</code> in non-message functions?</a></li><li><a href="#what-is-the-difference-between-memory-and-storage">What is the difference between memory and storage?</a></li><li><a href="#what-is-the-test-environment">What is the test environment?</a></li><li><a href="#how-do-i-run-off-chain-tests">How do I run off-chain tests?</a></li></ul></li><li><a href="#contracts-module">Contracts Module</a><ul class="toc-headings"><li><a href="#how-do-i-add-the-contracts-module-to-my-custom-chain">How do I add the Contracts module to my custom chain?</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a class="github-button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="row"><div class="copyright">Copyright © 2019 Parity Technologies</div><a class="item" href="https://www.parity.io/privacy/">Privacy Policy</a><a class="item" href="#" id="cookie-settings">Cookie Settings</a><script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-CN"]}
+              });
+            </script></body></html>
