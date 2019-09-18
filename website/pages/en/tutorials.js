@@ -264,34 +264,6 @@ class Tutorials extends React.Component {
                 href:
                   "https://substrate-developer-hub.github.io/substrate-contracts-workshop/"
               },
-              {
-                img: `${baseUrl}img/ink-placeholder.png`,
-                title: <translate>Deploying Your First Contract</translate>,
-                text: (
-                  <translate>
-                    A simple guide that helps you understand the process of
-                    deploying smart contracts on Substrate.
-                  </translate>
-                ),
-                difficulty: "easy",
-                length: "1",
-                prerequisite: false,
-                href: `${docUrl("contracts/deploying-a-contract")}`
-              },
-              {
-                img: `${baseUrl}img/ink-placeholder.png`,
-                title: <translate>Writing Your First Contract</translate>,
-                text: (
-                  <translate>
-                    A simple guide that helps you write your first 'flipper'
-                    contract.
-                  </translate>
-                ),
-                difficulty: "easy",
-                length: "1",
-                prerequisite: false,
-                href: `${docUrl("tutorials/creating-your-first-contract")}`
-              }
             ]}
           />
         </Row>

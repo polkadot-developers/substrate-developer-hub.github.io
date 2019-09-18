@@ -281,7 +281,7 @@ cargo build --release
 
 ## Next Steps
 
-We wont actually go into the details of testing the Contract module functionality added to this chain, but if you want to try it out, you can follow our instructions for [deploying a contract](contracts/deploying-a-contract.md).
+We wont actually go into the details of testing the Contracts module functionality added to this chain, but if you want to try it out, you can follow our contracts tutorials.
 
 Make sure to run `./target/release/contract-chain purge-chain --dev` before you start your chain so that the genesis configuration will be initialized for the Contract module.
 
