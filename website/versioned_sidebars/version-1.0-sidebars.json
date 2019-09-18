@@ -40,6 +40,7 @@
       "version-1.0-runtime/instantiable-module"
     ],
     "Ecosystem Tools": [
+      "version-1.0-ecosystem/subkey",
       "version-1.0-ecosystem/contracts/ink",
       {
         "type": "subcategory",
@@ -47,8 +48,7 @@
         "ids": [
           "version-1.0-ecosystem/contracts/faq"
         ]
-      },
-      "version-1.0-ecosystem/subkey"
+      }
     ],
     "Contribute": [
       "version-1.0-contribute/help-translate"
