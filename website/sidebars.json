@@ -40,16 +40,10 @@
       },
       "runtime/instantiable-module"
     ],
-    "Substrate Contracts": [
-      "contracts/index",
-      "contracts/installing-ink",
-      "contracts/cargo-contract",
-      "contracts/testing-your-contract",
-      "contracts/deploying-a-contract",
-      "contracts/env-types",
-      "contracts/faq"
+    "Ecosystem Tools": [
+      "ecosystem/ink",
+      "ecosystem/subkey"
     ],
-    "Ecosystem Tools": ["ecosystem/subkey"],
     "Contribute": ["contribute/help-translate"]
   },
   "tcr": {

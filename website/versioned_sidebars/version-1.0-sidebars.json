@@ -39,16 +39,8 @@
       },
       "version-1.0-runtime/instantiable-module"
     ],
-    "Substrate Contracts": [
-      "version-1.0-contracts/index",
-      "version-1.0-contracts/installing-ink",
-      "version-1.0-contracts/cargo-contract",
-      "version-1.0-contracts/testing-your-contract",
-      "version-1.0-contracts/deploying-a-contract",
-      "version-1.0-contracts/env-types",
-      "version-1.0-contracts/faq"
-    ],
     "Ecosystem Tools": [
+      "version-1.0-ecosystem/ink",
       "version-1.0-ecosystem/subkey"
     ],
     "Contribute": [
