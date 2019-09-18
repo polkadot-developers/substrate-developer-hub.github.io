@@ -40,7 +40,14 @@
       "version-1.0-runtime/instantiable-module"
     ],
     "Ecosystem Tools": [
-      "version-1.0-ecosystem/ink",
+      "version-1.0-ecosystem/contracts/ink",
+      {
+        "type": "subcategory",
+        "label": "Frequently Asked Questions",
+        "ids": [
+          "version-1.0-ecosystem/contracts/faq"
+        ]
+      },
       "version-1.0-ecosystem/subkey"
     ],
     "Contribute": [

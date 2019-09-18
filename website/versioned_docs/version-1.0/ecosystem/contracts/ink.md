@@ -1,10 +1,10 @@
 ---
-title: "Introduction to Smart Contracts on Substrate"
+title: "Ink! Smart Contracts"
+id: version-1.0-ink
+original_id: ink
 ---
 
 Welcome to the smart contracts section of the Developer Hub!
-
-Here you can learn how to write ([WebAssembly](overview/glossary.md#webassembly-wasm)) smart contracts for Substrate blockchains using the [Contracts](https://github.com/paritytech/substrate/tree/master/srml/contracts) module from the Substrate Runtime Module Library ([SRML](https://substrate.dev/docs/en/overview/glossary#srml-substrate-runtime-module-library)).
 
 Because Substrate supports Wasm smart contracts, it means that any language that can compile to Wasm could be used to write these contracts. ink! is Parity's answer for writing smart contracts using the Rust programming language.
 
@@ -27,7 +27,7 @@ This means that multiple contract instances, with different constructor argument
 
 ### Runtime Environment Types
 
-For writing contracts and interacting with the runtime, a set of types are available (e.g. `AccountId`, `Balance`, `Hash`, `Moment`). These types can be user defined for custom runtimes, or the supplied defaults can be used. See: [EnvTypes](contracts/env-types.md)
+For writing contracts and interacting with the runtime, a set of types are available (e.g. `AccountId`, `Balance`, `Hash`, `Moment`). These types can be user defined for custom runtimes, or the supplied defaults can be used.
 
 ### Contract Calls
 

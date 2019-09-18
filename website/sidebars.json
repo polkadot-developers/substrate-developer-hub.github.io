@@ -41,7 +41,14 @@
       "runtime/instantiable-module"
     ],
     "Ecosystem Tools": [
-      "ecosystem/ink",
+      "ecosystem/contracts/ink",
+      {
+        "type": "subcategory",
+        "label": "Frequently Asked Questions",
+        "ids": [
+          "ecosystem/contracts/faq"
+        ]
+      },
       "ecosystem/subkey"
     ],
     "Contribute": ["contribute/help-translate"]

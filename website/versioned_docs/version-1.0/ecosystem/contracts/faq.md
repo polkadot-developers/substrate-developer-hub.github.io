@@ -1,5 +1,7 @@
 ---
-title: "Ink! Smart Contracts"
+title: Ink! FAQ
+id: version-1.0-faq
+original_id: faq
 ---
 
 This page will answer a number of common questions you may have when starting to build smart contracts for Substrate.

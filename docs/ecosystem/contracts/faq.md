@@ -1,12 +1,10 @@
 ---
-title: "Ink! Smart Contracts"
-id: version-1.0-ink
-original_id: ink
+title: "Ink! FAQ"
 ---
 
 This page will answer a number of common questions you may have when starting to build smart contracts for Substrate.
 
-## ink!
+## Ink! FAQ
 
 ### How do I use `env` in non-message functions?
 
