@@ -1,9 +1,7 @@
 ---
-title: Overview
+title: Runtime Overview
 ---
 
-* What is the Substrate Runtime?
-
-* What are Substrate Runtime Modules?
+What is the Substrate Runtime?
 
 

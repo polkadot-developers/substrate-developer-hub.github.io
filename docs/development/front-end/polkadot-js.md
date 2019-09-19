@@ -1,5 +1,5 @@
 ---
-title: Front-End Development
+title: Polkadot-JS
 ---
 
 * What is the Polkadot JS org?

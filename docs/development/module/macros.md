@@ -1,5 +1,5 @@
 ---
-title: Macros
+title: Runtime Macros
 ---
 
 * What are rust macros?

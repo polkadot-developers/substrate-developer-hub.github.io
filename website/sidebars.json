@@ -7,7 +7,7 @@
         "type": "subcategory",
         "label": "Substrate Core",
         "ids": [
-          "conceptual/core/index",
+          "conceptual/core/codec",
           "conceptual/core/consensus",
           "conceptual/core/executor",
           "conceptual/core/networking",
@@ -18,8 +18,8 @@
         "type": "subcategory",
         "label": "Substrate Nodes",
         "ids": [
-          "node/index",
           "conceptual/node/client",
+          "conceptual/node/light-client",
           "conceptual/node/extrinsics",
           "conceptual/node/rpc",
           "conceptual/node/tx-pool"
@@ -29,18 +29,58 @@
         "type": "subcategory",
         "label": "Substrate Runtime",
         "ids": [
+          "conceptual/runtime/index",
           "conceptual/runtime/srml",
-          "conceptual/runtime/codec",
+          "conceptual/runtime/contracts",
           "conceptual/runtime/primitives"
         ]
       },
       {
         "type": "subcategory",
         "label": "Keyring",
-        "ids": ["conceptual/keyring/cryptography", "conceptual/keyring/subkey"]
+        "ids": [
+          "conceptual/keyring/cryptography",
+          "conceptual/keyring/session-keys",
+          "conceptual/keyring/subkey"
+        ]
       }
     ],
-    "Development": ["development/index"],
+    "Development": [
+      "development/index",
+      {
+        "type": "subcategory",
+        "label": "Build",
+        "ids": [
+          "development/build/prerequisites",
+          "development/build/purge-chain",
+          "development/build/upgrade"
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "Front End",
+        "ids": [
+          "development/front-end/polkadot-js",
+          "development/front-end/json-rpc"
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "Runtime Modules",
+        "ids": [
+          "development/module/index",
+          "development/module/execution",
+          "development/module/macros",
+          "development/module/storage",
+          "development/module/events",
+          "development/module/errors",
+          "development/module/origin",
+          "development/module/traits",
+          "development/module/weight",
+          "development/module/tests"
+        ]
+      }
+    ],
     "Deployment": ["deployment/index"]
   }
 }
