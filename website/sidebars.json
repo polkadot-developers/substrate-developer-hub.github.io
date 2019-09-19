@@ -81,6 +81,16 @@
         ]
       }
     ],
-    "Deployment": ["deployment/index"]
+    "Deployment": ["deployment/index",
+      {
+        "type": "subcategory",
+        "label": "Configuration",
+        "ids": [
+          "deployment/configuration/chain-spec",
+          "deployment/configuration/account-prefix",
+          "deployment/configuration/boot-node",
+          "deployment/configuration/disabling-features"
+        ]
+      }]
   }
 }
