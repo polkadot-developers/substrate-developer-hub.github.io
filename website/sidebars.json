@@ -49,6 +49,22 @@
       "development/index",
       {
         "type": "subcategory",
+        "label": "Runtime Modules",
+        "ids": [
+          "development/module/index",
+          "development/module/execution",
+          "development/module/macros",
+          "development/module/storage",
+          "development/module/events",
+          "development/module/errors",
+          "development/module/origin",
+          "development/module/traits",
+          "development/module/weight",
+          "development/module/tests"
+        ]
+      },
+      {
+        "type": "subcategory",
         "label": "Build",
         "ids": [
           "development/build/prerequisites",
@@ -63,25 +79,10 @@
           "development/front-end/polkadot-js",
           "development/front-end/json-rpc"
         ]
-      },
-      {
-        "type": "subcategory",
-        "label": "Runtime Modules",
-        "ids": [
-          "development/module/index",
-          "development/module/execution",
-          "development/module/macros",
-          "development/module/storage",
-          "development/module/events",
-          "development/module/errors",
-          "development/module/origin",
-          "development/module/traits",
-          "development/module/weight",
-          "development/module/tests"
-        ]
       }
     ],
-    "Deployment": ["deployment/index",
+    "Deployment": [
+      "deployment/index",
       {
         "type": "subcategory",
         "label": "Configuration",
@@ -91,6 +92,7 @@
           "deployment/configuration/boot-node",
           "deployment/configuration/disabling-features"
         ]
-      }]
+      }
+    ]
   }
 }
