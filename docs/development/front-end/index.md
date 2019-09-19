@@ -8,4 +8,4 @@ title: Front-End Development
 
 * Does it work for only Polkadot?
 
-* Link off to the other site
+* Link off to the Polkadot JS site

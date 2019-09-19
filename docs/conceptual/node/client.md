@@ -2,4 +2,4 @@
 title: Client
 ---
 
-Hi!
+What is the Substrate Client?

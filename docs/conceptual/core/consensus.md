@@ -12,3 +12,4 @@ title: Consensus
 
 * PoW
 
+* What would it take to write my own consensus?
