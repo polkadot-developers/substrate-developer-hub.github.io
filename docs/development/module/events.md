@@ -35,6 +35,7 @@ The events for your module need to be exposed to your Substrate's runtime (`/run
 First you need to implement the Event type in your module's configuration trait:
 
 ```rust
+// runtime/src/lib.rs
 impl template::Trait for Runtime {
 	type Event = Event;
 }
@@ -43,6 +44,7 @@ impl template::Trait for Runtime {
 Then you need to add the `Event` type to your `construct_runtime!` macro:
 
 ```rust
+// runtime/src/lib.rs
 construct_runtime!(
 	pub enum Runtime where
 		Block = Block,
