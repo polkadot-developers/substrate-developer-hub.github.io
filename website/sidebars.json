@@ -63,10 +63,11 @@
           "development/module/index",
           "development/module/execution",
           "development/module/macros",
+          "development/module/origin",
+          "development/module/declaration",
           "development/module/storage",
           "development/module/events",
           "development/module/errors",
-          "development/module/origin",
           "development/module/traits",
           "development/module/weight",
           "development/module/tests"
