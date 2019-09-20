@@ -2,7 +2,7 @@
 title: Glossary
 ---
 
-The purpose of this document is to provide short definitions for a collection of technical terms used in Fuchsia.
+The purpose of this document is to provide short definitions for a collection of technical terms used in Substrate.
 
 ### Adding new definitions
 

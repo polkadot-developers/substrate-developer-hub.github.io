@@ -4,6 +4,10 @@ title: Overview
 
 This document is a top-level entry point to documentation related to developing runtime modules for Substrate.
 
+These documents are written for a technical audience, who is familiar with the Rust programming language.
+
+If you are getting started wih Substrate runtime development for the first time, we suggest you try our introductory tutorial for [creating your first Substrate chain]( TODO ).
+
 ## What is a Runtime Module?
 
 A Substrate runtime module is an independent piece of business logic for your blockchain. These modules compose your blockchain's state transition function, and define the state and behaviors of your blockchain.
