@@ -49,6 +49,15 @@
       "development/index",
       {
         "type": "subcategory",
+        "label": "Build",
+        "ids": [
+          "development/build/prerequisites",
+          "development/build/purge-chain",
+          "development/build/upgrade"
+        ]
+      },
+      {
+        "type": "subcategory",
         "label": "Runtime Modules",
         "ids": [
           "development/module/index",
@@ -61,15 +70,6 @@
           "development/module/traits",
           "development/module/weight",
           "development/module/tests"
-        ]
-      },
-      {
-        "type": "subcategory",
-        "label": "Build",
-        "ids": [
-          "development/build/prerequisites",
-          "development/build/purge-chain",
-          "development/build/upgrade"
         ]
       },
       {
