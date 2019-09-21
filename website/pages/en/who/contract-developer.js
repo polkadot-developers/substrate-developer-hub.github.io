@@ -22,7 +22,7 @@ const { Timeline, Timespot } = require(`${process.cwd()}` +
 
 const Container = require("../../../../../react-bootstrap/Container.js");
 const Button = require("../../../../../react-bootstrap/Button.js");
-const translate = require('../../../server/translate.js').translate;
+const translate = require("../../../server/translate.js").translate;
 
 class ContractDeveloper extends React.Component {
   render() {
@@ -41,17 +41,15 @@ class ContractDeveloper extends React.Component {
           </h3>
           <p>
             <translate>
-            Substrate provides Wasm smart contract functionality through the
-            </translate>
-            {" "}
+              Substrate provides Wasm smart contract functionality through the
+            </translate>{" "}
             <a href="/rustdocs/v1.0/srml_contract/index.html">
               <translate>Contracts module</translate>
             </a>
-            .{" "}
-            <a href="https://github.com/paritytech/ink">ink!</a>{" "}
+            . <a href="https://github.com/paritytech/ink">ink!</a>{" "}
             <translate desc="description is for ink">
-              is a Rust-based eDSL for writing smart contracts on this platform. The
-              resources below will help you get up to speed on how to use
+              is a Rust-based eDSL for writing smart contracts on this platform.
+              The resources below will help you get up to speed on how to use
               Substrate and ink! in the context of writing smart contracts.
             </translate>
           </p>
@@ -59,8 +57,8 @@ class ContractDeveloper extends React.Component {
             <translate>
               Both platforms are still in rapid development and may run into
               breaking changes in the near future. So join our community on Riot
-              and ask questions using the <code>[ink]</code> tag on StackOverflow
-              so you can get the help you need.
+              and ask questions using the <code>[ink]</code> tag on
+              StackOverflow so you can get the help you need.
             </translate>
           </p>
           <Button
@@ -80,41 +78,23 @@ class ContractDeveloper extends React.Component {
         </Timespot>
         <Timespot>
           <h3 className="mt-3">
-            <translate>Deploy Your First Contract</translate>
+            <translate>Learn about Substrate Smart Contracts</translate>
           </h3>
           <p>
             <translate>
-              Let's hit the ground running by deploying your first contract to
-              a local Substrate chain. No development experience is needed here,
-              we will just have you set up Substrate and the ink! build
-              environment so that you can compile and deploy a simple "flipper"
-              contract. You will even use the Polkadot UI to interact with your
-              contract in real time!
+              First let's learn a bit more about Substrate smart contracts. Here
+              you will learn about the SRML Contracts module, which provides a
+              Wasm execution environment for your smart contracts. Then you can
+              learn about ink!, a Rust based eDSL for building Wasm smart
+              contracts compatible with our Contracts module.
             </translate>
           </p>
           <Button
             variant="secondary"
-            href={docUrl("contracts/deploying-a-contract")}
+            href={docUrl("ecosystem/contracts/ink")}
             className="m-1 primary-color"
           >
-            <translate>Start Deploying!</translate>
-          </Button>
-        </Timespot>
-        <Timespot>
-          <h3 className="mt-3">Writing Your First Contract</h3>
-          <p>
-            <translate>
-              Next, we will walk you through the basics of contract development on
-              ink!. For this we will assume you have some background in Solidity,
-              the language used for building smart contracts on Ethereum.
-            </translate>
-          </p>
-          <Button
-            variant="secondary"
-            href={docUrl("tutorials/creating-your-first-contract")}
-            className="m-1 primary-color"
-          >
-            <translate>Start Writing!</translate>
+            <translate>Learn More</translate>
           </Button>
         </Timespot>
         <Timespot>
@@ -123,10 +103,10 @@ class ContractDeveloper extends React.Component {
           </h3>
           <p>
             <translate>
-              Now that you have gotten the basics down, you can jump into our
-              end-to-end workshop where we will teach you in detail how to build more
-              complicated contracts like an incrementer and ultimately an ERC20
-              token.
+              Let's hit the ground running by creating and deploying your first
+              smart contract. You can jump into our end-to-end workshop where we
+              will teach you in detail how to build more complicated contracts
+              like an incrementer and ultimately an ERC20 token.
             </translate>
           </p>
           <Button
@@ -145,8 +125,8 @@ class ContractDeveloper extends React.Component {
             <translate>
               You are now ready to start building your own smart contracts!
               Remember that ink! is still a rapidly developing platform, so take
-              advantage of the community resources linked at the beginning of your
-              journey and share your experiences!
+              advantage of the community resources linked at the beginning of
+              your journey and share your experiences!
             </translate>
           </p>
           <Button
@@ -166,7 +146,9 @@ class ContractDeveloper extends React.Component {
           siteConfig={siteConfig}
           language={language}
           title={<translate>Contract Developer</translate>}
-          tagline={<translate>So you wanna build Wasm smart contracts...</translate>}
+          tagline={
+            <translate>So you wanna build Wasm smart contracts...</translate>
+          }
           padding={0}
         />
         <Container>
@@ -177,6 +159,7 @@ class ContractDeveloper extends React.Component {
   }
 }
 
-ContractDeveloper.title = 'Contract Developer';
-ContractDeveloper.description = 'Learn how you can develop Wasm smart contracts for Substrate.';
+ContractDeveloper.title = "Contract Developer";
+ContractDeveloper.description =
+  "Learn how you can develop Wasm smart contracts for Substrate.";
 module.exports = ContractDeveloper;
