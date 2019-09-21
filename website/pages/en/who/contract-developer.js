@@ -105,8 +105,8 @@ class ContractDeveloper extends React.Component {
             <translate>
               Let's hit the ground running by creating and deploying your first
               smart contract. You can jump into our end-to-end workshop where we
-              will teach you in detail how to build more complicated contracts
-              like an incrementer and ultimately an ERC20 token.
+              will teach you in detail how to build simple smart contracts like
+              an incrementer and an ERC20 token.
             </translate>
           </p>
           <Button
