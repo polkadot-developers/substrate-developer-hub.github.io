@@ -58,7 +58,7 @@ construct_runtime!(
 );
 ```
 
-> Note: You may or may not need the `<T>` parameter depending on whether your events use generic types. In our example it does, and is included above.
+> **Note:** You may or may not need the `<T>` parameter depending on whether your events use generic types. In our example it does, and is included above.
 
 ## Depositing an Event
 

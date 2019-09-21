@@ -217,7 +217,7 @@ How can you decide what type of document is appropriate for your use case? Consi
 
 - How a new technology improved the car radio. This is a conceptual document.
 
-> Note: A feature may require more than one type of document. You may decide that your feature
+> **Note:** A feature may require more than one type of document. You may decide that your feature
 requires just reference documentation or that you need reference, conceptual, and how to
 documentation.
 
