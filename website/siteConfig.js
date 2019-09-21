@@ -42,7 +42,7 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'index', label: 'Docs'},
+    {page: 'docs', label: 'Docs'},
     {href: '/rustdocs/master/', label: 'Reference Docs'},
     {page: 'tutorials', label: 'Tutorials'},
     {page: 'community', label: 'Community'},
@@ -119,7 +119,7 @@ const siteConfig = {
   usePrism: true,
 
   // Edit this page button
-  editUrl: "https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/",
+  editUrl: "https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/website/versioned_docs/version-1.0/",
 
   // Scroll to top button at the bottom
   scrollToTop: true,
