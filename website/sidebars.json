@@ -75,23 +75,20 @@
       },
       {
         "type": "subcategory",
+        "label": "Deployment",
+        "ids": [
+          "development/deployment/chain-spec",
+          "development/deployment/account-prefix",
+          "development/deployment/boot-node",
+          "development/deployment/disabling-features"
+        ]
+      },
+      {
+        "type": "subcategory",
         "label": "Front End",
         "ids": [
           "development/front-end/polkadot-js",
           "development/front-end/json-rpc"
-        ]
-      }
-    ],
-    "Deployment": [
-      "deployment/index",
-      {
-        "type": "subcategory",
-        "label": "Configuration",
-        "ids": [
-          "deployment/configuration/chain-spec",
-          "deployment/configuration/account-prefix",
-          "deployment/configuration/boot-node",
-          "deployment/configuration/disabling-features"
         ]
       }
     ]
