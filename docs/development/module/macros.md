@@ -4,7 +4,7 @@ title: Runtime Macros
 
 The Substrate runtime macros are a set of utilities which make the development of runtime modules simpler for you.
 
-# What are Rust macros?
+## What are Rust macros?
 
 In short, Rust macros are a way to write code that writes more code. Macros work by matching against the specific patterns defined in the macro rule, capturing part of the match as variables, and then expand to produce even more code.
 
@@ -36,11 +36,11 @@ However, if you are interested in learning more details about what exactly the m
 
 ### Learn More
 
-* Learn how to use the `decl_module` macro.
+* Learn how to use the [`decl_module` macro](development/module/declaration.md).
 
-* Learn how to use the `decl_storage` macro.
+* Learn how to use the [`decl_storage` macro](development/module/storage.md).
 
-* Learn how to use the `decl_event` macro.
+* Learn how to use the [`decl_event` macro](development/module/events.md).
 
 ### Examples
 
