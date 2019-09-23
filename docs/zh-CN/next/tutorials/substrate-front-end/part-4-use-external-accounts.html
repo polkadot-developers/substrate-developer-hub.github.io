@@ -6,7 +6,7 @@
             {"zIndex":100}
           )
         });
-        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/zh-CN/versions"><h3>next</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/zh-CN/next/getting-started/" target="_self">文档</a></li><li class=""><a href="/rustdocs/v1.0/" target="_self">参考文档</a></li><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class=""><a href="/zh-CN/community" target="_self">社区</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/next/tutorials/substrate-front-end/part-4-use-external-accounts">English</a></li><li><a href="/docs/ru/next/tutorials/substrate-front-end/part-4-use-external-accounts">Русский</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">参与翻译</a></li></ul></div></li><script>
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/zh-CN/versions"><h3>next</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/zh-CN/docs" target="_self">文档</a></li><li class=""><a href="/rustdocs/v1.0/" target="_self">参考文档</a></li><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class=""><a href="/zh-CN/community" target="_self">社区</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/next/tutorials/substrate-front-end/part-4-use-external-accounts">English</a></li><li><a href="/docs/ru/next/tutorials/substrate-front-end/part-4-use-external-accounts">Русский</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">参与翻译</a></li></ul></div></li><script>
         const languagesMenuItem = document.getElementById("languages-menu");
         const languagesDropDown = document.getElementById("languages-dropdown");
         languagesMenuItem.addEventListener("click", function(event) {
@@ -18,63 +18,7 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Substrate Front-end Tutorial</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Front-end Tutorial<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/tutorials/substrate-front-end/">介绍</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/tutorials/substrate-front-end/part-1-connect-to-a-node">Part 1 - Connect to a node</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/tutorials/substrate-front-end/part-2-query-balances">Part 2 - Display balances</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/tutorials/substrate-front-end/part-3-transfer-funds">Part 3 - Transfer funds</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/next/tutorials/substrate-front-end/part-4-use-external-accounts">Part 4 - Use external accounts</a></li></ul></div></div></section></div><script>
-            var coll = document.getElementsByClassName('collapsible');
-            var checkActiveCategory = true;
-            for (var i = 0; i < coll.length; i++) {
-              var links = coll[i].nextElementSibling.getElementsByTagName('*');
-              if (checkActiveCategory){
-                for (var j = 0; j < links.length; j++) {
-                  if (links[j].classList.contains('navListItemActive')){
-                    coll[i].nextElementSibling.classList.toggle('hide');
-                    coll[i].childNodes[1].classList.toggle('rotate');
-                    checkActiveCategory = false;
-                    break;
-                  }
-                }
-              }
-
-              coll[i].addEventListener('click', function() {
-                var arrow = this.childNodes[1];
-                arrow.classList.toggle('rotate');
-                var content = this.nextElementSibling;
-                content.classList.toggle('hide');
-              });
-            }
-
-            document.addEventListener('DOMContentLoaded', function() {
-              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
-              createToggler('#tocToggler', 'body', 'tocActive');
-
-              var headings = document.querySelector('.toc-headings');
-              headings && headings.addEventListener('click', function(event) {
-                var el = event.target;
-                while(el !== headings){
-                  if (el.tagName === 'A') {
-                    document.body.classList.remove('tocActive');
-                    break;
-                  } else{
-                    el = el.parentNode;
-                  }
-                }
-              }, false);
-
-              function createToggler(togglerSelector, targetSelector, className) {
-                var toggler = document.querySelector(togglerSelector);
-                var target = document.querySelector(targetSelector);
-
-                if (!toggler) {
-                  return;
-                }
-
-                toggler.onclick = function(event) {
-                  event.preventDefault();
-
-                  target.classList.toggle(className);
-                };
-              }
-            });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">Part 4 - Use external accounts</h1></header><article><div><span><p>In this tutorial, we won't show how to create accounts using this <code>api</code>. The reason is simple, we do not want to encourage developers to manage accounts in the browser. DNS attacks, phishing, and other common attacks put users at risk. If the use case of the DApp allows it, we suggest using injected accounts instead. Users will create and manage their accounts externally to the DApp, we will simply use these accounts if the user accepts it. In this part, we will show you how to access external accounts' balances and send transactions from these accounts.</p>
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">Part 4 - Use external accounts</h1></header><article><div><span><p>In this tutorial, we won't show how to create accounts using this <code>api</code>. The reason is simple, we do not want to encourage developers to manage accounts in the browser. DNS attacks, phishing, and other common attacks put users at risk. If the use case of the DApp allows it, we suggest using injected accounts instead. Users will create and manage their accounts externally to the DApp, we will simply use these accounts if the user accepts it. In this part, we will show you how to access external accounts' balances and send transactions from these accounts.</p>
 <h2><a class="anchor" aria-hidden="true" id="41-get-polkadot-js-extension"></a><a href="#41-get-polkadot-js-extension" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.1 Get Polkadot-js extension</h2>
 <p>Get into our user's shoes and install the <a href="https://github.com/polkadot-js/extension">Polkadot-js extension</a> from the <a href="https://chrome.google.com/webstore/detail/polkadot%7Bjs%7D-extension/mopnmbcafieddcagagdcbnhejhlodfdd?hl=en">Chrome</a> or <a href="https://addons.mozilla.org/en-US/firefox/addon/polkadot-js-extension/">Firefox</a> stores. Create an account using the extension and give it a name.</p>
 <p>We will now adapt our application to inject any externally-created account in our current interface.</p>
@@ -217,7 +161,7 @@ api<span class="token punctuation">.</span>tx<span class="token punctuation">.</
 <span class="token function">yarn</span><span class="token punctuation">;</span>
 <span class="token function">yarn</span> start<span class="token punctuation">;</span>
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/next/tutorials/substrate-front-end/part-3-transfer-funds"><span class="arrow-prev">← </span><span>Part 3 - Transfer funds</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#41-get-polkadot-js-extension">4.1 Get Polkadot-js extension</a></li><li><a href="#42-display-external-accounts-balances">4.2 Display external accounts' balances</a></li><li><a href="#43-send-funds-from-external-accounts">4.3 Send funds from external accounts</a></li><li><a href="#44-good-to-know">4.4 Good to know</a></li><li><a href="#45-going-further-extract-the-send-button-into-its-own-component">4.5 Going further - Extract the send button into its own component</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a class="github-button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="row"><div class="copyright">Copyright © 2019 Parity Technologies</div><a class="item" href="https://www.parity.io/privacy/">Privacy Policy</a><a class="item" href="#" id="cookie-settings">Cookie Settings</a><script>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#41-get-polkadot-js-extension">4.1 Get Polkadot-js extension</a></li><li><a href="#42-display-external-accounts-balances">4.2 Display external accounts' balances</a></li><li><a href="#43-send-funds-from-external-accounts">4.3 Send funds from external accounts</a></li><li><a href="#44-good-to-know">4.4 Good to know</a></li><li><a href="#45-going-further-extract-the-send-button-into-its-own-component">4.5 Going further - Extract the send button into its own component</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a class="github-button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="row"><div class="copyright">Copyright © 2019 Parity Technologies</div><a class="item" href="https://www.parity.io/privacy/">Privacy Policy</a><a class="item" href="#" id="cookie-settings">Cookie Settings</a><script>
               var cookieSettings = document.getElementById('cookie-settings');
               cookieSettings.onclick = function() {
                 return klaro.show();

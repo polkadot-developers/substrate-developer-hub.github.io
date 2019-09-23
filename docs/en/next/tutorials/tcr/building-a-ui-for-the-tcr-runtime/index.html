@@ -6,7 +6,7 @@
             {"zIndex":100}
           )
         });
-        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/en/versions"><h3>next</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/en/next/getting-started/" target="_self">Docs</a></li><li class=""><a href="/rustdocs/v1.0/" target="_self">Reference Docs</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/en/community" target="_self">Community</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/ru/next/tutorials/tcr/building-a-ui-for-the-tcr-runtime">Русский</a></li><li><a href="/docs/zh-CN/next/tutorials/tcr/building-a-ui-for-the-tcr-runtime">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/en/versions"><h3>next</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/en/docs" target="_self">Docs</a></li><li class=""><a href="/rustdocs/v1.0/" target="_self">Reference Docs</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/en/community" target="_self">Community</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/ru/next/tutorials/tcr/building-a-ui-for-the-tcr-runtime">Русский</a></li><li><a href="/docs/zh-CN/next/tutorials/tcr/building-a-ui-for-the-tcr-runtime">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
         const languagesMenuItem = document.getElementById("languages-menu");
         const languagesDropDown = document.getElementById("languages-dropdown");
         languagesMenuItem.addEventListener("click", function(event) {
@@ -18,63 +18,7 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Token Curated Registry Tutorial</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Token Curated Registry Tutorial<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/tcr/">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/tcr/building-the-substrate-tcr-runtime">Building the Substrate TCR runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/tcr/unit-testing-the-tcr-runtime-module">Unit testing the TCR runtime module</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/next/tutorials/tcr/building-a-ui-for-the-tcr-runtime">Building a UI for the TCR runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/tcr/building-an-event-based-off-chain-storage">Building an event based off-chain storage</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/tcr/tcr-best-practices">Best Practices</a></li></ul></div></div></section></div><script>
-            var coll = document.getElementsByClassName('collapsible');
-            var checkActiveCategory = true;
-            for (var i = 0; i < coll.length; i++) {
-              var links = coll[i].nextElementSibling.getElementsByTagName('*');
-              if (checkActiveCategory){
-                for (var j = 0; j < links.length; j++) {
-                  if (links[j].classList.contains('navListItemActive')){
-                    coll[i].nextElementSibling.classList.toggle('hide');
-                    coll[i].childNodes[1].classList.toggle('rotate');
-                    checkActiveCategory = false;
-                    break;
-                  }
-                }
-              }
-
-              coll[i].addEventListener('click', function() {
-                var arrow = this.childNodes[1];
-                arrow.classList.toggle('rotate');
-                var content = this.nextElementSibling;
-                content.classList.toggle('hide');
-              });
-            }
-
-            document.addEventListener('DOMContentLoaded', function() {
-              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
-              createToggler('#tocToggler', 'body', 'tocActive');
-
-              var headings = document.querySelector('.toc-headings');
-              headings && headings.addEventListener('click', function(event) {
-                var el = event.target;
-                while(el !== headings){
-                  if (el.tagName === 'A') {
-                    document.body.classList.remove('tocActive');
-                    break;
-                  } else{
-                    el = el.parentNode;
-                  }
-                }
-              }, false);
-
-              function createToggler(togglerSelector, targetSelector, className) {
-                var toggler = document.querySelector(togglerSelector);
-                var target = document.querySelector(targetSelector);
-
-                if (!toggler) {
-                  return;
-                }
-
-                toggler.onclick = function(event) {
-                  event.preventDefault();
-
-                  target.classList.toggle(className);
-                };
-              }
-            });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/tutorials/tcr/building-a-ui-for-the-tcr-runtime.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Building a UI for the TCR runtime</h1></header><article><div><span><p>This is Part 3 of the guide <a href="/docs/en/next/tutorials/tcr/">Building a Token Curated Registry DAppChain on Substrate</a>. In <a href="/docs/en/next/tutorials/tcr/building-the-substrate-tcr-runtime">part 1</a>, we implemented a substrate runtime module for a TCR. In <a href="/docs/en/next/tutorials/tcr/unit-testing-the-tcr-runtime-module">part 2</a>, we wrote unit tests for our runtime.</p>
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/tutorials/tcr/building-a-ui-for-the-tcr-runtime.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Building a UI for the TCR runtime</h1></header><article><div><span><p>This is Part 3 of the guide <a href="/docs/en/next/tutorials/tcr/">Building a Token Curated Registry DAppChain on Substrate</a>. In <a href="/docs/en/next/tutorials/tcr/building-the-substrate-tcr-runtime">part 1</a>, we implemented a substrate runtime module for a TCR. In <a href="/docs/en/next/tutorials/tcr/unit-testing-the-tcr-runtime-module">part 2</a>, we wrote unit tests for our runtime.</p>
 <p>As part of the samples, we've created a <code>reactjs</code> based web app as a simple frontend for the TCR runtime. The <a href="https://github.com/substrate-developer-hub/substrate-tcr-ui">complete code</a> is available.</p>
 <p>In this part of the guide, we will be covering the framework agnostic parts of the UI sample which are mainly used for interaction with the Substrate node and the TCR runtime extrinsic functions. We will not be going into the react specific parts - components, etc. The sample is created using the <code>create-react-app</code> scaffolding command. We have added a simple react component to display a list of items (TCR listings) and the corresponding TCR actions. We also have a couple of modals to take input for the <code>propose</code>, <code>challenge</code> and <code>vote</code> actions on a listing.</p>
 <p>What's more important for this guide is the javascript code which interacts with the Substrate TCR runtime. We have used the <a href="https://polkadot.js.org/api/">PolkadotJS API</a> for this.</p>
@@ -191,7 +135,7 @@
 <p>Just like we called the <code>propose</code> function of the TCR runtime, we can call the <code>challenge</code>, <code>vote</code>, <code>resolve</code> and <code>claim_reward</code> functions also. In the exact same way, we call the functions using the <code>api.tx.&lt;module name&gt;.&lt;function name&gt;</code> convention and handle the corresponding events to update the UI and the off-chain state.</p>
 <p>The <a href="https://github.com/substrate-developer-hub/substrate-tcr-ui/blob/master/src/services/tcrService.js">tcrService.js file</a> has all the function calls implemented in the same way.</p>
 <p>In the <a href="/docs/en/next/tutorials/tcr/building-an-event-based-off-chain-storage">next part</a> of this guide, we will learn how we can build an event-based off-chain storage and use it to optimize our DAppChain solution.</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/19/2019 by Gautam Dhameja</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/next/tutorials/tcr/unit-testing-the-tcr-runtime-module"><span class="arrow-prev">← </span><span>Unit testing the TCR runtime module</span></a><a class="docs-next button" href="/docs/en/next/tutorials/tcr/building-an-event-based-off-chain-storage"><span>Building an event based off-chain storage</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#signing-keys">Signing Keys</a></li><li><a href="#api-connection-and-registering-custom-types">API Connection and registering custom types</a></li><li><a href="#calling-the-tcr-runtime-functions">Calling the TCR runtime functions</a><ul class="toc-headings"><li><a href="#propose">Propose</a></li><li><a href="#calling-other-runtime-functions">Calling other runtime functions</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/getting-started">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a></div><div><h5>Community</h5><a href="/en/videos">Videos</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a class="github-button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="row"><div class="copyright">Copyright © 2019 Parity Technologies</div><a class="item" href="https://www.parity.io/privacy/">Privacy Policy</a><a class="item" href="#" id="cookie-settings">Cookie Settings</a><script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/19/2019 by Gautam Dhameja</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#signing-keys">Signing Keys</a></li><li><a href="#api-connection-and-registering-custom-types">API Connection and registering custom types</a></li><li><a href="#calling-the-tcr-runtime-functions">Calling the TCR runtime functions</a><ul class="toc-headings"><li><a href="#propose">Propose</a></li><li><a href="#calling-other-runtime-functions">Calling other runtime functions</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/getting-started">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a></div><div><h5>Community</h5><a href="/en/videos">Videos</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a class="github-button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="row"><div class="copyright">Copyright © 2019 Parity Technologies</div><a class="item" href="https://www.parity.io/privacy/">Privacy Policy</a><a class="item" href="#" id="cookie-settings">Cookie Settings</a><script>
               var cookieSettings = document.getElementById('cookie-settings');
               cookieSettings.onclick = function() {
                 return klaro.show();
