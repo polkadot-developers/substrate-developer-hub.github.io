@@ -6,7 +6,7 @@ The Substrate uses a simple a key-value data store implemented as a database-bac
 
 ## Key-Value Database
 
-Substrate implements it's storage database with [RocksDB](https://rocksdb.org/)., a persistent key-value store for fast storage environments.
+Substrate implements it's storage database with [RocksDB](https://rocksdb.org/), a persistent key-value store for fast storage environments.
 
 This is used for all the components of Substrate which require persistent storage such as:
 
