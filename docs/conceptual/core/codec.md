@@ -107,7 +107,7 @@ The Parity SCALE Codec is currently implemented for:
 * Python: [`polkascan/py-scale-codec`](https://github.com/polkascan/py-scale-codec)
 * Golang: [`ChainSafe/gossamer`](https://github.com/ChainSafe/gossamer)
 * C++: [`soramitsu/scale`](https://github.com/soramitsu/scale)
-* JavaScript: ['polkadot-js/api`](https://github.com/polkadot-js/api)
+* JavaScript: [`polkadot-js/api`](https://github.com/polkadot-js/api)
 
 ## Next Steps
 
