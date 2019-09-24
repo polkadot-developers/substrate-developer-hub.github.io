@@ -87,7 +87,7 @@ A fixed number of variants, each mutually exclusive and potentially implying a f
 
 Encoded as the first byte identifying the index of the variant that the value is. Any further bytes are used to encode any data that the variant implies.
 
-### Example
+#### Example
 
 ```rust
 enum IntOrBool {
