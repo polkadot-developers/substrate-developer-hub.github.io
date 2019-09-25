@@ -26,7 +26,5 @@ Before we even get started, let's layout what we are going to do over the course
 2. Use a template project to start running Substrate right away.
 3. Modify this template project to add our own custom logic.
 4. Use a pre-built front-end to interact with your brand new blockchain.
-5. Review our initial implementation and iterate on it to start putting you in the mindset of a real Substrate blockchain developer.
 
 Sound reasonable? Good, then let's begin!
-

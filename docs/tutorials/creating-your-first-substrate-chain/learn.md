@@ -2,14 +2,6 @@
 title: Background Information
 ---
 
-# The Substrate Package
-
-As we briefly mentioned above, the Substrate Package contains everything you need to start hacking on Substrate. More specifically it contains 3 different templates:
-
-* [Substrate Module Template](https://github.com/substrate-developer-hub/substrate-module-template/)
-* [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template/)
-* [Substrate UI Template](https://github.com/substrate-developer-hub/substrate-ui-template/)
-
 These templates are all individual git repositories, and work together to provide a cohesive set of tools for Substrate development.
 
 [image here of all the parts coming together]
@@ -24,7 +16,7 @@ The Substrate Node Template is an out-of-the-box working blockchain node built f
 
 We will teach you how to use this node in "developer" mode, which allows you to run a network with a single node, and have some pre-configured user accounts with funds.
 
-## Substrate Module Template
+## Substrate Runtime Modules Template
 
 What makes Substrate so special is the ease at which you can compose the logic for your blockchain's underlying state transition function. This is _not_ the same as building smart contract's on top of modern blockchain systems. Whereas smart contracts are intentionally sandboxed from the internal workings of a blockchain, with Substrate, you have **full control** over how your blockchain operates.
 

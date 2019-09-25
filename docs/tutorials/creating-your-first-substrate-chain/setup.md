@@ -2,12 +2,19 @@
 title: Setup Your Computer
 ---
 
+Normally we would teach you more about the Substrate blockchain framework and the Proof of Existence blockchain you will be building. However, setting up your computer for Substrate development can take a while. 
+
+To optimize your time, we will have you start the setup process, and while things are compiling, we will then tell you more about everything we are doing.
+
+## Prerequisites
+
 To develop on Substrate, your computer needs some prerequisites to establish a working development environment.
 
-Things like [Rust](https://www.rust-lang.org/tools/install), [CMake](https://cmake.org/install/), [libssl](https://wiki.openssl.org/index.php/Libssl_API), [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), etc...
+> **Note:** This is probably the hardest part of this tutorial, so don't let this discourage you.
 
-If you are using a Unix based machine (Linux, MacOS), we have created a simple one-liner to get all of those prerequsites installed:
+### Substrate Development
 
+If you are using a Unix based machine (Linux, MacOS), we have created a simple one-liner to get all of those prerequisites installed for you:
 
 ```bash
 curl https://getsubstrate.io -sSf | bash -s -- --fast
@@ -15,43 +22,51 @@ curl https://getsubstrate.io -sSf | bash -s -- --fast
 
 > If you want to see specifically what this script does just visit: https://getsubstrate.io
 
+It will automatically install:
 
-If you are using Windows, the process is a little bit harder, but well documented [here](https://substrate.dev/docs/en/getting-started/installing-substrate#windows).
+* [CMake](https://cmake.org/install/)
+* [pkg-config](https://www.freedesktop.org/wiki/Software/pkg-config/)
+* [OpenSSL](https://www.openssl.org/)
+* [Git](https://git-scm.com/downloads)
+* [Rust](https://www.rust-lang.org/tools/install)
 
-In addition to this, you will need all the basic tools for web development like `yarn`.
+If you are using Windows and do not have the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), the process is a bit harder, but well documented [here](getting-started.md).
 
-### Compiling Substrate
+### Front-End Development
 
-We have created a development package for Substrate, aptly named the [**Substrate Package**](https://github.com/substrate-developer-hub/substrate-package). This package will contain all the tools you need to complete this tutorial.
+This tutorial also uses a custom ReactJS front-end which we will modify for interacting with our custom Substrate blockchain.
 
-Unfortunately, the longest part of this setup process is actually compiling Substrate for the first time. To make things more efficient, follow these instructions to start the compilation process, then read the next section which will explain more about what is in the Substrate Package while things are compiling.
+To use the front-end project, you need to install [Yarn](https://yarnpkg.com/lang/en/docs/install/), which may also require you separately install [`Node.js`](https://nodejs.org/en/download/).
 
-1. Clone the Substrate Package
+## Compiling Substrate
 
-    ```bash
-    git clone https://github.com/substrate-developer-hub/substrate-package
-    ```
-2. Initialize the Git submodules
+We have created simple template projects to help you get started building on Substrate.
 
-    ```bash
-    cd substrate-package/
-    # This will load all the repositories used in the Substrate Package
-    git submodule update --init
-    ```
-
-3. Initialize your Wasm build environment
+1. Clone the Substrate Node Template
 
     ```bash
+    git clone https://github.com/substrate-developer-hub/substrate-node-template
     cd substrate-node-template/
-    # This will update rust nightly, add the Wasm32 build target, and install wasm-gc
-    ./scripts/init.sh
     ```
 
-4. Compile your Substrate node
+2. Initialize your Wasm build environment
+
+    ```bash
+    # Update Rust
+    rustup update nightly
+    rustup update stable
+
+    # Add Wasm target
+    rustup target add wasm32-unknown-unknown --toolchain nightly
+
+    # Install `wasm-gc` to slim Wasm binaries
+    cargo +nightly install --git https://github.com/alexcrichton/wasm-gc --force
+    ```
+
+3. Compile your Substrate node
 
     ```bash
     cargo build --release
     ```
 
-This final compilation will take approximately 15 minutes depending on your computer hardware. In that time, read the next section if you want to learn more about the contents of the Substrate Package.
-
+This final compilation can take up to 15 minutes depending on your computer hardware. In that time, read the next section to learn more about Substrate.
