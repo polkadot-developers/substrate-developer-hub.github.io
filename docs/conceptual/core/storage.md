@@ -20,15 +20,21 @@ One advantage of using a simple key-value store is that you are able to easily a
 
 Substrate uses a Base-16 Modified Merkle Patricia tree ("trie") from [`paritytech/trie`](https://github.com/paritytech/trie) to provide a trie structure whose contents can be modified and whose root hash is recalculated efficiently.
 
-### Main Trie
+Tries are important tool for blockchains because the allows for efficient storing and sharing of historical of block state. You don't have a state trie per block, but a trie hash that will point to the nodes from previous block states. However, accessing data to trie data is costly. Each read operation takes O(log N) time, where N is the number of elements stored in the trie. To mitigate this, we use a key value cache.
 
-Substrate has a single main trie whose storage root hash is placed in the block header. This is used to easily verify the state of the blockchain and provide a basis for light clients to verify proofs.
+All trie node are stored in RocksDB and part of the trie state can get pruned, i.e. a key-value pair can be deleted from the storage when it is out of pruning range for non archive nodes. Trie nodes are also encoded to allow for any key type, while still be able to avoid key collision. We do not use [reference counting](http://en.wikipedia.org/wiki/Reference_counting) for performance reasons.
+
+### State Trie
+
+Substrate has a single main trie, called the state trie, whose changing root hash is placed in each block header. This is used to easily verify the state of the blockchain and provide a basis for light clients to verify proofs.
+
+This trie only stores content for the canonical chain, not forks. There is a separate `state_db` layer that maintain the trie state with references counted in memory for all that is non canonical. See JournalDB.
 
 ### Child Trie
 
 Substrate also provides an API to generate new child tries with their own root hash that can be used in the runtime.
 
-The root hash of these child tries are automatically stored in the main trie to maintain easy verification of the complete node state.
+Child tries are identical to main state trie, except their root is stored and updated in the main trie instead of the block header. Since their headers are a part of the main state trie, it is still easy to verify of the complete node state when it includes child tries.
 
 ## Runtime Storage API
 
