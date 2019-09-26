@@ -2,7 +2,7 @@
 title: Setup Your Computer
 ---
 
-Normally we would teach you more about the Substrate blockchain framework and the Proof of Existence blockchain you will be building. However, setting up your computer for Substrate development can take a while. 
+Normally we would teach you more about the Substrate blockchain development framework and the Proof of Existence blockchain you will be building. However, setting up your computer for Substrate development can take a while. 
 
 To optimize your time, we will have you start the setup process, and while things are compiling, we will then tell you more about everything we are doing.
 
@@ -42,11 +42,11 @@ To use the front-end project, you need to install [Yarn](https://yarnpkg.com/lan
 
 We have created simple template projects to help you get started building on Substrate.
 
-1. Clone the Substrate Node Template
+1. Clone the Substrate Node Template and Substrate Front-End Template
 
     ```bash
     git clone https://github.com/substrate-developer-hub/substrate-node-template
-    cd substrate-node-template/
+    git clone https://github.com/substrate-developer-hub/substrate-front-end-template
     ```
 
 2. Initialize your Wasm build environment
@@ -66,6 +66,7 @@ We have created simple template projects to help you get started building on Sub
 3. Compile your Substrate node
 
     ```bash
+    cd substrate-node-template/
     cargo build --release
     ```
 
