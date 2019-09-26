@@ -59,7 +59,6 @@ Even things like on-chain governance can be added to your blockchain by includin
 
 The goal of this tutorial is to teach you how to create your own Substrate runtime module which will be included in your custom blockchain! The `substrate-node-template` comes with a template module that we will build your custom logic on top of.
 
-
 ## Proof Of Existence Chain
 
 The custom logic we will add to your Substrate runtime is a Proof of Existence module. From [Wikipedia](https://en.wikipedia.org/wiki/Proof_of_Existence): 
@@ -82,4 +81,4 @@ We will only need to store information about the proofs that have been claimed, 
 
 Sounds easy enough?
 
-If your node is finished compiling, then you are ready to move to the next section where we will actually build this Proof of Existence module!
+If your node is finished compiling, then you are ready to move to the next section where we will interact with your Substrate node template!

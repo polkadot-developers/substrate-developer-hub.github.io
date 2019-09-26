@@ -4,11 +4,30 @@ title: Testing Your New Blockchain
 
 This tutorial is not really about writing front-ends, but we do want to show you how easy it can be with Substrate. If you have made it this far, that means you _should_ have a brand new working blockchain with custom functionality.
 
+We will give you a custom react component that you can add to your `substrate-front-end-template` meant for interacting with your node.
+
 So let's test it!
 
 ## Custom React Component
 
-We will give you a custom react component that you can add to your `substrate-front-end-template` meant for interacting with your node.
+In the `substrate-front-end-template` project, create a file called `ProofOfExistence.jsx` in the `/src/` folder:
+
+```
+substrate-front-end-template
+|
++-- src
+|   |
+|   +-- index.jsx
+|   |
+|   +-- App.jsx 
+|   |
+|   +-- ProofOfExistence.jsx  <-- Create this file
+|   |
+|   +-- ...
++-- ...
+```
+
+In that file copy the following component.
 
 ```js
 import React, { useState, useEffect } from "react";
@@ -104,5 +123,8 @@ export default function ProofOfExistence(props) {
     </Grid.Column>
   );
 }
-
 ```
+
+We won't walk you step by step through the creation of this module, but do look over the code comments to learn what each part is doing.
+
+

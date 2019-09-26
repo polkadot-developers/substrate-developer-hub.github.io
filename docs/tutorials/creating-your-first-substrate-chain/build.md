@@ -2,11 +2,33 @@
 title: Building a Custom Runtime Module
 ---
 
-We will now modify the Substrate Node Template to introduce the basic functionality of a Proof Of Existence blockchain.
+We will now modify the `substrate-node-template` to introduce the basic functionality of a Proof Of Existence module.
 
-Open the `substrate-node-template` folder of the Substrate Package in your favorite code editor. Then open the file at `runtime/src/template.rs`
+Open the `substrate-node-template` in your favorite code editor. Then open the file at `runtime/src/template.rs`
 
-You will see some pre-written code which acts as a template for an embedded Substrate Runtime Module. You can delete the contents of this file since we will start from scratch for full transparency.
+```
+substrate-node-template
+|
++-- runtime
+|   |
+|   +-- Cargo.toml
+|   |
+|   +-- build.rs
+|   |
+|   +-- src
+|       |
+|       +-- lib.rs
+|       |
+|       +-- template.rs  <-- Edit this file
+|
++-- scripts
+|
++-- src
+|
++-- ...
+```
+
+You will see some pre-written code which acts as a template for a new runtime module. You can delete the contents of this file since we will start from scratch for full transparency.
 
 At a high level, the a Substrate Runtime Module can be broken down into 5 sections:
 
@@ -27,7 +49,7 @@ decl_storage! {...}
 decl_module! {...}
 ```
 
-Things like events, storage, and callable functions should look familiar to you if you have done other blockchain development. We will show you what each of these components look like for a basic Proof Of Existence blockchain.
+Things like events, storage, and callable functions should look familiar to you if you have done other blockchain development. We will show you what each of these components look like for a basic Proof Of Existence module.
 
 ## Imports
 
@@ -51,8 +73,6 @@ pub trait Trait: system::Trait {
 }
 ```
 
-Will come back to this configuration trait later in the tutorial when we continue to iterate on the Proof Of Existence design.
-
 ## Module Events
 
 Since we configured our module to emit events, let's go ahead and define that!
@@ -61,10 +81,10 @@ Since we configured our module to emit events, let's go ahead and define that!
 // This module's events.
 decl_event!(
     pub enum Event<T> where AccountId = <T as system::Trait>::AccountId {
-        // Event emitted when a proof has been stored into chain storage
-        ProofStored(AccountId, Vec<u8>),
-        // Event emitted when a proof has been erased from chain storage
-        ProofErased(AccountId, Vec<u8>),
+        // Event emitted when a proof has been claimed.
+        ClaimCreated(AccountId, Vec<u8>),
+        // Event emitted when a claim is revoked by the owner.
+        ClaimRevoked(AccountId, Vec<u8>),
     }
 );
 ```
@@ -82,12 +102,11 @@ To add a new proof to the blockchain, we will simply store that proof in our mod
 ```rust
 // This module's storage items.
 decl_storage! {
-	trait Store for Module<T: Trait> as PoeStorage {
-        // Define a 'Proofs' storage item for a map with
-        // the proof digest as the key, and associated AccountId as value.
-        // The 'get(proofs)' is the default getter.
-		Proofs get(proofs): map Vec<u8> => T::AccountId;
-	}
+    trait Store for Module<T: Trait> as PoeStorage {
+        // The storage item for our proofs.
+        // It maps a proof to the user who made the claim.
+        Proofs: map Vec<u8> => T::AccountId;
+    }
 }
 ```
 
@@ -97,10 +116,10 @@ If a proof has an owner, then we know that it has been claimed! Otherwise, the p
 
 As implied by our Module Events, we will have two functions the user can call in this Substrate Runtime Module:
 
-1. `store_proof()`: Allow a user to claim an unclaimed proof.
-2. `erase_proof()`: Allow the owner of a proof to erase their claim.
+1. `make_claim()`: Allow a user to claim the existence of a file with a proof.
+2. `revoke_claim()`: Allow the owner of a claim to revoke their claim.
 
-Here is what that implementation looks like:
+Here are what the module declaration looks like with these these two functions:
 
 ```rust
 // The module's dispatchable functions.
@@ -110,34 +129,35 @@ decl_module! {
         // A default function for depositing events
         fn deposit_event() = default;
 
-        // Allow a user to store an unclaimed proof
-        fn store_proof(origin, digest: Vec<u8>) {
-            // Verify that the incoming transaction is signed
+        // Allow a user to claim ownership of an unclaimed proof
+        fn make_claim(origin, proof: Vec<u8>) {
+            // Verify that the incoming transaction is signed and store who the
+            // caller of this function is.
             let sender = ensure_signed(origin)?;
 
             // Verify that the specified proof has not been claimed yet
-            ensure!(!Proofs::<T>::exists(&digest), "This proof has already been claimed");
+            ensure!(!Proofs::<T>::exists(&proof), "This proof has already been claimed.");
 
-            // Store the proof and the claim owner
-            Proofs::<T>::insert(&digest, sender.clone());
+            // Store the proof and the sender as the owner
+            Proofs::<T>::insert(&proof, sender.clone());
 
-            // Emit an event that the claim was stored
-            Self::deposit_event(RawEvent::ProofStored(sender, digest));
+            // Emit an event that the claim was created
+            Self::deposit_event(RawEvent::ClaimCreated(sender, digest));
         }
 
-        // Allow the owner of a proof to erase their claim
-        fn erase_proof(origin, digest: Vec<u8>) {
+        // Allow the owner of a claim to revoke their claim
+        fn revoke_claim(origin, digest: Vec<u8>) {
             // Determine who is calling the function
             let sender = ensure_signed(origin)?;
 
             // Verify that the specified proof has been claimed
-            ensure!(Proofs::<T>::exists(&digest), "This proof has not been stored yet");
+            ensure!(Proofs::<T>::exists(&digest), "This proof has not been stored yet.");
 
             // Get owner of the claim
-            let owner = Self::proofs(&digest);
+            let owner = Proofs::<T>::get(&digest);
 
             // Verify that sender of the current call is the claim owner
-            ensure!(sender == owner, "You must own this proof to erase it");
+            ensure!(sender == owner, "You must own this claim to revoke it.");
 
             // Remove claim from storage
             Proofs::<T>::remove(&digest);
@@ -149,12 +169,12 @@ decl_module! {
 }
 ```
 
-There is some funny Rust syntax in here like `<T>`, `&`, `?`, etc... For the purposes of this tutorial, we will not go into these details, but the individual parts of the function should make sense, especially with the code comments.
-
 ## Compile Your New Module
 
-If you were able to copy all of the parts of this module correctly into your `template.rs` file, you should be able to recompile your node successfully!
+If you were able to copy all of the parts of this module correctly into your `template.rs` file, you should be able to recompile your node without warning or error:
 
 ```bash
 cargo build --release
 ```
+
+Now it is it time to interact with our new Proof of Existence module!
