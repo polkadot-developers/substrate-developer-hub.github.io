@@ -4,13 +4,13 @@ title: Setup Your Computer
 
 Normally we would teach you more about the Substrate blockchain development framework and the Proof of Existence blockchain you will be building. However, setting up your computer for Substrate development can take a while. 
 
-To optimize your time, we will have you start the setup process, and while things are compiling, we will then tell you more about everything we are doing.
+To optimize your time, we will have you start the setup process. In the next section, while things are compiling, we will then tell you more about Substrate and what we are building.
 
 ## Prerequisites
 
 To develop on Substrate, your computer needs some prerequisites to establish a working development environment.
 
-> **Note:** This is probably the hardest part of this tutorial, so don't let this discourage you.
+> **Note:** Setting up your computer is probably the hardest part of this tutorial, so don't let this discourage you.
 
 ### Substrate Development
 
@@ -36,7 +36,10 @@ If you are using Windows and do not have the [Windows Subsystem for Linux](https
 
 This tutorial also uses a custom ReactJS front-end which we will modify for interacting with our custom Substrate blockchain.
 
-To use the front-end project, you need to install [Yarn](https://yarnpkg.com/lang/en/docs/install/), which may also require you separately install [`Node.js`](https://nodejs.org/en/download/).
+To use the front-end project, you need to install [Yarn](https://yarnpkg.com), which may also require you separately install [Node.js](https://nodejs.org/).
+
+* [Install Node.js](https://nodejs.org/en/download/)
+* [Install Yarn](https://yarnpkg.com/lang/en/docs/install/)
 
 ## Compiling Substrate
 

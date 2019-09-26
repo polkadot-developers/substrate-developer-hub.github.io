@@ -10,20 +10,21 @@ Blockchain development is hard.
 
 Blockchain networks are composed of individual **nodes** that are connected together on a peer-to-peer (P2P) network. Nodes are the individual computers on a network running the blockchain software that makes everything work.
 
-To function properly, a blockchain node needs:
+To function, a blockchain node needs:
 
 * A Database
 * P2P Networking
 * A Consensus Engine
 * Transaction Handling
 * A State Transition Function
+* and more...
 
 These technologies span a huge breadth of computer science, and thus usually require expert teams to develop. As a result, most blockchain projects are _not_ developed from the ground up. Instead they are forked from already existing blockchains. For instance:
 
 * Bitcoin was forked to create: Litecoin, ZCash, Namecoin, Bitcoin Cash, etc...
 * Ethereum was forked to create: Quorem, POA Network, KodakCoin, etc...
 
-[ image ]
+![](assets/forks.png)
 
 Building blockchains in this way has serious limitations as these existing platform were not designed to be modified.
 
@@ -32,10 +33,6 @@ Building blockchains in this way has serious limitations as these existing platf
 Substrate is an **open source**, **modular**, and **extensible** framework for building blockchains.
 
 Substrate has been designed from the ground up to provide a flexible framework for innovators to design and build their next blockchain network. It provides all the core components you need to build a customized blockchain node.
-
-That is ultimately what we will create at the end of this tutorial.
-
-[image here of all the parts coming together]
 
 ### Substrate Node Template
 
@@ -49,7 +46,7 @@ The Substrate framework puts an emphasis on making it easy to design custom bloc
 
 The Substrate runtime is composed of runtime modules. You can think of these runtime modules as individual pieces of logic which define what your blockchain can do! Substrate provides you with a number of pre-built runtime modules collected in the **Substrate Runtime Module Library** (SRML).
 
-[ image of runtime composition ]
+![Runtime Composition](assets/runtime.png)
 
 For example, the SRML includes a [Balances](https://substrate.dev/rustdocs/master/srml_balances/index.html) module that controls the underlying currency of your blockchain by managing the _balance_ of all the accounts in your system. 
 
