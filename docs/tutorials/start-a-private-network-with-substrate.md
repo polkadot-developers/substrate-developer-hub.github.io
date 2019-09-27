@@ -246,7 +246,7 @@ The first participant can launch her node with
 ```
 Here are some differences from when we launched as Alice.
 * I've omitted the `--base-path` flag, so Substrate will use a default location. You're still free to specify your own base path.
-* I've omitted the `--alice` flag instead we will insert our own custom keys into the keysotre through the RPC shortly.
+* I've omitted the `--alice` flag. Instead we will insert our own custom keys into the keystore through the RPC shortly.
 * The `--chain` flag has changed to use our custom chainspec.
 * I've added the optional `--name` flag. You may use it to give your node a human-readable name in the telemetry UI.
 
