@@ -40,8 +40,6 @@ import { blake2AsHex } from "@polkadot/util-crypto";
 
 import { useSubstrate } from "../substrate-lib";
 import { TxButton } from "../substrate-lib/components";
-// Based on the Substrate Proof of Existence module
-// https://github.com/substrate-developer-hub/substrate-proof-of-existence
 
 export default function ProofOfExistence(props) {
   const { api } = useSubstrate();
@@ -137,12 +135,10 @@ look over the code comments to learn what each part is doing.
 ## Submit a Proof
 
 Your front-end should have automatically restarted with this new component
-included:
+included. Select any file on your computer, and you will see that you can create a claim
+with it's file digest:
 
 ![Proof Of Existence Component](assets/poe-component.png)
-
-Select any file on your computer, and you will see that you can create a claim
-with it's file digest.
 
 If you press "Create Claim", a transaction will be dispatched to your custom
 Proof of Existence module, where this digest and the selected user account will
