@@ -34,6 +34,8 @@ You will see some pre-written code which acts as a template for a new runtime
 module. You can delete the contents of this file since we will start from
 scratch for full transparency.
 
+## Build Your New Module
+
 At a high level, the a Substrate Runtime Module can be broken down into 5
 sections:
 
@@ -58,7 +60,7 @@ Things like events, storage, and callable functions should look familiar to you
 if you have done other blockchain development. We will show you what each of
 these components look like for a basic Proof Of Existence module.
 
-## Imports
+### Imports
 
 Since imports are pretty boring, you can start by copying this at the top of
 your empty `template.rs` file:
@@ -69,7 +71,7 @@ use rstd::vec::Vec;
 use system::ensure_signed;
 ```
 
-## Module Configuration
+### Module Configuration
 
 For now, the only thing we will configure about our module is that it will emit
 some Events.
@@ -82,7 +84,7 @@ pub trait Trait: system::Trait {
 }
 ```
 
-## Module Events
+### Module Events
 
 Since we configured our module to emit events, let's go ahead and define that!
 
@@ -106,7 +108,7 @@ The events can contain some metadata, in this case, each event will also display
 who triggered the event (`AccountId`), and the proof data (`Vec<u8>`) that is
 being stored or removed.
 
-## Module Storage Items
+### Module Storage Items
 
 To add a new proof to the blockchain, we will simply store that proof in our
 module's storage. To store that value, we will create a [hash
@@ -119,7 +121,7 @@ decl_storage! {
     trait Store for Module<T: Trait> as PoeStorage {
         // The storage item for our proofs.
         // It maps a proof to the user who made the claim.
-        Proofs: map Vec<u8> => T::AccountId;
+        Proofs: map Vec<u8> => (T::AccountId, T::BlockNumber);
     }
 }
 ```
@@ -127,7 +129,7 @@ decl_storage! {
 If a proof has an owner, then we know that it has been claimed! Otherwise, the
 proof is still available to be claimed.
 
-## Callable Module Functions
+### Callable Module Functions
 
 As implied by our Module Events, we will have two functions the user can call in
 this Substrate Runtime Module:
@@ -154,8 +156,11 @@ decl_module! {
             // Verify that the specified proof has not been claimed yet
             ensure!(!Proofs::<T>::exists(&proof), "This proof has already been claimed.");
 
-            // Store the proof and the sender as the owner
-            Proofs::<T>::insert(&proof, sender.clone());
+            // Call another Substrate runtime module to get the current block number
+            let current_block = <system::Module<T>>::block_number();
+
+            // Store the proof with the sender and the current block number
+            Proofs::<T>::insert(&proof, (sender.clone(), current_block));
 
             // Emit an event that the claim was created
             Self::deposit_event(RawEvent::ClaimCreated(sender, proof));
@@ -170,7 +175,7 @@ decl_module! {
             ensure!(Proofs::<T>::exists(&proof), "This proof has not been stored yet.");
 
             // Get owner of the claim
-            let owner = Proofs::<T>::get(&proof);
+            let (owner, _) = Proofs::<T>::get(&proof);
 
             // Verify that sender of the current call is the claim owner
             ensure!(sender == owner, "You must own this claim to revoke it.");
@@ -193,6 +198,16 @@ error:
 
 ```bash
 cargo build --release
+```
+
+Now you can restart your node:
+
+```bash
+# Purge chain to clean up your old chain state
+# You will be prompted to type `y`
+./target/release/node-template purge-chain --dev
+# Re-run your node in "developer" mode
+./target/release/node-template --dev
 ```
 
 Now it is it time to interact with our new Proof of Existence module!

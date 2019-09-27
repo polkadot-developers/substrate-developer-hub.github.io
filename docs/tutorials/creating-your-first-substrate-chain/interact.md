@@ -12,6 +12,7 @@ Run the following commands to start your node:
 ```bash
 cd substrate-node-template/
 # Purge chain cleans up any old data from running a `dev` node in the past
+# You will be prompted to type `y`
 ./target/release/node-template purge-chain --dev
 # Run your actual node in "developer" mode
 ./target/release/node-template --dev
