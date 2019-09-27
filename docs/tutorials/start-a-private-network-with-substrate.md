@@ -250,7 +250,7 @@ Here are some differences from when we launched as Alice.
 * The `--chain` flag has changed to use our custom chainspec.
 * I've added the optional `--name` flag. You may use it to give your node a human-readable name in the telemetry UI.
 
-One your node is running, you will again notice that no blocks are being produced. At this point you can use the Apps UI to insert your keys into the keystore. NAvigate to the "Toolbox" tab and the "RPC Call" sub-tab. Choose "author" and "insertKey". The fields can be filled like this:
+One your node is running, you will again notice that no blocks are being produced. At this point you can use the Apps UI to insert your keys into the keystore. Navigate to the "Toolbox" tab and the "RPC Call" sub-tab. Choose "author" and "insertKey". The fields can be filled like this:
 ```
 keytype: babe
 suri: your mnemonic phrase (eg keep matrix knee meat awake frown rubber position federal easily strategy inhale)
