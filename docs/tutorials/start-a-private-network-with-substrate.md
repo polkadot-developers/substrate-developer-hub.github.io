@@ -29,7 +29,7 @@ git checkout 7d7e74fb
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
 
-The repository includes a utility called `subkey` which we'll optionally use to generate and inspect keypairs. Let's compile it first. The `--force` option means that we'll install this version over any previously installed versions.
+The repository includes a utility called `subkey` which we'll optionally use to generate and inspect keypairs. Let's compile it first. The `--force` option means that we'll install this version by overriding the previously installed version.
 ```bash
 # Compile subkey
 cargo install --force --path subkey subkey
