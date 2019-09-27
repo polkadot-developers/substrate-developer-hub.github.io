@@ -134,7 +134,7 @@ proof is still available to be claimed.
 As implied by our Module Events, we will have two functions the user can call in
 this Substrate Runtime Module:
 
-1. `make_claim()`: Allow a user to claim the existence of a file with a proof.
+1. `create_claim()`: Allow a user to claim the existence of a file with a proof.
 2. `revoke_claim()`: Allow the owner of a claim to revoke their claim.
 
 Here are what the module declaration looks like with these these two functions:
@@ -148,7 +148,7 @@ decl_module! {
         fn deposit_event() = default;
 
         // Allow a user to claim ownership of an unclaimed proof
-        fn make_claim(origin, proof: Vec<u8>) {
+        fn create_claim(origin, proof: Vec<u8>) {
             // Verify that the incoming transaction is signed and store who the
             // caller of this function is.
             let sender = ensure_signed(origin)?;

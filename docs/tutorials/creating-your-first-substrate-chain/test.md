@@ -112,7 +112,7 @@ export default function ProofOfExistence(props) {
             label={"Create Claim"}
             setStatus={setStatus}
             type="TRANSACTION"
-            attrs={{ params: [digest], tx: api.tx.templateModule.makeClaim }}
+            attrs={{ params: [digest], tx: api.tx.templateModule.createClaim }}
             disabled={isClaimed() || !digest}
           />
           <TxButton

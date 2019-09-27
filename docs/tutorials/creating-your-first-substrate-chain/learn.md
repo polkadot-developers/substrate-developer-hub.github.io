@@ -118,7 +118,7 @@ to claim the file.
 
 Our Proof of Existence module will expose two callable functions:
 
-* `make_claim` - Which allows a user to claim the existence of a file by
+* `create_claim` - Which allows a user to claim the existence of a file by
   uploading a file digest.
 
 * `revoke_claim` - Which allows the current owner of a claim to revoke their
