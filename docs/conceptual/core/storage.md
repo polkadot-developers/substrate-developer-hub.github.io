@@ -28,13 +28,15 @@ structure whose contents can be modified and whose root hash is recalculated
 efficiently.
 
 Tries are important tool for blockchains because they allow for efficient
-storing and sharing of historical of block state. Each block does not have its
-own state trie, but a trie hash that will point to the trie nodes from previous
-block states.
+storing and sharing of the historical block state. The root hash of the trie
+provides a cryptographic fingerprint of the final resulting storage after
+executing all state transitions by a blockchain. Thus, two blockchain nodes can
+easily verify they have the same final state by simply comparing their trie
+root.
 
-Accessing trie data is costly. Each read operation takes O(log N) time,
-where N is the number of elements stored in the trie. To mitigate this, we use a
-key value cache.
+Accessing trie data is costly. Each read operation takes O(log N) time, where N
+is the number of elements stored in the trie. To mitigate this, we use a key
+value cache.
 
 All trie nodes are stored in RocksDB and part of the trie state can get pruned,
 i.e. a key-value pair can be deleted from the storage when it is out of pruning
