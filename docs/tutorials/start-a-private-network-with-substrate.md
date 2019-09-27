@@ -185,7 +185,7 @@ Rather than writing our chainspec completely from scratch, we'll just make a few
 
 The file we just created contains several fields, and one can learn a lot by exploring them. By far the largest field is a single hex number that is the Wasm binary of our runtime. It is part of what you built earlier when you ran the `cargo build` command. Having this information on-chain allows supports forkless upgrades.
 
-The portion of the file we're interested in is the babe authorities (used for creating blocks) and the grandpa authorieits (used for finalizing blocks). That section looks like this
+The portion of the file we're interested in is the BABE authorities (used for creating blocks) and the GRANDPA authorities (used for finalizing blocks). That section looks like this
 ```json
 "babe": {
   "authorities": [
