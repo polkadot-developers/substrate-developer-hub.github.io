@@ -28,7 +28,8 @@ developed from the ground up. Instead they are forked from already existing
 blockchains. For instance:
 
 * Bitcoin was forked to create: Litecoin, ZCash, Namecoin, Bitcoin Cash, etc...
-* Ethereum was forked to create: Quorem, POA Network, KodakCoin, Musicoin, etc...
+* Ethereum was forked to create: Quorem, POA Network, KodakCoin, Musicoin,
+  etc...
 
 ![](assets/forks.png)
 
