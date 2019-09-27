@@ -214,7 +214,7 @@ The portion of the file we're interested in is the BABE authorities (used for cr
 
 ```
 
-All we need to do is change the authority addresses listed (currently Alice and Bob) to our own addresses that we generated in the previous step. The sr25519 addresses go in the `babe` section, and the ed25519 addresses in the `grandpa` section. You may add as many validators as you like.
+All we need to do is change the authority addresses listed (currently Alice and Bob) to our own addresses that we generated in the previous step. The sr25519 addresses go in the `babe` section, and the ed25519 addresses in the `grandpa` section. You may add as many validators as you like. To see how polkadot uses these keys and others in the [Polkadot wiki](https://wiki.polkadot.network/docs/en/learn-keys#session-keys).
 
 > A single person should do these steps and share the resulting file with their fellow validators.
 >
