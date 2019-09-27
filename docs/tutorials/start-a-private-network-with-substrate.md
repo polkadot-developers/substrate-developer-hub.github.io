@@ -164,7 +164,7 @@ Secret phrase `keep matrix knee meat awake frown rubber position federal easily 
   Address (SS58): 5FHzDem7A5aAq79tuEN9xJuNPXiYfmRQamhumTuqu6i57BuU
 ```
 
-Now see the ed25519 key and address associated with the same mnemonic
+Now see the `ed25519` key and address associated with the same mnemonic. This key will be used by GRANDPA for block finalization.
 ```
 $ subkey --ed25519 inspect "keep matrix knee meat awake frown rubber position federal easily strategy inhale"
 Secret phrase `keep matrix knee meat awake frown rubber position federal easily strategy inhale` is account:
