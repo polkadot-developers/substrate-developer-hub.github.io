@@ -88,14 +88,14 @@ Since we configured our module to emit events, let's go ahead and define that!
 
 ```rust
 // This module's events.
-decl_event!(
+decl_event! {
     pub enum Event<T> where AccountId = <T as system::Trait>::AccountId {
         // Event emitted when a proof has been claimed.
         ClaimCreated(AccountId, Vec<u8>),
         // Event emitted when a claim is revoked by the owner.
         ClaimRevoked(AccountId, Vec<u8>),
     }
-);
+}
 ```
 
 Our module will only have two events:
@@ -158,28 +158,28 @@ decl_module! {
             Proofs::<T>::insert(&proof, sender.clone());
 
             // Emit an event that the claim was created
-            Self::deposit_event(RawEvent::ClaimCreated(sender, digest));
+            Self::deposit_event(RawEvent::ClaimCreated(sender, proof));
         }
 
         // Allow the owner of a claim to revoke their claim
-        fn revoke_claim(origin, digest: Vec<u8>) {
+        fn revoke_claim(origin, proof: Vec<u8>) {
             // Determine who is calling the function
             let sender = ensure_signed(origin)?;
 
             // Verify that the specified proof has been claimed
-            ensure!(Proofs::<T>::exists(&digest), "This proof has not been stored yet.");
+            ensure!(Proofs::<T>::exists(&proof), "This proof has not been stored yet.");
 
             // Get owner of the claim
-            let owner = Proofs::<T>::get(&digest);
+            let owner = Proofs::<T>::get(&proof);
 
             // Verify that sender of the current call is the claim owner
             ensure!(sender == owner, "You must own this claim to revoke it.");
 
             // Remove claim from storage
-            Proofs::<T>::remove(&digest);
+            Proofs::<T>::remove(&proof);
 
             // Emit an event that the claim was erased
-            Self::deposit_event(RawEvent::ProofErased(sender, digest));
+            Self::deposit_event(RawEvent::ClaimRevoked(sender, proof));
         }
     }
 }
