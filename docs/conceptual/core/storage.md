@@ -6,7 +6,7 @@ The Substrate uses a simple a key-value data store implemented as a database-bac
 
 ## Key-Value Database
 
-Substrate implements it's storage database with [RocksDB](https://rocksdb.org/), a persistent key-value store for fast storage environments.
+Substrate implements its storage database with [RocksDB](https://rocksdb.org/), a persistent key-value store for fast storage environments.
 
 This is used for all the components of Substrate which require persistent storage such as:
 
@@ -20,9 +20,9 @@ One advantage of using a simple key-value store is that you are able to easily a
 
 Substrate uses a Base-16 Modified Merkle Patricia tree ("trie") from [`paritytech/trie`](https://github.com/paritytech/trie) to provide a trie structure whose contents can be modified and whose root hash is recalculated efficiently.
 
-Tries are important tool for blockchains because the allows for efficient storing and sharing of historical of block state. You don't have a state trie per block, but a trie hash that will point to the nodes from previous block states. However, accessing data to trie data is costly. Each read operation takes O(log N) time, where N is the number of elements stored in the trie. To mitigate this, we use a key value cache.
+Tries are important tool for blockchains because they allow for efficient storing and sharing of historical of block state. You don't have a state trie per block, but a trie hash that will point to the nodes from previous block states. However, accessing data to trie data is costly. Each read operation takes O(log N) time, where N is the number of elements stored in the trie. To mitigate this, we use a key value cache.
 
-All trie node are stored in RocksDB and part of the trie state can get pruned, i.e. a key-value pair can be deleted from the storage when it is out of pruning range for non archive nodes. Trie nodes are also encoded to allow for any key type, while still be able to avoid key collision. We do not use [reference counting](http://en.wikipedia.org/wiki/Reference_counting) for performance reasons.
+All trie node are stored in RocksDB and part of the trie state can get pruned, i.e. a key-value pair can be deleted from the storage when it is out of pruning range for non archive nodes. The trie nodes partial path prefixes the hash of the encoded node for the RocksDB key to avoid key collision. We do not use [reference counting](http://en.wikipedia.org/wiki/Reference_counting) for performance reasons.
 
 ### State Trie
 
