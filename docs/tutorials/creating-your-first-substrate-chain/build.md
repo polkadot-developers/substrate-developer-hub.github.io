@@ -113,20 +113,20 @@ being stored or removed.
 To add a new proof to the blockchain, we will simply store that proof in our
 module's storage. To store that value, we will create a [hash
 map](https://en.wikipedia.org/wiki/Hash_table) from the proof to the owner of
-that proof.
+that proof and the block number the proof was made.
 
 ```rust
 // This module's storage items.
 decl_storage! {
     trait Store for Module<T: Trait> as PoeStorage {
         // The storage item for our proofs.
-        // It maps a proof to the user who made the claim.
+        // It maps a proof to the user who made the claim and when they made it.
         Proofs: map Vec<u8> => (T::AccountId, T::BlockNumber);
     }
 }
 ```
 
-If a proof has an owner, then we know that it has been claimed! Otherwise, the
+If a proof has an owner and a block number, then we know that it has been claimed! Otherwise, the
 proof is still available to be claimed.
 
 ### Callable Module Functions
