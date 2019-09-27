@@ -28,11 +28,11 @@ structure whose contents can be modified and whose root hash is recalculated
 efficiently.
 
 Tries are important tool for blockchains because they allow for efficient
-storing and sharing of historical of block state. Each block does not have it's
+storing and sharing of historical of block state. Each block does not have its
 own state trie, but a trie hash that will point to the trie nodes from previous
 block states.
 
-Accessing data to trie data is costly. Each read operation takes O(log N) time,
+Accessing trie data is costly. Each read operation takes O(log N) time,
 where N is the number of elements stored in the trie. To mitigate this, we use a
 key value cache.
 
@@ -67,7 +67,7 @@ state when it includes child tries.
 
 The Substrate runtime support library provides utilities which generates unique,
 deterministic keys for your runtime module storage items. These storage items
-are placed in the main trie and are accessible by querying the trie by key.
+are placed in the state trie and are accessible by querying the trie by key.
 
 ## Next Steps
 
