@@ -173,7 +173,7 @@ Secret phrase `keep matrix knee meat awake frown rubber position federal easily 
   Address (SS58): 5HpHD5YseSWbHfni43Zm2SjtpyqSVmuaNhKkVmivp8L93Trs
 ```
 
-Creating the chainspec
+Creating the Chainspec
 -----------------------------
 Last time around, we used `--chain=local` which is a predefined "chainspec" that has Alice and Bob specified as validators along with many other useful defaults.
 
