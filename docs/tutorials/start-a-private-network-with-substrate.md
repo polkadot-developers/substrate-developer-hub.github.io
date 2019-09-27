@@ -183,7 +183,7 @@ Rather than writing our chainspec completely from scratch, we'll just make a few
 ./target/release/node-template build-spec --chain=local > customSpec.json
 ```
 
-The file we just created contains several fields, and one can learn a lot by exploring them. By far the largest field is a single hex number that is the Wasm binary of our runtime. It is part of what you built earlier when you ran the `cargo build` command. Having this inforamtion on-chain allows supports forkless upgrades.
+The file we just created contains several fields, and one can learn a lot by exploring them. By far the largest field is a single hex number that is the Wasm binary of our runtime. It is part of what you built earlier when you ran the `cargo build` command. Having this information on-chain allows supports forkless upgrades.
 
 The portion of the file we're interested in is the babe authorities (used for creating blocks) and the grandpa authorieits (used for finalizing blocks). That section looks like this
 ```json
