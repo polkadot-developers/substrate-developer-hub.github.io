@@ -2,9 +2,11 @@
 title: Building a Custom Runtime Module
 ---
 
-We will now modify the `substrate-node-template` to introduce the basic functionality of a Proof Of Existence module.
+We will now modify the `substrate-node-template` to introduce the basic
+functionality of a Proof Of Existence module.
 
-Open the `substrate-node-template` in your favorite code editor. Then open the file at `runtime/src/template.rs`
+Open the `substrate-node-template` in your favorite code editor. Then open the
+file at `runtime/src/template.rs`
 
 ```
 substrate-node-template
@@ -28,9 +30,12 @@ substrate-node-template
 +-- ...
 ```
 
-You will see some pre-written code which acts as a template for a new runtime module. You can delete the contents of this file since we will start from scratch for full transparency.
+You will see some pre-written code which acts as a template for a new runtime
+module. You can delete the contents of this file since we will start from
+scratch for full transparency.
 
-At a high level, the a Substrate Runtime Module can be broken down into 5 sections:
+At a high level, the a Substrate Runtime Module can be broken down into 5
+sections:
 
 ```rust
 // 1. Imports
@@ -49,11 +54,14 @@ decl_storage! {...}
 decl_module! {...}
 ```
 
-Things like events, storage, and callable functions should look familiar to you if you have done other blockchain development. We will show you what each of these components look like for a basic Proof Of Existence module.
+Things like events, storage, and callable functions should look familiar to you
+if you have done other blockchain development. We will show you what each of
+these components look like for a basic Proof Of Existence module.
 
 ## Imports
 
-Since imports are pretty boring, you can start by copying this at the top of your empty `template.rs` file:
+Since imports are pretty boring, you can start by copying this at the top of
+your empty `template.rs` file:
 
 ```rust 
 use support::{decl_module, decl_storage, decl_event, ensure, StorageMap};
@@ -63,7 +71,8 @@ use system::ensure_signed;
 
 ## Module Configuration
 
-For now, the only thing we will configure about our module is that it will emit some Events.
+For now, the only thing we will configure about our module is that it will emit
+some Events.
 
 ```rust 
 /// The module's configuration trait.
@@ -93,11 +102,16 @@ Our module will only have two events:
 1. When a new proof is added to the blockchain.
 2. When a proof is removed.
 
-The events can contain some metadata, in this case, each event will also display who triggered the event (`AccountId`), and the proof data (`Vec<u8>`) that is being stored or removed.
+The events can contain some metadata, in this case, each event will also display
+who triggered the event (`AccountId`), and the proof data (`Vec<u8>`) that is
+being stored or removed.
 
 ## Module Storage Items
 
-To add a new proof to the blockchain, we will simply store that proof in our module's storage. To store that value, we will create a [hash map](https://en.wikipedia.org/wiki/Hash_table) from the proof to the owner of that proof.
+To add a new proof to the blockchain, we will simply store that proof in our
+module's storage. To store that value, we will create a [hash
+map](https://en.wikipedia.org/wiki/Hash_table) from the proof to the owner of
+that proof.
 
 ```rust
 // This module's storage items.
@@ -110,11 +124,13 @@ decl_storage! {
 }
 ```
 
-If a proof has an owner, then we know that it has been claimed! Otherwise, the proof is still available to be claimed.
+If a proof has an owner, then we know that it has been claimed! Otherwise, the
+proof is still available to be claimed.
 
 ## Callable Module Functions
 
-As implied by our Module Events, we will have two functions the user can call in this Substrate Runtime Module:
+As implied by our Module Events, we will have two functions the user can call in
+this Substrate Runtime Module:
 
 1. `make_claim()`: Allow a user to claim the existence of a file with a proof.
 2. `revoke_claim()`: Allow the owner of a claim to revoke their claim.
@@ -171,7 +187,9 @@ decl_module! {
 
 ## Compile Your New Module
 
-If you were able to copy all of the parts of this module correctly into your `template.rs` file, you should be able to recompile your node without warning or error:
+If you were able to copy all of the parts of this module correctly into your
+`template.rs` file, you should be able to recompile your node without warning or
+error:
 
 ```bash
 cargo build --release
