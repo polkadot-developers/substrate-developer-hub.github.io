@@ -27,7 +27,7 @@ one-liner to get all of those prerequisites installed for you:
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
 
-> If you want to see specifically what this script does just visit:
+> **Note:** If you want to see specifically what this script does just visit:
 > https://getsubstrate.io
 
 It will automatically install:

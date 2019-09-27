@@ -84,6 +84,5 @@ are able to make transfers easily with a simple, interactive front-end.
 
 Now let's build our Proof of Existence Module
 
-> If you want to stop your node or front-end, you can press `ctrl + c` in the
-> terminal.
-
+> **Note:** If you want to stop your node or front-end, you can press `ctrl + c`
+> in the terminal.
