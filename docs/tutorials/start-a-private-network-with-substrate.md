@@ -98,7 +98,7 @@ When the node starts you should see output similar to this.
 ```
 
 A few lines to take note of:
-`Local node identity is: QmViTYm8Yr4yneyRGov9L87vLeVLoySFduVRNQ1d33WdXN` shows the node ID that Bob will need when booting from Alice's node
+`Local node identity is: QmViTYm8Yr4yneyRGov9L87vLeVLoySFduVRNQ1d33WdXN` shows the node ID that Bob will need when booting from Alice's node.
 `Initializing Genesis block/state (state: 0x4faf…3aba, header-hash: 0x8855…e564)` tells which genesis block the node is using. Bob's node must have the same numbers or they will not connect to one another.
 
 More details about all of these flags and others that I haven't mentioned are available by running `./target/release/node-template --help`.
