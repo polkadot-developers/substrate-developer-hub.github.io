@@ -25,13 +25,13 @@ substrate-front-end-template
 |   |
 |   +-- App.jsx 
 |   |
-|   +-- ProofOfExistence.jsx  <-- Create this file
+|   +-- TemplateModule.jsx  <-- Edit this file
 |   |
 |   +-- ...
 +-- ...
 ```
 
-In that file copy the following component.
+In that file, replace the existing content the following component.
 
 ```js
 import React, { useState, useEffect } from "react";
