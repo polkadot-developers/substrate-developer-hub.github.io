@@ -155,7 +155,7 @@ Generate Your Own Keys
 ----------------------
 Now that we know the fundamentals and the command line options, it's time to generate our own keys rather than using the well-known Alice and Bob keys. Each person who wants to participate in the blockchain can generate their own key using the [subkey tool](ecosystem/subkey). Be sure to record all of the output from this section as you will need it later.
 
-First generate a mnemonic and see the sr25519 key and address associated with it.
+First generate a mnemonic and see the `sr25519` key and address associated with it. This key will be used by BABE for block production.
 ```
 $ subkey generate
 Secret phrase `keep matrix knee meat awake frown rubber position federal easily strategy inhale` is account:
