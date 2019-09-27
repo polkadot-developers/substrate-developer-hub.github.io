@@ -43,6 +43,8 @@ Your blockchain is producing new blocks!
 To actually interact with this local node, you need to start your
 `substrate-front-end-template`.
 
+Open another terminal in your working folder and run the following:
+
 ```bash
 cd substrate-front-end-template/
 # Install the Node.JS dependencies
@@ -60,18 +62,18 @@ showing that your Substrate node is running and connected!
 If you look at the **Balances** component, you will see test accounts which you
 have access to. Some like Alice and Bob already have funds!
 
-[ image ]
+![Front End Template](assets/front-end-template.png)
 
 You can try to transfer some funds from Alice to Charlie using the **Transfer**
 component.
 
 ```
-From: Alice
+Selected Account: Alice
 To: 5FLSigC9HGRKVhB9FiEo4Y3koPsNmBmLJbpXg2mp1hXcS59Y
 Amount: 1000
 ```
 
-[ image ]
+![Balance Transfer](assets/front-end-template-balance-transfer.png)
 
 If everything went successfully, you should see some notifications in the
 **Events** component, and of course Charlie's balance will now be `1000`.
