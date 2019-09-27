@@ -228,7 +228,7 @@ Once the chainspec is prepared, convert it to a "raw" chainspec. The distinction
 
 Finally share the `customSpecRaw.json` with your all the other validators in the network.
 
-Launching the chain
+Launching the Chain
 -------------------
 
 ### First Participant starts a Bootnode
