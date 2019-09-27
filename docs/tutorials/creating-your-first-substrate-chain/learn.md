@@ -28,7 +28,7 @@ developed from the ground up. Instead they are forked from already existing
 blockchains. For instance:
 
 * Bitcoin was forked to create: Litecoin, ZCash, Namecoin, Bitcoin Cash, etc...
-* Ethereum was forked to create: Quorem, POA Network, KodakCoin, etc...
+* Ethereum was forked to create: Quorem, POA Network, KodakCoin, Musicoin, etc...
 
 ![](assets/forks.png)
 
@@ -108,12 +108,12 @@ blockchain. Any user with the original file can prove that this file matches the
 one on the blockchain by simply recomputing the hash of the file and compare it
 with the hash stored on chain.
 
+![File Hash](assets/file-hash.png)
+
 To add to this, blockchain systems also provide a robust account system. So when
 a file digest is stored on the blockchain, we can also which user uploaded that
 digest. This allows that user to later prove that they were the original person
 to claim the file.
-
-[ image ]
 
 Our Proof of Existence module will expose two callable functions:
 
