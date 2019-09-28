@@ -57,7 +57,7 @@ in memory for all that is non canonical. See JournalDB.
 ### Child Trie
 
 Substrate also provides an API to generate new child tries with their own root
-hash that can be used in the runtime.
+hashes that can be used in the runtime.
 
 Child tries are identical to main state trie, except their root is stored and
 updated in the main trie instead of the block header. Since their headers are a
