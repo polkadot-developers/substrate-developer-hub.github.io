@@ -2,7 +2,7 @@
 title: Testing Your New Blockchain
 ---
 
-This tutorial is not really about writing front-ends, but we do want to show you
+This tutorial is not really about writing user interfaces, but we do want to show you
 how easy it can be with Substrate. If you have made it this far, that means you
 _should_ have a brand new working blockchain with custom functionality.
 
