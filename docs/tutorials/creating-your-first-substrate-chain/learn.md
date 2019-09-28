@@ -112,7 +112,7 @@ with the hash stored on chain.
 ![File Hash](assets/file-hash.png)
 
 To add to this, blockchain systems also provide a robust account system. So when
-a file digest is stored on the blockchain, we can also which user uploaded that
+a file digest is stored on the blockchain, we can also record which user uploaded that
 digest. This allows that user to later prove that they were the original person
 to claim the file.
 
