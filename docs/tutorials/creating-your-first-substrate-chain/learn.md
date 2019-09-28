@@ -121,7 +121,7 @@ Our Proof of Existence module will expose two callable functions:
 * `create_claim` - allows a user to claim the existence of a file by
   uploading a file digest.
 
-* `revoke_claim` - Which allows the current owner of a claim to revoke their
+* `revoke_claim` - allows the current owner of a claim to revoke their
   ownership.
 
 We will only need to store information about the proofs that have been claimed,
