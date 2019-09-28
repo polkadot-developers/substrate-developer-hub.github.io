@@ -21,7 +21,7 @@ cd substrate-node-template/
 You should see something like this if your node is running successfully:
 
 ```bash
-$ cargo run --release -- --dev
+$ ./target/release/node-template --dev
 
 2019-09-05 15:57:27 Running in --dev mode, RPC CORS has been disabled.
 2019-09-05 15:57:27 Substrate Node
