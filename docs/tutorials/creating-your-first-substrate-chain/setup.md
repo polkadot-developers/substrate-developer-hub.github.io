@@ -7,7 +7,7 @@ framework and the Proof of Existence blockchain you will be building. However,
 setting up your computer for Substrate development can take a while. 
 
 To optimize your time, we will have you start the setup process. In the next
-section, while things are compiling, we will then tell you more about Substrate
+section, while things are compiling, you will learn more about Substrate
 and what we are building.
 
 ## Prerequisites
