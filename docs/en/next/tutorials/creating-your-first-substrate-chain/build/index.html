@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Building a Custom Runtime Module · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;We will now modify the &lt;code&gt;substrate-node-template&lt;/code&gt; to introduce the basic&lt;/p&gt;
+"/><meta name="docsearch:version" content="next"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Building a Custom Runtime Module · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;We will now modify the &lt;code&gt;substrate-node-template&lt;/code&gt; to introduce the basic&lt;/p&gt;
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/en/versions"><h3>next</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/en/docs" target="_self">Docs</a></li><li class=""><a href="/rustdocs/v1.0/" target="_self">Reference Docs</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/en/community" target="_self">Community</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/ru/next/tutorials/creating-your-first-substrate-chain/build">Русский</a></li><li><a href="/docs/zh-CN/next/tutorials/creating-your-first-substrate-chain/build">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Creating Your First Substrate Chain</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Creating Your First Substrate Chain<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/setup">Setup Your Computer</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/learn">Background Information</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/interact">Interacting with Your Node</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/build">Building a Custom Runtime Module</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/test">Testing Your New Blockchain</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/tutorials/creating-your-first-substrate-chain/build.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Building a Custom Runtime Module</h1></header><article><div><span><p>We will now modify the <code>substrate-node-template</code> to introduce the basic
+functionality of a Proof Of Existence module.</p>
+<p>Open the <code>substrate-node-template</code> in your favorite code editor. Then open the
+file <code>runtime/src/template.rs</code></p>
+<pre><code class="hljs">substrate<span class="token operator">-</span>node<span class="token operator">-</span>template
+<span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> runtime
+<span class="token operator">|</span>   <span class="token operator">|</span>
+<span class="token operator">|</span>   <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> Cargo<span class="token punctuation">.</span>toml
+<span class="token operator">|</span>   <span class="token operator">|</span>
+<span class="token operator">|</span>   <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> build<span class="token punctuation">.</span>rs
+<span class="token operator">|</span>   <span class="token operator">|</span>
+<span class="token operator">|</span>   <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> src
+<span class="token operator">|</span>       <span class="token operator">|</span>
+<span class="token operator">|</span>       <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> lib<span class="token punctuation">.</span>rs
+<span class="token operator">|</span>       <span class="token operator">|</span>
+<span class="token operator">|</span>       <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> template<span class="token punctuation">.</span>rs  <span class="token operator">&lt;</span><span class="token operator">-</span><span class="token operator">-</span> Edit this file
+<span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> scripts
+<span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> src
+<span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token punctuation">...</span>
+</code></pre>
+<p>You will see some pre-written code which acts as a template for a new runtime
+module. You can delete the contents of this file since we will start from
+scratch for full transparency.</p>
+<h2><a class="anchor" aria-hidden="true" id="build-your-new-module"></a><a href="#build-your-new-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Build Your New Module</h2>
+<p>At a high level, a Substrate Runtime Module can be broken down into five
+sections:</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// 1. Imports</span>
+<span class="token keyword">use</span> support<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>decl_module<span class="token punctuation">,</span> decl_storage<span class="token punctuation">,</span> decl_event<span class="token punctuation">,</span><span class="token punctuation">...</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 2. Module Configuration</span>
+<span class="token keyword">pub</span> <span class="token keyword">trait</span> Trait<span class="token punctuation">:</span> system<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait <span class="token punctuation">{</span><span class="token punctuation">...</span><span class="token punctuation">}</span>
+
+<span class="token comment">// 3. Module Events</span>
+<span class="token macro-rules function">decl_event!</span> <span class="token punctuation">{</span><span class="token punctuation">...</span><span class="token punctuation">}</span>
+
+<span class="token comment">// 4. Module Storage Items</span>
+<span class="token macro-rules function">decl_storage!</span> <span class="token punctuation">{</span><span class="token punctuation">...</span><span class="token punctuation">}</span>
+
+<span class="token comment">// 5. Callable Module Functions</span>
+<span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span><span class="token punctuation">...</span><span class="token punctuation">}</span>
+</code></pre>
+<p>Things like events, storage, and callable functions should look familiar to you
+if you have done other blockchain development. We will show you what each of
+these components look like for a basic Proof Of Existence module.</p>
+<h3><a class="anchor" aria-hidden="true" id="imports"></a><a href="#imports" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Imports</h3>
+<p>Since imports are pretty boring, you can start by copying this at the top of
+your empty <code>template.rs</code> file:</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">use</span> support<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>decl_module<span class="token punctuation">,</span> decl_storage<span class="token punctuation">,</span> decl_event<span class="token punctuation">,</span> ensure<span class="token punctuation">,</span> StorageMap<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> rstd<span class="token punctuation">:</span><span class="token punctuation">:</span>vec<span class="token punctuation">:</span><span class="token punctuation">:</span>Vec<span class="token punctuation">;</span>
+<span class="token keyword">use</span> system<span class="token punctuation">:</span><span class="token punctuation">:</span>ensure_signed<span class="token punctuation">;</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="module-configuration"></a><a href="#module-configuration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Module Configuration</h3>
+<p>For now, the only thing we will configure about our module is that it will emit
+some Events.</p>
+<pre><code class="hljs css language-rust"><span class="token comment">/// The module's configuration trait.</span>
+<span class="token keyword">pub</span> <span class="token keyword">trait</span> Trait<span class="token punctuation">:</span> system<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait <span class="token punctuation">{</span>
+    <span class="token comment">/// The overarching event type.</span>
+    <span class="token keyword">type</span> Event<span class="token punctuation">:</span> From<span class="token operator">&lt;</span>Event<span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token operator">>></span> <span class="token operator">+</span> Into<span class="token operator">&lt;&lt;</span><span class="token keyword">Self</span> <span class="token keyword">as</span> system<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span>Event<span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="module-events"></a><a href="#module-events" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Module Events</h3>
+<p>After we've configured our module to emit events, let's go ahead define which events:</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// This module's events.</span>
+<span class="token macro-rules function">decl_event!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">pub</span> <span class="token keyword">enum</span> Event<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token keyword">where</span> AccountId <span class="token operator">=</span> <span class="token operator">&lt;</span>T <span class="token keyword">as</span> system<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span>AccountId <span class="token punctuation">{</span>
+        <span class="token comment">/// Event emitted when a proof has been claimed.</span>
+        <span class="token function">ClaimCreated</span><span class="token punctuation">(</span>AccountId<span class="token punctuation">,</span> Vec<span class="token operator">&lt;</span>u8<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token comment">/// Event emitted when a claim is revoked by the owner.</span>
+        <span class="token function">ClaimRevoked</span><span class="token punctuation">(</span>AccountId<span class="token punctuation">,</span> Vec<span class="token operator">&lt;</span>u8<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Our module will only have two events:</p>
+<ol>
+<li>When a new proof is added to the blockchain.</li>
+<li>When a proof is removed.</li>
+</ol>
+<p>The events can contain some metadata, in this case, each event will also display
+who triggered the event (<code>AccountId</code>), and the proof data (as <code>Vec&lt;u8&gt;</code>) that is
+being stored or removed.</p>
+<h3><a class="anchor" aria-hidden="true" id="module-storage-items"></a><a href="#module-storage-items" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Module Storage Items</h3>
+<p>To add a new proof to the blockchain, we will simply store that proof in our
+module's storage. To store that value, we will create a <a href="https://en.wikipedia.org/wiki/Hash_table">hash
+map</a> from the proof to the owner of
+that proof and the block number the proof was made.</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// This module's storage items.</span>
+<span class="token macro-rules function">decl_storage!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">trait</span> Store <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">as</span> PoeStorage <span class="token punctuation">{</span>
+        <span class="token comment">/// The storage item for our proofs.</span>
+        <span class="token comment">/// It maps a proof to the user who made the claim and when they made it.</span>
+        Proofs<span class="token punctuation">:</span> map Vec<span class="token operator">&lt;</span>u8<span class="token operator">></span> <span class="token operator">=></span> <span class="token punctuation">(</span>T<span class="token punctuation">:</span><span class="token punctuation">:</span>AccountId<span class="token punctuation">,</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>BlockNumber<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>If a proof has an owner and a block number, then we know that it has been claimed! Otherwise, the
+proof is still available to be claimed.</p>
+<h3><a class="anchor" aria-hidden="true" id="callable-module-functions"></a><a href="#callable-module-functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Callable Module Functions</h3>
+<p>As implied by our module events, we will have two functions the user can call in
+this Substrate Runtime Module:</p>
+<ol>
+<li><code>create_claim()</code>: Allow a user to claim the existence of a file with a proof.</li>
+<li><code>revoke_claim()</code>: Allow the owner of a claim to revoke their claim.</li>
+</ol>
+<p>Here are what the module declaration looks like with these these two functions:</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// The module's dispatchable functions.</span>
+<span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span>
+    <span class="token comment">/// The module declaration.</span>
+    <span class="token keyword">pub</span> <span class="token keyword">struct</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> Call <span class="token keyword">where</span> origin<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>Origin <span class="token punctuation">{</span>
+        <span class="token comment">// A default function for depositing events</span>
+        <span class="token keyword">fn</span> <span class="token function">deposit_event</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> default<span class="token punctuation">;</span>
+
+        <span class="token comment">/// Allow a user to claim ownership of an unclaimed proof</span>
+        <span class="token keyword">fn</span> <span class="token function">create_claim</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> proof<span class="token punctuation">:</span> Vec<span class="token operator">&lt;</span>u8<span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// Verify that the incoming transaction is signed and store who the</span>
+            <span class="token comment">// caller of this function is.</span>
+            <span class="token keyword">let</span> sender <span class="token operator">=</span> <span class="token function">ensure_signed</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span>?<span class="token punctuation">;</span>
+
+            <span class="token comment">// Verify that the specified proof has not been claimed yet or error with the message</span>
+            <span class="token function">ensure!</span><span class="token punctuation">(</span><span class="token operator">!</span>Proofs<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>proof<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"This proof has already been claimed."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// Call the `system` runtime module to get the current block number</span>
+            <span class="token keyword">let</span> current_block <span class="token operator">=</span> <span class="token operator">&lt;</span>system<span class="token punctuation">:</span><span class="token punctuation">:</span>Module<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">block_number</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// Store the proof with the sender and the current block number</span>
+            Proofs<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>proof<span class="token punctuation">,</span> <span class="token punctuation">(</span>sender<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> current_block<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// Emit an event that the claim was created</span>
+            <span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">deposit_event</span><span class="token punctuation">(</span>RawEvent<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">ClaimCreated</span><span class="token punctuation">(</span>sender<span class="token punctuation">,</span> proof<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">/// Allow the owner to revoke their claim</span>
+        <span class="token keyword">fn</span> <span class="token function">revoke_claim</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> proof<span class="token punctuation">:</span> Vec<span class="token operator">&lt;</span>u8<span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// Determine who is calling the function</span>
+            <span class="token keyword">let</span> sender <span class="token operator">=</span> <span class="token function">ensure_signed</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span>?<span class="token punctuation">;</span>
+
+            <span class="token comment">// Verify that the specified proof has been claimed</span>
+            <span class="token function">ensure!</span><span class="token punctuation">(</span>Proofs<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>proof<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"This proof has not been stored yet."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// Get owner of the claim</span>
+            <span class="token keyword">let</span> <span class="token punctuation">(</span>owner<span class="token punctuation">,</span> _<span class="token punctuation">)</span> <span class="token operator">=</span> Proofs<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>proof<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// Verify that sender of the current call is the claim owner</span>
+            <span class="token function">ensure!</span><span class="token punctuation">(</span>sender <span class="token operator">==</span> owner<span class="token punctuation">,</span> <span class="token string">"You must own this claim to revoke it."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// Remove claim from storage</span>
+            Proofs<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>proof<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// Emit an event that the claim was erased</span>
+            <span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">deposit_event</span><span class="token punctuation">(</span>RawEvent<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">ClaimRevoked</span><span class="token punctuation">(</span>sender<span class="token punctuation">,</span> proof<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="compile-your-new-module"></a><a href="#compile-your-new-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Compile Your New Module</h2>
+<p>After you've copied all of the parts of this module correctly into your
+<code>template.rs</code> file, you should be able to recompile your node without warning or
+error:</p>
+<pre><code class="hljs css language-bash">cargo build --release
+</code></pre>
+<p>Now you can restart your node:</p>
+<pre><code class="hljs css language-bash"><span class="token comment"># Purge chain to clean up your old chain state</span>
+<span class="token comment"># You will be prompted to type `y`</span>
+./target/release/node-template purge-chain --dev
+<span class="token comment"># Re-run your node in "developer" mode</span>
+./target/release/node-template --dev
+</code></pre>
+<p>Now it is it time to interact with our new Proof of Existence module!</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 9/28/2019 by Shawn Tabrizi</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/interact"><span class="arrow-prev">← </span><span>Interacting with Your Node</span></a><a class="docs-next button" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/test"><span>Testing Your New Blockchain</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#build-your-new-module">Build Your New Module</a><ul class="toc-headings"><li><a href="#imports">Imports</a></li><li><a href="#module-configuration">Module Configuration</a></li><li><a href="#module-events">Module Events</a></li><li><a href="#module-storage-items">Module Storage Items</a></li><li><a href="#callable-module-functions">Callable Module Functions</a></li></ul></li><li><a href="#compile-your-new-module">Compile Your New Module</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/getting-started">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a></div><div><h5>Community</h5><a href="/en/videos">Videos</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a class="github-button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="row"><div class="copyright">Copyright © 2019 Parity Technologies</div><a class="item" href="https://www.parity.io/privacy/">Privacy Policy</a><a class="item" href="#" id="cookie-settings">Cookie Settings</a><script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:en"]}
+              });
+            </script></body></html>
