@@ -2,16 +2,16 @@
 title: Storage
 ---
 
-The Substrate uses a simple a key-value data store implemented as a
-database-backed modified Merkle tree.
+Substrate uses a simple a key-value data store implemented as a database-backed
+modified Merkle tree.
 
 ## Key-Value Database
 
 Substrate implements its storage database with [RocksDB](https://rocksdb.org/),
 a persistent key-value store for fast storage environments.
 
-This is used for all the components of Substrate that require persistent
-storage such as:
+This is used for all the components of Substrate that require persistent storage
+such as:
 
 - Substrate clients
 - Substrate light-clients
@@ -27,11 +27,10 @@ Substrate uses a Base-16 Modified Merkle Patricia tree ("trie") from
 structure whose contents can be modified and whose root hash is recalculated
 efficiently.
 
-Tries allow efficient
-storing and sharing of the historical block state. The root hash of the trie
-provides a cryptographic fingerprint of the final resulting storage after
-executing all state transitions by a blockchain. Thus, two blockchain nodes can
-easily verify they have the same final state by simply comparing their trie
+Tries allow efficient storing and sharing of the historical block state. The
+trie root is a representation of the data within the trie; that is, two tries
+with different data will always have different roots. Thus, two blockchain nodes
+can easily verify they have the same final state by simply comparing their trie
 root.
 
 Accessing trie data is costly. Each read operation takes O(log N) time, where N
@@ -40,16 +39,15 @@ value cache.
 
 All trie nodes are stored in RocksDB and part of the trie state can get pruned,
 i.e. a key-value pair can be deleted from the storage when it is out of pruning
-range for non archive nodes. The trie nodes partial path prefixes the hash of
-the encoded node for the RocksDB key to avoid key collision. We do not use
-[reference counting](http://en.wikipedia.org/wiki/Reference_counting) for
-performance reasons.
+range for non archive nodes. We do not use [reference
+counting](http://en.wikipedia.org/wiki/Reference_counting) for performance
+reasons.
 
 ### State Trie
 
-Substrate has a single main trie, called the state trie, whose changing root
-hash is placed in each block header. This is used to easily verify the state of
-the blockchain and provide a basis for light clients to verify proofs.
+Substrate based chains have a single main trie, called the state trie, whose
+root hash is placed in each block header. This is used to easily verify the
+state of the blockchain and provide a basis for light clients to verify proofs.
 
 This trie only stores content for the canonical chain, not forks. There is a
 separate `state_db` layer that maintain the trie state with references counted
@@ -62,8 +60,8 @@ hash that can be used in the runtime.
 
 Child tries are identical to main state trie, except their root is stored and
 updated in the main trie instead of the block header. Since their headers are a
-part of the main state trie, it is still easy to verify of the complete node
-state when it includes child tries.
+part of the main state trie, it is still easy to verify the complete node state
+when it includes child tries.
 
 ## Runtime Storage API
 
