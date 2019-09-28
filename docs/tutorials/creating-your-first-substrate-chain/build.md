@@ -86,7 +86,7 @@ pub trait Trait: system::Trait {
 
 ### Module Events
 
-Since we configured our module to emit events, let's go ahead and define that!
+After we've configured our module to emit events, let's go ahead define which events:
 
 ```rust
 // This module's events.
