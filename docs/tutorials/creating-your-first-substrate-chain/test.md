@@ -160,7 +160,7 @@ This is the end of our journey into creating a Proof of Existence blockchain.
 You have seen first hand how simple it can be to develop a brand new runtime
 module and launch a custom blockchain using Substrate. Furthermore, we have
 shown you that the Substrate ecosystem provides you with the tools to quickly
-and easily create responsive front-end experiences so users can interact with
+create responsive front-end experiences so users can interact with
 your blockchain.
 
 This tutorial chose to omit some of the specific details around development in
