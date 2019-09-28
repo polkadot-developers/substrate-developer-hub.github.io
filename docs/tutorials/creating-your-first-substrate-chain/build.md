@@ -36,7 +36,7 @@ scratch for full transparency.
 
 ## Build Your New Module
 
-At a high level, the a Substrate Runtime Module can be broken down into 5
+At a high level, a Substrate Runtime Module can be broken down into five
 sections:
 
 ```rust
