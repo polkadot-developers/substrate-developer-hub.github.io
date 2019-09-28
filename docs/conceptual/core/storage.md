@@ -10,7 +10,7 @@ database-backed modified Merkle tree.
 Substrate implements its storage database with [RocksDB](https://rocksdb.org/),
 a persistent key-value store for fast storage environments.
 
-This is used for all the components of Substrate which require persistent
+This is used for all the components of Substrate that require persistent
 storage such as:
 
 - Substrate clients
