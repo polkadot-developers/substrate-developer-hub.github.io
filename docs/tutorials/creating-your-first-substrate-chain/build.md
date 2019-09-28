@@ -192,7 +192,7 @@ decl_module! {
 
 ## Compile Your New Module
 
-If you were able to copy all of the parts of this module correctly into your
+After you've copied all of the parts of this module correctly into your
 `template.rs` file, you should be able to recompile your node without warning or
 error:
 
