@@ -20,7 +20,7 @@ storage such as:
 ## Trie Abstraction
 
 One advantage of using a simple key-value store is that you are able to easily
-abstract other storage structures on top.
+abstract storage structures on top of it.
 
 Substrate uses a Base-16 Modified Merkle Patricia tree ("trie") from
 [`paritytech/trie`](https://github.com/paritytech/trie) to provide a trie
