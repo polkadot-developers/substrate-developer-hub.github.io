@@ -59,7 +59,7 @@ in memory for all that is non-canonical. See JournalDB.
 Substrate also provides an API to generate new child tries with their own root
 hashes that can be used in the runtime.
 
-Child tries are identical to main state trie, except their root is stored and
+Child tries are identical to the main state trie, except that a child trie's root is stored and
 updated in the main trie instead of the block header. Since their headers are a
 part of the main state trie, it is still easy to verify the complete node state
 when it includes child tries.
