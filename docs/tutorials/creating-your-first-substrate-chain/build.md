@@ -147,7 +147,7 @@ decl_module! {
         // A default function for depositing events
         fn deposit_event() = default;
 
-        // Allow a user to claim ownership of an unclaimed proof
+        /// Allow a user to claim ownership of an unclaimed proof
         fn create_claim(origin, proof: Vec<u8>) {
             // Verify that the incoming transaction is signed and store who the
             // caller of this function is.
