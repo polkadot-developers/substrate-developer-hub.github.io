@@ -6,7 +6,7 @@ We will now modify the `substrate-node-template` to introduce the basic
 functionality of a Proof Of Existence module.
 
 Open the `substrate-node-template` in your favorite code editor. Then open the
-file at `runtime/src/template.rs`
+file `runtime/src/template.rs`
 
 ```
 substrate-node-template
