@@ -8,7 +8,7 @@ the Substrate blockchain development framework.
 
 This tutorial is aimed at someone who has never touched Substrate before, and
 wants to get a **basic** and **quick** understanding of what Substrate is all
-about. We will not be going too in depth about the intricacies of developing on
+about. We will not be going into depth about the intricacies of developing on
 Substrate, but will hopefully satisfy your curiosity so that you will continue
 this journey.
 
