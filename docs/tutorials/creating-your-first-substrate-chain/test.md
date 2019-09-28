@@ -4,7 +4,7 @@ title: Testing Your New Blockchain
 
 This tutorial is not really about writing user interfaces, but we do want to show you
 how easy it can be with Substrate. If you have made it this far, that means you
-_should_ have a brand new working blockchain with custom functionality.
+_should_ have a brand new blockchain with custom functionality up and running.
 
 We will give you a custom react component that you can add to your
 `substrate-front-end-template` meant for interacting with your node.
