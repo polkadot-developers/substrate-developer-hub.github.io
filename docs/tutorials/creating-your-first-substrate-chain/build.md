@@ -105,7 +105,7 @@ Our module will only have two events:
 2. When a proof is removed.
 
 The events can contain some metadata, in this case, each event will also display
-who triggered the event (`AccountId`), and the proof data (`Vec<u8>`) that is
+who triggered the event (`AccountId`), and the proof data (as `Vec<u8>`) that is
 being stored or removed.
 
 ### Module Storage Items
