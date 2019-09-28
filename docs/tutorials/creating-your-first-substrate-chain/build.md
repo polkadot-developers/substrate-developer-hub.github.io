@@ -166,7 +166,7 @@ decl_module! {
             Self::deposit_event(RawEvent::ClaimCreated(sender, proof));
         }
 
-        // Allow the owner of a claim to revoke their claim
+        /// Allow the owner to revoke their claim
         fn revoke_claim(origin, proof: Vec<u8>) {
             // Determine who is calling the function
             let sender = ensure_signed(origin)?;
