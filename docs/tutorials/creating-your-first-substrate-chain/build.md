@@ -92,7 +92,7 @@ After we've configured our module to emit events, let's go ahead define which ev
 // This module's events.
 decl_event! {
     pub enum Event<T> where AccountId = <T as system::Trait>::AccountId {
-        // Event emitted when a proof has been claimed.
+        /// Event emitted when a proof has been claimed.
         ClaimCreated(AccountId, Vec<u8>),
         // Event emitted when a claim is revoked by the owner.
         ClaimRevoked(AccountId, Vec<u8>),
