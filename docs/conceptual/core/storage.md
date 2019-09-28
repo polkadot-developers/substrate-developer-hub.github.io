@@ -27,7 +27,7 @@ Substrate uses a Base-16 Modified Merkle Patricia tree ("trie") from
 structure whose contents can be modified and whose root hash is recalculated
 efficiently.
 
-Tries are important tool for blockchains because they allow for efficient
+Tries allow efficient
 storing and sharing of the historical block state. The root hash of the trie
 provides a cryptographic fingerprint of the final resulting storage after
 executing all state transitions by a blockchain. Thus, two blockchain nodes can
