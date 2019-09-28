@@ -131,7 +131,7 @@ proof is still available to be claimed.
 
 ### Callable Module Functions
 
-As implied by our Module Events, we will have two functions the user can call in
+As implied by our module events, we will have two functions the user can call in
 this Substrate Runtime Module:
 
 1. `create_claim()`: Allow a user to claim the existence of a file with a proof.
