@@ -51,7 +51,7 @@ root hash is placed in each block header. This is used to easily verify the
 state of the blockchain and provide a basis for light clients to verify proofs.
 
 This trie only stores content for the canonical chain, not forks. There is a
-separate `state_db` layer that maintain the trie state with references counted
+separate `state_db` layer that maintains the trie state with references counted
 in memory for all that is non canonical. See JournalDB.
 
 ### Child Trie
