@@ -40,7 +40,7 @@ key-value cache.
 
 All trie nodes are stored in RocksDB and part of the trie state can get pruned,
 i.e. a key-value pair can be deleted from the storage when it is out of pruning
-range for non archive nodes. We do not use [reference
+range for non-archive nodes. We do not use [reference
 counting](http://en.wikipedia.org/wiki/Reference_counting) for performance
 reasons.
 
