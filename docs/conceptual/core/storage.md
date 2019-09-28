@@ -10,8 +10,8 @@ modified Merkle tree.
 Substrate implements its storage database with [RocksDB](https://rocksdb.org/),
 a persistent key-value store for fast storage environments.
 
-This is used for all the components of Substrate that require persistent storage,
-such as:
+This is used for all the components of Substrate that require persistent
+storage, such as:
 
 - Substrate clients
 - Substrate light-clients
@@ -34,7 +34,6 @@ can easily verify that they have the same state by simply comparing their trie
 roots.
 
 Accessing trie data is costly. Each read operation takes O(log N) time, where N
-is the number of elements stored in the trie. To mitigate this, we use a key
 is the number of elements stored in the trie. To mitigate this, we use a
 key-value cache.
 
@@ -51,18 +50,20 @@ root hash is placed in each block header. This is used to easily verify the
 state of the blockchain and provide a basis for light clients to verify proofs.
 
 This trie only stores content for the canonical chain, not forks. There is a
-separate `state_db` layer that maintains the trie state with references counted
-in memory for all that is non-canonical. See JournalDB.
+separate [`state_db`
+layer](https://substrate.dev/rustdocs/master/substrate_state_db/index.html) that
+maintains the trie state with references counted in memory for all that is
+non-canonical.
 
 ### Child Trie
 
 Substrate also provides an API to generate new child tries with their own root
 hashes that can be used in the runtime.
 
-Child tries are identical to the main state trie, except that a child trie's root is stored and
-updated in the main trie instead of the block header. Since their headers are a
-part of the main state trie, it is still easy to verify the complete node state
-when it includes child tries.
+Child tries are identical to the main state trie, except that a child trie's
+root is stored and updated as a node in the main trie instead of the block
+header. Since their headers are a part of the main state trie, it is still easy
+to verify the complete node state when it includes child tries.
 
 Child tries are useful when you want your own independent trie with a separate
 root hash that you can use to verify the specific content in that trie.
@@ -71,9 +72,11 @@ these needs automatically; thus a child trie is used instead.
 
 ## Runtime Storage API
 
-The Substrate runtime support library provides utilities to generate unique,
-deterministic keys for your runtime module storage items. These storage items
-are placed in the state trie and are accessible by querying the trie by key.
+The Substrate's [Support
+module](https://substrate.dev/rustdocs/master/srml_support/index.html) provides
+utilities to generate unique, deterministic keys for your runtime module storage
+items. These storage items are placed in the state trie and are accessible by
+querying the trie by key.
 
 ## Next Steps
 
