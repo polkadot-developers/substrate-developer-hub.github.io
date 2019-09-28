@@ -35,7 +35,8 @@ roots.
 
 Accessing trie data is costly. Each read operation takes O(log N) time, where N
 is the number of elements stored in the trie. To mitigate this, we use a key
-value cache.
+is the number of elements stored in the trie. To mitigate this, we use a
+key-value cache.
 
 All trie nodes are stored in RocksDB and part of the trie state can get pruned,
 i.e. a key-value pair can be deleted from the storage when it is out of pruning
