@@ -41,7 +41,7 @@ Your blockchain is producing new blocks!
 
 ## Start Your Front-End
 
-To actually interact with this local node, you need to start your
+To interact with the local node via the front-end template, start the 
 `substrate-front-end-template`.
 
 Open another terminal in your working folder and run the following:
