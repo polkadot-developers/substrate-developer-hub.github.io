@@ -65,7 +65,7 @@ when it includes child tries.
 
 ## Runtime Storage API
 
-The Substrate runtime support library provides utilities which generates unique,
+The Substrate runtime support library provides utilities to generate unique,
 deterministic keys for your runtime module storage items. These storage items
 are placed in the state trie and are accessible by querying the trie by key.
 
