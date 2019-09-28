@@ -27,6 +27,9 @@ one-liner to get all of those prerequisites installed for you:
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
 
+<details>
+<summary>Learn what this script does.</summary>
+
 > **Note:** If you want to see specifically what this script does just visit:
 > https://getsubstrate.io
 
@@ -37,6 +40,8 @@ It will automatically install:
 * [OpenSSL](https://www.openssl.org/)
 * [Git](https://git-scm.com/downloads)
 * [Rust](https://www.rust-lang.org/tools/install)
+
+</details>
 
 If you are using Windows and do not have the [Windows Subsystem for
 Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), the process
