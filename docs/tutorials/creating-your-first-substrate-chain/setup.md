@@ -71,7 +71,7 @@ Substrate.
     git clone https://github.com/substrate-developer-hub/substrate-front-end-template
     ```
 
-2. Initialize your Wasm build environment
+2. Initialize your WebAssembly build environment
 
     ```bash
     # Update Rust
