@@ -153,7 +153,7 @@ decl_module! {
             // caller of this function is.
             let sender = ensure_signed(origin)?;
 
-            // Verify that the specified proof has not been claimed yet
+            // Verify that the specified proof has not been claimed yet or error with the message
             ensure!(!Proofs::<T>::exists(&proof), "This proof has already been claimed.");
 
             // Call another Substrate runtime module to get the current block number
