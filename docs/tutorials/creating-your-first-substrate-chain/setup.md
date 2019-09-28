@@ -54,7 +54,7 @@ interacting with our custom Substrate blockchain.
 
 To use the front-end project, you need to install [Yarn](https://yarnpkg.com),
 which may also require you separately install [Node.js](https://nodejs.org/).
-
+You can do that while the `getsubstrate`-script is still running.
 * [Install Node.js](https://nodejs.org/en/download/)
 * [Install Yarn](https://yarnpkg.com/lang/en/docs/install/)
 
