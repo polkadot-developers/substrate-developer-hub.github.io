@@ -30,7 +30,7 @@ efficiently.
 Tries allow efficient storing and sharing of the historical block state. The
 trie root is a representation of the data within the trie; that is, two tries
 with different data will always have different roots. Thus, two blockchain nodes
-can easily verify they have the same final state by simply comparing their trie
+can easily verify that they have the same state by simply comparing their trie
 root.
 
 Accessing trie data is costly. Each read operation takes O(log N) time, where N
