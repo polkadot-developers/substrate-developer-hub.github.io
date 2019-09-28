@@ -63,6 +63,11 @@ updated in the main trie instead of the block header. Since their headers are a
 part of the main state trie, it is still easy to verify the complete node state
 when it includes child tries.
 
+Child tries are useful when you want your own independent trie with a separate
+root hash that you can use to verify the specific content in that trie.
+Subsections of a trie do not have a root-hash-like representation that satisfy
+these needs automatically; thus a child trie is used instead.
+
 ## Runtime Storage API
 
 The Substrate runtime support library provides utilities to generate unique,
