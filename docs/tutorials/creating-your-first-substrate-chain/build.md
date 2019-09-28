@@ -119,7 +119,7 @@ that proof and the block number the proof was made.
 // This module's storage items.
 decl_storage! {
     trait Store for Module<T: Trait> as PoeStorage {
-        // The storage item for our proofs.
+        /// The storage item for our proofs.
         // It maps a proof to the user who made the claim and when they made it.
         Proofs: map Vec<u8> => (T::AccountId, T::BlockNumber);
     }
