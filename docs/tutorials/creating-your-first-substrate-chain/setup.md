@@ -60,7 +60,8 @@ You can do that while the `getsubstrate`-script is still running.
 
 ## Compiling Substrate
 
-We have created simple template projects to help you get started building on
+Once everything is installed, you need to set up the skeleton for our project.
+Fortunately, there is a simple template project to help you get started building on
 Substrate.
 
 1. Clone the Substrate Node Template and Substrate Front-End Template
