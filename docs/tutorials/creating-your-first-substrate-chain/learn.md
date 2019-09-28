@@ -129,5 +129,5 @@ and who made those claims.
 
 Sounds simple enough?
 
-If your node is finished compiling, then you are ready to move to the next
+If your node is finished compiling, you are ready to move to the next
 section where we will interact with your Substrate node template!
