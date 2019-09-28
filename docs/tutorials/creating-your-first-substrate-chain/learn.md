@@ -127,7 +127,7 @@ Our Proof of Existence module will expose two callable functions:
 We will only need to store information about the proofs that have been claimed,
 and who made those claims.
 
-Sounds easy enough?
+Sounds simple enough?
 
 If your node is finished compiling, then you are ready to move to the next
 section where we will interact with your Substrate node template!
