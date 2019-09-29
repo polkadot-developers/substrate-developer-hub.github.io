@@ -15,18 +15,18 @@ You will learn to:
 
 Compiling the Tools
 -----------------
-Substrate does not (yet) offer binary installation packages, so it must be compiled from source, which can be a time-consuming process. Commits go into the [Substrate repository](https://github.com/paritytech/substrate) regularly and it is wise that everyone participating in this network have the same version of substrate to guarantee success. In practice similar but not identical versions will often work, but banking on that is a recipe for frustration. In this tutorial, we'll be using commit `7d7e74fb` for more stability.
+Substrate does not (yet) offer binary installation packages, so it must be compiled from source, which can be a time-consuming process. Commits go into the [Substrate repository](https://github.com/paritytech/substrate) regularly and it is wise that everyone participating in this network have the same version of substrate to guarantee success. In this tutorial, we'll be using commit `7d7e74fb` because it is the same commit that [Substrate Package](https://github.com/substrate-developer-hub/substrate-package/) uses in version 1.5.0.
 
 ```bash
+# Install rust prerequisites
+curl https://getsubstrate.io -sSf | bash -s -- --fast
+
 # Download the Substrate code
 git clone https://github.com/paritytech/substrate
 cd substrate
 
 # Switch to the proper commit
 git checkout 7d7e74fb
-
-# Install rust prerequisites
-curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
 
 The repository includes a utility called `subkey` which we'll optionally use to generate and inspect keypairs. Let's compile it first. The `--force` option means that we'll install this version by overriding the previously installed version.
