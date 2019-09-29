@@ -41,19 +41,19 @@ sections:
 
 ```rust
 // 1. Imports
-use support::{decl_module, decl_storage, decl_event,...};
+use support::{decl_module, decl_storage, decl_event};
 
 // 2. Module Configuration
-pub trait Trait: system::Trait {...}
+pub trait Trait: system::Trait { /* --snip-- */ }
 
 // 3. Module Events
-decl_event! {...}
+decl_event! { /* --snip-- */ }
 
 // 4. Module Storage Items
-decl_storage! {...}
+decl_storage! { /* --snip-- */ }
 
 // 5. Callable Module Functions
-decl_module! {...}
+decl_module! { /* --snip-- */ }
 ```
 
 Things like events, storage, and callable functions should look familiar to you
