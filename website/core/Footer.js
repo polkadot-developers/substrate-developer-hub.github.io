@@ -16,6 +16,47 @@
 
 const React = require("react");
 
+class Blast extends React.Component {
+  render() {
+    // FIXME: Doccusaurus v1 doesn't allow  for themes or customisation yet
+    // so we have to inline some styles to move our element to top
+    return <div>
+      <style dangerouslySetInnerHTML={{__html: `
+#blast {
+  display: block;
+  position: fixed;
+  width: 100%;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: #ff1864;
+  color: white;
+  // transform: translateY(-100%);
+}
+
+#blast h2 {
+  margin: 0;
+  line-height: 45px;
+  text-align: center;
+}
+
+#blast a {
+  color: white;
+  text-decoration: underline;
+}
+
+body {
+  transform: translateY(50px)
+}
+`}} />
+      <section id="blast">
+        <h2>Hacktoberfest is here! <a href="/hacktoberfest">Hack with us</a></h2>
+      </section>
+    </div>
+  }
+};
+
 class Footer extends React.Component {
   docUrl(doc, language) {
     const baseUrl = this.props.config.baseUrl;
@@ -33,6 +74,7 @@ class Footer extends React.Component {
   render() {
     return (
       <footer className="nav-footer" id="footer">
+        <Blast/>
         <section className="sitemap">
           <a href={this.props.config.baseUrl} className="nav-home">
             {this.props.config.footerIcon && (
