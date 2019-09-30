@@ -261,7 +261,7 @@ You've now successfully inserted your babe key. You can repeat those steps to in
 ```
 keytype: gran
 suri: your mnemonic phrase (eg keep matrix knee meat awake frown rubber position federal easily strategy inhale)
-publicKey: your sr25519 key (eg 0xfe68fdff17960cb8d45d861396a64d4086997353849403ee3352996ec68ff4af)
+publicKey: your ed25519 key (eg 0xfe68fdff17960cb8d45d861396a64d4086997353849403ee3352996ec68ff4af)
 ```
 
 Finally, restart your node so that the keys just added to the keystore take effect.
