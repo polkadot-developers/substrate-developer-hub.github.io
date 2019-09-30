@@ -76,7 +76,7 @@
             });
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">Overview</h1></header><article><div><span><p>This document is a top-level entry point to documentation related to developing runtime modules for Substrate.</p>
 <p>These documents are written for a technical audience, who is familiar with the Rust programming language.</p>
-<p>If you are getting started wih Substrate runtime development for the first time, we suggest you try our introductory tutorial for <a href="TODO">creating your first Substrate chain</a>.</p>
+<p>If you are getting started with Substrate runtime development for the first time, we suggest you try our introductory tutorial for <a href="TODO">creating your first Substrate chain</a>.</p>
 <h2><a class="anchor" aria-hidden="true" id="what-is-a-runtime-module"></a><a href="#what-is-a-runtime-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is a Runtime Module?</h2>
 <p>A Substrate runtime module is an independent piece of business logic for your blockchain. These modules compose your blockchain's state transition function, and define the state and behaviors of your blockchain.</p>
 <p>For example, the Balances module, which is included in the Substrate Runtime Module Library (SRML), defines a cryptocurrency for your blockchain. More specifically, it defines storage items which tracks the tokens a user has, functions that users can call to transfer and manage those tokens, APIs which allow other modules to burn or mint those tokens, and hooks which allow other modules to trigger functions when a user's balance changes.</p>
@@ -95,7 +95,7 @@
 <span class="token keyword">pub</span> <span class="token keyword">trait</span> Trait<span class="token punctuation">:</span> system<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
 
 <span class="token comment">// 3. Runtime Events</span>
-<span class="token comment">// Events are a simple means of reporting specific conditions and circumstances </span>
+<span class="token comment">// Events are a simple means of reporting specific conditions and circumstances</span>
 <span class="token comment">// that have happened that users, Dapps and/or chain explorers would find</span>
 <span class="token comment">// interesting and otherwise difficult to detect.</span>
 <span class="token macro-rules function">decl_event!</span><span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
