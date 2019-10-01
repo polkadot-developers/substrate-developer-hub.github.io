@@ -1,5 +1,4 @@
 window.onload = function setHacktoberfest() {
-  // var bodyElement = document.getElementsByTagName("body")[0];
 
   var hacktoberfestDiv = document.createElement("div");
   hacktoberfestDiv.innerHTML = `
