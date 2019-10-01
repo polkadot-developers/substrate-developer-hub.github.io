@@ -1,5 +1,5 @@
 ---
-title: Testing Your New Blockchain
+title: Building a Custom Front End
 ---
 
 This tutorial is not really about writing user interfaces, but we do want to
@@ -10,12 +10,10 @@ running.
 We will give you a custom react component that you can add to your
 `substrate-front-end-template` meant for interacting with your node.
 
-So let's test it!
-
 ## Add Your Custom React Component
 
-In the `substrate-front-end-template` project, create a file called
-`ProofOfExistence.jsx` in the `/src/` folder:
+In the `substrate-front-end-template` project, edit the `TemplateModule.jsx`
+file in the `/src/` folder:
 
 ```
 substrate-front-end-template
