@@ -24,14 +24,15 @@ To function, a blockchain node needs:
 
 These technologies span a huge breadth of computer science, and thus usually
 require expert teams to develop. As a result, most blockchain projects are _not_
-developed from the ground up. Instead they are forked from already existing
-blockchains. For instance:
+developed from the ground up. Instead, these projects are forked from already
+existing blockchain repositories. For instance:
 
-* Bitcoin was forked to create: Litecoin, ZCash, Namecoin, Bitcoin Cash, etc...
-* Ethereum was forked to create: Quorem, POA Network, KodakCoin, Musicoin,
-  etc...
+* The Bitcoin repository was forked to create: Litecoin, ZCash, Namecoin,
+  Bitcoin Cash, etc...
+* The Ethereum repository was forked to create: Quorem, POA Network, KodakCoin,
+  Musicoin, etc...
 
-![](assets/forks.png)
+![Blockchain Project Repository Forks](assets/forks.png)
 
 Building blockchains in this way has serious limitations as these existing
 platform were not designed to be modified.
@@ -112,14 +113,14 @@ with the hash stored on chain.
 ![File Hash](assets/file-hash.png)
 
 To add to this, blockchain systems also provide a robust account system. So when
-a file digest is stored on the blockchain, we can also record which user uploaded that
-digest. This allows that user to later prove that they were the original person
-to claim the file.
+a file digest is stored on the blockchain, we can also record which user
+uploaded that digest. This allows that user to later prove that they were the
+original person to claim the file.
 
 Our Proof of Existence module will expose two callable functions:
 
-* `create_claim` - allows a user to claim the existence of a file by
-  uploading a file digest.
+* `create_claim` - allows a user to claim the existence of a file by uploading a
+  file digest.
 
 * `revoke_claim` - allows the current owner of a claim to revoke their
   ownership.
@@ -129,5 +130,5 @@ and who made those claims.
 
 Sounds simple enough?
 
-If your node is finished compiling, you are ready to move to the next
-section where we will interact with your Substrate node template!
+If your node is finished compiling, you are ready to move to the next section
+where we will interact with your Substrate node template!
