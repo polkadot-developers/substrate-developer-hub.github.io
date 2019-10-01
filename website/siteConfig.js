@@ -155,7 +155,7 @@ const siteConfig = {
     intro: "Hacktoberfest is here! ",
     link: "https://substrate.dev/hacktoberfest",
     label: "Hack with us",
-    background: "url(/img/hacktoberfest-blast-bg.png)"
+    background: "url(/img/hacktoberfest-blast-bg.png); background-size: cover;"
   }
 };
 
