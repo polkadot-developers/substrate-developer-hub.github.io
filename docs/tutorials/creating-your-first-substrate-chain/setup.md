@@ -1,5 +1,5 @@
 ---
-title: Setup Your Computer
+title: Set Up Your Computer
 ---
 
 Normally we would teach you more about the Substrate blockchain development

@@ -100,7 +100,7 @@
       "tutorials/creating-your-first-substrate-chain/learn",
       "tutorials/creating-your-first-substrate-chain/interact",
       "tutorials/creating-your-first-substrate-chain/build",
-      "tutorials/creating-your-first-substrate-chain/test"
+      "tutorials/creating-your-first-substrate-chain/front-end"
     ]
   }
 }
