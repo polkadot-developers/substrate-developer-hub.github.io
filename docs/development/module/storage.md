@@ -67,7 +67,7 @@ TODO
 
 ### Examples
 
-TODO
+* View this example to see how you can use a `double_map` to act as a `killable` single-map.
 
 ### References
 
