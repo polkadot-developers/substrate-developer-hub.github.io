@@ -82,6 +82,7 @@ const siteConfig = {
     "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js",
     "/js/code-block-buttons.js",
     "/js/load.js",
+    "/js/hacktoberfest.js",
     {
       src: "/js/config.js",
       defer: true
@@ -150,13 +151,6 @@ const siteConfig = {
     }
   },
 
-  // customised blast banner on top
-  blast: {
-    intro: "Hacktoberfest is here! ",
-    link: "https://substrate.dev/hacktoberfest",
-    label: "Hack with us",
-    background: "url(/img/hacktoberfest-blast-bg.png)"
-  }
 };
 
 module.exports = siteConfig;

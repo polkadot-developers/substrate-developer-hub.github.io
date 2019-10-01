@@ -82,6 +82,36 @@
     display: none !important;
 }
 
+#blast {
+    display: block;
+    width: 100%;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: #ff1864 url(/img/hacktoberfest-blast-bg.png);
+    color: white;
+}
+  
+#blast h2 {
+    margin: 0;
+    line-height: 45px;
+    text-align: center;
+}
+  
+#blast a {
+    color: white;
+    text-decoration: underline;
+}
+
+/* work with hacktoberfest */
+.fixedHeaderContainer {
+    position: relative;
+}
+/* work with hacktoberfest */
+.navPusher {
+    padding-top: 0;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
