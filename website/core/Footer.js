@@ -52,15 +52,12 @@ class Footer extends React.Component {
             <a href={this.pageUrl("tutorials", this.props.language)}>
               Tutorials
             </a>
-            <a href="/rustdocs/v1.0/">
-              Reference Docs
-            </a>
+            <a href="/rustdocs/v1.0/">Reference Docs</a>
+            <a href="/recipes/">Recipes</a>
           </div>
           <div>
             <h5>Community</h5>
-            <a href={this.pageUrl("videos", this.props.language)}>
-              Videos
-            </a>
+            <a href={this.pageUrl("videos", this.props.language)}>Videos</a>
             <a
               href="http://stackoverflow.com/questions/tagged/substrate"
               target="_blank"
@@ -68,7 +65,9 @@ class Footer extends React.Component {
             >
               Stack Overflow
             </a>
-            <a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a>
+            <a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">
+              Riot Chat
+            </a>
             <a
               href="https://twitter.com/ParityTech"
               target="_blank"
@@ -87,37 +86,31 @@ class Footer extends React.Component {
           <div>
             <h5>More</h5>
             <a href="https://www.parity.io/blog/">Blog</a>
-            <a href="https://github.com/paritytech/substrate">Substrate GitHub</a>
-            <a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a>
-            <a
-              className="github-button"
-              href={this.props.config.repoUrl}
-              data-icon="octicon-star"
-              data-count-href="/facebook/docusaurus/stargazers"
-              data-show-count="true"
-              data-count-aria-label="# stargazers on GitHub"
-              aria-label="Star this project on GitHub"
-            >
-              Star
+            <a href="https://github.com/paritytech/substrate">
+              Substrate GitHub
+            </a>
+            <a href="https://github.com/substrate-developer-hub/">
+              Developer Hub GitHub
+            </a>
+            <a href="https://www.parity.io/privacy/">Privacy Policy</a>
+            <a href="#" id="cookie-settings">
+              Cookie Settings
             </a>
           </div>
         </section>
 
-        <section className="row">
-          <div className="copyright">{this.props.config.copyright}</div>
-          <a className="item" href="https://www.parity.io/privacy/">Privacy Policy</a>
-          <a className="item" href="#" id="cookie-settings">Cookie Settings</a>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
+        <section className="copyright">{this.props.config.copyright}</section>
+
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
               var cookieSettings = document.getElementById('cookie-settings');
               cookieSettings.onclick = function() {
                 return klaro.show();
               };
-              `,
-            }}
-          />
-        </section>
+              `
+          }}
+        />
       </footer>
     );
   }
