@@ -52,6 +52,13 @@ body {
   transition: ease 1.5s;
   margin-top: 50px;
 }
+.docsNavContainer {
+  height: calc(100vh - 100px);
+  top: 100px;
+}
+.onPageNav {
+  max-height: calc(100vh - 140px);
+  top: 140px;
 `
           }}
         />
