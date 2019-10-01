@@ -49,10 +49,6 @@ class Blast extends React.Component {
   color: white;
   text-decoration: underline;
 }
-
-body {
-  transform: translateY(50px)
-}
 `
           }}
         />
