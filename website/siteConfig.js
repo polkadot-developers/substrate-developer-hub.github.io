@@ -148,6 +148,14 @@ const siteConfig = {
       // https://www.algolia.com/doc/api-reference/api-parameters/
       facetFilters: ["language:LANGUAGE"]
     }
+  },
+
+  // customised blast banner on top
+  blast: {
+    intro: "Hacktoberfest is here! ",
+    link: "https://substrate.dev/hacktoberfest",
+    label: "Hack with us",
+    background: "url(/img/hacktoberfest-blast-bg.png)"
   }
 };
 
