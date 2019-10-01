@@ -34,6 +34,8 @@ substrate-front-end-template
 
 In that file, replace the existing content the following component.
 
+<div style="max-height: 20em; overflow: auto; margin-bottom: 1em;">
+
 ```js
 // React and Semantic UI elements.
 import React, { useState, useEffect } from "react";
@@ -160,6 +162,7 @@ export default function ProofOfExistence(props) {
   );
 }
 ```
+</div>
 
 We won't walk you step by step through the creation of this component, but do
 look over the code comments to learn what each part is doing.
