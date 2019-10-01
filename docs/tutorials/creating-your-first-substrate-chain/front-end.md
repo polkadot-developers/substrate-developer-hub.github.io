@@ -12,7 +12,7 @@ We will give you a custom react component that you can add to your
 
 ## Add Your Custom React Component
 
-In the `substrate-front-end-template` project, edit the `TemplateModule.jsx`
+In the `substrate-front-end-template` project, edit the `TemplateModule.js`
 file in the `/src/` folder:
 
 ```
