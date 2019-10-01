@@ -18,7 +18,7 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Creating Your First Substrate Chain</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Creating Your First Substrate Chain<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/setup">Setup Your Computer</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/learn">Background Information</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/interact">Interacting with Your Node</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/build">Building a Custom Runtime Module</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/test">Testing Your New Blockchain</a></li></ul></div></div></section></div><script>
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Creating Your First Substrate Chain</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Creating Your First Substrate Chain<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/setup">Set Up Your Computer</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/learn">Background Information</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/interact">Interacting with Your Node</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/build">Building a Custom Runtime Module</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/front-end">Building a Custom Front End</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -92,14 +92,15 @@ a network running the blockchain software that makes everything work.</p>
 </ul>
 <p>These technologies span a huge breadth of computer science, and thus usually
 require expert teams to develop. As a result, most blockchain projects are <em>not</em>
-developed from the ground up. Instead they are forked from already existing
-blockchains. For instance:</p>
+developed from the ground up. Instead, these projects are forked from already
+existing blockchain repositories. For instance:</p>
 <ul>
-<li>Bitcoin was forked to create: Litecoin, ZCash, Namecoin, Bitcoin Cash, etc...</li>
-<li>Ethereum was forked to create: Quorem, POA Network, KodakCoin, Musicoin,
-etc...</li>
+<li>The Bitcoin repository was forked to create: Litecoin, ZCash, Namecoin,
+Bitcoin Cash, etc...</li>
+<li>The Ethereum repository was forked to create: Quorem, POA Network, KodakCoin,
+Musicoin, etc...</li>
 </ul>
-<p><img src="/docs/assets/forks.png" alt=""></p>
+<p><img src="/docs/assets/forks.png" alt="Blockchain Project Repository Forks"></p>
 <p>Building blockchains in this way has serious limitations as these existing
 platform were not designed to be modified.</p>
 <h2><a class="anchor" aria-hidden="true" id="substrate"></a><a href="#substrate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Substrate</h2>
@@ -161,22 +162,22 @@ one on the blockchain by simply recomputing the hash of the file and compare it
 with the hash stored on chain.</p>
 <p><img src="/docs/assets/file-hash.png" alt="File Hash"></p>
 <p>To add to this, blockchain systems also provide a robust account system. So when
-a file digest is stored on the blockchain, we can also record which user uploaded that
-digest. This allows that user to later prove that they were the original person
-to claim the file.</p>
+a file digest is stored on the blockchain, we can also record which user
+uploaded that digest. This allows that user to later prove that they were the
+original person to claim the file.</p>
 <p>Our Proof of Existence module will expose two callable functions:</p>
 <ul>
-<li><p><code>create_claim</code> - allows a user to claim the existence of a file by
-uploading a file digest.</p></li>
+<li><p><code>create_claim</code> - allows a user to claim the existence of a file by uploading a
+file digest.</p></li>
 <li><p><code>revoke_claim</code> - allows the current owner of a claim to revoke their
 ownership.</p></li>
 </ul>
 <p>We will only need to store information about the proofs that have been claimed,
 and who made those claims.</p>
 <p>Sounds simple enough?</p>
-<p>If your node is finished compiling, you are ready to move to the next
-section where we will interact with your Substrate node template!</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 9/28/2019 by Shawn Tabrizi</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/setup"><span class="arrow-prev">← </span><span>Setup Your Computer</span></a><a class="docs-next button" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/interact"><span>Interacting with Your Node</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#background-on-blockchains">Background on Blockchains</a></li><li><a href="#substrate">Substrate</a><ul class="toc-headings"><li><a href="#substrate-node-template">Substrate Node Template</a></li><li><a href="#substrate-runtime-module-template">Substrate Runtime Module Template</a></li></ul></li><li><a href="#proof-of-existence-chain">Proof Of Existence Chain</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
+<p>If your node is finished compiling, you are ready to move to the next section
+where we will interact with your Substrate node template!</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 10/1/2019 by Shawn Tabrizi</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/setup"><span class="arrow-prev">← </span><span>Set Up Your Computer</span></a><a class="docs-next button" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/interact"><span>Interacting with Your Node</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#background-on-blockchains">Background on Blockchains</a></li><li><a href="#substrate">Substrate</a><ul class="toc-headings"><li><a href="#substrate-node-template">Substrate Node Template</a></li><li><a href="#substrate-runtime-module-template">Substrate Runtime Module Template</a></li></ul></li><li><a href="#proof-of-existence-chain">Proof Of Existence Chain</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
 #blast {
   display: block;
   position: fixed;
