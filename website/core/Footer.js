@@ -21,8 +21,11 @@ class Blast extends React.Component {
     // FIXME: Doccusaurus v1 doesn't allow  for themes or customisation yet
     // so we have to inline some styles to move our element to top
     let cfg = this.props.config;
-    return <div>
-      <style dangerouslySetInnerHTML={{__html: `
+    return (
+      <div>
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
 #blast {
   display: block;
   position: fixed;
@@ -50,13 +53,19 @@ class Blast extends React.Component {
 body {
   transform: translateY(50px)
 }
-`}} />
-      <section id="blast">
-        <h2>{cfg.intro}<a href={cfg.link}>{cfg.label}</a></h2>
-      </section>
-    </div>
+`
+          }}
+        />
+        <section id="blast">
+          <h2>
+            {cfg.intro}
+            <a href={cfg.link}>{cfg.label}</a>
+          </h2>
+        </section>
+      </div>
+    );
   }
-};
+}
 
 class Footer extends React.Component {
   docUrl(doc, language) {
@@ -73,7 +82,6 @@ class Footer extends React.Component {
   }
 
   render() {
-
     let blast = this.props.config.blast;
     return (
       <footer className="nav-footer" id="footer">
@@ -140,22 +148,22 @@ class Footer extends React.Component {
             <a href="https://www.parity.io/privacy/">Privacy Policy</a>
             <a href="#" id="cookie-settings">
               Cookie Settings
-            </a>
-          </div>
-        </section>
-
-        <section className="copyright">{this.props.config.copyright}</section>
-
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+              {/* Script for cookie settings pop-up. */}
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `
               var cookieSettings = document.getElementById('cookie-settings');
               cookieSettings.onclick = function() {
                 return klaro.show();
               };
               `
-          }}
-        />
+                }}
+              />
+            </a>
+          </div>
+        </section>
+
+        <section className="copyright">{this.props.config.copyright}</section>
       </footer>
     );
   }
