@@ -68,7 +68,7 @@ Before we dive into more detail, let's have a quick look at what information is 
 
 > Here we are using `V4` of the runtime metadata. Go to [its reference document](https://substrate.dev/rustdocs/v1.0/srml_metadata/enum.RuntimeMetadata.html) for more versioning information.
 
-The metadata of an entire runtime is an array of its modules' metadata, including all SRML and custom runtime modules in your blockchain. You can also find [the decoded metadata](https://github.com/polkadot-js/api/blob/master/packages/types/src/Metadata/v4/latest.substrate.v4.json) of all build-in modules in Polkadot-js/api.
+The metadata of an entire runtime is an array of its modules' metadata, including all SRML and custom runtime modules in your blockchain. You can also find [the decoded metadata](https://github.com/polkadot-js/api/blob/master/packages/types/src/Metadata/v4/latest.substrate.v4.json) of all built-in modules in Polkadot-js/api.
 
 Now let's walk through each field in module's metadata:
 
@@ -124,7 +124,7 @@ The response looks like following contents, but with much more information in `r
 
 The hexadecimal string in the `result` field wraps the runtime metadata in SCALE format. Go to [Low-level Data Format](overview/low-level-data-format.md) page to learn how to decode different types and get more information about the specification and implementations.
 
-Our hex blob starts with a hard coded magic number `6d657461` which represents *meta* in plain text. The next piece of data shows the version number of the metadata, here we are using `04` to represent version 4. We already mentioned that runtime metadata is composed by available modules. In our case we have 9 modules. After shifting 9 in binary representation two bits to the left, we get `24` in hex to represent the length of the array. 
+Our hex blob starts with a hard coded magic number `6d657461` which represents *meta* in plain text. The next piece of data shows the version number of the metadata, here we are using `04` to represent version 4. We already mentioned that runtime metadata is composed by available modules. In our case we have 9 modules. After shifting 9 in binary representation two bits to the left, we get `24` in hex to represent the length of the array.
 
 The remaining blob encodes the metadata of each module. Learning more about decoding different types in the [struct](https://substrate.dev/rustdocs/v1.0/srml_metadata/struct.ModuleMetadata.html), please refer to the [reference docs](https://substrate.dev/rustdocs/v1.0/srml_metadata/index.html) and [Low-level Data Format](overview/low-level-data-format.md) page.
 

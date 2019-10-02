@@ -6,7 +6,7 @@ This document is a top-level entry point to documentation related to developing 
 
 These documents are written for a technical audience, who is familiar with the Rust programming language.
 
-If you are getting started wih Substrate runtime development for the first time, we suggest you try our introductory tutorial for [creating your first Substrate chain]( TODO ).
+If you are getting started with Substrate runtime development for the first time, we suggest you try our introductory tutorial for [creating your first Substrate chain]( TODO ).
 
 ## What is a Runtime Module?
 
@@ -33,7 +33,7 @@ use support::{decl_module, decl_event, decl_storage, ...}
 pub trait Trait: system::Trait { ... }
 
 // 3. Runtime Events
-// Events are a simple means of reporting specific conditions and circumstances 
+// Events are a simple means of reporting specific conditions and circumstances
 // that have happened that users, Dapps and/or chain explorers would find
 // interesting and otherwise difficult to detect.
 decl_event!{ ... }
