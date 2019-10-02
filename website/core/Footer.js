@@ -23,45 +23,6 @@ class Blast extends React.Component {
     let cfg = this.props.config;
     return (
       <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-#blast {
-  display: block;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  height: 50px;
-  background: #ff1864 ${cfg.background};
-  color: white;
-}
-
-#blast h2 {
-  margin: 0;
-  line-height: 45px;
-  text-align: center;
-}
-
-#blast a {
-  color: white;
-  text-decoration: underline;
-}
-
-body {
-  // let's give it a minimal animation
-  transition: ease 1.5s;
-  margin-top: 50px;
-}
-.docsNavContainer {
-  height: calc(100vh - 100px);
-  top: 100px;
-}
-.onPageNav {
-  max-height: calc(100vh - 140px);
-  top: 140px;
-`
-          }}
-        />
         <section id="blast">
           <h2>
             {cfg.intro}
