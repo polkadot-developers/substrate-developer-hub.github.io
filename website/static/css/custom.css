@@ -67,6 +67,12 @@
     padding: 0;
 }
 
+.headerWrapper ul li a[href="/hacktoberfest/"] {
+  text-transform: uppercase;
+  margin-right: 1em;
+  font-weight: bold;
+}
+
 /* Fix search icon in search box */
 .navSearchWrapper::before {
     box-sizing: unset;

@@ -16,68 +16,6 @@
 
 const React = require("react");
 
-class Blast extends React.Component {
-  render() {
-    // FIXME: Doccusaurus v1 doesn't allow  for themes or customisation yet
-    // so we have to inline some styles to move our element to top
-    let cfg = this.props.config;
-    return (
-      <div>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-#blast {
-  display: block;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  height: 50px;
-  background: #ff1864 ${cfg.background};
-  color: white;
-  z-index: 99999;
-}
-
-#blast h2 {
-  margin: 0;
-  line-height: 45px;
-  text-align: center;
-}
-
-#blast a {
-  color: white;
-  text-decoration: underline;
-}
-
-body {
-  // let's give it a minimal animation
-  transition: ease 1.5s;
-  margin-top: 50px;
-}
-@media only screen and (min-width: 1024px) {
-  .docsNavContainer {
-    height: calc(100vh - 100px);
-    top: 100px;
-  }
-
-  .onPageNav {
-    max-height: calc(100vh - 140px);
-    top: 140px;
-  }
-}
-`
-          }}
-        />
-        <section id="blast">
-          <h2>
-            {cfg.intro}
-            <a href={cfg.link}>{cfg.label}</a>
-          </h2>
-        </section>
-      </div>
-    );
-  }
-}
-
 class Footer extends React.Component {
   docUrl(doc, language) {
     const baseUrl = this.props.config.baseUrl;
@@ -93,10 +31,8 @@ class Footer extends React.Component {
   }
 
   render() {
-    let blast = this.props.config.blast;
     return (
       <footer className="nav-footer" id="footer">
-        {blast ? <Blast config={blast} /> : ""}
         <section className="sitemap">
           <a href={this.props.config.baseUrl} className="nav-home">
             {this.props.config.footerIcon && (

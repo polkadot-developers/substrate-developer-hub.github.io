@@ -42,6 +42,7 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
+    { href: "/hacktoberfest/", label: "Hacktoberfest", class: "hacktoberfest" },
     { page: "docs", label: "Docs" },
     { href: "/rustdocs/v1.0/", label: "Reference Docs" },
     { page: "tutorials", label: "Tutorials" },
@@ -149,14 +150,6 @@ const siteConfig = {
       facetFilters: ["language:LANGUAGE"]
     }
   },
-
-  // customised blast banner on top
-  blast: {
-    intro: "Hacktoberfest is here! ",
-    link: "https://substrate.dev/hacktoberfest",
-    label: "Hack with us",
-    background: "url(/img/hacktoberfest-blast-bg.png); background-size: cover;"
-  }
 };
 
 module.exports = siteConfig;
