@@ -34,6 +34,7 @@ class Blast extends React.Component {
   height: 50px;
   background: #ff1864 ${cfg.background};
   color: white;
+  z-index: 99999;
 }
 
 #blast h2 {
