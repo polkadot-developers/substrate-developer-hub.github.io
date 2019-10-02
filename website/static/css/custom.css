@@ -16,113 +16,73 @@
 
 /* Make nav bar dark like the background of the hero image container */
 .fixedHeaderContainer {
-  background: $secondaryColor;
+    background: $secondaryColor;
 }
 
 /* Add a hero image to the home splash */
 .heroImage {
-  background-image: url("/img/bg-dark-1.png"); /* The image used */
-  background-color: $secondaryColor; /* Used if the image is unavailable */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+    background-image: url("/img/bg-dark-1.png"); /* The image used */
+    background-color: $secondaryColor; /* Used if the image is unavailable */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
 }
 
 /* Add simple tags to use the primary color */
 .primary-color {
-  background-color: $primaryColor;
-  border-color: $primaryColor;
-  color: #ffffff;
+    background-color: $primaryColor;
+    border-color: $primaryColor;
+    color: #ffffff;
 }
 
 .secondary-color {
-  background-color: $secondaryColor;
-  border-color: $secondaryColor;
-  color: #ffffff;
+    background-color: $secondaryColor;
+    border-color: $secondaryColor;
+    color: #ffffff;
 }
 
 .primary-color-text {
-  color: $primaryColor !important;
+    color: $primaryColor!important;
 }
 
 /* Make Home Splash title look better */
 .projectTitle {
-  font-weight: 300;
-  color: #ffffff;
+    font-weight: 300;
+    color: #ffffff;
 }
 
 /* Add green checkmarks to homepage list */
 .lead {
-  list-style: none;
-}
+    list-style: none;
+  }
 
 .lead li:before {
-  content: "✓ ";
-  color: #28a745;
-}
+    content: '✓ ';
+    color: #28a745;
+  }
 
 /* Patch the docs nav bar on mobile */
 .docsNavContainer {
-  max-width: 100%;
-  padding: 0;
+    max-width: 100%;
+    padding: 0;
 }
 
 /* Fix search icon in search box */
 .navSearchWrapper::before {
-  box-sizing: unset;
+    box-sizing: unset;
 }
 
 /* Fix the klaro */
 .klaro .cookie-modal .cm-modal .hide {
-  top: 20px !important;
-  display: inline-block;
+    top: 20px !important;
+    display: inline-block;
 }
 
 .cm-toggle-all {
-  display: none !important;
-}
-
-/* Blast Content */
-
-#blast {
-  display: block;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  height: 50px;
-  background: #ff1864 url(/img/hacktoberfest-blast-bg.png);
-  background-size: cover;
-  color: white;
-  z-index: 9999;
-}
-
-#blast h2 {
-  margin: 0;
-  line-height: 45px;
-  text-align: center;
-}
-
-#blast a {
-  color: white;
-  text-decoration: underline;
-}
-
-body {
-  /* let's give it a minimal animation */
-  transition: ease 1.5s;
-  margin-top: 50px;
-}
-
-.onPageNav {
-  max-height: calc(100vh - 140px);
-  top: 140px;
+    display: none !important;
 }
 
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
-  .docsNavContainer {
-    height: calc(100vh - 100px);
-    top: 100px;
-  }
 }
 
 @media only screen and (min-width: 1024px) {
