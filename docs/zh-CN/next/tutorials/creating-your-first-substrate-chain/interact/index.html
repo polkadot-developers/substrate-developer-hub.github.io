@@ -126,7 +126,46 @@ Amount<span class="token punctuation">:</span> <span class="token number">1000</
 <blockquote>
 <p><strong>Note:</strong> If you want to stop your node or front-end, you can press <code>ctrl + c</code> in the terminal.</p>
 </blockquote>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/next/tutorials/creating-your-first-substrate-chain/learn"><span class="arrow-prev">← </span><span>Background Information</span></a><a class="docs-next button" href="/docs/zh-CN/next/tutorials/creating-your-first-substrate-chain/build"><span>Building a Custom Runtime Module</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#starting-your-node">Starting Your Node</a></li><li><a href="#start-your-front-end">Start Your Front-End</a></li><li><a href="#interact">Interact</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><section id="blast"><h2>Hacktoberfest is here! <a href="https://substrate.dev/hacktoberfest">Hack with us</a></h2></section></div><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/next/tutorials/creating-your-first-substrate-chain/learn"><span class="arrow-prev">← </span><span>Background Information</span></a><a class="docs-next button" href="/docs/zh-CN/next/tutorials/creating-your-first-substrate-chain/build"><span>Building a Custom Runtime Module</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#starting-your-node">Starting Your Node</a></li><li><a href="#start-your-front-end">Start Your Front-End</a></li><li><a href="#interact">Interact</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
+#blast {
+  display: block;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 50px;
+  background: #ff1864 url(/img/hacktoberfest-blast-bg.png); background-size: cover;;
+  color: white;
+  z-index: 99999;
+}
+
+#blast h2 {
+  margin: 0;
+  line-height: 45px;
+  text-align: center;
+}
+
+#blast a {
+  color: white;
+  text-decoration: underline;
+}
+
+body {
+  // let's give it a minimal animation
+  transition: ease 1.5s;
+  margin-top: 50px;
+}
+@media only screen and (min-width: 1024px) {
+  .docsNavContainer {
+    height: calc(100vh - 100px);
+    top: 100px;
+  }
+
+  .onPageNav {
+    max-height: calc(100vh - 140px);
+    top: 140px;
+  }
+}
+</style><section id="blast"><h2>Hacktoberfest is here! <a href="https://substrate.dev/hacktoberfest">Hack with us</a></h2></section></div><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
               var cookieSettings = document.getElementById('cookie-settings');
               cookieSettings.onclick = function() {
                 return klaro.show();
