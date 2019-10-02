@@ -20,11 +20,11 @@ substrate-front-end-template
 |
 +-- src
 |   |
-|   +-- index.jsx
+|   +-- index.js
 |   |
-|   +-- App.jsx 
+|   +-- App.js
 |   |
-|   +-- TemplateModule.jsx  <-- Edit this file
+|   +-- TemplateModule.js  <-- Edit this file
 |   |
 |   +-- ...
 +-- ...
@@ -160,7 +160,6 @@ export default function ProofOfExistence (props) {
   );
 }
 ```
-
 </div>
 
 We won't walk you step by step through the creation of this component, but do
