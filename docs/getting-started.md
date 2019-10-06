@@ -6,7 +6,7 @@ This page has everything you need to get started building with Substrate.
 
 ## Get Help
 
-Substrate is a bleeding edge blockchain development framework, and as a result you may encounter some breaking changes or issues along the way.
+Substrate is a bleeding edge blockchain development framework, and as a result, you may encounter some breaking changes or issues along the way.
 
 Know that we are very happy to help you get started building with Substrate, so if you encounter any issues, simply reach out to us by:
 
