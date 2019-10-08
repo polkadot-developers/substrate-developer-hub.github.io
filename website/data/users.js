@@ -175,6 +175,13 @@ const usersList = [{
     type: "chain",
   },
   {
+    name: "PCHAIN",
+    image: "/img/users/pchain.png",
+    homepage: "https://pchain.org/",
+    pinned: true,
+    type: "chain",
+  },
+  {
     name: "Speckle OS",
     image: "/img/users/speckleos.png",
     homepage: "https://www.speckleos.io/",
