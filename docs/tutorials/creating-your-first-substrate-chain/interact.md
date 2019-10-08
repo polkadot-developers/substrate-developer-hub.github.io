@@ -55,7 +55,7 @@ yarn start
 ```
 
 You should then be able to navigate to
-[`localhost:8000`](http://localhost:8000/) where you will see a simple front-end
+[`localhost:8000`](http://localhost:3000/) where you will see a simple front-end
 showing that your Substrate node is running and connected!
 
 ## Interact
