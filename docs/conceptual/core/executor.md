@@ -47,7 +47,7 @@ The Substrate runtime is designed to be upgraded so that you can continue to ite
 
 ### Runtime Versioning
 
-In order for the executor to be able to select the appropriate runtime execution environment, it needs to know the name and version of both the native and Wasm runtime.
+In order for the executor to be able to select the appropriate runtime execution environment, it needs to know the `spec_name`, `spec_version` and `authoring_version` of both the native and Wasm runtime.
 
 The runtime provides the following versioning properties:
 
