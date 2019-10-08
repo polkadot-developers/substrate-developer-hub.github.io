@@ -8,7 +8,7 @@ It is designed for high-performance, copy-free encoding and decoding of data in 
 
 ## SCALE for Substrate
 
-Substrate uses the [`parity-scale-codec`](https://github.com/paritytech/parity-scale-codec), a Rust implementation of the SCALE Codec. This library and the SCALE codec is advantageous for Substrate and blockchain systems because:
+Substrate uses the [`parity-scale-codec`](https://github.com/paritytech/parity-scale-codec), a Rust implementation of the SCALE Codec. This library and the SCALE codec are advantageous for Substrate and blockchain systems because:
 
 * It does not use Rust STD, and thus can compile to Wasm.
 * It is built to have great support in Rust for deriving codec logic for new types: just add `#[derive(Encode, Decode)]`.
@@ -28,15 +28,6 @@ Basic integers are encoded using a fixed-width little-endian (LE) format.
 - `signed 8-bit integer 69`: `0x45`
 - `unsigned 16-bit integer 42`: `0x2a00`
 - `unsigned 32-bit integer 16777215`: `0xffffff00`
-
-### Boolean
-
-Boolean values are encoded using the least significant bit (LSB) of a single byte.
-
-#### Example
-
-- `boolean false`: `0x00`
-- `boolean true`: `0x01`
 
 ### Compact/General Integers
 
@@ -59,6 +50,15 @@ It is encoded with the two least significant bits denoting the mode:
 Error:
 
 - ~~`0x0100`: Zero encoded in mode 1~~
+
+### Boolean
+
+Boolean values are encoded using the least significant bit (LSB) of a single byte.
+
+#### Example
+
+- `boolean false`: `0x00`
+- `boolean true`: `0x01`
 
 ### Options
 
