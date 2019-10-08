@@ -11,9 +11,9 @@ It is designed for high-performance, copy-free encoding and decoding of data in 
 Substrate uses the [`parity-scale-codec`](https://github.com/paritytech/parity-scale-codec), a Rust implementation of the SCALE Codec. This library and the SCALE codec is advantageous for Substrate and blockchain systems because:
 
 * It does not use Rust STD, and thus can compile to Wasm.
-* It is zero-copy and uses next to no memory on little-endian hardware for elementary numeric types.
 * It is built to have great support in Rust for deriving codec logic for new types: just add `#[derive(Encode, Decode)]`.
-* It is about as thin and lightweight as possible.
+
+It is important to define the encoding scheme used on Substrate rather than reuse an existing Rust codec library because this codec needs to be re-implemented on other platforms and languages that want to support interoperability.
 
 ## Codec Definition
 
@@ -51,14 +51,14 @@ It is encoded with the two least significant bits denoting the mode:
 
 #### Examples
 
-- unsigned integer 0: `0x00`
-- unsigned integer 1: `0x04`
-- unsigned integer 42: `0xa8`
-- unsigned integer 69: `0x1501`
+- `unsigned integer 0`: `0x00`
+- `unsigned integer 1`: `0x04`
+- `unsigned integer 42`: `0xa8`
+- `unsigned integer 69`: `0x1501`
 
 Error:
 
-- ~`0x0100`: Zero encoded in mode 1~
+- ~~`0x0100`: Zero encoded in mode 1~~
 
 ### Options
 
@@ -122,3 +122,5 @@ TODO
 ### References
 
 * Visit the reference docs for the [`parity-scale-codec`](https://substrate.dev/rustdocs/master/parity_scale_codec/index.html).
+
+* Visit the auxiliary encoding section of the [Polkadot runtime environment specification](https://github.com/w3f/polkadot-spec/blob/master/runtime-environment-spec/polkadot_re_spec.pdf).
