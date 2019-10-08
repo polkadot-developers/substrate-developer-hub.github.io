@@ -14,7 +14,7 @@ These two representations of the runtime may not be the same. For example: when 
 
 ### Execution Strategy
 
-Substrate allows you to configure an execution strategy during different parts of the blockchain execution process. The strategies are:
+Before runtime execution begins, the Substrate client passes to the executor an execution strategy. Substrate allows you to configure an execution strategy during different parts of the blockchain execution process. The strategies are:
 
 - `Native`: Execute with native build (if available, WebAssembly otherwise).
 - `Wasm`: Only execute with the WebAssembly build.
@@ -33,13 +33,13 @@ The default execution strategies for the different parts of the blockchain execu
 
 The Wasm representation of the Substrate runtime is considered the canonical runtime. Because this Wasm runtime is placed in the blockchain storage, the network must come to consensus about this binary. Thus it can be verified to be consistent across all syncing nodes.
 
-The Wasm execution environment is more restrictive than the native execution environment, because it makes few assumptions about the target machine it will run on. For example, the Wasm runtime always executes in a 32-bit environment.
+The Wasm execution environment can be more restrictive than the native execution environment. For example, the Wasm runtime always executes in a 32-bit environment with a 4 GB memory limit.
 
 For these reasons, the blockchain prefers to do block construction with the Wasm runtime even though Wasm execution is measurably slower than native execution. Wasm execution can help to ensure that block producers create valid blocks.
 
 ### Native Execution
 
-For all other execution processes other than block construction, the native runtime is preferred since it is more performant. However, in any situation where the executor determines the native executable should not be run, the canonical Wasm runtime is chosen instead.
+The native runtime will only be used by the executor when it is chosen as the execution strategy and it is compatible with the requested runtime version. For all other execution processes other than block construction, the native runtime is preferred since it is more performant. In any situation where the native executable should not be run, the canonical Wasm runtime is executed instead.
 
 ## Runtime Upgrades
 
@@ -71,7 +71,7 @@ Traditional blockchains require a [hard fork](https://en.wikipedia.org/wiki/Fork
 
 The culmination of the properties listed on this page allows for Substrate-based blockchains to perform "forkless runtime upgrades". This means that the upgrade of the runtime logic can happen in real time without causing a fork in the network.
 
-To perform a forkless runtime upgrade, Substrate uses existing runtime logic to update the Wasm runtime stored on the blockchain to a new version with new logic. This upgrade gets pushed out to all syncing nodes on the network as a part of the consensus process. Once the Wasm runtime is upgraded, the executor will see that the native runtime version no longer matches this new Wasm runtime. As a result, it will fall back to execute the canonical Wasm runtime instead of using the native runtime in any of the execution processes.
+To perform a forkless runtime upgrade, Substrate uses existing runtime logic to update the Wasm runtime stored on the blockchain to a new consensus-breaking version with new logic. This upgrade gets pushed out to all syncing nodes on the network as a part of the consensus process. Once the Wasm runtime is upgraded, the executor will see that the native runtime `spec_name`, `spec_version`, or `authoring_version` no longer matches this new Wasm runtime. As a result, it will fall back to execute the canonical Wasm runtime instead of using the native runtime in any of the execution processes.
 
 ## Next Steps
 
