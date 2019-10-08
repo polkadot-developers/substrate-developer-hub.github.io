@@ -77,9 +77,29 @@ As an exception, in the case that the type is a boolean, then it is always one b
 
 A collection of same-typed values is encoded, prefixed with a *compact* encoding of the number of items, followed by each item's encoding concatenated in turn.
 
+#### Example
+
+Vector of unsigned 16-bit integers:
+
+```
+[4, 8, 15, 16, 23, 42]
+```
+
+SCALE Bytes:
+
+```
+0x18040008000f00100017002a00
+```
+
 ### Tuples and Structures
 
 A fixed-size series of values, each with a possibly different but predetermined and fixed type. This is simply the concatenation of each encoded value. For structures, the values are named, but that is irrelevant for the encoding (names are ignored - only order matters).
+
+#### Example
+
+Tuple of compact unsigned integer and boolean:
+
+`(3, false)`: `0x0c00`
 
 ### Enumerations (tagged-unions)
 
