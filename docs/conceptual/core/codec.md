@@ -19,7 +19,10 @@ advantageous for Substrate and blockchain systems because:
 
 * It does not use Rust STD, and thus can compile to Wasm.
 * It is built to have great support in Rust for deriving codec logic for new
-  types: just add `#[derive(Encode, Decode)]`.
+  types:
+  ```
+  #[derive(Encode, Decode)]
+  ```
 
 It is important to define the encoding scheme used on Substrate rather than
 reuse an existing Rust codec library because this codec needs to be
