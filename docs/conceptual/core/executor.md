@@ -24,7 +24,8 @@ execution environment should be used. This is controlled by the execution
 strategy, which can be configured for the different parts of the blockchain
 execution process. The strategies are:
 
-- `Native`: Execute with native build (if available, WebAssembly otherwise).
+- `Native`: Execute with native build (if available, WebAssembly otherwise); if
+  it fails, do not fallback to Wasm.
 - `Wasm`: Only execute with the WebAssembly build.
 - `Both`: Execute with both native (where available) and WebAssembly builds.
 - `NativeElseWasm`: Execute with the native build if possible; if it fails, then
@@ -52,7 +53,9 @@ environment with a 4 GB memory limit.
 
 For these reasons, the blockchain prefers to do block construction with the Wasm
 runtime even though Wasm execution is measurably slower than native execution.
-Wasm execution can help to ensure that block producers create valid blocks.
+Some logic executed in Wasm will always work in the native execution
+environment, but the same cannot be said the other way around. Wasm execution
+can help to ensure that block producers create valid blocks.
 
 ### Native Execution
 
@@ -73,7 +76,8 @@ In order for the executor to be able to select the appropriate runtime execution
 environment, it needs to know the `spec_name`, `spec_version` and
 `authoring_version` of both the native and Wasm runtime.
 
-The runtime provides the following [versioning properties](https://substrate.dev/rustdocs/master/sr_version/struct.RuntimeVersion.html):
+The runtime provides the following [versioning
+properties](https://substrate.dev/rustdocs/master/sr_version/struct.RuntimeVersion.html):
 
 - `spec_name`: The identifier for the different Substrate runtimes.
 
