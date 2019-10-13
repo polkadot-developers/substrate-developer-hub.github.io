@@ -207,7 +207,7 @@ Connect to the front-end at [`localhost:8000`](http://localhost:8000).
 
 ## Interact with Substrate
 
-The fastest way to interact any local or public Substrate network it to visit Polkadot-JS Apps:
+The fastest way to interact with any local or public Substrate network is to visit Polkadot-JS Apps:
 
 [https://polkadot.js.org/apps/](https://polkadot.js.org/apps/)
 
