@@ -17,7 +17,8 @@ Substrate uses the
 implementation of the SCALE Codec. This library and the SCALE codec are
 advantageous for Substrate and blockchain systems because:
 
-* It does not use Rust STD, and thus can compile to Wasm.
+* It is lightweight relative to generic serialization frameworks like [serde](https://serde.rs/), which add significant boilerplate that can bloat the size of the binary.
+* It does not use Rust STD, and thus can compile to Wasm for the Substrate runtime.
 * It is built to have great support in Rust for deriving codec logic for new
   types:
   ```
