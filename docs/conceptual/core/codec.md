@@ -76,7 +76,7 @@ Error:
 
 ### Boolean
 
-Boolean values are encoded using the least significant bit (LSB) of a single
+Boolean values are encoded using the least significant bit of a single
 byte.
 
 #### Example
