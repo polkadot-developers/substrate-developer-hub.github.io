@@ -41,14 +41,16 @@ cargo run --release -- --dev
 <h2><a class="anchor" aria-hidden="true" id="importing-a-module-crate"></a><a href="#importing-a-module-crate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Importing a Module Crate</h2>
 <p>The first thing you need to do to add the Contracts module is to import the <code>srml_contracts</code> crate in your runtime's <code>Cargo.toml</code> file. If you want a proper primer into Cargo References, you should check out <a href="https://doc.rust-lang.org/cargo/reference/index.html">their official documentation</a>.</p>
 <p>Open <code>contracts-chain/runtime/Cargo.toml</code> and you will see a file which lists all the dependencies your runtime has. For example, it depends on the <a href="https://substrate.dev/rustdocs/master/srml_balances/index.html">Balances module</a>:</p>
-<pre><code class="hljs css language-rust"><span class="token punctuation">[</span>dependencies<span class="token punctuation">.</span>balances<span class="token punctuation">]</span>
-default_features <span class="token operator">=</span> <span class="token keyword">false</span>
-git <span class="token operator">=</span> <span class="token lifetime-annotation symbol">'https://github.com/paritytech/substrate.git</span>'
-package <span class="token operator">=</span> <span class="token lifetime-annotation symbol">'srml-balances</span>'
-rev <span class="token operator">=</span> <span class="token lifetime-annotation symbol">'&lt;git-commit</span><span class="token operator">></span>'
+<p><strong><code>Cargo.toml</code></strong></p>
+<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies.balances]</span>
+<span class="hljs-attr">default_features</span> = <span class="hljs-literal">false</span>
+<span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
+<span class="hljs-attr">package</span> = <span class="hljs-string">'srml-balances'</span>
+<span class="hljs-attr">rev</span> = <span class="hljs-string">'&lt;git-commit&gt;'</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="crate-features"></a><a href="#crate-features" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Crate Features</h3>
 <p>One important thing we need to call out with importing module crates is making sure to set up the crate <code>features</code> correctly. In the code snippet above, you will notice that we set <code>default_features = false</code>. If you explore the <code>Cargo.toml</code> file even closer, you will find something like:</p>
+<p><strong><code>Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML">[features]
 default = ['std']
 std = [
@@ -66,8 +68,8 @@ std = [
 <p>The default feature for this Substrate runtime is <code>std</code>. When <code>std</code> feature is enabled for the runtime, <code>parity-scale-codec</code>, <code>primitives</code>, <code>client</code>, and all the other listed dependencies should use their <code>std</code> feature too.</p>
 </blockquote>
 <p>This is important to enable the Substrate runtime to compile to both native binaries (which support Rust <a href="https://doc.rust-lang.org/std/"><code>std</code></a>) and Wasm binaries (which do not: <a href="https://rust-embedded.github.io/book/intro/no-std.html"><code>no_std</code></a>).</p>
-<p>To see how these features actually get used in the runtime code, we can open <code>contracts-chain/runtime/src/lib.rs</code>:</p>
-<p><strong>lib.rs</strong></p>
+<p>To see how these features actually get used in the runtime code, we can open the project file:</p>
+<p><strong><code>runtime/src/lib.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token comment">//! The Substrate Node Template runtime. This can be compiled with `#[no_std]`, ready for Wasm.</span>
 
 <span class="token attribute attr-name">#![cfg_attr(not(feature = "std"), no_std)]</span>
@@ -91,27 +93,25 @@ std = [
 <h3><a class="anchor" aria-hidden="true" id="importing-the-contracts-module-crate"></a><a href="#importing-the-contracts-module-crate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Importing the Contracts Module Crate</h3>
 <p>Okay, now that we have covered the basics of crate features, we can actually import the Contracts module. The Contracts module is probably the most complicated module in the SRML, so it makes for a good example of some of the trickiness that can be involved when adding additional modules. To give you a hint as to what is to come, you should take a look at the <a href="https://github.com/paritytech/substrate/blob/master/srml/contracts/Cargo.toml"><code>Cargo.toml</code> file for the Contracts module</a>.</p>
 <p>First we will add the new dependency by simply copying an existing module, and changing the values. So based on the <code>balances</code> import shown above, my <code>contracts</code> import will look like:</p>
-<p><strong>Cargo.toml</strong></p>
-<pre><code class="hljs css language-rust"><span class="token punctuation">[</span>dependencies<span class="token punctuation">.</span>contracts<span class="token punctuation">]</span>
-default_features <span class="token operator">=</span> <span class="token keyword">false</span>
-git <span class="token operator">=</span> <span class="token lifetime-annotation symbol">'https://github.com/paritytech/substrate.git</span>'
-package <span class="token operator">=</span> <span class="token lifetime-annotation symbol">'srml-contracts</span>'
-rev <span class="token operator">=</span> <span class="token lifetime-annotation symbol">'&lt;git-commit</span><span class="token operator">></span>'
+<p><strong><code>Cargo.toml</code></strong></p>
+<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies.contracts]</span>
+<span class="hljs-attr">default_features</span> = <span class="hljs-literal">false</span>
+<span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
+<span class="hljs-attr">package</span> = <span class="hljs-string">'srml-contracts'</span>
+<span class="hljs-attr">rev</span> = <span class="hljs-string">'&lt;git-commit&gt;'</span> <span class="hljs-comment"># e.g. commit: '3dedd246c62255ba6f9b777ecba318dfc2078d85'</span>
 </code></pre>
-<p>You <a href="https://github.com/paritytech/substrate/blob/master/srml/contracts/Cargo.toml">can see</a> that the Contracts module has <code>std</code> and <code>no_std</code> features, thus we need to add both features to our runtime:</p>
+<p>You <a href="https://github.com/paritytech/substrate/blob/master/srml/contracts/Cargo.toml">can see</a> that the Contracts module has <code>std</code> feature, thus we need to add that feature to our runtime:</p>
+<p><strong><code>Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML">[features]
 default = ["std"]
-no_std = [
-    'contracts/core',
-]
 std = [
     'contracts/std',
     #--snip--
 ]
 </code></pre>
-<p>If you forget to set the features, when building to your native binaries you will get errors like:</p>
+<p>If you forget to set the feature, when building to your native binaries you will get errors like:</p>
 <pre><code class="hljs css language-rust">error<span class="token punctuation">:</span> cannot find macro `<span class="token macro-rules function">vec!</span>` <span class="token keyword">in</span> this scope
-   <span class="token operator">-</span><span class="token punctuation">-></span> <span class="token operator">/</span>Users<span class="token operator">/</span>shawntabrizi<span class="token operator">/</span><span class="token punctuation">.</span>cargo<span class="token operator">/</span>git<span class="token operator">/</span>checkouts<span class="token operator">/</span>substrate<span class="token operator">-</span>7e08433d4c370a21<span class="token operator">/</span>783ca18<span class="token operator">/</span>core<span class="token operator">/</span>sr<span class="token operator">-</span>sandbox<span class="token operator">/</span>src<span class="token operator">/</span><span class="token punctuation">..</span><span class="token operator">/</span>without_std<span class="token punctuation">.</span>rs<span class="token punctuation">:</span><span class="token number">290</span><span class="token punctuation">:</span><span class="token number">24</span>
+   <span class="token operator">-</span><span class="token punctuation">-></span> ~<span class="token operator">/</span><span class="token punctuation">.</span>cargo<span class="token operator">/</span>git<span class="token operator">/</span>checkouts<span class="token operator">/</span>substrate<span class="token operator">-</span>7e08433d4c370a21<span class="token operator">/</span>783ca18<span class="token operator">/</span>core<span class="token operator">/</span>sr<span class="token operator">-</span>sandbox<span class="token operator">/</span>src<span class="token operator">/</span><span class="token punctuation">..</span><span class="token operator">/</span>without_std<span class="token punctuation">.</span>rs<span class="token punctuation">:</span><span class="token number">290</span><span class="token punctuation">:</span><span class="token number">24</span>
     <span class="token operator">|</span>
 <span class="token number">290</span> <span class="token operator">|</span>         <span class="token keyword">let</span> <span class="token keyword">mut</span> return_val <span class="token operator">=</span> <span class="token function">vec!</span><span class="token punctuation">[</span><span class="token number">0u8</span><span class="token punctuation">;</span> sandbox_primitives<span class="token punctuation">:</span><span class="token punctuation">:</span>ReturnValue<span class="token punctuation">:</span><span class="token punctuation">:</span>ENCODED_MAX_SIZE<span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token operator">|</span>                              <span class="token operator">^</span><span class="token operator">^</span><span class="token operator">^</span>
@@ -123,7 +123,7 @@ error<span class="token punctuation">:</span> aborting due to previous error
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="adding-the-contracts-module"></a><a href="#adding-the-contracts-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding the Contracts Module</h2>
 <p>Now that we have successfully imported the Contracts module crate, we need to add it to our Runtime. The first thing we will add to our runtime is the Gas type.</p>
-<p><strong>lib.rs</strong></p>
+<p><strong><code>runtime/src/lib.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token comment">//! The Substrate Node Template runtime. This can be compiled with `#[no_std]`, ready for Wasm.</span>
 
 <span class="token attribute attr-name">#![cfg_attr(not(feature = "std"), no_std)]</span>
@@ -147,8 +147,14 @@ error<span class="token punctuation">:</span> aborting due to previous error
 <p>If you have followed our <a href="tutorials/creating-your-first-substrate-chain.md">other basic tutorials</a>, you may remember that we need to implement a <code>contracts::Trait</code> and also add <code>Contracts: contracts,</code> to our <code>construct_runtime!</code> macro.</p>
 <h3><a class="anchor" aria-hidden="true" id="implementing-the-contract-trait"></a><a href="#implementing-the-contract-trait" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Implementing the Contract Trait</h3>
 <p>To figure out what we need to implement, you can take a look at the SRML <a href="https://substrate.dev/rustdocs/master/srml_contracts/trait.Trait.html"><code>contracts::Trait</code> documentation</a> or the <a href="https://github.com/paritytech/substrate/blob/master/srml/contracts/src/lib.rs">Contracts module source code</a>. For our runtime, the implementation will look like this:</p>
-<pre><code class="hljs css language-rust"><span class="token keyword">impl</span> contracts<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait <span class="token keyword">for</span> Runtime <span class="token punctuation">{</span>
+<p><strong><code>runtime/src/lib.rs</code></strong></p>
+<pre><code class="hljs css language-rust"><span class="token keyword">impl</span> timestamp<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait <span class="token keyword">for</span> Runtime <span class="token punctuation">{</span>
+    <span class="token comment">//--snip--</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span> contracts<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait <span class="token keyword">for</span> Runtime <span class="token punctuation">{</span>
     <span class="token keyword">type</span> Currency <span class="token operator">=</span> Balances<span class="token punctuation">;</span>
+    <span class="token keyword">type</span> Time <span class="token operator">=</span> Timestamp<span class="token punctuation">;</span>
     <span class="token keyword">type</span> Call <span class="token operator">=</span> Call<span class="token punctuation">;</span>
     <span class="token keyword">type</span> Event <span class="token operator">=</span> Event<span class="token punctuation">;</span>
     <span class="token keyword">type</span> DetermineContractAddress <span class="token operator">=</span> contracts<span class="token punctuation">:</span><span class="token punctuation">:</span>SimpleAddressDeterminator<span class="token operator">&lt;</span>Runtime<span class="token operator">></span><span class="token punctuation">;</span>
@@ -161,20 +167,22 @@ error<span class="token punctuation">:</span> aborting due to previous error
     <span class="token keyword">type</span> RentByteFee <span class="token operator">=</span> contracts<span class="token punctuation">:</span><span class="token punctuation">:</span>DefaultRentByteFee<span class="token punctuation">;</span>
     <span class="token keyword">type</span> RentDepositOffset <span class="token operator">=</span> contracts<span class="token punctuation">:</span><span class="token punctuation">:</span>DefaultRentDepositOffset<span class="token punctuation">;</span>
     <span class="token keyword">type</span> SurchargeReward <span class="token operator">=</span> contracts<span class="token punctuation">:</span><span class="token punctuation">:</span>DefaultSurchargeReward<span class="token punctuation">;</span>
-    <span class="token keyword">type</span> TransferFee <span class="token operator">=</span> ContractTransferFee<span class="token punctuation">;</span>
-    <span class="token keyword">type</span> CreationFee <span class="token operator">=</span> ContractCreationFee<span class="token punctuation">;</span>
-    <span class="token keyword">type</span> TransactionBaseFee <span class="token operator">=</span> ContractTransactionBaseFee<span class="token punctuation">;</span>
-    <span class="token keyword">type</span> TransactionByteFee <span class="token operator">=</span> ContractTransactionByteFee<span class="token punctuation">;</span>
-    <span class="token keyword">type</span> ContractFee <span class="token operator">=</span> ContractFee<span class="token punctuation">;</span>
+    <span class="token keyword">type</span> TransferFee <span class="token operator">=</span> contracts<span class="token punctuation">:</span><span class="token punctuation">:</span>DefaultTransferFee<span class="token punctuation">;</span>
+    <span class="token keyword">type</span> InstantiateBaseFee <span class="token operator">=</span> contracts<span class="token punctuation">:</span><span class="token punctuation">:</span>DefaultInstantiationFee<span class="token punctuation">;</span>
+    <span class="token keyword">type</span> TransactionBaseFee <span class="token operator">=</span> contracts<span class="token punctuation">:</span><span class="token punctuation">:</span>DefaultTransactionBaseFee<span class="token punctuation">;</span>
+    <span class="token keyword">type</span> TransactionByteFee <span class="token operator">=</span> contracts<span class="token punctuation">:</span><span class="token punctuation">:</span>DefaultTransactionByteFee<span class="token punctuation">;</span>
+    <span class="token keyword">type</span> CreationFee <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> ContractFee <span class="token operator">=</span> contracts<span class="token punctuation">:</span><span class="token punctuation">:</span>DefaultContractFee<span class="token punctuation">;</span>
     <span class="token keyword">type</span> CallBaseFee <span class="token operator">=</span> contracts<span class="token punctuation">:</span><span class="token punctuation">:</span>DefaultCallBaseFee<span class="token punctuation">;</span>
-    <span class="token keyword">type</span> CreateBaseFee <span class="token operator">=</span> contracts<span class="token punctuation">:</span><span class="token punctuation">:</span>DefaultCreateBaseFee<span class="token punctuation">;</span>
     <span class="token keyword">type</span> MaxDepth <span class="token operator">=</span> contracts<span class="token punctuation">:</span><span class="token punctuation">:</span>DefaultMaxDepth<span class="token punctuation">;</span>
     <span class="token keyword">type</span> MaxValueSize <span class="token operator">=</span> contracts<span class="token punctuation">:</span><span class="token punctuation">:</span>DefaultMaxValueSize<span class="token punctuation">;</span>
     <span class="token keyword">type</span> BlockGasLimit <span class="token operator">=</span> contracts<span class="token punctuation">:</span><span class="token punctuation">:</span>DefaultBlockGasLimit<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>To go into a bit more detail here, we see from the documentation that <code>type Currency</code> in the Contracts module needs to be defined and support the requirements of the trait <code>Currency</code></p>
-<pre><code class="hljs css language-rust"><span class="token comment">// From the reference documentation, but also can be found in the Contracts module code</span>
+<pre><code class="hljs css language-rust"><span class="token comment">// From the reference documentation, also found in `contracts` module:</span>
+<span class="token comment">//   https://github.com/paritytech/substrate/blob/master/srml/contracts/src/lib.rs</span>
+
 <span class="token keyword">type</span> Currency<span class="token punctuation">:</span> Currency<span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span>AccountId<span class="token operator">></span>
 </code></pre>
 <p>Fortunately, the Balances module implements this type, so we can simply reference <code>Balances</code> to gain access to it.</p>
@@ -190,6 +198,7 @@ error<span class="token punctuation">:</span> aborting due to previous error
 <li>The <strong>Module</strong> type from the <code>decl_module!</code> macro.</li>
 </ul>
 <p>Thus, when we add the module, it will look like this:</p>
+<p><strong><code>runtime/src/lib.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token function">construct_runtime!</span><span class="token punctuation">(</span>
     <span class="token keyword">pub</span> <span class="token keyword">enum</span> Runtime <span class="token keyword">where</span>
         Block <span class="token operator">=</span> Block<span class="token punctuation">,</span>
@@ -197,6 +206,7 @@ error<span class="token punctuation">:</span> aborting due to previous error
         UncheckedExtrinsic <span class="token operator">=</span> UncheckedExtrinsic
     <span class="token punctuation">{</span>
         <span class="token comment">//--snip--</span>
+        <span class="token comment">// add this line</span>
         Contracts<span class="token punctuation">:</span> contracts<span class="token punctuation">,</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -205,8 +215,10 @@ error<span class="token punctuation">:</span> aborting due to previous error
 <h3><a class="anchor" aria-hidden="true" id="adding-runtime-hooks"></a><a href="#adding-runtime-hooks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding Runtime Hooks</h3>
 <p>Substrate provides the ability for modules to expose &quot;hooks&quot; where changes in the module can trigger functions in other modules. For example, you could create a module which executes some action every time a new account is created (when it first gains a balance over the <a href="https://substrate.dev/docs/en/overview/glossary#existential-deposit">existential deposit</a>).</p>
 <p>In the case of the Contracts module, we actually want a hook when an account runs out of free balance. Because the Contracts module instantiates contracts as &quot;Accounts&quot;, it also needs to know when an account is destroyed so that it can clean up any storage that contract was using. You can find that logic in the Contracts module source code:</p>
-<p><strong>Contracts module <code>lib.rs</code></strong></p>
-<pre><code class="hljs css language-rust"><span class="token keyword">impl</span><span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> OnFreeBalanceZero<span class="token operator">&lt;</span>T<span class="token punctuation">:</span><span class="token punctuation">:</span>AccountId<span class="token operator">></span> <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
+<pre><code class="hljs css language-rust"><span class="token comment">// From the reference documentation, also found in `contracts` module:</span>
+<span class="token comment">//   https://github.com/paritytech/substrate/blob/master/srml/contracts/src/lib.rs</span>
+
+<span class="token keyword">impl</span><span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> OnFreeBalanceZero<span class="token operator">&lt;</span>T<span class="token punctuation">:</span><span class="token punctuation">:</span>AccountId<span class="token operator">></span> <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
     <span class="token keyword">fn</span> <span class="token function">on_free_balance_zero</span><span class="token punctuation">(</span>who<span class="token punctuation">:</span> <span class="token operator">&amp;</span>T<span class="token punctuation">:</span><span class="token punctuation">:</span>AccountId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token operator">&lt;</span>CodeHashOf<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">remove</span><span class="token punctuation">(</span>who<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token operator">&lt;</span>AccountInfoOf<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">get</span><span class="token punctuation">(</span>who<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token operator">|</span>info<span class="token operator">|</span> child<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">kill_storage</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>info<span class="token punctuation">.</span>trie_id<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -214,7 +226,7 @@ error<span class="token punctuation">:</span> aborting due to previous error
 <span class="token punctuation">}</span>
 </code></pre>
 <p>To enable this, we simply need to add <code>Contracts</code> type that we defined in the <code>construct_runtime!</code> macro to the <code>OnFreeBalanceZero</code> hook provided by the Balances module:</p>
-<p><strong><code>contracts-chain/runtime/src/lib.rs</code></strong></p>
+<p><strong><code>runtime/src/lib.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token keyword">impl</span> balances<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait <span class="token keyword">for</span> Runtime <span class="token punctuation">{</span>
     <span class="token comment">/// What to do if an account's free balance gets zeroed.</span>
     <span class="token keyword">type</span> OnFreeBalanceZero <span class="token operator">=</span> <span class="token punctuation">(</span>Contracts<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -223,12 +235,13 @@ error<span class="token punctuation">:</span> aborting due to previous error
 </code></pre>
 <p>Now, when the Balances module detects that the free balance of an account has reached zero, it calls the <code>on_free_balance_zero</code> function of the Contracts module.</p>
 <h2><a class="anchor" aria-hidden="true" id="genesis-configuration"></a><a href="#genesis-configuration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Genesis Configuration</h2>
-<p>The last thing we need to do in order to get your node up and running is to establish a genesis configuration for the Contracts module. Not all modules will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, <a href="https://substrate.dev/rustdocs/master/srml_contracts/struct.GenesisConfig.html"><code>srml_contracts::GenesisConfig</code> documentation</a> describes all the fields you need to define for the Contracts module. This definition is controlled in <code>contracts-chain/src/chain_spec.rs</code>. We need to modify this file to include the <code>ContractsConfig</code> type:</p>
+<p>The last thing we need to do in order to get your node up and running is to establish a genesis configuration for the Contracts module. Not all modules will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, <a href="https://substrate.dev/rustdocs/master/srml_contracts/struct.GenesisConfig.html"><code>srml_contracts::GenesisConfig</code> documentation</a> describes all the fields you need to define for the Contracts module. This definition is controlled in <code>contracts-chain/src/chain_spec.rs</code>. We need to modify this file to include the <code>ContractsConfig</code> type at the top:</p>
+<p><strong><code>src/chain_spec.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token keyword">use</span> contracts_chain_runtime<span class="token punctuation">:</span><span class="token punctuation">:</span>ContractsConfig<span class="token punctuation">;</span>
 </code></pre>
-<p>Then we need to add values to the configuration.</p>
-<pre><code class="hljs css language-rust"><span class="token keyword">fn</span> <span class="token function">testnet_genesis</span><span class="token punctuation">(</span><span class="token punctuation">...</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
+<p>Then inside the <code>testnet_genesis</code> function we need to add the contract configuration to the returned <code>GenesisConfig</code> object as followed:</p>
+<p><strong><code>src/chain_spec.rs</code></strong></p>
+<pre><code class="hljs css language-rust"><span class="token keyword">fn</span> <span class="token function">testnet_genesis</span><span class="token punctuation">(</span><span class="token punctuation">...</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> GenesisConfig <span class="token punctuation">{</span>
     <span class="token comment">//--snip--</span>
     <span class="token keyword">let</span> <span class="token keyword">mut</span> contracts_config <span class="token operator">=</span> ContractsConfig <span class="token punctuation">{</span>
         current_schedule<span class="token punctuation">:</span> Default<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">default</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
@@ -236,17 +249,16 @@ error<span class="token punctuation">:</span> aborting due to previous error
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     <span class="token comment">// IMPORTANT: this should only be enabled on development chains!</span>
     contracts_config<span class="token punctuation">.</span>current_schedule<span class="token punctuation">.</span>enable_println <span class="token operator">=</span> <span class="token keyword">true</span><span class="token punctuation">;</span>
-    <span class="token comment">//--snip--</span>
+
+    GenesisConfig <span class="token punctuation">{</span>
+        <span class="token comment">//--snip--</span>
+        <span class="token comment">// add this line</span>
+        contracts<span class="token punctuation">:</span> <span class="token function">Some</span><span class="token punctuation">(</span>contracts_config<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>Note that you can tweak these numbers to your needs, but these are the values set at the <a href="https://github.com/paritytech/substrate/blob/master/node/cli/src/chain_spec.rs">genesis configuration of the main Substrate node</a>. You should place that code block into the <code>testnet_genesis</code> function, and then in the <code>GenesisConfig</code> object, add:</p>
-<pre><code class="hljs css language-rust">GenesisConfig <span class="token punctuation">{</span>
-    <span class="token comment">//--snip--</span>
-    contracts<span class="token punctuation">:</span> <span class="token function">Some</span><span class="token punctuation">(</span>contracts_config<span class="token punctuation">)</span><span class="token punctuation">,</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>Finally, you are ready to compile your contract capable node with:</p>
-<p>We first need to purge the chain to remove the old runtime logic. It is possible to upgrade the chain without purging it but it will remain out of scope for this tutorial.</p>
+<p>Note that you can tweak these numbers to your needs, but these are the values set at the <a href="https://github.com/paritytech/substrate/blob/master/node/cli/src/chain_spec.rs">genesis configuration of the main Substrate node</a>.</p>
+<p>Now you are ready to compile and run your contract-capable node. We first need to purge the chain to remove the old runtime logic. It is possible to upgrade the chain without purging it but it will remain out of scope for this tutorial.</p>
 <pre><code class="hljs css language-bash">cargo run --release -- purge-chain --dev
 cargo run --release -- --dev
 </code></pre>
