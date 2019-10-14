@@ -2,7 +2,7 @@
 title: Runtime Storage
 ---
 
-Runtime storage allows you to store data in your blockchain which can be accessed from from your runtime logic and persists between blocks.
+Runtime storage allows you to store data in your blockchain which can be accessed from your runtime logic and persists between blocks.
 
 ## Storage Items
 
@@ -25,7 +25,7 @@ You can use the `decl_storage!` macro to easily create new runtime storage items
 ```rust
 decl_storage! {
 	trait Store for Module<T: Trait> as Example {
-		pub SomeValue: u64; 
+		pub SomeValue: u64;
 		pub SomeMap: map u64 => u64;
 		pub SomeLinkedMap: linked_map u64 => u64;
 		pub SomeDoubleMap: double_map u64, blake2_256(u64) => u64;
