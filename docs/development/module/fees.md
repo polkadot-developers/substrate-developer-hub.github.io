@@ -4,10 +4,11 @@ title: Transaction Fees
 
 When transactions are submitted to a blockchain, they are executed by the nodes in the network. To be economically sustainable, the cost nodes incur to execute a transaction must be covered by the submitter of the transaction. The cost to execute transactions varies over orders of magnitude, and thus Substrate provides a flexible mechanism for characterizing the total cost of a transaction.
 
-## Formula
+## Fees Calculation
 The fee to execute a transaction consists of three parts
+
 ```
-total_fee = base_fee + length_fee * length + weight_fee * weight
+total_fee = base_fee + length_fee * length + weight_multiplier * weight
 ```
 
 * `base_fee` a fixed fee that is applied to every single transaction.
@@ -16,11 +17,20 @@ total_fee = base_fee + length_fee * length + weight_fee * weight
 
 > Transactors may also include optional tips in transactions to incentivize validators to include the transactions faster. Tips are a separate concept and are not covered here.
 
+## Adjusting Multipliers
+The `base_fee` and `byte_fee` are constants in the Transaction Fees module. The weight multiplier seems to adjust dynamically. @kainenigma can you explain that.
 
 ## Weight Basics
-Transaction weights allow developers to express the cost of executing a transaction as a function of it's arguments. In many cases the computational complexity of a function can be captured in terms of the arguments. Some theoretical and practical advice for doing so is given below.
+Transaction weights allow developers to express the cost of executing a transaction as a function of it's arguments. Some theoretical and practical advice for doing so is given below.
 
-How theoretical do we want to be vs how practical? 
+## Dispatch Parameters
+Every transaction is classified as either Normal
+FixedNormal
+FreeNormal
+MaxNormal
+
+> Here we've presented the Normal variants. There is also `FixedOperational` and its relatives. Explain the difference and decide whether this article should be about dispatch info more generally.
+
 
 ## Examples
 O(n) in an integer parameter
