@@ -28,7 +28,7 @@ Each of these macros have their own page which describes how to use them.
 
 ## Expanding the Macros
 
-The runtime macros do a lot work for you, and as a result, may sometimes feel like magic. In general, we suggest that you treat them like magic.
+The runtime macros do a lot of work for you, and as a result, may sometimes feel like magic. In general, we suggest that you treat them like magic.
 
 However, if you are interested in learning more details about what exactly the macros do, you can expand them with [`cargo expand`](https://github.com/dtolnay/cargo-expand), resulting in pure Rust code.
 

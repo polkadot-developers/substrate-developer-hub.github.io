@@ -15,7 +15,9 @@ To install all the prerequisites needed for the Substrate build environment, lik
 ```bash
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
+
 #### Get the Node Template
+
 ```bash
 git clone https://github.com/substrate-developer-hub/substrate-node-template
 
@@ -42,7 +44,9 @@ The first thing you need to do to add the Contracts module is to import the `srm
 
 Open `contracts-chain/runtime/Cargo.toml` and you will see a file which lists all the dependencies your runtime has. For example, it depends on the [Balances module](https://substrate.dev/rustdocs/master/srml_balances/index.html):
 
-```rust
+**`Cargo.toml`**
+
+```TOML
 [dependencies.balances]
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
@@ -54,7 +58,9 @@ rev = '<git-commit>'
 
 One important thing we need to call out with importing module crates is making sure to set up the crate `features` correctly. In the code snippet above, you will notice that we set `default_features = false`. If you explore the `Cargo.toml` file even closer, you will find something like:
 
-``` TOML
+**`Cargo.toml`**
+
+```TOML
 [features]
 default = ['std']
 std = [
@@ -68,15 +74,16 @@ std = [
 ]
 ```
 
-This second line defines the `default` features of your runtime crate as `std`. You can imagine, each module crate has a similar configuration defining the default feature for the crate. Your feature will determine the features that should be used on downstream dependencies. For example, the snippet above should be read as:
+This second line aaa defines the `default` features of your runtime crate as `std`. You can imagine, each module crate has a similar configuration defining the default feature for the crate. Your feature will determine the features that should be used on downstream dependencies. For example, the snippet above should be read as:
 
 > The default feature for this Substrate runtime is `std`. When `std` feature is enabled for the runtime, `parity-scale-codec`, `primitives`, `client`, and all the other listed dependencies should use their `std` feature too.
 
 This is important to enable the Substrate runtime to compile to both native binaries (which support Rust [`std`](https://doc.rust-lang.org/std/)) and Wasm binaries (which do not: [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html)).
 
-To see how these features actually get used in the runtime code, we can open `contracts-chain/runtime/src/lib.rs`:
+To see how these features actually get used in the runtime code, we can open the project file:
 
-**lib.rs**
+**`runtime/src/lib.rs`**
+
 ```rust
 //! The Substrate Node Template runtime. This can be compiled with `#[no_std]`, ready for Wasm.
 
@@ -106,35 +113,34 @@ Okay, now that we have covered the basics of crate features, we can actually imp
 
 First we will add the new dependency by simply copying an existing module, and changing the values. So based on the `balances` import shown above, my `contracts` import will look like:
 
-**Cargo.toml**
+**`Cargo.toml`**
 
-```rust
+```TOML
 [dependencies.contracts]
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'srml-contracts'
-rev = '<git-commit>'
+rev = '<git-commit>' # e.g. commit: '3dedd246c62255ba6f9b777ecba318dfc2078d85'
 ```
 
-You [can see](https://github.com/paritytech/substrate/blob/master/srml/contracts/Cargo.toml) that the Contracts module has `std` and `no_std` features, thus we need to add both features to our runtime:
+You [can see](https://github.com/paritytech/substrate/blob/master/srml/contracts/Cargo.toml) that the Contracts module has `std` feature, thus we need to add that feature to our runtime:
+
+**`Cargo.toml`**
 
 ```TOML
 [features]
 default = ["std"]
-no_std = [
-	'contracts/core',
-]
 std = [
-	'contracts/std',
+    'contracts/std',
     #--snip--
 ]
 ```
 
-If you forget to set the features, when building to your native binaries you will get errors like:
+If you forget to set the feature, when building to your native binaries you will get errors like:
 
 ```rust
 error: cannot find macro `vec!` in this scope
-   --> /Users/shawntabrizi/.cargo/git/checkouts/substrate-7e08433d4c370a21/783ca18/core/sr-sandbox/src/../without_std.rs:290:24
+   --> ~/.cargo/git/checkouts/substrate-7e08433d4c370a21/783ca18/core/sr-sandbox/src/../without_std.rs:290:24
     |
 290 |         let mut return_val = vec![0u8; sandbox_primitives::ReturnValue::ENCODED_MAX_SIZE];
     |                              ^^^
@@ -152,7 +158,8 @@ cargo run --release -- --dev
 
 Now that we have successfully imported the Contracts module crate, we need to add it to our Runtime. The first thing we will add to our runtime is the Gas type.
 
-**lib.rs**
+**`runtime/src/lib.rs`**
+
 ```rust
 //! The Substrate Node Template runtime. This can be compiled with `#[no_std]`, ready for Wasm.
 
@@ -179,40 +186,49 @@ If you have followed our [other basic tutorials](tutorials/creating-your-first-s
 
 ### Implementing the Contract Trait
 
-To figure out what we need to implement, you can take a look at the SRML  [`contracts::Trait` documentation](https://substrate.dev/rustdocs/master/srml_contracts/trait.Trait.html) or the [Contracts module source code](https://github.com/paritytech/substrate/blob/master/srml/contracts/src/lib.rs). For our runtime, the implementation will look like this:
+To figure out what we need to implement, you can take a look at the SRML [`contracts::Trait` documentation](https://substrate.dev/rustdocs/master/srml_contracts/trait.Trait.html) or the [Contracts module source code](https://github.com/paritytech/substrate/blob/master/srml/contracts/src/lib.rs). For our runtime, the implementation will look like this:
+
+**`runtime/src/lib.rs`**
 
 ```rust
+impl timestamp::Trait for Runtime {
+    //--snip--
+}
+
 impl contracts::Trait for Runtime {
-	type Currency = Balances;
-	type Call = Call;
-	type Event = Event;
-	type DetermineContractAddress = contracts::SimpleAddressDeterminator<Runtime>;
-	type ComputeDispatchFee = contracts::DefaultDispatchFeeComputor<Runtime>;
-	type TrieIdGenerator = contracts::TrieIdFromParentCounter<Runtime>;
-	type GasPayment = ();
-	type SignedClaimHandicap = contracts::DefaultSignedClaimHandicap;
-	type TombstoneDeposit = contracts::DefaultTombstoneDeposit;
-	type StorageSizeOffset = contracts::DefaultStorageSizeOffset;
-	type RentByteFee = contracts::DefaultRentByteFee;
-	type RentDepositOffset = contracts::DefaultRentDepositOffset;
-	type SurchargeReward = contracts::DefaultSurchargeReward;
-	type TransferFee = ContractTransferFee;
-	type CreationFee = ContractCreationFee;
-	type TransactionBaseFee = ContractTransactionBaseFee;
-	type TransactionByteFee = ContractTransactionByteFee;
-	type ContractFee = ContractFee;
-	type CallBaseFee = contracts::DefaultCallBaseFee;
-	type CreateBaseFee = contracts::DefaultCreateBaseFee;
-	type MaxDepth = contracts::DefaultMaxDepth;
-	type MaxValueSize = contracts::DefaultMaxValueSize;
-	type BlockGasLimit = contracts::DefaultBlockGasLimit;
+    type Currency = Balances;
+    type Time = Timestamp;
+    type Call = Call;
+    type Event = Event;
+    type DetermineContractAddress = contracts::SimpleAddressDeterminator<Runtime>;
+    type ComputeDispatchFee = contracts::DefaultDispatchFeeComputor<Runtime>;
+    type TrieIdGenerator = contracts::TrieIdFromParentCounter<Runtime>;
+    type GasPayment = ();
+    type SignedClaimHandicap = contracts::DefaultSignedClaimHandicap;
+    type TombstoneDeposit = contracts::DefaultTombstoneDeposit;
+    type StorageSizeOffset = contracts::DefaultStorageSizeOffset;
+    type RentByteFee = contracts::DefaultRentByteFee;
+    type RentDepositOffset = contracts::DefaultRentDepositOffset;
+    type SurchargeReward = contracts::DefaultSurchargeReward;
+    type TransferFee = contracts::DefaultTransferFee;
+    type InstantiateBaseFee = contracts::DefaultInstantiationFee;
+    type TransactionBaseFee = contracts::DefaultTransactionBaseFee;
+    type TransactionByteFee = contracts::DefaultTransactionByteFee;
+    type CreationFee = ();
+    type ContractFee = contracts::DefaultContractFee;
+    type CallBaseFee = contracts::DefaultCallBaseFee;
+    type MaxDepth = contracts::DefaultMaxDepth;
+    type MaxValueSize = contracts::DefaultMaxValueSize;
+    type BlockGasLimit = contracts::DefaultBlockGasLimit;
 }
 ```
 
 To go into a bit more detail here, we see from the documentation that `type Currency` in the Contracts module needs to be defined and support the requirements of the trait `Currency`
 
 ```rust
-// From the reference documentation, but also can be found in the Contracts module code
+// From the reference documentation, also found in `contracts` module:
+//   https://github.com/paritytech/substrate/blob/master/srml/contracts/src/lib.rs
+
 type Currency: Currency<Self::AccountId>
 ```
 
@@ -234,14 +250,17 @@ If we look at the Contracts module in detail, we know it has:
 
 Thus, when we add the module, it will look like this:
 
+**`runtime/src/lib.rs`**
+
 ```rust
 construct_runtime!(
-	pub enum Runtime where
-		Block = Block,
-		NodeBlock = opaque::Block,
-		UncheckedExtrinsic = UncheckedExtrinsic
-	{
+    pub enum Runtime where
+        Block = Block,
+        NodeBlock = opaque::Block,
+        UncheckedExtrinsic = UncheckedExtrinsic
+    {
         //--snip--
+        // add this line
         Contracts: contracts,
     }
 );
@@ -255,19 +274,22 @@ Substrate provides the ability for modules to expose "hooks" where changes in th
 
 In the case of the Contracts module, we actually want a hook when an account runs out of free balance. Because the Contracts module instantiates contracts as "Accounts", it also needs to know when an account is destroyed so that it can clean up any storage that contract was using. You can find that logic in the Contracts module source code:
 
-**Contracts module `lib.rs`**
 ```rust
+// From the reference documentation, also found in `contracts` module:
+//   https://github.com/paritytech/substrate/blob/master/srml/contracts/src/lib.rs
+
 impl<T: Trait> OnFreeBalanceZero<T::AccountId> for Module<T> {
-	fn on_free_balance_zero(who: &T::AccountId) {
-		<CodeHashOf<T>>::remove(who);
-		<AccountInfoOf<T>>::get(who).map(|info| child::kill_storage(&info.trie_id));
-	}
+    fn on_free_balance_zero(who: &T::AccountId) {
+        <CodeHashOf<T>>::remove(who);
+        <AccountInfoOf<T>>::get(who).map(|info| child::kill_storage(&info.trie_id));
+    }
 }
 ```
 
 To enable this, we simply need to add `Contracts` type that we defined in the `construct_runtime!` macro to the `OnFreeBalanceZero` hook provided by the Balances module:
 
-**`contracts-chain/runtime/src/lib.rs`**
+**`runtime/src/lib.rs`**
+
 ```rust
 impl balances::Trait for Runtime {
     /// What to do if an account's free balance gets zeroed.
@@ -280,40 +302,39 @@ Now, when the Balances module detects that the free balance of an account has re
 
 ## Genesis Configuration
 
-The last thing we need to do in order to get your node up and running is to establish a genesis configuration for the Contracts module. Not all modules will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`srml_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/master/srml_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contracts module. This definition is controlled in `contracts-chain/src/chain_spec.rs`. We need to modify this file to include the `ContractsConfig` type:
+The last thing we need to do in order to get your node up and running is to establish a genesis configuration for the Contracts module. Not all modules will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`srml_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/master/srml_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contracts module. This definition is controlled in `contracts-chain/src/chain_spec.rs`. We need to modify this file to include the `ContractsConfig` type at the top:
+
+**`src/chain_spec.rs`**
 
 ```rust
 use contracts_chain_runtime::ContractsConfig;
 ```
 
-Then we need to add values to the configuration.
+Then inside the `testnet_genesis` function we need to add the contract configuration to the returned `GenesisConfig` object as followed:
+
+**`src/chain_spec.rs`**
 
 ```rust
-fn testnet_genesis(...) {
+fn testnet_genesis(...) -> GenesisConfig {
+    //--snip--
+    let mut contracts_config = ContractsConfig {
+        current_schedule: Default::default(),
+        gas_price: 1 * 1_000_000_000, // MILLICENTS
+    };
+    // IMPORTANT: this should only be enabled on development chains!
+    contracts_config.current_schedule.enable_println = true;
 
-    //--snip--
-	let mut contracts_config = ContractsConfig {
-		current_schedule: Default::default(),
-		gas_price: 1 * 1_000_000_000, // MILLICENTS
-	};
-	// IMPORTANT: this should only be enabled on development chains!
-	contracts_config.current_schedule.enable_println = true;
-    //--snip--
+    GenesisConfig {
+        //--snip--
+        // add this line
+        contracts: Some(contracts_config),
+    }
 }
 ```
 
-Note that you can tweak these numbers to your needs, but these are the values set at the [genesis configuration of the main Substrate node](https://github.com/paritytech/substrate/blob/master/node/cli/src/chain_spec.rs). You should place that code block into the `testnet_genesis` function, and then in the `GenesisConfig` object, add:
+Note that you can tweak these numbers to your needs, but these are the values set at the [genesis configuration of the main Substrate node](https://github.com/paritytech/substrate/blob/master/node/cli/src/chain_spec.rs).
 
-```rust
-GenesisConfig {
-    //--snip--
-    contracts: Some(contracts_config),
-}
-```
-
-Finally, you are ready to compile your contract capable node with:
-
-We first need to purge the chain to remove the old runtime logic. It is possible to upgrade the chain without purging it but it will remain out of scope for this tutorial.
+Now you are ready to compile and run your contract-capable node. We first need to purge the chain to remove the old runtime logic. It is possible to upgrade the chain without purging it but it will remain out of scope for this tutorial.
 
 ```bash
 cargo run --release -- purge-chain --dev
