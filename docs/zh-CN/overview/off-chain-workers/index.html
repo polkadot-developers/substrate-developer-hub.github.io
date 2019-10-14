@@ -88,18 +88,16 @@
 <li>Off-chain workers, being part of the Substrate node, provide more decentralization as compared to a centralized oracle service.</li>
 <li>With a sandboxed Wasm execution environment, off-chain workers are fully secure while still providing seamless integration with the runtime using extrinsics.</li>
 <li>No need for maintaining external &quot;glue&quot; services and infrastructure. This reduces maintenance and infrastructure costs for the node operators.</li>
-<li>Off-chain workers' code is also stored on-chain, which allows off-chain logic updates via standard governance mechanism and seamless upgrades (using Wasm execution fallback logic).</li>
+<li>Off-chain workers' code is also stored on-chain, which allows off-chain logic updates via standard governance mechanism and forkless upgrades (using Wasm execution fallback logic).</li>
 </ol>
 <h2><a class="anchor" aria-hidden="true" id="off-chain-worker-apis"></a><a href="#off-chain-worker-apis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Off-Chain Worker APIs</h2>
 <p>The following APIs are planned to be supported by off-chain workers:</p>
 <ol>
-<li>Encryption and decryption</li>
-<li>Signing</li>
 <li>Local storage - get and set</li>
 <li>HTTP requests</li>
-<li>Key generation</li>
-<li>Random number generation</li>
+<li>Random seed generation</li>
 <li>Timestamp</li>
+<li>Sleep</li>
 </ol>
 <p><strong>Note:</strong> Some of these APIs are still under development. More information and usage documentation will be published as and when the APIs are available for use.</p>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/overview/low-level-data-format"><span class="arrow-prev">← </span><span>底层数据格式</span></a><a class="docs-next button" href="/docs/zh-CN/overview/session-keys"><span>会话秘钥</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#overview">Overview</a></li><li><a href="#off-chain-worker-vs-oracles">Off-Chain Worker vs Oracles</a></li><li><a href="#off-chain-worker-apis">Off-Chain Worker APIs</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
