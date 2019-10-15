@@ -336,5 +336,24 @@ code in their runtime's `Cargo.toml` files and updating their runtime's `lib.rs`
 
 In this tutorial, you've learned to create a runtime module as a Rust crate.
 You're now ready to replace the template logic with your own. If you're not sure
-what to code, check out [one of our tutorials](https://substrate.dev/en/tutorials).
+what to code, check out the following.
 
+### Learn More
+
+- We have [plenty of tutorials](https://substrate.dev/en/tutorials) to showcase
+Substrate development concepts and techniques.
+- To learn more about writing your own runtime with a front end, we have a
+[Substrate Collectables Workshop](https://substrate.dev/substrate-collectables-workshop)
+for building an end-to-end application.
+- For more information about runtime development tips and patterns, refer to our
+[Substrate Recipes](https://substrate.dev/recipes/).
+
+### Examples
+
+- Tutorial on [adding a `Contracts` module into runtime](tutorials/adding-a-module-to-your-runtime),
+so your node can run smart contract.
+
+### References
+
+- [The Cargo book](https://doc.rust-lang.org/stable/cargo/)
+- More about [Rust and WebAssembly](https://rustwasm.github.io/)
