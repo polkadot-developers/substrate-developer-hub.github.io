@@ -70,7 +70,7 @@ std = [
     'runtime-io/std',
     'support/std',
     'balances/std',
-	#--snip--
+    #--snip--
 ]
 ```
 
@@ -334,21 +334,28 @@ fn testnet_genesis(...) -> GenesisConfig {
 
 Note that you can tweak these numbers to your needs, but these are the values set at the [genesis configuration of the main Substrate node](https://github.com/paritytech/substrate/blob/master/node/cli/src/chain_spec.rs).
 
-Now you are ready to compile and run your contract-capable node. We first need to purge the chain to remove the old runtime logic. It is possible to upgrade the chain without purging it but it will remain out of scope for this tutorial.
+Now you are ready to compile and run your contract-capable node. We first need to purge the chain to remove the old runtime logic and have the genesis configuration initialized for the Contracts module. It is possible to upgrade the chain without purging it but it will remain out of scope for this tutorial.
 
 ```bash
 cargo run --release -- purge-chain --dev
 cargo run --release -- --dev
 ```
 
-## Next Steps
-
-We won't actually go into the details of testing the Contracts module functionality added to this chain, but if you want to try it out, you can follow our [contract tutorials](https://substrate.dev/tutorials).
-
-Make sure to run `cargo run --release -- purge-chain --dev` before you start your chain so that the genesis configuration will be initialized for the Contracts module.
-
-### Adding Other SRML Modules
+## Adding Other SRML Modules
 
 In this guide, we walked through specifically how to import the Contracts module, but as mentioned in the beginning of this guide, each module will be a little different. Have no fear, you can always refer to the ["main" Substrate node runtime](https://github.com/paritytech/substrate/blob/master/node/runtime/) which includes nearly every module in the SRML.
 
 In the `Cargo.toml` file of the Substrate node runtime, you will see an example of how to import each of the different modules, and in the `lib.rs` file you will find how to add each module to your runtime. You can basically copy what was done there to your own runtime.
+
+## Next Steps
+
+### Learn More
+
+- [A minimalist tutorial on writing your runtime module in its own package](tutorials/creating-a-runtime-module).
+- With your node now capable of running smart contracts, go learn to write your first smart contract in [Substrate Contracts workshop](https://substrate.dev/substrate-contracts-workshop).
+- To learn more about writing your own runtime with a front end, we have a [Substrate Collectables Workshop](https://substrate.dev/substrate-collectables-workshop) for building an end-to-end application.
+- For more information about runtime development tips and patterns, please refer to our [Substrate Recipes](https://substrate.dev/recipes/).
+
+### References
+
+- [SRML `Contracts` module API](https://crates.parity.io/srml_contracts/index.html)
