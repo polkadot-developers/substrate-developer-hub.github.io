@@ -351,7 +351,7 @@ In the `Cargo.toml` file of the Substrate node runtime, you will see an example 
 
 ### Learn More
 
-- [A minimalist tutorial on writing your runtime module in its own package](https://substrate.dev/docs/en/tutorials/creating-a-runtime-module).
+- [A minimalist tutorial on writing your runtime module in its own package](tutorials/creating-a-runtime-module).
 - With your node now capable of running smart contracts, go learn to write your first smart contract in [Substrate Contracts workshop](https://substrate.dev/substrate-contracts-workshop).
 - To learn more about writing your own runtime with a front end, we have a [Substrate Collectables Workshop](https://substrate.dev/substrate-collectables-workshop) for building an end-to-end application.
 - For more information about runtime development tips and patterns, please refer to our [Substrate Recipes](https://substrate.dev/recipes/).
