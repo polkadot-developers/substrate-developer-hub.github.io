@@ -31,12 +31,11 @@ We'll begin from cloning the necessary repositories:
 
 ```bash
 cd my-playground-folder
-# cloning from a standard node template
+# clone from a standard node template
 git clone https://github.com/substrate-developer-hub/substrate-node-template.git my-node
-# cloning from a standard module template
+# clone from a standard module template
 git clone https://github.com/substrate-developer-hub/substrate-module-template.git my-module
-
-# kicking off the node compilation
+# kick off the node compilation
 cd my-node
 cargo build --release
 ```
@@ -282,7 +281,7 @@ your node runtime. Compile and run your node with:
 
 ```bash
 cd my-playground-folder/my-node
-# compiling your node
+# compile your node
 cargo build --release
 # purge any existing chain
 cargo run --release -- purge-chain --dev
