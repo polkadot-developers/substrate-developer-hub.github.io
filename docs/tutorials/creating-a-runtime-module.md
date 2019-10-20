@@ -7,21 +7,17 @@ crate, and include it in a node based on the node-template.
 
 ## Setup Your Development Environment
 
-If you haven't already, follow the
-[fast installation](getting-started/installing-substrate#fast-installation) for
-getting started on Substrate. It will provide you with all the development
-resources you need to build Substrate and the
-[`substrate-up` scripts](getting-started/using-the-substrate-scripts) for
-quickly setting up new nodes.
+If you haven't already done so, follow the
+[Getting Started](getting-started) guide to download necessary tools to
+build Substrate.
 
-### Cloning Node and Module Template to Start
+### Cloning the Node and Module Template
 
 We're not going to write our module directly as part of the node template, but
 rather as a separate Rust crate. This approach provides a few advantages:
 
 1. Our module can be easily imported into other nodes in the future.
-2. Our module can be published to places like GitHub or Crates.io without
-publishing our entire node in the same place.
+2. Our module can be published to GitHub without publishing our entire node.
 
 However, to effectively develop and test with your own runtime module, you need
 to first setup a single-node Substrate blockchain. Then inside the node runtime
@@ -30,31 +26,33 @@ add in your own additional module.
 We'll begin from cloning the necessary repositories:
 
 ```bash
-cd my-playground-folder
-# clone from a standard node template
+mkdir tutorial
+cd tutorial
 git clone https://github.com/substrate-developer-hub/substrate-node-template.git my-node
-# clone from a standard module template
 git clone https://github.com/substrate-developer-hub/substrate-module-template.git my-module
-# kick off the node compilation
+
+# kick-start the node compilation
 cd my-node
 cargo build --release
 ```
 
-The compilation of the node may take up to 30 minutes, depending on your hardware.
-So let us kickstarted it first.
+The compilation of the node may take up to 30 minutes depending on your hardware,
+so we have kick-started it.
 
-Now, if our module isn't going to live in the node template, where _is_ it going
-to live? If you aren't familiar with creating Rust libraries or using them in
-other Rust projects, you can get a more in-depth explanation by reading
-[the Cargo book](https://doc.rust-lang.org/cargo/guide/creating-a-new-project.html).
+We have just cloned from two repositories because `substrate-node-template`
+contains the necessary code to run your Substrate node, and
+`substrate-module-template` contains the module code to be included in your node.
+If you aren't familiar with Rust including and using other modules, you can refer
+to [the Cargo book](https://doc.rust-lang.org/cargo/guide/creating-a-new-project.html)
+for a more in-depth explanation.
 
 While it's perfectly possible to create a new Substrate runtime module from
-scratch, the fastest way is to clone from a Substrate module template, as we
-have just done above.
+scratch, the easiest way is to clone from a Substrate module template, as we
+have done above.
 
 In the `Cargo.toml` file, update the module's name and authorship to something
 meaningful. In this tutorial we're focusing on how to create and use the module
-rather than writing interesting module logic, so let's call it `test_module`.
+rather than writing interesting module logic, so let us call it `test_module`.
 The beginning of the `Cargo.toml` now looks like:
 
 **`my-module/Cargo.toml`**
@@ -70,7 +68,7 @@ edition = "2018"
 You should be able to successfully compile this template module with:
 
 ```bash
-cargo build
+cargo build --release
 ```
 
 Let's explore some of the things Substrate module template do for us, starting
@@ -85,16 +83,12 @@ In your `my-module/Cargo.toml` file, you will notice a few lines about the
 [the Rust standard libraries](https://doc.rust-lang.org/std/). This works just
 fine when building native binaries.
 
-However, Substrate also builds the runtime code to WebAssembly(Wasm). In this
-case we use cargo features to disable the Rust standard library when compiling
-for Wasm because the compiler does not know which allocator to use. See
-Reference section for the details.
-
-Thus, all the dependencies we use for our module, and our entire runtime, must
-be able to compile with
-[`no_std`](https://rust-embedded.github.io/book/intro/no-std.html) feature.
-Our `Cargo.toml` file tells our module's dependencies to only use their `std`
-feature when this module also uses its `std` feature like so:
+However, Substrate also builds the runtime code to WebAssembly (Wasm). In this
+case we use cargo features to disable the Rust standard library. Thus, all the
+dependencies we use for our module, and our entire runtime, must be able to
+compile with [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html)
+feature. Our `Cargo.toml` file tells our module's dependencies to only use their
+`std` feature when this module also uses its `std` feature, like so:
 
 **`my-module/Cargo.toml`**
 
@@ -111,7 +105,8 @@ std = [
 ]
 ```
 
-> In general, when adding dependencies to your runtime, follow this pattern.
+> **Note:** In general, when adding dependencies to your runtime, follow this
+> pattern.
 >
 > 1. Add a feature called `std`
 > 2. Enable this feature by default in your `Cargo.toml`
@@ -121,62 +116,39 @@ std = [
 
 All Substrate modules will depend on some low-level module libraries such as
 `srml-system` and `srml-support`. These libraries are pulled from the main
-Substrate GitHub repository. When people build their own Substrate nodes, they
-will also have dependencies on the main Substrate repository.
+[Substrate GitHub repository](https://github.com/paritytech/substrate). When
+people build their own Substrate nodes, they will also have dependencies on the
+main Substrate repository.
 
 Because of this, you will need to be careful to ensure consistent dependencies
 from your module and the node integrating your module to the Substrate
 repository. If your module is dependent on one version of Substrate, and the
-node is dependent on another, compilation will run into errors where the
-Substrate versions may be incompatible, or the two versions of the same library
-are being used. Ultimately Cargo will not be able to resolve those conflicts
-and you will get a compile time error.
+node on another, compilation will run into errors where the Substrate versions
+may be incompatible, or different version of the same library are being used.
+Ultimately Cargo will not be able to resolve those conflicts and you will get a
+compile time error.
 
-So when building your module have two options:
+When building your module, we recommend to develop against the `v2.0` branch as
+the template demonstrates. This ensures your module has the latest stable code.
+If you later prefer to have the freshly-baked features from Substrate, you can
+then choose to use a specific git commit of Substrate, as shown in the following
+code comment.
 
-**Option 1**
-
-If you prefer to have the freshly-baked features from Substrate, you can develop
-your module against a specific git commit of Substrate. In future to upgrade,
-you can update to a newer git commit of Substrate, recompile and test your
-module against the runtime, and then release your module.
-
-In this case you change the Substrate module `Cargo.toml` to use
-`rev = <git commit hash>`, e.g.:
+**`my-module/Cargo.toml`**
 
 ```TOML
-#--snip--
+# --snip--
 
 [dependencies.support]
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'srml-support'
-rev = '3dedd246c62255ba6f9b777ecba318dfc2078d85'
+branch = 'v2.0'
 
-#--snip--
-```
+# To develop against a specific git commit, use:
+# rev = '3dedd246c62255ba6f9b777ecba318dfc2078d85'
 
-This means that only nodes which use the exact same git commit hash for their
-projects can use your module.
-
-**Option 2**
-
-If you prefer to have more stability, you can develop your module against
-Substrate's known release tags (e.g.
-[`v1.0.0`](https://github.com/paritytech/substrate/tree/v1.0.0)). In this case
-you will need to update your node template's `Cargo.toml` to depend on
-Substrate's `tag = 'v1.0.0'`, e.g.:
-
-```TOML
-#--snip--
-
-[dependencies.support]
-default_features = false
-git = 'https://github.com/paritytech/substrate.git'
-package = 'srml-support'
-tag = 'v1.0.0'
-
-#--snip--
+# --snip--
 ```
 
 ### Your Module's Dev Dependencies
@@ -185,47 +157,42 @@ The final section of the `Cargo.toml` file specifies the dev dependencies.
 These are the dependencies that are needed in your module's tests, but not
 necessary the actual module itself.
 
+**`my-module/Cargo.toml`**
+
 ```TOML
-#--snip--
+# --snip--
 
 [dev-dependencies.primitives]
 git = 'https://github.com/paritytech/substrate.git'
 package = 'substrate-primitives'
-rev = '3dedd246c62255ba6f9b777ecba318dfc2078d85'
+branch = 'v2.0'
 ```
 
-You can confirm for yourself that the Substrate module template's test passes
-with:
+You can confirm that the Substrate module template's test passes with:
 
 ```bash
 cargo test
 ```
-
-> Optional: You can remove these dev dependencies from your `Cargo.toml` file
-> and confirm that the module still compiles with `cargo build`. However, you
-> will notice that `cargo test` does not compile!
->
-> If you do this experiment, remember to restore the dev dependencies afterward.
 
 It will take a little experimentation to gain familiarity with what dependencies
 you need for each module you dream up. So the take-away is not that `Cargo.toml`
 should always look like it does in the template. Rather, `Cargo.toml` needs to
 have the correct dependencies and you now know how to specify them.
 
-### Add your Runtime Module to your Node
+### Add Your Runtime Module to Your Node
 
 With our runtime module now compiling and passing it's test, we're ready to add
 it to our node.
 
-Continued working in your playground folder, we first need to add our
+Continued working in your `tutorial` folder, we first add our
 newly-created crate as a dependency in the node runtime's `Cargo.toml`. Then we
-need to tell the module to only build its `std` feature when the runtime itself
+tell the module to only build its `std` feature when the runtime itself
 does, as followed:
 
 **`my-node/runtime/Cargo.toml`**
 
 ```TOML
-#--snip--
+# --snip--
 
 [dependencies.test_module]
 default_features = false
@@ -236,15 +203,15 @@ path = "../../my-module"
 default = ['std']
 std = [
     'test_module/std',
-    #--snip--
+    # --snip--
 ]
 ```
 
 > You **must** set `default_features = false` so that your runtime will
 successfully compile to wasm.
 
-Next we'll update `runtime/src/lib.rs` to actually use our new runtime module.
-We will update the trait implementation with our `test_module` and add it in
+Next we will update `my-node/runtime/src/lib.rs` to actually use our new runtime
+module, by adding a trait implementation with our `test_module` and add it in
 our runtime construction macro.
 
 **`my-node/runtime/src/lib.rs`**
@@ -260,55 +227,56 @@ impl test_module::Trait for Runtime {
 	type Event = Event;
 }
 
-//...
+// --snip--
 construct_runtime!(
   pub enum Runtime where
     Block = Block,
     NodeBlock = opaque::Block,
     UncheckedExtrinsic = UncheckedExtrinsic
   {
-    //...
+    // --snip--
     // add the following line
     TestModule: test_module::{Module, Call, Storage, Event<T>},
   }
 );
 ```
 
-### Appreciate your Work 😊
+### Appreciate Your Work 😊
 
-At this point you have the module packaged up as it's own crate, and included in
-your node runtime. Compile and run your node with:
+At this point you have the module packaged up as it's own crate, and included it
+in your node runtime. Compile and run your node with:
 
 ```bash
-cd my-playground-folder/my-node
-# compile your node
+cd tutorial/my-node
 cargo build --release
-# purge any existing chain
-cargo run --release -- purge-chain --dev
-# start the node
-cargo run --release -- --dev
+
+# Purge any existing chain. Enter `y` on prompt.
+./target/release/node-template purge-chain --dev
+
+# Start the node
+./target/release/node-template --dev
 ```
 
-Finally, start the [Polkadot apps UI](https://polkadot.js.org/apps/#/explorer)
-to confirm that the module is working as expected. In the apps UI, you will need
-to navigate to the `Settings` tab, and have the `remote node/endpoint to connect to`
-set to `Local Node`.
+Finally, start the
+[Polkadot-JS Apps connecting to your local node](https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944)
+to confirm that the module is working as expected.
 
-### Publish your Module
+> **Notes:** You can also manually set the node URL in Polkadot-JS Apps by
+navigating to the **Settings** tab, and have the **remote node/endpoint to connect
+to** set to **Local Node**.
+
+### Publish Your Module
 
 Once your module is no longer just testing code, you should consider publishing
-it. We'll cover publishing your module to GitHub here, but [crates.io](https://crates.io/)
-is another good option. Go ahead and
+it to GitHub. Go ahead and
 [create a GitHub repository](https://help.github.com/en/articles/create-a-repo)
 and [push your module's code](https://help.github.com/en/articles/pushing-to-a-remote)
 to it.
 
-With the code on GitHub, your module is properly published. Congratulations! We
-now need to update your node to use the code that is on GitHub instead of a
-hard-coded file system path.
-
-The final edit to your runtime's `Cargo.toml` file will update its dependency
-on your module. The new code is:
+With the code on GitHub, your module is properly published. Congratulations! Now
+we just need to update your node to use the code that is on GitHub instead of a
+hard-coded file system path. The final edit to your runtime's `Cargo.toml` file
+is to update its dependency on your module. The new code is:
 
 **`my-node/runtime/Cargo.toml`**
 
@@ -329,7 +297,8 @@ instead of using the local files.
 Congratulations! You've written a Substrate runtime module in its own Rust crate,
 and published that crate to GitHub. Other blockchain developers can now easily
 use your module in their runtime by simply including those same four lines of
-code in their runtime's `Cargo.toml` files and updating their runtime's `lib.rs` file.
+code in their runtime's `Cargo.toml` files and updating their runtime's `lib.rs`
+file.
 
 ## Next Steps
 
