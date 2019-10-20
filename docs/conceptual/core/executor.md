@@ -15,7 +15,7 @@ binary is stored on the blockchain under a well known storage key.
 
 These two representations of the runtime may not be the same. For example: when
 the runtime is upgraded. The executor determines which version of the runtime to
-use when dispatching and executing calls.
+use when dispatching calls.
 
 ### Execution Strategy
 
@@ -49,7 +49,7 @@ consistent across all syncing nodes.
 
 The Wasm execution environment can be more restrictive than the native execution
 environment. For example, the Wasm runtime always executes in a 32-bit
-environment with a 4 GB memory limit.
+environment with a configurable memory limit (up to 4 GB).
 
 For these reasons, the blockchain prefers to do block construction with the Wasm
 runtime even though Wasm execution is measurably slower than native execution.
