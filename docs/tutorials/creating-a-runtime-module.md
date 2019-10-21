@@ -139,7 +139,8 @@ git = 'https://github.com/paritytech/substrate.git'
 package = 'srml-support'
 branch = 'v2.0'
 
-# To develop against a specific git commit, use:
+# Develop against a git commit by specifying the same Substrate commit as your main node. 
+# It is important to use the same Substrate commit to prevent dependencies mismatch.
 # rev = "<some commit hash>"
 
 # --snip--
