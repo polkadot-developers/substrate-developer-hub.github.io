@@ -140,7 +140,7 @@ package = 'srml-support'
 branch = 'v2.0'
 
 # To develop against a specific git commit, use:
-# rev = '3dedd246c62255ba6f9b777ecba318dfc2078d85'
+# rev = "<some commit hash>"
 
 # --snip--
 ```
