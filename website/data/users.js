@@ -290,7 +290,7 @@ const usersList = [{
     type: "chain",
   },
   {
-    name: "Dockio",
+    name: "Dock.io",
     image: "/img/users/Dockio.png",
     homepage: "https://dock.io/",
     github: "https://github.com/docknetwork",
