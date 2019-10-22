@@ -413,7 +413,6 @@ const usersList = [{
     name: "WiV",
     image: "/img/users/WiV.png",
     homepage: "https://wiv.io/",
-    github: "N/A",
     pinned: false,
     type: "chain",
   },
