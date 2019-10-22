@@ -43,7 +43,7 @@ const siteConfig = {
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     { page: "docs", label: "Docs" },
-    { href: "/rustdocs/v1.0/", label: "Reference Docs" },
+    { href: "/recipes/", label: "Recipes" },
     { page: "tutorials", label: "Tutorials" },
     { page: "community", label: "Community" },
     { href: "https://github.com/paritytech/substrate", label: "GitHub" },
