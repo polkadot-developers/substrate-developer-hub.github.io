@@ -8,9 +8,9 @@ external entities.
 ## Error Handling
 
 The Rust programming language distinguishes between recoverable and
-unrecoverable errors. Recoverable errors have logic which dictate what should
+unrecoverable errors. Recoverable errors have logic which dictates what should
 happen if an error condition is reached. These kinds of errors are represented
-in Rust by a `Result` type, which can return `Ok` or `Err`. Unrecoverable
+in Rust by the `Result` type, which can return `Ok` or `Err`. Unrecoverable
 errors, also known as a _panic_, are always the symptom of bugs.
 
 It is important that you review [error
@@ -20,6 +20,10 @@ Rust Book which goes more into details about errors in Rust.
 Substrate uses a specific implementation of the `Result` type, where success
 returns the unit type (`Ok(())`) and errors return a string (`Err('Some
 Reason')`).
+
+```rust
+Result<(), &'static str>
+```
 
 ### Must Not Panic
 
