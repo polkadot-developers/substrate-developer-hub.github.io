@@ -30,7 +30,7 @@ or
 
 Unlike smart contract platforms where a failed transaction will revert the state of the blockchain, when you write to Substrate storage and handle your runtime errors, those storage items will be written.
 
-This means you must **"very first, write last"**. Before you
+This means you must **"verify first, write last"**. Before you
 
 What are runtime errors?
 
