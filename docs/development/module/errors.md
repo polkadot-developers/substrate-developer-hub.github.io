@@ -20,7 +20,7 @@ Instead, you must actively define what your runtime should do in case of reachin
 
 ### No Side-Effects On Error
 
-Substrate runtime functions must must either:
+Substrate runtime functions must either:
 
 - Complete totally and return `Ok(())`.
 
