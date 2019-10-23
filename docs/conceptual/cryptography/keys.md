@@ -48,7 +48,7 @@ for increased security.
 ### Learn More
 
 * Learn about the [cryptography used within
-  Substrate](conceptual/keyring/session-keys.md).
+  Substrate](conceptual/cryptography/index.md).
 
 ### Examples
 
