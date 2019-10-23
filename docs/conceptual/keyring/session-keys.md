@@ -27,7 +27,9 @@ pub struct SessionKeys {
 ```
 
 > **NOTE:** This code is just an example of the Substrate node at the time of
-> writing. Refer to the runtime for the most up-to-date implementation.
+> writing. Refer to the source code and
+> [documentation](/rustdocs/master/node_runtime/struct.SessionKeys.html) for the
+> most up-to-date implementation.
 
 The default Substrate node implements Session keys in the [Session
 module](/rustdocs/master/srml_session/index.html).
@@ -40,3 +42,30 @@ could commit slashable behavior. Session keys may be changed regularly (e.g.
 every session) via
 [RPC](/rustdocs/master/substrate_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys)
 for increased security.
+
+## Next Steps
+
+### Learn More
+
+* Learn about the [cryptography used within
+  Substrate](conceptual/keyring/session-keys.md).
+
+### Examples
+
+* Take a look at this [recipe to introduce new session keys to your custom
+  Substrate runtime](TODO).
+
+* Follow our [tutorial to create and rotate your session keys on a local
+  network](TODO).
+
+### References
+
+* Visit the reference docs for the [session keys runtime
+  API](/rustdocs/master/substrate_session/trait.SessionKeys.html).
+
+* Take a look at the default [session keys in the Substrate node
+  runtime](/rustdocs/master/node_runtime/struct.SessionKeys.html).
+
+* Take a look at
+  [`substrate_application_crypto`](/rustdocs/master/substrate_application_crypto/index.html),
+  used for constructing application specific strongly typed crypto wrappers.
