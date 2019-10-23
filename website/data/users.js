@@ -387,7 +387,7 @@ const usersList = [{
   },
   {
     name: "Use Tech",
-    image: "/img/users/useTech.png",
+    image: "/img/users/UseTech.png",
     homepage: "https://www.usetech.com/",
     github: "https://github.com/usetech-llc",
     pinned: false,
