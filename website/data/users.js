@@ -291,7 +291,7 @@ const usersList = [{
   },
   {
     name: "Dock.io",
-    image: "/img/users/Dockio.png",
+    image: "/img/users/dockio.png",
     homepage: "https://dock.io/",
     github: "https://github.com/docknetwork",
     pinned: false,
