@@ -54,7 +54,7 @@ utmost security, for example protected in a safe or layers of hardware security.
 
 Since the Stash key is kept offline, it designates a Controller account to make
 non-spending decisions with the weight of the Stash account's funds. It can also
-designate a Proxy account to vote in governance [link] on its behalf.
+designate a Proxy account to vote in governance on its behalf.
 
 ### Controller Keys
 
