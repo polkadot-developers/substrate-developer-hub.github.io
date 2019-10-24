@@ -99,7 +99,7 @@ manage their session keys.
 
 ### Strongly Typed Wrappers
 
-You can declare any number of session keys. For example, the default Substrate
+You can declare any number of Session keys. For example, the default Substrate
 node uses three for BABE, GRANDPA, and "I'm Online". Other chains could have
 more or fewer depending on what operations the chain expects its validators to
 perform.
