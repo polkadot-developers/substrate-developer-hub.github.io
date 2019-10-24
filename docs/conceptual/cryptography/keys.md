@@ -7,76 +7,68 @@ participants of the network.
 
 ## Overview
 
-Blockchain systems involve a number of participants playing different roles in
-the system. The Substrate node uses a nominated proof of stake (NPoS) system by
-default. In this system, there are two core roles:
+Blockchain systems have participants in varying roles, for example from
+validators to normal users.
 
-1. Validators: Users that produce blocks.
-2. Nominators: Users that support a validator.
-
-Validators need to collect funds which back their intention to produce blocks.
-Validators can provide their own funds, and also collect funds from nominators
-who trust the validator to produce new blocks correctly. As a reward for doing
-things correctly, both validators and their respective nominators get paid.
-These funds can be used for slashing if the validator misbehaves.
-
-> **Note:** Learn more about validators and nominators in the context of the
-> Substrate's NPoS [Staking module](/rustdocs/master/srml_staking/index.html).
-
-Both validators and nominators may be working with a significant value of funds,
-so Substrate has introduced abstractions which allow safer behaviors for end
-users participating in the network.
+As an example, the Substrate node uses a Nominated Proof-of-Stake (NPoS)
+algorithm to select validators. Validators and nominators may hold significant
+amounts of funds, so Substrate's Staking module introduces account abstractions
+that help keep funds as secure as possible.
 
 These abstractions are:
 
-* [Account Keys](#account-keys): Accounts that should hold funds.
-    * [Stash Keys](#stash-keys): Cold wallets controlled by controller keys.
-    * [Controller Keys](#controller-keys): Semi-online keys that will be in the
-      direct control of a user and used to submit extrinsics.
-* [Session Keys](#session-keys): Hot keys that be must kept online by a
-  validator to perform network operations and should not hold funds.
+- Accounts
+    - Stash Key: The Stash account is meant to hold large amounts of funds. Its
+      private key should be as secure as possible in a cold wallet.
+    - Controller Key: The Controller account signals choices on behalf of the
+      Stash account, like payout preferences, but should only hold a minimal
+      amount of funds to pay transaction fees. Its private key should be secure
+      as it can affect validator settings, but will be used somewhat regularly
+      for validator maintenance. 
+- Session Keys: Session keys are "hot" keys kept in the validator client and
+  used for signing certain validator operations. They should never hold funds.
+
+ > **Note:** Learn more about validators and nominators in the context of the
+ > Substrate's NPoS [Staking module](/rustdocs/master/srml_staking/index.html).
 
 ## Account Keys
 
-Account keys represent the normal kind of accounts you might expect from other
-blockchain systems. These accounts hold funds, and in the context of Substrate's
-Balances module, must have at least an existential deposit amount of those
-funds. Accounts keys are defined generically and its type is ultimately made
-concrete in the runtime. They interact with the blockchain through transactions.
+A key pair can represent an account and control funds, like normal accounts that
+you would expect from other blockchains. In the context of Substrate's [Balances
+module](/rustdocs/master/srml_balances/index.html), these accounts must have a
+minimum amount (an "existential deposit") to exist in storage.
 
-In the context of Substrate's Staking module, there are two abstractions on top
-of account keys:
+Account keys are defined generically and made concrete in the runtime.
 
-1. Stash Keys
-2. Controller Keys
-
-These keys are distinguished by their intended use, not by any underlying
-cryptographic difference. When creating new controller or stash keys, all
-cryptography supported by account keys are an available option.
+To continue with our example of Stash and Controller accounts, the keys to these
+accounts are distinguished by their intended use, not by any underlying
+cryptographic difference. When creating Stash or Controller keys, all
+cryptography supported for normal account keys are also supported.
 
 ### Stash Keys
 
-Stash keys are intended to behave like a cold wallet, existing on a piece of
-paper in a safe or protected by layers of hardware security. It should rarely,
-if ever, be exposed to the internet or used to submit extrinsics. They are meant
-to hold a large amount of funds, and should be thought of as a saving's account
-at a bank, which ideally is only ever touched in urgent conditions.
+The Stash keys are the public/private key pair that defines a Stash account.
+This account is like a "savings account" in that you should not make frequent
+transactions from it. Therefore, its private key should be treated with the
+utmost security, for example protected in a safe or layers of hardware security.
 
-Since the stash key is kept offline, it must be set to have its funds bonded to
-a controller account. For non-spending actions, the controller has the funds of
-the stash behind it. For example, in nominating, staking, or voting, the
-controller can indicate its preference with the weight of the stash.
+Since the Stash key is kept offline, it designates a Controller account to make
+non-spending decisions with the weight of the Stash account's funds. It can also
+designate a Proxy account to vote in governance [link] on its behalf.
 
 ### Controller Keys
 
-The controller key is a semi-online key that will be in the direct control of a
-user and used to submit extrinsics. In the context of Substrate's NPoS system,
-the controller key is used to start or stop validating or nominating. Controller
-accounts should have funds to keep the account alive and to pay for fees.
+The Controller keys are the public/private key pair that defines a Controller
+account. In the context of Substrate's NPoS model, the Controller key will
+signal one's intent to validate or nominate.
 
-A controller key will never be able to move or claim the funds controlled the
-stash key. However, actions taken by the controller account can cause the stash
-funds to be slashed. So you still need to protect it and change it regularly.
+The Controller key is used to set preferences like the rewards destination and,
+in the case of validators, to set their Session keys. The Controller account
+only needs to pay transaction fees, so it only needs a minimal amount of funds.
+
+The Controller key can never be used to spend funds from its Stash account.
+However, actions taken by the Controller can result in slashing, so it should
+still be well secured.
 
 ## Session Keys
 
