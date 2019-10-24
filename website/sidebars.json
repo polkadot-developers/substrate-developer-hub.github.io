@@ -31,6 +31,7 @@
         "ids": [
           "conceptual/runtime/index",
           "conceptual/runtime/srml",
+          "conceptual/runtime/weight",
           "conceptual/runtime/contracts",
           "conceptual/runtime/primitives"
         ]

@@ -1,5 +1,5 @@
 ---
-title: Transaction Weight and Fees
+title: Transaction Weight
 ---
 
 When transactions are submitted to a blockchain, they are executed by the nodes
