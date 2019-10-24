@@ -83,7 +83,7 @@ funds to be slashed. So you still need to protect it and change it regularly.
 Session keys are "hot keys" that are used by validators to sign
 consensus-related messages. They are not meant to be used as account keys that
 control funds and should only be used for their intended purpose. They can be
-changed regularly; your controller only needs to create a certificate by signing
+changed regularly; your Controller only needs to create a certificate by signing
 a session public key and broadcast this certificate via an extrinsic. Session
 keys are also defined generically and made concrete in the runtime.
 
