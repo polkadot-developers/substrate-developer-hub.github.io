@@ -24,7 +24,7 @@ Hence, we will first briefly describe how weights work.
 As mentioned, weights can technically refer to, or represent, numerous _limited_
 resources. A custom implementation may use complex structures to demonstrate
 this. At the time of this writing, substrate weights are simply a [numeric
-value](https://crates.parity.io/sr_primitives/weights/type.Weight.html). Ea1ch
+value](https://crates.parity.io/sr_primitives/weights/type.Weight.html). Each
 dispatchable function is given a weight using the `#[weight = $x]` annotation,
 where `$x` is some function capable of determining the weight of the dispatch.
 `$x` can access and examine the arguments of the dispatch. Nonetheless, a weight
