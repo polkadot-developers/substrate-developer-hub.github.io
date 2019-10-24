@@ -75,7 +75,7 @@ still be well secured.
 Session keys are "hot keys" that are used by validators to sign
 consensus-related messages. They are not meant to be used as account keys that
 control funds and should only be used for their intended purpose. They can be
-changed regularly; your controller only needs to create a certificate by signing
+changed regularly; your Controller only needs to create a certificate by signing
 a session public key and broadcast this certificate via an extrinsic. Session
 keys are also defined generically and made concrete in the runtime.
 
@@ -91,12 +91,12 @@ manage their session keys.
 
 ### Strongly Typed Wrappers
 
-You can declare any number of session keys. For example, the default Substrate
+You can declare any number of Session keys. For example, the default Substrate
 node uses three for BABE, GRANDPA, and "I'm Online". Other chains could have
 more or fewer depending on what operations the chain expects its validators to
 perform.
 
-These different session keys could use the same cryptography, but serve very
+These different Session keys could use the same cryptography, but serve very
 different purposes throughout your runtime logic. To prevent the wrong key being
 used for the wrong operation, strong Rust types wrap these keys, keeping them
 incompatible with one another and ensuring they are only used for their intended
@@ -104,7 +104,7 @@ purpose.
 
 ### Generation
 
-If a Session keys is compromised, attackers could commit slashable behavior.
+If a Session key is compromised, attackers could commit slashable behavior.
 Session keys should be changed regularly (e.g. every session) via [the
 `rotate_keys`
 RPC](/rustdocs/master/substrate_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys)
