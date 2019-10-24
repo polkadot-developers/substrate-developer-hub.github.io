@@ -104,7 +104,7 @@ node uses three for BABE, GRANDPA, and "I'm Online". Other chains could have
 more or fewer depending on what operations the chain expects its validators to
 perform.
 
-These different session keys could use the same cryptography, but serve very
+These different Session keys could use the same cryptography, but serve very
 different purposes throughout your runtime logic. To prevent the wrong key being
 used for the wrong operation, strong Rust types wrap these keys, keeping them
 incompatible with one another and ensuring they are only used for their intended
