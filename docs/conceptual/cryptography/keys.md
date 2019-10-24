@@ -112,7 +112,7 @@ purpose.
 
 ### Generation
 
-If a Session keys is compromised, attackers could commit slashable behavior.
+If a Session key is compromised, attackers could commit slashable behavior.
 Session keys should be changed regularly (e.g. every session) via [the
 `rotate_keys`
 RPC](/rustdocs/master/substrate_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys)
