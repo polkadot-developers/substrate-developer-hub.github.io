@@ -190,19 +190,19 @@ you would want it to have a different `Default`.
 
 ## Next Steps
 
-One important note is that the entire logic of fees is encapsulated in `srml-transaction-payment`
-via a `SignedExtension`. While this module provides a high degree of flexibility, a user can opt to
-build their custom payment module while inspiring from transaction-payment.
+The entire logic of fees is encapsulated in `srml-transaction-payment` via a `SignedExtension`.
+While this module provides a high degree of flexibility, a user can opt to build their custom
+payment module drawing inspiration from transaction-payment.
 
 ### Learn More
 
-- Dedicated weight document
-- srml-example
+- Dedicated [weight documentation](/docs/conceptual/runtime/weight)
+- [srml-example](https://github.com/paritytech/substrate/blob/master/srml/example/src/lib.rs) module
 - SignedExtensions
 
 ### Examples
 
-TODO
+Substrate Recipes contains examples of both [custom weights](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/modules/weights) and custom [WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/runtimes/weight-fee-runtime).
 
 ### References
 

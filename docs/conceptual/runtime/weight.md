@@ -150,14 +150,10 @@ well. A upgrade can just update weight functions if needed.
 
 ### Learn More
 
-- srml-examples
-- recipes on weights
-- fee module
-TODO: links
-
+- Substrate Recipes contains examples of both [custom weights](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/modules/weights) and custom [WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/runtimes/weight-fee-runtime).
+- The [srml-example](https://github.com/paritytech/substrate/blob/master/srml/example/src/lib.rs) module
 
 ### References
 
-- weights.rs
-TODO: links
-
+- SRML's [transaction-payment module](https://github.com/paritytech/substrate/blob/master/srml/transaction-payment/src/lib.rs)
+- Much about weights including the `SimpleDispatchInfo` enum is defined in [weights.rs](https://github.com/paritytech/substrate/blob/master/core/sr-primitives/src/weights.rs).
