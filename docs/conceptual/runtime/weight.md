@@ -16,7 +16,7 @@ document mostly covers the concept of weights.
 As mentioned, weights can technically refer to, or represent, numerous _limited_ resources. A custom
 implementation may use complex structures to demonstrate this. At the time of this writing,
 substrate weights are simply a [numeric
-value](https://crates.parity.io/sr_primitives/weights/type.Weight.html). Each dispatchable function
+value](/rustdocs/master/sr_primitives/weights/type.Weight.html). Each dispatchable function
 is given a weight using the `#[weight = $x]` annotation, where `$x` is some function capable of
 determining the weight of the dispatch. `$x` can access and examine the arguments of the dispatch.
 Nonetheless, a weight calculation should always:
@@ -43,14 +43,14 @@ being too filled with transactions. The system module, while processing transact
 accumulates both the total length of the block (sum of encoded transactions in number of bytes) and
 the total weight of the blocks. At any points, if these numbers surpass the limits, no further
 transactions are accepted to the block. These limits are defined in
-[`MaximumBlockLength`](https://crates.parity.io/srml_system/trait.Trait.html#associatedtype.MaximumBlockLength)
+[`MaximumBlockLength`](/rustdocs/master/srml_system/trait.Trait.html#associatedtype.MaximumBlockLength)
 and
-[`MaximumBlockWeight`](https://crates.parity.io/srml_system/trait.Trait.html#associatedtype.MaximumBlockLength)
+[`MaximumBlockWeight`](/rustdocs/master/srml_system/trait.Trait.html#associatedtype.MaximumBlockLength)
 respectively.
 
 One important note about these limits is that a ratio of them are reserved for the `Operational`
 dispatch class. This rule applies to both of the limits and the ratio can be found in
-[`AvailableBlockRatio`](https://crates.parity.io/srml_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
+[`AvailableBlockRatio`](/rustdocs/master/srml_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
 For example, if the block length limit is 1 mega bytes and the ratio is set the 80%, all
 transactions can fill the first 800 kilo bytes of the block while the last 200 can only be filled by
 the operation class.
@@ -113,8 +113,8 @@ an example of how to do this. Just note that in that case your code would roughl
 ```rust
 
 struct CustomWeight;
-impl WeighData<(u32, u64)> for CustomWeight {
-    fn weigh_data(&self, target: (u32, u64)) -> Weight {
+impl WeighData<(&u32, &u64)> for CustomWeight {
+    fn weigh_data(&self, target: (&u32, &u64)) -> Weight {
         ...
     }
 }

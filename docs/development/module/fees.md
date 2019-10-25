@@ -8,7 +8,7 @@ by the submitter of the transaction. The cost to execute transactions could vary
 magnitude, and thus Substrate provides a flexible mechanism for characterizing the total, presumably
 minimum, cost of a transaction in order to be included into a block.
 
-The fee system is heavily linked to the [weight system](). Make sure to read and understand weights
+The fee system is heavily linked to the [weight system](conceptual/runtime/weight.md). Make sure to read and understand weights
 section before continuing this document.
 
 ## Transaction Fees
@@ -16,17 +16,17 @@ section before continuing this document.
 The fee to include a transaction consists of three parts:
 
 * `base_fee` a fixed fee that is applied to every single transaction. See
-  [`TransactionBaseFee`](https://crates.parity.io/srml_transaction_payment/trait.Trait.html#associatedtype.TransactionBaseFee)
+  [`TransactionBaseFee`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.TransactionBaseFee)
 * `length_fee` a per-byte fee that is multiplied by the length, in bytes, of the encoded
   transaction. See
-  [`TransactionByteFee`](https://crates.parity.io/srml_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee)
+  [`TransactionByteFee`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee)
 * `weight_fee` a per-weight-unit fee that is multiplied by the weight of the transaction. As
   mentioned, weight of each dispatch is denoted via the flexible `#[weight]` annotation. Knowing the
   weight, it must be converted to a deductible `balance` type (typically denoted by a module that
   implements `Currency`, `srml-balances` in substrate node). For this, each runtime must define a
-  [`WeightToFee`](https://crates.parity.io/srml_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
+  [`WeightToFee`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
   type that makes the conversion. `WeightToFee` must be a struct that implements a [`Convert<Weight,
-  Balance>`](https://crates.parity.io/sr_primitives/traits/trait.Convert.html).
+  Balance>`](/rustdocs/master/sr_primitives/traits/trait.Convert.html).
 
 based on the above, the final fee of a dispatchable is:
 
@@ -91,11 +91,11 @@ requirement, Substrate provides:
   - a multiplier stored in the transaction-payment module that is applied to the outcome of the
     above formula by default (needless to say, the default value of which is _multiplication
     identity_, meaning that it has no effect). This is stored in
-    [`NextFeeMultiplier`](https://crates.parity.io/srml_transaction_payment/struct.Module.html#method.next_fee_multiplier)
+    [`NextFeeMultiplier`](/rustdocs/master/srml_transaction_payment/struct.Module.html#method.next_fee_multiplier)
     storage and can be configured through the genesis spec of the module.
   - a configurable parameter for a runtime to describe how this multiplier can change. This is
     expressed via
-    [`FeeMultiplierUpdate`](https://crates.parity.io/srml_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate).
+    [`FeeMultiplierUpdate`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate).
 
 `NextFeeMultiplier` has the type `Fixed64`, which can represent a fixed point number with a billion
 points accuracy. So, given the final fee formula above, the final version would be:
@@ -110,7 +110,7 @@ final_fee = fee * NextFeeMultiplier
 ```
 
 Updating the `NextFeeMultiplier` has a similar manner as `WeightToFee`. The
-[`FeeMultiplierUpdate`](https://crates.parity.io/srml_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate)
+[`FeeMultiplierUpdate`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate)
 associated type in `transaction-payment` is defined as a `Convert<Fixed64, Fixed64>`, which should
 be read as: it receives the previous multiplier and spits out the next one.
 
