@@ -133,7 +133,7 @@ document.
 ### Using the Default Weight
 
 The default weight annotation is beyond _simple_. Substrate, by default, uses _fixed_ weights and
-the struct representing them is as follows:
+the enum representing them is as follows:
 
 ```rust
 pub enum SimpleDispatchInfo {
@@ -152,12 +152,12 @@ pub enum SimpleDispatchInfo {
 }
 ```
 
-This struct simple groups all dispatches into _normal_ and _operational_ (which makes the
+This enum groups all dispatches into _normal_ and _operational_ (which makes the
 implementation of `ClassifyDispatch` pretty trivial) and gives them a fixed Weight. Fixed in this
-context means that the arguments of the dispatch do not play any role in the weight; the weight of a
-dispatch is always fixed.
+context means that the arguments of the dispatch do not play any role in the weight. Dispatches
+classified as _operational_ are exempt from paying both the `base_fee`, and `length_fee`.
 
-A simple example of using this simple struct in your runtime would be:
+A simple example of using this enum in your runtime is:
 
 ```rust
 use sr_primitives::weights::{SimpleDispatchInfo};
@@ -207,4 +207,3 @@ TODO
 ### References
 
 TODO
-
