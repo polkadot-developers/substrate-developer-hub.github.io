@@ -5,7 +5,7 @@ title: Transaction Weight
 A number of resources in any chain can be limited by definition, such as time, memory and
 computation. A mechanism should exist to prevent individual resource-consuming components of the
 chain, including but not limited to dispatchable functions, from consume too much of any of the
-mentioned resources. This concept is represented in substrate by weights. Furthermore, consuming
+mentioned resources. This concept is represented in substrate runtime by weights. Furthermore, consuming
 some weights could optionally incur some fee.
 
 The fee implications of the weight system is covered in the [Fee Developer document](). This
