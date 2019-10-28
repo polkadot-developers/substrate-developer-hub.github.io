@@ -76,9 +76,9 @@
             });
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">Transaction Lifecycle</h1></header><article><div><span><p>通过Substrate，开发人员可以创建自定义的runtime - 或应用逻辑 - 可以将任何类型的信息放入区块中。 Although some primitive functionality is provided in Substrate Core and the SRML, the chain developer has responsibility for validating the information that goes into blocks before it is finalized by the network.</p>
 <p>This article will cover the tools provided by Substrate and some guidance on where to place your checks in your runtime.</p>
-<p>Any information in a block is called an “extrinsic” and the term is divided into two types:</p>
+<p>区块中的任何信息都称为“extrinsic”，该术语分为两种类型：</p>
 <ul>
-<li>Transactions are information that is signed, and can be thought of like a Bitcoin or Ethereum transaction. Transactions are gossiped on the network and can be submitted by any node for inclusion in a block.</li>
+<li>Transaction 是经过签名的信息，可以看作类似比特币或以太坊上的 Transaction。 交易在网络上传播，可以由任何节点提交以包含在一个区块中。</li>
 <li>Inherents are information that is not signed whose origin, authenticity and content is not (necessarily) provable, they are added to the block by block authors at their discretion. Example inherents are timestamp modifications (in state) or a list of validators needed for consensus. These are “true” because other actors in the network agree with them by verifying and building on top of the block that contains them. Inherents are not gossiped on the network; instead, the block author writes them to a block. However, inherents still affect state, so you need a method of validating that they will affect storage as planned before finalizing them.</li>
 </ul>
 <p>There are two paths that a transaction can follow:</p>
