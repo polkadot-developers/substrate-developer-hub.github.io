@@ -57,7 +57,7 @@ The [SRML support library](/rustdocs/master/srml_support/index.html) is a
 collection of Rust macros, types, traits, and functions that simplify the
 development of Substrate runtime modules.
 
-The support macros expand at compile time to generate code which are used
+The support macros expand at compile time to generate code which is used
 by the runtime and reduce boilerplate code for the most common components of a
 module.
 
