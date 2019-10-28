@@ -210,7 +210,7 @@ short form of an address.
 ### Membership
 
 The Membership module allows control of membership of a set of `AccountId`s,
-useful for managing membership of of a collective.
+useful for managing membership of a collective.
 
 * [Docs](/rustdocs/srml_membership/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/srml/membership/src/lib.rs)
