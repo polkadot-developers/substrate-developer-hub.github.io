@@ -97,8 +97,8 @@ requirement, Substrate provides:
     expressed via
     [`FeeMultiplierUpdate`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate).
 
-`NextFeeMultiplier` has the type `Fixed64`, which can represent a fixed point number with a billion
-points accuracy. So, given the final fee formula above, the final version would be:
+`NextFeeMultiplier` has the type `Fixed64`, which can represent a fixed point number. So, given the
+final fee formula above, the final version would be:
 
 ```
 fee =
