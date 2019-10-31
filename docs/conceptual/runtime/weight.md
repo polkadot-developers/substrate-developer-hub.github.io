@@ -16,11 +16,9 @@ weights.
 Weights represent the _limited_ resources of your blockchain, for example computational cycles, 
 memory, storage, etc. A custom implementation may use complex structures to express this. At the 
 time of this writing, Substrate weights are simply a 
-[numeric value](/rustdocs/master/sr_primitives/weights/type.Weight.html). Each dispatchable function
-is given a weight using the `#[weight = $x]` annotation, where `$x` is some function capable of
-determining the weight of the dispatch. `$x` can access and examine the arguments of the dispatch.
+[numeric value](/rustdocs/master/sr_primitives/weights/type.Weight.html).
 
-Nonetheless, a weight calculation should always:
+A weight calculation should always:
 
 - Be computable __ahead of dispatch__. A block producer, or a validator, should be able to examine
   the weight of a dispatchable before actually deciding to accept it or not.
@@ -29,7 +27,8 @@ Nonetheless, a weight calculation should always:
   execute it. Thus, weight computation should typically be much faster than dispatch.
 - Finally, if a transaction's resource consumption varies over a wide range, it should manually
   restrict certain dispatches through any means that make sense to that particular chain. An 
-  example of such a dispatche in Substrate is a call to a smart contract.
+  example of such a dispatch in Substrate is a call to a smart contract.
+  <!--TODO: add example from recipes when ready.-->
 
 The System module is responsible for accumulating the weight of each block as it gets executed and
 making sure that it does not exceed the limit. The Transaction Payment module is responsible for
@@ -40,8 +39,8 @@ interpreting these weights and deducting fees based upon them.
 Aside from affecting fees, the main purpose of the weight system is to prevent a block from being 
 filled with too many transactions. The System module, while processing transactions within a block,
 accumulates both the total length of the block (sum of encoded transactions in bytes) and the total 
-weight of the block. If these numbers surpass the limits, no further transactions are accepted in 
-that block. These limits are defined in
+weight of the block. If either of these numbers surpass the limits, no further transactions are 
+accepted in that block. These limits are defined in
 [`MaximumBlockLength`](/rustdocs/master/srml_system/trait.Trait.html#associatedtype.MaximumBlockLength)
 and
 [`MaximumBlockWeight`](/rustdocs/master/srml_system/trait.Trait.html#associatedtype.MaximumBlockLength).
@@ -57,15 +56,13 @@ the operational class.
 ## Custom Weight Implementation
 
 Implementing a custom weight calculation function can vary in complexity. Using the 
-`SimpleDispatchInfo` struct provided by Substrate is one of the easiest appraoches. Anything more 
+`SimpleDispatchInfo` struct provided by Substrate is one of the easiest approaches. Anything more 
 sophisticated would require more work.
 
 Any weight calculation function must provide two trait implementations:
 
   - [`WeightData<T>`]: To determine the weight of the dispatch.
-  - [`ClassifyDispatch<T>`]: To determine the class of the dispatch. See the enum definition for
-    more information on dispatch classes. This struct can then be used with the `#[weight]` 
-    annotation.
+  - [`ClassifyDispatch<T>`]: To determine the class of the dispatch.
 
 Substrate then bundles the output information of the two traits into the [`DispatchInfo`] struct and
 provides it by implementing the [`GetDispatchInfo`] for all `Call` variants and opaque extrinsic
@@ -142,8 +139,8 @@ transaction is safe.
 
 > _Is the weighting function open to change through governance or any sort of a runtime upgrade?_
 
-Yes, it is part of a runtime itself, hence any runtime upgrade is an upgrade to the weight system as
-well. An upgrade can update weight functions if needed.
+Yes, it is part of the runtime itself, hence any runtime upgrade is an upgrade to the weight system 
+as well. An upgrade can update weight functions if needed.
 
 ## Next Steps
 
