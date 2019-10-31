@@ -113,7 +113,7 @@ final_fee = fee * NextFeeMultiplier
 Updating the `NextFeeMultiplier` has a similar effect as updating `WeightToFee`. The
 [`FeeMultiplierUpdate`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate)
 associated type in `transaction-payment` is defined as a `Convert<Fixed64, Fixed64>`, which should
-be read as: it receives the previous multiplier and spits out the next one.
+be read: "it receives the previous multiplier and spits out the next one".
 
 The default update function is inspired by the Polkadot network and implements a targeted adjustment
 in which a target saturation level of block weight is defined. If the previous block is more
@@ -182,7 +182,7 @@ decl_module! {
 }
 ```
 
-**Be careful!** The default implementation of `SimpleDispatchInfo` resolves to
+> **Note:** Be careful! The default implementation of `SimpleDispatchInfo` resolves to
 `FixedNormal(10_000)`. This is due to how things work in `substrate-node` and the desired 
 granularity of substrate. Even if you want to use the `SimpleDispatchInfo`, it is very likely that
 you would want it to have a different `Default`.

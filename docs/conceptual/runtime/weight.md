@@ -140,7 +140,7 @@ well. In this case, the implementation of the dispatch should take the state of 
 account and manually take extra fees or bonds or take any other measures to make sure that the
 transaction is safe.
 
-> _Is the weighting function open to change through governance or any sort of a runtime upgrade?_
+> _Is the weighing function open to change through governance or any sort of a runtime upgrade?_
 
 Yes, it is part of a runtime itself, hence any runtime upgrade is an upgrade to the weight system as
 well. An upgrade can update weight functions if needed.
