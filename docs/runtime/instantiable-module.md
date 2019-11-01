@@ -74,7 +74,7 @@ decl_event!(
 }
 ```
 
-## Installing a Module Instsance in a Runtime
+## Installing a Module Instance in a Runtime
 
 The syntax for including an instance of an instantiable module in a runtime is slightly different than for a regular module. The only exception is for modules that use the [Default Instance](#defualt-instance) feature described below.
 
