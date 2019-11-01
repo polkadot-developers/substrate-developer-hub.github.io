@@ -508,46 +508,7 @@ CommitStageLen <span class="token function">get</span><span class="token punctua
 <p>The core TCR flow is now complete with the <code>propose</code>, <code>challenge</code>, <code>vote</code>, <code>resolve</code>, and <code>claim_reward</code> functions. It can be further extended, as needed. Please note that what we have covered here is just a sample implementation of a subset of TCR functions. It is only for educational purposes and is not intended for real use-cases.</p>
 <p>The code for the TCR runtime modules - <code>tcr</code> and <code>token</code> covered in this part of the guide, is available <a href="https://github.com/substrate-developer-hub/substrate-tcr/tree/master/runtime/src">here</a>.</p>
 <p>In the <a href="/docs/zh-CN/next/tutorials/tcr/unit-testing-the-tcr-runtime-module">next part</a> of this guide, we will learn how to unit test the functions in a Substrate runtime.</p>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#step-1-setup-and-prerequisites">Step 1: Setup and prerequisites</a></li><li><a href="#step-2-module-trait-and-types">Step 2: Module trait and types</a></li><li><a href="#step-3-declaring-the-runtime-storage">Step 3: Declaring the runtime storage</a><ul class="toc-headings"><li><a href="#data-structures-for-on-chain-tcr-data">Data structures for on-chain TCR data</a></li><li><a href="#storage-declaration-using-the-decl_storage-macro">Storage declaration using the <code>decl_storage</code> macro</a></li><li><a href="#using-the-genesis-config">Using the genesis config</a></li></ul></li><li><a href="#step-4-declaring-events">Step 4: Declaring Events</a></li><li><a href="#step-5-module-business-logic">Step 5: Module business logic</a><ul class="toc-headings"><li><a href="#propose-a-listing">Propose a listing</a></li><li><a href="#challenge-and-vote">Challenge and Vote</a></li><li><a href="#resolve">Resolve</a></li><li><a href="#claim-reward">Claim reward</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
-#blast {
-  display: block;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  height: 50px;
-  background: #ff1864 url(/img/hacktoberfest-blast-bg.png); background-size: cover;;
-  color: white;
-  z-index: 99999;
-}
-
-#blast h2 {
-  margin: 0;
-  line-height: 45px;
-  text-align: center;
-}
-
-#blast a {
-  color: white;
-  text-decoration: underline;
-}
-
-body {
-  // let's give it a minimal animation
-  transition: ease 1.5s;
-  margin-top: 50px;
-}
-@media only screen and (min-width: 1024px) {
-  .docsNavContainer {
-    height: calc(100vh - 100px);
-    top: 100px;
-  }
-
-  .onPageNav {
-    max-height: calc(100vh - 140px);
-    top: 140px;
-  }
-}
-</style><section id="blast"><h2>Hacktoberfest is here! <a href="https://substrate.dev/hacktoberfest">Hack with us</a></h2></section></div><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#step-1-setup-and-prerequisites">Step 1: Setup and prerequisites</a></li><li><a href="#step-2-module-trait-and-types">Step 2: Module trait and types</a></li><li><a href="#step-3-declaring-the-runtime-storage">Step 3: Declaring the runtime storage</a><ul class="toc-headings"><li><a href="#data-structures-for-on-chain-tcr-data">Data structures for on-chain TCR data</a></li><li><a href="#storage-declaration-using-the-decl_storage-macro">Storage declaration using the <code>decl_storage</code> macro</a></li><li><a href="#using-the-genesis-config">Using the genesis config</a></li></ul></li><li><a href="#step-4-declaring-events">Step 4: Declaring Events</a></li><li><a href="#step-5-module-business-logic">Step 5: Module business logic</a><ul class="toc-headings"><li><a href="#propose-a-listing">Propose a listing</a></li><li><a href="#challenge-and-vote">Challenge and Vote</a></li><li><a href="#resolve">Resolve</a></li><li><a href="#claim-reward">Claim reward</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
               var cookieSettings = document.getElementById('cookie-settings');
               cookieSettings.onclick = function() {
                 return klaro.show();

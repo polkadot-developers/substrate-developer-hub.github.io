@@ -102,46 +102,7 @@
 <p>When you are going to modify storage, the best practice is to do every check necessary to ensure that the call will succeed, execute all the storage changes, and finally emit an event so you know that the function has not returned early. For an example, see the <code>transfer</code> (<a href="https://github.com/paritytech/substrate/blob/v0.9.2/srml/balances/src/lib.rs#L142">code</a>) function in the balances module - all checks are performed before touching storage.</p>
 <p>If you are designing your own modules, you have the responsibility to ensure that invalid extrinsics never panic and never modify module state when returning <code>Err</code>. A correctly implemented module may also secure a bond to penalize malicious parties from submitting invalid extrinsics in the first place (preventing DoS attacks).</p>
 <p>Substrate grants developers an immense amount of freedom in their block and storage construction. As a result, not all errors can be caught in the Substrate toolkit because the number of runtimes is essentially infinite. Application developers need to implement their own error checking to prevent faulty storage modifications.</p>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/overview/extrinsics"><span class="arrow-prev">← </span><span>Extrinsics</span></a><a class="docs-next button" href="/docs/ru/overview/low-level-data-format"><span>Low-level Data Format</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><div><style>
-#blast {
-  display: block;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  height: 50px;
-  background: #ff1864 url(/img/hacktoberfest-blast-bg.png); background-size: cover;;
-  color: white;
-  z-index: 99999;
-}
-
-#blast h2 {
-  margin: 0;
-  line-height: 45px;
-  text-align: center;
-}
-
-#blast a {
-  color: white;
-  text-decoration: underline;
-}
-
-body {
-  // let's give it a minimal animation
-  transition: ease 1.5s;
-  margin-top: 50px;
-}
-@media only screen and (min-width: 1024px) {
-  .docsNavContainer {
-    height: calc(100vh - 100px);
-    top: 100px;
-  }
-
-  .onPageNav {
-    max-height: calc(100vh - 140px);
-    top: 140px;
-  }
-}
-</style><section id="blast"><h2>Hacktoberfest is here! <a href="https://substrate.dev/hacktoberfest">Hack with us</a></h2></section></div><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/ru/getting-started">Getting Started</a><a href="/ru/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/ru/videos">Videos</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/overview/extrinsics"><span class="arrow-prev">← </span><span>Extrinsics</span></a><a class="docs-next button" href="/docs/ru/overview/low-level-data-format"><span>Low-level Data Format</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/ru/getting-started">Getting Started</a><a href="/ru/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/ru/videos">Videos</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
               var cookieSettings = document.getElementById('cookie-settings');
               cookieSettings.onclick = function() {
                 return klaro.show();

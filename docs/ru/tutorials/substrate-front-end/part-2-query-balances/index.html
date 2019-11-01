@@ -259,46 +259,7 @@ stores: Object { address: address(), contract: contract(), account: account() }
 <p>It is worth mentioning that the funds in <code>freeBalancee</code> of an account might <strong>not</strong> be available to transfer. An account could very well have funds, but if for example those are staked (a.k.a bonded) for validating, you might not be able to transfer them even though <code>freeBalance</code> is not null. If you want to show the balance available to transfer, this is computed in a so-called <code>api-derive</code>. Have a look at the <code>available</code> field returned by <a href="https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/balances/all.ts"><code>derive.balances.all</code></a>.</p>
 <p>The <code>derive api</code>, as its name suggests, is not a direct query to the node. It is rather a concatenation and derivation of multiple queries to serve information that is not directly accessible by the node. A popular one is <a href="https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/chain/bestNumber.ts"><code>derive.chain.bestNumber</code></a> to get the latest block number. Have a look at <a href="https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/">the repo</a>. Unfortunately, those <code>api</code> endpoints are only documented in the code for now.</p>
 <p>Substrate is a framework to build blockchains. The <code>--dev</code> node that we are querying in this part contains a Balances module from the <a href="https://substrate.dev/rustdocs/v1.0/srml_balances/index.html"><strong>S</strong>ubstrate <strong>R</strong>untime <strong>M</strong>odule <strong>L</strong>ibrary a.k.a SRML</a>, which keeps track of the balance of each account on the blockchain. Not every Substrate chain will have this Balances module. However, any module that is integrated into a Substrate node can be queried using <code>api.query.section.method</code>.</p>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/tutorials/substrate-front-end/part-1-connect-to-a-node"><span class="arrow-prev">← </span><span>Part 1 - Connect to a node</span></a><a class="docs-next button" href="/docs/ru/tutorials/substrate-front-end/part-3-transfer-funds"><span>Part 3 - Transfer funds</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#21-get-testing-accounts">2.1 Get testing accounts</a></li><li><a href="#22-query-and-display-alice-s-balance">2.2 Query and display Alice's balance</a></li><li><a href="#23-query-and-display-all-balances">2.3 Query and display all balances</a></li><li><a href="#24-good-to-know">2.4 Good to know</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
-#blast {
-  display: block;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  height: 50px;
-  background: #ff1864 url(/img/hacktoberfest-blast-bg.png); background-size: cover;;
-  color: white;
-  z-index: 99999;
-}
-
-#blast h2 {
-  margin: 0;
-  line-height: 45px;
-  text-align: center;
-}
-
-#blast a {
-  color: white;
-  text-decoration: underline;
-}
-
-body {
-  // let's give it a minimal animation
-  transition: ease 1.5s;
-  margin-top: 50px;
-}
-@media only screen and (min-width: 1024px) {
-  .docsNavContainer {
-    height: calc(100vh - 100px);
-    top: 100px;
-  }
-
-  .onPageNav {
-    max-height: calc(100vh - 140px);
-    top: 140px;
-  }
-}
-</style><section id="blast"><h2>Hacktoberfest is here! <a href="https://substrate.dev/hacktoberfest">Hack with us</a></h2></section></div><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/ru/getting-started">Getting Started</a><a href="/ru/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/ru/videos">Videos</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/tutorials/substrate-front-end/part-1-connect-to-a-node"><span class="arrow-prev">← </span><span>Part 1 - Connect to a node</span></a><a class="docs-next button" href="/docs/ru/tutorials/substrate-front-end/part-3-transfer-funds"><span>Part 3 - Transfer funds</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#21-get-testing-accounts">2.1 Get testing accounts</a></li><li><a href="#22-query-and-display-alice-s-balance">2.2 Query and display Alice's balance</a></li><li><a href="#23-query-and-display-all-balances">2.3 Query and display all balances</a></li><li><a href="#24-good-to-know">2.4 Good to know</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/ru/getting-started">Getting Started</a><a href="/ru/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/ru/videos">Videos</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
               var cookieSettings = document.getElementById('cookie-settings');
               cookieSettings.onclick = function() {
                 return klaro.show();
