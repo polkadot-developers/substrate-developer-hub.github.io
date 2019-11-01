@@ -25,7 +25,7 @@ The [Executive module](/rustdocs/v1.0/srml_executive/index.html) acts as the orc
 
 ### Support Macros
 
-The [support macros](/rustdocs/v1.0/srml_support/index.html) are a collection of Rust macros that help us implement the most common components of a module. These macros expand at runtime to generate types (Module, Call, Store, Event, etc.), which are used by the runtime to communicate with the modules. Some of the common support macros are `decl_module`, `decl_storage`, `decl_event`, `ensure`, etc.
+The [support macros](/rustdocs/v1.0/srml_support/index.html) are a collection of Rust macros that help us implement the most common components of a module. These macros expand at compile time to generate types (Module, Call, Store, Event, etc.), that are used by the runtime to communicate with the modules. Some of the common support macros are `decl_module`, `decl_storage`, `decl_event`, `ensure`, etc.
 
 ### Runtime
 
