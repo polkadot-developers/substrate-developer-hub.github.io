@@ -27,7 +27,6 @@ A weight calculation should always:
 - Finally, if a transaction's resource consumption varies over a wide range, it should manually
   restrict certain dispatches through any means that make sense to that particular chain. An example
   of such a dispatch in Substrate is a call to a smart contract.
-  <!--TODO: add example from recipes when ready.-->
 
 The System module is responsible for accumulating the weight of each block as it gets executed and
 making sure that it does not exceed the limit. The Transaction Payment module is responsible for
