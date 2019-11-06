@@ -4,25 +4,25 @@ title: Transaction Fees
 
 When transactions are submitted to a blockchain, they are executed by the nodes in the network. To
 be economically sustainable, nodes charge a fee to execute a transaction. This fee must be covered
-by the submitter of the transaction. The cost to execute transactions can vary, so Substrate 
-provides a flexible mechanism to characterize the minimum cost to include a transaction in a block.
+by the signer of the transaction. The cost to execute transactions can vary, so Substrate provides a
+flexible mechanism to characterize the minimum cost to include a transaction in a block.
 
 The fee system is heavily linked to the [weight system](conceptual/runtime/weight.md). Make sure to
-understand weights before continuing this document.
+understand weights before reading this document.
 
 ## Transaction Fees
 
-The fee to include a transaction consists of three parts:
+A transaction fee consists of three parts:
 
-* `base_fee`: a fixed fee that is applied to every transaction. See
+* `base_fee`: A fixed fee that is applied to every transaction. See
   [`TransactionBaseFee`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.TransactionBaseFee).
-* `length_fee`: a per-byte fee that is multiplied by the length, in bytes, of the encoded
+* `length_fee`: A per-byte fee that is multiplied by the length, in bytes, of the encoded
   transaction. See
   [`TransactionByteFee`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
-* `weight_fee`: a per-weight-unit fee that is multiplied by the weight of the transaction. The 
-  weight of each dispatch is denoted via the flexible `#[weight]` annotation. Knowing the
-  weight, it must be converted to a deductible `balance` type (typically denoted by a module that
-  implements `Currency`, `srml-balances` in Substrate node). For this, each runtime must define a
+* `weight_fee`: A per-weight-unit fee that is multiplied by the weight of the transaction. The
+  weight of each dispatch is denoted via the flexible `#[weight]` annotation. Knowing the weight, it
+  must be converted to a deductible `balance` type (typically denoted by a module that implements
+  `Currency`, `srml-balances` in Substrate node). For this, each runtime must define a
   [`WeightToFee`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
   type that makes the conversion. `WeightToFee` must be a struct that implements [`Convert<Weight,
   Balance>`](/rustdocs/master/sr_primitives/traits/trait.Convert.html).
@@ -42,15 +42,14 @@ inclusion fee.
 ## Adjusting Multiplier
 
 The above formula gives a fee that is logically constant through time. Because the weight can be
-dynamic and based on how `WeightToFee` is defined, the final fee can have some degree of 
-variability. As for the length fee, the inputs of the transaction could change the length and
-affect the length fee.
+dynamic and based on how `WeightToFee` is defined, the final fee can have some degree of
+variability. As for the length fee, the inputs of the transaction could change the length and affect
+the length fee.
 
-Nonetheless, these changes are independent and _general update logic to the
-entire fee cannot be composed out of them trivially_. In other words, for any dispatchable, given
-the same inputs, _it will always incur the same cost_. This might not always be desirable. Chains
-might need to increase or decrease fees based on some condition. To fulfill this requirement,
-Substrate provides:
+Nonetheless, these changes are independent and _general update logic to the entire fee cannot be
+composed out of them trivially_. In other words, for any dispatchable, given the same inputs, _it
+will always incur the same cost_. This might not always be desirable. Chains might need to increase
+or decrease fees based on some condition. To fulfill this requirement, Substrate provides:
 
   - A multiplier stored in the Transaction Payment module that is applied to the outcome of the
     above formula by default (the default value of which is _multiplication identity_, meaning that
@@ -89,9 +88,9 @@ page](https://research.web3.foundation/en/latest/polkadot/Token%20Economics/#rel
 
 > This section assumes that you have already read the `Weight` section.
 
-The entire SRML is already annotated with a simple and fixed weight system. A user can decide to
-use the same system or implement a new one from scratch. The latter is outside the scope of this
-document and is explained in the dedicated [`Weight`](/docs/conceptual/runtime/weight) conceptual 
+The entire SRML is already annotated with a simple and fixed weight system. A user can decide to use
+the same system or implement a new one from scratch. The latter is outside the scope of this
+document and is explained in the dedicated [`Weight`](/docs/conceptual/runtime/weight) conceptual
 document.
 
 ### Using the Default Weight
@@ -118,8 +117,8 @@ pub enum SimpleDispatchInfo {
 
 This enum groups all dispatches into _normal_ and _operational_ (which makes the implementation of
 `ClassifyDispatch` trivial) and gives them a fixed weight. Fixed in this context means that the
-arguments of the dispatch do not play any role in the weight. Dispatches classified as
-_operational_ are exempt from paying both the `base_fee` and the `length_fee`.
+arguments of the dispatch do not play any role in the weight. Dispatches classified as _operational_
+are exempt from paying both the `base_fee` and the `length_fee`.
 
 A simple example of using this enum in your runtime is:
 
@@ -153,20 +152,20 @@ decl_module! {
 
 ## Other Fees
 
-Inclusion fees don't know anything about the logic of the transaction being executed. That is, 
-Substrate doesn't care what happens in the transaction, it only cares about the size and weight of 
+Inclusion fees don't know anything about the logic of the transaction being executed. That is,
+Substrate doesn't care what happens in the transaction, it only cares about the size and weight of
 the transaction. The inclusion fee will always be paid by the sender.
 
-It's possible to add fees inside dispatchable functions that are only paid if certain logic paths 
-are executed. Most likely, this will be if the transaction succeeds. The `transfer` function in the 
+It's possible to add fees inside dispatchable functions that are only paid if certain logic paths
+are executed. Most likely, this will be if the transaction succeeds. The `transfer` function in the
 Balances module, for example, takes a fixed fee for transferring tokens.
 
-It is important to note that if you query the chain for a transaction fee, it will only return the 
+It is important to note that if you query the chain for a transaction fee, it will only return the
 inclusion fee. If you want to query internal function fees, you should emit Events for them.
 
 ## Custom Inclusion Fee Example
 
-This is an example of how to customize your inclusion fee. You must configure the appropriate 
+This is an example of how to customize your inclusion fee. You must configure the appropriate
 associated types in the respective module.
 
 ```rust
@@ -213,11 +212,12 @@ payment module drawing inspiration from Transaction Payment.
 
 ### Examples
 
-Substrate Recipes contains examples of both
-[custom weights](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/modules/weights)
-and custom
+Substrate Recipes contains examples of both [custom
+weights](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/modules/weights) and
+custom
 [WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/runtimes/weight-fee-runtime).
 
 ### References
 
-- [Web3 Foundation Research](https://research.web3.foundation/en/latest/polkadot/Token%20Economics/#relay-chain-transaction-fees-and-per-block-transaction-limits)
+- [Web3 Foundation
+  Research](https://research.web3.foundation/en/latest/polkadot/Token%20Economics/#relay-chain-transaction-fees-and-per-block-transaction-limits)

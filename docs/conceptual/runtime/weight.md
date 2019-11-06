@@ -21,18 +21,22 @@ A weight calculation should always:
 - Consume few resources itself. It does not make sense to consume similar resources computing a
   transaction's weight as would be spent to execute it. Thus, weight computation should be much
   lighter than dispatch.
-- Delegate _variable_ resource consumption costs and limitations to the dispatched logic. Weights are
-  good at representing _fixed_ measurements, whereas logic may not be consistently heavy. In these
-  cases, additional logic will be needed to limit resource consumption.
+- Delegate _variable_ resource consumption costs and limitations to the dispatched logic. Weights
+  are good at representing _fixed_ measurements, whereas logic may not be consistently heavy. The
+  implementation of the dispatch should take the state of the change into account and manually take
+  extra fees or bonds or take any other measures to make sure that the transaction is safe.
 
-The System module is responsible for accumulating the weight of each block as it gets executed and
-making sure that it does not exceed the limit. The Transaction Payment module is responsible for
-interpreting these weights and deducting fees based upon them.
+The [System module](https://substrate.dev/rustdocs/master/srml_system/struct.Module.html) is
+responsible for accumulating the weight of each block as it gets executed and making sure that it
+does not exceed the limit. The [Transaction Payment
+module](https://substrate.dev/rustdocs/master/srml_transaction_payment/index.html) is responsible
+for interpreting these weights and deducting fees based upon them. The weighing function is part of
+the runtime so it can be upgraded if needed.
 
 ## Block Weight and Length Limit
 
 Aside from affecting fees, the main purpose of the weight system is to prevent a block from being
-filled with too many transactions. The System module, while processing transactions within a block,
+filled with too many transactions. While processing transactions within a block, the System module
 accumulates both the total length of the block (sum of encoded transactions in bytes) and the total
 weight of the block. If either of these numbers surpass the limits, no further transactions are
 accepted in that block. These limits are defined in
@@ -50,11 +54,12 @@ operational class.
 
 ## Custom Weight Implementation
 
-Implementing a custom weight calculation function can vary in complexity. Using the
-`SimpleDispatchInfo` struct provided by Substrate is one of the easiest approaches. Anything more
-sophisticated would require more work.
+<!-- TODO: Move to Conceptual -->
 
-Any weight calculation function must provide two trait implementations:
+Implementing a custom weight calculation function can vary in complexity. Using the
+`SimpleDispatchInfo` struct provided by Substrate is the easiest approach.
+
+A weight calculation function must provide two trait implementations:
 
   - [`WeightData<T>`]: To determine the weight of the dispatch.
   - [`ClassifyDispatch<T>`]: To determine the class of the dispatch.
@@ -121,22 +126,6 @@ This means that `CustomWeight` can only be used in conjunction with a dispatch w
 signature `(u32, u64)`, as opposed to `LenWeight`, which can be used with anything because they
 don't make any strict assumptions about `<T>`.
 
-## Frequently Asked Questions
-
-> _Some operations get more expensive as storage grows and shrinks. How can the weight system
-> represent that?_
-
-As mentioned, weight should be known _readily_ and _ahead of dispatch_. Peeking the storage and
-analyzing it just to determine how much weight might be consumed does not fit this definition quite
-well. In this case, the implementation of the dispatch should take the state of the change into
-account and manually take extra fees or bonds or take any other measures to make sure that the
-transaction is safe.
-
-> _Is the weighting function open to change through governance or any sort of a runtime upgrade?_
-
-Yes, it is part of the runtime itself, hence any runtime upgrade is an upgrade to the weight system
-as well. An upgrade can update weight functions if needed.
-
 ## Next Steps
 
 ### Learn More
@@ -148,9 +137,15 @@ as well. An upgrade can update weight functions if needed.
 - The [srml-example](https://github.com/paritytech/substrate/blob/master/srml/example/src/lib.rs)
   module.
 
+### Examples
+
+- See an example of [adding a transaction
+  weight](https://substrate.dev/recipes/design/econsecurity.html?highlight=weight#assigning-transaction-weights)
+  to a custom runtime function.
+
 ### References
 
-- SRML's [transaction-payment
+- Take a look at the [SRML Transaction Payment
   module](https://github.com/paritytech/substrate/blob/master/srml/transaction-payment/src/lib.rs).
-- Much about weights including the `SimpleDispatchInfo` enum is defined in
+- Find info about weights including the `SimpleDispatchInfo` enum in
   [weights.rs](https://github.com/paritytech/substrate/blob/master/core/sr-primitives/src/weights.rs).
