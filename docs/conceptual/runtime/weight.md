@@ -2,21 +2,20 @@
 title: Transaction Weight
 ---
 
-A number of resources in any chain can be limited, such as storage or computation. A mechanism 
-should exist to prevent individual resource-consuming components of the chain, including but not 
-limited to dispatchable functions, from consuming too much of any resource. This concept is 
+A number of resources in any chain can be limited, such as storage or computation. A mechanism
+should exist to prevent individual resource-consuming components of the chain, including but not
+limited to dispatchable functions, from consuming too much of any resource. This concept is
 represented in the Substrate runtime by weights. Further, consuming some weights could incur a fee.
 
-The fee implications of the weight system are covered in the 
-[Fee Developer document](development/module/fees.md). This document mostly covers the concept of 
-weights.
+The fee implications of the weight system are covered in the [Fee Developer
+document](development/module/fees.md). This document mostly covers the concept of weights.
 
 ## Transaction Weight
 
-Weights represent the _limited_ resources of your blockchain, for example computational cycles, 
-memory, storage, etc. A custom implementation may use complex structures to express this. At the 
-time of this writing, Substrate weights are simply a 
-[numeric value](/rustdocs/master/sr_primitives/weights/type.Weight.html).
+Weights represent the _limited_ resources of your blockchain, for example computational cycles,
+memory, storage, etc. A custom implementation may use complex structures to express this. At the
+time of this writing, Substrate weights are simply a [numeric
+value](/rustdocs/master/sr_primitives/weights/type.Weight.html).
 
 A weight calculation should always:
 
@@ -26,8 +25,8 @@ A weight calculation should always:
   make sense to consume similar resources computing a transaction's weight as would be spent to
   execute it. Thus, weight computation should typically be much faster than dispatch.
 - Finally, if a transaction's resource consumption varies over a wide range, it should manually
-  restrict certain dispatches through any means that make sense to that particular chain. An 
-  example of such a dispatch in Substrate is a call to a smart contract.
+  restrict certain dispatches through any means that make sense to that particular chain. An example
+  of such a dispatch in Substrate is a call to a smart contract.
   <!--TODO: add example from recipes when ready.-->
 
 The System module is responsible for accumulating the weight of each block as it gets executed and
@@ -36,10 +35,10 @@ interpreting these weights and deducting fees based upon them.
 
 ## Block Weight and Length Limit
 
-Aside from affecting fees, the main purpose of the weight system is to prevent a block from being 
+Aside from affecting fees, the main purpose of the weight system is to prevent a block from being
 filled with too many transactions. The System module, while processing transactions within a block,
-accumulates both the total length of the block (sum of encoded transactions in bytes) and the total 
-weight of the block. If either of these numbers surpass the limits, no further transactions are 
+accumulates both the total length of the block (sum of encoded transactions in bytes) and the total
+weight of the block. If either of these numbers surpass the limits, no further transactions are
 accepted in that block. These limits are defined in
 [`MaximumBlockLength`](/rustdocs/master/srml_system/trait.Trait.html#associatedtype.MaximumBlockLength)
 and
@@ -49,14 +48,14 @@ One important note about these limits is that a portion of them are reserved for
 dispatch class. This rule applies to both of the limits and the ratio can be found in
 [`AvailableBlockRatio`](/rustdocs/master/srml_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
 
-For example, if the block length limit is 1 megabyte and the ratio is set to 80%, all
-transactions can fill the first 800 kilobytes of the block while the last 200 can only be filled by
-the operational class.
+For example, if the block length limit is 1 megabyte and the ratio is set to 80%, all transactions
+can fill the first 800 kilobytes of the block while the last 200 can only be filled by the
+operational class.
 
 ## Custom Weight Implementation
 
-Implementing a custom weight calculation function can vary in complexity. Using the 
-`SimpleDispatchInfo` struct provided by Substrate is one of the easiest approaches. Anything more 
+Implementing a custom weight calculation function can vary in complexity. Using the
+`SimpleDispatchInfo` struct provided by Substrate is one of the easiest approaches. Anything more
 sophisticated would require more work.
 
 Any weight calculation function must provide two trait implementations:
@@ -71,7 +70,7 @@ types. This is used internally by the System and Executive modules; you probably
 Both `ClassifyDispatch` and `WeightData` are generic over `T`, which gets resolved into the tuple of
 all dispatch arguments except for the origin. To demonstrate, we will craft a struct that calculates
 the weight as `m * len(args)` where `m` is a given multiplier and `args` is the concatenated tuple
-of all dispatch arguments. Further, the dispatch class is `Operational` if the transaction has more 
+of all dispatch arguments. Further, the dispatch class is `Operational` if the transaction has more
 than 100 bytes of length in arguments.
 
 ```rust
@@ -104,9 +103,9 @@ impl<T: Encode> ClassifyDispatch<T> for LenWeight {
 }
 ```
 
-A weight calculator function can also be coerced to the final type of the argument, instead of 
-defining it as a vague type that is encodable. `srml-example` contains an example of how to do 
-this. Just note that, in that case, your code would roughly look like:
+A weight calculator function can also be coerced to the final type of the argument, instead of
+defining it as a vague type that is encodable. `srml-example` contains an example of how to do this.
+Just note that, in that case, your code would roughly look like:
 
 ```rust
 struct CustomWeight;
@@ -123,7 +122,7 @@ decl_module! {
 ```
 
 This means that `CustomWeight` can only be used in conjunction with a dispatch with a particular
-signature `(u32, u64)`, as opposed to `LenWeight`, which can be used with anything because they 
+signature `(u32, u64)`, as opposed to `LenWeight`, which can be used with anything because they
 don't make any strict assumptions about `<T>`.
 
 ## Frequently Asked Questions
@@ -139,17 +138,23 @@ transaction is safe.
 
 > _Is the weighting function open to change through governance or any sort of a runtime upgrade?_
 
-Yes, it is part of the runtime itself, hence any runtime upgrade is an upgrade to the weight system 
+Yes, it is part of the runtime itself, hence any runtime upgrade is an upgrade to the weight system
 as well. An upgrade can update weight functions if needed.
 
 ## Next Steps
 
 ### Learn More
 
-- Substrate Recipes contains examples of both [custom weights](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/modules/weights) and custom [WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/runtimes/weight-fee-runtime).
-- The [srml-example](https://github.com/paritytech/substrate/blob/master/srml/example/src/lib.rs) module.
+- Substrate Recipes contains examples of both [custom
+  weights](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/modules/weights)
+  and custom
+  [WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/runtimes/weight-fee-runtime).
+- The [srml-example](https://github.com/paritytech/substrate/blob/master/srml/example/src/lib.rs)
+  module.
 
 ### References
 
-- SRML's [transaction-payment module](https://github.com/paritytech/substrate/blob/master/srml/transaction-payment/src/lib.rs).
-- Much about weights including the `SimpleDispatchInfo` enum is defined in [weights.rs](https://github.com/paritytech/substrate/blob/master/core/sr-primitives/src/weights.rs).
+- SRML's [transaction-payment
+  module](https://github.com/paritytech/substrate/blob/master/srml/transaction-payment/src/lib.rs).
+- Much about weights including the `SimpleDispatchInfo` enum is defined in
+  [weights.rs](https://github.com/paritytech/substrate/blob/master/core/sr-primitives/src/weights.rs).
