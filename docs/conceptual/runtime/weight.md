@@ -2,32 +2,28 @@
 title: Transaction Weight
 ---
 
-A number of resources in any chain can be limited, such as storage or computation. A mechanism
-should exist to prevent individual resource-consuming components of the chain, including but not
-limited to dispatchable functions, from consuming too much of any resource. This concept is
-represented in the Substrate runtime by weights. Further, consuming some weights could incur a fee.
+A number of resources in any chain can be limited, such as storage or computation. Weights exist to
+prevent individual components of the chain from consuming too much of any resource.
 
-The fee implications of the weight system are covered in the [Fee Developer
-document](development/module/fees.md). This document mostly covers the concept of weights.
+Consuming some weights should generally incur a fee. The fee implications of the weight system are
+covered in the [Fee Developer document](development/module/fees.md).
 
 ## Transaction Weight
 
 Weights represent the _limited_ resources of your blockchain, for example computational cycles,
-memory, storage, etc. A custom implementation may use complex structures to express this. At the
-time of this writing, Substrate weights are simply a [numeric
-value](/rustdocs/master/sr_primitives/weights/type.Weight.html).
+memory, storage, etc. A custom implementation may use complex structures to express this. Substrate
+weights are simply a [numeric value](/rustdocs/master/sr_primitives/weights/type.Weight.html).
 
 A weight calculation should always:
 
-- Be computable __ahead of dispatch__. A block producer, or a validator, should be able to examine
-  the weight of a dispatchable before actually deciding to accept it or not.
-- While not enforced, calculating the weight should not consume many resources itself. It does not
-  make sense to consume similar resources computing a transaction's weight as would be spent to
-  execute it. Thus, weight computation should typically be much faster than dispatch.
-- Finally, if a transaction's resource consumption varies over a wide range, it should manually
-  restrict certain dispatches through any means that make sense to that particular chain. An example
-  of such a dispatch in Substrate is a call to a smart contract.
-  <!--TODO: add example from recipes when ready.-->
+- Be computable __ahead of dispatch__. A block producer should be able to examine the weight of a
+  dispatchable before actually deciding to accept it or not.
+- Consume few resources itself. It does not make sense to consume similar resources computing a
+  transaction's weight as would be spent to execute it. Thus, weight computation should be much
+  lighter than dispatch.
+- Delegate _variable_ resource consumption costs and limitations to the dispatched logic. Weights are
+  good at representing _fixed_ measurements, whereas logic may not be consistently heavy. In these
+  cases, additional logic will be needed to limit resource consumption.
 
 The System module is responsible for accumulating the weight of each block as it gets executed and
 making sure that it does not exceed the limit. The Transaction Payment module is responsible for
