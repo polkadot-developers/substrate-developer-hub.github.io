@@ -8,7 +8,7 @@ prevent individual components of the chain from consuming too much of any resour
 Consuming some weights should generally incur a fee. The fee implications of the weight system are
 covered in the [Fee Developer document](development/module/fees.md).
 
-## Transaction Weight
+## Weight Fundamentals
 
 Weights represent the _limited_ resources of your blockchain, for example computational cycles,
 memory, storage, etc. A custom implementation may use complex structures to express this. Substrate
