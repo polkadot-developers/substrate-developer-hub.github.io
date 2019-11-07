@@ -4,99 +4,15 @@ title: Transaction Fees
 
 When transactions are submitted to a blockchain, they are executed by the nodes in the network. To
 be economically sustainable, nodes charge a fee to execute a transaction. This fee must be covered
-by the signer of the transaction. The cost to execute transactions can vary, so Substrate provides a
+by the sender of the transaction. The cost to execute transactions can vary, so Substrate provides a
 flexible mechanism to characterize the minimum cost to include a transaction in a block.
 
 The fee system is heavily linked to the [weight system](conceptual/runtime/weight.md). Make sure to
 understand weights before reading this document.
 
-## Transaction Fees
+## Default Fees
 
-A transaction fee consists of three parts:
-
-* `base_fee`: A fixed fee that is applied to every transaction. See
-  [`TransactionBaseFee`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.TransactionBaseFee).
-* `length_fee`: A per-byte fee that is multiplied by the length, in bytes, of the encoded
-  transaction. See
-  [`TransactionByteFee`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
-* `weight_fee`: A per-weight-unit fee that is multiplied by the weight of the transaction. The
-  weight of each dispatch is denoted via the flexible `#[weight]` annotation. Knowing the weight, it
-  must be converted to a deductible `balance` type (typically denoted by a module that implements
-  `Currency`, `srml-balances` in Substrate node). For this, each runtime must define a
-  [`WeightToFee`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
-  type that makes the conversion. `WeightToFee` must be a struct that implements [`Convert<Weight,
-  Balance>`](/rustdocs/master/sr_primitives/traits/trait.Convert.html).
-
-Based on the above, the final fee of a dispatchable is:
-
-```
-fee =
-  base_fee +
-  len(tx) * length_fee +
-  WeightToFee(weight)
-```
-
-This `fee` is known as the "inclusion fee." Even if the extrinsic fails, the sender must pay this
-inclusion fee.
-
-## Adjusting Multiplier
-
-The above formula gives a fee that is logically constant through time. Because the weight can be
-dynamic and based on how `WeightToFee` is defined, the final fee can have some degree of
-variability. As for the length fee, the inputs of the transaction could change the length and affect
-the length fee.
-
-Nonetheless, these changes are independent and _general update logic to the entire fee cannot be
-composed out of them trivially_. In other words, for any dispatchable, given the same inputs, _it
-will always incur the same cost_. This might not always be desirable. Chains might need to increase
-or decrease fees based on some condition. To fulfill this requirement, Substrate provides:
-
-  - A multiplier stored in the Transaction Payment module that is applied to the outcome of the
-    above formula by default (the default value of which is _multiplication identity_, meaning that
-    it has no effect). This is stored in
-    [`NextFeeMultiplier`](/rustdocs/master/srml_transaction_payment/struct.Module.html#method.next_fee_multiplier)
-    and can be configured through the genesis spec of the module.
-  - A configurable parameter for a runtime to describe how this multiplier can change. This is
-    expressed via
-    [`FeeMultiplierUpdate`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate).
-
-`NextFeeMultiplier` has the type `Fixed64`, which can represent a fixed point number. So, given the
-inclusion fee formula above, the final version would be:
-
-```
-fee =
-  base_fee +
-  len(tx) * length_fee +
-  WeightToFee(weight)
-
-final_fee = fee * NextFeeMultiplier
-```
-
-Updating the `NextFeeMultiplier` has a similar effect as updating `WeightToFee`. The
-[`FeeMultiplierUpdate`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate)
-associated type in `transaction-payment` is defined as a `Convert<Fixed64, Fixed64>`, which should
-be read: "it receives the previous multiplier and returns the next one".
-
-The default update function is inspired by the Polkadot network and implements a targeted adjustment
-in which a target saturation level of block weight is defined. If the previous block is more
-saturated, then the fees are slightly increased. Similarly, if the previous block has fewer
-transactions than the target, fees are decreased by a small amount. More information about this can
-be found in the [Web3 research
-page](https://research.web3.foundation/en/latest/polkadot/Token%20Economics/#relay-chain-transaction-fees).
-
-## Substrate Weight System
-
-> This section assumes that you have already read the `Weight` section.
-
-The entire SRML is already annotated with a simple and fixed weight system. A user can decide to use
-the same system or implement a new one from scratch. The latter is outside the scope of this
-document and is explained in the dedicated [`Weight`](/docs/conceptual/runtime/weight) conceptual
-document.
-
-### Using the Default Weight
-
-The default weight annotation is simple. Substrate, by default, uses _fixed_ weights and the enum
-representing them is as follows:
+The default fee system uses the uses _fixed_ weights represented by the following enum:
 
 ```rust
 pub enum SimpleDispatchInfo {
@@ -115,34 +31,44 @@ pub enum SimpleDispatchInfo {
 }
 ```
 
-This enum groups all dispatches into _normal_ and _operational_ (which makes the implementation of
-`ClassifyDispatch` trivial) and gives them a fixed weight. Fixed in this context means that the
-arguments of the dispatch do not play any role in the weight. Dispatches classified as _operational_
-are exempt from paying both the `base_fee` and the `length_fee`.
+This enum groups all dispatches into _normal_ or _operational_ and gives them a fixed weight. This
+means that the arguments of a dispatchable function do not affect the weight. A dispatch classified
+as _operational_ is exempt from paying both the `base_fee` and the `length_fee`.
 
-A simple example of using this enum in your runtime is:
+### Free Normal
+
+This means that this function has no weight. It will not contribute to block fullness at all, and no
+weight-fee is applied.
 
 ```rust
-use sr_primitives::weights::{SimpleDispatchInfo};
+#[weight = SimpleDispatchInfo::FreeNormal]
+pub fn some_normal_function_light() { noop(); }
+```
 
-decl_module! {
-    // This means that this function has no weight. It will not contribute to block fullness at all,
-    // and no weight-fee is applied.
-    #[weight = SimpleDispatchInfo::FreeNormal]
-    pub fn some_normal_function_light() { noop(); }
+### Fixed Normal
 
-    // This function will always have a weight `10`.
-    #[weight = SimpleDispatchInfo::FixedNormal(10)]
-    pub fn some_normal_function_heavy() { some_computation(); }
+This function will always have a weight `10`.
 
-    // This function will have a fixed weight but can consume the reserved operational portion as
-    // well.
-    #[weight = SimpleDispatchInfo::FixedOperational(20)]
-    pub fn mission_critical_function() { some_sudo_op(); }
+```rust
+#[weight = SimpleDispatchInfo::FixedNormal(10)]
+pub fn some_normal_function_heavy() { some_computation(); }
+```
 
-    // This will automatically get `#[weight = SimpleDispatchInfo::default()]`.
-    pub fn something_else
-}
+### Fixed Operational
+
+This function will have a fixed weight but can consume the reserved operational portion as well.
+
+```rust
+#[weight = SimpleDispatchInfo::FixedOperational(20)]
+pub fn mission_critical_function() { some_sudo_op(); }
+```
+
+### Default
+
+This function will automatically get `#[weight = SimpleDispatchInfo::default()]`.
+
+```rust
+pub fn something_else() { noop(); }
 ```
 
 > **Note:** Be careful! The default implementation of `SimpleDispatchInfo` resolves to
@@ -150,7 +76,76 @@ decl_module! {
 > granularity of substrate. Even if you want to use the `SimpleDispatchInfo`, it is very likely that
 > you would want it to have a different `Default`.
 
-## Other Fees
+## Fee Calculation
+
+The final fee of a dispatch is calculated using the weight of the function and a number of
+configurable parameters.
+
+### Inclusion Fee
+
+A transaction fee consists of three parts:
+
+* `base_fee`: A fixed fee that is applied to every transaction. See
+  [`TransactionBaseFee`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.TransactionBaseFee).
+* `length_fee`: A per-byte fee that is multiplied by the length, in bytes, of the encoded
+  transaction. See
+  [`TransactionByteFee`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
+* `weight_fee`: A per-weight-unit fee that is multiplied by the weight of the transaction. The
+  weight of each dispatch is denoted via the flexible `#[weight]` annotation. Knowing the weight, it
+  must be converted to the `Currency` type. For this, each runtime must define a
+  [`WeightToFee`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
+  type that makes the conversion. `WeightToFee` must be a struct that implements [`Convert<Weight,
+  Balance>`](/rustdocs/master/sr_primitives/traits/trait.Convert.html).
+
+Based on the above, the final fee of a dispatchable is:
+
+```
+fee =
+  base_fee +
+  len(tx) * length_fee +
+  WeightToFee(weight)
+```
+
+This `fee` is known as the "inclusion fee." Even if the extrinsic fails, the signer must pay this
+inclusion fee.
+
+### Fee Multiplier
+
+The above formula gives a fee that is always the same for the same input. However, weight can be
+dynamic and based on how `WeightToFee` is defined, the final fee can include some degree of
+variability. To fulfill this requirement, Substrate provides:
+
+  - [`NextFeeMultiplier`](/rustdocs/master/srml_transaction_payment/struct.Module.html#method.next_fee_multiplier):
+    A multiplier stored in the Transaction Payment module and configurable. 
+  - [`FeeMultiplierUpdate`](/rustdocs/master/srml_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate):
+    A configurable parameter for a runtime to describe how this multiplier can change.
+
+`NextFeeMultiplier` has the type `Fixed64`, which can represent a fixed point number. So, given the
+inclusion fee formula above, the final version would be:
+
+```
+fee =
+  base_fee +
+  len(tx) * length_fee +
+  WeightToFee(weight)
+
+final_fee = fee * NextFeeMultiplier
+```
+
+Updating the `NextFeeMultiplier` has a similar effect as updating `WeightToFee`. The
+`FeeMultiplierUpdate` associated type in Transaction Payment module is defined as a
+`Convert<Fixed64, Fixed64>`, which should be read:
+
+> "it receives the previous multiplier and returns the next one".
+
+The default update function is inspired by the Polkadot network and implements a targeted adjustment
+in which a target saturation level of block weight is defined. If the previous block is more
+saturated, then the fees are slightly increased. Similarly, if the previous block has fewer
+transactions than the target, fees are decreased by a small amount. More information about this can
+be found in the [Web3 research
+page](https://research.web3.foundation/en/latest/polkadot/Token%20Economics/#relay-chain-transaction-fees).
+
+### Additional Fees
 
 Inclusion fees don't know anything about the logic of the transaction being executed. That is,
 Substrate doesn't care what happens in the transaction, it only cares about the size and weight of
@@ -161,9 +156,85 @@ are executed. Most likely, this will be if the transaction succeeds. The `transf
 Balances module, for example, takes a fixed fee for transferring tokens.
 
 It is important to note that if you query the chain for a transaction fee, it will only return the
-inclusion fee. If you want to query internal function fees, you should emit Events for them.
+inclusion fee.
 
-## Custom Inclusion Fee Example
+## Custom Fees
+
+You can also define custom fee systems through custom weight functions or inclusion fee functions.
+
+### Custom Weights
+
+Implementing a custom weight calculation function can vary in complexity. Using the
+`SimpleDispatchInfo` struct provided by Substrate is the easiest approach.
+
+A weight calculation function must provide two trait implementations:
+
+  - [`WeightData<T>`]: To determine the weight of the dispatch.
+  - [`ClassifyDispatch<T>`]: To determine the class of the dispatch.
+
+Substrate then bundles the output information of the two traits into the [`DispatchInfo`] struct and
+provides it by implementing the [`GetDispatchInfo`] for all `Call` variants and opaque extrinsic
+types. This is used internally by the System and Executive modules; you probably won't use it.
+
+Both `ClassifyDispatch` and `WeightData` are generic over `T`, which gets resolved into the tuple of
+all dispatch arguments except for the origin. To demonstrate, we will craft a struct that calculates
+the weight as `m * len(args)` where `m` is a given multiplier and `args` is the concatenated tuple
+of all dispatch arguments. Further, the dispatch class is `Operational` if the transaction has more
+than 100 bytes of length in arguments.
+
+```rust
+use coded::Encode;
+use sr_primitives::weights::{DispatchClass, ClassifyDispatch, WeightData}
+
+// self.0 is the multiplier, `m`
+struct LenWeight(u32);
+
+// We don't quite know what T is. After all, different dispatches have different arguments, hence
+// `T` will be different. All that we care about is that `T` is encodable. That is always true by
+// definition. All dispatch arguments are encodable.
+impl<T: Encode> WeighData<T> for LenWeight {
+    fn weigh_data(&self, target: T) -> Weight {
+        let multiplier = self.0;
+        let encoded_len = target.encode().len() as u32;
+        multiplier * encoded_len
+    }
+}
+
+impl<T: Encode> ClassifyDispatch<T> for LenWeight {
+    fn classify_dispatch(&self, target: T) -> DispatchClass {
+        let encoded_len = target.encode().len() as u32;
+        if encoded_len > 100 {
+            DispatchClass::Operational
+        } else {
+            DispatchClass::Normal
+        }
+    }
+}
+```
+
+A weight calculator function can also be coerced to the final type of the argument, instead of
+defining it as a vague type that is encodable. `srml-example` contains an example of how to do this.
+Just note that, in that case, your code would roughly look like:
+
+```rust
+struct CustomWeight;
+impl WeighData<(&u32, &u64)> for CustomWeight {
+    fn weigh_data(&self, target: (&u32, &u64)) -> Weight {
+        ...
+    }
+}
+
+// given dispatch:
+decl_module! {
+    fn foo(a: u32, b: u64) { ... }
+}
+```
+
+This means that `CustomWeight` can only be used in conjunction with a dispatch with a particular
+signature `(u32, u64)`, as opposed to `LenWeight`, which can be used with anything because they
+don't make any strict assumptions about `<T>`.
+
+### Custom Inclusion Fee
 
 This is an example of how to customize your inclusion fee. You must configure the appropriate
 associated types in the respective module.
@@ -206,7 +277,7 @@ payment module drawing inspiration from Transaction Payment.
 
 ### Learn More
 
-- Dedicated [weight documentation](/docs/conceptual/runtime/weight)
+- Dedicated [weight documentation](conceptual/runtime/weight.md)
 - [Example module](https://github.com/paritytech/substrate/blob/master/srml/example/src/lib.rs)
 - [SignedExtension](/rustdocs/master/sr_primitives/traits/trait.SignedExtension.html)
 
