@@ -90,7 +90,7 @@ class Index extends React.Component {
             href={pageUrl('who/runtime-developer')}
             className='m-1 primary-color'
           >
-            <translate>Start Here</translate>
+            <translate>Get Started on Substrate</translate>
           </Button>
         </HotspotCard>
         <HotspotCard
@@ -107,7 +107,7 @@ class Index extends React.Component {
             href={pageUrl('who/front-end-developer')}
             className='m-1 primary-color'
           >
-            <translate>Start Here</translate>
+            <translate>Get Started on Polkadot-JS</translate>
           </Button>
         </HotspotCard>
         <HotspotCard
@@ -123,7 +123,7 @@ class Index extends React.Component {
             href={pageUrl('who/contract-developer')}
             className='m-1 primary-color'
           >
-            <translate>Start Here</translate>
+            <translate>Get Started on ink!</translate>
           </Button>
         </HotspotCard>
       </Row>
@@ -242,12 +242,6 @@ class Index extends React.Component {
           language={language}
           title={<translate>Substrate Developer Hub</translate>}
           tagline={<translate>The place for blockchain innovators.</translate>}
-          buttons={[
-            {
-              name: <translate>Get Started</translate>,
-              href: `${docUrl('getting-started/installing-substrate')}`
-            }
-          ]}
         />
         <div className='mainContainer'>
           <Container>
