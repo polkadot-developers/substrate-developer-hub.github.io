@@ -10,7 +10,7 @@ This tutorial will be written for a Mac OS X machine, and may require some fines
 
 ## Prerequisites
 
-To start, make sure your machine has the latest [node and npm](https://www.npmjs.com/get-npm) installed. Then you're ready to [install substrate](getting-started/installing-substrate.md) itself. It may take a little while, so grab some tea and [optionally walk through this presentation](http://tiny.cc/substrate-getting-started).
+To start, make sure your machine has a recent [node and npm](https://www.npmjs.com/get-npm) installed. Node version 11 is known to work. Then you're ready to [install substrate](getting-started/installing-substrate.md) itself. It may take a little while, so grab some tea and [optionally walk through this presentation](http://tiny.cc/substrate-getting-started).
 
 You will also need to set up a few more repositories into your working folder which were used in the demo:
 
@@ -42,6 +42,7 @@ If everything is working it should start producing blocks!
 To interact with the blockchain, you need to start the Substrate UI. Navigate to the `substrate-ui` folder and run:
 
 ```bash
+yarn install
 yarn run dev
 ```
 
