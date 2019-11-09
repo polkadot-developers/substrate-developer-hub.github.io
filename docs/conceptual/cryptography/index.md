@@ -43,10 +43,11 @@ trait](https://substrate.dev/rustdocs/master/substrate_primitives/crypto/trait.P
 
 ### ECDSA
 
- Substrate provides an
+Substrate provides an
 [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) signature scheme
 using the [secp256k1](https://en.bitcoin.it/wiki/Secp256k1) curve. This is the same cryptographic
-algorithm used to secure [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin).
+algorithm used to secure [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin) and
+[Ethereum](https://en.wikipedia.org/wiki/Ethereum).
 
 ### Ed25519
 
@@ -76,26 +77,22 @@ but only ECDSA signatures communicate their public key.
 
 ### Learn More
 
-* Learn about the [cryptography used within Substrate](conceptual/cryptography/index.md).
+* Learn about the [Substrate keys](conceptual/cryptography/keys.md).
 
-* For detailed descriptions on the cryptography used please see the more advanced [research
+* For more detailed descriptions, please see the more advanced [research
   wiki](https://research.web3.foundation).
 
 ### Examples
 
-* Take a look at this [recipe to introduce new session keys to your custom Substrate runtime](TODO).
-
-* Follow our [tutorial to create a local network and generate keys](TODO).
+* Look at the Polkadot claims module to see how you can [verify Ethereum signatures in the Substrate
+  runtime](https://github.com/paritytech/polkadot/blob/master/runtime/src/claims.rs).
 
 ### References
 
-* Visit the reference docs for the [session keys runtime
-  API](/rustdocs/master/substrate_session/trait.SessionKeys.html).
+* Take a look at the
+  [`Hash`](https://substrate.dev/rustdocs/master/sr_primitives/traits/trait.Hash.html) trait needed
+  for implementing new hashing algorithms.
 
-* Take a look at the default [session keys in the Substrate node
-  runtime](/rustdocs/master/node_runtime/struct.SessionKeys.html).
-
-* Take a look at
-  [`substrate_application_crypto`](/rustdocs/master/substrate_application_crypto/index.html), used
-  for constructing application specific strongly typed crypto wrappers.
-
+* Take a look at the
+  [`Pair`](https://substrate.dev/rustdocs/master/substrate_primitives/crypto/trait.Pair.html) trait
+  needed for implementing new cryptographic schemes.
