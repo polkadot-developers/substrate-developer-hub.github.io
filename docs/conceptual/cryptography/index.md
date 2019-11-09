@@ -2,43 +2,100 @@
 title: Cryptography
 ---
 
-This is a high-level overview of the cryptography used in Polkadot.
-It assumes that you have some knowledge about cryptographic
-primitives that are used in blockchains generally such as hashes,
-elliptic curve cryptography (ECC), and public-private keypairs.
+This document offers a conceptual overview of the cryptography used in Substrate.
 
-For detailed descriptions on the cryptography used please see the
-more advanced [research wiki](https://research.web3.foundation).
+## Hashing Algorithms
 
-## Hashing Algorithm
+Hash functions are used in Substrate to map arbitrary sized data to a fixed-sized values.
 
-The hashing algorithm used in Polkadot is [Blake2b](https://en.wikipedia.org/wiki/BLAKE_(hash_function)#BLAKE2).
-Blake2 is considered to be a very fast cryptographic hash function that is
-also used in the cryptocurrency [Zcash](https://z.cash).
+Substrate provides two hash algorithms out of the box, but can support any hash algorithm which
+implements the [`Hash` trait](https://doc.rust-lang.org/core/hash/trait.Hash.html).
 
-## Keypairs and Signing
+### xxHash
 
-Polkadot uses Schnorrkel/Ristretto x25519 ("sr25519") as its key
-derivation and signing algorithm.
+xxHash is a fast [non-cryptographic hash function](https://en.wikipedia.org/wiki/Hash_function),
+working at speeds close to RAM limits. Because xxHash is not cryptographically secure, it is
+possible that the output of the hash algorithm can be reasonably controlled by modifying the input.
+This can allow a user to attack this algorithm by creating key collisions, hash collisions, and
+imbalanced storage tries.
 
-Sr25519 is based on the same underlying [Curve25519](https://en.wikipedia.org/wiki/Curve25519)
-as its EdDSA counterpart, [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519).
-However, it uses Schnorr signatures instead of the EdDSA scheme. Schnorr signatures
-bring some noticeable benefits over the ECDSA/EdDSA schemes. For one, it is more efficient
-and still retains the same feature set and security assumptions. Additionally,
-it allows for native multisignature through [signature aggregation](https://bitcoincore.org/en/2017/03/23/schnorr-signature-aggregation/).
+xxHash is used in places where outside parties cannot manipulate the input of the hash function. For
+example, it is used to generate the key for runtime storage values, whose inputs are controlled by
+the runtime developer.
 
-The names Schnorrkel and Ristretto come from the two Rust libraries that implement this
-scheme, the [Schnorrkel](https://github.com/w3f/schnorrkel) library for Schnorr signatures and the [Ristretto](https://ristretto.group/ristretto.html)
-library that makes it possible to use cofactor-8 curves like Curve25519.
+Substrate uses the [`twox-hash`](https://github.com/shepmaster/twox-hash) implementation in Rust.
 
+### Blake2
 
-* SR25519
+[Blake2](https://en.wikipedia.org/wiki/BLAKE_(hash_function)#BLAKE2) is a cryptographic hash
+function. It is considered to be a very fast and is also used in the cryptocurrency
+[Zcash](https://z.cash).
 
-* ED25519
+Substrate uses the [`blake2`](https://docs.rs/blake2/) implementation in Rust.
 
-* Generating Account Addresses
+## Public-Key Cryptography
 
-* Account Prefix
+Public-key cryptography is used in Substrate to provide robust authentication system.
 
-* Reference SS58 Docs
+Substrate provides multiple different cryptographic schemes and is generic such that it can support
+anything which implements the [`Pair`
+trait](https://substrate.dev/rustdocs/master/substrate_primitives/crypto/trait.Pair.html).
+
+### ECDSA
+
+ Substrate provides an
+[ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) signature scheme
+using the [secp256k1](https://en.bitcoin.it/wiki/Secp256k1) curve. This is the same cryptographic
+algorithm used to secure [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin).
+
+### Ed25519
+
+[Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519) is an EdDSA signature scheme using
+[Curve25519](https://en.wikipedia.org/wiki/Curve25519). It is carefully engineered at several levels
+of design and implementation to achieve very high speeds without compromising security.
+
+### SR25519
+
+[SR25519](https://research.web3.foundation/en/latest/polkadot/keys/1-accounts-more/) is based on the
+same underlying curve as [Ed25519](#ed25519). However, it uses Schnorr signatures instead of the
+EdDSA scheme.
+
+Schnorr signatures bring some noticeable features over the [ECDSA](#ecdsa)/EdDSA schemes:
+
+* It is better for hierarchical deterministic key derivations.
+
+* It allows for native multi-signature through [signature
+  aggregation](https://bitcoincore.org/en/2017/03/23/schnorr-signature-aggregation/).
+
+* It is generally more resistant to misuse.
+
+One sacrifice that is made when using Schnorr signatures over ECDSA is that both require 64 bytes,
+but only ECDSA signatures communicate their public key.
+
+## Next Steps
+
+### Learn More
+
+* Learn about the [cryptography used within Substrate](conceptual/cryptography/index.md).
+
+* For detailed descriptions on the cryptography used please see the more advanced [research
+  wiki](https://research.web3.foundation).
+
+### Examples
+
+* Take a look at this [recipe to introduce new session keys to your custom Substrate runtime](TODO).
+
+* Follow our [tutorial to create a local network and generate keys](TODO).
+
+### References
+
+* Visit the reference docs for the [session keys runtime
+  API](/rustdocs/master/substrate_session/trait.SessionKeys.html).
+
+* Take a look at the default [session keys in the Substrate node
+  runtime](/rustdocs/master/node_runtime/struct.SessionKeys.html).
+
+* Take a look at
+  [`substrate_application_crypto`](/rustdocs/master/substrate_application_crypto/index.html), used
+  for constructing application specific strongly typed crypto wrappers.
+
