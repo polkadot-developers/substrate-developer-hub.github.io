@@ -28,7 +28,8 @@ Substrate uses the [`twox-hash`](https://github.com/shepmaster/twox-hash) implem
 ### Blake2
 
 [Blake2](https://en.wikipedia.org/wiki/BLAKE_(hash_function)#BLAKE2) is a cryptographic hash
-function. It is considered to be a very fast and is also used in [Zcash](https://z.cash).
+function. It is considered to be a very fast and is also used in
+[Zcash](https://en.wikipedia.org/wiki/Zcash).
 
 Substrate uses the [`blake2`](https://docs.rs/blake2/) implementation in Rust.
 
