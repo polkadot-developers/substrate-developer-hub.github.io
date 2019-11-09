@@ -38,11 +38,10 @@
       },
       {
         "type": "subcategory",
-        "label": "Keyring",
+        "label": "Cryptography",
         "ids": [
-          "conceptual/keyring/cryptography",
-          "conceptual/keyring/session-keys",
-          "conceptual/keyring/subkey"
+          "conceptual/cryptography/index",
+          "conceptual/cryptography/keys"
         ]
       }
     ],

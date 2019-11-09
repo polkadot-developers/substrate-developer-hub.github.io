@@ -53,7 +53,7 @@ construct_runtime!(
 	{
 		// --snip--
 		TemplateModule: template::{Module, Call, Storage, Event<T>},
-		//--add-this---------------- ---------------------^^^^^^^^
+		//--add-this------------------------------------->^^^^^^^^
 	}
 );
 ```
