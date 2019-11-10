@@ -51,3 +51,25 @@ Substrate is designed to be used in one of three ways:
    not, then you'll need to alter the client's block authoring logic accordingly, potentially even
    altering the header and block serialization formats. In terms of development effort, this is by
    far the most difficult way to use Substrate, but also gives you the most freedom to innovate.
+
+## Next Steps
+
+### Learn More
+
+- View our developer documentation for [using the SRML for module
+  development](development/module/index.md).
+
+### Examples
+
+- Follow our [tutorial to create your first custom blockchain with
+  Substrate](tutorials/creating-your-first-substrate-chain/index.md).
+
+- Follow our [tutorial to start a private network with
+  Substrate](tutorials/start-a-private-network-with-substrate.md).
+
+- Follow our [tutorial to add a runtime module to your Substrate
+  runtime](tutorials/adding-a-module-to-your-runtime.md).
+
+### References
+
+- Check out [Rust reference documentation](/rustdocs/).
