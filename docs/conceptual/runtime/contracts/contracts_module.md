@@ -70,27 +70,29 @@ alive.
 
 ## Contracts Module vs EVM
 
-The Contracts module has learned from problems that have arisen in Ethereum. 
+The Contracts module has learned from problems that have arisen in Ethereum ecosystem. Beyond the
+problems with the EVM, which even the Ethereum community is solving with
+[ewasm](https://github.com/ewasm/design), there are fundamental economic issues with permanent TODO
 
 ## Next Steps
 
 ### Learn More
 
-- Learn how to [develop custom Substrate runtime
-  modules](development/module/index.md).
+- Learn about [ink!, a Rust based embedded domain specific
+  language](conceptual/runtime/contracts/ink.md) for developing smart contracts for the SRML
+  Contracts module.
 
 ### Examples
 
-- Follow a [tutorial to add a runtime module to your Substrate
+- Follow a [tutorial to add this SRML Contracts module to your Substrate
   runtime](tutorials/adding-a-module-to-your-runtime.md).
 
 ### References
 
-- Visit the reference docs for the [System
-  module](/rustdocs/master/srml_system/index.html).
+- Visit the reference docs for the [SRML Contracts
+  module](/rustdocs/master/srml_contracts/index.html).
 
-- Visit the reference docs for the [Executive
-  module](/rustdocs/master/srml_executive/index.html).
+- Visit the reference docs for the [Executive module](/rustdocs/master/srml_executive/index.html).
 
 - Visit the reference docs for the [SRML support
   library](https://substrate.dev/rustdocs/master/srml_support/index.html).
