@@ -44,12 +44,12 @@ Substrate is designed to be used in one of three ways:
    [creating your first Substrate chain](tutorials/creating-your-first-substrate-chain/index.md).
 
 3. **With the Substrate Core**: The entire [SRML](conceptual/runtime/srml.md) can be ignored, and
-   the entire runtime can be designed and implemented from scratch. This could be done in any
-   language that can target WebAssembly. If the runtime can be made to be compatible with the
+   the entire runtime can be designed and implemented from scratch. This could be done in _any
+   language_ that can target WebAssembly. If the runtime can be made to be compatible with the
    abstract block authoring logic of the Substrate node, then you can simply construct a new genesis
    block from your Wasm blob and launch your chain with the existing Rust-based Substrate client. If
-   not, then you'll need to alter the client's block authoring logic accordingly, potentially even
-   altering the header and block serialization formats. In terms of development effort, this is by
+   not, then you will need to alter the client's block authoring logic, and potentially even
+   alter the header and block serialization formats. In terms of development effort, this is by
    far the most difficult way to use Substrate, but also gives you the most freedom to innovate.
 
 ## Next Steps
