@@ -210,6 +210,14 @@ function Community(props) {
         <Button
           variant="secondary"
           size="sm"
+          href={pageUrl("seminar")}
+          className="m-1 primary-color"
+        >
+          Seminar Details
+        </Button>
+        <Button
+          variant="secondary"
+          size="sm"
           href="https://zoom.us/j/440029011"
           className="m-1 primary-color"
         >
