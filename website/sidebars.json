@@ -27,21 +27,30 @@
       },
       {
         "type": "subcategory",
+        "label": "Cryptography",
+        "ids": [
+          "conceptual/cryptography/index",
+          "conceptual/cryptography/keys"
+        ]
+      },
+      {
+        "type": "subcategory",
         "label": "Substrate Runtime",
         "ids": [
           "conceptual/runtime/index",
           "conceptual/runtime/srml",
           "conceptual/runtime/weight",
-          "conceptual/runtime/contracts",
           "conceptual/runtime/primitives"
         ]
       },
       {
         "type": "subcategory",
-        "label": "Cryptography",
+        "label": "Smart Contracts",
         "ids": [
-          "conceptual/cryptography/index",
-          "conceptual/cryptography/keys"
+          "conceptual/runtime/contracts/index",
+          "conceptual/runtime/contracts/contracts_module",
+          "conceptual/runtime/contracts/evm_module",
+          "conceptual/runtime/contracts/ink"
         ]
       }
     ],
@@ -89,6 +98,13 @@
         "ids": [
           "development/front-end/polkadot-js",
           "development/front-end/json-rpc"
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "Smart Contracts",
+        "ids": [
+          "development/contracts/ink"
         ]
       }
     ]
