@@ -21,7 +21,7 @@ and call smart contracts using this module.
 There's one-to-one mapping from Substrate accounts and EVM external accounts that is defined by a
 conversion function.
 
-## EVM Module vs Ethereum
+## EVM Module vs Ethereum Network
 
 The EVM module should be able to produce nearly identical result as the Ethereum mainnet, including
 gas cost and balance changes.
