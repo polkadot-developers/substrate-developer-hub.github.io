@@ -23,14 +23,15 @@ conversion function.
 
 ## EVM Module vs Ethereum Network
 
-The EVM module should be able to produce nearly identical result as the Ethereum mainnet, including
-gas cost and balance changes.
+The EVM module should be able to produce nearly identical results compared to the Ethereum mainnet,
+including gas cost and balance changes.
 
-Observable behaviors of the contract that might be different include:
+Observable differences include:
 
 * The available length of block hashes may not be 256 depending on the configuration of the System
   module in the Substrate runtime.
-* Difficulty and coinbase does not make sense in this module, and is currently hard coded to zero.
+* Difficulty and coinbase, which do not make sense in this module and is currently hard coded to
+  zero.
 
 We currently do not aim to make unobservable behaviors, such as state root, to be the same. We also
 don't aim to follow the exact same transaction / receipt format. However, given one Ethereum
@@ -44,8 +45,8 @@ to support earlier hard fork configurations.
 
 ### Learn More
 
-- Learn how to [develop custom Substrate runtime
-  modules](development/module/index.md).
+- Learn about our [SRML Contracts module](conceptual/runtime/contracts/contracts_module.md), which
+  supports deployment and execution of Wasm smart contracts.
 
 ### Examples
 
@@ -54,11 +55,6 @@ to support earlier hard fork configurations.
 
 ### References
 
-- Visit the reference docs for the [System
-  module](/rustdocs/master/srml_system/index.html).
+- Visit the reference docs for the [EVM module](/rustdocs/master/srml_evm/index.html).
 
-- Visit the reference docs for the [Executive
-  module](/rustdocs/master/srml_executive/index.html).
-
-- Visit the reference docs for the [SRML support
-  library](https://substrate.dev/rustdocs/master/srml_support/index.html).
+- Visit the reference docs for [SputnikVM's `evm` crate](https://docs.rs/evm/).
