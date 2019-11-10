@@ -122,6 +122,7 @@ class Footer extends React.Component {
           <div>
             <h5>Community</h5>
             <a href={this.pageUrl("videos", this.props.language)}>Videos</a>
+            <a href={this.pageUrl("seminar", this.props.language)}>Substrate Seminar</a>
             <a
               href="http://stackoverflow.com/questions/tagged/substrate"
               target="_blank"
