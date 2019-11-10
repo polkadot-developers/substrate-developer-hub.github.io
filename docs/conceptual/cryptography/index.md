@@ -6,10 +6,11 @@ This document offers a conceptual overview of the cryptography used in Substrate
 
 ## Hashing Algorithms
 
-Hash functions are used in Substrate to map arbitrary sized data to a fixed-sized values.
+Hash functions are used in Substrate to map arbitrary sized data to fixed-sized values.
 
 Substrate provides two hash algorithms out of the box, but can support any hash algorithm which
-implements the [`Hash` trait](https://doc.rust-lang.org/core/hash/trait.Hash.html).
+implements the [`Hasher`
+trait](https://substrate.dev/rustdocs/master/substrate_primitives/trait.Hasher.html).
 
 ### xxHash
 
@@ -35,7 +36,7 @@ Substrate uses the [`blake2`](https://docs.rs/blake2/) implementation in Rust.
 
 ## Public-Key Cryptography
 
-Public-key cryptography is used in Substrate to provide robust authentication system.
+Public-key cryptography is used in Substrate to provide a robust authentication system.
 
 Substrate provides multiple different cryptographic schemes and is generic such that it can support
 anything which implements the [`Pair`
