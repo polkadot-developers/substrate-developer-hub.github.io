@@ -13,22 +13,29 @@ work within the Substrate framework.
 
 They are:
 
-- `Block`: essentially just a combination of `Header` and a series of `Extrinsic`s, together with a
-  specification of the hashing algorithm to be used.
+- `Hash`: A type which encodes a cryptographic digest of some data. Typically just a 256-bit
+  quantity.
 
-- `BlockNumber`: a type which encodes the total number of ancestors any valid block has. Typically a
-  32-bit quantity.
+- `DigestItem`: A type which must be able to encode one of a number of "hard-wired" alternatives
+  relevant to consensus and change-tracking as well as any number of "soft-coded" variants, relevant
+  to specific modules within the runtime.
 
-- `Extrinsic`: a type to represent a single piece of data external to the blockchain that is
+- `Digest`: A series of DigestItems. This encodes all information that is relevant for a
+  light-client to have on hand within the block.
+
+- `Extrinsic`: A type to represent a single piece of data external to the blockchain that is
   recognized by the blockchain. This typically involves one or more signatures, and some sort of
   encoded instruction (e.g. for transferring ownership of funds or calling into a smart contract).
 
-- `Hash`: a type which encodes a cryptographic digest of some data. Typically just a 256-bit
-  quantity.
-
-- `Header`: a type which is representative (cryptographically or otherwise) of all information
+- `Header`: A type which is representative (cryptographically or otherwise) of all information
   relevant to a block. It includes the parent hash, the storage root and the extrinsics trie root,
   the digest and a block number.
+
+- `Block`: Essentially just a combination of `Header` and a series of `Extrinsic`s, together with a
+  specification of the hashing algorithm to be used.
+
+- `BlockNumber`: A type which encodes the total number of ancestors any valid block has. Typically a
+  32-bit quantity.
 
 ## SRML Primitives
 
@@ -46,10 +53,7 @@ Runtime Module Library (SRML):
 
 * `AccountId`: The user account identifier type for the runtime.
 
-* `Lookup`: Converting trait to take a source type and convert to `AccountId`. Used to define the
-  type and conversion mechanism for referencing accounts in transactions. It's perfectly reasonable
-  for this to be an identity conversion (with the source type being `AccountId`), but other modules
-  (e.g. Indices module) may provide more functional/efficient alternatives.
+* `Lookup`: Defines the type and conversion mechanism for referencing accounts in transactions.
 
 * `Event`: The aggregated event type of the runtime.
 
@@ -66,16 +70,15 @@ Runtime Module Library (SRML):
 
 * `Version`: Get the chain's current version.
 
-
 ## Next Steps
 
 ### Learn More
 
-- 
+- Learn about the [Substrate Runtime Module Library](conceptual/runtime/srml.md).
 
 ### Examples
 
-- 
+- See how these generic types are implemented [in the Substrate node](https://github.com/paritytech/substrate/blob/master/node/runtime/src/lib.rs).
 
 ### References
 
