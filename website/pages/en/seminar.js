@@ -16,7 +16,7 @@
 
 const React = require("react");
 
-const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash.js`);
+const FullSplash = require(`${process.cwd()}` + `/core/FullSplash.js`);
 
 const Container = require("../../../../react-bootstrap/Container.js");
 const Button = require("../../../../react-bootstrap/Button.js");
@@ -32,46 +32,70 @@ function Seminar(props) {
 
   return (
     <div>
-      <HomeSplash
+      <FullSplash
         siteConfig={siteConfig}
         language={language}
         title={<translate>Substrate Seminar</translate>}
         tagline={<translate>Substrate Collaborative Learning Group</translate>}
+        text={
+          <translate>
+            Substrate Seminar is an open Collaborative Learning call where we learn about Substrate
+            together. We meet every other Monday at 16:00UTC. Ask for help, show off your project,
+            learn Substrate, and make friends!
+          </translate>
+        }
         padding={0}
+        buttons={[
+          {
+            key: 'key',
+            href: 'https://calendar.google.com/calendar/r/eventedit/aTI4MDRrZ2FpcGpzb2NmMmo4cGJqNXMyc2dfMjAxOTA4MjZUMTYwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw?cid=cGFyaXR5LmlvXzM5Mzc5MzQzaDA3M3YwNnFodDF2cHFjZWZjQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20',
+            name: 'Google Calendar'
+          },
+          {
+            key: 'key',
+            href: 'https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx',
+            name: 'Previous Recordings'
+          },
+      ]}
       />
-      <div className="mainContainer">
-        <Container>
-          <p>
-            <translate>
-              Substrate Seminar is an open Collaborative Learning call where we learn about Substrate
-              together. We meet every other Monday at 16:00UTC. Ask for help, show off your project,
-              learn Substrate, and make friends!
-            </translate>
-          </p>
-          <Button
-            variant="secondary"
-            size="sm"
-            href="https://zoom.us/j/440029011"
-            className="m-1 primary-color"
-          >
-            Join the Call
-          </Button>
-          <Button
-            variant="secondary"
-            size="sm"
-            href="https://calendar.google.com/calendar/r/eventedit/aTI4MDRrZ2FpcGpzb2NmMmo4cGJqNXMyc2dfMjAxOTA4MjZUMTYwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw?cid=cGFyaXR5LmlvXzM5Mzc5MzQzaDA3M3YwNnFodDF2cHFjZWZjQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
-            className="m-1 primary-color"
-          >
-            Google Calendar
-          </Button>
-          <Button
-            variant="secondary"
-            size="sm"
-            href="https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx"
-            className="m-1 primary-color"
-          >
-            Previous Recordings
-          </Button>
+      
+        <Container className="readableLineLenght">
+        <h2 class="h1">FAQ</h2>
+        <h3 class="h2">What are the prerequisites?</h3>
+        <p>
+          Please complete the instructions on <a href="https://www.shawntabrizi.com/substrate-beginner-workshop/#/0/" target="_blank">this page</a> before the call.
+          If you have any problems with the instructions, feel free to send us an email at:
+          <br/>
+          <a href="mailto:shawn@parity.io">
+          shawn@parity.io
+          </a>
+          <br/>
+          <a href="joshy@parity.io">
+          joshy@parity.io
+          </a>
+        </p>
+        <h3 class="h2">
+          I am not a [substrate] developer, can I join just to ask couple of questions??
+        </h3>
+        <p>
+          Yes! The seminar is open to everyone. The content is generally more developer-oriented, but less technical participants and questions are also welcome. If your questions turn out to be off-topic, we'll point you to a better resource.
+        </p>
+        <h3>
+          To learn more visit <a href="https://www.parity.io/substrate/" target="_blank">parity.io/substrate</a>
+        </h3>
+        </Container>
+      
+      <div className="bg-light p-5 mt-5">
+        <Container className="d-flex justify-content-between">
+        <h2 className="m-0">
+          Something appealing to someone who scrolled here
+        </h2>
+        <Button
+          href="https://calendar.google.com/calendar/r/eventedit/aTI4MDRrZ2FpcGpzb2NmMmo4cGJqNXMyc2dfMjAxOTA4MjZUMTYwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw?cid=cGFyaXR5LmlvXzM5Mzc5MzQzaDA3M3YwNnFodDF2cHFjZWZjQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20'"
+          className="m-1 primary-color btn btn-secondary align-self-center"
+        >
+          Google Calendar
+        </Button>
         </Container>
       </div>
     </div>
