@@ -197,11 +197,13 @@ function Community(props) {
     </CommunityResource>
   );
 
-  const SubstrateCollaborativeLearning = () => (
-    <CommunityResource title={<translate>Substrate Collaborative Learning</translate>}>
+  const SubstrateSeminar = () => (
+    <CommunityResource title={<translate>Substrate Seminar</translate>}>
       <p>
         <translate>
-          Substrate Collaborative Learning is an open video call where we learn about Substrate together. We meet every other Monday at 16:00UTC. Ask for help, show off your project, learn about Substrate, and make friends!
+          Substrate Seminar is an open Collaborative Learning call where we learn about Substrate
+          together. We meet every other Monday at 16:00UTC. Ask for help, show off your project,
+          learn Substrate, and make friends!
         </translate>
       </p>
       <p>
@@ -274,7 +276,7 @@ function Community(props) {
           <StackOverflow />
           <RiotChat />
           <Videos />
-          <SubstrateCollaborativeLearning />
+          <SubstrateSeminar />
           <Events />
           <AwesomeSubstrate />
           <TwitchStream />
