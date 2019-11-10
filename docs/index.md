@@ -29,28 +29,25 @@ Substrate is designed to be used in one of three ways:
 1. **With the Substrate Node**: You can run the pre-designed Substrate Node and configure it with a
    genesis block that includes the default node runtime. In this case, you just need to configure a
    JSON file and launch your own blockchain. This affords you the least amount of customization,
-   primarily allowing you to change the genesis parameters of the various included runtime modules
-   such as balances, staking, block-period, fees and governance. For a tutorial on doing this, see
-   [Deploying a Substrate Node chain](tutorials/start-a-private-network-with-substrate.md).
+   only allowing you to change the genesis parameters of the included runtime modules such as:
+   balances, staking, block-period, fees, governance, etc... For a tutorial on doing this, see
+   [Start a Private Network with Substrate](tutorials/start-a-private-network-with-substrate.md).
 
-2. **With the SRML**: By composing modules from the [SRML](conceptual/runtime/srml.md) into a new
-   runtime, perhaps adding new custom modules and possibly altering or reconfiguring the Substrate
-   client's block authoring logic. This affords you a very large amount of freedom over your own
-   blockchain's logic, letting you change datatypes, select from the library of modules and,
-   crucially, add your own modules. Much can be changed without touching the block-authoring logic
-   since it is directed through on-chain logic. If this is the case, then the existing Substrate
-   binary can be used for block authoring and syncing. If the block authoring logic needs to be
-   tweaked, then a new altered block-authoring binary must be built as a separate project and used
-   by validators. This is how the Polkadot relay chain is built and should suffice for almost all
-   circumstances in the near to mid-term. For a tutorial on this, see [creating your first Substrate
-   chain](tutorials/creating-your-first-substrate-chain/index.md).
+2. **With the SRML**: You can easily create your own custom blockchain using the SRML. This affords
+   you a very large amount of freedom over your own blockchain's logic, letting you change
+   datatypes, select from the library of modules, and add your own custom modules. Much can be
+   changed without touching the block-authoring logic since it is directed through on-chain logic.
+   If this is the case, then the existing Substrate binary can be used for block authoring and
+   syncing. If the block authoring logic needs to be modified, then a new block-authoring binary
+   must be built as a separate project and used by validators. This is how the Polkadot relay chain
+   is built and should suffice for almost all needs in the near future. For a tutorial on this, see
+   [creating your first Substrate chain](tutorials/creating-your-first-substrate-chain/index.md).
 
-3. **With the Substrate Core**: The entire [SRML](conceptual/runtime/srml.md) can be ignored and the
-   entire runtime designed and implemented from scratch. If desired, this can be done in a language
-   other than Rust, providing it can target WebAssembly. If the runtime can be made to be compatible
-   with Substrate Node's abstract block authoring logic, then you can simply construct a new genesis
+3. **With the Substrate Core**: The entire [SRML](conceptual/runtime/srml.md) can be ignored, and
+   the entire runtime can be designed and implemented from scratch. This could be done in any
+   language that can target WebAssembly. If the runtime can be made to be compatible with the
+   abstract block authoring logic of the Substrate node, then you can simply construct a new genesis
    block from your Wasm blob and launch your chain with the existing Rust-based Substrate client. If
    not, then you'll need to alter the client's block authoring logic accordingly, potentially even
-   altering the header and block serialization formats. In terms of development effort this is by
-   far the most arduous means to use Substrate, but also gives you the most freedom to innovate. It
-   reflects a long-term far-reaching upgrade path for the Substrate paradigm.
+   altering the header and block serialization formats. In terms of development effort, this is by
+   far the most difficult way to use Substrate, but also gives you the most freedom to innovate.
