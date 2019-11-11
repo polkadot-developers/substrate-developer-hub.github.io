@@ -152,7 +152,7 @@ const siteConfig = {
 
   // customised blast banner on top
   blast: {
-    img: '/img/logo-sub01-crop.jpg',
+    img: '/img/sub0-blast.png',
     link: 'https://sub0.parity.io',
     background: 'url(/img/bg-sub01.svg); background-size: cover; background-position: right 0px bottom 500px;',
     fontColor: '#18FFB2'

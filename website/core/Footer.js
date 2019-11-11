@@ -39,8 +39,6 @@ class Blast extends React.Component {
   transition: background-color 0.2s;
 }
 #blast:hover {
-  //cannot choose which one:
-  background-color: #070267;
   background-color: #E91E63;
 }
 
@@ -56,6 +54,10 @@ class Blast extends React.Component {
   mix-blend-mode: lighten;
 }
 
+#blast img {
+  max-height: 50px;
+}
+
 body {
   margin-bottom: 50px;
 }
@@ -65,7 +67,7 @@ body {
         <section id='blast'>
           {cfg.img ? (
             <a href={cfg.link}>
-              <img src={cfg.img} height='50px' />
+              <img src={cfg.img} class='img-fluid' />
             </a>
           ) : (
             <h2>
