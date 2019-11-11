@@ -8,7 +8,7 @@ Substrate framework.
 ## Core Primitives
 
 The Substrate framework makes minimal assumptions about what your runtime must provide to the other
-layers of Substrate. They are mandatory to define and must fulfil a particular interface in order to
+layers of Substrate. They are mandatory to define and must fulfill a particular interface in order to
 work within the Substrate framework.
 
 They are:
