@@ -31,11 +31,17 @@ class Blast extends React.Component {
   width: 100%;
   bottom: 0;
   height: 50px;
-  background: #000028 ${cfg.background};
+  background-image: ${cfg.background};
   color: ${cfg.fontColor ? cfg.fontColor : 'white'};
   z-index: 99999;
   text-align: center;
-
+  background-color: #000028;
+  transition: background-color 0.2s;
+}
+#blast:hover {
+  //cannot choose which one:
+  background-color: #070267;
+  background-color: #E91E63;
 }
 
 #blast h2 {
@@ -47,6 +53,7 @@ class Blast extends React.Component {
   display: block;
   color: ${cfg.fontColor ? cfg.fontColor : 'white'};
   text-decoration: underline;
+  mix-blend-mode: lighten;
 }
 
 body {
