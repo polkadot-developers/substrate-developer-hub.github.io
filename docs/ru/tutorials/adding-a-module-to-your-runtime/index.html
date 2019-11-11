@@ -218,7 +218,43 @@ cargo build <span class="token operator">-</span><span class="token operator">-<
 <h3><a class="anchor" aria-hidden="true" id="adding-other-srml-modules"></a><a href="#adding-other-srml-modules" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding Other SRML Modules</h3>
 <p>In this guide, we walked through specifically how to import the Contract module, but as mentioned in the beginning of this guide, each module will be a little different. Have no fear, you can always refer to the <a href="https://github.com/paritytech/substrate/blob/v1.0/node/runtime/">&quot;main&quot; Substrate node runtime</a> which includes nearly every module in the SRML.</p>
 <p>In the <code>Cargo.toml</code> file of the Substrate node runtime, you will see an example of how to import each of the different modules, and in the <code>lib.rs</code> file you will find how to add each module to your runtime. You can basically copy what was done there to your own runtime.</p>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#importing-a-module-crate">Importing a Module Crate</a><ul class="toc-headings"><li><a href="#crate-features">Crate Features</a></li><li><a href="#importing-the-contract-module-crate">Importing the Contract Module Crate</a></li></ul></li><li><a href="#adding-the-contract-module">Adding the Contract Module</a><ul class="toc-headings"><li><a href="#implementing-the-contract-trait">Implementing the Contract Trait</a></li><li><a href="#adding-contract-to-the-construct-runtime-macro">Adding Contract to the Construct Runtime Macro</a></li><li><a href="#adding-runtime-hooks">Adding Runtime Hooks</a></li></ul></li><li><a href="#genesis-configuration">Genesis Configuration</a></li><li><a href="#next-steps">Next Steps</a><ul class="toc-headings"><li><a href="#adding-other-srml-modules">Adding Other SRML Modules</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/ru/getting-started">Getting Started</a><a href="/ru/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/ru/videos">Videos</a><a href="/ru/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#importing-a-module-crate">Importing a Module Crate</a><ul class="toc-headings"><li><a href="#crate-features">Crate Features</a></li><li><a href="#importing-the-contract-module-crate">Importing the Contract Module Crate</a></li></ul></li><li><a href="#adding-the-contract-module">Adding the Contract Module</a><ul class="toc-headings"><li><a href="#implementing-the-contract-trait">Implementing the Contract Trait</a></li><li><a href="#adding-contract-to-the-construct-runtime-macro">Adding Contract to the Construct Runtime Macro</a></li><li><a href="#adding-runtime-hooks">Adding Runtime Hooks</a></li></ul></li><li><a href="#genesis-configuration">Genesis Configuration</a></li><li><a href="#next-steps">Next Steps</a><ul class="toc-headings"><li><a href="#adding-other-srml-modules">Adding Other SRML Modules</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
+#blast {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 50px;
+  background-image: url(/img/bg-sub01.svg); background-size: cover; background-position: right 0px bottom 500px;;
+  color: #18FFB2;
+  z-index: 99999;
+  text-align: center;
+  background-color: #000028;
+  transition: background-color 0.2s;
+}
+#blast:hover {
+  background-color: #E91E63;
+}
+
+#blast h2 {
+  margin: 0;
+  line-height: 50px;
+}
+
+#blast a {
+  display: block;
+  color: #18FFB2;
+  text-decoration: underline;
+  mix-blend-mode: lighten;
+}
+
+#blast img {
+  max-height: 50px;
+}
+
+body {
+  margin-bottom: 50px;
+}
+</style><section id="blast"><a href="https://sub0.parity.io" target="_blank"><img src="/img/sub0-blast.png" class="img-fluid"/></a></section></div><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/ru/getting-started">Getting Started</a><a href="/ru/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/ru/videos">Videos</a><a href="/ru/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
               var cookieSettings = document.getElementById('cookie-settings');
               cookieSettings.onclick = function() {
                 return klaro.show();
