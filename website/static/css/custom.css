@@ -82,6 +82,16 @@
     display: none !important;
 }
 
+.bg-dark {
+    background-color: $secondaryColor !important;
+}
+
+.nav-footer {
+    background-color: $secondaryColor !important;
+    background-image: url("/img/bg-sub01.svg");
+    background-size: cover;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
