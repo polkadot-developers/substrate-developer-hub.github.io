@@ -44,6 +44,7 @@ class Blast extends React.Component {
 }
 
 #blast a {
+  display: block;
   color: ${cfg.fontColor ? cfg.fontColor : 'white'};
   text-decoration: underline;
 }
