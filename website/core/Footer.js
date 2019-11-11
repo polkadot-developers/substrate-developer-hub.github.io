@@ -66,13 +66,13 @@ body {
         />
         <section id='blast'>
           {cfg.img ? (
-            <a href={cfg.link}>
+            <a href={cfg.link} target="_blank">
               <img src={cfg.img} class='img-fluid' />
             </a>
           ) : (
             <h2>
               {cfg.intro}
-              <a href={cfg.link}>{cfg.label}</a>
+              <a href={cfg.link} target="_blank">{cfg.label}</a>
             </h2>
           )}
         </section>
