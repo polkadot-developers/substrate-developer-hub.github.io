@@ -10,9 +10,17 @@ This page is an overview on the state of smart contracts in Substrate.
 
 ## Virtual Machines
 
+The Substrate Runtime Module Library (SRML) provides two smart contract virtual machines which can be added to your Substrate runtime.
+
 ### Contracts Module
 
+The [SRML Contracts module](conceptual/runtime/contracts/contracts_module.md) 
+
 ### EVM Module
+
+### Custom
+
+
 
 
 
