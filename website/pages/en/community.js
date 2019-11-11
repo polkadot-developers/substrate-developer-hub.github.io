@@ -202,7 +202,7 @@ function Community(props) {
       <p>
         <translate>
           Substrate Seminar is an open Collaborative Learning call where we learn about Substrate
-          together. We meet every other Monday at 16:00UTC. Ask for help, show off your project,
+          together. We meet every Tuesday at 14:00UTC. Ask for help, show off your project,
           learn Substrate, and make friends!
         </translate>
       </p>
