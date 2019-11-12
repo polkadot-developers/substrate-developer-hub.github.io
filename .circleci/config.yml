@@ -11,7 +11,7 @@ aliases:
         - master
         - staging
 
-  - &filter-deployment-branches
+  - &non-deployment-branches
     branches:
       ignore:
         - master
@@ -69,7 +69,7 @@ jobs:
             crowdin --config crowdin.yaml upload sources --auto-update -b master
             crowdin --config crowdin.yaml download -b master
             # build and publish website
-            ./scripts/deploy-staging
+            scripts/deploy-staging
 
   check-build:
     docker:
@@ -87,12 +87,18 @@ jobs:
 
 workflows:
   version: 2
-  commit_deploy:
+  check_n_deploy:
     jobs:
+      - check-build:
+          filters: *non-deployment-branches
       - deploy-to-prod:
           filters: *only-source
+          requires:
+            - check-build
       - deploy-to-staging:
           filters: *other-branches
+          requires:
+            - check-build
 
   nightly_deploy:
     triggers:
@@ -101,8 +107,3 @@ workflows:
           filters: *only-source
     jobs:
       - deploy-to-prod
-
-  check_build:
-    jobs:
-      - check-build:
-          filters: *filter-deployment-branches

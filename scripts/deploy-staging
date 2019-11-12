@@ -19,14 +19,11 @@ pushd $APP_DIR > /dev/null
 cd website
 rm -rf $PROJECT_BUILD_DIR
 
-yarn install && yarn write-translations
-
+yarn install
 NODE_ENV=staging GIT_REV=`git rev-parse --short HEAD` yarn build
 
-
-# heroku will pick up from `staging` branch
+# Heroku will pick up from `staging` branch
 cd $PROJECT_BUILD_DIR
-
 git init .
 git remote add origin $GIT_REPO
 git checkout -b staging
