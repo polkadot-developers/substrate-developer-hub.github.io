@@ -23,22 +23,33 @@ const users = require('./data/users');
 // List of videos on the "videos" page
 const videos = require('./data/videos');
 
+const is_staging = (process.env['NODE_ENV'] == 'staging');
+const git_rev = is_staging ? process.env['GIT_REV'] : null;
+const title_prefix = "Substrate Developer Hub";
+const title = is_staging ? `${title_prefix} (@${git_rev})` : title_prefix;
+const custom_url = 'substrate.dev';
+const cname = is_staging ? `staging.${custom_url}` : custom_url;
+
 const siteConfig = {
-  title: 'Substrate Developer Hub', // Title for your website.
+  title, // Title for your website.
   tagline: 'The place for blockchain innovators.',
 
-  url: 'https://substrate-developer-hub.github.io/', // Your website URL
-  baseUrl: '/', // Base URL for your project */
+  // Used for publishing and more
+  organizationName: 'substrate-developer-hub',
+  projectName: 'substrate-developer-hub.github.io',
+  // For top-level user or org sites, the organization is still the same.
+  // e.g., for the https://JoelMarcey.github.io site, it would be set like...
+  //   organizationName: 'JoelMarcey'
+
+  // Your website URL
+  url: 'https://substrate-developer-hub.github.io/',
+  baseUrl: "/", // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
 
-  // Used for publishing and more
-  projectName: 'substrate-developer-hub.github.io',
-  organizationName: 'substrate-developer-hub',
-  // For top-level user or org sites, the organization is still the same.
-  // e.g., for the https://JoelMarcey.github.io site, it would be set like...
-  //   organizationName: 'JoelMarcey'
+  // Generate CNAME file when building
+  cname,
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
@@ -132,9 +143,6 @@ const siteConfig = {
   stylesheets: [
     'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
   ],
-
-  // Generate CNAME file when building
-  cname: 'substrate.dev',
 
   // Translation recruitment link, appears in the language drop down as "Help Translate"
   translationRecruitingLink:
