@@ -23,9 +23,8 @@ yarn install && yarn write-translations
 
 NODE_ENV=staging GIT_REV=`git rev-parse --short HEAD` yarn build
 
-# TODO: Add cmds for integrating translation
 
-# push to heroku
+# heroku will pick up from `staging` branch
 cd $PROJECT_BUILD_DIR
 
 git init .
