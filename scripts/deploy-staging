@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# set -x
+set -e
+
+APP_DIR=$(cd $(dirname "${BASH_SOURCE[0]}")/.. && pwd)
+GIT_REPO="https://github.com/jimmychu0807/substrate-devhub.git"
+PROJECT_BUILD_DIR="build/substrate-devhub"
+
+HTPASSWD='parity-devEx:$apr1$P.1bMHSB$u2PQ7KitD5aNk371vsQB0/'
+HTACCESS="AuthUserFile /app/.htpasswd\n
+AuthType Basic\n
+AuthName \"Restricted Access\"\n
+Require valid-user"
+
+# cmd for building
+echo $APP_DIR
+pushd $APP_DIR > /dev/null
+
+cd website
+rm -rf build
+
+yarn install && yarn write-translations
+
+# TODO: Add cmds for integrating translation
+
+NODE_ENV=staging GIT_REV=`git rev-parse --short HEAD` yarn build
+
+# push to heroku
+cd $PROJECT_BUILD_DIR
+
+git init .
+git remote add origin $GIT_REPO
+git checkout -b staging
+
+# Adding necessary files for using heroku php buildpack
+echo '<?php header("Location: /index.html");?>' > index.php
+echo $HTPASSWD > .htpasswd
+echo -e $HTACCESS > .htaccess
+
+# Everything done locally should be completed by this point. Merged back with upstream.
+git add .
+git commit -m "Updated"
+git push -f origin staging
+popd
