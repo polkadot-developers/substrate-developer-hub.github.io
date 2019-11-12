@@ -23,12 +23,12 @@ const users = require('./data/users');
 // List of videos on the "videos" page
 const videos = require('./data/videos');
 
+const title_prefix = "Substrate Developer Hub";
+const custom_url = 'substrate.dev';
 const is_staging = (process.env['NODE_ENV'] == 'staging');
 const git_rev = is_staging ? process.env['GIT_REV'] : null;
-const title_prefix = "Substrate Developer Hub";
-const title = is_staging ? `${title_prefix} (@${git_rev})` : title_prefix;
-const custom_url = 'substrate.dev';
-const cname = is_staging ? `staging.${custom_url}` : custom_url;
+const title   = is_staging ? `${title_prefix} (@${git_rev})` : title_prefix;
+const cname   = is_staging ? `staging.${custom_url}` : custom_url;
 
 const siteConfig = {
   title, // Title for your website.
