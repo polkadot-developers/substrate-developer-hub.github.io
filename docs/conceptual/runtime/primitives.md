@@ -8,8 +8,8 @@ Substrate framework.
 ## Core Primitives
 
 The Substrate framework makes minimal assumptions about what your runtime must provide to the other
-layers of Substrate. They are mandatory to define and must fulfill a particular interface in order to
-work within the Substrate framework.
+layers of Substrate. They are mandatory to define and must fulfill a particular interface in order
+to work within the Substrate framework.
 
 They are:
 
@@ -42,33 +42,21 @@ They are:
 There are an additional set of primitives that are assumed about a runtime built with the Substrate
 Runtime Module Library (SRML):
 
-* `Origin`: The aggregated `Origin` type used by dispatchable calls.
+* `Call`: The dispatch type that can be called via an extrinsic.
 
-* `Call`: The aggregated `Call` type.
+* `Origin`: Represents where a call came from. For example, a signed message (a transaction), an
+  unsigned message (an inherent extrinsic), and a call from the runtime itself (a root call).
 
-* `Index`: Account index (aka nonce) type. This stores the number of previous transactions
+* `Index`: An account index (aka nonce) type. This stores the number of previous transactions
   associated with a sender account.
 
 * `Hashing`: The hashing system (algorithm) being used in the runtime (e.g. Blake2).
 
-* `AccountId`: The user account identifier type for the runtime.
+* `AccountId`: The type used to identify user accounts in the runtime.
 
-* `Lookup`: Defines the type and conversion mechanism for referencing accounts in transactions.
+* `Event`: The type used for events emitted by the runtime.
 
-* `Event`: The aggregated event type of the runtime.
-
-* `BlockHashCount`: Maximum number of block number to block hash mappings to keep (oldest pruned
-  first).
-
-* `MaximumBlockWeight`: The maximum weight of a block.
-
-* `MaximumBlockLength`: The maximum length of a block (in bytes).
-
-* `AvailableBlockRatio`: The portion of the block that is available to normal transaction. The rest
-  can only be used by operational transactions. This can be applied to any resource limit managed by
-  the system module, including weight and length.
-
-* `Version`: Get the chain's current version.
+* `Version`: A type which represents the version of the runtime.
 
 ## Next Steps
 
@@ -78,7 +66,8 @@ Runtime Module Library (SRML):
 
 ### Examples
 
-- See how these generic types are implemented [in the Substrate node](https://github.com/paritytech/substrate/blob/master/node/runtime/src/lib.rs).
+- See how these generic types are implemented [in the Substrate
+  node](https://github.com/paritytech/substrate/blob/master/node/runtime/src/lib.rs).
 
 ### References
 
