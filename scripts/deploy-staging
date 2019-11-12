@@ -3,8 +3,8 @@
 set -e
 
 APP_DIR=$(cd $(dirname "${BASH_SOURCE[0]}")/.. && pwd)
-GIT_REPO="https://github.com/jimmychu0807/substrate-devhub.git"
-PROJECT_BUILD_DIR="build/substrate-devhub"
+GIT_REPO="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io.git"
+PROJECT_BUILD_DIR="build/substrate-developer-hub.github.io"
 
 HTPASSWD='parity-devEx:$apr1$P.1bMHSB$u2PQ7KitD5aNk371vsQB0/'
 HTACCESS="AuthUserFile /app/.htpasswd\n
