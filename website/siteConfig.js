@@ -24,10 +24,11 @@ const users = require("./data/users");
 const videos = require("./data/videos");
 
 const is_staging = (process.env['NODE_ENV'] == 'staging');
-const GIT_REV = is_staging ? process.env['GIT_REV'] : null;
+const git_rev = is_staging ? process.env['GIT_REV'] : null;
 const title_prefix = "Substrate Developer Hub";
-const title = is_staging ? `${title_prefix} (@${GIT_REV})` : title_prefix;
-const cname = is_staging ? "staging.substrate-doc.hkwtf.com" : "substrate-doc.hkwtf.com";
+const title = is_staging ? `${title_prefix} (@${git_rev})` : title_prefix;
+const custom_url = "substrate-doc.hkwtf.com";
+const cname = is_staging ? `staging.${custom_url}` : custom_url;
 
 // console.log(`Title: ${title}`);
 
