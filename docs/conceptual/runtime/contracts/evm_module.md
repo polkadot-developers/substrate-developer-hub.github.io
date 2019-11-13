@@ -7,8 +7,8 @@ Substrate-based blockchains.
 
 ## EVM Engine
 
-The current underlying EVM engine is [SputnikVM](https://github.com/sorpaas/rust-evm). The engine is
-overhauled so that it's [modular](https://github.com/corepaper/evm). In the future we'll want to
+The SRML EVM module uses [SputnikVM](https://github.com/sorpaas/rust-evm) as the underlying EVM engine. The engine is
+overhauled so that it's [modular](https://github.com/corepaper/evm). In the future, we will want to
 allow users to swap out components like gasometer, and inject their own customized ones.
 
 ## Execution Lifecycle

@@ -2,19 +2,29 @@
 title: Contracts Module
 ---
 
-The SRML Contracts module provides the ability for the runtime to deploy and execute WebAssembly
-smart contracts. Here we will provide a short overview of the major features of the contracts
-module. To really learn all of the fine details, you can take a look at the [reference documentation
-for `srml_contracts`](https://crates.parity.io/srml_contracts/index.html).
+The [SRML Contracts module](https://substrate.dev/rustdocs/master/srml_contracts/index.html)
+provides the ability for the runtime to deploy and execute [WebAssembly
+(Wasm)](https://webassembly.org/) smart contracts.
 
-## Account Based
+## Wasm Engine
+
+The SRML Contracts module depends on a Wasm sandboxing interface defining the Wasm execution engine
+available within the runtime. This is currently implemented with
+[`wasmi`](https://github.com/paritytech/wasmi), a Wasm interpreter.
+
+## Features
+
+The SRML Contracts module has a number of familiar and new features for the deployment and execution
+of smart contracts.
+
+### Account Based
 
 The Contracts module uses an account-based system similar to many existing smart contract platforms.
 To the Substrate runtime, contract accounts are just like normal user accounts; however, in addition
 to an `AccountID` and `Balance` that normal accounts have, a contract account also has associated
 contract code and some persistent contract storage.
 
-## Two Step Deployment
+### Two Step Deployment
 
 Deploying a contract with the Contracts module takes two steps:
 
@@ -25,27 +35,27 @@ This means that multiple contract instances, with different constructor argument
 initialized using the same Wasm code, reducing the amount of storage space needed by the Contracts
 module on your blockchain.
 
-## Runtime Environment Types
+### Runtime Environment Types
 
 For writing contracts and interacting with the runtime, a set of types are available (e.g.
 `AccountId`, `Balance`, `Hash`, `Moment`). These types can be user defined for custom runtimes, or
 the supplied defaults can be used.
 
-## Contract Calls
+### Contract Calls
 
 Calls to contracts can alter the storage of the contract, create new contracts, and call other
 contracts. Because Substrate provides you with the ability to write custom runtime modules, the
 Contracts module also enables you to make asynchronous calls directly to those runtime functions on
 behalf of the contract's account.
 
-## Sandboxed
+### Sandboxed
 
 The Contracts module is intended to be used by any user on a public network. This means that
 contracts only have the ability to directly modify their own storage. To provide safety to the
 underlying blockchain state, the Contracts module enables revertible transactions, which roll back
 any changes to the storage by contract calls that do not complete successfully.
 
-## Gas
+### Gas
 
 Contract calls are charged a gas fee to limit the amount of computational resources a transaction
 can use. When forming a contract transaction, a gas limit is specified. As the contract executes,
@@ -58,7 +68,7 @@ The Contracts module determines the gas price, which is a conversion between the
 `Currency` and a single unit of gas. Thus, to execute a transaction, a user must have a free balance
 of at least `gas price` * `gas limit` which can be spent.
 
-## Storage Rent
+### Storage Rent
 
 Similar to how gas limits the amount of computational resources that can be used during a
 transaction, storage rent limits the footprint that a contract can have on the blockchain's storage.
@@ -70,9 +80,18 @@ alive.
 
 ## Contracts Module vs EVM
 
-The Contracts module has learned from problems that have arisen in Ethereum ecosystem. Beyond the
-problems with the EVM, which even the Ethereum community is solving with
-[ewasm](https://github.com/ewasm/design), there are fundamental economic issues with permanent TODO
+The SRML Contracts module iterates on existing ideas in the smart contract ecosystem, particularly
+Ethereum and the EVM.
+
+The most obvious difference between the Contracts module and the EVM is the underlying execution engine used to run smart contracts. The EVM is a good theoretical execution environment, but it is not very practical with modern technologies. It  has been on the side of extreme verfi has also [Wasm](https://github.com/ewasm/design)), there are fundamental economic issues
+with permanent storage
+
+The EVM charges for storage fees one time and at the time of storage. This one-time cost results in
+some permanent amount of storage being used on the blockchain, _forever_, which is economically
+unsound. The SRML Contracts module attempts to repair this through storage rent which ensures that
+any data that persists on the blockchain is appropriately charged for those resources.
+
+There have also been problems associated with contract creation and repair which was addressed in the EVM with the `create2` op code. The Contracts module chooses to 
 
 ## Next Steps
 
