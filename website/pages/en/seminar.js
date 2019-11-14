@@ -59,7 +59,7 @@ function Seminar(props) {
       ]}
       />
 
-        <Container className="readableLineLenght">
+        <Container className="readableLineLength">
         <h2 className = "h1">FAQ</h2>
         <h3 className = "h2">How should I prepare?</h3>
         <p>
