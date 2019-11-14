@@ -20,15 +20,6 @@ The following diagram depicts how off-chain workers work within the Substrate no
 
 ![Off-chain Workers](/docs/assets/off-chain-workers.png)
 
-## Off-Chain Worker vs Oracles
-
-Here are some of the advantages of using off-chain workers in comparison to using external oracles:
-
-1. Off-chain workers, being part of the Substrate node, provide more decentralization as compared to a centralized oracle service.
-2. With a sandboxed Wasm execution environment, off-chain workers are fully secure while still providing seamless integration with the runtime using extrinsics.
-3. No need for maintaining external "glue" services and infrastructure. This reduces maintenance and infrastructure costs for the node operators.
-4. Off-chain workers' code is also stored on-chain, which allows off-chain logic updates via standard governance mechanism and forkless upgrades (using Wasm execution fallback logic).
-
 ## Off-Chain Worker APIs
 
 The following APIs are planned to be supported by off-chain workers:
