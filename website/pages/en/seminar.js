@@ -90,7 +90,7 @@ function Seminar(props) {
           Is this related to Substrate Collaborative Learning?
         </h3>
         <p>
-          Yes! Substrate Collaborative Learning was the previous harder-to-pronounce iteration of Substrate Seminar. When we decided to start meeting every week, and have a more discoverable web presence, we rebranded. If you liked Substrate Collaborative Learning, you'll _love_ Substrate Seminar.
+          Yes! Substrate Collaborative Learning was the previous harder-to-pronounce iteration of Substrate Seminar. When we decided to start meeting every week, and have a more discoverable web presence, we rebranded. If you liked Substrate Collaborative Learning, you'll <em>love</em> Substrate Seminar.
         </p>
         <h3>
           To learn more visit <a href="https://www.parity.io/substrate/" target="_blank">parity.io/substrate</a>
