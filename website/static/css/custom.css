@@ -82,6 +82,74 @@
     display: none !important;
 }
 
+
+/* seminar styles */
+.heroVH {
+    height: calc(100vh - 50px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("/img/bg-seminar-001.png");
+    background-size: cover;
+    background-position: right top;
+    text-align: left;
+}
+.heroVH > div {
+    width: 100vw;
+    background: black;
+}
+.contrast-color {
+    background-color: #00FFC2;
+    border-color: #00FFC2;
+    color: #000;
+}
+.contrast-color-border {
+    background-color: transparent;
+    border-color: #00FFC2;
+    color: #00FFC2 !important;
+}
+.contrastText {
+    color: #00FFC2;
+}
+
+.tabTop {
+    position: absolute;
+    display: flex;
+    margin-top: -4rem;
+}
+@media only screen and (min-width: 1024px) {
+    .tabTop {
+        margin-left: -5rem;
+    }
+}
+.tabTop > a {
+    font-family: 'ManifoldCF','Helvetica','Arial', sans-serif;
+    background: black;
+}
+.tabTop:before {
+    content: '';
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1rem;
+    background-image: url(/img/openmoji/1F64B.png);
+    background-size: contain;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+}
+
+[class*="contrast-color"].btn {
+    transition: box-shadow 0.3s, opacity 0.3s;
+}
+[class*="contrast-color"]:hover {
+    box-shadow: 0 -18px 20px rgba(0, 255, 194, 0.2);
+    opacity: 0.9;
+}
+.readableLineLenght {
+    max-width: 750px;
+    margin: auto;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
