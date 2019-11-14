@@ -60,33 +60,33 @@ function Seminar(props) {
       />
 
         <Container className="readableLineLenght">
-        <h2 class="h1">FAQ</h2>
-        <h3 class="h2">How should I prepare?</h3>
+        <h2 className = "h1">FAQ</h2>
+        <h3 className = "h2">How should I prepare?</h3>
         <p>
           In general, we start with the packages from the <a href="https://github.com/substrate-developer-hub">Substrate Developer Hub</a> GitHub Organization. You should have the latest <a href="https://github.com/substrate-developer-hub/substrate-node-template">Node Template</a> and <a href="https://github.com/substrate-developer-hub/substrate-front-end-template/">Front End Template</a> built and ready to use.
         </p>
         <p>
           Occasionally, there may be session-specific setup instructions which will be posted here on this page.
         </p>
-        <h3 class="h2">
+        <h3 className = "h2">
           Can I share a project I've been working on?
         </h3>
         <p>
           Yes! Seminar works best when everyone shares their projects and interests. To ensure a slot to share, please contact Joshy Orndorff via <a href="mailto:joshy@parity.io">email</a> or <a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot</a>.
         </p>
-        <h3 class="h2">
+        <h3 className = "h2">
           I am not a [Substrate] developer, can I join just to ask couple of questions??
         </h3>
         <p>
           Yes! The seminar is open to everyone. The content is generally more developer-oriented, but less technical participants and questions are also welcome. If your questions turn out to be off-topic, we'll point you to a better resource.
         </p>
-        <h3 class="h2">
+        <h3 className = "h2">
           How do I join the call?
         </h3>
         <p>
           We meet using zoom video conferencing. Specifically we meet in <a href="https://zoom.us/j/440029011">https://zoom.us/j/440029011</a>. This link will only work when the call is live, so you may prefer to add this <a href="https://calendar.google.com/calendar/r/eventedit/aTI4MDRrZ2FpcGpzb2NmMmo4cGJqNXMyc2dfMjAxOTA4MjZUMTYwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw?cid=cGFyaXR5LmlvXzM5Mzc5MzQzaDA3M3YwNnFodDF2cHFjZWZjQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20">Google calendar invitation</a> to you own calendar.
         </p>
-        <h3 class="h2">
+        <h3 className = "h2">
           Is this related to Substrate Collaborative Learning?
         </h3>
         <p>
