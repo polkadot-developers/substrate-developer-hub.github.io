@@ -61,18 +61,12 @@ function Seminar(props) {
 
         <Container className="readableLineLenght">
         <h2 class="h1">FAQ</h2>
-        <h3 class="h2">What are the prerequisites?</h3>
+        <h3 class="h2">How should I prepare?</h3>
         <p>
-          Please complete the instructions on <a href="https://www.shawntabrizi.com/substrate-beginner-workshop/#/0/" target="_blank">this page</a> before the call.
-          If you have any problems with the instructions, feel free to send us an email at:
-          <br/>
-          <a href="mailto:shawn@parity.io">
-          shawn@parity.io
-          </a>
-          <br/>
-          <a href="joshy@parity.io">
-          joshy@parity.io
-          </a>
+          In general, we start with the packages from the <a href="https://github.com/substrate-developer-hub">Substrate Developer Hub</a> GitHub Organization. You should have the latest <a href="https://github.com/substrate-developer-hub/substrate-node-template">Node Template</a> and <a href="https://github.com/substrate-developer-hub/substrate-front-end-template/">Front End Template</a> built and ready to use.
+        </p>
+        <p>
+          Occasionally, there may be session-specific setup instructions which will be posted here on this page.
         </p>
         <h3 class="h2">
           I am not a [Substrate] developer, can I join just to ask couple of questions??
