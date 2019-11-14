@@ -27,51 +27,54 @@ class Blast extends React.Component {
           dangerouslySetInnerHTML={{
             __html: `
 #blast {
-  display: block;
   position: fixed;
   width: 100%;
-  top: 0;
+  bottom: 0;
   height: 50px;
-  background: #ff1864 ${cfg.background};
-  color: white;
+  background-image: ${cfg.background};
+  color: ${cfg.fontColor ? cfg.fontColor : 'white'};
   z-index: 99999;
+  text-align: center;
+  background-color: #000028;
+  transition: background-color 0.2s;
+}
+#blast:hover {
+  background-color: #E91E63;
 }
 
 #blast h2 {
   margin: 0;
-  line-height: 45px;
-  text-align: center;
+  line-height: 50px;
 }
 
 #blast a {
-  color: white;
+  display: block;
+  color: ${cfg.fontColor ? cfg.fontColor : 'white'};
   text-decoration: underline;
+  mix-blend-mode: lighten;
+}
+
+#blast img {
+  max-height: 50px;
 }
 
 body {
-  // let's give it a minimal animation
-  transition: ease 1.5s;
-  margin-top: 50px;
-}
-@media only screen and (min-width: 1024px) {
-  .docsNavContainer {
-    height: calc(100vh - 100px);
-    top: 100px;
-  }
-
-  .onPageNav {
-    max-height: calc(100vh - 140px);
-    top: 140px;
-  }
+  margin-bottom: 50px;
 }
 `
           }}
         />
-        <section id="blast">
-          <h2>
-            {cfg.intro}
-            <a href={cfg.link}>{cfg.label}</a>
-          </h2>
+        <section id='blast'>
+          {cfg.img ? (
+            <a href={cfg.link} target="_blank">
+              <img src={cfg.img} class='img-fluid' />
+            </a>
+          ) : (
+            <h2>
+              {cfg.intro}
+              <a href={cfg.link} target="_blank">{cfg.label}</a>
+            </h2>
+          )}
         </section>
       </div>
     );

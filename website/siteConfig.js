@@ -18,35 +18,46 @@
 // site configuration options.
 
 // List of projects listed on the "users" page.
-const users = require("./data/users");
+const users = require('./data/users');
 
 // List of videos on the "videos" page
-const videos = require("./data/videos");
+const videos = require('./data/videos');
+
+const is_staging = (process.env['NODE_ENV'] == 'staging');
+const git_rev = is_staging ? process.env['GIT_REV'] : null;
+const title_prefix = "Substrate Developer Hub";
+const title = is_staging ? `${title_prefix} (@${git_rev})` : title_prefix;
+const custom_url = 'substrate.dev';
+const cname = is_staging ? `staging.${custom_url}` : custom_url;
 
 const siteConfig = {
-  title: "Substrate Developer Hub", // Title for your website.
-  tagline: "The place for blockchain innovators.",
+  title, // Title for your website.
+  tagline: 'The place for blockchain innovators.',
 
-  url: "https://substrate-developer-hub.github.io/", // Your website URL
+  // Used for publishing and more
+  organizationName: 'substrate-developer-hub',
+  projectName: 'substrate-developer-hub.github.io',
+  // For top-level user or org sites, the organization is still the same.
+  // e.g., for the https://JoelMarcey.github.io site, it would be set like...
+  //   organizationName: 'JoelMarcey'
+
+  // Your website URL
+  url: 'https://substrate-developer-hub.github.io/',
   baseUrl: "/", // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
 
-  // Used for publishing and more
-  projectName: "substrate-developer-hub.github.io",
-  organizationName: "substrate-developer-hub",
-  // For top-level user or org sites, the organization is still the same.
-  // e.g., for the https://JoelMarcey.github.io site, it would be set like...
-  //   organizationName: 'JoelMarcey'
+  // Generate CNAME file when building
+  cname,
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    { page: "docs", label: "Docs" },
-    { href: "/recipes/", label: "Recipes" },
-    { page: "tutorials", label: "Tutorials" },
-    { page: "community", label: "Community" },
-    { href: "https://github.com/paritytech/substrate", label: "GitHub" },
+    { page: 'docs', label: 'Docs' },
+    { href: '/recipes/', label: 'Recipes' },
+    { page: 'tutorials', label: 'Tutorials' },
+    { page: 'community', label: 'Community' },
+    { href: 'https://github.com/paritytech/substrate', label: 'GitHub' },
     { search: true }
   ],
 
@@ -57,14 +68,14 @@ const siteConfig = {
   videos,
 
   /* path to images for header/footer */
-  headerIcon: "img/Substrate-logo.svg",
-  footerIcon: "img/Substrate-logo.svg",
-  favicon: "img/favicon.png",
+  headerIcon: 'img/Substrate-logo.svg',
+  footerIcon: 'img/Substrate-logo.svg',
+  favicon: 'img/favicon.png',
 
   /* Colors for website */
   colors: {
-    primaryColor: "#ff1864",
-    secondaryColor: "#222222"
+    primaryColor: '#ff1864',
+    secondaryColor: '#222222'
   },
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
@@ -72,36 +83,36 @@ const siteConfig = {
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: "default",
-    defaultLang: "rust"
+    theme: 'default',
+    defaultLang: 'rust'
   },
 
   // Add custom scripts here that would be placed in <script> tags.
   scripts: [
-    "https://buttons.github.io/buttons.js",
-    "/js/clipboard.min.js",
-    "/js/code-block-buttons.js",
-    "/js/load.js",
+    'https://buttons.github.io/buttons.js',
+    '/js/clipboard.min.js',
+    '/js/code-block-buttons.js',
+    '/js/load.js',
     {
-      src: "/js/config.js",
+      src: '/js/config.js',
       defer: true
     },
     {
-      src: "/js/klaro.min.js",
+      src: '/js/klaro.min.js',
       defer: true
     }
   ],
 
   // On page navigation for the current documentation page.
-  onPageNav: "separate",
+  onPageNav: 'separate',
   // No .html extensions for paths.
   cleanUrl: true,
   // Collapsible Categories
   docsSideNavCollapsible: true,
 
   // Open Graph and Twitter card images.
-  ogImage: "img/substrate-dev-hub-card.png",
-  twitterImage: "img/substrate-dev-hub-card.png",
+  ogImage: 'img/substrate-dev-hub-card.png',
+  twitterImage: 'img/substrate-dev-hub-card.png',
 
   // Show documentation's last contributor and update time
   // at the bottom of the page:
@@ -111,7 +122,7 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   repoUrl:
-    "https://github.com/substrate-developer-hub/substrate-developer-hub.github.io",
+    'https://github.com/substrate-developer-hub/substrate-developer-hub.github.io',
 
   // Directories inside which any CSS files will not be processed and
   // concatenated to Docusaurus' styles. This is to support static HTML pages
@@ -123,35 +134,37 @@ const siteConfig = {
 
   // Edit this page button
   editUrl:
-    "https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/",
+    'https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/',
 
   // Scroll to top button at the bottom
   scrollToTop: true,
 
   // Style sheets to import
   stylesheets: [
-    "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
   ],
-
-  // Generate CNAME file when building
-  cname: "substrate.dev",
 
   // Translation recruitment link, appears in the language drop down as "Help Translate"
   translationRecruitingLink:
-    "https://crowdin.com/project/substrate-developer-hub",
+    'https://crowdin.com/project/substrate-developer-hub',
 
   // Algolia Search
   algolia: {
-    apiKey: "5cd09916f4ba4c283b2d45ee7386fc34",
-    indexName: "substrate",
+    apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+    indexName: 'substrate',
     algoliaOptions: {
       // https://www.algolia.com/doc/api-reference/api-parameters/
-      facetFilters: ["language:LANGUAGE"]
+      facetFilters: ['language:LANGUAGE']
     }
   },
 
   // customised blast banner on top
-  blast: false
+  blast: {
+    img: '/img/sub0-blast.png',
+    link: 'https://sub0.parity.io',
+    background: 'url(/img/bg-sub01.svg); background-size: cover; background-position: right 0px bottom 500px;',
+    fontColor: '#18FFB2'
+  }
 };
 
 module.exports = siteConfig;
