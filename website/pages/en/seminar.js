@@ -69,6 +69,12 @@ function Seminar(props) {
           Occasionally, there may be session-specific setup instructions which will be posted here on this page.
         </p>
         <h3 class="h2">
+          Can I share a project I've been working on?
+        </h3>
+        <p>
+          Yes! Seminar works best when everyone shares their projects and interests. To ensure a slot to share, please contact Joshy Orndorff via <a href="mailto:joshy@parity.io">email</a> or <a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot</a>.
+        </p>
+        <h3 class="h2">
           I am not a [Substrate] developer, can I join just to ask couple of questions??
         </h3>
         <p>
