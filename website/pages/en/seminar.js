@@ -58,7 +58,7 @@ function Seminar(props) {
           },
       ]}
       />
-      
+
         <Container className="readableLineLenght">
         <h2 class="h1">FAQ</h2>
         <h3 class="h2">What are the prerequisites?</h3>
@@ -75,7 +75,7 @@ function Seminar(props) {
           </a>
         </p>
         <h3 class="h2">
-          I am not a [substrate] developer, can I join just to ask couple of questions??
+          I am not a [Substrate] developer, can I join just to ask couple of questions??
         </h3>
         <p>
           Yes! The seminar is open to everyone. The content is generally more developer-oriented, but less technical participants and questions are also welcome. If your questions turn out to be off-topic, we'll point you to a better resource.
@@ -84,7 +84,7 @@ function Seminar(props) {
           To learn more visit <a href="https://www.parity.io/substrate/" target="_blank">parity.io/substrate</a>
         </h3>
         </Container>
-      
+
       <div className="bg-light p-5 mt-5">
         <Container className="d-flex justify-content-between">
         <h2 className="m-0">
