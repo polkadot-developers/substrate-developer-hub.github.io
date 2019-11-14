@@ -94,7 +94,7 @@ function Seminar(props) {
       <div className="bg-light p-5 mt-5">
         <Container className="d-flex justify-content-between">
         <h2 className="m-0">
-          Something appealing to someone who scrolled here
+          Never miss a Seminar by adding it to your calendar
         </h2>
         <Button
           href="https://calendar.google.com/calendar/r/eventedit/aTI4MDRrZ2FpcGpzb2NmMmo4cGJqNXMyc2dfMjAxOTA4MjZUMTYwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw?cid=cGFyaXR5LmlvXzM5Mzc5MzQzaDA3M3YwNnFodDF2cHFjZWZjQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20'"
