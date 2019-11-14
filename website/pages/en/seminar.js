@@ -80,6 +80,12 @@ function Seminar(props) {
         <p>
           We meet using zoom video conferencing. Specifically we meet in <a href="https://zoom.us/j/440029011">https://zoom.us/j/440029011</a>. This link will only work when the call is live, so you may prefer to add this <a href="https://calendar.google.com/calendar/r/eventedit/aTI4MDRrZ2FpcGpzb2NmMmo4cGJqNXMyc2dfMjAxOTA4MjZUMTYwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw?cid=cGFyaXR5LmlvXzM5Mzc5MzQzaDA3M3YwNnFodDF2cHFjZWZjQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20">Google calendar invitation</a> to you own calendar.
         </p>
+        <h3 class="h2">
+          Is this related to Substrate Collaborative Learning?
+        </h3>
+        <p>
+          Yes! Substrate Collaborative Learning was the previous harder-to-pronounce iteration of Substrate Seminar. When we decided to start meeting every week, and have a more discoverable web presence, we rebranded. If you liked Substrate Collaborative Learning, you'll _love_ Substrate Seminar.
+        </p>
         <h3>
           To learn more visit <a href="https://www.parity.io/substrate/" target="_blank">parity.io/substrate</a>
         </h3>
