@@ -98,8 +98,8 @@ ensures that any data that persists on the blockchain is appropriately charged f
 The Contracts module chooses to approach contract creation using a [two-step
 process](#two-step-deployment), which fundamentally changes how contracts are stored on chain.
 Contract addresses, their storage, and balances are now separated from the underlying contract
-logic. This could enable behavior like what `create2` provided to Ethereum or even enable repairable
-contracts on a Substrate based blockchain.
+logic. This could enable behavior like what [`create2`](https://eips.ethereum.org/EIPS/eip-1014)
+provided to Ethereum or even enable repairable contracts on a Substrate based blockchain.
 
 ## Next Steps
 
