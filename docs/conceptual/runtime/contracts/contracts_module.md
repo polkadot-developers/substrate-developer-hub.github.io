@@ -83,14 +83,23 @@ alive.
 The SRML Contracts module iterates on existing ideas in the smart contract ecosystem, particularly
 Ethereum and the EVM.
 
-The most obvious difference between the Contracts module and the EVM is the underlying execution engine used to run smart contracts. The EVM is a good theoretical execution environment, but it is not very practical use with modern hardware. For example, manipulation of 256 bit integers on modern architectures is significantly more complex than standard types. Even the Ethereum team has investigated the use of [Wasm](https://github.com/ewasm/design) for the next generation of the network.
+The most obvious difference between the Contracts module and the EVM is the underlying execution
+engine used to run smart contracts. The EVM is a good theoretical execution environment, but it is
+not very practical use with modern hardware. For example, manipulation of 256 bit integers on modern
+architectures is significantly more complex than standard types. Even the Ethereum team has
+investigated the use of [Wasm](https://github.com/ewasm/design) for the next generation of the
+network.
 
-The EVM charges for storage fees only at the time of storage. This one-time cost results in
-some permanent amount of storage being used on the blockchain, _forever_, which is economically
-unsound. The SRML Contracts module attempts to repair this through [storage rent](#storage-rent) which ensures that
-any data that persists on the blockchain is appropriately charged for those resources.
+The EVM charges for storage fees only at the time of storage. This one-time cost results in some
+permanent amount of storage being used on the blockchain, _forever_, which is economically unsound.
+The SRML Contracts module attempts to repair this through [storage rent](#storage-rent) which
+ensures that any data that persists on the blockchain is appropriately charged for those resources.
 
-The Contracts module chooses to approach contract creation using a [two-step process](#two-step-deployment), which fundamentally changes how contracts are stored on chain. This change in structure means 
+The Contracts module chooses to approach contract creation using a [two-step
+process](#two-step-deployment), which fundamentally changes how contracts are stored on chain.
+Contract addresses, their storage, and balances are now separated from the underlying contract
+logic. This could enable behavior like what `create2` provided to Ethereum or even enable repairable
+contracts on a Substrate based blockchain.
 
 ## Next Steps
 
