@@ -3,7 +3,7 @@ title: EVM Module
 ---
 
 The SRML provides an EVM execution module that allows unmodified EVM code to be executed in a
-Substrate-based blockchains.
+Substrate-based blockchain.
 
 ## EVM Engine
 
