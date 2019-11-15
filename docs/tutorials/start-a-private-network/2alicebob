@@ -6,25 +6,26 @@ Before we generate our own keys, and start a truly unique Substrate network, let
 
 ## Alice Starts first
 
-Alice (or whomever is playing her) should run this command from Substrate repository root.
+Alice (or whomever is playing her) should run this command from node-template repository root.
 ```bash
-# If you're still in node-template/
-cd ..
-
-# Start the node
+# Start Alice'snode
 ./target/release/node-template \
   --base-path /tmp/alice \
   --chain=local \
   --alice \
   --port 30333 \
+  --ws-port 9944 \
+  --rpc-port 9933 \
   --telemetry-url ws://telemetry.polkadot.io:1024 \
   --validator
 ```
 Let's look at those flags in detail:
 * `--base-path` Specifies a directory where Substrate should store all the data related to this chain. If the directory does not exist it will be created for you. If other blockchain data already exists there you will get an error. Either clear the directory or choose a different one.
 * `--chain=local` Specifies which chain specification to use. There are a few pre-packaged options including `local` `development` and `staging` but generally one specifies their own chainspec file. We'll specify our own file in a later step.
-* `--alice` Puts the pre-defined Alice keys (both for block production and finalization) in the node's keystore. Generally one should generate their own key with `subkey` and insert them with an RPC call. We'll generate our own keys in a later step.
+* `--alice` Puts the pre-defined Alice keys (both for block production and finalization) in the node's keystore. Generally one should generate their own keys and insert them with an RPC call. We'll generate our own keys in a later step.
 * `--port 30333` Specifies the port that your node will listen for p2p traffic on. 30333 is the default and this flag can be omitted if you're happy with the default. If Bob's node will run on the same physical system, you will need to explicitly specify a different port for it.
+* `--ws-port 9944` Specifies the port that your node will listen for incoming web socket traffic on. 9944 is the default, so it can also be omitted.
+* `--ws-port 9933` Specifies the port that your node will listen for incoming RPC traffic on. 9933 is the default, so it can also be omitted.
 * `--telemetry-url` Tells the node to send telemetry data to a particular server. The one we've chosen here is hosted by Parity and is available for anyone to use. You may also host your own (beyond the scope of this article) or omit this flag entirely.
 * `--validator` Means that we want to participate in block production and finalization rather than just sync the network.
 
@@ -55,7 +56,7 @@ A few lines to take note of:
 More details about all of these flags and others that I haven't mentioned are available by running `./target/release/node-template --help`.
 
 ## Attach a UI
-You can tell a lot about your node by watching the output it produces in your terminal. There is also a nice graphical user interface known as the [Polkadot Js Apps UI](https://polkadot.js.org/apps/) which you can connect to your node. That link goes to the hosted version of the user interface, which is super convenient when it works, but is often out of date compared to the version of Substrate you're running. In the likely scenario that the hosted interface is out of date, you can run the interface locally by grabbing the code from [github](https://github.com/polkadot-js/apps). In general the instructions in that repository will be your best guide, but the process should be something like this.
+You can tell a lot about your node by watching the output it produces in your terminal. There is also a nice graphical user interface known as the [Polkadot Js Apps UI](https://polkadot.js.org/apps/) which you can connect to your node. That link goes to the hosted version of the user interface, which is super convenient, but will not connect to unencrypted web-socket endpoints in some browsers (notably including Firefox). In this case, you can run the interface locally by grabbing the code from [github](https://github.com/polkadot-js/apps). In general the instructions in that repository will be your best guide, but the process should be something like this.
 
 ```bash
 # Grab the code
@@ -71,7 +72,7 @@ yarn run start
 
 Point your favorite web browser at localhost:3000, and on the settings tab, choose "local node". You should see something like this.
 
-![No blocks in polkadot-js-apps](https://cdn.discordapp.com/attachments/559788157239951376/580368220364603392/unknown.png)
+![No blocks in polkadot-js-apps](/docs/assets/private-network-no-blocks.png)
 
 You'll notice, both in the terminal and the UI, that no blocks are being produced yet. Blocks will start being produced once another validator joins the network.
 
@@ -83,12 +84,14 @@ Now that Alice's node is up and running, Bob can join the network by bootstrappi
   --chain=local \
   --bob \
   --port 30334 \
+  --ws-port 9945 \
+  --rpc-port 9934 \
   --telemetry-url ws://telemetry.polkadot.io:1024 \
   --validator \
   --bootnodes /ip4/<Alices IP Address>/tcp/<Alices Port>/p2p/<Alices Node ID>
 ```
-Most of these options are already explained above, but there are a few tripping points.
-* If these two nodes are running on the same physical machine, Bob MUST specify a different `--base-path` and `--port`.
+Most of these options are already explained above, but there are a few points worth mentioning.
+* If these two nodes are running on the same physical machine, Bob MUST specify a different `--base-path`, `--port`, `--ws-port`, and `--rpc-port`.
 * Bob has added the `--bootnodes` flag and specified a single boot node, namely Alice's. He must correctly specify these three pieces of information which Alice can supply for him.
   * Alice's IP Address in the form `192.168.1.1`
   * Alice's Port, probably 30333

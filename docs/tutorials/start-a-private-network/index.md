@@ -9,6 +9,6 @@ You will need:
 2. git
 
 You will learn to:
-1. Compile a Substrate node from source code.
+1. Compile a Substrate node template from source code.
 2. Generate ed25519 and sr25519 key-pairs for use as a network authority
 3. Create and edit a chainspec json file
