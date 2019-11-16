@@ -1,50 +1,72 @@
 aliases:
- - &filter-only-source
-   branches:
-     only:
-       - source
+  - &only-source
+    branches:
+      only: source
+
+  - &only-staging-source
+    branches:
+      only: staging-source
+
+  - &non-deployment-branches
+    branches:
+      ignore:
+        - master
+        - staging
+
+  - &build-cmds
+    run:
+      name: Building Site
+      command: |
+        git config --global user.email "devhub-deploy@users.noreply.github.com"
+        git config --global user.name "Devhub Deployer"
+        # install Docusaurus and generate file of English strings
+        cd website && yarn install && yarn run write-translations && cd ..
+        # crowdin install
+        sudo apt-get update && sudo apt-get install default-jre
+        wget https://artifacts.crowdin.com/repo/deb/crowdin.deb -O crowdin.deb
+        sudo dpkg -i crowdin.deb
+        # translations upload/download
+        crowdin --config crowdin.yaml upload sources --auto-update -b master
+        crowdin --config crowdin.yaml download -b master
 
 version: 2
 jobs:
-  deploy-website:
+  deploy-to-prod:
     docker:
       # specify the version you desire here
       - image: circleci/node:10.15.2
-
     steps:
       - add_ssh_keys:
           fingerprints:
             - "a1:f6:36:72:14:54:c0:37:47:fe:0f:c1:01:7f:21:f5"
       - checkout
+      - *build-cmds
       - run:
-          name: Deploying to GitHub Pages
-          command: |
-            git config --global user.email "devhub-deploy@users.noreply.github.com"
-            git config --global user.name "Devhub Deployer"
-            # install Docusaurus and generate file of English strings
-            cd website && yarn install && yarn run write-translations && cd ..
-            # crowdin install
-            sudo apt-get update && sudo apt-get install default-jre
-            wget https://artifacts.crowdin.com/repo/deb/crowdin.deb -O crowdin.deb
-            sudo dpkg -i crowdin.deb
-            # translations upload/download
-            crowdin --config crowdin.yaml upload sources --auto-update -b master
-            crowdin --config crowdin.yaml download -b master
-            # build and publish website
-            cd website && USE_SSH=true GIT_USER=git yarn run publish-gh-pages
+          name: Push to Production (Github Pages)
+          command: cd website && USE_SSH=true GIT_USER=git yarn run publish-gh-pages
+
+  deploy-to-staging:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:10.15.2
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "a1:f6:36:72:14:54:c0:37:47:fe:0f:c1:01:7f:21:f5"
+      - checkout
+      - *build-cmds
+      - run:
+          name: Push to Staging (Heroku)
+          command: scripts/deploy-staging
 
   check-build:
     docker:
       # specify the version you desire here
       - image: circleci/node:10.15.2
-
     steps:
       - add_ssh_keys:
           fingerprints:
-            # This key added by @paritytech-ci
             - "a1:f6:36:72:14:54:c0:37:47:fe:0f:c1:01:7f:21:f5"
-            # Old key added by Joshy
-            #- "db:18:fc:b1:b6:20:68:47:61:df:13:d7:c6:24:12:1e"
       - checkout
       - run:
           name: Check if Site Builds
@@ -53,17 +75,23 @@ jobs:
 
 workflows:
   version: 2
-  commit_deploy:
+  check_n_deploy:
     jobs:
-      - deploy-website:
-          filters: *filter-only-source
+      - check-build:
+          filters: *non-deployment-branches
+      - deploy-to-prod:
+          filters: *only-source
+          requires:
+            - check-build
+      - deploy-to-staging:
+          filters: *only-staging-source
+          requires:
+            - check-build
+
   nightly_deploy:
     triggers:
       - schedule:
           cron: "0 0 * * *"
-          filters: *filter-only-source
+          filters: *only-source
     jobs:
-      - deploy-website
-  check_build:
-    jobs:
-      - check-build
+      - deploy-to-prod

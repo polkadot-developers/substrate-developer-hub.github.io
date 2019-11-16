@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# set -x
+# set -xe
 set -e
 
 APP_DIR=$(cd $(dirname "${BASH_SOURCE[0]}")/.. && pwd)
@@ -17,17 +17,13 @@ echo $APP_DIR
 pushd $APP_DIR > /dev/null
 
 cd website
-rm -rf build
+rm -rf $PROJECT_BUILD_DIR
 
-yarn install && yarn write-translations
-
-# TODO: Add cmds for integrating translation
-
+yarn install
 NODE_ENV=staging GIT_REV=`git rev-parse --short HEAD` yarn build
 
-# push to heroku
+# Heroku will pick up from `staging` branch
 cd $PROJECT_BUILD_DIR
-
 git init .
 git remote add origin $GIT_REPO
 git checkout -b staging
@@ -37,7 +33,7 @@ echo '<?php header("Location: /index.html");?>' > index.php
 echo $HTPASSWD > .htpasswd
 echo -e $HTACCESS > .htaccess
 
-# Everything done locally should be completed by this point. Merged back with upstream.
+# Everything need to be done locally should be completed by this point. Push to upstream.
 git add .
 git commit -m "Updated"
 git push -f origin staging
