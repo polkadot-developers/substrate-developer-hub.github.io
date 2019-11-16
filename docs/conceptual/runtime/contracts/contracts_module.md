@@ -119,7 +119,6 @@ provided to Ethereum or even enable repairable contracts on a Substrate based bl
 - Visit the reference docs for the [SRML Contracts
   module](/rustdocs/master/srml_contracts/index.html).
 
-- Visit the reference docs for the [Executive module](/rustdocs/master/srml_executive/index.html).
+- Take a look at the [repository for `wasmi`](https://github.com/paritytech/wasmi).
 
-- Visit the reference docs for the [SRML support
-  library](https://substrate.dev/rustdocs/master/srml_support/index.html).
+- Take a look at the [repository for ink!](https://github.com/paritytech/ink).
