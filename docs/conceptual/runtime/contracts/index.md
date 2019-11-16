@@ -32,10 +32,10 @@ existing systems to work on a Substrate based chain.
 
 ## Smart Contract Languages
 
-## ink!
+### ink!
 
 [ink!](conceptual/runtime/contracts/ink.md) is a Rust-based eDSL for writing Wasm smart contracts
-specifically for the SRML Contracts module. It is designed for user friendliness, conciseness, and
+specifically for the [SRML Contracts module](#contracts-module). It is designed for user friendliness, conciseness, and
 efficiency.
 
 ## Smart Contracts vs Runtime Modules
