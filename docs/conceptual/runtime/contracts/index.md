@@ -43,7 +43,7 @@ efficiency.
 Substrate runtime modules and Substrate smart contracts are two different approaches to building
 "decentralized applications" using the Substrate framework.
 
-#### Smart Contracts
+### Smart Contracts
 
 A traditional smart contract platform allows users to publish additional logic on top of some core
 blockchain logic. Since smart contract logic can be published by anyone, including malicious actors
@@ -173,18 +173,23 @@ influence your decision on the kinds of situations you may want to use these dif
 
 ### Learn More
 
-- Learn how to [develop custom Substrate runtime modules](development/module/index.md).
+- See how Substrate is iterating on smart contract blockchains with the [SRML Contracts
+  module](conceptual/runtime/contracts/contracts_module.md).
+- Investigate the [SRML EVM module](conceptual/runtime/contracts/evm_module.md) to see if it is what
+  you need for your next project.
+- Read about the [ink! smart contract language](conceptual/runtime/contracts/ink.md).
 
 ### Examples
 
 - Follow a [tutorial to add a runtime module to your Substrate
   runtime](tutorials/adding-a-module-to-your-runtime.md).
+- Learn how to [start developing with the SRML Contracts module and
+  ink!](development/contracts/ink.md).
 
 ### References
 
-- Visit the reference docs for the [System module](/rustdocs/master/srml_system/index.html).
+- Visit the reference docs for the [Contracts module](/rustdocs/master/srml_contracts/index.html).
 
-- Visit the reference docs for the [Executive module](/rustdocs/master/srml_executive/index.html).
+- Visit the reference docs for the [EVM module](/rustdocs/master/srml_evm/index.html).
 
-- Visit the reference docs for the [SRML support
-  library](https://substrate.dev/rustdocs/master/srml_support/index.html).
+- Take a look at the [repository for ink!](https://github.com/paritytech/ink).
