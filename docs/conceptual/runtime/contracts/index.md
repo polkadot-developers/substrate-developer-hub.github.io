@@ -24,11 +24,11 @@ within the Substrate runtime.
 
 ### Custom
 
-Substrate is not a platform where you should be limited by what comes out of the box.
+Substrate is not a platform where you are limited with what comes out of the box.
 
 We encourage further development of alternative smart contract platforms on top of the Substrate
-runtime. Use these out of the box modules to inform how you might design your own system or port
-over existing systems to work on a Substrate based chain.
+runtime. Use these pre-built modules to inform how you might design your own system or port over
+existing systems to work on a Substrate based chain.
 
 ## Smart Contract Languages
 
@@ -114,9 +114,9 @@ also a clear set of problems suited for only one of the two. To give just one ex
 category:
 
 * Runtime Module: Building a privacy layer on top of transactions in your blockchain.
-* Shared: Building a gaming dApp which may need to build up a community of users
-  (leaning toward Smart Contract), or may need to scale to millions of transactions a day (leaning
-  toward Runtime Module).
+* Shared: Building a gaming dApp which may need to build up a community of users (leaning toward
+  Smart Contract), or may need to scale to millions of transactions a day (leaning toward Runtime
+  Module).
 * Smart Contract: Introducing multi-signature wallets over the currency of your blockchain.
 
 In addition to everything written above, you also need to take into account the costs to set up a
