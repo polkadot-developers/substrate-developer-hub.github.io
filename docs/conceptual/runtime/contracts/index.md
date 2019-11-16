@@ -52,14 +52,14 @@ public smart contract platform.
 
 Some examples are:
 
-* Fees: Ensuring that contract developers are charged for the computation and storage they force on
+* **Fees**: Ensuring that contract developers are charged for the computation and storage they force on
   the computers running their contract, and not allowed to abuse the block creators.
-* Sandbox: A contract is not able to modify core blockchain storage or the storage of other
+* **Sandbox**: A contract is not able to modify core blockchain storage or the storage of other
   contracts directly. It's power is limited to only modifying it's own state, and the ability to
   make outside calls to other contracts or runtime functions.
-* State Rent: A contract takes up space on the blockchain, and thus should be charged for simply
+* **State Rent**: A contract takes up space on the blockchain, and thus should be charged for simply
   existing. This ensures that people don't take advantage of "free, unlimited storage".
-* Reversion: A contract can be prone to have situations which lead to logical errors. The
+* **Reversion**: A contract can be prone to have situations which lead to logical errors. The
   expectations of a contract developer are low, so extra overhead is added to support reverting
   transactions when they fail so no state is updated when things go wrong.
 
