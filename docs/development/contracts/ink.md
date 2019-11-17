@@ -62,5 +62,3 @@ This includes:
 - Visit the reference docs for the [ink! abi](https://paritytech.github.io/ink/ink_abi/).
 
 - Visit the reference docs for the [ink! core](https://paritytech.github.io/ink/ink_core/).
-
-- Visit the reference docs for the [ink! model](https://paritytech.github.io/ink/ink_model/).
