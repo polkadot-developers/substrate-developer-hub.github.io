@@ -98,7 +98,7 @@ your network.
 **In summary**, Substrate Runtime Modules:
 
 * Provide low level access to your entire blockchain.
-* Have removed the overhead of built-in saftey for performance.
+* Have removed the overhead of built-in safety for performance.
 * Have a high bar to entry for developers.
   * Not necessarily to write working code, but to avoid writing broken code.
 * Has no inherent economic incentives to repel bad actors.
