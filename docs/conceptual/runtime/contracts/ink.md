@@ -26,11 +26,11 @@ the box.
 ink! should still feel familiar to developers who have programmed using other modern smart contract
 languages. The skeleton of a contract has all of the same components that you might expect:
 
-  * Events - `#[ink(event)]`
-    * Event Topics - `#[ink(topic)]`
-  * Storage - `#[ink(storage)]`
-  * Constructor Functions - `#[ink(constructor)]`
-  * Message Functions - `#[ink(message)]`
+  * Events
+  * Event Topics
+  * Storage
+  * Constructor Functions
+  * Message Functions
 
 ### Custom Types
 
