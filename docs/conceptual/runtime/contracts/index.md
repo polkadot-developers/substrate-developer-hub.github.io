@@ -91,7 +91,7 @@ You can even brick your chain with incorrect logic or poor error handling.
 Substrate runtime module development has the intention of producing lean, performant, and fast
 nodes. It provides none of the protections or overhead of transaction reverting, and does not
 implicitly introduce any fee system to the computation which nodes on your chain run. This mean
-while you are developing runtime functions, it is up to _you_ to correctly asses and apply fees to
+while you are developing runtime functions, it is up to _you_ to correctly assess and apply fees to
 the different parts of your runtime logic such that it will not be abused by bad actors and hurt
 your network.
 
