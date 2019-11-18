@@ -4,7 +4,8 @@ title: ink!
 
 ink! is a [Rust](https://www.rust-lang.org/)-based embedded domain specific language
 ([eDSL](https://wiki.haskell.org/Embedded_domain_specific_language)) for writing
-[Wasm](https://webassembly.org/) smart contracts specifically for the [SRML Contracts module](conceptual/runtime/contracts/contracts_module.md).
+[Wasm](https://webassembly.org/) smart contracts specifically for the [SRML Contracts
+module](conceptual/runtime/contracts/contracts_module.md).
 
 ## Design
 
@@ -48,6 +49,9 @@ compiler configuration, you can specify whether you want to support overflowing 
 contract execution to panic when overflows occur. No need to continually import "Safe Math"
 libraries, although Rust also provides [integrated checked, wrapped, and saturated math
 functions](https://doc.rust-lang.org/std/primitive.u32.html).
+
+> Note: There are some known issues regarding functionality of compiler level overflow checks and
+> the resulting size of the Wasm blob. This feature may change or be iterated on in the future.
 
 ### Test Environment
 
