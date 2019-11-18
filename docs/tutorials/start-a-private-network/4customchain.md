@@ -46,7 +46,7 @@ The portion of the file we're interested in is the Aura authorities (used for cr
 
 ```
 
-All we need to do is change the authority addresses listed (currently Alice and Bob) to our own addresses that we generated in the previous step. The sr25519 addresses go in the `aura` section, and the ed25519 addresses in the `grandpa` section. You may add as many validators as you like. For additional context, you can see how polkadot uses these keys and others in the [Polkadot wiki](https://wiki.polkadot.network/docs/en/learn-keys#session-keys).
+All we need to do is change the authority addresses listed (currently Alice and Bob) to our own addresses that we generated in the previous step. The sr25519 addresses go in the `aura` section, and the ed25519 addresses in the `grandpa` section. You may add as many validators as you like. For additional context, read about [keys in Substrate](https://substrate.dev/docs/en/next/conceptual/cryptography/keys).
 
 > A single person should do these steps and share the resulting file with their fellow validators.
 >
