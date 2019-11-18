@@ -12,7 +12,6 @@ curl https://getsubstrate.io -sSf | bash -s -- --fast
 git clone https://github.com/substrate-developer-hub/substrate-node-template.git
 ```
 
-```
 
 Now let's compile the actual blockchain node that we'll be running. Because Substrate is a framework, most real-world blockchains that use it will write custom runtime code. There are [other tutorials](/tutorials/) that cover that process in detail. Luckily the node template is a ready-to-run node environment.
 
