@@ -30,7 +30,7 @@ Secret phrase `keep matrix knee meat awake frown rubber position federal easily 
   Address (SS58): 5HpHD5YseSWbHfni43Zm2SjtpyqSVmuaNhKkVmivp8L93Trs
 ```
 
-## Option 2: Polkadot JS Apps
+## Option 2: Polkadot-JS Apps
 The same UI that we used to see blocks being produces can also be used to generate keys. This option is convenient if you do not want to install subkey. It can be used for production keys, but the system should not be connected to the internet when generating such keys.
 
 > A system that generates production keys should not be connected to the internet regardless of what method you choose. It is mentioned here specifically because having an internet connection is generally desired when using a webapp like Polkadot JS Apps.
