@@ -9,7 +9,7 @@ module](conceptual/runtime/contracts/contracts_module.md).
 
 ## Design
 
-The main goals of ink! are user friendliness, conciseness, and efficiency.
+The main goals of ink! are correctness, conciseness, and efficiency.
 
 ink! is designed to be as close to the Rust programming language as possible. The language uses
 [attribute macros](https://doc.rust-lang.org/reference/procedural-macros.html#attribute-macros) to
