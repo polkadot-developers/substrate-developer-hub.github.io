@@ -5,7 +5,7 @@ title: Generate Your Own Keys
 Now that we know the fundamentals and the command line options, it's time to generate our own keys rather than using the well-known Alice and Bob keys. Each person who wants to participate in the blockchain should generate their own keys. This page explains several options for generating keys, and each participant only needs to choose one. Regardless of which option you choose, be sure to record all of the output from this section as you will need it later.
 
 ## Option 1: Subkey
-Subkey is a tool the generates keys specifically designed to be used with Substrate. This is the most secure way to generate keys, and is how you should generate keys if you plan to use them in production.
+Subkey is a tool the generates keys specifically designed to be used with Substrate.
 
 Begin by compiling and installing the utility. This may take up to 15 minutes or so.
 ```bash
