@@ -5,11 +5,11 @@ Now that each participant has their own keys generated, you're ready to start yo
 
 > Validators should not share the same keys, even for learning purposes. If two validators have the same keys, they will produce conflicting blocks, and be slashed.
 
-## Create a Chainspec
+## Create a Chain Specification
 
-Last time around, we used `--chain=local` which is a predefined "chainspec" that has Alice and Bob specified as validators along with many other useful defaults.
+Last time around, we used `--chain=local` which is a predefined "chain spec" that has Alice and Bob specified as validators along with many other useful defaults.
 
-Rather than writing our chainspec completely from scratch, we'll just make a few modifications to the the one we used before. To start we need to export the chainspec to a json file. Remember, further details about all of these commands are available by running `node-template --help`.
+Rather than writing our chain spec completely from scratch, we'll just make a few modifications to the the one we used before. To start we need to export the chain spec to a json file. Remember, further details about all of these commands are available by running `node-template --help`.
 
 ```bash
 ./target/release/node-template build-spec --chain=local > customSpec.json
@@ -52,7 +52,7 @@ All we need to do is change the authority addresses listed (currently Alice and 
 >
 > Because Rust -> Wasm builds aren't "reproducible", each person will get a slightly different Wasm blob which will break consensus if each participant generates the file themselves.
 
-Once the chainspec is prepared, convert it to a "raw" chainspec. The raw chainspec contains all the same information, but it contains the encoded storage keys that the node will use to reference the data in its local storage. Distributing a raw spec ensures that each node will store the data at the proper storage keys.
+Once the chain spec is prepared, convert it to a "raw" chain spec. The raw chain spec contains all the same information, but it contains the encoded storage keys that the node will use to reference the data in its local storage. Distributing a raw spec ensures that each node will store the data at the proper storage keys.
 
 ```bash
 ./target/release/node-template build-spec --chain customSpec.json --raw > customSpecRaw.json
@@ -78,7 +78,7 @@ The first participant can launch her node with
 Here are some differences from when we launched as Alice.
 * I've omitted the `--base-path` flag, so Substrate will use a default location. You're still free to specify your own base path, and you must do so if multiple nodes will run on the same physical machine.
 * I've omitted the `--alice` flag. Instead we will insert our own custom keys into the keystore through the RPC shortly.
-* The `--chain` flag has changed to use our custom chainspec.
+* The `--chain` flag has changed to use our custom chain spec.
 * I've added the optional `--name` flag. You may use it to give your node a human-readable name in the telemetry UI.
 
 One your node is running, you will again notice that no blocks are being produced. At this point you can use the Apps UI to insert your keys into the keystore. Navigate to the "Toolbox" tab and the "RPC Call" sub-tab. Choose "author" and "insertKey". The fields can be filled like this:
@@ -101,7 +101,7 @@ Finally, restart your node so that the keys just added to the keystore take effe
 
 ## Subsequent Participants Join
 
-Subsequent validators can now join the network as Bob did previously, making sure to use the new chainspec. You may bootstrap from _any_ of the nodes already in the network, not just the one that went first.
+Subsequent validators can now join the network as Bob did previously, making sure to use the new chain spec. You may bootstrap from _any_ of the nodes already in the network, not just the one that went first.
 
 Each participant will need to start their node, add both keys to the keystore, and restart their node.
 
@@ -112,4 +112,4 @@ Each participant will need to start their node, add both keys to the keystore, a
 ## You're Finished
 Congratulations! You've started your own blockchain!
 
-In this tutorial you've learned to compile the node-template, generate your own keypairs, create a custom chainspec that uses those keypairs, and start a private network based on your custom chainspec and the node-template.
+In this tutorial you've learned to compile the node-template, generate your own keypairs, create a custom chain spec that uses those keypairs, and start a private network based on your custom chain spec and the node-template.
