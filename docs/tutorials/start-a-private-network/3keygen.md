@@ -7,7 +7,7 @@ Now that we know the fundamentals and the command line options, it's time to gen
 ## Option 1: Subkey
 Subkey is a tool the generates keys specifically designed to be used with Substrate. This is the most secure way to generate keys, and is how you should generate keys if you plan to use them in production.
 
-Begin by compiling and install the utility.
+Begin by compiling and installing the utility. This may take up to 15 minutes or so.
 ```bash
 cargo install --force subkey --git https://github.com/paritytech/substrate
 ```
