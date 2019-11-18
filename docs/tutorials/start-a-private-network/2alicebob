@@ -8,7 +8,7 @@ Before we generate our own keys, and start a truly unique Substrate network, let
 
 Alice (or whomever is playing her) should run this command from node-template repository root.
 ```bash
-# Start Alice'snode
+# Start Alice's node
 ./target/release/node-template \
   --base-path /tmp/alice \
   --chain=local \
