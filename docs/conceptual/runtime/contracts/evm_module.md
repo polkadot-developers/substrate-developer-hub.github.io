@@ -13,8 +13,8 @@ allow users to swap out components like gasometer, and inject their own customiz
 
 ## Execution Lifecycle
 
-There are a separate set of accounts managed by the EVM module. Substrate based accounts can use
-call the EVM Module to deposit or withdraw balance from the Substrate base currency into a different
+There are a separate set of accounts managed by the EVM module. Substrate based accounts can
+call the EVM Module to deposit or withdraw balance from the Substrate base-currency into a different
 balance managed and used by the EVM module. Once a user has populated their balance, they can create
 and call smart contracts using this module.
 
