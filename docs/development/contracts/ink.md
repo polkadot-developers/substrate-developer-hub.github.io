@@ -40,6 +40,59 @@ This includes:
 * [An ERC721 Contract](https://github.com/paritytech/ink/tree/master/examples/lang/erc721/)
 * [A Delegator Contract](https://github.com/paritytech/ink/tree/master/examples/lang2/delegator/)
 
+## FAQ
+
+Here are some answers to frequently asked questions developers have while building on ink!.
+
+### What is the difference between memory and storage?
+
+In ink!, `memory` refers to computer memory, while `storage` refers to the on-chain storage used by
+a contract instance. The contract `storage` is built on top of the runtime storage, and access is
+considered to be slow.
+
+#### Example
+
+While a `storage::Vec<T>` stores all of its elements in different cells in the contract storage, a
+`storage::Value<memory::Vec<T>>` would store all elements (and a length info) in a single cell.
+Smart contract developers can use this to optimize for certain use cases. For example, using a
+`storage::Value<memory::Vec<T>>` would probably be more efficient for storing a small amount of
+elements in the `memory::Vec<T>`. In general, we recommend using the more general `storage::Vec` for
+storing information on the contract instance.
+
+### What is the test environment?
+
+ink! provides a test environment
+([test_env](https://github.com/paritytech/ink/blob/master/core/src/env/test_env.rs)) which is used
+to emulate contract execution off-chain. This can be enabled by the crate feature `test-env` and is
+mainly used for running tests off-chain.
+
+### How do I run off-chain tests?
+
+When building a smart contract with ink!, you can define a set of tests that can be run using the
+off-chain test environment.
+
+For example, in the minimal [flipper
+contract](https://github.com/paritytech/ink/blob/master/examples/lang2/flipper/src/lib.rs), you can
+find a small off-chain test at the bottom of the contract.
+
+You should run this test just like you would any other Rust test:
+
+```bash
+cargo test
+```
+
+## Get Help
+
+Join the growing community of ink! smart contract developers:
+
+* Ask development questions on [StackOverflow](https://stackoverflow.com/questions/tagged/ink) with
+  the `ink` tag.
+* Join the live chat in the [Smart Contracts & Parity
+  ink!](https://riot.im/app/#/room/!tYUCYdSvSYPMjWNDDD:matrix.parity.io) on Riot.
+* Report bugs, make feature requests, and ask technical questions on the [ink!
+  GitHub](https://github.com/paritytech/ink).
+
+
 ## Next Steps
 
 ### Learn More
