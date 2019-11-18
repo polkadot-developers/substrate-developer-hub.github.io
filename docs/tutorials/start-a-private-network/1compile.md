@@ -2,7 +2,7 @@
 title: Compiling the Tools
 ---
 
-Substrate does not (yet) offer binary installation packages, so it must be compiled from source, which can be a time-consuming process. It is wise to being the compilation, and then pre-read the next few pages of the tutorial while your node is building. This tutorial will use the Substrate node template.
+Substrate does not (yet) offer binary installation packages, so it must be compiled from source, which can be a time-consuming process. It is wise to start the compilation and then read the next few pages of the tutorial while your node is building. This tutorial will use the Substrate node template.
 
 ```bash
 # Install rust prerequisites
