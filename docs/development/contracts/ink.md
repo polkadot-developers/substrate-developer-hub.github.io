@@ -37,7 +37,6 @@ This includes:
 * [An Incrementer
   Contract](https://github.com/paritytech/ink/tree/master/examples/lang2/incrementer/)
 * [An ERC20 Contract](https://github.com/paritytech/ink/tree/master/examples/lang2/erc20/)
-* [An ERC721 Contract](https://github.com/paritytech/ink/tree/master/examples/lang/erc721/)
 * [A Delegator Contract](https://github.com/paritytech/ink/tree/master/examples/lang2/delegator/)
 
 ## FAQ
@@ -47,8 +46,9 @@ Here are some answers to frequently asked questions developers have while buildi
 ### What is the difference between memory and storage?
 
 In ink!, `memory` refers to computer memory, while `storage` refers to the on-chain storage used by
-a contract instance. The contract `storage` is built on top of the runtime storage, and access is
-considered to be slow.
+a contract instance. `memory` is temporary and only lasts until the contract execution is done,
+while `storage` is persistent and lasts over many contract executions. The contract `storage` is
+built on top of the runtime storage, and access is considered to be slow.
 
 #### Example
 
