@@ -85,7 +85,7 @@ Ethereum and the EVM.
 
 The most obvious difference between the Contracts module and the EVM is the underlying execution
 engine used to run smart contracts. The EVM is a good theoretical execution environment, but it is
-not very practical use with modern hardware. For example, manipulation of 256 bit integers on modern
+not very practical to use with modern hardware. For example, manipulation of 256 bit integers on modern
 architectures is significantly more complex than standard types. Even the Ethereum team has
 investigated the use of [Wasm](https://github.com/ewasm/design) for the next generation of the
 network.
