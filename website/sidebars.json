@@ -118,5 +118,14 @@
       "tutorials/creating-your-first-substrate-chain/build",
       "tutorials/creating-your-first-substrate-chain/front-end"
     ]
+  },
+  "start-a-private-network": {
+    "Start a Private Network": [
+      "tutorials/start-a-private-network/index",
+      "tutorials/start-a-private-network/compile",
+      "tutorials/start-a-private-network/alicebob",
+      "tutorials/start-a-private-network/keygen",
+      "tutorials/start-a-private-network/customchain"
+    ]
   }
 }
