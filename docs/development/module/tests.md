@@ -46,19 +46,59 @@ fn fake_test_example() {
 
 Custom implementations of [Externalities](https://crates.parity.io/substrate_externalities/index.html) allow developers to construct runtime environments that provide access to features of the outer node. Another example of this can be found in [`substrate-offchain`](https://crates.parity.io/substrate_offchain/), which maintains its own [Externalities](https://crates.parity.io/substrate_offchain/testing/index.html) implementation. 
 
-**TODO** (everything below)
+#### Genesis Config
 
-#### Configuring Genesis
+The previously shown `ExtBuilder::build()` method used the default genesis configuration for building the mock runtime environment. In many cases, it is convenient to set storage before testing.
 
-You can set custom values for the genesis configuration for modules you include in your mock runtime.
+An example might involve pre-seeding account balances before testing. The `TestRuntime` implements `balances::Trait`, 
+
+```rust
+parameter_types! {
+	pub const ExistentialDeposit: u64 = 1;
+	pub const TransferFee: u64 = 0;
+	pub const CreationFee: u64 = 0;
+}
+
+impl balances::Trait for TestRuntime {
+	type Balance = u64;
+	type OnNewAccount = ();
+	type OnFreeBalanceZero = ();
+	type Event = ();
+	type TransferPayment = ();
+	type DustRemoval = ();
+	type ExistentialDeposit = ExistentialDeposit;
+	type TransferFee = TransferFee;
+	type CreationFee = CreationFee;
+}
+```
+
+In the implementation of `system::Trait`, `AccountId` is set to `u64` just like `Balance` shown above. Place `(u64, u64)` pairs in the `balances` vec to seed `(AccountId, Balance)` pairs as the account balances.
+
+```rust
+pub fn build(self) -> runtime_io::TestExternalities {
+	GenesisConfig {
+		balances: Some(balances::GenesisConfig::<TestRuntime>{
+			balances: vec![
+				(1, 10),
+				(2, 20),
+				(3, 30),
+				(4, 40),
+				(5, 50),
+				(6, 60)
+			],
+			vesting: vec![],
+		}),
+	}.build_storage().unwrap().into()
+}
+```
+
+Account 1 has balance 10, account 2 has balance 20, and so on.
 
 ### Block Production
 
-Your tests may require you to simulate block production to move forward the state of your chain.
+It will be useful to simulate block production to verify that expected behavior holds during block time dependent changes. 
 
-You will need to emulate the orchestration provided by the Executive module in order for your runtime to behave correctly.
-
-Usually this means executing the `on_initialize` and `on_finalize` functions of all the modules included in your test, and incrementing the block number tracked by the System module. This can be written as a function you include in your unit tests:
+A simple way of doing this increments the System module's block number between `on_initialize` and `on_finalize` calls from all modules with `System::block_number()` as the sole input.
 
 ```rust
 fn run_to_block(n: u64) {
@@ -72,7 +112,7 @@ fn run_to_block(n: u64) {
 }
 ```
 
-You can then use this function in your unit tests:
+To use this function in unit tests,
 
 ```rust
 #[test]
@@ -85,14 +125,12 @@ fn my_runtime_test() {
 }
 ```
 
-## Next Steps
-
-* discuss some more examples of more complex `TestExternalities` storage configuration
-
 ### Examples
 
-* list more examples in the substrate recipes
-* start knocking out a few more tests for the recipes
+**TODO**
+
+* explain a few more examples from the recipes
+* find more interesting patterns to cover from the docs
 
 ### References
 
