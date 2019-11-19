@@ -15,7 +15,7 @@ Rather than writing our chain spec completely from scratch, we'll just make a fe
 ./target/release/node-template build-spec --chain=local > customSpec.json
 ```
 
-The file we just created contains several fields, and you can learn a lot by exploring them. By far the largest field is a single hex number that is the Wasm binary of our runtime. It is part of what you built earlier when you ran the `cargo build` command. Having this information on-chain enables forkless upgrades.
+The file we just created contains several fields, and you can learn a lot by exploring them. By far the largest field is a single hex number that is the Wasm binary of our runtime. It is part of what you built earlier when you ran the `cargo build` command.
 
 The portion of the file we're interested in is the Aura authorities (used for creating blocks) and the GRANDPA authorities (used for finalizing blocks). That section looks like this
 ```json
@@ -113,3 +113,6 @@ Each participant will need to start their node, add both keys to the keystore, a
 Congratulations! You've started your own blockchain!
 
 In this tutorial you've learned to compile the node-template, generate your own keypairs, create a custom chain spec that uses those keypairs, and start a private network based on your custom chain spec and the node-template.
+
+### Learn More
+That big Wasm blob we encountered in the chain spec was was necessary to enable forkless upgrades. Learn more about how the [executor](docs/conceptual/core/executor) uses on-chain Wasm.
