@@ -1,0 +1,175 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Creating Your Private Network · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Now that each participant has their own keys generated, you&#x27;re ready to start your own custom chain.&lt;/p&gt;
+"/><meta name="docsearch:version" content="next"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="Creating Your Private Network · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;Now that each participant has their own keys generated, you&#x27;re ready to start your own custom chain.&lt;/p&gt;
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/zh-CN/versions"><h3>next</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/zh-CN/docs" target="_self">文档</a></li><li class=""><a href="/recipes/" target="_self">Recipes</a></li><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class=""><a href="/zh-CN/community" target="_self">社区</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/next/tutorials/start-a-private-network/customchain">English</a></li><li><a href="/docs/ru/next/tutorials/start-a-private-network/customchain">Русский</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">参与翻译</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">Creating Your Private Network</h1></header><article><div><span><p>Now that each participant has their own keys generated, you're ready to start your own custom chain.</p>
+<blockquote>
+<p>Validators should not share the same keys, even for learning purposes. If two validators have the same keys, they will produce conflicting blocks and be slashed.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="create-a-chain-specification"></a><a href="#create-a-chain-specification" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create a Chain Specification</h2>
+<p>Last time around, we used <code>--chain=local</code> which is a predefined &quot;chain spec&quot; that has Alice and Bob specified as validators along with many other useful defaults.</p>
+<p>Rather than writing our chain spec completely from scratch, we'll just make a few modifications to the the one we used before. To start we need to export the chain spec to a json file. 请记住，运行<code>node-template --help</code>可以获得有关所有这些命令的更多详细信息。</p>
+<pre><code class="hljs css language-bash">./target/release/node-template build-spec --chain<span class="token operator">=</span>local <span class="token operator">></span> customSpec.json
+</code></pre>
+<p>The file we just created contains several fields, and you can learn a lot by exploring them. By far the largest field is a single hex number that is the Wasm binary of our runtime. It is part of what you built earlier when you ran the <code>cargo build</code> command.</p>
+<p>The portion of the file we're interested in is the Aura authorities (used for creating blocks) and the GRANDPA authorities (used for finalizing blocks). That section looks like this</p>
+<pre><code class="hljs css language-json"><span class="token property">"aura"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">"authorities"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">[</span>
+      <span class="token string">"5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"</span><span class="token punctuation">,</span>
+      <span class="token number">1</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span>
+      <span class="token string">"5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty"</span><span class="token punctuation">,</span>
+      <span class="token number">1</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token property">"grandpa"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">"authorities"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">[</span>
+      <span class="token string">"5FA9nQDVg267DEd8m1ZypXLBnvN7SFxYwV7ndqSYGiN9TTpu"</span><span class="token punctuation">,</span>
+      <span class="token number">1</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span>
+      <span class="token string">"5GoNkf6WdbxCFnPdAnYYQyCjAKPJgLNxXwPjwTh6DGg6gN3E"</span><span class="token punctuation">,</span>
+      <span class="token number">1</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+</code></pre>
+<p>All we need to do is change the authority addresses listed (currently Alice and Bob) to our own addresses that we generated in the previous step. The sr25519 addresses go in the <code>aura</code> section, and the ed25519 addresses in the <code>grandpa</code> section. You may add as many validators as you like. For additional context, read about <a href="https://substrate.dev/docs/en/next/conceptual/cryptography/keys">keys in Substrate</a>.</p>
+<blockquote>
+<p>A single person should do these steps and share the resulting file with their fellow validators.</p>
+<p>Because Rust -&gt; Wasm builds aren't &quot;reproducible&quot;, each person will get a slightly different Wasm blob which will break consensus if each participant generates the file themselves.</p>
+</blockquote>
+<p>Once the chain spec is prepared, convert it to a &quot;raw&quot; chain spec. The raw chain spec contains all the same information, but it contains the encoded storage keys that the node will use to reference the data in its local storage. Distributing a raw spec ensures that each node will store the data at the proper storage keys.</p>
+<pre><code class="hljs css language-bash">./target/release/node-template build-spec --chain customSpec.json --raw <span class="token operator">></span> customSpecRaw.json
+</code></pre>
+<p>最后与网络中的所有其他验证人共享<code>customSpecRaw.json</code>。</p>
+<h2><a class="anchor" aria-hidden="true" id="first-participant-starts-a-bootnode"></a><a href="#first-participant-starts-a-bootnode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>First Participant Starts a Bootnode</h2>
+<p>你已完成所有必要的准备工作，现在准备好启动链。 此过程非常类似于之前以 Alice 和 Bob 的身份启动链。 从干净的基础路径开始非常重要，如果你打算使用之前的路径，请删除该目录中的所有内容。</p>
+<p>第一位参与者启动节点</p>
+<pre><code class="hljs css language-bash">./target/release/node-template \
+  --chain ./customSpecRaw.json \
+  --port 30333 \
+  --ws-port 9944 \
+  --rpc-port 9933 \
+  --telemetry-url ws://telemetry.polkadot.io:1024 \
+  --validator
+  --name MyNode
+</code></pre>
+<p>以下是我们启动 Alice 时的一些不同之处。</p>
+<ul>
+<li>我省略了<code>--base-path</code> flag，因此 Substrate 将使用默认位置。 You're still free to specify your own base path, and you must do so if multiple nodes will run on the same physical machine.</li>
+<li>I've omitted the <code>--alice</code> flag. Instead we will insert our own custom keys into the keystore through the RPC shortly.</li>
+<li>The <code>--chain</code> flag has changed to use our custom chain spec.</li>
+<li>I've added the optional <code>--name</code> flag. You may use it to give your node a human-readable name in the telemetry UI.</li>
+</ul>
+<p>Once your node is running, you will again notice that no blocks are being produced. At this point you can use the Apps UI to insert your keys into the keystore. Navigate to the &quot;Toolbox&quot; tab and the &quot;RPC Call&quot; sub-tab. Choose &quot;author&quot; and &quot;insertKey&quot;. The fields can be filled like this:</p>
+<pre><code class="hljs">keytype<span class="token punctuation">:</span> aura
+suri<span class="token punctuation">:</span> your mnemonic <span class="token function">phrase</span> <span class="token punctuation">(</span>eg keep matrix knee meat awake frown rubber position federal easily strategy inhale<span class="token punctuation">)</span>
+publicKey<span class="token punctuation">:</span> your sr25519 <span class="token function">key</span> <span class="token punctuation">(</span>eg <span class="token number">0x8ed5f822065e5824d3e37d9ea36a81eacb98ff1a6fa04bb87d2fa4915e9ed147</span><span class="token punctuation">)</span>
+</code></pre>
+<p><img src="/docs/assets/private-network-apps-insert-key.png" alt="Inserting a Grandpa key using Apps"></p>
+<blockquote>
+<p>If you generated your keys with the Apps UI you will not know your raw public key. In this case you may use your SS58 address instead.</p>
+</blockquote>
+<p>You've now successfully inserted your aura key. You can repeat those steps to insert your grandpa key (the ed25519 key)</p>
+<pre><code class="hljs">keytype<span class="token punctuation">:</span> gran
+suri<span class="token punctuation">:</span> your mnemonic <span class="token function">phrase</span> <span class="token punctuation">(</span>eg keep matrix knee meat awake frown rubber position federal easily strategy inhale<span class="token punctuation">)</span>
+publicKey<span class="token punctuation">:</span> your ed25519 <span class="token function">key</span> <span class="token punctuation">(</span>eg <span class="token number">0xfe68fdff17960cb8d45d861396a64d4086997353849403ee3352996ec68ff4af</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Finally, restart your node so that the keys just added to the keystore take effect.</p>
+<h2><a class="anchor" aria-hidden="true" id="subsequent-participants-join"></a><a href="#subsequent-participants-join" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Subsequent Participants Join</h2>
+<p>Subsequent validators can now join the network as Bob did previously, making sure to use the new chain spec. You may bootstrap from <em>any</em> of the nodes already in the network, not just the one that went first.</p>
+<p>Each participant will need to start their node, add both keys to the keystore, and restart their node.</p>
+<blockquote>
+<p>If you are running multiple nodes on the same machine, you must configure the UI to the correct node's WebSocket endpoint.</p>
+</blockquote>
+<blockquote>
+<p>Reminder: All validators must be using identical chain specifications in order to peer. You should see the same genesis block and state root hashes.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="you-re-finished"></a><a href="#you-re-finished" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>You're Finished</h2>
+<p>恭喜你！ 你已启动了自己的区块链！</p>
+<p>In this tutorial you've learned to compile the node-template, generate your own keypairs, create a custom chain spec that uses those keypairs, and start a private network based on your custom chain spec and the node-template.</p>
+<h3><a class="anchor" aria-hidden="true" id="learn-more"></a><a href="#learn-more" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Learn More</h3>
+<p>That big Wasm blob we encountered in the chain spec was was necessary to enable forkless upgrades. Learn more about how the <a href="docs/conceptual/core/executor">executor</a> uses on-chain Wasm.</p>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#create-a-chain-specification">Create a Chain Specification</a></li><li><a href="#first-participant-starts-a-bootnode">First Participant Starts a Bootnode</a></li><li><a href="#subsequent-participants-join">Subsequent Participants Join</a></li><li><a href="#you-re-finished">You're Finished</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
+#blast {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 50px;
+  background-image: url(/img/bg-sub01.svg); background-size: cover; background-position: right 0px bottom 500px;;
+  color: #18FFB2;
+  z-index: 99999;
+  text-align: center;
+  background-color: #000028;
+  transition: background-color 0.2s;
+}
+#blast:hover {
+  background-color: #E91E63;
+}
+
+#blast h2 {
+  margin: 0;
+  line-height: 50px;
+}
+
+#blast a {
+  display: block;
+  color: #18FFB2;
+  text-decoration: underline;
+  mix-blend-mode: lighten;
+}
+
+#blast img {
+  max-height: 50px;
+}
+
+body {
+  margin-bottom: 50px;
+}
+</style><section id="blast"><a href="https://sub0.parity.io" target="_blank"><img src="/img/sub0-blast.png" class="img-fluid"/></a></section></div><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="/zh-CN/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></a></div></section><section class="copyright">Copyright © 2019 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-CN"]}
+              });
+            </script></body></html>

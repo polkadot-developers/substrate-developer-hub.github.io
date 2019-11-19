@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Alice 和 Bob 启动区块链 · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;在我们生成自己的密钥并开始一个真正独特的 Substrate 网络之前，让我们了解下基础知识，首先使用一个预先定义的网络规范，称为 &lt;code&gt;local&lt;/code&gt; ，使用两个预先定义的密钥 (当然不是私人的!)，称为 Alice 和 Bob。&lt;/p&gt;
+"/><meta name="docsearch:version" content="next"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="Alice 和 Bob 启动区块链 · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;在我们生成自己的密钥并开始一个真正独特的 Substrate 网络之前，让我们了解下基础知识，首先使用一个预先定义的网络规范，称为 &lt;code&gt;local&lt;/code&gt; ，使用两个预先定义的密钥 (当然不是私人的!)，称为 Alice 和 Bob。&lt;/p&gt;
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/zh-CN/versions"><h3>next</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/zh-CN/docs" target="_self">文档</a></li><li class=""><a href="/recipes/" target="_self">Recipes</a></li><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class=""><a href="/zh-CN/community" target="_self">社区</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/next/tutorials/start-a-private-network/alicebob">English</a></li><li><a href="/docs/ru/next/tutorials/start-a-private-network/alicebob">Русский</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">参与翻译</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">Alice 和 Bob 启动区块链</h1></header><article><div><span><p>在我们生成自己的密钥并开始一个真正独特的 Substrate 网络之前，让我们了解下基础知识，首先使用一个预先定义的网络规范，称为 <code>local</code> ，使用两个预先定义的密钥 (当然不是私人的!)，称为 Alice 和 Bob。</p>
+<h2><a class="anchor" aria-hidden="true" id="alice-starts-first"></a><a href="#alice-starts-first" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Alice Starts First</h2>
+<p>Alice (or whomever is playing her) should run this command from node-template repository root.</p>
+<pre><code class="hljs css language-bash"><span class="token comment"># Start Alice's node</span>
+./target/release/node-template \
+  --base-path /tmp/alice \
+  --chain<span class="token operator">=</span>local \
+  --alice \
+  --port 30333 \
+  --ws-port 9944 \
+  --rpc-port 9933 \
+  --telemetry-url ws://telemetry.polkadot.io:1024 \
+  --validator
+</code></pre>
+<p>Let's look at those flags in detail:</p>
+<ul>
+<li><code>--base-path</code> 指定一个目录，Substrate 用它来存储与此链有关的所有数据。 如果目录不存在，将创建它。 如果已经存在其它区块链的数据，启动将会报错。 这种情况下，要么清除目录，要么选择不同的目录。</li>
+<li><code>--chain=local</code> 指定要使用的链规范。 有几个预先准备的选项，包括 <code>local</code> <code>development</code> 和 <code>staging</code> ，但更常见的是我们指定自己的 chainspec 文件。 我们将在稍后阶段指定自己的文件。</li>
+<li><code>--alice</code> Puts the pre-defined Alice keys (both for block production and finalization) in the node's keystore. Generally one should generate their own keys and insert them with an RPC call. 我们将在稍后阶段指定自己的秘钥。</li>
+<li><code>--port 30333</code> 指定节点将监听的 p2p 端口。 30333是默认值，如果默认值可以，可以忽略此 flag。 如果 Bob 的节点在同一物理机上运行，您需要明确指定一个不同的端口。</li>
+<li><code>--ws-port 9944</code> Specifies the port that your node will listen for incoming web socket traffic on. 9944 is the default, so it can also be omitted.</li>
+<li><code>--rpc-port 9933</code> Specifies the port that your node will listen for incoming RPC traffic on. 9933 is the default, so it can also be omitted.</li>
+<li><code>--telemetry-url</code> 告诉节点，将监测数据发送到特定的服务器。 我们在这里选择了由 Parity 维护、可供任何人使用的监测服务器。 You may also host your own (beyond the scope of this article) or omit this flag entirely.</li>
+<li><code>--validator</code> Means that we want to participate in block production and finalization rather than just sync the network.</li>
+</ul>
+<p>当节点启动后，你应该看到类似下面的输出：</p>
+<pre><code class="hljs"><span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">10</span> Substrate Node
+<span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">10</span>   version <span class="token number">2.0</span><span class="token punctuation">.</span><span class="token number">0</span><span class="token operator">-</span>7d7e74fb7<span class="token operator">-</span>x86_64<span class="token operator">-</span>linux<span class="token operator">-</span>gnu
+<span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">10</span>   by Anonymous<span class="token punctuation">,</span> <span class="token number">2017</span><span class="token punctuation">,</span> <span class="token number">2018</span>
+<span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">10</span> Chain specification<span class="token punctuation">:</span> Local Testnet
+<span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">10</span> Node name<span class="token punctuation">:</span> Alice
+<span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">10</span> Roles<span class="token punctuation">:</span> AUTHORITY
+<span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">10</span> Initializing Genesis block<span class="token operator">/</span><span class="token function">state</span> <span class="token punctuation">(</span>state<span class="token punctuation">:</span> <span class="token number">0x4faf</span>…3aba<span class="token punctuation">,</span> header<span class="token operator">-</span>hash<span class="token punctuation">:</span> <span class="token number">0x8855</span>…e564<span class="token punctuation">)</span>
+<span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">10</span> Loading GRANDPA authority set from genesis on what appears to <span class="token keyword">be</span> first startup<span class="token punctuation">.</span>
+<span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">10</span> Loaded block<span class="token operator">-</span>time <span class="token operator">=</span> BabeConfiguration <span class="token punctuation">{</span> slot_duration<span class="token punctuation">:</span> <span class="token number">6000</span><span class="token punctuation">,</span> epoch_length<span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span> c<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span> genesis_authorities<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token function">Public</span><span class="token punctuation">(</span><span class="token function">d43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d</span> <span class="token punctuation">(</span>5GrwvaEF<span class="token punctuation">...</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token function">Public</span><span class="token punctuation">(</span><span class="token function">8eaf04151687736326c9fea17e25fc5287613693c912909cb226aa4794f26a48</span> <span class="token punctuation">(</span>5FHneW46<span class="token punctuation">...</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span> randomness<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> secondary_slots<span class="token punctuation">:</span> <span class="token keyword">true</span> <span class="token punctuation">}</span> seconds from genesis on first<span class="token operator">-</span>launch
+<span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">10</span> Creating empty BABE epoch changes on what appears to <span class="token keyword">be</span> first startup<span class="token punctuation">.</span>
+<span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">10</span> Highest known block at #<span class="token number">0</span>
+<span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">10</span> Using default protocol ID <span class="token string">"sup"</span> because none is configured <span class="token keyword">in</span> the chain specs
+<span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">10</span> Local node identity is<span class="token punctuation">:</span> QmViTYm8Yr4yneyRGov9L87vLeVLoySFduVRNQ1d33WdXN
+<span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">10</span> Starting BABE Authorship worker
+<span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">15</span> <span class="token function">Idle</span> <span class="token punctuation">(</span><span class="token number">0</span> peers<span class="token punctuation">)</span><span class="token punctuation">,</span> best<span class="token punctuation">:</span> #<span class="token function">0</span> <span class="token punctuation">(</span><span class="token number">0x8855</span>…e564<span class="token punctuation">)</span><span class="token punctuation">,</span> finalized #<span class="token function">0</span> <span class="token punctuation">(</span><span class="token number">0x8855</span>…e564<span class="token punctuation">)</span><span class="token punctuation">,</span> ⬇ <span class="token number">0</span> ⬆ <span class="token number">0</span>
+<span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">20</span> <span class="token function">Idle</span> <span class="token punctuation">(</span><span class="token number">0</span> peers<span class="token punctuation">)</span><span class="token punctuation">,</span> best<span class="token punctuation">:</span> #<span class="token function">0</span> <span class="token punctuation">(</span><span class="token number">0x8855</span>…e564<span class="token punctuation">)</span><span class="token punctuation">,</span> finalized #<span class="token function">0</span> <span class="token punctuation">(</span><span class="token number">0x8855</span>…e564<span class="token punctuation">)</span><span class="token punctuation">,</span> ⬇ <span class="token number">0</span> ⬆ <span class="token number">0</span>
+</code></pre>
+<p>A few lines to take note of: <code>Local node identity is: QmViTYm8Yr4yneyRGov9L87vLeVLoySFduVRNQ1d33WdXN</code> shows the node ID that Bob will need when booting from Alice's node. <code>Initializing Genesis block/state (state: 0x4faf…3aba, header-hash: 0x8855…e564)</code> tells which genesis block the node is using. Bob's node must have the same hashes or they will not connect to one another.</p>
+<p>More details about all of these flags and others that I haven't mentioned are available by running <code>./target/release/node-template --help</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="连接ui"></a><a href="#连接ui" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>连接UI</h2>
+<p>你可以通过节点在命令行中产生的输出了解很多信息。 还有一个很好的图形用户界面，称为<a href="https://polkadot.js.org/apps/"> Polkadot Js Apps UI </a>，可以将它连接到你的节点。 That link goes to the hosted version of the user interface, which is super convenient, but will not connect to unencrypted web-socket endpoints in some browsers (notably including Firefox). In this case, you can run the interface locally by grabbing the code from <a href="https://github.com/polkadot-js/apps">github</a>. 一般来说，该仓库中的指令将是你的最佳指南，但过程应该是这样的。</p>
+<pre><code class="hljs css language-bash"><span class="token comment"># 抓取代码</span>
+<span class="token function">git</span> clone https://github.com/polkadot-js/apps
+<span class="token function">cd</span> apps
+
+<span class="token comment"># 安装依赖</span>
+<span class="token function">yarn</span>
+
+<span class="token comment"># 启动项目</span>
+<span class="token function">yarn</span> run start
+</code></pre>
+<p>Point your favorite web browser at localhost:3000, and on the settings tab, choose &quot;local node&quot;. 你应该看到类似下面的内容：</p>
+<p><img src="/docs/assets/private-network-no-blocks.png" alt="No blocks in polkadot-js-apps"></p>
+<p>你会注意到，在命令行和用户界面中，还没有生产任何块。 一旦另一个验证者加入网络，块将开始生成。</p>
+<h3><a class="anchor" aria-hidden="true" id="bob-加入"></a><a href="#bob-加入" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Bob 加入</h3>
+<p>现在，Alice节点已经启动并运行，Bob 可以通过引导节点来加入网络。 他的命令看起来非常类似下面：</p>
+<pre><code class="hljs css language-bash">./target/release/node-template \
+  --base-path /tmp/bob \
+  --chain<span class="token operator">=</span>local \
+  --bob \
+  --port 30334 \
+  --ws-port 9945 \
+  --rpc-port 9934 \
+  --telemetry-url ws://telemetry.polkadot.io:1024 \
+  --validator \
+  --bootnodes /ip4/<span class="token operator">&lt;</span>Alices IP Address<span class="token operator">></span>/tcp/<span class="token operator">&lt;</span>Alices Port<span class="token operator">></span>/p2p/<span class="token operator">&lt;</span>Alices Node ID<span class="token operator">></span>
+</code></pre>
+<p>Most of these options are already explained above, but there are a few points worth mentioning.</p>
+<ul>
+<li>If these two nodes are running on the same physical machine, Bob MUST specify a different <code>--base-path</code>, <code>--port</code>, <code>--ws-port</code>, and <code>--rpc-port</code>.</li>
+<li>Bob 添加了 <code>--bootnodes</code> flag 来指定一个启动节点，即 Alice 节点。 他必须正确指定这三项，Alice 可以为他提供的这三条信息。
+<ul>
+<li>Alice IP Address 的格式 <code>192.168.1.1</code></li>
+<li>Alice的端口，可能为30333</li>
+<li>Alice节点ID，从她的日志输出中复制。 (<code>QmViTYm8Yr4yneyRGov9L87vLeVLoySFduVRNQ1d33WdXN</code> in the example output above.)</li>
+</ul></li>
+</ul>
+<p>如果所有进展顺利，在几秒之后，节点应该相互连接，开始生成区块。 你应该看到类似下面的内容：</p>
+<pre><code class="hljs"><span class="token function">Idle</span> <span class="token punctuation">(</span><span class="token number">1</span> peers<span class="token punctuation">)</span><span class="token punctuation">,</span> best<span class="token punctuation">:</span> #<span class="token function">1</span> <span class="token punctuation">(</span><span class="token number">0x9f1b</span>…9b57<span class="token punctuation">)</span><span class="token punctuation">,</span> finalized #<span class="token function">1</span> <span class="token punctuation">(</span><span class="token number">0x28be</span>…<span class="token number">45e5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> ⬇ <span class="token number">1</span><span class="token punctuation">.</span>7kiB<span class="token operator">/</span>s ⬆ <span class="token number">1</span><span class="token punctuation">.</span>4kiB<span class="token operator">/</span>s
+</code></pre>
+<p>This line shows that Bob has peered with Alice (<code>1 peers</code>), they have produced a block (<code>best: #1 (0x9f1b…9b57)</code>), and the block is  finalized (<code>finalized #1 (0x28be…45e5)</code>).</p>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#alice-starts-first">Alice Starts First</a></li><li><a href="#连接ui">连接UI</a><ul class="toc-headings"><li><a href="#bob-加入">Bob 加入</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
+#blast {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 50px;
+  background-image: url(/img/bg-sub01.svg); background-size: cover; background-position: right 0px bottom 500px;;
+  color: #18FFB2;
+  z-index: 99999;
+  text-align: center;
+  background-color: #000028;
+  transition: background-color 0.2s;
+}
+#blast:hover {
+  background-color: #E91E63;
+}
+
+#blast h2 {
+  margin: 0;
+  line-height: 50px;
+}
+
+#blast a {
+  display: block;
+  color: #18FFB2;
+  text-decoration: underline;
+  mix-blend-mode: lighten;
+}
+
+#blast img {
+  max-height: 50px;
+}
+
+body {
+  margin-bottom: 50px;
+}
+</style><section id="blast"><a href="https://sub0.parity.io" target="_blank"><img src="/img/sub0-blast.png" class="img-fluid"/></a></section></div><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="/zh-CN/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></a></div></section><section class="copyright">Copyright © 2019 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-CN"]}
+              });
+            </script></body></html>
