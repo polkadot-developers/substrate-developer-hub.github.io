@@ -105,7 +105,7 @@ Subsequent validators can now join the network as Bob did previously, making sur
 
 Each participant will need to start their node, add both keys to the keystore, and restart their node.
 
-> If you are running multiple nodes on the same machine, you must direct the UI to the correct node's websocket endpoint.
+> If you are running multiple nodes on the same machine, you must configure the UI to the correct node's WebSocket endpoint.
 
 > Reminder: All validators must be using identical chain specifications in order to peer. You should see the same genesis block and state root hashes.
 
