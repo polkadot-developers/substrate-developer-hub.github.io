@@ -3,7 +3,7 @@ title: Creating Your Private Network
 ---
 Now that each participant has their own keys generated, you're ready to start your own custom chain.
 
-> Validators should not share the same keys, even for learning purposes. If two validators have the same keys, they will produce conflicting blocks, and be slashed.
+> Validators should not share the same keys, even for learning purposes. If two validators have the same keys, they will produce conflicting blocks and be slashed.
 
 ## Create a Chain Specification
 
