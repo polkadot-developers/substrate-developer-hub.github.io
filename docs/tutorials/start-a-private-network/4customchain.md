@@ -60,7 +60,7 @@ Once the chain spec is prepared, convert it to a "raw" chain spec. The raw chain
 
 Finally share the `customSpecRaw.json` with your all the other validators in the network.
 
-## First Participant starts a Bootnode
+## First Participant Starts a Bootnode
 
 You've completed all the necessary prep work and you're now ready to launch your chain. This process is very similar to when you launched a chain earlier as Alice and Bob. It's important to start with a clean base path, so if you plan to use the same path that you've used previously, please delete all contents from that directory.
 
