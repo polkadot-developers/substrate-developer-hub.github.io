@@ -250,8 +250,8 @@ class Tutorials extends React.Component {
           <TutorialCards
             data={[
               {
-                img: `${baseUrl}img/substrate-contracts-workshop.png`,
-                title: <translate>Substrate Contracts Workshop</translate>,
+                img: `${baseUrl}img/ink-smart-contracts-tutorial.png`,
+                title: <translate>ink! Smart Contracts Tutorial</translate>,
                 text: (
                   <translate>
                     A comprehensive, end-to-end tutorial for building an ERC20
@@ -261,7 +261,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "4",
                 prerequisite: false,
-                href:
+               href:
                   "https://substrate-developer-hub.github.io/substrate-contracts-workshop/"
               },
             ]}
