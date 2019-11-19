@@ -88,6 +88,8 @@ suri: your mnemonic phrase (eg keep matrix knee meat awake frown rubber position
 publicKey: your sr25519 key (eg 0x8ed5f822065e5824d3e37d9ea36a81eacb98ff1a6fa04bb87d2fa4915e9ed147)
 ```
 
+![Inserting a Grandpa key using Apps](/docs/assets/private-network-apps-insert-key.png)
+
 > If you generated your keys with the Apps UI you will not know your raw public key. In this case you may use your SS58 address instead.
 
 You've now successfully inserted your aura key. You can repeat those steps to insert your grandpa key (the ed25519 key)
