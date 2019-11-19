@@ -8,22 +8,17 @@ Runtime tests allow you to verify the logic in your runtime module by mocking a 
 
 Substrate uses the existing [unit testing](https://doc.rust-lang.org/rust-by-example/testing/unit_testing.html) framework provided by Rust.
 
-The average runtime test will look like:
+To run tests, the command is 
 
-```rust
-#[test]
-fn my_runtime_test() {
-	with_externalities(&mut new_test_ext(), || {
-		some_assertion!(...);
-	});
-}
+```bash
+cargo test <optional: test_name>
 ```
 
 ## Mock Runtime Environment
 
 To support the specific needs of testing a Substrate runtime, you need to construct a "mock" runtime environment. This involves importing the logic of other runtime modules, such as the System module, and establishing runtime storage.
 
-In general, we suggest looking at and mimicking the various examples of runtime tests in the Substrate Runtime Module Library (SRML). This document won't be as comprehensive as what is provided in our SRML.
+In general, we suggest looking at and mimicking the various examples of runtime tests in `paint`. This document won't be as comprehensive as what is provided in `paint`.
 
 ### Mock Runtime Modules
 
@@ -36,6 +31,7 @@ impl system::Trait for Test { ... }
 // Implement your custom module traits
 impl Trait for Test { ... }
 // Create a friendly alias to access your module
+type System = system::Module<Test>;
 type MyModule = Module<Test>;
 ```
 
@@ -81,7 +77,7 @@ fn new_test_ext() -> runtime_io::TestExternalities<Blake2Hasher> {
 
 You can set custom values for the genesis configuration for modules you include in your mock runtime.
 
-TODO
+**TODO**
 
 ### Block Production
 
@@ -124,7 +120,7 @@ TODO
 
 ### Examples
 
-TODO
+See the [mock runtime](https://substrate.dev/recipes/testing/mock.html) examples in the substrate recipes.
 
 ### References
 
