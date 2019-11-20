@@ -18,7 +18,63 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/tutorials/start-a-private-network/alicebob.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Alice and Bob Start Blockchain</h1></header><article><div><span><p>Before we generate our own keys, and start a truly unique Substrate network, let's learn the fundamentals by starting with a pre-defined network specification called <code>local</code> with two pre-defined (and definitely not private!) keys known as Alice and Bob.</p>
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Start a Private Network</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Start a Private Network<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/start-a-private-network/">Start a Private Network</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/start-a-private-network/compile">Compiling the Tools</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/next/tutorials/start-a-private-network/alicebob">Alice and Bob Start Blockchain</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/start-a-private-network/keygen">Generate Your Own Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/start-a-private-network/customchain">Creating Your Private Network</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/tutorials/start-a-private-network/alicebob.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Alice and Bob Start Blockchain</h1></header><article><div><span><p>Before we generate our own keys, and start a truly unique Substrate network, let's learn the fundamentals by starting with a pre-defined network specification called <code>local</code> with two pre-defined (and definitely not private!) keys known as Alice and Bob.</p>
 <h2><a class="anchor" aria-hidden="true" id="alice-starts-first"></a><a href="#alice-starts-first" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Alice Starts First</h2>
 <p>Alice (or whomever is playing her) should run this command from node-template repository root.</p>
 <pre><code class="hljs css language-bash"><span class="token comment"># Start Alice's node</span>
@@ -107,7 +163,7 @@
 <pre><code class="hljs"><span class="token function">Idle</span> <span class="token punctuation">(</span><span class="token number">1</span> peers<span class="token punctuation">)</span><span class="token punctuation">,</span> best<span class="token punctuation">:</span> #<span class="token function">1</span> <span class="token punctuation">(</span><span class="token number">0x9f1b</span>…9b57<span class="token punctuation">)</span><span class="token punctuation">,</span> finalized #<span class="token function">1</span> <span class="token punctuation">(</span><span class="token number">0x28be</span>…<span class="token number">45e5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> ⬇ <span class="token number">1</span><span class="token punctuation">.</span>7kiB<span class="token operator">/</span>s ⬆ <span class="token number">1</span><span class="token punctuation">.</span>4kiB<span class="token operator">/</span>s
 </code></pre>
 <p>This line shows that Bob has peered with Alice (<code>1 peers</code>), they have produced a block (<code>best: #1 (0x9f1b…9b57)</code>), and the block is  finalized (<code>finalized #1 (0x28be…45e5)</code>).</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 11/19/2019 by Joshy Orndorff</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#alice-starts-first">Alice Starts First</a></li><li><a href="#attach-a-ui">Attach a UI</a><ul class="toc-headings"><li><a href="#bob-joins-in">Bob Joins In</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 11/19/2019 by Joshy Orndorff</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/next/tutorials/start-a-private-network/compile"><span class="arrow-prev">← </span><span>Compiling the Tools</span></a><a class="docs-next button" href="/docs/en/next/tutorials/start-a-private-network/keygen"><span>Generate Your Own Keys</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#alice-starts-first">Alice Starts First</a></li><li><a href="#attach-a-ui">Attach a UI</a><ul class="toc-headings"><li><a href="#bob-joins-in">Bob Joins In</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
 #blast {
   position: fixed;
   width: 100%;

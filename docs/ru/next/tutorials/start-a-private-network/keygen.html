@@ -18,7 +18,63 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">Generate Your Own Keys</h1></header><article><div><span><p>Now that we know the fundamentals and the command line options, it's time to generate our own keys rather than using the well-known Alice and Bob keys. Each person who wants to participate in the blockchain should generate their own keys. This page explains several options for generating keys, and each participant only needs to choose one. Regardless of which option you choose, be sure to record all of the output from this section as you will need it later.</p>
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Start a Private Network</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Start a Private Network<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/next/tutorials/start-a-private-network/">Start a Private Network</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/next/tutorials/start-a-private-network/compile">Compiling the Tools</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/next/tutorials/start-a-private-network/alicebob">Alice and Bob Start Blockchain</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/ru/next/tutorials/start-a-private-network/keygen">Generate Your Own Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/next/tutorials/start-a-private-network/customchain">Creating Your Private Network</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">Generate Your Own Keys</h1></header><article><div><span><p>Now that we know the fundamentals and the command line options, it's time to generate our own keys rather than using the well-known Alice and Bob keys. Each person who wants to participate in the blockchain should generate their own keys. This page explains several options for generating keys, and each participant only needs to choose one. Regardless of which option you choose, be sure to record all of the output from this section as you will need it later.</p>
 <h2><a class="anchor" aria-hidden="true" id="option-1-subkey"></a><a href="#option-1-subkey" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Option 1: Subkey</h2>
 <p>Subkey is a tool the generates keys specifically designed to be used with Substrate.</p>
 <p>Begin by compiling and installing the utility. This may take up to 15 minutes or so.</p>
@@ -73,7 +129,7 @@ Secret phrase `keep matrix knee meat awake frown rubber position federal easily 
 <p>Secret phrase <code>hour doctor salmon enlist differ letter project design shove assault cost borrow</code> is account: Secret seed:      0x92ea498a16084a1e88abf1b3c31b03a545ee608bc2686e64eeb670a237ad427c Public key (hex): 0xf0aa3897e67b5f915530dba67d09126847f1b33bf48de7f33be61168699d590f Account ID:       0xf0aa3897e67b5f915530dba67d09126847f1b33bf48de7f33be61168699d590f SS58 Address:     5HWFv4hRpqmTjMFZ27Z5wr5pq1mTtPEzd3oQZCBGG6whHyLE</p>
 <h4><a class="anchor" aria-hidden="true" id="ed25519-4"></a><a href="#ed25519-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ED25519</h4>
 <p>Secret phrase <code>hour doctor salmon enlist differ letter project design shove assault cost borrow</code> is account: Secret seed:      0x92ea498a16084a1e88abf1b3c31b03a545ee608bc2686e64eeb670a237ad427c Public key (hex): 0x71cf6e16c213b4eb81afbb3be1dd1773f27347b21dfc83074f7304f93c832341 Account ID:       0x71cf6e16c213b4eb81afbb3be1dd1773f27347b21dfc83074f7304f93c832341 SS58 Address:     5EdvtSZ84bRvPkZKGTrmz38ChjT47VfCCH9NhTCGEksoCuca</p>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#option-1-subkey">Option 1: Subkey</a></li><li><a href="#option-2-polkadot-js-apps">Option 2: Polkadot-JS Apps</a></li><li><a href="#option-3-use-pre-generated-keys">Option 3: Use Pre-Generated Keys</a><ul class="toc-headings"><li><a href="#pair-1">Pair 1</a></li><li><a href="#pair-2">Pair 2</a></li><li><a href="#pair-3">Pair 3</a></li><li><a href="#pair-4">Pair 4</a></li><li><a href="#pair-5">Pair 5</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/next/tutorials/start-a-private-network/alicebob"><span class="arrow-prev">← </span><span>Alice and Bob Start Blockchain</span></a><a class="docs-next button" href="/docs/ru/next/tutorials/start-a-private-network/customchain"><span>Creating Your Private Network</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#option-1-subkey">Option 1: Subkey</a></li><li><a href="#option-2-polkadot-js-apps">Option 2: Polkadot-JS Apps</a></li><li><a href="#option-3-use-pre-generated-keys">Option 3: Use Pre-Generated Keys</a><ul class="toc-headings"><li><a href="#pair-1">Pair 1</a></li><li><a href="#pair-2">Pair 2</a></li><li><a href="#pair-3">Pair 3</a></li><li><a href="#pair-4">Pair 4</a></li><li><a href="#pair-5">Pair 5</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
 #blast {
   position: fixed;
   width: 100%;

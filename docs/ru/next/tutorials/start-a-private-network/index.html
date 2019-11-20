@@ -18,7 +18,63 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">Start a Private Network</h1></header><article><div><span><p>In this tutorial we will learn and practice how to start a blockchain network with a validator/authority set of your choosing using Substrate.</p>
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Start a Private Network</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Start a Private Network<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/docs/ru/next/tutorials/start-a-private-network/">Start a Private Network</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/next/tutorials/start-a-private-network/compile">Compiling the Tools</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/next/tutorials/start-a-private-network/alicebob">Alice and Bob Start Blockchain</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/next/tutorials/start-a-private-network/keygen">Generate Your Own Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/next/tutorials/start-a-private-network/customchain">Creating Your Private Network</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">Start a Private Network</h1></header><article><div><span><p>In this tutorial we will learn and practice how to start a blockchain network with a validator/authority set of your choosing using Substrate.</p>
 <p>You will need:</p>
 <ol>
 <li>A linux- or OSX-like shell</li>
@@ -30,7 +86,7 @@
 <li>Generate ed25519 and sr25519 key-pairs for use as a network authority</li>
 <li>Create and edit a chainspec json file</li>
 </ol>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><div><style>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/ru/next/tutorials/start-a-private-network/compile"><span>Compiling the Tools</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><div><style>
 #blast {
   position: fixed;
   width: 100%;

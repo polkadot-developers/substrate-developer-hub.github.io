@@ -18,7 +18,63 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">Compiling the Tools</h1></header><article><div><span><p>Substrate does not (yet) offer binary installation packages, so it must be compiled from source, which can be a time-consuming process. It is wise to start the compilation and then read the next few pages of the tutorial while your node is building. This tutorial will use the Substrate node template.</p>
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Start a Private Network</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Start a Private Network<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/next/tutorials/start-a-private-network/">Start a Private Network</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/ru/next/tutorials/start-a-private-network/compile">Compiling the Tools</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/next/tutorials/start-a-private-network/alicebob">Alice and Bob Start Blockchain</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/next/tutorials/start-a-private-network/keygen">Generate Your Own Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/next/tutorials/start-a-private-network/customchain">Creating Your Private Network</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">Compiling the Tools</h1></header><article><div><span><p>Substrate does not (yet) offer binary installation packages, so it must be compiled from source, which can be a time-consuming process. It is wise to start the compilation and then read the next few pages of the tutorial while your node is building. This tutorial will use the Substrate node template.</p>
 <pre><code class="hljs css language-bash"><span class="token comment"># Install rust prerequisites</span>
 <span class="token function">curl</span> https://getsubstrate.io -sSf <span class="token operator">|</span> <span class="token function">bash</span> -s -- --fast
 
@@ -32,7 +88,7 @@
 <span class="token comment"># Compile the node-template</span>
 cargo build --release
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><div><style>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/next/tutorials/start-a-private-network/index"><span class="arrow-prev">← </span><span>Start a Private Network</span></a><a class="docs-next button" href="/docs/ru/next/tutorials/start-a-private-network/alicebob"><span>Alice and Bob Start Blockchain</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><div><style>
 #blast {
   position: fixed;
   width: 100%;
