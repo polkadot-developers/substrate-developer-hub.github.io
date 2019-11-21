@@ -79,7 +79,7 @@ decl_module! {
 }
 ```
 
-The default behavior of this function is to call [`deposit_event`](https://substrate.dev/rustdocs/master/srml_system/struct.Module.html#method.deposit_event) from the SRML System module.
+The default behavior of this function is to call [`deposit_event`](https://substrate.dev/rustdocs/master/palette_system/struct.Module.html#method.deposit_event) from the SRML System module.
 
 This function places the event in the System module's runtime storage for that block. At the beginning of a new block, the System module automatically removes all events that were stored from the previous block.
 

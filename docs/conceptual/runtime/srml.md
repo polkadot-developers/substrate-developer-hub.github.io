@@ -19,7 +19,7 @@ functionality for a runtime.
 
 ### System Module
 
-The [System module](https://substrate.dev/rustdocs/master/srml_system/index.html) provides low-level types, storage, and
+The [System module](https://substrate.dev/rustdocs/master/palette_system/index.html) provides low-level types, storage, and
 functions for your blockchain. All other modules depend on the System module as the basis of your
 Substrate runtime.
 
@@ -296,7 +296,7 @@ a structure for making spending proposals from this pot.
 
 ### References
 
-- Visit the reference docs for the [System module](https://substrate.dev/rustdocs/master/srml_system/index.html).
+- Visit the reference docs for the [System module](https://substrate.dev/rustdocs/master/palette_system/index.html).
 
 - Visit the reference docs for the [Executive module](https://substrate.dev/rustdocs/master/srml_executive/index.html).
 

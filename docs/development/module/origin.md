@@ -65,4 +65,4 @@ You can look at the source code of the [Sudo module](https://substrate.dev/rustd
 
 ### References
 
-* Visit the reference docs for the [`RawOrigin` enum](https://substrate.dev/rustdocs/master/srml_system/enum.RawOrigin.html).
+* Visit the reference docs for the [`RawOrigin` enum](https://substrate.dev/rustdocs/master/palette_system/enum.RawOrigin.html).
