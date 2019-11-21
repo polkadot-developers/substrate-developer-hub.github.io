@@ -301,7 +301,7 @@ const usersList = [{
     name: "Dothereum",
     image: "/img/users/Dothereum.png",
     homepage: "http://dothereum.net/",
-    github: "https://github.com/dothereum/net",
+    github: "https://github.com/dothereum/dothereum",
     pinned: false,
     type: "chain",
   },
