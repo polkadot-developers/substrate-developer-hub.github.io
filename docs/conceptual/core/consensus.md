@@ -12,7 +12,7 @@ A blockchain runtime tallys simple two-option votes for a  DAO. When a new elect
 Consider a blockchain runtime that serves as a land registry for a futuristic nation-state. The registry keeps track of transfers of land ownership among citizens, and occasionally opens new plots of land to be claimed. For a particular newly opened land run, Alice could claim the plot, or Bob could claim it. But they cannot both claim it.
 
 ### Classic Double Spend Conflict
-A pure cryptocurrency, like Bitcoin, tracks the minting and spending of tokens. Alice holds a particular coin, so she can pay it to Bob. She could also pay that coin to Carol. But she cannot pay the same coin to bot Bob and Carol.
+A pure cryptocurrency, like Bitcoin, tracks the minting and spending of tokens. Alice holds a particular coin, so she can pay it to Bob. She could also pay that coin to Carol. But she cannot pay the same coin to both Bob and Carol.
 
 The unifying property in these examples is that there are multiple transactions, each of which is individually valid, but are mutually exclusive. Among the alternatives, a single transaction must be chosen.
 
