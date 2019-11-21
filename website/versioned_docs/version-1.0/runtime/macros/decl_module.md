@@ -6,7 +6,7 @@ original_id: decl_module
 
 The `decl_module!` macro defines the public functions exposed by your module, which act as entry points to accessing your runtime. These functions should work together to build a *generally* independent set of features and functionality which will be included with your blockchain's final runtime. The main logic of the macro is defined [here](/rustdocs/v1.0/srml_support/macro.decl_module.html).
 
-Each of the different components in the [Substrate Runtime Module Library](https://github.com/paritytech/substrate/tree/master/srml) (SRML) is an example of a Runtime Module.
+Each of the different components in the [Substrate Runtime Module Library](https://github.com/paritytech/substrate/tree/master/pallete) (SRML) is an example of a Runtime Module.
 
 We will start by looking at the `decl_module` macro in it's most simple form:
 
