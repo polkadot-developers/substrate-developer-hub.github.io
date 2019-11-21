@@ -263,7 +263,7 @@ let mut contract_config = ContractConfig {
 contract_config.current_schedule.enable_println = true;
 ```
 
-Note that you can tweak these numbers to your needs, but these are the values set at the [genesis configuration of the main Substrate node](https://github.com/paritytech/substrate/blob/master/node/cli/src/chain_spec.rs). You should place that code block into the `testnet_genesis` function, and then in the `GenesisConfig` object, add:
+Note that you can tweak these numbers to your needs, but these are the values set at the [genesis configuration of the main Substrate node](https://github.com/paritytech/substrate/blob/master/bin/node/cli/src/chain_spec.rs). You should place that code block into the `testnet_genesis` function, and then in the `GenesisConfig` object, add:
 
 ```rust
 GenesisConfig {

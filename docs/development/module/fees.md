@@ -278,7 +278,7 @@ payment module drawing inspiration from Transaction Payment.
 ### Learn More
 
 - Dedicated [weight documentation](conceptual/runtime/weight.md)
-- [Example module](https://github.com/paritytech/substrate/blob/master/srml/example/src/lib.rs)
+- [Example module](https://github.com/paritytech/substrate/blob/master/palette/example/src/lib.rs)
 - [SignedExtension](/rustdocs/master/sr_primitives/traits/trait.SignedExtension.html)
 
 ### Examples

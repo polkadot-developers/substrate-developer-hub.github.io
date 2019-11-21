@@ -261,6 +261,6 @@ Signature verifies correctly.
 
 ## More Subkey to Explore
 
-Learn more by running `subkey help` or see the [README](https://github.com/paritytech/substrate/tree/master/subkey).
+Learn more by running `subkey help` or see the [README](https://github.com/paritytech/substrate/tree/master/bin/subkey).
 
 Key pairs can also be generated in the [PolkadotJS Apps UI](https://github.com/polkadot-js/apps). Try creating keys with the UI and restoring them with `subkey` or vice versa.

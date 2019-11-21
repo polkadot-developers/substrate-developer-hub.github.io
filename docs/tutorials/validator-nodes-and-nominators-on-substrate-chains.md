@@ -30,7 +30,7 @@ curl https://getsubstrate.io -sSf | sh
 
 You will also need to set up a few more repositories into your working folder which were used in the demo:
 
- * [Substrate Node Template](https://github.com/paritytech/substrate/blob/master/node-template/)
+ * [Substrate Node Template](https://github.com/paritytech/substrate/tree/master/bin/node-template)
  * [Substrate UI](https://github.com/paritytech/substrate-ui)
  * [Polkadot-JS Apps](https://github.com/polkadot-js/apps)
 
@@ -54,7 +54,7 @@ polkadot-js-apps-new
 
 ## Step 1: Integrate Substrate SRML 'Referenda' and 'Staking' Modules into the Substrate Node's Runtime
 
-We're keen to use some 'governance' and 'staking' mechanisms, but we're stumped because we can't find anything related in the [Substrate Node Template](https://github.com/paritytech/substrate/blob/master/node-template/) code that we used to create a minimal Substrate Node chain.
+We're keen to use some 'governance' and 'staking' mechanisms, but we're stumped because we can't find anything related in the [Substrate Node Template](https://github.com/paritytech/substrate/tree/master/bin/node-template) code that we used to create a minimal Substrate Node chain.
 ![todo](https://files.readme.io/7dcac0b-Screen_Shot_2018-11-18_at_15.31.36.png)
 
 Fortunately we were tipped by an insider who confirmed that the 'democracy' and 'staking' modules that we need aren't yet contained in the Substrate Node's Runtime that we setup in the directory `~/code/paritytech/my-substrate-node-template-1`.

@@ -67,7 +67,7 @@ Runtime Module Library (SRML):
 ### Examples
 
 - See how these generic types are implemented [in the Substrate
-  node](https://github.com/paritytech/substrate/blob/master/node/runtime/src/lib.rs).
+  node](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs).
 
 ### References
 

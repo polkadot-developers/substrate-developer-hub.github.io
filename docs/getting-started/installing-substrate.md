@@ -22,8 +22,8 @@ This command will install all the dependencies required to build a Substrate nod
 
 In addition to all of the items installed via the fast installation, the full installation will also install two Substrate binaries to your computer:
 
-* [subkey](https://github.com/paritytech/substrate/tree/master/subkey): a command line utility that generates or restores Substrate keys.
-* [Substrate node](https://github.com/paritytech/substrate/tree/master/node): a copy of the main node included with Substrate, allowing you to easily connect to the Substrate test-net.
+* [subkey](https://github.com/paritytech/substrate/tree/master/bin/subkey): a command line utility that generates or restores Substrate keys.
+* [Substrate node](https://github.com/paritytech/substrate/tree/master/bin/node): a copy of the main node included with Substrate, allowing you to easily connect to the Substrate test-net.
 
 You can do the full installation by omitting the `--fast` flag:
 

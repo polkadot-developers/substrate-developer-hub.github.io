@@ -60,7 +60,7 @@ operational class.
   weights](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/modules/weights)
   and custom
   [WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/runtimes/weight-fee-runtime).
-- The [srml-example](https://github.com/paritytech/substrate/blob/master/srml/example/src/lib.rs)
+- The [srml-example](https://github.com/paritytech/substrate/blob/master/palette/example/src/lib.rs)
   module.
 
 ### Examples
@@ -72,6 +72,6 @@ operational class.
 ### References
 
 - Take a look at the [SRML Transaction Payment
-  module](https://github.com/paritytech/substrate/blob/master/srml/transaction-payment/src/lib.rs).
+  module](https://github.com/paritytech/substrate/blob/master/palette/transaction-payment/src/lib.rs).
 - Find info about weights including the `SimpleDispatchInfo` enum in
-  [weights.rs](https://github.com/paritytech/substrate/blob/master/core/sr-primitives/src/weights.rs).
+  [weights.rs](https://github.com/paritytech/substrate/blob/master/primitives/sr-primitives/src/weights.rs).
