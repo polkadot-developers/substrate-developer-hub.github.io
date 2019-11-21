@@ -50,7 +50,7 @@ Finally, if open your browser to `http://localhost:8000`, you should be able to 
 
 ## Step 2: Add Alice to your network
 
-Alice is a hard-coded account in your blockchain's [genesis block configuration](https://github.com/paritytech/substrate/blob/master/node-template/src/chain_spec.rs#L43). To make your life easier, this account is automatically pre-funded with currency and made a "super user" to your blockchain's upgrade system.
+Alice is a hard-coded account in your blockchain's [genesis block configuration](https://github.com/paritytech/substrate/blob/master/bin/node-template/src/chain_spec.rs#L43). To make your life easier, this account is automatically pre-funded with currency and made a "super user" to your blockchain's upgrade system.
 
 To access the "Alice" account, go to the `Wallet` section of the Substrate UI, and add Alice using her name and seed URI: `//Alice`.
 

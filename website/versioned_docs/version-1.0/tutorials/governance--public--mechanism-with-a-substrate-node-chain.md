@@ -77,7 +77,7 @@ We're reminded of the advantages of the **Substrate ([SRML](overview/glossary.md
 
 ## Step 2: Modify Governance Configuration
 
-* **FIXME**: show how to [increase the Voting Period](https://github.com/polkadot-js/apps/wiki/Troubleshooting) before running the Substrate Node, and how to change the value when using https://github.com/paritytech/substrate/blob/master/node-template/ in the integrated 'governance' module and configuration
+* **FIXME**: show how to [increase the Voting Period](https://github.com/polkadot-js/apps/wiki/Troubleshooting) before running the Substrate Node, and how to change the value when using https://github.com/paritytech/substrate/blob/master/bin/node-template/ in the integrated 'governance' module and configuration
 
 ## Step 3: Launch a Substrate Node Blockchain
 
