@@ -19,7 +19,7 @@ functionality for a runtime.
 
 ### System Module
 
-The [System module](/rustdocs/master/srml_system/index.html) provides low-level types, storage, and
+The [System module](https://substrate.dev/rustdocs/master/srml_system/index.html) provides low-level types, storage, and
 functions for your blockchain. All other modules depend on the System module as the basis of your
 Substrate runtime.
 
@@ -46,12 +46,12 @@ the origin of an extrinsic, and more.
 
 ### Executive Module
 
-The [Executive module](/rustdocs/master/srml_executive/index.html) acts as the orchestration layer
+The [Executive module](https://substrate.dev/rustdocs/master/srml_executive/index.html) acts as the orchestration layer
 for the runtime. It dispatches incoming extrinsic calls to the respective modules in the runtime.
 
 ### Support Library
 
-The [SRML support library](/rustdocs/master/srml_support/index.html) is a collection of Rust macros,
+The [SRML support library](https://substrate.dev/rustdocs/master/srml_support/index.html) is a collection of Rust macros,
 types, traits, and functions that simplify the development of Substrate runtime modules.
 
 The support macros expand at compile time to generate code which is used by the runtime and reduce
@@ -72,14 +72,14 @@ The SRML contains a set of prebuilt runtime modules that can be used in your Sub
 
 The Assets module is a simple, secure module for dealing with fungible assets.
 
-* [Docs](/rustdocs/master/srml_assets/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_assets/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/assets/src/lib.rs)
 
 ### Aura
 
 The Aura module extends Aura consensus by managing offline reporting.
 
-* [Docs](/rustdocs/master/srml_aura/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_aura/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/aura/src/lib.rs)
 
 ### Authority Discovery
@@ -88,14 +88,14 @@ The Authority Discovery module is used by `core/authority-discovery` to retrieve
 authorities, learn its own authority id, as well as to sign and verify messages to and from other
 authorities.
 
-* [Docs](/rustdocs/master/srml_authority_discovery/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_authority_discovery/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/authority-discovery/src/lib.rs)
 
 ### Authorship
 
 The Authorship module tracks the current author of the block and recent uncles.
 
-* [Docs](/rustdocs/master/srml_authorship/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_authorship/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/authorship/src/lib.rs)
 
 ### BABE
@@ -103,14 +103,14 @@ The Authorship module tracks the current author of the block and recent uncles.
 The BABE module extends BABE consensus by collecting on-chain randomness from VRF outputs and
 managing epoch transitions.
 
-* [Docs](/rustdocs/master/srml_babe/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_babe/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/babe/src/lib.rs)
 
 ### Balances
 
 The Balances module provides functionality for handling accounts and balances.
 
-* [Docs](/rustdocs/master/srml_balances/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_balances/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/balances/src/lib.rs)
 
 ### Collective
@@ -118,7 +118,7 @@ The Balances module provides functionality for handling accounts and balances.
 The Collective module allows a set of account IDs to make their collective feelings known through
 dispatched calls from specialized origins.
 
-* [Docs](/rustdocs/master/srml_collective/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_collective/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/collective/src/lib.rs)
 
 ### Contracts
@@ -126,7 +126,7 @@ dispatched calls from specialized origins.
 The Contracts module provides functionality for the runtime to deploy and execute WebAssembly
 smart-contracts.
 
-* [Docs](/rustdocs/master/srml_contracts/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_contracts/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/contracts/src/lib.rs)
 
 ### Democracy
@@ -134,7 +134,7 @@ smart-contracts.
 The Democracy module provides a democratic system that handles administration of general stakeholder
 voting.
 
-* [Docs](/rustdocs/master/srml_democracy/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_democracy/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/democracy/src/lib.rs)
 
 ### Elections Phragmen
@@ -142,14 +142,14 @@ voting.
 The Phragmen Elections module is an election module based on [sequential
 phragmen](https://research.web3.foundation/en/latest/polkadot/NPoS/4.%20Sequential%20Phragm%C3%A9n%E2%80%99s%20method/).
 
-* [Docs](/rustdocs/master/srml_elections_phragmen/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_elections_phragmen/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/elections-phragmen/src/lib.rs)
 
 ### Elections
 
 The Elections module is an election module for stake-weighted membership selection of a collective.
 
-* [Docs](/rustdocs/master/srml_elections/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_elections/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/elections/src/lib.rs)
 
 ### EVM
@@ -157,7 +157,7 @@ The Elections module is an election module for stake-weighted membership selecti
 The EVM Module is an [Ethereum](https://en.wikipedia.org/wiki/Ethereum) virtual machine (EVM)
 execution module for Substrate.
 
-* [Docs](/rustdocs/master/srml_evm/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_evm/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/evm/src/lib.rs)
 
 ### Example
@@ -165,21 +165,21 @@ execution module for Substrate.
 The Example module is a simple example of a runtime module demonstrating concepts, APIs and
 structures common to most runtime modules.
 
-* [Docs](/rustdocs/master/srml_example/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_example/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/example/src/lib.rs)
 
 ### Finality Tracker
 
 The Finality Tracker module tracks the last finalized block, as perceived by block authors.
 
-* [Docs](/rustdocs/master/srml_finality_tracker/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_finality_tracker/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/finality-tracker/src/lib.rs)
 
 ### Generic Asset
 
 The Generic Asset module provides functionality for handling accounts and asset balances.
 
-* [Docs](/rustdocs/master/srml_generic_asset/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_generic_asset/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/generic-asset/src/lib.rs)
 
 ### GRANDPA
@@ -187,7 +187,7 @@ The Generic Asset module provides functionality for handling accounts and asset 
 The GRANDPA module extends GRANDPA consensus by managing the GRANDPA authority set ready for the
 native code.
 
-* [Docs](/rustdocs/master/srml_grandpa/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_grandpa/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/grandpa/src/lib.rs)
 
 ### I'm Online
@@ -195,7 +195,7 @@ native code.
 The I'm Online module allows validators to gossip a heartbeat transaction with each new session to
 signal that the node is online in the current era.
 
-* [Docs](/rustdocs/master/srml_im_online/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_im_online/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/im-online/src/lib.rs)
 
 ### Indices
@@ -203,7 +203,7 @@ signal that the node is online in the current era.
 The Indices module allocates indices for newly created accounts. An index is a short form of an
 address.
 
-* [Docs](/rustdocs/master/srml_indices/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_indices/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/indices/src/lib.rs)
 
 ### Membership
@@ -211,14 +211,14 @@ address.
 The Membership module allows control of membership of a set of `AccountId`s, useful for managing
 membership of a collective.
 
-* [Docs](/rustdocs/master/srml_membership/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_membership/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/membership/src/lib.rs)
 
 ### Offences
 
 The Offences module tracks reported offences.
 
-* [Docs](/rustdocs/master/srml_offences/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_offences/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/offences/src/lib.rs)
 
 ### Randomness Collective Flip
@@ -226,7 +226,7 @@ The Offences module tracks reported offences.
 The Randomness Collective Flip module provides a `random` function that generates low-influence
 random values based on the block hashes from the previous `81` blocks.
 
-* [Docs](/rustdocs/master/srml_randomness_collective_flip/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_randomness_collective_flip/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/randomness-collective-flip/src/lib.rs)
 
 ### Scored Pool
@@ -234,7 +234,7 @@ random values based on the block hashes from the previous `81` blocks.
 The Scored Pool module maintains a scored membership pool where the highest scoring entities are
 made members.
 
-* [Docs](/rustdocs/master/srml_scored_pool/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_scored_pool/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/scored-pool/src/lib.rs)
 
 ### Session
@@ -242,14 +242,14 @@ made members.
 The Session module allows validators to manage their session keys, provides a function for changing
 the session length, and handles session rotation.
 
-* [Docs](/rustdocs/master/srml_session/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_session/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/session/src/lib.rs)
 
 ### Staking
 
 The Staking module is used to manage funds at stake by network maintainers.
 
-* [Docs](/rustdocs/master/srml_staking/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_staking/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/staking/src/lib.rs)
 
 ### Sudo
@@ -257,14 +257,14 @@ The Staking module is used to manage funds at stake by network maintainers.
 The Sudo module allows for a single account (called the "sudo key") to execute dispatchable
 functions that require a `Root` origin or designate a new account to replace them as the sudo key.
 
-* [Docs](/rustdocs/master/srml_sudo/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_sudo/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/sudo/src/lib.rs)
 
 ### Timestamp
 
 The Timestamp module provides functionality to get and set the on-chain time.
 
-* [Docs](/rustdocs/master/srml_timestamp/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_timestamp/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/timestamp/src/lib.rs)
 
 ### Transaction Payment
@@ -272,7 +272,7 @@ The Timestamp module provides functionality to get and set the on-chain time.
 The Transaction Payment module provides the basic logic needed to pay the absolute minimum amount
 needed for a transaction to be included.
 
-* [Docs](/rustdocs/master/srml_transaction_payment/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_transaction_payment/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/transaction-payment/src/lib.rs)
 
 ### Treasury
@@ -280,7 +280,7 @@ needed for a transaction to be included.
 The Treasury module provides a "pot" of funds that can be managed by stakeholders in the system and
 a structure for making spending proposals from this pot.
 
-* [Docs](/rustdocs/master/srml_treasury/index.html)
+* [Docs](https://substrate.dev/rustdocs/master/srml_treasury/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/palette/treasury/src/lib.rs)
 
 ## Next Steps
@@ -296,9 +296,9 @@ a structure for making spending proposals from this pot.
 
 ### References
 
-- Visit the reference docs for the [System module](/rustdocs/master/srml_system/index.html).
+- Visit the reference docs for the [System module](https://substrate.dev/rustdocs/master/srml_system/index.html).
 
-- Visit the reference docs for the [Executive module](/rustdocs/master/srml_executive/index.html).
+- Visit the reference docs for the [Executive module](https://substrate.dev/rustdocs/master/srml_executive/index.html).
 
 - Visit the reference docs for the [SRML support
   library](https://substrate.dev/rustdocs/master/srml_support/index.html).

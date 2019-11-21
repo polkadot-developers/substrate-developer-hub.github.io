@@ -6,7 +6,7 @@ original_id: adding-a-module-to-your-runtime
 
 The [Substrate node template](https://github.com/paritytech/substrate/tree/v1.0/node-template) provides a minimal working runtime which you can use to quickly get started building your own custom blockchain. However, in the attempts to remain minimal, it does not include most of the modules in the Substrate runtime module library ([SRML](overview/glossary.md#srml-substrate-runtime-module-library)).
 
-This guide will show you how you can add the [Contract module](/rustdocs/v1.0/srml_contract/index.html) to your runtime in order to allow your blockchain to support Wasm smart contracts. You can follow similar patterns to add additional modules from the SRML to your runtime, however you should note that each module can be a little different in terms of the specific settings needed to import and use it correctly.
+This guide will show you how you can add the [Contract module](https://substrate.dev/rustdocs/v1.0/srml_contract/index.html) to your runtime in order to allow your blockchain to support Wasm smart contracts. You can follow similar patterns to add additional modules from the SRML to your runtime, however you should note that each module can be a little different in terms of the specific settings needed to import and use it correctly.
 
 ## Prerequisites
 
@@ -40,7 +40,7 @@ Remember to stop your node with `control + C`!
 
 The first thing you need to do to add the Contract module is to import the `srml_contracts` crate in your runtime's `Cargo.toml` file. If you want a proper primer into Cargo References, you should check out [their official documentation](https://doc.rust-lang.org/cargo/reference/index.html).
 
-Open `contract-chain/runtime/Cargo.toml` and you will see a file which lists all the dependencies your runtime has. For example, it depends on the [Balances module](/rustdocs/v1.0/srml_balances/index.html):
+Open `contract-chain/runtime/Cargo.toml` and you will see a file which lists all the dependencies your runtime has. For example, it depends on the [Balances module](https://substrate.dev/rustdocs/v1.0/srml_balances/index.html):
 
 ```rust
 [dependencies.balances]
@@ -151,7 +151,7 @@ If you have followed our [other basic tutorials](tutorials/creating-your-first-s
 
 ### Implementing the Contract Trait
 
-To figure out what we need to implement, you can take a look at the [`srml_contract::Trait` documentation](/rustdocs/v1.0/srml_contract/trait.Trait.html) or the [Contract module source code](https://github.com/paritytech/substrate/blob/v1.0/srml/contract/src/lib.rs). For our runtime, the implementation will look like this:
+To figure out what we need to implement, you can take a look at the [`srml_contract::Trait` documentation](https://substrate.dev/rustdocs/v1.0/srml_contract/trait.Trait.html) or the [Contract module source code](https://github.com/paritytech/substrate/blob/v1.0/srml/contract/src/lib.rs). For our runtime, the implementation will look like this:
 
 ```rust
 impl contract::Trait for Runtime {

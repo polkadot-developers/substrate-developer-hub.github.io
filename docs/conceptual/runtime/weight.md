@@ -12,7 +12,7 @@ covered in the [Fee Developer document](development/module/fees.md).
 
 Weights represent the _limited_ resources of your blockchain, for example computational cycles,
 memory, storage, etc. A custom implementation may use complex structures to express this. Substrate
-weights are simply a [numeric value](/rustdocs/master/sr_primitives/weights/type.Weight.html).
+weights are simply a [numeric value](https://substrate.dev/rustdocs/master/sr_primitives/weights/type.Weight.html).
 
 A weight calculation should always:
 
@@ -40,13 +40,13 @@ filled with too many transactions. While processing transactions within a block,
 accumulates both the total length of the block (sum of encoded transactions in bytes) and the total
 weight of the block. If either of these numbers surpass the limits, no further transactions are
 accepted in that block. These limits are defined in
-[`MaximumBlockLength`](/rustdocs/master/srml_system/trait.Trait.html#associatedtype.MaximumBlockLength)
+[`MaximumBlockLength`](https://substrate.dev/rustdocs/master/srml_system/trait.Trait.html#associatedtype.MaximumBlockLength)
 and
-[`MaximumBlockWeight`](/rustdocs/master/srml_system/trait.Trait.html#associatedtype.MaximumBlockLength).
+[`MaximumBlockWeight`](https://substrate.dev/rustdocs/master/srml_system/trait.Trait.html#associatedtype.MaximumBlockLength).
 
 One important note about these limits is that a portion of them are reserved for the `Operational`
 dispatch class. This rule applies to both of the limits and the ratio can be found in
-[`AvailableBlockRatio`](/rustdocs/master/srml_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
+[`AvailableBlockRatio`](https://substrate.dev/rustdocs/master/srml_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
 
 For example, if the block length limit is 1 megabyte and the ratio is set to 80%, all transactions
 can fill the first 800 kilobytes of the block while the last 200 can only be filled by the

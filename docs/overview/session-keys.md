@@ -21,7 +21,7 @@ pub struct SessionKeys {
 
 > **Note:** This code is just an example of the Substrate node at the time of writing. Refer to the runtime for the most up-to-date implementation.
 
-The default Substrate node implements Session keys in the [Session module](/rustdocs/v1.0/srml_session/index.html).
+The default Substrate node implements Session keys in the [Session module](https://substrate.dev/rustdocs/v1.0/srml_session/index.html).
 
 ## Generation and Use
 

@@ -188,8 +188,8 @@ influence your decision on the kinds of situations you may want to use these dif
 
 ### References
 
-- Visit the reference docs for the [Contracts module](/rustdocs/master/srml_contracts/index.html).
+- Visit the reference docs for the [Contracts module](https://substrate.dev/rustdocs/master/srml_contracts/index.html).
 
-- Visit the reference docs for the [EVM module](/rustdocs/master/srml_evm/index.html).
+- Visit the reference docs for the [EVM module](https://substrate.dev/rustdocs/master/srml_evm/index.html).
 
 - Take a look at the [repository for ink!](https://github.com/paritytech/ink).

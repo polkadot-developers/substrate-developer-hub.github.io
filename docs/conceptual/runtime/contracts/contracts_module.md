@@ -118,7 +118,7 @@ blockchain.
 ### References
 
 - Visit the reference docs for the [SRML Contracts
-  module](/rustdocs/master/srml_contracts/index.html).
+  module](https://substrate.dev/rustdocs/master/srml_contracts/index.html).
 
 - Take a look at the [repository for `wasmi`](https://github.com/paritytech/wasmi).
 

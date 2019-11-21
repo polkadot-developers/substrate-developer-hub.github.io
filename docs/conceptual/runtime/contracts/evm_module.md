@@ -55,6 +55,6 @@ to support earlier hard fork configurations.
 
 ### References
 
-- Visit the reference docs for the [EVM module](/rustdocs/master/srml_evm/index.html).
+- Visit the reference docs for the [EVM module](https://substrate.dev/rustdocs/master/srml_evm/index.html).
 
 - Visit the reference docs for [SputnikVM's `evm` crate](https://docs.rs/evm/).
