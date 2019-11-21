@@ -171,7 +171,7 @@ You might use `on_initalise()` to help you with tasks that need to run before an
 
 ## Privileged Functions
 
-A privileged function is one that can only be called when the origin of the call is `Root`. An example of a privileged function can be found in the [`Consensus` module](https://github.com/paritytech/substrate/blob/master/srml/consensus/src/lib.rs) for a runtime upgrade:
+A privileged function is one that can only be called when the origin of the call is `Root`. An example of a privileged function can be found in the [`Consensus` module](https://github.com/paritytech/substrate/blob/master/pallete/consensus/src/lib.rs) for a runtime upgrade:
 
 ```rust
 /// Set the new code.
@@ -195,4 +195,4 @@ Where `Result` and `Ok(())` were automatically added as mentioned in [Function R
 
 Different runtimes have different reasons for allow privileged calls to be executed. Because it's privileged, we can assume it's a one-off operation and substantial processing/storage/memory can be used without worrying about gameability or attack scenarios.
 
-Normally, functions like this would be called via the `sudo()` function in the [`Sudo` module](https://github.com/paritytech/substrate/blob/master/srml/sudo/src/lib.rs) which can construct a `Root` call based on a proposal coming from a user.
+Normally, functions like this would be called via the `sudo()` function in the [`Sudo` module](https://github.com/paritytech/substrate/blob/master/pallete/sudo/src/lib.rs) which can construct a `Root` call based on a proposal coming from a user.
