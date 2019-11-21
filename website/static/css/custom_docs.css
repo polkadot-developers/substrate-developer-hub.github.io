@@ -1,3 +1,29 @@
+ol {
+ counter-reset: stepN;
+ list-style: none;
+ padding-left: 40px;
+}
+ol > li {
+ margin: 0 0 0.5rem 0;
+ counter-increment: stepN;
+ position: relative;
+}
+ol > li::before {
+ content: counter(stepN);
+ position: absolute;
+ --size: 2em;
+ left: calc(-1 * var(--size) - 10px);
+ line-height: calc(var(--size) - 0.1em);
+ width: var(--size);
+ height: var(--size);
+ top: calc(var(--size)/-6);
+ border: 1px solid #eaeaea;
+ border-radius: 50%;
+ text-align: center;
+ /* font-weight: bold; */
+ font-family: 'Roboto Mono', monospace;
+}
+
 .docsNavContainer {
  border-right: 1px solid #efefef;
 }
