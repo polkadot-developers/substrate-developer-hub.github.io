@@ -113,8 +113,8 @@ View the following Substrate recipes to find examples of how runtime events are 
 
 ### References
 
-* Visit the reference docs for the [`decl_event!` macro](https://substrate.dev/rustdocs/master/srml_support/macro.decl_event.html).
+* Visit the reference docs for the [`decl_event!` macro](https://substrate.dev/rustdocs/master/palette_support/macro.decl_event.html).
 
-* Visit the reference docs for the [`decl_module!` macro](https://substrate.dev/rustdocs/master/srml_support/macro.decl_module.html).
+* Visit the reference docs for the [`decl_module!` macro](https://substrate.dev/rustdocs/master/palette_support/macro.decl_module.html).
 
-* Visit the reference docs for the [`construct_runtime!` macro](https://substrate.dev/rustdocs/master/srml_support/macro.construct_runtime.html).
+* Visit the reference docs for the [`construct_runtime!` macro](https://substrate.dev/rustdocs/master/palette_support/macro.construct_runtime.html).

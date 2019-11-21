@@ -238,7 +238,7 @@ Similarly, `type DetermineContractAddress` requires the trait `ContractAddressFo
 
 ### Adding Contract to the Construct Runtime Macro
 
-Next, we need to add the module to the `construct_runtime!` macro. For this, we need to determine the types that the module exposes so that we can tell the our runtime that they exist. The complete list of possible types can be found in the [`construct_runtime!` macro documentation](https://substrate.dev/rustdocs/master/srml_support/macro.construct_runtime.html).
+Next, we need to add the module to the `construct_runtime!` macro. For this, we need to determine the types that the module exposes so that we can tell the our runtime that they exist. The complete list of possible types can be found in the [`construct_runtime!` macro documentation](https://substrate.dev/rustdocs/master/palette_support/macro.construct_runtime.html).
 
 If we look at the Contracts module in detail, we know it has:
 

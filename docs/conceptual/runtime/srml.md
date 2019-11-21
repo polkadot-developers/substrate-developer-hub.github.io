@@ -51,7 +51,7 @@ for the runtime. It dispatches incoming extrinsic calls to the respective module
 
 ### Support Library
 
-The [SRML support library](https://substrate.dev/rustdocs/master/srml_support/index.html) is a collection of Rust macros,
+The [SRML support library](https://substrate.dev/rustdocs/master/palette_support/index.html) is a collection of Rust macros,
 types, traits, and functions that simplify the development of Substrate runtime modules.
 
 The support macros expand at compile time to generate code which is used by the runtime and reduce
@@ -301,4 +301,4 @@ a structure for making spending proposals from this pot.
 - Visit the reference docs for the [Executive module](https://substrate.dev/rustdocs/master/srml_executive/index.html).
 
 - Visit the reference docs for the [SRML support
-  library](https://substrate.dev/rustdocs/master/srml_support/index.html).
+  library](https://substrate.dev/rustdocs/master/palette_support/index.html).
