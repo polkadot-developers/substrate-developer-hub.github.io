@@ -26,7 +26,7 @@ One practical solution, and the one taken in Substrate, is to find a decentraliz
 
 ## Fork Choice Rules
 
-A block contains many transaction (technically it contains zero or more transactions), and a reference to its parent block. A blockchain is any block, and all of its parents recursively.
+A block contains many transactions (technically it contains zero or more transactions), and a reference to its parent block. A blockchain is any block, and all of its parents recursively.
 
 The first step to resolving conflicting transaction is insisting that no blockchain can ever have two conflicting transactions. If a block comes along that conflicts with one of its ancestors, that block is invalid, and the nodes in the network will reject it.
 
