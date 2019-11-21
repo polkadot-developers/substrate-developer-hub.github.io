@@ -34,7 +34,7 @@ cd ~/code/paritytech;\ncurl https://getsubstrate.io -sSf | sh
 
 You will also need to set up a few more repositories into your working folder which were used in the demo:
 
- * [Substrate Node Template](https://github.com/paritytech/substrate/blob/master/node-template/)
+ * [Substrate Node Template](https://github.com/paritytech/substrate/tree/master/bin/node-template)
  * [Polkadot-JS Apps](https://github.com/polkadot-js/apps)
 
 You can do that with some [script aliases](https://github.com/paritytech/substrate-up) that were loaded on your machine:
@@ -63,7 +63,7 @@ polkadot-js-apps-new
 
 ## Step 1: Integrate Substrate SRML 'Referenda' Module into Substrate Node Runtime
 
-We're keen to use some governance mechanisms, but we're stumped because we can't find anything 'governance' related in the [Substrate Node Template](https://github.com/paritytech/substrate/blob/master/node-template/) code that we used to create a minimal **Substrate Node chain**.
+We're keen to use some governance mechanisms, but we're stumped because we can't find anything 'governance' related in the [Substrate Node Template](https://github.com/paritytech/substrate/tree/master/bin/node-template) code that we used to create a minimal **Substrate Node chain**.
 
 Fortunately we were tipped by an insider who confirmed that the 'governance' modules that we need aren't yet contained in the Substrate Node's Runtime that we setup in the directory '~/code/paritytech/my-substrate-node-template-1'.
 
