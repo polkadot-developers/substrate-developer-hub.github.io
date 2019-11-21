@@ -52,7 +52,7 @@ TODO
 
 ### References
 
-* Visit the reference docs for the [Executive module](https://substrate.dev/rustdocs/master/srml_executive/index.html).
+* Visit the reference docs for the [Executive module](https://substrate.dev/rustdocs/master/pallet_executive/index.html).
 
 * Visit the reference docs for the [`decl_event!` macro](https://substrate.dev/rustdocs/master/palette_support/macro.decl_event.html).
 

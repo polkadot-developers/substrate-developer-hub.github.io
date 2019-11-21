@@ -25,13 +25,13 @@ These abstractions are:
   certain validator operations. They should never hold funds.
 
  > **Note:** Learn more about validators and nominators in the context of the Substrate's NPoS
- > [Staking module](https://substrate.dev/rustdocs/master/srml_staking/index.html).
+ > [Staking module](https://substrate.dev/rustdocs/master/pallet_staking/index.html).
 
 ## Account Keys
 
 A key pair can represent an account and control funds, like normal accounts that you would expect
 from other blockchains. In the context of Substrate's [Balances
-module](https://substrate.dev/rustdocs/master/srml_balances/index.html), these accounts must have a minimum amount (an
+module](https://substrate.dev/rustdocs/master/pallet_balances/index.html), these accounts must have a minimum amount (an
 "existential deposit") to exist in storage.
 
 Account keys are defined generically and made concrete in the runtime.
@@ -77,7 +77,7 @@ account (stake) and nominators. To do so, they create a certificate by signing t
 Controller key. Then, they inform the chain that this key represents their Controller key by
 publishing the Session certificate in a transaction on the chain.
 
-Substrate provides the [Session module](https://substrate.dev/rustdocs/master/srml_session/index.html), which allows
+Substrate provides the [Session module](https://substrate.dev/rustdocs/master/pallet_session/index.html), which allows
 validators to manage their session keys.
 
 ### Strongly Typed Wrappers

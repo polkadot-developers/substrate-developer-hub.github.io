@@ -4,7 +4,7 @@ title: "Adding a Module to Your Runtime"
 
 The [Substrate node template](https://github.com/paritytech/substrate/tree/master/bin/node-template) provides a minimal working runtime which you can use to quickly get started building your own custom blockchain. However, in the attempts to remain minimal, it does not include most of the modules in the Substrate runtime module library ([SRML](overview/glossary.md#srml-substrate-runtime-module-library)).
 
-This guide will show you how you can add the [Contracts module](https://substrate.dev/rustdocs/master/srml_contracts/index.html) to your runtime in order to allow your blockchain to support Wasm smart contracts. You can follow similar patterns to add additional modules from the SRML to your runtime, however you should note that each module can be a little different in terms of the specific settings needed to import and use it correctly.
+This guide will show you how you can add the [Contracts module](https://substrate.dev/rustdocs/master/pallet_contracts/index.html) to your runtime in order to allow your blockchain to support Wasm smart contracts. You can follow similar patterns to add additional modules from the SRML to your runtime, however you should note that each module can be a little different in terms of the specific settings needed to import and use it correctly.
 
 ## Prerequisites
 
@@ -42,7 +42,7 @@ Remember to stop your node with `control + C`!
 
 The first thing you need to do to add the Contracts module is to import the `srml_contracts` crate in your runtime's `Cargo.toml` file. If you want a proper primer into Cargo References, you should check out [their official documentation](https://doc.rust-lang.org/cargo/reference/index.html).
 
-Open `contracts-chain/runtime/Cargo.toml` and you will see a file which lists all the dependencies your runtime has. For example, it depends on the [Balances module](https://substrate.dev/rustdocs/master/srml_balances/index.html):
+Open `contracts-chain/runtime/Cargo.toml` and you will see a file which lists all the dependencies your runtime has. For example, it depends on the [Balances module](https://substrate.dev/rustdocs/master/pallet_balances/index.html):
 
 **`Cargo.toml`**
 
@@ -186,7 +186,7 @@ If you have followed our [other basic tutorials](tutorials/creating-your-first-s
 
 ### Implementing the Contract Trait
 
-To figure out what we need to implement, you can take a look at the SRML [`contracts::Trait` documentation](https://substrate.dev/rustdocs/master/srml_contracts/trait.Trait.html) or the [Contracts module source code](https://github.com/paritytech/substrate/blob/master/palette/contracts/src/lib.rs). For our runtime, the implementation will look like this:
+To figure out what we need to implement, you can take a look at the SRML [`contracts::Trait` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/trait.Trait.html) or the [Contracts module source code](https://github.com/paritytech/substrate/blob/master/palette/contracts/src/lib.rs). For our runtime, the implementation will look like this:
 
 **`runtime/src/lib.rs`**
 
@@ -302,7 +302,7 @@ Now, when the Balances module detects that the free balance of an account has re
 
 ## Genesis Configuration
 
-The last thing we need to do in order to get your node up and running is to establish a genesis configuration for the Contracts module. Not all modules will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`srml_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/master/srml_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contracts module. This definition is controlled in `contracts-chain/src/chain_spec.rs`. We need to modify this file to include the `ContractsConfig` type at the top:
+The last thing we need to do in order to get your node up and running is to establish a genesis configuration for the Contracts module. Not all modules will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`srml_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contracts module. This definition is controlled in `contracts-chain/src/chain_spec.rs`. We need to modify this file to include the `ContractsConfig` type at the top:
 
 **`src/chain_spec.rs`**
 

@@ -29,7 +29,7 @@ A weight calculation should always:
 The [System module](https://substrate.dev/rustdocs/master/palette_system/struct.Module.html) is
 responsible for accumulating the weight of each block as it gets executed and making sure that it
 does not exceed the limit. The [Transaction Payment
-module](https://substrate.dev/rustdocs/master/srml_transaction_payment/index.html) is responsible
+module](https://substrate.dev/rustdocs/master/pallet_transaction_payment/index.html) is responsible
 for interpreting these weights and deducting fees based upon them. The weighing function is part of
 the runtime so it can be upgraded if needed.
 
