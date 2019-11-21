@@ -202,7 +202,7 @@ cargo build --release
 <span class="token comment">// IMPORTANT: this should only be enabled on development chains!</span>
 contract_config<span class="token punctuation">.</span>current_schedule<span class="token punctuation">.</span>enable_println <span class="token operator">=</span> <span class="token keyword">true</span><span class="token punctuation">;</span>
 </code></pre>
-<p>Note that you can tweak these numbers to your needs, but these are the values set at the <a href="https://github.com/paritytech/substrate/blob/master/node/cli/src/chain_spec.rs">genesis configuration of the main Substrate node</a>. You should place that code block into the <code>testnet_genesis</code> function, and then in the <code>GenesisConfig</code> object, add:</p>
+<p>Note that you can tweak these numbers to your needs, but these are the values set at the <a href="https://github.com/paritytech/substrate/blob/master/bin/node/cli/src/chain_spec.rs">genesis configuration of the main Substrate node</a>. You should place that code block into the <code>testnet_genesis</code> function, and then in the <code>GenesisConfig</code> object, add:</p>
 <pre><code class="hljs css language-rust">GenesisConfig <span class="token punctuation">{</span>
     <span class="token punctuation">...</span>
     contract<span class="token punctuation">:</span> <span class="token function">Some</span><span class="token punctuation">(</span>contract_config<span class="token punctuation">)</span><span class="token punctuation">,</span>

@@ -38,7 +38,7 @@
 </code></pre>
 <p>You will also need to set up a few more repositories into your working folder which were used in the demo:</p>
 <ul>
-<li><a href="https://github.com/paritytech/substrate/blob/master/node-template/">Substrate Node Template</a></li>
+<li><a href="https://github.com/paritytech/substrate/tree/master/bin/node-template">Substrate Node Template</a></li>
 <li><a href="https://github.com/paritytech/substrate-ui">Substrate UI</a></li>
 <li><a href="https://github.com/polkadot-js/apps">Polkadot-JS Apps</a></li>
 </ul>
@@ -54,7 +54,7 @@ substrate-ui-new substrate my-substrate-node-template-1
 polkadot-js-apps-new
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="step-1-integrate-substrate-srml-referenda-and-staking-modules-into-the-substrate-node-s-runtime"></a><a href="#step-1-integrate-substrate-srml-referenda-and-staking-modules-into-the-substrate-node-s-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Step 1: Integrate Substrate SRML 'Referenda' and 'Staking' Modules into the Substrate Node's Runtime</h2>
-<p>We're keen to use some 'governance' and 'staking' mechanisms, but we're stumped because we can't find anything related in the <a href="https://github.com/paritytech/substrate/blob/master/node-template/">Substrate Node Template</a> code that we used to create a minimal Substrate Node chain. <img src="https://files.readme.io/7dcac0b-Screen_Shot_2018-11-18_at_15.31.36.png" alt="todo"></p>
+<p>We're keen to use some 'governance' and 'staking' mechanisms, but we're stumped because we can't find anything related in the <a href="https://github.com/paritytech/substrate/tree/master/bin/node-template">Substrate Node Template</a> code that we used to create a minimal Substrate Node chain. <img src="https://files.readme.io/7dcac0b-Screen_Shot_2018-11-18_at_15.31.36.png" alt="todo"></p>
 <p>Fortunately we were tipped by an insider who confirmed that the 'democracy' and 'staking' modules that we need aren't yet contained in the Substrate Node's Runtime that we setup in the directory <code>~/code/paritytech/my-substrate-node-template-1</code>.</p>
 <p>We're reminded of the advantages of the Substrate (<a href="/docs/zh-CN/next/overview/glossary#srml-substrate-runtime-module-library">SRML</a>). We'd like to plugin the 'Referenda' Module and the 'Staking' Module and associated configuration from this library into our Substrate Node's Runtime, and then tweak it to our liking.</p>
 <p><img src="https://files.readme.io/ebdb5e9-53b8dc8-Screen_Shot_2018-11-18_at_15.31.20.png" alt="todo"></p>
