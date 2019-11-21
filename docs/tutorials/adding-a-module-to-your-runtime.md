@@ -2,7 +2,7 @@
 title: "Adding a Module to Your Runtime"
 ---
 
-The [Substrate node template](https://github.com/paritytech/substrate/tree/master/node-template) provides a minimal working runtime which you can use to quickly get started building your own custom blockchain. However, in the attempts to remain minimal, it does not include most of the modules in the Substrate runtime module library ([SRML](overview/glossary.md#srml-substrate-runtime-module-library)).
+The [Substrate node template](https://github.com/paritytech/substrate/tree/master/bin/node-template) provides a minimal working runtime which you can use to quickly get started building your own custom blockchain. However, in the attempts to remain minimal, it does not include most of the modules in the Substrate runtime module library ([SRML](overview/glossary.md#srml-substrate-runtime-module-library)).
 
 This guide will show you how you can add the [Contracts module](https://substrate.dev/rustdocs/master/srml_contracts/index.html) to your runtime in order to allow your blockchain to support Wasm smart contracts. You can follow similar patterns to add additional modules from the SRML to your runtime, however you should note that each module can be a little different in terms of the specific settings needed to import and use it correctly.
 

@@ -14,7 +14,7 @@ To start, make sure your machine has a recent [node and npm](https://www.npmjs.c
 
 You will also need to set up a few more repositories into your working folder which were used in the demo:
 
- * [Substrate Node Template](https://github.com/paritytech/substrate/tree/master/node-template)
+ * [Substrate Node Template](https://github.com/paritytech/substrate/tree/master/bin/node-template)
  * [Substrate UI](https://github.com/paritytech/substrate-ui)
 
 You can do that with some [script aliases](https://github.com/paritytech/substrate-up) that were loaded on your machine. You may need to restart your terminal in order for these scripts and other Substrate commands to become available to you.
