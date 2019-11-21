@@ -53,7 +53,7 @@ function Seminar(props) {
           },
           {
             key: 'key',
-            href: 'https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx',
+            href: 'https://www.youtube.com/playlist?list=PLsBc7YjizKUwc3AcNb9oNZvtsN0QmAJPP',
             name: 'Previous Recordings'
           },
       ]}
@@ -90,7 +90,7 @@ function Seminar(props) {
           Is this related to Substrate Collaborative Learning?
         </h3>
         <p>
-          Yes! Substrate Collaborative Learning was the previous harder-to-pronounce iteration of Substrate Seminar. When we decided to start meeting every week, and have a more discoverable web presence, we rebranded. If you liked Substrate Collaborative Learning, you'll <em>love</em> Substrate Seminar.
+          Yes! Substrate Collaborative Learning was the previous harder-to-pronounce iteration of Substrate Seminar. When we decided to start meeting every week, and have a more discoverable web presence, we rebranded. If you liked Substrate Collaborative Learning, you'll <em>love</em> Substrate Seminar. The <a href="https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx">SCL recordings</a> are still available.
         </p>
         <h3>
           To learn more visit <a href="https://www.parity.io/substrate/" target="_blank">parity.io/substrate</a>
