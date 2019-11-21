@@ -74,4 +74,4 @@ operational class.
 - Take a look at the [SRML Transaction Payment
   module](https://github.com/paritytech/substrate/blob/master/pallete/transaction-payment/src/lib.rs).
 - Find info about weights including the `SimpleDispatchInfo` enum in
-  [weights.rs](https://github.com/paritytech/substrate/blob/master/core/sr-primitives/src/weights.rs).
+  [weights.rs](https://github.com/paritytech/substrate/blob/master/primitives/sr-primitives/src/weights.rs).
