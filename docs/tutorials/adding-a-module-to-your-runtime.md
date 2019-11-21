@@ -109,7 +109,7 @@ You can see that at the top of the file, we define that we will use `no_std` whe
 
 ### Importing the Contracts Module Crate
 
-Okay, now that we have covered the basics of crate features, we can actually import the Contracts module. The Contracts module is probably the most complicated module in the SRML, so it makes for a good example of some of the trickiness that can be involved when adding additional modules. To give you a hint as to what is to come, you should take a look at the [`Cargo.toml` file for the Contracts module](https://github.com/paritytech/substrate/blob/master/pallete/contracts/Cargo.toml).
+Okay, now that we have covered the basics of crate features, we can actually import the Contracts module. The Contracts module is probably the most complicated module in the SRML, so it makes for a good example of some of the trickiness that can be involved when adding additional modules. To give you a hint as to what is to come, you should take a look at the [`Cargo.toml` file for the Contracts module](https://github.com/paritytech/substrate/blob/master/palette/contracts/Cargo.toml).
 
 First we will add the new dependency by simply copying an existing module, and changing the values. So based on the `balances` import shown above, my `contracts` import will look like:
 
@@ -123,7 +123,7 @@ package = 'srml-contracts'
 rev = '<git-commit>' # e.g. commit: '3dedd246c62255ba6f9b777ecba318dfc2078d85'
 ```
 
-You [can see](https://github.com/paritytech/substrate/blob/master/pallete/contracts/Cargo.toml) that the Contracts module has `std` feature, thus we need to add that feature to our runtime:
+You [can see](https://github.com/paritytech/substrate/blob/master/palette/contracts/Cargo.toml) that the Contracts module has `std` feature, thus we need to add that feature to our runtime:
 
 **`Cargo.toml`**
 
@@ -186,7 +186,7 @@ If you have followed our [other basic tutorials](tutorials/creating-your-first-s
 
 ### Implementing the Contract Trait
 
-To figure out what we need to implement, you can take a look at the SRML [`contracts::Trait` documentation](https://substrate.dev/rustdocs/master/srml_contracts/trait.Trait.html) or the [Contracts module source code](https://github.com/paritytech/substrate/blob/master/pallete/contracts/src/lib.rs). For our runtime, the implementation will look like this:
+To figure out what we need to implement, you can take a look at the SRML [`contracts::Trait` documentation](https://substrate.dev/rustdocs/master/srml_contracts/trait.Trait.html) or the [Contracts module source code](https://github.com/paritytech/substrate/blob/master/palette/contracts/src/lib.rs). For our runtime, the implementation will look like this:
 
 **`runtime/src/lib.rs`**
 
@@ -227,14 +227,14 @@ To go into a bit more detail here, we see from the documentation that `type Curr
 
 ```rust
 // From the reference documentation, also found in `contracts` module:
-//   https://github.com/paritytech/substrate/blob/master/pallete/contracts/src/lib.rs
+//   https://github.com/paritytech/substrate/blob/master/palette/contracts/src/lib.rs
 
 type Currency: Currency<Self::AccountId>
 ```
 
 Fortunately, the Balances module implements this type, so we can simply reference `Balances` to gain access to it.
 
-Similarly, `type DetermineContractAddress` requires the trait `ContractAddressFor`. The Contracts module itself implements a type with this trait in `contract::SimpleAddressDeterminator`, thus we can use that implementation to satisfy our `contracts::Trait`. At this point, I really recommend you explore the source code of the [Contracts module](https://github.com/paritytech/substrate/blob/master/pallete/contract/src/lib.rs) if things don't make sense or you want to gain a deeper understanding.
+Similarly, `type DetermineContractAddress` requires the trait `ContractAddressFor`. The Contracts module itself implements a type with this trait in `contract::SimpleAddressDeterminator`, thus we can use that implementation to satisfy our `contracts::Trait`. At this point, I really recommend you explore the source code of the [Contracts module](https://github.com/paritytech/substrate/blob/master/palette/contract/src/lib.rs) if things don't make sense or you want to gain a deeper understanding.
 
 ### Adding Contract to the Construct Runtime Macro
 
@@ -276,7 +276,7 @@ In the case of the Contracts module, we actually want a hook when an account run
 
 ```rust
 // From the reference documentation, also found in `contracts` module:
-//   https://github.com/paritytech/substrate/blob/master/pallete/contracts/src/lib.rs
+//   https://github.com/paritytech/substrate/blob/master/palette/contracts/src/lib.rs
 
 impl<T: Trait> OnFreeBalanceZero<T::AccountId> for Module<T> {
     fn on_free_balance_zero(who: &T::AccountId) {

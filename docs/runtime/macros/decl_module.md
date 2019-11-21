@@ -4,7 +4,7 @@ title: "Declaring a Module!"
 
 The `decl_module!` macro defines the public functions exposed by your module, which act as entry points to accessing your runtime. These functions should work together to build a *generally* independent set of features and functionality which will be included with your blockchain's final runtime. The main logic of the macro is defined [here](/rustdocs/v1.0/srml_support/macro.decl_module.html).
 
-Each of the different components in the [Substrate Runtime Module Library](https://github.com/paritytech/substrate/tree/master/pallete) (SRML) is an example of a Runtime Module.
+Each of the different components in the [Substrate Runtime Module Library](https://github.com/paritytech/substrate/tree/master/palette) (SRML) is an example of a Runtime Module.
 
 We will start by looking at the `decl_module` macro in it's most simple form:
 
@@ -169,7 +169,7 @@ You might use `on_initalise()` to help you with tasks that need to run before an
 
 ## Privileged Functions
 
-A privileged function is one that can only be called when the origin of the call is `Root`. An example of a privileged function can be found in the [`Consensus` module](https://github.com/paritytech/substrate/blob/master/pallete/consensus/src/lib.rs) for a runtime upgrade:
+A privileged function is one that can only be called when the origin of the call is `Root`. An example of a privileged function can be found in the [`Consensus` module](https://github.com/paritytech/substrate/blob/master/palette/consensus/src/lib.rs) for a runtime upgrade:
 
 ```rust
 /// Set the new code.
@@ -193,4 +193,4 @@ Where `Result` and `Ok(())` were automatically added as mentioned in [Function R
 
 Different runtimes have different reasons for allow privileged calls to be executed. Because it's privileged, we can assume it's a one-off operation and substantial processing/storage/memory can be used without worrying about gameability or attack scenarios.
 
-Normally, functions like this would be called via the `sudo()` function in the [`Sudo` module](https://github.com/paritytech/substrate/blob/master/pallete/sudo/src/lib.rs) which can construct a `Root` call based on a proposal coming from a user.
+Normally, functions like this would be called via the `sudo()` function in the [`Sudo` module](https://github.com/paritytech/substrate/blob/master/palette/sudo/src/lib.rs) which can construct a `Root` call based on a proposal coming from a user.
