@@ -18,7 +18,7 @@ The unifying property in these examples is that there are multiple transactions,
 
 
 ## Conflict Exclusion
-In centralized systems, the central authority chooses among mutually exclusive alternatives by recording transactions in the order it sees them, and choosing the first of the competing alternatives when a conflict arises. In decentralized systems, the nodes will see transaction is different orders, and thus they must use a more elaborate method to exclude transactions. As a further complication, blockchain networks strive to be fault tolerant, which means that they should continue to provide consistent data even if up to one third of participants are not following the rules.
+In centralized systems, the central authority chooses among mutually exclusive alternatives by recording transactions in the order it sees them, and choosing the first of the competing alternatives when a conflict arises. In decentralized systems, the nodes will see transactions in different orders, and thus they must use a more elaborate method to exclude transactions. As a further complication, blockchain networks strive to be fault tolerant, which means that they should continue to provide consistent data even if up to one third of participants are not following the rules.
 
 One practical solution, and the one taken in Substrate, is to find a decentralized way to agree on transaction ordering, and then resolve conflicts by selecting the first alternative seen just as the centralized authority did.
 
