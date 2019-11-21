@@ -73,7 +73,7 @@ these needs automatically; thus a child trie is used instead.
 ## Runtime Storage API
 
 The Substrate's [Support
-module](https://substrate.dev/rustdocs/master/srml_support/index.html) provides
+module](https://substrate.dev/rustdocs/master/palette_support/index.html) provides
 utilities to generate unique, deterministic keys for your runtime module storage
 items. These storage items are placed in the state trie and are accessible by
 querying the trie by key.

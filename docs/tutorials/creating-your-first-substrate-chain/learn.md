@@ -71,21 +71,21 @@ collected in the **Substrate Runtime Module Library** (SRML).
 ![Runtime Composition](assets/runtime.png)
 
 For example, the SRML includes a
-[Balances](https://substrate.dev/rustdocs/master/srml_balances/index.html)
+[Balances](https://substrate.dev/rustdocs/master/pallet_balances/index.html)
 module that controls the underlying currency of your blockchain by managing the
 _balance_ of all the accounts in your system. 
 
 If you want to add smart contract functionality to your blockchain, you simply
 need to include the
-[Contracts](https://substrate.dev/rustdocs/master/srml_contracts/index.html)
+[Contracts](https://substrate.dev/rustdocs/master/pallet_contracts/index.html)
 module.
 
 Even things like on-chain governance can be added to your blockchain by
 including modules like
-[Democracy](https://substrate.dev/rustdocs/master/srml_democracy/index.html),
-[Elections](https://substrate.dev/rustdocs/master/srml_elections/index.html),
+[Democracy](https://substrate.dev/rustdocs/master/pallet_democracy/index.html),
+[Elections](https://substrate.dev/rustdocs/master/pallet_elections/index.html),
 and
-[Collective](https://substrate.dev/rustdocs/master/srml_collective/index.html).
+[Collective](https://substrate.dev/rustdocs/master/pallet_collective/index.html).
 
 The goal of this tutorial is to teach you how to create your own Substrate
 runtime module which will be included in your custom blockchain! The
