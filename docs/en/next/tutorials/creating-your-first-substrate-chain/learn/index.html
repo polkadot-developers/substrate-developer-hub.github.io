@@ -127,19 +127,19 @@ can do! Substrate provides you with a number of pre-built runtime modules
 collected in the <strong>Substrate Runtime Module Library</strong> (SRML).</p>
 <p><img src="/docs/assets/runtime.png" alt="Runtime Composition"></p>
 <p>For example, the SRML includes a
-<a href="https://substrate.dev/rustdocs/master/srml_balances/index.html">Balances</a>
+<a href="https://substrate.dev/rustdocs/master/pallet_balances/index.html">Balances</a>
 module that controls the underlying currency of your blockchain by managing the
 <em>balance</em> of all the accounts in your system.</p>
 <p>If you want to add smart contract functionality to your blockchain, you simply
 need to include the
-<a href="https://substrate.dev/rustdocs/master/srml_contracts/index.html">Contracts</a>
+<a href="https://substrate.dev/rustdocs/master/pallet_contracts/index.html">Contracts</a>
 module.</p>
 <p>Even things like on-chain governance can be added to your blockchain by
 including modules like
-<a href="https://substrate.dev/rustdocs/master/srml_democracy/index.html">Democracy</a>,
-<a href="https://substrate.dev/rustdocs/master/srml_elections/index.html">Elections</a>,
+<a href="https://substrate.dev/rustdocs/master/pallet_democracy/index.html">Democracy</a>,
+<a href="https://substrate.dev/rustdocs/master/pallet_elections/index.html">Elections</a>,
 and
-<a href="https://substrate.dev/rustdocs/master/srml_collective/index.html">Collective</a>.</p>
+<a href="https://substrate.dev/rustdocs/master/pallet_collective/index.html">Collective</a>.</p>
 <p>The goal of this tutorial is to teach you how to create your own Substrate
 runtime module which will be included in your custom blockchain! The
 <code>substrate-node-template</code> comes with a template module that we will build your
@@ -177,7 +177,7 @@ and who made those claims.</p>
 <p>Sounds simple enough?</p>
 <p>If your node is finished compiling, you are ready to move to the next section
 where we will interact with your Substrate node template!</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 10/1/2019 by Shawn Tabrizi</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/setup"><span class="arrow-prev">← </span><span>Set Up Your Computer</span></a><a class="docs-next button" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/interact"><span>Interacting with Your Node</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#background-on-blockchains">Background on Blockchains</a></li><li><a href="#substrate">Substrate</a><ul class="toc-headings"><li><a href="#substrate-node-template">Substrate Node Template</a></li><li><a href="#substrate-runtime-module-template">Substrate Runtime Module Template</a></li></ul></li><li><a href="#proof-of-existence-chain">Proof Of Existence Chain</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 11/21/2019 by Shawn Tabrizi</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/setup"><span class="arrow-prev">← </span><span>Set Up Your Computer</span></a><a class="docs-next button" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/interact"><span>Interacting with Your Node</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#background-on-blockchains">Background on Blockchains</a></li><li><a href="#substrate">Substrate</a><ul class="toc-headings"><li><a href="#substrate-node-template">Substrate Node Template</a></li><li><a href="#substrate-runtime-module-template">Substrate Runtime Module Template</a></li></ul></li><li><a href="#proof-of-existence-chain">Proof Of Existence Chain</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
 #blast {
   position: fixed;
   width: 100%;
