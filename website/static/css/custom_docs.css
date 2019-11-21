@@ -1,0 +1,25 @@
+.docsNavContainer {
+ border-right: 1px solid #efefef;
+}
+.onPageNav > .toc-headings {
+ border-left: 0px;
+}
+.toc .toggleNav .navGroup .navGroupCategoryTitle {
+ font-weight: 700;
+}
+.onPageNav ul li {
+ padding-bottom: 4px;
+}
+.hljs {
+ background-color: #F1F3F2;
+}
+.docs-next, .docs-prev {
+ padding: 30px 40px;
+    margin: 10px 0;
+}
+.docs-next .arrow-next {
+ margin-left: 10px;
+}
+.docs-prev .arrow-prev {
+ margin-right: 10px;
+}
