@@ -1,3 +1,4 @@
+/* typography */
 ol {
  counter-reset: stepN;
  list-style: none;
@@ -20,10 +21,10 @@ ol > li::before {
  border: 1px solid #eaeaea;
  border-radius: 50%;
  text-align: center;
- /* font-weight: bold; */
  font-family: 'Roboto Mono', monospace;
 }
 
+/* layout */
 .docsNavContainer {
  border-right: 1px solid #efefef;
 }
@@ -48,6 +49,14 @@ ol > li::before {
 }
 .docs-prev .arrow-prev {
  margin-right: 10px;
+}
+.onPageNav a[href="#next-steps"]::before {
+    background-color: #FF1864;
+    content: '';
+    display: block;
+    height: 2px;
+    margin: 10px 0;
+    width: 100%;
 }
 
 /* search */
