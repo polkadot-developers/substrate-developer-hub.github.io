@@ -67,7 +67,7 @@ body {
         <section id='blast'>
           {cfg.img ? (
             <a href={cfg.link} target="_blank">
-              <img src={cfg.img} class='img-fluid' />
+              <img src={cfg.img} className='img-fluid' />
             </a>
           ) : (
             <h2>
