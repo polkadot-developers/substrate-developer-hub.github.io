@@ -2,9 +2,9 @@
 title: "Adding a Module to Your Runtime"
 ---
 
-The [Substrate node template](https://github.com/paritytech/substrate/tree/master/bin/node-template) provides a minimal working runtime which you can use to quickly get started building your own custom blockchain. However, in the attempts to remain minimal, it does not include most of the modules in the Substrate runtime module library ([SRML](overview/glossary.md#srml-substrate-runtime-module-library)).
+The [Substrate node template](https://github.com/paritytech/substrate/tree/master/bin/node-template) provides a minimal working runtime which you can use to quickly get started building your own custom blockchain. However, in the attempts to remain minimal, it does not include most of the pallets from ([FRAME](overview/glossary.md#frame-framework-runtime-aggregation-modularised-entities)).
 
-This guide will show you how you can add the [Contracts module](https://substrate.dev/rustdocs/master/pallet_contracts/index.html) to your runtime in order to allow your blockchain to support Wasm smart contracts. You can follow similar patterns to add additional modules from the SRML to your runtime, however you should note that each module can be a little different in terms of the specific settings needed to import and use it correctly.
+This guide will show you how you can add the [Contracts module](https://substrate.dev/rustdocs/master/pallet_contracts/index.html) to your runtime in order to allow your blockchain to support Wasm smart contracts. You can follow similar patterns to add additional FRAME pallets to your runtime, however you should note that each module can be a little different in terms of the specific settings needed to import and use it correctly.
 
 ## Prerequisites
 
@@ -40,7 +40,7 @@ Remember to stop your node with `control + C`!
 
 ## Importing a Module Crate
 
-The first thing you need to do to add the Contracts module is to import the `srml_contracts` crate in your runtime's `Cargo.toml` file. If you want a proper primer into Cargo References, you should check out [their official documentation](https://doc.rust-lang.org/cargo/reference/index.html).
+The first thing you need to do to add the Contracts module is to import the `pallet-contracts` crate in your runtime's `Cargo.toml` file. If you want a proper primer into Cargo References, you should check out [their official documentation](https://doc.rust-lang.org/cargo/reference/index.html).
 
 Open `contracts-chain/runtime/Cargo.toml` and you will see a file which lists all the dependencies your runtime has. For example, it depends on the [Balances module](https://substrate.dev/rustdocs/master/pallet_balances/index.html):
 
@@ -50,7 +50,7 @@ Open `contracts-chain/runtime/Cargo.toml` and you will see a file which lists al
 [dependencies.balances]
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
-package = 'srml-balances'
+package = 'pallet-balances'
 rev = '<git-commit>'
 ```
 
@@ -96,20 +96,20 @@ To see how these features actually get used in the runtime code, we can open the
 include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
 
 use rstd::prelude::*;
-//--snip--
+/* --snip-- */
 
 // A few exports that help ease life for downstream crates.
 #[cfg(any(feature = "std", test))]
 pub use sr_primitives::BuildStorage;
 pub use balances::Call as BalancesCall;
-//--snip--
+/* --snip-- */
 ```
 
 You can see that at the top of the file, we define that we will use `no_std` when we are *not* using the `std` feature. A few lines lower you can see `#[cfg(feature = "std")]` above the `wasm_binary.rs` import, which is a flag saying to only import the WASM binary when we have enabled the `std` feature.
 
 ### Importing the Contracts Module Crate
 
-Okay, now that we have covered the basics of crate features, we can actually import the Contracts module. The Contracts module is probably the most complicated module in the SRML, so it makes for a good example of some of the trickiness that can be involved when adding additional modules. To give you a hint as to what is to come, you should take a look at the [`Cargo.toml` file for the Contracts module](https://github.com/paritytech/substrate/blob/master/palette/contracts/Cargo.toml).
+Okay, now that we have covered the basics of crate features, we can actually import the Contracts module. The Contracts module is probably the most complicated module in FRAME, so it makes for a good example of some of the trickiness that can be involved when adding additional modules. To give you a hint as to what is to come, you should take a look at the [`Cargo.toml` file for the Contracts module](https://github.com/paritytech/substrate/blob/master/palette/contracts/Cargo.toml).
 
 First we will add the new dependency by simply copying an existing module, and changing the values. So based on the `balances` import shown above, my `contracts` import will look like:
 
@@ -119,7 +119,7 @@ First we will add the new dependency by simply copying an existing module, and c
 [dependencies.contracts]
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
-package = 'srml-contracts'
+package = 'pallet-contracts'
 rev = '<git-commit>' # e.g. commit: '3dedd246c62255ba6f9b777ecba318dfc2078d85'
 ```
 
@@ -172,54 +172,82 @@ Now that we have successfully imported the Contracts module crate, we need to ad
 include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
 
 use rstd::prelude::*;
-//--snip--
+/* --snip-- */
 
 // A few exports that help ease life for downstream crates.
 #[cfg(any(feature = "std", test))]
 pub use sr_primitives::BuildStorage;
 pub use balances::Call as BalancesCall;
 pub use contracts::Gas;
-//--snip--
+/* --snip-- */
 ```
 
 If you have followed our [other basic tutorials](tutorials/creating-your-first-substrate-chain.md), you may remember that we need to implement a `contracts::Trait` and also add `Contracts: contracts,` to our `construct_runtime!` macro.
 
 ### Implementing the Contract Trait
 
-To figure out what we need to implement, you can take a look at the SRML [`contracts::Trait` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/trait.Trait.html) or the [Contracts module source code](https://github.com/paritytech/substrate/blob/master/palette/contracts/src/lib.rs). For our runtime, the implementation will look like this:
+To figure out what we need to implement, you can take a look to the FRAME [`contracts::Trait` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/trait.Trait.html) or the [Contracts module source code](https://github.com/paritytech/substrate/blob/master/palette/contracts/src/lib.rs). For our runtime, the implementation will look like this:
 
 **`runtime/src/lib.rs`**
 
 ```rust
+
+// These time units are defined in number of blocks.
+   /* --snip-- */
+
+// Constracts price units.
+pub const MILLICENTS: Balance = 1_000_000_000;
+pub const CENTS: Balance = 1_000 * MILLICENTS;
+pub const DOLLARS: Balance = 100 * CENTS;
+
+/* --snip-- */
+```
+
+```rust
+
 impl timestamp::Trait for Runtime {
-    //--snip--
+    /* --snip-- */
+}
+
+parameter_types! {
+	pub const ContractTransferFee: Balance = 1 * CENTS;
+	pub const ContractCreationFee: Balance = 1 * CENTS;
+	pub const ContractTransactionBaseFee: Balance = 1 * CENTS;
+	pub const ContractTransactionByteFee: Balance = 10 * MILLICENTS;
+	pub const ContractFee: Balance = 1 * CENTS;
+	pub const TombstoneDeposit: Balance = 1 * DOLLARS;
+	pub const RentByteFee: Balance = 1 * DOLLARS;
+	pub const RentDepositOffset: Balance = 1000 * DOLLARS;
+	pub const SurchargeReward: Balance = 150 * DOLLARS;
 }
 
 impl contracts::Trait for Runtime {
-    type Currency = Balances;
-    type Time = Timestamp;
-    type Call = Call;
-    type Event = Event;
-    type DetermineContractAddress = contracts::SimpleAddressDeterminator<Runtime>;
-    type ComputeDispatchFee = contracts::DefaultDispatchFeeComputor<Runtime>;
-    type TrieIdGenerator = contracts::TrieIdFromParentCounter<Runtime>;
-    type GasPayment = ();
-    type SignedClaimHandicap = contracts::DefaultSignedClaimHandicap;
-    type TombstoneDeposit = contracts::DefaultTombstoneDeposit;
-    type StorageSizeOffset = contracts::DefaultStorageSizeOffset;
-    type RentByteFee = contracts::DefaultRentByteFee;
-    type RentDepositOffset = contracts::DefaultRentDepositOffset;
-    type SurchargeReward = contracts::DefaultSurchargeReward;
-    type TransferFee = contracts::DefaultTransferFee;
-    type InstantiateBaseFee = contracts::DefaultInstantiationFee;
-    type TransactionBaseFee = contracts::DefaultTransactionBaseFee;
-    type TransactionByteFee = contracts::DefaultTransactionByteFee;
-    type CreationFee = ();
-    type ContractFee = contracts::DefaultContractFee;
-    type CallBaseFee = contracts::DefaultCallBaseFee;
-    type MaxDepth = contracts::DefaultMaxDepth;
-    type MaxValueSize = contracts::DefaultMaxValueSize;
-    type BlockGasLimit = contracts::DefaultBlockGasLimit;
+	type Currency = Balances;
+	type Time = Timestamp;
+	type Randomness = RandomnessCollectiveFlip;
+	type Call = Call;
+	type Event = Event;
+	type DetermineContractAddress = contracts::SimpleAddressDeterminator<Runtime>;
+	type ComputeDispatchFee = contracts::DefaultDispatchFeeComputor<Runtime>;
+	type TrieIdGenerator = contracts::TrieIdFromParentCounter<Runtime>;
+	type GasPayment = ();
+	type RentPayment = ();
+	type SignedClaimHandicap = contracts::DefaultSignedClaimHandicap;
+	type TombstoneDeposit = TombstoneDeposit;
+	type StorageSizeOffset = contracts::DefaultStorageSizeOffset;
+	type RentByteFee = RentByteFee;
+	type RentDepositOffset = RentDepositOffset;
+	type SurchargeReward = SurchargeReward;
+	type TransferFee = ContractTransferFee;
+	type CreationFee = ContractCreationFee;
+	type TransactionBaseFee = ContractTransactionBaseFee;
+	type TransactionByteFee = ContractTransactionByteFee;
+	type ContractFee = ContractFee;
+	type CallBaseFee = contracts::DefaultCallBaseFee;
+	type InstantiateBaseFee = contracts::DefaultInstantiateBaseFee;
+	type MaxDepth = contracts::DefaultMaxDepth;
+	type MaxValueSize = contracts::DefaultMaxValueSize;
+	type BlockGasLimit = contracts::DefaultBlockGasLimit;
 }
 ```
 
@@ -234,7 +262,7 @@ type Currency: Currency<Self::AccountId>
 
 Fortunately, the Balances module implements this type, so we can simply reference `Balances` to gain access to it.
 
-Similarly, `type DetermineContractAddress` requires the trait `ContractAddressFor`. The Contracts module itself implements a type with this trait in `contract::SimpleAddressDeterminator`, thus we can use that implementation to satisfy our `contracts::Trait`. At this point, I really recommend you explore the source code of the [Contracts module](https://github.com/paritytech/substrate/blob/master/palette/contract/src/lib.rs) if things don't make sense or you want to gain a deeper understanding.
+Similarly, `type DetermineContractAddress` requires the trait `ContractAddressFor`. The Contracts module itself implements a type with this trait in `contract::SimpleAddressDeterminator`, thus we can use that implementation to satisfy our `contracts::Trait`. At this point, I really recommend you explore the source code of the [Contracts module](https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs) if things don't make sense or you want to gain a deeper understanding.
 
 ### Adding Contract to the Construct Runtime Macro
 
@@ -259,8 +287,7 @@ construct_runtime!(
         NodeBlock = opaque::Block,
         UncheckedExtrinsic = UncheckedExtrinsic
     {
-        //--snip--
-        // add this line
+        /* --snip-- */
         Contracts: contracts,
     }
 );
@@ -294,7 +321,7 @@ To enable this, we simply need to add `Contracts` type that we defined in the `c
 impl balances::Trait for Runtime {
     /// What to do if an account's free balance gets zeroed.
     type OnFreeBalanceZero = (Contracts);
-    //--snip--
+    /* --snip-- */
 }
 ```
 
@@ -302,31 +329,33 @@ Now, when the Balances module detects that the free balance of an account has re
 
 ## Genesis Configuration
 
-The last thing we need to do in order to get your node up and running is to establish a genesis configuration for the Contracts module. Not all modules will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`srml_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contracts module. This definition is controlled in `contracts-chain/src/chain_spec.rs`. We need to modify this file to include the `ContractsConfig` type at the top:
+The last thing we need to do in order to get your node up and running is to establish a genesis configuration for the Contracts module. Not all modules will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`pallet_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contracts module. This definition is controlled in `contracts-chain/src/chain_spec.rs`. We need to modify this file to include the `ContractsConfig` type and add the contract price units at the top:
 
 **`src/chain_spec.rs`**
 
 ```rust
 use contracts_chain_runtime::ContractsConfig;
+
+// Contracts price units.
+pub const MILLICENTS: Balance = 1_000_000_000;
+pub const CENTS: Balance = 1_000 * MILLICENTS;
+pub const DOLLARS: Balance = 100 * CENTS;
 ```
 
 Then inside the `testnet_genesis` function we need to add the contract configuration to the returned `GenesisConfig` object as followed:
 
-**`src/chain_spec.rs`**
-
 ```rust
 fn testnet_genesis(...) -> GenesisConfig {
-    //--snip--
+    /* --snip-- */
     let mut contracts_config = ContractsConfig {
         current_schedule: Default::default(),
-        gas_price: 1 * 1_000_000_000, // MILLICENTS
+        gas_price: 1 * MILLICENTS,
     };
-    // IMPORTANT: this should only be enabled on development chains!
+    // IMPORTANT: println should only be enabled on development chains!
     contracts_config.current_schedule.enable_println = true;
 
     GenesisConfig {
-        //--snip--
-        // add this line
+        /* --snip-- */
         contracts: Some(contracts_config),
     }
 }
@@ -341,9 +370,9 @@ cargo run --release -- purge-chain --dev
 cargo run --release -- --dev
 ```
 
-## Adding Other SRML Modules
+## Adding Other FRAME pallets
 
-In this guide, we walked through specifically how to import the Contracts module, but as mentioned in the beginning of this guide, each module will be a little different. Have no fear, you can always refer to the ["main" Substrate node runtime](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/) which includes nearly every module in the SRML.
+In this guide, we walked through specifically how to import the Contracts module, but as mentioned in the beginning of this guide, each module will be a little different. Have no fear, you can always refer to the ["main" Substrate node runtime](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/) which includes nearly every pallet in the FRAME.
 
 In the `Cargo.toml` file of the Substrate node runtime, you will see an example of how to import each of the different modules, and in the `lib.rs` file you will find how to add each module to your runtime. You can basically copy what was done there to your own runtime.
 
@@ -358,4 +387,4 @@ In the `Cargo.toml` file of the Substrate node runtime, you will see an example 
 
 ### References
 
-- [SRML `Contracts` module API](https://crates.parity.io/srml_contracts/index.html)
+- [FRAME `Contracts` module API](https://substrate.dev/rustdocs/master/pallet_contracts/index.html)

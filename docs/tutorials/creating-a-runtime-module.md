@@ -109,7 +109,7 @@ std = [
 ### Consistent Substrate Dependencies
 
 All Substrate modules will depend on some low-level module libraries such as
-`srml-system` and `srml-support`. These libraries are pulled from the main
+`frame-system` and `frame-support`. These libraries are pulled from the main
 [Substrate GitHub repository](https://github.com/paritytech/substrate). When
 people build their own Substrate nodes, they will also have dependencies on the
 main Substrate repository.
@@ -136,12 +136,14 @@ code comment.
 [dependencies.support]
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
-package = 'srml-support'
-branch = 'v2.0'
+package = 'frame-support'
+rev = "<some commit hash>"
 
 # Develop against a git commit by specifying the same Substrate commit as your main node. 
 # It is important to use the same Substrate commit to prevent dependencies mismatch.
 # rev = "<some commit hash>"
+# It is also possible to use a branch instead of building for a specific commit.
+# branch = 'v2.0'
 
 # --snip--
 ```

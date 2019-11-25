@@ -188,7 +188,7 @@ Also, if you transfer funds to a newly-created account, there will be a so-calle
 
 ## 4.5 Going further - Extract the send button into its own component
 
-The transaction we performed earlier was using `api.tx.balances.transfer`. The transfer function is exposed by the Balances module. In the future, you will very likely use different methods from different SRML modules. It is, therefore, a good idea to extract the logic from the `makeTransfer` function into its own component and make it generic regarding which method will be used.
+The transaction we performed earlier was using `api.tx.balances.transfer`. The transfer function is exposed by the Balances module. In the future, you will very likely use different methods from different FRAME pallets. It is, therefore, a good idea to extract the logic from the `makeTransfer` function into its own component and make it generic regarding which method will be used.
 
 This exercise is left to the reader.
 
