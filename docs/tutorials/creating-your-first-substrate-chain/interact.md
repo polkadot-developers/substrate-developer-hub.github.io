@@ -82,7 +82,7 @@ If everything went successfully, you should see some notifications in the
 Already you have a working blockchain, with an underlying cryptocurrency. You
 are able to make transfers easily with a simple, interactive front-end.
 
-Now let's build our Proof of Existence Module
+Now let's build our Proof of Existence Pallet
 
 > **Note:** If you want to stop your node or front-end, you can press `ctrl + c`
 > in the terminal.

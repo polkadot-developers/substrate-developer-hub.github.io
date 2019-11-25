@@ -2,7 +2,7 @@
 title: "Building a UI for the TCR runtime"
 ---
 
-This is Part 3 of the guide [Building a Token Curated Registry DAppChain on Substrate](index.md). In [part 1](building-the-substrate-tcr-runtime.md), we implemented a substrate runtime module for a TCR. In [part 2](unit-testing-the-tcr-runtime-module.md), we wrote unit tests for our runtime.
+This is Part 3 of the guide [Building a Token Curated Registry DAppChain on Substrate](index.md). In [part 1](building-the-substrate-tcr-runtime.md), we implemented a substrate runtime pallet for a TCR. In [part 2](unit-testing-the-tcr-runtime-module.md), we wrote unit tests for our runtime.
 
 As part of the samples, we've created a `reactjs` based web app as a simple frontend for the TCR runtime. The [complete code](https://github.com/substrate-developer-hub/substrate-tcr-ui) is available.
 
@@ -91,7 +91,7 @@ In the following code snippet, we have a function that first gets a new API prom
 
 > In the sample, we are storing the seed in the browser local storage so that the user does not have to enter it again. However, in a real production app, we should find a more secure way of handling the seed at the client side.
 
-The `propose` function takes a listing name and deposit amount as parameters. After creating the keypair and API promise objects, we call the `propose` function of the TCR runtime module. Note the dynamic binding on the runtime module name and function name in the `api.tx.tcr.propose` call. The PolkadotJS API automatically binds the runtime module name and the function name. This is also described as part of the [API documentation](https://polkadot.js.org/api/api/#dynamic-by-default). Then we call the `sign` and `send` functions.
+The `propose` function takes a listing name and deposit amount as parameters. After creating the keypair and API promise objects, we call the `propose` function of the TCR runtime pallet. Note the dynamic binding on the runtime pallet name and function name in the `api.tx.tcr.propose` call. The PolkadotJS API automatically binds the runtime pallet name and the function name. This is also described as part of the [API documentation](https://polkadot.js.org/api/api/#dynamic-by-default). Then we call the `sign` and `send` functions.
 
 ```javascript
 export async function applyListing(name, deposit) {
@@ -144,7 +144,7 @@ Notice that when we handle the `Proposed` event, we create a listing object and 
 
 ### Calling other runtime functions
 
-Just like we called the `propose` function of the TCR runtime, we can call the `challenge`, `vote`, `resolve` and `claim_reward` functions also. In the exact same way, we call the functions using the `api.tx.<module name>.<function name>` convention and handle the corresponding events to update the UI and the off-chain state.
+Just like we called the `propose` function of the TCR runtime, we can call the `challenge`, `vote`, `resolve` and `claim_reward` functions also. In the exact same way, we call the functions using the `api.tx.<pallet name>.<function name>` convention and handle the corresponding events to update the UI and the off-chain state.
 
 The [tcrService.js file](https://github.com/substrate-developer-hub/substrate-tcr-ui/blob/master/src/services/tcrService.js) has all the function calls implemented in the same way.
 
