@@ -68,6 +68,14 @@
 }
 
 /* search input display */
+.navSearchWrapper {
+    max-width: calc(100% - 315px);
+}
+@media only screen and (max-width: 480px) {
+    .navSearchWrapper {
+        max-width: none;
+    }
+}
 input#search_input_react {
     background-color: rgba(242, 196, 178, 0.25);
     height: 2rem;
