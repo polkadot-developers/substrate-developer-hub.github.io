@@ -1,5 +1,5 @@
 ---
-title: "Adding a Module to Your Runtime"
+title: "Adding a Pallet to Your Runtime"
 ---
 
 The [Substrate node template](https://github.com/paritytech/substrate/tree/master/bin/node-template) provides a minimal working runtime which you can use to quickly get started building your own custom blockchain. However, in the attempts to remain minimal, it does not include most of the pallets from ([FRAME](overview/glossary.md#frame-framework-runtime-aggregation-modularised-entities)).
@@ -334,12 +334,10 @@ The last thing we need to do in order to get your node up and running is to esta
 **`src/chain_spec.rs`**
 
 ```rust
-use contracts_chain_runtime::ContractsConfig;
+use contracts_chain_runtime::{ContractsConfig, Balance};
 
 // Contracts price units.
 pub const MILLICENTS: Balance = 1_000_000_000;
-pub const CENTS: Balance = 1_000 * MILLICENTS;
-pub const DOLLARS: Balance = 100 * CENTS;
 ```
 
 Then inside the `testnet_genesis` function we need to add the contract configuration to the returned `GenesisConfig` object as followed:
