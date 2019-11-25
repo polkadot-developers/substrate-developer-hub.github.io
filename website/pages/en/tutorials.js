@@ -119,6 +119,7 @@ class Tutorials extends React.Component {
         </p>
         <p>
           <Button
+            target="_blank"
             variant="secondary"
             className="primary-color"
             href="https://substrate.dev/recipes"
