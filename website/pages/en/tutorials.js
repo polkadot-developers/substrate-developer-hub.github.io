@@ -37,8 +37,10 @@ class Tutorials extends React.Component {
 
     const TutorialCards = props =>
       props.data.map(tutorial => (
-        <Col md={3} className="mb-3 d-flex align-items-stretch">
+        <a href={tutorial.href} target="_blank" className="a_wrapper">
+        <Col md={4} className="mb-5 d-flex align-items-stretch">
           <Card>
+            <div className="card-img-wrapper">
             <Card.Img
               variant="top"
               src={
@@ -47,6 +49,7 @@ class Tutorials extends React.Component {
                   : `${baseUrl}img/substrate-placeholder.png`
               }
             />
+            </div>
             <Card.Body className="d-flex flex-column">
               <Card.Title>{tutorial.title}</Card.Title>
               <Card.Text>{tutorial.text}</Card.Text>
@@ -99,6 +102,7 @@ class Tutorials extends React.Component {
             </Card.Footer>
           </Card>
         </Col>
+        </a>
       ));
 
     const RuntimeRecipes = () => (
@@ -115,6 +119,7 @@ class Tutorials extends React.Component {
         </p>
         <p>
           <Button
+            target="_blank"
             variant="secondary"
             className="primary-color"
             href="https://substrate.dev/recipes"
