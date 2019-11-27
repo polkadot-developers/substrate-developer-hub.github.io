@@ -109,7 +109,7 @@ You can see that at the top of the file, we define that we will use `no_std` whe
 
 ### Importing the Contracts Pallet Crate
 
-Okay, now that we have covered the basics of crate features, we can actually import the Contracts pallet. The Contracts pallet is probably the most complicated pallet in FRAME, so it makes for a good example of some of the trickiness that can be involved when adding additional pallets. To give you a hint as to what is to come, you should take a look at the [`Cargo.toml` file for the Contracts pallet](https://github.com/paritytech/substrate/blob/master/palette/contracts/Cargo.toml).
+Okay, now that we have covered the basics of crate features, we can actually import the Contracts pallet. The Contracts pallet is probably the most complicated pallet in FRAME, so it makes for a good example of some of the trickiness that can be involved when adding additional pallets. To give you a hint as to what is to come, you should take a look at the [`Cargo.toml` file for the Contracts pallet](https://github.com/paritytech/substrate/blob/master/frame/contracts/Cargo.toml).
 
 First we will add the new dependency by simply copying an existing pallet, and changing the values. So based on the `balances` import shown above, my `contracts` import will look like:
 
@@ -123,7 +123,7 @@ package = 'pallet-contracts'
 rev = '<git-commit>' # e.g. commit: '3dedd246c62255ba6f9b777ecba318dfc2078d85'
 ```
 
-You [can see](https://github.com/paritytech/substrate/blob/master/palette/contracts/Cargo.toml) that the Contracts pallet has `std` feature, thus we need to add that feature to our runtime:
+You [can see](https://github.com/paritytech/substrate/blob/master/frame/contracts/Cargo.toml) that the Contracts pallet has `std` feature, thus we need to add that feature to our runtime:
 
 **`Cargo.toml`**
 
@@ -186,7 +186,7 @@ If you have followed our [other basic tutorials](tutorials/creating-your-first-s
 
 ### Implementing the Contract Trait
 
-To figure out what we need to implement, you can take a look to the FRAME [`contracts::Trait` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/trait.Trait.html) or the [Contracts pallet source code](https://github.com/paritytech/substrate/blob/master/palette/contracts/src/lib.rs). For our runtime, the implementation will look like this:
+To figure out what we need to implement, you can take a look to the FRAME [`contracts::Trait` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/trait.Trait.html) or the [Contracts pallet source code](https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs). For our runtime, the implementation will look like this:
 
 **`runtime/src/lib.rs`**
 
@@ -195,7 +195,7 @@ To figure out what we need to implement, you can take a look to the FRAME [`cont
 // These time units are defined in number of blocks.
    /* --snip-- */
 
-// Constracts price units.
+// Contracts price units.
 pub const MILLICENTS: Balance = 1_000_000_000;
 pub const CENTS: Balance = 1_000 * MILLICENTS;
 pub const DOLLARS: Balance = 100 * CENTS;
@@ -255,7 +255,7 @@ To go into a bit more detail here, we see from the documentation that `type Curr
 
 ```rust
 // From the reference documentation, also found in `contracts` pallet:
-//   https://github.com/paritytech/substrate/blob/master/palette/contracts/src/lib.rs
+//   https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs
 
 type Currency: Currency<Self::AccountId>
 ```
@@ -266,7 +266,7 @@ Similarly, `type DetermineContractAddress` requires the trait `ContractAddressFo
 
 ### Adding Contract to the Construct Runtime Macro
 
-Next, we need to add the pallet to the `construct_runtime!` macro. For this, we need to determine the types that the pallet exposes so that we can tell the our runtime that they exist. The complete list of possible types can be found in the [`construct_runtime!` macro documentation](https://substrate.dev/rustdocs/master/palette_support/macro.construct_runtime.html).
+Next, we need to add the pallet to the `construct_runtime!` macro. For this, we need to determine the types that the pallet exposes so that we can tell the our runtime that they exist. The complete list of possible types can be found in the [`construct_runtime!` macro documentation](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html).
 
 If we look at the Contracts pallet in detail, we know it has:
 
@@ -274,7 +274,7 @@ If we look at the Contracts pallet in detail, we know it has:
 * Module **Event**s: Because it uses the `decl_event!` macro.
 * **Call**able Functions: Because it has dispatchable functions in the `decl_module!` macro.
 * **Config**uration Values: Because the `decl_storage!` macro has `config()` parameters.
-* The **pallet** type from the `decl_pallet!` macro.
+* The **Module** type from the `decl_module!` macro.
 
 Thus, when we add the pallet, it will look like this:
 
@@ -303,7 +303,7 @@ In the case of the Contracts pallet, we actually want a hook when an account run
 
 ```rust
 // From the reference documentation, also found in `contracts` pallet:
-//   https://github.com/paritytech/substrate/blob/master/palette/contracts/src/lib.rs
+//   https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs
 
 impl<T: Trait> OnFreeBalanceZero<T::AccountId> for pallet<T> {
     fn on_free_balance_zero(who: &T::AccountId) {
