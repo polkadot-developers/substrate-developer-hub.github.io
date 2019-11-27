@@ -416,6 +416,13 @@ const usersList = [{
     pinned: false,
     type: "chain",
   },
+  {
+    name: "Imagjn",
+    image: "/img/users/imagjn.png",
+    homepage: "https://imagjn.com",
+    pinned: false,
+    type: "chain",
+  },
 ];
 
 function alphabetize(a, b) {
