@@ -306,8 +306,7 @@ class Tutorials extends React.Component {
                 text: (
                   <translate>
                     A comprehensive, end-to-end tutorial for creating an
-                    infrastructure chain for verifiable credentials. Learn all
-                    the basics of Substrate runtime development here!
+                    infrastructure chain for verifiable credentials.
                   </translate>
                 ),
                 difficulty: "easy",
