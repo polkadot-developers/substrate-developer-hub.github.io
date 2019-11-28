@@ -27,6 +27,6 @@ The default Substrate node implements Session keys in the [Session module](https
 
 ## Generation and Use
 
-Session keys are hot keys that must be kept online. They are not meant to be used as account keys. If one of the Session keys is compromised, the attacker could commit slashable behavior. Session keys may be changed regularly (e.g. every session) via [RPC](https://crates.parity.io/substrate_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys) for increased security.
+Session keys are hot keys that must be kept online. They are not meant to be used as account keys. If one of the Session keys is compromised, the attacker could commit slashable behavior. Session keys may be changed regularly (e.g. every session) via [RPC](https://substrate.dev/rustdocs/v1.0/substrate_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys) for increased security.
 
 <!--Note: RPC link is to master and may break. v1.0 docs do not have the requisite endpoints.-->
