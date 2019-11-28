@@ -41,7 +41,7 @@ a server serving metrics for Grafana will start on port `9955`. You can specify
 this port with `--grafana-port <PORT>` and enable it to be accessed over a
 network with `--grafana-external`.
 
-## Step 4: Setup Grafana
+## Step 4: Set Up Grafana
 
 I'm not going to go into setting up and running Grafana in great detail - there's the
 [Getting Started guide](https://grafana.com/docs/guides/getting_started/) for
