@@ -23,9 +23,10 @@ brew services start grafana
 
 Downloads for other platforms are available [here](https://grafana.com/grafana/download).
 
-## Step 2: Install the [Grafana JSON Datasource](https://github.com/simPod/grafana-json-datasource) plugin:
+## Step 2: Install the Grafana JSON Datasource plugin:
 
-We use a simple JSON interface to serve metrics. The plugin for this can be
+We use a simple JSON interface to serve metrics. The
+[Grafana JSON Datasource](https://github.com/simPod/grafana-json-datasource) plugin can be
 installed with:
 
 ```bash
