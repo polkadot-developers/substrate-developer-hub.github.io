@@ -35,12 +35,11 @@ class Tutorials extends React.Component {
     const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
     const pageUrl = page => baseUrl + (language ? `${language}/` : "") + page;
 
-    const TutorialCards = props =>
+    const FeaturedTutorialCards = props =>
       props.data.map(tutorial => (
         <a href={tutorial.href} target="_blank" className="a_wrapper">
         <Col md={3} className="mb-5 d-flex align-items-stretch">
           <Card>
-            <div className="card-img-wrapper">
             <Card.Img
               variant="top"
               src={
@@ -49,7 +48,67 @@ class Tutorials extends React.Component {
                   : `${baseUrl}img/substrate-placeholder.png`
               }
             />
-            </div>
+            <Card.Body className="d-flex flex-column">
+              <Card.Title>{tutorial.title}</Card.Title>
+              <Card.Text>{tutorial.text}</Card.Text>
+              <div className="mt-auto">
+                <Badge
+                  variant={
+                    tutorial.difficulty == `hard`
+                      ? `danger`
+                      : tutorial.difficulty == `medium`
+                      ? `warning`
+                      : `success`
+                  }
+                  className="m-1"
+                >
+                  {tutorial.difficulty.charAt(0).toUpperCase() +
+                    tutorial.difficulty.slice(1)}
+                </Badge>
+                <Badge
+                  variant={
+                    tutorial.length > 4
+                      ? `danger`
+                      : tutorial.length > 2
+                      ? `warning`
+                      : `success`
+                  }
+                  className="m-1"
+                >
+                  {tutorial.length} Hour{tutorial.length > 1 ? `s` : ``}
+                </Badge>
+                <Badge
+                  variant={
+                    tutorial.prerequisite == true ? `warning` : `success`
+                  }
+                  className="m-1"
+                >
+                  {tutorial.prerequisite == true
+                    ? `Prerequisites`
+                    : `No Prerequisites`}
+                </Badge>
+              </div>
+            </Card.Body>
+            <Card.Footer>
+              <Button
+                variant="secondary"
+                className="primary-color"
+                href={tutorial.href}
+                target="_blank"
+              >
+                Try it now!
+              </Button>
+            </Card.Footer>
+          </Card>
+        </Col>
+        </a>
+      ));
+
+      const OtherTutorialCards = props =>
+      props.data.map(tutorial => (
+        <a href={tutorial.href} target="_blank" className="a_wrapper">
+        <Col md={3} className="mb-5 d-flex align-items-stretch">
+          <Card>
             <Card.Body className="d-flex flex-column">
               <Card.Title>{tutorial.title}</Card.Title>
               <Card.Text>{tutorial.text}</Card.Text>
@@ -138,7 +197,7 @@ class Tutorials extends React.Component {
         </h2>
         <hr />
         <Row>
-          <TutorialCards
+          <FeaturedTutorialCards
             data={[
               {
                 img: `${baseUrl}img/first-substrate-chain.png`,
@@ -165,8 +224,8 @@ class Tutorials extends React.Component {
                 ),
                 text: (
                   <translate>
-                    Learn to start a blockchain network with a
-                    validator/authority set of your choosing using Substrate.
+                    Learn to start a blockchain network using an
+                    out-of-the-box Substrate node.
                   </translate>
                 ),
                 difficulty: "easy",
@@ -182,8 +241,7 @@ class Tutorials extends React.Component {
                 text: (
                   <translate>
                     A comprehensive, end-to-end tutorial for creating a
-                    non-fungible token chain. Learn all the basics of Substrate
-                    runtime development here!
+                    non-fungible token chain.
                   </translate>
                 ),
                 difficulty: "easy",
@@ -198,7 +256,7 @@ class Tutorials extends React.Component {
                 text: (
                   <translate>
                     A comprehensive, end-to-end tutorial for building an ERC20
-                    token using Parity Substrate and ink!.
+                    token contract using ink!.
                   </translate>
                 ),
                 difficulty: "easy",
@@ -220,16 +278,16 @@ class Tutorials extends React.Component {
         </h2>
         <hr />
         <Row>
-          <TutorialCards
+          <OtherTutorialCards
             data={[
               {
                 img: `${baseUrl}img/polkadot-js-substrate-tutorial.png`,
                 title: (
-                  <translate>Build a Front-end with Polkadot-js API</translate>
+                  <translate>Build a Front End with Polkadot-js API</translate>
                 ),
                 text: (
                   <translate>
-                    Learn to build a Front-end application interracting with a
+                    Learn to build a front-end application interacting with a
                     Substrate based blockchain.
                   </translate>
                 ),
