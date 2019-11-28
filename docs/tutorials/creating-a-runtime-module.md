@@ -108,7 +108,7 @@ std = [
 
 ### Consistent Substrate Dependencies
 
-All Substrate pallets will depend on some low-level pallet libraries such as
+All Substrate pallets will depend on some low-level FRAME libraries such as
 `frame-system` and `frame-support`. These libraries are pulled from the main
 [Substrate GitHub repository](https://github.com/paritytech/substrate). When
 people build their own Substrate nodes, they will also have dependencies on the
