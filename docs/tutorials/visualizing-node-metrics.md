@@ -43,20 +43,23 @@ network with `--grafana-external`.
 
 ## Step 4: Set Up Grafana
 
-I'm not going to go into setting up and running Grafana in great detail - there's the
+We will not cover setting up and running Grafana in great detail - there's the
 [Getting Started guide](https://grafana.com/docs/guides/getting_started/) for
 that. Here are a few pointers though:
 
-On the 'Add data source' screen, select the JSON datasource (should be in the
-'Others' section). Set the url of the running servers (e.g.
-`http://localhost:9955`) (just `locahost::<PORT>` doesn't work) and click
-`Save & Test`. Grafana should ping the server and show that the datasource is
-working.
+1. On the 'Add data source' screen, select the JSON datasource in the
+'Others' section.
+2. Set the url of the running servers (e.g.
+`http://localhost:9955`)
+    > NOTE: just `locahost::<PORT>` won't work.
+3. Click `Save & Test`.
+
+Grafana should ping the server and show that the datasource is working:
 
 ![Datasource Config](/docs/assets/tutorials/grafana/datasource-config.png)
 
 Creating queries is a lot simpler than in other data sources. Simply click the
-drop-down and select the metric you want to visualize.
+drop-down and select the metric you want to visualize:
 
 ![Creating a query](/docs/assets/tutorials/grafana/metric-selection.png)
 
