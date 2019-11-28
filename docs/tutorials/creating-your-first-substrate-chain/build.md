@@ -156,7 +156,7 @@ decl_module! {
             // Verify that the specified proof has not been claimed yet or error with the message
             ensure!(!Proofs::<T>::exists(&proof), "This proof has already been claimed.");
 
-            // Call the `system` runtime pallet to get the current block number
+            // Call the `system` pallet to get the current block number
             let current_block = <system::Module<T>>::block_number();
 
             // Store the proof with the sender and the current block number
