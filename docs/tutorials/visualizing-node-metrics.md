@@ -63,7 +63,7 @@ drop-down and select the metric you want to visualize:
 
 ![Creating a query](/docs/assets/tutorials/grafana/metric-selection.png)
 
-## Conclusion
+## Step 5: Create Your Dashboard
 
 Once you've done all that, you should be able to make a pretty neat node
 dashboard!
@@ -76,3 +76,20 @@ variety of databases, such as [Prometheus](https://prometheus.io/).
 
 If you have any suggestions, feel free to file an issue on
 [the substrate repository](https://github.com/paritytech/substrate).
+
+## Next Steps
+
+### Learn More
+
+- Learn how to [set up a private Substrate network](start-a-private-network).
+
+### Examples
+
+- Take a look at the Grafana dashboard configuration for the [Polkadot network](https://github.com/w3f/polkadot-dashboard).
+
+### References
+
+<!-- TODO: Update this to RUSTDOC link-->
+
+- Visit the source code for [grafana-data-source](https://github.com/paritytech/substrate/tree/master/client/grafana-data-source).
+
