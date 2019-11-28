@@ -23,10 +23,10 @@ brew services start grafana
 
 Downloads for other platforms are available [here](https://grafana.com/grafana/download).
 
-## Step 2: Install the Grafana JSON Datasource plugin:
+## Step 2: Install the Grafana JSON DataSource plugin:
 
 We use a simple JSON interface to serve metrics. The
-[Grafana JSON Datasource](https://github.com/simPod/grafana-json-datasource) plugin can be
+[Grafana JSON DataSource](https://github.com/simPod/grafana-json-datasource) plugin can be
 installed with:
 
 ```bash
@@ -47,16 +47,16 @@ We will not cover setting up and running Grafana in great detail - there's the
 [Getting Started guide](https://grafana.com/docs/guides/getting_started/) for
 that. Here are a few pointers though:
 
-1. On the 'Add data source' screen, select the JSON datasource in the
+1. On the 'Add data source' screen, select the JSON data source in the
 'Others' section.
 2. Set the url of the running servers (e.g.
 `http://localhost:9955`)
     > NOTE: just `locahost::<PORT>` won't work.
 3. Click `Save & Test`.
 
-Grafana should ping the server and show that the datasource is working:
+Grafana should ping the server and show that the data source is working:
 
-![Datasource Config](/docs/assets/tutorials/grafana/datasource-config.png)
+![Data Source Config](/docs/assets/tutorials/grafana/datasource-config.png)
 
 Creating queries is a lot simpler than in other data sources. Simply click the
 drop-down and select the metric you want to visualize:
