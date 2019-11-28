@@ -1,9 +1,9 @@
 ---
-title: "Visualising Node Metrics"
+title: "Visualizing Node Metrics"
 ---
 
 Recent versions of Substrate record metrics, such as how many peers your node
-is connected to, how much memory your node is using, etc. To visualise these
+is connected to, how much memory your node is using, etc. To visualize these
 metrics, you can use a tool called [Grafana](https://grafana.com/).
 
 ## Step 1: Install and run Grafana
@@ -55,7 +55,7 @@ working.
 ![Datasource Config](/docs/assets/tutorials/grafana/datasource-config.png)
 
 Creating queries is a lot simpler than in other data sources. Simply click the
-drop-down and select the metric you want to visualise.
+drop-down and select the metric you want to visualize.
 
 ![Creating a query](/docs/assets/tutorials/grafana/metric-selection.png)
 
