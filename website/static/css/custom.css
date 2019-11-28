@@ -172,15 +172,10 @@ input#search_input_react {
     display: contents;
     color: black;
 }
-.card-img-wrapper {
-    height: 300px;
-    overflow: hidden;
-    position: relative;
-}
-.card-img-wrapper img { 
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+
+/* limit image size on docs */
+article p img {
+    max-width: 800px;
 }
 
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
