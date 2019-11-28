@@ -39,9 +39,9 @@ You can build your own custom module by deriving from the system module (describ
 
 The following are the modules that ship with the SRML.
 
-* [Assets](https://crates.parity.io/srml_assets/index.html)
-* [Aura](https://substrate.dev/rustdocs/v1.0/srml_aura/index.html)
-* [Balances](https://substrate.dev/rustdocs/v1.0/srml_balances/index.html)
+* [Assets](https://crates.parity.io/pallet_assets/index.html)
+* [Aura](https://crates.parity.io/pallet_aura/index.html)
+* [Balances](https://crates.parity.io/pallet_balances/index.html)
 * [Consensus](https://substrate.dev/rustdocs/v1.0/srml_consensus/index.html)
 * [Contracts](https://substrate.dev/rustdocs/v1.0/srml_contract/index.html)
 * [Council](https://substrate.dev/rustdocs/v1.0/srml_council/index.html)
