@@ -6,7 +6,7 @@ title: Consensus
 A blockchain runtime is a [state machine](https://en.wikipedia.org/wiki/Finite-state_machine). It has some internal state, and state transition function that allows it to transition from its current state to a future state. In most runtimes there are states that have valid transitions to multiple future states, but a single transition must be selected. Consider the following examples.
 
 ### Voting Conflict
-A blockchain runtime tallys simple two-option votes for a  DAO. When a new election is opened, Alice, a member of the DAO, can vote Aye. Alice could also vote Nay. But Alice cannot vote both Aye and Nay in the same election.
+A blockchain runtime tallys simple two-option votes for a DAO. When a new election is opened, Alice, a member of the DAO, can vote Aye. Alice could also vote Nay. But Alice cannot vote both Aye and Nay in the same election.
 
 ### Land Registry Conflict
 Consider a blockchain runtime that serves as a land registry for a futuristic nation-state. The registry keeps track of transfers of land ownership among citizens, and occasionally opens new plots of land to be claimed. For a particular newly opened land run, Alice could claim the plot, or Bob could claim it. But they cannot both claim it.
