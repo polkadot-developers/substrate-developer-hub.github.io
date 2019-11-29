@@ -358,4 +358,4 @@ In the `Cargo.toml` file of the Substrate node runtime, you will see an example 
 
 ### References
 
-- [SRML `Contracts` module API](https://crates.parity.io/srml_contracts/index.html)
+- [SRML `Contracts` module API](https://substrate.dev/rustdocs/master/pallet_contracts/index.html)
