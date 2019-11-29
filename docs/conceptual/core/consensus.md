@@ -54,7 +54,7 @@ Nodes that are following the rules of the consensus protocol always produce new 
 To prevent malicious nodes from creating attack chains and overwhelming the honest chain whenever they please, block production must be throttled so that nodes can only produce blocks at a given rate. There are two common ways of achieving this throttling.
 
 ### Proof of Work
-In proof of work systems like Bitcoin, any node may produce a block at any time, so long as they have solved a computationally-intensive problem. Solving the problem takes cpu time, and thus miners can only produce blocks in proportion with their computing resources. Substrate provides a Proof of Work consensus engine.
+In proof of work systems like Bitcoin, any node may produce a block at any time, so long as it has solved a computationally-intensive problem. Solving the problem takes CPU time, and thus miners can only produce blocks in proportion with their computing resources. Substrate provides a Proof of Work consensus engine.
 
 ### Slots
 When using a slot based consensus algorithm, there must be a known set of validators who are permitted to produce blocks. Time is divided up into discrete slots, and during each slot only some of the validators may produce a block. The specifics of which validators can author blocks during each slot vary from engine to engine. Substrate provides Aura and Babe, both of which are slot-based block authoring engines.
