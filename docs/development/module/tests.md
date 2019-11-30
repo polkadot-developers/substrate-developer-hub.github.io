@@ -14,13 +14,13 @@ cargo test <optional: test_name>
 
 ## Mock Runtime Environment
 
-To test a Substrate runtime, construct a mock runtime environment. The [substrate recipes](https://substrate.dev/recipes/testing/mock.html) provides a simple example of using a mocked runtime to test module logic. For more examples, see the modules in [`paint`](https://github.com/paritytech/substrate/tree/master/paint).
+To test a Substrate runtime, construct a mock runtime environment. The [substrate recipes](https://substrate.dev/recipes/testing/mock.html) provides a simple example of using a mocked runtime to test module logic. For more examples, see the `mock.rs` and `test.rs` files in most substrate modules.
 
 ### Mock Runtime Storage
 
 The [`runtime-io`](https://crates.parity.io/sr_io/index.html#enums) crate exposes a [`TestExternalities`](https://crates.parity.io/sr_io/type.TestExternalities.html) implementation frequently used for mocking storage in tests. It is the type alias for an in-memory, hashmap-based externalities implementation in [`substrate_state_machine`](https://crates.parity.io/substrate_state_machine/index.html)] referred to as [`TestExternalities`](https://crates.parity.io/substrate_state_machine/struct.TestExternalities.html).
 
-In the recipe on mock runtimes, an `ExtBuilder` object is defined to build an instance of [`TestExternalities`](https://crates.parity.io/sr_io/type.TestExternalities.html).
+In the [basic mock runtime's recipe](https://substrate.dev/recipes/testing/mock.html), an `ExtBuilder` object is defined to build an instance of [`TestExternalities`](https://crates.parity.io/sr_io/type.TestExternalities.html).
 
 ```rust
 pub struct ExtBuilder;
@@ -44,7 +44,7 @@ fn fake_test_example() {
 }
 ```
 
-Custom implementations of [Externalities](https://crates.parity.io/substrate_externalities/index.html) allow developers to construct runtime environments that provide access to features of the outer node. Another example of this can be found in [`substrate-offchain`](https://crates.parity.io/substrate_offchain/), which maintains its own [Externalities](https://crates.parity.io/substrate_offchain/testing/index.html) implementation. 
+Custom implementations of [Externalities](https://crates.parity.io/substrate_externalities/index.html) allow developers to construct runtime environments that provide access to features of the outer node. Another example of this can be found in [`substrate-offchain`](https://crates.parity.io/substrate_offchain/), which maintains its own [Externalities](https://crates.parity.io/substrate_offchain/testing/index.html) implementation. [Implementing configurable externalities](https://substrate.dev/recipes/testing/externalities.htm) is covered in more depth in the recipes.
 
 #### Genesis Config
 
@@ -103,14 +103,17 @@ A simple way of doing this increments the System module's block number between `
 ```rust
 fn run_to_block(n: u64) {
 	while System::block_number() < n {
-		MyModule::on_finalize(System::block_number());
-		System::on_finalize(System::block_number());
-		System::set_block_number(System::block_number() + 1);
-		System::on_initialize(System::block_number());
-		MyModule::on_initialize(System::block_number());
+		let current_block = System::block_number();
+		ExampleModule::on_finalize(current_block);
+		System::on_finalize(current_block);
+		System::set_block_number(current_block + 1u64.into());
+		System::on_initialize(current_block);
+		ExampleModule::on_initialize(System::block_number());
 	}
 }
 ```
+
+`on_finalize` and `on_initialize` are only called from `ExampleModule` if the module's trait implements the `sr_primitives::traits::{OnInitialize, OnFinalize}` traits to execute the logic encoded in the runtime methods before and after each block respectively.
 
 To use this function in unit tests,
 
@@ -125,14 +128,6 @@ fn my_runtime_test() {
 }
 ```
 
-### Examples
+## References and Examples
 
-**TODO**
-
-* explain a few more examples from the recipes
-* find more interesting patterns to cover from the docs
-
-### References
-
-* of interesting module test patterns? Reference them and discuss a bit
-TODO
+The [testing](https://substrate.dev/recipes/base/testing/index.html) chapter of the [Substrate Recipes](https://github.com/substrate-developer-hub/recipes/) compliments the samples shown above, and the [kitchen](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen) provides an environment to run the tests, change the logic, and tinker with the code.
