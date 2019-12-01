@@ -14,7 +14,23 @@ cargo test <optional: test_name>
 
 ## Mock Runtime Environment
 
-To test a Substrate runtime, construct a mock runtime environment. The [substrate recipes](https://substrate.dev/recipes/testing/mock.html) provides a simple example of using a mocked runtime to test module logic. For more examples, see the `mock.rs` and `test.rs` files in most substrate modules.
+To test a Substrate runtime, construct a mock runtime environment. The configuration type `Test` is defined as a unit struct with implementations for each of the configuration traits that need to be used in the mock runtime.
+
+```rust, ignore
+#[derive(Clone, PartialEq, Eq, Debug)]
+pub struct Test;
+```
+
+If `Test` implements `balances::Trait`, the assignment might use `u64` for the `Balance` type.
+
+```rust, ignore
+impl balances::Trait for TestRuntime {
+	type Balance = u64;
+	//..
+}
+```
+
+By assigning `balances::Balance` and `system::AccountId` to `u64`, mock runtimes ease the mental overhead of comprehensive, conscientious testers. Reasoning about accounts and balances only requires tracking a `(AccountId: u64, Balance: u64)` mapping.
 
 ### Mock Runtime Storage
 
@@ -22,7 +38,7 @@ The [`runtime-io`](https://crates.parity.io/sr_io/index.html#enums) crate expose
 
 In the [basic mock runtime's recipe](https://substrate.dev/recipes/testing/mock.html), an `ExtBuilder` object is defined to build an instance of [`TestExternalities`](https://crates.parity.io/sr_io/type.TestExternalities.html).
 
-```rust
+```rust, ignore
 pub struct ExtBuilder;
 
 impl ExtBuilder {
@@ -35,7 +51,7 @@ impl ExtBuilder {
 
 To create the test environment in unit tests, the build method is called to generate a `TestExternalities` using the default genesis configuration. Then, [`with_externalities`](https://crates.parity.io/substrate_externalities/fn.with_externalities.html) provides the runtime environment in which we may call the module's methods to test that storage, events, and errors behave as expected.
 
-```rust
+```rust, ignore
 #[test]
 fn fake_test_example() {
 	ExtBuilder::build().execute_with(|| {
@@ -50,31 +66,11 @@ Custom implementations of [Externalities](https://crates.parity.io/substrate_ext
 
 The previously shown `ExtBuilder::build()` method used the default genesis configuration for building the mock runtime environment. In many cases, it is convenient to set storage before testing.
 
-An example might involve pre-seeding account balances before testing. The `TestRuntime` implements `balances::Trait`, 
-
-```rust
-parameter_types! {
-	pub const ExistentialDeposit: u64 = 1;
-	pub const TransferFee: u64 = 0;
-	pub const CreationFee: u64 = 0;
-}
-
-impl balances::Trait for TestRuntime {
-	type Balance = u64;
-	type OnNewAccount = ();
-	type OnFreeBalanceZero = ();
-	type Event = ();
-	type TransferPayment = ();
-	type DustRemoval = ();
-	type ExistentialDeposit = ExistentialDeposit;
-	type TransferFee = TransferFee;
-	type CreationFee = CreationFee;
-}
-```
+An example might involve pre-seeding account balances before testing.
 
 In the implementation of `system::Trait`, `AccountId` is set to `u64` just like `Balance` shown above. Place `(u64, u64)` pairs in the `balances` vec to seed `(AccountId, Balance)` pairs as the account balances.
 
-```rust
+```rust, ignore
 pub fn build(self) -> runtime_io::TestExternalities {
 	GenesisConfig {
 		balances: Some(balances::GenesisConfig::<TestRuntime>{
@@ -100,14 +96,13 @@ It will be useful to simulate block production to verify that expected behavior 
 
 A simple way of doing this increments the System module's block number between `on_initialize` and `on_finalize` calls from all modules with `System::block_number()` as the sole input.
 
-```rust
+```rust, ignore
 fn run_to_block(n: u64) {
 	while System::block_number() < n {
-		let current_block = System::block_number();
-		ExampleModule::on_finalize(current_block);
-		System::on_finalize(current_block);
-		System::set_block_number(current_block + 1u64.into());
-		System::on_initialize(current_block);
+		ExampleModule::on_finalize(System::block_number());
+		System::on_finalize(System::block_number());
+		System::set_block_number(System::block_number());
+		System::on_initialize(System::block_number());
 		ExampleModule::on_initialize(System::block_number());
 	}
 }
@@ -117,7 +112,7 @@ fn run_to_block(n: u64) {
 
 To use this function in unit tests,
 
-```rust
+```rust, ignore
 #[test]
 fn my_runtime_test() {
 	with_externalities(&mut new_test_ext(), || {
@@ -128,6 +123,6 @@ fn my_runtime_test() {
 }
 ```
 
-## References and Examples
+## Next Steps
 
 The [testing](https://substrate.dev/recipes/base/testing/index.html) chapter of the [Substrate Recipes](https://github.com/substrate-developer-hub/recipes/) compliments the samples shown above, and the [kitchen](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen) provides an environment to run the tests, change the logic, and tinker with the code.
