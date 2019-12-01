@@ -144,9 +144,9 @@ You can learn more about [`decl_storage!`](https://substrate.dev/rustdocs/v1.0/s
 
 ### Event
 
-The `Event` type needs to be exposed whenever your module deposits events using the `decl_event!` module. Events can be used to easily report changes or conditions in your runtime to external entities like users, chain explorers, or dApps.
+The `Event` type needs to be exposed whenever your module deposits events using the `decl_event!` macro. Events can be used to easily report changes or conditions in your runtime to external entities like users, chain explorers, or dApps.
 
-If you want to expose generic types defined by your module, you will need to make your type generic (Event<T>), as shown here:
+If you want to expose generic types defined by your module, you will need to make your type generic (`Event<T>`), as shown here:
 
 ```rust
 /// An event in this module.
