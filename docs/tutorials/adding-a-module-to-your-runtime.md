@@ -21,16 +21,13 @@ curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```bash
 git clone https://github.com/substrate-developer-hub/substrate-node-template
 
-# Personalize your project
-./substrate-node-template/substrate-node-rename.sh contracts-chain <YourName>
-```
 
 #### Run your node.
 
 It will take a little while for Rust to build your node, but once it is complete, you should be able to start your node with:
 
 ```bash
-cd contracts-chain/
+cd substrate-node-template/
 cargo run --release -- --dev
 ```
 
@@ -42,7 +39,7 @@ Remember to stop your node with `control + C`!
 
 The first thing you need to do to add the Contracts pallet is to import the `pallet-contracts` crate in your runtime's `Cargo.toml` file. If you want a proper primer into Cargo References, you should check out [their official documentation](https://doc.rust-lang.org/cargo/reference/index.html).
 
-Open `contracts-chain/runtime/Cargo.toml` and you will see a file which lists all the dependencies your runtime has. For example, it depends on the [Balances pallet](https://substrate.dev/rustdocs/master/pallet_balances/index.html):
+Open `substrate-node-template/runtime/Cargo.toml` and you will see a file which lists all the dependencies your runtime has. For example, it depends on the [Balances pallet](https://substrate.dev/rustdocs/master/pallet_balances/index.html):
 
 **`Cargo.toml`**
 
@@ -329,15 +326,12 @@ Now, when the Balances pallet detects that the free balance of an account has re
 
 ## Genesis Configuration
 
-The last thing we need to do in order to get your node up and running is to establish a genesis configuration for the Contracts pallet. Not all pallets will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`pallet_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contracts pallet. This definition is controlled in `contracts-chain/src/chain_spec.rs`. We need to modify this file to include the `ContractsConfig` type and add the contract price units at the top:
+The last thing we need to do in order to get your node up and running is to establish a genesis configuration for the Contracts pallet. Not all pallets will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`pallet_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contracts pallet. This definition is controlled in `substrate-node-template/src/chain_spec.rs`. We need to modify this file to include the `ContractsConfig` type and add the contract price units at the top:
 
 **`src/chain_spec.rs`**
 
 ```rust
-use contracts_chain_runtime::{ContractsConfig, Balance};
-
-// Contracts price units.
-pub const MILLICENTS: Balance = 1_000_000_000;
+use runtime::{ContractsConfig, MILLICENTS};
 ```
 
 Then inside the `testnet_genesis` function we need to add the contract configuration to the returned `GenesisConfig` object as followed:

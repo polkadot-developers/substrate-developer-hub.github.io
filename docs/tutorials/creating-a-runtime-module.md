@@ -1,5 +1,5 @@
 ---
-title: "Creating a Runtime Pallet"
+title: "Creating an External Pallet"
 ---
 
 In this tutorial, you'll write a Substrate runtime pallet that lives in its own
@@ -115,10 +115,10 @@ people build their own Substrate nodes, they will also have dependencies on the
 main Substrate repository.
 
 Because of this, you will need to be careful to ensure consistent dependencies
-from your pallet and the node integrating your pallet to the Substrate
-repository. If your pallet is dependent on one version of Substrate, and the
-node on another, compilation will run into errors where the Substrate versions
-may be incompatible, or different version of the same library are being used.
+from your pallet and the your Substrate node. If your pallet is dependent on 
+one version of Substrate, and thenode on another, compilation will run into errors 
+where the Substrate versions may be incompatible, or different version of the 
+same library are being used.
 Ultimately Cargo will not be able to resolve those conflicts and you will get a
 compile time error.
 
@@ -137,15 +137,12 @@ code comment.
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'frame-support'
-rev = "<some commit hash>"
+branch = 'v2.0'
 
 # Develop against a git commit by specifying the same Substrate commit as your main node. 
 # It is important to use the same Substrate commit to prevent dependencies mismatch.
 # rev = "<some commit hash>"
-# It is also possible to use a branch instead of building for a specific commit.
-# branch = 'v2.0'
 
-# --snip--
 ```
 
 ### Your Pallet's Dev Dependencies
@@ -263,7 +260,7 @@ connect to** set to **Local Node**.
 
 ## Publish Your Pallet
 
-Once your pallet is no longer just testing code, you should consider publishing
+Once your pallet is no longer in test phase, you should consider publishing
 it to GitHub. Go ahead and [create a GitHub
 repository](https://help.github.com/en/articles/create-a-repo) and [push your
 pallet's code](https://help.github.com/en/articles/pushing-to-a-remote) to it.
