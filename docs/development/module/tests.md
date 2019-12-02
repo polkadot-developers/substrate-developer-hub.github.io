@@ -49,7 +49,7 @@ impl ExtBuilder {
 }
 ```
 
-To create the test environment in unit tests, the build method is called to generate a `TestExternalities` using the default genesis configuration. Then, [`with_externalities`](https://crates.parity.io/substrate_externalities/fn.with_externalities.html) provides the runtime environment in which we may call the module's methods to test that storage, events, and errors behave as expected.
+To create the test environment in unit tests, the build method is called to generate a `TestExternalities` using the default genesis configuration. Then, [`with_externalities`](https://crates.parity.io/substrate_externalities/fn.with_externalities.html) provides the runtime environment in which we may call the pallet's methods to test that storage, events, and errors behave as expected.
 
 ```rust, ignore
 #[test]
