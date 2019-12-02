@@ -105,7 +105,7 @@ The Substrate [JSON RPC](development/front-end/json-rpc.md) does not directly ex
 
 ### Examples
 
-View the following substrate [recipes](https://github.com/substrate-developer-hub/recipes) to find examples of how runtime events are used:
+View the following Substrate [recipes](https://github.com/substrate-developer-hub/recipes) to find examples of how runtime events are used:
 
 * [A module which implements standard events]( TODO )
 
