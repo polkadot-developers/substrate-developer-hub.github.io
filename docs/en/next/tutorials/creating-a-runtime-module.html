@@ -1,5 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Creating a Runtime Module · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;In this tutorial, you&#x27;ll write a Substrate runtime module that lives in its own&lt;/p&gt;
-"/><meta name="docsearch:version" content="next"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Creating a Runtime Module · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;In this tutorial, you&#x27;ll write a Substrate runtime module that lives in its own&lt;/p&gt;
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Creating an External Pallet · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;In this tutorial, you&#x27;ll write a Substrate runtime pallet that lives in its own&lt;/p&gt;
+"/><meta name="docsearch:version" content="next"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Creating an External Pallet · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;In this tutorial, you&#x27;ll write a Substrate runtime pallet that lives in its own&lt;/p&gt;
 "/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
@@ -18,22 +18,22 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/tutorials/creating-a-runtime-module.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Creating a Runtime Module</h1></header><article><div><span><p>In this tutorial, you'll write a Substrate runtime module that lives in its own
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/tutorials/creating-a-runtime-module.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Creating an External Pallet</h1></header><article><div><span><p>In this tutorial, you'll write a Substrate runtime pallet that lives in its own
 crate, and include it in a node based on the <code>substrate-node-template</code>.</p>
 <h2><a class="anchor" aria-hidden="true" id="prerequisites"></a><a href="#prerequisites" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prerequisites</h2>
 <p>If you haven't already done so, follow the <a href="/docs/en/next/getting-started">Getting Started</a>
 guide to download necessary tools to build Substrate.</p>
-<h3><a class="anchor" aria-hidden="true" id="clone-the-node-and-module-template"></a><a href="#clone-the-node-and-module-template" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Clone the Node and Module Template</h3>
-<p>We're not going to write our module directly as part of the node template, but
-rather as a separate Rust crate. This approach allows us to publish our module
-separate from our node and also allows other to easily import this module into
+<h3><a class="anchor" aria-hidden="true" id="clone-the-node-and-pallet-template"></a><a href="#clone-the-node-and-pallet-template" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Clone the Node and Pallet Template</h3>
+<p>We're not going to write our pallet directly as part of the node template, but
+rather as a separate Rust crate. This approach allows us to publish our pallet
+separate from our node and also allows other to easily import this pallet into
 their own Substrate runtime.</p>
 <ol>
 <li><p>Clone the Substrate node template:</p>
 <pre><code class="hljs css language-bash"><span class="token function">git</span> clone https://github.com/substrate-developer-hub/substrate-node-template.git my-node
 </code></pre></li>
-<li><p>Clone the Substrate module template:</p>
-<pre><code class="hljs css language-bash"><span class="token function">git</span> clone https://github.com/substrate-developer-hub/substrate-module-template.git my-module
+<li><p>Clone the Substrate pallet template:</p>
+<pre><code class="hljs css language-bash"><span class="token function">git</span> clone https://github.com/substrate-developer-hub/substrate-pallet-template.git my-pallet
 </code></pre></li>
 <li><p>Build the Substrate node template:</p>
 <pre><code class="hljs css language-bash"><span class="token function">cd</span> my-node
@@ -41,45 +41,45 @@ cargo build --release
 </code></pre></li>
 </ol>
 <p>The <code>substrate-node-template</code> contains a working Substrate node, and the
-<code>substrate-module-template</code> contains an independent Rust crate which is a
-Substrate runtime module that can be included in your node. The compilation of
+<code>substrate-pallet-template</code> contains an independent Rust crate which is a
+Substrate runtime pallet that can be included in your node. The compilation of
 the node may take up to 30 minutes depending on your hardware, so let that run
 while you continue to follow this guide.</p>
-<p>If you aren't familiar with Rust including and using other modules, you can
+<p>If you aren't familiar with Rust including and using other pallets, you can
 refer to <a href="https://doc.rust-lang.org/cargo/guide/creating-a-new-project.html">the Cargo
 book</a> for a
 more in-depth explanation.</p>
-<h2><a class="anchor" aria-hidden="true" id="the-substrate-module-template"></a><a href="#the-substrate-module-template" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Substrate Module Template</h2>
-<p>You should be able to successfully compile the Substrate module template with:</p>
-<pre><code class="hljs css language-bash"><span class="token function">cd</span> my-module
+<h2><a class="anchor" aria-hidden="true" id="the-substrate-pallet-template"></a><a href="#the-substrate-pallet-template" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Substrate Pallet Template</h2>
+<p>You should be able to successfully compile the Substrate pallet template with:</p>
+<pre><code class="hljs css language-bash"><span class="token function">cd</span> my-pallet
 cargo build --release
 </code></pre>
-<p>Let's explore the Substrate module template, starting with the <code>Cargo.toml</code>
+<p>Let's explore the Substrate pallet template, starting with the <code>Cargo.toml</code>
 file.</p>
 <h3><a class="anchor" aria-hidden="true" id="renaming-your-crate"></a><a href="#renaming-your-crate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Renaming Your Crate</h3>
 <p>In the <code>Cargo.toml</code> file, you can update the crate's name and authorship. In
-this tutorial, we're focusing on how to create and use the module rather than
-writing interesting module logic. So let's call it <code>test_module</code>.</p>
+this tutorial, we're focusing on how to create and use the pallet rather than
+writing interesting pallet logic. So let's call it <code>test_pallet</code>.</p>
 <p>The beginning of the <code>Cargo.toml</code> now looks like:</p>
-<p><strong><code>my-module/Cargo.toml</code></strong></p>
+<p><strong><code>my-pallet/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">package</span><span class="token punctuation">]</span>
-<span class="token key property">name</span> <span class="token punctuation">=</span> <span class="token string">"test_module"</span>
+<span class="token key property">name</span> <span class="token punctuation">=</span> <span class="token string">"test_pallet"</span>
 <span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">"0.1.0"</span>
 <span class="token key property">authors</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token table class-name">"Your Name"</span><span class="token punctuation">]</span>
 <span class="token key property">edition</span> <span class="token punctuation">=</span> <span class="token string">"2018"</span>
 </code></pre>
-<h3><a class="anchor" aria-hidden="true" id="your-module-s-std-feature"></a><a href="#your-module-s-std-feature" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Your Module's <code>std</code> Feature</h3>
-<p>In your <code>my-module/Cargo.toml</code> file, you will notice a few lines about the
+<h3><a class="anchor" aria-hidden="true" id="your-pallet-s-std-feature"></a><a href="#your-pallet-s-std-feature" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Your Pallet's <code>std</code> Feature</h3>
+<p>In your <code>my-pallet/Cargo.toml</code> file, you will notice a few lines about the
 &quot;<code>std</code> feature&quot;. In Rust, when you enable <code>std</code>, you give your project access to
 <a href="https://doc.rust-lang.org/std/">the Rust standard libraries</a>. This works just
 fine when building native binaries.</p>
 <p>However, Substrate also builds the runtime code to WebAssembly (Wasm). In this
 case we use cargo features to disable the Rust standard library. Thus, all the
-dependencies we use for our module, and our entire runtime, must be able to
+dependencies we use for our pallet, and our entire runtime, must be able to
 compile with <a href="https://rust-embedded.github.io/book/intro/no-std.html"><code>no_std</code></a>
-feature. Our <code>Cargo.toml</code> file tells our module's dependencies to only use their
-<code>std</code> feature when this module also uses its <code>std</code> feature, like so:</p>
-<p><strong><code>my-module/Cargo.toml</code></strong></p>
+feature. Our <code>Cargo.toml</code> file tells our pallet's dependencies to only use their
+<code>std</code> feature when this pallet also uses its <code>std</code> feature, like so:</p>
+<p><strong><code>my-pallet/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML">[features]
 default = ['std']
 std = [
@@ -92,43 +92,42 @@ std = [
 ]
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="consistent-substrate-dependencies"></a><a href="#consistent-substrate-dependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Consistent Substrate Dependencies</h3>
-<p>All Substrate modules will depend on some low-level module libraries such as
-<code>srml-system</code> and <code>srml-support</code>. These libraries are pulled from the main
+<p>All Substrate pallets will depend on some low-level FRAME libraries such as
+<code>frame-system</code> and <code>frame-support</code>. These libraries are pulled from the main
 <a href="https://github.com/paritytech/substrate">Substrate GitHub repository</a>. When
 people build their own Substrate nodes, they will also have dependencies on the
 main Substrate repository.</p>
 <p>Because of this, you will need to be careful to ensure consistent dependencies
-from your module and the node integrating your module to the Substrate
-repository. If your module is dependent on one version of Substrate, and the
-node on another, compilation will run into errors where the Substrate versions
-may be incompatible, or different version of the same library are being used.
+from your pallet and the your Substrate node. If your pallet is dependent on
+one version of Substrate, and thenode on another, compilation will run into errors
+where the Substrate versions may be incompatible, or different version of the
+same library are being used.
 Ultimately Cargo will not be able to resolve those conflicts and you will get a
 compile time error.</p>
-<p>When building your module, we recommend to develop against the <code>v2.0</code> branch as
-the template demonstrates. This ensures your module has the latest stable code.
+<p>When building your pallet, we recommend to develop against the <code>v2.0</code> branch as
+the template demonstrates. This ensures your pallet has the latest stable code.
 If you later prefer to have the freshly-baked features from Substrate, you can
 then choose to use a specific git commit of Substrate, as shown in the following
 code comment.</p>
-<p><strong><code>my-module/Cargo.toml</code></strong></p>
+<p><strong><code>my-pallet/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-comment"># --snip--</span>
 <span class="hljs-section">
 [dependencies.support]</span>
 <span class="hljs-attr">default_features</span> = <span class="hljs-literal">false</span>
 <span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
-<span class="hljs-attr">package</span> = <span class="hljs-string">'srml-support'</span>
+<span class="hljs-attr">package</span> = <span class="hljs-string">'frame-support'</span>
 <span class="hljs-attr">branch</span> = <span class="hljs-string">'v2.0'</span>
 
 <span class="hljs-comment"># Develop against a git commit by specifying the same Substrate commit as your main node. </span>
 <span class="hljs-comment"># It is important to use the same Substrate commit to prevent dependencies mismatch.</span>
 <span class="hljs-comment"># rev = "&lt;some commit hash&gt;"</span>
 
-<span class="hljs-comment"># --snip--</span>
 </code></pre>
-<h3><a class="anchor" aria-hidden="true" id="your-module-s-dev-dependencies"></a><a href="#your-module-s-dev-dependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Your Module's Dev Dependencies</h3>
+<h3><a class="anchor" aria-hidden="true" id="your-pallet-s-dev-dependencies"></a><a href="#your-pallet-s-dev-dependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Your Pallet's Dev Dependencies</h3>
 <p>The final section of the <code>Cargo.toml</code> file specifies the dev dependencies. These
-are the dependencies that are needed in your module's tests, but not necessary
-the actual module itself.</p>
-<p><strong><code>my-module/Cargo.toml</code></strong></p>
+are the dependencies that are needed in your pallet's tests, but not necessary
+the actual pallet itself.</p>
+<p><strong><code>my-pallet/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-comment"># --snip--</span>
 <span class="hljs-section">
 [dev-dependencies.primitives]</span>
@@ -136,28 +135,28 @@ the actual module itself.</p>
 <span class="hljs-attr">package</span> = <span class="hljs-string">'substrate-primitives'</span>
 <span class="hljs-attr">branch</span> = <span class="hljs-string">'v2.0'</span>
 </code></pre>
-<p>You can confirm that the tests in the Substrate module template pass with:</p>
+<p>You can confirm that the tests in the Substrate pallet template pass with:</p>
 <pre><code class="hljs css language-bash">cargo <span class="token function">test</span>
 </code></pre>
-<p>You may need to modify the dependencies you need for the modules you create.</p>
-<h2><a class="anchor" aria-hidden="true" id="add-your-runtime-module-to-your-node"></a><a href="#add-your-runtime-module-to-your-node" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add Your Runtime Module to Your Node</h2>
-<p>With our runtime module now compiling and passing it's tests, we're ready to add
+<p>You may need to modify the dependencies you need for the pallets you create.</p>
+<h2><a class="anchor" aria-hidden="true" id="add-your-runtime-pallet-to-your-node"></a><a href="#add-your-runtime-pallet-to-your-node" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add Your Runtime Pallet to Your Node</h2>
+<p>With our runtime pallet now compiling and passing it's tests, we're ready to add
 it to our node.</p>
 <p>We first add our newly-created crate as a dependency in the node's runtime
-<code>Cargo.toml</code>. Then we tell the module to only build its <code>std</code> feature when the
+<code>Cargo.toml</code>. Then we tell the pallet to only build its <code>std</code> feature when the
 runtime itself does, as follows:</p>
 <p><strong><code>my-node/runtime/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"># --snip--
 
-[dependencies.test_module]
+[dependencies.test_pallet]
 default_features = false
-path = "../../my-module"
+path = "../../my-pallet"
 
 # toward the bottom
 [features]
 default = ['std']
 std = [
-    'test_module/std',
+    'test_pallet/std',
     # --snip--
 ]
 </code></pre>
@@ -166,11 +165,11 @@ std = [
 successfully compile to Wasm.</p>
 </blockquote>
 <p>Next we will update <code>my-node/runtime/src/lib.rs</code> to actually use our new runtime
-module, by adding a trait implementation with our <code>test_module</code> and add it in
+pallet, by adding a trait implementation with our <code>test_pallet</code> and add it in
 our <code>construct_runtime!</code> macro.</p>
 <p><strong><code>my-node/runtime/src/lib.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token comment">// add the following code block</span>
-<span class="token keyword">impl</span> test_module<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait <span class="token keyword">for</span> Runtime <span class="token punctuation">{</span>
+<span class="token keyword">impl</span> test_pallet<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait <span class="token keyword">for</span> Runtime <span class="token punctuation">{</span>
   <span class="token keyword">type</span> Event <span class="token operator">=</span> Event<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
@@ -183,12 +182,12 @@ our <code>construct_runtime!</code> macro.</p>
   <span class="token punctuation">{</span>
     <span class="token comment">// --snip--</span>
     <span class="token comment">// add the following line</span>
-    TestModule<span class="token punctuation">:</span> test_module<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>Module<span class="token punctuation">,</span> Call<span class="token punctuation">,</span> Storage<span class="token punctuation">,</span> Event<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    TestPallet<span class="token punctuation">:</span> test_pallet<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>Module<span class="token punctuation">,</span> Call<span class="token punctuation">,</span> Storage<span class="token punctuation">,</span> Event<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="run-your-node"></a><a href="#run-your-node" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Run Your Node</h2>
-<p>At this point you have the module packaged up as it's own crate and included in
+<p>At this point you have the pallet packaged up as it's own crate and included in
 your node's runtime.</p>
 <ol>
 <li><p>Compile and run your node with:</p>
@@ -204,37 +203,37 @@ cargo build --release
 </ol>
 <p>Finally, start the <a href="https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944">Polkadot-JS Apps connecting to your local
 node</a> to
-confirm that the module is working as expected.</p>
+confirm that the pallet is working as expected.</p>
 <blockquote>
 <p><strong>Notes:</strong> You can also manually set the node URL in Polkadot-JS Apps by
 navigating to the <strong>Settings</strong> tab, and have the <strong>remote node/endpoint to
 connect to</strong> set to <strong>Local Node</strong>.</p>
 </blockquote>
-<h2><a class="anchor" aria-hidden="true" id="publish-your-module"></a><a href="#publish-your-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Publish Your Module</h2>
-<p>Once your module is no longer just testing code, you should consider publishing
+<h2><a class="anchor" aria-hidden="true" id="publish-your-pallet"></a><a href="#publish-your-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Publish Your Pallet</h2>
+<p>Once your pallet is no longer in test phase, you should consider publishing
 it to GitHub. Go ahead and <a href="https://help.github.com/en/articles/create-a-repo">create a GitHub
 repository</a> and <a href="https://help.github.com/en/articles/pushing-to-a-remote">push your
-module's code</a> to it.</p>
-<p>With the code on GitHub, your module is properly published. Congratulations! Now
+pallet's code</a> to it.</p>
+<p>With the code on GitHub, your pallet is properly published. Congratulations! Now
 we just need to update your node to use the code that is on GitHub instead of a
 hard-coded file system path. The final edit to your runtime's <code>Cargo.toml</code> file
-is to update its dependency on your module. The new code is:</p>
+is to update its dependency on your pallet. The new code is:</p>
 <p><strong><code>my-node/runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies.your-module-name]</span>
+<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies.your-pallet-name]</span>
 <span class="hljs-attr">default_features</span> = <span class="hljs-literal">false</span>
-<span class="hljs-attr">git</span> = <span class="hljs-string">"https://github.com/your-username/your-module"</span>
+<span class="hljs-attr">git</span> = <span class="hljs-string">"https://github.com/your-username/your-pallet"</span>
 <span class="hljs-attr">branch</span> = <span class="hljs-string">"master"</span>
 
 <span class="hljs-comment"># You may choose a specific commit or tag instead of branch</span>
 <span class="hljs-comment"># rev = "&lt;some commit hash&gt;"</span>
 <span class="hljs-comment"># tag = "&lt;some tag&gt;"</span>
 </code></pre>
-<p>Compile one more time and notice that Cargo now grabs your module from GitHub
+<p>Compile one more time and notice that Cargo now grabs your pallet from GitHub
 instead of using the local files.</p>
 <h2><a class="anchor" aria-hidden="true" id="next-steps"></a><a href="#next-steps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Next Steps</h2>
-<p>Congratulations! You've written a Substrate runtime module in its own Rust
+<p>Congratulations! You've written a Substrate runtime pallet in its own Rust
 crate, and published that crate to GitHub. Other blockchain developers can now
-easily use your module in their runtime by simply including those same four
+easily use your pallet in their runtime by simply including those same four
 lines of code in their runtime's <code>Cargo.toml</code> files and updating their runtime's
 <code>lib.rs</code> file.</p>
 <p>If you're not sure what to do next, check out the resources below.</p>
@@ -251,7 +250,7 @@ an end-to-end application.</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="examples"></a><a href="#examples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h3>
 <ul>
-<li>Tutorial on <a href="tutorials/adding-a-module-to-your-runtime">adding a <code>Contracts</code> module into
+<li>Tutorial on <a href="tutorials/adding-a-module-to-your-runtime">adding a <code>Contracts</code> Pallet into
 runtime</a>, so your node can run
 smart contract.</li>
 </ul>
@@ -260,7 +259,7 @@ smart contract.</li>
 <li><a href="https://doc.rust-lang.org/stable/cargo/">The Cargo book</a></li>
 <li>More about <a href="https://rustwasm.github.io/">Rust and WebAssembly</a></li>
 </ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 10/21/2019 by Jimmy Chu</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#prerequisites">Prerequisites</a><ul class="toc-headings"><li><a href="#clone-the-node-and-module-template">Clone the Node and Module Template</a></li></ul></li><li><a href="#the-substrate-module-template">The Substrate Module Template</a><ul class="toc-headings"><li><a href="#renaming-your-crate">Renaming Your Crate</a></li><li><a href="#your-module-s-std-feature">Your Module's <code>std</code> Feature</a></li><li><a href="#consistent-substrate-dependencies">Consistent Substrate Dependencies</a></li><li><a href="#your-module-s-dev-dependencies">Your Module's Dev Dependencies</a></li></ul></li><li><a href="#add-your-runtime-module-to-your-node">Add Your Runtime Module to Your Node</a></li><li><a href="#run-your-node">Run Your Node</a></li><li><a href="#publish-your-module">Publish Your Module</a></li><li><a href="#next-steps">Next Steps</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li><li><a href="#examples">Examples</a></li><li><a href="#references">References</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 12/2/2019 by Ricardo Rius</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#prerequisites">Prerequisites</a><ul class="toc-headings"><li><a href="#clone-the-node-and-pallet-template">Clone the Node and Pallet Template</a></li></ul></li><li><a href="#the-substrate-pallet-template">The Substrate Pallet Template</a><ul class="toc-headings"><li><a href="#renaming-your-crate">Renaming Your Crate</a></li><li><a href="#your-pallet-s-std-feature">Your Pallet's <code>std</code> Feature</a></li><li><a href="#consistent-substrate-dependencies">Consistent Substrate Dependencies</a></li><li><a href="#your-pallet-s-dev-dependencies">Your Pallet's Dev Dependencies</a></li></ul></li><li><a href="#add-your-runtime-pallet-to-your-node">Add Your Runtime Pallet to Your Node</a></li><li><a href="#run-your-node">Run Your Node</a></li><li><a href="#publish-your-pallet">Publish Your Pallet</a></li><li><a href="#next-steps">Next Steps</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li><li><a href="#examples">Examples</a></li><li><a href="#references">References</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
 #blast {
   position: fixed;
   width: 100%;
