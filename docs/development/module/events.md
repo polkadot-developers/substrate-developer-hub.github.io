@@ -109,7 +109,7 @@ View the following Substrate [recipes](https://github.com/substrate-developer-hu
 
 * [A module which implements standard events]( TODO )
 
-* [A module which does not emit events with generic types](https://github.com/substrate-developer-hub/recipes/blob/master/kitchen/adder/src/lib.rs)
+* [A pallet which does not emit events with generic types](https://github.com/substrate-developer-hub/recipes/blob/master/kitchen/adder/src/lib.rs)
 
 ### References
 
