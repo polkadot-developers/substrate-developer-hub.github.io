@@ -2,7 +2,7 @@
 title: "Governance \"Public\" Mechanism with a Substrate Node Chain"
 ---
 
-This document will walk you through steps to create a Substrate Node, integrate the Substrate SRML 'Referenda' Module into the Substrate Node's Runtime, and then create a "public" referendum for approval using [Polkadot-JS Apps](https://polkadot.js.org/apps/next/).
+This document will walk you through steps to create a Substrate Node, integrate the Substrate's FRAME 'Referenda' pallet into the Substrate Node's Runtime, and then create a "public" referendum for approval using [Polkadot-JS Apps](https://polkadot.js.org/apps/next/).
 
 We apply governance mechanisms discussed by [Dr Gavin Wood at EdCon Toronto](https://youtu.be/VsZuDJMmVPY?t=24732) where the runtime was changed (see screenshot below).
 
@@ -59,23 +59,23 @@ cd ~/code/polkadot-js
 polkadot-js-apps-new
 ```
 
-* **FIXME**: Talk about how Polkadot-JS Apps needs to be dynamic, checking what SRML modules are being used by the connected chain and only showing the relevant ones in the UI
+* **FIXME**: Talk about how Polkadot-JS Apps needs to be dynamic, checking what FRAME pallets are being used by the connected chain and only showing the relevant ones in the UI
 
-## Step 1: Integrate Substrate SRML 'Referenda' Module into Substrate Node Runtime
+## Step 1: Integrate Substrate FRAME 'Referenda' Pallet into Substrate Node Runtime
 
 We're keen to use some governance mechanisms, but we're stumped because we can't find anything 'governance' related in the [Substrate Node Template](https://github.com/paritytech/substrate/tree/master/bin/node-template) code that we used to create a minimal **Substrate Node chain**.
 
-Fortunately we were tipped by an insider who confirmed that the 'governance' modules that we need aren't yet contained in the Substrate Node's Runtime that we setup in the directory '~/code/paritytech/my-substrate-node-template-1'.
+Fortunately we were tipped by an insider who confirmed that the 'governance' pallets that we need aren't yet contained in the Substrate Node's Runtime that we setup in the directory '~/code/paritytech/my-substrate-node-template-1'.
 
-We're reminded of the advantages of the **Substrate ([SRML](overview/glossary.md#srml-substrate-runtime-module-library))**. We'd like to plugin the 'Referenda' Module and associated configuration from this library into our **Substrate Node's** Runtime, and then tweak it to our liking.
+We're reminded of the advantages of the **Substrate ([FRAME](overview/glossary.md#frame-framework-runtime-aggregation-modularised-entities))**. We'd like to plugin the 'Referenda' pallet and associated configuration from this library into our **Substrate Node's** Runtime, and then tweak it to our liking.
 
 ![Source: https://youtu.be/0IoUZdDi5Is?t=1377](https://files.readme.io/bd2f854-53b8dc8-Screen_Shot_2018-11-18_at_15.31.20.png)
 
-* **FIXME**: Integrate 'governance' module and configuration into the Runtime of 'my-substrate-node-template-1'
+* **FIXME**: Integrate 'governance' pallet and configuration into the Runtime of 'my-substrate-node-template-1'
 
 ## Step 2: Modify Governance Configuration
 
-* **FIXME**: show how to [increase the Voting Period](https://github.com/polkadot-js/apps/wiki/Troubleshooting) before running the Substrate Node, and how to change the value when using https://github.com/paritytech/substrate/blob/master/bin/node-template/ in the integrated 'governance' module and configuration
+* **FIXME**: show how to [increase the Voting Period](https://github.com/polkadot-js/apps/wiki/Troubleshooting) before running the Substrate Node, and how to change the value when using https://github.com/paritytech/substrate/blob/master/bin/node-template/ in the integrated 'governance' pallet and configuration
 
 ## Step 3: Launch a Substrate Node Blockchain
 

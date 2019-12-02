@@ -57,45 +57,45 @@ We will teach you how to use this node in "developer" mode, which allows you to
 run a network with a single node, and have some pre-configured user accounts
 with funds.
 
-### Substrate Runtime Module Template
+### Substrate Runtime Pallet Template
 
 The Substrate framework puts an emphasis on making it easy to design custom
 block execution logic, a.k.a. the state transition function of the blockchain.
 We call this part of Substrate the **runtime**.
 
-The Substrate runtime is composed of runtime modules. You can think of these
-runtime modules as individual pieces of logic which define what your blockchain
-can do! Substrate provides you with a number of pre-built runtime modules
-collected in the **Substrate Runtime Module Library** (SRML).
+The Substrate runtime is composed of runtime pallets. You can think of these
+runtime pallets as individual pieces of logic which define what your blockchain
+can do! Substrate provides you with a number of pre-built runtime pallets
+collected in the FRAME framework.
 
 ![Runtime Composition](assets/runtime.png)
 
 For example, the SRML includes a
 [Balances](https://substrate.dev/rustdocs/master/pallet_balances/index.html)
-module that controls the underlying currency of your blockchain by managing the
+pallet that controls the underlying currency of your blockchain by managing the
 _balance_ of all the accounts in your system. 
 
 If you want to add smart contract functionality to your blockchain, you simply
 need to include the
 [Contracts](https://substrate.dev/rustdocs/master/pallet_contracts/index.html)
-module.
+pallet.
 
 Even things like on-chain governance can be added to your blockchain by
-including modules like
+including pallets like
 [Democracy](https://substrate.dev/rustdocs/master/pallet_democracy/index.html),
 [Elections](https://substrate.dev/rustdocs/master/pallet_elections/index.html),
 and
 [Collective](https://substrate.dev/rustdocs/master/pallet_collective/index.html).
 
 The goal of this tutorial is to teach you how to create your own Substrate
-runtime module which will be included in your custom blockchain! The
-`substrate-node-template` comes with a template module that we will build your
+runtime pallet which will be included in your custom blockchain! The
+`substrate-node-template` comes with a template pallet that we will build your
 custom logic on top of.
 
 ## Proof Of Existence Chain
 
 The custom logic we will add to your Substrate runtime is a Proof of Existence
-module. From [Wikipedia](https://en.wikipedia.org/wiki/Proof_of_Existence): 
+pallet. From [Wikipedia](https://en.wikipedia.org/wiki/Proof_of_Existence): 
 
 > Proof of Existence is an online service that verifies the existence of
 > computer files as of a specific time via timestamped transactions in the
@@ -117,7 +117,7 @@ a file digest is stored on the blockchain, we can also record which user
 uploaded that digest. This allows that user to later prove that they were the
 original person to claim the file.
 
-Our Proof of Existence module will expose two callable functions:
+Our Proof of Existence Pallet will expose two callable functions:
 
 * `create_claim` - allows a user to claim the existence of a file by uploading a
   file digest.

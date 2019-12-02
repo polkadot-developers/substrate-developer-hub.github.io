@@ -20,15 +20,15 @@ The code for the sample TCR runtime covered in this guide is available in the [S
 The guide is divided into the following five parts.
 
 * **PART 1:** [Building the TCR Substrate runtime](building-the-substrate-tcr-runtime.md)
-    * How to use other SRML modules in custom runtime modules
+    * How to use other FRAME pallets in custom runtime pallets
     * How to use complex types in runtime storage
-    * How to use genesis config for Substrate modules
+    * How to use genesis config for Substrate pallets
     * How and when to use runtime events
 
-* **PART 2:** [Unit testing the TCR module](unit-testing-the-tcr-runtime-module.md)
+* **PART 2:** [Unit testing the TCR pallet](unit-testing-the-tcr-runtime-module.md)
     * How to mock the runtime
     * How to mock genesis config
-    * How to write unit tests for runtime module functions
+    * How to write unit tests for runtime pallet functions
 
 * **PART 3:** [Building a UI for Substrate TCR runtime](building-a-ui-for-the-tcr-runtime.md)
     * How to connect to the Substrate node using the [Polkadot JS API](https://polkadot.js.org/api/)
@@ -40,6 +40,6 @@ The guide is divided into the following five parts.
     * How to sync on-chain data with an off-chain storage
 
 * **PART 5:** [Best practices](tcr-best-practices.md)
-    * Avoiding economic vulnerability in runtime modules
+    * Avoiding economic vulnerability in runtime pallets
     * Error handling - Never Panic!
     * When to update state (doing enough checks)

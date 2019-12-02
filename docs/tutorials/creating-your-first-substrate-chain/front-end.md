@@ -12,7 +12,7 @@ We will give you a custom react component that you can add to your
 
 ## Add Your Custom React Component
 
-In the `substrate-front-end-template` project, edit the `TemplateModule.js`
+In the `substrate-front-end-template` project, edit the `TemplatePallet.js`
 file in the `/src/` folder:
 
 ```
@@ -24,7 +24,7 @@ substrate-front-end-template
 |   |
 |   +-- App.js
 |   |
-|   +-- TemplateModule.js  <-- Edit this file
+|   +-- TemplatePallet.js  <-- Edit this file
 |   |
 |   +-- ...
 +-- ...
@@ -83,10 +83,10 @@ export default function ProofOfExistence (props) {
   useEffect(() => {
     let unsubscribe;
 
-    // Polkadot-JS API query to the `proofs` storage item in our module.
+    // Polkadot-JS API query to the `proofs` storage item in our pallet.
     // This is a subscription, so it will always get the latest value,
     // even if it changes.
-    api.query.templateModule
+    api.query.templatePallet
       .proofs(digest, result => {
         // Our storage item returns a tuple, which is represented as an array.
         setOwner(result[0].toString());
@@ -100,7 +100,7 @@ export default function ProofOfExistence (props) {
   // This tells the React hook to update whenever the file digest changes
   // (when a new file is chosen), or when the storage subscription says the
   // value of the storage item has updated.
-  }, [digest, api.query.templateModule]);
+  }, [digest, api.query.templatePallet]);
 
   // We can say a file digest is claimed if the stored block number is not 0.
   function isClaimed () {
@@ -139,7 +139,7 @@ export default function ProofOfExistence (props) {
             label={'Create Claim'}
             setStatus={setStatus}
             type="TRANSACTION"
-            attrs={{ params: [digest], tx: api.tx.templateModule.createClaim }}
+            attrs={{ params: [digest], tx: api.tx.templatePallet.createClaim }}
             disabled={isClaimed() || !digest}
           />
           {/* Button to revoke a claim. Only active if a file is selected,
@@ -149,7 +149,7 @@ export default function ProofOfExistence (props) {
             label="Revoke Claim"
             setStatus={setStatus}
             type="TRANSACTION"
-            attrs={{ params: [digest], tx: api.tx.templateModule.revokeClaim }}
+            attrs={{ params: [digest], tx: api.tx.templatePallet.revokeClaim }}
             disabled={!isClaimed() || owner !== accountPair.address}
           />
         </Form.Field>
@@ -174,7 +174,7 @@ a claim with it's file digest:
 ![Proof Of Existence Component](assets/poe-component.png)
 
 If you press "Create Claim", a transaction will be dispatched to your custom
-Proof of Existence module, where this digest and the selected user account will
+Proof of Existence pallet, where this digest and the selected user account will
 be stored on chain.
 
 ![Claimed File](assets/poe-claimed.png)
@@ -191,7 +191,7 @@ account at the top, and you will see that the revoke option is disabled!
 This is the end of our journey into creating a Proof of Existence blockchain.
 
 You have seen first hand how simple it can be to develop a brand new runtime
-module and launch a custom blockchain using Substrate. Furthermore, we have
+pallet and launch a custom blockchain using Substrate. Furthermore, we have
 shown you that the Substrate ecosystem provides you with the tools to quickly
 create responsive front-end experiences so users can interact with your
 blockchain.
@@ -200,11 +200,11 @@ This tutorial chose to omit some of the specific details around development in
 order to keep this experience short and satisfying. However, we want you to keep
 learning!
 
-If you are interested in learning how to program your own runtime module on
+If you are interested in learning how to program your own runtime pallet on
 Substrate, please try our [Substrate Collectables
 Workshop](https://substrate.dev/substrate-collectables-workshop/). This
 comprehensive tutorial will teach you step by step how to program your own
-custom runtime modules. Furthermore, it will start to introduce you to advance
+custom runtime pallets. Furthermore, it will start to introduce you to advance
 runtime development concepts and best practices when building on Substrate.
 
 It would also be a good time to call out that your success on the Substrate

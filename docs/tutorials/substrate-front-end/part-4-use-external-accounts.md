@@ -182,13 +182,13 @@ If you play around with this DApp and send, for example, 1 "unit" from Alice to 
 
 Now more curious, the transaction is successful, yet Bob's balance remains unchanged. It's not a bug, it's a feature, explication:
 
-The Substrate node we are querying has a Balances module. This module is responsible for keeping track of all the accounts on the blockchain. Our blockchain is a dev one that is being reset every hour, but imagine a production blockchain that anyone can access. Now imagine that this blockchain becomes popular and many accounts are created, some of them containing a fraction of a cent in value. The blockchain ends up using a lot of storage for useless accounts, which causes state bloat and slows down read/write operations. To combat this, the Balances module that our node contains has a so-called *Existential Deposit* a.k.a ED. If an account has fewer funds than this ED, the account will be removed entirely from the state. On a `--dev` node, the ED is `100'000'000`. So make sure to send a large number of units if you want to see things change.
+The Substrate node we are querying has a Balances pallet. This pallet is responsible for keeping track of all the accounts on the blockchain. Our blockchain is a dev one that is being reset every hour, but imagine a production blockchain that anyone can access. Now imagine that this blockchain becomes popular and many accounts are created, some of them containing a fraction of a cent in value. The blockchain ends up using a lot of storage for useless accounts, which causes state bloat and slows down read/write operations. To combat this, the Balances pallet that our node contains has a so-called *Existential Deposit* a.k.a ED. If an account has fewer funds than this ED, the account will be removed entirely from the state. On a `--dev` node, the ED is `100'000'000`. So make sure to send a large number of units if you want to see things change.
 
 Also, if you transfer funds to a newly-created account, there will be a so-called creation fee applied. To have an overview of all the fees that may apply, there's a derive query for that [`api.derive.balances.fees`](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/balances/fees.ts)!
 
 ## 4.5 Going further - Extract the send button into its own component
 
-The transaction we performed earlier was using `api.tx.balances.transfer`. The transfer function is exposed by the Balances module. In the future, you will very likely use different methods from different SRML modules. It is, therefore, a good idea to extract the logic from the `makeTransfer` function into its own component and make it generic regarding which method will be used.
+The transaction we performed earlier was using `api.tx.balances.transfer`. The transfer function is exposed by the Balances pallet. In the future, you will very likely use different methods from different FRAME pallets. It is, therefore, a good idea to extract the logic from the `makeTransfer` function into its own component and make it generic regarding which method will be used.
 
 This exercise is left to the reader.
 

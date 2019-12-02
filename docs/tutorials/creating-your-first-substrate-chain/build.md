@@ -1,9 +1,9 @@
 ---
-title: Building a Custom Runtime Module
+title: Building a Custom Runtime Pallet
 ---
 
 We will now modify the `substrate-node-template` to introduce the basic
-functionality of a Proof Of Existence module.
+functionality of a Proof Of Existence pallet.
 
 Open the `substrate-node-template` in your favorite code editor. Then open the
 file `runtime/src/template.rs`
@@ -31,34 +31,34 @@ substrate-node-template
 ```
 
 You will see some pre-written code which acts as a template for a new runtime
-module. You can delete the contents of this file since we will start from
+pallet. You can delete the contents of this file since we will start from
 scratch for full transparency.
 
-## Build Your New Module
+## Build Your New Pallet
 
-At a high level, a Substrate Runtime Module can be broken down into five
+At a high level, a Substrate Runtime Pallet can be broken down into five
 sections:
 
 ```rust
 // 1. Imports
 use support::{decl_module, decl_storage, decl_event};
 
-// 2. Module Configuration
+// 2. Pallet Configuration
 pub trait Trait: system::Trait { /* --snip-- */ }
 
-// 3. Module Events
+// 3. Pallet Events
 decl_event! { /* --snip-- */ }
 
-// 4. Module Storage Items
+// 4. Pallet Storage Items
 decl_storage! { /* --snip-- */ }
 
-// 5. Callable Module Functions
+// 5. Callable Pallet Functions
 decl_module! { /* --snip-- */ }
 ```
 
 Things like events, storage, and callable functions should look familiar to you
 if you have done other blockchain development. We will show you what each of
-these components look like for a basic Proof Of Existence module.
+these components look like for a basic Proof Of Existence pallet.
 
 ### Imports
 
@@ -71,25 +71,25 @@ use rstd::vec::Vec;
 use system::ensure_signed;
 ```
 
-### Module Configuration
+### Pallet Configuration
 
-For now, the only thing we will configure about our module is that it will emit
+For now, the only thing we will configure about our pallet is that it will emit
 some Events.
 
 ```rust 
-/// The module's configuration trait.
+/// The pallet's configuration trait.
 pub trait Trait: system::Trait {
     /// The overarching event type.
     type Event: From<Event<Self>> + Into<<Self as system::Trait>::Event>;
 }
 ```
 
-### Module Events
+### Pallet Events
 
-After we've configured our module to emit events, let's go ahead define which events:
+After we've configured our pallet to emit events, let's go ahead define which events:
 
 ```rust
-// This module's events.
+// This pallet's events.
 decl_event! {
     pub enum Event<T> where AccountId = <T as system::Trait>::AccountId {
         /// Event emitted when a proof has been claimed.
@@ -100,7 +100,7 @@ decl_event! {
 }
 ```
 
-Our module will only have two events:
+Our pallet will only have two events:
 1. When a new proof is added to the blockchain.
 2. When a proof is removed.
 
@@ -108,15 +108,15 @@ The events can contain some metadata, in this case, each event will also display
 who triggered the event (`AccountId`), and the proof data (as `Vec<u8>`) that is
 being stored or removed.
 
-### Module Storage Items
+### Pallet Storage Items
 
 To add a new proof to the blockchain, we will simply store that proof in our
-module's storage. To store that value, we will create a [hash
+pallet's storage. To store that value, we will create a [hash
 map](https://en.wikipedia.org/wiki/Hash_table) from the proof to the owner of
 that proof and the block number the proof was made.
 
 ```rust
-// This module's storage items.
+// This pallet's storage items.
 decl_storage! {
     trait Store for Module<T: Trait> as PoeStorage {
         /// The storage item for our proofs.
@@ -129,18 +129,18 @@ decl_storage! {
 If a proof has an owner and a block number, then we know that it has been claimed! Otherwise, the
 proof is still available to be claimed.
 
-### Callable Module Functions
+### Callable Pallet Functions
 
-As implied by our module events, we will have two functions the user can call in
-this Substrate Runtime Module:
+As implied by our pallet events, we will have two functions the user can call in
+this Substrate Runtime Pallet:
 
 1. `create_claim()`: Allow a user to claim the existence of a file with a proof.
 2. `revoke_claim()`: Allow the owner of a claim to revoke their claim.
 
-Here are what the module declaration looks like with these these two functions:
+Here are what the pallet declaration looks like with these these two functions:
 
 ```rust
-// The module's dispatchable functions.
+// The pallet's dispatchable functions.
 decl_module! {
     /// The module declaration.
     pub struct Module<T: Trait> for enum Call where origin: T::Origin {
@@ -156,7 +156,7 @@ decl_module! {
             // Verify that the specified proof has not been claimed yet or error with the message
             ensure!(!Proofs::<T>::exists(&proof), "This proof has already been claimed.");
 
-            // Call the `system` runtime module to get the current block number
+            // Call the `system` pallet to get the current block number
             let current_block = <system::Module<T>>::block_number();
 
             // Store the proof with the sender and the current block number
@@ -190,9 +190,9 @@ decl_module! {
 }
 ```
 
-## Compile Your New Module
+## Compile Your New Pallet
 
-After you've copied all of the parts of this module correctly into your
+After you've copied all of the parts of this pallet correctly into your
 `template.rs` file, you should be able to recompile your node without warning or
 error:
 
@@ -210,4 +210,4 @@ Now you can restart your node:
 ./target/release/node-template --dev
 ```
 
-Now it is it time to interact with our new Proof of Existence module!
+Now it is it time to interact with our new Proof of Existence pallet!
