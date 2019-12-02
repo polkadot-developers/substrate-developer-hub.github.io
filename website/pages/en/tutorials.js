@@ -35,9 +35,10 @@ class Tutorials extends React.Component {
     const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
     const pageUrl = page => baseUrl + (language ? `${language}/` : "") + page;
 
-    const TutorialCards = props =>
+    const FeaturedTutorialCards = props =>
       props.data.map(tutorial => (
-        <Col md={3} className="mb-3 d-flex align-items-stretch">
+        <a href={tutorial.href} target="_blank" className="a_wrapper">
+        <Col md={3} className="mb-5 d-flex align-items-stretch">
           <Card>
             <Card.Img
               variant="top"
@@ -93,12 +94,75 @@ class Tutorials extends React.Component {
                 variant="secondary"
                 className="primary-color"
                 href={tutorial.href}
+                target="_blank"
               >
                 Try it now!
               </Button>
             </Card.Footer>
           </Card>
         </Col>
+        </a>
+      ));
+
+      const OtherTutorialCards = props =>
+      props.data.map(tutorial => (
+        <a href={tutorial.href} target="_blank" className="a_wrapper">
+        <Col md={3} className="mb-5 d-flex align-items-stretch">
+          <Card>
+            <Card.Body className="d-flex flex-column">
+              <Card.Title>{tutorial.title}</Card.Title>
+              <Card.Text>{tutorial.text}</Card.Text>
+              <div className="mt-auto">
+                <Badge
+                  variant={
+                    tutorial.difficulty == `hard`
+                      ? `danger`
+                      : tutorial.difficulty == `medium`
+                      ? `warning`
+                      : `success`
+                  }
+                  className="m-1"
+                >
+                  {tutorial.difficulty.charAt(0).toUpperCase() +
+                    tutorial.difficulty.slice(1)}
+                </Badge>
+                <Badge
+                  variant={
+                    tutorial.length > 4
+                      ? `danger`
+                      : tutorial.length > 2
+                      ? `warning`
+                      : `success`
+                  }
+                  className="m-1"
+                >
+                  {tutorial.length} Hour{tutorial.length > 1 ? `s` : ``}
+                </Badge>
+                <Badge
+                  variant={
+                    tutorial.prerequisite == true ? `warning` : `success`
+                  }
+                  className="m-1"
+                >
+                  {tutorial.prerequisite == true
+                    ? `Prerequisites`
+                    : `No Prerequisites`}
+                </Badge>
+              </div>
+            </Card.Body>
+            <Card.Footer>
+              <Button
+                variant="secondary"
+                className="primary-color"
+                href={tutorial.href}
+                target="_blank"
+              >
+                Try it now!
+              </Button>
+            </Card.Footer>
+          </Card>
+        </Col>
+        </a>
       ));
 
     const RuntimeRecipes = () => (
@@ -115,6 +179,7 @@ class Tutorials extends React.Component {
         </p>
         <p>
           <Button
+            target="_blank"
             variant="secondary"
             className="primary-color"
             href="https://substrate.dev/recipes"
@@ -125,51 +190,17 @@ class Tutorials extends React.Component {
       </div>
     );
 
-    const RuntimeTutorials = () => (
+    const RecommendedTutorials = () => (
       <div>
         <h2>
-          <translate>Runtime Development</translate>
+          <translate>Try these first!</translate>
         </h2>
         <hr />
         <Row>
-          <TutorialCards
+          <FeaturedTutorialCards
             data={[
               {
-                img: `${baseUrl}img/substrate-collectables-workshop.png`,
-                title: <translate>Substrate Collectables Workshop</translate>,
-                text: (
-                  <translate>
-                    A comprehensive, end-to-end tutorial for creating a
-                    non-fungible token chain. Learn all the basics of Substrate
-                    runtime development here!
-                  </translate>
-                ),
-                difficulty: "easy",
-                length: "5",
-                prerequisite: false,
-                href:
-                  "https://substrate-developer-hub.github.io/substrate-collectables-workshop/"
-              },
-
-              {
-                title: (
-                  <translate>
-                    Substrate Verifiable Credentials Workshop
-                  </translate>
-                ),
-                text: (
-                  <translate>
-                    A comprehensive, end-to-end tutorial for creating an
-                    infrastructure chain for verifiable credentials. Learn all
-                    the basics of Substrate runtime development here!
-                  </translate>
-                ),
-                difficulty: "easy",
-                length: "3",
-                prerequisite: false,
-                href: "https://substrate.dev/substrate-verifiable-credentials/"
-              },
-              {
+                img: `${baseUrl}img/first-substrate-chain.png`,
                 title: (
                   <translate>Creating Your First Substrate Chain</translate>
                 ),
@@ -183,8 +214,105 @@ class Tutorials extends React.Component {
                 length: "< 1",
                 prerequisite: false,
                 href: `${docUrl(
-                  "tutorials/creating-your-first-substrate-chain"
+                  "next/tutorials/creating-your-first-substrate-chain"
                 )}`
+              },
+              {
+                img: `${baseUrl}img/substrate-network.png`,
+                title: (
+                  <translate>Start a Private Network with Substrate</translate>
+                ),
+                text: (
+                  <translate>
+                    Learn to start a blockchain network using an
+                    out-of-the-box Substrate node.
+                  </translate>
+                ),
+                difficulty: "easy",
+                length: "2",
+                prerequisite: false,
+                href: `${docUrl(
+                  "next/tutorials/start-a-private-network"
+                )}`
+              },
+              {
+                img: `${baseUrl}img/substrate-collectables-workshop.png`,
+                title: <translate>Substrate Collectables Workshop</translate>,
+                text: (
+                  <translate>
+                    A comprehensive, end-to-end tutorial for creating a
+                    non-fungible token chain.
+                  </translate>
+                ),
+                difficulty: "easy",
+                length: "5",
+                prerequisite: false,
+                href:
+                  "https://substrate-developer-hub.github.io/substrate-collectables-workshop/"
+              },
+              {
+                img: `${baseUrl}img/ink-smart-contracts-tutorial.png`,
+                title: <translate>ink! Smart Contracts Tutorial</translate>,
+                text: (
+                  <translate>
+                    A comprehensive, end-to-end tutorial for building an ERC20
+                    token contract using ink!.
+                  </translate>
+                ),
+                difficulty: "easy",
+                length: "4",
+                prerequisite: false,
+               href:
+                  "https://substrate-developer-hub.github.io/substrate-contracts-workshop/"
+              }
+            ]}
+          />
+        </Row>
+      </div>
+    );
+
+    const OtherTutorials = () => (
+      <div className="mt-4">
+        <h2>
+          <translate>Other Tutorials</translate>
+        </h2>
+        <hr />
+        <Row>
+          <OtherTutorialCards
+            data={[
+              {
+                img: `${baseUrl}img/polkadot-js-substrate-tutorial.png`,
+                title: (
+                  <translate>Build a Front End with Polkadot-js API</translate>
+                ),
+                text: (
+                  <translate>
+                    Learn to build a front-end application interacting with a
+                    Substrate based blockchain.
+                  </translate>
+                ),
+                difficulty: "easy",
+                length: "2",
+                prerequisite: false,
+                href: `${docUrl("tutorials/substrate-front-end")}`
+              },
+
+              {
+                title: (
+                  <translate>
+                    Substrate Verifiable Credentials Workshop
+                  </translate>
+                ),
+                text: (
+                  <translate>
+                    A comprehensive, end-to-end tutorial for creating an
+                    infrastructure chain for verifiable credentials.
+                  </translate>
+                ),
+                difficulty: "easy",
+                length: "3",
+                prerequisite: false,
+                href: "https://substrate.dev/substrate-verifiable-credentials/"
               },
               {
                 title: <translate>Substrate Token Curated Registry</translate>,
@@ -233,101 +361,17 @@ class Tutorials extends React.Component {
                 length: "2",
                 prerequisite: false,
                 href: `${docUrl("tutorials/adding-a-module-to-your-runtime")}`
-              }
-            ]}
-          />
-        </Row>
-      </div>
-    );
-
-    const ContractTutorials = () => (
-      <div className="mt-4">
-        <h2>
-          <translate>Smart Contract Development</translate>
-        </h2>
-        <hr />
-        <Row>
-          <TutorialCards
-            data={[
-              {
-                img: `${baseUrl}img/ink-smart-contracts-tutorial.png`,
-                title: <translate>ink! Smart Contracts Tutorial</translate>,
-                text: (
-                  <translate>
-                    A comprehensive, end-to-end tutorial for building an ERC20
-                    token using Parity Substrate and ink!.
-                  </translate>
-                ),
-                difficulty: "easy",
-                length: "4",
-                prerequisite: false,
-               href:
-                  "https://substrate-developer-hub.github.io/substrate-contracts-workshop/"
               },
-            ]}
-          />
-        </Row>
-      </div>
-    );
-
-    const NetworkTutorials = () => (
-      <div className="mt-4">
-        <h2>
-          <translate>Running a Network</translate>
-        </h2>
-        <hr />
-        <Row>
-          <TutorialCards
-            data={[
               {
-                title: (
-                  <translate>Start a Private Network with Substrate</translate>
-                ),
-                text: (
-                  <translate>
-                    Learn to start a blockchain network with a
-                    validator/authority set of your choosing using Substrate.
-                  </translate>
-                ),
+                title: "Visualizing Node Metrics",
+                text:
+                  "Learn how to visualize the metrics that Substrate records using Grafana.",
                 difficulty: "easy",
-                length: "2",
+                length: "< 1",
                 prerequisite: false,
-                href: `${docUrl(
-                  "tutorials/start-a-private-network-with-substrate"
-                )}`
+                href: `${docUrl("next/tutorials/visualizing-node-metrics")}`
               }
-            ]}
-          />
-        </Row>
-      </div>
-    );
-
-    const FrontEndTutorials = () => (
-      <div className="mt-4">
-        <h2>
-          <translate>Front-end Development</translate>
-        </h2>
-        <hr />
-        <Row>
-          <TutorialCards
-            data={[
-              {
-                img: `${baseUrl}img/polkadot-js-substrate-tutorial.png`,
-                title: (
-                  <translate>Build a Front-end with Polkadot-js API</translate>
-                ),
-                text: (
-                  <translate>
-                    Learn to build a Front-end application interracting with a
-                    Substrate based blockchain.
-                  </translate>
-                ),
-                difficulty: "easy",
-                length: "2",
-                prerequisite: false,
-                href: `${docUrl("tutorials/substrate-front-end")}`
-              }
-            ]}
+            ].sort(sort_by_name)}
           />
         </Row>
       </div>
@@ -344,16 +388,23 @@ class Tutorials extends React.Component {
         />
         <div className="mainContainer">
           <Container>
-            <RuntimeRecipes />
-            <RuntimeTutorials />
-            <ContractTutorials />
-            <NetworkTutorials />
-            <FrontEndTutorials />
+            <RecommendedTutorials />
+            <OtherTutorials />
           </Container>
         </div>
       </div>
     );
   }
+}
+
+function sort_by_name(a, b) {
+  if (a.title < b.title) {
+    return -1;
+  }
+  if (a.title > b.title) {
+    return 1;
+  }
+  return 0;
 }
 
 Tutorials.title = "Tutorials";

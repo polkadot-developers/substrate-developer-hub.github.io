@@ -237,7 +237,7 @@ Now, when the Balances module detects that the free balance of an account has re
 
 ## Genesis Configuration
 
-The last thing we need to do in order to get your node up and running is to establish a genesis configuration for the Contract module. Not all modules will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`srml_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/v1.0/srml_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contract module. This definition is controlled in `contract-chain/src/chain_spec.rs`. We need to modify this file to include the `ContractConfig` type:
+The last thing we need to do in order to get your node up and running is to establish a genesis configuration for the Contract module. Not all modules will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`srml_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/v1.0/srml_contract/struct.GenesisConfig.html) describes all the fields you need to define for the Contract module. This definition is controlled in `contract-chain/src/chain_spec.rs`. We need to modify this file to include the `ContractConfig` type:
 
 ```rust
 use contract_chain_runtime::ContractConfig;

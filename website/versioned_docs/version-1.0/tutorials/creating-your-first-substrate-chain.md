@@ -102,7 +102,7 @@ pub trait Trait: balances::Trait {}
 
 In this example, we will create a simple coin flip game. Users will pay an entry fee to play the game and then "flip a coin". If they win they will get the contents of the pot. If they don't win, they will get nothing. No matter the outcome, their fee will be placed into the pot after the game resolves for the next user to try and win.
 
-To start, we can define the storage items our module needs to track with the [`decl_storage!` macro](https://crates.parity.io/srml_support_procedural/macro.decl_storage.html):
+To start, we can define the storage items our module needs to track with the [`decl_storage!` macro](https://substrate.dev/rustdocs/v1.0/srml_support_procedural/macro.decl_storage.html):
 
 ```rust
 decl_storage! {

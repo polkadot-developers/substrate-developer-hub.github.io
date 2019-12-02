@@ -46,6 +46,7 @@ function Community(props) {
       <p>
         <translate>Tags:</translate>
         <Button
+          target="_blank"
           variant="info"
           size="sm"
           href="https://stackoverflow.com/questions/tagged/substrate"
@@ -54,6 +55,7 @@ function Community(props) {
           <code>substrate</code>
         </Button>
         <Button
+          target="_blank"
           variant="dark"
           size="sm"
           href="https://stackoverflow.com/questions/tagged/ink"
@@ -62,6 +64,7 @@ function Community(props) {
           <code>ink</code>
         </Button>
         <Button
+          target="_blank"
           variant="secondary"
           size="sm"
           href="https://stackoverflow.com/questions/tagged/parity-io"
@@ -70,6 +73,7 @@ function Community(props) {
           <code>parity-io</code>
         </Button>
         <Button
+          target="_blank"
           variant="warning"
           size="sm"
           href="https://stackoverflow.com/questions/tagged/rust"
@@ -92,6 +96,7 @@ function Community(props) {
       <p>
         <translate>Channels:</translate>
         <Button
+          target="_blank"
           variant="dark"
           size="sm"
           href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"
@@ -100,6 +105,7 @@ function Community(props) {
           Substrate Technical
         </Button>
         <Button
+          target="_blank"
           variant="dark"
           size="sm"
           href="https://riot.im/app/#/room/!tYUCYdSvSYPMjWNDDD:matrix.parity.io"
@@ -108,6 +114,7 @@ function Community(props) {
           Parity ink! (Smart Contracts)
         </Button>
         <Button
+          target="_blank"
           variant="dark"
           size="sm"
           href="https://riot.im/app/#/room/!fOOzymDEHiIIUtmlBE:matrix.org"
@@ -116,6 +123,7 @@ function Community(props) {
           Polkadot Watercooler
         </Button>
         <Button
+          target="_blank"
           variant="dark"
           size="sm"
           href="https://riot.im/app/#/room/!IWlcTyHSqIEjpUReHD:matrix.parity.io"
@@ -145,6 +153,7 @@ function Community(props) {
       />
       <p>
         <Button
+          target="_blank"
           variant="secondary"
           size="sm"
           href="https://www.twitch.tv/paritylivecoding"
@@ -166,6 +175,7 @@ function Community(props) {
       </p>
       <p>
         <Button
+          target="_blank"
           variant="secondary"
           size="sm"
           href="https://substrate.dev/awesome-substrate/"
@@ -216,6 +226,7 @@ function Community(props) {
           Seminar Details
         </Button>
         <Button
+          target="_blank"
           variant="secondary"
           size="sm"
           href="https://zoom.us/j/440029011"
@@ -224,14 +235,17 @@ function Community(props) {
           Join the Call
         </Button>
         <Button
+          target="_blank"
           variant="secondary"
           size="sm"
           href="https://www.youtube.com/playlist?list=PLsBc7YjizKUwc3AcNb9oNZvtsN0QmAJPP"
           className="m-1 primary-color"
+          
         >
           Google Calendar
         </Button>
         <Button
+          target="_blank"
           variant="secondary"
           size="sm"
           href="https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx"
@@ -253,6 +267,7 @@ function Community(props) {
       </p>
       <p>
         <Button
+          target="_blank"
           variant="secondary"
           size="sm"
           href="https://www.meetup.com/parity/"

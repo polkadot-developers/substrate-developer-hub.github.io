@@ -67,6 +67,26 @@
     padding: 0;
 }
 
+/* search input display */
+.navSearchWrapper {
+    max-width: calc(100% - 315px);
+}
+@media only screen and (max-width: 480px) {
+    .navSearchWrapper {
+        max-width: none;
+    }
+}
+input#search_input_react {
+    background-color: rgba(242, 196, 178, 0.25);
+    height: 2rem;
+    margin-top: -1px;
+}
+@media only screen and (max-width: 1024px) {
+    .reactNavSearchWrapper input#search_input_react {
+        margin-top: -5px;
+    }
+}
+
 /* Fix search icon in search box */
 .navSearchWrapper::before {
     box-sizing: unset;
@@ -81,7 +101,6 @@
 .cm-toggle-all {
     display: none !important;
 }
-
 
 /* seminar styles */
 .heroVH {
@@ -111,7 +130,6 @@
 .contrastText {
     color: #00FFC2;
 }
-
 .tabTop {
     position: absolute;
     display: flex;
@@ -137,7 +155,6 @@
     background-position: center bottom;
     background-repeat: no-repeat;
 }
-
 [class*="contrast-color"].btn {
     transition: box-shadow 0.3s, opacity 0.3s;
 }
@@ -148,6 +165,17 @@
 .readableLineLenght {
     max-width: 750px;
     margin: auto;
+}
+
+/* tutorial cards */
+.a_wrapper {
+    display: contents;
+    color: black;
+}
+
+/* limit image size on docs */
+article p img {
+    max-width: 800px;
 }
 
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
