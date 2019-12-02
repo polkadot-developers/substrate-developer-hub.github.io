@@ -94,7 +94,7 @@ Account 1 has balance 10, account 2 has balance 20, and so on.
 
 It will be useful to simulate block production to verify that expected behavior holds during block time dependent changes. 
 
-A simple way of doing this increments the System module's block number between `on_initialize` and `on_finalize` calls from all modules with `System::block_number()` as the sole input.
+A simple way of doing this increments the System module's block number between `on_initialize` and `on_finalize` calls from all modules with `System::block_number()` as the sole input. While it is important for runtime code to [cache calls](https://substrate.dev/recipes/storage/cache.html) to storage or the system module, the test environment scaffolding should prioritize readability to facilitate future maintenance.
 
 ```rust, ignore
 fn run_to_block(n: u64) {
@@ -108,7 +108,7 @@ fn run_to_block(n: u64) {
 }
 ```
 
-`on_finalize` and `on_initialize` are only called from `ExampleModule` if the module's trait implements the `sr_primitives::traits::{OnInitialize, OnFinalize}` traits to execute the logic encoded in the runtime methods before and after each block respectively.
+`on_finalize` and `on_initialize` are only called from `ExampleModule` if the pallet's trait implements the `sr_primitives::traits::{OnInitialize, OnFinalize}` traits to execute the logic encoded in the runtime methods before and after each block respectively.
 
 To use this function in unit tests,
 
@@ -116,9 +116,9 @@ To use this function in unit tests,
 #[test]
 fn my_runtime_test() {
 	with_externalities(&mut new_test_ext(), || {
-		assert_ok!(MyModule::start_auction());
+		assert_ok!(ExampleModule::start_auction());
 		run_to_block(10);
-		assert_ok!(MyModule::end_auction());
+		assert_ok!(ExampleModule::end_auction());
 	});
 }
 ```
