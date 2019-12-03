@@ -5,11 +5,11 @@ class Newsletter extends React.Component {
 		return (
 			<section id='newsletter'>
 				<div className='container'>
-					<div class='_form_7' />
+					<div className='_form_7' />
 					<script
 						src='https://paritytechnologies.activehosted.com/f/embed.php?id=7'
 						type='text/javascript'
-						charset='utf-8'
+						charSet='utf-8'
 					/>
 				</div>
 			</section>
