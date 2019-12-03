@@ -1,0 +1,22 @@
+#newsletter .container {
+	display: flex;
+	min-height: 80vh;
+}
+
+#newsletter ._form_7 {
+	margin: auto;
+	padding: 40px 0;
+}
+
+#newsletter ._form-branding {
+	display: none;
+}
+
+#newsletter form {
+	text-align: center;
+}
+
+#newsletter form input {
+	margin-bottom: 20px;
+	text-align: center;
+}
