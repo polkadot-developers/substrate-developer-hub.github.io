@@ -97,7 +97,8 @@ use rstd::prelude::*;
 
 // A few exports that help ease life for downstream crates.
 #[cfg(any(feature = "std", test))]
-pub use sr_primitives::BuildStorage;
+pub use sp_runtime::BuildStorage;
+pub use timestamp::Call as TimestampCall;
 pub use balances::Call as BalancesCall;
 /* --snip-- */
 ```
@@ -117,7 +118,7 @@ First we will add the new dependency by simply copying an existing pallet, and c
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'pallet-contracts'
-rev = '<git-commit>' # e.g. commit: '3dedd246c62255ba6f9b777ecba318dfc2078d85'
+rev = '<git-commit>' # e.g. '186f9f871fc206acb827a33e13cdef3580db39db'
 ```
 
 You [can see](https://github.com/paritytech/substrate/blob/master/frame/contracts/Cargo.toml) that the Contracts pallet has `std` feature, thus we need to add that feature to our runtime:
@@ -136,13 +137,21 @@ std = [
 If you forget to set the feature, when building to your native binaries you will get errors like:
 
 ```rust
-error: cannot find macro `vec!` in this scope
-   --> ~/.cargo/git/checkouts/substrate-7e08433d4c370a21/783ca18/core/sr-sandbox/src/../without_std.rs:290:24
-    |
-290 |         let mut return_val = vec![0u8; sandbox_primitives::ReturnValue::ENCODED_MAX_SIZE];
-    |                              ^^^
+error[E0603]: function `memory_teardown` is private
+  --> ~/.cargo/git/checkouts/substrate-7e08433d4c370a21/90fc723/primitives/sr-sandbox/src/../without_std.rs:53:12
+   |
+53 |         sandbox::memory_teardown(self.memory_idx);
+   |                  ^^^^^^^^^^^^^^^
 
-error: aborting due to previous error
+error[E0603]: function `memory_new` is private
+  --> ~/.cargo/git/checkouts/substrate-7e08433d4c370a21/90fc723/primitives/sr-sandbox/src/../without_std.rs:72:18
+   |
+72 |         match sandbox::memory_new(initial, maximum) {
+   |                        ^^^^^^^^^^
+
+error[E0603]: function `memory_get` is private
+
+error: aborting due to previous errors
 ```
 
 But since you did not forget, you should be able to sanity check that everything compiles correctly with:
@@ -173,9 +182,11 @@ use rstd::prelude::*;
 
 // A few exports that help ease life for downstream crates.
 #[cfg(any(feature = "std", test))]
-pub use sr_primitives::BuildStorage;
+pub use sp_runtime::BuildStorage;
+pub use timestamp::Call as TimestampCall;
 pub use balances::Call as BalancesCall;
-pub use contracts::Gas;
+/*** Add this line ***/
+pub use contracts::Gas as ContractsGas;
 /* --snip-- */
 ```
 
@@ -192,12 +203,12 @@ To figure out what we need to implement, you can take a look to the FRAME [`cont
 // These time units are defined in number of blocks.
    /* --snip-- */
 
+/*** Add this block ***/
 // Contracts price units.
 pub const MILLICENTS: Balance = 1_000_000_000;
 pub const CENTS: Balance = 1_000 * MILLICENTS;
 pub const DOLLARS: Balance = 100 * CENTS;
-
-/* --snip-- */
+/*** ***/
 ```
 
 ```rust
@@ -206,6 +217,7 @@ impl timestamp::Trait for Runtime {
     /* --snip-- */
 }
 
+/*** Add this block ***/
 parameter_types! {
 	pub const ContractTransferFee: Balance = 1 * CENTS;
 	pub const ContractCreationFee: Balance = 1 * CENTS;
@@ -246,6 +258,7 @@ impl contracts::Trait for Runtime {
 	type MaxValueSize = contracts::DefaultMaxValueSize;
 	type BlockGasLimit = contracts::DefaultBlockGasLimit;
 }
+/*** ***/
 ```
 
 To go into a bit more detail here, we see from the documentation that `type Currency` in the Contracts pallet needs to be defined and support the requirements of the trait `Currency`
@@ -284,7 +297,7 @@ construct_runtime!(
         NodeBlock = opaque::Block,
         UncheckedExtrinsic = UncheckedExtrinsic
     {
-        /* --snip-- */
+        /* --snip-- *//*** Add this line ***/
         Contracts: contracts,
     }
 );
@@ -302,11 +315,12 @@ In the case of the Contracts pallet, we actually want a hook when an account run
 // From the reference documentation, also found in `contracts` pallet:
 //   https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs
 
-impl<T: Trait> OnFreeBalanceZero<T::AccountId> for pallet<T> {
-    fn on_free_balance_zero(who: &T::AccountId) {
-        <CodeHashOf<T>>::remove(who);
-        <AccountInfoOf<T>>::get(who).map(|info| child::kill_storage(&info.trie_id));
-    }
+impl<T: Trait> OnFreeBalanceZero<T::AccountId> for Module<T> {
+	fn on_free_balance_zero(who: &T::AccountId) {
+		if let Some(ContractInfo::Alive(info)) = <ContractInfoOf<T>>::take(who) {
+			child::kill_storage(&info.trie_id);
+		}
+	}
 }
 ```
 
@@ -317,7 +331,7 @@ To enable this, we simply need to add `Contracts` type that we defined in the `c
 ```rust
 impl balances::Trait for Runtime {
     /// What to do if an account's free balance gets zeroed.
-    type OnFreeBalanceZero = (Contracts);
+    type OnFreeBalanceZero = Contracts;
     /* --snip-- */
 }
 ```
@@ -326,7 +340,7 @@ Now, when the Balances pallet detects that the free balance of an account has re
 
 ## Genesis Configuration
 
-The last thing we need to do in order to get your node up and running is to establish a genesis configuration for the Contracts pallet. Not all pallets will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`pallet_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contracts pallet. This definition is controlled in `substrate-node-template/src/chain_spec.rs`. We need to modify this file to include the `ContractsConfig` type and add the contract price units at the top:
+Not all pallets will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`pallet_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contracts pallet. This definition is controlled in `substrate-node-template/src/chain_spec.rs`. We need to modify this file to include the `ContractsConfig` type and add the contract price units at the top:
 
 **`src/chain_spec.rs`**
 
@@ -337,23 +351,58 @@ use runtime::{ContractsConfig, MILLICENTS};
 Then inside the `testnet_genesis` function we need to add the contract configuration to the returned `GenesisConfig` object as followed:
 
 ```rust
-fn testnet_genesis(...) -> GenesisConfig {
-    /* --snip-- */
+fn testnet_genesis(initial_authorities: Vec<(AuraId, GrandpaId)>,
+    root_key: AccountId,
+    endowed_accounts: Vec<AccountId>,
+    enable_println: bool) -> GenesisConfig {
+    /*** Add this block ***/
     let mut contracts_config = ContractsConfig {
         current_schedule: Default::default(),
         gas_price: 1 * MILLICENTS,
     };
     // IMPORTANT: println should only be enabled on development chains!
-    contracts_config.current_schedule.enable_println = true;
+    contracts_config.current_schedule.enable_println = enable_println;
+    /*** ***/
 
     GenesisConfig {
-        /* --snip-- */
+        /* --snip-- *//*** Add this line ***/
         contracts: Some(contracts_config),
     }
 }
 ```
 
 Note that you can tweak these numbers to your needs, but these are the values set at the [genesis configuration of the main Substrate node](https://github.com/paritytech/substrate/blob/master/bin/node/cli/src/chain_spec.rs).
+
+## Service Configuration
+The last thing we need to do in order to get your node up and running is to establish a service configuration for the Contracts pallet.
+
+```rust
+/// Starts a `ServiceBuilder` for a full service.
+///
+/// Use this macro if you don't actually need the full service, but just the builder in order to
+/// be able to perform chain operations.
+macro_rules! new_full_start {
+	($config:expr) => {{
+        /*** Add this line ***/
+        type RpcExtension = jsonrpc_core::IoHandler<sc_rpc::Metadata>;
+```
+```rust
+            /* --snip-- */
+                Ok(import_queue)
+            })? // <- Remove semi-colon
+            /*** Add this block ***/
+            .with_rpc_extensions(|client, _pool, _backend, _, _| -> Result<RpcExtension, _> {
+                use pallet_contracts_rpc::{Contracts, ContractsApi};
+                let mut io = jsonrpc_core::IoHandler::default();
+                io.extend_with(
+                ContractsApi::to_delegate(Contracts::new(client.clone()))
+                );
+                Ok(io)
+            })?;
+            /*** ***/
+        (builder, import_setup, inherent_data_providers)
+    }}
+```
 
 Now you are ready to compile and run your contract-capable node. We first need to purge the chain to remove the old runtime logic and have the genesis configuration initialized for the Contracts pallet. It is possible to upgrade the chain without purging it but it will remain out of scope for this tutorial.
 
