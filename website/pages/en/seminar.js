@@ -63,14 +63,8 @@ function Seminar(props) {
         <h2 className = "h1">FAQ</h2>
         <h3 className = "h2">How should I prepare?</h3>
         <p>
-          For the 26 November meeting, prepare by compiling my session module demonstration. This particular node is based off of the node-template in the main Substrate repository. You can compile it with these commands.
+          For the 03 December meeting, we will preview an in-progress workshop on cumulus -- a way to connect your Substrate chain to Polkadot. Prepare by following the instrucitons at https://joshorndorff.github.io/cumulus-workshop/#/
         </p>
-        <code>
-          git clone -b joshy-sessions https://github.com/paritytech/substrate.git<br />
-          cd substrate/bin/node-template<br />
-
-          cargo build --release
-        </code>
         {/*<p>
           In general, we start with the packages from the <a href="https://github.com/substrate-developer-hub">Substrate Developer Hub</a> GitHub Organization. You should have the latest <a href="https://github.com/substrate-developer-hub/substrate-node-template">Node Template</a> and <a href="https://github.com/substrate-developer-hub/substrate-front-end-template/">Front End Template</a> built and ready to use.
         </p>*/}
