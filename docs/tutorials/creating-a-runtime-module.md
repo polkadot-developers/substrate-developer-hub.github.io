@@ -10,7 +10,7 @@ crate, and include it in a node based on the `substrate-node-template`.
 If you haven't already done so, follow the [Getting Started](getting-started.md)
 guide to download necessary tools to build Substrate.
 
-### Clone the Node and Pallet Template
+### Clone the Node and Module Template
 
 We're not going to write our pallet directly as part of the node template, but
 rather as a separate Rust crate. This approach allows us to publish our pallet
@@ -23,10 +23,10 @@ their own Substrate runtime.
     git clone https://github.com/substrate-developer-hub/substrate-node-template.git my-node
     ```
 
-2. Clone the Substrate pallet template:
+2. Clone the Substrate module template:
 
     ```bash
-    git clone https://github.com/substrate-developer-hub/substrate-pallet-template.git my-pallet
+    git clone https://github.com/substrate-developer-hub/substrate-module-template.git my-pallet
     ```
 
 3. Build the Substrate node template:
@@ -37,7 +37,7 @@ their own Substrate runtime.
     ```
 
 The `substrate-node-template` contains a working Substrate node, and the
-`substrate-pallet-template` contains an independent Rust crate which is a
+`substrate-module-template` contains an independent Rust crate which is a
 Substrate runtime pallet that can be included in your node. The compilation of
 the node may take up to 30 minutes depending on your hardware, so let that run
 while you continue to follow this guide.
@@ -158,7 +158,7 @@ the actual pallet itself.
 
 [dev-dependencies.primitives]
 git = 'https://github.com/paritytech/substrate.git'
-package = 'substrate-primitives'
+package = 'sp-runtime'
 branch = 'v2.0'
 ```
 

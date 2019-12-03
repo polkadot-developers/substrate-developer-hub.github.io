@@ -20,7 +20,7 @@ curl https://getsubstrate.io -sSf | bash -s -- --fast
 
 ```bash
 git clone https://github.com/substrate-developer-hub/substrate-node-template
-
+```
 
 #### Run your node.
 
