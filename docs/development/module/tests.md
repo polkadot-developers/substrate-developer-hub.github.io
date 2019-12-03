@@ -23,7 +23,7 @@ pub struct Test;
 
 If `Test` implements `balances::Trait`, the assignment might use `u64` for the `Balance` type.
 
-```rust, ignore
+```rust
 impl balances::Trait for TestRuntime {
 	type Balance = u64;
 	//..
@@ -38,7 +38,7 @@ The [`runtime-io`](https://crates.parity.io/sr_io/index.html#enums) crate expose
 
 In the [basic mock runtime's recipe](https://substrate.dev/recipes/testing/mock.html), an `ExtBuilder` object is defined to build an instance of [`TestExternalities`](https://substrate.dev/rustdocs/master/sr_io/type.TestExternalities.html).
 
-```rust, ignore
+```
 pub struct ExtBuilder;
 
 impl ExtBuilder {
@@ -51,7 +51,7 @@ impl ExtBuilder {
 
 To create the test environment in unit tests, the build method is called to generate a `TestExternalities` using the default genesis configuration. Then, [`with_externalities`](https://crates.parity.io/substrate_externalities/fn.with_externalities.html) provides the runtime environment in which we may call the pallet's methods to test that storage, events, and errors behave as expected.
 
-```rust, ignore
+```rust
 #[test]
 fn fake_test_example() {
 	ExtBuilder::build().execute_with(|| {
@@ -70,7 +70,7 @@ An example might involve pre-seeding account balances before testing.
 
 In the implementation of `system::Trait`, `AccountId` is set to `u64` just like `Balance` shown above. Place `(u64, u64)` pairs in the `balances` vec to seed `(AccountId, Balance)` pairs as the account balances.
 
-```rust, ignore
+```rust
 pub fn build(self) -> runtime_io::TestExternalities {
 	GenesisConfig {
 		balances: Some(balances::GenesisConfig::<TestRuntime>{
@@ -96,7 +96,7 @@ It will be useful to simulate block production to verify that expected behavior 
 
 A simple way of doing this increments the System module's block number between `on_initialize` and `on_finalize` calls from all modules with `System::block_number()` as the sole input. While it is important for runtime code to [cache calls](https://substrate.dev/recipes/storage/cache.html) to storage or the system module, the test environment scaffolding should prioritize readability to facilitate future maintenance.
 
-```rust, ignore
+```rust
 fn run_to_block(n: u64) {
 	while System::block_number() < n {
 		ExampleModule::on_finalize(System::block_number());
@@ -112,7 +112,7 @@ fn run_to_block(n: u64) {
 
 To use this function in unit tests,
 
-```rust, ignore
+```rust
 #[test]
 fn my_runtime_test() {
 	with_externalities(&mut new_test_ext(), || {
