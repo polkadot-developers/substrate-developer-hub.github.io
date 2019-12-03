@@ -18,7 +18,7 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Creating Your First Substrate Chain</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Creating Your First Substrate Chain<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/setup">Set Up Your Computer</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/learn">Background Information</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/interact">Interacting with Your Node</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/build">Building a Custom Runtime Pallet</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/front-end">Building a Custom Front End</a></li></ul></div></div></section></div><script>
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Creating Your First Substrate Chain</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Creating Your First Substrate Chain<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/setup">Set Up Your Computer</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/learn">Background Information</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/interact">Interacting with Your Node</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/build">Building a Custom Pallet</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/front-end">Building a Custom Front End</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -75,34 +75,31 @@
               }
             });
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/tutorials/creating-your-first-substrate-chain/index.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Introduction</h1></header><article><div><span><p>In this tutorial, you will learn to create a custom <a href="https://en.wikipedia.org/wiki/Proof_of_Existence">&quot;Proof Of
-Existence&quot;</a> blockchain using
-the Substrate blockchain development framework.</p>
-<p>This tutorial is aimed at someone who has never touched Substrate before, and
-wants to get a <strong>basic</strong> and <strong>quick</strong> understanding of what Substrate is all
-about. We will not be going into depth about the intricacies of developing on
-Substrate, but will hopefully satisfy your curiosity so that you will continue
-this journey.</p>
-<p>This tutorial should take you about <strong>1 hour</strong> to complete. We will be using the
-<a href="https://www.rust-lang.org/">Rust programming language</a> and
-<a href="https://reactjs.org/">ReactJS</a>, but you do not need to know these to be able to
-complete this guide. We will provide you with working code snippets and explain
-what all the code does at a high level.</p>
+Existence&quot;</a> blockchain using the Substrate
+blockchain development framework.</p>
+<p>This tutorial is aimed at someone who has never touched Substrate before, and wants to get a
+<strong>basic</strong> and <strong>quick</strong> understanding of what Substrate is all about. We will not be going into
+depth about the intricacies of developing on Substrate, but will hopefully satisfy your curiosity so
+that you will continue this journey.</p>
+<p>This tutorial should take you about <strong>1 hour</strong> to complete. We will be using the <a href="https://www.rust-lang.org/">Rust programming
+language</a> and <a href="https://reactjs.org/">ReactJS</a>, but you do not need to
+know these to be able to complete this guide. We will provide you with working code snippets and
+explain what all the code does at a high level.</p>
 <p>We only expect that:</p>
 <ul>
 <li>You are generally familiar with software development and using the terminal.</li>
 <li>You are generally familiar with blockchains and smart contract platforms.</li>
 <li>You are open to learning about the bleeding edge of blockchain development.</li>
 </ul>
-<p>It is important to emphasize again that Substrate is truly a bleeding edge
-framework. It is moving fast, and as a result, may sometimes break or cause
-issues. If you run into an issue on this tutorial, <strong>we are here to help!</strong></p>
+<p>It is important to emphasize again that Substrate is truly a bleeding edge framework. It is moving
+fast, and as a result, may sometimes break or cause issues. If you run into an issue on this
+tutorial, <strong>we are here to help!</strong></p>
 <p>You can <a href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/new">create a new
-issue</a>
-or contact us directly on
-<a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot</a>.</p>
+issue</a> or
+contact us directly on <a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot</a>.</p>
 <h2><a class="anchor" aria-hidden="true" id="what-you-will-be-doing"></a><a href="#what-you-will-be-doing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What you will be doing</h2>
-<p>Before we even get started, let's layout what we are going to do over the course
-of this tutorial. We will:</p>
+<p>Before we even get started, let's layout what we are going to do over the course of this tutorial.
+We will:</p>
 <ol>
 <li>Set up your computer to be able to develop on Substrate.</li>
 <li>Use a template project to start running Substrate right away.</li>
@@ -110,7 +107,7 @@ of this tutorial. We will:</p>
 <li>Modify a front-end template to interact with your brand new blockchain.</li>
 </ol>
 <p>Sound reasonable? Good, then let's begin!</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 9/28/2019 by Shawn Tabrizi</em></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/setup"><span>Set Up Your Computer</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#what-you-will-be-doing">What you will be doing</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 12/3/2019 by Shawn Tabrizi</em></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/setup"><span>Set Up Your Computer</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#what-you-will-be-doing">What you will be doing</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
 #blast {
   position: fixed;
   width: 100%;
