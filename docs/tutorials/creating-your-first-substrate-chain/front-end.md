@@ -2,18 +2,17 @@
 title: Building a Custom Front End
 ---
 
-This tutorial is not really about writing user interfaces, but we do want to
-show you how easy it can be with Substrate. If you have made it this far, that
-means you _should_ have a brand new blockchain with custom functionality up and
-running.
+This tutorial is not really about writing user interfaces, but we do want to show you how easy it
+can be with Substrate. If you have made it this far, that means you _should_ have a brand new
+blockchain with custom functionality up and running.
 
-We will give you a custom react component that you can add to your
-`substrate-front-end-template` meant for interacting with your node.
+We will give you a custom react component that you can add to your `substrate-front-end-template`
+meant for interacting with your node.
 
 ## Add Your Custom React Component
 
-In the `substrate-front-end-template` project, edit the `TemplatePallet.js`
-file in the `/src/` folder:
+In the `substrate-front-end-template` project, edit the `TemplateModule.js` file in the `/src/`
+folder:
 
 ```
 substrate-front-end-template
@@ -24,7 +23,7 @@ substrate-front-end-template
 |   |
 |   +-- App.js
 |   |
-|   +-- TemplatePallet.js  <-- Edit this file
+|   +-- TemplateModule.js  <-- Edit this file
 |   |
 |   +-- ...
 +-- ...
@@ -86,7 +85,7 @@ export default function ProofOfExistence (props) {
     // Polkadot-JS API query to the `proofs` storage item in our pallet.
     // This is a subscription, so it will always get the latest value,
     // even if it changes.
-    api.query.templatePallet
+    api.query.templateModule
       .proofs(digest, result => {
         // Our storage item returns a tuple, which is represented as an array.
         setOwner(result[0].toString());
@@ -100,7 +99,7 @@ export default function ProofOfExistence (props) {
   // This tells the React hook to update whenever the file digest changes
   // (when a new file is chosen), or when the storage subscription says the
   // value of the storage item has updated.
-  }, [digest, api.query.templatePallet]);
+  }, [digest, api.query.templateModule]);
 
   // We can say a file digest is claimed if the stored block number is not 0.
   function isClaimed () {
@@ -139,7 +138,7 @@ export default function ProofOfExistence (props) {
             label={'Create Claim'}
             setStatus={setStatus}
             type="TRANSACTION"
-            attrs={{ params: [digest], tx: api.tx.templatePallet.createClaim }}
+            attrs={{ params: [digest], tx: api.tx.templateModule.createClaim }}
             disabled={isClaimed() || !digest}
           />
           {/* Button to revoke a claim. Only active if a file is selected,
@@ -149,7 +148,7 @@ export default function ProofOfExistence (props) {
             label="Revoke Claim"
             setStatus={setStatus}
             type="TRANSACTION"
-            attrs={{ params: [digest], tx: api.tx.templatePallet.revokeClaim }}
+            attrs={{ params: [digest], tx: api.tx.templateModule.revokeClaim }}
             disabled={!isClaimed() || owner !== accountPair.address}
           />
         </Form.Field>
@@ -162,59 +161,53 @@ export default function ProofOfExistence (props) {
 ```
 </div>
 
-We won't walk you step by step through the creation of this component, but do
-look over the code comments to learn what each part is doing.
+We won't walk you step by step through the creation of this component, but do look over the code
+comments to learn what each part is doing.
 
 ## Submit a Proof
 
-Your front-end should have automatically restarted with this new component
-included. Select any file on your computer, and you will see that you can create
-a claim with it's file digest:
+Your front-end should have automatically restarted with this new component included. Select any file
+on your computer, and you will see that you can create a claim with it's file digest:
 
 ![Proof Of Existence Component](assets/poe-component.png)
 
-If you press "Create Claim", a transaction will be dispatched to your custom
-Proof of Existence pallet, where this digest and the selected user account will
-be stored on chain.
+If you press "Create Claim", a transaction will be dispatched to your custom Proof of Existence
+pallet, where this digest and the selected user account will be stored on chain.
 
 ![Claimed File](assets/poe-claimed.png)
 
-If all went well, you should see a new `ClaimCreated` event appear in the Events
-component. The front-end can automatically recognize that your file is now
-claimed, and even gives you the option to revoke the claim if you want.
+If all went well, you should see a new `ClaimCreated` event appear in the Events component. The
+front-end can automatically recognize that your file is now claimed, and even gives you the option
+to revoke the claim if you want.
 
-Remember, only the owner can revoke the claim! If you select another user
-account at the top, and you will see that the revoke option is disabled!
+Remember, only the owner can revoke the claim! If you select another user account at the top, and
+you will see that the revoke option is disabled!
 
 ## Next Steps
 
 This is the end of our journey into creating a Proof of Existence blockchain.
 
-You have seen first hand how simple it can be to develop a brand new runtime
-pallet and launch a custom blockchain using Substrate. Furthermore, we have
-shown you that the Substrate ecosystem provides you with the tools to quickly
-create responsive front-end experiences so users can interact with your
-blockchain.
+You have seen first hand how simple it can be to develop a brand new pallet and launch a
+custom blockchain using Substrate. Furthermore, we have shown you that the Substrate ecosystem
+provides you with the tools to quickly create responsive front-end experiences so users can interact
+with your blockchain.
 
-This tutorial chose to omit some of the specific details around development in
-order to keep this experience short and satisfying. However, we want you to keep
-learning!
+This tutorial chose to omit some of the specific details around development in order to keep this
+experience short and satisfying. However, we want you to keep learning!
 
-If you are interested in learning how to program your own runtime pallet on
-Substrate, please try our [Substrate Collectables
-Workshop](https://substrate.dev/substrate-collectables-workshop/). This
-comprehensive tutorial will teach you step by step how to program your own
-custom runtime pallets. Furthermore, it will start to introduce you to advance
-runtime development concepts and best practices when building on Substrate.
+If you are interested in learning how to program your own pallet on Substrate, please try
+our [Substrate Collectables Workshop](https://substrate.dev/substrate-collectables-workshop/). This
+comprehensive tutorial will teach you step by step how to program your own custom pallets.
+Furthermore, it will start to introduce you to advance runtime development concepts and best
+practices when building on Substrate.
 
-It would also be a good time to call out that your success on the Substrate
-framework will ultimately be limited on your ability to program in Rust. The
-[Rust Book](https://doc.rust-lang.org/book/) is the best starting point for
-developers of any experience.
+It would also be a good time to call out that your success on the Substrate framework will
+ultimately be limited on your ability to program in Rust. The [Rust
+Book](https://doc.rust-lang.org/book/) is the best starting point for developers of any experience.
 
-If you experienced any issues with this tutorial or want to provide feedback,
-feel free to [open a GitHub
-issue](https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/new)
-with your thoughts.
+If you experienced any issues with this tutorial or want to provide feedback, feel free to [open a
+GitHub
+issue](https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/new) with
+your thoughts.
 
 We can't wait to see what you build next!

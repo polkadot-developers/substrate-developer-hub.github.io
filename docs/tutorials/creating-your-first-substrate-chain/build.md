@@ -1,12 +1,12 @@
 ---
-title: Building a Custom Runtime Pallet
+title: Building a Custom Pallet
 ---
 
-We will now modify the `substrate-node-template` to introduce the basic
-functionality of a Proof Of Existence pallet.
+We will now modify the `substrate-node-template` to introduce the basic functionality of a Proof Of
+Existence pallet.
 
-Open the `substrate-node-template` in your favorite code editor. Then open the
-file `runtime/src/template.rs`
+Open the `substrate-node-template` in your favorite code editor. Then open the file
+`runtime/src/template.rs`
 
 ```
 substrate-node-template
@@ -30,14 +30,12 @@ substrate-node-template
 +-- ...
 ```
 
-You will see some pre-written code which acts as a template for a new runtime
-pallet. You can delete the contents of this file since we will start from
-scratch for full transparency.
+You will see some pre-written code which acts as a template for a new pallet. You can delete the
+contents of this file since we will start from scratch for full transparency.
 
 ## Build Your New Pallet
 
-At a high level, a Substrate Runtime Pallet can be broken down into five
-sections:
+At a high level, a Substrate pallet can be broken down into five sections:
 
 ```rust
 // 1. Imports
@@ -56,14 +54,14 @@ decl_storage! { /* --snip-- */ }
 decl_module! { /* --snip-- */ }
 ```
 
-Things like events, storage, and callable functions should look familiar to you
-if you have done other blockchain development. We will show you what each of
-these components look like for a basic Proof Of Existence pallet.
+Things like events, storage, and callable functions should look familiar to you if you have done
+other blockchain development. We will show you what each of these components look like for a basic
+Proof Of Existence pallet.
 
 ### Imports
 
-Since imports are pretty boring, you can start by copying this at the top of
-your empty `template.rs` file:
+Since imports are pretty boring, you can start by copying this at the top of your empty
+`template.rs` file:
 
 ```rust 
 use support::{decl_module, decl_storage, decl_event, ensure, StorageMap};
@@ -73,8 +71,7 @@ use system::ensure_signed;
 
 ### Pallet Configuration
 
-For now, the only thing we will configure about our pallet is that it will emit
-some Events.
+For now, the only thing we will configure about our pallet is that it will emit some Events.
 
 ```rust 
 /// The pallet's configuration trait.
@@ -104,16 +101,14 @@ Our pallet will only have two events:
 1. When a new proof is added to the blockchain.
 2. When a proof is removed.
 
-The events can contain some metadata, in this case, each event will also display
-who triggered the event (`AccountId`), and the proof data (as `Vec<u8>`) that is
-being stored or removed.
+The events can contain some metadata, in this case, each event will also display who triggered the
+event (`AccountId`), and the proof data (as `Vec<u8>`) that is being stored or removed.
 
 ### Pallet Storage Items
 
-To add a new proof to the blockchain, we will simply store that proof in our
-pallet's storage. To store that value, we will create a [hash
-map](https://en.wikipedia.org/wiki/Hash_table) from the proof to the owner of
-that proof and the block number the proof was made.
+To add a new proof to the blockchain, we will simply store that proof in our pallet's storage. To
+store that value, we will create a [hash map](https://en.wikipedia.org/wiki/Hash_table) from the
+proof to the owner of that proof and the block number the proof was made.
 
 ```rust
 // This pallet's storage items.
@@ -131,8 +126,8 @@ proof is still available to be claimed.
 
 ### Callable Pallet Functions
 
-As implied by our pallet events, we will have two functions the user can call in
-this Substrate Runtime Pallet:
+As implied by our pallet events, we will have two functions the user can call in this Substrate
+pallet:
 
 1. `create_claim()`: Allow a user to claim the existence of a file with a proof.
 2. `revoke_claim()`: Allow the owner of a claim to revoke their claim.
@@ -192,9 +187,8 @@ decl_module! {
 
 ## Compile Your New Pallet
 
-After you've copied all of the parts of this pallet correctly into your
-`template.rs` file, you should be able to recompile your node without warning or
-error:
+After you've copied all of the parts of this pallet correctly into your `template.rs` file, you
+should be able to recompile your node without warning or error:
 
 ```bash
 cargo build --release
