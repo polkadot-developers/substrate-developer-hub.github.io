@@ -50,10 +50,10 @@ class Videos extends React.Component {
       <Col md="6" className="mb-3 d-flex align-items-stretch">
         <Card className="w-100">
           {isFeatured(video)}
-          <div class="embed-responsive embed-responsive-16by9">
+          <div className="embed-responsive embed-responsive-16by9">
             <iframe
               src={video.youtube}
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
