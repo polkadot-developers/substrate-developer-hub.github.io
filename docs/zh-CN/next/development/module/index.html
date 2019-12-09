@@ -77,20 +77,20 @@
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">Overview</h1></header><article><div><span><p>This document is a top-level entry point to documentation related to developing runtime modules for Substrate.</p>
 <p>These documents are written for a technical audience, who is familiar with the Rust programming language.</p>
 <p>If you are getting started with Substrate runtime development for the first time, we suggest you try our introductory tutorial for <a href="TODO">creating your first Substrate chain</a>.</p>
-<h2><a class="anchor" aria-hidden="true" id="what-is-a-runtime-module"></a><a href="#what-is-a-runtime-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is a Runtime Module?</h2>
-<p>A Substrate runtime module is an independent piece of business logic for your blockchain. These modules compose your blockchain's state transition function, and define the state and behaviors of your blockchain.</p>
-<p>For example, the Balances module, which is included in the Substrate Runtime Module Library (SRML), defines a cryptocurrency for your blockchain. More specifically, it defines storage items which tracks the tokens a user has, functions that users can call to transfer and manage those tokens, APIs which allow other modules to burn or mint those tokens, and hooks which allow other modules to trigger functions when a user's balance changes.</p>
-<p>You are able to write your own runtime modules which define logic and functionality you want to introduce to your blockchain, and the following documentation will show you how.</p>
-<h2><a class="anchor" aria-hidden="true" id="skeleton-of-a-module"></a><a href="#skeleton-of-a-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Skeleton of a Module</h2>
-<p>A Substrate runtime module is composed of 5 main sections:</p>
+<h2><a class="anchor" aria-hidden="true" id="what-is-a-pallet"></a><a href="#what-is-a-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is a Pallet?</h2>
+<p>Pallets are a special kind of Rust module from which Substrate runtimes can be composed. Each pallet has its own discrete logic which can modify the features and functionality of your blockchain's state transition function.</p>
+<p>For example, the Balances pallet, which is included in the Framework for Runtime Aggregation of Modularised Entities (FRAME), defines a cryptocurrency for your blockchain. More specifically, it defines storage items which tracks the tokens a user has, functions that users can call to transfer and manage those tokens, APIs which allow other modules to burn or mint those tokens, and hooks which allow other modules to trigger functions when a user's balance changes.</p>
+<p>You are able to write your own pallets which define logic and functionality you want to introduce to your blockchain, and the following documentation will show you how.</p>
+<h2><a class="anchor" aria-hidden="true" id="skeleton-of-a-pallet"></a><a href="#skeleton-of-a-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Skeleton of a Pallet</h2>
+<p>A Substrate pallet is composed of 5 main sections:</p>
 <pre><code class="hljs css language-rust"><span class="token comment">// 1. Imports and Dependencies</span>
-<span class="token comment">// The Substrate runtime supports the use of any Rust library which compiles</span>
+<span class="token comment">// The pallet supports the use of any Rust library which compiles</span>
 <span class="token comment">// with the `no_std` flag.</span>
 <span class="token keyword">use</span> support<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>decl_module<span class="token punctuation">,</span> decl_event<span class="token punctuation">,</span> decl_storage<span class="token punctuation">,</span> <span class="token punctuation">...</span><span class="token punctuation">}</span>
 
 <span class="token comment">// 2. Runtime Configuration Trait</span>
-<span class="token comment">// All of the runtime types and consts go in here. If the module</span>
-<span class="token comment">// is dependent on specific other modules, then their configuration traits</span>
+<span class="token comment">// All of the runtime types and consts go in here. If the pallet</span>
+<span class="token comment">// is dependent on specific other pallets, then their configuration traits</span>
 <span class="token comment">// should be added to the inherited traits list.</span>
 <span class="token keyword">pub</span> <span class="token keyword">trait</span> Trait<span class="token punctuation">:</span> system<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
 
@@ -105,21 +105,21 @@
 <span class="token comment">// keep things around between blocks.</span>
 <span class="token macro-rules function">decl_storage!</span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
 
-<span class="token comment">// 5. The Module Declaration</span>
-<span class="token comment">// This defines the `Module` struct that is ultimately exported from our module.</span>
-<span class="token comment">// It defines the callable functions our module exposes and orchestrates</span>
-<span class="token comment">// actions our module takes throughout block execution.</span>
+<span class="token comment">// 5. The Pallet Declaration</span>
+<span class="token comment">// This defines the `Module` struct that is ultimately exported from this pallet.</span>
+<span class="token comment">// It defines the callable functions that this pallet exposes and orchestrates</span>
+<span class="token comment">// actions this pallet takes throughout block execution.</span>
 <span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="example-module"></a><a href="#example-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example Module</h2>
-<p>Here is a minimal, working runtime module which simply allows a user to put a <code>u64</code> value into storage.</p>
-<p>Parts of this example will be used to help teach concepts throughout the rest of the runtime module documentation.</p>
+<p>Here is a minimal, working pallet which simply allows a user to put a <code>u64</code> value into storage.</p>
+<p>Parts of this example will be used to help teach concepts throughout the rest of the pallet documentation.</p>
 <p>It is written in full here for clarity:</p>
 <pre><code class="hljs css language-rust"><span class="token keyword">use</span> support<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>decl_module<span class="token punctuation">,</span> decl_event<span class="token punctuation">,</span> decl_storage<span class="token punctuation">,</span> StorageValue<span class="token punctuation">,</span> StorageMap<span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token keyword">use</span> system<span class="token punctuation">:</span><span class="token punctuation">:</span>ensure_signed<span class="token punctuation">;</span>
 
 <span class="token keyword">pub</span> <span class="token keyword">trait</span> Trait<span class="token punctuation">:</span> system<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait <span class="token punctuation">{</span>
-    <span class="token comment">// The traits the `Event` type used in our module has.</span>
+    <span class="token comment">// The traits the `Event` type used in this pallet has.</span>
     <span class="token keyword">type</span> Event<span class="token punctuation">:</span> From<span class="token operator">&lt;</span>Event<span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token operator">>></span> <span class="token operator">+</span> Into<span class="token operator">&lt;&lt;</span><span class="token keyword">Self</span> <span class="token keyword">as</span> system<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span>Event<span class="token operator">></span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
@@ -161,7 +161,7 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/next/development/build/upgrade"><span class="arrow-prev">← </span><span>上一个</span></a><a class="docs-next button" href="/docs/zh-CN/next/development/module/execution"><span>Runtime Execution</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#what-is-a-runtime-module">What is a Runtime Module?</a></li><li><a href="#skeleton-of-a-module">Skeleton of a Module</a></li><li><a href="#example-module">Example Module</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/next/development/build/upgrade"><span class="arrow-prev">← </span><span>上一个</span></a><a class="docs-next button" href="/docs/zh-CN/next/development/module/execution"><span>Runtime Execution</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#what-is-a-pallet">What is a Pallet?</a></li><li><a href="#skeleton-of-a-pallet">Skeleton of a Pallet</a></li><li><a href="#example-module">Example Module</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
 #blast {
   position: fixed;
   width: 100%;
