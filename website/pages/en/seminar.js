@@ -62,8 +62,12 @@ function Seminar(props) {
         <Container className="readableLineLength">
         <h2 className = "h1">FAQ</h2>
         <h3 className = "h2">How should I prepare?</h3>
+        <p>The December 10th meeting is cancelled due to illness. We will return to the regular schedule next week.</p>
         <p>
-          For the 03 December meeting, we will preview an in-progress workshop on cumulus -- a way to connect your Substrate chain to Polkadot. Prepare by following the instrucitons at https://joshorndorff.github.io/cumulus-workshop/#/
+          On 17 December, we will discuss and practice executing forkless runtime upgrades. To participate, please build the <a href="https://github.com/substrate-developer-hub/substrate-node-template">node template</a>.
+        </p>
+        <p>
+          We will also explore the <a href="https://github.com/substrate-developer-hub/recipes">Substrate Recipes</a> and discuss some interesting examples it currently includes and may include in the future. Finally we'll attempt to solve <a href="https://github.com/substrate-developer-hub/recipes/pull/107">this active issue</a> in the recipes.
         </p>
         {/*<p>
           In general, we start with the packages from the <a href="https://github.com/substrate-developer-hub">Substrate Developer Hub</a> GitHub Organization. You should have the latest <a href="https://github.com/substrate-developer-hub/substrate-node-template">Node Template</a> and <a href="https://github.com/substrate-developer-hub/substrate-front-end-template/">Front End Template</a> built and ready to use.
