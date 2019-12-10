@@ -118,7 +118,13 @@ First we will add the new dependency by simply copying an existing pallet, and c
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'pallet-contracts'
-rev = '<git-commit>' # e.g. '186f9f871fc206acb827a33e13cdef3580db39db'
+rev = '<git-commit>' # e.g. '90fc72346ca6f34a0649f508d7a0edab9b32983a'
+
+[dependencies.contracts-rpc-runtime-api]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+package = 'pallet-contracts-rpc-runtime-api'
+rev = '<git-commit>' # e.g. '90fc72346ca6f34a0649f508d7a0edab9b32983a'
 ```
 
 You [can see](https://github.com/paritytech/substrate/blob/master/frame/contracts/Cargo.toml) that the Contracts pallet has `std` feature, thus we need to add that feature to our runtime:
@@ -129,7 +135,9 @@ You [can see](https://github.com/paritytech/substrate/blob/master/frame/contract
 [features]
 default = ["std"]
 std = [
+    #--snip--
     'contracts/std',
+    'contracts-rpc-runtime-api/std',
     #--snip--
 ]
 ```
@@ -178,6 +186,9 @@ Now that we have successfully imported the Contracts pallet crate, we need to ad
 include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
 
 use rstd::prelude::*;
+/*** Add this line ***/
+use contracts_rpc_runtime_api::ContractExecResult;
+
 /* --snip-- */
 
 // A few exports that help ease life for downstream crates.
@@ -187,6 +198,7 @@ pub use timestamp::Call as TimestampCall;
 pub use balances::Call as BalancesCall;
 /*** Add this line ***/
 pub use contracts::Gas as ContractsGas;
+
 /* --snip-- */
 ```
 
@@ -297,7 +309,9 @@ construct_runtime!(
         NodeBlock = opaque::Block,
         UncheckedExtrinsic = UncheckedExtrinsic
     {
-        /* --snip-- *//*** Add this line ***/
+        /* --snip-- */
+
+        /*** Add this line ***/
         Contracts: contracts,
     }
 );
@@ -336,6 +350,58 @@ impl balances::Trait for Runtime {
 }
 ```
 
+
+### Exposing The Contracts API
+
+**`runtime/src/lib.rs`**
+```rust
+impl_runtime_apis! {
+   /* --snip-- */
+
+   /*** Add this block ***/
+    impl contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance> for Runtime {
+        fn call(
+            origin: AccountId,
+            dest: AccountId,
+            value: Balance,
+            gas_limit: u64,
+            input_data: Vec<u8>,
+        ) -> ContractExecResult {
+            let exec_result = Contracts::bare_call(
+                origin,
+                dest.into(),
+                value,
+                gas_limit,
+                input_data,
+            );
+            match exec_result {
+                Ok(v) => ContractExecResult::Success {
+                    status: v.status,
+                    data: v.data,
+                },
+                Err(_) => ContractExecResult::Error,
+            }
+        }
+
+        fn get_storage(
+            address: AccountId,
+            key: [u8; 32],
+        ) -> contracts_rpc_runtime_api::GetStorageResult {
+            Contracts::get_storage(address, key).map_err(|rpc_err| {
+                use contracts::GetStorageError;
+                use contracts_rpc_runtime_api::{GetStorageError as RpcGetStorageError};
+                /// Map the contract error into the RPC layer error.
+                match rpc_err {
+                    GetStorageError::ContractDoesntExist => RpcGetStorageError::ContractDoesntExist,
+                    GetStorageError::IsTombstone => RpcGetStorageError::IsTombstone,
+                }
+            })
+        }
+    }
+   /*** ***/
+}
+```
+
 Now, when the Balances pallet detects that the free balance of an account has reached zero, it calls the `on_free_balance_zero` function of the Contracts pallet.
 
 ## Genesis Configuration
@@ -365,7 +431,9 @@ fn testnet_genesis(initial_authorities: Vec<(AuraId, GrandpaId)>,
     /*** ***/
 
     GenesisConfig {
-        /* --snip-- *//*** Add this line ***/
+        /* --snip-- */
+        
+        /*** Add this line ***/
         contracts: Some(contracts_config),
     }
 }
