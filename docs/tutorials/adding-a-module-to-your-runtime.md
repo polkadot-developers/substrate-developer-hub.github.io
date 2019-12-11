@@ -41,7 +41,7 @@ The first thing you need to do to add the Contracts pallet is to import the `pal
 
 Open `substrate-node-template/runtime/Cargo.toml` and you will see a file which lists all the dependencies your runtime has. For example, it depends on the [Balances pallet](https://substrate.dev/rustdocs/master/pallet_balances/index.html):
 
-**`Cargo.toml`**
+**`runtime/Cargo.toml`**
 
 ```TOML
 [dependencies.balances]
@@ -55,7 +55,7 @@ rev = '<git-commit>'
 
 One important thing we need to call out with importing pallet crates is making sure to set up the crate `features` correctly. In the code snippet above, you will notice that we set `default_features = false`. If you explore the `Cargo.toml` file even closer, you will find something like:
 
-**`Cargo.toml`**
+**`runtime/Cargo.toml`**
 
 ```TOML
 [features]
@@ -460,6 +460,8 @@ rev = '<git-commit>' # e.g. '52373bfe63d49aae7a17b10b17116a3d470d30bf'
 git = 'https://github.com/paritytech/substrate.git'
 rev = '<git-commit>' # e.g. '52373bfe63d49aae7a17b10b17116a3d470d30bf'
 ```
+
+**`src/service.rs`**
 ```rust
 /// Starts a `ServiceBuilder` for a full service.
 ///
