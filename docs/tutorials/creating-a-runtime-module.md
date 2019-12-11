@@ -2,7 +2,7 @@
 title: "Creating an External Pallet"
 ---
 
-In this tutorial, you'll write a Substrate runtime pallet that lives in its own
+In this tutorial, you'll write a Substrate pallet that lives in its own
 crate, and include it in a node based on the `substrate-node-template`.
 
 ## Prerequisites
@@ -174,9 +174,9 @@ cargo test
 
 You may need to modify the dependencies you need for the pallets you create.
 
-## Add Your Runtime Pallet to Your Node
+## Add Your Pallet to Your Node
 
-With our runtime pallet now compiling and passing it's tests, we're ready to add
+With our pallet now compiling and passing it's tests, we're ready to add
 it to our node.
 
 We first add our newly-created crate as a dependency in the node's runtime
@@ -292,7 +292,7 @@ instead of using the local files.
 
 ## Next Steps
 
-Congratulations! You've written a Substrate runtime pallet in its own Rust
+Congratulations! You've written a Substrate pallet in its own Rust
 crate, and published that crate to GitHub. Other blockchain developers can now
 easily use your pallet in their runtime by simply including those same four
 lines of code in their runtime's `Cargo.toml` files and updating their runtime's
