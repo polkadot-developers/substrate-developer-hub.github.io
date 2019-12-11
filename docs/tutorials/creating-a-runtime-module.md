@@ -97,16 +97,12 @@ feature. Our `Cargo.toml` file tells our pallet's dependencies to only use their
 [features]
 default = ['std']
 std = [
-    'aura-primitives/std',
-    'aura/std',
-    'balances/std',
-    'block-builder-api/std',
+    'serde',
     'codec/std',
-    'executive/std',
-    'grandpa/std',
-    'sp-runtime/std',
     'support/std',
-    # --snip--
+    'system/std',
+    'sp-runtime/std',
+    'sp-io/std',
 ]
 ```
 
