@@ -63,8 +63,8 @@ default = ['std']
 std = [
     'codec/std',
     'client/std',
-    'rstd/std',
-    'runtime-io/std',
+    'sp-std/std',
+    'sp-io/std',
     'support/std',
     'balances/std',
     #--snip--
@@ -92,7 +92,7 @@ To see how these features actually get used in the runtime code, we can open the
 #[cfg(feature = "std")]
 include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
 
-use rstd::prelude::*;
+use sp_std::prelude::*;
 /* --snip-- */
 
 // A few exports that help ease life for downstream crates.
@@ -111,25 +111,25 @@ Okay, now that we have covered the basics of crate features, we can actually imp
 
 First we will add the new dependency by simply copying an existing pallet, and changing the values. So based on the `balances` import shown above, my `contracts` import will look like:
 
-**`Cargo.toml`**
+**`runtime/Cargo.toml`**
 
 ```TOML
 [dependencies.contracts]
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'pallet-contracts'
-rev = '<git-commit>' # e.g. '90fc72346ca6f34a0649f508d7a0edab9b32983a'
+rev = '<git-commit>' # e.g. '52373bfe63d49aae7a17b10b17116a3d470d30bf'
 
 [dependencies.contracts-rpc-runtime-api]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'pallet-contracts-rpc-runtime-api'
-rev = '<git-commit>' # e.g. '90fc72346ca6f34a0649f508d7a0edab9b32983a'
+rev = '<git-commit>' # e.g. '52373bfe63d49aae7a17b10b17116a3d470d30bf'
 ```
 
 You [can see](https://github.com/paritytech/substrate/blob/master/frame/contracts/Cargo.toml) that the Contracts pallet has `std` feature, thus we need to add that feature to our runtime:
 
-**`Cargo.toml`**
+**`runtime/Cargo.toml`**
 
 ```TOML
 [features]
@@ -185,20 +185,21 @@ Now that we have successfully imported the Contracts pallet crate, we need to ad
 #[cfg(feature = "std")]
 include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
 
-use rstd::prelude::*;
+use sp_std::prelude::*;
+
 /*** Add this line ***/
 use contracts_rpc_runtime_api::ContractExecResult;
-
 /* --snip-- */
-
+```
+```rust
 // A few exports that help ease life for downstream crates.
 #[cfg(any(feature = "std", test))]
 pub use sp_runtime::BuildStorage;
 pub use timestamp::Call as TimestampCall;
 pub use balances::Call as BalancesCall;
+
 /*** Add this line ***/
 pub use contracts::Gas as ContractsGas;
-
 /* --snip-- */
 ```
 
@@ -406,7 +407,7 @@ Now, when the Balances pallet detects that the free balance of an account has re
 
 ## Genesis Configuration
 
-Not all pallets will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`pallet_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contracts pallet. This definition is controlled in `substrate-node-template/src/chain_spec.rs`. We need to modify this file to include the `ContractsConfig` type and add the contract price units at the top:
+Not all pallets will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`pallet_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contracts pallet. This definition is controlled in `substrate-node-template/src/chain_spec.rs`. We need to modify this file to include the `ContractsConfig` type and the contract price units at the top:
 
 **`src/chain_spec.rs`**
 
@@ -444,6 +445,21 @@ Note that you can tweak these numbers to your needs, but these are the values se
 ## Service Configuration
 The last thing we need to do in order to get your node up and running is to establish a service configuration for the Contracts pallet.
 
+**`Cargo.toml`**
+```toml
+[dependencies]
+#--snip--
+jsonrpc-core = '14.0.5'
+
+#--snip--
+[dependencies.pallet-contracts-rpc]
+git = 'https://github.com/paritytech/substrate.git'
+rev = '<git-commit>' # e.g. '52373bfe63d49aae7a17b10b17116a3d470d30bf'
+
+[dependencies.sc-rpc]
+git = 'https://github.com/paritytech/substrate.git'
+rev = '<git-commit>' # e.g. '52373bfe63d49aae7a17b10b17116a3d470d30bf'
+```
 ```rust
 /// Starts a `ServiceBuilder` for a full service.
 ///
