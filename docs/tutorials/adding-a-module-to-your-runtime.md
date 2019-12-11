@@ -119,12 +119,6 @@ default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'pallet-contracts'
 rev = '<git-commit>' # e.g. '52373bfe63d49aae7a17b10b17116a3d470d30bf'
-
-[dependencies.contracts-rpc-runtime-api]
-default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-package = 'pallet-contracts-rpc-runtime-api'
-rev = '<git-commit>' # e.g. '52373bfe63d49aae7a17b10b17116a3d470d30bf'
 ```
 
 You [can see](https://github.com/paritytech/substrate/blob/master/frame/contracts/Cargo.toml) that the Contracts pallet has `std` feature, thus we need to add that feature to our runtime:
@@ -137,7 +131,6 @@ default = ["std"]
 std = [
     #--snip--
     'contracts/std',
-    'contracts-rpc-runtime-api/std',
     #--snip--
 ]
 ```
@@ -186,12 +179,8 @@ Now that we have successfully imported the Contracts pallet crate, we need to ad
 include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
 
 use sp_std::prelude::*;
-
-/*** Add this line ***/
-use contracts_rpc_runtime_api::ContractExecResult;
 /* --snip-- */
-```
-```rust
+
 // A few exports that help ease life for downstream crates.
 #[cfg(any(feature = "std", test))]
 pub use sp_runtime::BuildStorage;
@@ -354,7 +343,37 @@ impl balances::Trait for Runtime {
 
 ### Exposing The Contracts API
 
+**`runtime/Cargo.toml`**
+
+```TOML
+[dependencies.contracts-rpc-runtime-api]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+package = 'pallet-contracts-rpc-runtime-api'
+rev = '<git-commit>' # e.g. '52373bfe63d49aae7a17b10b17116a3d470d30bf'
+```
+
+**`runtime/Cargo.toml`**
+
+```TOML
+[features]
+default = ["std"]
+std = [
+    #--snip--
+    'contracts-rpc-runtime-api/std',
+]
+```
+
 **`runtime/src/lib.rs`**
+
+```rust
+/* --snip-- */
+use sp_std::prelude::*;
+
+/*** Add this line ***/
+use contracts_rpc_runtime_api::ContractExecResult;
+/* --snip-- */
+```
 ```rust
 impl_runtime_apis! {
    /* --snip-- */
