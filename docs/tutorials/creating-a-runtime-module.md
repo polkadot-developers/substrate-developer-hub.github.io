@@ -38,7 +38,7 @@ their own Substrate runtime.
 
 The `substrate-node-template` contains a working Substrate node, and the
 `substrate-module-template` contains an independent Rust crate which is a
-Substrate runtime pallet that can be included in your node. The compilation of
+Substrate pallet that can be included in your node. The compilation of
 the node may take up to 30 minutes depending on your hardware, so let that run
 while you continue to follow this guide.
 
@@ -158,7 +158,7 @@ the actual pallet itself.
 
 [dev-dependencies.primitives]
 git = 'https://github.com/paritytech/substrate.git'
-package = 'sp-runtime'
+package = 'sp-core'
 branch = 'v2.0'
 ```
 
