@@ -1,7 +1,7 @@
 ---
 title: "Building the Substrate TCR runtime"
 ---
-This is Part 1 of the guide [Building a Token Curated Registry DAppChain on Substrate](index.md). This part covers the implementation of the Substrate runtime modules needed for the Token Curated Registry runtime.
+This is Part 1 of the guide [Building a Token Curated Registry DAppChain on Substrate](index.md). This part covers the implementation of the Substrate runtime pallets needed for the Token Curated Registry runtime.
 
 The code for the sample TCR runtime is available in [this GitHub repository](https://github.com/substrate-developer-hub/substrate-tcr/).
 
@@ -11,13 +11,13 @@ In this guide, we will directly jump into the TCR runtime development using Subs
 
 Let's start with a new Substrate runtime node. We recommend going through the [Substrate setup scripts tutorial](getting-started/using-the-substrate-scripts.md) to spin up a hack-ready node runtime using the `substrate-node-new` script.
 
-## Step 2: Module trait and types
+## Step 2: Pallet trait and types
 
-The first step towards building a Substrate runtime module is to define what other SRML modules we could use in our module. There are plenty of SRML modules that ship with the Substrate codebase and we recommend using them, when needed. To use any of the existing modules, we need to import and specify them in the module trait of our custom module.
+The first step towards building a Substrate runtime pallet is to define what other FRAME pallets we could use in our pallet. There are plenty of FRAME pallets that ship with the Substrate codebase and we recommend using them, when needed. To use any of the existing pallets, we need to import and specify them in the pallet trait of our custom pallet.
 
-For example, in this runtime we need the capability to calculate and compare timestamps for the TCR parameters - apply stage length and commit stage length. We will use the [`timestamp` SRML module](https://github.com/paritytech/substrate/tree/master/frame/timestamp) to achieve this functionality.
+For example, in this runtime we need the capability to calculate and compare timestamps for the TCR parameters - apply stage length and commit stage length. We will use the [`timestamp` FRAME pallet](https://github.com/paritytech/substrate/tree/master/frame/timestamp) to achieve this functionality.
 
-Here's how the module configuration trait declaration for the TCR module looks like.
+Here's how the pallet configuration trait declaration for the TCR pallet looks like.
 
 ```rust
 pub trait Trait: timestamp::Trait + token::Trait {
@@ -25,16 +25,16 @@ pub trait Trait: timestamp::Trait + token::Trait {
 }
 ```
 
-In the above snippet, we have the TCR module configuration trait inheriting from the `timestamp` module trait. In addition, it also inherits from the `token` module trait. It is important to import these modules in your module before you use them in the module trait. In the following snippet we are importing the `timestamp` module from the SRML and the `token` module from the local crate.
+In the above snippet, we have the TCR pallet configuration trait inheriting from the `timestamp` pallet trait. In addition, it also inherits from the `token` pallet trait. It is important to import these pallets in your pallet before you use them in the pallet trait. In the following snippet we are importing the `timestamp` pallet from the SRML and the `token` pallet from the local crate.
 
 ```rust
 use {system::ensure_signed, timestamp};
 use crate::token;
 ```
 
-The token module is another custom module that we need in order to support the token functionality for TCR curation functions. We would not be going into the implementation details of the `token` module in this guide as its code is pretty much self explanatory. Basically, the `token` module implements the ERC20 interface with some additional functions (lock and unlock). It is available as part of the TCR sample code base [here](https://github.com/substrate-developer-hub/substrate-tcr/blob/master/runtime/src/token.rs).
+The token pallet is another custom pallet that we need in order to support the token functionality for TCR curation functions. We would not be going into the implementation details of the `token` pallet in this guide as its code is pretty much self explanatory. Basically, the `token` pallet implements the ERC20 interface with some additional functions (lock and unlock). It is available as part of the TCR sample code base [here](https://github.com/substrate-developer-hub/substrate-tcr/blob/master/runtime/src/token.rs).
 
-Remember to add references of your `token.rs` and `tcr.rs` modules to the `lib.rs`, and add them to the `construct_runtime!` macro.
+Remember to add references of your `token.rs` and `tcr.rs` pallets to the `lib.rs`, and add them to the `construct_runtime!` macro.
 
 
 ## Step 3: Declaring the runtime storage
@@ -92,7 +92,7 @@ pub struct Poll<T, U> {
 }
 ```
 
-These structs have generic type parameters so that we can use any implementation of the respective types. The following sub-section describes how we are instantiating collections of these structs where we define the exact type in place of generic parameters. The `Moment` type comes from the `timestamp` module and the `TokenBalance` type comes from the `token` module.
+These structs have generic type parameters so that we can use any implementation of the respective types. The following sub-section describes how we are instantiating collections of these structs where we define the exact type in place of generic parameters. The `Moment` type comes from the `timestamp` pallet and the `TokenBalance` type comes from the `token` pallet.
 
 ### Storage declaration using the `decl_storage` macro
 
@@ -165,7 +165,7 @@ Marking a storage value as `config()` is just enabling it to be used as genesis 
 
 To set the values for genesis config, we need to make some edits in the `chain_spec.rs` file.
 
-First, we need to add a type name for the genesis config in the template runtime import. In the code snippet below, we have added `TcrConfig` in the runtime import for representing the genesis config of TCR runtime module
+First, we need to add a type name for the genesis config in the template runtime import. In the code snippet below, we have added `TcrConfig` in the runtime import for representing the genesis config of TCR runtime pallet
 
 ```rust
 use node_template_runtime::{
@@ -204,15 +204,15 @@ This also concludes the work needed on the storage declaration and setup.
 
 ## Step 4: Declaring Events
 
-The next step for our runtime module development is declaring its events. In general, we need events so that the external world can listen to updates on the blockchain. If we do not have proper events in our runtime, the users would end up querying a lot of on-chain data.
+The next step for our runtime pallet development is declaring its events. In general, we need events so that the external world can listen to updates on the blockchain. If we do not have proper events in our runtime, the users would end up querying a lot of on-chain data.
 
 Also, it is important to note that the runtime functions in Substrate do not return values on success. Their return value is either empty or an error message. Because of this, it becomes even more important to have events with the right parameters so that the state changes can be communicated to the clients and hence, users.
 
 We can also use the events to build an off-chain cache of the on-chain data. This cache can then be used to query and analyze data in a more performant way. We will cover more on this in Part 3 of this guide.
 
-For our TCR runtime module, we would have events to communicate updates on listings - proposal, challenge, vote, resolution, accepted/rejected and rewards claim. All these are logical steps in the life-cycle of a listing and corresponding challenges and should be communicated to the outside world.
+For our TCR runtime pallet, we would have events to communicate updates on listings - proposal, challenge, vote, resolution, accepted/rejected and rewards claim. All these are logical steps in the life-cycle of a listing and corresponding challenges and should be communicated to the outside world.
 
-In general, when developing a runtime module, you should ask yourself this question - "What kind of updates will the client or the external user be interested in when using this runtime?" Ideally, all these updates should be communicated as events.
+In general, when developing a runtime pallet, you should ask yourself this question - "What kind of updates will the client or the external user be interested in when using this runtime?" Ideally, all these updates should be communicated as events.
 
 For our TCR runtime, we have the following events declared using the `decl_event` macro.
 
@@ -243,13 +243,13 @@ decl_event!(
 
 At this point, we have our storage, genesis config, and events sorted. We are now good to proceed with the implementation of the runtime business logic.
 
-## Step 5: Module business logic
+## Step 5: Pallet business logic
 
-There is a reason why we are doing the business logic at the end. At this point, it becomes very clear what we intend to store and what we plan to communicate (events) in our module. This clarity can help a lot in optimizing the business logic. Let's begin.
+There is a reason why we are doing the business logic at the end. At this point, it becomes very clear what we intend to store and what we plan to communicate (events) in our pallet. This clarity can help a lot in optimizing the business logic. Let's begin.
 
 ### Propose a listing
 
-The first function that our TCR runtime module needs to expose is to allow the proposal of a listing to the registry. In this function, we take as input the listing name and deposit. We then validate this input as per the TCR config parameters stored as genesis config. Then we deduct (lock) the deposit amount from the sender's balance using the `token` module. Finally, we store the listing as an instance of the `Listing` struct inside the `Listings` storage map.
+The first function that our TCR runtime pallet needs to expose is to allow the proposal of a listing to the registry. In this function, we take as input the listing name and deposit. We then validate this input as per the TCR config parameters stored as genesis config. Then we deduct (lock) the deposit amount from the sender's balance using the `token` pallet. Finally, we store the listing as an instance of the `Listing` struct inside the `Listings` storage map.
 
 Here's how the `Propose` function is implemented,
 
@@ -268,7 +268,7 @@ fn propose(origin, data: Vec<u8>, #[compact] deposit: T::TokenBalance) -> Result
   ensure!(deposit >= min_deposit, "deposit should be more than min_deposit");
 
   // set application expiry for the listing
-  // using the `Timestamp` SRML module for getting the block timestamp
+  // using the `Timestamp` FRAME pallet for getting the block timestamp
   // generating a future timestamp by adding the apply stage length
   let now = <timestamp::Module<T>>::get();
   let apply_stage_len = Self::apply_stage_len().ok_or("Apply stage length not set.")?;
@@ -309,7 +309,7 @@ fn propose(origin, data: Vec<u8>, #[compact] deposit: T::TokenBalance) -> Result
 
 It is worth noting that we are doing all the checks and validations before touching the storage. This is **very important** as the state of the blockchain cannot be reversed if the logic fails or errors out. We need to be extremely careful before updating the storage. This is well described in the [Substrate-Collectibles tutorial](https://github.com/substrate-developer-hub/substrate-collectables-workshop/blob/master/2/tracking-all-kitties.md#verify-first-write-last) also.
 
-If you are using external modules in your module, make sure to check whether the functions from these external modules are doing any validations. If yes, make these function calls before updating any storage in your module. In this case, we are calling the `lock` function of the `token` module from the `propose` function of the `TCR` module. The `lock` function is verifying if the token balance of the proposer (origin) is more than the deposit. That's why we are calling it before inserting the listing. The `lock` function also updates storage (locking the user's funds), so it is important not to have any more operations that can fail after the user's funds are locked.
+If you are using external pallets in your pallet, make sure to check whether the functions from these external pallets are doing any validations. If yes, make these function calls before updating any storage in your pallet. In this case, we are calling the `lock` function of the `token` pallet from the `propose` function of the `TCR` pallet. The `lock` function is verifying if the token balance of the proposer (origin) is more than the deposit. That's why we are calling it before inserting the listing. The `lock` function also updates storage (locking the user's funds), so it is important not to have any more operations that can fail after the user's funds are locked.
 
 Finally, we raise the `Proposed` event to communicate to the external world that a new listing has been proposed in the registry.
 
@@ -534,7 +534,7 @@ fn resolve(_origin, listing_id: u32) -> Result {
 
 ### Claim reward
 
-Once a listing is resolved, voting rewards can be claimed using the `claim_reward` function. In this function, we check if the caller (origin) has voted on a particular challenge or not. We then check if the challenge has been resolved or not. Based on these checks, we calculate the reward for the origin and call the `unlock` function using the `token` module. We also update the `Vote` instance with the claimed status to true so that the same reward cannot be claimed again. Finally, we raise the `Claimed` event.
+Once a listing is resolved, voting rewards can be claimed using the `claim_reward` function. In this function, we check if the caller (origin) has voted on a particular challenge or not. We then check if the challenge has been resolved or not. Based on these checks, we calculate the reward for the origin and call the `unlock` function using the `token` pallet. We also update the `Vote` instance with the claimed status to true so that the same reward cannot be claimed again. Finally, we raise the `Claimed` event.
 
 It is important to note that the `claim_reward` function takes a `challenge_id` as an input parameter rather than a listing (unlike previous functions). Finding the right `challenge_id` for a listing should be done beforehand.
 
@@ -575,6 +575,6 @@ fn claim_reward(origin, challenge_id: u32) -> Result {
 
 The core TCR flow is now complete with the `propose`, `challenge`, `vote`, `resolve`, and `claim_reward` functions. It can be further extended, as needed. Please note that what we have covered here is just a sample implementation of a subset of TCR functions. It is only for educational purposes and is not intended for real use-cases.
 
-The code for the TCR runtime modules - `tcr` and `token` covered in this part of the guide, is available [here](https://github.com/substrate-developer-hub/substrate-tcr/tree/master/runtime/src).
+The code for the TCR runtime pallets - `tcr` and `token` covered in this part of the guide, is available [here](https://github.com/substrate-developer-hub/substrate-tcr/tree/master/runtime/src).
 
 In the [next part](unit-testing-the-tcr-runtime-module.md) of this guide, we will learn how to unit test the functions in a Substrate runtime.

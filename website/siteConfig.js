@@ -94,6 +94,10 @@ const siteConfig = {
     '/js/code-block-buttons.js',
     '/js/load.js',
     {
+      src: '/js/ui.js',
+      defer: true
+    },
+    {
       src: '/js/config.js',
       defer: true
     },

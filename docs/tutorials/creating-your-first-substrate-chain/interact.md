@@ -2,8 +2,7 @@
 title: Interacting with Your Node
 ---
 
-Now that your node has finished compiling, let's show you how everything works
-out of the box.
+Now that your node has finished compiling, let's show you how everything works out of the box.
 
 ## Starting Your Node
 
@@ -41,7 +40,7 @@ Your blockchain is producing new blocks!
 
 ## Start Your Front-End
 
-To interact with the local node via the front-end template, start the 
+To interact with the local node via the front-end template, start the
 `substrate-front-end-template`.
 
 Open another terminal in your working folder and run the following:
@@ -54,19 +53,17 @@ yarn install
 yarn start
 ```
 
-You should then be able to navigate to
-[`localhost:8000`](http://localhost:8000/) where you will see a simple front-end
-showing that your Substrate node is running and connected!
+You should then be able to navigate to [`localhost:8000`](http://localhost:8000/) where you will see
+a simple front-end showing that your Substrate node is running and connected!
 
 ## Interact
 
-If you look at the **Balances** component, you will see test accounts which you
-have access to. Some like Alice and Bob already have funds!
+If you look at the **Balances** component, you will see test accounts which you have access to. Some
+like Alice and Bob already have funds!
 
 ![Front End Template](assets/front-end-template.png)
 
-You can try to transfer some funds from Alice to Charlie using the **Transfer**
-component.
+You can try to transfer some funds from Alice to Charlie using the **Transfer** component.
 
 ```
 Selected Account: Alice
@@ -76,13 +73,12 @@ Amount: 1000
 
 ![Balance Transfer](assets/front-end-template-balance-transfer.png)
 
-If everything went successfully, you should see some notifications in the
-**Events** component, and of course Charlie's balance will now be `1000`.
+If everything went successfully, you should see some notifications in the **Events** component, and
+of course Charlie's balance will now be `1000`.
 
-Already you have a working blockchain, with an underlying cryptocurrency. You
-are able to make transfers easily with a simple, interactive front-end.
+Already you have a working blockchain, with an underlying cryptocurrency. You are able to make
+transfers easily with a simple, interactive front-end.
 
-Now let's build our Proof of Existence Module
+Now let's build our Proof of Existence pallet!
 
-> **Note:** If you want to stop your node or front-end, you can press `ctrl + c`
-> in the terminal.
+> **Note:** If you want to stop your node or front-end, you can press `ctrl + c` in the terminal.

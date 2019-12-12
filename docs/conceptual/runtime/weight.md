@@ -12,7 +12,7 @@ covered in the [Fee Developer document](development/module/fees.md).
 
 Weights represent the _limited_ resources of your blockchain, for example computational cycles,
 memory, storage, etc. A custom implementation may use complex structures to express this. Substrate
-weights are simply a [numeric value](https://substrate.dev/rustdocs/master/sr_primitives/weights/type.Weight.html).
+weights are simply a [numeric value](https://substrate.dev/rustdocs/master/palette_support/weights/type.Weight.html).
 
 A weight calculation should always:
 

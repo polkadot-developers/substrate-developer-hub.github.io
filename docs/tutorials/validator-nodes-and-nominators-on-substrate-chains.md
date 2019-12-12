@@ -2,7 +2,7 @@
 title: "Validator Nodes and Nominators on Substrate chains"
 ---
 
-This document will walk you through steps to create a Substrate Node, integrate both the Substrate SRML 'Staking' and 'Referenda' Modules into the Substrate Node's Runtime, and then become a validator or a nominator using a Substrate Node using [Polkadot-JS Apps](https://polkadot.js.org/apps/next/).
+This document will walk you through steps to create a Substrate Node, integrate both the Substrate FRAME 'Staking' and 'Referenda' pallets into the Substrate Node's Runtime, and then become a validator or a nominator using a Substrate Node using [Polkadot-JS Apps](https://polkadot.js.org/apps/next/).
 
 We include how [Dr Gavin Wood created a short Substrate address at the 2018 Dotcon-0 during the Web3 Summit](https://youtu.be/26ucTSSaqog?t=5298)
 
@@ -52,18 +52,18 @@ cd ~/code/polkadot-js
 polkadot-js-apps-new
 ```
 
-## Step 1: Integrate Substrate SRML 'Referenda' and 'Staking' Modules into the Substrate Node's Runtime
+## Step 1: Integrate Substrate FRAME 'Referenda' and 'Staking' Pallets into the Substrate Node's Runtime
 
 We're keen to use some 'governance' and 'staking' mechanisms, but we're stumped because we can't find anything related in the [Substrate Node Template](https://github.com/paritytech/substrate/tree/master/bin/node-template) code that we used to create a minimal Substrate Node chain.
 ![todo](https://files.readme.io/7dcac0b-Screen_Shot_2018-11-18_at_15.31.36.png)
 
-Fortunately we were tipped by an insider who confirmed that the 'democracy' and 'staking' modules that we need aren't yet contained in the Substrate Node's Runtime that we setup in the directory `~/code/paritytech/my-substrate-node-template-1`.
+Fortunately we were tipped by an insider who confirmed that the 'democracy' and 'staking' pallets that we need aren't yet contained in the Substrate Node's Runtime that we setup in the directory `~/code/paritytech/my-substrate-node-template-1`.
 
-We're reminded of the advantages of the Substrate ([SRML](overview/glossary.md#srml-substrate-runtime-module-library)). We'd like to plugin the 'Referenda' Module and the 'Staking' Module and associated configuration from this library into our Substrate Node's Runtime, and then tweak it to our liking.
+We're reminded of the advantages of the Substrate ([FRAME](overview/glossary.md#frame-framework-runtime-aggregation-modularised-entities)). We'd like to plugin the 'Referenda' Pallet and the 'Staking' Pallet and associated configuration from this library into our Substrate Node's Runtime, and then tweak it to our liking.
 
 ![todo](https://files.readme.io/ebdb5e9-53b8dc8-Screen_Shot_2018-11-18_at_15.31.20.png)
 
-* **FIXME**: Show how to integrate 'referenda' and 'staking' module and configuration into the Runtime of 'my-substrate-node-template-1'
+* **FIXME**: Show how to integrate 'referenda' and 'staking' pallet and configuration into the Runtime of 'my-substrate-node-template-1'
 
 ## Step 2: Launch a Substrate Blockchain Node
 
