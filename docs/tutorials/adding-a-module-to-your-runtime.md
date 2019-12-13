@@ -339,12 +339,15 @@ impl balances::Trait for Runtime {
     /* --snip-- */
 }
 ```
-
+Now, when the Balances pallet detects that the free balance of an account has reached zero, it calls the `on_free_balance_zero` function of the Contracts pallet.
 
 ### Exposing The Contracts API
 
-**`runtime/Cargo.toml`**
+We now need to enable calls to the contracts pallet. Not all of the pallets require using a specialized configuration to interact with them. However, the contracts pallet requires these API to call the sandboxed contracts.
 
+To achieve this, we need to start by adding the required API dependencies.
+
+**`runtime/Cargo.toml`**
 ```TOML
 [dependencies.contracts-rpc-runtime-api]
 default-features = false
@@ -354,7 +357,6 @@ rev = '<git-commit>' # e.g. '52373bfe63d49aae7a17b10b17116a3d470d30bf'
 ```
 
 **`runtime/Cargo.toml`**
-
 ```TOML
 [features]
 default = ["std"]
@@ -364,8 +366,13 @@ std = [
 ]
 ```
 
-**`runtime/src/lib.rs`**
+Contracts do not return data at the end of their execution. Due to the nature of blockchains, a contract execution needs to be valid to get finalized and included in a block before getting the current state of any variable in it.
 
+To get the state of a variable, we have to call a getter function that will return a `ContractExecResult` wrapper with the current state of the execution.
+
+To use this return type, we need to add it to our runtime.
+
+**`runtime/src/lib.rs`**
 ```rust
 /* --snip-- */
 use sp_std::prelude::*;
@@ -374,6 +381,9 @@ use sp_std::prelude::*;
 use contracts_rpc_runtime_api::ContractExecResult;
 /* --snip-- */
 ```
+
+The next step, is to implement the required functions to handle the returned data.
+
 ```rust
 impl_runtime_apis! {
    /* --snip-- */
@@ -421,8 +431,6 @@ impl_runtime_apis! {
    /*** ***/
 }
 ```
-
-Now, when the Balances pallet detects that the free balance of an account has reached zero, it calls the `on_free_balance_zero` function of the Contracts pallet.
 
 ## Genesis Configuration
 
@@ -482,15 +490,14 @@ rev = '<git-commit>' # e.g. '52373bfe63d49aae7a17b10b17116a3d470d30bf'
 
 **`src/service.rs`**
 ```rust
-/// Starts a `ServiceBuilder` for a full service.
-///
-/// Use this macro if you don't actually need the full service, but just the builder in order to
-/// be able to perform chain operations.
 macro_rules! new_full_start {
 	($config:expr) => {{
         /*** Add this line ***/
         type RpcExtension = jsonrpc_core::IoHandler<sc_rpc::Metadata>;
 ```
+
+Substrate provides an RPC to interact with our node. However, it does not contain access to the contracts pallet by default. To interact with this pallet, we have to extend the existing RPC and add the contracts pallet along with its API.
+
 ```rust
             /* --snip-- */
                 Ok(import_queue)
@@ -526,7 +533,7 @@ In the `Cargo.toml` file of the Substrate node runtime, you will see an example 
 
 ### Learn More
 
-- [A minimalist tutorial on writing your runtime pallet in its own package](tutorials/creating-a-runtime-module).
+- [A minimalist tutorial on writing your runtime pallet in its own package](creating-a-runtime-module).
 - With your node now capable of running smart contracts, go learn to write your first smart contract in [Substrate Contracts workshop](https://substrate.dev/substrate-contracts-workshop).
 - To learn more about writing your own runtime with a front end, we have a [Substrate Collectables Workshop](https://substrate.dev/substrate-collectables-workshop) for building an end-to-end application.
 - For more information about runtime development tips and patterns, please refer to our [Substrate Recipes](https://substrate.dev/recipes/).
