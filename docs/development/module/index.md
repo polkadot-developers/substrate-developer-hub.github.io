@@ -8,27 +8,27 @@ These documents are written for a technical audience, who is familiar with the R
 
 If you are getting started with Substrate runtime development for the first time, we suggest you try our introductory tutorial for [creating your first Substrate chain]( TODO ).
 
-## What is a Runtime Module?
+## What is a Pallet?
 
-A Substrate runtime module is an independent piece of business logic for your blockchain. These modules compose your blockchain's state transition function, and define the state and behaviors of your blockchain.
+Pallets are a special kind of Rust module from which Substrate runtimes can be composed. Each pallet has its own discrete logic which can modify the features and functionality of your blockchain's state transition function.
 
-For example, the Balances module, which is included in the Substrate Runtime Module Library (SRML), defines a cryptocurrency for your blockchain. More specifically, it defines storage items which tracks the tokens a user has, functions that users can call to transfer and manage those tokens, APIs which allow other modules to burn or mint those tokens, and hooks which allow other modules to trigger functions when a user's balance changes.
+For example, the Balances pallet, which is included in the Framework for Runtime Aggregation of Modularised Entities (FRAME), defines a cryptocurrency for your blockchain. More specifically, it defines storage items which tracks the tokens a user has, functions that users can call to transfer and manage those tokens, APIs which allow other modules to burn or mint those tokens, and hooks which allow other modules to trigger functions when a user's balance changes.
 
-You are able to write your own runtime modules which define logic and functionality you want to introduce to your blockchain, and the following documentation will show you how.
+You are able to write your own pallets which define logic and functionality you want to introduce to your blockchain, and the following documentation will show you how.
 
-## Skeleton of a Module
+## Skeleton of a Pallet
 
-A Substrate runtime module is composed of 5 main sections:
+A Substrate pallet is composed of 5 main sections:
 
 ```rust
 // 1. Imports and Dependencies
-// The Substrate runtime supports the use of any Rust library which compiles
+// The pallet supports the use of any Rust library which compiles
 // with the `no_std` flag.
 use support::{decl_module, decl_event, decl_storage, ...}
 
 // 2. Runtime Configuration Trait
-// All of the runtime types and consts go in here. If the module
-// is dependent on specific other modules, then their configuration traits
+// All of the runtime types and consts go in here. If the pallet
+// is dependent on specific other pallets, then their configuration traits
 // should be added to the inherited traits list.
 pub trait Trait: system::Trait { ... }
 
@@ -43,18 +43,18 @@ decl_event!{ ... }
 // keep things around between blocks.
 decl_storage! { ... }
 
-// 5. The Module Declaration
-// This defines the `Module` struct that is ultimately exported from our module.
-// It defines the callable functions our module exposes and orchestrates
-// actions our module takes throughout block execution.
+// 5. The Pallet Declaration
+// This defines the `Module` struct that is ultimately exported from this pallet.
+// It defines the callable functions that this pallet exposes and orchestrates
+// actions this pallet takes throughout block execution.
 decl_module! { ... }
 ```
 
 ## Example Module
 
-Here is a minimal, working runtime module which simply allows a user to put a `u64` value into storage.
+Here is a minimal, working pallet which simply allows a user to put a `u64` value into storage.
 
-Parts of this example will be used to help teach concepts throughout the rest of the runtime module documentation.
+Parts of this example will be used to help teach concepts throughout the rest of the pallet documentation.
 
 It is written in full here for clarity:
 
@@ -63,7 +63,7 @@ use support::{decl_module, decl_event, decl_storage, StorageValue, StorageMap};
 use system::ensure_signed;
 
 pub trait Trait: system::Trait {
-	// The traits the `Event` type used in our module has.
+	// The traits the `Event` type used in this pallet has.
 	type Event: From<Event<Self>> + Into<<Self as system::Trait>::Event>;
 }
 

@@ -17,7 +17,7 @@ Let's start with a new Substrate runtime node. We recommend going through the [S
 
 The first step towards building a Substrate runtime module is to define what other SRML modules we could use in our module. There are plenty of SRML modules that ship with the Substrate codebase and we recommend using them, when needed. To use any of the existing modules, we need to import and specify them in the module trait of our custom module.
 
-For example, in this runtime we need the capability to calculate and compare timestamps for the TCR parameters - apply stage length and commit stage length. We will use the [`timestamp` SRML module](https://github.com/paritytech/substrate/tree/master/srml/timestamp) to achieve this functionality.
+For example, in this runtime we need the capability to calculate and compare timestamps for the TCR parameters - apply stage length and commit stage length. We will use the [`timestamp` SRML module](https://github.com/paritytech/substrate/tree/master/frame/timestamp) to achieve this functionality.
 
 Here's how the module configuration trait declaration for the TCR module looks like.
 

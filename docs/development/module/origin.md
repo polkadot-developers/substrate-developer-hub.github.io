@@ -43,7 +43,7 @@ proposal.dispatch(system::RawOrigin::Signed(who).into())
 proposal.dispatch(system::RawOrigin::None.into())
 ```
 
-You can look at the source code of the [Sudo module](https://substrate.dev/rustdocs/master/srml_sudo/index.html) for a practical implementation of this.
+You can look at the source code of the [Sudo module](https://substrate.dev/rustdocs/master/pallet_sudo/index.html) for a practical implementation of this.
 
 ## Next Steps
 
@@ -65,4 +65,4 @@ You can look at the source code of the [Sudo module](https://substrate.dev/rustd
 
 ### References
 
-* Visit the reference docs for the [`RawOrigin` enum](https://substrate.dev/rustdocs/master/srml_system/enum.RawOrigin.html).
+* Visit the reference docs for the [`RawOrigin` enum](https://substrate.dev/rustdocs/master/frame_system/enum.RawOrigin.html).

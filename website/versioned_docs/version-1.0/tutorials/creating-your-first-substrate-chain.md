@@ -14,7 +14,7 @@ To start, make sure your machine has a recent [node and npm](https://www.npmjs.c
 
 You will also need to set up a few more repositories into your working folder which were used in the demo:
 
- * [Substrate Node Template](https://github.com/paritytech/substrate/tree/master/node-template)
+ * [Substrate Node Template](https://github.com/paritytech/substrate/tree/master/bin/node-template)
  * [Substrate UI](https://github.com/paritytech/substrate-ui)
 
 You can do that with some [script aliases](https://github.com/paritytech/substrate-up) that were loaded on your machine. You may need to restart your terminal in order for these scripts and other Substrate commands to become available to you.
@@ -50,7 +50,7 @@ Finally, if open your browser to `http://localhost:8000`, you should be able to 
 
 ## Step 2: Add Alice to your network
 
-Alice is a hard-coded account in your blockchain's [genesis block configuration](https://github.com/paritytech/substrate/blob/master/node-template/src/chain_spec.rs#L43). To make your life easier, this account is automatically pre-funded with currency and made a "super user" to your blockchain's upgrade system.
+Alice is a hard-coded account in your blockchain's [genesis block configuration](https://github.com/paritytech/substrate/blob/master/bin/node-template/src/chain_spec.rs#L43). To make your life easier, this account is automatically pre-funded with currency and made a "super user" to your blockchain's upgrade system.
 
 To access the "Alice" account, go to the `Wallet` section of the Substrate UI, and add Alice using her name and seed URI: `//Alice`.
 
@@ -102,7 +102,7 @@ pub trait Trait: balances::Trait {}
 
 In this example, we will create a simple coin flip game. Users will pay an entry fee to play the game and then "flip a coin". If they win they will get the contents of the pot. If they don't win, they will get nothing. No matter the outcome, their fee will be placed into the pot after the game resolves for the next user to try and win.
 
-To start, we can define the storage items our module needs to track with the [`decl_storage!` macro](https://crates.parity.io/srml_support_procedural/macro.decl_storage.html):
+To start, we can define the storage items our module needs to track with the [`decl_storage!` macro](https://substrate.dev/rustdocs/v1.0/srml_support_procedural/macro.decl_storage.html):
 
 ```rust
 decl_storage! {

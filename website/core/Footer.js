@@ -67,7 +67,7 @@ body {
         <section id='blast'>
           {cfg.img ? (
             <a href={cfg.link} target="_blank">
-              <img src={cfg.img} class='img-fluid' />
+              <img src={cfg.img} className='img-fluid' />
             </a>
           ) : (
             <h2>
@@ -153,6 +153,7 @@ class Footer extends React.Component {
           </div>
           <div>
             <h5>More</h5>
+            <a href="https://builders.parity.io/">Substrate Builders Program</a>
             <a href="https://www.parity.io/blog/">Blog</a>
             <a href="https://github.com/paritytech/substrate">
               Substrate GitHub

@@ -103,7 +103,7 @@ If you run this example, you will get a table with "Alice", "Alice_stash", "Bob"
 
 ## 2.2 Query and display Alice's balance
 
-Now that we have our accounts, we can query the balance for each one of them. The Substrate node that you are connected to has a `Balances` module that keeps track of the balance of every account on the blockchain. We will watch the `freeBalance` of an account. The [Polkadot-js API](https://polkadot.js.org/api/api/) allows you to query the storage of a module with `api.query` and to subscribe to updates of these values. This is how we can get access to this `freeBalance` information.
+Now that we have our accounts, we can query the balance for each one of them. The Substrate node that you are connected to has a `Balances` pallet that keeps track of the balance of every account on the blockchain. We will watch the `freeBalance` of an account. The [Polkadot-js API](https://polkadot.js.org/api/api/) allows you to query the storage of a pallet with `api.query` and to subscribe to updates of these values. This is how we can get access to this `freeBalance` information.
 
 Let's start small and query the balance for one account, Alice.
 
@@ -175,7 +175,7 @@ If you run this example, you will get a table with Alice's account and balance.
 
 ## 2.3 Query and display all balances
 
-Now that we know how querying the state of a module works, we can map through all of our accounts and query the state for each one. The `api` has a handy function to batch multiple queries at the same time; it's called `multi`. You can pass an array of arguments and it will return the results as an array.
+Now that we know how querying the state of a pallet works, we can map through all of our accounts and query the state for each one. The `api` has a handy function to batch multiple queries at the same time; it's called `multi`. You can pass an array of arguments and it will return the results as an array.
 
 Instead of having just the balance of Alice in the state, we will change it to an object mapping `address` with `freeBalance` so that we can use it to display each account's balance. Because the `multi` remains one subscription, the logic for unsubscribing remains the same.
 
@@ -246,5 +246,5 @@ It is worth mentioning that the funds in `freeBalancee` of an account might **no
 
 The `derive api`, as its name suggests, is not a direct query to the node. It is rather a concatenation and derivation of multiple queries to serve information that is not directly accessible by the node. A popular one is [`derive.chain.bestNumber`](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/chain/bestNumber.ts) to get the latest block number. Have a look at [the repo](https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/). Unfortunately, those `api` endpoints are only documented in the code for now.
 
-Substrate is a framework to build blockchains. The `--dev` node that we are querying in this part contains a Balances module from the [**S**ubstrate **R**untime **M**odule **L**ibrary a.k.a SRML](https://substrate.dev/rustdocs/v1.0/srml_balances/index.html), which keeps track of the balance of each account on the blockchain. Not every Substrate chain will have this Balances module. However, any module that is integrated into a Substrate node can be queried using `api.query.section.method`.
+Substrate is a framework to build blockchains. The `--dev` node that we are querying in this part contains a Balances pallet from [FRAME](https://substrate.dev/rustdocs/master/pallet_balances/index.html), which keeps track of the balance of each account on the blockchain. Not every Substrate chain will have this Balances Pallet. However, any Pallet that is integrated into a Substrate node can be queried using `api.query.section.method`.
 

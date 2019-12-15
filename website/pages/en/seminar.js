@@ -53,7 +53,7 @@ function Seminar(props) {
           },
           {
             key: 'key',
-            href: 'https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx',
+            href: 'https://www.youtube.com/playlist?list=PLsBc7YjizKUwc3AcNb9oNZvtsN0QmAJPP',
             name: 'Previous Recordings'
           },
       ]}
@@ -62,12 +62,16 @@ function Seminar(props) {
         <Container className="readableLineLength">
         <h2 className = "h1">FAQ</h2>
         <h3 className = "h2">How should I prepare?</h3>
+        <p>The December 10th meeting is cancelled due to illness. We will return to the regular schedule next week.</p>
         <p>
+          On 17 December, we will discuss and practice executing forkless runtime upgrades. To participate, please build the <a href="https://github.com/substrate-developer-hub/substrate-node-template">node template</a>.
+        </p>
+        <p>
+          We will also explore the <a href="https://github.com/substrate-developer-hub/recipes">Substrate Recipes</a> and discuss some interesting examples it currently includes and may include in the future. Finally we'll attempt to solve <a href="https://github.com/substrate-developer-hub/recipes/pull/107">this active issue</a> in the recipes.
+        </p>
+        {/*<p>
           In general, we start with the packages from the <a href="https://github.com/substrate-developer-hub">Substrate Developer Hub</a> GitHub Organization. You should have the latest <a href="https://github.com/substrate-developer-hub/substrate-node-template">Node Template</a> and <a href="https://github.com/substrate-developer-hub/substrate-front-end-template/">Front End Template</a> built and ready to use.
-        </p>
-        <p>
-          Occasionally, there may be session-specific setup instructions which will be posted here on this page.
-        </p>
+        </p>*/}
         <h3 className = "h2">
           Can I share a project I've been working on?
         </h3>
@@ -90,7 +94,7 @@ function Seminar(props) {
           Is this related to Substrate Collaborative Learning?
         </h3>
         <p>
-          Yes! Substrate Collaborative Learning was the previous harder-to-pronounce iteration of Substrate Seminar. When we decided to start meeting every week, and have a more discoverable web presence, we rebranded. If you liked Substrate Collaborative Learning, you'll <em>love</em> Substrate Seminar.
+          Yes! Substrate Collaborative Learning was the previous harder-to-pronounce iteration of Substrate Seminar. When we decided to start meeting every week, and have a more discoverable web presence, we rebranded. If you liked Substrate Collaborative Learning, you'll <em>love</em> Substrate Seminar. The <a href="https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx">SCL recordings</a> are still available.
         </p>
         <h3>
           To learn more visit <a href="https://www.parity.io/substrate/" target="_blank">parity.io/substrate</a>

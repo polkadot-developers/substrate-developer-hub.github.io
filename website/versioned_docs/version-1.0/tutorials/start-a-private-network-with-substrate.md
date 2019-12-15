@@ -261,7 +261,7 @@ Here are some ideas for what to learn next.
 You can go through a very similar process using Substrate's full node that lives in the `node` directory rather than the `node-template` that we used. The process should be familiar to you, and you'll get to explore more runtime modules that are included in the full node.
 
 ### Add Validators After Genesis
-What if you want to add more validators after starting the blockchain? You can't just go back and edit the chainspec at that point. The authority set can be changed after genesis by calling the consensus module's [`set_authorities` function](https://github.com/paritytech/substrate/blob/master/srml/consensus/src/lib.rs#L356-L362). However, that function can only be called from other runtime modules. If you've built the full node, you can use the democracy module for this task. Or check out the [Substrate POA runtime](https://github.com/gautamdhameja/substrate-poa).
+What if you want to add more validators after starting the blockchain? You can't just go back and edit the chainspec at that point. The authority set can be changed after genesis by calling the consensus module's [`set_authorities` function](https://github.com/paritytech/substrate/blob/master/frame/consensus/src/lib.rs#L356-L362). However, that function can only be called from other runtime modules. If you've built the full node, you can use the democracy module for this task. Or check out the [Substrate POA runtime](https://github.com/gautamdhameja/substrate-poa).
 
 ### Write a Custom Runtime
 Substrate is all about writing your own runtimes, and now that you've gotten your hands dirty, I encourage you to try writing one. Consider one of the [tutorials](/tutorials/).

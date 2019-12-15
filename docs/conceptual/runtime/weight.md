@@ -12,7 +12,7 @@ covered in the [Fee Developer document](development/module/fees.md).
 
 Weights represent the _limited_ resources of your blockchain, for example computational cycles,
 memory, storage, etc. A custom implementation may use complex structures to express this. Substrate
-weights are simply a [numeric value](/rustdocs/master/sr_primitives/weights/type.Weight.html).
+weights are simply a [numeric value](https://substrate.dev/rustdocs/master/palette_support/weights/type.Weight.html).
 
 A weight calculation should always:
 
@@ -26,10 +26,10 @@ A weight calculation should always:
   implementation of the dispatch should take the state of the change into account and manually take
   extra fees or bonds or take any other measures to make sure that the transaction is safe.
 
-The [System module](https://substrate.dev/rustdocs/master/srml_system/struct.Module.html) is
+The [System module](https://substrate.dev/rustdocs/master/frame_system/struct.Module.html) is
 responsible for accumulating the weight of each block as it gets executed and making sure that it
 does not exceed the limit. The [Transaction Payment
-module](https://substrate.dev/rustdocs/master/srml_transaction_payment/index.html) is responsible
+module](https://substrate.dev/rustdocs/master/pallet_transaction_payment/index.html) is responsible
 for interpreting these weights and deducting fees based upon them. The weighing function is part of
 the runtime so it can be upgraded if needed.
 
@@ -40,13 +40,13 @@ filled with too many transactions. While processing transactions within a block,
 accumulates both the total length of the block (sum of encoded transactions in bytes) and the total
 weight of the block. If either of these numbers surpass the limits, no further transactions are
 accepted in that block. These limits are defined in
-[`MaximumBlockLength`](/rustdocs/master/srml_system/trait.Trait.html#associatedtype.MaximumBlockLength)
+[`MaximumBlockLength`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.MaximumBlockLength)
 and
-[`MaximumBlockWeight`](/rustdocs/master/srml_system/trait.Trait.html#associatedtype.MaximumBlockLength).
+[`MaximumBlockWeight`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.MaximumBlockLength).
 
 One important note about these limits is that a portion of them are reserved for the `Operational`
 dispatch class. This rule applies to both of the limits and the ratio can be found in
-[`AvailableBlockRatio`](/rustdocs/master/srml_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
+[`AvailableBlockRatio`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
 
 For example, if the block length limit is 1 megabyte and the ratio is set to 80%, all transactions
 can fill the first 800 kilobytes of the block while the last 200 can only be filled by the
@@ -60,7 +60,7 @@ operational class.
   weights](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/modules/weights)
   and custom
   [WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/runtimes/weight-fee-runtime).
-- The [srml-example](https://github.com/paritytech/substrate/blob/master/srml/example/src/lib.rs)
+- The [srml-example](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
   module.
 
 ### Examples
@@ -72,6 +72,6 @@ operational class.
 ### References
 
 - Take a look at the [SRML Transaction Payment
-  module](https://github.com/paritytech/substrate/blob/master/srml/transaction-payment/src/lib.rs).
+  module](https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/src/lib.rs).
 - Find info about weights including the `SimpleDispatchInfo` enum in
-  [weights.rs](https://github.com/paritytech/substrate/blob/master/core/sr-primitives/src/weights.rs).
+  [weights.rs](https://github.com/paritytech/substrate/blob/master/primitives/sr-primitives/src/weights.rs).

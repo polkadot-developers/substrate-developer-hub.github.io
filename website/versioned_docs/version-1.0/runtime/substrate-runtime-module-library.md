@@ -19,15 +19,15 @@ There are four primary framework components that support the runtime modules.
 
 ### System Module
 
-The [System module](/rustdocs/v1.0/srml_system/index.html) provides low-level APIs and utilities for other modules. Think of this as the "std" (standard) library for the SRML. In particular, the system module defines all the core types for the Substrate runtime. It also defines extrinsic events (Success/Failure). All other modules (custom or part of SRML) depend on the system module.
+The [System module](https://substrate.dev/rustdocs/v1.0/srml_system/index.html) provides low-level APIs and utilities for other modules. Think of this as the "std" (standard) library for the SRML. In particular, the system module defines all the core types for the Substrate runtime. It also defines extrinsic events (Success/Failure). All other modules (custom or part of SRML) depend on the system module.
 
 ### Executive Module
 
-The [Executive module](/rustdocs/v1.0/srml_executive/index.html) acts as the orchestration layer for the runtime. It dispatches incoming extrinsic calls to the respective modules in the runtime.
+The [Executive module](https://substrate.dev/rustdocs/v1.0/srml_executive/index.html) acts as the orchestration layer for the runtime. It dispatches incoming extrinsic calls to the respective modules in the runtime.
 
 ### Support Macros
 
-The [support macros](/rustdocs/v1.0/srml_support/index.html) are a collection of Rust macros that help us implement the most common components of a module. These macros expand at runtime to generate types (Module, Call, Store, Event, etc.), which are used by the runtime to communicate with the modules. Some of the common support macros are `decl_module`, `decl_storage`, `decl_event`, `ensure`, etc.
+The [support macros](https://substrate.dev/rustdocs/v1.0/srml_support/index.html) are a collection of Rust macros that help us implement the most common components of a module. These macros expand at runtime to generate types (Module, Call, Store, Event, etc.), which are used by the runtime to communicate with the modules. Some of the common support macros are `decl_module`, `decl_storage`, `decl_event`, `ensure`, etc.
 
 ### Runtime
 
@@ -41,18 +41,18 @@ You can build your own custom module by deriving from the system module (describ
 
 The following are the modules that ship with the SRML.
 
-* [Assets](https://crates.parity.io/srml_assets/index.html)
-* [Aura](/rustdocs/v1.0/srml_aura/index.html)
-* [Balances](/rustdocs/v1.0/srml_balances/index.html)
-* [Consensus](/rustdocs/v1.0/srml_consensus/index.html)
-* [Contracts](/rustdocs/v1.0/srml_contract/index.html)
-* [Council](/rustdocs/v1.0/srml_council/index.html)
-* [Democracy](/rustdocs/v1.0/srml_democracy/index.html)
-* [Finality Tracker](/rustdocs/v1.0/srml_finality_tracker/index.html)
-* [Grandpa](/rustdocs/v1.0/srml_grandpa/index.html)
-* [Indices](/rustdocs/v1.0/srml_indices/index.html)
-* [Session](/rustdocs/v1.0/srml_session/index.html)
-* [Staking](/rustdocs/v1.0/srml_staking/index.html)
-* [Sudo](/rustdocs/v1.0/srml_sudo/index.html)
-* [Timestamp](/rustdocs/v1.0/srml_timestamp/index.html)
-* [Treasury](/rustdocs/v1.0/srml_treasury/index.html)
+* [Assets](https://substrate.dev/rustdocs/v1.0/srml_assets/index.html)
+* [Aura](https://substrate.dev/rustdocs/v1.0/srml_aura/index.html)
+* [Balances](https://substrate.dev/rustdocs/v1.0/srml_balances/index.html)
+* [Consensus](https://substrate.dev/rustdocs/v1.0/srml_consensus/index.html)
+* [Contracts](https://substrate.dev/rustdocs/v1.0/srml_contract/index.html)
+* [Council](https://substrate.dev/rustdocs/v1.0/srml_council/index.html)
+* [Democracy](https://substrate.dev/rustdocs/v1.0/srml_democracy/index.html)
+* [Finality Tracker](https://substrate.dev/rustdocs/v1.0/srml_finality_tracker/index.html)
+* [Grandpa](https://substrate.dev/rustdocs/v1.0/srml_grandpa/index.html)
+* [Indices](https://substrate.dev/rustdocs/v1.0/srml_indices/index.html)
+* [Session](https://substrate.dev/rustdocs/v1.0/srml_session/index.html)
+* [Staking](https://substrate.dev/rustdocs/v1.0/srml_staking/index.html)
+* [Sudo](https://substrate.dev/rustdocs/v1.0/srml_sudo/index.html)
+* [Timestamp](https://substrate.dev/rustdocs/v1.0/srml_timestamp/index.html)
+* [Treasury](https://substrate.dev/rustdocs/v1.0/srml_treasury/index.html)

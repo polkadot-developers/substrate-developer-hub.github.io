@@ -2,9 +2,9 @@
 title: "Declaring a Module!"
 ---
 
-The `decl_module!` macro defines the public functions exposed by your module, which act as entry points to accessing your runtime. These functions should work together to build a *generally* independent set of features and functionality which will be included with your blockchain's final runtime. The main logic of the macro is defined [here](/rustdocs/v1.0/srml_support/macro.decl_module.html).
+The `decl_module!` macro defines the public functions exposed by your module, which act as entry points to accessing your runtime. These functions should work together to build a *generally* independent set of features and functionality which will be included with your blockchain's final runtime. The main logic of the macro is defined [here](https://substrate.dev/rustdocs/v1.0/srml_support/macro.decl_module.html).
 
-Each of the different components in the [Substrate Runtime Module Library](https://github.com/paritytech/substrate/tree/master/srml) (SRML) is an example of a Runtime Module.
+Each of the different components in the [Substrate Runtime Module Library](https://github.com/paritytech/substrate/tree/master/frame) (SRML) is an example of a Runtime Module.
 
 We will start by looking at the `decl_module` macro in it's most simple form:
 
@@ -20,7 +20,7 @@ decl_module! {
 }
 ```
 
-Note that for the purposes of this example, we are taking advantage of a single storage item created by the `decl_storage` macro. We will omit the storage declaration for the purposes of this article, but you can learn more about `decl_storage` in our documentation [here](/rustdocs/v1.0/srml_support_procedural/macro.decl_storage.html).
+Note that for the purposes of this example, we are taking advantage of a single storage item created by the `decl_storage` macro. We will omit the storage declaration for the purposes of this article, but you can learn more about `decl_storage` in our documentation [here](https://substrate.dev/rustdocs/v1.0/srml_support_procedural/macro.decl_storage.html).
 
 ## Declaration of the Module Type
 
@@ -169,7 +169,7 @@ You might use `on_initalise()` to help you with tasks that need to run before an
 
 ## Privileged Functions
 
-A privileged function is one that can only be called when the origin of the call is `Root`. An example of a privileged function can be found in the [`Consensus` module](https://github.com/paritytech/substrate/blob/master/srml/consensus/src/lib.rs) for a runtime upgrade:
+A privileged function is one that can only be called when the origin of the call is `Root`. An example of a privileged function can be found in the [`Consensus` module](https://github.com/paritytech/substrate/blob/master/frame/consensus/src/lib.rs) for a runtime upgrade:
 
 ```rust
 /// Set the new code.
@@ -193,4 +193,4 @@ Where `Result` and `Ok(())` were automatically added as mentioned in [Function R
 
 Different runtimes have different reasons for allow privileged calls to be executed. Because it's privileged, we can assume it's a one-off operation and substantial processing/storage/memory can be used without worrying about gameability or attack scenarios.
 
-Normally, functions like this would be called via the `sudo()` function in the [`Sudo` module](https://github.com/paritytech/substrate/blob/master/srml/sudo/src/lib.rs) which can construct a `Root` call based on a proposal coming from a user.
+Normally, functions like this would be called via the `sudo()` function in the [`Sudo` module](https://github.com/paritytech/substrate/blob/master/frame/sudo/src/lib.rs) which can construct a `Root` call based on a proposal coming from a user.
