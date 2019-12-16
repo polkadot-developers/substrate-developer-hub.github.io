@@ -68,9 +68,13 @@ With this rule in place, it is guaranteed that when conflicting blocks (blocks t
 conflicting transactions) exist, there must be a fork. Each side of the fork represents a separate
 blockchain. Thus, the problem of transaction conflict exclusion is reduced to choosing a fork in the chain.
 
-A fork choice rule is an algorithm that takes a blockchain and selects the "best" block, and thus the one that should be authored on. Substrate exposes this concept through the [SelectChain Trait](https://substrate.dev/rustdocs/master/sp_consensus/trait.SelectChain.html).
+A fork choice rule is an algorithm that takes a blockchain and selects the "best" block, and thus
+the one that should be authored on. Substrate exposes this concept through the [SelectChain
+Trait](https://substrate.dev/rustdocs/master/sp_consensus/trait.SelectChain.html).
 
-In order for a blockchain to continue growing, a property often called liveness, the fork choice rule must continue to select newer blocks as the chain grows. The following two examples have this property. But a rule such as "shortest chain" would not.
+In order for a blockchain to continue growing, a property often called liveness, the fork choice
+rule must continue to select newer blocks as the chain grows. The following two examples have this
+property. But a rule such as "shortest chain" would not.
 
 ### Longest Chain Rule
 
@@ -80,62 +84,126 @@ chain is the longest chain. Substrate provides this chain selection rule with th
 DIAGRAM
 
 ### GHOST Rule
-The Greedy Heaviest Observed SubTree rule says that, starting at the genesis block, each fork is resolved by choosing the branch that has the most blocks built on it recursively.
+
+The Greedy Heaviest Observed SubTree rule says that, starting at the genesis block, each fork is
+resolved by choosing the branch that has the most blocks built on it recursively.
 
 DIAGRAM
 
 ## Block Production
-Some nodes in a blockchain network are able to produce new blocks, a process known as authoring. Exactly which nodes may author blocks depends on which consensus engine you're using. In a centralized network, a single node might author all the blocks, whereas in a completely permissionless network, any node that wishes to, may produce a block.
 
-Nodes that are following the rules of the consensus protocol always produce new blocks on top of the chain that the fork choice rule tells them to. But blockchains still must tolerate nodes that cheat and build blocks in the wrong place. Considering the example fork choice rules we studied above, it's easy to see that an attacker who wanted to revert many blocks worth of transactions could do so by building a longer chain.
+Some nodes in a blockchain network are able to produce new blocks, a process known as authoring.
+Exactly which nodes may author blocks depends on which consensus engine you're using. In a
+centralized network, a single node might author all the blocks, whereas in a completely
+permissionless network, any node that wishes to, may produce a block.
+
+Nodes that are following the rules of the consensus protocol always produce new blocks on top of the
+chain that the fork choice rule tells them to. But blockchains still must tolerate nodes that cheat
+and build blocks in the wrong place. Considering the example fork choice rules we studied above,
+it's easy to see that an attacker who wanted to revert many blocks worth of transactions could do so
+by building a longer chain.
 
 DIAGRAM
 
-To prevent malicious nodes from creating such attack chains and overwhelming the honest chain whenever they please, block production must be throttled so that nodes can only produce blocks at a given rate. There are two common ways of achieving this throttling.
+To prevent malicious nodes from creating such attack chains and overwhelming the honest chain
+whenever they please, block production must be throttled so that nodes can only produce blocks at a
+given rate. There are two common ways of achieving this throttling.
 
 ### Proof of Work
-In proof of work systems like Bitcoin, any node may produce a block at any time, so long as it has solved a computationally-intensive problem. Solving the problem takes CPU time, and thus miners can only produce blocks in proportion with their computing resources. Substrate provides a Proof of Work consensus engine.
+
+In proof of work systems like Bitcoin, any node may produce a block at any time, so long as it has
+solved a computationally-intensive problem. Solving the problem takes CPU time, and thus miners can
+only produce blocks in proportion with their computing resources. Substrate provides a Proof of Work
+consensus engine.
 
 ### Slots
-When using a slot based consensus algorithm, there must be a known set of validators who are permitted to produce blocks. Time is divided up into discrete slots, and during each slot only some of the validators may produce a block. The specifics of which validators can author blocks during each slot vary from engine to engine. Substrate provides Aura and Babe, both of which are slot-based block authoring engines.
+
+When using a slot based consensus algorithm, there must be a known set of validators who are
+permitted to produce blocks. Time is divided up into discrete slots, and during each slot only some
+of the validators may produce a block. The specifics of which validators can author blocks during
+each slot vary from engine to engine. Substrate provides Aura and Babe, both of which are slot-based
+block authoring engines.
 
 ## Finality
-Transactors in any system want to know when their transactions are finalized, and blockchain is no different. In some traditional systems, finality happens when a receipt is handed over, or papers are signed.
 
-Using the block authoring schemes and fork choice rules described so far, transactions are never entirely finalized. There is always a chance that a longer (or heavier) chain will come along and revert your transaction. However, the more blocks are built on top of a particular block, the less likely it is to ever be reverted. In this way block authoring along with a proper fork choice rule provide probabilistic finality.
+Transactors in any system want to know when their transactions are finalized, and blockchain is no
+different. In some traditional systems, finality happens when a receipt is handed over, or papers
+are signed.
 
-When deterministic finality is desired, an additional game, known as a finality gadget can be added to the blockchain's logic. In such a game, members of a fixed authority set cast finality votes, and when enough votes have been cast, the block is deemed finalized. Blocks that have been finalized by such a gadget cannot be reverted without external coordination such as a hard fork.
+Using the block authoring schemes and fork choice rules described so far, transactions are never
+entirely finalized. There is always a chance that a longer (or heavier) chain will come along and
+revert your transaction. However, the more blocks are built on top of a particular block, the less
+likely it is to ever be reverted. In this way block authoring along with a proper fork choice rule
+provide probabilistic finality.
 
-Properly-designed finality gadgets provide an additional desirable property known as safety which guarantees that no two honest participants in the blockchain network will finalize conflicting blocks. This safety condition is always contingent on a certain threshold of the participants, often 2/3, be follow the protocol honestly.
+When deterministic finality is desired, an additional game, known as a finality gadget can be added
+to the blockchain's logic. In such a game, members of a fixed authority set cast finality votes, and
+when enough votes have been cast, the block is deemed finalized. Blocks that have been finalized by
+such a gadget cannot be reverted without external coordination such as a hard fork.
 
-> There are systems that couple block authoring more tightly with finality by considering the act of building a block as a finality vote for that block. However the two can always be separated.
+Properly-designed finality gadgets provide an additional desirable property known as safety which
+guarantees that no two honest participants in the blockchain network will finalize conflicting
+blocks. This safety condition is always contingent on a certain threshold of the participants, often
+2/3, be follow the protocol honestly.
 
-In systems that use a finality gadget, the fork choice rule must be modified to consider the results of the finality game. For example, instead of taking the longest chain period, a node would take the longest chain that contains the most recently finalized block. Substrate provides the Grandpa finality gadget.
+> There are systems that couple block authoring more tightly with finality by considering the act of
+> building a block as a finality vote for that block. However the two can always be separated.
+
+In systems that use a finality gadget, the fork choice rule must be modified to consider the results
+of the finality game. For example, instead of taking the longest chain period, a node would take the
+longest chain that contains the most recently finalized block. Substrate provides the Grandpa
+finality gadget.
 
 ## Consensus in Substrate
-The Substrate framework ships with several consensus engines that provide block authoring, or finality. his article provides a brief overview.
+
+The Substrate framework ships with several consensus engines that provide block authoring, or
+finality. his article provides a brief overview.
 
 ### Aura
 
-[Aura](https://crates.parity.io/substrate_consensus_aura/index.html) provides a slot-based block authoring mechanism. In aura a known set of authorities take turns producing blocks in order forever.
+[Aura](https://crates.parity.io/substrate_consensus_aura/index.html) provides a slot-based block
+authoring mechanism. In aura a known set of authorities take turns producing blocks in order
+forever.
 
 ### Babe
-[Babe](https://crates.parity.io/substrate_consensus_babe/index.html) also provides slot-based block authoring with a known set of validators. In these ways it is similar to Aura. Unlike Aura, each validator is assigned a weight which must be assigned before block production begins. Instead of simply taking turns, during each slot, each authority generates a pseudorandom number using a VRF. If the random number is lower than the validator's weight, they are allowed to author a block.
 
-Because multiple validators may be able to produce a block during the same slot, forks are more common in Babe than they are in Aura, and are common even in good network conditions.
+[Babe](https://crates.parity.io/substrate_consensus_babe/index.html) also provides slot-based block
+authoring with a known set of validators. In these ways it is similar to Aura. Unlike Aura, each
+validator is assigned a weight which must be assigned before block production begins. Instead of
+simply taking turns, during each slot, each authority generates a pseudorandom number using a VRF.
+If the random number is lower than the validator's weight, they are allowed to author a block.
 
-Substrate's implementation of Babe also has a fallback mechanism for when no authorities are chosen in a given slot.
+Because multiple validators may be able to produce a block during the same slot, forks are more
+common in Babe than they are in Aura, and are common even in good network conditions.
+
+Substrate's implementation of Babe also has a fallback mechanism for when no authorities are chosen
+in a given slot.
 
 ### Proof of Work
 
-[Proof of Work](https://crates.parity.io/substrate_consensus_pow/index.html) block authoring was first introduced in Bitcoin, and has served many production blockchains to date. Unlike Babe and Aura, it is not slot-based, and does not have a known authority set. In proof of Work, anyone can produce a block at any time, so long as they can solve a computationally challenging problem (typically a hash preimage search). The difficulty of this problem can be tuned to provide a statistical target block time.
+[Proof of Work](https://crates.parity.io/substrate_consensus_pow/index.html) block authoring was
+first introduced in Bitcoin, and has served many production blockchains to date. Unlike Babe and
+Aura, it is not slot-based, and does not have a known authority set. In proof of Work, anyone can
+produce a block at any time, so long as they can solve a computationally challenging problem
+(typically a hash preimage search). The difficulty of this problem can be tuned to provide a
+statistical target block time.
 
 ### Grandpa
 
-[Grandpa](https://crates.parity.io/substrate_finality_grandpa/index.html) provides block finalization. It has a known weighted authority set like Babe. However, Grandpa does not author blocks; it just listens to gossip about blocks that have been produced by some authoring engine like the three discussed above. Each grandpa authority participates in two rounds of voting on blocks. The [details of grandpa voting](https://research.web3.foundation/en/latest/polkadot/GRANDPA.html) are published by the Web 3 Foundation. Once 2/3 of the grandpa authorities have voted for a particular block, it is considered finalized.
+[Grandpa](https://crates.parity.io/substrate_finality_grandpa/index.html) provides block
+finalization. It has a known weighted authority set like Babe. However, Grandpa does not author
+blocks; it just listens to gossip about blocks that have been produced by some authoring engine like
+the three discussed above. Each grandpa authority participates in two rounds of voting on blocks.
+The [details of grandpa voting](https://research.web3.foundation/en/latest/polkadot/GRANDPA.html)
+are published by the Web 3 Foundation. Once 2/3 of the grandpa authorities have voted for a
+particular block, it is considered finalized.
 
 ### Coordination with the Runtime
-The simplest static consensus algorithms work entirely outside of the runtime as we've described so far. However many consensus games are made much more powerful by adding features that require coordination with the runtime. Examples include adjustable difficulty in Proof of Work, Authority rotation in Proof of Authority, and Stake-based Weighting in Proof of Stake networks.
+
+The simplest static consensus algorithms work entirely outside of the runtime as we've described so
+far. However many consensus games are made much more powerful by adding features that require
+coordination with the runtime. Examples include adjustable difficulty in Proof of Work, Authority
+rotation in Proof of Authority, and Stake-based Weighting in Proof of Stake networks.
 
 To accommodate these consensus features, Substrate has the concept of a [DigestItem](https://substrate.dev/rustdocs/master/sr_primitives/enum.DigestItem.html), a message passed from the outer part of the node, where consensus lives, to the runtime, or vice versa.
 
