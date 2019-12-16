@@ -2,44 +2,80 @@
 title: Consensus
 ---
 
-Blockchain nodes use consensus engines to agree on the blockchain's state. This article covers the fundamentals of consensus in blockchain systems, consensus interacts with the runtime in the Substrate framework, and the consensus engines available with the framework.
+Blockchain nodes use consensus engines to agree on the blockchain's state. This article covers the
+fundamentals of consensus in blockchain systems, consensus interacts with the runtime in the
+Substrate framework, and the consensus engines available with the framework.
 
 ## State Machines and Conflicts
-A blockchain runtime is a [state machine](https://en.wikipedia.org/wiki/Finite-state_machine). It has some internal state, and state transition function that allows it to transition from its current state to a future state. In most runtimes there are states that have valid transitions to multiple future states, but a single transition must be selected. Consider the following examples.
+
+A blockchain runtime is a [state machine](https://en.wikipedia.org/wiki/Finite-state_machine). It
+has some internal state, and state transition function that allows it to transition from its current
+state to a future state. In most runtimes there are states that have valid transitions to multiple
+future states, but a single transition must be selected. Consider the following examples.
 
 ### Voting Conflict
-A blockchain runtime tallys simple two-option votes for a DAO. When a new election is opened, Alice, a member of the DAO, can vote Aye. Alice could also vote Nay. But Alice cannot vote both Aye and Nay in the same election.
+
+A blockchain runtime tallys simple two-option votes for a DAO. When a new election is opened, Alice,
+a member of the DAO, can vote Aye. Alice could also vote Nay. But Alice cannot vote both Aye and Nay
+in the same election.
 
 ### Land Registry Conflict
-Consider a blockchain runtime that serves as a land registry for a futuristic nation-state. The registry keeps track of transfers of land ownership among citizens, and occasionally opens new plots of land to be claimed. For a particular newly opened land run, Alice could claim the plot, or Bob could claim it. But they cannot both claim it.
+
+Consider a blockchain runtime that serves as a land registry for a futuristic nation-state. The
+registry keeps track of transfers of land ownership among citizens, and occasionally opens new plots
+of land to be claimed. For a particular newly opened land run, Alice could claim the plot, or Bob
+could claim it. But they cannot both claim it.
 
 ### Double Spend Conflict
-A pure cryptocurrency, like Bitcoin, tracks the minting and spending of tokens. Alice holds a particular coin, so she can pay it to Bob. She could also pay that coin to Carol. But she cannot pay the same coin to both Bob and Carol.
 
-The unifying property in these examples is that there are multiple transactions, each of which is individually valid, but are mutually exclusive. Among the alternatives, a single transaction must be chosen.
+A pure cryptocurrency, like Bitcoin, tracks the minting and spending of tokens. Alice holds a
+particular coin, so she can pay it to Bob. She could also pay that coin to Carol. But she cannot pay
+the same coin to both Bob and Carol.
+
+The unifying property in these examples is that there are multiple transactions, each of which is
+individually valid, but are mutually exclusive. Among the alternatives, a single transaction must be
+chosen.
 
 
 ## Conflict Exclusion
-In centralized systems, the central authority chooses among mutually exclusive alternatives by recording transactions in the order it sees them, and choosing the first of the competing alternatives when a conflict arises. In decentralized systems, the nodes will see transactions in different orders, and thus they must use a more elaborate method to exclude transactions. As a further complication, blockchain networks strive to be fault tolerant, which means that they should continue to provide consistent data even if up to one third of participants are not following the rules.
 
-One practical solution, and the one taken in Substrate, is to find a decentralized way to agree on transaction ordering, and then resolve conflicts by selecting the first alternative seen just as the centralized authority did.
+In centralized systems, the central authority chooses among mutually exclusive alternatives by
+recording transactions in the order it sees them, and choosing the first of the competing
+alternatives when a conflict arises. In decentralized systems, the nodes will see transactions in
+different orders, and thus they must use a more elaborate method to exclude transactions. As a
+further complication, blockchain networks strive to be fault tolerant, which means that they should
+continue to provide consistent data even if up to one third of participants are not following the
+rules.
 
-> In general a blockchain just needs some method to choose among conflicting transactions, and there are interesting paradigms that do not involve a total ordering. Such methods will not be considered further here.
+One practical solution, and the one taken in Substrate, is to find a decentralized way to agree on
+transaction ordering, and then resolve conflicts by selecting the first alternative seen just as the
+centralized authority did.
+
+> In general a blockchain just needs some method to choose among conflicting transactions, and there
+> are interesting paradigms that do not involve a total ordering. Such methods will not be
+> considered further here.
 
 ## Fork Choice Rules
 
-A block contains many transactions (technically it contains zero or more transactions), and a reference to its parent block. A blockchain is any block, and all of its parents recursively.
+A block contains many transactions (technically it contains zero or more transactions), and a
+reference to its parent block. A blockchain is any block, and all of its parents recursively.
 
-The first step to resolve the conflicting transactions is insisting that no blockchain can ever have two conflicting transactions. If a block comes along that conflicts with one of its ancestors, that block is invalid, and the nodes in the network will reject it.
+The first step in resolving conflicting transactions is insisting that no blockchain can ever have
+two conflicting transactions. If a block comes along that conflicts with one of its ancestors, that
+block is invalid, and the nodes in the network will reject it.
 
-DIAGRAM
+With this rule in place, it is guaranteed that when conflicting blocks (blocks that contain
+conflicting transactions) exist, there must be a fork. Each side of the fork represents a separate
+blockchain. Thus, the problem of transaction conflict exclusion is reduced to choosing a fork in the chain.
 
-So when conflicting blocks (blocks that contain conflicting transactions) exist, there must be a fork. Each side of the fork represents a separate blockchain. Because no individual blockchain can contain conflicting transactions, we have reduced the problem of transaction conflict exclusion to choosing a fork in the chain.
+A fork choice rule is an algorithm that takes a blockchain and selects the "best" block, and thus the one that should be authored on. Substrate exposes this concept through the [SelectChain Trait](https://substrate.dev/rustdocs/master/sp_consensus/trait.SelectChain.html).
 
-One necessary property in a fork choice rule is "liveness". A rule with liveness guarantees that the chain will keep growing. Consider the following fork choice rules as examples.
+In order for a blockchain to continue growing, a property often called liveness, the fork choice rule must continue to select newer blocks as the chain grows. The following two examples have this property. But a rule such as "shortest chain" would not.
 
 ### Longest Chain Rule
-First introduced in Bitcoin, the ubiquitous longest chain rule, simply says that the cannonical chain is the longest chain.
+
+First introduced in Bitcoin, the ubiquitous longest chain rule, simply says that the cannonical
+chain is the longest chain. Substrate provides this chain selection rule with the [LongestChain Struct](https://crates.parity.io/sc_client/struct.LongestChain.html).
 
 DIAGRAM
 
