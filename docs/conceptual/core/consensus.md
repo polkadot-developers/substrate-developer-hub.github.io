@@ -47,11 +47,13 @@ The Greedy Heaviest Observed SubTree rule says that, starting at the genesis blo
 DIAGRAM
 
 ## Block Production
-Some nodes in a blockchain network are able to produce new blocks. Exactly which nodes may author blocks depends on which consensus engine you're using. In a centralized network, a single node might author all the blocks, whereas in a completely permissionless network, any node that wishes to, may produce a block.
+Some nodes in a blockchain network are able to produce new blocks, a process known as authoring. Exactly which nodes may author blocks depends on which consensus engine you're using. In a centralized network, a single node might author all the blocks, whereas in a completely permissionless network, any node that wishes to, may produce a block.
 
 Nodes that are following the rules of the consensus protocol always produce new blocks on top of the chain that the fork choice rule tells them to. But blockchains still must tolerate nodes that cheat and build blocks in the wrong place. Considering the example fork choice rules we studied above, it's easy to see that an attacker who wanted to revert many blocks worth of transactions could do so by building a longer chain.
 
-To prevent malicious nodes from creating attack chains and overwhelming the honest chain whenever they please, block production must be throttled so that nodes can only produce blocks at a given rate. There are two common ways of achieving this throttling.
+DIAGRAM
+
+To prevent malicious nodes from creating such attack chains and overwhelming the honest chain whenever they please, block production must be throttled so that nodes can only produce blocks at a given rate. There are two common ways of achieving this throttling.
 
 ### Proof of Work
 In proof of work systems like Bitcoin, any node may produce a block at any time, so long as it has solved a computationally-intensive problem. Solving the problem takes CPU time, and thus miners can only produce blocks in proportion with their computing resources. Substrate provides a Proof of Work consensus engine.
@@ -60,11 +62,13 @@ In proof of work systems like Bitcoin, any node may produce a block at any time,
 When using a slot based consensus algorithm, there must be a known set of validators who are permitted to produce blocks. Time is divided up into discrete slots, and during each slot only some of the validators may produce a block. The specifics of which validators can author blocks during each slot vary from engine to engine. Substrate provides Aura and Babe, both of which are slot-based block authoring engines.
 
 ## Finality
-Transactors in any system want to know when their transaction is finalized, and blockchain is no different. In some traditional systems, finality happens when a receipt is handed over, or papers are signed.
+Transactors in any system want to know when their transactions are finalized, and blockchain is no different. In some traditional systems, finality happens when a receipt is handed over, or papers are signed.
 
-Using the block authoring schemes and fork choice rules described so far, transactions are never truly finalized with certainty. There is always a chance that a longer (or heavier) chain will come along and revert your transaction. However, the more blocks are built on top of a particular block, the less likely it is to ever be reverted. In this way block authoring along with a proper fork choice rule provide probabilistic finality.
+Using the block authoring schemes and fork choice rules described so far, transactions are never entirely finalized. There is always a chance that a longer (or heavier) chain will come along and revert your transaction. However, the more blocks are built on top of a particular block, the less likely it is to ever be reverted. In this way block authoring along with a proper fork choice rule provide probabilistic finality.
 
-When true finality is desired, an additional game, known as a finality gadget can be added to the blockchain's logic. In such a game, members of a fixed authority set cast finality votes, and when a certain threshold is reached, the block is deemed finalized, and will never be reverted.
+When deterministic finality is desired, an additional game, known as a finality gadget can be added to the blockchain's logic. In such a game, members of a fixed authority set cast finality votes, and when enough votes have been cast, the block is deemed finalized. Blocks that have been finalized by such a gadget cannot be reverted without external coordination such as a hard fork.
+
+Properly-designed finality gadgets provide an additional desirable property known as safety which guarantees that no two honest participants in the blockchain network will finalize conflicting blocks. This safety condition is always contingent on a certain threshold of the participants, often 2/3, be follow the protocol honestly.
 
 > There are systems that couple block authoring more tightly with finality by considering the act of building a block as a finality vote for that block. However the two can always be separated.
 
@@ -84,9 +88,7 @@ This API can best be seen in the node examples in service.rs. This would be a go
 ### Coordination with the Runtime
 The simplest static consensus algorithms work entirely outside of the runtime as we've described so far. However many consensus games are made much more powerful by adding features that require coordination with the runtime. Examples include adjustable difficulty in Proof of Work, Authority rotation in Proof of Authority, and Stake-based Weighting in Proof of Stake networks.
 
-To accommodate these consensus features, Substrate has the concept of a [DigestItem](https://substrate.dev/rustdocs/master/sr_primitives/enum.DigestItem.html), a message passed from the outer part of the node, where consensus lives, to the runtime.
-
-TODO What is a concrete example of when a pre-runtime digest is used. And wth is ChangesTrie?
+To accommodate these consensus features, Substrate has the concept of a [DigestItem](https://substrate.dev/rustdocs/master/sr_primitives/enum.DigestItem.html), a message passed from the outer part of the node, where consensus lives, to the runtime, or vice versa.
 
 
 ## Learn More
@@ -94,12 +96,16 @@ Dag Protocols
 * Casper Labs
 * Casanova
 
-Why 1/3? Byzantine Generals Problem
+Note to reviewers: I was looking for a citation for the 1/3 byzantine threshold.
+ I know the argument that if more than 1/3 are byzantine and the honest 2/3 are evenly spilt, the the 1/3 byzantine group could cause a safety violation by equivocating.
 
-Web3 research
+But when looking for the citation for the original source of that argument, I found these three sources which all seem to suggest that total_nodes > 3 * malicious_nodes + 1 is the threshold, which is 3/4, not 2/3.
 
-Exercises
-* Longest Chain
-* GHOST
-* 2/3 GHOST
-*
+https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.68.4044
+https://arxiv.org/pdf/1507.06165.pdf
+https://en.wikipedia.org/wiki/Byzantine_fault
+
+
+
+
+Web3 research https://research.web3.foundation/en/latest/polkadot/GRANDPA.html
