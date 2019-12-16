@@ -144,7 +144,7 @@ such a gadget cannot be reverted without external coordination such as a hard fo
 Properly-designed finality gadgets provide an additional desirable property known as safety which
 guarantees that no two honest participants in the blockchain network will finalize conflicting
 blocks. This safety condition is always contingent on a certain threshold of the participants, often
-2/3, be follow the protocol honestly.
+2/3, follow the protocol honestly.
 
 > There are systems that couple block authoring more tightly with finality by considering the act of
 > building a block as a finality vote for that block. However the two can always be separated.
@@ -209,20 +209,17 @@ To accommodate these consensus features, Substrate has the concept of a [DigestI
 
 
 ## Learn More
-Dag Protocols
-* Casper Labs
-* Casanova
 
-Note to reviewers: I was looking for a citation for the 1/3 byzantine threshold.
- I know the argument that if more than 1/3 are byzantine and the honest 2/3 are evenly spilt, the the 1/3 byzantine group could cause a safety violation by equivocating.
+Because both Babe and GRANDPA will be used in the Polkadot network, the Web3 founation provides research-level presentations of the algorithms.
+* [Babe Research](https://research.web3.foundation/en/latest/polkadot/BABE/Babe.html)
+* [GRANDPA Research](https://research.web3.foundation/en/latest/polkadot/GRANDPA.html)
 
-But when looking for the citation for the original source of that argument, I found these three sources which all seem to suggest that total_nodes > 3 * malicious_nodes + 1 is the threshold, which is 3/4, not 2/3.
+This article hints that many consensus engines have a threshold fraction of dishonest participants
+before its guarantees fail to be met. Substrate's own GRANDPA finality gadget has this threshold.
+Learn more about where this threshold comes from and why it is ideal in the seminal paper [Reaching
+Agreement in the Presence of Faults](https://lamport.azurewebsites.net/pubs/reaching.pdf) or on
+[Wikipedia: Byzantine Fault](https://en.wikipedia.org/wiki/Byzantine_fault).
 
-https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.68.4044
-https://arxiv.org/pdf/1507.06165.pdf
-https://en.wikipedia.org/wiki/Byzantine_fault
-
-
-
-
-Web3 research https://research.web3.foundation/en/latest/polkadot/GRANDPA.html
+This article has discussed consensus on block _chains_. In a clockchain once a fork occurs one branch must be chosen as canonical. There is a more general datastructure called a Directed Acyclic Graph or DAG which allows merging forks back together so long as no transactions on either side conflict. Substrate does not ship with any such consensus engines, but some interesting early-stage projects exist
+* [CBC Casper](https://github.com/cbc-casper/cbc-casper-paper/blob/master/cbc-casper-paper-draft.pdf)
+* [Casanova](https://arxiv.org/pdf/1812.02232.pdf)
