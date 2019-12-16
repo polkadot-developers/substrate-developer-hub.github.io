@@ -126,7 +126,7 @@ block authoring engines.
 
 ## Finality
 
-Transactors in any system want to know when their transactions are finalized, and blockchain is no
+Users in any system want to know when their transactions are finalized, and blockchain is no
 different. In some traditional systems, finality happens when a receipt is handed over, or papers
 are signed.
 
