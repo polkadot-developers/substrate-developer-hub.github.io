@@ -113,15 +113,26 @@ Properly-designed finality gadgets provide an additional desirable property know
 In systems that use a finality gadget, the fork choice rule must be modified to consider the results of the finality game. For example, instead of taking the longest chain period, a node would take the longest chain that contains the most recently finalized block. Substrate provides the Grandpa finality gadget.
 
 ## Consensus in Substrate
-The Substrate framework ships with several consensus engines that provide block authoring, finality, or both.
+The Substrate framework ships with several consensus engines that provide block authoring, or finality. his article provides a brief overview.
 
-Learn more about each of them in their respective articles
-[Aura]()
-[Babe]()
-[Grandpa]()
-[Proof of Work]()
+### Aura
 
-This API can best be seen in the node examples in service.rs. This would be a good place to link to a recipe's example.
+[Aura](https://crates.parity.io/substrate_consensus_aura/index.html) provides a slot-based block authoring mechanism. In aura a known set of authorities take turns producing blocks in order forever.
+
+### Babe
+[Babe](https://crates.parity.io/substrate_consensus_babe/index.html) also provides slot-based block authoring with a known set of validators. In these ways it is similar to Aura. Unlike Aura, each validator is assigned a weight which must be assigned before block production begins. Instead of simply taking turns, during each slot, each authority generates a pseudorandom number using a VRF. If the random number is lower than the validator's weight, they are allowed to author a block.
+
+Because multiple validators may be able to produce a block during the same slot, forks are more common in Babe than they are in Aura, and are common even in good network conditions.
+
+Substrate's implementation of Babe also has a fallback mechanism for when no authorities are chosen in a given slot.
+
+### Proof of Work
+
+[Proof of Work](https://crates.parity.io/substrate_consensus_pow/index.html) block authoring was first introduced in Bitcoin, and has served many production blockchains to date. Unlike Babe and Aura, it is not slot-based, and does not have a known authority set. In proof of Work, anyone can produce a block at any time, so long as they can solve a computationally challenging problem (typically a hash preimage search). The difficulty of this problem can be tuned to provide a statistical target block time.
+
+### Grandpa
+
+[Grandpa](https://crates.parity.io/substrate_finality_grandpa/index.html) provides block finalization. It has a known weighted authority set like Babe. However, Grandpa does not author blocks; it just listens to gossip about blocks that have been produced by some authoring engine like the three discussed above. Each grandpa authority participates in two rounds of voting on blocks. The [details of grandpa voting](https://research.web3.foundation/en/latest/polkadot/GRANDPA.html) are published by the Web 3 Foundation. Once 2/3 of the grandpa authorities have voted for a particular block, it is considered finalized.
 
 ### Coordination with the Runtime
 The simplest static consensus algorithms work entirely outside of the runtime as we've described so far. However many consensus games are made much more powerful by adding features that require coordination with the runtime. Examples include adjustable difficulty in Proof of Work, Authority rotation in Proof of Authority, and Stake-based Weighting in Proof of Stake networks.
