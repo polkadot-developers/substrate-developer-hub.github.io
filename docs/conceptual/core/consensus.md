@@ -77,17 +77,17 @@ property. But a rule such as "shortest chain" would not.
 
 ### Longest Chain Rule
 
-First introduced in Bitcoin, the ubiquitous longest chain rule, simply says that the cannonical
+First introduced in Bitcoin, the ubiquitous longest chain rule, simply says that the canonical
 chain is the longest chain. Substrate provides this chain selection rule with the [LongestChain Struct](https://crates.parity.io/sc_client/struct.LongestChain.html).
 
-DIAGRAM
+![longest chain rule](../../assets/consensus-longest-chain.png)
 
 ### GHOST Rule
 
 The Greedy Heaviest Observed SubTree rule says that, starting at the genesis block, each fork is
 resolved by choosing the branch that has the most blocks built on it recursively.
 
-DIAGRAM
+![GHOST rule](../../assets/consensus-ghost.png)
 
 ## Block Production
 
@@ -102,7 +102,7 @@ and build blocks in the wrong place. Considering the example fork choice rules w
 it's easy to see that an attacker who wanted to revert many blocks worth of transactions could do so
 by building a longer chain.
 
-DIAGRAM
+![Attack on longest chain rule](../../assets/consensus-attack-chain.png)
 
 To prevent malicious nodes from creating such attack chains and overwhelming the honest chain
 whenever they please, block production must be throttled so that nodes can only produce blocks at a
