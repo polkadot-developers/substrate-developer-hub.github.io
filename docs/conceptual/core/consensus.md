@@ -2,6 +2,8 @@
 title: Consensus
 ---
 
+Blockchain nodes use consensus engines to agree on the blockchain's state. This article covers the fundamentals of consensus in blockchain systems, consensus interacts with the runtime in the Substrate framework, and the consensus engines available with the framework.
+
 ## State Machines and Conflicts
 A blockchain runtime is a [state machine](https://en.wikipedia.org/wiki/Finite-state_machine). It has some internal state, and state transition function that allows it to transition from its current state to a future state. In most runtimes there are states that have valid transitions to multiple future states, but a single transition must be selected. Consider the following examples.
 
