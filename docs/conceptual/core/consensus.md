@@ -151,13 +151,13 @@ blocks. This safety condition is always contingent on a certain threshold of the
 
 In systems that use a finality gadget, the fork choice rule must be modified to consider the results
 of the finality game. For example, instead of taking the longest chain period, a node would take the
-longest chain that contains the most recently finalized block. Substrate provides the Grandpa
+longest chain that contains the most recently finalized block. Substrate provides the GRANDPA
 finality gadget.
 
 ## Consensus in Substrate
 
 The Substrate framework ships with several consensus engines that provide block authoring, or
-finality. his article provides a brief overview.
+finality. This article provides a brief overview of the offerings included with Substrate itself. Developers are always welcome to provide their own custom consensus algorithms.
 
 ### Aura
 
@@ -188,14 +188,14 @@ produce a block at any time, so long as they can solve a computationally challen
 (typically a hash preimage search). The difficulty of this problem can be tuned to provide a
 statistical target block time.
 
-### Grandpa
+### GRANDPA
 
-[Grandpa](https://crates.parity.io/substrate_finality_grandpa/index.html) provides block
-finalization. It has a known weighted authority set like Babe. However, Grandpa does not author
+[GRANDPA](https://crates.parity.io/substrate_finality_grandpa/index.html) provides block
+finalization. It has a known weighted authority set like Babe. However, GRANDPA does not author
 blocks; it just listens to gossip about blocks that have been produced by some authoring engine like
-the three discussed above. Each grandpa authority participates in two rounds of voting on blocks.
+the three discussed above. Each GRANDPA authority participates in two rounds of voting on blocks.
 The [details of grandpa voting](https://research.web3.foundation/en/latest/polkadot/GRANDPA.html)
-are published by the Web 3 Foundation. Once 2/3 of the grandpa authorities have voted for a
+are published by the Web 3 Foundation. Once 2/3 of the GRANDPA authorities have voted for a
 particular block, it is considered finalized.
 
 ### Coordination with the Runtime
