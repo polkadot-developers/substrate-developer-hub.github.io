@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="81px" height="81px" viewBox="0 0 81 81" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>shape-5</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="40.5" cy="40.5" r="40.5"></circle>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-1446.000000, -412.000000)">
+            <g id="shape-5" transform="translate(1446.000000, 412.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <circle stroke="#0065f2" stroke-width="4" cx="40.5" cy="40.5" r="38.5"></circle>
+                <rect id="Rectangle-3" fill="#0065f2" fill-rule="nonzero" mask="url(#mask-2)" x="-54" y="-6" width="94" height="94"></rect>
+                <circle id="Oval-3" fill="#0065f2" fill-rule="nonzero" mask="url(#mask-2)" cx="58.5" cy="41.5" r="7.5"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

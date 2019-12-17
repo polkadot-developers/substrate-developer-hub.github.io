@@ -34,13 +34,14 @@
 #home-hero .homeWrapper .container .projectTitle {
 	font-size: var(--font-size-p);
 	margin-bottom: 20px;
+	font-weight: bold;
 }
 
 #home-hero .homeWrapper .container .lead.text-muted {
 	font-size: 6vw;
-	font-weight: bold !important;
 	line-height: 1.2;
 	margin-bottom: 20px;
+	font-weight: normal;
 	color: var(--primary-color) !important;
 }
 
@@ -62,22 +63,25 @@
 
 #home {
 	text-align: center;
+	padding-top: 60px;
 }
 
-#home h1.large {
-	font-size: 6vw;
+#home h1 {
 	line-height: 1.2;
 	margin-top: 10px;
 	margin-bottom: 20px;
 	font-weight: normal;
 	color: var(--dark);
 }
+#home h1.large {
+	font-size: 6vw;
+}
 
 #home h4 {
 	font-size: 18px;
 	line-height: 1.2;
 	margin-top: 10px;
-	margin-bottom: 20px;
+	margin-bottom: 0;
 	color: var(--primary-color);
 }
 
@@ -118,12 +122,48 @@
 }
 
 #home .home-section {
-	margin: 40px 0;
+	margin: 40px 0 0 0;
+}
+
+#home .intro-blocks {
+	margin-bottom: 80px;
 }
 
 #home .intro-block {
 	margin: 80px auto;
 	padding: 0 2rem;
+}
+#home .intro-block h4 {
+	margin-bottom: 10px;
+}
+
+#home .builders-strip {
+	padding: 40px !important;
+	margin-bottom: 60px;
+}
+
+#home .builders-strip .cta .bold {
+	font-weight: bold;
+	display: block;
+	line-height: 1;
+}
+
+#home .builders-strip .cta a {
+	font-weight: normal;
+	display: block;
+	line-height: 1;
+}
+
+#home .builders-strip .col img {
+	margin: 20px 0 36px 0;
+}
+
+#home .what-is-substrate {
+	margin-bottom: 60px;
+}
+
+#home .what-is-substrate .features {
+	text-align: left;
 }
 
 /* end home */

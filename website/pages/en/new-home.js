@@ -35,7 +35,7 @@ class Index extends React.Component {
 		const pageUrl = page => baseUrl + (language ? `${language}/` : '') + page
 
 		return (
-			<div>
+			<section>
 				<HomeSplash
 					id='home-hero'
 					siteConfig={siteConfig}
@@ -53,7 +53,7 @@ class Index extends React.Component {
 					buttonUrl={`who/runtime-developer`}
 				/>
 
-				<div className='mainContainer' id='home'>
+				<section className='mainContainer' id='home'>
 					<Container>
 						<section className='intro-statement home-section'>
 							<span className='tagline'>Why use Substrate</span>
@@ -104,226 +104,227 @@ class Index extends React.Component {
 								</section>
 							</section>
 						</section>
+					</Container>
 
-						<div class='py-4 bg-light'>
-							<div class='container'>
-								<div class='small text-center text-muted mb-lg-3'>
-									They're building with Substrate.{' '}
-									<a href='https://substrate.dev/en/users.html' class='weight-500'>
-										<span>See more users</span>
+					<section className='py-4 bg-light builders-strip'>
+						<div className='container cta'>
+							<div className='small text-center text-muted mb-lg-3'>
+								<span className='bold'>They're building with Substrate.</span>
+								<br />
+								<a href='https://substrate.dev/en/users.html'>
+									<span>See more users</span>
+								</a>
+							</div>
+							<div className='row justify-content-center justify-content-lg-between text-center align-items-center'>
+								<div className='col mt-3 mb-lg-0'>
+									<img src='/img/logos/ebay.svg' width='99' />
+								</div>
+								<div className='col mt-3 mb-lg-0'>
+									<img src='/img/logos/cnn.svg' width='80' />
+								</div>
+								<div className='col mt-3 mb-lg-0'>
+									<img src='/img/logos/google.svg' width='110' />
+								</div>
+								<div className='col mt-3 mb-lg-0'>
+									<img src='/img/logos/cisco.svg' width='95' />
+								</div>
+								<div className='col mt-3 mb-lg-0'>
+									<img src='/img/logos/airbnb.svg' width='123' />
+								</div>
+								<div className='col mt-3 mb-lg-0'>
+									<img src='/img/logos/uber.svg' width='159' />
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section className='bg-white what-is-substrate'>
+						<div className='container'>
+							<div className='pt-5'>
+								<div className='row justify-content-center text-center py-3'>
+									<div className='col-12 col-md-8'>
+										<h4>What is Substrate</h4>
+										<h1 className='display-4'>Everything you need to build a blockchain.</h1>
+										<p className='lead mb-4'>
+											Substrate comes with p2p networking, consensus algorithms, and cryptographic
+											libraries out-of-the-box, for free.
+										</p>
+									</div>
+								</div>
+							</div>
+							<div className='row py-5 features'>
+								<div className='col-12 col-md-4 mb-4'>
+									<div className='d-flex align-items-center mb-2'>
+										<img className='mr-2' src='/img/glyphs/rectangle-1.svg' width='40' />
+										<h3 className='mb-0'>Fast and efficient database</h3>
+									</div>
+								</div>
+								<div className='col-12 col-md-4 mb-4'>
+									<div className='d-flex align-items-center mb-2'>
+										<img className='mr-2' src='/img/glyphs/rectangle-2.svg' width='40' />
+										<h3 className='mb-0'>Modular P2P networking stack in libp2p</h3>
+									</div>
+								</div>
+								<div className='col-12 col-md-4'>
+									<div className='d-flex align-items-center mb-2'>
+										<img className='mr-2' src='/img/glyphs/rectangle-3.svg' width='40' />
+										<h3 className='mb-0'>Hot-swappable consensus layer</h3>
+									</div>
+								</div>
+								<div className='col-12 col-md-4 mb-4'>
+									<div className='d-flex align-items-center mb-2'>
+										<img className='mr-2' src='/img/glyphs/rectangle-4.svg' width='40' />
+										<h3 className='mb-0'>Customizable transaction queue management system</h3>
+									</div>
+								</div>
+								<div className='col-12 col-md-4 mb-4'>
+									<div className='d-flex align-items-center mb-2'>
+										<img className='mr-2' src='/img/glyphs/rectangle-5.svg' width='40' />
+										<h3 className='mb-0'>Diverse library of runtime modules</h3>
+									</div>
+								</div>
+								<div className='col-12 col-md-4'>
+									<div className='d-flex align-items-center mb-2'>
+										<img className='mr-2' src='/img/glyphs/rectangle-6.svg' width='40' />
+										<h3 className='mb-0'>Mobile light client support</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<div className='bg-light'>
+						<div className='container'>
+							<div className='row justify-content-between align-items-center py-5'>
+								<div className='col-12 col-md-5 order-2 order-md-1'>
+									<h1>Smart contract ready</h1>
+									<p className='large mb-4'>
+										Substrate has a Wasm smart contract platform that you can use out of the box.
+										Because Substrate uses Wasm, you can build your smart contracts using any
+										compatible language. We have built ink!, a Rust-based eDSL for this purpose.
+									</p>
+									<a
+										className='action-link'
+										href='https://substrate.dev/docs/en/ecosystem/contracts/ink'>
+										<span>Learn more about ink!</span>
 									</a>
 								</div>
-								<div class='row justify-content-center justify-content-lg-between text-center align-items-center'>
-									<div class='col mt-3 mb-lg-0'>
-										<img src='./assets/logos/ebay.svg' width='99' />
+								<div className='col-12 col-md-6 order-1 order-md-2 pl-md-0 mb-4 mb-md-0 text-center'>
+									<img className='w-25' src='/img/pictures/substrate-wasm.svg' />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div className='bg-light'>
+						<div className='container'>
+							<div className='row justify-content-between align-items-center py-5'>
+								<div className='col-12 col-md-6 pl-md-0 mb-4 mb-md-0 text-center'>
+									<img className='w-75' src='/img/pictures/polkadot-network.svg' />
+								</div>
+								<div className='col-12 col-md-5'>
+									<h1>(Almost) production ready</h1>
+									<p className='large mb-4'>
+										Substrate is the backbone that powers Polkadot, a next generation,
+										heterogeneous, multi-chain network. Most 'parachains' that will connect to this
+										network are also built on Substrate. Substrate is undergoing a security audit in
+										preparation for a 2020 release of the Polkadot network.
+									</p>
+									<a className='action-link' href='https://polkadot.network/technology/'>
+										<span>Learn more about Polkadot</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div className='bg-white'>
+						<div className='container'>
+							<div className='row justify-content-center text-center pt-5'>
+								<div className='col-12 col-md-10'>
+									<h4>Learning Substrate</h4>
+									<h1>More ways to learn Substrate.</h1>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div className='bg-white'>
+						<div className='container'>
+							<div className='row text-center flex-md-nowrap py-md-5'>
+								<div className='col-12 col-md-6'>
+									<div className='row justify-content-center'>
+										<div className='col-12 col-lg-8'>
+											<div className='py-5 py-md-0'>
+												<h2>Substrate Seminar</h2>
+												<p className='mb-3'>
+													Substrate Seminar is an open collaborative learning call where we
+													learn about Substrate together.
+												</p>
+												<a
+													className='btn btn-lg btn-outline-primary'
+													href='https://substrate.dev/en/seminar'>
+													Join the learning group
+												</a>
+											</div>
+											<div className='border-bottom d-md-none' />
+										</div>
 									</div>
-									<div class='col mt-3 mb-lg-0'>
-										<img src='./assets/logos/cnn.svg' width='80' />
-									</div>
-									<div class='col mt-3 mb-lg-0'>
-										<img src='./assets/logos/google.svg' width='110' />
-									</div>
-									<div class='col mt-3 mb-lg-0'>
-										<img src='./assets/logos/cisco.svg' width='95' />
-									</div>
-									<div class='col mt-3 mb-lg-0'>
-										<img src='./assets/logos/airbnb.svg' width='123' />
-									</div>
-									<div class='col mt-3 mb-lg-0'>
-										<img src='./assets/logos/uber.svg' width='159' />
+								</div>
+								<div className='border-right d-none d-md-block' />
+								<div className='col-12 col-md-6'>
+									<div className='row justify-content-center'>
+										<div className='col-12 col-lg-8'>
+											<div className='py-5 py-md-0'>
+												<h2>Substrate Playground</h2>
+												<p className='mb-3'>
+													Start hacking your substrate runtime in a web based VSCode like IDE,
+													with full terminal support.
+												</p>
+												<a
+													className='btn btn-lg btn-outline-primary'
+													href='https://playground.substrate.dev'>
+													Start playing in your browser
+												</a>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class='bg-white'>
-							<div class='container'>
-								<div class='pt-5'>
-									<div class='row justify-content-center text-center py-3'>
-										<div class='col-12 col-md-8'>
-											<h4>What is Substrate</h4>
-											<h1 class='display-4'>Everything you need to build a blockchain.</h1>
-											<p class='lead mb-4'>
-												Substrate comes with p2p networking, consensus algorithms, and
-												cryptographic libraries out-of-the-box, for free.
-											</p>
-										</div>
+					</div>
+					<div className='bg-light'>
+						<div className='container'>
+							<div className='py-5'>
+								<div className='row justify-content-center text-center py-3'>
+									<div className='col-12 col-md-10'>
+										<h1 className='display-4'>Ready to build with Substrate?</h1>
 									</div>
-								</div>
-								<div class='row py-5'>
-									<div class='col-12 col-md-4 mb-4'>
-										<div class='d-flex align-items-center mb-2'>
-											<img class='mr-2' src='./assets/glyphs/rectangle-1.svg' width='40' />
-											<h3 class='mb-0'>Fast and efficient database</h3>
-										</div>
-									</div>
-									<div class='col-12 col-md-4 mb-4'>
-										<div class='d-flex align-items-center mb-2'>
-											<img class='mr-2' src='./assets/glyphs/rectangle-2.svg' width='40' />
-											<h3 class='mb-0'>Modular P2P networking stack in libp2p</h3>
-										</div>
-									</div>
-									<div class='col-12 col-md-4'>
-										<div class='d-flex align-items-center mb-2'>
-											<img class='mr-2' src='./assets/glyphs/rectangle-3.svg' width='40' />
-											<h3 class='mb-0'>Hot-swappable consensus layer</h3>
-										</div>
-									</div>
-									<div class='col-12 col-md-4 mb-4'>
-										<div class='d-flex align-items-center mb-2'>
-											<img class='mr-2' src='./assets/glyphs/rectangle-4.svg' width='40' />
-											<h3 class='mb-0'>Customizable transaction queue management system</h3>
-										</div>
-									</div>
-									<div class='col-12 col-md-4 mb-4'>
-										<div class='d-flex align-items-center mb-2'>
-											<img class='mr-2' src='./assets/glyphs/rectangle-5.svg' width='40' />
-											<h3 class='mb-0'>Diverse library of runtime modules</h3>
-										</div>
-									</div>
-									<div class='col-12 col-md-4'>
-										<div class='d-flex align-items-center mb-2'>
-											<img class='mr-2' src='./assets/glyphs/rectangle-6.svg' width='40' />
-											<h3 class='mb-0'>Mobile light client support</h3>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class='bg-light'>
-							<div class='container'>
-								<div class='row justify-content-between align-items-center py-5'>
-									<div class='col-12 col-md-5 order-2 order-md-1'>
-										<h1>Smart contract ready</h1>
-										<p class='large mb-4'>
-											Substrate has a Wasm smart contract platform that you can use out of the
-											box. Because Substrate uses Wasm, you can build your smart contracts using
-											any compatible language. We have built ink!, a Rust-based eDSL for this
-											purpose.
+									<div className='col-12 col-md-8'>
+										<p className='lead mb-4'>
+											Get started with the documentation or drop in the Riot chat to ask technical
+											questions, meet others who share your interests, or keep an eye on what's
+											going on
 										</p>
-										<a
-											class='action-link'
-											href='https://substrate.dev/docs/en/ecosystem/contracts/ink'>
-											<span>Learn more about ink!</span>
-										</a>
-									</div>
-									<div class='col-12 col-md-6 order-1 order-md-2 pl-md-0 mb-4 mb-md-0 text-center'>
-										<img class='w-25' src='./assets/pictures/substrate-wasm.svg' />
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class='bg-light'>
-							<div class='container'>
-								<div class='row justify-content-between align-items-center py-5'>
-									<div class='col-12 col-md-6 pl-md-0 mb-4 mb-md-0 text-center'>
-										<img class='w-75' src='./assets/pictures/polkadot-network.svg' />
-									</div>
-									<div class='col-12 col-md-5'>
-										<h1>(Almost) production ready</h1>
-										<p class='large mb-4'>
-											Substrate is the backbone that powers Polkadot, a next generation,
-											heterogeneous, multi-chain network. Most 'parachains' that will connect to
-											this network are also built on Substrate. Substrate is undergoing a security
-											audit in preparation for a 2020 release of the Polkadot network.
-										</p>
-										<a class='action-link' href='https://polkadot.network/technology/'>
-											<span>Learn more about Polkadot</span>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class='bg-white'>
-							<div class='container'>
-								<div class='row justify-content-center text-center pt-5'>
-									<div class='col-12 col-md-10'>
-										<h4>Learning Substrate</h4>
-										<h1>More ways to learn Substrate.</h1>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class='bg-white'>
-							<div class='container'>
-								<div class='row text-center flex-md-nowrap py-md-5'>
-									<div class='col-12 col-md-6'>
-										<div class='row justify-content-center'>
-											<div class='col-12 col-lg-8'>
-												<div class='py-5 py-md-0'>
-													<h2>Substrate Seminar</h2>
-													<p class='mb-3'>
-														Substrate Seminar is an open collaborative learning call where
-														we learn about Substrate together.
-													</p>
-													<a
-														class='btn btn-lg btn-outline-primary'
-														href='https://substrate.dev/en/seminar'>
-														Join the learning group
-													</a>
-												</div>
-												<div class='border-bottom d-md-none' />
+										<div className='d-flex justify-content-center'>
+											<div className='px-1'>
+												<a
+													className='btn btn-lg btn-primary'
+													href='https://substrate.dev/docs/en/getting-started/'>
+													Get Started
+												</a>
 											</div>
-										</div>
-									</div>
-									<div class='border-right d-none d-md-block' />
-									<div class='col-12 col-md-6'>
-										<div class='row justify-content-center'>
-											<div class='col-12 col-lg-8'>
-												<div class='py-5 py-md-0'>
-													<h2>Substrate Playground</h2>
-													<p class='mb-3'>
-														Start hacking your substrate runtime in a web based VSCode like
-														IDE, with full terminal support.
-													</p>
-													<a
-														class='btn btn-lg btn-outline-primary'
-														href='https://playground.substrate.dev'>
-														Start playing in your browser
-													</a>
-												</div>
+											<div className='px-1'>
+												<a
+													className='btn btn-lg btn-outline-primary'
+													href='https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org'>
+													Ask Questions
+												</a>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class='bg-light'>
-							<div class='container'>
-								<div class='py-5'>
-									<div class='row justify-content-center text-center py-3'>
-										<div class='col-12 col-md-10'>
-											<h1 class='display-4'>Ready to build with Substrate?</h1>
-										</div>
-										<div class='col-12 col-md-8'>
-											<p class='lead mb-4'>
-												Get started with the documentation or drop in the Riot chat to ask
-												technical questions, meet others who share your interests, or keep an
-												eye on what's going on
-											</p>
-											<div class='d-flex justify-content-center'>
-												<div class='px-1'>
-													<a
-														class='btn btn-lg btn-primary'
-														href='https://substrate.dev/docs/en/getting-started/'>
-														Get Started
-													</a>
-												</div>
-												<div class='px-1'>
-													<a
-														class='btn btn-lg btn-outline-primary'
-														href='https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org'>
-														Ask Questions
-													</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</Container>
-				</div>
-			</div>
+					</div>
+				</section>
+			</section>
 		)
 	}
 }
