@@ -192,7 +192,8 @@ class Index extends React.Component {
 							</div>
 						</div>
 					</section>
-					<div className='bg-light'>
+
+					<section className='bg-light call-outs first'>
 						<div className='container'>
 							<div className='row justify-content-between align-items-center py-5'>
 								<div className='col-12 col-md-5 order-2 order-md-1'>
@@ -213,8 +214,9 @@ class Index extends React.Component {
 								</div>
 							</div>
 						</div>
-					</div>
-					<div className='bg-light'>
+					</section>
+
+					<section className='bg-light call-outs second'>
 						<div className='container'>
 							<div className='row justify-content-between align-items-center py-5'>
 								<div className='col-12 col-md-6 pl-md-0 mb-4 mb-md-0 text-center'>
@@ -234,8 +236,9 @@ class Index extends React.Component {
 								</div>
 							</div>
 						</div>
-					</div>
-					<div className='bg-white'>
+					</section>
+
+					<section className='bg-white learn'>
 						<div className='container'>
 							<div className='row justify-content-center text-center pt-5'>
 								<div className='col-12 col-md-10'>
@@ -244,8 +247,9 @@ class Index extends React.Component {
 								</div>
 							</div>
 						</div>
-					</div>
-					<div className='bg-white'>
+					</section>
+
+					<section className='bg-white learn-blocks'>
 						<div className='container'>
 							<div className='row text-center flex-md-nowrap py-md-5'>
 								<div className='col-12 col-md-6'>
@@ -258,7 +262,7 @@ class Index extends React.Component {
 													learn about Substrate together.
 												</p>
 												<a
-													className='btn btn-lg btn-outline-primary'
+													className='btn btn-lg primary-color'
 													href='https://substrate.dev/en/seminar'>
 													Join the learning group
 												</a>
@@ -278,7 +282,7 @@ class Index extends React.Component {
 													with full terminal support.
 												</p>
 												<a
-													className='btn btn-lg btn-outline-primary'
+													className='btn btn-lg primary-color'
 													href='https://playground.substrate.dev'>
 													Start playing in your browser
 												</a>
@@ -288,8 +292,9 @@ class Index extends React.Component {
 								</div>
 							</div>
 						</div>
-					</div>
-					<div className='bg-light'>
+					</section>
+
+					<section className='bg-light'>
 						<div className='container'>
 							<div className='py-5'>
 								<div className='row justify-content-center text-center py-3'>
@@ -305,7 +310,7 @@ class Index extends React.Component {
 										<div className='d-flex justify-content-center'>
 											<div className='px-1'>
 												<a
-													className='btn btn-lg btn-primary'
+													className='btn btn-lg primary-color'
 													href='https://substrate.dev/docs/en/getting-started/'>
 													Get Started
 												</a>
@@ -322,7 +327,7 @@ class Index extends React.Component {
 								</div>
 							</div>
 						</div>
-					</div>
+					</section>
 				</section>
 			</section>
 		)

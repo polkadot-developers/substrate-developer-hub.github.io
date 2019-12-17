@@ -64,6 +64,7 @@
 #home {
 	text-align: center;
 	padding-top: 60px;
+	padding-bottom: 0;
 }
 
 #home h1 {
@@ -102,6 +103,20 @@
 	background-position: right center;
 	background-repeat: no-repeat;
 	background-image: url('data:image/svg+xml,%3Csvg%20fill%3D%22%23FF1865%22%20width%3D%22100pt%22%20height%3D%22100pt%22%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M32.812%200L17.187%2015.625%2051.562%2050%2017.187%2084.375%2032.812%20100l50-50z%22%2F%3E%3C%2Fsvg%3E');
+}
+
+#home .btn-outline-primary {
+	color: var(--primary-color);
+	border-color: var(--primary-color);
+}
+
+.primary-color:hover,
+.btn-outline-primary:hover {
+	color: white !important;
+}
+
+#home .btn-outline-primary:hover {
+	background-color: var(--primary-color);
 }
 
 #home .icon-wrap {
@@ -159,11 +174,37 @@
 }
 
 #home .what-is-substrate {
-	margin-bottom: 60px;
+	margin-bottom: 20px;
 }
 
 #home .what-is-substrate .features {
 	text-align: left;
+}
+
+#home .what-is-substrate .features .col-12 {
+	margin-bottom: 80px !important;
+}
+
+#home .what-is-substrate .features .d-flex h3 {
+	margin-top: 0;
+}
+
+#home .call-outs {
+	text-align: left;
+}
+
+#home .call-outs.first {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+
+#home .call-outs.second {
+	padding-bottom: 60px;
+	margin-bottom: 60px;
+}
+
+#home .learn-blocks {
+	margin-bottom: 80px;
 }
 
 /* end home */
