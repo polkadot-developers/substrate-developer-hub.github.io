@@ -444,18 +444,21 @@ use node_template_runtime::{ContractsConfig, MILLICENTS};
 
 Then inside the `testnet_genesis` function we need to add the contract configuration to the returned `GenesisConfig` object as followed:
 
+> Note: We are taking the value `_enable_println` from the function parameters.
+> Make sure to remove the underscore that precedes the parameter definition.
+
 ```rust
 fn testnet_genesis(initial_authorities: Vec<(AuraId, GrandpaId)>,
     root_key: AccountId,
     endowed_accounts: Vec<AccountId>,
-    _enable_println: bool) -> GenesisConfig {
+    enable_println: bool) -> GenesisConfig {
     /*** Add This Block ***/
     let mut contracts_config = ContractsConfig {
         current_schedule: Default::default(),
         gas_price: 1 * MILLICENTS,
     };
     // IMPORTANT: println should only be enabled on development chains!
-    contracts_config.current_schedule.enable_println = _enable_println;
+    contracts_config.current_schedule.enable_println = enable_println;
     /*** End Added Block ***/
 
     GenesisConfig {
