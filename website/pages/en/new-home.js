@@ -294,7 +294,7 @@ class Index extends React.Component {
 						</div>
 					</section>
 
-					<section className='bg-light'>
+					<section className='bg-light bottom-cta'>
 						<div className='container'>
 							<div className='py-5'>
 								<div className='row justify-content-center text-center py-3'>

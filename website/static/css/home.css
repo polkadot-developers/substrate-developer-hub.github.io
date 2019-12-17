@@ -209,6 +209,10 @@
 	margin-bottom: 80px;
 }
 
+#home .bottom-cta {
+	padding-bottom: 20px;
+}
+
 /* end home */
 
 @media (min-width: 860px) {
