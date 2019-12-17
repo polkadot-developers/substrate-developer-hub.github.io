@@ -65,8 +65,8 @@ std = [
     'client/std',
     'sp-std/std',
     'sp-io/std',
-    'support/std',
     'balances/std',
+    'frame-support/std',
     #--snip--
 ]
 ```
@@ -118,7 +118,7 @@ First we will add the new dependency by simply copying an existing pallet, and c
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'pallet-contracts'
-rev = '<git-commit>' # e.g. '52373bfe63d49aae7a17b10b17116a3d470d30bf'
+rev = '<git-commit>' # e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'
 ```
 
 You [can see](https://github.com/paritytech/substrate/blob/master/frame/contracts/Cargo.toml) that the Contracts pallet has `std` feature, thus we need to add that feature to our runtime:
@@ -187,7 +187,7 @@ pub use sp_runtime::BuildStorage;
 pub use timestamp::Call as TimestampCall;
 pub use balances::Call as BalancesCall;
 
-/*** Add this line ***/
+/*** Add This Line ***/
 pub use contracts::Gas as ContractsGas;
 /* --snip-- */
 ```
@@ -205,12 +205,12 @@ To figure out what we need to implement, you can take a look to the FRAME [`cont
 // These time units are defined in number of blocks.
    /* --snip-- */
 
-/*** Add this block ***/
+/*** Add This Block ***/
 // Contracts price units.
 pub const MILLICENTS: Balance = 1_000_000_000;
 pub const CENTS: Balance = 1_000 * MILLICENTS;
 pub const DOLLARS: Balance = 100 * CENTS;
-/*** ***/
+/*** End Added Block ***/
 ```
 
 ```rust
@@ -219,7 +219,7 @@ impl timestamp::Trait for Runtime {
     /* --snip-- */
 }
 
-/*** Add this block ***/
+/*** Add This Block ***/
 parameter_types! {
 	pub const ContractTransferFee: Balance = 1 * CENTS;
 	pub const ContractCreationFee: Balance = 1 * CENTS;
@@ -260,7 +260,7 @@ impl contracts::Trait for Runtime {
 	type MaxValueSize = contracts::DefaultMaxValueSize;
 	type BlockGasLimit = contracts::DefaultBlockGasLimit;
 }
-/*** ***/
+/*** End Added Block ***/
 ```
 
 To go into a bit more detail here, we see from the documentation that `type Currency` in the Contracts pallet needs to be defined and support the requirements of the trait `Currency`
@@ -301,7 +301,7 @@ construct_runtime!(
     {
         /* --snip-- */
 
-        /*** Add this line ***/
+        /*** Add This Line ***/
         Contracts: contracts,
     }
 );
@@ -349,11 +349,11 @@ To achieve this, we need to start by adding the required API dependencies.
 
 **`runtime/Cargo.toml`**
 ```TOML
-[dependencies.contracts-rpc-runtime-api]
+[dependencies.pallet-contracts-rpc-runtime-api]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'pallet-contracts-rpc-runtime-api'
-rev = '<git-commit>' # e.g. '52373bfe63d49aae7a17b10b17116a3d470d30bf'
+rev = '<git-commit>' # e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'
 ```
 
 **`runtime/Cargo.toml`**
@@ -362,7 +362,7 @@ rev = '<git-commit>' # e.g. '52373bfe63d49aae7a17b10b17116a3d470d30bf'
 default = ["std"]
 std = [
     #--snip--
-    'contracts-rpc-runtime-api/std',
+    'pallet-contracts-rpc-runtime-api/std',
 ]
 ```
 
@@ -370,14 +370,14 @@ Contracts do not return data at the end of their execution. Due to the nature of
 
 To get the state of a variable, we have to call a getter function that will return a `ContractExecResult` wrapper with the current state of the execution.
 
-To use this return type, we need to add it to our runtime.
+We need to add the return type to our runtime.
 
 **`runtime/src/lib.rs`**
 ```rust
 /* --snip-- */
 use sp_std::prelude::*;
 
-/*** Add this line ***/
+/*** Add This Line ***/
 use contracts_rpc_runtime_api::ContractExecResult;
 /* --snip-- */
 ```
@@ -388,7 +388,7 @@ The next step, is to implement the required functions to handle the returned dat
 impl_runtime_apis! {
    /* --snip-- */
 
-   /*** Add this block ***/
+   /*** Add This Block ***/
     impl contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance> for Runtime {
         fn call(
             origin: AccountId,
@@ -428,7 +428,7 @@ impl_runtime_apis! {
             })
         }
     }
-   /*** ***/
+   /*** End Added Block ***/
 }
 ```
 
@@ -439,7 +439,7 @@ Not all pallets will have a genesis configuration, but if they do, you can use i
 **`src/chain_spec.rs`**
 
 ```rust
-use runtime::{ContractsConfig, MILLICENTS};
+use node_template_runtime::{ContractsConfig, MILLICENTS};
 ```
 
 Then inside the `testnet_genesis` function we need to add the contract configuration to the returned `GenesisConfig` object as followed:
@@ -448,20 +448,20 @@ Then inside the `testnet_genesis` function we need to add the contract configura
 fn testnet_genesis(initial_authorities: Vec<(AuraId, GrandpaId)>,
     root_key: AccountId,
     endowed_accounts: Vec<AccountId>,
-    enable_println: bool) -> GenesisConfig {
-    /*** Add this block ***/
+    _enable_println: bool) -> GenesisConfig {
+    /*** Add This Block ***/
     let mut contracts_config = ContractsConfig {
         current_schedule: Default::default(),
         gas_price: 1 * MILLICENTS,
     };
     // IMPORTANT: println should only be enabled on development chains!
-    contracts_config.current_schedule.enable_println = enable_println;
-    /*** ***/
+    contracts_config.current_schedule.enable_println = _enable_println;
+    /*** End Added Block ***/
 
     GenesisConfig {
         /* --snip-- */
         
-        /*** Add this line ***/
+        /*** Add This Line ***/
         contracts: Some(contracts_config),
     }
 }
@@ -481,18 +481,18 @@ jsonrpc-core = '14.0.5'
 #--snip--
 [dependencies.pallet-contracts-rpc]
 git = 'https://github.com/paritytech/substrate.git'
-rev = '<git-commit>' # e.g. '52373bfe63d49aae7a17b10b17116a3d470d30bf'
+rev = '<git-commit>' # e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'
 
 [dependencies.sc-rpc]
 git = 'https://github.com/paritytech/substrate.git'
-rev = '<git-commit>' # e.g. '52373bfe63d49aae7a17b10b17116a3d470d30bf'
+rev = '<git-commit>' # e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'
 ```
 
 **`src/service.rs`**
 ```rust
 macro_rules! new_full_start {
 	($config:expr) => {{
-        /*** Add this line ***/
+        /*** Add This Line ***/
         type RpcExtension = jsonrpc_core::IoHandler<sc_rpc::Metadata>;
 ```
 
@@ -502,7 +502,7 @@ Substrate provides an RPC to interact with our node. However, it does not contai
             /* --snip-- */
                 Ok(import_queue)
             })? // <- Remove semi-colon
-            /*** Add this block ***/
+            /*** Add This Block ***/
             .with_rpc_extensions(|client, _pool, _backend, _, _| -> Result<RpcExtension, _> {
                 use pallet_contracts_rpc::{Contracts, ContractsApi};
                 let mut io = jsonrpc_core::IoHandler::default();
@@ -511,7 +511,7 @@ Substrate provides an RPC to interact with our node. However, it does not contai
                 );
                 Ok(io)
             })?;
-            /*** ***/
+            /*** End Added Block ***/
         (builder, import_setup, inherent_data_providers)
     }}
 ```
