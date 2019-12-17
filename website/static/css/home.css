@@ -15,6 +15,8 @@
 
 #home-hero .homeSplashFade {
 	background-color: rgba(0, 0, 0, 0.4);
+	padding-top: 40px;
+	padding-bottom: 20px;
 }
 
 #home-hero .homeWrapper {

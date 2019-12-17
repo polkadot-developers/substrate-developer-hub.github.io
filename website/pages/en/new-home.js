@@ -262,7 +262,7 @@ class Index extends React.Component {
 													learn about Substrate together.
 												</p>
 												<a
-													className='btn btn-lg primary-color'
+													className='btn primary-color'
 													href='https://substrate.dev/en/seminar'>
 													Join the learning group
 												</a>
@@ -282,7 +282,7 @@ class Index extends React.Component {
 													with full terminal support.
 												</p>
 												<a
-													className='btn btn-lg primary-color'
+													className='btn primary-color'
 													href='https://playground.substrate.dev'>
 													Start playing in your browser
 												</a>
