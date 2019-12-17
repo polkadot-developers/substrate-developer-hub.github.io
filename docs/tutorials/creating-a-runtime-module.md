@@ -23,7 +23,7 @@ their own Substrate runtime.
     git clone https://github.com/substrate-developer-hub/substrate-node-template.git my-node
     ```
 
-2. Clone the Substrate module template:
+2. Clone the Substrate pallet template:
 
     ```bash
     git clone https://github.com/substrate-developer-hub/substrate-module-template.git my-pallet
@@ -37,7 +37,7 @@ their own Substrate runtime.
     ```
 
 The `substrate-node-template` contains a working Substrate node, and the
-`substrate-module-template` contains an independent Rust crate which is a
+`substrate-pallet-template` contains an independent Rust crate which is a
 Substrate pallet that can be included in your node. The compilation of
 the node may take up to 30 minutes depending on your hardware, so let that run
 while you continue to follow this guide.
