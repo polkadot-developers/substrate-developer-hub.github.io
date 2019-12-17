@@ -130,6 +130,10 @@
 	height: 40px;
 	display: inline-block;
 	background-color: var(--primary-color);
+	mask-size: contain;
+	mask-position: center center;
+	mask-repeat: no-repeat;
+	border-radius: 50%;
 }
 
 #home .tagline {
