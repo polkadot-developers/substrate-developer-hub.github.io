@@ -328,7 +328,9 @@ impl<T: Trait> OnFreeBalanceZero<T::AccountId> for Module<T> {
 }
 ```
 
-To enable this, we simply need to add `Contracts` type that we defined in the `construct_runtime!` macro to the `OnFreeBalanceZero` hook provided by the Balances pallet:
+To enable this, we simply need to add `Contracts` type that we defined in 
+the `construct_runtime!` macro to the `OnFreeBalanceZero` hook provided by 
+the Balances pallet:
 
 **`runtime/src/lib.rs`**
 
@@ -339,11 +341,18 @@ impl balances::Trait for Runtime {
     /* --snip-- */
 }
 ```
-Now, when the Balances pallet detects that the free balance of an account has reached zero, it calls the `on_free_balance_zero` function of the Contracts pallet.
+Now, when the Balances pallet detects that the free balance of an account has 
+reached zero, it calls the `on_free_balance_zero` function of the Contracts pallet.
 
 ### Exposing The Contracts API
 
-We now need to enable calls to the contracts pallet. Not all of the pallets require using a specialized configuration to interact with them. However, the contracts pallet requires these API to call the sandboxed contracts.
+We now want to enable an easy way to get the contract's state. It's not required to 
+enable RPC calls on the contracts pallet to use it in our chain. 
+However, we'll do it to make calls to our node's storage without making a transaction.
+
+Contracts do not return data at the end of their execution. Due to the nature of blockchains, 
+a transaction needs to be valid to get finalized and included in a block before getting the 
+current state.
 
 To achieve this, we need to start by adding the required API dependencies.
 
@@ -366,9 +375,8 @@ std = [
 ]
 ```
 
-Contracts do not return data at the end of their execution. Due to the nature of blockchains, a contract execution needs to be valid to get finalized and included in a block before getting the current state of any variable in it.
-
-To get the state of a variable, we have to call a getter function that will return a `ContractExecResult` wrapper with the current state of the execution.
+To get the state of a variable, we have to call a getter function that will 
+return a `ContractExecResult` wrapper with the current state of the execution.
 
 We need to add the return type to our runtime.
 
@@ -432,48 +440,9 @@ impl_runtime_apis! {
 }
 ```
 
-## Genesis Configuration
-
-Not all pallets will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`pallet_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contracts pallet. This definition is controlled in `substrate-node-template/src/chain_spec.rs`. We need to modify this file to include the `ContractsConfig` type and the contract price units at the top:
-
-**`src/chain_spec.rs`**
-
-```rust
-use node_template_runtime::{ContractsConfig, MILLICENTS};
-```
-
-Then inside the `testnet_genesis` function we need to add the contract configuration to the returned `GenesisConfig` object as followed:
-
-> Note: We are taking the value `_enable_println` from the function parameters.
-> Make sure to remove the underscore that precedes the parameter definition.
-
-```rust
-fn testnet_genesis(initial_authorities: Vec<(AuraId, GrandpaId)>,
-    root_key: AccountId,
-    endowed_accounts: Vec<AccountId>,
-    enable_println: bool) -> GenesisConfig {
-    /*** Add This Block ***/
-    let mut contracts_config = ContractsConfig {
-        current_schedule: Default::default(),
-        gas_price: 1 * MILLICENTS,
-    };
-    // IMPORTANT: println should only be enabled on development chains!
-    contracts_config.current_schedule.enable_println = enable_println;
-    /*** End Added Block ***/
-
-    GenesisConfig {
-        /* --snip-- */
-        
-        /*** Add This Line ***/
-        contracts: Some(contracts_config),
-    }
-}
-```
-
-Note that you can tweak these numbers to your needs, but these are the values set at the [genesis configuration of the main Substrate node](https://github.com/paritytech/substrate/blob/master/bin/node/cli/src/chain_spec.rs).
-
 ## Service Configuration
-The last thing we need to do in order to get your node up and running is to establish a service configuration for the Contracts pallet.
+
+The next thing we need to do is to establish a service configuration for the Contracts pallet.
 
 **`Cargo.toml`**
 ```toml
@@ -525,6 +494,46 @@ Now you are ready to compile and run your contract-capable node. We first need t
 cargo run --release -- purge-chain --dev
 cargo run --release -- --dev
 ```
+
+## Genesis Configuration
+
+Not all pallets will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`pallet_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contracts pallet. This definition is controlled in `substrate-node-template/src/chain_spec.rs`. We need to modify this file to include the `ContractsConfig` type and the contract price units at the top:
+
+**`src/chain_spec.rs`**
+
+```rust
+use node_template_runtime::{ContractsConfig, MILLICENTS};
+```
+
+Then inside the `testnet_genesis` function we need to add the contract configuration to the returned `GenesisConfig` object as followed:
+
+> Note: We are taking the value `_enable_println` from the function parameters.
+> Make sure to remove the underscore that precedes the parameter definition.
+
+```rust
+fn testnet_genesis(initial_authorities: Vec<(AuraId, GrandpaId)>,
+    root_key: AccountId,
+    endowed_accounts: Vec<AccountId>,
+    enable_println: bool) -> GenesisConfig {
+    /*** Add This Block ***/
+    let mut contracts_config = ContractsConfig {
+        current_schedule: Default::default(),
+        gas_price: 1 * MILLICENTS,
+    };
+    // IMPORTANT: println should only be enabled on development chains!
+    contracts_config.current_schedule.enable_println = enable_println;
+    /*** End Added Block ***/
+
+    GenesisConfig {
+        /* --snip-- */
+        
+        /*** Add This Line ***/
+        contracts: Some(contracts_config),
+    }
+}
+```
+
+Note that you can tweak these numbers to your needs, but these are the values set at the [genesis configuration of the main Substrate node](https://github.com/paritytech/substrate/blob/master/bin/node/cli/src/chain_spec.rs).
 
 ## Adding Other FRAME pallets
 
