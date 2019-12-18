@@ -37,10 +37,9 @@ They are:
 - `BlockNumber`: A type which encodes the total number of ancestors any valid block has. Typically a
   32-bit quantity.
 
-## SRML Primitives
+## FRAME Primitives
 
-There are an additional set of primitives that are assumed about a runtime built with the Substrate
-Runtime Module Library (SRML):
+There are an additional set of primitives that are assumed about a runtime built with the Substrate FRAME:
 
 * `Call`: The dispatch type that can be called via an extrinsic.
 
@@ -62,7 +61,7 @@ Runtime Module Library (SRML):
 
 ### Learn More
 
-- Learn about the [Substrate Runtime Module Library](conceptual/runtime/srml.md).
+- Learn about the [Substrate FRAME](conceptual/runtime/frame.md).
 
 ### Examples
 
