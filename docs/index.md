@@ -31,7 +31,7 @@ Substrate is designed to be used in one of three ways:
    JSON file and launch your own blockchain. This affords you the least amount of customization,
    only allowing you to change the genesis parameters of the included runtime modules such as:
    balances, staking, block-period, fees, governance, etc... For a tutorial on doing this, see
-   [Start a Private Network with Substrate](tutorials/start-a-private-network-with-substrate.md).
+   [Start a Private Network with Substrate](tutorials/start-a-private-network/index.md).
 
 2. **With the SRML**: You can easily create your own custom blockchain using the SRML. This affords
    you a very large amount of freedom over your own blockchain's logic, letting you change
