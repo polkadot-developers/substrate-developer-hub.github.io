@@ -87,6 +87,6 @@ in blocks.
 ## Further Reading
 
 - [Reference Documentation](https://crates.parity.io/sp_runtime/traits/trait.Extrinsic.html)
-<!-- TODO - [Transaction Pool](conceptual/node/tx-pool.md) -->
 - [Runtime Execution](development/module/execution.md)
 - [Transaction Fees](development/module/fees.md)
+<!-- TODO - [Transaction Pool](conceptual/node/tx-pool.md) -->
