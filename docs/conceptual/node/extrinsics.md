@@ -23,7 +23,7 @@ First, it prevents any alterations to the series of extrinsics after the header 
 distributed. Second, it provides a means of allowing light clients to succinctly verify that any 
 given extrinsic did indeed exist in a block given only knowledge of the header.
 
-- [Block Reference](https://crates.parity.io/sp_runtime/traits/trait.Block.html)
+- [Block Reference](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Block.html)
 
 ## Inherents
 
@@ -41,7 +41,7 @@ way to prove that a timestamp is true the way the desire to send funds is proved
 Rather, validators accept or reject the block based on how reasonable the other validators find the 
 timestamp, which may mean it is within some acceptable range of their own system clocks.
 
-- [Inherents Reference](https://crates.parity.io/sp_inherents/index.html)
+- [Inherents Reference](https://substrate.dev/rustdocs/master/sp_inherents/index.html)
 
 ## Signed Transactions
 
@@ -60,14 +60,14 @@ logic can be difficult.
 Since the transaction is not signed, there is nobody to pay a fee. Because of this, the transaction 
 queue lacks economic logic to prevent spam. Unsigned transactions also lack a nonce, making replay 
 protection difficult. A few transactions warrant using the unsigned variant, but they will require 
-some form of spam prevention.
+some form of spam prevention based on a custom implementation of
+[signed extension](#signed-extension), which can exist on unsigned transactions.
 
 An example of unsigned transactions in Substrate is the 
 [I'm Online](https://github.com/paritytech/substrate/blob/master/frame/im-online/src/lib.rs) 
 heartbeat transaction sent by authorities. The transaction includes a signature from a Session key, 
 which does not control funds and therefore cannot pay a fee. The transaction pool controls spam 
-based on an implementation of `validate_unsigned` that checks if a heartbeat has already been 
-submitted in the session.
+by checking if a heartbeat has already been submitted in the session.
 
 ## Signed Extension
 
@@ -82,11 +82,15 @@ dispatching a transaction. The transaction queue regularly calls functions from 
 to validate transactions prior to block construction to avoid including transactions that will fail 
 in blocks.
 
-[Reference](https://crates.parity.io/sp_runtime/traits/trait.SignedExtension.html)
+Despite the name, `SignedExtension` can also be used to verify unsigned transactions. The 
+`*_unsigned` set of methods can be implemented to encapsulate validation, spam, and replay 
+protection logic that is needed by the transaction pool.
+
+- [Signed Extension Reference](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.SignedExtension.html)
 
 ## Further Reading
 
-- [Reference Documentation](https://crates.parity.io/sp_runtime/traits/trait.Extrinsic.html)
+- [Reference Documentation](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Extrinsic.html)
 - [Runtime Execution](development/module/execution.md)
 - [Transaction Fees](development/module/fees.md)
 <!-- TODO - [Transaction Pool](conceptual/node/tx-pool.md) -->
