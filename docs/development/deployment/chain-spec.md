@@ -7,7 +7,7 @@ A Chain Specification, or "chain spec", is a collection of configuration informa
 
 ## Structure of a Chain Spec
 
-The [`ChainSpec` Struct](https://substrate.dev/rustdocs/master/sc_service/struct.ChainSpec.html) separates the information contained in a Chain Spec into two parts.
+The [`ChainSpec` Struct](https://substrate.dev/rustdocs/master/sc_service/struct.ChainSpec.html) separates the information contained in a Chain Spec into two parts. A node can use a `ChainSpec` instance to create a genesis block.
 
 ### The Spec
 
@@ -21,6 +21,8 @@ The second part of the chain spec is the consensus-critical genesis configuratio
 
 Examples of what information might be included in the genesis portion of a chain spec include initial token balance, the accounts that are initially part of a governance council, or the holder of the sudo key. Substrate nodes also place the compiled wasm runtime logic on chain, so the initial runtime must also be supplied in the chain spec.
 
+It is this second part of the chain spec that is used when creating a genesis block.
+
 ## Storing Chain Spec Information
 
 The information that comprises a chain spec can be stored in either of two ways. Being a rust struct, the first way to store this information is as rust code. Indeed Substrate nodes typically include at least one, and often many, chain specs hard-coded into the client. Including this information directly in the client, ensures that the node will know how to connect to at least one chain without any additional information supplied by the node operator. In protocols that have a notion of "main net" this spec is usually hard-coded in the client.
@@ -33,7 +35,9 @@ Node operators and runtime developers will encounter chain specifications when p
 
 ### Launching a Chain
 
-Each time a node operator starts a node, they provide a chain specification that the node should use. In the simplest case, the chain spec is provided implicitly and the node uses a default chain spec that is hard-coded into the node binary. In many nodes, the operator my choose an alternative hard-coded chain spec by using a command-line flag such as `--chain local` which instructs the node to use the spec associated with the string "local". A third option available to node operators is to provide a chain spec as a json file with a command-line flag such as `--chain=someCustomSpec.json` in which case the node will attempt to de-serialize the provided json chain spec, and then use it.
+Each time a node operator starts a node, they provide a chain specification that the node should use. In the simplest case, the chain spec is provided implicitly and the node uses a default chain spec that is hard-coded into the node binary.
+
+A common task is to start a testnet or private network that behaves similarly to an existing protocol, but is not connected to the main net. To achieve this, the operator my choose an alternative hard-coded chain spec by using a command-line flag such as `--chain local` which instructs the node to use the spec associated with the string "local". A third option available to node operators is to provide a chain spec as a json file with a command-line flag such as `--chain=someCustomSpec.json` in which case the node will attempt to de-serialize the provided json chain spec, and then use it.
 
 ### Developing a Runtime
 
@@ -41,7 +45,7 @@ Nearly every Substrate runtime will have storage items that need to be configure
 
 ### Customizing a Chain Spec
 
-A common task is to start a testnet or private network that behaves similarly to an existing protocol. To achieve this, node operators may export the default chain spec for the protocol to json format and then make edits. Substrate-based nodes are equipped with a `build-spec` sub-command that does exactly this exporting.
+When creating a one-off network for development, testing, or demonstration purposes, a truly customized chain spec may be desired. Node operators may export the default chain spec for the protocol to json format and then make edits. Substrate-based nodes are equipped with a `build-spec` sub-command that does exactly this exporting.
 
 ```bash
 substrate build-spec > myCustomSpec.json
