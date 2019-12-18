@@ -2,7 +2,10 @@
 title: Framework for Runtime Aggregation of Modularised Entities
 ---
 
-The Framework for Runtime Aggregation of Modularised Entities (FRAME) is a collection of prebuilt pallets and support libraries which simplify development of a Substrate runtime.
+The Framework for Runtime Aggregation of Modularised Entities (FRAME) is a set of modules (called pallets) and support libraries that simplify runtime development. Pallets are individual modules within FRAME that host domain-specific logic.
+
+FRAME provides some helper modules to interact with Substrate Primitives. Parity develops and maintains
+a set of these, but they can come from the community as well.
 
 ## Overview
 
@@ -12,7 +15,7 @@ The following diagram shows the architectural overview of FRAME and its support 
 
 ### Pallets
 
-The Substrate runtime is composed of several smaller components called pallets. A pallet contains a set of types, storage items, and functions that define a set of features and functionality for a runtime.
+When building with FRAME, the Substrate runtime is composed of several smaller components called pallets. A pallet contains a set of types, storage items, and functions that define a set of features and functionality for a runtime.
 
 ### System Library
 
@@ -61,9 +64,9 @@ included with your runtime and configures them to work together to compose your 
 calls are made to your runtime, it uses the Executive pallet to dispatch those calls to the
 individual pallets.
 
-## FRAME Pallets
+## Prebuilt Pallets
 
-FRAME contains a set of prebuilt pallets that can be used in your Substrate chain.
+Some pallets will be sufficiently general-purpose to be reused in many blockchains. Anyone is free to write and share useful pallets. There is a collection of popular pallets provided with Substrate. Let's explore them.
 
 ### Assets
 
