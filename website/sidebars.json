@@ -38,7 +38,7 @@
         "label": "Substrate Runtime",
         "ids": [
           "conceptual/runtime/index",
-          "conceptual/runtime/srml",
+          "conceptual/runtime/frame",
           "conceptual/runtime/weight",
           "conceptual/runtime/primitives"
         ]
