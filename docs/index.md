@@ -17,7 +17,7 @@ Substrate is a blockchain development framework with a completely generic State 
 and configuration.
 
 Despite being "completely generic", it comes with both standards and conventions - particularly with
-the Substrate Runtime Module Library ([SRML](conceptual/runtime/srml.md)) - regarding the underlying
+the Substrate runtime module library (a.k.a [FRAME](conceptual/runtime/frame.md)) - regarding the underlying
 data-structures that power the STF, thereby making rapid blockchain development a reality.
 
 ## Usage
@@ -31,9 +31,9 @@ Substrate is designed to be used in one of three ways:
    JSON file and launch your own blockchain. This affords you the least amount of customization,
    only allowing you to change the genesis parameters of the included runtime modules such as:
    balances, staking, block-period, fees, governance, etc... For a tutorial on doing this, see
-   [Start a Private Network with Substrate](tutorials/start-a-private-network-with-substrate.md).
+   [Start a Private Network with Substrate](tutorials/start-a-private-network/index.md).
 
-2. **With the SRML**: You can easily create your own custom blockchain using the SRML. This affords
+2. **With the Substrate FRAME**: You can easily create your own custom blockchain using the FRAME. This affords
    you a very large amount of freedom over your own blockchain's logic, letting you change
    datatypes, select from the library of modules, and add your own custom modules. Much can be
    changed without touching the block-authoring logic since it is directed through on-chain logic.
@@ -43,7 +43,7 @@ Substrate is designed to be used in one of three ways:
    is built and should suffice for almost all needs in the near future. For a tutorial on this, see
    [creating your first Substrate chain](tutorials/creating-your-first-substrate-chain/index.md).
 
-3. **With the Substrate Core**: The entire [SRML](conceptual/runtime/srml.md) can be ignored, and
+3. **With the Substrate Core**: The entire [FRAME](conceptual/runtime/frame.md) can be ignored, and
    the entire runtime can be designed and implemented from scratch. This could be done in _any
    language_ that can target WebAssembly. If the runtime can be made to be compatible with the
    abstract block authoring logic of the Substrate node, then you can simply construct a new genesis
@@ -56,7 +56,7 @@ Substrate is designed to be used in one of three ways:
 
 ### Learn More
 
-- View our developer documentation for [using the SRML for module
+- View our developer documentation for [using the FRAME for module
   development](development/module/index.md).
 
 ### Examples
