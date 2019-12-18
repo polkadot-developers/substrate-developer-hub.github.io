@@ -293,7 +293,7 @@ a structure for making spending proposals from this pot.
 
 ### References
 
-- Visit the reference docs for the [System pallet](https://substrate.dev/rustdocs/master/frame_system/index.html).
+- Visit the reference docs for the [System library](https://substrate.dev/rustdocs/master/frame_system/index.html).
 
 - Visit the reference docs for the [Executive pallet](https://substrate.dev/rustdocs/master/pallet_executive/index.html).
 
