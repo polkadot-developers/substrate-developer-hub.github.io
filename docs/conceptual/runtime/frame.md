@@ -1,8 +1,8 @@
 ---
-title: Framework for Runtime Aggregation of Modularised Entities
+title: FRAME
 ---
 
-The Framework for Runtime Aggregation of Modularised Entities (FRAME) is a set of modules (called pallets) and support libraries that simplify runtime development. Pallets are individual modules within FRAME that host domain-specific logic.
+The __Framework for Runtime Aggregation of Modularised Entities (FRAME)__ is a set of modules (called pallets) and support libraries that simplify runtime development. Pallets are individual modules within FRAME that host domain-specific logic.
 
 FRAME provides some helper modules to interact with Substrate Primitives. Parity develops and maintains
 a set of these, but they can come from the community as well.
