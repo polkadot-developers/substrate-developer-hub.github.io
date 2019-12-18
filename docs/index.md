@@ -33,7 +33,7 @@ Substrate is designed to be used in one of three ways:
    balances, staking, block-period, fees, governance, etc... For a tutorial on doing this, see
    [Start a Private Network with Substrate](tutorials/start-a-private-network/index.md).
 
-2. **With the FRAME**: You can easily create your own custom blockchain using the FRAME. This affords
+2. **With the Substrate FRAME**: You can easily create your own custom blockchain using the FRAME. This affords
    you a very large amount of freedom over your own blockchain's logic, letting you change
    datatypes, select from the library of modules, and add your own custom modules. Much can be
    changed without touching the block-authoring logic since it is directed through on-chain logic.
