@@ -2,7 +2,7 @@
 title: Framework for Runtime Aggregation of Modularised Entities
 ---
 
-The Framework for Runtime Aggregation of Modularised Entities (FRAME) is a collection of prebuilt runtime pallets and support libraries which simplify development of a Substrate runtime.
+The Framework for Runtime Aggregation of Modularised Entities (FRAME) is a collection of prebuilt pallets and support libraries which simplify development of a Substrate runtime.
 
 ## Overview
 
@@ -10,7 +10,7 @@ The following diagram shows the architectural overview of FRAME and its support 
 
 ![frame-arch](/docs/assets/frame-arch.png)
 
-### Runtime Pallets
+### Pallets
 
 The Substrate runtime is composed of several smaller components called pallets. A pallet contains a set of types, storage items, and functions that define a set of features and functionality for a runtime.
 
@@ -63,7 +63,7 @@ individual pallets.
 
 ## FRAME Pallets
 
-FRAME contains a set of prebuilt runtime pallets that can be used in your Substrate chain.
+FRAME contains a set of prebuilt pallets that can be used in your Substrate chain.
 
 ### Assets
 
@@ -159,8 +159,8 @@ execution module for Substrate.
 
 ### Example
 
-The Example pallet is a simple example of a runtime pallet demonstrating concepts, APIs and
-structures common to most runtime pallets.
+The Example pallet is a simple example of a pallet demonstrating concepts, APIs and
+structures common to most pallets.
 
 * [Docs](https://substrate.dev/rustdocs/master/pallet_example/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
@@ -284,11 +284,11 @@ a structure for making spending proposals from this pot.
 
 ### Learn More
 
-- Learn how to [develop custom Substrate runtime pallets](development/module/index.md).
+- Learn how to [develop custom Substrate pallets](development/module/index.md).
 
 ### Examples
 
-- Follow a [tutorial to add a runtime pallet to your Substrate
+- Follow a [tutorial to add a pallet to your Substrate
   runtime](tutorials/adding-a-module-to-your-runtime.md).
 
 ### References
