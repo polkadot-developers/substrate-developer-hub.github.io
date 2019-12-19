@@ -193,7 +193,7 @@ native code.
 ### I'm Online
 
 The I'm Online pallet allows validators to gossip a heartbeat transaction with each new session to
-signal that the node is online in the current era.
+signal that the node is online.
 
 * [Docs](https://substrate.dev/rustdocs/master/pallet_im_online/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/frame/im-online/src/lib.rs)
