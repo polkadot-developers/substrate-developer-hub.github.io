@@ -21,9 +21,11 @@ which the node will connect. Many of these items can be overridden by command-li
 values can be changed after the blockchain has been launched.
 <!--
 TODO can _all_ of them be changed after launch? how about the protocol id?
-
-* TODO Extensions
 -->
+
+### Extension
+
+Because the Substrate framework is extensible, it provides a way to customize the chain spec with additional data to configure parts of the node outside of the runtime. One example use case is telling the node about well-known blocks at specific heights, to prevent long range attacks when syncing a new node from genesis.
 
 ### The Genesis State
 
