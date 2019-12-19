@@ -129,12 +129,18 @@ After the conversion process, the above snippet looks like this:
 When distributing chain specs in JSON format, they should be distributed in this raw format to
 ensure that all nodes store the data at the right storage keys... I'm still not 100% clear on this.
 What would cause different nodes to get different results?
-
-## Learn More https://substrate.dev/rustdocs/master/sc_service/struct.ChainSpec.html Genesis config
-#in frame -- does devhub cover this?
-
-## Questions Joshy doens't know the answers to * Can I change the spec name or id after genesis? *
-#What is the protocol id for? Why does it default to sup? * what are extensions? * I understand that
-#the raw spec transforms genesis storage .... what exactly is the point? Under what circumstances
-#would different nodes get different results?
+## Questions Joshy doens't know the answers to
+* Can I change the spec name or id after genesis?
+* What is the protocol id for? Why does it default to sup?
 -->
+
+## Next Steps
+
+### Learn More
+
+* Rustdocs for the [`ChainSpec` Struct]( https://substrate.dev/rustdocs/master/sc_service/struct.ChainSpec.html)
+
+### Examples
+
+* Gain hands on experience with chain specs by [starting a private network](../../tutorials/start-a-private-network)
+* The [Node Template's Chainspec](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/src/chain_spec.rs) stored as rust code.
