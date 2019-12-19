@@ -526,6 +526,8 @@ fn testnet_genesis(initial_authorities: Vec<(AuraId, GrandpaId)>,
 }
 ```
 
+## Start Your Upgraded Chain
+
 Now you are ready to compile and run your contract-capable node. We first need to purge the chain to remove the old runtime logic and have the genesis configuration initialized for the Contracts pallet. It is possible to upgrade the chain without purging it but it will remain out of scope for this tutorial.
 
 ```bash
@@ -550,4 +552,3 @@ In the `Cargo.toml` file of the Substrate node runtime, you will see an example 
 ### References
 
 - [FRAME `Contracts` Pallet API](https://substrate.dev/rustdocs/master/pallet_contracts/index.html)
-
