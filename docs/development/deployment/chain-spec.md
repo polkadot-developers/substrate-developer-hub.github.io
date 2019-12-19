@@ -127,12 +127,6 @@ After the conversion process, the above snippet looks like this:
 "0x50a63a871aced22e88ee6466fe5aa5d9": "0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d",
 ```
 
-<!-- TODOs
-## Questions Joshy doens't know the answers to
-* Can I change the spec name or id after genesis?
-* What is the protocol id for? Why does it default to sup?
--->
-
 ## Next Steps
 
 ### Learn More
