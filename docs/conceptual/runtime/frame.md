@@ -85,7 +85,7 @@ The Aura pallet extends Aura consensus by managing offline reporting.
 ### Authority Discovery
 
 The Authority Discovery pallet is used by `core/authority-discovery` to retrieve the current set of
-authorities, learn its own authority id, as well as to sign and verify messages to and from other
+authorities, learn its own authority ID, as well as to sign and verify messages to and from other
 authorities.
 
 * [Docs](https://substrate.dev/rustdocs/master/pallet_authority_discovery/index.html)
