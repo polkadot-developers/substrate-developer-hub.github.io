@@ -102,11 +102,13 @@ substrate --chain=myCustomSpec.json
 
 ## Raw Chain Specs
 
-There are two formats in which chain spec information can be stored in JSON. The first is 
+There are two formats in which chain spec information can be stored in JSON. The first is
 human-readable and contains keys based on the pallets installed in the runtime and the storage items in those pallets. For example, consider this excerpt from the default Substrate node's chainspec.
 
 ```json
-"sudo": { "key": "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY" }
+"sudo": {
+  "key": "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"
+}
 ```
 
 Before this spec can be used to initialize a node's genesis storage, those human-readable keys must
