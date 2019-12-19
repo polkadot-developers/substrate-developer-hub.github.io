@@ -1,4 +1,6 @@
---- title: Chain Specification -
+---
+title: Chain Specification
+---
 
 A Chain Specification, or "chain spec", is a collection of configuration information that dictates
 which network a blockchain node will connect to, which entities it will initially communicate with,
