@@ -162,7 +162,7 @@ execution module for Substrate.
 
 ### Example
 
-The Example pallet is a simple example of a pallet demonstrating concepts, APIs and
+The Example pallet is a simple example of a pallet demonstrating concepts, APIs, and
 structures common to most pallets.
 
 * [Docs](https://substrate.dev/rustdocs/master/pallet_example/index.html)
