@@ -20,7 +20,8 @@ endpoints to which the node will send data, and human- and machine-readable name
 which the node will connect. Many of these items can be overridden by command-line flags, and the
 values can be changed after the blockchain has been launched.
 
-> Caution: While all properties in this section can be changed after genesis, nodes will only add peers who use the same `protocolId`.
+> Caution: While all properties in this section can be changed after genesis, nodes will only add
+> peers who use the same `protocolId`.
 
 ### Extension
 
@@ -103,7 +104,10 @@ substrate --chain=myCustomSpec.json
 
 ## Raw Chain Specs
 
-Substrate nodes support runtime upgrades which means a blockchain's runtime may be different than when the chain began. Chain specs, as discussed so far, contain information structured in a way that can be understood by the node's runtime. For example, consider this excerpt from the default Substrate node's chainspec json.
+Substrate nodes support runtime upgrades which means a blockchain's runtime may be different than
+when the chain began. Chain specs, as discussed so far, contain information structured in a way that
+can be understood by the node's runtime. For example, consider this excerpt from the default
+Substrate node's chainspec json.
 
 ```json
 "sudo": {
@@ -111,12 +115,18 @@ Substrate nodes support runtime upgrades which means a blockchain's runtime may 
 }
 ```
 
-Before this spec can be used to initialize a node's genesis storage, the human-readable keys must be transformed into actual storage keys for the [storage trie](../../conceptual/core/storage). This transformation is straight-forward, but it requires that the node's runtime be able to understand the chain spec.
+Before this spec can be used to initialize a node's genesis storage, the human-readable keys must be
+transformed into actual storage keys for the [storage trie](../../conceptual/core/storage). This
+transformation is straight-forward, but it requires that the node's runtime be able to understand
+the chain spec.
 
-If a node with an upgraded runtime attempts to synchronize a chain from genesis, it will not understand the information in this human-readable chain spec. For this reason, there is a second encoding of the chain spec known as the "raw" chain spec.
+If a node with an upgraded runtime attempts to synchronize a chain from genesis, it will not
+understand the information in this human-readable chain spec. For this reason, there is a second
+encoding of the chain spec known as the "raw" chain spec.
 
 When distributing chain specs in JSON format, they should be distributed in this raw format to
-ensure that all nodes can sync the chain even after runtime upgrades. Substrate-based nodes support the `--raw` flag to produce such raw chain specs.
+ensure that all nodes can sync the chain even after runtime upgrades. Substrate-based nodes support
+the `--raw` flag to produce such raw chain specs.
 
 ```bash
 substrate build-spec --chain=myCustomSpec.json --raw > customSpecRaw.json
