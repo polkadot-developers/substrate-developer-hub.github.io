@@ -488,13 +488,6 @@ Substrate provides an RPC to interact with our node. However, it does not contai
     }}
 ```
 
-Now you are ready to compile and run your contract-capable node. We first need to purge the chain to remove the old runtime logic and have the genesis configuration initialized for the Contracts pallet. It is possible to upgrade the chain without purging it but it will remain out of scope for this tutorial.
-
-```bash
-cargo run --release -- purge-chain --dev
-cargo run --release -- --dev
-```
-
 ## Genesis Configuration
 
 Not all pallets will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`pallet_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contracts pallet. This definition is controlled in `substrate-node-template/src/chain_spec.rs`. We need to modify this file to include the `ContractsConfig` type and the contract price units at the top:
@@ -507,7 +500,7 @@ use node_template_runtime::{ContractsConfig, MILLICENTS};
 
 Then inside the `testnet_genesis` function we need to add the contract configuration to the returned `GenesisConfig` object as followed:
 
-> Note: We are taking the value `_enable_println` from the function parameters.
+> IMPORTANT: We are taking the value `_enable_println` from the function parameters.
 > Make sure to remove the underscore that precedes the parameter definition.
 
 ```rust
@@ -533,7 +526,14 @@ fn testnet_genesis(initial_authorities: Vec<(AuraId, GrandpaId)>,
 }
 ```
 
-Note that you can tweak these numbers to your needs, but these are the values set at the [genesis configuration of the main Substrate node](https://github.com/paritytech/substrate/blob/master/bin/node/cli/src/chain_spec.rs).
+## Start Your Upgraded Chain
+
+Now you are ready to compile and run your contract-capable node. We first need to purge the chain to remove the old runtime logic and have the genesis configuration initialized for the Contracts pallet. It is possible to upgrade the chain without purging it but it will remain out of scope for this tutorial.
+
+```bash
+cargo run --release -- purge-chain --dev
+cargo run --release -- --dev
+```
 
 ## Adding Other FRAME pallets
 
@@ -541,16 +541,14 @@ In this guide, we walked through specifically how to import the Contracts pallet
 
 In the `Cargo.toml` file of the Substrate node runtime, you will see an example of how to import each of the different pallets, and in the `lib.rs` file you will find how to add each pallet to your runtime. You can basically copy what was done there to your own runtime.
 
-## Next Steps
-
 ### Learn More
 
 - [A minimalist tutorial on writing your runtime pallet in its own package](creating-a-runtime-module).
 - With your node now capable of running smart contracts, go learn to write your first smart contract in [Substrate Contracts workshop](https://substrate.dev/substrate-contracts-workshop).
 - To learn more about writing your own runtime with a front end, we have a [Substrate Collectables Workshop](https://substrate.dev/substrate-collectables-workshop) for building an end-to-end application.
 - For more information about runtime development tips and patterns, please refer to our [Substrate Recipes](https://substrate.dev/recipes/).
+- Understand the chain-spec file to customize your [Genesis Configuration](docs/development/deployment/chain-spec).
 
 ### References
 
 - [FRAME `Contracts` Pallet API](https://substrate.dev/rustdocs/master/pallet_contracts/index.html)
-
