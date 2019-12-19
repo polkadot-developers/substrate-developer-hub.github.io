@@ -54,7 +54,7 @@ for the runtime. It dispatches incoming extrinsic calls to the respective pallet
 The [FRAME support library](https://substrate.dev/rustdocs/master/frame_support/index.html) is a collection of Rust macros,
 types, traits, and functions that simplify the development of Substrate pallets.
 
-The support macros expand at compile time to generate code which is used by the runtime and reduce
+The support macros expand at compile time to generate code that is used by the runtime and reduce
 boilerplate code for the most common components of a pallet.
 
 ### Runtime
@@ -85,7 +85,7 @@ The Aura pallet extends Aura consensus by managing offline reporting.
 ### Authority Discovery
 
 The Authority Discovery pallet is used by `core/authority-discovery` to retrieve the current set of
-authorities, learn its own authority id, as well as to sign and verify messages to and from other
+authorities, learn its own authority ID, as well as to sign and verify messages to and from other
 authorities.
 
 * [Docs](https://substrate.dev/rustdocs/master/pallet_authority_discovery/index.html)
@@ -162,7 +162,7 @@ execution module for Substrate.
 
 ### Example
 
-The Example pallet is a simple example of a pallet demonstrating concepts, APIs and
+The Example pallet is a simple example of a pallet demonstrating concepts, APIs, and
 structures common to most pallets.
 
 * [Docs](https://substrate.dev/rustdocs/master/pallet_example/index.html)
@@ -193,7 +193,7 @@ native code.
 ### I'm Online
 
 The I'm Online pallet allows validators to gossip a heartbeat transaction with each new session to
-signal that the node is online in the current era.
+signal that the node is online.
 
 * [Docs](https://substrate.dev/rustdocs/master/pallet_im_online/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/frame/im-online/src/lib.rs)
