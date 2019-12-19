@@ -92,8 +92,8 @@ substrate build-spec > myCustomSpec.json
 ```
 
 Once the chain spec has been exported, the node operator is free to modify any of its fields. It is
-common to modify the network's name and bootnodes as well as any genesis storage items, such as 
-token balances, that the operator wishes. Once the edits are made, the operator may launch their 
+common to modify the network's name and bootnodes as well as any genesis storage items, such as
+token balances, that the operator wishes. Once the edits are made, the operator may launch their
 customized chain by supplying the customized JSON.
 
 ```bash
@@ -102,8 +102,7 @@ substrate --chain=myCustomSpec.json
 
 ## Raw Chain Specs
 
-There are two formats in which chain spec information can be stored in JSON. The first is
-human-readable and contains keys based on the pallets installed in the runtime and the storage items in those pallets. For example, consider this excerpt from the default Substrate node's chainspec.
+Substrate nodes support runtime upgrades which means a blockchain's runtime may be different than when the chain began. Chain specs, as discussed so far, contain information structured in a way that can be understood by the node's runtime. For example, consider this excerpt from the default Substrate node's chainspec json.
 
 ```json
 "sudo": {
@@ -111,10 +110,13 @@ human-readable and contains keys based on the pallets installed in the runtime a
 }
 ```
 
-Before this spec can be used to initialize a node's genesis storage, those human-readable keys must
-be transformed into actual storage keys for the storage trie. Substrate-based nodes contain
-a command-line interface to do exactly this.
+Before this spec can be used to initialize a node's genesis storage, the human-readable keys must be transformed into actual storage keys for the storage trie. This transformation is straight-forward, but it requires that the node's runtime be able to understand the chain spec.
 <!-- TODO: Add storage trie link once we have docs-->
+
+If a node with an upgraded runtime attempts to synchronize a chain from genesis, it will not understand the information in this human-readable chain spec. For this reason, there is a second encoding of the chain spec known as the "raw" chain spec.
+
+When distributing chain specs in JSON format, they should be distributed in this raw format to
+ensure that all nodes can sync the chain even after runtime upgrades. Substrate-based nodes support the `--raw` flag to produce such raw chain specs.
 
 ```bash
 substrate build-spec --chain=myCustomSpec.json --raw > customSpecRaw.json
@@ -125,10 +127,8 @@ After the conversion process, the above snippet looks like this:
 ```json
 "0x50a63a871aced22e88ee6466fe5aa5d9": "0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d",
 ```
+
 <!-- TODOs
-When distributing chain specs in JSON format, they should be distributed in this raw format to
-ensure that all nodes store the data at the right storage keys... I'm still not 100% clear on this.
-What would cause different nodes to get different results?
 ## Questions Joshy doens't know the answers to
 * Can I change the spec name or id after genesis?
 * What is the protocol id for? Why does it default to sup?
