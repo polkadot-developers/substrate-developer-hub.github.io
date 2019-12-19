@@ -54,7 +54,7 @@ for the runtime. It dispatches incoming extrinsic calls to the respective pallet
 The [FRAME support library](https://substrate.dev/rustdocs/master/frame_support/index.html) is a collection of Rust macros,
 types, traits, and functions that simplify the development of Substrate pallets.
 
-The support macros expand at compile time to generate code which is used by the runtime and reduce
+The support macros expand at compile time to generate code that is used by the runtime and reduce
 boilerplate code for the most common components of a pallet.
 
 ### Runtime
