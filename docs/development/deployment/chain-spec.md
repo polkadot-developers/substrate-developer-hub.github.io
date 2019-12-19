@@ -2,14 +2,14 @@
 title: Chain Specification
 ---
 
-A Chain Specification, or "chain spec", is a collection of configuration information that dictates
+A chain specification, or "chain spec", is a collection of configuration information that dictates
 which network a blockchain node will connect to, which entities it will initially communicate with,
-and what consensus-critical state it must have.
+and what consensus-critical state it must have at genesis.
 
 ## Structure of a Chain Spec
 
-The [`ChainSpec` Struct](https://substrate.dev/rustdocs/master/sc_service/struct.ChainSpec.html)
-separates the information contained in a Chain Spec into two parts. A node can use a `ChainSpec`
+The [`ChainSpec` struct](https://substrate.dev/rustdocs/master/sc_service/struct.ChainSpec.html)
+separates the information contained in a chain spec into two parts. A node can use a `ChainSpec`
 instance to create a genesis block.
 
 ### The Spec
@@ -18,39 +18,41 @@ The first part of the chain spec, the unfortunately-named `spec`, contains infor
 use to communicate with other parties in the network such as a set of bootnodes, a set of telemetry
 endpoints to which the node will send data, and human- and machine-readable names for the network to
 which the node will connect. Many of these items can be overridden by command-line flags, and the
-values can be changed after the blockchain has been launched. TODO can _all_ of them be changed
-after launch? how about the protocol id?
+values can be changed after the blockchain has been launched.
+<!--
+TODO can _all_ of them be changed after launch? how about the protocol id?
 
 * TODO Extensions
+-->
 
 ### The Genesis State
 
 The second part of the chain spec is the consensus-critical genesis configuration. All nodes in the
-network must agree on this initial state before they can agree on any subsequent blocks. Therefore
+network must agree on this initial state before they can agree on any subsequent blocks. Therefore,
 this information must be established at the outset of the chain and cannot be changed thereafter
 without starting an entirely new blockchain. There are no command-line flags to override values in
 the genesis portion of a chain spec.
 
 Examples of what information might be included in the genesis portion of a chain spec include
-initial token balance, the accounts that are initially part of a governance council, or the holder
-of the sudo key. Substrate nodes also place the compiled wasm runtime logic on chain, so the initial
+initial token balances, the accounts that are initially part of a governance council, or the holder
+of the sudo key. Substrate nodes also place the compiled Wasm runtime logic on chain, so the initial
 runtime must also be supplied in the chain spec.
 
 It is this second part of the chain spec that is used when creating a genesis block.
 
 ## Storing Chain Spec Information
 
-The information that comprises a chain spec can be stored in either of two ways. Being a rust
-struct, the first way to store this information is as rust code. Indeed Substrate nodes typically
+The information that comprises a chain spec can be stored in either of two ways. Being a Rust
+struct, the first way to store this information is as Rust code. Indeed, Substrate nodes typically
 include at least one, and often many, chain specs hard-coded into the client. Including this
-information directly in the client, ensures that the node will know how to connect to at least one
+information directly in the client ensures that the node will know how to connect to at least one
 chain without any additional information supplied by the node operator. In protocols that have a
 notion of "main net" this spec is usually hard-coded in the client.
 
-Another common way to store chain spec information is in json format. The Chain Spec struct has a
-method for serializing its data the json as well as a function for de-serializing json data into an
-instance of a chain spec. When launching testnets, or private chains, it is common to distribute a
-json-encoded chain spec along with the node binary.
+Another common way to store chain spec information is in json format. The chain spec struct has a
+method for serializing its data into JSON as well as a function for de-serializing JSON data into an
+instance of a chain spec. When launching testnets or private chains, it is common to distribute a
+JSON-encoded chain spec along with the node binary.
 
 ## Using Chain Specs
 
@@ -64,56 +66,65 @@ use. In the simplest case, the chain spec is provided implicitly and the node us
 spec that is hard-coded into the node binary.
 
 A common task is to start a testnet or private network that behaves similarly to an existing
-protocol, but is not connected to the main net. To achieve this, the operator my choose an
-alternative hard-coded chain spec by using a command-line flag such as `--chain local` which
+protocol, but is not connected to the mainnet. To achieve this, the operator may choose an
+alternative hard-coded chain spec by using a command-line flag such as `--chain local` that
 instructs the node to use the spec associated with the string "local". A third option available to
-node operators is to provide a chain spec as a json file with a command-line flag such as
-`--chain=someCustomSpec.json` in which case the node will attempt to de-serialize the provided json
+node operators is to provide a chain spec as a JSON file with a command-line flag such as
+`--chain=someCustomSpec.json`, in which case the node will attempt to de-serialize the provided JSON
 chain spec, and then use it.
 
 ### Developing a Runtime
 
 Nearly every Substrate runtime will have storage items that need to be configured at genesis. When
-developing with [FRAME](../../conceptual/runtime/frame.md) any storage item that is declared with
+developing with [FRAME](../../conceptual/runtime/frame.md), any storage item that is declared with
 the `config()` option requires configuration at genesis. It is the job of the chain spec,
-specifically the genesis portion, to configure such storage value.
+specifically the genesis portion, to configure such storage values.
 
 ### Customizing a Chain Spec
 
 When creating a one-off network for development, testing, or demonstration purposes, a truly
 customized chain spec may be desired. Node operators may export the default chain spec for the
-protocol to json format and then make edits. Substrate-based nodes are equipped with a `build-spec`
-sub-command that does exactly this exporting.
+protocol to JSON format and then make edits. Substrate-based nodes are equipped with a `build-spec`
+sub-command that does this exporting.
 
-```bash substrate build-spec > myCustomSpec.json ```
+```bash
+substrate build-spec > myCustomSpec.json
+```
 
 Once the chain spec has been exported, the node operator is free to modify any of its fields. It is
-common to modify the network's name a bootnodes as well as any genesis storage items, such as token
-balances, that the operator wishes. One the edits are made, the operator may launch their customized
-chain by supplying the customized json
+common to modify the network's name and bootnodes as well as any genesis storage items, such as 
+token balances, that the operator wishes. Once the edits are made, the operator may launch their 
+customized chain by supplying the customized JSON.
 
-```bash substrate --chain=myCustomSpec.json ```
+```bash
+substrate --chain=myCustomSpec.json
+```
 
 ## Raw Chain Specs
 
-There are two formats in which chain spec information can be stored in json. The first is human
-readable and contains keys based on the pallets installed in the runtime and the storage items in
-those pallets. For example, consider this excerpt from the default Substrate node's chainspec.
+There are two formats in which chain spec information can be stored in JSON. The first is 
+human-readable and contains keys based on the pallets installed in the runtime and the storage items in those pallets. For example, consider this excerpt from the default Substrate node's chainspec.
 
-```json "sudo": { "key": "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY" } ```
+```json
+"sudo": { "key": "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY" }
+```
 
 Before this spec can be used to initialize a node's genesis storage, those human-readable keys must
-be transformed into actual storage keys for the [storage trie](TODO). Substrate-based nodes contain
+be transformed into actual storage keys for the storage trie. Substrate-based nodes contain
 a command-line interface to do exactly this.
+<!-- TODO: Add storage trie link once we have docs-->
 
-```bash substrate build-spec --chain=myCustomSpec.json --raw > customSpecRaw.json ```
+```bash
+substrate build-spec --chain=myCustomSpec.json --raw > customSpecRaw.json
+```
 
-After the conversion process, the above snippet looks like this
+After the conversion process, the above snippet looks like this:
 
-```json "0x50a63a871aced22e88ee6466fe5aa5d9":
-"0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d", ```
-
-When distributing chain specs in json format, they should be distributed in this raw format to
+```json
+"0x50a63a871aced22e88ee6466fe5aa5d9": "0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d",
+```
+<!-- TODOs
+When distributing chain specs in JSON format, they should be distributed in this raw format to
 ensure that all nodes store the data at the right storage keys... I'm still not 100% clear on this.
 What would cause different nodes to get different results?
 
@@ -124,3 +135,4 @@ What would cause different nodes to get different results?
 #What is the protocol id for? Why does it default to sup? * what are extensions? * I understand that
 #the raw spec transforms genesis storage .... what exactly is the point? Under what circumstances
 #would different nodes get different results?
+-->
