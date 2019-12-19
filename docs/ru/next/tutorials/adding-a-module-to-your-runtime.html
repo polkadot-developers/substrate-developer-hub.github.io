@@ -277,7 +277,7 @@ error<span class="token punctuation">:</span> aborting due to previous errors
 <p>Contracts do not return data at the end of their execution. Due to the nature of blockchains, a transaction needs to be valid to get finalized and included in a block before getting the current state.</p>
 <p>To achieve this, we need to start by adding the required API dependencies.</p>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies.pallet-contracts-rpc-runtime-api]</span>
+<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies.contracts-rpc-runtime-api]</span>
 <span class="hljs-attr">default-features</span> = <span class="hljs-literal">false</span>
 <span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
 <span class="hljs-attr">package</span> = <span class="hljs-string">'pallet-contracts-rpc-runtime-api'</span>
@@ -288,7 +288,7 @@ error<span class="token punctuation">:</span> aborting due to previous errors
 default = ["std"]
 std = [
     #--snip--
-    'pallet-contracts-rpc-runtime-api/std',
+    'contracts-rpc-runtime-api/std',
 ]
 </code></pre>
 <p>To get the state of a variable, we have to call a getter function that will return a <code>ContractExecResult</code> wrapper with the current state of the execution.</p>
