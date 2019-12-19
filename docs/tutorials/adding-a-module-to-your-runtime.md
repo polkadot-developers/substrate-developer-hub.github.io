@@ -358,7 +358,7 @@ To achieve this, we need to start by adding the required API dependencies.
 
 **`runtime/Cargo.toml`**
 ```TOML
-[dependencies.pallet-contracts-rpc-runtime-api]
+[dependencies.contracts-rpc-runtime-api]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'pallet-contracts-rpc-runtime-api'
@@ -371,7 +371,7 @@ rev = '<git-commit>' # e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'
 default = ["std"]
 std = [
     #--snip--
-    'pallet-contracts-rpc-runtime-api/std',
+    'contracts-rpc-runtime-api/std',
 ]
 ```
 
