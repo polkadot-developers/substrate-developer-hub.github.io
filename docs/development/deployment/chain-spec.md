@@ -110,8 +110,7 @@ Substrate nodes support runtime upgrades which means a blockchain's runtime may 
 }
 ```
 
-Before this spec can be used to initialize a node's genesis storage, the human-readable keys must be transformed into actual storage keys for the storage trie. This transformation is straight-forward, but it requires that the node's runtime be able to understand the chain spec.
-<!-- TODO: Add storage trie link once we have docs-->
+Before this spec can be used to initialize a node's genesis storage, the human-readable keys must be transformed into actual storage keys for the [storage trie](../../conceptual/core/storage). This transformation is straight-forward, but it requires that the node's runtime be able to understand the chain spec.
 
 If a node with an upgraded runtime attempts to synchronize a chain from genesis, it will not understand the information in this human-readable chain spec. For this reason, there is a second encoding of the chain spec known as the "raw" chain spec.
 
