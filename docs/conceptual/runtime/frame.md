@@ -4,8 +4,7 @@ title: FRAME
 
 The __Framework for Runtime Aggregation of Modularised Entities (FRAME)__ is a set of modules (called pallets) and support libraries that simplify runtime development. Pallets are individual modules within FRAME that host domain-specific logic.
 
-FRAME provides some helper modules to interact with Substrate Primitives. Parity develops and maintains
-a set of these, but they can come from the community as well.
+FRAME provides some helper modules to interact with Substrate Primitives, which provide the interface to the core client.
 
 ## Overview
 
@@ -33,7 +32,7 @@ The System library defines all the core types for the Substrate runtime, such as
 * Version
 * etc...
 
-It also has a number of system critical storage items, such as:
+It also has a number of system-critical storage items, such as:
 
 * Account Nonce
 * Block Hash
@@ -269,8 +268,7 @@ The Timestamp pallet provides functionality to get and set the on-chain time.
 
 ### Transaction Payment
 
-The Transaction Payment pallet provides the basic logic needed to pay the absolute minimum amount
-needed for a transaction to be included.
+The Transaction Payment pallet provides the basic logic to compute pre-dispatch transaction fees.
 
 * [Docs](https://substrate.dev/rustdocs/master/pallet_transaction_payment/index.html)
 * [Source](https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/src/lib.rs)
