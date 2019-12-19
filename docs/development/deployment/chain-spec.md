@@ -19,9 +19,8 @@ use to communicate with other parties in the network such as a set of bootnodes,
 endpoints to which the node will send data, and human- and machine-readable names for the network to
 which the node will connect. Many of these items can be overridden by command-line flags, and the
 values can be changed after the blockchain has been launched.
-<!--
-TODO can _all_ of them be changed after launch? how about the protocol id?
--->
+
+> Caution: While all properties in this section can be changed after genesis, nodes will only add peers who use the same `protocolId`.
 
 ### Extension
 
@@ -133,7 +132,8 @@ After the conversion process, the above snippet looks like this:
 
 ### Learn More
 
-* Rustdocs for the [`ChainSpec` Struct]( https://substrate.dev/rustdocs/master/sc_service/struct.ChainSpec.html)
+* Rustdocs for the [`ChainSpec` struct]( https://substrate.dev/rustdocs/master/sc_service/struct.ChainSpec.html)
+* Rustdocs for the [`ProtocolId` struct](https://substrate.dev/rustdocs/master/sc_network/config/struct.ProtocolId.html)
 
 ### Examples
 
