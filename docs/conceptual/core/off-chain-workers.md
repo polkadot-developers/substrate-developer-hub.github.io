@@ -1,5 +1,5 @@
 ---
-title: Off-chain Workers
+title: Off-Chain Workers
 ---
 
 ## Overview
@@ -27,4 +27,4 @@ Off-chain workers can be initiated from within a special function in the runtime
 
 Note that the results from off-chain workers are not subject to regular consensus. An on-chain verification mechanism (e.g. voting, averaging, checking sender signatures, or simply "trusting") should be implemented to determine what information gets into the chain.
 
-For more information on how to adopt off-chain workers into your next runtime development project, please refer to our [development guide](development/module/off-chain-workers.md).
+For more information on how to adopt off-chain workers into your next runtime development project, please refer to our [Development Guide](development/module/off-chain-workers.md).
