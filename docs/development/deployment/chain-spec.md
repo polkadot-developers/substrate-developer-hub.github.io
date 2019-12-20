@@ -54,7 +54,7 @@ information directly in the client ensures that the node will know how to connec
 chain without any additional information supplied by the node operator. In protocols that have a
 notion of "main net" this spec is usually hard-coded in the client.
 
-Another common way to store chain spec information is in json format. The chain spec struct has a
+Another common way to store chain spec information is in JSON format. The chain spec struct has a
 method for serializing its data into JSON as well as a function for de-serializing JSON data into an
 instance of a chain spec. When launching testnets or private chains, it is common to distribute a
 JSON-encoded chain spec along with the node binary.
