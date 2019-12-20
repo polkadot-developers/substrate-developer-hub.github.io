@@ -14,7 +14,7 @@ The purpose of this document is to provide short definitions for a collection of
 
 ### Authority
 
-Authorities are the actors, keys or identities who, as a collective, manage consensus on the network. `AuthorityId` can be used to identify them. In a [Proof of Stake](#proof-of-stake) chain (such as one using the SRML's Staking module), authorities are determined through a token-weighted nomination/voting system.
+Authorities are the actors, keys or identities who, as a collective, manage consensus on the network. `AuthorityId` can be used to identify them. In a [Proof of Stake](#proof-of-stake) chain (such as one using the FRAME's Staking pallet), authorities are determined through a token-weighted nomination/voting system.
 
 ### Block Author
 

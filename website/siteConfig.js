@@ -31,6 +31,7 @@ const title = is_staging ? `${title_prefix} (@${git_rev})` : title_prefix
 const cname = is_staging ? `staging.${custom_url}` : custom_url
 
 const siteConfig = {
+  
 	title, // Title for your website.
 	tagline: 'The place for blockchain innovators.',
 

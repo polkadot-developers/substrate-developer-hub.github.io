@@ -61,13 +61,15 @@ function Seminar(props) {
 
         <Container className="readableLineLength">
         <h2 className = "h1">FAQ</h2>
-        <h3 className = "h2">How should I prepare?</h3>
-        <p>
-          For the 03 December meeting, we will preview an in-progress workshop on cumulus -- a way to connect your Substrate chain to Polkadot. Prepare by following the instrucitons at https://joshorndorff.github.io/cumulus-workshop/#/
-        </p>
-        {/*<p>
-          In general, we start with the packages from the <a href="https://github.com/substrate-developer-hub">Substrate Developer Hub</a> GitHub Organization. You should have the latest <a href="https://github.com/substrate-developer-hub/substrate-node-template">Node Template</a> and <a href="https://github.com/substrate-developer-hub/substrate-front-end-template/">Front End Template</a> built and ready to use.
-        </p>*/}
+        <h3 class="h2">Is Seminar Meeting Over the Holidays?</h3>
+        <p>Substrate Seminar will take a hiatus over the winter holidays. We will resume regular meetings every Tuesday on January 7th.</p>
+
+        <p>At the January 7th session we will explore Offchain Workers</p>
+
+        <p>At the January 14th session we will (tentatively) write a custom consensus algorithm</p>
+
+        <p>Please reach out to share your project or request a specific topic.</p>
+        
         <h3 className = "h2">
           Can I share a project I've been working on?
         </h3>

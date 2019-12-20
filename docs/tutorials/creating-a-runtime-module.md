@@ -2,7 +2,7 @@
 title: "Creating an External Pallet"
 ---
 
-In this tutorial, you'll write a Substrate runtime pallet that lives in its own
+In this tutorial, you'll write a Substrate pallet that lives in its own
 crate, and include it in a node based on the `substrate-node-template`.
 
 ## Prerequisites
@@ -10,7 +10,7 @@ crate, and include it in a node based on the `substrate-node-template`.
 If you haven't already done so, follow the [Getting Started](getting-started.md)
 guide to download necessary tools to build Substrate.
 
-### Clone the Node and Pallet Template
+### Clone the Node and Module Template
 
 We're not going to write our pallet directly as part of the node template, but
 rather as a separate Rust crate. This approach allows us to publish our pallet
@@ -26,7 +26,7 @@ their own Substrate runtime.
 2. Clone the Substrate pallet template:
 
     ```bash
-    git clone https://github.com/substrate-developer-hub/substrate-pallet-template.git my-pallet
+    git clone https://github.com/substrate-developer-hub/substrate-module-template.git my-pallet
     ```
 
 3. Build the Substrate node template:
@@ -38,7 +38,7 @@ their own Substrate runtime.
 
 The `substrate-node-template` contains a working Substrate node, and the
 `substrate-pallet-template` contains an independent Rust crate which is a
-Substrate runtime pallet that can be included in your node. The compilation of
+Substrate pallet that can be included in your node. The compilation of
 the node may take up to 30 minutes depending on your hardware, so let that run
 while you continue to follow this guide.
 
@@ -101,8 +101,8 @@ std = [
     'codec/std',
     'support/std',
     'system/std',
-    'sr-primitives/std',
-    'runtime-io/std',
+    'sp-runtime/std',
+    'sp-io/std',
 ]
 ```
 
@@ -158,7 +158,7 @@ the actual pallet itself.
 
 [dev-dependencies.primitives]
 git = 'https://github.com/paritytech/substrate.git'
-package = 'substrate-primitives'
+package = 'sp-core'
 branch = 'v2.0'
 ```
 
@@ -170,9 +170,9 @@ cargo test
 
 You may need to modify the dependencies you need for the pallets you create.
 
-## Add Your Runtime Pallet to Your Node
+## Add Your Pallet to Your Node
 
-With our runtime pallet now compiling and passing it's tests, we're ready to add
+With our pallet now compiling and passing it's tests, we're ready to add
 it to our node.
 
 We first add our newly-created crate as a dependency in the node's runtime
@@ -288,7 +288,7 @@ instead of using the local files.
 
 ## Next Steps
 
-Congratulations! You've written a Substrate runtime pallet in its own Rust
+Congratulations! You've written a Substrate pallet in its own Rust
 crate, and published that crate to GitHub. Other blockchain developers can now
 easily use your pallet in their runtime by simply including those same four
 lines of code in their runtime's `Cargo.toml` files and updating their runtime's

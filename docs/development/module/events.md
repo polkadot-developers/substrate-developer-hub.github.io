@@ -79,7 +79,7 @@ decl_module! {
 }
 ```
 
-The default behavior of this function is to call [`deposit_event`](https://substrate.dev/rustdocs/master/palette_system/struct.Module.html#method.deposit_event) from the SRML System module.
+The default behavior of this function is to call [`deposit_event`](https://substrate.dev/rustdocs/master/frame_system/struct.Module.html#method.deposit_event) from the SRML System module.
 
 This function places the event in the System module's runtime storage for that block. At the beginning of a new block, the System module automatically removes all events that were stored from the previous block.
 
@@ -105,16 +105,16 @@ The Substrate [JSON RPC](development/front-end/json-rpc.md) does not directly ex
 
 ### Examples
 
-View the following Substrate recipes to find examples of how runtime events are used:
+View the following Substrate [recipes](https://github.com/substrate-developer-hub/recipes) to find examples of how runtime events are used:
 
-* [A simple module which implements standard events]( TODO ).
+* [A pallet which implements standard events]( https://github.com/substrate-developer-hub/recipes/blob/master/kitchen/modules/last-caller/src/lib.rs)
 
-* [A module which does not emit events generic types]( TODO ).
+* [A pallet which does not emit events with generic types](https://github.com/substrate-developer-hub/recipes/blob/master/kitchen/adder/src/lib.rs)
 
 ### References
 
-* Visit the reference docs for the [`decl_event!` macro](https://substrate.dev/rustdocs/master/palette_support/macro.decl_event.html).
+* Visit the reference docs for the [`decl_event!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_event.html).
 
-* Visit the reference docs for the [`decl_module!` macro](https://substrate.dev/rustdocs/master/palette_support/macro.decl_module.html).
+* Visit the reference docs for the [`decl_module!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_module.html).
 
-* Visit the reference docs for the [`construct_runtime!` macro](https://substrate.dev/rustdocs/master/palette_support/macro.construct_runtime.html).
+* Visit the reference docs for the [`construct_runtime!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html).
