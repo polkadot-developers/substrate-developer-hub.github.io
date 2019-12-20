@@ -8,6 +8,7 @@
 	--primary-color: #ff1864;
 	--dark: #24292e;
 	--font-size-p: 18px;
+	overflow: hidden;
 }
 
 #seminar,
