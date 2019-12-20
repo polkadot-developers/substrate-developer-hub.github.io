@@ -26,7 +26,9 @@ command-line flags, and the values can be changed after the blockchain has been 
 
 ### Extension
 
-Because the Substrate framework is extensible, it provides a way to customize the client spec with additional data to configure customized parts of the client. One example use case is telling the node about well-known blocks at specific heights, to prevent long range attacks when syncing a new node from genesis.
+Because the Substrate framework is extensible, it provides a way to customize the client spec with
+additional data to configure customized parts of the client. One example use case is telling the node about
+well-known blocks at specific heights, to prevent long range attacks when syncing a new node from genesis.
 
 ### The Genesis State
 
