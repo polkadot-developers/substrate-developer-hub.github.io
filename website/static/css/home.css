@@ -113,9 +113,15 @@
 	border-color: var(--primary-color);
 }
 
+.primary-color {
+	border-color: none;
+}
+
 .primary-color:hover,
 .btn-outline-primary:hover {
 	color: white !important;
+	background-color: #545b62;
+	border-color: #545b62;
 }
 
 #home .btn-outline-primary:hover {
