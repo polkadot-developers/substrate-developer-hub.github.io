@@ -150,5 +150,5 @@ After the conversion process, the above snippet looks like this:
 
 ### Examples
 
-* Gain hands on experience with chain specs by [starting a private network](../../tutorials/start-a-private-network)
+* Gain hands-on experience with chain specs by [starting a private network](../../tutorials/start-a-private-network).
 * The [Node Template's Chainspec](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/src/chain_spec.rs) stored as rust code.
