@@ -107,7 +107,7 @@ substrate --chain=myCustomSpec.json
 
 ## Raw Chain Specs
 
-Substrate nodes support runtime upgrades which means a blockchain's runtime may be different than
+Substrate nodes support runtime upgrades, which means a blockchain's runtime may be different than
 when the chain began. Chain specs, as discussed so far, contain information structured in a way that
 can be understood by the node's runtime. For example, consider this excerpt from the default
 Substrate node's chainspec json.
