@@ -61,15 +61,15 @@ function Seminar(props) {
 
         <Container className="readableLineLength">
         <h2 className = "h1">FAQ</h2>
-        <h3 className = "h2">How should I prepare?</h3>
-        <p>
-          On 17 December, we will discuss the <a href="https://github.com/substrate-developer-hub/recipes/">Substrate Recipes</a>, and use it to practice executing forkless runtime upgrades. Next we'll be guided by Parity's Tomasz Drwięga in updating the recipes to the latest Substrate pre-2.0. To follow along live, please build the recipes' kitchen node with these commands.
-        </p>
-        <code>
-          git clone https://github.com/substrate-developer-hub/recipes/<br />
-          cd recipes/kitchen <br />
-          cargo build --release -p kitchen-node
-        </code>
+        <h3 class="h2">Is Seminar Meeting Over the Holidays?</h3>
+        <p>Substrate Seminar will take a hiatus over the winter holidays. We will resume regular meetings every Tuesday on January 7th.</p>
+
+        <p>At the January 7th session we will explore Offchain Workers</p>
+
+        <p>At the January 14th session we will (tentatively) write a custom consensus algorithm</p>
+
+        <p>Please reach out to share your project or request a specific topic.</p>
+        
         <h3 className = "h2">
           Can I share a project I've been working on?
         </h3>
