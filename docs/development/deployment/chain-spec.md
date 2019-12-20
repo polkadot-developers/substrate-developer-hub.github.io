@@ -12,20 +12,21 @@ The [`ChainSpec` struct](https://substrate.dev/rustdocs/master/sc_service/struct
 separates the information contained in a chain spec into two parts. A node can use a `ChainSpec`
 instance to create a genesis block.
 
-### The Spec
+### The Client Spec
 
-The first part of the chain spec, the unfortunately-named `spec`, contains information the node will
-use to communicate with other parties in the network such as a set of bootnodes, a set of telemetry
-endpoints to which the node will send data, and human- and machine-readable names for the network to
-which the node will connect. Many of these items can be overridden by command-line flags, and the
-values can be changed after the blockchain has been launched.
+The first part of the chain spec, is the `ClientSpec`. The `ClientSpec` contains configuration
+information used by the Substrate client, the part of the node outside of the runtime. Much of this
+information is used to communicate with other parties in the network such as a set of bootnodes, a
+set of telemetry endpoints to which the node will send data, and human- and machine-readable names
+for the network to which the node will connect. Many of these items can be overridden by
+command-line flags, and the values can be changed after the blockchain has been launched.
 
 > Caution: While all properties in this section can be changed after genesis, nodes will only add
 > peers who use the same `protocolId`.
 
 ### Extension
 
-Because the Substrate framework is extensible, it provides a way to customize the chain spec with additional data to configure parts of the node outside of the runtime. One example use case is telling the node about well-known blocks at specific heights, to prevent long range attacks when syncing a new node from genesis.
+Because the Substrate framework is extensible, it provides a way to customize the client spec with additional data to configure customized parts of the client. One example use case is telling the node about well-known blocks at specific heights, to prevent long range attacks when syncing a new node from genesis.
 
 ### The Genesis State
 
