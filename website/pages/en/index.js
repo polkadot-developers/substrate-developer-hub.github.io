@@ -179,7 +179,7 @@ class Index extends React.Component {
 								<div className='col-12 col-md-4 mb-4'>
 									<div className='d-flex align-items-center mb-2'>
 										<img className='mr-2' src='/img/glyphs/rectangle-5.svg' width='40' />
-										<h3 className='mb-0'>Diverse library of runtime modules</h3>
+										<h3 className='mb-0'>Rich framework for composing runtime logic.</h3>
 									</div>
 								</div>
 								<div className='col-12 col-md-4'>
