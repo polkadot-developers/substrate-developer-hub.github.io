@@ -15,7 +15,7 @@ Let's start with a new Substrate runtime node. We recommend going through the [S
 
 The first step towards building a Substrate runtime pallet is to define what other FRAME pallets we could use in our pallet. There are plenty of FRAME pallets that ship with the Substrate codebase and we recommend using them, when needed. To use any of the existing pallets, we need to import and specify them in the pallet trait of our custom pallet.
 
-For example, in this runtime we need the capability to calculate and compare timestamps for the TCR parameters - apply stage length and commit stage length. We will use the [`timestamp` FRAME pallet](https://github.com/paritytech/substrate/tree/master/palette/timestamp) to achieve this functionality.
+For example, in this runtime we need the capability to calculate and compare timestamps for the TCR parameters - apply stage length and commit stage length. We will use the [`timestamp` FRAME pallet](https://github.com/paritytech/substrate/tree/master/frame/timestamp) to achieve this functionality.
 
 Here's how the pallet configuration trait declaration for the TCR pallet looks like.
 

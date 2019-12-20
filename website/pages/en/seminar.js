@@ -98,14 +98,27 @@ function Seminar(props) {
 					</div>
 					<div className='row justify-content-between pt-0 faqs'>
 						<div className='col-md-6 first'>
+							<h4 className='mb-2'>Is Seminar Meeting Over the Holidays?</h4>
+							<p>
+								- Substrate Seminar will take a hiatus over the winter holidays. We will resume regular
+								meetings every Tuesday on January 7th.<br />
+								<br />
+								- At the January 7th session we will explore Offchain Workers.<br />
+								<br />
+								- At the January 14th session we will (tentatively) write a custom consensus algorithm<br
+								/>
+								<br />
+								- Please reach out to share your project or request a specific topic.
+							</p>
+
 							<h4 className='mb-2'>How should I prepare?</h4>
 							<p
 								style={{
 									marginBottom: '40px'
 								}}>
-								For the 26 November meeting, prepare by compiling my session module demonstration. This
-								particular node is based off of the node-template in the main Substrate repository. You
-								can compile it with these commands.
+								Prepare by compiling my session module demonstration. This particular node is based off
+								of the node-template in the main Substrate repository. You can compile it with these
+								commands.
 							</p>
 							<code>git clone -b joshy-sessions https://github.com/paritytech/substrate.git</code>
 							<code>cd substrate/bin/node-template</code>
@@ -115,7 +128,9 @@ function Seminar(props) {
 								}}>
 								cargo build --release
 							</code>
+						</div>
 
+						<div className='col-md-6 second'>
 							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
 							<p>
 								Yes! Seminar works best when everyone shares their projects and interests. To ensure a
@@ -123,8 +138,6 @@ function Seminar(props) {
 								<a href='mailto:joshy@parity.io'>email</a> or{' '}
 								<a href='https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org'>Riot</a>.
 							</p>
-						</div>
-						<div className='col-md-6 second'>
 							<h4 className='mb-2'>
 								I am not a [Substrate] developer, can I join just to ask couple of questions?
 							</h4>
