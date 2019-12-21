@@ -9,7 +9,7 @@ conceptual overview of off-chain workers see [Conceptual Guide](conceptual/core/
 
 To use off-chain workers in your runtime, include these following modules
 
-**runtime/src/my_runtime.rs**
+**runtime/src/offchain_pallet.rs**
 
 ```rust
 //For better debugging (printout) support
@@ -23,7 +23,7 @@ use sp_runtime::transaction_validity::{
 Include the following associated types in your pallet's configuration trait for sending signed and
 unsigned transactions from an off-chain worker.
 
-**runtime/src/my_runtime.rs**
+**runtime/src/offchain_pallet.rs**
 
 ```rust
 pub trait Trait: timestamp::Trait + system::Trait {
@@ -39,7 +39,7 @@ pub trait Trait: timestamp::Trait + system::Trait {
 Now inside the `decl_module!` section, define the `offchain_worker` function. This function serves
 as the entry point of the off-chain worker and runs after every block import.
 
-**runtime/src/my_runtime.rs**
+**runtime/src/offchain_pallet.rs**
 
 ```rust
 decl_module! {
@@ -58,7 +58,7 @@ By default, the offchain worker doesn't have direct access to user keys (even in
 environment), but can only access app-specific subkeys for security reason. You need to define the
 `KeyTypeId` at the top of your runtime that is used to group your app-specific subkeys as follows.
 
-**runtime/src/my_runtime.rs**
+**runtime/src/offchain_pallet.rs**
 
 ```rust
 // The key type ID can be any 4-character long string
@@ -80,7 +80,7 @@ As with any other pallet, your runtime must implement the pallet's configuration
 ```rust
 /// Define the Transaction signer using the Key definition
 type SubmitTransaction = system::offchain::TransactionSubmitter<
-  my_runtime::crypto::Public, Runtime, UncheckedExtrinsic>;
+  offchain_pallet::crypto::Public, Runtime, UncheckedExtrinsic>;
 
 impl runtime::Trait for Runtime {
   type Event = Event;
@@ -149,10 +149,10 @@ construct_runtime!(
     // --snip--
 
     // For using unsigned transactions
-    MyRuntime: my_runtime::{ Module, Call, Storage, Event<T>, transaction_validity::ValidateUnsigned }
+    OffchainPallet: offchain_pallet::{ Module, Call, Storage, Event<T>, transaction_validity::ValidateUnsigned }
 
     // For just using signed transactions, it can just well be:
-    // MyRuntime: my_runtime::{ Module, Call, Storage, Event<T> }
+    // OffchainPallet: offchain_pallet::{ Module, Call, Storage, Event<T> }
   }
 );
 ```
@@ -192,9 +192,9 @@ pub fn new_full<C: Send + Default + 'static>(config: Configuration<C, GenesisCon
     service
       .keystore()
       .write()
-      .insert_ephemeral_from_seed_by_type::<runtime::my_runtime::crypto::Pair>(
+      .insert_ephemeral_from_seed_by_type::<runtime::offchain_pallet::crypto::Pair>(
         &seed,
-        runtime::my_runtime::KEY_TYPE,
+        runtime::offchain_pallet::KEY_TYPE,
       )
       .expect("Dev Seed should always succeed.");
   }
@@ -233,7 +233,7 @@ A new key is now added in the local keystore.
 Now you are ready to to make a signed transaction from the off-chain worker as shown in the
 following.
 
-**runtime/src/my_runtime.rs**
+**runtime/src/offchain_pallet.rs**
 
 ```rust
 decl_module! {
@@ -270,7 +270,7 @@ on-chain.
 
 With the following code, you are able to send an unsigned transaction back on-chain.
 
-**runtime/src/my_runtime.rs**
+**runtime/src/offchain_pallet.rs**
 
 ```rust
 decl_module! {
@@ -293,10 +293,10 @@ decl_module! {
 ```
 
 By default, all unsigned transactions are treated as invalid transactions. You need to add the
-following code piece in `my_runtime.rs` to explicitly allow some on-chain functions to be called
+following code piece in `offchain_pallet.rs` to explicitly allow some on-chain functions to be called
 with unsigned transaction.
 
-**runtime/src/my_runtime.rs**
+**runtime/src/offchain_pallet.rs**
 
 ```rust
 decl_module! {
@@ -347,7 +347,7 @@ be only incrementing and is guaranteed to be unique.
 
 To fetch external data from 3rd-party APIs, use the `offchain::http` library as follows.
 
-**runtime/src/my_runtime.rs**
+**runtime/src/offchain_pallet.rs**
 
 ```rust
 use sp_runtime::{
