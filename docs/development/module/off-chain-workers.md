@@ -219,9 +219,9 @@ $ curl -X POST -vk 'http://localhost:9933' -H "Content-Type:application/json;cha
     "id":1,
     "method":"author_insertKey",
     "params": [
-      "YourKeyTypeId",
-      "YourSeedPhrase",
-      "YourPublicKey"
+      "<YourKeyTypeId>",
+      "<YourSeedPhrase>",
+      "<YourPublicKey>"
     ]
   }'
 ```
@@ -327,20 +327,20 @@ impl<T: Trait> support::unsigned::ValidateUnsigned for Module<T> {
 }
 ```
 
-You see that we add a `deprecated` attribute to prevent warning message from display. This is because
-this part of the API is still in transition and will be updated in coming Substrate release.
+You see we add a `deprecated` attribute to prevent warning messages from being displayed. This is
+because this part of the API is still in transition and will be updated in coming Substrate release.
 
 ## Parameters in On-Chain Callbacks
 
-When making a on-chain callback, our implementation hashes the function name together with all
-parameter values and stores it to be called in next import. If we find that the hash value exists,
-meaning a function with the same parameter value set has been called before, for signed transaction
-this causes a function replacement if called with a higher priority; for unsigned transaction, this
-callback is simply ignored.
+When making an on-chain callback, our implementation hashes the function name together with all
+of its parameter values. The callback will be stored and called during the next block next import.
+If we find that the hash value exists, meaning a function with the same set of parameters has
+been called before; for signed transactions the function will be replaced if called with a higher
+priority; for unsigned transactions this callback is simply ignored.
 
-If your pallet is making on-chain callbacks regularly and you expect it will have duplicated
-parameter value set every once in a while, you can always pass in an additional parameter of the
-current block number, that is being passed in from `fn offchain_worker()`. This number is going to
+If your pallet is making on-chain callbacks regularly and you expect it to have duplicate
+set of parameters every once in a while, you can always pass in an additional parameter of the
+current block number that is passed in from `fn offchain_worker()` function. This number is going to
 be only incrementing and is guaranteed to be unique.
 
 ## Fetching External Data
