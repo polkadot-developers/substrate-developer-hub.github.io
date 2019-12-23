@@ -8,9 +8,11 @@ conceptual overview of off-chain workers see the
 
 ## Using Off-Chain Workers in the Runtime
 
-To use off-chain workers in your runtime, include the following modules:
+You can create logic for an off-chain worker by putting it in its own pallet. We will call this
+pallet `my_offchain_worker` for this example. It belongs in your runtime, so
+`runtime/src/my_offchain_worker.rs`.
 
-**runtime/src/offchain_pallet.rs**
+First, include the following modules:
 
 ```rust
 // For better debugging (printout) support
@@ -23,8 +25,6 @@ use sp_runtime::transaction_validity::{
 
 Include the following associated types in your pallet's configuration trait for sending signed and
 unsigned transactions from an off-chain worker.
-
-**runtime/src/offchain_pallet.rs**
 
 ```rust
 pub trait Trait: timestamp::Trait + system::Trait {
@@ -39,8 +39,6 @@ pub trait Trait: timestamp::Trait + system::Trait {
 
 Inside the `decl_module!` block, define the `offchain_worker` function. This function serves
 as the entry point of the off-chain worker and runs after every block import.
-
-**runtime/src/offchain_pallet.rs**
 
 ```rust
 decl_module! {
@@ -59,8 +57,6 @@ By default, the off-chain worker doesn't have direct access to user keys (even i
 environment), but can only access app-specific subkeys for security reasons. You need to define the
 `KeyTypeId` at the top of your runtime that is used to group your app-specific subkeys as follows:
 
-**runtime/src/offchain_pallet.rs**
-
 ```rust
 // The key type ID can be any 4-character string
 pub const KEY_TYPE: KeyTypeId = KeyTypeId(*b"abcd");
@@ -74,9 +70,8 @@ pub mod crypto {
 }
 ```
 
-As with any other pallet, your runtime must implement the pallet's configuration trait.
-
-**runtime/src/lib.rs**
+As with any other pallet, your runtime must implement the pallet's configuration trait. Go to your
+runtime's `lib.rs` at `runtime/src/lib.rs`.
 
 ```rust
 // Define the transaction signer using the key definition
@@ -95,9 +90,8 @@ impl runtime::Trait for Runtime {
 }
 ```
 
-Then implement the `system::offchain::CreateTransaction` trait for the runtime.
-
-**runtime/src/lib.rs**
+Then implement the `system::offchain::CreateTransaction` trait for the runtime. Still in your 
+`lib.rs`:
 
 ```rust
 use sp_runtime::transaction_validity;
@@ -138,8 +132,6 @@ Inside the `contruct_runtime!` macro where you put all the various pallets as pa
 add the additional parameter `ValidateUnsigned` if you are using unsigned transactions in off-chain
 workers. You will need to write custom [validation logic](conceptual/node/extrinsics.md) for this.
 
-**runtime/src/lib.rs**
-
 ```rust
 construct_runtime!(
   pub enum Runtime where
@@ -167,9 +159,7 @@ two ways.
 ### Option 1 (Development): Add the First User Key as App Subkey
 
 In a development environment, you can add the first user's key as the app sub-key. Update the
-`service.rs` as follows.
-
-**node/src/service.rs**
+`node/src/service.rs` as follows.
 
 ```rust
 pub fn new_full<C: Send + Default + 'static>(config: Configuration<C, GenesisConfig>)
@@ -231,9 +221,8 @@ A new key is now added in the local keystore.
 
 ## Signed Transactions
 
-Now you are ready to to make a signed transaction from the off-chain worker.
-
-**runtime/src/offchain_pallet.rs**
+Now you are ready to to make a signed transaction from the off-chain worker. Go back to your pallet
+in `my_offchain_worker.rs`.
 
 ```rust
 decl_module! {
@@ -269,8 +258,6 @@ you only have one key in the local keystore now, you are calling the function on
 
 With the following code, you are able to send an unsigned transaction back to the chain.
 
-**runtime/src/offchain_pallet.rs**
-
 ```rust
 decl_module! {
   pub struct Module<T: Trait> for enum Call where origin: T::Origin {
@@ -292,10 +279,8 @@ decl_module! {
 ```
 
 By default, all unsigned transactions are treated as invalid transactions. You need to add the
-following code piece in `offchain_pallet.rs` to explicitly allow some on-chain functions to call
+following code piece in `my_offchain_worker.rs` to explicitly allow some on-chain functions to call
 unsigned transactions.
-
-**runtime/src/offchain_pallet.rs**
 
 ```rust
 decl_module! {
@@ -344,9 +329,8 @@ increment and is guaranteed to be unique.
 
 ## Fetching External Data
 
-To fetch external data from third-party APIs, use the `offchain::http` library as follows.
-
-**runtime/src/offchain_pallet.rs**
+To fetch external data from third-party APIs, use the `offchain::http` library  in 
+`my_offchain_worker.rs` as follows.
 
 ```rust
 use sp_runtime::{
