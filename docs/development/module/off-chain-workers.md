@@ -317,7 +317,7 @@ because this part of the API is still in transition and will be updated in comin
 ## Parameters in On-Chain Callbacks
 
 When making an on-chain callback, our implementation hashes the function name together with all
-of its parameter values. The callback will be stored and called during the next block next import.
+of its parameter values. The callback will be stored and called during the next block import.
 If we find that the hash value exists, meaning a function with the same set of parameters has
 been called before, then for signed transactions the function will be replaced if called with a 
 higher priority; for unsigned transactions this callback is simply ignored.
