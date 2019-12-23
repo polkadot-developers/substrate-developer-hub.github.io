@@ -3,16 +3,17 @@ title: Off-Chain Workers
 ---
 
 This article covers the technical aspects of using off-chain workers in a Substrate runtime. For a
-conceptual overview of off-chain workers see [Conceptual Guide](conceptual/core/off-chain-workers.md).
+conceptual overview of off-chain workers see the
+[Conceptual Guide](conceptual/core/off-chain-workers.md).
 
-## Using Off-Chain Workers in Runtime
+## Using Off-Chain Workers in the Runtime
 
-To use off-chain workers in your runtime, include these following modules
+To use off-chain workers in your runtime, include the following modules:
 
 **runtime/src/offchain_pallet.rs**
 
 ```rust
-//For better debugging (printout) support
+// For better debugging (printout) support
 use support::{ debug, dispatch };
 use system::offchain;
 use sp_runtime::transaction_validity::{
@@ -36,7 +37,7 @@ pub trait Trait: timestamp::Trait + system::Trait {
 }
 ```
 
-Now inside the `decl_module!` section, define the `offchain_worker` function. This function serves
+Inside the `decl_module!` block, define the `offchain_worker` function. This function serves
 as the entry point of the off-chain worker and runs after every block import.
 
 **runtime/src/offchain_pallet.rs**
@@ -54,14 +55,14 @@ decl_module! {
 }
 ```
 
-By default, the offchain worker doesn't have direct access to user keys (even in development
-environment), but can only access app-specific subkeys for security reason. You need to define the
-`KeyTypeId` at the top of your runtime that is used to group your app-specific subkeys as follows.
+By default, the off-chain worker doesn't have direct access to user keys (even in the development
+environment), but can only access app-specific subkeys for security reasons. You need to define the
+`KeyTypeId` at the top of your runtime that is used to group your app-specific subkeys as follows:
 
 **runtime/src/offchain_pallet.rs**
 
 ```rust
-// The key type ID can be any 4-character long string
+// The key type ID can be any 4-character string
 pub const KEY_TYPE: KeyTypeId = KeyTypeId(*b"abcd");
 
 // --snip--
@@ -78,7 +79,7 @@ As with any other pallet, your runtime must implement the pallet's configuration
 **runtime/src/lib.rs**
 
 ```rust
-/// Define the Transaction signer using the Key definition
+// Define the transaction signer using the key definition
 type SubmitTransaction = system::offchain::TransactionSubmitter<
   offchain_pallet::crypto::Public, Runtime, UncheckedExtrinsic>;
 
@@ -86,10 +87,10 @@ impl runtime::Trait for Runtime {
   type Event = Event;
   type Call = Call;
 
-  // To use signed transaction in your runtime
+  // To use signed transactions in your runtime
   type SubmitSignedTransaction = SubmitTransaction;
 
-  // To use unsigned transaction in your runtime
+  // To use unsigned transactions in your runtime
   type SubmitUnsignedTransaction = SubmitTransaction;
 }
 ```
@@ -133,9 +134,9 @@ impl system::offchain::CreateTransaction<Runtime, UncheckedExtrinsic> for Runtim
 }
 ```
 
-Inside the `contruct_runtime!` macro where you put all various packages as your runtime enum, add
-an additional parameter `ValidateUnsigned` if you are using unsigned transactions in off-chain
-workers.
+Inside the `contruct_runtime!` macro where you put all the various pallets as part of your runtime, 
+add the additional parameter `ValidateUnsigned` if you are using unsigned transactions in off-chain
+workers. You will need to write custom [validation logic](conceptual/node/extrinsics.md) for this.
 
 **runtime/src/lib.rs**
 
@@ -148,10 +149,10 @@ construct_runtime!(
   {
     // --snip--
 
-    // For using unsigned transactions
+    // To use unsigned transactions
     OffchainPallet: offchain_pallet::{ Module, Call, Storage, Event<T>, transaction_validity::ValidateUnsigned }
 
-    // For just using signed transactions, it can just well be:
+    // If you are only using signed transactions, it can just be:
     // OffchainPallet: offchain_pallet::{ Module, Call, Storage, Event<T> }
   }
 );
@@ -160,12 +161,12 @@ construct_runtime!(
 ## Insert Keys in `service.rs`
 
 We have specified a local keystore with `KeyTypeId` to store app-specific keys that are accessible
-by the off-chain worker for signing transactions. But currently there are no keys inside. We can add
-keys in one of the following two ways.
+by the off-chain worker for signing transactions. You will need to add keys in one of the following 
+two ways.
 
-### Development: Add the First User Key as App Subkey
+### Option 1 (Development): Add the First User Key as App Subkey
 
-In development environment, you can add the first user's (Alice's) key as the app sub-key. Update the
+In a development environment, you can add the first user's key as the app sub-key. Update the
 `service.rs` as follows.
 
 **node/src/service.rs**
@@ -176,7 +177,7 @@ pub fn new_full<C: Send + Default + 'static>(config: Configuration<C, GenesisCon
 {
   // --snip--
 
-  // Add this line
+  // This clones the key for Alice.
   let dev_seed = config.dev_key_seed.clone();
 
   // --snip--
@@ -187,7 +188,7 @@ pub fn new_full<C: Send + Default + 'static>(config: Configuration<C, GenesisCon
     )?
     .build()?;
 
-  // Add the following section
+  // Add the following section to add the key to the keystore.
   if let Some(seed) = dev_seed {
     service
       .keystore()
@@ -201,9 +202,9 @@ pub fn new_full<C: Send + Default + 'static>(config: Configuration<C, GenesisCon
 }
 ```
 
-Then you would be able to sign transactions, and this is good for **DEVELOPMENT only**.
+Then you will be able to sign transactions. This is good for **development only**.
 
-### Add an App Subkey via CLI
+### Option 2: Add an App Subkey via CLI
 
 In a more realistic setting, after setting up your Substrate node, you can add a new app subkey via
 the command line interface as follows.
@@ -230,8 +231,7 @@ A new key is now added in the local keystore.
 
 ## Signed Transactions
 
-Now you are ready to to make a signed transaction from the off-chain worker as shown in the
-following.
+Now you are ready to to make a signed transaction from the off-chain worker.
 
 **runtime/src/offchain_pallet.rs**
 
@@ -248,7 +248,7 @@ decl_module! {
     }
 
     fn offchain_worker(block: T::BlockNumber) {
-      // Here we specify the function to be callback on-chain in next block import
+      // Here we specify the function to be called back on-chain in next block import.
       let call = Call::onchain_callback(block, b"hello world!".to_vec());
       T::SubmitSignedTransaction::submit_signed(call);
     }
@@ -256,19 +256,18 @@ decl_module! {
 }
 ```
 
-Here, after having defined the on-chain callback function, in the off-chain worker you can specify
+After having defined the on-chain callback function, in the off-chain worker you can specify
 that function to be called back in the next block import phase. You then submit a signed transaction
 to the node.
 
-If you look at the implementation of `fn system::offchain::submit_signed ()` in the
+If you look at the implementation of `fn system::offchain::submit_signed` in the
 [Substrate codebase](https://github.com/paritytech/substrate/blob/a98625501be68cc3084e666497c16b111741dded/frame/system/src/offchain.rs#L106-L115),
-you will see it is calling the on-chain callback for each of the key in local keystore. But since
-you only have one key in the local keystore now, you are calling the function only once back
-on-chain.
+you will see it is calling the on-chain callback for each key in the local keystore. But since
+you only have one key in the local keystore now, you are calling the function only once.
 
 ## Unsigned Transactions
 
-With the following code, you are able to send an unsigned transaction back on-chain.
+With the following code, you are able to send an unsigned transaction back to the chain.
 
 **runtime/src/offchain_pallet.rs**
 
@@ -284,7 +283,7 @@ decl_module! {
     }
 
     fn offchain_worker(block: T::BlockNumber) {
-      // Here we specify the function to be callback on-chain in next block import
+      // Here we specify the function to be called back on-chain in next block import.
       let call = Call::onchain_callback(block, b"hello world!".to_vec());
       T::SubmitUnsignedTransaction::submit_unsigned(call);
     }
@@ -293,8 +292,8 @@ decl_module! {
 ```
 
 By default, all unsigned transactions are treated as invalid transactions. You need to add the
-following code piece in `offchain_pallet.rs` to explicitly allow some on-chain functions to be called
-with unsigned transaction.
+following code piece in `offchain_pallet.rs` to explicitly allow some on-chain functions to call
+unsigned transactions.
 
 **runtime/src/offchain_pallet.rs**
 
@@ -335,17 +334,17 @@ because this part of the API is still in transition and will be updated in comin
 When making an on-chain callback, our implementation hashes the function name together with all
 of its parameter values. The callback will be stored and called during the next block next import.
 If we find that the hash value exists, meaning a function with the same set of parameters has
-been called before; for signed transactions the function will be replaced if called with a higher
-priority; for unsigned transactions this callback is simply ignored.
+been called before, then for signed transactions the function will be replaced if called with a 
+higher priority; for unsigned transactions this callback is simply ignored.
 
-If your pallet is making on-chain callbacks regularly and you expect it to have duplicate
-set of parameters every once in a while, you can always pass in an additional parameter of the
-current block number that is passed in from `fn offchain_worker()` function. This number is going to
-be only incrementing and is guaranteed to be unique.
+If your pallet is making on-chain callbacks regularly and you expect it to have a duplicate
+set of parameters occassionally, you can always pass in an additional parameter of the
+current block number that is passed in from the `offchain_worker` function. This number will only 
+increment and is guaranteed to be unique.
 
 ## Fetching External Data
 
-To fetch external data from 3rd-party APIs, use the `offchain::http` library as follows.
+To fetch external data from third-party APIs, use the `offchain::http` library as follows.
 
 **runtime/src/offchain_pallet.rs**
 
@@ -397,11 +396,13 @@ impl<T: Trait> Module<T> {
 
 You likely need to parse the result in JSON format afterwards. We have
 [an example here](https://github.com/jimmychu0807/substrate-offchain-pricefetch/blob/047ad8094dc21e2bced2d055707756265be32e95/node/runtime/src/price_fetch.rs#L250-L260)
-using an external library to parse the JSON result in `no_std` environment, which our runtime run at.
+using an external library to parse the JSON result in a `no_std` environment.
 
+<!--
 [comment]: # (TODO: Signing Transactions with Session Keys)
 [comment]: # (TODO: Local Key-Value Database)
 [comment]: # (TODO: Writing Tests)
+-->
 
 ## Next Steps
 
@@ -413,4 +414,5 @@ using an external library to parse the JSON result in `no_std` environment, whic
 ### References
 
 - Substrate [`im-online` module](https://github.com/paritytech/substrate/blob/master/frame/im-online/src/lib.rs),
-a pallet inside Substrate using off-chain workers to notify other nodes that I, being a validator in the network, am online.
+a pallet inside Substrate using off-chain workers to notify other nodes that a validator in the 
+network is online.
