@@ -32,7 +32,8 @@
         "ids": [
           "conceptual/cryptography/index",
           "conceptual/cryptography/keys",
-          "conceptual/cryptography/session-keys"
+          "conceptual/cryptography/session-keys",
+          "conceptual/cryptography/ss58-address-format"
         ]
       },
       {
