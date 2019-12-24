@@ -6,7 +6,7 @@ Runtime tests allow you to verify the logic in your runtime module by mocking a 
 
 ## Unit Testing
 
-Substrate uses the existing [unit testing](https://doc.rust-lang.org/rust-by-example/testing/unit_testing.html) framework provided by Rust. To run tests, the command is 
+Substrate uses the existing [unit testing](https://doc.rust-lang.org/rust-by-example/testing/unit_testing.html) framework provided by Rust. To run tests, the command is
 
 ```bash
 cargo test <optional: test_name>
@@ -16,7 +16,7 @@ cargo test <optional: test_name>
 
 To test a Substrate runtime, construct a mock runtime environment. The configuration type `Test` is defined as a unit struct with implementations for each of the configuration traits that need to be used in the mock runtime.
 
-```rust, ignore
+```rust
 #[derive(Clone, PartialEq, Eq, Debug)]
 pub struct Test;
 ```
@@ -38,7 +38,7 @@ The [`runtime-io`](https://crates.parity.io/sr_io/index.html#enums) crate expose
 
 In the [basic mock runtime's recipe](https://substrate.dev/recipes/testing/mock.html), an `ExtBuilder` object is defined to build an instance of [`TestExternalities`](https://substrate.dev/rustdocs/master/sr_io/type.TestExternalities.html).
 
-```
+```rust
 pub struct ExtBuilder;
 
 impl ExtBuilder {
@@ -56,7 +56,7 @@ To create the test environment in unit tests, the build method is called to gene
 fn fake_test_example() {
 	ExtBuilder::build().execute_with(|| {
 		// ...test conditions...
-	}) 
+	})
 }
 ```
 
@@ -92,7 +92,7 @@ Account 1 has balance 10, account 2 has balance 20, and so on.
 
 ### Block Production
 
-It will be useful to simulate block production to verify that expected behavior holds during block time dependent changes. 
+It will be useful to simulate block production to verify that expected behavior holds during block time dependent changes.
 
 A simple way of doing this increments the System module's block number between `on_initialize` and `on_finalize` calls from all modules with `System::block_number()` as the sole input. While it is important for runtime code to [cache calls](https://substrate.dev/recipes/storage/cache.html) to storage or the system module, the test environment scaffolding should prioritize readability to facilitate future maintenance.
 
