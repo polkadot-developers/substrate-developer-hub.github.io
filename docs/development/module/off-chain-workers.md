@@ -313,7 +313,7 @@ impl<T: Trait> support::unsigned::ValidateUnsigned for Module<T> {
 
 We add a `deprecated` attribute to prevent warning messages from being displayed. It is
 because this part of the API is still in transition and will be updated in coming Substrate release.
-Please use this in caution for now.
+Please use this with caution for now.
 
 [Learn more about Unsigned Transactions](conceptual/node/extrinsics.md#unsigned-transactions).
 
