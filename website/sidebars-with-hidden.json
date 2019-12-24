@@ -8,6 +8,7 @@
         "ids": [
           "conceptual/core/codec",
           "conceptual/core/executor",
+          "conceptual/core/off-chain-workers",
           "conceptual/core/storage"
         ]
       },
@@ -15,8 +16,7 @@
         "type": "subcategory",
         "label": "Substrate Nodes",
         "ids": [
-          "conceptual/node/extrinsics",
-          "conceptual/core/off-chain-workers"
+          "conceptual/node/extrinsics"
         ]
       },
       {
