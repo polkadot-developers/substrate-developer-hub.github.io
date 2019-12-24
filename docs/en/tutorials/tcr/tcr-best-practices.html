@@ -91,7 +91,43 @@
 <p>For example, remember from part 1 that in the <code>challenge</code> function we check if the apply stage period for the listing has passed or not. If it has, then we do not go further in the execution and return with an <code>Err</code> result. If we hadn't placed this check <em>before</em> the insert of challenge instance in the Challenges map, the TCR would have reached a bad state. There was no way we could have reverted this challenge creation.</p>
 <p>Another example could be the locking of tokens when a user executes one of the <code>propose</code>, <code>challenge</code> or <code>vote</code> functions. In all these functions, after checking several conditions, we call the <code>lock</code> function from the <code>token</code> module to take the deposit from the user. If we lock the funds before the checks and if any of these checks fail then the user would lose his deposit without getting the desired outcome.</p>
 <p>This is why we need to be very careful when updating the storage. We need to make sure that all <code>ensure</code> and other checks on input and logic are done <em>before</em> the state updates. There is no revert. This is a bit of a paradigm shift from smart contracts and we need to be cognizant of it.</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/19/2019 by Shawn Tabrizi</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/tutorials/tcr/building-an-event-based-off-chain-storage"><span class="arrow-prev">← </span><span>Building an event based off-chain storage</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#avoiding-economic-vulnerability-in-runtime-modules">Avoiding economic vulnerability in runtime modules</a></li><li><a href="#handling-errors-gracefully">Handling errors gracefully</a></li><li><a href="#updating-state-only-after-proper-checks">Updating state only after proper checks</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/getting-started">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/en/videos">Videos</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/19/2019 by Shawn Tabrizi</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/tutorials/tcr/building-an-event-based-off-chain-storage"><span class="arrow-prev">← </span><span>Building an event based off-chain storage</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#avoiding-economic-vulnerability-in-runtime-modules">Avoiding economic vulnerability in runtime modules</a></li><li><a href="#handling-errors-gracefully">Handling errors gracefully</a></li><li><a href="#updating-state-only-after-proper-checks">Updating state only after proper checks</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
+#blast {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 50px;
+  background-image: url(/img/bg-sub01.svg); background-size: cover; background-position: right 0px bottom 500px;;
+  color: #18FFB2;
+  z-index: 99999;
+  text-align: center;
+  background-color: #000028;
+  transition: background-color 0.2s;
+}
+#blast:hover {
+  background-color: #E91E63;
+}
+
+#blast h2 {
+  margin: 0;
+  line-height: 50px;
+}
+
+#blast a {
+  display: block;
+  color: #18FFB2;
+  text-decoration: underline;
+  mix-blend-mode: lighten;
+}
+
+#blast img {
+  max-height: 50px;
+}
+
+body {
+  margin-bottom: 50px;
+}
+</style><section id="blast"><a href="/docs/en/next/getting-started" target="_blank"><img src="/img/substrate-v2-doc-invite.png" class="img-fluid"/></a></section></div><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/getting-started">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/en/videos">Videos</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
               var cookieSettings = document.getElementById('cookie-settings');
               cookieSettings.onclick = function() {
                 return klaro.show();
