@@ -1,0 +1,445 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Off-Chain Workers · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;This article covers the technical aspects of using off-chain workers in a Substrate runtime. For a conceptual overview of off-chain workers see the &lt;a href=&quot;/docs/zh-CN/next/conceptual/core/off-chain-workers&quot;&gt;Conceptual Guide&lt;/a&gt;.&lt;/p&gt;
+"/><meta name="docsearch:version" content="next"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="Off-Chain Workers · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;This article covers the technical aspects of using off-chain workers in a Substrate runtime. For a conceptual overview of off-chain workers see the &lt;a href=&quot;/docs/zh-CN/next/conceptual/core/off-chain-workers&quot;&gt;Conceptual Guide&lt;/a&gt;.&lt;/p&gt;
+"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/zh-CN/versions"><h3>next</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/zh-CN/docs" target="_self">文档</a></li><li class=""><a href="/recipes/" target="_self">Recipes</a></li><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class=""><a href="/zh-CN/community" target="_self">社区</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/next/development/module/off-chain-workers">English</a></li><li><a href="/docs/ru/next/development/module/off-chain-workers">Русский</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">参与翻译</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Runtime Modules</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Overview<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/getting-started">开始</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/glossary">Glossary</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Conceptual<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Substrate Core</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/conceptual/core/codec">SCALE 编解码器</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/conceptual/core/executor">Executor</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/conceptual/core/off-chain-workers">Off-Chain Workers</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/conceptual/core/storage">Storage</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Substrate Nodes</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/conceptual/node/extrinsics">Extrinsics</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Cryptography</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/conceptual/cryptography/">密码学</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/conceptual/cryptography/keys">Substrate Keys</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Substrate Runtime</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/conceptual/runtime/frame">FRAME</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/conceptual/runtime/weight">Transaction Weight</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/conceptual/runtime/primitives">Runtime Primitives</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Smart Contracts</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/conceptual/runtime/contracts/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/conceptual/runtime/contracts/contracts_module">Contracts Module</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/conceptual/runtime/contracts/evm_module">EVM Module</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/conceptual/runtime/contracts/ink">ink!</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Development<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Modules</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/development/module/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/development/module/execution">Runtime Execution</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/development/module/macros">Runtime Macros</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/development/module/origin">Runtime Origin</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/development/module/storage">Runtime Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/development/module/events">Runtime Events</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/next/development/module/off-chain-workers">Off-Chain Workers</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/development/module/fees">Transaction Fees</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/development/module/tests">Runtime Tests</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Deployment</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/development/deployment/chain-spec">Chain Specification</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Front End</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/development/front-end/polkadot-js">Polkadot-JS</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Smart Contracts</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/next/development/contracts/ink">ink!</a></li></ul></div></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">Off-Chain Workers</h1></header><article><div><span><p>This article covers the technical aspects of using off-chain workers in a Substrate runtime. For a conceptual overview of off-chain workers see the <a href="/docs/zh-CN/next/conceptual/core/off-chain-workers">Conceptual Guide</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="using-off-chain-workers-in-the-runtime"></a><a href="#using-off-chain-workers-in-the-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using Off-Chain Workers in the Runtime</h2>
+<p>You can create logic for an off-chain worker by putting it in its own pallet. We will call this pallet <code>my_offchain_worker</code> for this example. It belongs in your runtime, so <code>runtime/src/my_offchain_worker.rs</code>.</p>
+<p>First, include the following modules:</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// For better debugging (printout) support</span>
+<span class="token keyword">use</span> support<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span> debug<span class="token punctuation">,</span> dispatch <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> system<span class="token punctuation">:</span><span class="token punctuation">:</span>offchain<span class="token punctuation">;</span>
+<span class="token keyword">use</span> sp_runtime<span class="token punctuation">:</span><span class="token punctuation">:</span>transaction_validity<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+  TransactionValidity<span class="token punctuation">,</span> TransactionLongevity<span class="token punctuation">,</span> ValidTransaction<span class="token punctuation">,</span> InvalidTransaction
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Include the following associated types in your pallet's configuration trait for sending signed and unsigned transactions from an off-chain worker.</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">pub</span> <span class="token keyword">trait</span> Trait<span class="token punctuation">:</span> timestamp<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait <span class="token operator">+</span> system<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait <span class="token punctuation">{</span>
+  <span class="token comment">/// The overarching event type.</span>
+  <span class="token keyword">type</span> Event<span class="token punctuation">:</span> From<span class="token operator">&lt;</span>Event<span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token operator">>></span> <span class="token operator">+</span> Into<span class="token operator">&lt;&lt;</span><span class="token keyword">Self</span> <span class="token keyword">as</span> system<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span>Event<span class="token operator">></span><span class="token punctuation">;</span>
+  <span class="token keyword">type</span> Call<span class="token punctuation">:</span> From<span class="token operator">&lt;</span>Call<span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token operator">>></span><span class="token punctuation">;</span>
+
+  <span class="token keyword">type</span> SubmitSignedTransaction<span class="token punctuation">:</span> offchain<span class="token punctuation">:</span><span class="token punctuation">:</span>SubmitSignedTransaction<span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token punctuation">,</span> <span class="token operator">&lt;</span><span class="token keyword">Self</span> <span class="token keyword">as</span> Trait<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span>Call<span class="token operator">></span><span class="token punctuation">;</span>
+  <span class="token keyword">type</span> SubmitUnsignedTransaction<span class="token punctuation">:</span> offchain<span class="token punctuation">:</span><span class="token punctuation">:</span>SubmitUnsignedTransaction<span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token punctuation">,</span> <span class="token operator">&lt;</span><span class="token keyword">Self</span> <span class="token keyword">as</span> Trait<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span>Call<span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Inside the <code>decl_module!</code> block, define the <code>offchain_worker</code> function. This function serves as the entry point of the off-chain worker and runs after every block import.</p>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span>
+  <span class="token keyword">pub</span> <span class="token keyword">struct</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> Call <span class="token keyword">where</span> origin<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>Origin <span class="token punctuation">{</span>
+
+    <span class="token comment">// --snip--</span>
+
+    <span class="token keyword">fn</span> <span class="token function">offchain_worker</span><span class="token punctuation">(</span>block<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>BlockNumber<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      debug<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">info!</span><span class="token punctuation">(</span><span class="token string">"Hello World."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>By default, the off-chain worker doesn't have direct access to user keys (even in the development environment), but can only access app-specific subkeys for security reasons. You need to define the <code>KeyTypeId</code> at the top of your runtime that is used to group your app-specific subkeys as follows:</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// The key type ID can be any 4-character string</span>
+<span class="token keyword">pub</span> <span class="token keyword">const</span> KEY_TYPE<span class="token punctuation">:</span> KeyTypeId <span class="token operator">=</span> <span class="token function">KeyTypeId</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token string">b"abcd"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// --snip--</span>
+
+<span class="token keyword">pub</span> <span class="token keyword">mod</span> crypto <span class="token punctuation">{</span>
+  <span class="token keyword">pub</span> <span class="token keyword">use</span> <span class="token keyword">super</span><span class="token punctuation">:</span><span class="token punctuation">:</span>KEY_TYPE<span class="token punctuation">;</span>
+  <span class="token keyword">use</span> sp_runtime<span class="token punctuation">:</span><span class="token punctuation">:</span>app_crypto<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>app_crypto<span class="token punctuation">,</span> sr25519<span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token function">app_crypto!</span><span class="token punctuation">(</span>sr25519<span class="token punctuation">,</span> KEY_TYPE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>As with any other pallet, your runtime must implement the pallet's configuration trait. Go to your runtime's <code>lib.rs</code> at <code>runtime/src/lib.rs</code>.</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// Define the transaction signer using the key definition</span>
+<span class="token keyword">type</span> SubmitTransaction <span class="token operator">=</span> system<span class="token punctuation">:</span><span class="token punctuation">:</span>offchain<span class="token punctuation">:</span><span class="token punctuation">:</span>TransactionSubmitter<span class="token operator">&lt;</span>
+  offchain_pallet<span class="token punctuation">:</span><span class="token punctuation">:</span>crypto<span class="token punctuation">:</span><span class="token punctuation">:</span>Public<span class="token punctuation">,</span> Runtime<span class="token punctuation">,</span> UncheckedExtrinsic<span class="token operator">></span><span class="token punctuation">;</span>
+
+<span class="token keyword">impl</span> runtime<span class="token punctuation">:</span><span class="token punctuation">:</span>Trait <span class="token keyword">for</span> Runtime <span class="token punctuation">{</span>
+  <span class="token keyword">type</span> Event <span class="token operator">=</span> Event<span class="token punctuation">;</span>
+  <span class="token keyword">type</span> Call <span class="token operator">=</span> Call<span class="token punctuation">;</span>
+
+  <span class="token comment">// To use signed transactions in your runtime</span>
+  <span class="token keyword">type</span> SubmitSignedTransaction <span class="token operator">=</span> SubmitTransaction<span class="token punctuation">;</span>
+
+  <span class="token comment">// To use unsigned transactions in your runtime</span>
+  <span class="token keyword">type</span> SubmitUnsignedTransaction <span class="token operator">=</span> SubmitTransaction<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Then implement the <code>system::offchain::CreateTransaction</code> trait for the runtime. Still in your <code>lib.rs</code>:</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">use</span> sp_runtime<span class="token punctuation">:</span><span class="token punctuation">:</span>transaction_validity<span class="token punctuation">;</span>
+
+<span class="token comment">// --snip--</span>
+
+<span class="token keyword">impl</span> system<span class="token punctuation">:</span><span class="token punctuation">:</span>offchain<span class="token punctuation">:</span><span class="token punctuation">:</span>CreateTransaction<span class="token operator">&lt;</span>Runtime<span class="token punctuation">,</span> UncheckedExtrinsic<span class="token operator">></span> <span class="token keyword">for</span> Runtime <span class="token punctuation">{</span>
+  <span class="token keyword">type</span> Public <span class="token operator">=</span> <span class="token operator">&lt;</span>Signature <span class="token keyword">as</span> Verify<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span>Signer<span class="token punctuation">;</span>
+  <span class="token keyword">type</span> Signature <span class="token operator">=</span> Signature<span class="token punctuation">;</span>
+
+  <span class="token keyword">fn</span> create_transaction<span class="token operator">&lt;</span>TSigner<span class="token punctuation">:</span> system<span class="token punctuation">:</span><span class="token punctuation">:</span>offchain<span class="token punctuation">:</span><span class="token punctuation">:</span>Signer<span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span>Public<span class="token punctuation">,</span> <span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span>Signature<span class="token operator">>></span> <span class="token punctuation">(</span>
+    call<span class="token punctuation">:</span> Call<span class="token punctuation">,</span>
+    public<span class="token punctuation">:</span> <span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span>Public<span class="token punctuation">,</span>
+    account<span class="token punctuation">:</span> AccountId<span class="token punctuation">,</span>
+    index<span class="token punctuation">:</span> Index<span class="token punctuation">,</span>
+  <span class="token punctuation">)</span> <span class="token punctuation">-></span> Option<span class="token operator">&lt;</span><span class="token punctuation">(</span>Call<span class="token punctuation">,</span> <span class="token operator">&lt;</span>UncheckedExtrinsic <span class="token keyword">as</span> sp_runtime<span class="token punctuation">:</span><span class="token punctuation">:</span>traits<span class="token punctuation">:</span><span class="token punctuation">:</span>Extrinsic<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span>SignaturePayload<span class="token punctuation">)</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> period <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">8</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> current_block <span class="token operator">=</span> System<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">block_number</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>saturated_into<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">&lt;</span>u64<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> tip <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> extra<span class="token punctuation">:</span> SignedExtra <span class="token operator">=</span> <span class="token punctuation">(</span>
+      system<span class="token punctuation">:</span><span class="token punctuation">:</span>CheckVersion<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">&lt;</span>Runtime<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      system<span class="token punctuation">:</span><span class="token punctuation">:</span>CheckGenesis<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">&lt;</span>Runtime<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      system<span class="token punctuation">:</span><span class="token punctuation">:</span>CheckEra<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">&lt;</span>Runtime<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">from</span><span class="token punctuation">(</span>generic<span class="token punctuation">:</span><span class="token punctuation">:</span>Era<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">mortal</span><span class="token punctuation">(</span>period<span class="token punctuation">,</span> current_block<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      system<span class="token punctuation">:</span><span class="token punctuation">:</span>CheckNonce<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">&lt;</span>Runtime<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">from</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      system<span class="token punctuation">:</span><span class="token punctuation">:</span>CheckWeight<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">&lt;</span>Runtime<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      transaction_payment<span class="token punctuation">:</span><span class="token punctuation">:</span>ChargeTransactionPayment<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">&lt;</span>Runtime<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">from</span><span class="token punctuation">(</span>tip<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> raw_payload <span class="token operator">=</span> SignedPayload<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span>call<span class="token punctuation">,</span> extra<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span>?<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> signature <span class="token operator">=</span> TSigner<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">sign</span><span class="token punctuation">(</span>public<span class="token punctuation">,</span> <span class="token operator">&amp;</span>raw_payload<span class="token punctuation">)</span>?<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> address <span class="token operator">=</span> Indices<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">unlookup</span><span class="token punctuation">(</span>account<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> <span class="token punctuation">(</span>call<span class="token punctuation">,</span> extra<span class="token punctuation">,</span> _<span class="token punctuation">)</span> <span class="token operator">=</span> raw_payload<span class="token punctuation">.</span><span class="token function">deconstruct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">Some</span><span class="token punctuation">(</span><span class="token punctuation">(</span>call<span class="token punctuation">,</span> <span class="token punctuation">(</span>address<span class="token punctuation">,</span> signature<span class="token punctuation">,</span> extra<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Inside the <code>contruct_runtime!</code> macro where you put all the various pallets as part of your runtime, add the additional parameter <code>ValidateUnsigned</code> if you are using unsigned transactions in off-chain workers. You will need to write custom <a href="/docs/zh-CN/next/conceptual/node/extrinsics">validation logic</a> for this.</p>
+<pre><code class="hljs css language-rust"><span class="token function">construct_runtime!</span><span class="token punctuation">(</span>
+  <span class="token keyword">pub</span> <span class="token keyword">enum</span> Runtime <span class="token keyword">where</span>
+    Block <span class="token operator">=</span> Block<span class="token punctuation">,</span>
+    NodeBlock <span class="token operator">=</span> opaque<span class="token punctuation">:</span><span class="token punctuation">:</span>Block<span class="token punctuation">,</span>
+    UncheckedExtrinsic <span class="token operator">=</span> UncheckedExtrinsic
+  <span class="token punctuation">{</span>
+    <span class="token comment">// --snip--</span>
+
+    <span class="token comment">// To use unsigned transactions</span>
+    OffchainPallet<span class="token punctuation">:</span> offchain_pallet<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span> Module<span class="token punctuation">,</span> Call<span class="token punctuation">,</span> Storage<span class="token punctuation">,</span> Event<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">,</span> transaction_validity<span class="token punctuation">:</span><span class="token punctuation">:</span>ValidateUnsigned <span class="token punctuation">}</span>
+
+    <span class="token comment">// If you are only using signed transactions, it can just be:</span>
+    <span class="token comment">// OffchainPallet: offchain_pallet::{ Module, Call, Storage, Event&lt;T> }</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="insert-keys-in-servicers"></a><a href="#insert-keys-in-servicers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Insert Keys in <code>service.rs</code></h2>
+<p>We have specified a local keystore with <code>KeyTypeId</code> to store app-specific keys that are accessible by the off-chain worker for signing transactions. You will need to add keys in one of the following two ways.</p>
+<h3><a class="anchor" aria-hidden="true" id="option-1-development-add-the-first-user-key-as-app-subkey"></a><a href="#option-1-development-add-the-first-user-key-as-app-subkey" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Option 1 (Development): Add the First User Key as App Subkey</h3>
+<p>In a development environment, you can add the first user's key as the app sub-key. Update the <code>node/src/service.rs</code> as follows.</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">pub</span> <span class="token keyword">fn</span> new_full<span class="token operator">&lt;</span>C<span class="token punctuation">:</span> Send <span class="token operator">+</span> Default <span class="token operator">+</span> <span class="token lifetime-annotation symbol">'static</span><span class="token operator">></span><span class="token punctuation">(</span>config<span class="token punctuation">:</span> Configuration<span class="token operator">&lt;</span>C<span class="token punctuation">,</span> GenesisConfig<span class="token operator">></span><span class="token punctuation">)</span>
+  <span class="token punctuation">-></span> Result<span class="token operator">&lt;</span><span class="token keyword">impl</span> AbstractService<span class="token punctuation">,</span> ServiceError<span class="token operator">></span>
+<span class="token punctuation">{</span>
+  <span class="token comment">// --snip--</span>
+
+  <span class="token comment">// This clones the key for Alice.</span>
+  <span class="token keyword">let</span> dev_seed <span class="token operator">=</span> config<span class="token punctuation">.</span>dev_key_seed<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// --snip--</span>
+
+  <span class="token keyword">let</span> service <span class="token operator">=</span> builder<span class="token punctuation">.</span><span class="token function">with_network_protocol</span><span class="token punctuation">(</span><span class="token operator">|</span>_<span class="token operator">|</span> <span class="token function">Ok</span><span class="token punctuation">(</span>NodeProtocol<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>?
+    <span class="token punctuation">.</span><span class="token function">with_finality_proof_provider</span><span class="token punctuation">(</span><span class="token operator">|</span>client<span class="token punctuation">,</span> backend<span class="token operator">|</span>
+      <span class="token function">Ok</span><span class="token punctuation">(</span>Arc<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span>GrandpaFinalityProofProvider<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">new</span><span class="token punctuation">(</span>backend<span class="token punctuation">,</span> client<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">as</span> _<span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>?
+    <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span>?<span class="token punctuation">;</span>
+
+  <span class="token comment">// Add the following section to add the key to the keystore.</span>
+  <span class="token keyword">if</span> <span class="token keyword">let</span> <span class="token function">Some</span><span class="token punctuation">(</span>seed<span class="token punctuation">)</span> <span class="token operator">=</span> dev_seed <span class="token punctuation">{</span>
+    service
+      <span class="token punctuation">.</span><span class="token function">keystore</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span>insert_ephemeral_from_seed_by_type<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">&lt;</span>runtime<span class="token punctuation">:</span><span class="token punctuation">:</span>offchain_pallet<span class="token punctuation">:</span><span class="token punctuation">:</span>crypto<span class="token punctuation">:</span><span class="token punctuation">:</span>Pair<span class="token operator">></span><span class="token punctuation">(</span>
+        <span class="token operator">&amp;</span>seed<span class="token punctuation">,</span>
+        runtime<span class="token punctuation">:</span><span class="token punctuation">:</span>offchain_pallet<span class="token punctuation">:</span><span class="token punctuation">:</span>KEY_TYPE<span class="token punctuation">,</span>
+      <span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span><span class="token string">"Dev Seed should always succeed."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Then you will be able to sign transactions. This is good for <strong>development only</strong>.</p>
+<h3><a class="anchor" aria-hidden="true" id="option-2-add-an-app-subkey-via-cli"></a><a href="#option-2-add-an-app-subkey-via-cli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Option 2: Add an App Subkey via CLI</h3>
+<p>In a more realistic setting, after setting up your Substrate node, you can add a new app subkey via the command line interface as follows.</p>
+<pre><code class="hljs css language-bash"><span class="token comment"># Generate a new account</span>
+$ subkey -s generate
+
+<span class="token comment"># Submit a new key via RPC</span>
+$ <span class="token function">curl</span> -X POST -vk <span class="token string">'http://localhost:9933'</span> -H <span class="token string">"Content-Type:application/json;charset=utf-8"</span> \
+  -d <span class="token string">'{
+    "jsonrpc":2.0,
+    "id":1,
+    "method":"author_insertKey",
+    "params": [
+      "&lt;YourKeyTypeId>",
+      "&lt;YourSeedPhrase>",
+      "&lt;YourPublicKey>"
+    ]
+  }'</span>
+</code></pre>
+<p>A new key is now added in the local keystore.</p>
+<h2><a class="anchor" aria-hidden="true" id="signed-transactions"></a><a href="#signed-transactions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Signed Transactions</h2>
+<p>Now you are ready to to make a signed transaction from the off-chain worker. Go back to your pallet in <code>my_offchain_worker.rs</code>.</p>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span>
+  <span class="token keyword">pub</span> <span class="token keyword">struct</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> Call <span class="token keyword">where</span> origin<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>Origin <span class="token punctuation">{</span>
+    <span class="token comment">// --snip--</span>
+
+    <span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function">onchain_callback</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> _block<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>BlockNumber<span class="token punctuation">,</span> input<span class="token punctuation">:</span> Vec<span class="token operator">&lt;</span>u8<span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">-></span> dispatch<span class="token punctuation">:</span><span class="token punctuation">:</span>Result <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> who <span class="token operator">=</span> <span class="token function">ensure_signed</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span>?<span class="token punctuation">;</span>
+      debug<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">info!</span><span class="token punctuation">(</span><span class="token string">"{:?}"</span><span class="token punctuation">,</span> core<span class="token punctuation">:</span><span class="token punctuation">:</span>str<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">from_utf8</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>input<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unwrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">fn</span> <span class="token function">offchain_worker</span><span class="token punctuation">(</span>block<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>BlockNumber<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Here we specify the function to be called back on-chain in next block import.</span>
+      <span class="token keyword">let</span> call <span class="token operator">=</span> Call<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">onchain_callback</span><span class="token punctuation">(</span>block<span class="token punctuation">,</span> <span class="token string">b"hello world!"</span><span class="token punctuation">.</span><span class="token function">to_vec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      T<span class="token punctuation">:</span><span class="token punctuation">:</span>SubmitSignedTransaction<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">submit_signed</span><span class="token punctuation">(</span>call<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>After having defined the on-chain callback function, in the off-chain worker you can specify that function to be called back in the next block import phase. You then submit a signed transaction to the node.</p>
+<p>If you look at the implementation of <code>fn system::offchain::submit_signed</code> in the <a href="https://github.com/paritytech/substrate/blob/a98625501be68cc3084e666497c16b111741dded/frame/system/src/offchain.rs#L106-L115">Substrate codebase</a>, you will see it is calling the on-chain callback for each key in the local keystore. But since you only have one key in the local keystore now, you are calling the function only once.</p>
+<p><a href="/docs/zh-CN/next/conceptual/node/extrinsics#signed-transactions">Learn more about Signed Transactions</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="unsigned-transactions"></a><a href="#unsigned-transactions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Unsigned Transactions</h2>
+<p>With the following code, you are able to send an unsigned transaction back to the chain.</p>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span>
+  <span class="token keyword">pub</span> <span class="token keyword">struct</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> Call <span class="token keyword">where</span> origin<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>Origin <span class="token punctuation">{</span>
+    <span class="token comment">// --snip--</span>
+
+    <span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function">onchain_callback</span><span class="token punctuation">(</span>_origin<span class="token punctuation">,</span> _block<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>BlockNumber<span class="token punctuation">,</span> input<span class="token punctuation">:</span> Vec<span class="token operator">&lt;</span>u8<span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">-></span> dispatch<span class="token punctuation">:</span><span class="token punctuation">:</span>Result <span class="token punctuation">{</span>
+      debug<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">info!</span><span class="token punctuation">(</span><span class="token string">"{:?}"</span><span class="token punctuation">,</span> core<span class="token punctuation">:</span><span class="token punctuation">:</span>str<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">from_utf8</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>input<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unwrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">fn</span> <span class="token function">offchain_worker</span><span class="token punctuation">(</span>block<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>BlockNumber<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Here we specify the function to be called back on-chain in next block import.</span>
+      <span class="token keyword">let</span> call <span class="token operator">=</span> Call<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">onchain_callback</span><span class="token punctuation">(</span>block<span class="token punctuation">,</span> <span class="token string">b"hello world!"</span><span class="token punctuation">.</span><span class="token function">to_vec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      T<span class="token punctuation">:</span><span class="token punctuation">:</span>SubmitUnsignedTransaction<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">submit_unsigned</span><span class="token punctuation">(</span>call<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>By default, all unsigned transactions are treated as invalid transactions. You need to add the following code piece in <code>my_offchain_worker.rs</code> to explicitly allow submitting unsigned transactions.</p>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span>
+  <span class="token comment">// --snip--</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span><span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> Module<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token comment">// --snip--</span>
+<span class="token punctuation">}</span>
+
+<span class="token attribute attr-name">#[allow(deprecated)]</span>
+<span class="token keyword">impl</span><span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> support<span class="token punctuation">:</span><span class="token punctuation">:</span>unsigned<span class="token punctuation">:</span><span class="token punctuation">:</span>ValidateUnsigned <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">type</span> Call <span class="token operator">=</span> Call<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">;</span>
+
+  <span class="token keyword">fn</span> <span class="token function">validate_unsigned</span><span class="token punctuation">(</span>call<span class="token punctuation">:</span> <span class="token operator">&amp;</span><span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span>Call<span class="token punctuation">)</span> <span class="token punctuation">-></span> TransactionValidity <span class="token punctuation">{</span>
+
+    <span class="token keyword">match</span> call <span class="token punctuation">{</span>
+      Call<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">onchain_callback</span><span class="token punctuation">(</span>block<span class="token punctuation">,</span> input<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">Ok</span><span class="token punctuation">(</span>ValidTransaction <span class="token punctuation">{</span>
+        priority<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        requires<span class="token punctuation">:</span> <span class="token function">vec!</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        provides<span class="token punctuation">:</span> <span class="token function">vec!</span><span class="token punctuation">[</span><span class="token punctuation">(</span>block<span class="token punctuation">,</span> input<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        longevity<span class="token punctuation">:</span> TransactionLongevity<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">max_value</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        propagate<span class="token punctuation">:</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      _ <span class="token operator">=></span> InvalidTransaction<span class="token punctuation">:</span><span class="token punctuation">:</span>Call<span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>We add a <code>deprecated</code> attribute to prevent warning messages from being displayed. It is because this part of the API is still in transition and will be updated in coming Substrate release. Please use this with caution for now.</p>
+<p><a href="/docs/zh-CN/next/conceptual/node/extrinsics#unsigned-transactions">Learn more about Unsigned Transactions</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="parameters-in-on-chain-callbacks"></a><a href="#parameters-in-on-chain-callbacks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parameters in On-Chain Callbacks</h2>
+<p>When making an on-chain callback, our implementation hashes the function name together with all of its parameter values. The callback will be stored and called during the next block import. If we find that the hash value exists, meaning a function with the same set of parameters has been called before, then for signed transactions the function will be replaced if called with a higher priority; for unsigned transactions this callback is simply ignored.</p>
+<p>If your pallet is making on-chain callbacks regularly and you expect it to have a duplicate set of parameters occassionally, you can always pass in an additional parameter of the current block number that is passed in from the <code>offchain_worker</code> function. This number will only increment and is guaranteed to be unique.</p>
+<h2><a class="anchor" aria-hidden="true" id="fetching-external-data"></a><a href="#fetching-external-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fetching External Data</h2>
+<p>To fetch external data from third-party APIs, use the <code>offchain::http</code> library  in <code>my_offchain_worker.rs</code> as follows.</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">use</span> sp_runtime<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+  offchain<span class="token punctuation">:</span><span class="token punctuation">:</span>http<span class="token punctuation">,</span>
+  transaction_validity<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token punctuation">{</span>
+    TransactionValidity<span class="token punctuation">,</span> TransactionLongevity<span class="token punctuation">,</span> ValidTransaction<span class="token punctuation">,</span> InvalidTransaction
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// --snip--</span>
+
+<span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span>
+  <span class="token keyword">pub</span> <span class="token keyword">struct</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> Call <span class="token keyword">where</span> origin<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>Origin <span class="token punctuation">{</span>
+    <span class="token comment">// --snip--</span>
+    <span class="token keyword">fn</span> <span class="token function">offchain_worker</span><span class="token punctuation">(</span>block<span class="token punctuation">:</span> T<span class="token punctuation">:</span><span class="token punctuation">:</span>BlockNumber<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">match</span> <span class="token keyword">Self</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">fetch_data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">Ok</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token operator">=></span> debug<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">info!</span><span class="token punctuation">(</span><span class="token string">"Result: {}"</span><span class="token punctuation">,</span> core<span class="token punctuation">:</span><span class="token punctuation">:</span>str<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">from_utf8</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>res<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unwrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">Err</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">=></span> debug<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">error!</span><span class="token punctuation">(</span><span class="token string">"Error fetch_data: {}"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span><span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> Module<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">fn</span> <span class="token function">fetch_data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> Result<span class="token operator">&lt;</span>Vec<span class="token operator">&lt;</span>u8<span class="token operator">></span><span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token lifetime-annotation symbol">'static</span> str<span class="token operator">></span> <span class="token punctuation">{</span>
+
+    <span class="token comment">// Specifying the request</span>
+    <span class="token keyword">let</span> pending <span class="token operator">=</span> http<span class="token punctuation">:</span><span class="token punctuation">:</span>Request<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"https://min-api.cryptocompare.com/data/price?fsym=BTC&amp;tsyms=USD"</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">map_err</span><span class="token punctuation">(</span><span class="token operator">|</span>_<span class="token operator">|</span> <span class="token string">"Error in sending http GET request"</span><span class="token punctuation">)</span>?<span class="token punctuation">;</span>
+
+    <span class="token comment">// Waiting for the response</span>
+    <span class="token keyword">let</span> response <span class="token operator">=</span> pending<span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">map_err</span><span class="token punctuation">(</span><span class="token operator">|</span>_<span class="token operator">|</span> <span class="token string">"Error in waiting http response back"</span><span class="token punctuation">)</span>?<span class="token punctuation">;</span>
+
+    <span class="token comment">// Check if the HTTP response is okay</span>
+    <span class="token keyword">if</span> response<span class="token punctuation">.</span>code <span class="token operator">!=</span> <span class="token number">200</span> <span class="token punctuation">{</span>
+      debug<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">warn!</span><span class="token punctuation">(</span><span class="token string">"Unexpected status code: {}"</span><span class="token punctuation">,</span> response<span class="token punctuation">.</span>code<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token function">Err</span><span class="token punctuation">(</span><span class="token string">"Non-200 status code returned from http request"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Collect the result in the form of bytes</span>
+    <span class="token function">Ok</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>collect<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">&lt;</span>Vec<span class="token operator">&lt;</span>u8<span class="token operator">>></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>You likely need to parse the result in JSON format afterwards. We have <a href="https://github.com/jimmychu0807/substrate-offchain-pricefetch/blob/047ad8094dc21e2bced2d055707756265be32e95/node/runtime/src/price_fetch.rs#L250-L260">an example here</a> using an external library to parse the JSON result in a <code>no_std</code> environment.</p>
+<!--
+[comment]: # (TODO: Signing Transactions with Session Keys)
+[comment]: # (TODO: Local Key-Value Database)
+[comment]: # (TODO: Writing Tests)
+-->
+<h2><a class="anchor" aria-hidden="true" id="后续步骤"></a><a href="#后续步骤" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>后续步骤</h2>
+<h3><a class="anchor" aria-hidden="true" id="learn-more"></a><a href="#learn-more" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Learn More</h3>
+<ul>
+<li><a href="/docs/zh-CN/next/conceptual/node/extrinsics#signed-transactions">Signed Transactions</a></li>
+<li><a href="/docs/zh-CN/next/conceptual/node/extrinsics#unsigned-transactions">Unsigned Transactions</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="examples"></a><a href="#examples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h3>
+<ul>
+<li><a href="https://github.com/tomusdrw/sub0-offchain-workshop">Off-chain workers Sub0 workshop materials</a></li>
+<li><a href="https://github.com/jimmychu0807/substrate-offchain-pricefetch">Off-chain worker price fetch</a></li>
+<li>(Deprecated) <a href="https://github.com/gnunicorn/substrate-offchain-cb">Off-chain worker callback using Substrate v1 API</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h3>
+<ul>
+<li>Substrate <a href="https://github.com/paritytech/substrate/blob/master/frame/im-online/src/lib.rs"><code>im-online</code> module</a>, a pallet inside Substrate using off-chain workers to notify other nodes that a validator in the network is online.</li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/next/development/module/events"><span class="arrow-prev">← </span><span>Runtime Events</span></a><a class="docs-next button" href="/docs/zh-CN/next/development/module/fees"><span>Transaction Fees</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#using-off-chain-workers-in-the-runtime">Using Off-Chain Workers in the Runtime</a></li><li><a href="#insert-keys-in-servicers">Insert Keys in <code>service.rs</code></a><ul class="toc-headings"><li><a href="#option-1-development-add-the-first-user-key-as-app-subkey">Option 1 (Development): Add the First User Key as App Subkey</a></li><li><a href="#option-2-add-an-app-subkey-via-cli">Option 2: Add an App Subkey via CLI</a></li></ul></li><li><a href="#signed-transactions">Signed Transactions</a></li><li><a href="#unsigned-transactions">Unsigned Transactions</a></li><li><a href="#parameters-in-on-chain-callbacks">Parameters in On-Chain Callbacks</a></li><li><a href="#fetching-external-data">Fetching External Data</a></li><li><a href="#后续步骤">后续步骤</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li><li><a href="#examples">Examples</a></li><li><a href="#references">References</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
+#blast {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 50px;
+  background-image: url(/img/bg-sub01.svg); background-size: cover; background-position: right 0px bottom 500px;;
+  color: #18FFB2;
+  z-index: 99999;
+  text-align: center;
+  background-color: #000028;
+  transition: background-color 0.2s;
+}
+#blast:hover {
+  background-color: #E91E63;
+}
+
+#blast h2 {
+  margin: 0;
+  line-height: 50px;
+}
+
+#blast a {
+  display: block;
+  color: #18FFB2;
+  text-decoration: underline;
+  mix-blend-mode: lighten;
+}
+
+#blast img {
+  max-height: 50px;
+}
+
+body {
+  margin-bottom: 50px;
+}
+</style><section id="blast"><a href="/docs/en/next/getting-started" target="_blank"><img src="/img/substrate-v2-doc-invite.png" class="img-fluid"/></a></section></div><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="/zh-CN/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></a></div></section><section class="copyright">Copyright © 2019 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-CN"]}
+              });
+            </script></body></html>
