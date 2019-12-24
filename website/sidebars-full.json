@@ -31,7 +31,9 @@
         "label": "Cryptography",
         "ids": [
           "conceptual/cryptography/index",
-          "conceptual/cryptography/keys"
+          "conceptual/cryptography/keys",
+          "conceptual/cryptography/session-keys",
+          "conceptual/cryptography/ss58-address-format"
         ]
       },
       {
@@ -107,6 +109,13 @@
         "label": "Smart Contracts",
         "ids": [
           "development/contracts/ink"
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "Ecosystem Tools",
+        "ids": [
+          "development/tools/subkey"
         ]
       }
     ]
