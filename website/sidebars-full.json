@@ -11,6 +11,7 @@
           "conceptual/core/consensus",
           "conceptual/core/executor",
           "conceptual/core/networking",
+          "conceptual/core/off-chain-workers",
           "conceptual/core/storage"
         ]
       },
@@ -78,6 +79,7 @@
           "development/module/events",
           "development/module/errors",
           "development/module/traits",
+          "development/module/off-chain-workers",
           "development/module/fees",
           "development/module/tests"
         ]
