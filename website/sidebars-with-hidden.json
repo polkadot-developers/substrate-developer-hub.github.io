@@ -8,6 +8,7 @@
         "ids": [
           "conceptual/core/codec",
           "conceptual/core/executor",
+          "conceptual/core/off-chain-workers",
           "conceptual/core/storage"
         ]
       },
@@ -67,6 +68,7 @@
           "development/module/origin",
           "development/module/storage",
           "development/module/events",
+          "development/module/off-chain-workers",
           "development/module/fees",
           "development/module/tests"
         ]
