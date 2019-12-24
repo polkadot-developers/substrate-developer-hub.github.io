@@ -22,7 +22,7 @@ separation of concerns is to make sure that the block production is not impacted
 tasks. However, as the off-chain workers are declared in the same code as the runtime, they can
 easily access on-chain state for their computations.
 
-![Off-chain Workers](/docs/assets/off-chain-workers-02.png)
+![Off-chain Workers](/docs/assets/off-chain-workers-01.png)
 
 ## APIs
 
@@ -42,7 +42,7 @@ Off-chain workers can be initiated from within a special function in your runtim
 communicate results back to the chain, off-chain workers can submit signed or unsigned transactions
 to be included in subsequent blocks.
 
-Note that the results from off-chain workers are not subject to regular transaction verification. A 
+Note that the results from off-chain workers are not subject to regular transaction verification. A
 verification mechanism (e.g. voting, averaging, checking sender signatures, or simply "trusting")
 should be implemented to determine what information gets into the chain.
 
