@@ -204,9 +204,9 @@ the command line interface as follows.
 $ subkey -s generate
 
 # Submit a new key via RPC
-$ curl -X POST -vk 'http://localhost:9933' -H "Content-Type:application/json;charset=utf-8" \
-  -d '{
-    "jsonrpc":2.0,
+$ curl http://localhost:9933 -H "Content-Type:application/json;charset=utf-8" -d \
+  '{
+    "jsonrpc":"2.0",
     "id":1,
     "method":"author_insertKey",
     "params": [
@@ -215,6 +215,12 @@ $ curl -X POST -vk 'http://localhost:9933' -H "Content-Type:application/json;cha
       "<YourPublicKey>"
     ]
   }'
+```
+
+If you enter the command and parameters correctly, the node will return a JSON response as follows.
+
+```json
+{ "jsonrpc": "2.0", "result": null, "id": 1 }
 ```
 
 A new key is now added in the local keystore.
