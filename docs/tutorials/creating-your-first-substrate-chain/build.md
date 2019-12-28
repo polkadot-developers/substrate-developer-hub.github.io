@@ -39,7 +39,8 @@ At a high level, a Substrate pallet can be broken down into five sections:
 
 ```rust
 // 1. Imports
-use support::{decl_module, decl_storage, decl_event};
+use frame_support::{decl_module, decl_storage, decl_event, dispatch};
+use system::ensure_signed;
 
 // 2. Pallet Configuration
 pub trait Trait: system::Trait { /* --snip-- */ }
@@ -64,9 +65,9 @@ Since imports are pretty boring, you can start by copying this at the top of you
 `template.rs` file:
 
 ```rust 
-use support::{decl_module, decl_storage, decl_event, ensure, StorageMap};
-use rstd::vec::Vec;
+use frame_support::{decl_module, decl_storage, decl_event, dispatch, ensure, StorageMap};
 use system::ensure_signed;
+use sp_std::vec::Vec;
 ```
 
 ### Pallet Configuration
@@ -143,7 +144,7 @@ decl_module! {
         fn deposit_event() = default;
 
         /// Allow a user to claim ownership of an unclaimed proof
-        fn create_claim(origin, proof: Vec<u8>) {
+        fn create_claim(origin, proof: Vec<u8>) -> dispatch::Result {
             // Verify that the incoming transaction is signed and store who the
             // caller of this function is.
             let sender = ensure_signed(origin)?;
@@ -159,10 +160,11 @@ decl_module! {
 
             // Emit an event that the claim was created
             Self::deposit_event(RawEvent::ClaimCreated(sender, proof));
+            Ok(())
         }
 
         /// Allow the owner to revoke their claim
-        fn revoke_claim(origin, proof: Vec<u8>) {
+        fn revoke_claim(origin, proof: Vec<u8>) -> dispatch::Result {
             // Determine who is calling the function
             let sender = ensure_signed(origin)?;
 
@@ -180,6 +182,7 @@ decl_module! {
 
             // Emit an event that the claim was erased
             Self::deposit_event(RawEvent::ClaimRevoked(sender, proof));
+            Ok(())
         }
     }
 }
