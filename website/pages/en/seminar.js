@@ -161,7 +161,9 @@ function Seminar(props) {
 								Yes! Substrate Collaborative Learning was the previous harder-to-pronounce iteration of
 								Substrate Seminar. When we decided to start meeting every week, and have a more
 								discoverable web presence, we rebranded. If you liked Substrate Collaborative Learning,
-								you'll love Substrate Seminar. The SCL recordings are still available.
+								you'll love Substrate Seminar. The
+								<a href="https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx">
+								SCL recordings</a> are still available.
 							</p>
 						</div>
 					</div>
