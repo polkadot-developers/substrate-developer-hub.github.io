@@ -134,9 +134,6 @@ rustup update stable
 
 <span class="token comment"># Add Wasm target</span>
 rustup target <span class="token function">add</span> wasm32-unknown-unknown --toolchain nightly
-
-<span class="token comment"># Install `wasm-gc` to slim Wasm binaries</span>
-cargo +nightly <span class="token function">install</span> --git https://github.com/alexcrichton/wasm-gc --force
 </code></pre></li>
 <li><p>Compile your Substrate node</p>
 <pre><code class="hljs css language-bash"><span class="token function">cd</span> substrate-node-template/
@@ -145,7 +142,7 @@ cargo build --release
 </ol>
 <p>This final compilation can take up to 15 minutes depending on your computer hardware. In that time,
 read the next section to learn more about Substrate.</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 12/3/2019 by Shawn Tabrizi</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/index"><span class="arrow-prev">← </span><span>Introduction</span></a><a class="docs-next button" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/learn"><span>Background Information</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#prerequisites">Prerequisites</a><ul class="toc-headings"><li><a href="#substrate-development">Substrate Development</a></li><li><a href="#front-end-development">Front-End Development</a></li></ul></li><li><a href="#compiling-substrate">Compiling Substrate</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 1/2/2020 by Ricardo Rius</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/index"><span class="arrow-prev">← </span><span>Introduction</span></a><a class="docs-next button" href="/docs/en/next/tutorials/creating-your-first-substrate-chain/learn"><span>Background Information</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#prerequisites">Prerequisites</a><ul class="toc-headings"><li><a href="#substrate-development">Substrate Development</a></li><li><a href="#front-end-development">Front-End Development</a></li></ul></li><li><a href="#compiling-substrate">Compiling Substrate</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
 #blast {
   position: fixed;
   width: 100%;

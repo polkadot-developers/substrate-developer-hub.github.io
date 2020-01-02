@@ -121,9 +121,6 @@ rustup update stable
 
 <span class="token comment"># Add Wasm target</span>
 rustup target <span class="token function">add</span> wasm32-unknown-unknown --toolchain nightly
-
-<span class="token comment"># Install `wasm-gc` to slim Wasm binaries</span>
-cargo +nightly <span class="token function">install</span> --git https://github.com/alexcrichton/wasm-gc --force
 </code></pre></li>
 <li><p>Compile your Substrate node</p>
 <pre><code class="hljs css language-bash"><span class="token function">cd</span> substrate-node-template/
