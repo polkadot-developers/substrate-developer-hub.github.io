@@ -6,126 +6,123 @@ Runtime tests allow you to verify the logic in your runtime module by mocking a 
 
 ## Unit Testing
 
-Substrate uses the existing [unit testing](https://doc.rust-lang.org/rust-by-example/testing/unit_testing.html) framework provided by Rust.
+Substrate uses the existing [unit testing](https://doc.rust-lang.org/rust-by-example/testing/unit_testing.html) framework provided by Rust. To run tests, the command is
 
-The average runtime test will look like:
-
-```rust
-#[test]
-fn my_runtime_test() {
-	with_externalities(&mut new_test_ext(), || {
-		some_assertion!(...);
-	});
-}
+```bash
+cargo test <optional: test_name>
 ```
 
 ## Mock Runtime Environment
 
-To support the specific needs of testing a Substrate runtime, you need to construct a "mock" runtime environment. This involves importing the logic of other runtime modules, such as the System module, and establishing runtime storage.
-
-In general, we suggest looking at and mimicking the various examples of runtime tests in the Substrate Runtime Module Library (SRML). This document won't be as comprehensive as what is provided in our SRML.
-
-### Mock Runtime Modules
-
-To test your module, you will need to construct a configuration type (`Test`) which implements each of the configuration traits of modules you want to use.
+To test a Substrate runtime, construct a mock runtime environment. The configuration type `Test` is defined as a unit struct with implementations for each of the configuration traits that need to be used in the mock runtime.
 
 ```rust
+#[derive(Clone, PartialEq, Eq, Debug)]
 pub struct Test;
-// Implement the System module traits
-impl system::Trait for Test { ... }
-// Implement your custom module traits
-impl Trait for Test { ... }
-// Create a friendly alias to access your module
-type MyModule = Module<Test>;
 ```
 
-#### Mock Primitives
-
-When implementing the configuration traits of modules you want to use in your tests, you should choose primitives which makes your life easier. For example:
+If `Test` implements `balances::Trait`, the assignment might use `u64` for the `Balance` type.
 
 ```rust
-impl system::Trait for Test {
-	type Origin = Origin;
-	type Index = u64;
-	type BlockNumber = u64;
-	type Hash = H256;
-	type Call = ();
-	type Hashing = BlakeTwo256;
-	type AccountId = u64;
-	//--snip--
+impl balances::Trait for TestRuntime {
+	type Balance = u64;
+	//..
 }
 ```
 
-Here you can see that a core runtime type like `AccountId` can simply be set to `u64` rather than using real cryptographic primitives like `SR25519`. This means that to access accounts in your test, you simply need to pass an integer rather than more complicated stuff.
-
-In cases where you do not need to use a type, like `Call` in the example above, you can pass the unit type `()`.
+By assigning `balances::Balance` and `system::AccountId` to `u64`, mock runtimes ease the mental overhead of comprehensive, conscientious testers. Reasoning about accounts and balances only requires tracking a `(AccountId: u64, Balance: u64)` mapping.
 
 ### Mock Runtime Storage
 
-The `runtime-io` crate exposes two helpers for establishing storage for tests:
+The [`runtime-io`](https://crates.parity.io/sr_io/index.html#enums) crate exposes a [`TestExternalities`](https://crates.parity.io/sr_io/type.TestExternalities.html) implementation frequently used for mocking storage in tests. It is the type alias for an in-memory, hashmap-based externalities implementation in [`substrate_state_machine`](https://crates.parity.io/substrate_state_machine/index.html)] referred to as [`TestExternalities`](https://crates.parity.io/substrate_state_machine/struct.TestExternalities.html).
 
-* `TestExternalities`: An in-memory, hashmap-based externalities implementation. In other words, it mocks a test storage needed for the runtime to execute in a minimal fashion.
-
-* `with_externalities`: A function that allows you to run logic on top of a `TestExternalities` storage.
-
-`TestExternalities` is generated from building storage off of a genesis configuration. That looks like:
+In the [basic mock runtime's recipe](https://substrate.dev/recipes/testing/mock.html), an `ExtBuilder` object is defined to build an instance of [`TestExternalities`](https://substrate.dev/rustdocs/master/sr_io/type.TestExternalities.html).
 
 ```rust
-// This function basically just builds a genesis storage key/value store according to our desired mockup.
-fn new_test_ext() -> runtime_io::TestExternalities<Blake2Hasher> {
-	system::GenesisConfig::default().build_storage::<Test>().unwrap().into()
-}
-```
+pub struct ExtBuilder;
 
-#### Configuring Genesis
-
-You can set custom values for the genesis configuration for modules you include in your mock runtime.
-
-TODO
-
-### Block Production
-
-Your tests may require you to simulate block production to move forward the state of your chain.
-
-You will need to emulate the orchestration provided by the Executive module in order for your runtime to behave correctly.
-
-Usually this means executing the `on_initialize` and `on_finalize` functions of all the modules included in your test, and incrementing the block number tracked by the System module. This can be written as a function you include in your unit tests:
-
-```rust
-fn run_to_block(n: u64) {
-	while System::block_number() < n {
-		MyModule::on_finalize(System::block_number());
-		System::on_finalize(System::block_number());
-		System::set_block_number(System::block_number() + 1);
-		System::on_initialize(System::block_number());
-		MyModule::on_initialize(System::block_number());
+impl ExtBuilder {
+	pub fn build() -> runtime_io::TestExternalities {
+		let mut storage = system::GenesisConfig::default().build_storage::<TestRuntime>().unwrap();
+		runtime_io::TestExternalities::from(storage)
 	}
 }
 ```
 
-You can then use this function in your unit tests:
+To create the test environment in unit tests, the build method is called to generate a `TestExternalities` using the default genesis configuration. Then, [`with_externalities`](https://crates.parity.io/substrate_externalities/fn.with_externalities.html) provides the runtime environment in which we may call the pallet's methods to test that storage, events, and errors behave as expected.
+
+```rust
+#[test]
+fn fake_test_example() {
+	ExtBuilder::build().execute_with(|| {
+		// ...test conditions...
+	})
+}
+```
+
+Custom implementations of [Externalities](https://crates.parity.io/substrate_externalities/index.html) allow developers to construct runtime environments that provide access to features of the outer node. Another example of this can be found in [`substrate-offchain`](https://crates.parity.io/substrate_offchain/), which maintains its own [Externalities](https://crates.parity.io/substrate_offchain/testing/index.html) implementation. [Implementing configurable externalities](https://substrate.dev/recipes/testing/externalities.htm) is covered in more depth in the recipes.
+
+#### Genesis Config
+
+The previously shown `ExtBuilder::build()` method used the default genesis configuration for building the mock runtime environment. In many cases, it is convenient to set storage before testing.
+
+An example might involve pre-seeding account balances before testing.
+
+In the implementation of `system::Trait`, `AccountId` is set to `u64` just like `Balance` shown above. Place `(u64, u64)` pairs in the `balances` vec to seed `(AccountId, Balance)` pairs as the account balances.
+
+```rust
+pub fn build(self) -> runtime_io::TestExternalities {
+	GenesisConfig {
+		balances: Some(balances::GenesisConfig::<TestRuntime>{
+			balances: vec![
+				(1, 10),
+				(2, 20),
+				(3, 30),
+				(4, 40),
+				(5, 50),
+				(6, 60)
+			],
+			vesting: vec![],
+		}),
+	}.build_storage().unwrap().into()
+}
+```
+
+Account 1 has balance 10, account 2 has balance 20, and so on.
+
+### Block Production
+
+It will be useful to simulate block production to verify that expected behavior holds during block time dependent changes.
+
+A simple way of doing this increments the System module's block number between `on_initialize` and `on_finalize` calls from all modules with `System::block_number()` as the sole input. While it is important for runtime code to [cache calls](https://substrate.dev/recipes/storage/cache.html) to storage or the system module, the test environment scaffolding should prioritize readability to facilitate future maintenance.
+
+```rust
+fn run_to_block(n: u64) {
+	while System::block_number() < n {
+		ExampleModule::on_finalize(System::block_number());
+		System::on_finalize(System::block_number());
+		System::set_block_number(System::block_number() + 1);
+		System::on_initialize(System::block_number());
+		ExampleModule::on_initialize(System::block_number());
+	}
+}
+```
+
+`on_finalize` and `on_initialize` are only called from `ExampleModule` if the pallet's trait implements the `sr_primitives::traits::{OnInitialize, OnFinalize}` traits to execute the logic encoded in the runtime methods before and after each block respectively.
+
+To use this function in unit tests,
 
 ```rust
 #[test]
 fn my_runtime_test() {
 	with_externalities(&mut new_test_ext(), || {
-		assert_ok!(MyModule::start_auction());
+		assert_ok!(ExampleModule::start_auction());
 		run_to_block(10);
-		assert_ok!(MyModule::end_auction());
+		assert_ok!(ExampleModule::end_auction());
 	});
 }
 ```
 
 ## Next Steps
 
-### Learn More
-
-TODO
-
-### Examples
-
-TODO
-
-### References
-
-TODO
+The [testing](https://substrate.dev/recipes/testing/index.html) chapter of the [Substrate Recipes](https://github.com/substrate-developer-hub/recipes/) compliments the samples shown above, and the [kitchen](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen) provides an environment to run the tests, change the logic, and tinker with the code.

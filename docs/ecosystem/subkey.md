@@ -1,5 +1,5 @@
 ---
-title: "The subkey Tool"
+title: "The Subkey Tool"
 ---
 
 Subkey is a key-generation utility that is developed alongside Substrate. Its main features are generating [sr25519](https://github.com/w3f/schnorrkel) and ed25519 key pairs, encoding SS58 addresses, and restoring keys from mnemonics and raw seeds. It can also create and verify signatures, including for encoded transactions.

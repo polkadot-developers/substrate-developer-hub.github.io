@@ -18,157 +18,153 @@
 // site configuration options.
 
 // List of projects listed on the "users" page.
-const users = require('./data/users');
+const users = require('./data/users')
 
 // List of videos on the "videos" page
-const videos = require('./data/videos');
+const videos = require('./data/videos')
 
-const title_prefix = "Substrate Developer Hub";
-const custom_url = 'substrate.dev';
-const is_staging = (process.env['NODE_ENV'] == 'staging');
-const git_rev = is_staging ? process.env['GIT_REV'] : null;
-const title   = is_staging ? `${title_prefix} (@${git_rev})` : title_prefix;
-const cname   = is_staging ? `staging.${custom_url}` : custom_url;
+const title_prefix = 'Substrate Developer Hub'
+const custom_url = 'substrate.dev'
+const is_staging = process.env['NODE_ENV'] == 'staging'
+const git_rev = is_staging ? process.env['GIT_REV'] : null
+const title = is_staging ? `${title_prefix} (@${git_rev})` : title_prefix
+const cname = is_staging ? `staging.${custom_url}` : custom_url
 
 const siteConfig = {
-  title, // Title for your website.
-  tagline: 'The place for blockchain innovators.',
 
-  // Used for publishing and more
-  organizationName: 'substrate-developer-hub',
-  projectName: 'substrate-developer-hub.github.io',
-  // For top-level user or org sites, the organization is still the same.
-  // e.g., for the https://JoelMarcey.github.io site, it would be set like...
-  //   organizationName: 'JoelMarcey'
+	title, // Title for your website.
+	tagline: 'The place for blockchain innovators.',
 
-  // Your website URL
-  url: 'https://substrate-developer-hub.github.io/',
-  baseUrl: "/", // Base URL for your project */
-  // For github.io type URLs, you would set the url and baseUrl like:
-  //   url: 'https://facebook.github.io',
-  //   baseUrl: '/test-site/',
+	// Used for publishing and more
+	organizationName: 'substrate-developer-hub',
+	projectName: 'substrate-developer-hub.github.io',
+	// For top-level user or org sites, the organization is still the same.
+	// e.g., for the https://JoelMarcey.github.io site, it would be set like...
+	//   organizationName: 'JoelMarcey'
 
-  // Generate CNAME file when building
-  cname,
+	// Your website URL
+	url: 'https://substrate-developer-hub.github.io/',
+	baseUrl: '/', // Base URL for your project */
+	// For github.io type URLs, you would set the url and baseUrl like:
+	//   url: 'https://facebook.github.io',
+	//   baseUrl: '/test-site/',
 
-  // For no header links in the top nav bar -> headerLinks: [],
-  headerLinks: [
-    { page: 'docs', label: 'Docs' },
-    { href: '/recipes/', label: 'Recipes' },
-    { page: 'tutorials', label: 'Tutorials' },
-    { page: 'community', label: 'Community' },
-    { href: 'https://github.com/paritytech/substrate', label: 'GitHub' },
-    { search: true }
-  ],
+	// Generate CNAME file when building
+	cname,
 
-  // If you have users set above, you add it here:
-  users,
+	// For no header links in the top nav bar -> headerLinks: [],
+	headerLinks: [
+		{ page: 'docs', label: 'Docs' },
+		{ href: '/recipes/', label: 'Recipes' },
+		{ page: 'tutorials', label: 'Tutorials' },
+		{ page: 'community', label: 'Community' },
+		{ href: 'https://github.com/paritytech/substrate', label: 'GitHub' },
+		{ search: true }
+	],
 
-  // Presentations
-  videos,
+	// If you have users set above, you add it here:
+	users,
 
-  /* path to images for header/footer */
-  headerIcon: 'img/Substrate-logo.svg',
-  footerIcon: 'img/Substrate-logo.svg',
-  favicon: 'img/favicon.png',
+	// Presentations
+	videos,
 
-  /* Colors for website */
-  colors: {
-    primaryColor: '#ff1864',
-    secondaryColor: '#222222'
-  },
+	/* path to images for header/footer */
+	headerIcon: 'img/Substrate-logo.svg',
+	footerIcon: 'img/Substrate-logo.svg',
+	favicon: 'img/favicon.png',
 
-  // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © ${new Date().getFullYear()} Parity Technologies`,
+	/* Colors for website */
+	colors: {
+		primaryColor: '#ff1864',
+		secondaryColor: '#222222'
+	},
 
-  highlight: {
-    // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'default',
-    defaultLang: 'rust'
-  },
+	// This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
+	copyright: `Copyright © ${new Date().getFullYear()} Parity Technologies`,
 
-  // Add custom scripts here that would be placed in <script> tags.
-  scripts: [
-    'https://buttons.github.io/buttons.js',
-    '/js/clipboard.min.js',
-    '/js/code-block-buttons.js',
-    '/js/load.js',
-    {
-      src: '/js/ui.js',
-      defer: true
-    },
-    {
-      src: '/js/config.js',
-      defer: true
-    },
-    {
-      src: '/js/klaro.min.js',
-      defer: true
-    }
-  ],
+	highlight: {
+		// Highlight.js theme to use for syntax highlighting in code blocks.
+		theme: 'default',
+		defaultLang: 'rust'
+	},
 
-  // On page navigation for the current documentation page.
-  onPageNav: 'separate',
-  // No .html extensions for paths.
-  cleanUrl: true,
-  // Collapsible Categories
-  docsSideNavCollapsible: true,
+	// Add custom scripts here that would be placed in <script> tags.
+	scripts: [
+		'https://buttons.github.io/buttons.js',
+		'/js/clipboard.min.js',
+		'/js/code-block-buttons.js',
+		'/js/load.js',
+		{
+			src: '/js/ui.js',
+			defer: true
+		},
+		{
+			src: '/js/config.js',
+			defer: true
+		},
+		{
+			src: '/js/klaro.min.js',
+			defer: true
+		}
+	],
 
-  // Open Graph and Twitter card images.
-  ogImage: 'img/substrate-dev-hub-card.png',
-  twitterImage: 'img/substrate-dev-hub-card.png',
+	// On page navigation for the current documentation page.
+	onPageNav: 'separate',
+	// No .html extensions for paths.
+	cleanUrl: true,
+	// Collapsible Categories
+	docsSideNavCollapsible: true,
 
-  // Show documentation's last contributor and update time
-  // at the bottom of the page:
-  enableUpdateBy: true,
-  enableUpdateTime: true,
+	// Open Graph and Twitter card images.
+	ogImage: 'img/substrate-dev-hub-card.png',
+	twitterImage: 'img/substrate-dev-hub-card.png',
 
-  // You may provide arbitrary config keys to be used as needed by your
-  // template. For example, if you need your repo's URL...
-  repoUrl:
-    'https://github.com/substrate-developer-hub/substrate-developer-hub.github.io',
+	// Show documentation's last contributor and update time
+	// at the bottom of the page:
+	enableUpdateBy: true,
+	enableUpdateTime: true,
 
-  // Directories inside which any CSS files will not be processed and
-  // concatenated to Docusaurus' styles. This is to support static HTML pages
-  // that may be separate from Docusaurus with completely separate styles.
-  separateCss: [],
+	// You may provide arbitrary config keys to be used as needed by your
+	// template. For example, if you need your repo's URL...
+	repoUrl: 'https://github.com/substrate-developer-hub/substrate-developer-hub.github.io',
 
-  // Use prism for syntax highlighting
-  usePrism: true,
+	// Directories inside which any CSS files will not be processed and
+	// concatenated to Docusaurus' styles. This is to support static HTML pages
+	// that may be separate from Docusaurus with completely separate styles.
+	separateCss: [],
 
-  // Edit this page button
-  editUrl:
-    'https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/',
+	// Use prism for syntax highlighting
+	usePrism: true,
 
-  // Scroll to top button at the bottom
-  scrollToTop: true,
+	// Edit this page button
+	editUrl: 'https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/',
 
-  // Style sheets to import
-  stylesheets: [
-    'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
-  ],
+	// Scroll to top button at the bottom
+	scrollToTop: true,
 
-  // Translation recruitment link, appears in the language drop down as "Help Translate"
-  translationRecruitingLink:
-    'https://crowdin.com/project/substrate-developer-hub',
+	// Style sheets to import
+	stylesheets: [ 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' ],
 
-  // Algolia Search
-  algolia: {
-    apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
-    indexName: 'substrate',
-    algoliaOptions: {
-      // https://www.algolia.com/doc/api-reference/api-parameters/
-      facetFilters: ['language:LANGUAGE']
-    }
-  },
+	// Translation recruitment link, appears in the language drop down as "Help Translate"
+	translationRecruitingLink: 'https://crowdin.com/project/substrate-developer-hub',
 
-  // customised blast banner on top
-  blast: {
-    img: '/img/sub0-blast.png',
-    link: 'https://sub0.parity.io',
-    background: 'url(/img/bg-sub01.svg); background-size: cover; background-position: right 0px bottom 500px;',
-    fontColor: '#18FFB2'
-  }
-};
+	// Algolia Search
+	algolia: {
+		apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+		indexName: 'substrate',
+		algoliaOptions: {
+			// https://www.algolia.com/doc/api-reference/api-parameters/
+			facetFilters: [ 'language:LANGUAGE' ]
+		}
+	},
 
-module.exports = siteConfig;
+	// customised blast banner on top
+	blast: {
+	  img: '/img/substrate-v2-doc-invite.png',
+	  link: '/docs/en/next/getting-started',
+	  background: 'url(/img/bg-sub01.svg); background-size: cover; background-position: right 0px bottom 500px;',
+	  fontColor: '#18FFB2'
+	}
+}
+
+module.exports = siteConfig

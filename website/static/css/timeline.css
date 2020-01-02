@@ -50,12 +50,12 @@
 
 .timeline li:nth-child(odd):before {
     right: 100%; 
-    margin-right: -20px;
+    margin-right: -23px;
 }
 
 .timeline li:nth-child(even):before {
     left: 100%;
-    margin-left: -20px;
+    margin-left: -23px;
 }
 
 .timeline li:nth-child(odd) {

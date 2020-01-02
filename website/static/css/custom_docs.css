@@ -1,15 +1,15 @@
 /* typography */
-ol {
+.sideNavVisible ol {
  counter-reset: stepN;
  list-style: none;
  padding-left: 40px;
 }
-ol > li {
- margin: 0 0 0.5rem 0;
+.sideNavVisible ol > li {
+ margin: 0 0 1rem 0;
  counter-increment: stepN;
  position: relative;
 }
-ol > li::before {
+.sideNavVisible ol > li::before {
  content: counter(stepN);
  position: absolute;
  --size: 2em;

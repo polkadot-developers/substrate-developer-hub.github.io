@@ -141,7 +141,7 @@ You can install the Subkey binary locally for easy access to this utility.
 In the Substrate project folder, run:
 
 ```bash
-cargo install --force --path ./subkey subkey
+cargo install --force --path ./bin/utils/subkey subkey
 ```
 
 You can then run this generated binary with:
