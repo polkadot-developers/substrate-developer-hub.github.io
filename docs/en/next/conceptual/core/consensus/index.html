@@ -1,9 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Consensus · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;ul&gt;
-&lt;li&gt;What is consensus for on a blockchain?&lt;/li&gt;
-&lt;/ul&gt;
-"/><meta name="docsearch:version" content="next"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Consensus · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;ul&gt;
-&lt;li&gt;What is consensus for on a blockchain?&lt;/li&gt;
-&lt;/ul&gt;
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Consensus · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Blockchain nodes use consensus engines to agree on the blockchain&#x27;s state. This article covers the&lt;/p&gt;
+"/><meta name="docsearch:version" content="next"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Consensus · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;Blockchain nodes use consensus engines to agree on the blockchain&#x27;s state. This article covers the&lt;/p&gt;
 "/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
@@ -22,15 +18,211 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/conceptual/core/consensus.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Consensus</h1></header><article><div><span><ul>
-<li><p>What is consensus for on a blockchain?</p></li>
-<li><p>Block Production</p></li>
-<li><p>Finality</p></li>
-<li><p>NPoS</p></li>
-<li><p>PoW</p></li>
-<li><p>What would it take to write my own consensus?</p></li>
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Substrate Core</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Overview<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/next/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/getting-started">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/glossary">Glossary</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Conceptual<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Substrate Core</h4><ul><li class="navListItem"><a class="navItem" href="/docs/en/next/conceptual/core/codec">SCALE Codec</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/next/conceptual/core/consensus">Consensus</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/conceptual/core/executor">Executor</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/conceptual/core/off-chain-workers">Off-Chain Workers</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/conceptual/core/storage">Storage</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Substrate Nodes</h4><ul><li class="navListItem"><a class="navItem" href="/docs/en/next/conceptual/node/extrinsics">Extrinsics</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Cryptography</h4><ul><li class="navListItem"><a class="navItem" href="/docs/en/next/conceptual/cryptography/">Cryptography</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/conceptual/cryptography/keys">Substrate Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/conceptual/cryptography/session-keys">Session Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/conceptual/cryptography/ss58-address-format">SS58 Address Format</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Substrate Runtime</h4><ul><li class="navListItem"><a class="navItem" href="/docs/en/next/conceptual/runtime/frame">FRAME</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/conceptual/runtime/weight">Transaction Weight</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/conceptual/runtime/primitives">Runtime Primitives</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Smart Contracts</h4><ul><li class="navListItem"><a class="navItem" href="/docs/en/next/conceptual/runtime/contracts/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/conceptual/runtime/contracts/contracts_module">Contracts Module</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/conceptual/runtime/contracts/evm_module">EVM Module</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/conceptual/runtime/contracts/ink">ink!</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Development<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Modules</h4><ul><li class="navListItem"><a class="navItem" href="/docs/en/next/development/module/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/development/module/execution">Runtime Execution</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/development/module/macros">Runtime Macros</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/development/module/origin">Runtime Origin</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/development/module/storage">Runtime Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/development/module/events">Runtime Events</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/development/module/off-chain-workers">Off-Chain Workers</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/development/module/fees">Transaction Fees</a></li><li class="navListItem"><a class="navItem" href="/docs/en/next/development/module/tests">Runtime Tests</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Deployment</h4><ul><li class="navListItem"><a class="navItem" href="/docs/en/next/development/deployment/chain-spec">Chain Specification</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Front End</h4><ul><li class="navListItem"><a class="navItem" href="/docs/en/next/development/front-end/polkadot-js">Polkadot-JS</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Smart Contracts</h4><ul><li class="navListItem"><a class="navItem" href="/docs/en/next/development/contracts/ink">ink!</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Ecosystem Tools</h4><ul><li class="navListItem"><a class="navItem" href="/docs/en/next/development/tools/subkey">The subkey Tool</a></li></ul></div></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/conceptual/core/consensus.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">Consensus</h1></header><article><div><span><p>Blockchain nodes use consensus engines to agree on the blockchain's state. This article covers the
+fundamentals of consensus in blockchain systems, how consensus interacts with the runtime in the
+Substrate framework, and the consensus engines available with the framework.</p>
+<h2><a class="anchor" aria-hidden="true" id="state-machines-and-conflicts"></a><a href="#state-machines-and-conflicts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>State Machines and Conflicts</h2>
+<p>A blockchain runtime is a <a href="https://en.wikipedia.org/wiki/Finite-state_machine">state machine</a>. It
+has some internal state, and state transition function that allows it to transition from its current
+state to a future state. In most runtimes there are states that have valid transitions to multiple
+future states, but a single transition must be selected.</p>
+<p>Blockchains must agree on:</p>
+<ul>
+<li>Some initial state, called &quot;genesis&quot;,</li>
+<li>A series of state transitions, each called a &quot;block&quot;, and</li>
+<li>A final (current) state.</li>
 </ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 9/23/2019 by Shawn Tabrizi</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><div><style>
+<p>In order to agree on the resulting state after a transition, all operations within a blockchain's
+<a href="/docs/en/next/conceptual/runtime/">state transition function</a> must be deterministic.</p>
+<h2><a class="anchor" aria-hidden="true" id="conflict-exclusion"></a><a href="#conflict-exclusion" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Conflict Exclusion</h2>
+<p>In centralized systems, the central authority chooses among mutually exclusive alternatives by
+recording state transitions in the order it sees them, and choosing the first of the competing
+alternatives when a conflict arises. In decentralized systems, the nodes will see transactions in
+different orders, and thus they must use a more elaborate method to exclude transactions. As a
+further complication, blockchain networks strive to be fault tolerant, which means that they should
+continue to provide consistent data even if some participants are not following the rules.</p>
+<p>Blockchains batch transactions into blocks and have some method to select which participant has the
+right to submit a block. For example, in a proof-of-work chain, the node that finds a valid proof
+of work first has the right to submit a block to the chain.</p>
+<p>Substrate provides several block construction algorithms and also allows you to create your own:</p>
+<ul>
+<li>Aura (round robin)</li>
+<li>BABE (slot-based)</li>
+<li>Proof of Work</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="fork-choice-rules"></a><a href="#fork-choice-rules" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fork Choice Rules</h2>
+<p>As a primitive, a block contains a header and a batch of
+<a href="/docs/en/next/conceptual/node/extrinsics">extrinsics</a>. The header must contain a reference to its parent
+block such that one can trace the chain to its genesis. Forks occur when two blocks reference the
+same parent. Forks must be resolved such that only one, canonical chain exists.</p>
+<p>A fork choice rule is an algorithm that takes a blockchain and selects the &quot;best&quot; chain, and thus
+the one that should be extended. Substrate exposes this concept through the <a href="https://substrate.dev/rustdocs/master/sp_consensus/trait.SelectChain.html"><code>SelectChain</code>
+Trait</a>.</p>
+<p>Substrate allows you to write a custom fork choice rule, or use one that comes out of the box.
+For example:</p>
+<h3><a class="anchor" aria-hidden="true" id="longest-chain-rule"></a><a href="#longest-chain-rule" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Longest Chain Rule</h3>
+<p>The longest chain rule simply says that the best chain is the longest chain. Substrate provides
+this chain selection rule with the
+<a href="https://crates.parity.io/sc_client/struct.LongestChain.html"><code>LongestChain</code> struct</a>. GRANDPA uses
+the longest chain rule for voting.</p>
+<!--TODO: Get Zsofia to make nice graphic -->
+![longest chain rule](../../assets/consensus-longest-chain.png)
+<h3><a class="anchor" aria-hidden="true" id="ghost-rule"></a><a href="#ghost-rule" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GHOST Rule</h3>
+<p>The Greedy Heaviest Observed SubTree rule says that, starting at the genesis block, each fork is
+resolved by choosing the branch that has the most blocks built on it recursively.</p>
+<!--TODO: Get Zsofia to make nice graphic -->
+![GHOST rule](../../assets/consensus-ghost.png)
+<h2><a class="anchor" aria-hidden="true" id="block-production"></a><a href="#block-production" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Block Production</h2>
+<p>Some nodes in a blockchain network are able to produce new blocks, a process known as authoring.
+Exactly which nodes may author blocks depends on which consensus engine you're using. In a
+centralized network, a single node might author all the blocks, whereas in a completely
+permissionless network, an algorithm must select the block author at each height.</p>
+<h3><a class="anchor" aria-hidden="true" id="proof-of-work"></a><a href="#proof-of-work" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Proof of Work</h3>
+<p>In proof-of-work systems like Bitcoin, any node may produce a block at any time, so long as it has
+solved a computationally-intensive problem. Solving the problem takes CPU time, and thus miners can
+only produce blocks in proportion with their computing resources. Substrate provides a proof-of-work
+block production engine.</p>
+<h3><a class="anchor" aria-hidden="true" id="slots"></a><a href="#slots" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Slots</h3>
+<p>Slot-based consensus algorithms must have a known set of validators who are permitted to produce
+blocks. Time is divided up into discrete slots, and during each slot only some of the validators
+may produce a block. The specifics of which validators can author blocks during each slot vary from
+engine to engine. Substrate provides Aura and Babe, both of which are slot-based block authoring
+engines.</p>
+<h2><a class="anchor" aria-hidden="true" id="finality"></a><a href="#finality" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Finality</h2>
+<p>Users in any system want to know when their transactions are finalized, and blockchain is no
+different. In some traditional systems, finality happens when a receipt is handed over, or papers
+are signed.</p>
+<p>Using the block authoring schemes and fork choice rules described so far, transactions are never
+entirely finalized. There is always a chance that a longer (or heavier) chain will come along and
+revert your transaction. However, the more blocks are built on top of a particular block, the less
+likely it is to ever be reverted. In this way, block authoring along with a proper fork choice rule
+provides probabilistic finality.</p>
+<p>When deterministic finality is desired, a finality gadget can be added to the blockchain's logic.
+Members of a fixed authority set cast finality votes, and when enough votes have been cast for a
+certain block, the block is deemed final. In most systems, this threshold is 2/3. Blocks that have
+been finalized by such a gadget cannot be reverted without external coordination such as a hard
+fork.</p>
+<blockquote>
+<p>Some consensus systems couple block production and finality, as in, finalization is part of the
+block production process and a new block <code>N+1</code> cannot be authored until block <code>N</code> is finalize.
+Substrate, however, isolates the two processes and allows you to use any block production engine
+on its own with probabilistic finality or couple it with a finality gadget to have determinsitic
+finality.</p>
+</blockquote>
+<p>In systems that use a finality gadget, the fork choice rule must be modified to consider the results
+of the finality game. For example, instead of taking the longest chain period, a node would take the
+longest chain that contains the most recently finalized block.</p>
+<h2><a class="anchor" aria-hidden="true" id="consensus-in-substrate"></a><a href="#consensus-in-substrate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Consensus in Substrate</h2>
+<p>The Substrate framework ships with several consensus engines that provide block authoring, or
+finality. This article provides a brief overview of the offerings included with Substrate itself. Developers are always welcome to provide their own custom consensus algorithms.</p>
+<h3><a class="anchor" aria-hidden="true" id="aura"></a><a href="#aura" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Aura</h3>
+<p><a href="https://crates.parity.io/substrate_consensus_aura/index.html">Aura</a> provides a slot-based block
+authoring mechanism. In Aura a known set of authorities take turns producing blocks.</p>
+<h3><a class="anchor" aria-hidden="true" id="babe"></a><a href="#babe" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>BABE</h3>
+<p><a href="https://crates.parity.io/substrate_consensus_babe/index.html">BABE</a> also provides slot-based block
+authoring with a known set of validators. In these ways it is similar to Aura. Unlike Aura, slot
+assignment is based on the evaluation of a Verifiable Random Function (VRF). Each validator is
+assigned a weight for an <em>epoch.</em> This epoch is broken up into slots and the validator evaluates its
+VRF at each slot. For each slot that the validator's VRF output is below its weight, it is allowed
+to author a block.</p>
+<p>Because multiple validators may be able to produce a block during the same slot, forks are more
+common in BABE than they are in Aura, and are common even in good network conditions.</p>
+<p>Substrate's implementation of BABE also has a fallback mechanism for when no authorities are chosen
+in a given slot. These &quot;secondary&quot; slot assignments allow BABE to achieve a constant block time.</p>
+<h3><a class="anchor" aria-hidden="true" id="proof-of-work-1"></a><a href="#proof-of-work-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Proof of Work</h3>
+<p><a href="https://crates.parity.io/substrate_consensus_pow/index.html">Proof-of-work</a> block authoring is not
+slot-based and does not require a known authority set. In proof of work, anyone can
+produce a block at any time, so long as they can solve a computationally challenging problem
+(typically a hash preimage search). The difficulty of this problem can be tuned to provide a
+statistical target block time.</p>
+<h3><a class="anchor" aria-hidden="true" id="grandpa"></a><a href="#grandpa" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GRANDPA</h3>
+<p><a href="https://crates.parity.io/substrate_finality_grandpa/index.html">GRANDPA</a> provides block
+finalization. It has a known weighted authority set like BABE. However, GRANDPA does not author
+blocks; it just listens to gossip about blocks that have been produced by some authoring engine like
+the three discussed above. GRANDPA validators vote on <em>chains,</em> not <em>blocks,</em> i.e. they vote on a
+block that they consider &quot;best&quot; and their votes are applied transitively to all previous blocks.
+Once more than 2/3 of the GRANDPA authorities have voted for a particular block, it is considered
+final.</p>
+<h3><a class="anchor" aria-hidden="true" id="coordination-with-the-runtime"></a><a href="#coordination-with-the-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Coordination with the Runtime</h3>
+<p>The simplest static consensus algorithms work entirely outside of the runtime as we've described so
+far. However many consensus games are made much more powerful by adding features that require
+coordination with the runtime. Examples include adjustable difficulty in proof of work, authority
+rotation in proof of authority, and stake-based weighting in proof-of-stake networks.</p>
+<p>To accommodate these consensus features, Substrate has the concept of a
+<a href="https://substrate.dev/rustdocs/master/sr_primitives/enum.DigestItem.html"><code>DigestItem</code></a>, a message
+passed from the outer part of the node, where consensus lives, to the runtime, or vice versa.</p>
+<h2><a class="anchor" aria-hidden="true" id="learn-more"></a><a href="#learn-more" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Learn More</h2>
+<p>Because both BABE and GRANDPA will be used in the Polkadot network, Web3 Foundation provides
+research-level presentations of the algorithms.</p>
+<ul>
+<li><a href="https://research.web3.foundation/en/latest/polkadot/BABE/Babe.html">BABE Research</a></li>
+<li><a href="https://research.web3.foundation/en/latest/polkadot/GRANDPA.html">GRANDPA Research</a></li>
+</ul>
+<p>All deterministic finality algorithms, including GRANDPA, require at least <code>2f + 1</code> non-faulty
+nodes, where <code>f</code> is the number of faulty or malicious nodes. Learn more about where this threshold
+comes from and why it is ideal in the seminal paper
+<a href="https://lamport.azurewebsites.net/pubs/reaching.pdf">Reaching Agreement in the Presence of Faults</a>
+or on <a href="https://en.wikipedia.org/wiki/Byzantine_fault">Wikipedia: Byzantine Fault</a>.</p>
+<p>Not all consensus protocols define a single, canonical chain. Some protocols validate
+<a href="https://en.wikipedia.org/wiki/Directed_acyclic_graph">directed acyclic graphs</a> (DAG) when two
+blocks with the same parent do not have conflicting state changes.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 1/2/2020 by joe petrowski</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/next/conceptual/core/codec"><span class="arrow-prev">← </span><span>SCALE Codec</span></a><a class="docs-next button" href="/docs/en/next/conceptual/core/executor"><span>Executor</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#state-machines-and-conflicts">State Machines and Conflicts</a></li><li><a href="#conflict-exclusion">Conflict Exclusion</a></li><li><a href="#fork-choice-rules">Fork Choice Rules</a><ul class="toc-headings"><li><a href="#longest-chain-rule">Longest Chain Rule</a></li><li><a href="#ghost-rule">GHOST Rule</a></li></ul></li><li><a href="#block-production">Block Production</a><ul class="toc-headings"><li><a href="#proof-of-work">Proof of Work</a></li><li><a href="#slots">Slots</a></li></ul></li><li><a href="#finality">Finality</a></li><li><a href="#consensus-in-substrate">Consensus in Substrate</a><ul class="toc-headings"><li><a href="#aura">Aura</a></li><li><a href="#babe">BABE</a></li><li><a href="#proof-of-work-1">Proof of Work</a></li><li><a href="#grandpa">GRANDPA</a></li><li><a href="#coordination-with-the-runtime">Coordination with the Runtime</a></li></ul></li><li><a href="#learn-more">Learn More</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
 #blast {
   position: fixed;
   width: 100%;
