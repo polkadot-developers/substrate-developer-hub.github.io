@@ -48,7 +48,10 @@ class HomeSplash extends React.Component {
 					</section>
 				)}
 				{this.props.buttonUrl && (
-					<Button variant='secondary' href={pageUrl(this.props.buttonUrl)} className='m-1 primary-color'>
+					<Button
+						variant='secondary'
+						href={pageUrl(this.props.buttonUrl)}
+						className='m-1 primary-color btn-lg'>
 						{this.props.buttonText}
 					</Button>
 				)}
