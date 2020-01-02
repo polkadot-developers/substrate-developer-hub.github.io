@@ -70,14 +70,16 @@
 	padding-bottom: 0;
 }
 
-#home h1 {
+#home h1,
+#home h2 {
 	line-height: 1.2;
 	margin-top: 10px;
 	margin-bottom: 20px;
 	font-weight: normal;
 	color: var(--dark);
 }
-#home h1.large {
+#home h1.large,
+#home h2.large {
 	font-size: 6vw;
 }
 
@@ -194,6 +196,8 @@
 
 #home .builders-strip .col img {
 	margin: 20px 0 36px 0;
+	max-height: 80px;
+	width: auto;
 }
 
 #home .what-is-substrate {
@@ -234,10 +238,40 @@
 	padding-bottom: 20px;
 }
 
+#home .polkadot-graphic {
+	display: none;
+}
+
+@media (min-width: 768px) {
+	#home .call-outs.second {
+		overflow: hidden;
+	}
+
+	#home .polkadot-image {
+		display: none;
+	}
+	#home .polkadot-graphic {
+		display: block;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 120vw;
+		height: 120vw;
+		max-width: 1320px;
+		max-height: 1320px;
+		transform: translate3d(-38%, 45%, 0);
+		background-repeat: no-repeat;
+		background-position: left bottom;
+		background-size: contain;
+		opacity: 0.9;
+	}
+}
+
 /* end home */
 
 @media (min-width: 860px) {
-	#home h1.large {
+	#home h1.large,
+	#home h2.large {
 		font-size: 54px;
 	}
 }
