@@ -1,6 +1,6 @@
 /**
  * Copyright 2019 Parity Technologies
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -152,39 +152,45 @@ class Index extends React.Component {
 								</div>
 							</div>
 							<div className='row py-5 features'>
-								<div className='col-12 col-md-4 mb-4'>
-									<div className='d-flex align-items-center mb-2'>
-										<img className='mr-2' src='/img/glyphs/rectangle-1.svg' width='40' />
+								<div className='col-12 col-md-3 mb-4'>
+									<div className='d-flex align-items-center mb-3'>
+										<img className='mr-2' src='/img/glyphs/rectangle-1.svg' width='50' />
 										<h3 className='mb-0'>Fast and efficient database</h3>
 									</div>
 								</div>
-								<div className='col-12 col-md-4 mb-4'>
-									<div className='d-flex align-items-center mb-2'>
-										<img className='mr-2' src='/img/glyphs/rectangle-2.svg' width='40' />
+								<div className='col-12 col-md-3 mb-4'>
+									<div className='d-flex align-items-center mb-3'>
+										<img className='mr-2' src='/img/glyphs/rectangle-2.svg' width='50' />
 										<h3 className='mb-0'>Modular P2P networking stack in libp2p</h3>
 									</div>
 								</div>
-								<div className='col-12 col-md-4'>
-									<div className='d-flex align-items-center mb-2'>
-										<img className='mr-2' src='/img/glyphs/rectangle-3.svg' width='40' />
+								<div className='col-12 col-md-3 mb-4'>
+									<div className='d-flex align-items-center mb-3'>
+										<img className='mr-2' src='/img/glyphs/rectangle-3.svg' width='50' />
 										<h3 className='mb-0'>Hot-swappable consensus layer</h3>
 									</div>
 								</div>
-								<div className='col-12 col-md-4 mb-4'>
-									<div className='d-flex align-items-center mb-2'>
-										<img className='mr-2' src='/img/glyphs/rectangle-4.svg' width='40' />
-										<h3 className='mb-0'>Customizable transaction queue management system</h3>
+								<div className='col-12 col-md-3 mb-4'>
+									<div className='d-flex align-items-center mb-3'>
+										<img className='mr-2' src='/img/glyphs/rectangle-4.svg' width='50' />
+										<h3 className='mb-0'>Custom transaction queue system</h3>
 									</div>
 								</div>
-								<div className='col-12 col-md-4 mb-4'>
-									<div className='d-flex align-items-center mb-2'>
-										<img className='mr-2' src='/img/glyphs/rectangle-5.svg' width='40' />
-										<h3 className='mb-0'>Rich framework for composing runtime logic.</h3>
+								<div className='col-12 col-md-3 mb-4'>
+									<div className='d-flex align-items-center mb-3'>
+										<img className='mr-2' src='/img/glyphs/rectangle-5.svg' width='50' />
+										<h3 className='mb-0'>Data integration through off-chain workers</h3>
 									</div>
 								</div>
-								<div className='col-12 col-md-4'>
-									<div className='d-flex align-items-center mb-2'>
-										<img className='mr-2' src='/img/glyphs/rectangle-6.svg' width='40' />
+								<div className='col-12 col-md-3 mb-4'>
+									<div className='d-flex align-items-center mb-3'>
+										<img className='mr-2' src='/img/glyphs/rectangle-6.svg' width='50' />
+										<h3 className='mb-0'>Rich framework for composing runtime logic</h3>
+									</div>
+								</div>
+								<div className='col-12 col-md-3 mb-4'>
+									<div className='d-flex align-items-center mb-3'>
+										<img className='mr-2' src='/img/glyphs/rectangle-7.svg' width='50' />
 										<h3 className='mb-0'>Mobile light client support</h3>
 									</div>
 								</div>

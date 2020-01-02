@@ -10,7 +10,7 @@ Hash functions are used in Substrate to map arbitrary sized data to fixed-sized 
 
 Substrate provides two hash algorithms out of the box, but can support any hash algorithm which
 implements the [`Hasher`
-trait](https://substrate.dev/rustdocs/master/substrate_primitives/trait.Hasher.html).
+trait](https://substrate.dev/rustdocs/master/sp_core/trait.Hasher.html).
 
 ### xxHash
 
@@ -29,7 +29,7 @@ Substrate uses the [`twox-hash`](https://github.com/shepmaster/twox-hash) implem
 ### Blake2
 
 [Blake2](https://en.wikipedia.org/wiki/BLAKE_(hash_function)#BLAKE2) is a cryptographic hash
-function. It is considered to be a very fast and is also used in
+function. It is considered to be very fast and is also used in
 [Zcash](https://en.wikipedia.org/wiki/Zcash).
 
 Substrate uses the [`blake2`](https://docs.rs/blake2/) implementation in Rust.
@@ -40,7 +40,7 @@ Public-key cryptography is used in Substrate to provide a robust authentication 
 
 Substrate provides multiple different cryptographic schemes and is generic such that it can support
 anything which implements the [`Pair`
-trait](https://substrate.dev/rustdocs/master/substrate_primitives/crypto/trait.Pair.html).
+trait](https://substrate.dev/rustdocs/master/sp_core/crypto/trait.Pair.html).
 
 ### ECDSA
 
@@ -91,9 +91,9 @@ but only ECDSA signatures communicate their public key.
 ### References
 
 * Take a look at the
-  [`Hash`](https://substrate.dev/rustdocs/master/sr_primitives/traits/trait.Hash.html) trait needed
+  [`Hash`](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Hash.html) trait needed
   for implementing new hashing algorithms.
 
 * Take a look at the
-  [`Pair`](https://substrate.dev/rustdocs/master/substrate_primitives/crypto/trait.Pair.html) trait
+  [`Pair`](https://substrate.dev/rustdocs/master/sp_core/crypto/trait.Pair.html) trait
   needed for implementing new cryptographic schemes.
