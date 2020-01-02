@@ -19,8 +19,8 @@ Blockchains must agree on:
 - A series of state transitions, each called a "block", and
 - A final (current) state.
 
-In order to agree on the resulting state after a transition, all operations within a blockchain's 
-[state transition function](./conceptual/runtime/index.md) must be deterministic.
+In order to agree on the resulting state after a transition, all operations within a blockchain's
+[state transition function](conceptual/runtime/index.md) must be deterministic.
 
 ## Conflict Exclusion
 
@@ -32,7 +32,7 @@ further complication, blockchain networks strive to be fault tolerant, which mea
 continue to provide consistent data even if some participants are not following the rules.
 
 Blockchains batch transactions into blocks and have some method to select which participant has the
-right to submit a block. For example, in a proof-of-work chain, the node that finds a valid proof 
+right to submit a block. For example, in a proof-of-work chain, the node that finds a valid proof
 of work first has the right to submit a block to the chain.
 
 Substrate provides several block construction algorithms and also allows you to create your own:
@@ -44,7 +44,7 @@ Substrate provides several block construction algorithms and also allows you to 
 ## Fork Choice Rules
 
 As a primitive, a block contains a header and a batch of
-[extrinsics](./conceptual/node/extrinsics.md). The header must contain a reference to its parent 
+[extrinsics](conceptual/node/extrinsics.md). The header must contain a reference to its parent
 block such that one can trace the chain to its genesis. Forks occur when two blocks reference the
 same parent. Forks must be resolved such that only one, canonical chain exists.
 
@@ -57,7 +57,7 @@ For example:
 
 ### Longest Chain Rule
 
-The longest chain rule simply says that the best chain is the longest chain. Substrate provides 
+The longest chain rule simply says that the best chain is the longest chain. Substrate provides
 this chain selection rule with the
 [`LongestChain` struct](https://crates.parity.io/sc_client/struct.LongestChain.html). GRANDPA uses
 the longest chain rule for voting.
@@ -89,10 +89,10 @@ block production engine.
 
 ### Slots
 
-Slot-based consensus algorithms must have a known set of validators who are permitted to produce 
-blocks. Time is divided up into discrete slots, and during each slot only some of the validators 
-may produce a block. The specifics of which validators can author blocks during each slot vary from 
-engine to engine. Substrate provides Aura and Babe, both of which are slot-based block authoring 
+Slot-based consensus algorithms must have a known set of validators who are permitted to produce
+blocks. Time is divided up into discrete slots, and during each slot only some of the validators
+may produce a block. The specifics of which validators can author blocks during each slot vary from
+engine to engine. Substrate provides Aura and Babe, both of which are slot-based block authoring
 engines.
 
 ## Finality
@@ -107,10 +107,10 @@ revert your transaction. However, the more blocks are built on top of a particul
 likely it is to ever be reverted. In this way, block authoring along with a proper fork choice rule
 provides probabilistic finality.
 
-When deterministic finality is desired, a finality gadget can be added to the blockchain's logic. 
-Members of a fixed authority set cast finality votes, and when enough votes have been cast for a 
-certain block, the block is deemed final. In most systems, this threshold is 2/3. Blocks that have 
-been finalized by such a gadget cannot be reverted without external coordination such as a hard 
+When deterministic finality is desired, a finality gadget can be added to the blockchain's logic.
+Members of a fixed authority set cast finality votes, and when enough votes have been cast for a
+certain block, the block is deemed final. In most systems, this threshold is 2/3. Blocks that have
+been finalized by such a gadget cannot be reverted without external coordination such as a hard
 fork.
 
 > Some consensus systems couple block production and finality, as in, finalization is part of the
@@ -131,15 +131,15 @@ finality. This article provides a brief overview of the offerings included with 
 ### Aura
 
 [Aura](https://crates.parity.io/substrate_consensus_aura/index.html) provides a slot-based block
-authoring mechanism. In aura a known set of authorities take turns producing blocks.
+authoring mechanism. In Aura a known set of authorities take turns producing blocks.
 
 ### BABE
 
 [BABE](https://crates.parity.io/substrate_consensus_babe/index.html) also provides slot-based block
-authoring with a known set of validators. In these ways it is similar to Aura. Unlike Aura, slot 
-assignment is based on the evaluation of a Verifiable Random Function (VRF). Each validator is 
+authoring with a known set of validators. In these ways it is similar to Aura. Unlike Aura, slot
+assignment is based on the evaluation of a Verifiable Random Function (VRF). Each validator is
 assigned a weight for an _epoch._ This epoch is broken up into slots and the validator evaluates its
-VRF at each slot. For each slot that the validator's VRF output is below its weight, it is allowed 
+VRF at each slot. For each slot that the validator's VRF output is below its weight, it is allowed
 to author a block.
 
 Because multiple validators may be able to produce a block during the same slot, forks are more
@@ -150,7 +150,7 @@ in a given slot. These "secondary" slot assignments allow BABE to achieve a cons
 
 ### Proof of Work
 
-[Proof-of-work](https://crates.parity.io/substrate_consensus_pow/index.html) block authoring is not 
+[Proof-of-work](https://crates.parity.io/substrate_consensus_pow/index.html) block authoring is not
 slot-based and does not require a known authority set. In proof of work, anyone can
 produce a block at any time, so long as they can solve a computationally challenging problem
 (typically a hash preimage search). The difficulty of this problem can be tuned to provide a
@@ -161,9 +161,9 @@ statistical target block time.
 [GRANDPA](https://crates.parity.io/substrate_finality_grandpa/index.html) provides block
 finalization. It has a known weighted authority set like BABE. However, GRANDPA does not author
 blocks; it just listens to gossip about blocks that have been produced by some authoring engine like
-the three discussed above. GRANDPA validators vote on _chains,_ not _blocks,_ i.e. they vote on a 
+the three discussed above. GRANDPA validators vote on _chains,_ not _blocks,_ i.e. they vote on a
 block that they consider "best" and their votes are applied transitively to all previous blocks.
-Once more than 2/3 of the GRANDPA authorities have voted for a particular block, it is considered 
+Once more than 2/3 of the GRANDPA authorities have voted for a particular block, it is considered
 final.
 
 ### Coordination with the Runtime
@@ -174,12 +174,23 @@ coordination with the runtime. Examples include adjustable difficulty in proof o
 rotation in proof of authority, and stake-based weighting in proof-of-stake networks.
 
 To accommodate these consensus features, Substrate has the concept of a
-[`DigestItem`](https://substrate.dev/rustdocs/master/sr_primitives/enum.DigestItem.html), a message 
+[`DigestItem`](https://substrate.dev/rustdocs/master/sr_primitives/enum.DigestItem.html), a message
 passed from the outer part of the node, where consensus lives, to the runtime, or vice versa.
 
 ## Learn More
 
-Because both BABE and GRANDPA will be used in the Polkadot network, Web3 founation provides research-level presentations of the algorithms.
+Because both BABE and GRANDPA will be used in the Polkadot network, Web3 Foundation provides
+research-level presentations of the algorithms.
 
 * [BABE Research](https://research.web3.foundation/en/latest/polkadot/BABE/Babe.html)
 * [GRANDPA Research](https://research.web3.foundation/en/latest/polkadot/GRANDPA.html)
+
+All deterministic finality algorithms, including GRANDPA, require at least `2f + 1` non-faulty
+nodes, where `f` is the number of faulty or malicious nodes. Learn more about where this threshold
+comes from and why it is ideal in the seminal paper
+[Reaching Agreement in the Presence of Faults](https://lamport.azurewebsites.net/pubs/reaching.pdf)
+or on [Wikipedia: Byzantine Fault](https://en.wikipedia.org/wiki/Byzantine_fault).
+
+Not all consensus protocols define a single, canonical chain. Some protocols validate
+[directed acyclic graphs](https://en.wikipedia.org/wiki/Directed_acyclic_graph) (DAG) when two
+blocks with the same parent do not have conflicting state changes.
