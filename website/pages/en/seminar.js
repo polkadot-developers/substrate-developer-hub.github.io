@@ -128,7 +128,7 @@ function Seminar(props) {
 
 						<div className='col-md-6 second'>
 							<h4 className='mb-2'>
-								I am not a [Substrate] developer, can I join just to ask couple of questions?
+								I am not a [Substrate] developer, can I still participate?
 							</h4>
 							<p>
 								Yes! The seminar is open to everyone. The content is generally more developer-oriented,
