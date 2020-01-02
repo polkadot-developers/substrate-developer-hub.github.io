@@ -42,8 +42,7 @@ function Seminar(props) {
 				<div className='container pos-vertical-center mt--1'>
 					<div className='row'>
 						<div className='col-md-12'>
-							<h5 className='type--uppercase mb-4 tagline'>Substrate Seminar</h5>
-							<h1>Join the Substrate Collaborative Learning Group</h1>
+							<h1>Substrate Seminar &mdash; A Collaborative Learning Group</h1>
 							<p className='h3 type--subhead'>
 								Substrate Seminar is an open collaborative learning call <br />where we learn about
 								Substrate together.
