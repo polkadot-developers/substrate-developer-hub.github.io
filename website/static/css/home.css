@@ -2,6 +2,7 @@
 #home {
 	--primary-color: #ff1864;
 	--dark: #24292e;
+	--grey: #5a6268;
 	--font-size-p: 18px;
 }
 
@@ -116,10 +117,8 @@
 .primary-color:hover,
 .btn-outline-primary:hover {
 	color: white !important;
-}
-
-#home .btn-outline-primary:hover {
-	background-color: var(--primary-color);
+	background-color: var(--grey);
+	border-color: var(--grey) !important;
 }
 
 #home .icon-wrap {

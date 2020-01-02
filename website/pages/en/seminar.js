@@ -42,7 +42,12 @@ function Seminar(props) {
 				<div className='container pos-vertical-center mt--1'>
 					<div className='row'>
 						<div className='col-md-12'>
-							<h1>Substrate Seminar &mdash; A Collaborative Learning Group</h1>
+							<h1>
+								<span className='c-accent' style={{ marginBottom: '8px', display: 'inline-block' }}>
+									Substrate Seminar
+								</span>{' '}
+								<br /> A Collaborative Learning Group
+							</h1>
 							<p className='h3 type--subhead'>
 								Substrate Seminar is an open collaborative learning call <br />where we learn about
 								Substrate together.
@@ -102,10 +107,11 @@ function Seminar(props) {
 								style={{
 									marginBottom: '40px'
 								}}>
-								At the January 7th session we will explore Offchain Workers. In particular we will
-								study and run Jimmy Chu's{' '}
-								<a href="https://github.com/jimmychu0807/substrate-offchain-pricefetch">Price
-								fetching example</a>. If you wish to run a node, please pre-compile this project.
+								At the January 7th session we will explore Offchain Workers. In particular we will study
+								and run Jimmy Chu's{' '}
+								<a href='https://github.com/jimmychu0807/substrate-offchain-pricefetch'>
+									Price fetching example
+								</a>. If you wish to run a node, please pre-compile this project.
 							</p>
 							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
 							<p>
@@ -127,9 +133,7 @@ function Seminar(props) {
 						</div>
 
 						<div className='col-md-6 second'>
-							<h4 className='mb-2'>
-								I am not a [Substrate] developer, can I still participate?
-							</h4>
+							<h4 className='mb-2'>I am not a [Substrate] developer, can I still participate?</h4>
 							<p>
 								Yes! The seminar is open to everyone. The content is generally more developer-oriented,
 								but less technical participants and questions are also welcome. If your questions turn
@@ -142,8 +146,10 @@ function Seminar(props) {
 								Substrate Seminar. When we decided to start meeting every week, and have a more
 								discoverable web presence, we rebranded. If you liked Substrate Collaborative Learning,
 								you'll love Substrate Seminar. The{' '}
-								<a href="https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx">
-								SCL recordings</a> are still available.
+								<a href='https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx'>
+									SCL recordings
+								</a>{' '}
+								are still available.
 							</p>
 						</div>
 					</div>
