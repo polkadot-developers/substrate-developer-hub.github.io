@@ -78,9 +78,6 @@ a simple template project to help you get started building on Substrate.
 
     # Add Wasm target
     rustup target add wasm32-unknown-unknown --toolchain nightly
-
-    # Install `wasm-gc` to slim Wasm binaries
-    cargo +nightly install --git https://github.com/alexcrichton/wasm-gc --force
     ```
 
 3. Compile your Substrate node
