@@ -22,7 +22,7 @@ To develop in the Substrate ecosystem, you must set up your developer environmen
 Run:
 
 ```bash
-sudo apt install -y cmake pkg-config libssl-dev git gcc build-essential git clang libclang-dev
+sudo apt install -y cmake pkg-config libssl-dev git gcc build-essential clang libclang-dev
 ```
 
 ### macOS
