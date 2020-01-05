@@ -79,22 +79,16 @@
 <p>Validators should not share the same keys, even for learning purposes. If two validators have the same keys, they will produce conflicting blocks and be slashed.</p>
 </blockquote>
 <h2><a class="anchor" aria-hidden="true" id="create-a-chain-specification"></a><a href="#create-a-chain-specification" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create a Chain Specification</h2>
-<p>Last time around, we used <code>--chain=local</code> which is a predefined &quot;chain spec&quot; that has Alice and Bob specified as validators along with many other useful defaults.</p>
+<p>Last time around, we used <code>--chain local</code> which is a predefined &quot;chain spec&quot; that has Alice and Bob specified as validators along with many other useful defaults.</p>
 <p>Rather than writing our chain spec completely from scratch, we'll just make a few modifications to the the one we used before. To start we need to export the chain spec to a json file. Remember, further details about all of these commands are available by running <code>node-template --help</code>.</p>
-<pre><code class="hljs css language-bash">./target/release/node-template build-spec --chain<span class="token operator">=</span>local <span class="token operator">></span> customSpec.json
+<pre><code class="hljs css language-bash">./target/release/node-template build-spec --chain local <span class="token operator">></span> customSpec.json
 </code></pre>
 <p>The file we just created contains several fields, and you can learn a lot by exploring them. By far the largest field is a single hex number that is the Wasm binary of our runtime. It is part of what you built earlier when you ran the <code>cargo build</code> command.</p>
 <p>The portion of the file we're interested in is the Aura authorities (used for creating blocks) and the GRANDPA authorities (used for finalizing blocks). That section looks like this</p>
 <pre><code class="hljs css language-json"><span class="token property">"aura"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
   <span class="token property">"authorities"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-    <span class="token punctuation">[</span>
-      <span class="token string">"5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"</span><span class="token punctuation">,</span>
-      <span class="token number">1</span>
-    <span class="token punctuation">]</span><span class="token punctuation">,</span>
-    <span class="token punctuation">[</span>
-      <span class="token string">"5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty"</span><span class="token punctuation">,</span>
-      <span class="token number">1</span>
-    <span class="token punctuation">]</span>
+    <span class="token string">"5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"</span><span class="token punctuation">,</span>
+    <span class="token string">"5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty"</span>
   <span class="token punctuation">]</span>
 <span class="token punctuation">}</span><span class="token punctuation">,</span>
 <span class="token property">"grandpa"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -111,6 +105,7 @@
 <span class="token punctuation">}</span><span class="token punctuation">,</span>
 
 </code></pre>
+<p>The format for the grandpa data is more complex because the grandpa protocol supports weighted votes. In this case we have given each validator a weight of 1.</p>
 <p>All we need to do is change the authority addresses listed (currently Alice and Bob) to our own addresses that we generated in the previous step. The sr25519 addresses go in the <code>aura</code> section, and the ed25519 addresses in the <code>grandpa</code> section. You may add as many validators as you like. For additional context, read about <a href="https://substrate.dev/docs/en/next/conceptual/cryptography/keys">keys in Substrate</a>.</p>
 <blockquote>
 <p>A single person should do these steps and share the resulting file with their fellow validators.</p>
@@ -124,25 +119,28 @@
 <p>You've completed all the necessary prep work and you're now ready to launch your chain. This process is very similar to when you launched a chain earlier as Alice and Bob. It's important to start with a clean base path, so if you plan to use the same path that you've used previously, please delete all contents from that directory.</p>
 <p>The first participant can launch her node with</p>
 <pre><code class="hljs css language-bash">./target/release/node-template \
+  --base-path /tmp/node01 \
   --chain ./customSpecRaw.json \
   --port 30333 \
   --ws-port 9944 \
   --rpc-port 9933 \
   --telemetry-url ws://telemetry.polkadot.io:1024 \
-  --validator
-  --name MyNode
+  --validator \
+  --name MyNode01
 </code></pre>
 <p>Here are some differences from when we launched as Alice.</p>
 <ul>
-<li>I've omitted the <code>--base-path</code> flag, so Substrate will use a default location. You're still free to specify your own base path, and you must do so if multiple nodes will run on the same physical machine.</li>
 <li>I've omitted the <code>--alice</code> flag. Instead we will insert our own custom keys into the keystore through the RPC shortly.</li>
 <li>The <code>--chain</code> flag has changed to use our custom chain spec.</li>
 <li>I've added the optional <code>--name</code> flag. You may use it to give your node a human-readable name in the telemetry UI.</li>
 </ul>
-<p>Once your node is running, you will again notice that no blocks are being produced. At this point you can use the Apps UI to insert your keys into the keystore. Navigate to the &quot;Toolbox&quot; tab and the &quot;RPC Call&quot; sub-tab. Choose &quot;author&quot; and &quot;insertKey&quot;. The fields can be filled like this:</p>
+<h2><a class="anchor" aria-hidden="true" id="adding-keys-to-keystore"></a><a href="#adding-keys-to-keystore" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding Keys to Keystore</h2>
+<p>Once your node is running, you will again notice that no blocks are being produced. At this point, you need to add your keys into the keystore.</p>
+<h3><a class="anchor" aria-hidden="true" id="option-1-using-polkadot-js-app-ui"></a><a href="#option-1-using-polkadot-js-app-ui" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Option 1: Using Polkadot-JS App UI</h3>
+<p>You can use the Apps UI to insert your keys into the keystore. Navigate to the &quot;Toolbox&quot; tab and the &quot;RPC Call&quot; sub-tab. Choose &quot;author&quot; and &quot;insertKey&quot;. The fields can be filled like this:</p>
 <pre><code class="hljs">keytype<span class="token punctuation">:</span> aura
-suri<span class="token punctuation">:</span> your mnemonic <span class="token function">phrase</span> <span class="token punctuation">(</span>eg keep matrix knee meat awake frown rubber position federal easily strategy inhale<span class="token punctuation">)</span>
-publicKey<span class="token punctuation">:</span> your sr25519 <span class="token function">key</span> <span class="token punctuation">(</span>eg <span class="token number">0x8ed5f822065e5824d3e37d9ea36a81eacb98ff1a6fa04bb87d2fa4915e9ed147</span><span class="token punctuation">)</span>
+suri<span class="token punctuation">:</span> <span class="token operator">&lt;</span>your mnemonic phrase<span class="token operator">></span> <span class="token punctuation">(</span>eg clip organ olive upper oak void inject side suit toilet stick narrow<span class="token punctuation">)</span>
+publicKey<span class="token punctuation">:</span> <span class="token operator">&lt;</span>your sr25519 key<span class="token operator">></span> <span class="token punctuation">(</span>eg <span class="token number">0x9effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e</span><span class="token punctuation">)</span>
 </code></pre>
 <p><img src="/docs/assets/private-network-apps-insert-key.png" alt="Inserting a Grandpa key using Apps"></p>
 <blockquote>
@@ -150,13 +148,47 @@ publicKey<span class="token punctuation">:</span> your sr25519 <span class="toke
 </blockquote>
 <p>You've now successfully inserted your aura key. You can repeat those steps to insert your grandpa key (the ed25519 key)</p>
 <pre><code class="hljs">keytype<span class="token punctuation">:</span> gran
-suri<span class="token punctuation">:</span> your mnemonic <span class="token function">phrase</span> <span class="token punctuation">(</span>eg keep matrix knee meat awake frown rubber position federal easily strategy inhale<span class="token punctuation">)</span>
-publicKey<span class="token punctuation">:</span> your ed25519 <span class="token function">key</span> <span class="token punctuation">(</span>eg <span class="token number">0xfe68fdff17960cb8d45d861396a64d4086997353849403ee3352996ec68ff4af</span><span class="token punctuation">)</span>
+suri<span class="token punctuation">:</span> <span class="token operator">&lt;</span>your mnemonic phrase<span class="token operator">></span> <span class="token punctuation">(</span>eg clip organ olive upper oak void inject side suit toilet stick narrow<span class="token punctuation">)</span>
+publicKey<span class="token punctuation">:</span> <span class="token operator">&lt;</span>your ed25519 key<span class="token operator">></span> <span class="token punctuation">(</span>eg <span class="token number">0xb48004c6e1625282313b07d1c9950935e86894a2e4f21fb1ffee9854d180c781</span><span class="token punctuation">)</span>
 </code></pre>
-<p>Finally, restart your node so that the keys just added to the keystore take effect.</p>
+<h3><a class="anchor" aria-hidden="true" id="option-2-using-cli"></a><a href="#option-2-using-cli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Option 2: Using CLI</h3>
+<p>You can also insert a key to the keystore by command line.</p>
+<pre><code class="hljs css language-bash"><span class="token comment"># Submit a new key via RPC, connect to where your `rpc-port` is listening</span>
+$ <span class="token function">curl</span> http://localhost:9933 -H <span class="token string">"Content-Type:application/json;charset=utf-8"</span> -d \
+  <span class="token string">'{
+    "jsonrpc":"2.0",
+    "id":1,
+    "method":"author_insertKey",
+    "params": [
+      "&lt;aura/gran>",
+      "&lt;mnemonic phrase>",
+      "&lt;public key>"
+    ]
+  }'</span>
+</code></pre>
+<p>If you enter the command and parameters correctly, the node will return a JSON response as follows.</p>
+<pre><code class="hljs css language-json"><span class="token punctuation">{</span> <span class="token property">"jsonrpc"</span><span class="token operator">:</span> <span class="token string">"2.0"</span><span class="token punctuation">,</span> <span class="token property">"result"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span> <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span> <span class="token punctuation">}</span>
+</code></pre>
 <h2><a class="anchor" aria-hidden="true" id="subsequent-participants-join"></a><a href="#subsequent-participants-join" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Subsequent Participants Join</h2>
-<p>Subsequent validators can now join the network as Bob did previously, making sure to use the new chain spec. You may bootstrap from <em>any</em> of the nodes already in the network, not just the one that went first.</p>
-<p>Each participant will need to start their node, add both keys to the keystore, and restart their node.</p>
+<p>Subsequent validators can now join the network. This can be done either by specifying the <code>--bootnodes</code> paramter as Bob did previously, or using the chain spec file we generated just now.</p>
+<p>Let's use the chain spec file to run another node. The command will be similar to the following:</p>
+<pre><code class="hljs css language-bash">./target/release/node-template \
+  --base-path /tmp/node02 \
+  --chain ./customSpecRaw.json \
+  --port 30334 \
+  --ws-port 9945 \
+  --rpc-port 9934 \
+  --telemetry-url ws://telemetry.polkadot.io:1024 \
+  --validator \
+  --name MyNode02
+</code></pre>
+<p>Note that:</p>
+<ul>
+<li>We don't need to specify the <code>--bootnodes</code> as it is read from the <code>customSpecRaw.json</code> file.</li>
+<li>We specify another <code>base-path</code>, give it another <code>name</code>, and also specify this node as a <code>validator</code>.</li>
+<li>Once the node is up, we add another pair of <code>sr25519</code> and <code>ed25519</code> keys in this node keystore that we specify in the <code>customSpec.json</code>. Each participant will need to start their node and add both keys to the keystore to be a validator.</li>
+<li>If there are multiple validators in the network, we want to add all of them in the <code>bootnodes</code> section of in the <code>customSpec.json</code>.</li>
+</ul>
 <blockquote>
 <p>If you are running multiple nodes on the same machine, you must configure the UI to the correct node's WebSocket endpoint.</p>
 </blockquote>
@@ -168,7 +200,7 @@ publicKey<span class="token punctuation">:</span> your ed25519 <span class="toke
 <p>In this tutorial you've learned to compile the node-template, generate your own keypairs, create a custom chain spec that uses those keypairs, and start a private network based on your custom chain spec and the node-template.</p>
 <h3><a class="anchor" aria-hidden="true" id="learn-more"></a><a href="#learn-more" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Learn More</h3>
 <p>That big Wasm blob we encountered in the chain spec was was necessary to enable forkless upgrades. Learn more about how the <a href="docs/conceptual/core/executor">executor</a> uses on-chain Wasm.</p>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/next/tutorials/start-a-private-network/keygen"><span class="arrow-prev">← </span><span>Generate Your Own Keys</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#create-a-chain-specification">Create a Chain Specification</a></li><li><a href="#first-participant-starts-a-bootnode">First Participant Starts a Bootnode</a></li><li><a href="#subsequent-participants-join">Subsequent Participants Join</a></li><li><a href="#you-re-finished">You're Finished</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/next/tutorials/start-a-private-network/keygen"><span class="arrow-prev">← </span><span>Generate Your Own Keys</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#create-a-chain-specification">Create a Chain Specification</a></li><li><a href="#first-participant-starts-a-bootnode">First Participant Starts a Bootnode</a></li><li><a href="#adding-keys-to-keystore">Adding Keys to Keystore</a><ul class="toc-headings"><li><a href="#option-1-using-polkadot-js-app-ui">Option 1: Using Polkadot-JS App UI</a></li><li><a href="#option-2-using-cli">Option 2: Using CLI</a></li></ul></li><li><a href="#subsequent-participants-join">Subsequent Participants Join</a></li><li><a href="#you-re-finished">You're Finished</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
 #blast {
   position: fixed;
   width: 100%;

@@ -80,7 +80,7 @@
 <pre><code class="hljs css language-bash"><span class="token comment"># Start Alice's node</span>
 ./target/release/node-template \
   --base-path /tmp/alice \
-  --chain<span class="token operator">=</span>local \
+  --chain local \
   --alice \
   --port 30333 \
   --ws-port 9944 \
@@ -89,16 +89,21 @@
   --validator
 </code></pre>
 <p>Let's look at those flags in detail:</p>
-<ul>
-<li><code>--base-path</code> 指定一个目录，Substrate 用它来存储与此链有关的所有数据。 如果目录不存在，将创建它。 如果已经存在其它区块链的数据，启动将会报错。 这种情况下，要么清除目录，要么选择不同的目录。</li>
-<li><code>--chain=local</code> 指定要使用的链规范。 有几个预先准备的选项，包括 <code>local</code> <code>development</code> 和 <code>staging</code> ，但更常见的是我们指定自己的 chainspec 文件。 我们将在稍后阶段指定自己的文件。</li>
-<li><code>--alice</code> Puts the pre-defined Alice keys (both for block production and finalization) in the node's keystore. Generally one should generate their own keys and insert them with an RPC call. 我们将在稍后阶段指定自己的秘钥。</li>
-<li><code>--port 30333</code> 指定节点将监听的 p2p 端口。 30333是默认值，如果默认值可以，可以忽略此 flag。 如果 Bob 的节点在同一物理机上运行，您需要明确指定一个不同的端口。</li>
-<li><code>--ws-port 9944</code> Specifies the port that your node will listen for incoming web socket traffic on. 9944 is the default, so it can also be omitted.</li>
-<li><code>--rpc-port 9933</code> Specifies the port that your node will listen for incoming RPC traffic on. 9933 is the default, so it can also be omitted.</li>
-<li><code>--telemetry-url</code> 告诉节点，将监测数据发送到特定的服务器。 我们在这里选择了由 Parity 维护、可供任何人使用的监测服务器。 You may also host your own (beyond the scope of this article) or omit this flag entirely.</li>
-<li><code>--validator</code> Means that we want to participate in block production and finalization rather than just sync the network.</li>
-</ul>
+<table>
+<thead>
+<tr><th><div style="min-width:110pt"> Flags </div></th><th>Descriptions</th></tr>
+</thead>
+<tbody>
+<tr><td><code>--base-path</code></td><td>Specifies a directory where Substrate should store all the data related to this chain. 如果目录不存在，将创建它。 如果已经存在其它区块链的数据，启动将会报错。 这种情况下，要么清除目录，要么选择不同的目录。 If this value is not specified, a default path will be used.</td></tr>
+<tr><td><code>--chain local</code></td><td>Specifies which chain specification to use. There are a few pre-packaged options including <code>local</code>, <code>development</code>, and <code>staging</code> but generally one specifies their own chainspec file. 我们将在稍后阶段指定自己的文件。</td></tr>
+<tr><td><code>--alice</code></td><td>Puts the pre-defined Alice keys (both for block production and finalization) in the node's keystore. Generally one should generate their own keys and insert them with an RPC call. 我们将在稍后阶段指定自己的秘钥。 This flag also makes Alice a validator.</td></tr>
+<tr><td><code>--port 30333</code></td><td>Specifies the port that your node will listen for p2p traffic on. <code>30333</code> is the default and this flag can be omitted if you're happy with the default. 如果 Bob 的节点在同一物理机上运行，您需要明确指定一个不同的端口。</td></tr>
+<tr><td><code>--ws-port 9944</code></td><td>Specifies the port that your node will listen for incoming web socket traffic on. <code>9944</code> is the default, so it can also be omitted.</td></tr>
+<tr><td><code>--rpc-port 9933</code></td><td>Specifies the port that your node will listen for incoming RPC traffic on. <code>9933</code> is the default, so it can also be omitted.</td></tr>
+<tr><td><code>--telemetry-url</code></td><td>Tells the node to send telemetry data to a particular server. 我们在这里选择了由 Parity 维护、可供任何人使用的监测服务器。 You may also host your own (beyond the scope of this article) or omit this flag entirely.</td></tr>
+<tr><td><code>--validator</code></td><td>Means that we want to participate in block production and finalization rather than just sync the network.</td></tr>
+</tbody>
+</table>
 <p>当节点启动后，你应该看到类似下面的输出：</p>
 <pre><code class="hljs"><span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">10</span> Substrate Node
 <span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">10</span>   version <span class="token number">2.0</span><span class="token punctuation">.</span><span class="token number">0</span><span class="token operator">-</span>7d7e74fb7<span class="token operator">-</span>x86_64<span class="token operator">-</span>linux<span class="token operator">-</span>gnu
@@ -117,10 +122,16 @@
 <span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">15</span> <span class="token function">Idle</span> <span class="token punctuation">(</span><span class="token number">0</span> peers<span class="token punctuation">)</span><span class="token punctuation">,</span> best<span class="token punctuation">:</span> #<span class="token function">0</span> <span class="token punctuation">(</span><span class="token number">0x8855</span>…e564<span class="token punctuation">)</span><span class="token punctuation">,</span> finalized #<span class="token function">0</span> <span class="token punctuation">(</span><span class="token number">0x8855</span>…e564<span class="token punctuation">)</span><span class="token punctuation">,</span> ⬇ <span class="token number">0</span> ⬆ <span class="token number">0</span>
 <span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">15</span><span class="token punctuation">:</span><span class="token number">42</span><span class="token punctuation">:</span><span class="token number">20</span> <span class="token function">Idle</span> <span class="token punctuation">(</span><span class="token number">0</span> peers<span class="token punctuation">)</span><span class="token punctuation">,</span> best<span class="token punctuation">:</span> #<span class="token function">0</span> <span class="token punctuation">(</span><span class="token number">0x8855</span>…e564<span class="token punctuation">)</span><span class="token punctuation">,</span> finalized #<span class="token function">0</span> <span class="token punctuation">(</span><span class="token number">0x8855</span>…e564<span class="token punctuation">)</span><span class="token punctuation">,</span> ⬇ <span class="token number">0</span> ⬆ <span class="token number">0</span>
 </code></pre>
-<p>A few lines to take note of: <code>Local node identity is: QmViTYm8Yr4yneyRGov9L87vLeVLoySFduVRNQ1d33WdXN</code> shows the node ID that Bob will need when booting from Alice's node. <code>Initializing Genesis block/state (state: 0x4faf…3aba, header-hash: 0x8855…e564)</code> tells which genesis block the node is using. Bob's node must have the same hashes or they will not connect to one another.</p>
+<blockquote>
+<p><strong>Notes</strong></p>
+<ul>
+<li><code>Local node identity is: QmViTYm8Yr4yneyRGov9L87vLeVLoySFduVRNQ1d33WdXN</code> shows the node ID that Bob will need when booting from Alice's node.</li>
+<li><code>Initializing Genesis block/state (state: 0x4faf…3aba, header-hash: 0x8855…e564)</code> tells which genesis block the node is using. Bob's node must have the same hashes or they will not connect to one another.</li>
+</ul>
+</blockquote>
 <p>More details about all of these flags and others that I haven't mentioned are available by running <code>./target/release/node-template --help</code>.</p>
 <h2><a class="anchor" aria-hidden="true" id="连接ui"></a><a href="#连接ui" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>连接UI</h2>
-<p>你可以通过节点在命令行中产生的输出了解很多信息。 还有一个很好的图形用户界面，称为<a href="https://polkadot.js.org/apps/"> Polkadot Js Apps UI </a>，可以将它连接到你的节点。 That link goes to the hosted version of the user interface, which is super convenient, but will not connect to unencrypted web-socket endpoints in some browsers (notably including Firefox). In this case, you can run the interface locally by grabbing the code from <a href="https://github.com/polkadot-js/apps">github</a>. 一般来说，该仓库中的指令将是你的最佳指南，但过程应该是这样的。</p>
+<p>你可以通过节点在命令行中产生的输出了解很多信息。 There is also a nice graphical user interface known as the <a href="https://polkadot.js.org/apps/">Polkadot-JS Apps UI</a> which you can connect to your node. That link goes to the hosted version of the user interface, which is super convenient, but will not connect to unencrypted web-socket endpoints in some browsers (notably including Firefox). In this case, you can run the interface locally by grabbing the code from <a href="https://github.com/polkadot-js/apps">github</a>. In general the instructions in that repository will be your best guide, but the process should be something like this.</p>
 <pre><code class="hljs css language-bash"><span class="token comment"># 抓取代码</span>
 <span class="token function">git</span> clone https://github.com/polkadot-js/apps
 <span class="token function">cd</span> apps
@@ -133,12 +144,16 @@
 </code></pre>
 <p>Point your favorite web browser at localhost:3000, and on the settings tab, choose &quot;local node&quot;. 你应该看到类似下面的内容：</p>
 <p><img src="/docs/assets/private-network-no-blocks.png" alt="No blocks in polkadot-js-apps"></p>
-<p>你会注意到，在命令行和用户界面中，还没有生产任何块。 一旦另一个验证者加入网络，块将开始生成。</p>
+<p>你会注意到，在命令行和用户界面中，还没有生产任何块。 Blocks will start being produced once another validator joins the network.</p>
+<blockquote>
+<p><strong>Notes</strong></p>
+<p>If you do not want to run your hosted version of Polkadot-JS Apps UI while connecting to Substrate node you have deployed remotely, you can configure ssh local port forwarding to forward local request to the <code>ws-port</code> listened by the remote host. This is beyond the scope of this tutorial but is referenced at the bottom.</p>
+</blockquote>
 <h3><a class="anchor" aria-hidden="true" id="bob-加入"></a><a href="#bob-加入" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Bob 加入</h3>
 <p>现在，Alice节点已经启动并运行，Bob 可以通过引导节点来加入网络。 他的命令看起来非常类似下面：</p>
 <pre><code class="hljs css language-bash">./target/release/node-template \
   --base-path /tmp/bob \
-  --chain<span class="token operator">=</span>local \
+  --chain local \
   --bob \
   --port 30334 \
   --ws-port 9945 \
@@ -152,8 +167,8 @@
 <li>If these two nodes are running on the same physical machine, Bob MUST specify a different <code>--base-path</code>, <code>--port</code>, <code>--ws-port</code>, and <code>--rpc-port</code>.</li>
 <li>Bob 添加了 <code>--bootnodes</code> flag 来指定一个启动节点，即 Alice 节点。 他必须正确指定这三项，Alice 可以为他提供的这三条信息。
 <ul>
-<li>Alice IP Address 的格式 <code>192.168.1.1</code></li>
-<li>Alice的端口，可能为30333</li>
+<li>Alice's IP Address, in the form <code>192.168.1.1</code></li>
+<li>Alice's Port, probably <code>30333</code></li>
 <li>Alice节点ID，从她的日志输出中复制。 (<code>QmViTYm8Yr4yneyRGov9L87vLeVLoySFduVRNQ1d33WdXN</code> in the example output above.)</li>
 </ul></li>
 </ul>
@@ -161,7 +176,11 @@
 <pre><code class="hljs"><span class="token function">Idle</span> <span class="token punctuation">(</span><span class="token number">1</span> peers<span class="token punctuation">)</span><span class="token punctuation">,</span> best<span class="token punctuation">:</span> #<span class="token function">1</span> <span class="token punctuation">(</span><span class="token number">0x9f1b</span>…9b57<span class="token punctuation">)</span><span class="token punctuation">,</span> finalized #<span class="token function">1</span> <span class="token punctuation">(</span><span class="token number">0x28be</span>…<span class="token number">45e5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> ⬇ <span class="token number">1</span><span class="token punctuation">.</span>7kiB<span class="token operator">/</span>s ⬆ <span class="token number">1</span><span class="token punctuation">.</span>4kiB<span class="token operator">/</span>s
 </code></pre>
 <p>This line shows that Bob has peered with Alice (<code>1 peers</code>), they have produced a block (<code>best: #1 (0x9f1b…9b57)</code>), and the block is  finalized (<code>finalized #1 (0x28be…45e5)</code>).</p>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/next/tutorials/start-a-private-network/compile"><span class="arrow-prev">← </span><span>编译所需工具</span></a><a class="docs-next button" href="/docs/zh-CN/next/tutorials/start-a-private-network/keygen"><span>生成密钥</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#alice-starts-first">Alice Starts First</a></li><li><a href="#连接ui">连接UI</a><ul class="toc-headings"><li><a href="#bob-加入">Bob 加入</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
+<h2><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h2>
+<ul>
+<li><a href="https://www.booleanworld.com/guide-ssh-port-forwarding-tunnelling/">Configure ssh local port forwarding</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/next/tutorials/start-a-private-network/compile"><span class="arrow-prev">← </span><span>编译所需工具</span></a><a class="docs-next button" href="/docs/zh-CN/next/tutorials/start-a-private-network/keygen"><span>生成密钥</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#alice-starts-first">Alice Starts First</a></li><li><a href="#连接ui">连接UI</a><ul class="toc-headings"><li><a href="#bob-加入">Bob 加入</a></li></ul></li><li><a href="#references">References</a></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
 #blast {
   position: fixed;
   width: 100%;
