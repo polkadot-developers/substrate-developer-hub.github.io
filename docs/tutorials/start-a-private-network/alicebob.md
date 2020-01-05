@@ -17,7 +17,8 @@ Alice (or whomever is playing her) should run this command from node-template re
   --port 30333 \
   --ws-port 9944 \
   --rpc-port 9933 \
-  --telemetry-url ws://telemetry.polkadot.io:1024
+  --telemetry-url ws://telemetry.polkadot.io:1024 \
+  --validator
 ```
 
 Let's look at those flags in detail:
@@ -31,6 +32,7 @@ Let's look at those flags in detail:
 | `--ws-port 9944` | Specifies the port that your node will listen for incoming web socket traffic on. `9944` is the default, so it can also be omitted. |
 | `--rpc-port 9933` | Specifies the port that your node will listen for incoming RPC traffic on. `9933` is the default, so it can also be omitted. |
 | `--telemetry-url` | Tells the node to send telemetry data to a particular server. The one we've chosen here is hosted by Parity and is available for anyone to use. You may also host your own (beyond the scope of this article) or omit this flag entirely. |
+| `--validator` | Means that we want to participate in block production and finalization rather than just sync the network. |
 
 When the node starts you should see output similar to this.
 
@@ -114,6 +116,7 @@ His command will look very similar.
   --ws-port 9945 \
   --rpc-port 9934 \
   --telemetry-url ws://telemetry.polkadot.io:1024 \
+  --validator \
   --bootnodes /ip4/<Alices IP Address>/tcp/<Alices Port>/p2p/<Alices Node ID>
 ```
 

@@ -48,6 +48,9 @@ the GRANDPA authorities (used for finalizing blocks). That section looks like th
 
 ```
 
+The format for the grandpa data is more complex because the grandpa protocol supports weighted
+votes. In this case we have given each validator a weight of 1.
+
 All we need to do is change the authority addresses listed (currently Alice and Bob) to our own
 addresses that we generated in the previous step. The sr25519 addresses go in the `aura` section,
 and the ed25519 addresses in the `grandpa` section. You may add as many validators as you like.
@@ -95,8 +98,6 @@ Here are some differences from when we launched as Alice.
 through the RPC shortly.
 * The `--chain` flag has changed to use our custom chain spec.
 * I've added the optional `--name` flag. You may use it to give your node a human-readable name in the telemetry UI.
-* The `--validator` flag means that we want to participate in block production and finalization
-rather than just sync the network.
 
 ## Adding Keys to Keystore
 
@@ -172,10 +173,13 @@ Let's use the chain spec file to run another node. The command will be similar t
 Note that:
 
 * We don't need to specify the `--bootnodes` as it is read from the `customSpecRaw.json` file.
-* We specify another `base-path`, give it another `name`, and also specify this node as a `validator`.
+* We specify another `base-path`, give it another `name`, and also specify this node as a
+`validator`.
 * Once the node is up, we add another pair of `sr25519` and `ed25519` keys in this node keystore
 that we specify in the `customSpec.json`. Each participant will need to start their node and add
 both keys to the keystore to be a validator.
+* If there are multiple validators in the network, we want to add all of them in the
+`bootnodes` section of in the `customSpec.json`.
 
 > If you are running multiple nodes on the same machine, you must configure the UI to the correct
 > node's WebSocket endpoint.
