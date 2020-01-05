@@ -354,13 +354,14 @@ class Tutorials extends React.Component {
                 href: "https://github.com/substrate-developer-hub/utxo-workshop"
               },
               {
-                title: "Adding a Module to Your Runtime",
+                title: "Adding a Pallet to Your Runtime",
                 text:
-                  "Add the Contracts module or other SRML modules to your Substrate node template.",
+                  "Add the Contracts pallet or other FRAME pallets to your Substrate node template.",
                 difficulty: "medium",
                 length: "2",
                 prerequisite: false,
-                href: `${docUrl("tutorials/adding-a-module-to-your-runtime")}`
+                href: `${docUrl(
+                  "next/tutorials/adding-a-module-to-your-runtime")}`
               },
               {
                 title: "Visualizing Node Metrics",
