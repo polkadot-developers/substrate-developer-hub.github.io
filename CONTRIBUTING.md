@@ -56,10 +56,8 @@ Substrate documentation is split into three projects:
 
 * Substrate Recipes - `substrate.dev/recipes/`
 
-   General best practice guidelines on how to develop with Substrate.
-   If you create best practice documentation about using a specific
-   feature of Substrate, you should create the documentation in the same
-   directory as the other documentation for that specific feature. See the [contribution guidelines](https://github.com/substrate-developer-hub/recipes/blob/master/CONTRIBUTING.md) for more details.
+   Examples and best practice guidelines on how to develop with Substrate, complete with working
+   code. If you create an example of using a specific Substrate feature, it belongs in the recipes.
 
 * Substrate Rust Documentation - `substrate.dev/rustdocs/`
 
@@ -67,24 +65,13 @@ Substrate documentation is split into three projects:
 
 * Substrate Developer Documentation - `substrate.dev/docs/`
 
-   In the `/docs/` directory, you should create your
-   documentation or images in one of these sub-directories:
-    
-   *  `development`
-        Instructions, tutorials, and procedural documentation for developers
-        who are working on Substrate. This directory includes documentation
-        on how to get started, build, run, and test Substrate. You should organize the content
-        that you create by specific activities, such as testing, getting
-        started, or by workflow topic.
-    
-   * `conceptual`
-        Concept and developer guides about the features of Substrate. You
-        should organize the content that you create by specific features.
-    
-   * `images`
-        Images that are used in the documentation. You should place images in
-        this common directory and avoid placing images in the same directory
-        as documentation.
+  Instructions, conceptual overviews, and procedural documentation for developers who are working
+  on Substrate. This directory includes documentation on how to get started, build, run, and test
+  Substrate. You should organize the content that you create by specific activities, such as
+  testing, getting started, or by workflow topic.
+
+  Images that are used in the documentation belong in the common `assets` directory. Avoid placing
+  images in the same directory as documentation.
 
 ### What documentation should I create?
 
