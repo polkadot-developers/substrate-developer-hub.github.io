@@ -1,109 +1,61 @@
 {
   "docs": {
-    "Overview": ["index", "getting-started", "glossary"],
-    "Conceptual": [
-      {
-        "type": "subcategory",
-        "label": "Substrate Core",
-        "ids": [
-          "conceptual/core/codec",
-          "conceptual/core/consensus",
-          "conceptual/core/executor",
-          "conceptual/core/off-chain-workers",
-          "conceptual/core/storage"
-        ]
-      },
-      {
-        "type": "subcategory",
-        "label": "Substrate Nodes",
-        "ids": [
-          "conceptual/node/extrinsics"
-        ]
-      },
-      {
-        "type": "subcategory",
-        "label": "Cryptography",
-        "ids": [
-          "conceptual/cryptography/index",
-          "conceptual/cryptography/keys",
-          "conceptual/cryptography/session-keys",
-          "conceptual/cryptography/ss58-address-format"
-        ]
-      },
-      {
-        "type": "subcategory",
-        "label": "Substrate Runtime",
-        "ids": [
-          "conceptual/runtime/frame",
-          "conceptual/runtime/weight",
-          "conceptual/runtime/primitives"
-        ]
-      },
-      {
-        "type": "subcategory",
-        "label": "Smart Contracts",
-        "ids": [
-          "conceptual/runtime/contracts/index",
-          "conceptual/runtime/contracts/contracts_module",
-          "conceptual/runtime/contracts/evm_module",
-          "conceptual/runtime/contracts/ink"
-        ]
-      }
-    ],
-    "Development": [
-      {
-        "type": "subcategory",
-        "label": "Build",
-        "ids": [
-          "development/build/prerequisites",
-          "development/build/purge-chain",
-          "development/build/upgrade"
-        ]
-      },
-      {
-        "type": "subcategory",
-        "label": "Runtime Modules",
-        "ids": [
-          "development/module/index",
-          "development/module/execution",
-          "development/module/macros",
-          "development/module/origin",
-          "development/module/storage",
-          "development/module/events",
-          "development/module/off-chain-workers",
-          "development/module/fees",
-          "development/module/tests"
-        ]
-      },
-      {
-        "type": "subcategory",
-        "label": "Deployment",
-        "ids": [
-          "development/deployment/chain-spec"
-        ]
-      },
-      {
-        "type": "subcategory",
-        "label": "Front End",
-        "ids": [
-          "development/front-end/polkadot-js"
-        ]
-      },
-      {
-        "type": "subcategory",
-        "label": "Smart Contracts",
-        "ids": [
-          "development/contracts/ink"
-        ]
-      },
-      {
-        "type": "subcategory",
-        "label": "Ecosystem Tools",
-        "ids": [
-          "development/tools/subkey"
-        ]
-      }
-    ]
+  	"Overview": [
+  		"index",
+  		"getting-started",
+  		"conceptual/runtime/frame",
+  		"glossary"
+  	],
+  	"Substrate Core": [
+  		"conceptual/core/codec",
+  		"conceptual/core/consensus",
+  		"conceptual/core/executor",
+  		"conceptual/core/off-chain-workers",
+  		"conceptual/core/storage"
+  	],
+  	"Substrate Nodes": [
+  		"conceptual/node/extrinsics"
+  	],
+  	"Cryptography": [
+  		"conceptual/cryptography/index",
+  		"conceptual/cryptography/keys",
+  		"conceptual/cryptography/session-keys",
+  		"conceptual/cryptography/ss58-address-format"
+  	],
+  	"Substrate Runtime": [
+  		"conceptual/runtime/weight",
+  		"conceptual/runtime/primitives",
+  		"development/module/execution",
+  		"development/module/macros",
+  		"development/module/storage",
+  		"development/module/events",
+  		"development/module/off-chain-workers",
+  		"development/module/fees",
+  		"development/module/tests"
+  	],
+  	"Smart Contracts": [
+  		"conceptual/runtime/contracts/index",
+  		"conceptual/runtime/contracts/contracts_module",
+  		"conceptual/runtime/contracts/evm_module",
+  		"conceptual/runtime/contracts/ink",
+  		"development/contracts/ink"
+  	],
+  	"Deployment": [
+  		"development/build/prerequisites",
+  		"development/build/purge-chain",
+  		"development/build/upgrade",
+  		"development/deployment/chain-spec",
+  		"development/deployment/account-prefix",
+  		"development/deployment/boot-node",
+  		"development/deployment/disabling-features"
+  	],
+  	"Front End": [
+  		"development/front-end/polkadot-js",
+  		"development/front-end/json-rpc"
+  	],
+  	"Ecosystem Tools": [
+  		"development/tools/subkey"
+  	]
   },
   "creating-your-first-substrate-chain": {
     "Creating Your First Substrate Chain": [
