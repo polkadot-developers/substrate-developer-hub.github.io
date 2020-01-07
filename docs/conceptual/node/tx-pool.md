@@ -19,11 +19,11 @@ The transaction pool contains all transactions (signed and unsigned) broadcasted
 
 Full nodes in the network all have their own local transaction pool and transaction queues. Therefore, full nodes may have a different view of the queues and transactions in the network.
 
-Dependent on the runtime, strict ordering may not be a requirement. This could enable full nodes to implement different strategies on how they prioritise propagating transactions and how they're included into blocks.
+Dependent on the runtime, strict ordering may not be a requirement. This could enable full nodes to implement different strategies on how they prioritize propagating transactions and how they're included into blocks.
 
 ## Transaction Dependencies
 
-Transaction [dependencies](https://substrate.dev/rustdocs/master/sp_runtime/transaction_validity/struct.ValidTransaction.html) are defined by the `requires` and `provides` parameters in `ValidTransaction` to build a dependency graph of transactions. Together with `priority`, this allows the pool to traverse the graph and produce a valid linear ordering of transactions to be propagated and included in the next block.
+Transaction dependencies are defined by the `requires` and `provides` parameters in the `ValidTransaction` [struct](https://substrate.dev/rustdocs/master/sp_runtime/transaction_validity/struct.ValidTransaction.html) to build a dependency graph of transactions. Together with `priority`, this allows the pool to traverse the graph and produce a valid linear ordering of transactions to be propagated and included in the next block.
 
 For `Frame` based runtimes, an account based system is used for transaction ordering. Every signed transaction needs to contain a nonce, which is incremented by 1 every time a new transaction is made. For example, the first transaction from a new account will have `nonce=0` and the second transaction will have `nonce=1`.
 
@@ -74,7 +74,7 @@ Note that transactions are not removed from the ready queue when blocks are auth
 
 Although it is possible, `validate_transaction` does not check whether calls to pallets will succeed. It is a potential DoS vector since all transactions in the network will be passed into `validate_transaction`.
 
-The `validate_transaction` function should focus on providing the necessary information for the pool to order and prioritise transactions, and quickly reject all transactions that are invalid or outdated. The function will be called frequently, potentially multiple times for the same transaction. It is also possible for `validate_transaction` to fail a dependent transaction that would pass `execute_block` if it were executed in the correct order.
+The `validate_transaction` function should focus on providing the necessary information for the pool to order and prioritize transactions, and quickly reject all transactions that are invalid or outdated. The function will be called frequently, potentially multiple times for the same transaction. It is also possible for `validate_transaction` to fail a dependent transaction that would pass `execute_block` if it were executed in the correct order.
 
 ## Further Reading
 - [Extrinsics](conceptual/node/extrinsics.md)
