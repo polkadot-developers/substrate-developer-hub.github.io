@@ -1,6 +1,6 @@
 /**
  * Copyright 2019 Parity Technologies
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,14 +16,14 @@
 
 const React = require('react')
 
-const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash.js`)
+const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash`)
 
-const Container = require('../../../../react-bootstrap/Container.js')
-const Button = require('../../../../react-bootstrap/Button.js')
-const Row = require('../../../../react-bootstrap/Row.js')
-const Col = require('../../../../react-bootstrap/Col.js')
-const Image = require('../../../../react-bootstrap/Image.js')
-const translate = require('../../server/translate.js').translate
+const Container = require('../../../../react-bootstrap/Container')
+const Button = require('../../../../react-bootstrap/Button')
+const Row = require('../../../../react-bootstrap/Row')
+const Col = require('../../../../react-bootstrap/Col')
+const Image = require('../../../../react-bootstrap/Image')
+const translate = require('../../server/translate').translate
 
 class Index extends React.Component {
 	render() {

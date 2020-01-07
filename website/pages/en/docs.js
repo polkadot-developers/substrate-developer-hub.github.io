@@ -1,6 +1,6 @@
 /**
  * Copyright 2019 Parity Technologies
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,10 +17,10 @@
 // This page simply redirects a user from `/docs/` to a location of our choice.
 
 const React = require("react");
-const Redirect = require("../../core/Redirect.js");
+const Redirect = require("../../core/Redirect");
 
 class Docs extends React.Component {
-    
+
   render() {
     const { config: siteConfig, language = "" } = this.props;
     const { baseUrl, docsUrl } = siteConfig;

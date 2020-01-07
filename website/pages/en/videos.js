@@ -1,6 +1,6 @@
 /**
  * Copyright 2019 Parity Technologies
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,16 +16,16 @@
 
 const React = require("react");
 
-const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash.js`);
+const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash`);
 
-const translate = require("../../server/translate.js").translate;
+const translate = require("../../server/translate").translate;
 
-const Container = require("../../../../react-bootstrap/Container.js");
-const Card = require("../../../../react-bootstrap/Card.js");
-const Button = require("../../../../react-bootstrap/Button.js");
+const Container = require("../../../../react-bootstrap/Container");
+const Card = require("../../../../react-bootstrap/Card");
+const Button = require("../../../../react-bootstrap/Button");
 
-const Col = require("../../../../react-bootstrap/Col.js");
-const Row = require("../../../../react-bootstrap/Row.js");
+const Col = require("../../../../react-bootstrap/Col");
+const Row = require("../../../../react-bootstrap/Row");
 
 class Videos extends React.Component {
   render() {

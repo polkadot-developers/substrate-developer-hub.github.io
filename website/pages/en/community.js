@@ -16,11 +16,11 @@
 
 const React = require("react");
 
-const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash.js`);
+const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash`);
 
-const Container = require("../../../../react-bootstrap/Container.js");
-const Button = require("../../../../react-bootstrap/Button.js");
-const translate = require('../../server/translate.js').translate;
+const Container = require("../../../../react-bootstrap/Container");
+const Button = require("../../../../react-bootstrap/Button");
+const translate = require('../../server/translate').translate;
 
 function Community(props) {
   const { config: siteConfig, language = "" } = props;
@@ -240,7 +240,7 @@ function Community(props) {
           size="sm"
           href="https://www.youtube.com/playlist?list=PLsBc7YjizKUwc3AcNb9oNZvtsN0QmAJPP"
           className="m-1 primary-color"
-          
+
         >
           Google Calendar
         </Button>
