@@ -2,9 +2,9 @@
   "docs": {
     "Overview": [
       "index",
-      "getting-started",
+      "overview/getting-started",
       "conceptual/runtime/frame",
-      "glossary"
+      "overview/glossary"
     ],
     "Substrate Core": [
       "conceptual/core/codec",

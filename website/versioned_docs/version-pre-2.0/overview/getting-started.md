@@ -1,5 +1,7 @@
 ---
 title: Getting Started
+id: version-pre-2.0-getting-started
+original_id: getting-started
 ---
 
 This page has everything you need to get started building with Substrate.
@@ -27,7 +29,7 @@ sudo apt install -y cmake pkg-config libssl-dev git gcc build-essential clang li
 
 ### macOS
 
-Install the [Homebrew package manager](https://brew.sh/), then run: 
+Install the [Homebrew package manager](https://brew.sh/), then run:
 
 ```bash
 brew install openssl cmake llvm
@@ -78,7 +80,7 @@ This may even solve compilation issues you face when working with Substrate.
 
 ## Front-End Developer Environment
 
-Substrate uses Yarn for all of it's front-end development needs. Visit the [install instructions](https://yarnpkg.com/en/docs/install) for Yarn to set up your computer. 
+Substrate uses Yarn for all of it's front-end development needs. Visit the [install instructions](https://yarnpkg.com/en/docs/install) for Yarn to set up your computer.
 
 Make sure you have the latest stable version of Node.js (`>= 10.16.3`) and Yarn (`>= 1.19.0`).
 
@@ -274,7 +276,3 @@ If you are trying to set up a Windows computer to build Substrate, do the follow
     ```
 
 8. Finally, install `cmake`: https://cmake.org/download/
-
-## Next Steps
-
-TODO

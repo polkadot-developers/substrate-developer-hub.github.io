@@ -55,7 +55,7 @@ const siteConfig = {
 	// For no header links in the top nav bar -> headerLinks: [],
 	headerLinks: [
 		{ page: 'docs', label: 'Docs' },
-		{ href: '/recipes/', label: 'Recipes' },
+		{ href: '/recipes', label: 'Recipes' },
 		{ page: 'tutorials', label: 'Tutorials' },
 		{ page: 'community', label: 'Community' },
 		{ href: 'https://github.com/paritytech/substrate', label: 'GitHub' },
@@ -159,12 +159,12 @@ const siteConfig = {
 	},
 
 	// customised blast banner on top
-	blast: {
-	  img: '/img/substrate-v2-doc-invite.png',
-	  link: '/docs/en/next/getting-started',
-	  background: 'url(/img/bg-sub01.svg); background-size: cover; background-position: right 0px bottom 500px;',
-	  fontColor: '#18FFB2'
-	}
+	// blast: {
+	//   img: '/img/substrate-v2-doc-invite.png',
+	//   link: '/docs/en/next/getting-started',
+	//   background: 'url(/img/bg-sub01.svg); background-size: cover; background-position: right 0px bottom 500px;',
+	//   fontColor: '#18FFB2'
+	// }
 }
 
 module.exports = siteConfig
