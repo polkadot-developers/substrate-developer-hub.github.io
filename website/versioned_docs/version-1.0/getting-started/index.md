@@ -4,7 +4,7 @@ id: version-1.0-index
 original_id: index
 ---
 
-Welcome to the Substrate Developer Hub. 
+Welcome to the Substrate Developer Hub.
 
 As a next generation blockchain framework, Substrate has three distinct features:
 
