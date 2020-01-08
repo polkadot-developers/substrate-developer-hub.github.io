@@ -16,11 +16,11 @@
 
 const React = require('react')
 
-const FullSplash = require(`${process.cwd()}` + `/core/FullSplash.js`)
+const FullSplash = require(`${process.cwd()}` + `/core/FullSplash`)
 
-const Container = require('../../../../react-bootstrap/Container.js')
-const Button = require('../../../../react-bootstrap/Button.js')
-const translate = require('../../server/translate.js').translate
+const Container = require('../../../../react-bootstrap/Container')
+const Button = require('../../../../react-bootstrap/Button')
+const translate = require('../../server/translate').translate
 
 function Seminar(props) {
 	const { config: siteConfig, language = '' } = props

@@ -1,6 +1,6 @@
 /**
  * Copyright 2019 Parity Technologies
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,8 +16,8 @@
 
 const React = require("react");
 
-const Container = require("react-bootstrap/Container.js");
-const Button = require("react-bootstrap/Button.js");
+const Container = require("react-bootstrap/Container");
+const Button = require("react-bootstrap/Button");
 
 class HomeSplash extends React.Component {
   render() {
@@ -47,7 +47,7 @@ class HomeSplash extends React.Component {
         <p className="lead text-muted">{this.props.tagline}</p>
         <p className="lead text-white">{this.props.text}</p>
       </Container>
-      
+
     );
 
     const PromoSection = props => (
@@ -60,7 +60,7 @@ class HomeSplash extends React.Component {
 
     return (
       <SplashContainer>
-       
+
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
           <PromoSection>

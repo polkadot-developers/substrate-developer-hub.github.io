@@ -62,13 +62,13 @@ Substrate is designed to be used in one of three ways:
 ### Examples
 
 - Follow our [tutorial to create your first custom blockchain with
-  Substrate](tutorials/creating-your-first-substrate-chain/index.md).
+  Substrate](tutorials/creating-your-first-substrate-chain/index).
 
 - Follow our [tutorial to start a private network with
-  Substrate](tutorials/start-a-private-network-with-substrate.md).
+  Substrate](tutorials/start-a-private-network-with-substrate).
 
 - Follow our [tutorial to add a runtime module to your Substrate
-  runtime](tutorials/adding-a-module-to-your-runtime.md).
+  runtime](tutorials/adding-a-module-to-your-runtime).
 
 ### References
 

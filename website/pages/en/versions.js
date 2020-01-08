@@ -27,7 +27,7 @@ function Versions(props) {
             <h1>{siteConfig.title} Versions</h1>
           </header>
           <p>Versions of the Substrate Developer Hub documentation follow the released versions of Substrate.</p>
-          <h3 id="latest">Current version (Stable)</h3>
+          <h3 id="latest">Current Stable Version</h3>
           <table className="versions">
             <tbody>
               <tr>
@@ -36,21 +36,22 @@ function Versions(props) {
                   <a
                     href={`${siteConfig.baseUrl}${siteConfig.docsUrl}/${
                       props.language ? props.language + "/" : ""
-                    }getting-started`}
+                    }`}
                   >
                     Documentation
                   </a>
                 </td>
                 <td>
-                  <a href="https://github.com/paritytech/substrate/releases/tag/v1.0.0">Release</a>
+                  <a href="https://github.com/paritytech/substrate/tree/3e651110aa06aa835790df63410a29676243fc54"
+                    target="_blank">
+                    Substrate Release
+                  </a>
                 </td>
               </tr>
             </tbody>
           </table>
-          <p>
-            Documentation for Substrate v1.0.
-          </p>
-          <h3 id="rc">Pre-release versions</h3>
+
+          <h3 id="rc">Pre-release Version</h3>
           <table className="versions">
             <tbody>
               <tr>
@@ -59,18 +60,22 @@ function Versions(props) {
                   <a
                     href={`${siteConfig.baseUrl}${siteConfig.docsUrl}/${
                       props.language ? props.language + "/" : ""
-                    }next/getting-started`}
+                    }next/`}
                   >
                     Documentation
                   </a>
                 </td>
                 <td>
-                  <a href={repoUrl}>Source Code</a>
+                  <a href="https://github.com/paritytech/substrate/tree/master"
+                    target="_blank">
+                    Substrate Release
+                  </a>
                 </td>
               </tr>
             </tbody>
           </table>
-          <p>This documentation follows the latest version of Substrate in `master` branch.</p>
+          <p>This documentation follows the latest version of Substrate in <code>master</code> branch.</p>
+
           <h3 id="archive">Past Versions</h3>
           <p>Here you can find previous versions of the documentation.</p>
           <table className="versions">
@@ -78,7 +83,7 @@ function Versions(props) {
               {versions.map(
                 version =>
                   version !== latestVersion && (
-                    <tr>
+                    <tr key={version}>
                       <th>{version}</th>
                       <td>
                         {/* You are supposed to change this href where appropriate
@@ -86,14 +91,15 @@ function Versions(props) {
                         <a
                           href={`${siteConfig.baseUrl}${siteConfig.docsUrl}/${
                             props.language ? props.language + "/" : ""
-                          }${version}/getting-started`}
+                          }${version}`}
                         >
                           Documentation
                         </a>
                       </td>
                       <td>
-                        <a href={`${repoUrl}/releases/tag/v${version}`}>
-                          Release Notes
+                        <a href={`https://github.com/paritytech/substrate/tree/v${version}`}
+                          target="_blank">
+                          Substrate Release
                         </a>
                       </td>
                     </tr>

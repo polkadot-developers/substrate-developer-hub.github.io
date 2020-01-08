@@ -2,6 +2,7 @@
   "docs": {
     "Overview": ["index", "getting-started", "glossary"],
     "Conceptual": [
+      "conceptual/index",
       {
         "type": "subcategory",
         "label": "Substrate Core",
@@ -9,7 +10,7 @@
           "conceptual/core/codec",
           "conceptual/core/consensus",
           "conceptual/core/executor",
-          "conceptual/core/off-chain-workers",
+          "conceptual/core/networking",
           "conceptual/core/storage"
         ]
       },
@@ -17,7 +18,11 @@
         "type": "subcategory",
         "label": "Substrate Nodes",
         "ids": [
-          "conceptual/node/extrinsics"
+          "conceptual/node/client",
+          "conceptual/node/light-client",
+          "conceptual/node/extrinsics",
+          "conceptual/node/rpc",
+          "conceptual/node/tx-pool"
         ]
       },
       {
@@ -25,15 +30,14 @@
         "label": "Cryptography",
         "ids": [
           "conceptual/cryptography/index",
-          "conceptual/cryptography/keys",
-          "conceptual/cryptography/session-keys",
-          "conceptual/cryptography/ss58-address-format"
+          "conceptual/cryptography/keys"
         ]
       },
       {
         "type": "subcategory",
         "label": "Substrate Runtime",
         "ids": [
+          "conceptual/runtime/index",
           "conceptual/runtime/frame",
           "conceptual/runtime/weight",
           "conceptual/runtime/primitives"
@@ -51,6 +55,7 @@
       }
     ],
     "Development": [
+      "development/index",
       {
         "type": "subcategory",
         "label": "Build",
@@ -68,9 +73,11 @@
           "development/module/execution",
           "development/module/macros",
           "development/module/origin",
+          "development/module/declaration",
           "development/module/storage",
           "development/module/events",
-          "development/module/off-chain-workers",
+          "development/module/errors",
+          "development/module/traits",
           "development/module/fees",
           "development/module/tests"
         ]
@@ -79,14 +86,18 @@
         "type": "subcategory",
         "label": "Deployment",
         "ids": [
-          "development/deployment/chain-spec"
+          "development/deployment/chain-spec",
+          "development/deployment/account-prefix",
+          "development/deployment/boot-node",
+          "development/deployment/disabling-features"
         ]
       },
       {
         "type": "subcategory",
         "label": "Front End",
         "ids": [
-          "development/front-end/polkadot-js"
+          "development/front-end/polkadot-js",
+          "development/front-end/json-rpc"
         ]
       },
       {
@@ -94,13 +105,6 @@
         "label": "Smart Contracts",
         "ids": [
           "development/contracts/ink"
-        ]
-      },
-      {
-        "type": "subcategory",
-        "label": "Ecosystem Tools",
-        "ids": [
-          "development/tools/subkey"
         ]
       }
     ]

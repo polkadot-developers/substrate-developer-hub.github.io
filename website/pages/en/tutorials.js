@@ -16,15 +16,15 @@
 
 const React = require("react");
 
-const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash.js`);
+const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash`);
 
-const Container = require("../../../../react-bootstrap/Container.js");
-const Button = require("../../../../react-bootstrap/Button.js");
-const Card = require("../../../../react-bootstrap/Card.js");
-const Col = require("../../../../react-bootstrap/Col.js");
-const Row = require("../../../../react-bootstrap/Row.js");
-const Badge = require("../../../../react-bootstrap/Badge.js");
-const translate = require("../../server/translate.js").translate;
+const Container = require("../../../../react-bootstrap/Container");
+const Button = require("../../../../react-bootstrap/Button");
+const Card = require("../../../../react-bootstrap/Card");
+const Col = require("../../../../react-bootstrap/Col");
+const Row = require("../../../../react-bootstrap/Row");
+const Badge = require("../../../../react-bootstrap/Badge");
+const translate = require("../../server/translate").translate;
 
 class Tutorials extends React.Component {
   render() {
@@ -38,7 +38,7 @@ class Tutorials extends React.Component {
     const FeaturedTutorialCards = props =>
       props.data.map(tutorial => (
         <a href={tutorial.href} target="_blank" className="a_wrapper">
-        <Col md={3} className="mb-5 d-flex align-items-stretch">
+        <Col xl={3} lg={4} md={6} sm={12} className="mb-5 d-flex align-items-stretch">
           <Card>
             <Card.Img
               variant="top"
@@ -89,7 +89,7 @@ class Tutorials extends React.Component {
                 </Badge>
               </div>
             </Card.Body>
-            <Card.Footer>
+            <Card.Footer className="text-center">
               <Button
                 variant="secondary"
                 className="primary-color"
@@ -107,7 +107,7 @@ class Tutorials extends React.Component {
       const OtherTutorialCards = props =>
       props.data.map(tutorial => (
         <a href={tutorial.href} target="_blank" className="a_wrapper">
-        <Col md={3} className="mb-5 d-flex align-items-stretch">
+        <Col xl={3} lg={4} md={6} sm={12} className="mb-5 d-flex align-items-stretch">
           <Card>
             <Card.Body className="d-flex flex-column">
               <Card.Title>{tutorial.title}</Card.Title>
@@ -150,7 +150,7 @@ class Tutorials extends React.Component {
                 </Badge>
               </div>
             </Card.Body>
-            <Card.Footer>
+            <Card.Footer className="text-center">
               <Button
                 variant="secondary"
                 className="primary-color"
