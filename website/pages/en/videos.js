@@ -47,7 +47,7 @@ class Videos extends React.Component {
     }
 
     const videos = siteConfig.videos.map(video => (
-      <Col md="6" className="mb-3 d-flex align-items-stretch">
+      <Col key={video} md="6" className="mb-3 d-flex align-items-stretch">
         <Card className="w-100">
           {isFeatured(video)}
           <div className="embed-responsive embed-responsive-16by9">
