@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Introduction · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Substrate is a blockchain platform with a completely generic State Transition Function ([STF](/docs/zh-CN/1.0/overview/glossary#stf-state-transition-function)) and modular components for consensus, networking, and configuration."/><meta name="docsearch:version" content="1.0"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="Introduction · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="Substrate is a blockchain platform with a completely generic State Transition Function ([STF](/docs/zh-CN/1.0/overview/glossary#stf-state-transition-function)) and modular components for consensus, networking, and configuration."/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/zh-CN/versions"><h3>1.0</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/zh-CN/1.0/" target="_self">文档</a></li><li class=""><a href="/recipes" target="_self">Recipes</a></li><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class=""><a href="/zh-CN/community" target="_self">社区</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/1.0/overview/">English</a></li><li><a href="/docs/ru/1.0/overview/">Русский</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">参与翻译</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Substrate 基础</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">开始<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/getting-started/installing-substrate">Installing Substrate</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/getting-started/using-the-substrate-scripts">Using the Substrate Scripts</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate 基础<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/1.0/overview/">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/overview/extrinsics">Extrinsics</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/overview/transaction-lifecycle">Transaction Lifecycle</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/overview/low-level-data-format">Low-level Data Format</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/overview/off-chain-workers">Off-Chain Workers</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/overview/session-keys">Session Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/overview/ss58-address-format">SS58 Address Format</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/overview/glossary">Glossary</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Runtime<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/architecture-of-a-runtime">Architecture of a Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/substrate-runtime-module-library">Substrate Runtime Module Library</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/initializing-storage">Initializing Runtime Storage</a></li><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Macros</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/macros/construct_runtime">Constructing a Runtime!</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/macros/decl_module">Declaring a Module!</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Types</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/types/module-struct">Module Struct</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/types/call-enum">Call Enum</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/types/event-enum">Event Enum</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/types/genesisconfig-struct">GenesisConfig Struct</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/instantiable-module">Instantiable Modules</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">常用工具<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/ecosystem/subkey">The subkey Tool</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/ecosystem/contracts/ink">ink! Smart Contracts</a></li><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Frequently Asked Questions</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/ecosystem/contracts/faq">ink! FAQ</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">贡献<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/contribute/help-translate">Help Translate</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Introduction</h1></header><article><div><span><p>Substrate is a blockchain platform with a completely generic State Transition Function (<a href="/docs/zh-CN/1.0/overview/glossary#stf-state-transition-function">STF</a>) and modular components for consensus, networking, and configuration.</p>
+<p>Despite being &quot;completely generic&quot;, it comes with both standards and conventions - particularly with the Substrate Runtime Module Library (<a href="/docs/zh-CN/1.0/overview/glossary#srml-substrate-runtime-module-library">SRML</a>) - regarding the underlying data-structures that power the STF, thereby making rapid blockchain development a reality.</p>
+<h2><a class="anchor" aria-hidden="true" id="core-datatypes"></a><a href="#core-datatypes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Core Datatypes</h2>
+<p>There are several data types that work with the underlying core of Substrate (thus the &quot;Core&quot; data types). They are mandatory to define and must fulfil a particular interface in order to work within the Substrate framework.</p>
+<p>Each of these data types corresponds to a Rust <code>trait</code>. They are:</p>
+<ul>
+<li><code>Hash</code>, a type which encodes a cryptographic digest of some data. Typically just a 256-bit quantity.</li>
+<li><code>BlockNumber</code>, a type which encodes the total number of ancestors any valid block has. Typically a 32-bit quantity.</li>
+<li><code>DigestItem</code>, a type which must be able to encode one of a number of &quot;hard-wired&quot; alternatives relevant to consensus and change-tracking as well as any number of &quot;soft-coded&quot; variants, relevant to specific modules within the runtime.</li>
+<li><code>Digest</code>, basically just a series of <code>DigestItem</code>s, this encodes all information that is relevant for a light-client to have on hand within the block.</li>
+<li><code>Header</code>, a type which is representative (cryptographically or otherwise) of all information relevant to a block. It includes the parent hash, the storage root and the extrinsics trie root, the digest and a block number.</li>
+<li><code>Extrinsic</code>, a type to represent a single piece of data external to the blockchain that is recognized by the blockchain. This typically involves one or more signatures, and some sort of encoded instruction (e.g. for transferring ownership of funds or calling into a smart contract).</li>
+<li><code>Block</code>, essentially just a combination of <code>Header</code> and a series of <code>Extrinsic</code>s, together with a specification of the hashing algorithm to be used.</li>
+</ul>
+<p>Generic reference implementations for each of these traits are provided in the <a href="/docs/zh-CN/1.0/overview/glossary#srml-substrate-runtime-module-library">SRML</a>. Technically these need not be used, but there are few cases where they are insufficiently generic for a use case.</p>
+<blockquote>
+<p><strong>Some Expertise Needed</strong></p>
+<p>In order to get the most out of Substrate, you should have a good knowledge of blockchain concepts and basic cryptography. Terminology like header, block, client, hash, transaction and signature should be familiar. At present you will need a working knowledge of Rust to be able to do any significant customization/adaption of Substrate (though eventually, we aim for this not to be the case).</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="usage"></a><a href="#usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h2>
+<p>Substrate is designed to be used in one of three ways:</p>
+<ol>
+<li><p><strong>With our bundled Node</strong>: By running the pre-designed Substrate Node (<code>substrate</code>) and configuring it with a genesis block that includes the current demonstration runtime. In this case just configure a JSON file and launch your own blockchain. This affords you the least amount of customizability, primarily allowing you to change the genesis parameters of the various included runtime modules such as balances, staking, block-period, fees and governance. For a tutorial on doing this, see <a href="../tutorials/start-a-private-network-with-substrate">Deploying a Substrate Node chain</a>.</p></li>
+<li><p><strong>With the SRML</strong>: By composing modules from the <a href="/docs/zh-CN/1.0/overview/glossary#srml-substrate-runtime-module-library">SRML</a> into a new runtime, perhaps adding new custom modules and possibly altering or reconfiguring the Substrate client's block authoring logic. This affords you a very large amount of freedom over your own blockchain's logic, letting you change datatypes, select from the library of modules and, crucially, add your own modules. Much can be changed without touching the block-authoring logic since it is directed through on-chain logic. If this is the case, then the existing Substrate binary can be used for block authoring and syncing. If the block authoring logic needs to be tweaked, then a new altered block-authoring binary must be built as a separate project and used by validators. This is how the Polkadot relay chain is built and should suffice for almost all circumstances in the near to mid-term. For a tutorial on this, see <a href="../tutorials/creating-your-first-substrate-chain">creating your first Substrate chain</a>.</p></li>
+<li><p>Generic: The entire <a href="/docs/zh-CN/1.0/overview/glossary#srml-substrate-runtime-module-library">SRML</a> can be ignored and the entire runtime designed and implemented from scratch. If desired, this can be done in a language other than Rust, providing it can target WebAssembly. If the runtime can be made to be compatible with Substrate Node's abstract block authoring logic, then you can simply construct a new genesis block from your Wasm blob and launch your chain with the existing Rust-based Substrate client. If not, then you'll need to alter the client's block authoring logic accordingly, potentially even altering the header and block serialization formats. In terms of development effort this is by far the most arduous means to use Substrate, but also gives you the most freedom to innovate. It reflects a long-term far-reaching upgrade path for the Substrate paradigm.</p></li>
+</ol>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/1.0/getting-started/using-the-substrate-scripts"><span class="arrow-prev">← </span><span>使用 Substrate 脚本</span></a><a class="docs-next button" href="/docs/zh-CN/1.0/overview/extrinsics"><span>外部参数</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#core-datatypes">Core Datatypes</a></li><li><a href="#usage">Usage</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="/zh-CN/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></a></div></section><section class="copyright">Copyright © 2020 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-CN"]}
+              });
+            </script></body></html>

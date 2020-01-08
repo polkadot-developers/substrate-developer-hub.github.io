@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Creating a Runtime Module · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="In this tutorial, you&#x27;ll write a Substrate runtime module that lives in its own crate, and include it in a node based on the node-template."/><meta name="docsearch:version" content="1.0"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Creating a Runtime Module · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="In this tutorial, you&#x27;ll write a Substrate runtime module that lives in its own crate, and include it in a node based on the node-template."/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/en/versions"><h3>1.0</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/en/1.0/" target="_self">Docs</a></li><li class=""><a href="/recipes" target="_self">Recipes</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/en/community" target="_self">Community</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/ru/1.0/tutorials/creating-a-runtime-module">Русский</a></li><li><a href="/docs/zh-CN/1.0/tutorials/creating-a-runtime-module">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/tutorials/creating-a-runtime-module.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Creating a Runtime Module</h1></header><article><div><span><p>In this tutorial, you'll write a Substrate runtime module that lives in its own crate, and include it in a node based on the node-template.</p>
+<h2><a class="anchor" aria-hidden="true" id="setup-your-development-environment"></a><a href="#setup-your-development-environment" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup Your Development Environment</h2>
+<p>If you haven't already, follow the <a href="/docs/en/1.0/getting-started/installing-substrate#fast-installation">fast installation</a> for getting started on Substrate. It will provide you with all the development resources you need to build Substrate and the <a href="getting-started/using-the-substrate-scripts"><code>substrate-up</code> scripts</a> for quickly setting up new nodes.</p>
+<h2><a class="anchor" aria-hidden="true" id="create-your-node"></a><a href="#create-your-node" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create your Node</h2>
+<p>We'll begin by creating a brand new node template. If you've followed other runtime tutorials, you've probably started this way before:</p>
+<pre><code class="hljs css language-bash">substrate-node-new modular-chain <span class="token operator">&lt;</span>your name<span class="token operator">></span>
+</code></pre>
+<p>In this tutorial, we're not going to write our module directly as part of the node template, but rather as a separate Rust crate. This approach provides a few advantages:</p>
+<ol>
+<li>Our module can be easily imported into other nodes in the future.</li>
+<li>Our module can be published to places like GitHub or Crates.io without publishing our entire node in the same place.</li>
+</ol>
+<p>However, we do still need to set up a Substrate node to actually run our module.</p>
+<h2><a class="anchor" aria-hidden="true" id="clone-the-module-template-repository"></a><a href="#clone-the-module-template-repository" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Clone the Module Template Repository</h2>
+<p>So if our module isn't going to live in the node template, where <em>is</em> it going to live?</p>
+<p>If you aren't familiar with creating Rust libraries or using them in other Rust projects, you can get a more in-depth explanation by reading <a href="https://doc.rust-lang.org/cargo/guide/creating-a-new-project.html">the Cargo book</a>.</p>
+<p>While it's perfectly possible to create a new Substrate runtime module from scratch, the fastest way to get started is to clone a Substrate module template we have created for you:</p>
+<pre><code class="hljs css language-bash"><span class="token function">git</span> clone https://github.com/shawntabrizi/substrate-module-template
+</code></pre>
+<p>In the <code>Cargo.toml</code> file, update the module's name and authorship to something meaningful. In this tutorial we're focusing on how to create and use the module rather than writing interesting module logic, so I'll call mine <code>test_module</code>. The beginning of my <code>Cargo.toml</code> now looks like.</p>
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">package</span><span class="token punctuation">]</span>
+<span class="token key property">name</span> <span class="token punctuation">=</span> <span class="token string">"test_module"</span>
+<span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">"0.1.0"</span>
+<span class="token key property">authors</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">"Joshy Orndorff"</span><span class="token punctuation">]</span>
+<span class="token key property">edition</span> <span class="token punctuation">=</span> <span class="token string">"2018"</span>
+</code></pre>
+<p>You should be able to successfully compile this template module with:</p>
+<pre><code class="hljs css language-bash">cargo build
+</code></pre>
+<p>Let's explore some of the things we did for you in this Substrate module template. We will start by looking at the <code>Cargo.toml</code> file.</p>
+<h3><a class="anchor" aria-hidden="true" id="your-modules-std-feature"></a><a href="#your-modules-std-feature" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Your Module's <code>std</code> Feature</h3>
+<p>In your <code>Cargo.toml</code> file, you will notice a few lines about the &quot;<code>std</code> feature&quot;. In Rust, when you enable <code>std</code>, you give your project access to <a href="https://doc.rust-lang.org/std/">the Rust standard libraries</a>. This works just fine when building native binaries.</p>
+<p>However, Substrate also builds the runtime code to Wasm. In this case we use cargo features to disable the Rust standard library when compiling for Wasm because <a href="https://github.com/rust-lang/rust/pull/45905">wasm-unknown-unknown</a> does not know which allocator to use.</p>
+<p>Thus, all the dependencies we use for our module, and our entire runtime, must be able to compile with <a href="https://rust-embedded.github.io/book/intro/no-std.html"><code>no_std</code></a>. Our <code>Cargo.toml</code> file tells our module's dependencies to only use their <code>std</code> feature when this module also uses its <code>std</code> feature like so:</p>
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">features</span><span class="token punctuation">]</span>
+<span class="token key property">default</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">'std'</span><span class="token punctuation">]</span>
+<span class="token key property">std</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span>
+    <span class="token string">'parity-codec/std'</span><span class="token punctuation">,</span>
+    <span class="token string">'support/std'</span><span class="token punctuation">,</span>
+    <span class="token string">'system/std'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+</code></pre>
+<blockquote>
+<p>In general, when adding dependencies to your runtime, follow this pattern.</p>
+<ol>
+<li>Add a feature called <code>std</code></li>
+<li>Enable this feature by default in your Cargo.toml</li>
+<li>When compiling for Wasm, the feature is disabled</li>
+</ol>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="consistent-substrate-dependencies"></a><a href="#consistent-substrate-dependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Consistent Substrate Dependencies</h3>
+<p>All Substrate modules will depend on some low level module libraries such as <code>srml-system</code> and <code>srml-support</code>. These libraries are pulled from the main Substrate GitHub repository. When people build their own Substrate nodes, they will also have dependencies on the main Substrate repository.</p>
+<p>Because of this, you will need to be careful to ensure consistent dependencies from your module and the node integrating your module to the Substrate repository. If your module is dependent on one version of Substrate, and the node is dependent on another, compilation will run into errors where the Substrate versions may be incompatible, or the two versions of the same library are being used. Ultimately Cargo will not be able to resolve those conflicts and you will get a compile time error.</p>
+<p>So when building your module have two options:</p>
+<p><strong>Option 1 (recommended)</strong></p>
+<p>Develop against the <code>v1.0</code> branch as the template demonstrates. In this case you will need to update your node template's <code>Cargo.toml</code> to depend on Substrate's <code>branch = 'v1.0'</code> like the module template currently does, rather than <code>rev = &lt;git commit hash&gt;</code>. This will ensure that your module can be used by any node who is also based on the <code>v1.0</code> branch</p>
+<p><strong>Option 2</strong></p>
+<p>It is also acceptable to develop your module for a specific git commit. In this case you'll need to change the Substrate module template's <code>Cargo.toml</code> to use <code>rev = &lt;git commit hash&gt;</code> rather than <code>branch = 'v1.0'</code>. This means that only nodes which use the exact same git commit hash for their project can use your module.</p>
+<p>If you follow our recommended option 1, your dependency definitions will look like:</p>
+<pre><code class="hljs css language-toml"><span class="token comment"># This dependency is published on crates.io so just use a version</span>
+<span class="token punctuation">[</span><span class="token table class-name">dependencies.parity-codec</span><span class="token punctuation">]</span>
+<span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+<span class="token key property">features</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">'derive'</span><span class="token punctuation">]</span>
+<span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">'3.5'</span>
+
+<span class="token comment"># These dependencies specify a git branch</span>
+<span class="token punctuation">[</span><span class="token table class-name">dependencies.support</span><span class="token punctuation">]</span>
+<span class="token key property">default_features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
+<span class="token key property">package</span> <span class="token punctuation">=</span> <span class="token string">'srml-support'</span>
+<span class="token key property">branch</span> <span class="token punctuation">=</span> <span class="token string">'v1.0'</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">dependencies.system</span><span class="token punctuation">]</span>
+<span class="token key property">default_features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
+<span class="token key property">package</span> <span class="token punctuation">=</span> <span class="token string">'srml-system'</span>
+<span class="token key property">branch</span> <span class="token punctuation">=</span> <span class="token string">'v1.0'</span>
+<span class="token comment"># Could also use a specific revision</span>
+<span class="token comment"># rev = '&lt;commit hash>'</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="your-modules-dev-dependencies"></a><a href="#your-modules-dev-dependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Your Module's Dev Dependencies</h3>
+<p>The final section of the <code>Cargo.toml</code> file specifies the dev dependencies. These are the dependencies that are needed in your module's tests, but not necessary the actual module itself.</p>
+<pre><code class="hljs css language-toml">
+<span class="token punctuation">[</span><span class="token table class-name">dev-dependencies.primitives</span><span class="token punctuation">]</span>
+<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
+<span class="token key property">package</span> <span class="token punctuation">=</span> <span class="token string">'substrate-primitives'</span>
+<span class="token key property">branch</span> <span class="token punctuation">=</span> <span class="token string">'v1.0'</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">dev-dependencies.runtime-primitives</span><span class="token punctuation">]</span>
+<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
+<span class="token key property">package</span> <span class="token punctuation">=</span> <span class="token string">'sr-primitives'</span>
+<span class="token key property">branch</span> <span class="token punctuation">=</span> <span class="token string">'v1.0'</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">dev-dependencies.runtime-io</span><span class="token punctuation">]</span>
+<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
+<span class="token key property">package</span> <span class="token punctuation">=</span> <span class="token string">'sr-io'</span>
+<span class="token key property">branch</span> <span class="token punctuation">=</span> <span class="token string">'v1.0'</span>
+</code></pre>
+<p>You can confirm for yourself that the Substrate module template's test passes with:</p>
+<pre><code class="hljs css language-bash">cargo <span class="token builtin class-name">test</span>
+</code></pre>
+<blockquote>
+<p>Optional: You can remove these dev dependencies from your <code>Cargo.toml</code> file and confirm that the module still compiles with <code>cargo build</code>. However, you will notice that <code>cargo test</code> does not compile! If you do this experiment, remember to restore the dev dependencies afterward.</p>
+</blockquote>
+<p>It will take a little experimentation to gain familiarity with what dependencies you need for each module you dream up. So the take-away from this section is not that <code>Cargo.toml</code> should always look like it does in the template. Rather, <code>Cargo.toml</code> needs to have the correct dependencies and you now know how to specify them.</p>
+<h2><a class="anchor" aria-hidden="true" id="add-your-runtime-module-to-your-node"></a><a href="#add-your-runtime-module-to-your-node" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add your Runtime Module to your Node</h2>
+<p>With our runtime module now compiling and passing it's test, we're ready to add it to our node template.</p>
+<p>First we need to add our newly-created crate as a dependency in the node runtime's <code>Cargo.toml</code>.</p>
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">dependencies.test_module</span><span class="token punctuation">]</span>
+<span class="token key property">default_features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+<span class="token key property">path</span> <span class="token punctuation">=</span> <span class="token string">"../../test_module"</span>
+</code></pre>
+<blockquote>
+<p>You <strong>must</strong> set <code>default_features = false</code> so that your runtime will successfully compile to wasm.</p>
+</blockquote>
+<p>And just as before, we need to tell the module to only build its <code>std</code> feature when the runtime itself does.</p>
+<pre><code class="hljs css language-toml"><span class="token key property">std</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+  <span class="token string">'test_module/std'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+</code></pre>
+<p>Next we'll update <code>runtime/lib.rs</code> in <code>modular-chain</code> to actually use our new runtime module. The lines that bring in the template module that is coded directly in the node runtime are still there, so we just need to update them in three places.</p>
+<ol>
+<li>Remove <code>mod template</code> as we've already brought that dependency in via <code>Cargo.toml</code></li>
+<li>Update the trait implementation</li>
+</ol>
+<pre><code class="hljs css language-rust"><span class="token comment">/// Used for the module test_module</span>
+<span class="token keyword">impl</span> test_module<span class="token punctuation">::</span>Trait <span class="token keyword">for</span> Runtime <span class="token punctuation">{</span>
+    <span class="token keyword">type</span> Event <span class="token operator">=</span> Event<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ol start="3">
+<li>Update <code>construct_runtime</code></li>
+</ol>
+<pre><code class="hljs css language-rust">TestModule<span class="token punctuation">:</span> test_module<span class="token punctuation">::</span><span class="token punctuation">{</span>Module<span class="token punctuation">,</span> Call<span class="token punctuation">,</span> Storage<span class="token punctuation">,</span> Event<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="appreciate-your-work"></a><a href="#appreciate-your-work" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Appreciate your Work</h2>
+<p>At this point you have the template module packaged up as it's own crate, and included in your <code>modular-chain</code> runtime.</p>
+<p>Build the <code>modular-chain</code> node with</p>
+<pre><code class="hljs css language-bash">./scripts/build.sh
+cargo build --release
+</code></pre>
+<p>And run your node with</p>
+<pre><code class="hljs css language-bash"><span class="token comment"># Clear the data directory in case you've done this before</span>
+./target/release/modular-chain purge-chain --dev
+
+<span class="token comment"># Start the chain</span>
+./target/release/modular-chain --dev
+</code></pre>
+<p>Finally, start the <a href="https://polkadot.js.org/apps/#/explorer">Apps UI</a> to confirm that the module is working as expected. If you aren't familiar with the Apps UI, you will need to navigate to the settings tab, and select 'Local Node'.</p>
+<h2><a class="anchor" aria-hidden="true" id="customize-your-module"></a><a href="#customize-your-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customize your Module</h2>
+<p>So far in this tutorial you've learned to create a runtime module as a Rust crate. You're now ready to replace the template logic with your own. If you're not sure what to code, check out one of our runtime modules in <a href="https://substrate.dev/en/tutorials">tutorials</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="publish-your-module"></a><a href="#publish-your-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Publish your Module</h2>
+<p>Once your module is no longer just a template, you should consider publishing it. We'll cover publishing your module to GitHub here, but Crates.io is another good option. Go ahead and <a href="https://help.github.com/en/articles/create-a-repo">create a GitHub repository</a> and <a href="https://help.github.com/en/articles/pushing-to-a-remote">push your module's code</a> to it.</p>
+<p>With the code on GitHub, your module is properly published. Congratulations! We now need to update your node to use the code that is on GitHub instead of a hard-coded file system path.</p>
+<p>The final edit to your runtime's <code>Cargo.toml</code> file will update its dependency on your module. The new code is</p>
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span>dependencies<span class="token punctuation">.</span>&lt;your-module-name><span class="token punctuation">]</span>
+<span class="token key property">default_features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">"https://github.com/&lt;you>/&lt;your-module>"</span>
+<span class="token key property">branch</span> <span class="token punctuation">=</span> <span class="token string">"master"</span>
+
+<span class="token comment"># You may choose a specific commit or tag instead of branch</span>
+<span class="token comment"># rev = "&lt;some commit hash>"</span>
+<span class="token comment"># tag = "&lt;some tag>"</span>
+</code></pre>
+<p>Compile one more time and notice that Cargo now grabs your module from GitHub instead of using the local files.</p>
+<p>Congratulations! You've written a Substrate runtime module in its own Rust crate, and published that crate to GitHub. Other blockchain developers can now easily use your module in their runtime by simply including those same four lines of code in their runtime's <code>Cargo.toml</code> files and updating their runtime's <code>lib.rs</code> file.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/11/2019 by Joshy Orndorff</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#setup-your-development-environment">Setup Your Development Environment</a></li><li><a href="#create-your-node">Create your Node</a></li><li><a href="#clone-the-module-template-repository">Clone the Module Template Repository</a><ul class="toc-headings"><li><a href="#your-modules-std-feature">Your Module's <code>std</code> Feature</a></li><li><a href="#consistent-substrate-dependencies">Consistent Substrate Dependencies</a></li><li><a href="#your-modules-dev-dependencies">Your Module's Dev Dependencies</a></li></ul></li><li><a href="#add-your-runtime-module-to-your-node">Add your Runtime Module to your Node</a></li><li><a href="#appreciate-your-work">Appreciate your Work</a></li><li><a href="#customize-your-module">Customize your Module</a></li><li><a href="#publish-your-module">Publish your Module</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/getting-started">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/en/videos">Videos</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></a></div></section><section class="copyright">Copyright © 2020 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:en"]}
+              });
+            </script></body></html>

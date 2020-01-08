@@ -1,12 +1,10 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Start a Private Network with Substrate · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;在这个教程中，我们将学习和实践如何使用Substrate启动一个区块链网络，并使用你选择的验证者/管理者集合。&lt;/p&gt;
-"/><meta name="docsearch:version" content="1.0"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="Start a Private Network with Substrate · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;p&gt;在这个教程中，我们将学习和实践如何使用Substrate启动一个区块链网络，并使用你选择的验证者/管理者集合。&lt;/p&gt;
-"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Start a Private Network with Substrate · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="在这个教程中，我们将学习和实践如何使用Substrate启动一个区块链网络，并使用你选择的验证者/管理者集合。"/><meta name="docsearch:version" content="pre-2.0"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="Start a Private Network with Substrate · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="在这个教程中，我们将学习和实践如何使用Substrate启动一个区块链网络，并使用你选择的验证者/管理者集合。"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
             {"zIndex":100}
           )
         });
-        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/zh-CN/versions"><h3>1.0</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/zh-CN/docs" target="_self">文档</a></li><li class=""><a href="/recipes/" target="_self">Recipes</a></li><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class=""><a href="/zh-CN/community" target="_self">社区</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/tutorials/start-a-private-network-with-substrate">English</a></li><li><a href="/docs/ru/tutorials/start-a-private-network-with-substrate">Русский</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">参与翻译</a></li></ul></div></li><script>
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/zh-CN/versions"><h3>pre-2.0</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/zh-CN/" target="_self">文档</a></li><li class=""><a href="/recipes" target="_self">Recipes</a></li><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class=""><a href="/zh-CN/community" target="_self">社区</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/tutorials/start-a-private-network-with-substrate">English</a></li><li><a href="/docs/ru/tutorials/start-a-private-network-with-substrate">Русский</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">参与翻译</a></li></ul></div></li><script>
         const languagesMenuItem = document.getElementById("languages-menu");
         const languagesDropDown = document.getElementById("languages-dropdown");
         languagesMenuItem.addEventListener("click", function(event) {
@@ -18,7 +16,7 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 class="postHeaderTitle">Start a Private Network with Substrate</h1></header><article><div><span><p>在这个教程中，我们将学习和实践如何使用Substrate启动一个区块链网络，并使用你选择的验证者/管理者集合。</p>
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Start a Private Network with Substrate</h1></header><article><div><span><p>在这个教程中，我们将学习和实践如何使用Substrate启动一个区块链网络，并使用你选择的验证者/管理者集合。</p>
 <p>你需要：</p>
 <ol>
 <li>一个 Linux 或 Mac 操作系统下的命令行客户端</li>
@@ -36,14 +34,14 @@
 <h3><a class="anchor" aria-hidden="true" id="首次操作"></a><a href="#首次操作" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>首次操作</h3>
 <p>首先，我们将通过克隆 git 仓库下载 Substrate v1.0 代码。</p>
 <pre><code class="hljs css language-bash"><span class="token function">git</span> clone -b v1.0 https://github.com/paritytech/substrate
-<span class="token function">cd</span> substrate
+<span class="token builtin class-name">cd</span> substrate
 </code></pre>
 <p>仓库包含了一个名为 <code>subkey</code> 的工具，我们可以选择用它来生成和检查密钥对。 让我们先编译它。 <code>--force</code> 选项意味着我们将移除之前安装的版本，重新安装此版本。</p>
 <pre><code class="hljs css language-bash">cargo <span class="token function">install</span> --force --path subkey subkey
 </code></pre>
 <p>现在让我们编译我们将要运行的区块链节点。 由于 Substrate 是一个框架，大多数现实世界中的区块链将使用它编写自定义的 runtime 代码。 有 <a href="/tutorials/">其他教程</a> 详细涵盖这方面的内容。 幸运的是，Substrate 仓库本身已经有两个随时可以运行的节点环境。 第一个在 <code>node</code> 目录，它包含了许多功能，可以构建实际可行的区块链。 事实上，它看起来和 <a href="https://polkadot.network">Polkadot</a> 类似，Polkadot 也是基于 Substrate 构建的。 第二个是在 <code>node-template</code> 目录下的最小化 runtime 代码。 我们将在本教程中使用节点模板 <code>node-template</code> ，因为它比较简单，通常是编写自定义 runtime 的起点。</p>
 <pre><code class="hljs css language-bash"><span class="token comment"># Switch to node-template directory</span>
-<span class="token function">cd</span> node-template
+<span class="token builtin class-name">cd</span> node-template
 
 <span class="token comment"># Ensure your Rust toolchain is up to date</span>
 ./scripts/init.sh
@@ -67,7 +65,7 @@ cargo build --release
 cargo <span class="token function">install</span> --force --path subkey subkey
 </code></pre>
 <p>现在我们准备重新编译节点模板。 这个过程与以前相同，但运行速度要快，因为只有实际改变的代码部分会被重新编译。</p>
-<pre><code class="hljs css language-bash"><span class="token function">cd</span> node-template
+<pre><code class="hljs css language-bash"><span class="token builtin class-name">cd</span> node-template
 ./scripts/init.sh
 ./scripts/build.sh
 cargo build --release
@@ -80,16 +78,16 @@ cargo build --release
 <h3><a class="anchor" aria-hidden="true" id="alice-首先启动"></a><a href="#alice-首先启动" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Alice 首先启动</h3>
 <p>Alice 应该从 Substrate 仓库的根目录运行此命令。</p>
 <pre><code class="hljs css language-bash"><span class="token comment"># 如果你仍然在 node-template/ 目录</span>
-<span class="token function">cd</span> <span class="token punctuation">..</span>
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
 
 <span class="token comment"># Start the node</span>
-./target/release/node-template \
-  --base-path /tmp/alice \
-  --chain<span class="token operator">=</span>local \
-  --key //Alice \
-  --port 30333 \
-  --telemetry-url ws://telemetry.polkadot.io:1024 \
-  --validator \
+./target/release/node-template <span class="token punctuation">\</span>
+  --base-path /tmp/alice <span class="token punctuation">\</span>
+  --chain<span class="token operator">=</span>local <span class="token punctuation">\</span>
+  --key //Alice <span class="token punctuation">\</span>
+  --port <span class="token number">30333</span> <span class="token punctuation">\</span>
+  --telemetry-url ws://telemetry.polkadot.io:1024 <span class="token punctuation">\</span>
+  --validator <span class="token punctuation">\</span>
   --name AlicesNode
 </code></pre>
 <p>Let's look at those flags in detail:</p>
@@ -124,7 +122,7 @@ cargo build --release
 <p>你可以通过节点在命令行中产生的输出了解很多信息。 还有一个很好的图形用户界面，称为<a href="https://polkadot.js.org/apps/"> Polkadot Js Apps UI </a>，可以将它连接到你的节点。 此链接会跳转到该UI的官方托管网页，非常方便，但与你正在运行的 Substrate 版本相比可能已经过时。 在托管的UI页面过期的情况下，你可以通过从<a href="https://github.com/polkadot-js/apps"> github </a>获取代码在本地运行该应用。 一般来说，该仓库中的指令将是你的最佳指南，但过程应该是这样的。</p>
 <pre><code class="hljs css language-bash"><span class="token comment"># 抓取代码</span>
 <span class="token function">git</span> clone https://github.com/polkadot-js/apps
-<span class="token function">cd</span> apps
+<span class="token builtin class-name">cd</span> apps
 
 <span class="token comment"># 安装依赖</span>
 <span class="token function">yarn</span>
@@ -137,14 +135,14 @@ cargo build --release
 <p>你会注意到，在命令行和用户界面中，还没有生产任何块。 好奇的学习者请参考 <a href="https://github.com/paritytech/substrate/blob/ae350506053b186a15fe5ffe2c1e85088b13a619/core/consensus/aura/src/lib.rs#L341">这里</a>。 一旦另一个验证者加入网络，块将开始生成。</p>
 <h3><a class="anchor" aria-hidden="true" id="bob-加入"></a><a href="#bob-加入" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Bob 加入</h3>
 <p>现在，Alice节点已经启动并运行，Bob 可以通过引导节点来加入网络。 他的命令看起来非常类似下面：</p>
-<pre><code class="hljs css language-bash">./target/release/node-template \
-  --base-path /tmp/bob \
-  --chain<span class="token operator">=</span>local \
-  --key //Bob \
-  --port 30333 \
-  --telemetry-url ws://telemetry.polkadot.io:1024 \
-  --validator \
-  --name BobsNode \
+<pre><code class="hljs css language-bash">./target/release/node-template <span class="token punctuation">\</span>
+  --base-path /tmp/bob <span class="token punctuation">\</span>
+  --chain<span class="token operator">=</span>local <span class="token punctuation">\</span>
+  --key //Bob <span class="token punctuation">\</span>
+  --port <span class="token number">30333</span> <span class="token punctuation">\</span>
+  --telemetry-url ws://telemetry.polkadot.io:1024 <span class="token punctuation">\</span>
+  --validator <span class="token punctuation">\</span>
+  --name BobsNode <span class="token punctuation">\</span>
   --bootnodes /ip4/<span class="token operator">&lt;</span>Alices IP Address<span class="token operator">></span>/tcp/<span class="token operator">&lt;</span>Alices Port<span class="token operator">></span>/p2p/<span class="token operator">&lt;</span>Alices Node ID<span class="token operator">></span>
 </code></pre>
 <p>上面已经解释了大多数这些选项，但有几个要点。</p>
@@ -191,11 +189,11 @@ cargo build --release
 <h3><a class="anchor" aria-hidden="true" id="启动链"></a><a href="#启动链" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>启动链</h3>
 <p>你已完成所有必要的准备工作，现在准备好启动链。 此过程非常类似于之前以 Alice 和 Bob 的身份启动链。 从干净的基础路径开始非常重要，如果你打算使用之前的路径，请删除该目录中的所有内容。</p>
 <p>第一位参与者启动节点</p>
-<pre><code class="hljs css language-bash">./target/release/node-template \
-  --chain ./customSpecRaw.json \
-  --key <span class="token string">"enroll mechanic ... embody"</span> \
-  --port 30333 \
-  --telemetry-url ws://telemetry.polkadot.io:1024 \
+<pre><code class="hljs css language-bash">./target/release/node-template <span class="token punctuation">\</span>
+  --chain ./customSpecRaw.json <span class="token punctuation">\</span>
+  --key <span class="token string">"enroll mechanic ... embody"</span> <span class="token punctuation">\</span>
+  --port <span class="token number">30333</span> <span class="token punctuation">\</span>
+  --telemetry-url ws://telemetry.polkadot.io:1024 <span class="token punctuation">\</span>
   --validator
 </code></pre>
 <p>以下是我们启动 Alice 时的一些不同之处。</p>
@@ -218,43 +216,7 @@ cargo build --release
 <p>如果想在启动区块链后添加更多验证人，该怎么办？ 你不能再返回并编辑那里的 chainspec。 The authority set can be changed after genesis by calling the consensus module's <a href="https://github.com/paritytech/substrate/blob/master/frame/consensus/src/lib.rs#L356-L362"><code>set_authorities</code> function</a>. 但是，该函数只能从其它 runtime 模块调用。 如果你已构建全节点，则可以使用 democracy 模块完成该任务。 或者查看<a href="https://github.com/gautamdhameja/substrate-poa">Substrate POA runtime</a>。</p>
 <h3><a class="anchor" aria-hidden="true" id="编写一个自定义-runtime"></a><a href="#编写一个自定义-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>编写一个自定义 Runtime</h3>
 <p>Substrate 其实就是写自己的 runtime，现在你已经上手了，我鼓励你尝试写一个。 Consider one of the <a href="/tutorials/">tutorials</a>.</p>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#编译所需工具">编译所需工具</a><ul class="toc-headings"><li><a href="#首次操作">首次操作</a></li><li><a href="#下次更新">下次更新</a></li></ul></li><li><a href="#alice-和-bob-启动区块链">Alice 和 Bob 启动区块链</a><ul class="toc-headings"><li><a href="#alice-首先启动">Alice 首先启动</a></li><li><a href="#连接ui">连接UI</a></li><li><a href="#bob-加入">Bob 加入</a></li></ul></li><li><a href="#生成密钥">生成密钥</a></li><li><a href="#启动你的私有区块链">启动你的私有区块链</a><ul class="toc-headings"><li><a href="#创建-chainspec">创建 chainspec</a></li><li><a href="#启动链">启动链</a></li></ul></li><li><a href="#后续步骤">后续步骤</a><ul class="toc-headings"><li><a href="#使用全节点">使用全节点</a></li><li><a href="#创世后添加验证人">创世后添加验证人</a></li><li><a href="#编写一个自定义-runtime">编写一个自定义 Runtime</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><div><style>
-#blast {
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  height: 50px;
-  background-image: url(/img/bg-sub01.svg); background-size: cover; background-position: right 0px bottom 500px;;
-  color: #18FFB2;
-  z-index: 99999;
-  text-align: center;
-  background-color: #000028;
-  transition: background-color 0.2s;
-}
-#blast:hover {
-  background-color: #E91E63;
-}
-
-#blast h2 {
-  margin: 0;
-  line-height: 50px;
-}
-
-#blast a {
-  display: block;
-  color: #18FFB2;
-  text-decoration: underline;
-  mix-blend-mode: lighten;
-}
-
-#blast img {
-  max-height: 50px;
-}
-
-body {
-  margin-bottom: 50px;
-}
-</style><section id="blast"><a href="/docs/en/next/getting-started" target="_blank"><img src="/img/substrate-v2-doc-invite.png" class="img-fluid"/></a></section></div><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="/zh-CN/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#编译所需工具">编译所需工具</a><ul class="toc-headings"><li><a href="#首次操作">首次操作</a></li><li><a href="#下次更新">下次更新</a></li></ul></li><li><a href="#alice-和-bob-启动区块链">Alice 和 Bob 启动区块链</a><ul class="toc-headings"><li><a href="#alice-首先启动">Alice 首先启动</a></li><li><a href="#连接ui">连接UI</a></li><li><a href="#bob-加入">Bob 加入</a></li></ul></li><li><a href="#生成密钥">生成密钥</a></li><li><a href="#启动你的私有区块链">启动你的私有区块链</a><ul class="toc-headings"><li><a href="#创建-chainspec">创建 chainspec</a></li><li><a href="#启动链">启动链</a></li></ul></li><li><a href="#后续步骤">后续步骤</a><ul class="toc-headings"><li><a href="#使用全节点">使用全节点</a></li><li><a href="#创世后添加验证人">创世后添加验证人</a></li><li><a href="#编写一个自定义-runtime">编写一个自定义 Runtime</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="/zh-CN/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
               var cookieSettings = document.getElementById('cookie-settings');
               cookieSettings.onclick = function() {
                 return klaro.show();

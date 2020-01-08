@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="ru"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Interacting with Your Node · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Now that your node has finished compiling, let&#x27;s show you how everything works out of the box."/><meta name="docsearch:version" content="pre-2.0"/><meta name="docsearch:language" content="ru"/><meta property="og:title" content="Interacting with Your Node · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="Now that your node has finished compiling, let&#x27;s show you how everything works out of the box."/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/ru"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/ru/versions"><h3>pre-2.0</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/ru/" target="_self">Docs</a></li><li class=""><a href="/recipes" target="_self">Recipes</a></li><li class=""><a href="/ru/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/ru/community" target="_self">Community</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>Русский</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/tutorials/creating-your-first-substrate-chain/interact">English</a></li><li><a href="/docs/zh-CN/tutorials/creating-your-first-substrate-chain/interact">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Creating Your First Substrate Chain</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Creating Your First Substrate Chain<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/creating-your-first-substrate-chain/">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/creating-your-first-substrate-chain/setup">Set Up Your Computer</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/creating-your-first-substrate-chain/learn">Background Information</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/ru/tutorials/creating-your-first-substrate-chain/interact">Interacting with Your Node</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/creating-your-first-substrate-chain/build">Building a Custom Pallet</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/creating-your-first-substrate-chain/front-end">Building a Custom Front End</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Interacting with Your Node</h1></header><article><div><span><p>Now that your node has finished compiling, let's show you how everything works out of the box.</p>
+<h2><a class="anchor" aria-hidden="true" id="starting-your-node"></a><a href="#starting-your-node" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Starting Your Node</h2>
+<p>Run the following commands to start your node:</p>
+<pre><code class="hljs css language-bash"><span class="token builtin class-name">cd</span> substrate-node-template/
+<span class="token comment"># Purge chain cleans up any old data from running a `dev` node in the past</span>
+<span class="token comment"># You will be prompted to type `y`</span>
+./target/release/node-template purge-chain --dev
+<span class="token comment"># Run your actual node in "developer" mode</span>
+./target/release/node-template --dev
+</code></pre>
+<p>You should see something like this if your node is running successfully:</p>
+<pre><code class="hljs css language-bash">$ ./target/release/node-template --dev
+
+<span class="token number">2019</span>-09-05 <span class="token number">15</span>:57:27 Running <span class="token keyword">in</span> --dev mode, RPC CORS has been disabled.
+<span class="token number">2019</span>-09-05 <span class="token number">15</span>:57:27 Substrate Node
+<span class="token number">2019</span>-09-05 <span class="token number">15</span>:57:27   version <span class="token number">2.0</span>.0-b6bfc95-x86_64-macos
+<span class="token number">2019</span>-09-05 <span class="token number">15</span>:57:27   by Anonymous, <span class="token number">2017</span>, <span class="token number">2018</span>
+<span class="token number">2019</span>-09-05 <span class="token number">15</span>:57:27 Chain specification: Development
+<span class="token number">2019</span>-09-05 <span class="token number">15</span>:57:27 Node name: unwieldy-skate-4685
+<span class="token number">2019</span>-09-05 <span class="token number">15</span>:57:27 Roles: AUTHORITY
+<span class="token number">2019</span>-09-05 <span class="token number">15</span>:57:27 Initializing Genesis block/state <span class="token punctuation">(</span>state: 0x26bd…7093, header-hash: 0xbf06…58a9<span class="token punctuation">)</span>
+<span class="token punctuation">..</span>.
+<span class="token number">2019</span>-09-05 <span class="token number">15</span>:57:30 Imported <span class="token comment">#1 (0x9f41…e673)</span>
+<span class="token number">2019</span>-09-05 <span class="token number">15</span>:57:32 Idle <span class="token punctuation">(</span><span class="token number">0</span> peers<span class="token punctuation">)</span>, best: <span class="token comment">#1 (0x9f41…e673), finalized #1 (0x9f41…e673), ⬇ 0 ⬆ 0</span>
+<span class="token number">2019</span>-09-05 <span class="token number">15</span>:57:37 Idle <span class="token punctuation">(</span><span class="token number">0</span> peers<span class="token punctuation">)</span>, best: <span class="token comment">#1 (0x9f41…e673), finalized #1 (0x9f41…e673), ⬇ 0 ⬆ 0</span>
+</code></pre>
+<p>Your blockchain is producing new blocks!</p>
+<h2><a class="anchor" aria-hidden="true" id="start-your-front-end"></a><a href="#start-your-front-end" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Start Your Front-End</h2>
+<p>To interact with the local node via the front-end template, start the <code>substrate-front-end-template</code>.</p>
+<p>Open another terminal in your working folder and run the following:</p>
+<pre><code class="hljs css language-bash"><span class="token builtin class-name">cd</span> substrate-front-end-template/
+<span class="token comment"># Install the Node.JS dependencies</span>
+<span class="token function">yarn</span> <span class="token function">install</span>
+<span class="token comment"># Start a local web server</span>
+<span class="token function">yarn</span> start
+</code></pre>
+<p>You should then be able to navigate to <a href="http://localhost:8000/"><code>localhost:8000</code></a> where you will see a simple front-end showing that your Substrate node is running and connected!</p>
+<h2><a class="anchor" aria-hidden="true" id="interact"></a><a href="#interact" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Interact</h2>
+<p>If you look at the <strong>Balances</strong> component, you will see test accounts which you have access to. Some like Alice and Bob already have funds!</p>
+<p><img src="/docs/assets/front-end-template.png" alt="Front End Template"></p>
+<p>You can try to transfer some funds from Alice to Charlie using the <strong>Transfer</strong> component.</p>
+<pre><code class="hljs">Selected Account<span class="token punctuation">:</span> Alice
+To<span class="token punctuation">:</span> 5FLSigC9HGRKVhB9FiEo4Y3koPsNmBmLJbpXg2mp1hXcS59Y
+Amount<span class="token punctuation">:</span> <span class="token number">1000</span>
+</code></pre>
+<p><img src="/docs/assets/front-end-template-balance-transfer.png" alt="Balance Transfer"></p>
+<p>If everything went successfully, you should see some notifications in the <strong>Events</strong> component, and of course Charlie's balance will now be <code>1000</code>.</p>
+<p>Already you have a working blockchain, with an underlying cryptocurrency. You are able to make transfers easily with a simple, interactive front-end.</p>
+<p>Now let's build our Proof of Existence pallet!</p>
+<blockquote>
+<p><strong>Note:</strong> If you want to stop your node or front-end, you can press <code>ctrl + c</code> in the terminal.</p>
+</blockquote>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/tutorials/creating-your-first-substrate-chain/learn"><span class="arrow-prev">← </span><span>Background Information</span></a><a class="docs-next button" href="/docs/ru/tutorials/creating-your-first-substrate-chain/build"><span>Building a Custom Pallet</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#starting-your-node">Starting Your Node</a></li><li><a href="#start-your-front-end">Start Your Front-End</a></li><li><a href="#interact">Interact</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/ru/getting-started">Getting Started</a><a href="/ru/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/ru/videos">Videos</a><a href="/ru/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></a></div></section><section class="copyright">Copyright © 2020 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:ru"]}
+              });
+            </script></body></html>

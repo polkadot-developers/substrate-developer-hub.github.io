@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Transaction Lifecycle · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="通过Substrate，开发人员可以创建自定义的runtime - 或应用逻辑 - 可以将任何类型的信息放入区块中。 尽管Substrate Core和SRML中提供了一些原生功能，但是链开发人员有责任验证进入区块中但还没有最终确认的信息。"/><meta name="docsearch:version" content="1.0"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="Transaction Lifecycle · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="通过Substrate，开发人员可以创建自定义的runtime - 或应用逻辑 - 可以将任何类型的信息放入区块中。 尽管Substrate Core和SRML中提供了一些原生功能，但是链开发人员有责任验证进入区块中但还没有最终确认的信息。"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/zh-CN/versions"><h3>1.0</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/zh-CN/1.0/" target="_self">文档</a></li><li class=""><a href="/recipes" target="_self">Recipes</a></li><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class=""><a href="/zh-CN/community" target="_self">社区</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/1.0/overview/transaction-lifecycle">English</a></li><li><a href="/docs/ru/1.0/overview/transaction-lifecycle">Русский</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">参与翻译</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Substrate 基础</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">开始<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/getting-started/installing-substrate">Installing Substrate</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/getting-started/using-the-substrate-scripts">Using the Substrate Scripts</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate 基础<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/overview/">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/overview/extrinsics">Extrinsics</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/1.0/overview/transaction-lifecycle">Transaction Lifecycle</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/overview/low-level-data-format">Low-level Data Format</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/overview/off-chain-workers">Off-Chain Workers</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/overview/session-keys">Session Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/overview/ss58-address-format">SS58 Address Format</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/overview/glossary">Glossary</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Runtime<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/architecture-of-a-runtime">Architecture of a Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/substrate-runtime-module-library">Substrate Runtime Module Library</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/initializing-storage">Initializing Runtime Storage</a></li><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Macros</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/macros/construct_runtime">Constructing a Runtime!</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/macros/decl_module">Declaring a Module!</a></li></ul></div><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Runtime Types</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/types/module-struct">Module Struct</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/types/call-enum">Call Enum</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/types/event-enum">Event Enum</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/types/genesisconfig-struct">GenesisConfig Struct</a></li></ul></div><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/runtime/instantiable-module">Instantiable Modules</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">常用工具<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/ecosystem/subkey">The subkey Tool</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/ecosystem/contracts/ink">ink! Smart Contracts</a></li><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Frequently Asked Questions</h4><ul><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/ecosystem/contracts/faq">ink! FAQ</a></li></ul></div></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">贡献<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/1.0/contribute/help-translate">Help Translate</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Transaction Lifecycle</h1></header><article><div><span><p>通过Substrate，开发人员可以创建自定义的runtime - 或应用逻辑 - 可以将任何类型的信息放入区块中。 尽管Substrate Core和SRML中提供了一些原生功能，但是链开发人员有责任验证进入区块中但还没有最终确认的信息。</p>
+<p>本文将介绍Substrate提供的工具以及如何在你的runtime中放置检查逻辑的一些指导。</p>
+<p>区块中的任何信息都称为“extrinsic”，该术语分为两种类型：</p>
+<ul>
+<li>Transaction 是经过签名的信息，可以看作类似比特币或以太坊上的 Transaction。 交易在网络上传播，可以由任何节点提交以包含在一个区块中。</li>
+<li>Inherents 是未经签名的信息，其来源、真实性和内容无法得到证明，出块者可以自行决定将其添加到区块中。 示例 inherent 如时间戳修改（处于状态中）或达成共识所需的验证人列表。 它们是“真实的”，因为被包含在区块之中，并且网络中的其他参与者通过验证该区块并同意在该区块之上继续构建新的区块。 Inherents 不会在网络上传播；而是出块者将它们写入区块中。 但是，inherents 仍然会影响状态，因此你需要一种方法，能够在最终确定它们之前，验证存储按照预期的那样被影响。</li>
+</ul>
+<p>交易可以遵循两种路径：</p>
+<ol>
+<li>从网络接收到一个区块</li>
+<li>我们自己生成一个区块</li>
+</ol>
+<p>在第一种情况下，该区块通过运行<code>execute_block</code>，整个区块要么成功，要么失败。</p>
+<p>在第二种情况下，在发布区块之前，我们还有更多检查要执行。</p>
+<ol>
+<li>我们在网络上监听交易。</li>
+<li>我们通过<code>validate_transaction</code>函数验证每笔交易，并将有效交易放入交易池中。</li>
+<li>交易池负责对交易进行排序，并返回准备好包含在区块中的交易。 我们使用准备好的交易并通过<code>BlockBuilder</code>构造一个区块。</li>
+<li><code>BlockBuilder</code>使用<code>apply_extrinsic</code>函数执行交易，并在本地内存中应用状态更改。</li>
+<li>构造的区块将被发布到网络（所有其他参与者都使用<code>execute_block</code>运行它）。</li>
+</ol>
+<p>在第2步中，<code>validate_transaction</code>进行了一些基本检查，并返回了<a href="https://github.com/paritytech/substrate/blob/250bbe1d72b928ef771325e0ed6980a52e38c322/core/sr-primitives/src/transaction_validity.rs#L31">一个枚举</a>，它的变体有Valid，Invalid和Unknown。 <a href="https://github.com/paritytech/substrate/blob/v0.9.2/srml/executive/src/lib.rs#L225"> runtime</a> 调用<code>validate_transaction</code>函数，并检查有效的签名和随机数（或者UTXO链的交易输出），但不检查对模块的任何调用是否成功。 <code>validate_transaction</code>孤立地检查每一笔交易，因此它不会捕获如同一输出两次被使用这样的错误。</p>
+<p>实际上，通常可以使用<code>validate_transaction</code>检查对模块的调用，因为它在runtime可用。 但是，我们不建议这样做，因为它是一个潜在的DoS攻击载体，网络中的所有交易都将传递到<code>validate_transaction</code>中。 <code>validate_transaction</code>函数应侧重于为交易池提供必要的信息，以便对交易进行排序和优先级处理，并迅速拒绝所有肯定无效或过时的交易。 请注意，该函数将被频繁调用（对于同一交易，也可能多次调用）。 <code>validate_transaction</code>也有可能使依赖交易失败，如果该交易以正确的顺序执行，该交易将通过<code>execute_block</code>。</p>
+<p>我们使用<code>validate_transaction</code>的输出来排序交易池中的交易，并使用<code>BlockBuilder</code>（<a href="https://github.com/paritytech/substrate/blob/v0.9.2/core/client/src/block_builder/block_builder.rs">代码</a>）构造一个候选区块。 构造的区块中的所有extrinsics都通过<code>apply_extrinsic</code>（<a href="https://github.com/paritytech/substrate/blob/v0.9.2/srml/executive/src/lib.rs#L144">代码</a>）执行，这将进行所有模块调用并将状态转换应用于我们的本地内存。 如果一切顺利，则该区块将传播到网络，就像第一种情况一样，每个人都将运行<code>execute_block</code>（<a href="https://github.com/paritytech/substrate/blob/v0.9.2/srml/executive/src/lib.rs#L112">此处为示例</a>）。 在本地，将区块导入到链中，而无需运行<code>execute_block</code>（我们重用内存中的更改集）。</p>
+<p>请记住，对于Substrate，通证转账不是唯一的状态转换：任何信息都可以写入一个区块中。 <code>execute_block</code>绝不应panic，并且如果对模块的调用返回<code>Err</code>，它将被最终确定并且对存储的更改将不会恢复。 这是因为恢复更改将要求每个节点在每个区块上复制存储。</p>
+<p>当你要修改存储时，最佳实践是进行所有必要的检查，以确保调用成功，执行所有存储更改并最终发出事件，以便你知道该函数没有提前返回。 有关示例，请参见balances模块中的<code>transfer</code>（<a href="https://github.com/paritytech/substrate/blob/v0.9.2/srml/balances/src/lib.rs#L142">代码</a>）功能 - 所有检查均在进行存储之前执行。</p>
+<p>如果你正在设计自己的模块，那么你有责任确保无效的extrinsics永远不会panic，并且在返回<code>Err</code>时也不会修改模块状态。 正确的模块实现还可以通过担保机制，对提交无效extrinsics的恶意方进行惩罚（防止DoS攻击）。</p>
+<p>Substrate为开发人员在区块和存储结构中提供了极大的自由度。 结果是，由于runtime的数量实际上是无限的，所有并非所有错误都可以在Substrate工具包中捕获。 应用程序开发人员需要实现自己的错误检查，以防止错误的存储修改。</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/1.0/overview/extrinsics"><span class="arrow-prev">← </span><span>外部参数</span></a><a class="docs-next button" href="/docs/zh-CN/1.0/overview/low-level-data-format"><span>底层数据格式</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="/zh-CN/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></a></div></section><section class="copyright">Copyright © 2020 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-CN"]}
+              });
+            </script></body></html>

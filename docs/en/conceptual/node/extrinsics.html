@@ -1,0 +1,175 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Extrinsics · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="An extrinsic is a piece of information that comes from outside the chain and is included in a "/><meta name="docsearch:version" content="pre-2.0"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Extrinsics · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="An extrinsic is a piece of information that comes from outside the chain and is included in a "/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/en/versions"><h3>pre-2.0</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/en/" target="_self">Docs</a></li><li class=""><a href="/recipes" target="_self">Recipes</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/en/community" target="_self">Community</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/ru/conceptual/node/extrinsics">Русский</a></li><li><a href="/docs/zh-CN/conceptual/node/extrinsics">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Substrate Nodes</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Overview<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/getting-started">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/en/conceptual/runtime/frame">FRAME</a></li><li class="navListItem"><a class="navItem" href="/docs/en/overview/glossary">Glossary</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Core<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/conceptual/core/codec">SCALE Codec</a></li><li class="navListItem"><a class="navItem" href="/docs/en/conceptual/core/consensus">Consensus</a></li><li class="navListItem"><a class="navItem" href="/docs/en/conceptual/core/executor">Executor</a></li><li class="navListItem"><a class="navItem" href="/docs/en/conceptual/core/off-chain-workers">Off-Chain Workers</a></li><li class="navListItem"><a class="navItem" href="/docs/en/conceptual/core/storage">Storage</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Nodes<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/conceptual/node/extrinsics">Extrinsics</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Cryptography<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/conceptual/cryptography/">Cryptography</a></li><li class="navListItem"><a class="navItem" href="/docs/en/conceptual/cryptography/keys">Substrate Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/en/conceptual/cryptography/session-keys">Session Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/en/conceptual/cryptography/ss58-address-format">SS58 Address Format</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Runtime<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/conceptual/runtime/weight">Transaction Weight</a></li><li class="navListItem"><a class="navItem" href="/docs/en/conceptual/runtime/primitives">Runtime Primitives</a></li><li class="navListItem"><a class="navItem" href="/docs/en/development/module/execution">Runtime Execution</a></li><li class="navListItem"><a class="navItem" href="/docs/en/development/module/macros">Runtime Macros</a></li><li class="navListItem"><a class="navItem" href="/docs/en/development/module/storage">Runtime Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/en/development/module/events">Runtime Events</a></li><li class="navListItem"><a class="navItem" href="/docs/en/development/module/off-chain-workers">Off-Chain Workers</a></li><li class="navListItem"><a class="navItem" href="/docs/en/development/module/fees">Transaction Fees</a></li><li class="navListItem"><a class="navItem" href="/docs/en/development/module/tests">Runtime Tests</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Smart Contracts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/conceptual/runtime/contracts/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/en/conceptual/runtime/contracts/contracts_module">Contracts Module</a></li><li class="navListItem"><a class="navItem" href="/docs/en/conceptual/runtime/contracts/evm_module">EVM Module</a></li><li class="navListItem"><a class="navItem" href="/docs/en/conceptual/runtime/contracts/ink">ink! Concepts</a></li><li class="navListItem"><a class="navItem" href="/docs/en/development/contracts/ink">ink! Development</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Deployment<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/development/deployment/chain-spec">Chain Specification</a></li><li class="navListItem"><a class="navItem" href="/docs/en/development/deployment/account-prefix">Account Prefix</a></li><li class="navListItem"><a class="navItem" href="/docs/en/development/deployment/boot-node">Boot Nodes</a></li><li class="navListItem"><a class="navItem" href="/docs/en/development/deployment/disabling-features">Disabling Features of Your Runtime</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Front End<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/development/front-end/polkadot-js">Polkadot-JS</a></li><li class="navListItem"><a class="navItem" href="/docs/en/development/front-end/json-rpc">JSON RPC</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Ecosystem Tools<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/development/tools/subkey">The subkey Tool</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/conceptual/node/extrinsics.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Extrinsics</h1></header><article><div><span><p>An extrinsic is a piece of information that comes from outside the chain and is included in a
+block. Extrinsics fall into three categories: inherents, signed transactions, and unsigned
+transactions.</p>
+<p>Note that <a href="/docs/en/development/module/events">events</a> are not extrinsics. The chain emits events for
+pieces of information that are intrinsic to the chain itself. For example, staking rewards are
+events, not extrinsics, because the reward is triggered by circumstances intrinsic to the chain's
+logic.</p>
+<h2><a class="anchor" aria-hidden="true" id="block-structure"></a><a href="#block-structure" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Block Structure</h2>
+<p>A block in Substrate is composed of a header and an array of extrinsics. The header contains a<br>
+block height, parent hash, extrinsics root, state root, and digest. This section will only focus on
+the extrinsics root.</p>
+<p>Extrinsics are bundled together into a block as a series to be executed as each is defined in the
+runtime. The extrinsics root is a cryptographic digest of this series. This serves two purposes.
+First, it prevents any alterations to the series of extrinsics after the header has been built and
+distributed. Second, it provides a means of allowing light clients to succinctly verify that any
+given extrinsic did indeed exist in a block given only knowledge of the header.</p>
+<ul>
+<li><a href="https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Block.html">Block Reference</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="inherents"></a><a href="#inherents" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Inherents</h2>
+<p>Inherents are pieces of information that are not signed and only inserted into a block by the block
+author. They are not gossiped on the network or stored in the transaction queue. There is nothing
+technically preventing a Substrate chain that gossips inherents, but there would be no fee-based
+spam prevention mechanism.</p>
+<p>Inherents represent data that, in an opinionated fashion, describes one of a number of valid pieces
+of information. They are assumed to be &quot;true&quot; simply because a sufficiently large number of
+validators have agreed on them being reasonable.</p>
+<p>For example, the author of the block may insert a timestamp inherent into the block. There is no
+way to prove that a timestamp is true the way the desire to send funds is proved with a signature.
+Rather, validators accept or reject the block based on how reasonable the other validators find the
+timestamp, which may mean it is within some acceptable range of their own system clocks.</p>
+<ul>
+<li><a href="https://substrate.dev/rustdocs/master/sp_inherents/index.html">Inherents Reference</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="signed-transactions"></a><a href="#signed-transactions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Signed Transactions</h2>
+<p>Signed transactions contain a signature of the account that issued the transaction and stands to
+pay a fee to have the transaction included on chain. Because the value of including signed
+transactions on-chain can be recognized prior to execution, they can be gossiped on the network
+between nodes with a low risk of spam.</p>
+<p>Signed transactions fit the concept of a transaction in Ethereum or Bitcoin.</p>
+<h2><a class="anchor" aria-hidden="true" id="unsigned-transactions"></a><a href="#unsigned-transactions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Unsigned Transactions</h2>
+<p>Some cases call for unsigned transactions. Use unsigned transactions with care, as their validation
+logic can be difficult.</p>
+<p>Since the transaction is not signed, there is nobody to pay a fee. Because of this, the transaction
+queue lacks economic logic to prevent spam. Unsigned transactions also lack a nonce, making replay
+protection difficult. A few transactions warrant using the unsigned variant, but they will require
+some form of spam prevention based on a custom implementation of
+<a href="#signed-extension">signed extension</a>, which can exist on unsigned transactions.</p>
+<p>An example of unsigned transactions in Substrate is the
+<a href="https://github.com/paritytech/substrate/blob/master/frame/im-online/src/lib.rs">I'm Online</a>
+heartbeat transaction sent by authorities. The transaction includes a signature from a Session key,
+which does not control funds and therefore cannot pay a fee. The transaction pool controls spam
+by checking if a heartbeat has already been submitted in the session.</p>
+<h2><a class="anchor" aria-hidden="true" id="signed-extension"></a><a href="#signed-extension" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Signed Extension</h2>
+<p><code>SignedExtension</code> is a trait by which a transaction can be extended with additional data or logic.
+Signed extensions are used anywhere you want some information about a transaction prior to
+execution. This is heavily used in the transaction queue.</p>
+<p>The runtime can use some of this data, for example the <code>Call</code> that will be dispatched, to calculate
+transaction fees. Signed extensions also include an <code>AdditionalSigned</code> type that can hold any
+encodable data, and therefore allow you to perform any custom logic prior to including or
+dispatching a transaction. The transaction queue regularly calls functions from <code>SignedExtension</code>
+to validate transactions prior to block construction to avoid including transactions that will fail
+in blocks.</p>
+<p>Despite the name, <code>SignedExtension</code> can also be used to verify unsigned transactions. The
+<code>*_unsigned</code> set of methods can be implemented to encapsulate validation, spam, and replay
+protection logic that is needed by the transaction pool.</p>
+<ul>
+<li><a href="https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.SignedExtension.html">Signed Extension Reference</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="further-reading"></a><a href="#further-reading" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Further Reading</h2>
+<ul>
+<li><a href="https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Extrinsic.html">Reference Documentation</a></li>
+<li><a href="/docs/en/development/module/execution">Runtime Execution</a></li>
+<li><a href="/docs/en/development/module/fees">Transaction Fees</a></li>
+</ul>
+<!-- TODO - [Transaction Pool](/docs/en/conceptual/node/tx-pool) -->
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 12/18/2019 by joe petrowski</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/conceptual/core/storage"><span class="arrow-prev">← </span><span>Storage</span></a><a class="docs-next button" href="/docs/en/conceptual/cryptography/index"><span>Cryptography</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#block-structure">Block Structure</a></li><li><a href="#inherents">Inherents</a></li><li><a href="#signed-transactions">Signed Transactions</a></li><li><a href="#unsigned-transactions">Unsigned Transactions</a></li><li><a href="#signed-extension">Signed Extension</a></li><li><a href="#further-reading">Further Reading</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/getting-started">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/en/videos">Videos</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></a></div></section><section class="copyright">Copyright © 2020 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:en"]}
+              });
+            </script></body></html>

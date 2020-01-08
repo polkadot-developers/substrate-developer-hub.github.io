@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="ru"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Getting Started · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="This page has everything you need to get started building with Substrate."/><meta name="docsearch:version" content="pre-2.0"/><meta name="docsearch:language" content="ru"/><meta property="og:title" content="Getting Started · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="This page has everything you need to get started building with Substrate."/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/ru"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/ru/versions"><h3>pre-2.0</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/ru/" target="_self">Docs</a></li><li class=""><a href="/recipes" target="_self">Recipes</a></li><li class=""><a href="/ru/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/ru/community" target="_self">Community</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>Русский</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/overview/getting-started">English</a></li><li><a href="/docs/zh-CN/overview/getting-started">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Overview</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Overview<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/">Overview</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/ru/overview/getting-started">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/conceptual/runtime/frame">FRAME</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/overview/glossary">Glossary</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Core<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/conceptual/core/codec">SCALE Codec</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/conceptual/core/consensus">Consensus</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/conceptual/core/executor">Executor</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/conceptual/core/off-chain-workers">Off-Chain Workers</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/conceptual/core/storage">Storage</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Nodes<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/conceptual/node/extrinsics">Extrinsics</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Cryptography<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/conceptual/cryptography/">Cryptography</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/conceptual/cryptography/keys">Substrate Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/conceptual/cryptography/session-keys">Session Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/conceptual/cryptography/ss58-address-format">SS58 Address Format</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Runtime<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/conceptual/runtime/weight">Transaction Weight</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/conceptual/runtime/primitives">Runtime Primitives</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/development/module/execution">Runtime Execution</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/development/module/macros">Runtime Macros</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/development/module/storage">Runtime Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/development/module/events">Runtime Events</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/development/module/off-chain-workers">Off-Chain Workers</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/development/module/fees">Transaction Fees</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/development/module/tests">Runtime Tests</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Smart Contracts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/conceptual/runtime/contracts/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/conceptual/runtime/contracts/contracts_module">Contracts Module</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/conceptual/runtime/contracts/evm_module">EVM Module</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/conceptual/runtime/contracts/ink">ink! Concepts</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/development/contracts/ink">ink! Development</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Deployment<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/development/deployment/chain-spec">Chain Specification</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/development/deployment/account-prefix">Account Prefix</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/development/deployment/boot-node">Boot Nodes</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/development/deployment/disabling-features">Disabling Features of Your Runtime</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Front End<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/development/front-end/polkadot-js">Polkadot-JS</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/development/front-end/json-rpc">JSON RPC</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Ecosystem Tools<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/development/tools/subkey">The subkey Tool</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Getting Started</h1></header><article><div><span><p>This page has everything you need to get started building with Substrate.</p>
+<h2><a class="anchor" aria-hidden="true" id="get-help"></a><a href="#get-help" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Get Help</h2>
+<p>Substrate is a bleeding edge blockchain development framework, and as a result, you may encounter some breaking changes or issues along the way.</p>
+<p>Know that we are very happy to help you get started building with Substrate, so if you encounter any issues, simply reach out to us by:</p>
+<ul>
+<li><a href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/new">Opening an issue on GitHub</a></li>
+<li><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Chatting with us on Riot</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="prerequisites"></a><a href="#prerequisites" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prerequisites</h2>
+<p>To develop in the Substrate ecosystem, you must set up your developer environment. Depending on your operating system, these instructions may be different.</p>
+<h3><a class="anchor" aria-hidden="true" id="debian"></a><a href="#debian" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Debian</h3>
+<p>Run:</p>
+<pre><code class="hljs css language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> -y cmake pkg-config libssl-dev <span class="token function">git</span> gcc build-essential clang libclang-dev
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="macos"></a><a href="#macos" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>macOS</h3>
+<p>Install the <a href="https://brew.sh/">Homebrew package manager</a>, then run:</p>
+<pre><code class="hljs css language-bash">brew <span class="token function">install</span> openssl cmake llvm
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="windows"></a><a href="#windows" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Windows</h3>
+<p>Because Windows installation instructions vary widely from standard unix-like operating systems, we have separated the setup instructions to their own comprehensive section at the bottom of this page.</p>
+<p>Go to: <a href="#getting-started-on-windows">Getting Started on Windows</a></p>
+<h2><a class="anchor" aria-hidden="true" id="rust-developer-environment"></a><a href="#rust-developer-environment" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rust Developer Environment</h2>
+<p>Substrate uses the Rust programming language. You should <a href="https://www.rust-lang.org/tools/install">install Rust</a> using <code>rustup</code>:</p>
+<pre><code class="hljs">curl https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>sh<span class="token punctuation">.</span>rustup<span class="token punctuation">.</span>rs <span class="token operator">-</span>sSf <span class="token operator">|</span> sh
+</code></pre>
+<p>Then make sure that you are using the latest Rust stable by default:</p>
+<pre><code class="hljs">rustup default stable
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="wasm-compilation"></a><a href="#wasm-compilation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Wasm Compilation</h3>
+<p>Substrate uses WebAssembly (Wasm), and you will need to configure your Rust compiler to use <code>nightly</code> to support this build target.</p>
+<p>Run the following:</p>
+<pre><code class="hljs css language-bash">rustup <span class="token function">install</span> nightly
+rustup target <span class="token function">add</span> wasm32-unknown-unknown --toolchain nightly
+<span class="token comment"># Install `wasm-gc`. It's useful for slimming down Wasm binaries.</span>
+cargo +nightly <span class="token function">install</span> --git https://github.com/alexcrichton/wasm-gc --force
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="rustup-update"></a><a href="#rustup-update" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rustup Update</h3>
+<p>Substrate always uses the latest version of Rust stable and nightly for compilation. To ensure your Rust compiler is always up to date, you should run:</p>
+<pre><code class="hljs">rustup update
+</code></pre>
+<p>This may even solve compilation issues you face when working with Substrate.</p>
+<h2><a class="anchor" aria-hidden="true" id="front-end-developer-environment"></a><a href="#front-end-developer-environment" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Front-End Developer Environment</h2>
+<p>Substrate uses Yarn for all of it's front-end development needs. Visit the <a href="https://yarnpkg.com/en/docs/install">install instructions</a> for Yarn to set up your computer.</p>
+<p>Make sure you have the latest stable version of Node.js (<code>&gt;= 10.16.3</code>) and Yarn (<code>&gt;= 1.19.0</code>).</p>
+<h2><a class="anchor" aria-hidden="true" id="get-the-source"></a><a href="#get-the-source" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Get the Source</h2>
+<p>Depending on what you are looking to build, there are some different starting points for Substrate development.</p>
+<blockquote>
+<p><strong>Note:</strong> You can add the <code>--help</code> flag to any command to see additional options.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="substrate"></a><a href="#substrate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Substrate</h3>
+<p>The main Substrate project contains all core libraries which power Substrate-based chains, a pre-built node for running the Substrate testnet, and a key generation utility called Subkey.</p>
+<p>This starting point makes sense if you plan to contribute to the Substrate project or if you want to run the Substrate testnet or Subkey.</p>
+<p>Get the project at:</p>
+<pre><code class="hljs">https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>paritytech<span class="token operator">/</span>substrate
+</code></pre>
+<p>Build the project with:</p>
+<pre><code class="hljs css language-bash">cargo build --release
+</code></pre>
+<p>Test the project with:</p>
+<pre><code class="hljs">cargo test <span class="token operator">-</span><span class="token operator">-</span>all
+</code></pre>
+<p>Start the Substrate node with:</p>
+<pre><code class="hljs css language-bash">./target/release/substrate
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="install-the-substrate-node-locally"></a><a href="#install-the-substrate-node-locally" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Install the Substrate Node Locally</h4>
+<p>You can install the Substrate node binary locally for easy access to running a node.</p>
+<p>In the Substrate project folder, run:</p>
+<pre><code class="hljs">cargo install <span class="token operator">-</span><span class="token operator">-</span>force <span class="token operator">-</span><span class="token operator">-</span>path <span class="token punctuation">.</span><span class="token operator">/</span> substrate
+</code></pre>
+<p>You can then run this generated binary with:</p>
+<pre><code class="hljs css language-bash">substrate
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="install-subkey-locally"></a><a href="#install-subkey-locally" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Install Subkey Locally</h4>
+<p>You can install the Subkey binary locally for easy access to this utility.</p>
+<p>In the Substrate project folder, run:</p>
+<pre><code class="hljs css language-bash">cargo <span class="token function">install</span> --force --path ./bin/utils/subkey subkey
+</code></pre>
+<p>You can then run this generated binary with:</p>
+<pre><code class="hljs css language-bash">subkey
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="substrate-node-template"></a><a href="#substrate-node-template" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Substrate Node Template</h3>
+<p>We provide a minimal working Substrate node meant for the development of new Substrate blockchains.</p>
+<p>Get the project at:</p>
+<pre><code class="hljs">https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>substrate<span class="token operator">-</span>developer<span class="token operator">-</span>hub<span class="token operator">/</span>substrate<span class="token operator">-</span>node<span class="token operator">-</span>template
+</code></pre>
+<p>Build the project with:</p>
+<pre><code class="hljs css language-bash">cargo build --release
+</code></pre>
+<p>Purge any existing developer node state with:</p>
+<pre><code class="hljs css language-bash"><span class="token comment"># You will be prompted to type `y` to delete the database</span>
+./target/release/node-template purge-chain --dev
+</code></pre>
+<p>Start a developer node with:</p>
+<pre><code class="hljs css language-bash">./target/release/node-template --dev
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="substrate-front-end-template"></a><a href="#substrate-front-end-template" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Substrate Front-End Template</h3>
+<p>We provide a minimal working Substrate front-end, built with ReactJS and the Polkadot-JS API. This project is meant for quick and easy development of custom user interfaces.</p>
+<p>Get the project at:</p>
+<pre><code class="hljs">https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>substrate<span class="token operator">-</span>developer<span class="token operator">-</span>hub<span class="token operator">/</span>substrate<span class="token operator">-</span>front<span class="token operator">-</span>end<span class="token operator">-</span>template
+</code></pre>
+<p>Install the node dependencies with:</p>
+<pre><code class="hljs css language-bash"><span class="token function">yarn</span> <span class="token function">install</span>
+</code></pre>
+<p>Run the front end with:</p>
+<pre><code class="hljs css language-bash"><span class="token function">yarn</span> start
+</code></pre>
+<p>Connect to the front-end at <a href="http://localhost:8000"><code>localhost:8000</code></a>.</p>
+<blockquote>
+<p><strong>Note:</strong> You need to have a local Substrate node running to interact with this UI.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="interact-with-substrate"></a><a href="#interact-with-substrate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Interact with Substrate</h2>
+<p>The fastest way to interact with any local or public Substrate network is to visit Polkadot-JS Apps:</p>
+<p><a href="https://polkadot.js.org/apps/">https://polkadot.js.org/apps/</a></p>
+<p>You can find the docs for the Polkadot-JS ecosystem at:</p>
+<p><a href="https://polkadot.js.org/">https://polkadot.js.org/</a></p>
+<h2><a class="anchor" aria-hidden="true" id="getting-started-on-windows"></a><a href="#getting-started-on-windows" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Getting Started On Windows</h2>
+<p>Если Вы пытаетесь настроить компьютер Windows для сборки Substrate, сделайте следующее:</p>
+<ol>
+<li><p>Скачайте и установите &quot;Build Tools for Visual Studio:&quot;</p>
+<ul>
+<li>Вы можете получить его по этой ссылке: <a href="https://aka.ms/buildtools"> buildtools</a>.</li>
+<li>Запустите установочный файл: <code>vs_buildtools.exe</code>.</li>
+<li>Убедитесь, что компонент &quot;Windows 10 SDK&quot; включен при установке инструментов Visual C++ Build Tools.</li>
+<li>Перезапустите компьютер.</li>
+</ul></li>
+<li><p>Установите Rust:</p>
+<ul>
+<li>Подробные инструкции приведены в книге <a href="https://doc.rust-lang.org/book/ch01-01-installation.html#installing-rustup-on-windows">Rust</a>.
+<ul>
+<li><p>Скачайте с: <a href="https://www.rust-lang.org/tools/install">https://www.rust-lang.org/tools/install</a>.</p></li>
+<li><p>Запустите установочный файл: <code>rustup-init.exe</code>.</p>
+<blockquote>
+<p>Note that it should <strong>not</strong> prompt you to install <code>vs_buildtools</code> since you did it in step 1.</p>
+</blockquote></li>
+<li><p>Выберите &quot;Установка по умолчанию.&quot;</p></li>
+<li><p>Для запуска Вам нужно задать каталог, содержащий бинарные файлы Cagro (<code>%USERPROFILE%\.cargo\bin</code>) в переменной окружения PATH. Потом приложения будут автоматически настраивать правильную среду окружение, но Вам может понадобиться перезапуск Вашей текущей оболочки.</p></li>
+</ul></li>
+</ul></li>
+<li><p>Выполните эти команды в командной строке (<code>CMD</code>) для установки среды сборки Wasm:</p>
+<pre><code class="hljs css language-bash">rustup update nightly
+rustup update stable
+rustup target <span class="token function">add</span> wasm32-unknown-unknown --toolchain nightly
+</code></pre></li>
+<li><p>Установите <code>wasm-gc</code>, который используется для уменьшения размера файлов Wasm:</p>
+<pre><code class="hljs css language-bash">cargo <span class="token function">install</span> --git https://github.com/alexcrichton/wasm-gc --force
+</code></pre></li>
+<li><p>Установите LLVM: <a href="https://releases.llvm.org/download.html">https://releases.llvm.org/download.html</a></p></li>
+<li><p>Install OpenSSL with <code>vcpkg</code>:</p>
+<pre><code class="hljs css language-bash"><span class="token function">mkdir</span> C:<span class="token punctuation">\</span>Tools
+<span class="token builtin class-name">cd</span> C:<span class="token punctuation">\</span>Tools
+<span class="token function">git</span> clone https://github.com/Microsoft/vcpkg.git
+<span class="token builtin class-name">cd</span> vcpkg
+.<span class="token punctuation">\</span>bootstrap-vcpkg.bat
+.<span class="token punctuation">\</span>vcpkg.exe <span class="token function">install</span> openssl:x64-windows-static
+</code></pre></li>
+<li><p>Add OpenSSL to your System Variables using PowerShell:</p>
+<pre><code class="hljs css language-powershell"><span class="token variable">$env</span>:OPENSSL_DIR = <span class="token string">'C:\Tools\vcpkg\installed\x64-windows-static'</span>
+<span class="token variable">$env</span>:OPENSSL_STATIC = <span class="token string">'Yes'</span>
+<span class="token namespace">[System.Environment]</span>::SetEnvironmentVariable<span class="token punctuation">(</span><span class="token string">'OPENSSL_DIR'</span><span class="token punctuation">,</span> <span class="token variable">$env</span>:OPENSSL_DIR<span class="token punctuation">,</span> <span class="token namespace">[System.EnvironmentVariableTarget]</span>::User<span class="token punctuation">)</span>
+<span class="token namespace">[System.Environment]</span>::SetEnvironmentVariable<span class="token punctuation">(</span><span class="token string">'OPENSSL_STATIC'</span><span class="token punctuation">,</span> <span class="token variable">$env</span>:OPENSSL_STATIC<span class="token punctuation">,</span> <span class="token namespace">[System.EnvironmentVariableTarget]</span>::User<span class="token punctuation">)</span>
+</code></pre></li>
+<li><p>Наконец, установите <code>cmake</code>: <a href="https://cmake.org/download/"> cmake download</a></p></li>
+</ol>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/index"><span class="arrow-prev">← </span><span>Overview</span></a><a class="docs-next button" href="/docs/ru/conceptual/runtime/frame"><span>FRAME</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#get-help">Get Help</a></li><li><a href="#prerequisites">Prerequisites</a><ul class="toc-headings"><li><a href="#debian">Debian</a></li><li><a href="#macos">macOS</a></li><li><a href="#windows">Windows</a></li></ul></li><li><a href="#rust-developer-environment">Rust Developer Environment</a><ul class="toc-headings"><li><a href="#wasm-compilation">Wasm Compilation</a></li><li><a href="#rustup-update">Rustup Update</a></li></ul></li><li><a href="#front-end-developer-environment">Front-End Developer Environment</a></li><li><a href="#get-the-source">Get the Source</a><ul class="toc-headings"><li><a href="#substrate">Substrate</a></li><li><a href="#substrate-node-template">Substrate Node Template</a></li><li><a href="#substrate-front-end-template">Substrate Front-End Template</a></li></ul></li><li><a href="#interact-with-substrate">Interact with Substrate</a></li><li><a href="#getting-started-on-windows">Getting Started On Windows</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/ru/getting-started">Getting Started</a><a href="/ru/tutorials">Tutorials</a><a href="/rustdocs/v1.0/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/ru/videos">Videos</a><a href="/ru/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></a></div></section><section class="copyright">Copyright © 2020 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:ru"]}
+              });
+            </script></body></html>
