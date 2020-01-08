@@ -30,7 +30,6 @@ class Docs extends React.Component {
 
     return (
       <Redirect
-        // redirect={docUrl("getting-started")}
         redirect={docUrl("")}
         config={siteConfig}
       />

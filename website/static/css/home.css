@@ -1,5 +1,4 @@
-#home-hero,
-#home {
+:root {
 	--primary-color: #ff1864;
 	--dark: #24292e;
 	--grey: #5a6268;
@@ -116,15 +115,11 @@
 	border-color: var(--primary-color);
 }
 
-.primary-color {
-	border-color: none;
-}
-
 .primary-color:hover,
 .btn-outline-primary:hover {
-	color: white !important;
-	background-color: var(--grey);
-	border-color: var(--grey) !important;
+	color: var(--primary-color) !important;
+	background-color: white;
+	border-color: var(--primary-color) !important;
 }
 
 #home .icon-wrap {

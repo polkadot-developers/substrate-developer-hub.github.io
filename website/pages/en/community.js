@@ -65,10 +65,10 @@ function Community(props) {
         </Button>
         <Button
           target="_blank"
-          variant="secondary"
+          variant="primary"
           size="sm"
           href="https://stackoverflow.com/questions/tagged/parity-io"
-          className="m-1 primary-color"
+          className="m-1"
         >
           <code>parity-io</code>
         </Button>
