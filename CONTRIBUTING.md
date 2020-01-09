@@ -28,7 +28,7 @@ for developers that should teach them about transaction fees.
 page to a sidebar?
 - [ ] Build the page (`$ cd website && yarn start`). Does it render properly? E.g. no funny lists
 or formatting.
-- [ ] Do links to rustdocs or devhub articles rather than code?
+- [ ] Do links go to rustdocs or devhub articles rather than code?
 - [ ] If this PR addresses an issue in the queue, have you referenced it in the description?
 
 ## Documentation Standards
@@ -470,4 +470,3 @@ These are general style guidelines that can help create clearer documentation:
   wrapped to a 120 character column size.
 
 - **Be respectful**
-
