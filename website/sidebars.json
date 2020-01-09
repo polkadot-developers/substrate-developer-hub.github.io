@@ -54,7 +54,8 @@
       "development/front-end/json-rpc"
     ],
     "Ecosystem Tools": [
-      "development/tools/subkey"
+      "development/tools/subkey",
+      "development/tools/key-management"
     ]
   },
   "creating-your-first-substrate-chain": {
