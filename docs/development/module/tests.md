@@ -60,7 +60,14 @@ fn fake_test_example() {
 }
 ```
 
-Custom implementations of [Externalities](https://crates.parity.io/substrate_externalities/index.html) allow developers to construct runtime environments that provide access to features of the outer node. Another example of this can be found in [`substrate-offchain`](https://crates.parity.io/substrate_offchain/), which maintains its own [Externalities](https://crates.parity.io/substrate_offchain/testing/index.html) implementation. [Implementing configurable externalities](https://substrate.dev/recipes/testing/externalities.html) is covered in more depth in the recipes.
+Custom implementations of
+[Externalities](https://crates.parity.io/substrate_externalities/index.html) allow developers to
+construct runtime environments that provide access to features of the outer node. Another example of
+this can be found in [`substrate-offchain`](https://crates.parity.io/substrate_offchain/), which
+maintains its own [Externalities](https://crates.parity.io/substrate_offchain/testing/index.html)
+implementation. [Implementing configurable
+externalities](https://substrate.dev/recipes/testing/externalities.html) is covered in more depth in
+the recipes.
 
 #### Genesis Config
 
