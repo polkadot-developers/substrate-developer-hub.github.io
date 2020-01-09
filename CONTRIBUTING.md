@@ -17,7 +17,7 @@ We lovingly stole these guidelines from [Google's Fuchsia project](https://fuchs
 
 ## PR Checklist
 
-- [ ] Is the audience and objective of the document clear from the first paragraph? E.g. a document
+- [ ] Are the audience and objective of the document clear? E.g. a document
 for developers that should teach them about transaction fees.
 - [ ] Is the writing:
   - **Clear**: No jargon.
