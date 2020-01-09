@@ -55,6 +55,9 @@
     ],
     "Ecosystem Tools": [
       "development/tools/subkey"
+    ],
+    "Contribute": [
+      "contribute/help-translate"
     ]
   },
   "creating-your-first-substrate-chain": {
