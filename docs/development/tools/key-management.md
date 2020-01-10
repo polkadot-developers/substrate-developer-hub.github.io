@@ -20,18 +20,27 @@ $ curl -H 'Content-Type: application/json' --data '{ "jsonrpc":"2.0", "method":"
 
 ## Fixed Keys
 
-If the Session keys need to match a fixed seed, they can be set individually key by key. You can use
+If the session keys need to match a fixed seed, they can be set individually key by key. You can use
 [subkey Tool](development/tools/subkey.md#generating-keys) to generate the needed seed and public key
 that can be passed into the RPC call with a key type.
 
 ```bash
 $ subkey generate
 Secret phrase `favorite liar zebra assume hurt cage any damp inherit rescue delay panic` is account:
-  Secret seed: 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
+  Secret seed:      0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
   Public key (hex): 0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
-  Address (SS58): 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
+  Account ID:       0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
+  SS58 Address:     5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
+```
 
-$ curl -H 'Content-Type: application/json' --data '{ "jsonrpc":"2.0", "method":"author_insertKey", "params":["KEY_TYPE", "SEED", "PUBLIC"],"id":1 }' localhost:9933
+### Via `subkey` Tool
+
+Refer to the [`subkey` Tool section](subkey.md#inserting-keys-to-keystore).
+
+### Via CLI
+
+```bash
+$ curl -H 'Content-Type: application/json' --data '{ "jsonrpc":"2.0", "method":"author_insertKey", "params":[<KEY_TYPE>, <SEED>, <PUBLIC>],"id":1 }' localhost:9933
 ```
 
 - `KEY_TYPE` - to be replaced with a 4-character key type identifier.

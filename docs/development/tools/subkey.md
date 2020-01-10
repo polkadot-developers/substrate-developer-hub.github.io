@@ -1,14 +1,14 @@
 ---
-title: The subkey Tool
+title: subkey Tool
 ---
 
-Subkey is a key-generation utility that is developed alongside Substrate. Its main features are generating [sr25519](https://github.com/w3f/schnorrkel) and ed25519 key pairs, encoding SS58 addresses, and restoring keys from mnemonics and raw seeds. It can also create and verify signatures, including for encoded transactions.
+`subkey` is a key-generation utility that is developed alongside Substrate. Its main features are generating [sr25519](https://github.com/w3f/schnorrkel) and ed25519 key pairs, encoding SS58 addresses, and restoring keys from mnemonics and raw seeds. It can also create and verify signatures, including for encoded transactions.
 
-## Building the Subkey Binary
+## Building the `subkey` Binary
 
 ### One-line Install
 
-The Subkey binary, `subkey`, is also installed along with [Substrate installation](getting-started.md#prerequisites). If you want to play with just Subkey (and not Substrate), you will need to have the Substrate dependencies. Use the following two commands to install the dependencies and Subkey, respectively:
+The Subkey binary, `subkey`, is also installed along with [Substrate installation](overview/getting-started.md#prerequisites). If you want to play with just Subkey (and not Substrate), you will need to have the Substrate dependencies. Use the following two commands to install the dependencies and Subkey, respectively:
 
 ```bash
 $ curl https://getsubstrate.io -sSf | bash -s -- --fast
@@ -131,6 +131,21 @@ Secret phrase `favorite liar zebra assume hurt cage any damp inherit rescue dela
   Public key (hex): 0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
   Address (SS58): 13ToWeAsFe55Z7qGxwV8uJFch73aCEyHhhQb2hVAsspp4Xuo
 ```
+
+## Inserting Keys to Keystore
+
+You can insert fixed keys into a node keystore via this tool.
+
+```bash
+$ subkey insert <SEED> <KEY_TYPE> <node-url>
+
+// Exmaple
+$ subkey insert 0xb034ad2704defa9dc0bea4ac8019fb0f805018f1be587cf04a03f9a033e3656b test
+```
+
+- `<node-url>` - default to `http://localhost:9933`
+
+Alternatively, you can also use plan `curl` command to issue a JSON RPC call to insert keys with [the details here](./key-management.md).
 
 ## HD Derivation
 

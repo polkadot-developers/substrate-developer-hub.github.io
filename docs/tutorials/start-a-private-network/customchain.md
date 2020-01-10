@@ -104,27 +104,13 @@ through the RPC shortly.
 Once your node is running, you will again notice that no blocks are being produced. At this point,
 you need to add your keys into the keystore.
 
-### Option 1: Using Polkadot-JS App UI
+### Option 1: Using `subkey` Tool
 
-You can use the Apps UI to insert your keys into the keystore. Navigate to the "Toolbox" tab and the "RPC Call" sub-tab. Choose "author" and "insertKey". The fields can be filled like this:
-
-```
-keytype: aura
-suri: <your mnemonic phrase> (eg clip organ olive upper oak void inject side suit toilet stick narrow)
-publicKey: <your sr25519 key> (eg 0x9effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e)
+```bash
+$ subkey insert <your secret phrase> <aura/gran>
 ```
 
-![Inserting a Grandpa key using Apps](/docs/assets/private-network-apps-insert-key.png)
-
-> If you generated your keys with the Apps UI you will not know your raw public key. In this case you may use your SS58 address instead.
-
-You've now successfully inserted your aura key. You can repeat those steps to insert your grandpa key (the ed25519 key)
-
-```
-keytype: gran
-suri: <your mnemonic phrase> (eg clip organ olive upper oak void inject side suit toilet stick narrow)
-publicKey: <your ed25519 key> (eg 0xb48004c6e1625282313b07d1c9950935e86894a2e4f21fb1ffee9854d180c781)
-```
+More details about the parameters accepted by `subkey insert` is [documented here](development/tools/subkey.md#inserting-keys-to-keystore).
 
 ### Option 2: Using CLI
 
@@ -139,7 +125,7 @@ $ curl http://localhost:9933 -H "Content-Type:application/json;charset=utf-8" -d
     "method":"author_insertKey",
     "params": [
       "<aura/gran>",
-      "<mnemonic phrase>",
+      "<your secret phrase>",
       "<public key>"
     ]
   }'
@@ -149,6 +135,28 @@ If you enter the command and parameters correctly, the node will return a JSON r
 
 ```json
 { "jsonrpc": "2.0", "result": null, "id": 1 }
+```
+
+### Option 3: Using Polkadot-JS App UI
+
+You can use the Apps UI to insert your keys into the keystore. Navigate to the "Toolbox" tab and the "RPC Call" sub-tab. Choose "author" and "insertKey". The fields can be filled like this:
+
+```
+keytype: aura
+suri: <your secret phrase> (eg clip organ olive upper oak void inject side suit toilet stick narrow)
+publicKey: <your sr25519 key> (eg 0x9effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e)
+```
+
+![Inserting a Grandpa key using Apps](/docs/assets/private-network-apps-insert-key.png)
+
+> If you generated your keys with the Apps UI you will not know your raw public key. In this case you may use your SS58 address instead.
+
+You've now successfully inserted your aura key. You can repeat those steps to insert your grandpa key (the ed25519 key)
+
+```
+keytype: gran
+suri: <your secret phrase> (eg clip organ olive upper oak void inject side suit toilet stick narrow)
+publicKey: <your ed25519 key> (eg 0xb48004c6e1625282313b07d1c9950935e86894a2e4f21fb1ffee9854d180c781)
 ```
 
 ## Subsequent Participants Join
