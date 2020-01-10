@@ -3,6 +3,10 @@ title: Creating Your Private Network
 ---
 Now that each participant has their own keys generated, you're ready to start your own custom chain.
 
+In this example we will create a two-node network. So generate two set of keys using
+[previously discussed methods](keygen.md), or take two sets of
+[pre-generated keys](keygen.md#option-3-use-pre-generated-keys).
+
 > Validators should not share the same keys, even for learning purposes. If two validators have the
 > same keys, they will produce conflicting blocks and be slashed.
 
@@ -16,36 +20,49 @@ the the one we used before. To start we need to export the chain spec to a json 
 further details about all of these commands are available by running `node-template --help`.
 
 ```bash
-./target/release/node-template build-spec --chain local > customSpec.json
+$ ./target/release/node-template build-spec --chain local > customSpec.json
+2020-01-10 15:39:04 Building chain spec
 ```
 
 The file we just created contains several fields, and you can learn a lot by exploring them. By far
 the largest field is a single hex number that is the Wasm binary of our runtime. It is part of what
 you built earlier when you ran the `cargo build` command.
 
-The portion of the file we're interested in is the Aura authorities (used for creating blocks) and
-the GRANDPA authorities (used for finalizing blocks). That section looks like this
+The portion of the file we're interested in is the Aura authorities used for creating blocks,
+indicated by `"aura"` field below, and GRANDPA authorities used for finalizing blocks,
+indicated by `"grandpa"` field. That section looks like this
 
 ```json
-"aura": {
-  "authorities": [
-    "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY",
-    "5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty"
-  ]
-},
-"grandpa": {
-  "authorities": [
-    [
-      "5FA9nQDVg267DEd8m1ZypXLBnvN7SFxYwV7ndqSYGiN9TTpu",
-      1
-    ],
-    [
-      "5GoNkf6WdbxCFnPdAnYYQyCjAKPJgLNxXwPjwTh6DGg6gN3E",
-      1
-    ]
-  ]
-},
-
+{
+  //...
+  "genesis": {
+    "runtime": {
+      "system": {
+        "changesTrieConfig": null,
+        //...
+      },
+      "aura": {
+        "authorities": [
+          "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY",
+          "5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty"
+        ]
+      },
+      "grandpa": {
+        "authorities": [
+          [
+            "5FA9nQDVg267DEd8m1ZypXLBnvN7SFxYwV7ndqSYGiN9TTpu",
+            1
+          ],
+          [
+            "5GoNkf6WdbxCFnPdAnYYQyCjAKPJgLNxXwPjwTh6DGg6gN3E",
+            1
+          ]
+        ]
+      },
+      //...
+    }
+  }
+}
 ```
 
 The format for the grandpa data is more complex because the grandpa protocol supports weighted
@@ -99,7 +116,28 @@ through the RPC shortly.
 * The `--chain` flag has changed to use our custom chain spec.
 * I've added the optional `--name` flag. You may use it to give your node a human-readable name in the telemetry UI.
 
-## Adding Keys to Keystore
+You should see the console outputs something as follows:
+
+```bash
+2020-01-10 16:50:24 Substrate Node
+2020-01-10 16:50:24   version 2.0.0-x86_64-linux-gnu
+2020-01-10 16:50:24   by Anonymous, 2017, 2018
+2020-01-10 16:50:24 Chain specification: Local Testnet
+2020-01-10 16:50:24 Node name: MyNode01
+2020-01-10 16:50:24 Roles: AUTHORITY
+2020-01-10 16:50:25 Initializing Genesis block/state (state: 0x4408…ff44, header-hash: 0x7268…81b7)
+2020-01-10 16:50:25 Loading GRANDPA authority set from genesis on what appears to be first startup.
+2020-01-10 16:50:25 Loaded block-time = 6000 milliseconds from genesis on first-launch
+2020-01-10 16:50:25 Highest known block at #0
+2020-01-10 16:50:25 Using default protocol ID "sup" because none is configured in the chain specs
+2020-01-10 16:50:25 Local node identity is: QmXPbznQUxJWXa4NwtVyLHtVtXnYH2h7utCH4LDN2sPXK1
+2020-01-10 16:50:25 Grafana data source server started at 127.0.0.1:9955
+2020-01-10 16:50:30 Idle (0 peers), best: #0 (0x7268…81b7), finalized #0 (0x7268…81b7), ⬇ 0.7kiB/s ⬆ 0.7kiB/s
+2020-01-10 16:50:35 Idle (0 peers), best: #0 (0x7268…81b7), finalized #0 (0x7268…81b7), ⬇ 0.2kiB/s ⬆ 0.2kiB/s
+2020-01-10 16:50:40 Idle (0 peers), best: #0 (0x7268…81b7), finalized #0 (0x7268…81b7), ⬇ 0.2kiB/s ⬆ 0.2kiB/s
+```
+
+## Add Keys to Keystore
 
 Once your node is running, you will again notice that no blocks are being produced. At this point,
 you need to add your keys into the keystore.

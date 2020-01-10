@@ -102,7 +102,7 @@ network. To configure Apps UI to connect to your local-running node:
 
     ![Select Network](/docs/assets/private-network-select-network.png)
 
-  - To connect to a custom node/port, you just need to specify the endpoint by choosing `custom
+  - To connect to a custom node and port, you just need to specify the endpoint by choosing `custom
   endpoint` and type in your own endpoint. By this way you can use a single instance of Apps UI to
   connect to various nodes.
 
@@ -148,7 +148,7 @@ Most of these options are already explained above, but there are a few points wo
   in the example output above.)
 
 If all is going well, after a few seconds, the nodes should peer together and start producing blocks.
-You should see some lines like the following in the console starting Alice node
+You should see some lines like the following in the console that started Alice node.
 
 ```
 ...
@@ -173,7 +173,7 @@ You should see some lines like the following in the console starting Alice node
 This line shows that Bob has peered with Alice (`1 peers`), they have produced a block
 (`best: #1 (0x1368…fe12)`), and the block is finalized (`finalized #1 (0x1368…fe12)`).
 
-Looking at the console starting Bob node, you should see something similar as above also.
+Looking at the console that started Bob node, you should see something similar as above also.
 
 ## References
 
