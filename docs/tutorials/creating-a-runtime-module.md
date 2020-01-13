@@ -137,7 +137,7 @@ code comment.
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'frame-support'
-rev = <git-commit>
+rev = '<git-commit>'
 version = '2.0.0'
 
 # Develop against a git commit by specifying the same Substrate commit as your main node.
@@ -161,7 +161,7 @@ the actual pallet itself.
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'sp-core'
-rev = <git-commit>
+rev = '<git-commit>'
 version = '2.0.0'
 ```
 
@@ -189,7 +189,7 @@ runtime itself does, as follows:
 
 [dependencies.test_pallet]
 default-features = false
-path = "../../my-pallet"
+path = '../../my-pallet'
 package = 'test-pallet'
 
 # toward the bottom
@@ -279,12 +279,12 @@ is to update its dependency on your pallet. The new code is:
 ```TOML
 [dependencies.your-pallet-name]
 default_features = false
-git = "https://github.com/your-username/your-pallet"
-branch = "master"
+git = 'https://github.com/your-username/your-pallet'
+branch = 'master'
 
 # You may choose a specific commit or tag instead of branch
-# rev = "<git-commit>"
-# tag = "<some tag>"
+# rev = '<git-commit>'
+# tag = '<some tag>
 ```
 
 Compile one more time and notice that Cargo now grabs your pallet from GitHub
