@@ -3,10 +3,10 @@ title: Transaction Pool
 ---
 
 
-The transaction pool contains all transactions (signed and unsigned) broadcasted to the network that have been *received* and *validated* by the local node. The pool is responsible for:
+The transaction pool contains all transactions (signed and unsigned) broadcasted to the network that have been received and validated by the local node. The pool is responsible for:
 
 
-1) Checking if transactions are valid. `validity` of the transaction is not hard wired to the transaction pool, but is defined by the runtime through the `validate_transaction` function ([code](https://github.com/paritytech/substrate/blob/20a9b15cdbed4bf962a4447e8bfb812f766f2fbc/frame/executive/src/lib.rs#L304)). Example validity checks are:
+1) Checking if transactions are valid. `validity` of the transaction is not hard wired to the transaction pool, but is defined by the runtime through the `validate_transaction` function. Example validity checks are:
 
 * Transaction Index (nonce) correctness.
 * The account has enough funds to pay for the associated fees.
@@ -15,7 +15,7 @@ The transaction pool contains all transactions (signed and unsigned) broadcasted
 2) If the transaction is valid, sorting the transactions into 2 transaction queues:
    - **Ready Queue** -  Contains transactions that can be included in a new pending block and must follow the *exact* order in the ready queue.
 
-   - **Future Queue** - Contains transactions that *seem* valid so far, but the full node has yet to see the remaining transactions it depends on. For example, *Transaction B* is in the future queue and can only be included in a block after *Transaction A* has been included. However, the node is yet to see *Transaction A* in its transaction pool.
+   - **Future Queue** - Contains transactions that may become valid in the future. For example, a transaction may have a `nonce` that is too high for its account. This transaction will wait in the future queue until the preceding transactions are included in the chain.
 
 Full nodes in the network all have their own local transaction pool and transaction queues. Therefore, full nodes may have a different view of the queues and transactions in the network.
 
