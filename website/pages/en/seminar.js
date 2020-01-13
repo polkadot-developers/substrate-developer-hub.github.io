@@ -170,31 +170,31 @@ function Seminar(props) {
 						</div>
 					</div>
 
-
-          <div className='col-md-4'>
-            <section className='video-cover video-cover-xs'>
-              <div
-                className='background-image-holder'
-                style={{
-                  backgroundImage: `url('/img/seminar-t.jpg' )`
-                }}
-              />
-
-              <a
-                className='video-play'
-                href='https://www.youtube.com/watch?v=lKpp6-4OHwA&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=5'
-                target='_blank'
-              />
-            </section>
-            <section className='video-details'>
-              <h4 className='p-color'>Offchain Workers</h4>
-              <p>
-                Jimmy Chu joins us to talk about offchain workers and his price-fetching demonstration.
-              </p>
-            </section>
-          </div>
-
 					<div className='row featured-video pt-0'>
+
+	          <div className='col-md-4'>
+	            <section className='video-cover video-cover-xs'>
+	              <div
+	                className='background-image-holder'
+	                style={{
+	                  backgroundImage: `url('/img/seminar-t.jpg' )`
+	                }}
+	              />
+
+	              <a
+	                className='video-play'
+	                href='https://www.youtube.com/watch?v=lKpp6-4OHwA&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=5'
+	                target='_blank'
+	              />
+	            </section>
+	            <section className='video-details'>
+	              <h4 className='p-color'>Offchain Workers</h4>
+	              <p>
+	                Jimmy Chu joins us to talk about offchain workers and his price-fetching demonstration.
+	              </p>
+	            </section>
+	          </div>
+
 						<div className='col-md-4'>
 							<section className='video-cover video-cover-xs'>
 								<div
