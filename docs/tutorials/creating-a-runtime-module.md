@@ -71,7 +71,7 @@ The beginning of the `Cargo.toml` now looks like:
 
 ```toml
 [package]
-name = "test_pallet"
+name = "test-pallet"
 version = "0.1.0"
 authors = ["Your Name"]
 edition = "2018"
@@ -134,10 +134,11 @@ code comment.
 # --snip--
 
 [dependencies.support]
-default_features = false
+default-features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'frame-support'
-branch = 'v2.0'
+rev = <git-commit>
+version = '2.0.0'
 
 # Develop against a git commit by specifying the same Substrate commit as your main node.
 # It is important to use the same Substrate commit to prevent dependencies mismatch.
@@ -156,10 +157,12 @@ the actual pallet itself.
 ```TOML
 # --snip--
 
-[dev-dependencies.primitives]
+[dev-dependencies.sp-core]
+default-features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'sp-core'
-branch = 'v2.0'
+rev = <git-commit>
+version = '2.0.0'
 ```
 
 You can confirm that the tests in the Substrate pallet template pass with:
@@ -185,8 +188,9 @@ runtime itself does, as follows:
 # --snip--
 
 [dependencies.test_pallet]
-default_features = false
+default-features = false
 path = "../../my-pallet"
+package = 'test-pallet'
 
 # toward the bottom
 [features]
@@ -279,7 +283,7 @@ git = "https://github.com/your-username/your-pallet"
 branch = "master"
 
 # You may choose a specific commit or tag instead of branch
-# rev = "<some commit hash>"
+# rev = "<git-commit>"
 # tag = "<some tag>"
 ```
 
