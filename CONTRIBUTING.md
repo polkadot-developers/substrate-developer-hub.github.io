@@ -5,6 +5,8 @@ these contribution guidelines.
 
 We lovingly stole these guidelines from [Google's Fuchsia project](https://fuchsia.dev/), and modified them for our needs.
 
+* [PR Checklist](#pr-checklist)
+
 * [Documentation Standards](#documentation-standards)
 
 * [Documentation Types](#documentation-types)
@@ -13,6 +15,21 @@ We lovingly stole these guidelines from [Google's Fuchsia project](https://fuchs
 
 * [Documentation Style](#documentation-style)
 
+## PR Checklist
+
+- [ ] Are the audience and objective of the document clear? E.g. a document
+for developers that should teach them about transaction fees.
+- [ ] Is the writing:
+  - **Clear**: No jargon.
+  - **Precise**: No ambiguous meanings.
+  - **Concise**: Free of superfluous detail.
+- [ ] Does it follow our [style guide](#documentation-style)?
+- [ ] If this is a new page, does the PR include the appropriate infrastructure, e.g. adding the
+page to a sidebar?
+- [ ] Build the page (`$ cd website && yarn start`). Does it render properly? E.g. no funny lists
+or formatting.
+- [ ] Do links go to rustdocs or devhub articles rather than code?
+- [ ] If this PR addresses an issue in the queue, have you referenced it in the description?
 
 ## Documentation Standards
 
@@ -56,10 +73,8 @@ Substrate documentation is split into three projects:
 
 * Substrate Recipes - `substrate.dev/recipes/`
 
-   General best practice guidelines on how to develop with Substrate.
-   If you create best practice documentation about using a specific
-   feature of Substrate, you should create the documentation in the same
-   directory as the other documentation for that specific feature. See the [contribution guidelines](https://github.com/substrate-developer-hub/recipes/blob/master/CONTRIBUTING.md) for more details.
+   Examples and best practice guidelines on how to develop with Substrate, complete with working
+   code. If you create an example of using a specific Substrate feature, it belongs in the recipes.
 
 * Substrate Rust Documentation - `substrate.dev/rustdocs/`
 
@@ -67,24 +82,13 @@ Substrate documentation is split into three projects:
 
 * Substrate Developer Documentation - `substrate.dev/docs/`
 
-   In the `/docs/` directory, you should create your
-   documentation or images in one of these sub-directories:
-    
-   *  `development`
-        Instructions, tutorials, and procedural documentation for developers
-        who are working on Substrate. This directory includes documentation
-        on how to get started, build, run, and test Substrate. You should organize the content
-        that you create by specific activities, such as testing, getting
-        started, or by workflow topic.
-    
-   * `conceptual`
-        Concept and developer guides about the features of Substrate. You
-        should organize the content that you create by specific features.
-    
-   * `images`
-        Images that are used in the documentation. You should place images in
-        this common directory and avoid placing images in the same directory
-        as documentation.
+  Instructions, conceptual overviews, and procedural documentation for developers who are working
+  on Substrate. This directory includes documentation on how to get started, build, run, and test
+  Substrate. You should organize the content that you create by specific activities, such as
+  testing, getting started, or by workflow topic.
+
+  Images that are used in the documentation belong in the common `assets` directory. Avoid placing
+  images in the same directory as documentation.
 
 ### What documentation should I create?
 
@@ -120,7 +124,7 @@ Never use relative paths with ".." that point to content outside of `/docs`.
 
 ### How can I link to source code in my documentation?
 
-Use the `/rustdocs` to link to specific parts of the Substrate source code, for example a module's `trait`. When referencing specific lines of code, copy those lines into the documentation. 
+Use the `/rustdocs` to link to specific parts of the Substrate source code, for example a module's `trait`. When referencing specific lines of code, copy those lines into the documentation.
 
 DO NOT link to specific lines of code -- substrate changes often and links that reference specific locations in the code become inaccurate fast and are not easily maintainable.
 
@@ -289,15 +293,15 @@ manageable for a user. For example, if you wanted to write a procedural document
 a dog, you might have a table of content that looks like this:
 
 > How to take care of a dog:
-> 
+>
 > - Feeding a dog
-> 
+>
 > - Washing a dog
-> 
+>
 > - Trimming a dog's nails
-> 
+>
 > - Brushing a dog
-> 
+>
 > - Playing with a dog
 
 #### Difference between a tutorial and a how to

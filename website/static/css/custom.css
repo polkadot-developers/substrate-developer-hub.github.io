@@ -1,6 +1,6 @@
 /**
  * Copyright 2019 Parity Technologies
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -171,11 +171,6 @@ input#search_input_react {
 .a_wrapper {
     display: contents;
     color: black;
-}
-
-/* limit image size on docs */
-article p img {
-    max-width: 800px;
 }
 
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {

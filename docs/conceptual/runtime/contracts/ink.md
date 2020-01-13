@@ -1,5 +1,5 @@
 ---
-title: ink!
+title: ink! Concepts
 ---
 
 ink! is a [Rust](https://www.rust-lang.org/)-based embedded domain specific language
