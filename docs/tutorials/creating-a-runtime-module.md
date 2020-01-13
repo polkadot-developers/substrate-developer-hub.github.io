@@ -72,7 +72,7 @@ The beginning of the `Cargo.toml` now looks like:
 ```toml
 [package]
 name = "test-pallet"
-version = "0.1.0"
+ version = "2.0.0"
 authors = ["Your Name"]
 edition = "2018"
 ```
