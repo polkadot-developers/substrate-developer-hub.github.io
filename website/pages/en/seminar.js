@@ -102,16 +102,12 @@ function Seminar(props) {
 					</div>
 					<div className='row justify-content-between pt-0 faqs'>
 						<div className='col-md-6 first'>
-							<h4 className='mb-2'>How should I prepare?</h4>
-							<p
-								style={{
-									marginBottom: '40px'
-								}}>
-								At the January 7th session we will explore Offchain Workers. In particular we will study
-								and run Jimmy Chu's{' '}
-								<a href='https://github.com/jimmychu0807/substrate-offchain-pricefetch'>
-									Price fetching example
-								</a>. If you wish to run a node, please pre-compile this project.
+							<h4 className='mb-2'>What topics are coming up?</h4>
+							<p>
+								At the January 14th session we will choose from a variety of potential topics including custom consensus engines, custom rpc calls, starting a network, and community-member projects.
+							</p>
+							<p>
+								At the January 21st session, Parity's Ricardo Ruis will join us to talk about wasm-based smart contracts, and Substrate's Contracts pallet.
 							</p>
 							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
 							<p>
@@ -167,13 +163,38 @@ function Seminar(props) {
 						</div>
 						<div className='col-6 text-right'>
 							<a
-								href='https://www.youtube.com/playlist?list=PLsBc7YjizKUwc3AcNb9oNZvtsN0QmAJPP'
+								href='https://www.youtube.com/playlist?list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 								target='_blank'>
 								View more recordings »
 							</a>
 						</div>
 					</div>
+
 					<div className='row featured-video pt-0'>
+
+	          <div className='col-md-4'>
+	            <section className='video-cover video-cover-xs'>
+	              <div
+	                className='background-image-holder'
+	                style={{
+	                  backgroundImage: `url('/img/seminar-t.jpg' )`
+	                }}
+	              />
+
+	              <a
+	                className='video-play'
+	                href='https://www.youtube.com/watch?v=lKpp6-4OHwA&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=5'
+	                target='_blank'
+	              />
+	            </section>
+	            <section className='video-details'>
+	              <h4 className='p-color'>Offchain Workers</h4>
+	              <p>
+	                Jimmy Chu joins us to talk about offchain workers and his price-fetching demonstration.
+	              </p>
+	            </section>
+	          </div>
+
 						<div className='col-md-4'>
 							<section className='video-cover video-cover-xs'>
 								<div
@@ -185,7 +206,7 @@ function Seminar(props) {
 
 								<a
 									className='video-play'
-									href='https://www.youtube.com/watch?v=yHodYke7nms&list=PLsBc7YjizKUwc3AcNb9oNZvtsN0QmAJPP&index=2&t=0s'
+									href='https://www.youtube.com/watch?v=yHodYke7nms&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=4'
 									target='_blank'
 								/>
 							</section>
@@ -205,7 +226,7 @@ function Seminar(props) {
 
 								<a
 									className='video-play'
-									href='https://www.youtube.com/watch?v=cL6UFeoiMVw&list=PLsBc7YjizKUwc3AcNb9oNZvtsN0QmAJPP&index=3&t=0s'
+									href='https://www.youtube.com/watch?v=cL6UFeoiMVw&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=3'
 									target='_blank'
 								/>
 							</section>
@@ -217,29 +238,7 @@ function Seminar(props) {
 								</p>
 							</section>
 						</div>
-						<div className='col-md-4'>
-							<section className='video-cover video-cover-xs'>
-								<div
-									className='background-image-holder'
-									style={{
-										backgroundImage: `url('/img/seminar-t.jpg' )`
-									}}
-								/>
 
-								<a
-									className='video-play'
-									href='https://www.youtube.com/watch?v=ku0MutmiAlk&list=PLsBc7YjizKUwc3AcNb9oNZvtsN0QmAJPP&index=3'
-									target='_blank'
-								/>
-							</section>
-							<section className='video-details'>
-								<h4 className='p-color'>The Session Module</h4>
-								<p>
-									Validator management, key rotation, and how to integrate your own module with the
-									session module...
-								</p>
-							</section>
-						</div>
 					</div>
 				</div>
 
