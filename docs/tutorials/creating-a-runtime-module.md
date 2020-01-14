@@ -116,7 +116,7 @@ main Substrate repository.
 
 Because of this, you will need to be careful to ensure consistent dependencies
 from your pallet and the your Substrate node. If your pallet is dependent on
-one version of Substrate, and thenode on another, compilation will run into errors
+one version of Substrate, and the node on another, compilation will run into errors
 where the Substrate versions may be incompatible, or different version of the
 same library are being used.
 Ultimately Cargo will not be able to resolve those conflicts and you will get a

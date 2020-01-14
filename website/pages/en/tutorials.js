@@ -331,7 +331,7 @@ class Tutorials extends React.Component {
                 ),
                 text: (
                   <translate>
-                    Make your re-usable pallets by packaging them in
+                    Make your pallets re-usable by packaging them in
                     their own rust crate.
                   </translate>
                 ),
