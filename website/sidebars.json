@@ -14,7 +14,8 @@
       "conceptual/core/storage"
     ],
     "Substrate Nodes": [
-      "conceptual/node/extrinsics"
+      "conceptual/node/extrinsics",
+      "conceptual/node/tx-pool"
     ],
     "Cryptography": [
       "conceptual/cryptography/index",
