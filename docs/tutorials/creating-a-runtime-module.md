@@ -187,16 +187,15 @@ runtime itself does, as follows:
 ```TOML
 # --snip--
 
-[dependencies.test_pallet]
+[dependencies.test-pallet]
 default-features = false
 path = '../../my-pallet'
-package = 'test-pallet'
 
 # toward the bottom
 [features]
 default = ['std']
 std = [
-    'test_pallet/std',
+    'test-pallet/std',
     # --snip--
 ]
 ```
