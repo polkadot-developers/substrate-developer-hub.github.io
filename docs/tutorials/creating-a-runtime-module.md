@@ -10,7 +10,7 @@ crate, and include it in a node based on the `substrate-node-template`.
 If you haven't already done so, follow the [Getting Started](getting-started.md)
 guide to download necessary tools to build Substrate.
 
-### Clone the Node and Module Template
+### Clone the Node and Pallet Templates
 
 We're not going to write our pallet directly as part of the node template, but
 rather as a separate Rust crate. This approach allows us to publish our pallet
@@ -26,7 +26,7 @@ their own Substrate runtime.
 2. Clone the Substrate pallet template:
 
     ```bash
-    git clone https://github.com/substrate-developer-hub/substrate-module-template.git my-pallet
+    git clone https://github.com/substrate-developer-hub/substrate-pallet-template.git my-pallet
     ```
 
 3. Build the Substrate node template:
@@ -71,8 +71,8 @@ The beginning of the `Cargo.toml` now looks like:
 
 ```toml
 [package]
-name = "test_pallet"
-version = "0.1.0"
+name = "test-pallet"
+version = "2.0.0"
 authors = ["Your Name"]
 edition = "2018"
 ```
@@ -115,9 +115,9 @@ people build their own Substrate nodes, they will also have dependencies on the
 main Substrate repository.
 
 Because of this, you will need to be careful to ensure consistent dependencies
-from your pallet and the your Substrate node. If your pallet is dependent on 
-one version of Substrate, and thenode on another, compilation will run into errors 
-where the Substrate versions may be incompatible, or different version of the 
+from your pallet and the your Substrate node. If your pallet is dependent on
+one version of Substrate, and the node on another, compilation will run into errors
+where the Substrate versions may be incompatible, or different version of the
 same library are being used.
 Ultimately Cargo will not be able to resolve those conflicts and you will get a
 compile time error.
@@ -134,12 +134,13 @@ code comment.
 # --snip--
 
 [dependencies.support]
-default_features = false
+default-features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'frame-support'
-branch = 'v2.0'
+rev = '<git-commit>'
+version = '2.0.0'
 
-# Develop against a git commit by specifying the same Substrate commit as your main node. 
+# Develop against a git commit by specifying the same Substrate commit as your main node.
 # It is important to use the same Substrate commit to prevent dependencies mismatch.
 # rev = "<some commit hash>"
 
@@ -156,10 +157,12 @@ the actual pallet itself.
 ```TOML
 # --snip--
 
-[dev-dependencies.primitives]
+[dev-dependencies.sp-core]
+default-features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'sp-core'
-branch = 'v2.0'
+rev = '<git-commit>'
+version = '2.0.0'
 ```
 
 You can confirm that the tests in the Substrate pallet template pass with:
@@ -184,15 +187,15 @@ runtime itself does, as follows:
 ```TOML
 # --snip--
 
-[dependencies.test_pallet]
-default_features = false
-path = "../../my-pallet"
+[dependencies.test-pallet]
+default-features = false
+path = '../../my-pallet'
 
 # toward the bottom
 [features]
 default = ['std']
 std = [
-    'test_pallet/std',
+    'test-pallet/std',
     # --snip--
 ]
 ```
@@ -275,12 +278,12 @@ is to update its dependency on your pallet. The new code is:
 ```TOML
 [dependencies.your-pallet-name]
 default_features = false
-git = "https://github.com/your-username/your-pallet"
-branch = "master"
+git = 'https://github.com/your-username/your-pallet'
+branch = 'master'
 
 # You may choose a specific commit or tag instead of branch
-# rev = "<some commit hash>"
-# tag = "<some tag>"
+# rev = '<git-commit>'
+# tag = '<some tag>
 ```
 
 Compile one more time and notice that Cargo now grabs your pallet from GitHub

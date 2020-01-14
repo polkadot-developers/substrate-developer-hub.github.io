@@ -327,11 +327,11 @@ class Tutorials extends React.Component {
               {
                 img: `${baseUrl}img/crates.png`,
                 title: (
-                  <translate>Write a Runtime Module in its Own Crate</translate>
+                  <translate>Write a Pallet in its Own Crate</translate>
                 ),
                 text: (
                   <translate>
-                    Make your runtime modules re-usable by packaging them in
+                    Make your pallets re-usable by packaging them in
                     their own rust crate.
                   </translate>
                 ),
