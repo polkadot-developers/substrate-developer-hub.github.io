@@ -1,5 +1,7 @@
 ---
 title: "Creating an External Pallet"
+id: version-pre-2.0-creating-a-runtime-module
+original_id: creating-a-runtime-module
 ---
 
 In this tutorial, you'll write a Substrate pallet that lives in its own
