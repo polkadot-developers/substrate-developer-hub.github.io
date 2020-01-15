@@ -202,19 +202,35 @@ class Tutorials extends React.Component {
               {
                 img: `${baseUrl}img/first-substrate-chain.png`,
                 title: (
-                  <translate>Creating Your First Substrate Chain</translate>
+                  <translate>Create Your First Substrate Chain</translate>
                 ),
                 text: (
                   <translate>
-                    A minimal, end-to-end guide to build and interact with your
-                    first custom Substrate chain.
+                    Launch and interact with your first Substrate chain in this minimal end-to-end guide.
                   </translate>
                 ),
                 difficulty: "easy",
                 length: "< 1",
                 prerequisite: false,
                 href: `${docUrl(
-                  "next/tutorials/creating-your-first-substrate-chain"
+                  "tutorials/creating-your-first-substrate-chain"
+                )}`
+              },
+              {
+                img: `${baseUrl}img/first-substrate-chain.png`,
+                title: (
+                  <translate>Build a Decentralized Application</translate>
+                ),
+                text: (
+                  <translate>
+                    Build a customized Substrate chain with its own user interface.
+                  </translate>
+                ),
+                difficulty: "easy",
+                length: "1",
+                prerequisite: true,
+                href: `${docUrl(
+                  "tutorials/build-a-dapp"
                 )}`
               },
               {
@@ -232,23 +248,8 @@ class Tutorials extends React.Component {
                 length: "2",
                 prerequisite: false,
                 href: `${docUrl(
-                  "next/tutorials/start-a-private-network"
+                  "tutorials/start-a-private-network"
                 )}`
-              },
-              {
-                img: `${baseUrl}img/substrate-collectables-workshop.png`,
-                title: <translate>Substrate Collectables Workshop</translate>,
-                text: (
-                  <translate>
-                    A comprehensive, end-to-end tutorial for creating a
-                    non-fungible token chain.
-                  </translate>
-                ),
-                difficulty: "easy",
-                length: "5",
-                prerequisite: false,
-                href:
-                  "https://substrate-developer-hub.github.io/substrate-collectables-workshop/"
               },
               {
                 img: `${baseUrl}img/ink-smart-contracts-tutorial.png`,
@@ -281,6 +282,21 @@ class Tutorials extends React.Component {
           <OtherTutorialCards
             data={[
               {
+                img: `${baseUrl}img/substrate-collectables-workshop.png`,
+                title: <translate>Substrate Collectables Workshop</translate>,
+                text: (
+                  <translate>
+                    A comprehensive, end-to-end tutorial for creating a
+                    non-fungible token chain.
+                  </translate>
+                ),
+                difficulty: "easy",
+                length: "5",
+                prerequisite: false,
+                href:
+                  "https://substrate-developer-hub.github.io/substrate-collectables-workshop/"
+              },
+              {
                 img: `${baseUrl}img/polkadot-js-substrate-tutorial.png`,
                 title: (
                   <translate>Build a Front End with Polkadot-js API</translate>
@@ -296,7 +312,6 @@ class Tutorials extends React.Component {
                 prerequisite: false,
                 href: `${docUrl("tutorials/substrate-front-end")}`
               },
-
               {
                 title: (
                   <translate>
