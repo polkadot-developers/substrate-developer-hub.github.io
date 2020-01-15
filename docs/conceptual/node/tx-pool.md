@@ -18,8 +18,9 @@ The transaction pool also regularly checks validity of existing transactions wit
 **Sorting**
 
 If the transaction is valid, the transaction queue sorts transactions into two groups:
-   - *Ready Queue* -  Contains transactions that can be included in a new pending block. For runtimes built with FRAME, the transactions must follow the exact order in the ready queue.
-   - *Future Queue* - Contains transactions that may become valid in the future. For example, a transaction may have a `nonce` that is too high for its account. This transaction will wait in the future queue until the preceding transactions are included in the chain.
+
+- *Ready Queue* -  Contains transactions that can be included in a new pending block. For runtimes built with FRAME, the transactions must follow the exact order in the ready queue.
+- *Future Queue* - Contains transactions that may become valid in the future. For example, a transaction may have a `nonce` that is too high for its account. This transaction will wait in the future queue until the preceding transactions are included in the chain.
 
 
 Note: It's possible to design a custom runtime to remove the strict transaction ordering requirement. This would allow full nodes to implement different strategies on transaction propagation and block inclusion.
