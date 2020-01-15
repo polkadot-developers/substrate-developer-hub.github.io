@@ -7,7 +7,7 @@ The transaction pool contains all transactions (signed and unsigned) broadcasted
 
 **Validity**
 
-The transaction pool checks for transaction validity. Note that `validity` of the transaction is not hard wired to the transaction pool, but is defined by the runtime. Example validity checks are:
+The transaction pool checks for transaction validity. Note that `validity` of the transaction is not hard-wired to the transaction pool, but is defined by the runtime. Example validity checks are:
 
 * Checking if the Transaction Index (nonce) is correct.
 * Checking if the account has enough funds to pay for the associated fees.
