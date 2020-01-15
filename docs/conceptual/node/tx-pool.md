@@ -30,9 +30,9 @@ The `ValidTransaction` [struct](https://substrate.dev/rustdocs/master/sp_runtime
 
 For runtimes built with FRAME, the nodes order transactions with an account-based system. Every signed transaction needs to contain a nonce, which is incremented by 1 every time a new transaction is made. For example, the first transaction from a new account will have `nonce = 0` and the second transaction will have `nonce = 1`.
 
-At minimum, FRAME transactions have a `provide` tag of `encode(sender ++ nonce)` and a `require` tag of `encode(sender ++ (nonce -1)) if nonce > 1`. Transactions do not require anything if `nonce=0`. As a result, all transactions coming from a single sender will form a sequence in which they should be included.
+At minimum, FRAME transactions have a `provides` tag of `encode(sender ++ nonce)` and a `requires` tag of `encode(sender ++ (nonce -1)) if nonce > 1`. Transactions do not require anything if `nonce=0`. As a result, all transactions coming from a single sender will form a sequence in which they should be included.
 
-Substrate supports multiple `provide` and `require` tags, so custom runtimes can create alternate dependency (ordering) schemes.
+Substrate supports multiple `provides` and `requires` tags, so custom runtimes can create alternate dependency (ordering) schemes.
 
 ## Transaction Priority
 
@@ -46,7 +46,7 @@ For runtimes built with FRAME, `priority` is defined as the `fee` that the trans
   * If we receive 2 transactions from *different* senders (with `nonce=0`), we use `priority` to determine which transaction is more important and included in the block first.
   * If we receive 2 transactions from the *same* sender with an identical `nonce`, only one transaction can be included on-chain. We use `priority` to choose the transaction with a higher `fee` to store in the transaction pool.
 
-Note that the pool does not know about fees, accounts, or signatures - it only deals with the validity of the transaction and the abstract notion of the `priority`, `requires`, and `provides` parameters. All other details are defined by the runtime via the `validate transaction` implementation.
+Note that the pool does not know about fees, accounts, or signatures - it only deals with the validity of the transaction and the abstract notion of the `priority`, `requires`, and `provides` parameters. All other details are defined by the runtime via the `validate_transaction` function.
 
 ## Transaction Lifecycle
 
@@ -54,15 +54,11 @@ A transaction can follow two paths:
 
 ### Block Produced by our Node
 
-  1) Our node listens for transactions on the network.
-
-  2) Each transaction is verified and valid transactions are placed in the transaction pool.
-
-  3) The pool is responsible for ordering the transactions and returning ones that are ready to be included in the block. Transactions in the ready queue are used to construct a block.
-
-  4) Transactions are executed and state changes are stored in local memory. Transactions from the `ready` queue are also propagated (gossiped) to peers over the network. We use the exact ordering as the pending block since transactions in the front of the queue have a higher priority and are more likely to be successfully executed in the next block.
-
-  5) The constructed block is published to the network. All other nodes on the network receive and execute the block.
+1. Our node listens for transactions on the network.
+2. Each transaction is verified and valid transactions are placed in the transaction pool.
+3. The pool is responsible for ordering the transactions and returning ones that are ready to be included in the block. Transactions in the ready queue are used to construct a block.
+4. Transactions are executed and state changes are stored in local memory. Transactions from the `ready` queue are also propagated (gossiped) to peers over the network. We use the exact ordering as the pending block since transactions in the front of the queue have a higher priority and are more likely to be successfully executed in the next block.
+5. The constructed block is published to the network. All other nodes on the network receive and execute the block.
 
 Note that transactions are not removed from the ready queue when blocks are authored, but removed *only* on block import. This is due to the possibility that a recently-authored block may not make it into the canonical chain.
 
