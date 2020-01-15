@@ -2,12 +2,27 @@
 title: Building a Custom Front End
 ---
 
-This tutorial is not really about writing user interfaces, but we do want to show you how easy it
-can be with Substrate. If you have made it this far, that means you _should_ have a brand new
-blockchain with custom functionality up and running.
+If you have made it this far, that means you _should_ have a brand new blockchain with custom
+functionality up and running.
 
 We will give you a custom react component that you can add to your `substrate-front-end-template`
 meant for interacting with your node.
+
+## Explore the Front End Template
+
+To start the front-end template, navigate to its directory and run:
+
+```bash
+yarn start
+```
+
+A new tab should open in your web browser and you'll see the following interface.
+
+![Front End Template](assets/front-end-template.png)
+
+You'll see a list of pre-funded accounts, and you can make token transfers between those accounts.
+
+![Balance Transfer](assets/front-end-template-balance-transfer.png)
 
 ## Add Your Custom React Component
 
@@ -166,8 +181,9 @@ comments to learn what each part is doing.
 
 ## Submit a Proof
 
-Your front-end should have automatically restarted with this new component included. Select any file
-on your computer, and you will see that you can create a claim with it's file digest:
+Your front end template should reload when you save your changes, and you'll notice our new
+component. Now we're ready to try out our new dApp. Select any file on your computer, and you will
+see that you can create a claim with it's file digest:
 
 ![Proof Of Existence Component](assets/poe-component.png)
 
@@ -177,7 +193,7 @@ pallet, where this digest and the selected user account will be stored on chain.
 ![Claimed File](assets/poe-claimed.png)
 
 If all went well, you should see a new `ClaimCreated` event appear in the Events component. The
-front-end can automatically recognize that your file is now claimed, and even gives you the option
+front-end automatically recognizes that your file is now claimed, and even gives you the option
 to revoke the claim if you want.
 
 Remember, only the owner can revoke the claim! If you select another user account at the top, and
@@ -195,15 +211,11 @@ with your blockchain.
 This tutorial chose to omit some of the specific details around development in order to keep this
 experience short and satisfying. However, we want you to keep learning!
 
-If you are interested in learning how to program your own pallet on Substrate, please try
-our [Substrate Collectables Workshop](https://substrate.dev/substrate-collectables-workshop/). This
-comprehensive tutorial will teach you step by step how to program your own custom pallets.
-Furthermore, it will start to introduce you to advance runtime development concepts and best
-practices when building on Substrate.
+To learn much more detail about building on the front-end template, please try the [Front End Tutorial](tutorials/substrate-front-end). To learn more about building your own pallets, explore the [Substrate Recipes](https://substrate.dev/recipes).
 
 It would also be a good time to call out that your success on the Substrate framework will
 ultimately be limited on your ability to program in Rust. The [Rust
-Book](https://doc.rust-lang.org/book/) is the best starting point for developers of any experience.
+Book](https://doc.rust-lang.org/book/) is a great resource for beginning and intermediate rust developers.
 
 If you experienced any issues with this tutorial or want to provide feedback, feel free to [open a
 GitHub

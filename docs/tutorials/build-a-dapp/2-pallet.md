@@ -2,6 +2,31 @@
 title: Building a Custom Pallet
 ---
 
+The Substrate runtime is composed of FRAME pallets. You can think of these pallets as individual
+pieces of logic which define what your blockchain can do! Substrate provides you with a number of
+pre-built pallets built with the FRAME framework.
+
+![Runtime Composition](assets/runtime.png)
+
+For example, FRAME includes a
+[Balances](https://substrate.dev/rustdocs/master/pallet_balances/index.html) pallet that controls
+the underlying currency of your blockchain by managing the _balance_ of all the accounts in your
+system.
+
+If you want to add smart contract functionality to your blockchain, you simply need to include the
+[Contracts](https://substrate.dev/rustdocs/master/pallet_contracts/index.html) pallet.
+
+Even things like on-chain governance can be added to your blockchain by including pallets like
+[Democracy](https://substrate.dev/rustdocs/master/pallet_democracy/index.html),
+[Elections](https://substrate.dev/rustdocs/master/pallet_elections/index.html), and
+[Collective](https://substrate.dev/rustdocs/master/pallet_collective/index.html).
+
+The goal of this tutorial is to teach you how to create your own Substrate pallet which will be
+included in your custom blockchain! The `substrate-node-template` comes with a template pallet that
+we will build your custom logic on top of.
+
+## File Structure
+
 We will now modify the `substrate-node-template` to introduce the basic functionality of a Proof Of
 Existence pallet.
 
@@ -64,7 +89,7 @@ Proof Of Existence pallet.
 Since imports are pretty boring, you can start by copying this at the top of your empty
 `template.rs` file:
 
-```rust 
+```rust
 use frame_support::{decl_module, decl_storage, decl_event, dispatch::DispatchResult, ensure, StorageMap};
 use system::ensure_signed;
 use sp_std::vec::Vec;
@@ -74,7 +99,7 @@ use sp_std::vec::Vec;
 
 For now, the only thing we will configure about our pallet is that it will emit some Events.
 
-```rust 
+```rust
 /// The pallet's configuration trait.
 pub trait Trait: system::Trait {
     /// The overarching event type.
@@ -197,7 +222,7 @@ should be able to recompile your node without warning or error:
 cargo build --release
 ```
 
-Now you can restart your node:
+Now you can start your node:
 
 ```bash
 # Purge chain to clean up your old chain state
