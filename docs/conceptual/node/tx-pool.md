@@ -30,7 +30,7 @@ The `ValidTransaction` [struct](https://substrate.dev/rustdocs/master/sp_runtime
 
 For runtimes built with FRAME, the nodes order transactions with an account-based system. Every signed transaction needs to contain a nonce, which is incremented by 1 every time a new transaction is made. For example, the first transaction from a new account will have `nonce = 0` and the second transaction will have `nonce = 1`.
 
-At minimum, FRAME-transactions have a `provide` tag of `encode(sender ++ nonce)` and a `require` tag of `encode(sender ++ (nonce -1)) if nonce > 1`. Transactions do not require anything if `nonce=0`. As a result, all transactions coming from a single sender will form a sequence in which they should be included.
+At minimum, FRAME transactions have a `provide` tag of `encode(sender ++ nonce)` and a `require` tag of `encode(sender ++ (nonce -1)) if nonce > 1`. Transactions do not require anything if `nonce=0`. As a result, all transactions coming from a single sender will form a sequence in which they should be included.
 
 Substrate supports multiple `provide` and `require` tags, so custom runtimes can create alternate dependency (ordering) schemes.
 
