@@ -93,7 +93,9 @@ The council is one of the SRML governance primitives and is a body of delegates 
 The means by which data relating to the blockchain is persisted between invocations of the node.
 
 ## Dev Phrase
-A Mnemonic phrase which is intentionally made public. All of the well-known development accounts (Alice, Bob, Charlie, Dave, Ferdie, and Eve) are generated from the same dev phrase. The dev phrase is: `bottom drive obey lake curtain smoke basket hold race lonely fit walk`
+A Mnemonic phrase which is intentionally made public. All of the well-known development accounts (Alice, Bob, Charlie, Dave, Ferdie, and Eve) are generated from the same dev phrase. The dev phrase is: `bottom drive obey lake curtain smoke basket hold race lonely fit walk`.
+
+Many tools in the Substrate ecosystem, such as subkey, allow users to implicitly specify the dev phrase with by only specifying a derivation path such as `//Alice`.
 
 ## Digest
 An extensible field of the block header that encodes information needed by header-only ("light") clients for chain synchronisation.
