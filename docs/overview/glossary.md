@@ -92,6 +92,11 @@ The council is one of the SRML governance primitives and is a body of delegates 
 ## Database Backend
 The means by which data relating to the blockchain is persisted between invocations of the node.
 
+## Dev Phrase
+A Mnemonic phrase which is intentionally made public. All of the well-known development accounts (Alice, Bob, Charlie, Dave, Ferdie, and Eve) are generated from the same dev phrase. The dev phrase is: `bottom drive obey lake curtain smoke basket hold race lonely fit walk`.
+
+Many tools in the Substrate ecosystem, such as subkey, allow users to implicitly specify the dev phrase with by only specifying a derivation path such as `//Alice`.
+
 ## Digest
 An extensible field of the block header that encodes information needed by header-only ("light") clients for chain synchronisation.
 
@@ -130,6 +135,8 @@ Within the SRML Balances module, this is the minimum balance an account may have
 > If the amount transferred is less than the existential deposit and the destination account did not previously exist, then the transfer will "succeed" without actually creating and crediting the destination account; this appears to essentially just burn the transfer balance from the sender. If the transfer takes the sender to below the existential balance, then its account will be deleted. In this way, a transfer can even "successfully" result in the sender account being completely deleted, with the receiver account never being created.
 >
 > It is up to middleware to ensure that end-users are made aware of and/or protected from these edge cases.
+
+---
 
 ## Finality
 A part of consensus dealing with making a progression be irreversible. If a block is finalised, then any real-world repercussions can be effected. The consensus algorithm must guarantee that finalised blocks never need reverting.
