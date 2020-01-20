@@ -200,7 +200,7 @@ class Tutorials extends React.Component {
           <FeaturedTutorialCards
             data={[
               {
-                img: `${baseUrl}img/first-substrate-chain.png`,
+                img: `${baseUrl}img/crates.png`,
                 title: (
                   <translate>Create Your First Substrate Chain</translate>
                 ),
