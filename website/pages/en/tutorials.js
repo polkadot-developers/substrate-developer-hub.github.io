@@ -282,19 +282,35 @@ class Tutorials extends React.Component {
           <OtherTutorialCards
             data={[
               {
-                img: `${baseUrl}img/substrate-collectables-workshop.png`,
-                title: <translate>Substrate Collectables Workshop</translate>,
+                title: (
+                  <translate>Adding a Pallet to Your Runtime</translate>
+                ),
                 text: (
                   <translate>
-                    A comprehensive, end-to-end tutorial for creating a
-                    non-fungible token chain.
+                  "Add the Contracts pallet or other FRAME pallets to your Substrate node template."
                   </translate>
                 ),
-                difficulty: "easy",
-                length: "5",
+                difficulty: "medium",
+                length: "2",
                 prerequisite: false,
-                href:
-                  "https://substrate-developer-hub.github.io/substrate-collectables-workshop/"
+                href: `${docUrl(
+                  "next/tutorials/adding-a-module-to-your-runtime")}`
+              },
+              {
+                img: `${baseUrl}img/crates.png`,
+                title: (
+                  <translate>Write a Pallet in its Own Crate</translate>
+                ),
+                text: (
+                  <translate>
+                    Make your pallets re-usable by packaging them in
+                    their own rust crate.
+                  </translate>
+                ),
+                difficulty: "medium",
+                length: "2",
+                prerequisite: false,
+                href: `${docUrl("tutorials/creating-a-runtime-module")}`
               },
               {
                 img: `${baseUrl}img/polkadot-js-substrate-tutorial.png`,
@@ -314,6 +330,35 @@ class Tutorials extends React.Component {
               },
               {
                 title: (
+                  <translate>Visualizing Node Metrics</translate>
+                ),
+                text: (
+                  <translate>
+                  "Learn how to visualize the metrics that Substrate records using Grafana."
+                  </translate>
+                ),
+                difficulty: "easy",
+                length: "< 1",
+                prerequisite: false,
+                href: `${docUrl("next/tutorials/visualizing-node-metrics")}`
+              },
+              {
+                img: `${baseUrl}img/substrate-collectables-workshop.png`,
+                title: <translate>Substrate Collectables Workshop</translate>,
+                text: (
+                  <translate>
+                    A comprehensive, end-to-end tutorial for creating a
+                    non-fungible token chain.
+                  </translate>
+                ),
+                difficulty: "easy",
+                length: "5",
+                prerequisite: false,
+                href:
+                  "https://substrate-developer-hub.github.io/substrate-collectables-workshop/"
+              },
+              {
+                title: (
                   <translate>
                     Substrate Verifiable Credentials Workshop
                   </translate>
@@ -330,32 +375,6 @@ class Tutorials extends React.Component {
                 href: "https://substrate.dev/substrate-verifiable-credentials/"
               },
               {
-                title: <translate>Substrate Token Curated Registry</translate>,
-                text: (
-                  <translate>Build a TCR module using Substrate.</translate>
-                ),
-                difficulty: "medium",
-                length: "3",
-                prerequisite: true,
-                href: `${docUrl("tutorials/tcr/")}`
-              },
-              {
-                img: `${baseUrl}img/crates.png`,
-                title: (
-                  <translate>Write a Pallet in its Own Crate</translate>
-                ),
-                text: (
-                  <translate>
-                    Make your pallets re-usable by packaging them in
-                    their own rust crate.
-                  </translate>
-                ),
-                difficulty: "medium",
-                length: "2",
-                prerequisite: false,
-                href: `${docUrl("tutorials/creating-a-runtime-module")}`
-              },
-              {
                 title: <translate>UTXO Workshop</translate>,
                 text: (
                   <translate>
@@ -369,25 +388,16 @@ class Tutorials extends React.Component {
                 href: "https://github.com/substrate-developer-hub/utxo-workshop"
               },
               {
-                title: "Adding a Pallet to Your Runtime",
-                text:
-                  "Add the Contracts pallet or other FRAME pallets to your Substrate node template.",
+                title: <translate>Substrate Token Curated Registry</translate>,
+                text: (
+                  <translate>Build a TCR module using Substrate.</translate>
+                ),
                 difficulty: "medium",
-                length: "2",
-                prerequisite: false,
-                href: `${docUrl(
-                  "next/tutorials/adding-a-module-to-your-runtime")}`
-              },
-              {
-                title: "Visualizing Node Metrics",
-                text:
-                  "Learn how to visualize the metrics that Substrate records using Grafana.",
-                difficulty: "easy",
-                length: "< 1",
-                prerequisite: false,
-                href: `${docUrl("next/tutorials/visualizing-node-metrics")}`
+                length: "3",
+                prerequisite: true,
+                href: `${docUrl("tutorials/tcr/")}`
               }
-            ].sort(sort_by_name)}
+            ]}
           />
         </Row>
       </div>
