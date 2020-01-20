@@ -73,8 +73,8 @@ You have launched a working Substrate-based blockchain, with an underlying crypt
 
 Your next step may be:
 
-* Decentralize your network with more nodes in the [Start a Private Network](tutorials/start-a-private-network) tutorial.
-* Add custom functionality in the [Build a dApp](tutorials/build-a-dapp) tutorial.
+* Decentralize your network with more nodes in the [Start a Private Network](tutorials/start-a-private-network/index.md) tutorial.
+* Add custom functionality in the [Build a dApp](tutorials/build-a-dapp/index.md) tutorial.
 
 If you experienced any issues with this tutorial or want to provide feedback, feel free to [open a
 GitHub

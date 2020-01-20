@@ -211,7 +211,7 @@ with your blockchain.
 This tutorial chose to omit some of the specific details around development in order to keep this
 experience short and satisfying. However, we want you to keep learning!
 
-To learn much more detail about building on the front-end template, please try the [Front End Tutorial](tutorials/substrate-front-end). To learn more about building your own pallets, explore the [Substrate Recipes](https://substrate.dev/recipes).
+To learn much more detail about building on the front-end template, please try the [Front End Tutorial](tutorials/substrate-front-end/index.md). To learn more about building your own pallets, explore the [Substrate Recipes](https://substrate.dev/recipes).
 
 It would also be a good time to call out that your success on the Substrate framework will
 ultimately be limited on your ability to program in Rust. The [Rust

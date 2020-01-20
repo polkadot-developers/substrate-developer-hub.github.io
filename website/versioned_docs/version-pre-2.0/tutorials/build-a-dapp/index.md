@@ -16,7 +16,7 @@ explain what all the code does at a high level.
 We only expect that:
 
 * You are generally familiar with software development, writing code, and running your code.
-* You have completed the [Creating Your First Substrate Chain Tutorial](tutorials/creating-your-first-substrate-chain).
+* You have completed the [Creating Your First Substrate Chain Tutorial](tutorials/creating-your-first-substrate-chain/index.md).
 * You are open to learning about the bleeding edge of blockchain development.
 
 If you run into an issue on this tutorial, **we are here to help!** You can [create a new

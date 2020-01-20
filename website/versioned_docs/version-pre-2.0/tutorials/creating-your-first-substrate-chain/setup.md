@@ -44,7 +44,7 @@ It will automatically install:
 
 If you are using Windows and do not have the [Windows Subsystem for
 Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), the process is a bit harder, but
-well documented [here](/docs/en/overview/getting-started).
+well documented [here](overview/getting-started.md).
 
 ## Compiling Substrate
 
