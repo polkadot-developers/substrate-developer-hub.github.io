@@ -71,7 +71,7 @@
     ]
   },
   "version-pre-2.0-build-a-dapp": {
-    "Creating Your First Substrate Chain": [
+    "Build a Decentralized Application": [
       "version-pre-2.0-tutorials/build-a-dapp/index",
       "version-pre-2.0-tutorials/build-a-dapp/prepare",
       "version-pre-2.0-tutorials/build-a-dapp/pallet",
