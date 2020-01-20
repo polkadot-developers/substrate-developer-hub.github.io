@@ -70,6 +70,14 @@
       "tutorials/creating-your-first-substrate-chain/front-end"
     ]
   },
+  "build-a-dapp": {
+    "Build a Decentralized Application": [
+      "tutorials/build-a-dapp/index",
+      "tutorials/build-a-dapp/prepare",
+      "tutorials/build-a-dapp/pallet",
+      "tutorials/build-a-dapp/front-end"
+    ]
+  },
   "start-a-private-network": {
     "Start a Private Network": [
       "tutorials/start-a-private-network/index",
