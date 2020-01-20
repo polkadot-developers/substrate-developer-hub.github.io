@@ -64,10 +64,8 @@
     "Creating Your First Substrate Chain": [
       "tutorials/creating-your-first-substrate-chain/index",
       "tutorials/creating-your-first-substrate-chain/setup",
-      "tutorials/creating-your-first-substrate-chain/learn",
-      "tutorials/creating-your-first-substrate-chain/interact",
-      "tutorials/creating-your-first-substrate-chain/build",
-      "tutorials/creating-your-first-substrate-chain/front-end"
+      "tutorials/creating-your-first-substrate-chain/background",
+      "tutorials/creating-your-first-substrate-chain/interact"
     ]
   },
   "build-a-dapp": {
