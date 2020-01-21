@@ -213,7 +213,7 @@ class Tutorials extends React.Component {
                 length: "< 1",
                 prerequisite: false,
                 href: `${docUrl(
-                  "tutorials/creating-your-first-substrate-chain"
+                  "tutorials/creating-your-first-substrate-chain/"
                 )}`
               },
               {
@@ -248,7 +248,7 @@ class Tutorials extends React.Component {
                 length: "2",
                 prerequisite: false,
                 href: `${docUrl(
-                  "tutorials/start-a-private-network"
+                  "tutorials/start-a-private-network/"
                 )}`
               },
               {
@@ -294,7 +294,7 @@ class Tutorials extends React.Component {
                 length: "2",
                 prerequisite: false,
                 href: `${docUrl(
-                  "next/tutorials/adding-a-module-to-your-runtime")}`
+                  "tutorials/adding-a-module-to-your-runtime/")}`
               },
               {
                 img: `${baseUrl}img/crates.png`,
@@ -310,7 +310,7 @@ class Tutorials extends React.Component {
                 difficulty: "medium",
                 length: "2",
                 prerequisite: false,
-                href: `${docUrl("tutorials/creating-a-runtime-module")}`
+                href: `${docUrl("tutorials/creating-a-runtime-module/")}`
               },
               {
                 img: `${baseUrl}img/polkadot-js-substrate-tutorial.png`,
@@ -326,7 +326,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "2",
                 prerequisite: false,
-                href: `${docUrl("tutorials/substrate-front-end")}`
+                href: `${docUrl("tutorials/substrate-front-end/")}`
               },
               {
                 title: (
@@ -340,7 +340,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "< 1",
                 prerequisite: false,
-                href: `${docUrl("next/tutorials/visualizing-node-metrics")}`
+                href: `${docUrl("tutorials/visualizing-node-metrics/")}`
               },
               {
                 img: `${baseUrl}img/substrate-collectables-workshop.png`,
