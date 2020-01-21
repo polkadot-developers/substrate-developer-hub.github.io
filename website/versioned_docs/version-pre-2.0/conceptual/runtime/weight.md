@@ -59,7 +59,7 @@ operational class.
 ### Learn More
 
 - Substrate Recipes contains examples of both [custom
-  weights](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/modules/weights)
+  weights](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/pallets/weights)
   and custom
   [WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/runtimes/weight-fee-runtime).
 - The [srml-example](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
