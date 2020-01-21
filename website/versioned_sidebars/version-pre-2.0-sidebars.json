@@ -78,5 +78,14 @@
       "version-pre-2.0-tutorials/start-a-private-network/keygen",
       "version-pre-2.0-tutorials/start-a-private-network/customchain"
     ]
+  },
+  "version-pre-2.0-substrate-front-end": {
+    "Substrate Front End Tutorial": [
+      "version-pre-2.0-tutorials/substrate-front-end/index",
+      "version-pre-2.0-tutorials/substrate-front-end/part-1-connect-to-a-node",
+      "version-pre-2.0-tutorials/substrate-front-end/part-2-query-balances",
+      "version-pre-2.0-tutorials/substrate-front-end/part-3-transfer-funds",
+      "version-pre-2.0-tutorials/substrate-front-end/part-4-use-external-accounts"
+    ]
   }
 }
