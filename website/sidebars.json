@@ -65,10 +65,16 @@
     "Creating Your First Substrate Chain": [
       "tutorials/creating-your-first-substrate-chain/index",
       "tutorials/creating-your-first-substrate-chain/setup",
-      "tutorials/creating-your-first-substrate-chain/learn",
-      "tutorials/creating-your-first-substrate-chain/interact",
-      "tutorials/creating-your-first-substrate-chain/build",
-      "tutorials/creating-your-first-substrate-chain/front-end"
+      "tutorials/creating-your-first-substrate-chain/background",
+      "tutorials/creating-your-first-substrate-chain/interact"
+    ]
+  },
+  "build-a-dapp": {
+    "Build a PoE Decentralized Application": [
+      "tutorials/build-a-dapp/index",
+      "tutorials/build-a-dapp/prepare",
+      "tutorials/build-a-dapp/pallet",
+      "tutorials/build-a-dapp/front-end"
     ]
   },
   "start-a-private-network": {

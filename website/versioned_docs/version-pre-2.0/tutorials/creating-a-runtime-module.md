@@ -9,7 +9,7 @@ crate, and include it in a node based on the `substrate-node-template`.
 
 ## Prerequisites
 
-If you haven't already done so, follow the [Getting Started](getting-started.md)
+If you haven't already done so, follow the [Getting Started](overview/getting-started.md)
 guide to download necessary tools to build Substrate.
 
 ### Clone the Node and Pallet Templates
@@ -95,7 +95,7 @@ feature. Our `Cargo.toml` file tells our pallet's dependencies to only use their
 
 **`my-pallet/Cargo.toml`**
 
-```TOML
+```toml
 [features]
 default = ['std']
 std = [
@@ -132,7 +132,7 @@ code comment.
 
 **`my-pallet/Cargo.toml`**
 
-```TOML
+```toml
 # --snip--
 
 [dependencies.support]
@@ -156,7 +156,7 @@ the actual pallet itself.
 
 **`my-pallet/Cargo.toml`**
 
-```TOML
+```toml
 # --snip--
 
 [dev-dependencies.sp-core]
@@ -186,7 +186,7 @@ runtime itself does, as follows:
 
 **`my-node/runtime/Cargo.toml`**
 
-```TOML
+```toml
 # --snip--
 
 [dependencies.test-pallet]
@@ -277,7 +277,7 @@ is to update its dependency on your pallet. The new code is:
 
 **`my-node/runtime/Cargo.toml`**
 
-```TOML
+```toml
 [dependencies.your-pallet-name]
 default_features = false
 git = 'https://github.com/your-username/your-pallet'
