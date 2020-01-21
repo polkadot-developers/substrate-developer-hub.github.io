@@ -6,9 +6,9 @@ original_id: subkey
 
 Subkey is a key-generation utility that is developed alongside Substrate. Its main features are generating [sr25519](https://github.com/w3f/schnorrkel) and ed25519 key pairs, encoding SS58 addresses, and restoring keys from mnemonics and raw seeds. It can also create and verify signatures, including for encoded transactions.
 
-## Building the Subkey Binary
+## Installation
 
-### One-line Install
+### Build from Source
 
 The Subkey binary, `subkey`, is also installed along with the [Substrate installation](getting-started/installing-substrate.md). If you want to play with just Subkey (and not Substrate), you will need to have the Substrate dependencies. Use the following two commands to install the dependencies and Subkey, respectively:
 
