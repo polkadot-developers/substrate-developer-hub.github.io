@@ -1,5 +1,5 @@
 ---
-title: Prepare to build a dapp
+title: Prepare to build a dApp
 id: version-pre-2.0-prepare
 original_id: prepare
 ---

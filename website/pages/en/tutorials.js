@@ -219,7 +219,7 @@ class Tutorials extends React.Component {
               {
                 img: `${baseUrl}img/first-substrate-chain.png`,
                 title: (
-                  <translate>Build a Decentralized Application</translate>
+                  <translate>Build a PoE Decentralized Application</translate>
                 ),
                 text: (
                   <translate>

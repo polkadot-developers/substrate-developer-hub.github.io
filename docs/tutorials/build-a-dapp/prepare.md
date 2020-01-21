@@ -1,5 +1,5 @@
 ---
-title: Prepare to build a dapp
+title: Prepare to build a dApp
 ---
 
 ## Install the Node Template
