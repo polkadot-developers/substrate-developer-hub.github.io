@@ -1,6 +1,7 @@
 ---
 title: "Introduction"
-id: substrate-front-end-index
+id: version-pre-2.0-substrate-front-end-index
+original_id: substrate-front-end-index
 ---
 
 This is a beginner-level guide to help you get started with building the front-end of a decentralized application (later called DApp) on top of a Substrate-based blockchain using the [Polkadot-js API](https://github.com/polkadot-js). This tutorial does not require any previous knowledge about the Substrate framework or Rust language. It does, however, require knowledge of JavaScript as well as a basic knowledge of the React framework.
