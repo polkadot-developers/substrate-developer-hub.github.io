@@ -17,12 +17,14 @@ environment.
 
 ### Substrate Development
 
-If you are using a Unix based machine (Linux, MacOS), we have created a simple one-liner to get all
+If you are using a Unix-based machine (Linux, MacOS), we have created a simple one-liner to get all
 of those prerequisites installed for you:
 
 ```bash
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
+
+> **Note:** If you did not have Rust installed prior to running this script, make sure to add `cargo` to your `PATH` or restart your terminal before continuing (command given in last line of the script output).
 
 <details>
 <summary>Learn what this script does.</summary>

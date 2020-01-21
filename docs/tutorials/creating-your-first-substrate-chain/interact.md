@@ -38,10 +38,10 @@ $ ./target/release/node-template --dev
 
 If the number after `best:` is increasing, your blockchain is producing new blocks!
 
-## Start the Front-End
+## Start the Front End
 
 To interact with the local node we will use the Polkadot-js Apps user interface, often known as
-"Apps" for short. Despite the name, Apps will work with and Substrate-based blockchain including ours, not just Polkadot.
+"Apps" for short. Despite the name, Apps will work with any Substrate-based blockchain including ours, not just Polkadot.
 
 In your web browser, navigate to:
 
@@ -49,10 +49,9 @@ https://polkadot.js.org/apps/
 
 > Some browsers, notably Firefox, will not connect to a local node from an https website. An easy work around is to try another browser, like Chromium. Another option is to [host this interface locally](https://github.com/polkadot-js/apps#development).
 
-
 ## Interact
 
-Select the **Accounts** tab, you will see test accounts which you have access to. Some, like Alice
+Select the **Accounts** tab, you will see test accounts that you have access to. Some, like Alice
 and Bob, already have funds!
 
 ![Apps UI with pre-funded accounts](assets/tutorials/first-chain/apps-prefunded.png)
@@ -61,10 +60,11 @@ You can try to transfer some funds from Alice to Charlie by clicking the "send" 
 
 ![Balance Transfer](assets/tutorials/first-chain/apps-transfer.png)
 
-If everything went successfully, you should see some popup notifications claiming "Entrinsic
+If everything went successfully, you should see some popup notifications claiming "Extrinsic
 Success", and of course Charlie's balance will increase.
 
 ## Next Steps
+
 This is the end of your journey to launching your first blockchain with Substrate.
 
 You have launched a working Substrate-based blockchain, with an underlying cryptocurrency, attached a user interface to that chain, and made token transfers among users. We hope you'll continue learning about Substrate.

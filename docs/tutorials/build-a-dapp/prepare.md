@@ -10,7 +10,7 @@ You should already have the [Substrate Node Template](https://github.com/substra
 
 ## Install the Front End Template
 
-This tutorial also uses a ReactJS front-end which we will modify for interacting with our
+This tutorial also uses a ReactJS front end, which we will modify for interacting with our
 custom Substrate blockchain.
 
 To use the front-end template, you need [Yarn](https://yarnpkg.com), which itself requires  [Node.js](https://nodejs.org/). If you don't have these tools, you may install them from these instructions:
@@ -18,7 +18,7 @@ To use the front-end template, you need [Yarn](https://yarnpkg.com), which itsel
 * [Install Node.js](https://nodejs.org/en/download/)
 * [Install Yarn](https://yarnpkg.com/lang/en/docs/install/)
 
-Now you can proceed to setup the front-end template with these commands.
+Now you can proceed to set up the front-end template with these commands.
 
 ```bash
 # Clone the code from github
@@ -52,7 +52,6 @@ to later prove that they were the original person to claim the file.
 Our Proof of Existence pallet will expose two callable functions:
 
 * `create_claim` - allows a user to claim the existence of a file by uploading a file digest.
-
 * `revoke_claim` - allows the current owner of a claim to revoke their ownership.
 
 We will only need to store information about the proofs that have been claimed, and who made those

@@ -3,7 +3,7 @@ title: Building a Custom Pallet
 ---
 
 The Substrate runtime is composed of FRAME pallets. You can think of these pallets as individual
-pieces of logic which define what your blockchain can do! Substrate provides you with a number of
+pieces of logic that define what your blockchain can do! Substrate provides you with a number of
 pre-built pallets built with the FRAME framework.
 
 ![Runtime Composition](assets/runtime.png)
@@ -21,8 +21,8 @@ Even things like on-chain governance can be added to your blockchain by includin
 [Elections](https://substrate.dev/rustdocs/master/pallet_elections/index.html), and
 [Collective](https://substrate.dev/rustdocs/master/pallet_collective/index.html).
 
-The goal of this tutorial is to teach you how to create your own Substrate pallet which will be
-included in your custom blockchain! The `substrate-node-template` comes with a template pallet that
+The goal of this tutorial is to teach you how to create your own Substrate pallet to include
+in your custom blockchain! The `substrate-node-template` comes with a template pallet that
 we will build your custom logic on top of.
 
 ## File Structure

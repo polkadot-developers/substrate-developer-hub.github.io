@@ -24,7 +24,7 @@ contact us on [Riot](https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org).
 
 ## What you will be doing
 
-Before we even get started, let's layout what we are going to do over the course of this tutorial.
+Before we even get started, let's lay out what we are going to do over the course of this tutorial.
 We will:
 
 1. Set up your computer to be able to develop on Substrate.

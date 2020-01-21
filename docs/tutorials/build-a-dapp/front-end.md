@@ -183,7 +183,7 @@ comments to learn what each part is doing.
 
 Your front end template should reload when you save your changes, and you'll notice our new
 component. Now we're ready to try out our new dApp. Select any file on your computer, and you will
-see that you can create a claim with it's file digest:
+see that you can create a claim with its file digest:
 
 ![Proof Of Existence Component](assets/poe-component.png)
 
