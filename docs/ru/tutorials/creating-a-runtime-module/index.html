@@ -18,7 +18,7 @@
         });
       </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Creating an External Pallet</h1></header><article><div><span><p>In this tutorial, you'll write a Substrate pallet that lives in its own crate, and include it in a node based on the <code>substrate-node-template</code>.</p>
 <h2><a class="anchor" aria-hidden="true" id="prerequisites"></a><a href="#prerequisites" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prerequisites</h2>
-<p>If you haven't already done so, follow the <a href="getting-started.md">Getting Started</a> guide to download necessary tools to build Substrate.</p>
+<p>If you haven't already done so, follow the <a href="/docs/ru/overview/getting-started">Getting Started</a> guide to download necessary tools to build Substrate.</p>
 <h3><a class="anchor" aria-hidden="true" id="clone-the-node-and-pallet-templates"></a><a href="#clone-the-node-and-pallet-templates" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Clone the Node and Pallet Templates</h3>
 <p>We're not going to write our pallet directly as part of the node template, but rather as a separate Rust crate. This approach allows us to publish our pallet separate from our node and also allows other to easily import this pallet into their own Substrate runtime.</p>
 <ol>
@@ -55,47 +55,47 @@ cargo build --release
 <p>In your <code>my-pallet/Cargo.toml</code> file, you will notice a few lines about the &quot;<code>std</code> feature&quot;. In Rust, when you enable <code>std</code>, you give your project access to <a href="https://doc.rust-lang.org/std/">the Rust standard libraries</a>. This works just fine when building native binaries.</p>
 <p>However, Substrate also builds the runtime code to WebAssembly (Wasm). In this case we use cargo features to disable the Rust standard library. Thus, all the dependencies we use for our pallet, and our entire runtime, must be able to compile with <a href="https://rust-embedded.github.io/book/intro/no-std.html"><code>no_std</code></a> feature. Our <code>Cargo.toml</code> file tells our pallet's dependencies to only use their <code>std</code> feature when this pallet also uses its <code>std</code> feature, like so:</p>
 <p><strong><code>my-pallet/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML">[features]
-default = ['std']
-std = [
-    'serde',
-    'codec/std',
-    'support/std',
-    'system/std',
-    'sp-runtime/std',
-    'sp-io/std',
-]
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">features</span><span class="token punctuation">]</span>
+<span class="token key property">default</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">'std'</span><span class="token punctuation">]</span>
+<span class="token key property">std</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span>
+    <span class="token string">'serde'</span><span class="token punctuation">,</span>
+    <span class="token string">'codec/std'</span><span class="token punctuation">,</span>
+    <span class="token string">'support/std'</span><span class="token punctuation">,</span>
+    <span class="token string">'system/std'</span><span class="token punctuation">,</span>
+    <span class="token string">'sp-runtime/std'</span><span class="token punctuation">,</span>
+    <span class="token string">'sp-io/std'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="consistent-substrate-dependencies"></a><a href="#consistent-substrate-dependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Consistent Substrate Dependencies</h3>
 <p>All Substrate pallets will depend on some low-level FRAME libraries such as <code>frame-system</code> and <code>frame-support</code>. These libraries are pulled from the main <a href="https://github.com/paritytech/substrate">Substrate GitHub repository</a>. When people build their own Substrate nodes, they will also have dependencies on the main Substrate repository.</p>
 <p>Because of this, you will need to be careful to ensure consistent dependencies from your pallet and the your Substrate node. If your pallet is dependent on one version of Substrate, and the node on another, compilation will run into errors where the Substrate versions may be incompatible, or different version of the same library are being used. Ultimately Cargo will not be able to resolve those conflicts and you will get a compile time error.</p>
 <p>When building your pallet, we recommend to develop against the <code>v2.0</code> branch as the template demonstrates. This ensures your pallet has the latest stable code. If you later prefer to have the freshly-baked features from Substrate, you can then choose to use a specific git commit of Substrate, as shown in the following code comment.</p>
 <p><strong><code>my-pallet/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"><span class="hljs-comment"># --snip--</span>
-<span class="hljs-section">
-[dependencies.support]</span>
-<span class="hljs-attr">default-features</span> = <span class="hljs-literal">false</span>
-<span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
-<span class="hljs-attr">package</span> = <span class="hljs-string">'frame-support'</span>
-<span class="hljs-attr">rev</span> = <span class="hljs-string">'&lt;git-commit&gt;'</span>
-<span class="hljs-attr">version</span> = <span class="hljs-string">'2.0.0'</span>
+<pre><code class="hljs css language-toml"><span class="token comment"># --snip--</span>
 
-<span class="hljs-comment"># Develop against a git commit by specifying the same Substrate commit as your main node.</span>
-<span class="hljs-comment"># It is important to use the same Substrate commit to prevent dependencies mismatch.</span>
-<span class="hljs-comment"># rev = "&lt;some commit hash&gt;"</span>
+<span class="token punctuation">[</span><span class="token table class-name">dependencies.support</span><span class="token punctuation">]</span>
+<span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
+<span class="token key property">package</span> <span class="token punctuation">=</span> <span class="token string">'frame-support'</span>
+<span class="token key property">rev</span> <span class="token punctuation">=</span> <span class="token string">'&lt;git-commit>'</span>
+<span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">'2.0.0'</span>
+
+<span class="token comment"># Develop against a git commit by specifying the same Substrate commit as your main node.</span>
+<span class="token comment"># It is important to use the same Substrate commit to prevent dependencies mismatch.</span>
+<span class="token comment"># rev = "&lt;some commit hash>"</span>
 
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="your-pallets-dev-dependencies"></a><a href="#your-pallets-dev-dependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Your Pallet's Dev Dependencies</h3>
 <p>The final section of the <code>Cargo.toml</code> file specifies the dev dependencies. These are the dependencies that are needed in your pallet's tests, but not necessary the actual pallet itself.</p>
 <p><strong><code>my-pallet/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"><span class="hljs-comment"># --snip--</span>
-<span class="hljs-section">
-[dev-dependencies.sp-core]</span>
-<span class="hljs-attr">default-features</span> = <span class="hljs-literal">false</span>
-<span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
-<span class="hljs-attr">package</span> = <span class="hljs-string">'sp-core'</span>
-<span class="hljs-attr">rev</span> = <span class="hljs-string">'&lt;git-commit&gt;'</span>
-<span class="hljs-attr">version</span> = <span class="hljs-string">'2.0.0'</span>
+<pre><code class="hljs css language-toml"><span class="token comment"># --snip--</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">dev-dependencies.sp-core</span><span class="token punctuation">]</span>
+<span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
+<span class="token key property">package</span> <span class="token punctuation">=</span> <span class="token string">'sp-core'</span>
+<span class="token key property">rev</span> <span class="token punctuation">=</span> <span class="token string">'&lt;git-commit>'</span>
+<span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">'2.0.0'</span>
 </code></pre>
 <p>You can confirm that the tests in the Substrate pallet template pass with:</p>
 <pre><code class="hljs css language-bash">cargo <span class="token builtin class-name">test</span>
@@ -105,19 +105,19 @@ std = [
 <p>With our pallet now compiling and passing it's tests, we're ready to add it to our node.</p>
 <p>We first add our newly-created crate as a dependency in the node's runtime <code>Cargo.toml</code>. Then we tell the pallet to only build its <code>std</code> feature when the runtime itself does, as follows:</p>
 <p><strong><code>my-node/runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"># --snip--
+<pre><code class="hljs css language-toml"><span class="token comment"># --snip--</span>
 
-[dependencies.test-pallet]
-default-features = false
-path = '../../my-pallet'
+<span class="token punctuation">[</span><span class="token table class-name">dependencies.test-pallet</span><span class="token punctuation">]</span>
+<span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+<span class="token key property">path</span> <span class="token punctuation">=</span> <span class="token string">'../../my-pallet'</span>
 
-# toward the bottom
-[features]
-default = ['std']
-std = [
-    'test-pallet/std',
-    # --snip--
-]
+<span class="token comment"># toward the bottom</span>
+<span class="token punctuation">[</span><span class="token table class-name">features</span><span class="token punctuation">]</span>
+<span class="token key property">default</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">'std'</span><span class="token punctuation">]</span>
+<span class="token key property">std</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span>
+    <span class="token string">'test-pallet/std'</span><span class="token punctuation">,</span>
+    <span class="token comment"># --snip--</span>
+<span class="token punctuation">]</span>
 </code></pre>
 <blockquote>
 <p>You <strong>must</strong> set <code>default_features = false</code> so that your runtime will successfully compile to Wasm.</p>
@@ -164,14 +164,14 @@ cargo build --release
 <p>Once your pallet is no longer in test phase, you should consider publishing it to GitHub. Go ahead and <a href="https://help.github.com/en/articles/create-a-repo">create a GitHub repository</a> and <a href="https://help.github.com/en/articles/pushing-to-a-remote">push your pallet's code</a> to it.</p>
 <p>With the code on GitHub, your pallet is properly published. Congratulations! Now we just need to update your node to use the code that is on GitHub instead of a hard-coded file system path. The final edit to your runtime's <code>Cargo.toml</code> file is to update its dependency on your pallet. The new code is:</p>
 <p><strong><code>my-node/runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies.your-pallet-name]</span>
-<span class="hljs-attr">default_features</span> = <span class="hljs-literal">false</span>
-<span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/your-username/your-pallet'</span>
-<span class="hljs-attr">branch</span> = <span class="hljs-string">'master'</span>
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">dependencies.your-pallet-name</span><span class="token punctuation">]</span>
+<span class="token key property">default_features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/your-username/your-pallet'</span>
+<span class="token key property">branch</span> <span class="token punctuation">=</span> <span class="token string">'master'</span>
 
-<span class="hljs-comment"># You may choose a specific commit or tag instead of branch</span>
-<span class="hljs-comment"># rev = '&lt;git-commit&gt;'</span>
-<span class="hljs-comment"># tag = '&lt;some tag&gt;</span>
+<span class="token comment"># You may choose a specific commit or tag instead of branch</span>
+<span class="token comment"># rev = '&lt;git-commit>'</span>
+<span class="token comment"># tag = '&lt;some tag></span>
 </code></pre>
 <p>Compile one more time and notice that Cargo now grabs your pallet from GitHub instead of using the local files.</p>
 <h2><a class="anchor" aria-hidden="true" id="next-steps"></a><a href="#next-steps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Next Steps</h2>
