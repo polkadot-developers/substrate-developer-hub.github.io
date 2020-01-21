@@ -118,7 +118,7 @@ dynamic and based on how `WeightToFee` is defined, the final fee can include som
 variability. To fulfill this requirement, Substrate provides:
 
   - [`NextFeeMultiplier`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/struct.Module.html#method.next_fee_multiplier):
-    A multiplier stored in the Transaction Payment module and configurable. 
+    A multiplier stored in the Transaction Payment module and configurable.
   - [`FeeMultiplierUpdate`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate):
     A configurable parameter for a runtime to describe how this multiplier can change.
 
@@ -286,7 +286,7 @@ payment module drawing inspiration from Transaction Payment.
 ### Examples
 
 Substrate Recipes contains examples of both [custom
-weights](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/modules/weights) and
+weights](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/pallets/weights) and
 custom
 [WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/runtimes/weight-fee-runtime).
 
