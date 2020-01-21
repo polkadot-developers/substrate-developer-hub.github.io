@@ -115,9 +115,9 @@
 <p>Here is how we will render things.</p>
 <pre><code class="hljs css language-js">  <span class="token keyword">const</span> <span class="token function-variable function">loader</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">text</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token punctuation">(</span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Dimmer</span></span> <span class="token attr-name">active</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Loader</span></span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>small<span class="token punctuation">'</span></span><span class="token punctuation">></span></span><span class="token punctuation">{</span>text<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Loader</span></span><span class="token punctuation">></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Dimmer</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Dimmer</span></span> <span class="token attr-name">active</span><span class="token punctuation">></span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Loader</span></span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>small<span class="token punctuation">'</span></span><span class="token punctuation">></span></span><span class="token punctuation">{</span>text<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Loader</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Dimmer</span></span><span class="token punctuation">></span></span>
     <span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
@@ -126,9 +126,9 @@
   <span class="token punctuation">}</span>
 
   <span class="token keyword">return</span> <span class="token punctuation">(</span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Container</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Container</span></span><span class="token punctuation">></span></span><span class="token plain-text">
       Connected
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Container</span></span><span class="token punctuation">></span></span>
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Container</span></span><span class="token punctuation">></span></span>
   <span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>As described before, this code will verify that the <code>api</code> from the state is initialized and ready before showing &quot;Connected&quot; to our users. The <code>loader</code> function returns a nice looking loader with any text we want. This loader logic has been extracted into its own function because we will reuse it later in the tutorial.</p>
@@ -168,10 +168,10 @@
 <p>The api endpoints do not change unless there's a runtime upgrade of the node. Even though this will not happen in our development environment and the component will work without specifying this argument, we are still passing the <code>api.rpc.system</code> to <code>useEffect</code> to make our examples as realistic as possible.</p>
 <p>Finally, we'll display our node information at the top of the page:</p>
 <pre><code class="hljs css language-js">  <span class="token keyword">return</span> <span class="token punctuation">(</span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span></span><span class="token punctuation">></span></span>
-      <span class="token punctuation">{</span>nodeInfo<span class="token punctuation">.</span>chain<span class="token punctuation">}</span> <span class="token operator">-</span> <span class="token punctuation">{</span>nodeInfo<span class="token punctuation">.</span>nodeName<span class="token punctuation">}</span> <span class="token punctuation">(</span>v<span class="token punctuation">{</span>nodeInfo<span class="token punctuation">.</span>nodeVersion<span class="token punctuation">}</span><span class="token punctuation">)</span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token punctuation">{</span>nodeInfo<span class="token punctuation">.</span>chain<span class="token punctuation">}</span><span class="token plain-text"> - </span><span class="token punctuation">{</span>nodeInfo<span class="token punctuation">.</span>nodeName<span class="token punctuation">}</span><span class="token plain-text"> (v</span><span class="token punctuation">{</span>nodeInfo<span class="token punctuation">.</span>nodeVersion<span class="token punctuation">}</span><span class="token plain-text">)
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token punctuation">/></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span></span><span class="token punctuation">></span></span>
   <span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 </code></pre>

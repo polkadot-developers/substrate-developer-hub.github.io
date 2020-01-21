@@ -55,15 +55,15 @@ cargo build --release
 <p>In your <code>my-pallet/Cargo.toml</code> file, you will notice a few lines about the &quot;<code>std</code> feature&quot;. In Rust, when you enable <code>std</code>, you give your project access to <a href="https://doc.rust-lang.org/std/">the Rust standard libraries</a>. This works just fine when building native binaries.</p>
 <p>However, Substrate also builds the runtime code to WebAssembly (Wasm). In this case we use cargo features to disable the Rust standard library. Thus, all the dependencies we use for our pallet, and our entire runtime, must be able to compile with <a href="https://rust-embedded.github.io/book/intro/no-std.html"><code>no_std</code></a> feature. Our <code>Cargo.toml</code> file tells our pallet's dependencies to only use their <code>std</code> feature when this pallet also uses its <code>std</code> feature, like so:</p>
 <p><strong><code>my-pallet/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML">[features]
-default = ['std']
-std = [
-    'serde',
-    'codec/std',
-    'support/std',
-    'system/std',
-    'sp-runtime/std',
-    'sp-io/std',
+<pre><code class="hljs css language-TOML"><span class="hljs-section">[features]</span>
+<span class="hljs-attr">default</span> = [<span class="hljs-string">'std'</span>]
+<span class="hljs-attr">std</span> = [
+    <span class="hljs-string">'serde'</span>,
+    <span class="hljs-string">'codec/std'</span>,
+    <span class="hljs-string">'support/std'</span>,
+    <span class="hljs-string">'system/std'</span>,
+    <span class="hljs-string">'sp-runtime/std'</span>,
+    <span class="hljs-string">'sp-io/std'</span>,
 ]
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="consistent-substrate-dependencies"></a><a href="#consistent-substrate-dependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Consistent Substrate Dependencies</h3>
@@ -72,8 +72,8 @@ std = [
 <p>When building your pallet, we recommend to develop against the <code>v2.0</code> branch as the template demonstrates. This ensures your pallet has the latest stable code. If you later prefer to have the freshly-baked features from Substrate, you can then choose to use a specific git commit of Substrate, as shown in the following code comment.</p>
 <p><strong><code>my-pallet/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-comment"># --snip--</span>
-<span class="hljs-section">
-[dependencies.support]</span>
+
+<span class="hljs-section">[dependencies.support]</span>
 <span class="hljs-attr">default-features</span> = <span class="hljs-literal">false</span>
 <span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
 <span class="hljs-attr">package</span> = <span class="hljs-string">'frame-support'</span>
@@ -89,8 +89,8 @@ std = [
 <p>The final section of the <code>Cargo.toml</code> file specifies the dev dependencies. These are the dependencies that are needed in your pallet's tests, but not necessary the actual pallet itself.</p>
 <p><strong><code>my-pallet/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-comment"># --snip--</span>
-<span class="hljs-section">
-[dev-dependencies.sp-core]</span>
+
+<span class="hljs-section">[dev-dependencies.sp-core]</span>
 <span class="hljs-attr">default-features</span> = <span class="hljs-literal">false</span>
 <span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
 <span class="hljs-attr">package</span> = <span class="hljs-string">'sp-core'</span>
@@ -105,18 +105,18 @@ std = [
 <p>With our pallet now compiling and passing it's tests, we're ready to add it to our node.</p>
 <p>We first add our newly-created crate as a dependency in the node's runtime <code>Cargo.toml</code>. Then we tell the pallet to only build its <code>std</code> feature when the runtime itself does, as follows:</p>
 <p><strong><code>my-node/runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"># --snip--
+<pre><code class="hljs css language-TOML"><span class="hljs-comment"># --snip--</span>
 
-[dependencies.test-pallet]
-default-features = false
-path = '../../my-pallet'
+<span class="hljs-section">[dependencies.test-pallet]</span>
+<span class="hljs-attr">default-features</span> = <span class="hljs-literal">false</span>
+<span class="hljs-attr">path</span> = <span class="hljs-string">'../../my-pallet'</span>
 
-# toward the bottom
-[features]
-default = ['std']
-std = [
-    'test-pallet/std',
-    # --snip--
+<span class="hljs-comment"># toward the bottom</span>
+<span class="hljs-section">[features]</span>
+<span class="hljs-attr">default</span> = [<span class="hljs-string">'std'</span>]
+<span class="hljs-attr">std</span> = [
+    <span class="hljs-string">'test-pallet/std'</span>,
+    <span class="hljs-comment"># --snip--</span>
 ]
 </code></pre>
 <blockquote>
