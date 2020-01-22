@@ -24,6 +24,7 @@
       "conceptual/cryptography/ss58-address-format"
     ],
     "Substrate Runtime": [
+      "conceptual/runtime/index",
       "conceptual/runtime/weight",
       "conceptual/runtime/primitives",
       "development/module/execution",
