@@ -1,7 +1,6 @@
 ---
+id: getting-started
 title: Getting Started
-id: version-pre-2.0-getting-started
-original_id: getting-started
 ---
 
 This page has everything you need to get started building with Substrate.
@@ -19,6 +18,18 @@ Know that we are very happy to help you get started building with Substrate, so 
 
 To develop in the Substrate ecosystem, you must set up your developer environment. Depending on your operating system, these instructions may be different.
 
+## Fast Installation 
+
+### Unix Based Operating Systems
+
+Mac OS, Arch, or a Debian-based OS like Ubuntu:
+
+```bash
+curl https://getsubstrate.io -sSf | bash
+```
+
+## Manual Installation
+
 ### Debian
 
 Run:
@@ -27,7 +38,7 @@ Run:
 sudo apt install -y cmake pkg-config libssl-dev git gcc build-essential clang libclang-dev
 ```
 
-### macOS
+### MacOS
 
 Install the [Homebrew package manager](https://brew.sh/), then run:
 
@@ -62,10 +73,8 @@ Substrate uses WebAssembly (Wasm), and you will need to configure your Rust comp
 Run the following:
 
 ```bash
-rustup install nightly
+rustup update nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
-# Install `wasm-gc`. It's useful for slimming down Wasm binaries.
-cargo +nightly install --git https://github.com/alexcrichton/wasm-gc --force
 ```
 
 ### Rustup Update
@@ -96,10 +105,10 @@ The main Substrate project contains all core libraries which power Substrate-bas
 
 This starting point makes sense if you plan to contribute to the Substrate project or if you want to run the Substrate testnet or Subkey.
 
-Get the project at:
+Get the project:
 
 ```
-https://github.com/paritytech/substrate
+git clone https://github.com/paritytech/substrate
 ```
 
 Build the project with:
@@ -127,7 +136,7 @@ You can install the Substrate node binary locally for easy access to running a n
 In the Substrate project folder, run:
 
 ```
-cargo install --force --path ./ substrate
+cargo install --force --path ./bin/node/cli/
 ```
 
 You can then run this generated binary with:
@@ -151,6 +160,17 @@ You can then run this generated binary with:
 ```bash
 subkey
 ```
+
+## Interact with Substrate
+
+The fastest way to interact with any local or public Substrate network is to visit Polkadot-JS Apps:
+
+[https://polkadot.js.org/apps/](https://polkadot.js.org/apps/)
+
+You can find the docs for the Polkadot-JS ecosystem at:
+
+[https://polkadot.js.org/](https://polkadot.js.org/)
+
 
 ### Substrate Node Template
 
@@ -206,16 +226,6 @@ yarn start
 Connect to the front-end at [`localhost:8000`](http://localhost:8000).
 
 > **Note:** You need to have a local Substrate node running to interact with this UI.
-
-## Interact with Substrate
-
-The fastest way to interact with any local or public Substrate network is to visit Polkadot-JS Apps:
-
-[https://polkadot.js.org/apps/](https://polkadot.js.org/apps/)
-
-You can find the docs for the Polkadot-JS ecosystem at:
-
-[https://polkadot.js.org/](https://polkadot.js.org/)
 
 ## Getting Started On Windows
 
@@ -276,3 +286,5 @@ If you are trying to set up a Windows computer to build Substrate, do the follow
     ```
 
 8. Finally, install `cmake`: https://cmake.org/download/
+
+You can now jump back to [Get the Source](#get-the-source) to learn how to download and compile Substrate!
