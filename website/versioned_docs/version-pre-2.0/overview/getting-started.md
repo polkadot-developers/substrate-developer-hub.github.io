@@ -1,6 +1,7 @@
 ---
-id: getting-started
 title: Getting Started
+id: version-pre-2.0-getting-started
+original_id: getting-started
 ---
 
 This page has everything you need to get started building with Substrate.
