@@ -1,7 +1,7 @@
 ---
 title: Creating Your Private Network
 ---
-Now that each participant has their own keys generated, you're ready to start your own custom chain.
+Now that each participant has their own keys generated, you're ready to start your own custom chain. In this section it is no longer required to use a single physical machine or a single binary.
 
 > Validators should not share the same keys, even for learning purposes. If two validators have the
 > same keys, they will produce conflicting blocks and be slashed.
