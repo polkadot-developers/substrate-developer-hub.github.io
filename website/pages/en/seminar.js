@@ -172,6 +172,51 @@ function Seminar(props) {
 
 					<div className='row featured-video pt-0'>
 
+          <div className='col-md-4'>
+            <section className='video-cover video-cover-xs'>
+              <div
+                className='background-image-holder'
+                style={{
+                  backgroundImage: `url('/img/seminar-t.jpg' )`
+                }}
+              />
+              <a
+                className='video-play'
+                href='https://www.youtube.com/watch?v=lKpp6-4OHwA&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=5'
+                target='_blank'
+              />
+            </section>
+            <section className='video-details'>
+              <h4 className='p-color'>Offchain Workers</h4>
+              <p>
+                Jimmy Chu joins us to talk about offchain workers and his price-fetching demonstration.
+              </p>
+            </section>
+          </div>
+
+          <div className='col-md-4'>
+            <section className='video-cover video-cover-xs'>
+              <div
+                className='background-image-holder'
+                style={{
+                  backgroundImage: `url('/img/seminar-t.jpg' )`
+                }}
+              />
+              <a
+                className='video-play'
+                href='https://www.youtube.com/watch?v=lKpp6-4OHwA&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=5'
+                target='_blank'
+              />
+            </section>
+            <section className='video-details'>
+              <h4 className='p-color'>Offchain Workers</h4>
+              <p>
+                Jimmy Chu joins us to talk about offchain workers and his price-fetching demonstration.
+              </p>
+            </section>
+          </div>
+
+
 	          <div className='col-md-4'>
 	            <section className='video-cover video-cover-xs'>
 	              <div
@@ -180,7 +225,6 @@ function Seminar(props) {
 	                  backgroundImage: `url('/img/seminar-t.jpg' )`
 	                }}
 	              />
-
 	              <a
 	                className='video-play'
 	                href='https://www.youtube.com/watch?v=lKpp6-4OHwA&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=5'
@@ -194,50 +238,6 @@ function Seminar(props) {
 	              </p>
 	            </section>
 	          </div>
-
-						<div className='col-md-4'>
-							<section className='video-cover video-cover-xs'>
-								<div
-									className='background-image-holder'
-									style={{
-										backgroundImage: `url('/img/seminar-t.jpg' )`
-									}}
-								/>
-
-								<a
-									className='video-play'
-									href='https://www.youtube.com/watch?v=yHodYke7nms&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=4'
-									target='_blank'
-								/>
-							</section>
-							<section className='video-details'>
-								<h4 className='p-color'>Forkless Upgrades, and Substrate Recipes</h4>
-								<p>We discuss forkless runtime upgrades, and perform a demonstration...</p>
-							</section>
-						</div>
-						<div className='col-md-4'>
-							<section className='video-cover video-cover-xs'>
-								<div
-									className='background-image-holder'
-									style={{
-										backgroundImage: `url('/img/seminar-t.jpg' )`
-									}}
-								/>
-
-								<a
-									className='video-play'
-									href='https://www.youtube.com/watch?v=cL6UFeoiMVw&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=3'
-									target='_blank'
-								/>
-							</section>
-							<section className='video-details'>
-								<h4 className='p-color'>Playground and Cumulus</h4>
-								<p>
-									This week we look at Substrate Playground, and preview the Cumulus workshop to be
-									presented at Sub0...
-								</p>
-							</section>
-						</div>
 
 					</div>
 				</div>
