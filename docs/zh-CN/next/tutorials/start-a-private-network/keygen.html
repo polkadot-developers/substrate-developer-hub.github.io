@@ -78,8 +78,9 @@
 <p>Begin by compiling and installing the utility. This may take up to 15 minutes or so.</p>
 <pre><code class="hljs css language-bash">cargo <span class="token function">install</span> --force subkey --git https://github.com/paritytech/substrate
 </code></pre>
+<p>We will need to generate at least <strong>2</strong> keys from each type. Every node will need to have its own keys.</p>
 <p>Generate a mnemonic and see the <code>sr25519</code> key and address associated with it. This key will be used by Aura for block production.</p>
-<pre><code class="hljs css language-bash">$ subkey generate
+<pre><code class="hljs css language-bash">$ subkey --sr25519 generate
 Secret phrase <span class="token variable"><span class="token variable">`</span>keep matrix knee meat awake frown rubber position federal easily strategy inhale<span class="token variable">`</span></span> is account:
   Secret seed: 0xb5d5cda89e139aecb67181e11d6d2d90a0cc80106afa035ab19264af7b5e5c0b
   Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x8ed5f822065e5824d3e37d9ea36a81eacb98ff1a6fa04bb87d2fa4915e9ed147
