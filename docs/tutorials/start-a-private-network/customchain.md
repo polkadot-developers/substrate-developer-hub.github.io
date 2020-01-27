@@ -43,14 +43,14 @@ indicated by **"grandpa"** field. That section looks like this
       },
       "aura": {
         "authorities": [
-          "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY",
+          "5FfBQ3kwXrbdyoqLPvcXRp7ikWydXawpNs2Ceu3WwFdhZ8W4",
           "5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty"
         ]
       },
       "grandpa": {
         "authorities": [
           [
-            "5FA9nQDVg267DEd8m1ZypXLBnvN7SFxYwV7ndqSYGiN9TTpu",
+            "5G9NWJ5P9uk7am24yCKeLZJqXWW6hjuMyRJDmw4ofqxG8Js2",
             1
           ],
           [
@@ -147,7 +147,7 @@ you need to add your keys into the keystore.
 
 You can use the Apps UI to insert your keys into the keystore. Navigate to the "Toolbox" tab and the "RPC Call" sub-tab. Choose "author" and "insertKey". The fields can be filled like this:
 
-![Inserting a Grandpa key using Apps](/docs/assets/private-network-apps-insert-key-aura.png)
+![Inserting a Aura key using Apps](/docs/assets/private-network-apps-insert-key-aura.png)
 
 ```
 keytype: aura
