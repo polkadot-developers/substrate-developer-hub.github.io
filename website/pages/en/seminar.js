@@ -172,72 +172,72 @@ function Seminar(props) {
 
 					<div className='row featured-video pt-0'>
 
-          <div className='col-md-4'>
-            <section className='video-cover video-cover-xs'>
-              <div
-                className='background-image-holder'
-                style={{
-                  backgroundImage: `url('/img/seminar-t.jpg' )`
-                }}
-              />
-              <a
-                className='video-play'
-                href='https://www.youtube.com/watch?v=lKpp6-4OHwA&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=5'
-                target='_blank'
-              />
-            </section>
-            <section className='video-details'>
-              <h4 className='p-color'>Offchain Workers</h4>
-              <p>
-                Jimmy Chu joins us to talk about offchain workers and his price-fetching demonstration.
-              </p>
-            </section>
-          </div>
+					<div className='col-md-4'>
+						<section className='video-cover video-cover-xs'>
+							<div
+								className='background-image-holder'
+								style={{
+									backgroundImage: `url('/img/seminar-t.jpg' )`
+								}}
+							/>
+							<a
+								className='video-play'
+								href='https://www.youtube.com/watch?v=b3HIXufMHnc&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=1'
+								target='_blank'
+							/>
+						</section>
+						<section className='video-details'>
+							<h4 className='p-color'>Wasm Smart Contracts</h4>
+							<p>
+								Ricardo Ruis demonstrats wasm-bsaed smart contracts, and some advanced way for them to interact with the runtime. We also look at a community API Explorer project.
+							</p>
+						</section>
+					</div>
 
-          <div className='col-md-4'>
-            <section className='video-cover video-cover-xs'>
-              <div
-                className='background-image-holder'
-                style={{
-                  backgroundImage: `url('/img/seminar-t.jpg' )`
-                }}
-              />
-              <a
-                className='video-play'
-                href='https://www.youtube.com/watch?v=lKpp6-4OHwA&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=5'
-                target='_blank'
-              />
-            </section>
-            <section className='video-details'>
-              <h4 className='p-color'>Offchain Workers</h4>
-              <p>
-                Jimmy Chu joins us to talk about offchain workers and his price-fetching demonstration.
-              </p>
-            </section>
-          </div>
+					<div className='col-md-4'>
+						<section className='video-cover video-cover-xs'>
+							<div
+								className='background-image-holder'
+								style={{
+									backgroundImage: `url('/img/seminar-t.jpg' )`
+								}}
+							/>
+							<a
+								className='video-play'
+								href='https://www.youtube.com/watch?v=abdyjAL1yGA&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=2'
+								target='_blank'
+							/>
+						</section>
+						<section className='video-details'>
+							<h4 className='p-color'>Custom RPCs, Runtime APIs, and Moonbeam DEX</h4>
+							<p>
+								Learn to add your own RPC endpoints to the node and have them communicate with the runtime. We also look at a community DEX Project.
+							</p>
+						</section>
+					</div>
 
 
-	          <div className='col-md-4'>
-	            <section className='video-cover video-cover-xs'>
-	              <div
-	                className='background-image-holder'
-	                style={{
-	                  backgroundImage: `url('/img/seminar-t.jpg' )`
-	                }}
-	              />
-	              <a
-	                className='video-play'
-	                href='https://www.youtube.com/watch?v=lKpp6-4OHwA&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=5'
-	                target='_blank'
-	              />
-	            </section>
-	            <section className='video-details'>
-	              <h4 className='p-color'>Offchain Workers</h4>
-	              <p>
-	                Jimmy Chu joins us to talk about offchain workers and his price-fetching demonstration.
-	              </p>
-	            </section>
-	          </div>
+						<div className='col-md-4'>
+							<section className='video-cover video-cover-xs'>
+								<div
+									className='background-image-holder'
+									style={{
+										backgroundImage: `url('/img/seminar-t.jpg' )`
+									}}
+								/>
+								<a
+									className='video-play'
+									href='https://www.youtube.com/watch?v=lKpp6-4OHwA&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=3'
+									target='_blank'
+								/>
+							</section>
+							<section className='video-details'>
+								<h4 className='p-color'>Offchain Workers</h4>
+								<p>
+									Jimmy Chu joins us to talk about offchain workers and his price-fetching demonstration.
+								</p>
+							</section>
+						</div>
 
 					</div>
 				</div>
