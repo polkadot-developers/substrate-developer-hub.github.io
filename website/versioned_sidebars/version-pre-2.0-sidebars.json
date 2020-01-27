@@ -64,10 +64,16 @@
     "Creating Your First Substrate Chain": [
       "version-pre-2.0-tutorials/creating-your-first-substrate-chain/index",
       "version-pre-2.0-tutorials/creating-your-first-substrate-chain/setup",
-      "version-pre-2.0-tutorials/creating-your-first-substrate-chain/learn",
-      "version-pre-2.0-tutorials/creating-your-first-substrate-chain/interact",
-      "version-pre-2.0-tutorials/creating-your-first-substrate-chain/build",
-      "version-pre-2.0-tutorials/creating-your-first-substrate-chain/front-end"
+      "version-pre-2.0-tutorials/creating-your-first-substrate-chain/background",
+      "version-pre-2.0-tutorials/creating-your-first-substrate-chain/interact"
+    ]
+  },
+  "version-pre-2.0-build-a-dapp": {
+    "Build a PoE Decentralized Application": [
+      "version-pre-2.0-tutorials/build-a-dapp/index",
+      "version-pre-2.0-tutorials/build-a-dapp/prepare",
+      "version-pre-2.0-tutorials/build-a-dapp/pallet",
+      "version-pre-2.0-tutorials/build-a-dapp/front-end"
     ]
   },
   "version-pre-2.0-start-a-private-network": {
@@ -77,6 +83,15 @@
       "version-pre-2.0-tutorials/start-a-private-network/alicebob",
       "version-pre-2.0-tutorials/start-a-private-network/keygen",
       "version-pre-2.0-tutorials/start-a-private-network/customchain"
+    ]
+  },
+  "version-pre-2.0-substrate-front-end": {
+    "Substrate Front End Tutorial": [
+      "version-pre-2.0-tutorials/substrate-front-end/index",
+      "version-pre-2.0-tutorials/substrate-front-end/part-1-connect-to-a-node",
+      "version-pre-2.0-tutorials/substrate-front-end/part-2-query-balances",
+      "version-pre-2.0-tutorials/substrate-front-end/part-3-transfer-funds",
+      "version-pre-2.0-tutorials/substrate-front-end/part-4-use-external-accounts"
     ]
   }
 }

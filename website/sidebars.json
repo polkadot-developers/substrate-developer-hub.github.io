@@ -14,7 +14,8 @@
       "conceptual/core/storage"
     ],
     "Substrate Nodes": [
-      "conceptual/node/extrinsics"
+      "conceptual/node/extrinsics",
+      "conceptual/node/tx-pool"
     ],
     "Cryptography": [
       "conceptual/cryptography/index",
@@ -64,10 +65,16 @@
     "Creating Your First Substrate Chain": [
       "tutorials/creating-your-first-substrate-chain/index",
       "tutorials/creating-your-first-substrate-chain/setup",
-      "tutorials/creating-your-first-substrate-chain/learn",
-      "tutorials/creating-your-first-substrate-chain/interact",
-      "tutorials/creating-your-first-substrate-chain/build",
-      "tutorials/creating-your-first-substrate-chain/front-end"
+      "tutorials/creating-your-first-substrate-chain/background",
+      "tutorials/creating-your-first-substrate-chain/interact"
+    ]
+  },
+  "build-a-dapp": {
+    "Build a PoE Decentralized Application": [
+      "tutorials/build-a-dapp/index",
+      "tutorials/build-a-dapp/prepare",
+      "tutorials/build-a-dapp/pallet",
+      "tutorials/build-a-dapp/front-end"
     ]
   },
   "start-a-private-network": {
@@ -77,6 +84,15 @@
       "tutorials/start-a-private-network/alicebob",
       "tutorials/start-a-private-network/keygen",
       "tutorials/start-a-private-network/customchain"
+    ]
+  },
+  "substrate-front-end": {
+    "Substrate Front End Tutorial": [
+      "tutorials/substrate-front-end/index",
+      "tutorials/substrate-front-end/part-1-connect-to-a-node",
+      "tutorials/substrate-front-end/part-2-query-balances",
+      "tutorials/substrate-front-end/part-3-transfer-funds",
+      "tutorials/substrate-front-end/part-4-use-external-accounts"
     ]
   }
 }
