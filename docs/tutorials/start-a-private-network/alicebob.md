@@ -48,7 +48,7 @@ When the node starts you should see output similar to this.
 2020-01-10 14:25:38 Loaded block-time = 6000 milliseconds from genesis on first-launch
 2020-01-10 14:25:38 Highest known block at #0
 2020-01-10 14:25:38 Using default protocol ID "sup" because none is configured in the chain specs
-2020-01-10 14:25:38 Local node identity is: QmZbVTa3n3CJUDMYCDqGPpDGwMmQJBkyGc5gRGkmYw88Pp
+2020-01-10 14:25:38 Local node identity is: QmViTYm8Yr4yneyRGov9L87vLeVLoySFduVRNQ1d33WdXN
 2020-01-10 14:25:38 Grafana data source server started at 127.0.0.1:9955
 2020-01-10 14:25:43 Idle (0 peers), best: #0 (0x05e7…019e), finalized #0 (0x05e7…019e), ⬇ 0 ⬆ 0
 2020-01-10 14:25:48 Idle (0 peers), best: #0 (0x05e7…019e), finalized #0 (0x05e7…019e), ⬇ 0 ⬆ 0
@@ -58,9 +58,9 @@ When the node starts you should see output similar to this.
 
 > **Notes**
 >
-> * `Local node identity is: QmViTYm8Yr4yneyRGov9L87vLeVLoySFduVRNQ1d33WdXN` shows the node ID that
+> * `Local node identity is: QmViTYm8Yr4yneyRGov9L87vLeVLoySFduVRNQ1d33WdXN` shows the Peer ID that
 > Bob will need when booting from Alice's node.
-> * `Initializing Genesis block/state (state: 0x4faf…3aba, header-hash: 0x8855…e564)` tells which
+> * `Initializing Genesis block/state (state: 0x4a75…ea43, header-hash: 0x05e7…019e)` tells which
 > genesis block the node is using. Bob's node must have the same hashes or they will not connect
 > to one another.
 
@@ -91,8 +91,9 @@ yarn install
 yarn run start
 ```
 
-Point your favorite web browser at `http://localhost:3000`. Apps UI by default connects to Parity Kusama
-network. To configure Apps UI to connect to your local-running node:
+If you are running Apps UI locally, it will be accesible at `http://localhost:3000`. You could also use the hosted version at `https://polkadot.js.org/apps/`
+
+Apps UI by default connects to Parity Kusama network. To configure Apps UI to connect to your local-running node:
 
   - Click on the top left network icon
 
@@ -119,7 +120,7 @@ You should now see something like this.
 > to the `ws-port` listened by the remote host. This is beyond the scope of this tutorial but is
 > referenced at the bottom.
 
-## Bob Joins In
+## Bob Joins
 
 Now that Alice's node is up and running, Bob can join the network by bootstrapping from her node.
 His command will look very similar.
@@ -134,7 +135,7 @@ His command will look very similar.
   --rpc-port 9934 \
   --telemetry-url ws://telemetry.polkadot.io:1024 \
   --validator \
-  --bootnodes /ip4/<Alices IP Address>/tcp/<Alices Port>/p2p/<Alices Node ID>
+  --bootnodes /ip4/<Alices IP Address>/tcp/<Alices Port>/p2p/<Alices Peer ID>
 ```
 
 Most of these options are already explained above, but there are a few points worth mentioning.
@@ -144,7 +145,7 @@ Most of these options are already explained above, but there are a few points wo
 * Bob has added the `--bootnodes` flag and specified a single boot node, namely Alice's. He must correctly specify these three pieces of information which Alice can supply for him.
   * Alice's IP Address, in the form `127.0.0.1`
   * Alice's Port, probably `30333`
-  * Alice's node ID, copied from her log output. (`QmZbVTa3n3CJUDMYCDqGPpDGwMmQJBkyGc5gRGkmYw88Pp`
+  * Alice's Peer ID, copied from the log output. (`QmViTYm8Yr4yneyRGov9L87vLeVLoySFduVRNQ1d33WdXN`
   in the example output above.)
 
 If all is going well, after a few seconds, the nodes should peer together and start producing blocks.
@@ -161,17 +162,17 @@ You should see some lines like the following in the console that started Alice n
 2020-01-10 14:30:36 Imported #1 (0x1368…fe12)
 2020-01-10 14:30:38 Idle (1 peers), best: #1 (0x1368…fe12), finalized #0 (0x05e7…019e), ⬇ 0.6kiB/s ⬆ 0.7kiB/s
 2020-01-10 14:30:42 Imported #2 (0xe4ee…8863)
-2020-01-10 14:30:43 Idle (1 peers), best: #2 (0xe4ee…8863), finalized #0 (0x05e7…019e), ⬇ 0.8kiB/s ⬆ 0.7kiB/s
+2020-01-10 14:30:43 Idle (1 peers), best: #2 (0xe4ee…8863), finalized #1 (0x05e7…019e), ⬇ 0.8kiB/s ⬆ 0.7kiB/s
 2020-01-10 14:30:48 Starting consensus session on top of parent 0xe4ee9d721d1b179ba83bc253871c504f48a0d4d02f304acfdccd29bfb1798863
 2020-01-10 14:30:48 Prepared block for proposing at 3 [hash: 0x83f211e9e2d24101acf8097d46c6d348308a4a354fd0d60a7768ad51e4b0cc6b; parent_hash: 0xe4ee…8863; extrinsics: [0x81fa…3ab1]]
 2020-01-10 14:30:48 Pre-sealed block for proposal at 3. Hash now 0x42f2fcfdb65c9e26700ef779a0782f6de30cb9531f8de54043e1a3b3469a0aff, previously 0x83f211e9e2d24101acf8097d46c6d348308a4a354fd0d60a7768ad51e4b0cc6b.
 2020-01-10 14:30:48 Imported #3 (0x42f2…0aff)
-2020-01-10 14:30:48 Idle (1 peers), best: #3 (0x42f2…0aff), finalized #1 (0x1368…fe12), ⬇ 1.0kiB/s ⬆ 0.9kiB/s
+2020-01-10 14:30:48 Idle (1 peers), best: #3 (0x42f2…0aff), finalized #2 (0x1368…fe12), ⬇ 1.0kiB/s ⬆ 0.9kiB/s
 ...
 ```
 
-This line shows that Bob has peered with Alice (`1 peers`), they have produced a block
-(`best: #1 (0x1368…fe12)`), and the block is finalized (`finalized #1 (0x1368…fe12)`).
+This line shows that Bob has peered with Alice (**`1 peers`**), they have produced a block
+(**`best: #1 (0x1368…fe12)`**), and the block is finalized (**`finalized #1 (0x1368…fe12)`**).
 
 Looking at the console that started Bob node, you should see something similar as above also.
 
