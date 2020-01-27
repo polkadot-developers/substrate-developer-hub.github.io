@@ -104,10 +104,10 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								At the January 14th session we will choose from a variety of potential topics including custom consensus engines, custom rpc calls, starting a network, and community-member projects.
+								At the January 28th session we will choose from a variety of potential topics including custom consensus engines, Transaction fees in alternative assets, starting a network, and community-member projects.
 							</p>
 							<p>
-								At the January 21st session, Parity's Ricardo Ruis will join us to talk about wasm-based smart contracts, and Substrate's Contracts pallet.
+								At the February 4th session, Parity's Gautam Dhameja will join us to demonstrate Proof of Authority and other Enterprise features of Substrate.
 							</p>
 							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
 							<p>
