@@ -113,7 +113,7 @@ security.
 ### References
 
 * Visit the reference docs for the [session keys runtime
-  API](https://substrate.dev/rustdocs/master/substrate_session/trait.SessionKeys.html).
+  API](https://substrate.dev/rustdocs/master/sp_session/trait.SessionKeys.html).
 
 * Take a look at the default [session keys in the Substrate node
   runtime](https://substrate.dev/rustdocs/master/node_runtime/struct.SessionKeys.html).
