@@ -24,7 +24,7 @@ decl_storage! {
 }
 ```
 
-> Specifying default values this way has the effect that if you ever [`kill`](https://substrate.dev/rustdocs/v1.0/srml_support/storage/trait.StorageValue.html#tymethod.kill) your storage value, it will revert to the specified default value.
+> Specifying default values this way has the effect that if you ever [`kill`](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html#tymethod.kill) your storage value, it will revert to the specified default value.
 
 ## Defer until Deploy Time with `config()`
 

@@ -2,7 +2,7 @@
 title: "Declaring a Module!"
 ---
 
-The `decl_module!` macro defines the public functions exposed by your module, which act as entry points to accessing your runtime. These functions should work together to build a *generally* independent set of features and functionality which will be included with your blockchain's final runtime. The main logic of the macro is defined [here](https://substrate.dev/rustdocs/v1.0/srml_support/macro.decl_module.html).
+The `decl_module!` macro defines the public functions exposed by your module, which act as entry points to accessing your runtime. These functions should work together to build a *generally* independent set of features and functionality which will be included with your blockchain's final runtime. The main logic of the macro is defined [here](https://substrate.dev/rustdocs/master/frame_support/macro.decl_module.html).
 
 Each of the different components in the [Substrate Runtime Module Library](https://github.com/paritytech/substrate/tree/master/frame) (SRML) is an example of a Runtime Module.
 
@@ -20,7 +20,7 @@ decl_module! {
 }
 ```
 
-Note that for the purposes of this example, we are taking advantage of a single storage item created by the `decl_storage` macro. We will omit the storage declaration for the purposes of this article, but you can learn more about `decl_storage` in our documentation [here](https://substrate.dev/rustdocs/v1.0/srml_support_procedural/macro.decl_storage.html).
+Note that for the purposes of this example, we are taking advantage of a single storage item created by the `decl_storage` macro. We will omit the storage declaration for the purposes of this article, but you can learn more about `decl_storage` in our documentation [here](https://substrate.dev/rustdocs/master/frame_support_procedural/macro.decl_storage.html).
 
 ## Declaration of the Module Type
 

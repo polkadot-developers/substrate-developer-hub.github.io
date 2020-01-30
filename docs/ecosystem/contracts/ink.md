@@ -8,7 +8,7 @@ Because Substrate supports Wasm smart contracts, it means that any language that
 
 ## Contracts Module
 
-The SRML Contracts module provides the ability for the runtime to deploy and execute WebAssembly smart contracts. Here we will provide a short overview of the major features of the contracts module. To really learn all of the fine details, you can take a look at the [reference documentation for `srml_contracts`](https://substrate.dev/rustdocs/v1.0/srml_contract/index.html).
+The SRML Contracts module provides the ability for the runtime to deploy and execute WebAssembly smart contracts. Here we will provide a short overview of the major features of the contracts module. To really learn all of the fine details, you can take a look at the [reference documentation for `srml_contracts`](https://substrate.dev/rustdocs/master/pallet_contracts/index.html).
 
 ### Account Based
 
