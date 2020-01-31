@@ -104,10 +104,20 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								At the January 28th session we will choose from a variety of potential topics including custom consensus engines, Transaction fees in alternative assets, starting a network, and community-member projects.
-							</p>
-							<p>
-								At the February 4th session, Parity's Gautam Dhameja will join us to demonstrate Proof of Authority and other Enterprise features of Substrate.
+								<strong>February 4th</strong> - Parity's Gautam Dhameja will join us to demonstrate{' '}
+								<a href="https://github.com/gautamdhameja/substrate-validator-set">Proof of Authority</a>
+								and other{' '}<a href="https://github.com/gautamdhameja/substrate-permissioning">Account
+								Permissioning</a> in Substrate.
+							<br />
+								<strong>February 11th</strong> - The team behind{' '}<a href="https://github.com/playproject-io/datdot-substrate">
+								Account Permissioning</a>, an incentivization system for storing files on the Dat network, join
+								us for a code walkthrough and demonstration.
+							<br />
+								<strong>February 18th</strong> - Andre Silva and Seun Lanlege join us to talk all things consensus in
+								Substrate.
+							<br />
+								<strong>February 25th</strong> - Kian Paimani joins us to discuss Phragmen's algorithm and Substrate's
+								offline Phragmen feature.
 							</p>
 							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
 							<p>
@@ -129,6 +139,12 @@ function Seminar(props) {
 						</div>
 
 						<div className='col-md-6 second'>
+							<h4 className='mb-2'>How should I prepare for the call?</h4>
+							<p>
+								Follow and read the links provided in the week's description. If any repositories are
+								linked, clone them. If you'd like to run the node, compile it in advance.
+							</p>
+
 							<h4 className='mb-2'>I am not a [Substrate] developer, can I still participate?</h4>
 							<p>
 								Yes! The seminar is open to everyone. The content is generally more developer-oriented,
@@ -172,50 +188,27 @@ function Seminar(props) {
 
 					<div className='row featured-video pt-0'>
 
-					<div className='col-md-4'>
-						<section className='video-cover video-cover-xs'>
-							<div
-								className='background-image-holder'
-								style={{
-									backgroundImage: `url('/img/seminar-t.jpg' )`
-								}}
-							/>
-							<a
-								className='video-play'
-								href='https://www.youtube.com/watch?v=b3HIXufMHnc&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=1'
-								target='_blank'
-							/>
-						</section>
-						<section className='video-details'>
-							<h4 className='p-color'>Wasm Smart Contracts</h4>
-							<p>
-								Ricardo Ruis demonstrats wasm-bsaed smart contracts, and some advanced way for them to interact with the runtime. We also look at a community API Explorer project.
-							</p>
-						</section>
-					</div>
-
-					<div className='col-md-4'>
-						<section className='video-cover video-cover-xs'>
-							<div
-								className='background-image-holder'
-								style={{
-									backgroundImage: `url('/img/seminar-t.jpg' )`
-								}}
-							/>
-							<a
-								className='video-play'
-								href='https://www.youtube.com/watch?v=abdyjAL1yGA&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=2'
-								target='_blank'
-							/>
-						</section>
-						<section className='video-details'>
-							<h4 className='p-color'>Custom RPCs, Runtime APIs, and Moonbeam DEX</h4>
-							<p>
-								Learn to add your own RPC endpoints to the node and have them communicate with the runtime. We also look at a community DEX Project.
-							</p>
-						</section>
-					</div>
-
+						<div className='col-md-4'>
+							<section className='video-cover video-cover-xs'>
+								<div
+									className='background-image-holder'
+									style={{
+										backgroundImage: `url('/img/seminar-t.jpg' )`
+									}}
+								/>
+								<a
+									className='video-play'
+									href='https://www.youtube.com/watch?v=7qkqEfToH8w&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									target='_blank'
+								/>
+							</section>
+							<section className='video-details'>
+								<h4 className='p-color'>Six ways to Launch a Token</h4>
+								<p>
+									We demonstrate several ways to launch tokens with Substrate, explore transaction fees, and take a closer look at the EVM module.
+								</p>
+							</section>
+						</div>
 
 						<div className='col-md-4'>
 							<section className='video-cover video-cover-xs'>
@@ -227,19 +220,41 @@ function Seminar(props) {
 								/>
 								<a
 									className='video-play'
-									href='https://www.youtube.com/watch?v=lKpp6-4OHwA&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=3'
+									href='https://www.youtube.com/watch?v=b3HIXufMHnc&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
 							</section>
 							<section className='video-details'>
-								<h4 className='p-color'>Offchain Workers</h4>
+								<h4 className='p-color'>Wasm Smart Contracts</h4>
 								<p>
-									Jimmy Chu joins us to talk about offchain workers and his price-fetching demonstration.
+									Ricardo Ruis demonstrats wasm-bsaed smart contracts, and some advanced way for them to interact with the runtime. We also look at a community API Explorer project.
 								</p>
 							</section>
 						</div>
 
+						<div className='col-md-4'>
+							<section className='video-cover video-cover-xs'>
+								<div
+									className='background-image-holder'
+									style={{
+										backgroundImage: `url('/img/seminar-t.jpg' )`
+									}}
+								/>
+								<a
+									className='video-play'
+									href='https://www.youtube.com/watch?v=abdyjAL1yGA&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									target='_blank'
+								/>
+							</section>
+							<section className='video-details'>
+								<h4 className='p-color'>Custom RPCs, Runtime APIs, and Moonbeam DEX</h4>
+								<p>
+									Learn to add your own RPC endpoints to the node and have them communicate with the runtime. We also look at a community DEX Project.
+								</p>
+							</section>
+						</div>
 					</div>
+
 				</div>
 
 				<div
