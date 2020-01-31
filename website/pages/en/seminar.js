@@ -104,10 +104,10 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								February 4th - Parity's Gautam Dhameja will join us to demonstrate [Proof of Authority](https://github.com/gautamdhameja/substrate-validator-set) and other [Account Permissioning](https://github.com/gautamdhameja/substrate-permissioning) in Substrate.
+								February 4th - Parity's Gautam Dhameja will join us to demonstrate <a href="https://github.com/gautamdhameja/substrate-validator-set">Proof of Authority</a> and other <a href="https://github.com/gautamdhameja/substrate-permissioning">Account Permissioning</a> in Substrate.
 							</p>
 							<p>
-								February 11th - The team behind [DatDot](https://github.com/playproject-io/datdot-substrate), an incentivization system for storing files on the Dat network, join us for a code walkthrough and demonstration.
+								February 11th - The team behind <a href="https://github.com/playproject-io/datdot-substrate">Account Permissioning</a>, an incentivization system for storing files on the Dat network, join us for a code walkthrough and demonstration.
 							</p>
 							<p>
 								February 18th - Andre Silva and Seun Lanlege join us to talk all things consensus in Substrate.
