@@ -78,4 +78,4 @@ The `validate_transaction` function should focus on providing the necessary info
 ## Further Reading
 
 - [Extrinsics](conceptual/node/extrinsics.md)
-- [Transaction Fees](development/module/fees.md)
+<!-- TODO - [Transaction Fees](development/module/fees.md) -->

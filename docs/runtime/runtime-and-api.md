@@ -3,7 +3,7 @@ title: "Runtime and API"
 ---
 All Substrate chains have a runtime. The runtime is a WebAssembly binary blob that includes a number of entry-points known to the node. Two core entry-points are required as part of the Substrate specification: `execute_block` and `version`. Entry-points are grouped into API feature sets and (in Rust, at least) expressed as traits known as *API traits*. The two that are required are grouped as the *Core* API trait.
 
-APIs beyond Core may be provided to add or support other functionality of the blockchain client. There are a number of standard APIs that help provide functionality for common (though optional) Substrate client components including for runtime module metadata, block authoring and the transaction queue.
+APIs beyond Core may be provided to add or support other functionality of the blockchain client. There are a number of standard APIs that help provide functionality for common (though optional) Substrate client components including for pallet metadata, block authoring and the transaction queue.
 
 ## Declaring APIs
 
