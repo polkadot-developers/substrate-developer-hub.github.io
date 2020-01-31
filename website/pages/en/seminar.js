@@ -104,16 +104,23 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								February 4th - Parity's Gautam Dhameja will join us to demonstrate <a href="https://github.com/gautamdhameja/substrate-validator-set">Proof of Authority</a> and other <a href="https://github.com/gautamdhameja/substrate-permissioning">Account Permissioning</a> in Substrate.
+								February 4th - Parity's Gautam Dhameja will join us to demonstrate{' '}
+								<a href="https://github.com/gautamdhameja/substrate-validator-set">Proof of Authority</a>
+								and other{' '}<a href="https://github.com/gautamdhameja/substrate-permissioning">Account
+								Permissioning</a> in Substrate.
 							</p>
 							<p>
-								February 11th - The team behind <a href="https://github.com/playproject-io/datdot-substrate">Account Permissioning</a>, an incentivization system for storing files on the Dat network, join us for a code walkthrough and demonstration.
+								February 11th - The team behind{' '}<a href="https://github.com/playproject-io/datdot-substrate">
+								Account Permissioning</a>, an incentivization system for storing files on the Dat network, join
+								us for a code walkthrough and demonstration.
 							</p>
 							<p>
-								February 18th - Andre Silva and Seun Lanlege join us to talk all things consensus in Substrate.
+								February 18th - Andre Silva and Seun Lanlege join us to talk all things consensus in
+								Substrate.
 							</p>
 							<p>
-								February 25th - Kian Paimani joins us to discuss Phragmen's algorithm and Substrate's offline Phragmen feature.
+								February 25th - Kian Paimani joins us to discuss Phragmen's algorithm and Substrate's
+								offline Phragmen feature.
 							</p>
 							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
 							<p>
@@ -137,7 +144,8 @@ function Seminar(props) {
 						<div className='col-md-6 second'>
 							<h4 className='mb-2'>How should I prepare for the call?</h4>
 							<p>
-								Follow and read the links provided in the week's description. If any repositories are linked, clone them. If you'd like to run the node, compile it in advance.
+								Follow and read the links provided in the week's description. If any repositories are
+								linked, clone them. If you'd like to run the node, compile it in advance.
 							</p>
 
 							<h4 className='mb-2'>I am not a [Substrate] developer, can I still participate?</h4>
