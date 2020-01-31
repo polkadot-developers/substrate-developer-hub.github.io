@@ -92,5 +92,5 @@ protection logic that is needed by the transaction pool.
 
 - [Reference Documentation](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Extrinsic.html)
 - [Runtime Execution](development/module/execution.md)
-<!-- TODO - [Transaction Fees](development/module/fees.md) -->
+- [Transaction Fees](development/module/fees.md)
 <!-- TODO - [Transaction Pool](conceptual/node/tx-pool.md) -->
