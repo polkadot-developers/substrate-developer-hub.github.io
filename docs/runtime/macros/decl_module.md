@@ -1,10 +1,10 @@
 ---
-title: "Declaring a Module!"
+title: "Declaring a Pallet!"
 ---
 
-The `decl_module!` macro defines the public functions exposed by your module, which act as entry points to accessing your runtime. These functions should work together to build a *generally* independent set of features and functionality which will be included with your blockchain's final runtime. The main logic of the macro is defined [here](https://substrate.dev/rustdocs/v1.0/srml_support/macro.decl_module.html).
+The `decl_module!` macro defines the public functions exposed by your pallet, which act as entry points to accessing your runtime. These functions should work together to build a *generally* independent set of features and functionality which will be included with your blockchain's final runtime. The main logic of the macro is defined [here](https://substrate.dev/rustdocs/master/frame_support/macro.decl_module.html).
 
-Each of the different components in the [Substrate Runtime Module Library](https://github.com/paritytech/substrate/tree/master/frame) (SRML) is an example of a Runtime Module.
+Each of the different components in [FRAME](https://github.com/paritytech/substrate/tree/master/frame) is an example of a Pallet.
 
 We will start by looking at the `decl_module` macro in it's most simple form:
 
@@ -20,7 +20,7 @@ decl_module! {
 }
 ```
 
-Note that for the purposes of this example, we are taking advantage of a single storage item created by the `decl_storage` macro. We will omit the storage declaration for the purposes of this article, but you can learn more about `decl_storage` in our documentation [here](https://substrate.dev/rustdocs/v1.0/srml_support_procedural/macro.decl_storage.html).
+Note that for the purposes of this example, we are taking advantage of a single storage item created by the `decl_storage` macro. We will omit the storage declaration for the purposes of this article, but you can learn more about `decl_storage` in our documentation [here](https://substrate.dev/rustdocs/master/frame_support_procedural/macro.decl_storage.html).
 
 ## Declaration of the Module Type
 
@@ -30,21 +30,21 @@ The first line in the `decl_module` macro defines the `Module` type which is use
 pub struct Module<T: Trait> for enum Call where origin: T::Origin
 ```
 
-This line is using custom syntax expected by the `decl_module` macro and is not standard Rust. For most module development, you will not need to modify this line.
+This line is using custom syntax expected by the `decl_module` macro and is not standard Rust. For most pallets development, you will not need to modify this line.
 
-`Module` is defined to use the generic `T` which represents the `Trait` type defined for the module. Functions inside the Module can then use this generic to access custom types.
+`Module` is defined to use the generic `T` which represents the `Trait` type defined for the module. Functions inside the Pallet can then use this generic to access custom types.
 
 An `enum` is also defined with the name `Call`, which is expected by the `construct_runtime` macro. The functions defined in `decl_module` are dispatched into this `enum`, with the function names and parameters clearly defined. This structure is publicly exposed by your runtime to allow for downstream APIs and front-ends to easily interact.
 
-Finally, `origin: T::Origin` is a optimization made to simplify the parameter definition of functions in `decl_module`. We are just saying that the `origin` variable used in the function has type `Trait::Origin` which is usually defined by the `system` module.
+Finally, `origin: T::Origin` is a optimization made to simplify the parameter definition of functions in `decl_module`. We are just saying that the `origin` variable used in the function has type `Trait::Origin` which is usually defined by the `system` library.
 
 ## Functional Requirements
 
-To ensure that your module functions as intended, you need to follow these rules when developing module functions.
+To ensure that your pallet functions as intended, you need to follow these rules when developing pallet functions.
 
 ### Must Not Panic
 
-Under no circumstances should a module function `panic`. A `panic` in your runtime module can lead to a potential denial of service (DoS) attack. If your runtime has the ability to panic, a malicious user could send a transaction which does a lot of computational work, cause the runtime to panic, and then because of the panic, avoid paying any fees related to that computational work. None of the computation done before the panic gets charged for since a panic will always revert any prior changes to the storage, including payment taken.
+Under no circumstances should a pallet function `panic`. A `panic` in your pallet can lead to a potential denial of service (DoS) attack. If your runtime has the ability to panic, a malicious user could send a transaction which does a lot of computational work, cause the runtime to panic, and then because of the panic, avoid paying any fees related to that computational work. None of the computation done before the panic gets charged for since a panic will always revert any prior changes to the storage, including payment taken.
 
 Such an attack will only affect the node receiving an extrinsic directly. The node will compute an extrinsic up until the point of panic. After the panic, it will discard the extrinsic, but still be able to produce a block. The one exception here is a `panic` in `on_initialise` or `on_finalise`, which will actually brick your node since it will be unable to produce a block, as these functions are always called for each block being produced.
 
@@ -66,7 +66,7 @@ You will have to be conscious of any changes you make to the state of your block
 
 ### Function Return
 
-Dispatchable functions in your module cannot return a value. Instead it can only return a `Result` which accepts either `Ok(())` when everything has completed successfully or `Err(&'static str)` if something goes wrong.
+Dispatchable functions in your pallet cannot return a value. Instead it can only return a `Result` which accepts either `Ok(())` when everything has completed successfully or `Err(&'static str)` if something goes wrong.
 
 If you do not specify `Result` explicitly as return value, it will be added automatically for you by the `decl_module!` macro and `Ok(())` will be returned at the end.
 
@@ -89,13 +89,13 @@ You can still return an `Err()` at other points in your code like normal.
 
 Ensure that calls into each of these execute in a time, memory and using storage space proportional to any costs paid for by the caller or otherwise the difficulty of forcing the call to happen.
 
-If you can't be certain that your module function will succeed without substantial computation then you have a classic blockchain attack scenario. The normal way of managing this is to attach a bond to the operation. As the first major alteration of storage, reserve some value from the sender's account (`Balances` module has a `reserve` function for exactly this scenario). This amount should be enough to cover any costs of the substantial execution in case it turns out that you can't proceed with the operation.
+If you can't be certain that your pallet function will succeed without substantial computation then you have a classic blockchain attack scenario. The normal way of managing this is to attach a bond to the operation. As the first major alteration of storage, reserve some value from the sender's account (`Balances` pallet has a `reserve` function for exactly this scenario). This amount should be enough to cover any costs of the substantial execution in case it turns out that you can't proceed with the operation.
 
 If it eventually transpires that the operation is fine and, therefore, that the expense of the checks should be borne by the network, then you can refund the reserved deposit. If, however, the operation turns out to be invalid and the computation is wasted, then you can burn it or repatriate elsewhere.
 
 ### Check Origin
 
-All functions use `origin` to determine the origin of the call. Modules support checking against one of three `origin` types:
+All functions use `origin` to determine the origin of the call. Pallets support checking against one of three `origin` types:
 
  * Signed Extrinsic - `ensure_signed(origin)?`
  * Inherent Extrinsic - `ensure_inherent(origin)?`
@@ -107,7 +107,7 @@ You can learn more about `Origin` [here](TODO: Create Doc)
 
 ## Reserved Functions
 
-While you are generally able to name your function anything you want in your module, there are a few functions names which are reserved, and carry with it special functionality that you can access in your module.
+While you are generally able to name your function anything you want in your pallet, there are a few functions names which are reserved, and carry with it special functionality that you can access in your pallet.
 
 ### deposit_event()
 
@@ -141,7 +141,7 @@ decl_module! {
 }
 ```
 
-We have omitted the `decl_event` macro definition required for this module to work. You can learn more about events and the `decl_event!` macro [here] (Coming Soon)
+We have omitted the `decl_event` macro definition required for this pallet to work. You can learn more about events and the `decl_event!` macro [here] (Coming Soon)
 
 ### on_initialise() and on_finalise()
 
@@ -169,7 +169,7 @@ You might use `on_initalise()` to help you with tasks that need to run before an
 
 ## Privileged Functions
 
-A privileged function is one that can only be called when the origin of the call is `Root`. An example of a privileged function can be found in the [`Consensus` module](https://github.com/paritytech/substrate/blob/master/frame/consensus/src/lib.rs) for a runtime upgrade:
+A privileged function is one that can only be called when the origin of the call is `Root`. An example of a privileged function can be found in the [`Consensus` pallet](https://github.com/paritytech/substrate/blob/master/frame/consensus/src/lib.rs) for a runtime upgrade:
 
 ```rust
 /// Set the new code.
@@ -193,4 +193,4 @@ Where `Result` and `Ok(())` were automatically added as mentioned in [Function R
 
 Different runtimes have different reasons for allow privileged calls to be executed. Because it's privileged, we can assume it's a one-off operation and substantial processing/storage/memory can be used without worrying about gameability or attack scenarios.
 
-Normally, functions like this would be called via the `sudo()` function in the [`Sudo` module](https://github.com/paritytech/substrate/blob/master/frame/sudo/src/lib.rs) which can construct a `Root` call based on a proposal coming from a user.
+Normally, functions like this would be called via the `sudo()` function in the [`Sudo` pallet](https://github.com/paritytech/substrate/blob/master/frame/sudo/src/lib.rs) which can construct a `Root` call based on a proposal coming from a user.

@@ -7,17 +7,17 @@ Inspecting a Runtime's Metadata can help you out in the following scenarios:
 * You want to interact with a Substrate blockchain, but don't have much idea about what features the blockchain provides.
 * You want to show the available storage entries and dispatchable functions for users who are using the GUI.
 
-Substrate provides module-based metadata to give an overview of your blockchain runtime. It helps an external client to introspect each module's, storage items, dispatchable functions, and events.
+Substrate provides pallet-based metadata to give an overview of your blockchain runtime. It helps an external client to introspect each pallet's, storage items, dispatchable functions, and events.
 
 ## SRML Metadata
 
-In Substrate, the runtime metadata is consolidated and encoded automatically when developing runtime modules. The built-in [Metadata module](https://substrate.dev/rustdocs/v1.0/srml_metadata/index.html) doesn't provide any additional storage entries, dispatchable functions or events. It simply provides the data structure to store the metadata of your blockchain runtime, and related codec to convert between raw data and bytes literal in [SCALE (Simple Concatenated Aggregate Little-Endian)](overview/low-level-data-format.md) format.
+In Substrate, the runtime metadata is consolidated and encoded automatically when developing pallets. The built-in [Metadata pallet](https://substrate.dev/rustdocs/master/frame_metadata/index.html) doesn't provide any additional storage entries, dispatchable functions or events. It simply provides the data structure to store the metadata of your blockchain runtime, and related codec to convert between raw data and bytes literal in [SCALE (Simple Concatenated Aggregate Little-Endian)](overview/low-level-data-format.md) format.
 
-Before we dive into more detail, let's have a quick look at what information is included in the metadata. For demo purposes, we'll only show metadata of the [Sudo module](https://substrate.dev/rustdocs/v1.0/srml_sudo/index.html) in JSON format:
+Before we dive into more detail, let's have a quick look at what information is included in the metadata. For demo purposes, we'll only show metadata of the [Sudo pallet](https://substrate.dev/rustdocs/master/pallet_sudo/index.html) in JSON format:
 
 ```json
 {
-    "modules":[
+    "pallets":[
         {
             "name":"sudo",
             "prefix":"Sudo",
@@ -66,15 +66,15 @@ Before we dive into more detail, let's have a quick look at what information is 
 }
 ```
 
-> Here we are using `V4` of the runtime metadata. Go to [its reference document](https://substrate.dev/rustdocs/v1.0/srml_metadata/enum.RuntimeMetadata.html) for more versioning information.
+> Here we are using `V4` of the runtime metadata. Go to [its reference document](https://substrate.dev/rustdocs/master/frame_metadata/enum.RuntimeMetadata.html) for more versioning information.
 
-The metadata of an entire runtime is an array of its modules' metadata, including all SRML and custom runtime modules in your blockchain. You can also find [the decoded metadata](https://github.com/polkadot-js/api/blob/master/packages/types/src/Metadata/v4/latest.substrate.v4.json) of all built-in modules in Polkadot-js/api.
+The metadata of an entire runtime is an array of its pallets' metadata, including all FRAME and custom runtime pallets in your blockchain. You can also find [the decoded metadata](https://github.com/polkadot-js/api/blob/master/packages/types/src/Metadata/v4/latest.substrate.v4.json) of all built-in pallets in Polkadot-js/api.
 
-Now let's walk through each field in module's metadata:
+Now let's walk through each field in pallets's metadata:
 
-* `name`: the module's name.
-* `prefix`: the name of module's store.
-* `storage`: all the available storage entries in the module. Each storage entry is composed of:
+* `name`: the pallet's name.
+* `prefix`: the name of pallet's store.
+* `storage`: all the available storage entries in the pallet. Each storage entry is composed of:
   * `name`: the storage entry's name.
   * `modifier`: whether the entry is `Optional` or `Default`.
   * `type`: the type of the storage entry, could be `PlainType`, `MapType` or `DoubleMapType`.
@@ -84,7 +84,7 @@ Now let's walk through each field in module's metadata:
   * `name`: the function's name.
   * `args`: the arguments in function's definition, each includes parameter name and type.
   * `documentation`: notes for the function.
-* `event`: all the defined events in a module:
+* `event`: all the defined events in a pallet:
   * `name`: the event's name.
   * `args`: the arguments in the event definition.
   * `documentation`: notes for the event.
@@ -124,8 +124,8 @@ The response looks like following contents, but with much more information in `r
 
 The hexadecimal string in the `result` field wraps the runtime metadata in SCALE format. Go to [Low-level Data Format](overview/low-level-data-format.md) page to learn how to decode different types and get more information about the specification and implementations.
 
-Our hex blob starts with a hard coded magic number `6d657461` which represents *meta* in plain text. The next piece of data shows the version number of the metadata, here we are using `04` to represent version 4. We already mentioned that runtime metadata is composed by available modules. In our case we have 9 modules. After shifting 9 in binary representation two bits to the left, we get `24` in hex to represent the length of the array.
+Our hex blob starts with a hard coded magic number `6d657461` which represents *meta* in plain text. The next piece of data shows the version number of the metadata, here we are using `04` to represent version 4. We already mentioned that runtime metadata is composed by available pallets. In our case we have 9 pallets. After shifting 9 in binary representation two bits to the left, we get `24` in hex to represent the length of the array.
 
-The remaining blob encodes the metadata of each module. Learning more about decoding different types in the [struct](https://substrate.dev/rustdocs/v1.0/srml_metadata/struct.ModuleMetadata.html), please refer to the [reference docs](https://substrate.dev/rustdocs/v1.0/srml_metadata/index.html) and [Low-level Data Format](overview/low-level-data-format.md) page.
+The remaining blob encodes the metadata of each pallet. Learning more about decoding different types in the [struct](https://substrate.dev/rustdocs/master/frame_metadata/struct.ModuleMetadata.html), please refer to the [reference docs](https://substrate.dev/rustdocs/master/frame_metadata/index.html) and [Low-level Data Format](overview/low-level-data-format.md) page.
 
 After decoding the hex blob successfully, you should be able to see similar metadata in the above example.

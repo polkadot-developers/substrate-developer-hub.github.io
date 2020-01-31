@@ -133,7 +133,7 @@ class RuntimeDeveloper extends React.Component {
           </p>
           <Button
             variant="secondary"
-            href="/rustdocs/v1.0/"
+            href="/rustdocs/master/"
             className="m-1 primary-color"
           >
             <translate>Reference Docs</translate>
