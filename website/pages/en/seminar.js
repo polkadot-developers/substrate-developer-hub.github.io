@@ -104,10 +104,16 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								At the January 28th session we will choose from a variety of potential topics including custom consensus engines, Transaction fees in alternative assets, starting a network, and community-member projects.
+								February 4th - Parity's Gautam Dhameja will join us to demonstrate [Proof of Authority](https://github.com/gautamdhameja/substrate-validator-set) and other [Account Permissioning](https://github.com/gautamdhameja/substrate-permissioning) in Substrate.
 							</p>
 							<p>
-								At the February 4th session, Parity's Gautam Dhameja will join us to demonstrate Proof of Authority and other Enterprise features of Substrate.
+								February 11th - The team behind [DatDot](https://github.com/playproject-io/datdot-substrate), an incentivization system for storing files on the Dat network, join us for a code walkthrough and demonstration.
+							</p>
+							<p>
+								February 18th - Andre Silva and Seun Lanlege join us to talk all things consensus in Substrate.
+							</p>
+							<p>
+								February 25th - Kian Paimani joins us to discuss Phragmen's algorithm and Substrate's offline Phragmen feature.
 							</p>
 							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
 							<p>
@@ -129,6 +135,11 @@ function Seminar(props) {
 						</div>
 
 						<div className='col-md-6 second'>
+							<h4 className='mb-2'>How should I prepare for the call?</h4>
+							<p>
+								Follow and read the links provided in the week's description. If any repositories are linked, clone them. If you'd like to run the node, compile it in advance.
+							</p>
+
 							<h4 className='mb-2'>I am not a [Substrate] developer, can I still participate?</h4>
 							<p>
 								Yes! The seminar is open to everyone. The content is generally more developer-oriented,
