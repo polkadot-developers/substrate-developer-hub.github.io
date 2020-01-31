@@ -104,22 +104,19 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								February 4th - Parity's Gautam Dhameja will join us to demonstrate{' '}
+								<strong>February 4th</strong> - Parity's Gautam Dhameja will join us to demonstrate{' '}
 								<a href="https://github.com/gautamdhameja/substrate-validator-set">Proof of Authority</a>
 								and other{' '}<a href="https://github.com/gautamdhameja/substrate-permissioning">Account
 								Permissioning</a> in Substrate.
-							</p>
-							<p>
-								February 11th - The team behind{' '}<a href="https://github.com/playproject-io/datdot-substrate">
+							<br />
+								<strong>February 11th</strong> - The team behind{' '}<a href="https://github.com/playproject-io/datdot-substrate">
 								Account Permissioning</a>, an incentivization system for storing files on the Dat network, join
 								us for a code walkthrough and demonstration.
-							</p>
-							<p>
-								February 18th - Andre Silva and Seun Lanlege join us to talk all things consensus in
+							<br />
+								<strong>February 18th</strong> - Andre Silva and Seun Lanlege join us to talk all things consensus in
 								Substrate.
-							</p>
-							<p>
-								February 25th - Kian Paimani joins us to discuss Phragmen's algorithm and Substrate's
+							<br />
+								<strong>February 25th</strong> - Kian Paimani joins us to discuss Phragmen's algorithm and Substrate's
 								offline Phragmen feature.
 							</p>
 							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
