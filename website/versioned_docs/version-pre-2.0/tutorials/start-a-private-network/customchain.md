@@ -266,4 +266,4 @@ spec and the node-template.
 ### Learn More
 
 That big Wasm blob we encountered in the chain spec was was necessary to enable forkless upgrades.
-Learn more about how the [executor](docs/conceptual/core/executor) uses on-chain Wasm.
+Learn more about how the [executor](conceptual/core/executor.md) uses on-chain Wasm.
