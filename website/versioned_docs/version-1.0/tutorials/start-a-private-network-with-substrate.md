@@ -92,7 +92,7 @@ cd ..
 ./target/release/node-template \
   --base-path /tmp/alice \
   --chain=local \
-  --key //Alice \
+  --alice \
   --port 30333 \
   --telemetry-url ws://telemetry.polkadot.io:1024 \
   --validator \
@@ -101,7 +101,7 @@ cd ..
 Let's look at those flags in detail:
 * `--base-path` Specifies a directory where Substrate should store all the data related to this chain. If the directory does not exist it will be created for you. If other blockchain data already exists there you will get an error. Either clear the directory or choose a different one.
 * `--chain=local` Specifies which chain specification to use. There are a few pre-packaged options including `local` `development` and `staging` but generally one specifies their own chainspec file. We'll specify our own file in a later step.
-* `--key //Alice` Specifies that we're using the pre-packaged Alice key as a validator on this node. Generally one should generate their own key with `subkey` and then the flag would look like `--key "enroll mechanic science ...""`. We'll generate our own keys in a later step.
+* `--alice` Specifies that we're using the pre-packaged Alice key as a validator on this node. Generally one should generate their own key with `subkey` which we'll be doing in a later step.
 * `--port 30333` Specifies the port that your node will listen for p2p traffic on. 30333 is the default and this flag can be omitted if you're happy with the default. If Bob's node will run on the same physical system, you will need to explicitly specify a different port for it.
 * `--telemetry-url` Tells the node to send telemetry data to a particular server. The one we've chosen here is hosted by Parity and is available for anyone to use. You may host your own (beyond the scope of this article) or omit this flag entirely.
 * `--validator` Means that we want to participate in block production rather than just sync the network.
@@ -159,7 +159,7 @@ Now that Alice's node is up and running, Bob can join the network by bootstrappi
 ./target/release/node-template \
   --base-path /tmp/bob \
   --chain=local \
-  --key //Bob \
+  --bob \
   --port 30333 \
   --telemetry-url ws://telemetry.polkadot.io:1024 \
   --validator \
