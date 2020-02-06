@@ -20,7 +20,7 @@ They are:
 
 - `DigestItem`: A type which must be able to encode one of a number of "hard-wired" alternatives
   relevant to consensus and change-tracking as well as any number of "soft-coded" variants, relevant
-  to specific modules within the runtime.
+  to specific pallets within the runtime.
 
 - `Digest`: A series of DigestItems. This encodes all information that is relevant for a
   light-client to have on hand within the block.

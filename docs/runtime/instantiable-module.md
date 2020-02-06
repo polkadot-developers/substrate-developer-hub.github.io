@@ -1,5 +1,5 @@
 ---
-title: "Instantiable Palletss"
+title: "Instantiable Pallets"
 ---
 
 Unlike other runtime pallets, instantiable pallets enable multiple instances of the same pallet logic within a single runtime. Each instance of the pallet has its own independent storage, and extrinsics must specify which instance of the pallet they are intended for.

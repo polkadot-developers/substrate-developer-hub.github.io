@@ -10,8 +10,6 @@ prevent individual components of the chain from consuming too much of any resour
 Consuming some weights should generally incur a fee. The fee implications of the weight system are
 covered in the [Fee Developer document](development/module/fees.md).
 
-## Weight Fundamentals
-
 Weights represent the _limited_ resources of your blockchain, for example computational cycles,
 memory, storage, etc. A custom implementation may use complex structures to express this. Substrate
 weights are simply a [numeric value](https://substrate.dev/rustdocs/master/palette_support/weights/type.Weight.html).
@@ -28,17 +26,17 @@ A weight calculation should always:
   implementation of the dispatch should take the state of the change into account and manually take
   extra fees or bonds or take any other measures to make sure that the transaction is safe.
 
-The [System module](https://substrate.dev/rustdocs/master/frame_system/struct.Module.html) is
+The [System library](https://substrate.dev/rustdocs/master/frame_system/struct.Module.html) is
 responsible for accumulating the weight of each block as it gets executed and making sure that it
 does not exceed the limit. The [Transaction Payment
-module](https://substrate.dev/rustdocs/master/pallet_transaction_payment/index.html) is responsible
+Pallet](https://substrate.dev/rustdocs/master/pallet_transaction_payment/index.html) is responsible
 for interpreting these weights and deducting fees based upon them. The weighing function is part of
 the runtime so it can be upgraded if needed.
 
 ## Block Weight and Length Limit
 
 Aside from affecting fees, the main purpose of the weight system is to prevent a block from being
-filled with too many transactions. While processing transactions within a block, the System module
+filled with too many transactions. While processing transactions within a block, the System pallet
 accumulates both the total length of the block (sum of encoded transactions in bytes) and the total
 weight of the block. If either of these numbers surpass the limits, no further transactions are
 accepted in that block. These limits are defined in
@@ -63,7 +61,7 @@ operational class.
   and custom
   [WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/runtimes/weight-fee-runtime).
 - The [srml-example](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
-  module.
+  pallet.
 
 ### Examples
 
@@ -74,6 +72,6 @@ operational class.
 ### References
 
 - Take a look at the [SRML Transaction Payment
-  module](https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/src/lib.rs).
+  pallet](https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/src/lib.rs).
 - Find info about weights including the `SimpleDispatchInfo` enum in
   [weights.rs](https://github.com/paritytech/substrate/blob/master/primitives/sr-primitives/src/weights.rs).
