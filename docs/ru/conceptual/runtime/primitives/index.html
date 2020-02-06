@@ -78,7 +78,7 @@
 <p>They are:</p>
 <ul>
 <li><p><code>Hash</code>: A type which encodes a cryptographic digest of some data. Typically just a 256-bit quantity.</p></li>
-<li><p><code>DigestItem</code>: A type which must be able to encode one of a number of &quot;hard-wired&quot; alternatives relevant to consensus and change-tracking as well as any number of &quot;soft-coded&quot; variants, relevant to specific modules within the runtime.</p></li>
+<li><p><code>DigestItem</code>: A type which must be able to encode one of a number of &quot;hard-wired&quot; alternatives relevant to consensus and change-tracking as well as any number of &quot;soft-coded&quot; variants, relevant to specific pallets within the runtime.</p></li>
 <li><p><code>Digest</code>: A series of DigestItems. This encodes all information that is relevant for a light-client to have on hand within the block.</p></li>
 <li><p><code>Extrinsic</code>: A type to represent a single piece of data external to the blockchain that is recognized by the blockchain. This typically involves one or more signatures, and some sort of encoded instruction (e.g. for transferring ownership of funds or calling into a smart contract).</p></li>
 <li><p><code>Header</code>: A type which is representative (cryptographically or otherwise) of all information relevant to a block. It includes the parent hash, the storage root and the extrinsics trie root, the digest and a block number.</p></li>
