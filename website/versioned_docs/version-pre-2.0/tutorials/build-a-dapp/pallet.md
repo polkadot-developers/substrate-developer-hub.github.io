@@ -177,7 +177,7 @@ decl_module! {
             let sender = ensure_signed(origin)?;
 
             // Verify that the specified proof has not been claimed yet or error with the message
-            ensure!(!Proofs::<T>::exists(&proof), "This proof has already been claimed.");
+            ensure!(!Proofs::<T>::contains_key(&proof), "This proof has already been claimed.");
 
             // Call the `system` pallet to get the current block number
             let current_block = <system::Module<T>>::block_number();
@@ -196,7 +196,7 @@ decl_module! {
             let sender = ensure_signed(origin)?;
 
             // Verify that the specified proof has been claimed
-            ensure!(Proofs::<T>::exists(&proof), "This proof has not been stored yet.");
+            ensure!(Proofs::<T>::contains_key(&proof), "This proof has not been stored yet.");
 
             // Get owner of the claim
             let (owner, _) = Proofs::<T>::get(&proof);

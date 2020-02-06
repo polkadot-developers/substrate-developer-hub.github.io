@@ -291,7 +291,7 @@ fn propose(origin, data: Vec<u8>, #[compact] deposit: T::TokenBalance) -> Result
     application_expiry: app_exp,
   };
 
-  ensure!(!<Listings<T>>::exists(hashed), "Listing already exists");
+  ensure!(!<Listings<T>>::contains_key(hashed), "Listing already exists");
 
   // deduct the deposit for application
   <token::Module<T>>::lock(sender.clone(), deposit, hashed.clone())?;
@@ -330,7 +330,7 @@ In the **challenge** function, we check if the listing exists and if it is still
 fn challenge(origin, listing_id: u32, #[compact] deposit: T::TokenBalance) -> Result {
   let sender = ensure_signed(origin)?;
 
-  ensure!(<ListingIndexHash<T>>::exists(listing_id), "Listing not found.");
+  ensure!(<ListingIndexHash<T>>::contains_key(listing_id), "Listing not found.");
 
   let listing_hash = Self::index_hash(listing_id);
   let listing = Self::listings(listing_hash);
@@ -404,7 +404,7 @@ fn vote(origin, challenge_id: u32, value: bool, #[compact] deposit: T::TokenBala
   let sender = ensure_signed(origin)?;
 
   // check if listing is challenged
-  ensure!(<Challenges<T>>::exists(challenge_id), "Challenge does not exist.");
+  ensure!(<Challenges<T>>::contains_key(challenge_id), "Challenge does not exist.");
   let challenge = Self::challenges(challenge_id);
   ensure!(challenge.resolved == false, "Challenge is already resolved.");
 
@@ -458,7 +458,7 @@ In addition, we also update the token and reward values in the corresponding `Ch
 ```rust
 // resolves the status of a listing
 fn resolve(_origin, listing_id: u32) -> Result {
-  ensure!(<ListingIndexHash<T>>::exists(listing_id), "Listing not found.");
+  ensure!(<ListingIndexHash<T>>::contains_key(listing_id), "Listing not found.");
 
   let listing_hash = Self::index_hash(listing_id);
   let listing = Self::listings(listing_hash);
@@ -546,7 +546,7 @@ fn claim_reward(origin, challenge_id: u32) -> Result {
   let sender = ensure_signed(origin)?;
 
   // ensure challenge exists and has been resolved
-  ensure!(<Challenges<T>>::exists(challenge_id), "Challenge not found.");
+  ensure!(<Challenges<T>>::contains_key(challenge_id), "Challenge not found.");
   let challenge = Self::challenges(challenge_id);
   ensure!(challenge.resolved == true, "Challenge is not resolved.");
 
