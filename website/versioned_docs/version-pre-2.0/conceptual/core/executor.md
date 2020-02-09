@@ -79,7 +79,7 @@ environment, it needs to know the `spec_name`, `spec_version` and
 `authoring_version` of both the native and Wasm runtime.
 
 The runtime provides the following [versioning
-properties](https://substrate.dev/rustdocs/master/sr_version/struct.RuntimeVersion.html):
+properties](https://substrate.dev/rustdocs/pre-v2.0-3e65111/sr_version/struct.RuntimeVersion.html):
 
 - `spec_name`: The identifier for the different Substrate runtimes.
 
@@ -145,10 +145,10 @@ TODO
 ### References
 
 * Check out the different [Execution
-  Strategies](https://substrate.dev/rustdocs/master/substrate_service/config/struct.ExecutionStrategies.html).
+  Strategies](https://substrate.dev/rustdocs/pre-v2.0-3e65111/substrate_service/config/struct.ExecutionStrategies.html).
 
 * Take a look at the different [Execution Strategy
-  Options](https://substrate.dev/rustdocs/master/substrate_client/enum.ExecutionStrategy.html)
+  Options](https://substrate.dev/rustdocs/pre-v2.0-3e65111/substrate_client/enum.ExecutionStrategy.html)
 
 * Review the [Runtime Version
-  definition](https://substrate.dev/rustdocs/master/substrate_executor/struct.RuntimeVersion.html).
+  definition](https://substrate.dev/rustdocs/pre-v2.0-3e65111/substrate_executor/struct.RuntimeVersion.html).

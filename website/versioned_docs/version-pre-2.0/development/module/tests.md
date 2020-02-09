@@ -38,7 +38,7 @@ By assigning `balances::Balance` and `system::AccountId` to `u64`, mock runtimes
 
 The [`runtime-io`](https://crates.parity.io/sr_io/index.html#enums) crate exposes a [`TestExternalities`](https://crates.parity.io/sr_io/type.TestExternalities.html) implementation frequently used for mocking storage in tests. It is the type alias for an in-memory, hashmap-based externalities implementation in [`substrate_state_machine`](https://crates.parity.io/substrate_state_machine/index.html)] referred to as [`TestExternalities`](https://crates.parity.io/substrate_state_machine/struct.TestExternalities.html).
 
-In the [basic mock runtime's recipe](https://substrate.dev/recipes/testing/mock.html), an `ExtBuilder` object is defined to build an instance of [`TestExternalities`](https://substrate.dev/rustdocs/master/sr_io/type.TestExternalities.html).
+In the [basic mock runtime's recipe](https://substrate.dev/recipes/testing/mock.html), an `ExtBuilder` object is defined to build an instance of [`TestExternalities`](https://substrate.dev/rustdocs/pre-v2.0-3e65111/sr_io/type.TestExternalities.html).
 
 ```rust
 pub struct ExtBuilder;

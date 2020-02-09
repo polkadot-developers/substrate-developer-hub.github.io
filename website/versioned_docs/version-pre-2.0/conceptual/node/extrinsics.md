@@ -25,7 +25,7 @@ First, it prevents any alterations to the series of extrinsics after the header 
 distributed. Second, it provides a means of allowing light clients to succinctly verify that any 
 given extrinsic did indeed exist in a block given only knowledge of the header.
 
-- [Block Reference](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Block.html)
+- [Block Reference](https://substrate.dev/rustdocs/pre-v2.0-3e65111/sp_runtime/traits/trait.Block.html)
 
 ## Inherents
 
@@ -43,7 +43,7 @@ way to prove that a timestamp is true the way the desire to send funds is proved
 Rather, validators accept or reject the block based on how reasonable the other validators find the 
 timestamp, which may mean it is within some acceptable range of their own system clocks.
 
-- [Inherents Reference](https://substrate.dev/rustdocs/master/sp_inherents/index.html)
+- [Inherents Reference](https://substrate.dev/rustdocs/pre-v2.0-3e65111/sp_inherents/index.html)
 
 ## Signed Transactions
 
@@ -88,11 +88,11 @@ Despite the name, `SignedExtension` can also be used to verify unsigned transact
 `*_unsigned` set of methods can be implemented to encapsulate validation, spam, and replay 
 protection logic that is needed by the transaction pool.
 
-- [Signed Extension Reference](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.SignedExtension.html)
+- [Signed Extension Reference](https://substrate.dev/rustdocs/pre-v2.0-3e65111/sp_runtime/traits/trait.SignedExtension.html)
 
 ## Further Reading
 
-- [Reference Documentation](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Extrinsic.html)
+- [Reference Documentation](https://substrate.dev/rustdocs/pre-v2.0-3e65111/sp_runtime/traits/trait.Extrinsic.html)
 - [Runtime Execution](development/module/execution.md)
 - [Transaction Fees](development/module/fees.md)
 <!-- TODO - [Transaction Pool](conceptual/node/tx-pool.md) -->

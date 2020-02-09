@@ -52,7 +52,7 @@ same parent. Forks must be resolved such that only one, canonical chain exists.
 
 A fork choice rule is an algorithm that takes a blockchain and selects the "best" chain, and thus
 the one that should be extended. Substrate exposes this concept through the [`SelectChain`
-Trait](https://substrate.dev/rustdocs/master/sp_consensus/trait.SelectChain.html).
+Trait](https://substrate.dev/rustdocs/pre-v2.0-3e65111/sp_consensus/trait.SelectChain.html).
 
 Substrate allows you to write a custom fork choice rule, or use one that comes out of the box.
 For example:
@@ -178,7 +178,7 @@ coordination with the runtime. Examples include adjustable difficulty in proof o
 rotation in proof of authority, and stake-based weighting in proof-of-stake networks.
 
 To accommodate these consensus features, Substrate has the concept of a
-[`DigestItem`](https://substrate.dev/rustdocs/master/sr_primitives/enum.DigestItem.html), a message
+[`DigestItem`](https://substrate.dev/rustdocs/pre-v2.0-3e65111/sr_primitives/enum.DigestItem.html), a message
 passed from the outer part of the node, where consensus lives, to the runtime, or vice versa.
 
 ## Learn More

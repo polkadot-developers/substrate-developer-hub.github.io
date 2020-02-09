@@ -142,7 +142,7 @@ decl_storage! {
 }
 ```
 
-You can learn more about [`decl_storage!`](https://substrate.dev/rustdocs/master/frame_support_procedural/macro.decl_storage.html)
+You can learn more about [`decl_storage!`](https://substrate.dev/rustdocs/pre-v2.0-3e65111/frame_support_procedural/macro.decl_storage.html)
 
 ### Event
 

@@ -4,7 +4,7 @@ id: version-pre-2.0-contracts_module
 original_id: contracts_module
 ---
 
-The [SRML Contracts module](https://substrate.dev/rustdocs/master/pallet_contracts/index.html)
+The [SRML Contracts module](https://substrate.dev/rustdocs/pre-v2.0-3e65111/pallet_contracts/index.html)
 provides the ability for the runtime to deploy and execute [WebAssembly
 (Wasm)](https://webassembly.org/) smart contracts.
 
@@ -120,7 +120,7 @@ blockchain.
 ### References
 
 - Visit the reference docs for the [SRML Contracts
-  module](https://substrate.dev/rustdocs/master/pallet_contracts/index.html).
+  module](https://substrate.dev/rustdocs/pre-v2.0-3e65111/pallet_contracts/index.html).
 
 - Take a look at the [repository for `wasmi`](https://github.com/paritytech/wasmi).
 

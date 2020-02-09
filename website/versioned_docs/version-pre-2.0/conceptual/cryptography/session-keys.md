@@ -23,8 +23,8 @@ pub struct SessionKeys {
 
 > **Note:** This code is just an example of the Substrate node at the time of writing. Refer to the runtime for the most up-to-date implementation.
 
-The default Substrate node implements Session keys in the [Session module](https://substrate.dev/rustdocs/master/pallet_session/).
+The default Substrate node implements Session keys in the [Session module](https://substrate.dev/rustdocs/pre-v2.0-3e65111/pallet_session/).
 
 ## Generation and Use
 
-Session keys are hot keys that must be kept online. They are not meant to be used as account keys. If one of the Session keys is compromised, the attacker could commit slashable behavior. Session keys may be changed regularly (e.g. every session) via [RPC](https://substrate.dev/rustdocs/master/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys) for increased security.
+Session keys are hot keys that must be kept online. They are not meant to be used as account keys. If one of the Session keys is compromised, the attacker could commit slashable behavior. Session keys may be changed regularly (e.g. every session) via [RPC](https://substrate.dev/rustdocs/pre-v2.0-3e65111/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys) for increased security.

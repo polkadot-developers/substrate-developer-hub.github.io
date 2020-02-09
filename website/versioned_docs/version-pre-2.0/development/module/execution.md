@@ -54,10 +54,10 @@ TODO
 
 ### References
 
-* Visit the reference docs for the [Executive module](https://substrate.dev/rustdocs/master/pallet_executive/index.html).
+* Visit the reference docs for the [Executive module](https://substrate.dev/rustdocs/pre-v2.0-3e65111/pallet_executive/index.html).
 
-* Visit the reference docs for the [`decl_event!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_event.html).
+* Visit the reference docs for the [`decl_event!` macro](https://substrate.dev/rustdocs/pre-v2.0-3e65111/frame_support/macro.decl_event.html).
 
-* Visit the reference docs for the [`decl_storage!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html).
+* Visit the reference docs for the [`decl_storage!` macro](https://substrate.dev/rustdocs/pre-v2.0-3e65111/frame_support/macro.decl_storage.html).
 
-* Visit the reference docs for the [`construct_runtime!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html).
+* Visit the reference docs for the [`construct_runtime!` macro](https://substrate.dev/rustdocs/pre-v2.0-3e65111/frame_support/macro.construct_runtime.html).
