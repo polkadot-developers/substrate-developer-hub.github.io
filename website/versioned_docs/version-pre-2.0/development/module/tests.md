@@ -127,4 +127,4 @@ fn my_runtime_test() {
 
 ## Next Steps
 
-The [testing](https://substrate.dev/recipes/testing/index.html) chapter of the [Substrate Recipes](https://github.com/substrate-developer-hub/recipes/) compliments the samples shown above, and the [kitchen](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen) provides an environment to run the tests, change the logic, and tinker with the code.
+The [testing chapter](https://substrate.dev/recipes/testing/index.html) of the Substrate Recipes compliments the samples shown above, and provides an environment to run the tests, change the logic, and tinker with the code.
