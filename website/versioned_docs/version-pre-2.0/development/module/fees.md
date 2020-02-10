@@ -286,9 +286,9 @@ payment module drawing inspiration from Transaction Payment.
 ### Examples
 
 Substrate Recipes contains examples of both [custom
-weights](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/pallets/weights) and
+weights](https://github.com/substrate-developer-hub/recipes/tree/master/pallets/weights) and
 custom
-[WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/runtimes/weight-fee-runtime).
+[WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/runtimes/weight-fee-runtime).
 
 ### References
 
