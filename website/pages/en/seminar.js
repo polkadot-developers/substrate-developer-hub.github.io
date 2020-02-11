@@ -14,106 +14,263 @@
  * limitations under the License.
  */
 
-const React = require("react");
+const React = require('react')
 
-const FullSplash = require(`${process.cwd()}` + `/core/FullSplash.js`);
+const FullSplash = require(`${process.cwd()}` + `/core/FullSplash`)
 
-const Container = require("../../../../react-bootstrap/Container.js");
-const Button = require("../../../../react-bootstrap/Button.js");
-const translate = require('../../server/translate.js').translate;
+const Container = require('../../../../react-bootstrap/Container')
+const Button = require('../../../../react-bootstrap/Button')
+const translate = require('../../server/translate').translate
 
 function Seminar(props) {
-  const { config: siteConfig, language = "" } = props;
-  const { baseUrl, docsUrl } = siteConfig;
-  const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
-  const langPart = `${language ? `${language}/` : ""}`;
-  const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
-  const pageUrl = doc => `${baseUrl}${langPart}${doc}`
+	const { config: siteConfig, language = '' } = props
+	const { baseUrl, docsUrl } = siteConfig
+	const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`
+	const langPart = `${language ? `${language}/` : ''}`
+	const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`
+	const pageUrl = doc => `${baseUrl}${langPart}${doc}`
 
-  return (
-    <div>
-      <FullSplash
-        siteConfig={siteConfig}
-        language={language}
-        title={<translate>Substrate Seminar</translate>}
-        tagline={<translate>Substrate Collaborative Learning Group</translate>}
-        text={
-          <translate>
-            Substrate Seminar is an open Collaborative Learning call where we learn about Substrate
-            together. We meet every Tuesday at 14:00UTC. Ask for help, show off your project,
-            learn Substrate, and make friends!
-          </translate>
-        }
-        padding={0}
-        buttons={[
-          {
-            key: 'key',
-            href: 'https://calendar.google.com/event?action=TEMPLATE&tmeid=ODFrdXNkNjczYTZwZzM1ZGg1c2RscHY2cG5fMjAxOTExMTlUMTQwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw&tmsrc=parity.io_39379343h073v06qht1vpqcefc%40group.calendar.google.com&scp=ALL',
-            name: 'Google Calendar'
-          },
-          {
-            key: 'key',
-            href: 'https://www.youtube.com/playlist?list=PLsBc7YjizKUwc3AcNb9oNZvtsN0QmAJPP',
-            name: 'Previous Recordings'
-          },
-      ]}
-      />
+	return (
+		<section className='main-container' id='seminar'>
+			<section className='text-center height-70 imagebg hero' data-overlay='6'>
+				<div
+					className='background-image-holder'
+					style={{
+						backgroundImage: `url('/img/rust-code-alt.jpg')`
+					}}
+				/>
+				<div className='container pos-vertical-center mt--1'>
+					<div className='row'>
+						<div className='col-md-12'>
+							<h1>
+								<span className='c-accent' style={{ marginBottom: '8px', display: 'inline-block' }}>
+									Substrate Seminar
+								</span>{' '}
+								<br /> A Collaborative Learning Group
+							</h1>
+							<p className='h3 type--subhead'>
+								Substrate Seminar is an open collaborative learning call <br />where we learn about
+								Substrate together.
+							</p>
+							<section className='button-wrap'>
+								<Button
+									className='btn btn--white primary-color'
+									href='https://calendar.google.com/event?action=TEMPLATE&tmeid=ODFrdXNkNjczYTZwZzM1ZGg1c2RscHY2cG5fMjAxOTExMTlUMTQwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw&tmsrc=parity.io_39379343h073v06qht1vpqcefc%40group.calendar.google.com&scp=ALL'>
+									<span className='btn__text'>Add to Google Calendar</span>
+								</Button>
+							</section>
+							<section>
+								<span className='block type--fine-print'>
+									or <a href='https://zoom.us/j/440029011'>join live call »</a>
+								</span>
+							</section>
+						</div>
+					</div>
+				</div>
+			</section>
 
-        <Container className="readableLineLength">
-        <h2 className = "h1">FAQ</h2>
-        <h3 class="h2">Is Seminar Meeting Over the Holidays?</h3>
-        <p>Substrate Seminar will take a hiatus over the winter holidays. We will resume regular meetings every Tuesday on January 7th.</p>
+			<section className='switchable switchable--switch intro'>
+				<div className='container'>
+					<div className='row justify-content-between'>
+						<div className='col-md-8 col-lg-7 left'>
+							<h2>An open collaborative learning call</h2>
+							<p className='lead'>
+								Substrate Seminar is an open Collaborative Learning call where we learn about Substrate
+								together. We meet every Tuesday at 14:00UTC. Ask for help, show off your project, learn
+								Substrate, and make friends!
+							</p>
+							<a href='#'>Add next call to Google Calendar »</a>
+						</div>
+						<div className='col-md-4 col-lg-5 right'>
+							<div className='feature feature-2 boxed boxed--border box-shadow'>
+								<img className='image-host' src='/img/joshy.jpg' />
+								<div className='feature__body'>
+									<h4>Seminar Host</h4>
+									<p>
+										<strong>Joshy Orndorff</strong>
+										<br />Developer Advocate at<br />Parity Technologies
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<hr />
+					<div className='row pb-0'>
+						<div className='col-md-12'>
+							<h2 style={{ fontSize: '32px' }}>FAQ</h2>
+						</div>
+					</div>
+					<div className='row justify-content-between pt-0 faqs'>
+						<div className='col-md-6 first'>
+							<h4 className='mb-2'>What topics are coming up?</h4>
+							<p>
+								At the January 14th session we will choose from a variety of potential topics including custom consensus engines, custom rpc calls, starting a network, and community-member projects.
+							</p>
+							<p>
+								At the January 21st session, Parity's Ricardo Ruis will join us to talk about wasm-based smart contracts, and Substrate's Contracts pallet.
+							</p>
+							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
+							<p>
+								Yes! Seminar works best when everyone shares their projects and interests. To ensure a
+								slot to share, please contact Joshy Orndorff via{' '}
+								<a href='mailto:joshy@parity.io'>email</a> or{' '}
+								<a href='https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org'>Riot</a>.
+							</p>
+							<h4 className='mb-2'>How do I join the call?</h4>
+							<p>
+								We meet using zoom video conferencing. Specifically we meet in{' '}
+								<a href='https://zoom.us/j/440029011'>https://zoom.us/j/440029011</a>. This link will
+								only work when the call is live, so you may prefer to add this{' '}
+								<a href='https://calendar.google.com/event?action=TEMPLATE&tmeid=ODFrdXNkNjczYTZwZzM1ZGg1c2RscHY2cG5fMjAxOTExMTlUMTQwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw&tmsrc=parity.io_39379343h073v06qht1vpqcefc%40group.calendar.google.com&scp=ALL'>
+									Google calendar invitation
+								</a>{' '}
+								to you own calendar.
+							</p>
+						</div>
 
-        <p>At the January 7th session we will explore Offchain Workers</p>
+						<div className='col-md-6 second'>
+							<h4 className='mb-2'>I am not a [Substrate] developer, can I still participate?</h4>
+							<p>
+								Yes! The seminar is open to everyone. The content is generally more developer-oriented,
+								but less technical participants and questions are also welcome. If your questions turn
+								out to be off-topic, we'll point you to a better resource.
+							</p>
 
-        <p>At the January 14th session we will (tentatively) write a custom consensus algorithm</p>
+							<h4 className='mb-2'>Is this related to Substrate Collaborative Learning?</h4>
+							<p>
+								Yes! Substrate Collaborative Learning was the previous harder-to-pronounce iteration of
+								Substrate Seminar. When we decided to start meeting every week, and have a more
+								discoverable web presence, we rebranded. If you liked Substrate Collaborative Learning,
+								you'll love Substrate Seminar. The{' '}
+								<a href='https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx'>
+									SCL recordings
+								</a>{' '}
+								are still available.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section className='bg--secondary'>
+				<div className='container'>
+					<div
+						className='row pb-0'
+						style={{
+							marginBottom: '20px'
+						}}>
+						<div className='col-6'>
+							<h4 className='p-color'>Previous calls</h4>
+						</div>
+						<div className='col-6 text-right'>
+							<a
+								href='https://www.youtube.com/playlist?list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+								target='_blank'>
+								View more recordings »
+							</a>
+						</div>
+					</div>
 
-        <p>Please reach out to share your project or request a specific topic.</p>
-        
-        <h3 className = "h2">
-          Can I share a project I've been working on?
-        </h3>
-        <p>
-          Yes! Seminar works best when everyone shares their projects and interests. To ensure a slot to share, please contact Joshy Orndorff via <a href="mailto:joshy@parity.io">email</a> or <a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot</a>.
-        </p>
-        <h3 className = "h2">
-          I am not a [Substrate] developer, can I join just to ask couple of questions??
-        </h3>
-        <p>
-          Yes! The seminar is open to everyone. The content is generally more developer-oriented, but less technical participants and questions are also welcome. If your questions turn out to be off-topic, we'll point you to a better resource.
-        </p>
-        <h3 className = "h2">
-          How do I join the call?
-        </h3>
-        <p>
-          We meet using zoom video conferencing. Specifically we meet in <a href="https://zoom.us/j/440029011">https://zoom.us/j/440029011</a>. This link will only work when the call is live, so you may prefer to add this <a href="https://calendar.google.com/event?action=TEMPLATE&tmeid=ODFrdXNkNjczYTZwZzM1ZGg1c2RscHY2cG5fMjAxOTExMTlUMTQwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw&tmsrc=parity.io_39379343h073v06qht1vpqcefc%40group.calendar.google.com&scp=ALL">Google calendar invitation</a> to you own calendar.
-        </p>
-        <h3 className = "h2">
-          Is this related to Substrate Collaborative Learning?
-        </h3>
-        <p>
-          Yes! Substrate Collaborative Learning was the previous harder-to-pronounce iteration of Substrate Seminar. When we decided to start meeting every week, and have a more discoverable web presence, we rebranded. If you liked Substrate Collaborative Learning, you'll <em>love</em> Substrate Seminar. The <a href="https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx">SCL recordings</a> are still available.
-        </p>
-        <h3>
-          To learn more visit <a href="https://www.parity.io/substrate/" target="_blank">parity.io/substrate</a>
-        </h3>
-        </Container>
+					<div className='row featured-video pt-0'>
 
-      <div className="bg-light p-5 mt-5">
-        <Container className="d-flex justify-content-between">
-        <h2 className="m-0">
-          Never miss a Seminar by adding it to your calendar
-        </h2>
-        <Button
-          href="https://calendar.google.com/event?action=TEMPLATE&tmeid=ODFrdXNkNjczYTZwZzM1ZGg1c2RscHY2cG5fMjAxOTExMTlUMTQwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw&tmsrc=parity.io_39379343h073v06qht1vpqcefc%40group.calendar.google.com&scp=ALL'"
-          className="m-1 primary-color btn btn-secondary align-self-center"
-        >
-          Google Calendar
-        </Button>
-        </Container>
-      </div>
-    </div>
-  );
+	          <div className='col-md-4'>
+	            <section className='video-cover video-cover-xs'>
+	              <div
+	                className='background-image-holder'
+	                style={{
+	                  backgroundImage: `url('/img/seminar-t.jpg' )`
+	                }}
+	              />
+
+	              <a
+	                className='video-play'
+	                href='https://www.youtube.com/watch?v=lKpp6-4OHwA&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=5'
+	                target='_blank'
+	              />
+	            </section>
+	            <section className='video-details'>
+	              <h4 className='p-color'>Offchain Workers</h4>
+	              <p>
+	                Jimmy Chu joins us to talk about offchain workers and his price-fetching demonstration.
+	              </p>
+	            </section>
+	          </div>
+
+						<div className='col-md-4'>
+							<section className='video-cover video-cover-xs'>
+								<div
+									className='background-image-holder'
+									style={{
+										backgroundImage: `url('/img/seminar-t.jpg' )`
+									}}
+								/>
+
+								<a
+									className='video-play'
+									href='https://www.youtube.com/watch?v=yHodYke7nms&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=4'
+									target='_blank'
+								/>
+							</section>
+							<section className='video-details'>
+								<h4 className='p-color'>Forkless Upgrades, and Substrate Recipes</h4>
+								<p>We discuss forkless runtime upgrades, and perform a demonstration...</p>
+							</section>
+						</div>
+						<div className='col-md-4'>
+							<section className='video-cover video-cover-xs'>
+								<div
+									className='background-image-holder'
+									style={{
+										backgroundImage: `url('/img/seminar-t.jpg' )`
+									}}
+								/>
+
+								<a
+									className='video-play'
+									href='https://www.youtube.com/watch?v=cL6UFeoiMVw&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=3'
+									target='_blank'
+								/>
+							</section>
+							<section className='video-details'>
+								<h4 className='p-color'>Playground and Cumulus</h4>
+								<p>
+									This week we look at Substrate Playground, and preview the Cumulus workshop to be
+									presented at Sub0...
+								</p>
+							</section>
+						</div>
+
+					</div>
+				</div>
+
+				<div
+					className='container'
+					style={{
+						textAlign: 'center',
+						padding: '80px 0 40px 0'
+					}}>
+					<div className='row'>
+						<div className='col-md-12 col-lg-12'>
+							<div className='cta'>
+								<h2 style={{ margin: '0 0 10px 0' }}>Don't want to miss the next Substrate seminar?</h2>
+								<section className='button-wrap'>
+									<Button
+										className='btn btn--white primary-color'
+										href='https://calendar.google.com/event?action=TEMPLATE&tmeid=ODFrdXNkNjczYTZwZzM1ZGg1c2RscHY2cG5fMjAxOTExMTlUMTQwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw&tmsrc=parity.io_39379343h073v06qht1vpqcefc%40group.calendar.google.com&scp=ALL'>
+										<span className='btn__text'>Add to Google Calendar</span>
+									</Button>
+								</section>
+								<section>
+									<span className='block type--fine-print'>
+										or <a href='https://zoom.us/j/440029011'>join live call »</a>
+									</span>
+								</section>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+	)
 }
 
-module.exports = Seminar;
+module.exports = Seminar

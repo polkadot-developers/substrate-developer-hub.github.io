@@ -16,7 +16,7 @@ It is to be noted that the results from off-chain workers are not subject to reg
 
 The following diagram depicts how off-chain workers work within the Substrate node:
 
-![Off-chain Workers](/docs/assets/off-chain-workers.png)
+![Off-chain Workers](/docs/assets/off-chain-workers-v1.png)
 
 ## Off-Chain Worker APIs
 

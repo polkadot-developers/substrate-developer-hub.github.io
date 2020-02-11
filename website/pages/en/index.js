@@ -1,6 +1,6 @@
 /**
  * Copyright 2019 Parity Technologies
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,14 +16,14 @@
 
 const React = require('react')
 
-const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash.js`)
+const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash`)
 
-const Container = require('../../../../react-bootstrap/Container.js')
-const Button = require('../../../../react-bootstrap/Button.js')
-const Row = require('../../../../react-bootstrap/Row.js')
-const Col = require('../../../../react-bootstrap/Col.js')
-const Image = require('../../../../react-bootstrap/Image.js')
-const translate = require('../../server/translate.js').translate
+const Container = require('../../../../react-bootstrap/Container')
+const Button = require('../../../../react-bootstrap/Button')
+const Row = require('../../../../react-bootstrap/Row')
+const Col = require('../../../../react-bootstrap/Col')
+const Image = require('../../../../react-bootstrap/Image')
+const translate = require('../../server/translate').translate
 
 class Index extends React.Component {
 	render() {
@@ -56,7 +56,8 @@ class Index extends React.Component {
 					<Container>
 						<section className='intro-statement home-section'>
 							<span className='tagline'>Why use Substrate</span>
-							<h1 className='large'>Focus on your development.</h1>
+
+							<h2 className='large h1'>Focus on your development.</h2>
 							<p>
 								Substrate helps you develop your blockchain fast so that you can focus on your expertise
 								while it handles the rest.
@@ -143,7 +144,7 @@ class Index extends React.Component {
 								<div className='row justify-content-center text-center py-3'>
 									<div className='col-12 col-md-8'>
 										<h4>What is Substrate</h4>
-										<h1 className='display-4'>Everything you need to build a blockchain.</h1>
+										<h2 className='display-4 h1'>Everything you need to build a blockchain.</h2>
 										<p className='lead mb-4'>
 											Substrate comes with p2p networking, consensus algorithms, and cryptographic
 											libraries out-of-the-box, for free.
@@ -196,7 +197,7 @@ class Index extends React.Component {
 						<div className='container'>
 							<div className='row justify-content-between align-items-center py-5'>
 								<div className='col-12 col-md-5 order-2 order-md-1'>
-									<h1>Smart contract ready</h1>
+									<h2 className='h1'>Smart contract ready</h2>
 									<p className='large mb-4'>
 										Substrate has a Wasm smart contract platform that you can use out of the box.
 										Because Substrate uses Wasm, you can build your smart contracts using any
@@ -218,11 +219,15 @@ class Index extends React.Component {
 					<section className='bg-light call-outs second'>
 						<div className='container'>
 							<div className='row justify-content-between align-items-center py-5 polkadot-row'>
-								<div className='col-12 col-md-6 pl-md-0 mb-4 mb-md-0 text-center'>
-									<img className='w-75' src='/img/pictures/polkadot-network.svg' />
+								<div className='col-12 col-md-6 pl-md-0 mb-4 mb-md-0 text-center polkadot-graphic-wrap'>
+									<img src='/img/pictures/polkadot-network.svg' className='polkadot-image' />
+									<div
+										className='polkadot-graphic'
+										style={{ backgroundImage: `url(/img/pictures/polkadot-network.svg)` }}
+									/>
 								</div>
 								<div className='col-12 col-md-5'>
-									<h1>(Almost) production ready</h1>
+									<h2 className='h1'>(Almost) production ready</h2>
 									<p className='large mb-4'>
 										Substrate is the backbone that powers Polkadot, a next generation,
 										heterogeneous, multi-chain network. Most 'parachains' that will connect to this
@@ -242,7 +247,7 @@ class Index extends React.Component {
 							<div className='row justify-content-center text-center pt-5'>
 								<div className='col-12 col-md-10'>
 									<h4>Learning Substrate</h4>
-									<h1>More ways to learn Substrate.</h1>
+									<h2 className='h1'>More ways to learn Substrate.</h2>
 								</div>
 							</div>
 						</div>
@@ -298,7 +303,7 @@ class Index extends React.Component {
 							<div className='py-5'>
 								<div className='row justify-content-center text-center py-3'>
 									<div className='col-12 col-md-10'>
-										<h1 className='display-4'>Ready to build with Substrate?</h1>
+										<h2 className='display-4 h1'>Ready to build with Substrate?</h2>
 									</div>
 									<div className='col-12 col-md-8'>
 										<p className='lead mb-4'>

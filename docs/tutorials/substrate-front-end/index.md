@@ -1,5 +1,6 @@
 ---
 title: "Introduction"
+id: substrate-front-end-index
 ---
 
 This is a beginner-level guide to help you get started with building the front-end of a decentralized application (later called DApp) on top of a Substrate-based blockchain using the [Polkadot-js API](https://github.com/polkadot-js). This tutorial does not require any previous knowledge about the Substrate framework or Rust language. It does, however, require knowledge of JavaScript as well as a basic knowledge of the React framework.
@@ -26,7 +27,7 @@ The guide is divided into the following parts:
 * **PART 3:** [Transfer funds](part-3-transfer-funds.md)
     * Transfer funds between accounts
     * Good to know
-    
+
 * **PART 4:** [Use external accounts](part-4-use-external-accounts.md)
     * Install an extension to manage accounts
     * Display externally-injected accounts

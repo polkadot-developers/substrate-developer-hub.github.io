@@ -31,7 +31,7 @@ const title = is_staging ? `${title_prefix} (@${git_rev})` : title_prefix
 const cname = is_staging ? `staging.${custom_url}` : custom_url
 
 const siteConfig = {
-  
+
 	title, // Title for your website.
 	tagline: 'The place for blockchain innovators.',
 
@@ -54,8 +54,8 @@ const siteConfig = {
 
 	// For no header links in the top nav bar -> headerLinks: [],
 	headerLinks: [
-		{ page: 'docs', label: 'Docs' },
-		{ href: '/recipes/', label: 'Recipes' },
+		{ doc: 'index', label: 'Docs' },
+		{ href: '/recipes', label: 'Recipes' },
 		{ page: 'tutorials', label: 'Tutorials' },
 		{ page: 'community', label: 'Community' },
 		{ href: 'https://github.com/paritytech/substrate', label: 'GitHub' },
@@ -156,12 +156,12 @@ const siteConfig = {
 			// https://www.algolia.com/doc/api-reference/api-parameters/
 			facetFilters: [ 'language:LANGUAGE' ]
 		}
-	}
+	},
 
 	// customised blast banner on top
 	// blast: {
-	//   img: '/img/sub0-blast.png',
-	//   link: 'https://sub0.parity.io',
+	//   img: '/img/substrate-v2-doc-invite.png',
+	//   link: '/docs/en/next/getting-started',
 	//   background: 'url(/img/bg-sub01.svg); background-size: cover; background-position: right 0px bottom 500px;',
 	//   fontColor: '#18FFB2'
 	// }

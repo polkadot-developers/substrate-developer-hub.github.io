@@ -1,6 +1,33 @@
 ---
 title: Building a Custom Pallet
+id: version-pre-2.0-pallet
+original_id: pallet
 ---
+
+The Substrate runtime is composed of FRAME pallets. You can think of these pallets as individual
+pieces of logic that define what your blockchain can do! Substrate provides you with a number of
+pre-built pallets built with the FRAME framework.
+
+![Runtime Composition](assets/runtime.png)
+
+For example, FRAME includes a
+[Balances](https://substrate.dev/rustdocs/master/pallet_balances/index.html) pallet that controls
+the underlying currency of your blockchain by managing the _balance_ of all the accounts in your
+system.
+
+If you want to add smart contract functionality to your blockchain, you simply need to include the
+[Contracts](https://substrate.dev/rustdocs/master/pallet_contracts/index.html) pallet.
+
+Even things like on-chain governance can be added to your blockchain by including pallets like
+[Democracy](https://substrate.dev/rustdocs/master/pallet_democracy/index.html),
+[Elections](https://substrate.dev/rustdocs/master/pallet_elections/index.html), and
+[Collective](https://substrate.dev/rustdocs/master/pallet_collective/index.html).
+
+The goal of this tutorial is to teach you how to create your own Substrate pallet to include
+in your custom blockchain! The `substrate-node-template` comes with a template pallet that
+we will build your custom logic on top of.
+
+## File Structure
 
 We will now modify the `substrate-node-template` to introduce the basic functionality of a Proof Of
 Existence pallet.
@@ -39,7 +66,8 @@ At a high level, a Substrate pallet can be broken down into five sections:
 
 ```rust
 // 1. Imports
-use support::{decl_module, decl_storage, decl_event};
+use frame_support::{decl_module, decl_storage, decl_event, dispatch::DispatchResult};
+use system::ensure_signed;
 
 // 2. Pallet Configuration
 pub trait Trait: system::Trait { /* --snip-- */ }
@@ -63,17 +91,17 @@ Proof Of Existence pallet.
 Since imports are pretty boring, you can start by copying this at the top of your empty
 `template.rs` file:
 
-```rust 
-use support::{decl_module, decl_storage, decl_event, ensure, StorageMap};
-use rstd::vec::Vec;
+```rust
+use frame_support::{decl_module, decl_storage, decl_event, dispatch::DispatchResult, ensure, StorageMap};
 use system::ensure_signed;
+use sp_std::vec::Vec;
 ```
 
 ### Pallet Configuration
 
 For now, the only thing we will configure about our pallet is that it will emit some Events.
 
-```rust 
+```rust
 /// The pallet's configuration trait.
 pub trait Trait: system::Trait {
     /// The overarching event type.
@@ -113,7 +141,7 @@ proof to the owner of that proof and the block number the proof was made.
 ```rust
 // This pallet's storage items.
 decl_storage! {
-    trait Store for Module<T: Trait> as PoeStorage {
+    trait Store for Module<T: Trait> as TemplateModule {
         /// The storage item for our proofs.
         /// It maps a proof to the user who made the claim and when they made it.
         Proofs: map Vec<u8> => (T::AccountId, T::BlockNumber);
@@ -143,7 +171,7 @@ decl_module! {
         fn deposit_event() = default;
 
         /// Allow a user to claim ownership of an unclaimed proof
-        fn create_claim(origin, proof: Vec<u8>) {
+        fn create_claim(origin, proof: Vec<u8>) -> DispatchResult {
             // Verify that the incoming transaction is signed and store who the
             // caller of this function is.
             let sender = ensure_signed(origin)?;
@@ -159,10 +187,11 @@ decl_module! {
 
             // Emit an event that the claim was created
             Self::deposit_event(RawEvent::ClaimCreated(sender, proof));
+            Ok(())
         }
 
         /// Allow the owner to revoke their claim
-        fn revoke_claim(origin, proof: Vec<u8>) {
+        fn revoke_claim(origin, proof: Vec<u8>) -> DispatchResult {
             // Determine who is calling the function
             let sender = ensure_signed(origin)?;
 
@@ -180,6 +209,7 @@ decl_module! {
 
             // Emit an event that the claim was erased
             Self::deposit_event(RawEvent::ClaimRevoked(sender, proof));
+            Ok(())
         }
     }
 }
@@ -194,7 +224,7 @@ should be able to recompile your node without warning or error:
 cargo build --release
 ```
 
-Now you can restart your node:
+Now you can start your node:
 
 ```bash
 # Purge chain to clean up your old chain state

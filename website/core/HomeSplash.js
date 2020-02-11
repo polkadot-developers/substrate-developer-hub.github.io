@@ -1,6 +1,6 @@
 /**
  * Copyright 2019 Parity Technologies
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,8 +16,8 @@
 
 const React = require('react')
 
-const Container = require('react-bootstrap/Container.js')
-const Button = require('react-bootstrap/Button.js')
+const Container = require('react-bootstrap/Container')
+const Button = require('react-bootstrap/Button')
 
 class HomeSplash extends React.Component {
 	render() {
@@ -48,7 +48,10 @@ class HomeSplash extends React.Component {
 					</section>
 				)}
 				{this.props.buttonUrl && (
-					<Button variant='secondary' href={pageUrl(this.props.buttonUrl)} className='m-1 primary-color'>
+					<Button
+						variant='secondary'
+						href={pageUrl(this.props.buttonUrl)}
+						className='m-1 primary-color btn-lg'>
 						{this.props.buttonText}
 					</Button>
 				)}

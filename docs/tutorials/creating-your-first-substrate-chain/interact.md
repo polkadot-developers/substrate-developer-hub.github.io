@@ -36,49 +36,45 @@ $ ./target/release/node-template --dev
 2019-09-05 15:57:37 Idle (0 peers), best: #1 (0x9f41…e673), finalized #1 (0x9f41…e673), ⬇ 0 ⬆ 0
 ```
 
-Your blockchain is producing new blocks!
+If the number after `best:` is increasing, your blockchain is producing new blocks!
 
-## Start Your Front-End
+## Start the Front End
 
-To interact with the local node via the front-end template, start the
-`substrate-front-end-template`.
+To interact with the local node we will use the Polkadot-js Apps user interface, often known as
+"Apps" for short. Despite the name, Apps will work with any Substrate-based blockchain including ours, not just Polkadot.
 
-Open another terminal in your working folder and run the following:
+In your web browser, navigate to:
 
-```bash
-cd substrate-front-end-template/
-# Install the Node.JS dependencies
-yarn install
-# Start a local web server
-yarn start
-```
+https://polkadot.js.org/apps/
 
-You should then be able to navigate to [`localhost:8000`](http://localhost:8000/) where you will see
-a simple front-end showing that your Substrate node is running and connected!
+> Some browsers, notably Firefox, will not connect to a local node from an https website. An easy work around is to try another browser, like Chromium. Another option is to [host this interface locally](https://github.com/polkadot-js/apps#development).
 
 ## Interact
 
-If you look at the **Balances** component, you will see test accounts which you have access to. Some
-like Alice and Bob already have funds!
+Select the **Accounts** tab, you will see test accounts that you have access to. Some, like Alice
+and Bob, already have funds!
 
-![Front End Template](assets/front-end-template.png)
+![Apps UI with pre-funded accounts](assets/tutorials/first-chain/apps-prefunded.png)
 
-You can try to transfer some funds from Alice to Charlie using the **Transfer** component.
+You can try to transfer some funds from Alice to Charlie by clicking the "send" button.
 
-```
-Selected Account: Alice
-To: 5FLSigC9HGRKVhB9FiEo4Y3koPsNmBmLJbpXg2mp1hXcS59Y
-Amount: 1000
-```
+![Balance Transfer](assets/tutorials/first-chain/apps-transfer.png)
 
-![Balance Transfer](assets/front-end-template-balance-transfer.png)
+If everything went successfully, you should see some popup notifications claiming "Extrinsic
+Success", and of course Charlie's balance will increase.
 
-If everything went successfully, you should see some notifications in the **Events** component, and
-of course Charlie's balance will now be `1000`.
+## Next Steps
 
-Already you have a working blockchain, with an underlying cryptocurrency. You are able to make
-transfers easily with a simple, interactive front-end.
+This is the end of your journey to launching your first blockchain with Substrate.
 
-Now let's build our Proof of Existence pallet!
+You have launched a working Substrate-based blockchain, with an underlying cryptocurrency, attached a user interface to that chain, and made token transfers among users. We hope you'll continue learning about Substrate.
 
-> **Note:** If you want to stop your node or front-end, you can press `ctrl + c` in the terminal.
+Your next step may be:
+
+* Decentralize your network with more nodes in the [Start a Private Network](tutorials/start-a-private-network/index.md) tutorial.
+* Add custom functionality in the [Build a dApp](tutorials/build-a-dapp/index.md) tutorial.
+
+If you experienced any issues with this tutorial or want to provide feedback, feel free to [open a
+GitHub
+issue](https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/new) with
+your thoughts.

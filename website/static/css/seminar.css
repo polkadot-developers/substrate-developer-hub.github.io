@@ -1,0 +1,244 @@
+.navPusher {
+	display: flex;
+	flex-direction: column;
+}
+
+#seminar {
+	text-align: center;
+	--primary-color: #ff1864;
+	--dark: #24292e;
+	--grey: #5a6268;
+	--font-size-p: 18px;
+	overflow: hidden;
+}
+
+#seminar,
+#seminar *,
+#seminar *:before,
+#seminar *:after {
+	box-sizing: border-box;
+	position: relative;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+#seminar .c-accent {
+	color: var(--primary-color);
+}
+
+#seminar .container {
+	text-align: left;
+}
+
+#seminar section {
+	float: left;
+	width: 100%;
+	display: block;
+	clear: both;
+}
+
+#seminar h1 {
+	line-height: 1.2;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	font-weight: normal;
+	color: var(--dark);
+}
+#seminar h1.large {
+	font-size: 6vw;
+}
+
+#seminar h4 {
+	font-size: 18px;
+	line-height: 1.2;
+	margin-top: 10px;
+	margin-bottom: 0;
+	color: var(--primary-color);
+}
+
+#seminar p {
+	max-width: 580px;
+	display: inline-block;
+	line-height: 1.6;
+	font-size: var(--font-size-p);
+}
+
+#seminar a {
+	font-weight: bold;
+}
+
+#seminar a.with-arrow {
+	padding-right: 20px;
+	background-size: 10px auto;
+	background-position: right center;
+	background-repeat: no-repeat;
+	background-image: url('data:image/svg+xml,%3Csvg%20fill%3D%22%23FF1865%22%20width%3D%22100pt%22%20height%3D%22100pt%22%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M32.812%200L17.187%2015.625%2051.562%2050%2017.187%2084.375%2032.812%20100l50-50z%22%2F%3E%3C%2Fsvg%3E');
+}
+
+#seminar .hero {
+	height: 60vh;
+	min-height: 580px;
+	display: flex;
+	color: white;
+	background-color: black;
+}
+
+#seminar .hero .container {
+	margin: auto;
+	text-align: center;
+}
+
+#seminar .hero h1 {
+	color: white;
+}
+
+#seminar .button-wrap {
+	margin: 20px 0;
+}
+
+#seminar a.btn:hover {
+	background-color: var(--grey);
+}
+
+#seminar .background-image-holder {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	opacity: 0.6;
+}
+
+#seminar .tagline {
+	font-size: 18px;
+	color: var(--primary-color);
+	font-weight: bold;
+}
+
+#seminar .intro {
+	padding: 120px 0 0 0;
+	margin-bottom: 40px;
+}
+
+#seminar .intro hr {
+	margin-bottom: 80px;
+}
+
+#seminar .intro h2 {
+	margin-top: 0;
+}
+
+#seminar .intro .faqs {
+	margin-bottom: 40px;
+}
+
+#seminar .intro .faqs h4 {
+	color: var(--dark);
+	display: block;
+	float: left;
+	width: 100%;
+	clear: both;
+}
+
+#seminar .intro .faqs p {
+	margin-bottom: 40px;
+	display: block;
+	float: left;
+	width: 100%;
+	clear: both;
+}
+
+#seminar .intro .faqs code {
+	margin-bottom: 20px;
+	padding: 20px;
+	line-height: 1.6;
+	font-size: 12px;
+	display: block;
+	float: left;
+	width: 100%;
+	clear: both;
+}
+
+#seminar .intro .left {
+	padding-right: 0;
+	margin-bottom: 80px;
+}
+
+#seminar .intro .right {
+	margin-bottom: 40px;
+}
+
+#seminar .intro .right .image-host {
+	width: 80px;
+	height: 80px;
+}
+
+#seminar .bg--secondary {
+	padding: 80px 0 80px 0;
+	background: #f1f3f2;
+}
+
+#seminar .p-color {
+	color: var(--dark);
+}
+
+#seminar .video-cover {
+	overflow: hidden;
+	height: 0;
+	padding-top: 56.25%;
+	background-color: black;
+}
+
+#seminar .video-cover .video-play {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	background-size: 16% auto;
+	background-position: center center;
+	background-repeat: no-repeat;
+
+	background-image: url('data:image/svg+xml,%3Csvg%20fill%3D%22%23FFF%22%20width%3D%22100pt%22%20height%3D%22100pt%22%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M50%200C36.738%200%2024.02%205.27%2014.645%2014.645S0%2036.739%200%2050s5.27%2025.98%2014.645%2035.355S36.739%20100%2050%20100s25.98-5.27%2035.355-14.645S100%2063.261%20100%2050s-5.27-25.98-14.645-35.355S63.261%200%2050%200zm16.008%2051.352L41.805%2065.329c-.484.277-1.078.277-1.563%200-.484-.281-.78-.797-.78-1.355V36.027c0-.558.296-1.074.78-1.355.485-.277%201.079-.277%201.563%200l24.203%2013.973v.004c.484.277.781.793.781%201.352s-.297%201.074-.781%201.351z%22%2F%3E%3C%2Fsvg%3E');
+}
+
+#seminar .video-details h4,
+#seminar .video-details p {
+	font-size: 14px;
+	margin-bottom: 4px;
+}
+
+#seminar .video-details p {
+	margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+	#seminar .intro .left {
+		padding-right: 60px;
+	}
+}
+
+@media (min-width: 992px) {
+	#seminar .intro .faqs .col-md-6.first {
+		padding-right: 40px;
+	}
+	#seminar .intro .faqs .col-md-6.second {
+		padding-left: 40px;
+	}
+}
+
+@media (min-width: 1024px) {
+	#seminar .intro .right .feature {
+		display: flex;
+		align-items: center;
+	}
+	#seminar .intro .right .image-host {
+		margin-right: 20px;
+	}
+}

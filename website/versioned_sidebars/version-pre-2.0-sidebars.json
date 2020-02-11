@@ -1,0 +1,98 @@
+{
+  "version-pre-2.0-docs": {
+    "Overview": [
+      "version-pre-2.0-index",
+      "version-pre-2.0-overview/getting-started",
+      "version-pre-2.0-conceptual/runtime/frame",
+      "version-pre-2.0-overview/glossary"
+    ],
+    "Substrate Core": [
+      "version-pre-2.0-conceptual/core/codec",
+      "version-pre-2.0-conceptual/core/consensus",
+      "version-pre-2.0-conceptual/core/executor",
+      "version-pre-2.0-conceptual/core/off-chain-workers",
+      "version-pre-2.0-conceptual/core/storage"
+    ],
+    "Substrate Nodes": [
+      "version-pre-2.0-conceptual/node/extrinsics"
+    ],
+    "Cryptography": [
+      "version-pre-2.0-conceptual/cryptography/index",
+      "version-pre-2.0-conceptual/cryptography/keys",
+      "version-pre-2.0-conceptual/cryptography/session-keys",
+      "version-pre-2.0-conceptual/cryptography/ss58-address-format"
+    ],
+    "Substrate Runtime": [
+      "version-pre-2.0-conceptual/runtime/index",
+      "version-pre-2.0-conceptual/runtime/weight",
+      "version-pre-2.0-conceptual/runtime/primitives",
+      "version-pre-2.0-development/module/execution",
+      "version-pre-2.0-development/module/macros",
+      "version-pre-2.0-development/module/storage",
+      "version-pre-2.0-development/module/events",
+      "version-pre-2.0-development/module/off-chain-workers",
+      "version-pre-2.0-development/module/fees",
+      "version-pre-2.0-development/module/tests"
+    ],
+    "Smart Contracts": [
+      "version-pre-2.0-conceptual/runtime/contracts/index",
+      "version-pre-2.0-conceptual/runtime/contracts/contracts_module",
+      "version-pre-2.0-conceptual/runtime/contracts/evm_module",
+      "version-pre-2.0-conceptual/runtime/contracts/ink",
+      "version-pre-2.0-development/contracts/ink"
+    ],
+    "Deployment": [
+      "version-pre-2.0-development/build/prerequisites",
+      "version-pre-2.0-development/build/purge-chain",
+      "version-pre-2.0-development/build/upgrade",
+      "version-pre-2.0-development/deployment/chain-spec",
+      "version-pre-2.0-development/deployment/account-prefix",
+      "version-pre-2.0-development/deployment/boot-node",
+      "version-pre-2.0-development/deployment/disabling-features"
+    ],
+    "Front End": [
+      "version-pre-2.0-development/front-end/polkadot-js",
+      "version-pre-2.0-development/front-end/json-rpc"
+    ],
+    "Ecosystem Tools": [
+      "version-pre-2.0-development/tools/subkey"
+    ],
+    "Contribute": [
+      "version-pre-2.0-contribute/help-translate"
+    ]
+  },
+  "version-pre-2.0-creating-your-first-substrate-chain": {
+    "Creating Your First Substrate Chain": [
+      "version-pre-2.0-tutorials/creating-your-first-substrate-chain/index",
+      "version-pre-2.0-tutorials/creating-your-first-substrate-chain/setup",
+      "version-pre-2.0-tutorials/creating-your-first-substrate-chain/background",
+      "version-pre-2.0-tutorials/creating-your-first-substrate-chain/interact"
+    ]
+  },
+  "version-pre-2.0-build-a-dapp": {
+    "Build a PoE Decentralized Application": [
+      "version-pre-2.0-tutorials/build-a-dapp/index",
+      "version-pre-2.0-tutorials/build-a-dapp/prepare",
+      "version-pre-2.0-tutorials/build-a-dapp/pallet",
+      "version-pre-2.0-tutorials/build-a-dapp/front-end"
+    ]
+  },
+  "version-pre-2.0-start-a-private-network": {
+    "Start a Private Network": [
+      "version-pre-2.0-tutorials/start-a-private-network/index",
+      "version-pre-2.0-tutorials/start-a-private-network/compile",
+      "version-pre-2.0-tutorials/start-a-private-network/alicebob",
+      "version-pre-2.0-tutorials/start-a-private-network/keygen",
+      "version-pre-2.0-tutorials/start-a-private-network/customchain"
+    ]
+  },
+  "version-pre-2.0-substrate-front-end": {
+    "Substrate Front End Tutorial": [
+      "version-pre-2.0-tutorials/substrate-front-end/index",
+      "version-pre-2.0-tutorials/substrate-front-end/part-1-connect-to-a-node",
+      "version-pre-2.0-tutorials/substrate-front-end/part-2-query-balances",
+      "version-pre-2.0-tutorials/substrate-front-end/part-3-transfer-funds",
+      "version-pre-2.0-tutorials/substrate-front-end/part-4-use-external-accounts"
+    ]
+  }
+}

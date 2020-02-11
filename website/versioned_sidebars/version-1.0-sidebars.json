@@ -1,7 +1,7 @@
 {
   "version-1.0-docs": {
     "Getting Started": [
-      "version-1.0-getting-started/index",
+      "version-1.0-index",
       "version-1.0-getting-started/installing-substrate",
       "version-1.0-getting-started/using-the-substrate-scripts"
     ],

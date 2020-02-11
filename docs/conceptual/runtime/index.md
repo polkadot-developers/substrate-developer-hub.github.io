@@ -4,8 +4,7 @@ title: Runtime Overview
 
 ## Substrate Runtime
 
-The runtime is the most critical component in your blockchain. 
-It contains the business logic that will define your blockchain's behavior,
+The runtime contains the business logic that will define your blockchain's behavior,
 a.k.a. the state transition function.
 
 The Substrate runtime is composed of a set of modules (called pallets) and 
@@ -20,14 +19,10 @@ For example,
 If you want to add smart contract functionality to your blockchain, you simply need to include the
 [Contracts](https://substrate.dev/rustdocs/master/pallet_contracts/index.html) pallet.
 
-## Next Steps
-
 ### Learn More
 
-- Visit the reference docs for [runtime development](../../development/module/).
-
 - Follow a [tutorial to develop your first Substrate 
-chain](../../tutorials/creating-your-first-substrate-chain).
+chain](tutorials/creating-your-first-substrate-chain/index.md).
 
 - Follow a [tutorial to add a pallet to your Substrate
-runtime](../../tutorials/adding-a-module-to-your-runtime).
+runtime](tutorials/adding-a-module-to-your-runtime.md).
