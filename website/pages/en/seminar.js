@@ -104,11 +104,7 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								<strong>February 11th</strong> - The team behind{' '}<a href="https://github.com/playproject-io/datdot-substrate">
-								Account Permissioning</a>, an incentivization system for storing files on the Dat network, join
-								us for a code walkthrough and demonstration.
-							<br />
-								<strong>February 18th</strong> - Andre Silva and Seun Lanlege join us to talk all things consensus in
+								<strong>February 18th</strong> - Seun Lanlege join us to talk all things consensus in
 								Substrate.
 							<br />
 								<strong>February 25th</strong> - Kian Paimani joins us to discuss Phragmen's algorithm and Substrate's
@@ -136,10 +132,14 @@ function Seminar(props) {
 						<div className='col-md-6 second'>
 							<h4 className='mb-2'>How should I prepare for the call?</h4>
 							<p>
-								For the February 11th session, it wil be helpful to know the basics of the{' '}
-								<a href="https://www.datprotocol.com/">Dat protocol</a>, which is similar, in some ways,
-								to IPFS. You can learn the fundamentals in this article{' '}
-								<a href="https://datprotocol.github.io/how-dat-works/">How Dat Works</a>.
+								For the February 18th session, it wil be helpful to know the basics of Consensus in
+								Substrate. Please pre-read this{' '}
+								<a href='https://substrate.dev/docs/en/conceptual/core/consensus'>
+									Conceptual Document
+								</a> and this{' '}
+								<a href='https://stackoverflow.com/questions/58369340/in-substrate-what-is-the-difference-beteween-babe-aura-and-grandpa/58369341#58369341'>
+									Stack Overflow post
+								</a>
 							</p>
 
 							<h4 className='mb-2'>I am not a [Substrate] developer, can I still participate?</h4>
