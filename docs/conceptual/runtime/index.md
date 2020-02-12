@@ -11,7 +11,7 @@ that users can dispatch.
 Substrate provides a set of modules, called pallets, that can be composed and configured. Substrate
 also provides the support libraries necessary to let these pallets interact with the client.
 Each pallet contains domain-specific logic and storage items. At the runtime level, you can add
-your own modules by using the standard pallet interfaces and access the public methods and traits
+your own pallets by using the standard pallet interfaces and access the public methods and traits
 of other pallets.
 
 The entire set of pallets and support libraries is called _FRAME._ FRAME interacts with the client
