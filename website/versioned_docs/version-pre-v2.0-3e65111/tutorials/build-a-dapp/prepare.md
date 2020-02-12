@@ -6,7 +6,11 @@ original_id: prepare
 
 ## Install the Node Template
 
-You should already have the [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template) compiled on your computer from when you completed the [Creating Your First Substrate Chain Tutorial](tutorials/creating-your-first-substrate-chain). If you do not, please complete that tutorial.
+You should already have version `pre-v2.0-3e65111` of the [Substrate Node
+Template](https://github.com/substrate-developer-hub/substrate-node-template) compiled on your
+computer from when you completed the [Creating Your First Substrate Chain
+Tutorial](tutorials/creating-your-first-substrate-chain). If you do not, please complete that
+tutorial.
 
 > Experienced developers who truly prefer to skip that tutorial, you may install the node template according to the instructions in its readme.
 

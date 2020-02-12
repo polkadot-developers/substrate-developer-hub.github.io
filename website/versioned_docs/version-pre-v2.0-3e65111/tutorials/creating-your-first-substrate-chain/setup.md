@@ -50,13 +50,14 @@ well documented [here](overview/getting-started.md).
 
 ## Compiling Substrate
 
-Once everything is installed, you need to set up the skeleton for our project. Fortunately, there is
-a simple template project to help you get started building on Substrate.
+Once the prerequisites are installed, you need to set up the skeleton for our project. The Substrate Node
+Template serves as a good starting point for building on Substrate.
 
-1. Clone the Substrate Node Template
+1. Clone the Substrate Node Template (version `pre-2.0-3e6511`) and create a branch for your work.
 
     ```bash
-    git clone https://github.com/substrate-developer-hub/substrate-node-template
+    git clone -b pre-v2.0-3e65111 https://github.com/substrate-developer-hub/substrate-node-template
+    git checkout -b my-first-substrate-chain
     ```
 
 2. Initialize your WebAssembly build environment

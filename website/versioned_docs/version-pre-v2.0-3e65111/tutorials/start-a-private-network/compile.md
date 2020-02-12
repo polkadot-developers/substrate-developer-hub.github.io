@@ -4,14 +4,14 @@ id: version-pre-v2.0-3e65111-compile
 original_id: compile
 ---
 
-Substrate does not (yet) offer binary installation packages, so it must be compiled from source, which can be a time-consuming process. It is wise to start the compilation and then read the next few pages of the tutorial while your node is building. This tutorial will use the Substrate node template.
+Substrate does not (yet) offer binary installation packages, so it must be compiled from source, which can be a time-consuming process. It is wise to start the compilation and then read the next few pages of the tutorial while your node is building. This tutorial will use the Substrate node template (version `pre-2.0-3e65111`).
 
 ```bash
 # Install rust prerequisites
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 
 # Download the Substrate node template
-git clone https://github.com/substrate-developer-hub/substrate-node-template.git
+git clone -b pre-v2.0-3e65111 https://github.com/substrate-developer-hub/substrate-node-template
 ```
 
 
