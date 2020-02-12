@@ -248,7 +248,7 @@ function Community(props) {
           target="_blank"
           variant="secondary"
           size="sm"
-          href="https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx"
+          href="https://www.youtube.com/playlist?list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS"
           className="m-1 primary-color"
         >
           Previous Recordings
