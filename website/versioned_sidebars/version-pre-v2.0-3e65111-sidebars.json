@@ -23,6 +23,7 @@
       "version-pre-v2.0-3e65111-conceptual/cryptography/ss58-address-format"
     ],
     "Substrate Runtime": [
+			"version-pre-v2.0-3e65111-conceptual/runtime/index",
       "version-pre-v2.0-3e65111-conceptual/runtime/weight",
       "version-pre-v2.0-3e65111-conceptual/runtime/primitives",
       "version-pre-v2.0-3e65111-development/module/execution",
