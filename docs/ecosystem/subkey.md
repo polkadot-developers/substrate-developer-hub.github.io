@@ -8,7 +8,7 @@ Subkey is a key-generation utility that is developed alongside Substrate. Its ma
 
 ### Build from Source
 
-The Subkey binary, `subkey`, is also installed along with the [Substrate installation](../getting-started/installing-substrate.md). If you want to play with just Subkey (and not Substrate), you will need to have the Substrate dependencies. Use the following two commands to install the dependencies and Subkey, respectively:
+The Subkey binary, `subkey`, is also installed along with the [Substrate installation](overview/getting-started.md#prerequisites). If you want to play with just Subkey (and not Substrate), you will need to have the Substrate dependencies. Use the following two commands to install the dependencies and Subkey, respectively:
 
 ```bash
 $ curl https://getsubstrate.io -sSf | bash -s -- --fast
