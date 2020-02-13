@@ -56,8 +56,7 @@ Template serves as a good starting point for building on Substrate.
 1. Clone the Substrate Node Template (version `pre-2.0-3e6511`) and create a branch for your work.
 
     ```bash
-    git clone -b pre-v2.0-3e65111 https://github.com/substrate-developer-hub/substrate-node-template
-    git checkout -b my-first-substrate-chain
+    git clone -b pre-v2.0-3e65111 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
     ```
 
 2. Initialize your WebAssembly build environment
@@ -75,6 +74,7 @@ Template serves as a good starting point for building on Substrate.
 
     ```bash
     cd substrate-node-template/
+    git checkout -b my-first-substrate-chain
     cargo build --release
     ```
 

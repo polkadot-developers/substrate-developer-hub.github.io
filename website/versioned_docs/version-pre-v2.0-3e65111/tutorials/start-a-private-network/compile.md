@@ -11,7 +11,7 @@ Substrate does not (yet) offer binary installation packages, so it must be compi
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 
 # Download the Substrate node template
-git clone -b pre-v2.0-3e65111 https://github.com/substrate-developer-hub/substrate-node-template
+git clone -b pre-v2.0-3e65111 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
 ```
 
 
