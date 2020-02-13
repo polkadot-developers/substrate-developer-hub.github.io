@@ -119,7 +119,7 @@ created by a large number of contributors can flow together. See
 
 ### How can I link to other docs in my documentation?
 
-Use absolute paths starting with `/` and ending with `.md`, like [`/getting-started/using-the-substrate-scripts.md`](/substrate/node-template/runtime/src/template.rs).
+Use absolute paths starting with `/` and ending with `.md`, like `/overview/getting-started.md`.
 Never use relative paths with ".." that point to content outside of `/docs`.
 
 ### How can I link to source code in my documentation?

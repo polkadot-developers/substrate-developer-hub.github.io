@@ -1,5 +1,7 @@
 ---
 title: Prepare to build a dApp
+id: version-pre-v2.0-3e65111-prepare
+original_id: prepare
 ---
 
 ## Install the Node Template
@@ -14,7 +16,7 @@ tutorial.
 
 ## Install the Front End Template
 
-This tutorial also uses a ReactJS front end, which we will modify for interacting with our
+This tutorial also uses a ReactJS front-end which we will modify for interacting with our
 custom Substrate blockchain.
 
 To use the front-end template, you need [Yarn](https://yarnpkg.com), which itself requires  [Node.js](https://nodejs.org/). If you don't have these tools, you may install them from these instructions:
@@ -22,7 +24,7 @@ To use the front-end template, you need [Yarn](https://yarnpkg.com), which itsel
 * [Install Node.js](https://nodejs.org/en/download/)
 * [Install Yarn](https://yarnpkg.com/lang/en/docs/install/)
 
-Now you can proceed to set up the front-end template with these commands.
+Now you can proceed to setup the front-end template with these commands.
 
 ```bash
 # Clone the code from github

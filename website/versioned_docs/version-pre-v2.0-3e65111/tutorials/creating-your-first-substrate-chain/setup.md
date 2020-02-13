@@ -1,5 +1,7 @@
 ---
 title: Set Up Your Computer
+id: version-pre-v2.0-3e65111-setup
+original_id: setup
 ---
 
 Normally we would teach you more about the Substrate blockchain development framework, however, setting up your computer for Substrate development can take a while.
@@ -54,7 +56,7 @@ Template serves as a good starting point for building on Substrate.
 1. Clone the Substrate Node Template (version `pre-2.0-3e6511`) and create a branch for your work.
 
     ```bash
-		git clone -b pre-v2.0-3e65111  --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+    git clone -b pre-v2.0-3e65111 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
     ```
 
 2. Initialize your WebAssembly build environment
