@@ -45,9 +45,9 @@ If the number after `best:` is increasing, your blockchain is producing new bloc
 To interact with the local node we will use the Polkadot-js Apps user interface, often known as
 "Apps" for short. Despite the name, Apps will work with any Substrate-based blockchain including ours, not just Polkadot.
 
-In your web browser, navigate to:
+In your web browser, navigate to [https://polkadot.js.org/apps](https://polkadot.js.org/apps/#/settings?rpc=ws://127.0.0.1:9944).
 
-https://polkadot.js.org/apps/
+On the `Settings` tab ensure that you are connected to a `Local Node`.
 
 > Some browsers, notably Firefox, will not connect to a local node from an https website. An easy work around is to try another browser, like Chromium. Another option is to [host this interface locally](https://github.com/polkadot-js/apps#development).
 
