@@ -47,7 +47,7 @@ the origin of an extrinsic, and more.
 
 ### Executive Pallet
 
-The [Executive pallet](https://substrate.dev/rustdocs/pre-v2.0-3e65111/pallet_executive/index.html) acts as the orchestration layer
+The [Executive pallet](https://substrate.dev/rustdocs/pre-v2.0-3e65111/frame_executive/index.html) acts as the orchestration layer
 for the runtime. It dispatches incoming extrinsic calls to the respective pallets in the runtime.
 
 ### Support Library
@@ -298,7 +298,7 @@ a structure for making spending proposals from this pot.
 
 - Visit the reference docs for the [System library](https://substrate.dev/rustdocs/pre-v2.0-3e65111/frame_system/index.html).
 
-- Visit the reference docs for the [Executive pallet](https://substrate.dev/rustdocs/pre-v2.0-3e65111/pallet_executive/index.html).
+- Visit the reference docs for the [Executive pallet](https://substrate.dev/rustdocs/pre-v2.0-3e65111/frame_executive/index.html).
 
 - Visit the reference docs for the [FRAME support
   library](https://substrate.dev/rustdocs/pre-v2.0-3e65111/frame_support/index.html).
