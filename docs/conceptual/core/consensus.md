@@ -128,12 +128,12 @@ finality. This article provides a brief overview of the offerings included with 
 
 ### Aura
 
-[Aura](https://crates.parity.io/substrate_consensus_aura/index.html) provides a slot-based block
+[Aura](https://crates.parity.io/pallet_aura/index.html) provides a slot-based block
 authoring mechanism. In Aura a known set of authorities take turns producing blocks.
 
 ### BABE
 
-[BABE](https://crates.parity.io/substrate_consensus_babe/index.html) also provides slot-based block
+[BABE](https://crates.parity.io/pallet_babe/index.html) also provides slot-based block
 authoring with a known set of validators. In these ways it is similar to Aura. Unlike Aura, slot
 assignment is based on the evaluation of a Verifiable Random Function (VRF). Each validator is
 assigned a weight for an _epoch._ This epoch is broken up into slots and the validator evaluates its
@@ -148,7 +148,7 @@ in a given slot. These "secondary" slot assignments allow BABE to achieve a cons
 
 ### Proof of Work
 
-[Proof-of-work](https://crates.parity.io/substrate_consensus_pow/index.html) block authoring is not
+[Proof-of-work](https://crates.parity.io/sc_consensus_pow/index.html) block authoring is not
 slot-based and does not require a known authority set. In proof of work, anyone can
 produce a block at any time, so long as they can solve a computationally challenging problem
 (typically a hash preimage search). The difficulty of this problem can be tuned to provide a
@@ -156,7 +156,7 @@ statistical target block time.
 
 ### GRANDPA
 
-[GRANDPA](https://crates.parity.io/substrate_finality_grandpa/index.html) provides block
+[GRANDPA](https://crates.parity.io/pallet_grandpa/index.html) provides block
 finalization. It has a known weighted authority set like BABE. However, GRANDPA does not author
 blocks; it just listens to gossip about blocks that have been produced by some authoring engine like
 the three discussed above. GRANDPA validators vote on _chains,_ not _blocks,_ i.e. they vote on a
@@ -172,7 +172,7 @@ coordination with the runtime. Examples include adjustable difficulty in proof o
 rotation in proof of authority, and stake-based weighting in proof-of-stake networks.
 
 To accommodate these consensus features, Substrate has the concept of a
-[`DigestItem`](https://substrate.dev/rustdocs/master/sr_primitives/enum.DigestItem.html), a message
+[`DigestItem`](https://substrate.dev/rustdocs/master/sp_runtime/enum.DigestItem.html), a message
 passed from the outer part of the node, where consensus lives, to the runtime, or vice versa.
 
 ## Learn More
