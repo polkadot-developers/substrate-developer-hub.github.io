@@ -107,7 +107,7 @@ The Substrate [JSON RPC](development/front-end/json-rpc.md) does not directly ex
 
 These [Substrate Recipes](https://github.com/substrate-developer-hub/recipes) offer examples of how runtime events are used:
 
-* [A pallet that implements standard events]( https://github.com/substrate-developer-hub/recipes/blob/master/pallets/last-caller/src/lib.rs)
+* [A pallet that implements standard events](https://github.com/substrate-developer-hub/recipes/blob/master/pallets/last-caller/src/lib.rs)
 
 * [A pallet that does not emit events with generic types](https://github.com/substrate-developer-hub/recipes/blob/master/pallets/adding-machine/src/lib.rs)
 
