@@ -12,7 +12,7 @@ covered in the [Fee Developer document](development/module/fees.md).
 
 Weights represent the _limited_ resources of your blockchain, for example computational cycles,
 memory, storage, etc. A custom implementation may use complex structures to express this. Substrate
-weights are simply a [numeric value](https://substrate.dev/rustdocs/master/palette_support/weights/type.Weight.html).
+weights are simply a [numeric value](https://substrate.dev/rustdocs/master/frame_support/weights/type.Weight.html).
 
 A weight calculation should always:
 
@@ -42,7 +42,7 @@ weight of the block. If either of these numbers surpass the limits, no further t
 accepted in that block. These limits are defined in
 [`MaximumBlockLength`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.MaximumBlockLength)
 and
-[`MaximumBlockWeight`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.MaximumBlockLength).
+[`MaximumBlockWeight`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.MaximumBlockWeight).
 
 One important note about these limits is that a portion of them are reserved for the `Operational`
 dispatch class. This rule applies to both of the limits and the ratio can be found in
@@ -65,13 +65,12 @@ operational class.
 
 ### Examples
 
-- See an example of [adding a transaction
-  weight](https://substrate.dev/recipes/traits/fees.html#assigning-transaction-weights)
-  to a custom runtime function.
+- See an example of [adding a transaction weight](https://substrate.dev/recipes/3-entrees/weights.html) to a
+  custom runtime function.
 
 ### References
 
 - Take a look at the [SRML Transaction Payment
   pallet](https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/src/lib.rs).
 - Find info about weights including the `SimpleDispatchInfo` enum in
-  [weights.rs](https://github.com/paritytech/substrate/blob/master/primitives/sr-primitives/src/weights.rs).
+  [weights.rs](https://github.com/paritytech/substrate/blob/master/frame/support/src/weights.rs).

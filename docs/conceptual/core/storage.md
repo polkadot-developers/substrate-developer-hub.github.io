@@ -51,7 +51,7 @@ state of the blockchain and provide a basis for light clients to verify proofs.
 
 This trie only stores content for the canonical chain, not forks. There is a
 separate [`state_db`
-layer](https://substrate.dev/rustdocs/master/substrate_state_db/index.html) that
+layer](https://substrate.dev/rustdocs/master/sc_state_db/index.html) that
 maintains the trie state with references counted in memory for all that is
 non-canonical.
 
@@ -87,7 +87,7 @@ querying the trie by key.
 
 ### Examples
 
-- View an example of creating [child tries](TODO) in your Substrate runtime module.
+- View an example of creating [child tries](https://substrate.dev/recipes/3-entrees/storage-api/childtries.html) in your Substrate runtime module.
 
 ### References
 

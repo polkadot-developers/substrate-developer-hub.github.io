@@ -88,7 +88,7 @@ but only ECDSA signatures communicate their public key.
 ### Examples
 
 * Look at the Polkadot claims module to see how you can [verify Ethereum signatures in the Substrate
-  runtime](https://github.com/paritytech/polkadot/blob/master/runtime/src/claims.rs).
+  runtime](https://github.com/paritytech/polkadot/blob/master/runtime/common/src/claims.rs).
 
 ### References
 

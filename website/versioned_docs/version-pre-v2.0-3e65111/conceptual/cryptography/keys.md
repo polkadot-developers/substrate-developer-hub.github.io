@@ -97,7 +97,7 @@ used for their intended purpose.
 
 If a Session key is compromised, attackers could commit slashable behavior. Session keys should be
 changed regularly (e.g. every session) via [the `rotate_keys`
-RPC](https://substrate.dev/rustdocs/pre-v2.0-3e65111/substrate_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys) for increased
+RPC](https://substrate.dev/rustdocs/pre-v2.0-3e65111/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys) for increased
 security.
 
 ## Next Steps
@@ -115,11 +115,11 @@ security.
 ### References
 
 * Visit the reference docs for the [session keys runtime
-  API](https://substrate.dev/rustdocs/pre-v2.0-3e65111/substrate_session/trait.SessionKeys.html).
+  API](https://substrate.dev/rustdocs/pre-v2.0-3e65111/sp_session/trait.SessionKeys.html).
 
 * Take a look at the default [session keys in the Substrate node
   runtime](https://substrate.dev/rustdocs/pre-v2.0-3e65111/node_runtime/struct.SessionKeys.html).
 
 * Take a look at
-  [`substrate_application_crypto`](https://substrate.dev/rustdocs/pre-v2.0-3e65111/substrate_application_crypto/index.html), used
+  [`substrate_application_crypto`](https://substrate.dev/rustdocs/pre-v2.0-3e65111/sp_application_crypto/index.html), used
   for constructing application specific strongly typed crypto wrappers.

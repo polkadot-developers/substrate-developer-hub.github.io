@@ -1,7 +1,7 @@
 ---
 title: "Introduction"
 ---
-Substrate is a blockchain platform with a completely generic State Transition Function ([STF](overview/glossary.md#stf-state-transition-function)) and modular components for consensus, networking, and configuration.
+Substrate is a blockchain platform with a completely generic State Transition Function ([STF](../conceptual/runtime/index.md)) and modular components for consensus, networking, and configuration.
 
 Despite being "completely generic", it comes with both standards and conventions - particularly with the Substrate Runtime Module Library ([SRML](overview/glossary.md#srml-substrate-runtime-module-library)) - regarding the underlying data-structures that power the STF, thereby making rapid blockchain development a reality.
 

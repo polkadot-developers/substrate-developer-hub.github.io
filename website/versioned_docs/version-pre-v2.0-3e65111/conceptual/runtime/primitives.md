@@ -72,5 +72,4 @@ There are an additional set of primitives that are assumed about a runtime built
 
 ### References
 
-- View the [`traits` defined in
-  `sr-primitives`](https://substrate.dev/rustdocs/pre-v2.0-3e65111/sr_primitives/traits/index.html).
+- View the [`traits` defined in `sp-runtime`](https://substrate.dev/rustdocs/pre-v2.0-3e65111/sp_runtime/traits/index.html)

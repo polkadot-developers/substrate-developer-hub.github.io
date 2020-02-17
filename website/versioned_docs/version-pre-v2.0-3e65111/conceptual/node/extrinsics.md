@@ -66,7 +66,7 @@ some form of spam prevention based on a custom implementation of
 [signed extension](#signed-extension), which can exist on unsigned transactions.
 
 An example of unsigned transactions in Substrate is the 
-[I'm Online](https://github.com/paritytech/substrate/blob/master/frame/im-online/src/lib.rs) 
+[I'm Online](../runtime/frame.md#im-online) 
 heartbeat transaction sent by authorities. The transaction includes a signature from a Session key, 
 which does not control funds and therefore cannot pay a fee. The transaction pool controls spam 
 by checking if a heartbeat has already been submitted in the session.
