@@ -128,12 +128,12 @@ finality. This article provides a brief overview of the offerings included with 
 
 ### Aura
 
-[Aura](https://substrate.dev/rustdocs/master/pallet_aura/index.html) provides a slot-based block
+[Aura](https://substrate.dev/rustdocs/master/sc_consensus_aura/index.html) provides a slot-based block
 authoring mechanism. In Aura a known set of authorities take turns producing blocks.
 
 ### BABE
 
-[BABE](https://substrate.dev/rustdocs/master/pallet_babe/index.html) also provides slot-based block
+[BABE](https://substrate.dev/rustdocs/master/sc_consensus_babe/index.html) also provides slot-based block
 authoring with a known set of validators. In these ways it is similar to Aura. Unlike Aura, slot
 assignment is based on the evaluation of a Verifiable Random Function (VRF). Each validator is
 assigned a weight for an _epoch._ This epoch is broken up into slots and the validator evaluates its
@@ -156,7 +156,7 @@ statistical target block time.
 
 ### GRANDPA
 
-[GRANDPA](https://substrate.dev/rustdocs/master/pallet_grandpa/index.html) provides block
+[GRANDPA](https://substrate.dev/rustdocs/master/sc_finality_grandpa/index.html) provides block
 finalization. It has a known weighted authority set like BABE. However, GRANDPA does not author
 blocks; it just listens to gossip about blocks that have been produced by some authoring engine like
 the three discussed above. GRANDPA validators vote on _chains,_ not _blocks,_ i.e. they vote on a
