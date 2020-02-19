@@ -1,7 +1,7 @@
 ---
 title: Installing Substrate
-id: version-pre-v2.0-3e65111-index
-original_id: index
+id: version-pre-v2.0-3e65111-installing-substrate
+original_id: installing-substrate
 ---
 
 <meta http-equiv="Refresh" content="0; url=../overview/getting-started" />
