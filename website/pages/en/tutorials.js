@@ -87,6 +87,16 @@ class Tutorials extends React.Component {
                     ? `Prerequisites`
                     : `No Prerequisites`}
                 </Badge>
+                <Badge
+                  variant={
+                    tutorial.version <= 1
+                    ? `danger`
+                    : `warning`
+                  }
+                  className="m-1"
+                >
+                   {`v`}{tutorial.version}
+                </Badge>
               </div>
             </Card.Body>
             <Card.Footer className="text-center">
@@ -147,6 +157,16 @@ class Tutorials extends React.Component {
                   {tutorial.prerequisite == true
                     ? `Prerequisites`
                     : `No Prerequisites`}
+                </Badge>
+                <Badge
+                  variant={
+                    tutorial.version <= 1
+                    ? `danger`
+                    : `warning`
+                  }
+                  className="m-1"
+                >
+                  {`v`}{tutorial.version}
                 </Badge>
               </div>
             </Card.Body>
@@ -212,6 +232,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "< 1",
                 prerequisite: false,
+                version: "2.0-3e65111",
                 href: `${docUrl(
                   "tutorials/creating-your-first-substrate-chain/"
                 )}`
@@ -229,6 +250,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "1",
                 prerequisite: true,
+                version: "2.0-3e65111",
                 href: `${docUrl(
                   "tutorials/build-a-dapp"
                 )}`
@@ -247,6 +269,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "2",
                 prerequisite: false,
+                version: "2.0-3e65111",
                 href: `${docUrl(
                   "tutorials/start-a-private-network/"
                 )}`
@@ -263,6 +286,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "4",
                 prerequisite: false,
+                version: "2.0-3e65111",
                href:
                   "https://substrate-developer-hub.github.io/substrate-contracts-workshop/"
               }
@@ -293,6 +317,7 @@ class Tutorials extends React.Component {
                 difficulty: "medium",
                 length: "2",
                 prerequisite: false,
+                version: "2.0-3e65111",
                 href: `${docUrl(
                   "tutorials/adding-a-module-to-your-runtime/")}`
               },
@@ -310,6 +335,7 @@ class Tutorials extends React.Component {
                 difficulty: "medium",
                 length: "2",
                 prerequisite: false,
+                version: "2.0-3e65111",
                 href: `${docUrl("tutorials/creating-a-runtime-module/")}`
               },
               {
@@ -326,6 +352,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "2",
                 prerequisite: false,
+                version: "2.0-3e65111",
                 href: `${docUrl("tutorials/substrate-front-end/")}`
               },
               {
@@ -340,6 +367,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "< 1",
                 prerequisite: false,
+                version: "2.0-3e65111",
                 href: `${docUrl("tutorials/visualizing-node-metrics/")}`
               },
               {
@@ -354,6 +382,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "5",
                 prerequisite: false,
+                version: "1.0",
                 href:
                   "https://substrate-developer-hub.github.io/substrate-collectables-workshop/"
               },
@@ -372,6 +401,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "3",
                 prerequisite: false,
+                version: "1.0",
                 href: "https://substrate.dev/substrate-verifiable-credentials/"
               },
               {
@@ -385,6 +415,7 @@ class Tutorials extends React.Component {
                 difficulty: "medium",
                 length: "2",
                 prerequisite: true,
+                version: "2.0-3e65111",
                 href: "https://github.com/substrate-developer-hub/utxo-workshop"
               },
               {
@@ -395,6 +426,7 @@ class Tutorials extends React.Component {
                 difficulty: "medium",
                 length: "3",
                 prerequisite: true,
+                version: "1.0",
                 href: `${docUrl("tutorials/tcr/")}`
               }
             ]}
