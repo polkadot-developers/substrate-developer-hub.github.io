@@ -63,13 +63,10 @@ Prometheus->Grafana: `substrate_peers_count (1582023828, 5), (1582023847, 4) [..
 
 ## Step 1: Run your node
 
-As long as you're running a version of Substrate at or after commit
-<!-- TODO: Update commit hash-->
-[`d9ca975`](https://github.com/paritytech/substrate/commit/d9ca9750dba018463d59459a3ee1c03b71ea2d46),
-an endpoint serving metrics in the [Prometheus exposition
-format](https://prometheus.io/docs/concepts/data_model/) will be available on
-port `9615`. You can change the port with `--prometheus-port <PORT>` and enable
-it to be accessed over an interface other than local host with
+Substrate exposes an endpoint which serves metrics in the [Prometheus exposition
+format](https://prometheus.io/docs/concepts/data_model/) available on port
+`9615`. You can change the port with `--prometheus-port <PORT>` and enable it to
+be accessed over an interface other than local host with
 `--prometheus-external`.
 
 ```bash
