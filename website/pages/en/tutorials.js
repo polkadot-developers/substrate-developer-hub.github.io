@@ -339,6 +339,20 @@ class Tutorials extends React.Component {
                 href: `${docUrl("tutorials/creating-a-runtime-module/")}`
               },
               {
+                title: <translate>UTXO Workshop</translate>,
+                text: (
+                  <translate>
+                    A tutorial teaching you how to build a UTXO chain like
+                    Bitcoin using Substrate.
+                  </translate>
+                ),
+                difficulty: "medium",
+                length: "2",
+                prerequisite: true,
+                version: "2.0-3e65111",
+                href: "https://github.com/substrate-developer-hub/utxo-workshop"
+              },
+              {
                 img: `${baseUrl}img/polkadot-js-substrate-tutorial.png`,
                 title: (
                   <translate>Build a Front End with Polkadot-js API</translate>
@@ -403,20 +417,6 @@ class Tutorials extends React.Component {
                 prerequisite: false,
                 version: "1.0",
                 href: "https://substrate.dev/substrate-verifiable-credentials/"
-              },
-              {
-                title: <translate>UTXO Workshop</translate>,
-                text: (
-                  <translate>
-                    A tutorial teaching you how to build a UTXO chain like
-                    Bitcoin using Substrate.
-                  </translate>
-                ),
-                difficulty: "medium",
-                length: "2",
-                prerequisite: true,
-                version: "2.0-3e65111",
-                href: "https://github.com/substrate-developer-hub/utxo-workshop"
               },
               {
                 title: <translate>Substrate Token Curated Registry</translate>,
