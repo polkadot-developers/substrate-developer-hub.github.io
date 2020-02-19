@@ -2,12 +2,8 @@
 title: "Using the Substrate Scripts"
 ---
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Refresh" content="0; url=../overview/getting-started" />
-  </head>
-  <body>
-    <p>Please follow <a href="../overview/getting-started">this link</a>.</p>
-  </body>
-</html>
+<meta http-equiv="Refresh" content="0; url=../overview/getting-started" />
+
+The "Using Substrate Scripts" page no longer exists after Substrate v1.0.
+
+You can find the latest information on the "Getting Started" page [here](../overview/getting-started).
