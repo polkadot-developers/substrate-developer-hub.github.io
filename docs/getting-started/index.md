@@ -1,5 +1,5 @@
 ---
-title: "Using the Substrate Scripts"
+title: "Getting Started"
 ---
 
 <!DOCTYPE html>

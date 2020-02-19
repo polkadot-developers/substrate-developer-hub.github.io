@@ -1,5 +1,7 @@
 ---
-title: "Using the Substrate Scripts"
+title: Getting Started
+id: version-pre-v2.0-3e65111-index
+original_id: index
 ---
 
 <!DOCTYPE html>
