@@ -81,9 +81,9 @@ $ cargo <span class="token function">install</span> --force --git https://github
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="компилирование-с-cargo"></a><a href="#компилирование-с-cargo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Компилирование с Cargo</h3>
 <p>Если у Вас уже есть <a href="https://github.com/paritytech/substrate">репозиторий Substrate</a>, Вы можете собрать Subkey с помощью:</p>
-<pre><code class="hljs css language-bash">$ cargo build -p subkey
+<pre><code class="hljs css language-bash">$ cargo build -p subkey --release
 </code></pre>
-<p>Это установит <code>subkey</code> в <code>./target/debug/subkey</code>.</p>
+<p>This will install <code>subkey</code> in <code>./target/release/subkey</code>.</p>
 <h3><a class="anchor" aria-hidden="true" id="binary"></a><a href="#binary" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Binary</h3>
 <p>Parity provides a signed binary for Linux operating systems.</p>
 <ul>
@@ -99,6 +99,7 @@ $ cargo <span class="token function">install</span> --force --git https://github
 Secret phrase <span class="token variable"><span class="token variable">`</span>favorite liar zebra assume hurt cage any damp inherit rescue delay panic<span class="token variable">`</span></span> is account:
   Secret seed: 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
   Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
+  Account ID:       0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
   Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
 </code></pre>
 <p>Для еще большей безопасности используйте <code>--words 24</code> (поддерживается 12, 15, 18, 21 и 24):</p>
@@ -106,6 +107,7 @@ Secret phrase <span class="token variable"><span class="token variable">`</span>
 Secret phrase <span class="token variable"><span class="token variable">`</span>engine ghost pave tip coil undo when next finish between ignore mystery spread model mercy body sphere sense verify crumble ethics garment soon gold<span class="token variable">`</span></span> is account:
   Secret seed: 0xddd41c017dd60770a48f7aa50aee940b591726117769bc0740b19c5acfbf24d8
   Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x8ae95a30cb9daa11db449eeb3243ec2e8937df3620c607d66a7f330a9d48cf01
+  Account ID:       0x8ae95a30cb9daa11db449eeb3243ec2e8937df3620c607d66a7f330a9d48cf01
   Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5FCqnWDeL8KFEhy9ccdeRw64kJbfPLfKgA45kMeo6THj1tkz
 </code></pre>
 <p>Subkey кодирует адрес в зависимости от сети. Вы можете использовать <code>-n</code> или <code>--network</code> флаг для этого изменения. Смотрите <code>subkey help</code> для поддерживаемых сетей.</p>
@@ -114,6 +116,7 @@ Secret phrase <span class="token variable"><span class="token variable">`</span>
 Secret phrase <span class="token variable"><span class="token variable">`</span>expire stage crawl shell boss any story swamp skull yellow bamboo copy<span class="token variable">`</span></span> is account:
   Secret seed: 0xb034ad2704defa9dc0bea4ac8019fb0f805018f1be587cf04a03f9a033e3656b
   Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x3ff0766f9ebbbceee6c2f40d9323164d07e70c70994c9d00a9512be6680c2394
+  Account ID:       0x3ff0766f9ebbbceee6c2f40d9323164d07e70c70994c9d00a9512be6680c2394
   Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5DWYJiPBSFBUFah2W49oPPSsrCRvrY4N4VmLcSH9XfjKfZvh
 </code></pre>
 <p>Вывод дает нам следующую информацию о нашем ключе:</p>
@@ -124,11 +127,12 @@ Secret phrase <span class="token variable"><span class="token variable">`</span>
 <li><strong>Address (SS58)</strong> (aka &quot;Public Address&quot;) - An SS58-encoded address based on the public key.</li>
 </ul>
 <p>Вы также можете создать vanity адрес, хотя Вы не получите мнемоническую фразу:</p>
-<pre><code class="hljs css language-bash">$ subkey vanity joe
+<pre><code class="hljs css language-bash">$ subkey vanity joe  --number <span class="token number">1</span>
 Generating key containing pattern <span class="token string">'joe'</span>
 best: <span class="token number">189</span> <span class="token operator">==</span> top: <span class="token number">189</span>
 Secret Key URI <span class="token variable"><span class="token variable">`</span>0xc645213712dc218e851ac0a47e987ee3f8e1cbbbad85522dbbf86e51963de434<span class="token variable">`</span></span> is account:
   Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0xfaff3b483564c4d2dab7229e4369841d3650a4ca9c36094e9faece3839ac6e06
+  Account ID:       0xfaff3b483564c4d2dab7229e4369841d3650a4ca9c36094e9faece3839ac6e06
   Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5HjoeXxUokiJwQPRucDXCgGzKwwf74q9srJcmsaFssUW2UHn
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="защищенные-паролем-ключи"></a><a href="#защищенные-паролем-ключи" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Защищенные паролем ключи</h2>
@@ -137,6 +141,7 @@ Secret Key URI <span class="token variable"><span class="token variable">`</span
 Secret phrase <span class="token variable"><span class="token variable">`</span>razor blouse enroll maximum lobster bacon raccoon ocean law question worry length<span class="token variable">`</span></span> is account:
   Secret seed: 0x806e324821f6b09fa0329b7da35b8056b452fdcaadeac463ff2b8db1fc020c3e
   Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0xe2b410bdc959fcc7f756e6eefdb051000c80be339acd3a8dc6d941211160b266
+  Account ID:       0xe2b410bdc959fcc7f756e6eefdb051000c80be339acd3a8dc6d941211160b266
   Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y
 </code></pre>
 <p>Note that the &quot;Secret seed&quot; is <em>not</em> password protected and can still recover the account. Однако &quot;Secret phrase&quot; недостаточно для восстановления учетной записи без пароля.</p>
@@ -144,28 +149,41 @@ Secret phrase <span class="token variable"><span class="token variable">`</span>
 <p>Команда inspect пересчитывает открытый ключ ключевой пары и публичный адрес с учетом ее seed. Это показывает, что для резервной копии достаточно только сида.</p>
 <pre><code class="hljs css language-bash">$ subkey inspect 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
 Secret Key URI <span class="token variable"><span class="token variable">`</span>0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2<span class="token variable">`</span></span> is account:
+  Secret seed:      0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
   Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
-  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
+  Account ID:       0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
+  SS58 Address:     5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
 </code></pre>
 <p>Вы также можете проверить ключ своей мнемонической фразой.</p>
 <pre><code class="hljs css language-bash">$ subkey inspect <span class="token string">"favorite liar zebra assume hurt cage any damp inherit rescue delay panic"</span>
 Secret phrase <span class="token variable"><span class="token variable">`</span>favorite liar zebra assume hurt cage any damp inherit rescue delay panic<span class="token variable">`</span></span> is account:
-  Secret seed: 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
+  Secret seed:      0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
   Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
-  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
+  Account ID:       0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
+  SS58 Address:     5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
 </code></pre>
-<p>Вы можете проверить защищенные паролем ключи либо, подставив <code>--password</code> флаг или используя <code>///</code> в конце мнемоники:</p>
-<pre><code class="hljs css language-bash">$ subkey inspect <span class="token string">"razor blouse enroll maximum lobster bacon raccoon ocean law question worry length///correct horse battery staple"</span>
-Secret Key URI <span class="token variable"><span class="token variable">`</span>razor blouse enroll maximum lobster bacon raccoon ocean law question worry length///correct horse battery staple<span class="token variable">`</span></span> is account:
+<p>You can inspect <strong>password</strong> protected keys either by passing the <code>--password</code> flag or using <code>///</code> at the end of the mnemonic:</p>
+<pre><code class="hljs css language-bash">$ subkey --password <span class="token string">"correct horse battery staple"</span> inspect <span class="token string">"razor blouse enroll maximum lobster bacon raccoon ocean law question worry length"</span>
+Secret phrase <span class="token variable"><span class="token variable">`</span>razor blouse enroll maximum lobster bacon raccoon ocean law question worry length<span class="token variable">`</span></span> is account:
+  Secret seed:      0x806e324821f6b09fa0329b7da35b8056b452fdcaadeac463ff2b8db1fc020c3e
   Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0xe2b410bdc959fcc7f756e6eefdb051000c80be339acd3a8dc6d941211160b266
-  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y
+  Account ID:       0xe2b410bdc959fcc7f756e6eefdb051000c80be339acd3a8dc6d941211160b266
+  SS58 Address:     5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y
+
+$ subkey inspect <span class="token string">"razor blouse enroll maximum lobster bacon raccoon ocean law question worry length///correct horse battery staple"</span>
+Secret Key URI <span class="token variable"><span class="token variable">`</span>razor blouse enroll maximum lobster bacon raccoon ocean law question worry length///correct horse battery staple<span class="token variable">`</span></span> is account:
+  Secret seed:      0x806e324821f6b09fa0329b7da35b8056b452fdcaadeac463ff2b8db1fc020c3e
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0xe2b410bdc959fcc7f756e6eefdb051000c80be339acd3a8dc6d941211160b266
+  Account ID:       0xe2b410bdc959fcc7f756e6eefdb051000c80be339acd3a8dc6d941211160b266
+  SS58 Address:     5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y
 </code></pre>
 <p>Давайте предположим, что Вы хотите использовать тот же приватный ключ на Polkadot. Используйте <code>-n</code> , чтобы получить Ваш адрес в формате Polkadot. Обратите внимание, что публичный ключ одинаковый, но адрес имеет другой формат.</p>
 <pre><code class="hljs css language-bash">$ subkey --network polkadot inspect <span class="token string">"favorite liar zebra assume hurt cage any damp inherit rescue delay panic"</span>
 Secret phrase <span class="token variable"><span class="token variable">`</span>favorite liar zebra assume hurt cage any damp inherit rescue delay panic<span class="token variable">`</span></span> is account:
-  Secret seed: 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
+  Secret seed:      0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
   Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
-  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 13ToWeAsFe55Z7qGxwV8uJFch73aCEyHhhQb2hVAsspp4Xuo
+  Account ID:       0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
+  SS58 Address:     13ToWeAsFe55Z7qGxwV8uJFch73aCEyHhhQb2hVAsspp4Xuo
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="hd-деривация"></a><a href="#hd-деривация" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>HD деривация</h2>
 <p>Subkey поддерживает жесткую и мягкую иерархическую детерминированную (HD) деривацию ключей, совместимую с <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki">BIP32</a>. HD-ключи позволяют Вам иметь мастер-ключ и определить дерево с ключевой парой на каждом листке. Дерево имеет структуру аналогичную файловой системе и может иметь любую глубину, которую Вы можете получить.</p>
@@ -183,21 +201,25 @@ Secret phrase <span class="token variable"><span class="token variable">`</span>
 <pre><code class="hljs css language-bash">$ subkey inspect <span class="token string">"favorite liar zebra assume hurt cage any damp inherit rescue delay panic//joe//polkadot//0"</span>
 Secret Key URI <span class="token variable"><span class="token variable">`</span>favorite liar zebra assume hurt cage any damp inherit rescue delay panic//joe//polkadot//0<span class="token variable">`</span></span> is account:
   Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0xb660386488b17fb0989204820ab43c2eae3053f2882dede1688ce9ee48bd0e0a
+  Account ID:       0xb660386488b17fb0989204820ab43c2eae3053f2882dede1688ce9ee48bd0e0a
   Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5GBq9ybWHynecioAmQtuBXjw7vKwzhm72mURRmK2sDpsBRdk
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="получение-мягкого-ключа"></a><a href="#получение-мягкого-ключа" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Получение мягкого ключа</h3>
 <p>Точно так же, Вы можете получить дочерний мягкий ключ, используя один <code>/</code> после мнемонической фразы:</p>
 <pre><code class="hljs css language-bash">$ subkey inspect <span class="token string">"favorite liar zebra assume hurt cage any damp inherit rescue delay panic/joe/polkadot/0"</span>
 Secret Key URI <span class="token variable"><span class="token variable">`</span>favorite liar zebra assume hurt cage any damp inherit rescue delay panic/joe/polkadot/0<span class="token variable">`</span></span> is account:
+  Secret seed:      n/a
   Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x34ba6dcb945ff69d1457d1488d6b506738f8ce0a5a3e838ed91a5fa813624272
-  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5DFqjBd9BEsLaRdSqfWiDnPvomu5VaDmW4u5YWb1d176hTfC
+  Account ID:       0x34ba6dcb945ff69d1457d1488d6b506738f8ce0a5a3e838ed91a5fa813624272
+  SS58 Address:     5DFqjBd9BEsLaRdSqfWiDnPvomu5VaDmW4u5YWb1d176hTfC
 </code></pre>
 <p>Повторите адрес из той же сид фразы, <code>5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68</code>. Мы можем использовать это для получения того же дочернего адреса.</p>
 <pre><code class="hljs css language-bash">$ subkey inspect 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68/joe/polkadot/0
 Public Key URI <span class="token variable"><span class="token variable">`</span>5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68/joe/polkadot/0<span class="token variable">`</span></span> is account:
   Network ID/version: substrate
-  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x34ba6dcb945ff69d1457d1488d6b506738f8ce0a5a3e838ed91a5fa813624272
-  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5DFqjBd9BEsLaRdSqfWiDnPvomu5VaDmW4u5YWb1d176hTfC
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>:   0x34ba6dcb945ff69d1457d1488d6b506738f8ce0a5a3e838ed91a5fa813624272
+  Account ID:         0x34ba6dcb945ff69d1457d1488d6b506738f8ce0a5a3e838ed91a5fa813624272
+  SS58 Address:       5DFqjBd9BEsLaRdSqfWiDnPvomu5VaDmW4u5YWb1d176hTfC
 </code></pre>
 <p>Обратите внимание, что два адреса здесь совпадают. Это не относится к жесткому ключу деривации.</p>
 <h2><a class="anchor" aria-hidden="true" id="собираем-все-это-вместе"></a><a href="#собираем-все-это-вместе" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Собираем все это вместе</h2>
@@ -205,34 +227,42 @@ Public Key URI <span class="token variable"><span class="token variable">`</span
 <pre><code class="hljs css language-bash">$ subkey inspect <span class="token string">"favorite liar zebra assume hurt cage any damp inherit rescue delay panic//joe//polkadot/0"</span>
 Secret Key URI <span class="token variable"><span class="token variable">`</span>favorite liar zebra assume hurt cage any damp inherit rescue delay panic//joe//polkadot/0<span class="token variable">`</span></span> is account:
   Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0xd09ab65c743e91b30d024469e8a8b823a3aa7e8f5b4791187adf531ac2af140f
+  Account ID:       0xd09ab65c743e91b30d024469e8a8b823a3aa7e8f5b4791187adf531ac2af140f
   Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5GnDmyt7qnEN4esrLNRtjM7xHyRe4jQsbbAHpaNSsPNws7EB
 </code></pre>
 <p>Первые два уровня (<code>//joe//polkadot</code>) являются жесткими, в то время как лист (<code>/0</code>) является мягким.</p>
 <p>Чтобы использовать ключ производный с защищенным паролем ключом, добавьте пароль в конец:</p>
 <pre><code class="hljs css language-bash">$ subkey inspect <span class="token string">"razor blouse enroll maximum lobster bacon raccoon ocean law question worry length/joe/polkadot/0///correct horse battery staple"</span>
 Secret Key URI <span class="token variable"><span class="token variable">`</span>razor blouse enroll maximum lobster bacon raccoon ocean law question worry length/joe/polkadot/0///correct horse battery staple<span class="token variable">`</span></span> is account:
+  Secret seed:      n/a
   Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x0816fe0689322e26cd2aa9c0dccb6c44851345e96f969ae85c8f1aec9fb4703d
-  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5CFK52zU59zUhC3s6mRobEJ3zm7JeXQZaS6ybvcuCDDhWwGG
+  Account ID:       0x0816fe0689322e26cd2aa9c0dccb6c44851345e96f969ae85c8f1aec9fb4703d
+  SS58 Address:     5CFK52zU59zUhC3s6mRobEJ3zm7JeXQZaS6ybvcuCDDhWwGG
 
 $ subkey inspect 5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y/joe/polkadot/0
 Public Key URI <span class="token variable"><span class="token variable">`</span>5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y/joe/polkadot/0<span class="token variable">`</span></span> is account:
   Network ID/version: substrate
-  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x0816fe0689322e26cd2aa9c0dccb6c44851345e96f969ae85c8f1aec9fb4703d
-  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5CFK52zU59zUhC3s6mRobEJ3zm7JeXQZaS6ybvcuCDDhWwGG
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>:   0x0816fe0689322e26cd2aa9c0dccb6c44851345e96f969ae85c8f1aec9fb4703d
+  Account ID:         0x0816fe0689322e26cd2aa9c0dccb6c44851345e96f969ae85c8f1aec9fb4703d
+  SS58 Address:       5CFK52zU59zUhC3s6mRobEJ3zm7JeXQZaS6ybvcuCDDhWwGG
 </code></pre>
 <p>Обратите внимание, что &quot;адрес плюс путь вывода&quot; создает тот же адрес, что и &quot;мнемоническая фраза плюс путь вывода плюс пароль&quot;. Таким образом, вы можете раскрыть свой родительский адрес и пути вывода, не раскрывая свою мнемоническую фразу или пароль, сохраняя при этом контроль над всеми производными адресами.</p>
 <h2><a class="anchor" aria-hidden="true" id="известные-ключи"></a><a href="#известные-ключи" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Известные Ключи</h2>
 <p>Если вы работали с Substrate ранее, Вы, вероятно, столкнулись с повсеместными учетными записями для Alice, Bob и их друзей. Эти ключи не являются частными, но полезны для игры с Substrate без постоянного генерирования новых ключей. Вы можете проверить эти &quot;известные&quot; ключи с помощью <code>subkey</code>.</p>
 <pre><code class="hljs css language-bash">$ subkey inspect //Alice
 Secret Key URI <span class="token variable"><span class="token variable">`</span>//Alice<span class="token variable">`</span></span> is account:
+  Secret seed:      0xe5be9a5092b81bca64be81d212e7f2f9eba183bb7a90954f7b76361f6edb5c0a
   Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
-  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+  Account ID:       0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
+  SS58 Address:     5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
 </code></pre>
 <p>Нет ничего особенного о имени Alice. Вы можете сделать то же самое трюк с Вашим именем. But remember that keys like this are <em>not</em> secure, and are only useful for experimenting.</p>
-<pre><code class="hljs css language-bash">$ subkey inspect //Joshy
-Secret Key URI <span class="token variable"><span class="token variable">`</span>//Joshy<span class="token variable">`</span></span> is account:
-  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x006f5081d495811a16724b317fcd70b8e42c9317da2ba1f5c36756a41fadec67
-  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5C5GvaAWfruRLnCJYgJrut1JovGeMMXV2VzXeiua7f691J9R
+<pre><code class="hljs css language-bash">$ subkey inspect //Charlie
+Secret Key URI <span class="token variable"><span class="token variable">`</span>//Charlie<span class="token variable">`</span></span> is account:
+  Secret seed:      0xbc1ede780f784bb6991a585e4f6e61522c14e1cae6ad0895fb57b9a205a8f938
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x90b5ab205c6974c9ea841be688864633dc9ca8a357843eeacf2314649965fe22
+  Account ID:       0x90b5ab205c6974c9ea841be688864633dc9ca8a357843eeacf2314649965fe22
+  SS58 Address:     5FLSigC9HGRKVhB9FiEo4Y3koPsNmBmLJbpXg2mp1hXcS59Y
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="подписание-и-проверка-сообщений"></a><a href="#подписание-и-проверка-сообщений" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Подписание и проверка сообщений</h2>
 <h3><a class="anchor" aria-hidden="true" id="подписание"></a><a href="#подписание" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Подписание</h3>
