@@ -104,10 +104,7 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								<strong>February 18th</strong> - Seun Lanlege join us to talk all things consensus in
-								Substrate.
-							<br />
-								<strong>February 25th</strong> - Kian Paimani joins us to discuss Phragmen's algorithm and Substrate's
+								On <strong>February 25th</strong> Kian Paimani will join us to discuss Phragmen's algorithm and Substrate's
 								offline Phragmen feature.
 							</p>
 							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
@@ -132,14 +129,19 @@ function Seminar(props) {
 						<div className='col-md-6 second'>
 							<h4 className='mb-2'>How should I prepare for the call?</h4>
 							<p>
-								For the February 18th session, it wil be helpful to know the basics of Consensus in
-								Substrate. Please pre-read this{' '}
-								<a href='https://substrate.dev/docs/en/conceptual/core/consensus'>
-									Conceptual Document
-								</a> and this{' '}
-								<a href='https://stackoverflow.com/questions/58369340/in-substrate-what-is-the-difference-beteween-babe-aura-and-grandpa/58369341#58369341'>
-									Stack Overflow post
-								</a>
+								For the February 25th session, it wil be helpful to know a bit about Polkadot's use of
+								Phragmen in Proof of Stake. You may enjoy this{' '}
+								<a href="https://research.web3.foundation/en/latest/polkadot/NPoS/">
+									informal overview
+								</a>{' '}
+								or this more{' '}
+								<a href="https://research.web3.foundation/en/latest/polkadot/NPoS/4.%20Sequential%20Phragm%C3%A9n%E2%80%99s%20method.html">
+									mathematical writeup
+								</a>.
+								If you'd like to join a testnet, please build the code on Substrate's{' '}
+								<a href="https://github.com/paritytech/substrate/tree/kiz-offchain-phragmen-4">
+									kiz-offchain-phragmen-4 branch
+								</a>.
 							</p>
 
 							<h4 className='mb-2'>I am not a [Substrate] developer, can I still participate?</h4>
@@ -195,6 +197,28 @@ function Seminar(props) {
 								/>
 								<a
 									className='video-play'
+									href='https://www.youtube.com/watch?v=EuMbE6kce-I&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									target='_blank'
+								/>
+							</section>
+							<section className='video-details'>
+								<h4 className='p-color'>DatDot Substrate</h4>
+								<p>
+									Joshua Mir (JAM) demonstrates the DatDot project, an incentivization layer for file storage on Dat. We also chat about miscellaneous Kusama topics.
+								</p>
+							</section>
+						</div>
+
+						<div className='col-md-4'>
+							<section className='video-cover video-cover-xs'>
+								<div
+									className='background-image-holder'
+									style={{
+										backgroundImage: `url('/img/seminar-t.jpg' )`
+									}}
+								/>
+								<a
+									className='video-play'
 									href='https://www.youtube.com/watch?v=89qLUZeB4WU&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
@@ -229,27 +253,6 @@ function Seminar(props) {
 							</section>
 						</div>
 
-						<div className='col-md-4'>
-							<section className='video-cover video-cover-xs'>
-								<div
-									className='background-image-holder'
-									style={{
-										backgroundImage: `url('/img/seminar-t.jpg' )`
-									}}
-								/>
-								<a
-									className='video-play'
-									href='https://www.youtube.com/watch?v=b3HIXufMHnc&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
-									target='_blank'
-								/>
-							</section>
-							<section className='video-details'>
-								<h4 className='p-color'>Wasm Smart Contracts</h4>
-								<p>
-									Ricardo Ruis demonstrats wasm-bsaed smart contracts, and some advanced way for them to interact with the runtime. We also look at a community API Explorer project.
-								</p>
-							</section>
-						</div>
 					</div>
 
 				</div>
