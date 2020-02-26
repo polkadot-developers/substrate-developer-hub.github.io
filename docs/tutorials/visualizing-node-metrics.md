@@ -107,8 +107,6 @@ substrate_peers_count 3
 substrate_ready_transactions_number 0
 ```
 
-## Next Steps
-
 ## Step 3: Configure Prometheus to scrape your Substrate node
 
 In a prometheus.yml configuration file, configure Prometheus to scrape the exposed endpoint by adding it to the targets array.
@@ -137,6 +135,7 @@ Launch a Prometheus instance with the prometheus.yml config file.
 
 You can use [the above dashboard](https://grafana.com/grafana/dashboards/11784/) for visualizing metrics in Grafana or you can create your own. The [prometheus docs](https://prometheus.io/docs/visualization/grafana/) may be helpful here.
 
+## Next Steps
 
 ### Learn More
 
