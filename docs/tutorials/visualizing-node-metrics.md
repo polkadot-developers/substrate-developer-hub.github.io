@@ -109,14 +109,33 @@ substrate_ready_transactions_number 0
 
 ## Next Steps
 
-### Configure Prometheus to scrape your Substrate node
+## Step 3: Configure Prometheus to scrape your Substrate node
 
-https://prometheus.io/docs/guides/node-exporter/#configuring-your-prometheus-instances
+In a prometheus.yml configuration file, configure Prometheus to scrape the exposed endpoint by adding it to the targets array.
 
+```
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'substrate_node'
 
-### Visualizing Prometheus metrics with Grafana
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
 
-https://prometheus.io/docs/visualization/grafana/
+    static_configs:
+      - targets: ['127.0.0.1:9615']
+```
+
+Launch a Prometheus instance with the prometheus.yml config file.
+
+```bash
+./prometheus --config.file prometheus.yml
+```
+
+## Step 4: Visualizing Prometheus metrics with Grafana
+
+![https://grafana.com/grafana/dashboards/11784](https://grafana.com/api/dashboards/11784/images/7618/image)
+
+You can use [the above dashboard](https://grafana.com/grafana/dashboards/11784/) for visualizing metrics in Grafana or you can create your own. The [prometheus docs](https://prometheus.io/docs/visualization/grafana/) may be helpful here.
 
 
 ### Learn More
