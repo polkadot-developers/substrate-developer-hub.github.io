@@ -197,6 +197,28 @@ function Seminar(props) {
 								/>
 								<a
 									className='video-play'
+									href='https://www.youtube.com/watch?v=MjOvVhc1oXw&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									target='_blank'
+								/>
+							</section>
+							<section className='video-details'>
+								<h4 className='p-color'>Solving the NPoS Problem with Phragmen</h4>
+								<p>
+									We're joined by Kian Paimani to discuss Substrate's use of Phragmen's algorithm and its various on- and off-chain implementations.
+								</p>
+							</section>
+						</div>
+
+						<div className='col-md-4'>
+							<section className='video-cover video-cover-xs'>
+								<div
+									className='background-image-holder'
+									style={{
+										backgroundImage: `url('/img/seminar-t.jpg' )`
+									}}
+								/>
+								<a
+									className='video-play'
 									href='https://www.youtube.com/watch?v=EuMbE6kce-I&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
@@ -227,28 +249,6 @@ function Seminar(props) {
 								<h4 className='p-color'>Account and Validator Permissioning</h4>
 								<p>
 									Gautam Dhameja shows us how to restrict the set of accounts that can use a Substrate chain as well as the Validator set.
-								</p>
-							</section>
-						</div>
-
-						<div className='col-md-4'>
-							<section className='video-cover video-cover-xs'>
-								<div
-									className='background-image-holder'
-									style={{
-										backgroundImage: `url('/img/seminar-t.jpg' )`
-									}}
-								/>
-								<a
-									className='video-play'
-									href='https://www.youtube.com/watch?v=7qkqEfToH8w&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
-									target='_blank'
-								/>
-							</section>
-							<section className='video-details'>
-								<h4 className='p-color'>Six ways to Launch a Token</h4>
-								<p>
-									We demonstrate several ways to launch tokens with Substrate, explore transaction fees, and take a closer look at the EVM module.
 								</p>
 							</section>
 						</div>
