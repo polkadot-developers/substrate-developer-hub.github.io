@@ -49,7 +49,7 @@ class Index extends React.Component {
 						</translate>
 					}
 					buttonText={<translate>Get Started</translate>}
-					buttonUrl={`docs/en/tutorials/creating-your-first-substrate-chain`}
+					buttonUrl={`tutorials`}
 				/>
 
 				<section className='mainContainer' id='home'>
