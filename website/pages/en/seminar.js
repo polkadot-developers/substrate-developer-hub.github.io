@@ -104,8 +104,8 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>February 25th</strong> Kian Paimani will join us to discuss Phragmen's algorithm and Substrate's
-								offline Phragmen feature.
+								On <strong>March 2nd</strong>, Matej will show a front-end template based on VueJS.
+								We will also cover severa miscellaneous topics including Proof of Work.
 							</p>
 							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
 							<p>
@@ -129,19 +129,11 @@ function Seminar(props) {
 						<div className='col-md-6 second'>
 							<h4 className='mb-2'>How should I prepare for the call?</h4>
 							<p>
-								For the February 25th session, it wil be helpful to know a bit about Polkadot's use of
-								Phragmen in Proof of Stake. You may enjoy this{' '}
-								<a href="https://research.web3.foundation/en/latest/polkadot/NPoS/">
-									informal overview
-								</a>{' '}
-								or this more{' '}
-								<a href="https://research.web3.foundation/en/latest/polkadot/NPoS/4.%20Sequential%20Phragm%C3%A9n%E2%80%99s%20method.html">
-									mathematical writeup
-								</a>.
-								If you'd like to join a testnet, please build the code on Substrate's{' '}
-								<a href="https://github.com/paritytech/substrate/tree/kiz-offchain-phragmen-4">
-									kiz-offchain-phragmen-4 branch
-								</a>.
+								For the March 3rd call, there are no specific preparation steps. You may find it
+								useful to complete one of our{' '}
+								<a href='https://substrate.dev/en/tutorials'>
+									Introductory Tutorials
+								</a>{' '}.
 							</p>
 
 							<h4 className='mb-2'>I am not a [Substrate] developer, can I still participate?</h4>
