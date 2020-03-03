@@ -122,7 +122,7 @@
 <span class="token keyword">type</span> SubmitTransaction <span class="token operator">=</span> system<span class="token punctuation">::</span>offchain<span class="token punctuation">::</span>TransactionSubmitter<span class="token operator">&lt;</span>
   offchain_pallet<span class="token punctuation">::</span>crypto<span class="token punctuation">::</span>Public<span class="token punctuation">,</span> Runtime<span class="token punctuation">,</span> UncheckedExtrinsic<span class="token operator">></span><span class="token punctuation">;</span>
 
-<span class="token keyword">impl</span> runtime<span class="token punctuation">::</span>Trait <span class="token keyword">for</span> Runtime <span class="token punctuation">{</span>
+<span class="token keyword">impl</span> offchain_pallet<span class="token punctuation">::</span>Trait <span class="token keyword">for</span> Runtime <span class="token punctuation">{</span>
   <span class="token keyword">type</span> Event <span class="token operator">=</span> Event<span class="token punctuation">;</span>
   <span class="token keyword">type</span> Call <span class="token operator">=</span> Call<span class="token punctuation">;</span>
 
