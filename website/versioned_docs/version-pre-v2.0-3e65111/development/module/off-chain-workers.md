@@ -80,7 +80,7 @@ runtime's `lib.rs` at `runtime/src/lib.rs`.
 type SubmitTransaction = system::offchain::TransactionSubmitter<
   offchain_pallet::crypto::Public, Runtime, UncheckedExtrinsic>;
 
-impl runtime::Trait for Runtime {
+impl offchain_pallet::Trait for Runtime {
   type Event = Event;
   type Call = Call;
 
