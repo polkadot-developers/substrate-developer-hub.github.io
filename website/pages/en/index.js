@@ -49,7 +49,7 @@ class Index extends React.Component {
 						</translate>
 					}
 					buttonText={<translate>Get Started</translate>}
-					buttonUrl={`who/runtime-developer`}
+					buttonUrl={`tutorials`}
 				/>
 
 				<section className='mainContainer' id='home'>
@@ -72,7 +72,9 @@ class Index extends React.Component {
 								<h4>Runtime Development</h4>
 								<p>Learn how to build a custom blockchain using Substrate.</p>
 								<section className='button-wrap'>
-									<a href={pageUrl('who/runtime-developer')} className='with-arrow'>
+									<a
+										href='https://substrate.dev/docs/en/tutorials/build-a-dapp/'
+										className='with-arrow'>
 										Learn More
 									</a>
 								</section>
@@ -85,7 +87,10 @@ class Index extends React.Component {
 								<h4>Front-End Development</h4>
 								<p>Learn how to build interactive user experiences with Polkadot-JS.</p>
 								<section className='button-wrap'>
-									<a href={pageUrl('who/front-end-developer')} className='with-arrow'>
+									<a
+										href='https://substrate.dev/docs/en/tutorials/substrate-front-end/'
+										className='with-arrow'
+									>
 										Learn More
 									</a>
 								</section>
@@ -98,7 +103,9 @@ class Index extends React.Component {
 								<h4>Smart Contract Development</h4>
 								<p>Learn how to build Wasm smart contracts with ink!.</p>
 								<section className='button-wrap'>
-									<a href={pageUrl('who/contract-developer')} className='with-arrow'>
+									<a
+										href='https://substrate.dev/substrate-contracts-workshop/#/'
+										className='with-arrow'>
 										Learn More
 									</a>
 								</section>
