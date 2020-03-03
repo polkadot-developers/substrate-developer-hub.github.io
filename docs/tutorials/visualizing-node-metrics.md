@@ -2,80 +2,138 @@
 title: "Visualizing Node Metrics"
 ---
 
-Recent versions of Substrate record metrics, such as how many peers your node
-is connected to, how much memory your node is using, etc. To visualize these
-metrics, you can use a tool called [Grafana](https://grafana.com/).
+Recent versions of Substrate expose metrics, such as how many peers your node is
+connected to, how much memory your node is using, etc. To visualize these
+metrics, you can use tools like [Prometheus](https://prometheus.io/) and
+[Grafana](https://grafana.com/).
 
-## Step 1: Install and run Grafana
+> Note: In the past Substrate exposed a Grafana JSON endpoint directly. This has
+> been replaced with a Prometheus metric endpoint.
 
-If you're on
-macOS, the easiest way to do that is via [Homebrew](https://brew.sh/):
+A possible architecture could look like:
 
-```bash
-brew install grafana
+```
++-----------+                     +-------------+                                                              +---------+
+| Substrate |                     | Prometheus  |                                                              | Grafana |
++-----------+                     +-------------+                                                              +---------+
+      |               -----------------\ |                                                                          |
+      |               | Every 1 minute |-|                                                                          |
+      |               |----------------| |                                                                          |
+      |                                  |                                                                          |
+      |        GET current metric values |                                                                          |
+      |<---------------------------------|                                                                          |
+      |                                  |                                                                          |
+      | `substrate_peers_count 5`        |                                                                          |
+      |--------------------------------->|                                                                          |
+      |                                  | --------------------------------------------------------------------\    |
+      |                                  |-| Save metric value with corresponding time stamp in local database |    |
+      |                                  | |-------------------------------------------------------------------|    |
+      |                                  |                                         -------------------------------\ |
+      |                                  |                                         | Every time user opens graphs |-|
+      |                                  |                                         |------------------------------| |
+      |                                  |                                                                          |
+      |                                  |       GET values of metric `substrate_peers_count` from time-X to time-Y |
+      |                                  |<-------------------------------------------------------------------------|
+      |                                  |                                                                          |
+      |                                  | `substrate_peers_count (1582023828, 5), (1582023847, 4) [...]`           |
+      |                                  |------------------------------------------------------------------------->|
+      |                                  |                                                                          |
+
 ```
 
-Grafana runs via a server, which you can run via `brew` with:
+<details>
+ <summary>Reproduce diagram</summary>
+
+ Go to: https://textart.io/sequence
+
+ ```
+object Substrate Prometheus Grafana
+note left of Prometheus: Every 1 minute
+Prometheus->Substrate: GET current metric values
+Substrate->Prometheus: `substrate_peers_count 5`
+note right of Prometheus: Save metric value with corresponding time stamp in local database
+note left of Grafana: Every time user opens graphs
+Grafana->Prometheus: GET values of metric `substrate_peers_count` from time-X to time-Y
+Prometheus->Grafana: `substrate_peers_count (1582023828, 5), (1582023847, 4) [...]`
+ ```
+
+</details>
+
+
+
+## Step 1: Run your node
+
+Substrate exposes an endpoint which serves metrics in the [Prometheus exposition
+format](https://prometheus.io/docs/concepts/data_model/) available on port
+`9615`. You can change the port with `--prometheus-port <PORT>` and enable it to
+be accessed over an interface other than local host with
+`--prometheus-external`.
 
 ```bash
-brew services start grafana
+./substrate
 ```
 
-Downloads for other platforms are available [here](https://grafana.com/grafana/download).
+## Step 2: Retrieve the metrics
 
-## Step 2: Install the Grafana JSON DataSource plugin:
-
-We use a simple JSON interface to serve metrics. The
-[Grafana JSON DataSource](https://github.com/simPod/grafana-json-datasource) plugin can be
-installed with:
+In a second terminal run:
 
 ```bash
- grafana-cli plugins install simpod-json-datasource
+curl localhost:9615/metrics
 ```
 
-## Step 3: Run your node
+Which should return a similar output to:
 
-As long as you're running a version of Substrate at or after commit
-[`d9ca975`](https://github.com/paritytech/substrate/commit/d9ca9750dba018463d59459a3ee1c03b71ea2d46),
-a server serving metrics for Grafana will start on port `9955`. You can specify
-this port with `--grafana-port <PORT>` and enable it to be accessed over a
-network with `--grafana-external`.
+```
+# HELP substrate_block_height_number Height of the chain
+# TYPE substrate_block_height_number gauge
+substrate_block_height_number{status="best"} 12591
+substrate_block_height_number{status="finalized"} 11776
+substrate_block_height_number{status="sync_target"} 1236089
+# HELP substrate_cpu_usage_percentage Node CPU usage
+# TYPE substrate_cpu_usage_percentage gauge
+substrate_cpu_usage_percentage 98.90908813476563
+# HELP substrate_memory_usage_bytes Node memory usage
+# TYPE substrate_memory_usage_bytes gauge
+substrate_memory_usage_bytes 195504
+# HELP substrate_network_per_sec_bytes Networking bytes per second
+# TYPE substrate_network_per_sec_bytes gauge
+substrate_network_per_sec_bytes{direction="download"} 4117
+substrate_network_per_sec_bytes{direction="upload"} 437
+# HELP substrate_peers_count Number of network gossip peers
+# TYPE substrate_peers_count gauge
+substrate_peers_count 3
+# HELP substrate_ready_transactions_number Number of transactions in the ready queue
+# TYPE substrate_ready_transactions_number gauge
+substrate_ready_transactions_number 0
+```
 
-## Step 4: Set Up Grafana
+## Step 3: Configure Prometheus to scrape your Substrate node
 
-We will not cover setting up and running Grafana in great detail - there's the
-[Getting Started guide](https://grafana.com/docs/guides/getting_started/) for
-that. Here are a few pointers though:
+In a prometheus.yml configuration file, configure Prometheus to scrape the exposed endpoint by adding it to the targets array.
 
-1. On the 'Add data source' screen, select the JSON data source in the
-'Others' section.
-2. Set the url of the running servers (e.g.
-`http://localhost:9955`)
-    > NOTE: just `locahost::<PORT>` won't work.
-3. Click `Save & Test`.
+```
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'substrate_node'
 
-Grafana should ping the server and show that the data source is working:
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
 
-![Data Source Config](/docs/assets/tutorials/grafana/datasource-config.png)
+    static_configs:
+      - targets: ['127.0.0.1:9615']
+```
 
-Creating queries is a lot simpler than in other data sources. Simply click the
-drop-down and select the metric you want to visualize:
+Launch a Prometheus instance with the prometheus.yml config file.
 
-![Creating a query](/docs/assets/tutorials/grafana/metric-selection.png)
+```bash
+./prometheus --config.file prometheus.yml
+```
 
-## Step 5: Create Your Dashboard
+## Step 4: Visualizing Prometheus metrics with Grafana
 
-Once you've done all that, you should be able to make a pretty neat node
-dashboard!
+![https://grafana.com/grafana/dashboards/11784](https://grafana.com/api/dashboards/11784/images/7618/image)
 
-![Node Dashboard](/docs/assets/tutorials/grafana/dashboard.png)
-
-There's a lot of work still to be done on the metrics system. Hopefully, in the
-future you'll be able to log metrics from anywhere in the node runtime to a
-variety of databases, such as [Prometheus](https://prometheus.io/).
-
-If you have any suggestions, feel free to file an issue on
-[the substrate repository](https://github.com/paritytech/substrate).
+You can use [the above dashboard](https://grafana.com/grafana/dashboards/11784/) for visualizing metrics in Grafana or you can create your own. The [prometheus docs](https://prometheus.io/docs/visualization/grafana/) may be helpful here.
 
 ## Next Steps
 
@@ -85,11 +143,13 @@ If you have any suggestions, feel free to file an issue on
 
 ### Examples
 
-- Take a look at the Grafana dashboard configuration for the [Polkadot network](https://github.com/w3f/polkadot-dashboard).
+- Take a look at the Grafana dashboard configuration for the [Polkadot
+  network](https://github.com/w3f/polkadot-dashboard).
 
 ### References
 
 <!-- TODO: Update this to RUSTDOC link-->
 
-- Visit the source code for [grafana-data-source](https://github.com/paritytech/substrate/tree/master/client/grafana-data-source).
+- Visit the source code for
+  [grafana-data-source](https://github.com/paritytech/substrate/tree/master/client/grafana-data-source).
 

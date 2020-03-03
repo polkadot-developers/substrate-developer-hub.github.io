@@ -104,10 +104,8 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								At the January 14th session we will choose from a variety of potential topics including custom consensus engines, custom rpc calls, starting a network, and community-member projects.
-							</p>
-							<p>
-								At the January 21st session, Parity's Ricardo Ruis will join us to talk about wasm-based smart contracts, and Substrate's Contracts pallet.
+								On <strong>March 3rd</strong>, Matej will show a front-end template based on VueJS.
+								We will also cover several miscellaneous topics including Proof of Work.
 							</p>
 							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
 							<p>
@@ -129,6 +127,15 @@ function Seminar(props) {
 						</div>
 
 						<div className='col-md-6 second'>
+							<h4 className='mb-2'>How should I prepare for the call?</h4>
+							<p>
+								For the March 3rd call, there are no specific preparation steps. You may find it
+								useful to complete one of our{' '}
+								<a href='https://substrate.dev/en/tutorials'>
+									Introductory Tutorials
+								</a>{' '}.
+							</p>
+
 							<h4 className='mb-2'>I am not a [Substrate] developer, can I still participate?</h4>
 							<p>
 								Yes! The seminar is open to everyone. The content is generally more developer-oriented,
@@ -172,29 +179,6 @@ function Seminar(props) {
 
 					<div className='row featured-video pt-0'>
 
-	          <div className='col-md-4'>
-	            <section className='video-cover video-cover-xs'>
-	              <div
-	                className='background-image-holder'
-	                style={{
-	                  backgroundImage: `url('/img/seminar-t.jpg' )`
-	                }}
-	              />
-
-	              <a
-	                className='video-play'
-	                href='https://www.youtube.com/watch?v=lKpp6-4OHwA&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=5'
-	                target='_blank'
-	              />
-	            </section>
-	            <section className='video-details'>
-	              <h4 className='p-color'>Offchain Workers</h4>
-	              <p>
-	                Jimmy Chu joins us to talk about offchain workers and his price-fetching demonstration.
-	              </p>
-	            </section>
-	          </div>
-
 						<div className='col-md-4'>
 							<section className='video-cover video-cover-xs'>
 								<div
@@ -203,18 +187,20 @@ function Seminar(props) {
 										backgroundImage: `url('/img/seminar-t.jpg' )`
 									}}
 								/>
-
 								<a
 									className='video-play'
-									href='https://www.youtube.com/watch?v=yHodYke7nms&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=4'
+									href='https://www.youtube.com/watch?v=MjOvVhc1oXw&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
 							</section>
 							<section className='video-details'>
-								<h4 className='p-color'>Forkless Upgrades, and Substrate Recipes</h4>
-								<p>We discuss forkless runtime upgrades, and perform a demonstration...</p>
+								<h4 className='p-color'>Solving the NPoS Problem with Phragmen</h4>
+								<p>
+									We're joined by Kian Paimani to discuss Substrate's use of Phragmen's algorithm and its various on- and off-chain implementations.
+								</p>
 							</section>
 						</div>
+
 						<div className='col-md-4'>
 							<section className='video-cover video-cover-xs'>
 								<div
@@ -223,23 +209,44 @@ function Seminar(props) {
 										backgroundImage: `url('/img/seminar-t.jpg' )`
 									}}
 								/>
-
 								<a
 									className='video-play'
-									href='https://www.youtube.com/watch?v=cL6UFeoiMVw&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS&index=3'
+									href='https://www.youtube.com/watch?v=EuMbE6kce-I&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
 							</section>
 							<section className='video-details'>
-								<h4 className='p-color'>Playground and Cumulus</h4>
+								<h4 className='p-color'>DatDot Substrate</h4>
 								<p>
-									This week we look at Substrate Playground, and preview the Cumulus workshop to be
-									presented at Sub0...
+									Joshua Mir (JAM) demonstrates the DatDot project, an incentivization layer for file storage on Dat. We also chat about miscellaneous Kusama topics.
+								</p>
+							</section>
+						</div>
+
+						<div className='col-md-4'>
+							<section className='video-cover video-cover-xs'>
+								<div
+									className='background-image-holder'
+									style={{
+										backgroundImage: `url('/img/seminar-t.jpg' )`
+									}}
+								/>
+								<a
+									className='video-play'
+									href='https://www.youtube.com/watch?v=89qLUZeB4WU&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									target='_blank'
+								/>
+							</section>
+							<section className='video-details'>
+								<h4 className='p-color'>Account and Validator Permissioning</h4>
+								<p>
+									Gautam Dhameja shows us how to restrict the set of accounts that can use a Substrate chain as well as the Validator set.
 								</p>
 							</section>
 						</div>
 
 					</div>
+
 				</div>
 
 				<div

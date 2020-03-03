@@ -111,7 +111,7 @@ type AllModules = (
 );
 ```
 
-This tuple is used by the runtime's [Executive module](https://substrate.dev/rustdocs/master/pallet_executive/index.html) which handles orchestration of executing these modules.
+This tuple is used by the runtime's [Executive module](https://substrate.dev/rustdocs/master/frame_executive/index.html) which handles orchestration of executing these modules.
 
 ## Module Metadata
 

@@ -8,7 +8,7 @@ Subkey is a key-generation utility that is developed alongside Substrate. Its ma
 
 ### Build from Source
 
-The Subkey binary, `subkey`, is also installed along with the [Substrate installation](../getting-started/installing-substrate.md). If you want to play with just Subkey (and not Substrate), you will need to have the Substrate dependencies. Use the following two commands to install the dependencies and Subkey, respectively:
+The Subkey binary, `subkey`, is also installed along with the [Substrate installation](overview/getting-started.md#prerequisites). If you want to play with just Subkey (and not Substrate), you will need to have the Substrate dependencies. Use the following two commands to install the dependencies and Subkey, respectively:
 
 ```bash
 $ curl https://getsubstrate.io -sSf | bash -s -- --fast
@@ -271,6 +271,6 @@ Signature verifies correctly.
 
 ## More Subkey to Explore
 
-Learn more by running `subkey help` or see the [README](https://github.com/paritytech/substrate/tree/master/bin/subkey).
+Learn more by running `subkey help` or see the [README](https://github.com/paritytech/substrate/tree/master/bin/utils/subkey).
 
 Key pairs can also be generated in the [PolkadotJS Apps UI](https://github.com/polkadot-js/apps). Try creating keys with the UI and restoring them with `subkey` or vice versa.

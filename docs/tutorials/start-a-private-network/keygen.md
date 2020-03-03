@@ -18,11 +18,13 @@ Begin by compiling and installing the utility. This may take up to 15 minutes or
 cargo install --force subkey --git https://github.com/paritytech/substrate
 ```
 
+We will need to generate at least **2** keys from each type. Every node will need to have its own keys.
+
 Generate a mnemonic and see the `sr25519` key and address associated with it. This key will be
 used by Aura for block production.
 
 ```bash
-$ subkey generate
+$ subkey --sr25519 generate
 Secret phrase `keep matrix knee meat awake frown rubber position federal easily strategy inhale` is account:
   Secret seed: 0xb5d5cda89e139aecb67181e11d6d2d90a0cc80106afa035ab19264af7b5e5c0b
   Public key (hex): 0x8ed5f822065e5824d3e37d9ea36a81eacb98ff1a6fa04bb87d2fa4915e9ed147

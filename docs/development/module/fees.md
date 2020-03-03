@@ -95,7 +95,7 @@ A transaction fee consists of three parts:
   must be converted to the `Currency` type. For this, each runtime must define a
   [`WeightToFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
   type that makes the conversion. `WeightToFee` must be a struct that implements [`Convert<Weight,
-  Balance>`](https://substrate.dev/rustdocs/master/sr_primitives/traits/trait.Convert.html).
+  Balance>`](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Convert.html).
 
 Based on the above, the final fee of a dispatchable is:
 
@@ -143,7 +143,7 @@ in which a target saturation level of block weight is defined. If the previous b
 saturated, then the fees are slightly increased. Similarly, if the previous block has fewer
 transactions than the target, fees are decreased by a small amount. More information about this can
 be found in the [Web3 research
-page](https://research.web3.foundation/en/latest/polkadot/Token%20Economics/#relay-chain-transaction-fees).
+page](https://research.web3.foundation/en/latest/polkadot/Token%20Economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits).
 
 ### Additional Fees
 
@@ -279,16 +279,16 @@ payment module drawing inspiration from Transaction Payment.
 
 - Dedicated [weight documentation](conceptual/runtime/weight.md)
 - [Example module](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
-- [SignedExtension](https://substrate.dev/rustdocs/master/sr_primitives/traits/trait.SignedExtension.html)
+- [SignedExtension](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.SignedExtension.html)
 
 ### Examples
 
 Substrate Recipes contains examples of both [custom
-weights](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/pallets/weights) and
+weights](https://github.com/substrate-developer-hub/recipes/tree/master/pallets/weights) and
 custom
-[WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/kitchen/runtimes/weight-fee-runtime).
+[WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/runtimes/weight-fee-runtime).
 
 ### References
 
 - [Web3 Foundation
-  Research](https://research.web3.foundation/en/latest/polkadot/Token%20Economics/#relay-chain-transaction-fees-and-per-block-transaction-limits)
+  Research](https://research.web3.foundation/en/latest/polkadot/Token%20Economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits)

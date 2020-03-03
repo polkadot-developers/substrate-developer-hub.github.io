@@ -20,10 +20,10 @@ $ cargo install --force --git https://github.com/paritytech/substrate subkey
 If you already have the [Substrate repository](https://github.com/paritytech/substrate), you can build Subkey with:
 
 ```bash
-$ cargo build -p subkey
+$ cargo build -p subkey --release
 ```
 
-This will install `subkey` in `./target/debug/subkey`.
+This will install `subkey` in `./target/release/subkey`.
 
 ### Binary
 
@@ -45,6 +45,7 @@ $ subkey generate
 Secret phrase `favorite liar zebra assume hurt cage any damp inherit rescue delay panic` is account:
   Secret seed: 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
   Public key (hex): 0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
+  Account ID:       0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
   Address (SS58): 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
 ```
 
@@ -55,6 +56,7 @@ $ subkey generate --words 24
 Secret phrase `engine ghost pave tip coil undo when next finish between ignore mystery spread model mercy body sphere sense verify crumble ethics garment soon gold` is account:
   Secret seed: 0xddd41c017dd60770a48f7aa50aee940b591726117769bc0740b19c5acfbf24d8
   Public key (hex): 0x8ae95a30cb9daa11db449eeb3243ec2e8937df3620c607d66a7f330a9d48cf01
+  Account ID:       0x8ae95a30cb9daa11db449eeb3243ec2e8937df3620c607d66a7f330a9d48cf01
   Address (SS58): 5FCqnWDeL8KFEhy9ccdeRw64kJbfPLfKgA45kMeo6THj1tkz
 ```
 
@@ -67,6 +69,7 @@ $ subkey -e generate
 Secret phrase `expire stage crawl shell boss any story swamp skull yellow bamboo copy` is account:
   Secret seed: 0xb034ad2704defa9dc0bea4ac8019fb0f805018f1be587cf04a03f9a033e3656b
   Public key (hex): 0x3ff0766f9ebbbceee6c2f40d9323164d07e70c70994c9d00a9512be6680c2394
+  Account ID:       0x3ff0766f9ebbbceee6c2f40d9323164d07e70c70994c9d00a9512be6680c2394
   Address (SS58): 5DWYJiPBSFBUFah2W49oPPSsrCRvrY4N4VmLcSH9XfjKfZvh
 ```
 
@@ -80,11 +83,12 @@ The output gives us the following information about our key:
 You can also create a vanity address, although you will not receive a mnemonic seed:
 
 ```bash
-$ subkey vanity joe
+$ subkey vanity joe  --number 1
 Generating key containing pattern 'joe'
 best: 189 == top: 189
 Secret Key URI `0xc645213712dc218e851ac0a47e987ee3f8e1cbbbad85522dbbf86e51963de434` is account:
   Public key (hex): 0xfaff3b483564c4d2dab7229e4369841d3650a4ca9c36094e9faece3839ac6e06
+  Account ID:       0xfaff3b483564c4d2dab7229e4369841d3650a4ca9c36094e9faece3839ac6e06
   Address (SS58): 5HjoeXxUokiJwQPRucDXCgGzKwwf74q9srJcmsaFssUW2UHn
 ```
 
@@ -97,6 +101,7 @@ $ subkey --password "correct horse battery staple" generate
 Secret phrase `razor blouse enroll maximum lobster bacon raccoon ocean law question worry length` is account:
   Secret seed: 0x806e324821f6b09fa0329b7da35b8056b452fdcaadeac463ff2b8db1fc020c3e
   Public key (hex): 0xe2b410bdc959fcc7f756e6eefdb051000c80be339acd3a8dc6d941211160b266
+  Account ID:       0xe2b410bdc959fcc7f756e6eefdb051000c80be339acd3a8dc6d941211160b266
   Address (SS58): 5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y
 ```
 
@@ -109,8 +114,10 @@ The inspect command recalculates a key pair's public key and public address give
 ```bash
 $ subkey inspect 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
 Secret Key URI `0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2` is account:
+  Secret seed:      0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
   Public key (hex): 0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
-  Address (SS58): 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
+  Account ID:       0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
+  SS58 Address:     5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
 ```
 
 You can also inspect the key by its mnemonic phrase.
@@ -118,18 +125,28 @@ You can also inspect the key by its mnemonic phrase.
 ```bash
 $ subkey inspect "favorite liar zebra assume hurt cage any damp inherit rescue delay panic"
 Secret phrase `favorite liar zebra assume hurt cage any damp inherit rescue delay panic` is account:
-  Secret seed: 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
+  Secret seed:      0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
   Public key (hex): 0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
-  Address (SS58): 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
+  Account ID:       0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
+  SS58 Address:     5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
 ```
 
-You can inspect password protected keys either by passing the `--password` flag or using `///` at the end of the mnemonic:
+You can inspect **password** protected keys either by passing the `--password` flag or using `///` at the end of the mnemonic:
 
 ```bash
+$ subkey --password "correct horse battery staple" inspect "razor blouse enroll maximum lobster bacon raccoon ocean law question worry length"
+Secret phrase `razor blouse enroll maximum lobster bacon raccoon ocean law question worry length` is account:
+  Secret seed:      0x806e324821f6b09fa0329b7da35b8056b452fdcaadeac463ff2b8db1fc020c3e
+  Public key (hex): 0xe2b410bdc959fcc7f756e6eefdb051000c80be339acd3a8dc6d941211160b266
+  Account ID:       0xe2b410bdc959fcc7f756e6eefdb051000c80be339acd3a8dc6d941211160b266
+  SS58 Address:     5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y
+
 $ subkey inspect "razor blouse enroll maximum lobster bacon raccoon ocean law question worry length///correct horse battery staple"
 Secret Key URI `razor blouse enroll maximum lobster bacon raccoon ocean law question worry length///correct horse battery staple` is account:
+  Secret seed:      0x806e324821f6b09fa0329b7da35b8056b452fdcaadeac463ff2b8db1fc020c3e
   Public key (hex): 0xe2b410bdc959fcc7f756e6eefdb051000c80be339acd3a8dc6d941211160b266
-  Address (SS58): 5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y
+  Account ID:       0xe2b410bdc959fcc7f756e6eefdb051000c80be339acd3a8dc6d941211160b266
+  SS58 Address:     5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y
 ```
 
 Let's say you want to use the same private key on Polkadot. Use `-n` to get your address formatted for Polkadot. Notice that the public key is the same, but the address has a different format.
@@ -137,9 +154,10 @@ Let's say you want to use the same private key on Polkadot. Use `-n` to get your
 ```bash
 $ subkey --network polkadot inspect "favorite liar zebra assume hurt cage any damp inherit rescue delay panic"
 Secret phrase `favorite liar zebra assume hurt cage any damp inherit rescue delay panic` is account:
-  Secret seed: 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
+  Secret seed:      0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
   Public key (hex): 0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
-  Address (SS58): 13ToWeAsFe55Z7qGxwV8uJFch73aCEyHhhQb2hVAsspp4Xuo
+  Account ID:       0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
+  SS58 Address:     13ToWeAsFe55Z7qGxwV8uJFch73aCEyHhhQb2hVAsspp4Xuo
 ```
 
 ## HD Derivation
@@ -163,6 +181,7 @@ You can derive a hard key child using `//` after the mnemonic phrase:
 $ subkey inspect "favorite liar zebra assume hurt cage any damp inherit rescue delay panic//joe//polkadot//0"
 Secret Key URI `favorite liar zebra assume hurt cage any damp inherit rescue delay panic//joe//polkadot//0` is account:
   Public key (hex): 0xb660386488b17fb0989204820ab43c2eae3053f2882dede1688ce9ee48bd0e0a
+  Account ID:       0xb660386488b17fb0989204820ab43c2eae3053f2882dede1688ce9ee48bd0e0a
   Address (SS58): 5GBq9ybWHynecioAmQtuBXjw7vKwzhm72mURRmK2sDpsBRdk
 ```
 
@@ -173,8 +192,10 @@ Likewise, you can derive a soft key child using a single `/` after the mnemonic 
 ```bash
 $ subkey inspect "favorite liar zebra assume hurt cage any damp inherit rescue delay panic/joe/polkadot/0"
 Secret Key URI `favorite liar zebra assume hurt cage any damp inherit rescue delay panic/joe/polkadot/0` is account:
+  Secret seed:      n/a
   Public key (hex): 0x34ba6dcb945ff69d1457d1488d6b506738f8ce0a5a3e838ed91a5fa813624272
-  Address (SS58): 5DFqjBd9BEsLaRdSqfWiDnPvomu5VaDmW4u5YWb1d176hTfC
+  Account ID:       0x34ba6dcb945ff69d1457d1488d6b506738f8ce0a5a3e838ed91a5fa813624272
+  SS58 Address:     5DFqjBd9BEsLaRdSqfWiDnPvomu5VaDmW4u5YWb1d176hTfC
 ```
 
 Recall the address from the same seed phrase, `5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68`. We can use that to derive the same child address.
@@ -183,8 +204,9 @@ Recall the address from the same seed phrase, `5EXWNJuoProc7apm1JS8m9RTqV3vVwR9d
 $ subkey inspect 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68/joe/polkadot/0
 Public Key URI `5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68/joe/polkadot/0` is account:
   Network ID/version: substrate
-  Public key (hex): 0x34ba6dcb945ff69d1457d1488d6b506738f8ce0a5a3e838ed91a5fa813624272
-  Address (SS58): 5DFqjBd9BEsLaRdSqfWiDnPvomu5VaDmW4u5YWb1d176hTfC
+  Public key (hex):   0x34ba6dcb945ff69d1457d1488d6b506738f8ce0a5a3e838ed91a5fa813624272
+  Account ID:         0x34ba6dcb945ff69d1457d1488d6b506738f8ce0a5a3e838ed91a5fa813624272
+  SS58 Address:       5DFqjBd9BEsLaRdSqfWiDnPvomu5VaDmW4u5YWb1d176hTfC
 ```
 
 Note that the two addresses here match. This is not the case in hard key derivation.
@@ -197,6 +219,7 @@ You can mix and match hard and soft key paths (although it doesn't make much sen
 $ subkey inspect "favorite liar zebra assume hurt cage any damp inherit rescue delay panic//joe//polkadot/0"
 Secret Key URI `favorite liar zebra assume hurt cage any damp inherit rescue delay panic//joe//polkadot/0` is account:
   Public key (hex): 0xd09ab65c743e91b30d024469e8a8b823a3aa7e8f5b4791187adf531ac2af140f
+  Account ID:       0xd09ab65c743e91b30d024469e8a8b823a3aa7e8f5b4791187adf531ac2af140f
   Address (SS58): 5GnDmyt7qnEN4esrLNRtjM7xHyRe4jQsbbAHpaNSsPNws7EB
 ```
 
@@ -207,14 +230,17 @@ To use key derivation with a password protected key, add your password to the en
 ```bash
 $ subkey inspect "razor blouse enroll maximum lobster bacon raccoon ocean law question worry length/joe/polkadot/0///correct horse battery staple"
 Secret Key URI `razor blouse enroll maximum lobster bacon raccoon ocean law question worry length/joe/polkadot/0///correct horse battery staple` is account:
+  Secret seed:      n/a
   Public key (hex): 0x0816fe0689322e26cd2aa9c0dccb6c44851345e96f969ae85c8f1aec9fb4703d
-  Address (SS58): 5CFK52zU59zUhC3s6mRobEJ3zm7JeXQZaS6ybvcuCDDhWwGG
+  Account ID:       0x0816fe0689322e26cd2aa9c0dccb6c44851345e96f969ae85c8f1aec9fb4703d
+  SS58 Address:     5CFK52zU59zUhC3s6mRobEJ3zm7JeXQZaS6ybvcuCDDhWwGG
 
 $ subkey inspect 5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y/joe/polkadot/0
 Public Key URI `5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y/joe/polkadot/0` is account:
   Network ID/version: substrate
-  Public key (hex): 0x0816fe0689322e26cd2aa9c0dccb6c44851345e96f969ae85c8f1aec9fb4703d
-  Address (SS58): 5CFK52zU59zUhC3s6mRobEJ3zm7JeXQZaS6ybvcuCDDhWwGG
+  Public key (hex):   0x0816fe0689322e26cd2aa9c0dccb6c44851345e96f969ae85c8f1aec9fb4703d
+  Account ID:         0x0816fe0689322e26cd2aa9c0dccb6c44851345e96f969ae85c8f1aec9fb4703d
+  SS58 Address:       5CFK52zU59zUhC3s6mRobEJ3zm7JeXQZaS6ybvcuCDDhWwGG
 ```
 
 Notice that the "address plus derivation path" produces the same address as the "mnemonic phrase plus derivation path plus password." As such, you can reveal your parent address and derivation paths without revealing your mnemonic phrase or password, while retaining control of all derived addresses.
@@ -226,17 +252,21 @@ If you've worked with Substrate previously, you have likely encountered the ubiq
 ```bash
 $ subkey inspect //Alice
 Secret Key URI `//Alice` is account:
+  Secret seed:      0xe5be9a5092b81bca64be81d212e7f2f9eba183bb7a90954f7b76361f6edb5c0a
   Public key (hex): 0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
-  Address (SS58): 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+  Account ID:       0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
+  SS58 Address:     5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
 ```
 
 There is nothing special about the name Alice. You can do the same trick with your own name. But remember that keys like this are _not_ secure, and are only useful for experimenting.
 
 ```bash
-$ subkey inspect //Joshy
-Secret Key URI `//Joshy` is account:
-  Public key (hex): 0x006f5081d495811a16724b317fcd70b8e42c9317da2ba1f5c36756a41fadec67
-  Address (SS58): 5C5GvaAWfruRLnCJYgJrut1JovGeMMXV2VzXeiua7f691J9R
+$ subkey inspect //Charlie
+Secret Key URI `//Charlie` is account:
+  Secret seed:      0xbc1ede780f784bb6991a585e4f6e61522c14e1cae6ad0895fb57b9a205a8f938
+  Public key (hex): 0x90b5ab205c6974c9ea841be688864633dc9ca8a357843eeacf2314649965fe22
+  Account ID:       0x90b5ab205c6974c9ea841be688864633dc9ca8a357843eeacf2314649965fe22
+  SS58 Address:     5FLSigC9HGRKVhB9FiEo4Y3koPsNmBmLJbpXg2mp1hXcS59Y
 ```
 
 ## Signing and Verifying Messages
