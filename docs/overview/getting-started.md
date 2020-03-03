@@ -18,7 +18,7 @@ Know that we are very happy to help you get started building with Substrate, so 
 
 To develop in the Substrate ecosystem, you must set up your developer environment. Depending on your operating system, these instructions may be different.
 
-## Fast Installation 
+## Fast Installation
 
 ### Unix Based Operating Systems
 
@@ -120,7 +120,7 @@ cargo build --release
 Test the project with:
 
 ```
-cargo test --all
+cargo test --release --all
 ```
 
 Start the Substrate node with:
