@@ -25,7 +25,7 @@ To develop in the Substrate ecosystem, you must set up your developer environmen
 Mac OS, Arch, or a Debian-based OS like Ubuntu:
 
 ```bash
-curl https://getsubstrate.io -sSf | bash
+curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
 
 ## Manual Installation
