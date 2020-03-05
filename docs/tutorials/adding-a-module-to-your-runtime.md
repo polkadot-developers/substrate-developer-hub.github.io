@@ -192,7 +192,7 @@ pub use contracts::Gas as ContractsGas;
 /* --snip-- */
 ```
 
-If you have followed our [other basic tutorials](tutorials/creating-your-first-substrate-chain.md), you may remember that we need to implement a `contracts::Trait` and also add `Contracts: contracts,` to our `construct_runtime!` macro.
+If you have followed our [other basic tutorials](tutorials/), you may remember that we need to implement a `contracts::Trait` and also add `Contracts: contracts,` to our `construct_runtime!` macro.
 
 ### Implementing the Contract Trait
 
@@ -328,8 +328,8 @@ impl<T: Trait> OnFreeBalanceZero<T::AccountId> for Module<T> {
 }
 ```
 
-To enable this, we simply need to add `Contracts` type that we defined in 
-the `construct_runtime!` macro to the `OnFreeBalanceZero` hook provided by 
+To enable this, we simply need to add `Contracts` type that we defined in
+the `construct_runtime!` macro to the `OnFreeBalanceZero` hook provided by
 the Balances pallet:
 
 **`runtime/src/lib.rs`**
@@ -341,17 +341,17 @@ impl balances::Trait for Runtime {
     /* --snip-- */
 }
 ```
-Now, when the Balances pallet detects that the free balance of an account has 
+Now, when the Balances pallet detects that the free balance of an account has
 reached zero, it calls the `on_free_balance_zero` function of the Contracts pallet.
 
 ### Exposing The Contracts API
 
-We now want to enable an easy way to get the contract's state. It's not required to 
-enable RPC calls on the contracts pallet to use it in our chain. 
+We now want to enable an easy way to get the contract's state. It's not required to
+enable RPC calls on the contracts pallet to use it in our chain.
 However, we'll do it to make calls to our node's storage without making a transaction.
 
-Contracts do not return data at the end of their execution. Due to the nature of blockchains, 
-a transaction needs to be valid to get finalized and included in a block before getting the 
+Contracts do not return data at the end of their execution. Due to the nature of blockchains,
+a transaction needs to be valid to get finalized and included in a block before getting the
 current state.
 
 To achieve this, we need to start by adding the required API dependencies.
@@ -375,7 +375,7 @@ std = [
 ]
 ```
 
-To get the state of a variable, we have to call a getter function that will 
+To get the state of a variable, we have to call a getter function that will
 return a `ContractExecResult` wrapper with the current state of the execution.
 
 We need to add the return type to our runtime.
@@ -519,7 +519,7 @@ fn testnet_genesis(initial_authorities: Vec<(AuraId, GrandpaId)>,
 
     GenesisConfig {
         /* --snip-- */
-        
+
         /*** Add This Line ***/
         contracts: Some(contracts_config),
     }
