@@ -192,7 +192,7 @@ pub use contracts::Gas as ContractsGas;
 /* --snip-- */
 ```
 
-If you have followed our [other basic tutorials](/tutorials), you may remember that we need to implement a `contracts::Trait` and also add `Contracts: contracts,` to our `construct_runtime!` macro.
+If you have followed our [other basic tutorials](tutorials/), you may remember that we need to implement a `contracts::Trait` and also add `Contracts: contracts,` to our `construct_runtime!` macro.
 
 ### Implementing the Contract Trait
 
