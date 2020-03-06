@@ -199,7 +199,7 @@ pub use contracts::Gas;
 /* --snip-- */
 ```
 
-If you have followed our [other basic tutorials](tutorials/creating-your-first-substrate-chain.md), you may remember that we need to implement a `contracts::Trait` and also add `Contracts: contracts,` to our `construct_runtime!` macro.
+If you have followed our [other basic tutorials](tutorials/), you may remember that we need to implement a `contracts::Trait` and also add `Contracts: contracts,` to our `construct_runtime!` macro.
 
 ### Implementing the Contract Trait
 
@@ -314,12 +314,12 @@ Note that not all pallets will expose all of these runtime types, and some may e
 
 ### Exposing The Contracts API
 
-We now want to enable an easy way to get the contract's state. It's not required to 
-enable RPC calls on the contracts pallet to use it in our chain. 
+We now want to enable an easy way to get the contract's state. It's not required to
+enable RPC calls on the contracts pallet to use it in our chain.
 However, we'll do it to make calls to our node's storage without making a transaction.
 
-Contracts do not return data at the end of their execution. Due to the nature of blockchains, 
-a transaction needs to be valid to get finalized and included in a block before getting the 
+Contracts do not return data at the end of their execution. Due to the nature of blockchains,
+a transaction needs to be valid to get finalized and included in a block before getting the
 current state.
 
 To achieve this, we need to start by adding the required API dependencies.
@@ -343,7 +343,7 @@ std = [
 ]
 ```
 
-To get the state of a variable, we have to call a getter function that will 
+To get the state of a variable, we have to call a getter function that will
 return a `ContractExecResult` wrapper with the current state of the execution.
 
 We need to add the return type to our runtime.
@@ -482,7 +482,7 @@ fn testnet_genesis(initial_authorities: Vec<(AuraId, GrandpaId)>,
 
     GenesisConfig {
         /* --snip-- */
-        
+
         /*** Add This Line ***/
         contracts: Some(contracts_config),
     }
