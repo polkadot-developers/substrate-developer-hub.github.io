@@ -118,7 +118,13 @@ First we will add the new dependency by simply copying an existing pallet, and c
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'pallet-contracts'
-rev = '<git-commit>' # e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'
+rev = '<git-commit>' # e.g. '0f28c33ae79ff2d4109bbdb4c755ba64a7c6a35a'
+
+[dependencies.contracts-primitives]
+default_features = false
+git = 'https://github.com/paritytech/substrate.git'
+package = 'pallet-contracts-primitives'
+rev = '<git-commit>' # e.g. '0f28c33ae79ff2d4109bbdb4c755ba64a7c6a35a'
 ```
 
 You [can see](https://github.com/paritytech/substrate/blob/master/frame/contracts/Cargo.toml) that the Contracts pallet has `std` feature, thus we need to add that feature to our runtime:
@@ -131,6 +137,7 @@ default = ["std"]
 std = [
     #--snip--
     'contracts/std',
+    'contracts-primitives/std',
     #--snip--
 ]
 ```
@@ -188,7 +195,7 @@ pub use timestamp::Call as TimestampCall;
 pub use balances::Call as BalancesCall;
 
 /*** Add This Line ***/
-pub use contracts::Gas as ContractsGas;
+pub use contracts::Gas;
 /* --snip-- */
 ```
 
@@ -221,8 +228,6 @@ impl timestamp::Trait for Runtime {
 
 /*** Add This Block ***/
 parameter_types! {
-	pub const ContractTransferFee: Balance = 1 * CENTS;
-	pub const ContractCreationFee: Balance = 1 * CENTS;
 	pub const ContractTransactionBaseFee: Balance = 1 * CENTS;
 	pub const ContractTransactionByteFee: Balance = 10 * MILLICENTS;
 	pub const ContractFee: Balance = 1 * CENTS;
@@ -238,7 +243,7 @@ impl contracts::Trait for Runtime {
 	type Randomness = RandomnessCollectiveFlip;
 	type Call = Call;
 	type Event = Event;
-	type DetermineContractAddress = contracts::SimpleAddressDeterminator<Runtime>;
+	type DetermineContractAddress = contracts::SimpleAddressDeterminer<Runtime>;
 	type ComputeDispatchFee = contracts::DefaultDispatchFeeComputor<Runtime>;
 	type TrieIdGenerator = contracts::TrieIdFromParentCounter<Runtime>;
 	type GasPayment = ();
@@ -249,8 +254,6 @@ impl contracts::Trait for Runtime {
 	type RentByteFee = RentByteFee;
 	type RentDepositOffset = RentDepositOffset;
 	type SurchargeReward = SurchargeReward;
-	type TransferFee = ContractTransferFee;
-	type CreationFee = ContractCreationFee;
 	type TransactionBaseFee = ContractTransactionBaseFee;
 	type TransactionByteFee = ContractTransactionByteFee;
 	type ContractFee = ContractFee;
@@ -302,47 +305,12 @@ construct_runtime!(
         /* --snip-- */
 
         /*** Add This Line ***/
-        Contracts: contracts,
+        Contracts: contracts::{Module, Call, Config<T>, Storage, Event<T>},
     }
 );
 ```
 
 Note that not all pallets will expose all of these runtime types, and some may expose more! You always look at the source code of a pallet or the documentation of the pallet to determine which of these types you need to expose.
-
-### Adding Runtime Hooks
-
-Substrate provides the ability for pallets to expose "hooks" where changes in the pallet can trigger functions in other pallets. For example, you could create a pallet which executes some action every time a new account is created (when it first gains a balance over the [existential deposit](https://substrate.dev/docs/en/overview/glossary#existential-deposit)).
-
-In the case of the Contracts pallet, we actually want a hook when an account runs out of free balance. Because the Contracts pallet instantiates contracts as "Accounts", it also needs to know when an account is destroyed so that it can clean up any storage that contract was using. You can find that logic in the Contracts pallet source code:
-
-```rust
-// From the reference documentation, also found in `contracts` pallet:
-//   https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs
-
-impl<T: Trait> OnFreeBalanceZero<T::AccountId> for Module<T> {
-	fn on_free_balance_zero(who: &T::AccountId) {
-		if let Some(ContractInfo::Alive(info)) = <ContractInfoOf<T>>::take(who) {
-			child::kill_storage(&info.trie_id);
-		}
-	}
-}
-```
-
-To enable this, we simply need to add `Contracts` type that we defined in
-the `construct_runtime!` macro to the `OnFreeBalanceZero` hook provided by
-the Balances pallet:
-
-**`runtime/src/lib.rs`**
-
-```rust
-impl balances::Trait for Runtime {
-    /// What to do if an account's free balance gets zeroed.
-    type OnFreeBalanceZero = Contracts;
-    /* --snip-- */
-}
-```
-Now, when the Balances pallet detects that the free balance of an account has
-reached zero, it calls the `on_free_balance_zero` function of the Contracts pallet.
 
 ### Exposing The Contracts API
 
@@ -362,7 +330,7 @@ To achieve this, we need to start by adding the required API dependencies.
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'pallet-contracts-rpc-runtime-api'
-rev = '<git-commit>' # e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'
+rev = '<git-commit>' # e.g. '0f28c33ae79ff2d4109bbdb4c755ba64a7c6a35a'
 ```
 
 **`runtime/Cargo.toml`**
@@ -397,45 +365,40 @@ impl_runtime_apis! {
    /* --snip-- */
 
    /*** Add This Block ***/
-    impl contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance> for Runtime {
-        fn call(
-            origin: AccountId,
-            dest: AccountId,
-            value: Balance,
-            gas_limit: u64,
-            input_data: Vec<u8>,
-        ) -> ContractExecResult {
-            let exec_result = Contracts::bare_call(
-                origin,
-                dest.into(),
-                value,
-                gas_limit,
-                input_data,
-            );
-            match exec_result {
-                Ok(v) => ContractExecResult::Success {
-                    status: v.status,
-                    data: v.data,
-                },
-                Err(_) => ContractExecResult::Error,
-            }
-        }
+    impl contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, BlockNumber>
+		for Runtime
+	{
+		fn call(
+			origin: AccountId,
+			dest: AccountId,
+			value: Balance,
+			gas_limit: u64,
+			input_data: Vec<u8>,
+		) -> ContractExecResult {
+			let exec_result =
+				Contracts::bare_call(origin, dest.into(), value, gas_limit, input_data);
+			match exec_result {
+				Ok(v) => ContractExecResult::Success {
+					status: v.status,
+					data: v.data,
+				},
+				Err(_) => ContractExecResult::Error,
+			}
+		}
 
-        fn get_storage(
-            address: AccountId,
-            key: [u8; 32],
-        ) -> contracts_rpc_runtime_api::GetStorageResult {
-            Contracts::get_storage(address, key).map_err(|rpc_err| {
-                use contracts::GetStorageError;
-                use contracts_rpc_runtime_api::{GetStorageError as RpcGetStorageError};
-                /// Map the contract error into the RPC layer error.
-                match rpc_err {
-                    GetStorageError::ContractDoesntExist => RpcGetStorageError::ContractDoesntExist,
-                    GetStorageError::IsTombstone => RpcGetStorageError::IsTombstone,
-                }
-            })
-        }
-    }
+		fn get_storage(
+			address: AccountId,
+			key: [u8; 32],
+		) -> contracts_primitives::GetStorageResult {
+			Contracts::get_storage(address, key)
+		}
+
+		fn rent_projection(
+			address: AccountId,
+		) -> contracts_primitives::RentProjectionResult<BlockNumber> {
+			Contracts::rent_projection(address)
+		}
+	}
    /*** End Added Block ***/
 }
 ```
@@ -444,7 +407,7 @@ impl_runtime_apis! {
 
 The next thing we need to do is to establish a service configuration for the Contracts pallet.
 
-**`Cargo.toml`**
+**`node/Cargo.toml`**
 ```toml
 [dependencies]
 #--snip--
@@ -453,14 +416,14 @@ jsonrpc-core = '14.0.5'
 #--snip--
 [dependencies.pallet-contracts-rpc]
 git = 'https://github.com/paritytech/substrate.git'
-rev = '<git-commit>' # e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'
+rev = '<git-commit>' # e.g. '0f28c33ae79ff2d4109bbdb4c755ba64a7c6a35a'
 
 [dependencies.sc-rpc]
 git = 'https://github.com/paritytech/substrate.git'
-rev = '<git-commit>' # e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'
+rev = '<git-commit>' # e.g. '0f28c33ae79ff2d4109bbdb4c755ba64a7c6a35a'
 ```
 
-**`src/service.rs`**
+**`node/src/service.rs`**
 ```rust
 macro_rules! new_full_start {
 	($config:expr) => {{
@@ -475,11 +438,11 @@ Substrate provides an RPC to interact with our node. However, it does not contai
                 Ok(import_queue)
             })? // <- Remove semi-colon
             /*** Add This Block ***/
-            .with_rpc_extensions(|client, _pool, _backend, _, _| -> Result<RpcExtension, _> {
+            .with_rpc_extensions(|builder| -> Result<RpcExtension, _> {
                 use pallet_contracts_rpc::{Contracts, ContractsApi};
                 let mut io = jsonrpc_core::IoHandler::default();
                 io.extend_with(
-                ContractsApi::to_delegate(Contracts::new(client.clone()))
+                ContractsApi::to_delegate(Contracts::new(builder.client().clone()))
                 );
                 Ok(io)
             })?;
@@ -492,7 +455,7 @@ Substrate provides an RPC to interact with our node. However, it does not contai
 
 Not all pallets will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`pallet_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contracts pallet. This definition is controlled in `substrate-node-template/src/chain_spec.rs`. We need to modify this file to include the `ContractsConfig` type and the contract price units at the top:
 
-**`src/chain_spec.rs`**
+**`node/src/chain_spec.rs`**
 
 ```rust
 use node_template_runtime::{ContractsConfig, MILLICENTS};
