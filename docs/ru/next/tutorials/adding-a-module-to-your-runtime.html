@@ -94,7 +94,13 @@ cargo run --release -- --dev
 <span class="hljs-attr">default_features</span> = <span class="hljs-literal">false</span>
 <span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
 <span class="hljs-attr">package</span> = <span class="hljs-string">'pallet-contracts'</span>
-<span class="hljs-attr">rev</span> = <span class="hljs-string">'&lt;git-commit&gt;'</span> <span class="hljs-comment"># e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'</span>
+<span class="hljs-attr">rev</span> = <span class="hljs-string">'&lt;git-commit&gt;'</span> <span class="hljs-comment"># e.g. '0f28c33ae79ff2d4109bbdb4c755ba64a7c6a35a'</span>
+
+<span class="hljs-section">[dependencies.contracts-primitives]</span>
+<span class="hljs-attr">default_features</span> = <span class="hljs-literal">false</span>
+<span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
+<span class="hljs-attr">package</span> = <span class="hljs-string">'pallet-contracts-primitives'</span>
+<span class="hljs-attr">rev</span> = <span class="hljs-string">'&lt;git-commit&gt;'</span> <span class="hljs-comment"># e.g. '0f28c33ae79ff2d4109bbdb4c755ba64a7c6a35a'</span>
 </code></pre>
 <p>You <a href="https://github.com/paritytech/substrate/blob/master/frame/contracts/Cargo.toml">can see</a> that the Contracts pallet has <code>std</code> feature, thus we need to add that feature to our runtime:</p>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
@@ -103,6 +109,7 @@ cargo run --release -- --dev
 <span class="hljs-attr">std</span> = [
     <span class="hljs-comment">#--snip--</span>
     <span class="hljs-string">'contracts/std'</span>,
+    <span class="hljs-string">'contracts-primitives/std'</span>,
     <span class="hljs-comment">#--snip--</span>
 ]
 </code></pre>
@@ -149,7 +156,7 @@ error<span class="token punctuation">:</span> aborting due to previous errors
 <span class="token keyword">pub</span> <span class="token keyword">use</span> balances<span class="token punctuation">::</span>Call <span class="token keyword">as</span> BalancesCall<span class="token punctuation">;</span>
 
 <span class="token comment">/*** Add This Line ***/</span>
-<span class="token keyword">pub</span> <span class="token keyword">use</span> contracts<span class="token punctuation">::</span>Gas <span class="token keyword">as</span> ContractsGas<span class="token punctuation">;</span>
+<span class="token keyword">pub</span> <span class="token keyword">use</span> contracts<span class="token punctuation">::</span>Gas<span class="token punctuation">;</span>
 <span class="token comment">/* --snip-- */</span>
 </code></pre>
 <p>If you have followed our <a href="tutorials/">other basic tutorials</a>, you may remember that we need to implement a <code>contracts::Trait</code> and also add <code>Contracts: contracts,</code> to our <code>construct_runtime!</code> macro.</p>
@@ -172,8 +179,6 @@ error<span class="token punctuation">:</span> aborting due to previous errors
 
 <span class="token comment">/*** Add This Block ***/</span>
 <span class="token macro-rules function">parameter_types!</span> <span class="token punctuation">{</span>
-    <span class="token keyword">pub</span> <span class="token keyword">const</span> ContractTransferFee<span class="token punctuation">:</span> Balance <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">*</span> CENTS<span class="token punctuation">;</span>
-    <span class="token keyword">pub</span> <span class="token keyword">const</span> ContractCreationFee<span class="token punctuation">:</span> Balance <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">*</span> CENTS<span class="token punctuation">;</span>
     <span class="token keyword">pub</span> <span class="token keyword">const</span> ContractTransactionBaseFee<span class="token punctuation">:</span> Balance <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">*</span> CENTS<span class="token punctuation">;</span>
     <span class="token keyword">pub</span> <span class="token keyword">const</span> ContractTransactionByteFee<span class="token punctuation">:</span> Balance <span class="token operator">=</span> <span class="token number">10</span> <span class="token operator">*</span> MILLICENTS<span class="token punctuation">;</span>
     <span class="token keyword">pub</span> <span class="token keyword">const</span> ContractFee<span class="token punctuation">:</span> Balance <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">*</span> CENTS<span class="token punctuation">;</span>
@@ -189,7 +194,7 @@ error<span class="token punctuation">:</span> aborting due to previous errors
     <span class="token keyword">type</span> Randomness <span class="token operator">=</span> RandomnessCollectiveFlip<span class="token punctuation">;</span>
     <span class="token keyword">type</span> Call <span class="token operator">=</span> Call<span class="token punctuation">;</span>
     <span class="token keyword">type</span> Event <span class="token operator">=</span> Event<span class="token punctuation">;</span>
-    <span class="token keyword">type</span> DetermineContractAddress <span class="token operator">=</span> contracts<span class="token punctuation">::</span>SimpleAddressDeterminator<span class="token operator">&lt;</span>Runtime<span class="token operator">></span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> DetermineContractAddress <span class="token operator">=</span> contracts<span class="token punctuation">::</span>SimpleAddressDeterminer<span class="token operator">&lt;</span>Runtime<span class="token operator">></span><span class="token punctuation">;</span>
     <span class="token keyword">type</span> ComputeDispatchFee <span class="token operator">=</span> contracts<span class="token punctuation">::</span>DefaultDispatchFeeComputor<span class="token operator">&lt;</span>Runtime<span class="token operator">></span><span class="token punctuation">;</span>
     <span class="token keyword">type</span> TrieIdGenerator <span class="token operator">=</span> contracts<span class="token punctuation">::</span>TrieIdFromParentCounter<span class="token operator">&lt;</span>Runtime<span class="token operator">></span><span class="token punctuation">;</span>
     <span class="token keyword">type</span> GasPayment <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -200,8 +205,6 @@ error<span class="token punctuation">:</span> aborting due to previous errors
     <span class="token keyword">type</span> RentByteFee <span class="token operator">=</span> RentByteFee<span class="token punctuation">;</span>
     <span class="token keyword">type</span> RentDepositOffset <span class="token operator">=</span> RentDepositOffset<span class="token punctuation">;</span>
     <span class="token keyword">type</span> SurchargeReward <span class="token operator">=</span> SurchargeReward<span class="token punctuation">;</span>
-    <span class="token keyword">type</span> TransferFee <span class="token operator">=</span> ContractTransferFee<span class="token punctuation">;</span>
-    <span class="token keyword">type</span> CreationFee <span class="token operator">=</span> ContractCreationFee<span class="token punctuation">;</span>
     <span class="token keyword">type</span> TransactionBaseFee <span class="token operator">=</span> ContractTransactionBaseFee<span class="token punctuation">;</span>
     <span class="token keyword">type</span> TransactionByteFee <span class="token operator">=</span> ContractTransactionByteFee<span class="token punctuation">;</span>
     <span class="token keyword">type</span> ContractFee <span class="token operator">=</span> ContractFee<span class="token punctuation">;</span>
@@ -242,34 +245,11 @@ error<span class="token punctuation">:</span> aborting due to previous errors
         <span class="token comment">/* --snip-- */</span>
 
         <span class="token comment">/*** Add This Line ***/</span>
-        Contracts<span class="token punctuation">:</span> contracts<span class="token punctuation">,</span>
+        Contracts<span class="token punctuation">:</span> contracts<span class="token punctuation">::</span><span class="token punctuation">{</span>Module<span class="token punctuation">,</span> Call<span class="token punctuation">,</span> Config<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">,</span> Storage<span class="token punctuation">,</span> Event<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Note that not all pallets will expose all of these runtime types, and some may expose more! You always look at the source code of a pallet or the documentation of the pallet to determine which of these types you need to expose.</p>
-<h3><a class="anchor" aria-hidden="true" id="adding-runtime-hooks"></a><a href="#adding-runtime-hooks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding Runtime Hooks</h3>
-<p>Substrate provides the ability for pallets to expose &quot;hooks&quot; where changes in the pallet can trigger functions in other pallets. For example, you could create a pallet which executes some action every time a new account is created (when it first gains a balance over the <a href="https://substrate.dev/docs/en/overview/glossary#existential-deposit">existential deposit</a>).</p>
-<p>In the case of the Contracts pallet, we actually want a hook when an account runs out of free balance. Because the Contracts pallet instantiates contracts as &quot;Accounts&quot;, it also needs to know when an account is destroyed so that it can clean up any storage that contract was using. You can find that logic in the Contracts pallet source code:</p>
-<pre><code class="hljs css language-rust"><span class="token comment">// From the reference documentation, also found in `contracts` pallet:</span>
-<span class="token comment">//   https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs</span>
-
-<span class="token keyword">impl</span><span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> OnFreeBalanceZero<span class="token operator">&lt;</span>T<span class="token punctuation">::</span>AccountId<span class="token operator">></span> <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
-    <span class="token keyword">fn</span> <span class="token function">on_free_balance_zero</span><span class="token punctuation">(</span>who<span class="token punctuation">:</span> <span class="token operator">&amp;</span>T<span class="token punctuation">::</span>AccountId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token keyword">let</span> <span class="token function">Some</span><span class="token punctuation">(</span>ContractInfo<span class="token punctuation">::</span><span class="token function">Alive</span><span class="token punctuation">(</span>info<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token operator">&lt;</span>ContractInfoOf<span class="token operator">&lt;</span>T<span class="token operator">>></span><span class="token punctuation">::</span><span class="token function">take</span><span class="token punctuation">(</span>who<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            child<span class="token punctuation">::</span><span class="token function">kill_storage</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>info<span class="token punctuation">.</span>trie_id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>To enable this, we simply need to add <code>Contracts</code> type that we defined in the <code>construct_runtime!</code> macro to the <code>OnFreeBalanceZero</code> hook provided by the Balances pallet:</p>
-<p><strong><code>runtime/src/lib.rs</code></strong></p>
-<pre><code class="hljs css language-rust"><span class="token keyword">impl</span> balances<span class="token punctuation">::</span>Trait <span class="token keyword">for</span> Runtime <span class="token punctuation">{</span>
-    <span class="token comment">/// What to do if an account's free balance gets zeroed.</span>
-    <span class="token keyword">type</span> OnFreeBalanceZero <span class="token operator">=</span> Contracts<span class="token punctuation">;</span>
-    <span class="token comment">/* --snip-- */</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>Now, when the Balances pallet detects that the free balance of an account has reached zero, it calls the <code>on_free_balance_zero</code> function of the Contracts pallet.</p>
 <h3><a class="anchor" aria-hidden="true" id="exposing-the-contracts-api"></a><a href="#exposing-the-contracts-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Exposing The Contracts API</h3>
 <p>We now want to enable an easy way to get the contract's state. It's not required to enable RPC calls on the contracts pallet to use it in our chain. However, we'll do it to make calls to our node's storage without making a transaction.</p>
 <p>Contracts do not return data at the end of their execution. Due to the nature of blockchains, a transaction needs to be valid to get finalized and included in a block before getting the current state.</p>
@@ -279,7 +259,7 @@ error<span class="token punctuation">:</span> aborting due to previous errors
 <span class="hljs-attr">default-features</span> = <span class="hljs-literal">false</span>
 <span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
 <span class="hljs-attr">package</span> = <span class="hljs-string">'pallet-contracts-rpc-runtime-api'</span>
-<span class="hljs-attr">rev</span> = <span class="hljs-string">'&lt;git-commit&gt;'</span> <span class="hljs-comment"># e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'</span>
+<span class="hljs-attr">rev</span> = <span class="hljs-string">'&lt;git-commit&gt;'</span> <span class="hljs-comment"># e.g. '0f28c33ae79ff2d4109bbdb4c755ba64a7c6a35a'</span>
 </code></pre>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-section">[features]</span>
@@ -304,7 +284,9 @@ error<span class="token punctuation">:</span> aborting due to previous errors
    <span class="token comment">/* --snip-- */</span>
 
    <span class="token comment">/*** Add This Block ***/</span>
-    <span class="token keyword">impl</span> contracts_rpc_runtime_api<span class="token punctuation">::</span>ContractsApi<span class="token operator">&lt;</span>Block<span class="token punctuation">,</span> AccountId<span class="token punctuation">,</span> Balance<span class="token operator">></span> <span class="token keyword">for</span> Runtime <span class="token punctuation">{</span>
+    <span class="token keyword">impl</span> contracts_rpc_runtime_api<span class="token punctuation">::</span>ContractsApi<span class="token operator">&lt;</span>Block<span class="token punctuation">,</span> AccountId<span class="token punctuation">,</span> Balance<span class="token punctuation">,</span> BlockNumber<span class="token operator">></span>
+        <span class="token keyword">for</span> Runtime
+    <span class="token punctuation">{</span>
         <span class="token keyword">fn</span> <span class="token function">call</span><span class="token punctuation">(</span>
             origin<span class="token punctuation">:</span> AccountId<span class="token punctuation">,</span>
             dest<span class="token punctuation">:</span> AccountId<span class="token punctuation">,</span>
@@ -312,13 +294,8 @@ error<span class="token punctuation">:</span> aborting due to previous errors
             gas_limit<span class="token punctuation">:</span> u64<span class="token punctuation">,</span>
             input_data<span class="token punctuation">:</span> Vec<span class="token operator">&lt;</span>u8<span class="token operator">></span><span class="token punctuation">,</span>
         <span class="token punctuation">)</span> <span class="token punctuation">-></span> ContractExecResult <span class="token punctuation">{</span>
-            <span class="token keyword">let</span> exec_result <span class="token operator">=</span> Contracts<span class="token punctuation">::</span><span class="token function">bare_call</span><span class="token punctuation">(</span>
-                origin<span class="token punctuation">,</span>
-                dest<span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-                value<span class="token punctuation">,</span>
-                gas_limit<span class="token punctuation">,</span>
-                input_data<span class="token punctuation">,</span>
-            <span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">let</span> exec_result <span class="token operator">=</span>
+                Contracts<span class="token punctuation">::</span><span class="token function">bare_call</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> dest<span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> value<span class="token punctuation">,</span> gas_limit<span class="token punctuation">,</span> input_data<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">match</span> exec_result <span class="token punctuation">{</span>
                 <span class="token function">Ok</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">=></span> ContractExecResult<span class="token punctuation">::</span>Success <span class="token punctuation">{</span>
                     status<span class="token punctuation">:</span> v<span class="token punctuation">.</span>status<span class="token punctuation">,</span>
@@ -331,16 +308,14 @@ error<span class="token punctuation">:</span> aborting due to previous errors
         <span class="token keyword">fn</span> <span class="token function">get_storage</span><span class="token punctuation">(</span>
             address<span class="token punctuation">:</span> AccountId<span class="token punctuation">,</span>
             key<span class="token punctuation">:</span> <span class="token punctuation">[</span>u8<span class="token punctuation">;</span> <span class="token number">32</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-        <span class="token punctuation">)</span> <span class="token punctuation">-></span> contracts_rpc_runtime_api<span class="token punctuation">::</span>GetStorageResult <span class="token punctuation">{</span>
-            Contracts<span class="token punctuation">::</span><span class="token function">get_storage</span><span class="token punctuation">(</span>address<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map_err</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token punctuation">|</span>rpc_err<span class="token punctuation">|</span></span> <span class="token punctuation">{</span>
-                <span class="token keyword">use</span> contracts<span class="token punctuation">::</span>GetStorageError<span class="token punctuation">;</span>
-                <span class="token keyword">use</span> contracts_rpc_runtime_api<span class="token punctuation">::</span><span class="token punctuation">{</span>GetStorageError <span class="token keyword">as</span> RpcGetStorageError<span class="token punctuation">}</span><span class="token punctuation">;</span>
-                <span class="token comment">/// Map the contract error into the RPC layer error.</span>
-                <span class="token keyword">match</span> rpc_err <span class="token punctuation">{</span>
-                    GetStorageError<span class="token punctuation">::</span>ContractDoesntExist <span class="token operator">=></span> RpcGetStorageError<span class="token punctuation">::</span>ContractDoesntExist<span class="token punctuation">,</span>
-                    GetStorageError<span class="token punctuation">::</span>IsTombstone <span class="token operator">=></span> RpcGetStorageError<span class="token punctuation">::</span>IsTombstone<span class="token punctuation">,</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">)</span> <span class="token punctuation">-></span> contracts_primitives<span class="token punctuation">::</span>GetStorageResult <span class="token punctuation">{</span>
+            Contracts<span class="token punctuation">::</span><span class="token function">get_storage</span><span class="token punctuation">(</span>address<span class="token punctuation">,</span> key<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">fn</span> <span class="token function">rent_projection</span><span class="token punctuation">(</span>
+            address<span class="token punctuation">:</span> AccountId<span class="token punctuation">,</span>
+        <span class="token punctuation">)</span> <span class="token punctuation">-></span> contracts_primitives<span class="token punctuation">::</span>RentProjectionResult<span class="token operator">&lt;</span>BlockNumber<span class="token operator">></span> <span class="token punctuation">{</span>
+            Contracts<span class="token punctuation">::</span><span class="token function">rent_projection</span><span class="token punctuation">(</span>address<span class="token punctuation">)</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
    <span class="token comment">/*** End Added Block ***/</span>
@@ -348,7 +323,7 @@ error<span class="token punctuation">:</span> aborting due to previous errors
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="service-configuration"></a><a href="#service-configuration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Service Configuration</h2>
 <p>The next thing we need to do is to establish a service configuration for the Contracts pallet.</p>
-<p><strong><code>Cargo.toml</code></strong></p>
+<p><strong><code>node/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">dependencies</span><span class="token punctuation">]</span>
 <span class="token comment">#--snip--</span>
 <span class="token key property">jsonrpc-core</span> <span class="token punctuation">=</span> <span class="token string">'14.0.5'</span>
@@ -356,13 +331,13 @@ error<span class="token punctuation">:</span> aborting due to previous errors
 <span class="token comment">#--snip--</span>
 <span class="token punctuation">[</span><span class="token table class-name">dependencies.pallet-contracts-rpc</span><span class="token punctuation">]</span>
 <span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
-<span class="token key property">rev</span> <span class="token punctuation">=</span> <span class="token string">'&lt;git-commit>'</span> <span class="token comment"># e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'</span>
+<span class="token key property">rev</span> <span class="token punctuation">=</span> <span class="token string">'&lt;git-commit>'</span> <span class="token comment"># e.g. '0f28c33ae79ff2d4109bbdb4c755ba64a7c6a35a'</span>
 
 <span class="token punctuation">[</span><span class="token table class-name">dependencies.sc-rpc</span><span class="token punctuation">]</span>
 <span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
-<span class="token key property">rev</span> <span class="token punctuation">=</span> <span class="token string">'&lt;git-commit>'</span> <span class="token comment"># e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'</span>
+<span class="token key property">rev</span> <span class="token punctuation">=</span> <span class="token string">'&lt;git-commit>'</span> <span class="token comment"># e.g. '0f28c33ae79ff2d4109bbdb4c755ba64a7c6a35a'</span>
 </code></pre>
-<p><strong><code>src/service.rs</code></strong></p>
+<p><strong><code>node/src/service.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token macro-rules function">macro_rules!</span> new_full_start <span class="token punctuation">{</span>
     <span class="token punctuation">(</span>$config<span class="token punctuation">:</span>expr<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">{</span>
         <span class="token comment">/*** Add This Line ***/</span>
@@ -373,11 +348,11 @@ error<span class="token punctuation">:</span> aborting due to previous errors
                 <span class="token function">Ok</span><span class="token punctuation">(</span>import_queue<span class="token punctuation">)</span>
             <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token operator">?</span> <span class="token comment">// &lt;- Remove semi-colon</span>
             <span class="token comment">/*** Add This Block ***/</span>
-            <span class="token punctuation">.</span><span class="token function">with_rpc_extensions</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token punctuation">|</span>client<span class="token punctuation">,</span> _pool<span class="token punctuation">,</span> _backend<span class="token punctuation">,</span> _<span class="token punctuation">,</span> _<span class="token punctuation">|</span></span> <span class="token punctuation">-></span> Result<span class="token operator">&lt;</span>RpcExtension<span class="token punctuation">,</span> _<span class="token operator">></span> <span class="token punctuation">{</span>
+            <span class="token punctuation">.</span><span class="token function">with_rpc_extensions</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token punctuation">|</span>builder<span class="token punctuation">|</span></span> <span class="token punctuation">-></span> Result<span class="token operator">&lt;</span>RpcExtension<span class="token punctuation">,</span> _<span class="token operator">></span> <span class="token punctuation">{</span>
                 <span class="token keyword">use</span> pallet_contracts_rpc<span class="token punctuation">::</span><span class="token punctuation">{</span>Contracts<span class="token punctuation">,</span> ContractsApi<span class="token punctuation">}</span><span class="token punctuation">;</span>
                 <span class="token keyword">let</span> <span class="token keyword">mut</span> io <span class="token operator">=</span> jsonrpc_core<span class="token punctuation">::</span>IoHandler<span class="token punctuation">::</span><span class="token function">default</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 io<span class="token punctuation">.</span><span class="token function">extend_with</span><span class="token punctuation">(</span>
-                ContractsApi<span class="token punctuation">::</span><span class="token function">to_delegate</span><span class="token punctuation">(</span>Contracts<span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>client<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                ContractsApi<span class="token punctuation">::</span><span class="token function">to_delegate</span><span class="token punctuation">(</span>Contracts<span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>builder<span class="token punctuation">.</span><span class="token function">client</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
                 <span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token function">Ok</span><span class="token punctuation">(</span>io<span class="token punctuation">)</span>
             <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">;</span>
@@ -387,7 +362,7 @@ error<span class="token punctuation">:</span> aborting due to previous errors
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="genesis-configuration"></a><a href="#genesis-configuration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Genesis Configuration</h2>
 <p>Not all pallets will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, <a href="https://substrate.dev/rustdocs/master/pallet_contracts/struct.GenesisConfig.html"><code>pallet_contracts::GenesisConfig</code> documentation</a> describes all the fields you need to define for the Contracts pallet. This definition is controlled in <code>substrate-node-template/src/chain_spec.rs</code>. We need to modify this file to include the <code>ContractsConfig</code> type and the contract price units at the top:</p>
-<p><strong><code>src/chain_spec.rs</code></strong></p>
+<p><strong><code>node/src/chain_spec.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token keyword">use</span> node_template_runtime<span class="token punctuation">::</span><span class="token punctuation">{</span>ContractsConfig<span class="token punctuation">,</span> MILLICENTS<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Then inside the <code>testnet_genesis</code> function we need to add the contract configuration to the returned <code>GenesisConfig</code> object as followed:</p>
@@ -435,7 +410,7 @@ cargo run --release -- --dev
 <ul>
 <li><a href="https://substrate.dev/rustdocs/master/pallet_contracts/index.html">FRAME <code>Contracts</code> Pallet API</a></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#importing-a-pallet-crate">Importing a Pallet Crate</a><ul class="toc-headings"><li><a href="#crate-features">Crate Features</a></li><li><a href="#importing-the-contracts-pallet-crate">Importing the Contracts Pallet Crate</a></li></ul></li><li><a href="#adding-the-contracts-pallet">Adding the Contracts Pallet</a><ul class="toc-headings"><li><a href="#implementing-the-contract-trait">Implementing the Contract Trait</a></li><li><a href="#adding-contract-to-the-construct-runtime-macro">Adding Contract to the Construct Runtime Macro</a></li><li><a href="#adding-runtime-hooks">Adding Runtime Hooks</a></li><li><a href="#exposing-the-contracts-api">Exposing The Contracts API</a></li></ul></li><li><a href="#service-configuration">Service Configuration</a></li><li><a href="#genesis-configuration">Genesis Configuration</a></li><li><a href="#start-your-upgraded-chain">Start Your Upgraded Chain</a></li><li><a href="#adding-other-frame-pallets">Adding Other FRAME pallets</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li><li><a href="#references">References</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/ru/getting-started">Getting Started</a><a href="/ru/tutorials">Tutorials</a><a href="/rustdocs/master/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/ru/videos">Videos</a><a href="/ru/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#importing-a-pallet-crate">Importing a Pallet Crate</a><ul class="toc-headings"><li><a href="#crate-features">Crate Features</a></li><li><a href="#importing-the-contracts-pallet-crate">Importing the Contracts Pallet Crate</a></li></ul></li><li><a href="#adding-the-contracts-pallet">Adding the Contracts Pallet</a><ul class="toc-headings"><li><a href="#implementing-the-contract-trait">Implementing the Contract Trait</a></li><li><a href="#adding-contract-to-the-construct-runtime-macro">Adding Contract to the Construct Runtime Macro</a></li><li><a href="#exposing-the-contracts-api">Exposing The Contracts API</a></li></ul></li><li><a href="#service-configuration">Service Configuration</a></li><li><a href="#genesis-configuration">Genesis Configuration</a></li><li><a href="#start-your-upgraded-chain">Start Your Upgraded Chain</a></li><li><a href="#adding-other-frame-pallets">Adding Other FRAME pallets</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li><li><a href="#references">References</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/ru/getting-started">Getting Started</a><a href="/ru/tutorials">Tutorials</a><a href="/rustdocs/master/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/ru/videos">Videos</a><a href="/ru/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
               var cookieSettings = document.getElementById('cookie-settings');
               cookieSettings.onclick = function() {
                 return klaro.show();
