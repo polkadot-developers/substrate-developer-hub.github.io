@@ -375,14 +375,14 @@ class Tutorials extends React.Component {
                 ),
                 text: (
                   <translate>
-                  "Learn how to visualize the metrics that Substrate records using Grafana."
+                  "Learn how to visualize the metrics that Substrate records using Prometheus."
                   </translate>
                 ),
                 difficulty: "easy",
                 length: "< 1",
                 prerequisite: false,
                 version: "2.0-3e65111",
-                href: `${docUrl("tutorials/visualizing-node-metrics/")}`
+                href: `${docUrl("next/tutorials/visualizing-node-metrics/")}`
               },
               {
                 img: `${baseUrl}img/substrate-collectables-workshop.png`,
