@@ -24,7 +24,7 @@
 <pre><code class="hljs css language-bash"><span class="token function">curl</span> https://getsubstrate.io -sSf <span class="token operator">|</span> <span class="token function">bash</span> -s -- --fast
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="get-the-node-template"></a><a href="#get-the-node-template" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Get the Node Template</h4>
-<pre><code class="hljs css language-bash"><span class="token function">git</span> clone https://github.com/substrate-developer-hub/substrate-node-template
+<pre><code class="hljs css language-bash"><span class="token function">git</span> clone -b pre-v2.0-3e65111  --depth <span class="token number">1</span> https://github.com/substrate-developer-hub/substrate-node-template
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="run-your-node"></a><a href="#run-your-node" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Run your node.</h4>
 <p>It will take a little while for Rust to build your node, but once it is complete, you should be able to start your node with:</p>
@@ -94,7 +94,7 @@ cargo run --release -- --dev
 <span class="hljs-attr">default_features</span> = <span class="hljs-literal">false</span>
 <span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
 <span class="hljs-attr">package</span> = <span class="hljs-string">'pallet-contracts'</span>
-<span class="hljs-attr">rev</span> = <span class="hljs-string">'&lt;git-commit&gt;'</span> <span class="hljs-comment"># e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'</span>
+<span class="hljs-attr">rev</span> = <span class="hljs-string">'3e651110aa06aa835790df63410a29676243fc54'</span>
 </code></pre>
 <p>You <a href="https://github.com/paritytech/substrate/blob/master/frame/contracts/Cargo.toml">can see</a> that the Contracts pallet has <code>std</code> feature, thus we need to add that feature to our runtime:</p>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
@@ -152,7 +152,7 @@ error<span class="token punctuation">:</span> aborting due to previous errors
 <span class="token keyword">pub</span> <span class="token keyword">use</span> contracts<span class="token punctuation">::</span>Gas <span class="token keyword">as</span> ContractsGas<span class="token punctuation">;</span>
 <span class="token comment">/* --snip-- */</span>
 </code></pre>
-<p>If you have followed our <a href="tutorials/">other basic tutorials</a>, you may remember that we need to implement a <code>contracts::Trait</code> and also add <code>Contracts: contracts,</code> to our <code>construct_runtime!</code> macro.</p>
+<p>If you have followed our <a href="/tutorials">other basic tutorials</a>, you may remember that we need to implement a <code>contracts::Trait</code> and also add <code>Contracts: contracts,</code> to our <code>construct_runtime!</code> macro.</p>
 <h3><a class="anchor" aria-hidden="true" id="implementing-the-contract-trait"></a><a href="#implementing-the-contract-trait" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Implementing the Contract Trait</h3>
 <p>To figure out what we need to implement, you can take a look to the FRAME <a href="https://substrate.dev/rustdocs/pre-v2.0-3e65111/pallet_contracts/trait.Trait.html"><code>contracts::Trait</code> documentation</a> or the <a href="https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs">Contracts pallet source code</a>. For our runtime, the implementation will look like this:</p>
 <p><strong><code>runtime/src/lib.rs</code></strong></p>
@@ -281,7 +281,7 @@ error<span class="token punctuation">:</span> aborting due to previous errors
 <span class="hljs-attr">default-features</span> = <span class="hljs-literal">false</span>
 <span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
 <span class="hljs-attr">package</span> = <span class="hljs-string">'pallet-contracts-rpc-runtime-api'</span>
-<span class="hljs-attr">rev</span> = <span class="hljs-string">'&lt;git-commit&gt;'</span> <span class="hljs-comment"># e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'</span>
+<span class="hljs-attr">rev</span> = <span class="hljs-string">'3e651110aa06aa835790df63410a29676243fc54'</span>
 </code></pre>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-section">[features]</span>
@@ -358,11 +358,11 @@ error<span class="token punctuation">:</span> aborting due to previous errors
 <span class="token comment">#--snip--</span>
 <span class="token punctuation">[</span><span class="token table class-name">dependencies.pallet-contracts-rpc</span><span class="token punctuation">]</span>
 <span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
-<span class="token key property">rev</span> <span class="token punctuation">=</span> <span class="token string">'&lt;git-commit>'</span> <span class="token comment"># e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'</span>
+<span class="token key property">rev</span> <span class="token punctuation">=</span> <span class="token string">'3e651110aa06aa835790df63410a29676243fc54'</span>
 
 <span class="token punctuation">[</span><span class="token table class-name">dependencies.sc-rpc</span><span class="token punctuation">]</span>
 <span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
-<span class="token key property">rev</span> <span class="token punctuation">=</span> <span class="token string">'&lt;git-commit>'</span> <span class="token comment"># e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'</span>
+<span class="token key property">rev</span> <span class="token punctuation">=</span> <span class="token string">'3e651110aa06aa835790df63410a29676243fc54'</span>
 </code></pre>
 <p><strong><code>src/service.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token macro-rules function">macro_rules!</span> new_full_start <span class="token punctuation">{</span>
