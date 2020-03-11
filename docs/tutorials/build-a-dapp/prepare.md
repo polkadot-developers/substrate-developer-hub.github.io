@@ -4,7 +4,7 @@ title: Prepare to build a dApp
 
 ## Install the Node Template
 
-You should already have version `pre-v2.0-3e65111` of the [Substrate Node
+You should already have version `v2.0.0-alpha.3` of the [Substrate Node
 Template](https://github.com/substrate-developer-hub/substrate-node-template) compiled on your
 computer from when you completed the [Creating Your First Substrate Chain
 Tutorial](tutorials/creating-your-first-substrate-chain/index.md). If you do not, please complete that
@@ -26,7 +26,7 @@ Now you can proceed to set up the front-end template with these commands.
 
 ```bash
 # Clone the code from github
-git clone https://github.com/substrate-developer-hub/substrate-front-end-template
+git clone -b v2.0.0-alpha.3 https://github.com/substrate-developer-hub/substrate-front-end-template
 
 # Install the dependencies
 cd substrate-front-end-template
@@ -61,7 +61,4 @@ Our Proof of Existence pallet will expose two callable functions:
 We will only need to store information about the proofs that have been claimed, and who made those
 claims.
 
-Sounds simple enough?
-
-If your node is finished compiling, you are ready to move to the next section where we will interact
-with your Substrate node template!
+Sounds simple enough? Great, let's get coding.

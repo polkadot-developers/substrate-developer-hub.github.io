@@ -31,36 +31,41 @@ We will now modify the `substrate-node-template` to introduce the basic function
 Existence pallet.
 
 Open the `substrate-node-template` in your favorite code editor. Then open the file
-`runtime/src/template.rs`
+`pallets/template/src/lib.rs`
 
 ```
 substrate-node-template
 |
 +-- runtime
+|
++-- pallets
 |   |
-|   +-- Cargo.toml
-|   |
-|   +-- build.rs
-|   |
-|   +-- src
+|   +-- template
 |       |
-|       +-- lib.rs
+|       +-- Cargo.toml    <-- One change in this file
 |       |
-|       +-- template.rs  <-- Edit this file
+|       +-- src
+|           |
+|           +-- lib.rs     <-- Most changes in this file
+|           |
+|           +-- mock.rs
+|           |
+|           +-- tests.rs
 |
 +-- scripts
 |
-+-- src
++-- node
 |
 +-- ...
 ```
 
 You will see some pre-written code which acts as a template for a new pallet. You can delete the
-contents of this file since we will start from scratch for full transparency.
+contents of this file since we will start from scratch for full transparency. When writing your own
+pallets in the future, you will likely find the scaffolding in this template pallet useful.
 
 ## Build Your New Pallet
 
-At a high level, a Substrate pallet can be broken down into five sections:
+At a high level, a Substrate pallet can be broken down into six sections:
 
 ```rust
 // 1. Imports
@@ -73,31 +78,64 @@ pub trait Trait: system::Trait { /* --snip-- */ }
 // 3. Pallet Events
 decl_event! { /* --snip-- */ }
 
-// 4. Pallet Storage Items
+// 4. Pallet Errors
+decl_error! { /* --snip-- */ }
+
+// 5. Pallet Storage Items
 decl_storage! { /* --snip-- */ }
 
-// 5. Callable Pallet Functions
+// 6. Callable Pallet Functions
 decl_module! { /* --snip-- */ }
 ```
 
-Things like events, storage, and callable functions should look familiar to you if you have done
+Things like events, storage, and callable functions may look familiar to you if you have done
 other blockchain development. We will show you what each of these components look like for a basic
 Proof Of Existence pallet.
 
-### Imports
+### Imports and Dependencies
 
 Since imports are pretty boring, you can start by copying this at the top of your empty
 `template.rs` file:
 
 ```rust
-use frame_support::{decl_module, decl_storage, decl_event, dispatch::DispatchResult, ensure, StorageMap};
+#![cfg_attr(not(feature = "std"), no_std)]
+
+use frame_support::{
+	decl_module, decl_storage, decl_event, decl_error, dispatch::DispatchResult, ensure, StorageMap
+};
 use system::ensure_signed;
 use sp_std::vec::Vec;
 ```
 
+Most of these imports are already available because they were used in the template pallet whose code we just deleted. However, `sp_std` is not available and we need to list it as a dependency.
+
+**Add** this block to your `pallets/template/Cargo.toml` file.
+
+```toml
+[dependencies.sp-std]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+rev = '013c1ee167354a08283fb69915fda56a62fee943'
+version = '2.0.0-alpha.3'
+```
+
+Then, **Update** the existing `[features]` block to look like this. The last line is new.
+```toml
+[features]
+default = ['std']
+std = [
+    'codec/std',
+    'frame-support/std',
+    'safe-mix/std',
+    'system/std',
+    'sp-std/std',          <-- This line is new
+]
+```
+
 ### Pallet Configuration
 
-For now, the only thing we will configure about our pallet is that it will emit some Events.
+Every pallet has a configuration trait. For now, the only thing we will configure about our pallet
+is that it will emit some Events.
 
 ```rust
 /// The pallet's configuration trait.
@@ -130,6 +168,26 @@ Our pallet will only have two events:
 The events can contain some metadata, in this case, each event will also display who triggered the
 event (`AccountId`), and the proof data (as `Vec<u8>`) that is being stored or removed.
 
+## Pallet Errors
+
+The events we defined previously indicate when calls to the pallet have completed successfully. Similarly, errors indicate when a call has failed, and why it has failed.
+
+```rust
+// This pallet's errors.
+decl_error! {
+	pub enum Error for Module<T: Trait> {
+		/// This proof has already been claimed
+		ProofAlreadyClaimed,
+		/// The proof does not exist, so it cannot be revoked
+		NoSuchProof,
+		/// The proof is claimed by another account, so caller can't revoke it
+		NotProofOwner,
+	}
+}
+```
+
+The first of these errors can occur when attempting to claim a new proof. Of course a user cannot claim a proof that has already been claimed. The latter two can occur when attempting to revoke a proof.
+
 ### Pallet Storage Items
 
 To add a new proof to the blockchain, we will simply store that proof in our pallet's storage. To
@@ -142,7 +200,7 @@ decl_storage! {
     trait Store for Module<T: Trait> as TemplateModule {
         /// The storage item for our proofs.
         /// It maps a proof to the user who made the claim and when they made it.
-        Proofs: map Vec<u8> => (T::AccountId, T::BlockNumber);
+        Proofs: map hasher(blake2_256) Vec<u8> => (T::AccountId, T::BlockNumber);
     }
 }
 ```
@@ -152,13 +210,13 @@ proof is still available to be claimed.
 
 ### Callable Pallet Functions
 
-As implied by our pallet events, we will have two functions the user can call in this Substrate
-pallet:
+As implied by our pallet events and errors, we will have two "dispatchable functions" the user can
+call in this Substrate pallet:
 
 1. `create_claim()`: Allow a user to claim the existence of a file with a proof.
 2. `revoke_claim()`: Allow the owner of a claim to revoke their claim.
 
-Here are what the pallet declaration looks like with these these two functions:
+Here is what the pallet declaration looks like with these these two functions:
 
 ```rust
 // The pallet's dispatchable functions.
@@ -175,7 +233,7 @@ decl_module! {
             let sender = ensure_signed(origin)?;
 
             // Verify that the specified proof has not been claimed yet or error with the message
-            ensure!(!Proofs::<T>::exists(&proof), "This proof has already been claimed.");
+            ensure!(!Proofs::<T>::contains_key(&proof), Error::<T>::ProofAlreadyClaimed);
 
             // Call the `system` pallet to get the current block number
             let current_block = <system::Module<T>>::block_number();
@@ -194,13 +252,13 @@ decl_module! {
             let sender = ensure_signed(origin)?;
 
             // Verify that the specified proof has been claimed
-            ensure!(Proofs::<T>::exists(&proof), "This proof has not been stored yet.");
+            ensure!(Proofs::<T>::contains_key(&proof), Error::<T>::NoSuchProof);
 
             // Get owner of the claim
             let (owner, _) = Proofs::<T>::get(&proof);
 
             // Verify that sender of the current call is the claim owner
-            ensure!(sender == owner, "You must own this claim to revoke it.");
+            ensure!(sender == owner, Error::<T>::NotProofOwner);
 
             // Remove claim from storage
             Proofs::<T>::remove(&proof);
@@ -215,7 +273,7 @@ decl_module! {
 
 ## Compile Your New Pallet
 
-After you've copied all of the parts of this pallet correctly into your `template.rs` file, you
+After you've copied all of the parts of this pallet correctly into your `template/lib.rs` file, you
 should be able to recompile your node without warning or error:
 
 ```bash
@@ -228,8 +286,9 @@ Now you can start your node:
 # Purge chain to clean up your old chain state
 # You will be prompted to type `y`
 ./target/release/node-template purge-chain --dev
-# Re-run your node in "developer" mode
+
+# Re-run your node in "development" mode
 ./target/release/node-template --dev
 ```
 
-Now it is it time to interact with our new Proof of Existence pallet!
+Now it is time to interact with our new Proof of Existence pallet!
