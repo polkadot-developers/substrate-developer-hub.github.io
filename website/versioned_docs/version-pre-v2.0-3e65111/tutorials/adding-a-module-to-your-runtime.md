@@ -21,7 +21,7 @@ curl https://getsubstrate.io -sSf | bash -s -- --fast
 #### Get the Node Template
 
 ```bash
-git clone https://github.com/substrate-developer-hub/substrate-node-template
+git clone -b pre-v2.0-3e65111  --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
 ```
 
 #### Run your node.
@@ -120,7 +120,7 @@ First we will add the new dependency by simply copying an existing pallet, and c
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'pallet-contracts'
-rev = '<git-commit>' # e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'
+rev = '3e651110aa06aa835790df63410a29676243fc54'
 ```
 
 You [can see](https://github.com/paritytech/substrate/blob/master/frame/contracts/Cargo.toml) that the Contracts pallet has `std` feature, thus we need to add that feature to our runtime:
@@ -194,7 +194,7 @@ pub use contracts::Gas as ContractsGas;
 /* --snip-- */
 ```
 
-If you have followed our [other basic tutorials](tutorials/), you may remember that we need to implement a `contracts::Trait` and also add `Contracts: contracts,` to our `construct_runtime!` macro.
+If you have followed our [other basic tutorials](/tutorials), you may remember that we need to implement a `contracts::Trait` and also add `Contracts: contracts,` to our `construct_runtime!` macro.
 
 ### Implementing the Contract Trait
 
@@ -364,7 +364,7 @@ To achieve this, we need to start by adding the required API dependencies.
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'pallet-contracts-rpc-runtime-api'
-rev = '<git-commit>' # e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'
+rev = '3e651110aa06aa835790df63410a29676243fc54'
 ```
 
 **`runtime/Cargo.toml`**
@@ -455,11 +455,11 @@ jsonrpc-core = '14.0.5'
 #--snip--
 [dependencies.pallet-contracts-rpc]
 git = 'https://github.com/paritytech/substrate.git'
-rev = '<git-commit>' # e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'
+rev = '3e651110aa06aa835790df63410a29676243fc54'
 
 [dependencies.sc-rpc]
 git = 'https://github.com/paritytech/substrate.git'
-rev = '<git-commit>' # e.g. '40a16efefc070faf5a25442bc3ae1d0ea2478eee'
+rev = '3e651110aa06aa835790df63410a29676243fc54'
 ```
 
 **`src/service.rs`**

@@ -19,7 +19,7 @@ curl https://getsubstrate.io -sSf | bash -s -- --fast
 #### Get the Node Template
 
 ```bash
-git clone https://github.com/substrate-developer-hub/substrate-node-template
+git clone -b v2.0.0-alpha.3 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
 ```
 
 #### Run your node.
@@ -118,13 +118,15 @@ First we will add the new dependency by simply copying an existing pallet, and c
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'pallet-contracts'
-rev = '<git-commit>' # e.g. '0f28c33ae79ff2d4109bbdb4c755ba64a7c6a35a'
+rev = '013c1ee167354a08283fb69915fda56a62fee943'
+version = '2.0.0-alpha.3'
 
 [dependencies.contracts-primitives]
 default_features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'pallet-contracts-primitives'
-rev = '<git-commit>' # e.g. '0f28c33ae79ff2d4109bbdb4c755ba64a7c6a35a'
+rev = '013c1ee167354a08283fb69915fda56a62fee943'
+version = '2.0.0-alpha.3'
 ```
 
 You [can see](https://github.com/paritytech/substrate/blob/master/frame/contracts/Cargo.toml) that the Contracts pallet has `std` feature, thus we need to add that feature to our runtime:
@@ -199,7 +201,7 @@ pub use contracts::Gas;
 /* --snip-- */
 ```
 
-If you have followed our [other basic tutorials](tutorials/), you may remember that we need to implement a `contracts::Trait` and also add `Contracts: contracts,` to our `construct_runtime!` macro.
+If you have followed our [other basic tutorials](/tutorials), you may remember that we need to implement a `contracts::Trait` and also add `Contracts: contracts,` to our `construct_runtime!` macro.
 
 ### Implementing the Contract Trait
 
@@ -330,7 +332,8 @@ To achieve this, we need to start by adding the required API dependencies.
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
 package = 'pallet-contracts-rpc-runtime-api'
-rev = '<git-commit>' # e.g. '0f28c33ae79ff2d4109bbdb4c755ba64a7c6a35a'
+rev = '013c1ee167354a08283fb69915fda56a62fee943'
+version = '0.8.0-alpha.3'
 ```
 
 **`runtime/Cargo.toml`**
@@ -416,11 +419,13 @@ jsonrpc-core = '14.0.5'
 #--snip--
 [dependencies.pallet-contracts-rpc]
 git = 'https://github.com/paritytech/substrate.git'
-rev = '<git-commit>' # e.g. '0f28c33ae79ff2d4109bbdb4c755ba64a7c6a35a'
+rev = '013c1ee167354a08283fb69915fda56a62fee943'
+version = '0.8.0-alpha.3'
 
 [dependencies.sc-rpc]
 git = 'https://github.com/paritytech/substrate.git'
-rev = '<git-commit>' # e.g. '0f28c33ae79ff2d4109bbdb4c755ba64a7c6a35a'
+rev = '013c1ee167354a08283fb69915fda56a62fee943'
+version = '2.0.0-alpha.3'
 ```
 
 **`node/src/service.rs`**
