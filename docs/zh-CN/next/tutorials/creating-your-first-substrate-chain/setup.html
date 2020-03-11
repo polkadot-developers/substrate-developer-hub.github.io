@@ -108,7 +108,10 @@
 <pre><code class="hljs css language-bash">    <span class="token function">git</span> clone -b pre-v2.0-3e65111  --depth <span class="token number">1</span> https://github.com/substrate-developer-hub/substrate-node-template
 </code></pre></li>
 <li><p>Initialize your WebAssembly build environment</p>
-<pre><code class="hljs css language-bash"><span class="token comment"># Update Rust</span>
+<pre><code class="hljs css language-bash"><span class="token comment"># Load settings into the current shell script if you can't use rustup command</span>
+<span class="token builtin class-name">source</span> ~/.cargo/env
+
+<span class="token comment"># Update Rust</span>
 rustup update nightly
 rustup update stable
 
