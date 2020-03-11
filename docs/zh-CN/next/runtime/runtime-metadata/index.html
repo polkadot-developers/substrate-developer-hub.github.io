@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Runtime Metadata · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Inspecting a Runtime&#x27;s Metadata can help you out in the following scenarios:"/><meta name="docsearch:version" content="next"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="Runtime Metadata · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="Inspecting a Runtime&#x27;s Metadata can help you out in the following scenarios:"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Runtime Metadata · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;meta http-equiv=&quot;Refresh&quot; content=&quot;0; url=../overview/getting-started&quot; /&gt;"/><meta name="docsearch:version" content="next"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="Runtime Metadata · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&lt;meta http-equiv=&quot;Refresh&quot; content=&quot;0; url=../overview/getting-started&quot; /&gt;"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
             {"zIndex":100}
@@ -16,120 +16,9 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Runtime Metadata</h1></header><article><div><span><p>Inspecting a Runtime's Metadata can help you out in the following scenarios:</p>
-<ul>
-<li>You want to interact with a Substrate blockchain, but don't have much idea about what features the blockchain provides.</li>
-<li>You want to show the available storage entries and dispatchable functions for users who are using the GUI.</li>
-</ul>
-<p>Substrate provides pallet-based metadata to give an overview of your blockchain runtime. It helps an external client to introspect each pallet's, storage items, dispatchable functions, and events.</p>
-<h2><a class="anchor" aria-hidden="true" id="srml-metadata"></a><a href="#srml-metadata" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SRML Metadata</h2>
-<p>In Substrate, the runtime metadata is consolidated and encoded automatically when developing pallets. The built-in <a href="https://substrate.dev/rustdocs/master/frame_metadata/index.html">Metadata pallet</a> doesn't provide any additional storage entries, dispatchable functions or events. It simply provides the data structure to store the metadata of your blockchain runtime, and related codec to convert between raw data and bytes literal in <a href="/docs/zh-CN/next/overview/low-level-data-format">SCALE (Simple Concatenated Aggregate Little-Endian)</a> format.</p>
-<p>Before we dive into more detail, let's have a quick look at what information is included in the metadata. For demo purposes, we'll only show metadata of the <a href="https://substrate.dev/rustdocs/master/pallet_sudo/index.html">Sudo pallet</a> in JSON format:</p>
-<pre><code class="hljs css language-json"><span class="token punctuation">{</span>
-    <span class="token property">"pallets"</span><span class="token operator">:</span><span class="token punctuation">[</span>
-        <span class="token punctuation">{</span>
-            <span class="token property">"name"</span><span class="token operator">:</span><span class="token string">"sudo"</span><span class="token punctuation">,</span>
-            <span class="token property">"prefix"</span><span class="token operator">:</span><span class="token string">"Sudo"</span><span class="token punctuation">,</span>
-            <span class="token property">"storage"</span><span class="token operator">:</span><span class="token punctuation">[</span>
-                <span class="token punctuation">{</span>
-                    <span class="token property">"name"</span><span class="token operator">:</span><span class="token string">"Key"</span><span class="token punctuation">,</span>
-                    <span class="token property">"modifier"</span><span class="token operator">:</span><span class="token string">"Default"</span><span class="token punctuation">,</span>
-                    <span class="token property">"type"</span><span class="token operator">:</span><span class="token punctuation">{</span>
-                        <span class="token property">"PlainType"</span><span class="token operator">:</span><span class="token string">"AccountId"</span>
-                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-                    <span class="token property">"fallback"</span><span class="token operator">:</span><span class="token string">"0x0000000000000000000000000000000000000000000000000000000000000000"</span><span class="token punctuation">,</span>
-                    <span class="token property">"documentation"</span><span class="token operator">:</span><span class="token punctuation">[</span>
-                        <span class="token string">" The `AccountId` of the sudo key."</span>
-                    <span class="token punctuation">]</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">]</span><span class="token punctuation">,</span>
-            <span class="token property">"calls"</span><span class="token operator">:</span><span class="token punctuation">[</span>
-                <span class="token punctuation">{</span>
-                    <span class="token property">"name"</span><span class="token operator">:</span><span class="token string">"sudo"</span><span class="token punctuation">,</span>
-                    <span class="token property">"args"</span><span class="token operator">:</span><span class="token punctuation">[</span>
-                        <span class="token punctuation">{</span>
-                            <span class="token property">"name"</span><span class="token operator">:</span><span class="token string">"proposal"</span><span class="token punctuation">,</span>
-                            <span class="token property">"type"</span><span class="token operator">:</span><span class="token string">"Proposal"</span>
-                        <span class="token punctuation">}</span>
-                    <span class="token punctuation">]</span><span class="token punctuation">,</span>
-                    <span class="token property">"documentation"</span><span class="token operator">:</span><span class="token punctuation">[</span>
-                        <span class="token string">" Authenticates the sudo key and dispatches a function call with `Root` origin."</span>
-                    <span class="token punctuation">]</span>
-                <span class="token punctuation">}</span><span class="token punctuation">,</span>
-                ...
-            <span class="token punctuation">]</span><span class="token punctuation">,</span>
-            <span class="token property">"events"</span><span class="token operator">:</span><span class="token punctuation">[</span>
-                <span class="token punctuation">{</span>
-                    <span class="token property">"name"</span><span class="token operator">:</span><span class="token string">"Sudid"</span><span class="token punctuation">,</span>
-                    <span class="token property">"args"</span><span class="token operator">:</span><span class="token punctuation">[</span>
-                        <span class="token string">"bool"</span>
-                    <span class="token punctuation">]</span><span class="token punctuation">,</span>
-                    <span class="token property">"documentation"</span><span class="token operator">:</span><span class="token punctuation">[</span>
-                        <span class="token string">" A sudo just took place."</span>
-                    <span class="token punctuation">]</span>
-                <span class="token punctuation">}</span><span class="token punctuation">,</span>
-                ...
-            <span class="token punctuation">]</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">]</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<blockquote>
-<p>Here we are using <code>V4</code> of the runtime metadata. Go to <a href="https://substrate.dev/rustdocs/master/frame_metadata/enum.RuntimeMetadata.html">its reference document</a> for more versioning information.</p>
-</blockquote>
-<p>The metadata of an entire runtime is an array of its pallets' metadata, including all FRAME and custom runtime pallets in your blockchain. You can also find <a href="https://github.com/polkadot-js/api/blob/master/packages/types/src/Metadata/v4/latest.substrate.v4.json">the decoded metadata</a> of all built-in pallets in Polkadot-js/api.</p>
-<p>Now let's walk through each field in pallets's metadata:</p>
-<ul>
-<li><code>name</code>: the pallet's name.</li>
-<li><code>prefix</code>: the name of pallet's store.</li>
-<li><code>storage</code>: all the available storage entries in the pallet. Each storage entry is composed of:
-<ul>
-<li><code>name</code>: the storage entry's name.</li>
-<li><code>modifier</code>: whether the entry is <code>Optional</code> or <code>Default</code>.</li>
-<li><code>type</code>: the type of the storage entry, could be <code>PlainType</code>, <code>MapType</code> or <code>DoubleMapType</code>.</li>
-<li><code>fallback</code>: the default value if the entry has not been set.</li>
-<li><code>documentation</code>: notes for the entry.</li>
-</ul></li>
-<li><code>calls</code>: an array of dispatchable functions:
-<ul>
-<li><code>name</code>: the function's name.</li>
-<li><code>args</code>: the arguments in function's definition, each includes parameter name and type.</li>
-<li><code>documentation</code>: notes for the function.</li>
-</ul></li>
-<li><code>event</code>: all the defined events in a pallet:
-<ul>
-<li><code>name</code>: the event's name.</li>
-<li><code>args</code>: the arguments in the event definition.</li>
-<li><code>documentation</code>: notes for the event.</li>
-</ul></li>
-</ul>
-<h2><a class="anchor" aria-hidden="true" id="fetch-the-metadata"></a><a href="#fetch-the-metadata" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fetch The Metadata</h2>
-<p>If you are using <strong>Javascript</strong>, <a href="https://polkadot.js.org/api/">polkadot-js/api</a> already provides friendly APIs to interact with Substrate blockchain, including the <a href="https://polkadot.js.org/api/METHODS_RPC.html#json-rpc">getMetadata</a> function. You can try the following code snippets to fetch the metadata in this <a href="https://polkadot.js.org/apps/#/js">Substrate UI</a> page:</p>
-<pre><code class="hljs css language-javascript"><span class="token keyword">const</span> <span class="token punctuation">{</span> magicNumber<span class="token punctuation">,</span> metadata <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">await</span> api<span class="token punctuation">.</span>rpc<span class="token punctuation">.</span>state<span class="token punctuation">.</span><span class="token function">getMetadata</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> <span class="token string">'Magic number: '</span> <span class="token operator">+</span> magicNumber <span class="token punctuation">)</span><span class="token punctuation">;</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> <span class="token string">'Metadata: '</span> <span class="token operator">+</span> metadata<span class="token punctuation">.</span>raw <span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<p>If you are using <strong>other languages</strong> to build your client, you can easily send a <strong>WebSocket message</strong> or <strong>HTTP POST request</strong> to a Substrate node endpoint by using any existing client. The message or body for <code>getMetadata</code> is:</p>
-<pre><code class="hljs css language-json"><span class="token punctuation">{</span>
-  <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
-  <span class="token property">"jsonrpc"</span><span class="token operator">:</span> <span class="token string">"2.0"</span><span class="token punctuation">,</span>
-  <span class="token property">"method"</span><span class="token operator">:</span> <span class="token string">"state_getMetadata"</span><span class="token punctuation">,</span>
-  <span class="token property">"params"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>The response looks like following contents, but with much more information in <code>result</code> field:</p>
-<pre><code class="hljs css language-json"><span class="token punctuation">{</span>
-    <span class="token property">"jsonrpc"</span><span class="token operator">:</span> <span class="token string">"2.0"</span><span class="token punctuation">,</span>
-    <span class="token property">"result"</span><span class="token operator">:</span> <span class="token string">"0x6d65746104241873797374656d1853797374656d012c304163636f756e744e6f6e636501010130543a3a4163636f756e74..."</span><span class="token punctuation">,</span>
-    <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>The hexadecimal string in the <code>result</code> field wraps the runtime metadata in SCALE format. Go to <a href="/docs/zh-CN/next/overview/low-level-data-format">Low-level Data Format</a> page to learn how to decode different types and get more information about the specification and implementations.</p>
-<p>Our hex blob starts with a hard coded magic number <code>6d657461</code> which represents <em>meta</em> in plain text. The next piece of data shows the version number of the metadata, here we are using <code>04</code> to represent version 4. We already mentioned that runtime metadata is composed by available pallets. In our case we have 9 pallets. After shifting 9 in binary representation two bits to the left, we get <code>24</code> in hex to represent the length of the array.</p>
-<p>The remaining blob encodes the metadata of each pallet. Learning more about decoding different types in the <a href="https://substrate.dev/rustdocs/master/frame_metadata/struct.ModuleMetadata.html">struct</a>, please refer to the <a href="https://substrate.dev/rustdocs/master/frame_metadata/index.html">reference docs</a> and <a href="/docs/zh-CN/next/overview/low-level-data-format">Low-level Data Format</a> page.</p>
-<p>After decoding the hex blob successfully, you should be able to see similar metadata in the above example.</p>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#srml-metadata">SRML Metadata</a></li><li><a href="#fetch-the-metadata">Fetch The Metadata</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/master/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="/zh-CN/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Runtime Metadata</h1></header><article><div><span><p><meta http-equiv="Refresh" content="0; url=../overview/getting-started" /></p>
+<p>This page is deprecated in the current docs. <a href="../overview/getting-started">getting-started</a>.</p>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="/rustdocs/master/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="/zh-CN/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
               var cookieSettings = document.getElementById('cookie-settings');
               cookieSettings.onclick = function() {
                 return klaro.show();
