@@ -60,6 +60,9 @@ Template serves as a good starting point for building on Substrate.
 2. Initialize your WebAssembly build environment
 
     ```bash
+    # Load settings into the current shell script if you can't use rustup command
+    source ~/.cargo/env
+    
     # Update Rust
     rustup update nightly
     rustup update stable
