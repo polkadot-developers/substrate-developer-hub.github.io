@@ -29,7 +29,7 @@ Now you can proceed to set up the front-end template with these commands.
 git clone https://github.com/substrate-developer-hub/substrate-front-end-template
 
 # Install the dependencies
-cd front-end-template
+cd substrate-front-end-template
 yarn install
 ```
 
