@@ -364,7 +364,7 @@ const usersList = [{
   {
     name: "Phala Network",
     image: "/img/users/Phala.png",
-    homepage: "https://phala.etwork/",
+    homepage: "https://phala.network/",
     github: "https://github.com/Phala-Network",
     pinned: false,
     type: "infra",
