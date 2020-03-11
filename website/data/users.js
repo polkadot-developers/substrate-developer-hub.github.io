@@ -362,6 +362,14 @@ const usersList = [{
     type: "infra",
   },
   {
+    name: "Phala Network",
+    image: "/img/users/Phala.png",
+    homepage: "https://phala.network/",
+    github: "https://github.com/Phala-Network",
+    pinned: false,
+    type: "infra",
+  },
+  {
     name: "Runtime Verification",
     image: "/img/users/Runtime Verification.png",
     homepage: "https://runtimeverification.com/",
