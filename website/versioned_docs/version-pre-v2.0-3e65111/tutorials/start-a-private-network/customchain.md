@@ -3,7 +3,7 @@ title: Creating Your Private Network
 id: version-pre-v2.0-3e65111-customchain
 original_id: customchain
 ---
-Now that each participant has their own keys generated, you're ready to start your own custom chain.
+Now that each participant has their own keys generated, you're ready to start your own custom chain. In this section it is no longer required to use a single physical machine or a single binary.
 
 In this example we will create a two-node network. So generate two set of keys using
 [previously discussed methods](keygen.md), or take two sets of
