@@ -3,12 +3,10 @@ title: Creating Your Private Network
 ---
 Now that each participant has their own keys generated, you're ready to start your own custom chain. In this section it is no longer required to use a single physical machine or a single binary.
 
-In this example we will create a two-node network. So generate two set of keys using
-[previously discussed methods](keygen.md), or take two sets of
-[pre-generated keys](keygen.md#option-3-use-pre-generated-keys).
+In this example we will create a two-node network, but the process generalizes to more nodes in a straight-forward manner.
 
 > Validators should not share the same keys, even for learning purposes. If two validators have the
-> same keys, they will produce conflicting blocks and be slashed.
+> same keys, they will produce conflicting blocks.
 
 ## Create a Chain Specification
 
@@ -16,10 +14,12 @@ Last time around, we used `--chain local` which is a predefined "chain spec" tha
 specified as validators along with many other useful defaults.
 
 Rather than writing our chain spec completely from scratch, we'll just make a few modifications to
-the the one we used before. To start we need to export the chain spec to a json file. Remember,
-further details about all of these commands are available by running `node-template --help`.
+the the one we used before. To start we need to export the chain spec to a file named
+`customSpec.json`. Remember, further details about all of these commands are available by running
+`node-template --help`.
 
 ```bash
+# Export the local chainspec to json
 $ ./target/release/node-template build-spec --chain local > customSpec.json
 2020-01-10 15:39:04 Building chain spec
 ```
@@ -65,6 +65,11 @@ indicated by **"grandpa"** field. That section looks like this
 }
 ```
 
+> These instructions are written for the node template. They will work with other Substrate-based nodes
+> with few modifications. In Substrate nodes that include the session pallet. You should leave the
+> Aura and Grandpa configs empty and instead insert this information in the session config. All of this
+> is demonstrated in the chain spec you export from your desired node.
+
 The format for the grandpa data is more complex because the grandpa protocol supports weighted
 votes. In this case we have given each validator a weight of **1**.
 
@@ -83,9 +88,7 @@ at the proper storage keys.
 ```
 Finally share the `customSpecRaw.json` with your all the other validators in the network.
 
-> IMPORTANT
->
-> A single person should do these steps and share the resulting **`customSpecRaw.json`** file with their fellow validators.
+> A single person should create the chain spec and share the resulting **`customSpecRaw.json`** file with their fellow validators.
 >
 > Because Rust -> Wasm optimized builds aren't "reproducible", each person will get a slightly different Wasm
 > blob which will break consensus if each participant generates the file themselves.
@@ -102,7 +105,7 @@ The first participant can launch her node with
 ```bash
 ./target/release/node-template \
   --base-path /tmp/node01 \
-  --chain ./customSpecRaw.json \
+  --chain=./customSpecRaw.json \
   --port 30333 \
   --ws-port 9944 \
   --rpc-port 9933 \
@@ -121,7 +124,7 @@ You should see the console outputs something as follows:
 
 ```bash
 2020-01-10 16:50:24 Substrate Node
-2020-01-10 16:50:24   version 2.0.0-x86_64-linux-gnu
+2020-01-10 16:50:24   version 2.0.0-alpha.3-5b41f0b-x86_64-linux-gnu
 2020-01-10 16:50:24   by Anonymous, 2017, 2018
 2020-01-10 16:50:24 Chain specification: Local Testnet
 2020-01-10 16:50:24 Node name: MyNode01
@@ -195,9 +198,7 @@ If you enter the command and parameters correctly, the node will return a JSON r
 ## Subsequent Participants Join
 
 Subsequent validators can now join the network. This can be done either by specifying the
-`--bootnodes` paramter as Bob did previously, or using the chain spec file we generated just now.
-
-Let's use the chain spec file to run another node. The command will be similar to the following:
+`--bootnodes` paramter as Bob did previously.
 
 ```bash
 ./target/release/node-template \
@@ -208,12 +209,12 @@ Let's use the chain spec file to run another node. The command will be similar t
   --rpc-port 9934 \
   --telemetry-url ws://telemetry.polkadot.io:1024 \
   --validator \
-  --name MyNode02
+  --name MyNode02 \
+  --bootnodes /ip4/<IP Address>/tcp/<Port>/p2p/<Peer ID>
 ```
 
 Note that:
 
-* We don't need to specify the `--bootnodes` as it is read from the `customSpecRaw.json` file.
 * We specify another `base-path`, give it another `name`, and also specify this node as a
 `validator`.
 * Once the node is up, we add another pair of `sr25519` and `ed25519` keys in this node keystore
@@ -222,11 +223,14 @@ both keys to the keystore to be a validator.
 * If there are multiple validators in the network, we want to add all of them in the
 `bootnodes` section of in the `customSpec.json`.
 
-> If you are running multiple nodes on the same machine, you must configure the UI to the correct
+> You must configure the UI to the correct
 > node's WebSocket endpoint.
 
 > Reminder: All validators must be using identical chain specifications in order to peer. You
 > should see the same genesis block and state root hashes.
+
+> You may obviate the `--bootnotes` flag, by putting your first node's bootnode address in the chain
+> spec file (there is a field at the beginning).
 
 ```
 ...
@@ -251,7 +255,8 @@ both keys to the keystore to be a validator.
 This line shows that your node has peered with another (**`1 peers`**), they have produced a block
 (**`best: #1 (0x1368…fe12)`**).
 
-Block finalization (**`finalized #1 (0x1368…fe12)`**) can only happen if **more than one** validator added its grandpa key into the keystore.
+Block finalization (**`finalized #1 (0x1368…fe12)`**) can only happen if **more than two thirds** of
+validators added their grandpa keys into their keystores.
 
 ## You're Finished
 

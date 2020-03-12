@@ -219,7 +219,6 @@ Book](https://doc.rust-lang.org/book/) is a great resource for beginning and int
 
 If you experienced any issues with this tutorial or want to provide feedback, feel free to [open a
 GitHub
-issue](https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/new) with
-your thoughts.
+issue](https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/new) or reach out on [Riot](https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org).
 
 We can't wait to see what you build next!

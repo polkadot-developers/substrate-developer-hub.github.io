@@ -2,7 +2,7 @@
 title: Background Information
 ---
 
-In this section we will teach you about the Substrate blockchain development framework.
+In this section we will teach you about the Substrate blockchain development framework. The Node Template that you are currently developing is built from this framework.
 
 ## Background on Blockchains
 
@@ -31,7 +31,7 @@ these projects are forked from already existing blockchain repositories. For ins
 ![Blockchain Project Repository Forks](assets/forks.png)
 
 Building blockchains in this way has serious limitations as these existing platform were not
-designed to be modified.
+designed with modification in mind.
 
 ## Substrate
 
@@ -43,7 +43,7 @@ build a customized blockchain node.
 
 ### Substrate Node Template
 
-We provide an out-of-the-box working Substrate node in the form of the `substrate-node-template`,
+We provide an out-of-the-box working Substrate-based node in the form of the Node Template,
 which should be compiling as you read this. Without making any changes, you and your friends could
 share this node template and create a working blockchain network with a cryptocurrency and
 everything!

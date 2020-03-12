@@ -232,9 +232,9 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "< 1",
                 prerequisite: false,
-                version: "2.0-3e65111",
+                version: "v2.0.0-alpha.3",
                 href: `${docUrl(
-                  "tutorials/creating-your-first-substrate-chain/"
+                  "next/tutorials/creating-your-first-substrate-chain/"
                 )}`
               },
               {
@@ -250,9 +250,9 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "1",
                 prerequisite: true,
-                version: "2.0-3e65111",
+                version: "v2.0.0-alpha.3",
                 href: `${docUrl(
-                  "tutorials/build-a-dapp"
+                  "next/tutorials/build-a-dapp"
                 )}`
               },
               {
@@ -269,9 +269,9 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "2",
                 prerequisite: false,
-                version: "2.0-3e65111",
+                version: "v2.0.0-alpha.3",
                 href: `${docUrl(
-                  "tutorials/start-a-private-network/"
+                  "next/tutorials/start-a-private-network/"
                 )}`
               },
               {

@@ -5,8 +5,8 @@ title: Generate Your Own Keys
 Now that we know the fundamentals and the command line options, it's time to generate our own keys
 rather than using the well-known Alice and Bob keys. Each person who wants to participate in the
 blockchain should generate their own keys. This page explains several options for generating keys,
-and each participant only needs to choose one. Regardless of which option you choose, be sure to
-record all of the output from this section as you will need it later.
+and each participant only needs to choose one such option. Regardless of which option you choose, be
+sure to record all of the output from this section as you will need it later.
 
 ## Option 1: Subkey
 
@@ -44,7 +44,7 @@ Secret phrase `keep matrix knee meat awake frown rubber position federal easily 
 
 ## Option 2: Polkadot-JS Apps
 
-The same UI that we used to see blocks being produces can also be used to generate keys. This option
+The same UI that we used to see blocks being produced can also be used to generate keys. This option
 is convenient if you do not want to install subkey. It can be used for production keys, but the
 system should not be connected to the internet when generating such keys.
 
@@ -52,8 +52,8 @@ system should not be connected to the internet when generating such keys.
 > what method you choose. It is mentioned here specifically because having an internet connection
 > is generally desired when using a webapp like Polkadot JS Apps.
 
-On the "Accounts" tab, click "Add account". You do not need to provide a name or password, although
-you may if you would like to save this account for submitting transaction in addition to validating.
+On the "Accounts" tab, click "Add account". You do not need to provide a name, although you may if
+you would like to save this account for submitting transaction in addition to validating.
 
 Generate an `sr25519` key which will be used by Aura for block production. Take careful note of the
 menmonic phrase, and the SS58 address which can be copied by clicking on the identicon in the top

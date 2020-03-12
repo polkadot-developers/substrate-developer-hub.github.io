@@ -12,7 +12,7 @@ are compiling, you will learn more about Substrate and what we are building.
 To develop on Substrate, your computer needs some prerequisites to establish a working development
 environment.
 
-> **Note:** Setting up your computer is probably the hardest part of this tutorial, so don't let
+> Setting up your computer is probably the hardest part of this tutorial, so don't let
 > this discourage you.
 
 ### Substrate Development
@@ -24,12 +24,12 @@ of those prerequisites installed for you:
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
 
-> **Note:** If you did not have Rust installed prior to running this script, make sure to add `cargo` to your `PATH` or restart your terminal before continuing (command given in last line of the script output).
+> If you did not have Rust installed prior to running this script, make sure to add restart your terminal before continuing (command given in last line of the script output).
 
 <details>
 <summary>Learn what this script does.</summary>
 
-> **Note:** If you want to see specifically what this script does just visit:
+> If you want to see specifically what this script does just visit:
 > https://getsubstrate.io
 
 It will automatically install:
@@ -51,10 +51,10 @@ well documented [here](overview/getting-started.md).
 Once the prerequisites are installed, you need to set up the skeleton for our project. The Substrate Node
 Template serves as a good starting point for building on Substrate.
 
-1. Clone the Substrate Node Template (version `pre-2.0-3e6511`) and create a branch for your work.
+1. Clone the Substrate Node Template (version `v2.0.0-alpha.3`).
 
     ```bash
-		git clone -b pre-v2.0-3e65111  --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+		git clone -b v2.0.0-alpha.3 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
     ```
 
 2. Initialize your WebAssembly build environment
@@ -62,7 +62,7 @@ Template serves as a good starting point for building on Substrate.
     ```bash
     # Load settings into the current shell script if you can't use rustup command
     source ~/.cargo/env
-    
+
     # Update Rust
     rustup update nightly
     rustup update stable
@@ -71,7 +71,7 @@ Template serves as a good starting point for building on Substrate.
     rustup target add wasm32-unknown-unknown --toolchain nightly
     ```
 
-3. Compile your Substrate node
+3. Create a branch for your work and Compile your Substrate node
 
     ```bash
     cd substrate-node-template/
