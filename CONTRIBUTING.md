@@ -1,4 +1,13 @@
-# Contribution Guidelines
+# ⚠️ This Repository is Frozen ⚠️
+
+⚠️ Substrate Documentation is moving to a new CMS. To facilitate this process, the content of this Repo is frozen and new additions will not be accepted.
+
+# Where to Contribute?
+
+We still welcome your contributions! The new home for substrate documentation is https://github.com/substrate-developer-hub/substrate-cms Please make your PR there. That content will be live around March 26
+
+
+## Former Contribution Guidelines
 
 If you are interested in contributing to the Substrate Documentation, please carefully read
 these contribution guidelines.
@@ -15,21 +24,6 @@ We lovingly stole these guidelines from [Google's Fuchsia project](https://fuchs
 
 * [Documentation Style](#documentation-style)
 
-## PR Checklist
-
-- [ ] Are the audience and objective of the document clear? E.g. a document
-for developers that should teach them about transaction fees.
-- [ ] Is the writing:
-  - **Clear**: No jargon.
-  - **Precise**: No ambiguous meanings.
-  - **Concise**: Free of superfluous detail.
-- [ ] Does it follow our [style guide](#documentation-style)?
-- [ ] If this is a new page, does the PR include the appropriate infrastructure, e.g. adding the
-page to a sidebar?
-- [ ] Build the page (`$ cd website && yarn start`). Does it render properly? E.g. no funny lists
-or formatting.
-- [ ] Do links go to rustdocs or devhub articles rather than code?
-- [ ] If this PR addresses an issue in the queue, have you referenced it in the description?
 
 ## Documentation Standards
 
