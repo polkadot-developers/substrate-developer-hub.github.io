@@ -28,7 +28,7 @@ Now you can proceed to setup the front-end template with these commands.
 
 ```bash
 # Clone the code from github
-git clone https://github.com/substrate-developer-hub/substrate-front-end-template
+git clone -b pre-v2.0-3e65111 https://github.com/substrate-developer-hub/substrate-front-end-template
 
 # Install the dependencies
 cd front-end-template
