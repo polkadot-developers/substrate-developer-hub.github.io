@@ -23,10 +23,10 @@
 <p>We're not going to write our pallet directly as part of the node template, but rather as a separate Rust crate. This approach allows us to publish our pallet separate from our node and also allows other to easily import this pallet into their own Substrate runtime.</p>
 <ol>
 <li><p>Clone the Substrate node template:</p>
-<pre><code class="hljs css language-bash"><span class="token function">git</span> clone https://github.com/substrate-developer-hub/substrate-node-template.git my-node
+<pre><code class="hljs css language-bash"><span class="token function">git</span> clone -b pre-v2.0-3e65111 --depth <span class="token number">1</span> https://github.com/substrate-developer-hub/substrate-node-template my-node
 </code></pre></li>
 <li><p>Clone the Substrate pallet template:</p>
-<pre><code class="hljs css language-bash"><span class="token function">git</span> clone https://github.com/substrate-developer-hub/substrate-pallet-template.git my-pallet
+<pre><code class="hljs css language-bash"><span class="token function">git</span> clone -b pre-v2.0-3e65111 https://github.com/substrate-developer-hub/substrate-pallet-template.git my-pallet
 </code></pre></li>
 <li><p>Build the Substrate node template:</p>
 <pre><code class="hljs css language-bash"><span class="token builtin class-name">cd</span> my-node
