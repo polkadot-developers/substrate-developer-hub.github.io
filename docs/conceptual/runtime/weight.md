@@ -2,16 +2,17 @@
 title: Transaction Weight
 ---
 
-A number of resources in any chain can be limited, such as storage or computation. Weights exist to
-prevent individual components of the chain from consuming too much of any resource.
+Resources available to chains are limited. The resources include memory usage, storage I/O, computation, transaction/block size and state database size. There are several mechanisms to manage access to resources and to
+prevent individual components of the chain from consuming too much of any resource. Weights are the mechanism used to manage the *time is takes to validate* a block. Generally speaking, this comes from limiting the storage I/O and computation.
 
-Consuming some weights should generally incur a fee. The fee implications of the weight system are
-covered in the [Fee Developer document](development/module/fees.md).
+NOTE: Weights are not used to restrict access to other resources, such as storage itself or memory footprint. Other mechanisms must be used for this.
+
+The amount of weight a block may contain is limited, and optional weight consumption (i.e. weight that is not required to be deployed as part of the block's initialization or finalization phases nor used in mandatory inherent extrinsics) will generally be limited through economic measures---or in simple terms, through transaction fees. The fee implications of the weight system are covered in the [Fee Developer document](development/module/fees.md).
 
 ## Weight Fundamentals
 
-Weights represent the _limited_ resources of your blockchain, for example computational cycles,
-memory, storage, etc. A custom implementation may use complex structures to express this. Substrate
+Weights represent the _limited_ time that your blockchain has to validate a block. This includes computational cycles,
+and storage I/O. A custom implementation may use complex structures to express this. Substrate
 weights are simply a [numeric value](https://substrate.dev/rustdocs/master/frame_support/weights/type.Weight.html).
 
 A weight calculation should always:
@@ -21,10 +22,13 @@ A weight calculation should always:
 - Consume few resources itself. It does not make sense to consume similar resources computing a
   transaction's weight as would be spent to execute it. Thus, weight computation should be much
   lighter than dispatch.
-- Delegate _variable_ resource consumption costs and limitations to the dispatched logic. Weights
-  are good at representing _fixed_ measurements, whereas logic may not be consistently heavy. The
-  implementation of the dispatch should take the state of the change into account and manually take
-  extra fees or bonds or take any other measures to make sure that the transaction is safe.
+- Be able to determine resources used without consulting on-chain state. Weights
+  are good at representing _fixed_ measurements or measurements based solely on the parameters of the dispatchable function where no expensive I/O is necessary. Weights are not so useful when the cost is dependent on the chain-state.
+  
+In the case that the weight of a dispatchable is heavily dependent on chain-state case, two options are available:
+
+- Determine or introduce a forced upper limit to the amount of weight a dispatchable could possibly take. If the difference between the enforced upper limit and the least possible amount of weight a dispatchable could take is small, then it can just be assumed to always be at the upper limit of the weight without consulting the state. If the difference is too great, however, then the economic cost of making lesser transactions might be too great which will warp the incentives and create inefficiencies in throughput.
+- Require the effective weight (or precursors that can be used to efficiently compute it) be passed in as parameters to the dispatch. The weight charged should be based on these parameters but also cover the amount of time it takes to verify them during dispatch. Verification must take place to ensure the weighing parameters correspond accurately to on-chain state and if they don't then the operation should gracefully error.
 
 The [System pallet](https://substrate.dev/rustdocs/master/frame_system/struct.Module.html) is
 responsible for accumulating the weight of each block as it gets executed and making sure that it
@@ -36,7 +40,7 @@ the runtime so it can be upgraded if needed.
 ## Block Weight and Length Limit
 
 Aside from affecting fees, the main purpose of the weight system is to prevent a block from being
-filled with too many transactions. While processing transactions within a block, the System pallet
+filled with transactions that would take too long to execute. While processing transactions within a block, the System pallet
 accumulates both the total length of the block (sum of encoded transactions in bytes) and the total
 weight of the block. If either of these numbers surpass the limits, no further transactions are
 accepted in that block. These limits are defined in
