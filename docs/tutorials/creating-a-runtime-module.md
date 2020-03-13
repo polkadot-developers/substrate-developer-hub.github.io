@@ -27,7 +27,7 @@ their own Substrate runtime.
 2. Clone the Substrate pallet template in the `pallets` directory of your node template:
 
     ```bash
-    git clone -b v2.0.0-alpha.3 https://github.com/substrate-developer-hub/substrate-pallet-template.git my-pallet
+    git clone -b v2.0.0-alpha.3 https://github.com/substrate-developer-hub/substrate-pallet-template my-pallet
     ```
 
 3. Build the Substrate node template:
