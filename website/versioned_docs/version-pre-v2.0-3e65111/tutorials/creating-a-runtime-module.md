@@ -22,13 +22,13 @@ their own Substrate runtime.
 1. Clone the Substrate node template:
 
     ```bash
-    git clone https://github.com/substrate-developer-hub/substrate-node-template.git my-node
+    git clone -b pre-v2.0-3e65111 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template my-node
     ```
 
 2. Clone the Substrate pallet template:
 
     ```bash
-    git clone https://github.com/substrate-developer-hub/substrate-pallet-template.git my-pallet
+    git clone -b pre-v2.0-3e65111 https://github.com/substrate-developer-hub/substrate-pallet-template.git my-pallet
     ```
 
 3. Build the Substrate node template:
