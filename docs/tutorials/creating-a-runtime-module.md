@@ -20,13 +20,14 @@ their own Substrate runtime.
 1. Clone the Substrate node template:
 
     ```bash
-    git clone https://github.com/substrate-developer-hub/substrate-node-template.git my-node
+    git clone -b v2.0.0-alpha.3 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+ my-node
     ```
 
-2. Clone the Substrate pallet template:
+2. Clone the Substrate pallet template in the `pallets` directory of your node template:
 
     ```bash
-    git clone https://github.com/substrate-developer-hub/substrate-pallet-template.git my-pallet
+    git clone -b v2.0.0-alpha.3 https://github.com/substrate-developer-hub/substrate-pallet-template.git my-pallet
     ```
 
 3. Build the Substrate node template:
@@ -63,11 +64,11 @@ file.
 
 In the `Cargo.toml` file, you can update the crate's name and authorship. In
 this tutorial, we're focusing on how to create and use the pallet rather than
-writing interesting pallet logic. So let's call it `test_pallet`.
+writing interesting pallet logic. So let's call it `test-pallet`.
 
 The beginning of the `Cargo.toml` now looks like:
 
-**`my-pallet/Cargo.toml`**
+**`my-node/pallets/my-pallet/Cargo.toml`**
 
 ```toml
 [package]
@@ -79,7 +80,7 @@ edition = "2018"
 
 ### Your Pallet's `std` Feature
 
-In your `my-pallet/Cargo.toml` file, you will notice a few lines about the
+In your `my-node/pallets/my-pallet/Cargo.toml` file, you will notice a few lines about the
 "`std` feature". In Rust, when you enable `std`, you give your project access to
 [the Rust standard libraries](https://doc.rust-lang.org/std/). This works just
 fine when building native binaries.
@@ -91,18 +92,16 @@ compile with [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html)
 feature. Our `Cargo.toml` file tells our pallet's dependencies to only use their
 `std` feature when this pallet also uses its `std` feature, like so:
 
-**`my-pallet/Cargo.toml`**
+**`my-node/pallets/my-pallet/Cargo.toml`**
 
 ```TOML
 [features]
 default = ['std']
 std = [
-    'serde',
     'codec/std',
-    'support/std',
+    'frame-support/std',
+    'safe-mix/std',
     'system/std',
-    'sp-runtime/std',
-    'sp-io/std',
 ]
 ```
 
@@ -122,27 +121,19 @@ same library are being used.
 Ultimately Cargo will not be able to resolve those conflicts and you will get a
 compile time error.
 
-When building your pallet, we recommend to develop against the `v2.0` branch as
-the template demonstrates. This ensures your pallet has the latest stable code.
-If you later prefer to have the freshly-baked features from Substrate, you can
-then choose to use a specific git commit of Substrate, as shown in the following
-code comment.
-
-**`my-pallet/Cargo.toml`**
+**`my-node/pallets/my-pallet/Cargo.toml`**
 
 ```TOML
 # --snip--
 
-[dependencies.support]
+[dependencies.frame-support]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-package = 'frame-support'
-rev = '<git-commit>'
-version = '2.0.0'
+rev = '013c1ee167354a08283fb69915fda56a62fee943'
+version = '2.0.0-alpha.3'
 
 # Develop against a git commit by specifying the same Substrate commit as your main node.
 # It is important to use the same Substrate commit to prevent dependencies mismatch.
-# rev = "<some commit hash>"
 
 ```
 
@@ -152,7 +143,7 @@ The final section of the `Cargo.toml` file specifies the dev dependencies. These
 are the dependencies that are needed in your pallet's tests, but not necessary
 the actual pallet itself.
 
-**`my-pallet/Cargo.toml`**
+**`my-node/pallets/my-pallet/Cargo.toml`**
 
 ```TOML
 # --snip--
@@ -160,9 +151,8 @@ the actual pallet itself.
 [dev-dependencies.sp-core]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-package = 'sp-core'
-rev = '<git-commit>'
-version = '2.0.0'
+rev = '013c1ee167354a08283fb69915fda56a62fee943'
+version = '2.0.0-alpha.3'
 ```
 
 You can confirm that the tests in the Substrate pallet template pass with:
@@ -189,7 +179,7 @@ runtime itself does, as follows:
 
 [dependencies.test-pallet]
 default-features = false
-path = '../../my-pallet'
+path = '../pallets/template'
 
 # toward the bottom
 [features]
