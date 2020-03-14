@@ -197,6 +197,50 @@ function Seminar(props) {
 								/>
 								<a
 									className='video-play'
+									href='https://www.youtube.com/watch?v=D5oeAwuqGDQ&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									target='_blank'
+								/>
+							</section>
+							<section className='video-details'>
+								<h4 className='p-color'>PolkaHub and Totem Live</h4>
+								<p>
+									This week we explore PolkaHub and Totem Live Accounting. PolkaHub is a Heroku-like tool for deploying Substrate-based nodes. Totem Live is a Substrate-based accounting chain that plans to become a parachain.
+								</p>
+							</section>
+						</div>
+
+						<div className='col-md-4'>
+							<section className='video-cover video-cover-xs'>
+								<div
+									className='background-image-holder'
+									style={{
+										backgroundImage: `url('/img/seminar-t.jpg' )`
+									}}
+								/>
+								<a
+									className='video-play'
+									href='https://www.youtube.com/watch?v=eAXbcgWSzqc&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									target='_blank'
+								/>
+							</section>
+							<section className='video-details'>
+								<h4 className='p-color'>VuePolkadot, CLE Coin, Staking Demo</h4>
+								<p>
+									Matej and Victor show their work on VuePolkadot, Joshy talks about CLE Coin, a blockchain for Clevelanders, and Kian gives a demo of staking and offchain Phragmen.
+								</p>
+							</section>
+						</div>
+
+						<div className='col-md-4'>
+							<section className='video-cover video-cover-xs'>
+								<div
+									className='background-image-holder'
+									style={{
+										backgroundImage: `url('/img/seminar-t.jpg' )`
+									}}
+								/>
+								<a
+									className='video-play'
 									href='https://www.youtube.com/watch?v=MjOvVhc1oXw&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
@@ -205,50 +249,6 @@ function Seminar(props) {
 								<h4 className='p-color'>Solving the NPoS Problem with Phragmen</h4>
 								<p>
 									We're joined by Kian Paimani to discuss Substrate's use of Phragmen's algorithm and its various on- and off-chain implementations.
-								</p>
-							</section>
-						</div>
-
-						<div className='col-md-4'>
-							<section className='video-cover video-cover-xs'>
-								<div
-									className='background-image-holder'
-									style={{
-										backgroundImage: `url('/img/seminar-t.jpg' )`
-									}}
-								/>
-								<a
-									className='video-play'
-									href='https://www.youtube.com/watch?v=EuMbE6kce-I&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
-									target='_blank'
-								/>
-							</section>
-							<section className='video-details'>
-								<h4 className='p-color'>DatDot Substrate</h4>
-								<p>
-									Joshua Mir (JAM) demonstrates the DatDot project, an incentivization layer for file storage on Dat. We also chat about miscellaneous Kusama topics.
-								</p>
-							</section>
-						</div>
-
-						<div className='col-md-4'>
-							<section className='video-cover video-cover-xs'>
-								<div
-									className='background-image-holder'
-									style={{
-										backgroundImage: `url('/img/seminar-t.jpg' )`
-									}}
-								/>
-								<a
-									className='video-play'
-									href='https://www.youtube.com/watch?v=89qLUZeB4WU&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
-									target='_blank'
-								/>
-							</section>
-							<section className='video-details'>
-								<h4 className='p-color'>Account and Validator Permissioning</h4>
-								<p>
-									Gautam Dhameja shows us how to restrict the set of accounts that can use a Substrate chain as well as the Validator set.
 								</p>
 							</section>
 						</div>
