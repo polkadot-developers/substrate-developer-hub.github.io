@@ -104,15 +104,13 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>March 10th</strong>, we will learn about two Substrate ecosystem projects,{' '}
-								<a href="https://github.com/akropolisio/polkahub-monorepo">PolkaHub</a>, and <a href="https://totemaccounting.com/">Totem Live Accounting</a>.
+								On <strong>March 17th</strong>, Joshy will demonstrate creating a Proof of Work chain in Substrate, and cast light on building Substrate Services. We will also hear from Chevdor about <a href="https://www.chevdor.com/tags/srtool/">sr-tool</a>, a tool to verify runtimes before performing onchain upgrades.
 							</p>
 							<p>
-								<strong>PolkaHub</strong> is a containerized tool for fast deployment and re-deployment of Substrate-based nodes.
+								On <strong>March 24th</strong>, Kirill Taran, will give a code tour and demonstration of using Substrate's EVM pallet to run Ethereum contracts on a Substrate chain. Then we'll hear from Purestake's Derek about what Purestake is building and get an update on Moonbeam Dex.
 							</p>
 							<p>
-								<strong>Totem</strong> has been building building p2p accounting for the gig economy on Substrate since 2018.
-								Chris from the Totem team will conduct an intreractive session with anyone who wants to participate, using their live UI and network.
+								On <strong>March 31st</strong>, Seun LanLege and Joshy Orndorff, will talk about all things Consensus in Substrate. As a demo, we'll play with a node configured for manual consensus.
 							</p>
 							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
 							<p>
@@ -134,6 +132,7 @@ function Seminar(props) {
 						</div>
 
 						<div className='col-md-6 second'>
+						{/*
 							<h4 className='mb-2'>How should I prepare for the call?</h4>
 							<p>
 								There are no specific preparation steps. You may find it useful to read the links for{' '}
@@ -145,6 +144,7 @@ function Seminar(props) {
 									Introductory Tutorials
 								</a>{' '}.
 							</p>
+							*/}
 
 							<h4 className='mb-2'>I am not a [Substrate] developer, can I still participate?</h4>
 							<p>
