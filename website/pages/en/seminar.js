@@ -112,13 +112,6 @@ function Seminar(props) {
 							<p>
 								On <strong>March 31st</strong>, Seun LanLege and Joshy Orndorff, will talk about all things Consensus in Substrate. As a demo, we'll play with a node configured for manual consensus.
 							</p>
-							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
-							<p>
-								Yes! Seminar works best when everyone shares their projects and interests. To ensure a
-								slot to share, please contact Joshy Orndorff via{' '}
-								<a href='mailto:joshy@parity.io'>email</a> or{' '}
-								<a href='https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org'>Riot</a>.
-							</p>
 							<h4 className='mb-2'>How do I join the call?</h4>
 							<p>
 								We meet using zoom video conferencing. Specifically we meet in{' '}
@@ -146,6 +139,11 @@ function Seminar(props) {
 							</p>
 							*/}
 
+							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
+							<p>
+								Yes! Seminar works best when everyone shares their projects and interests. To ensure a
+								slot to share, please contact the group on <a href='https://matrix.to/#/!oClBfIbtucPfGKlNpk:matrix.parity.io'>Riot</a>.
+							</p>
 							<h4 className='mb-2'>I am not a [Substrate] developer, can I still participate?</h4>
 							<p>
 								Yes! The seminar is open to everyone. The content is generally more developer-oriented,
