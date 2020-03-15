@@ -104,7 +104,7 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>March 17th</strong>, Joshy will demonstrate creating a Proof of Work chain in Substrate, and cast light on building Substrate Services. We will also hear from Chevdor about <a href="https://www.chevdor.com/tags/srtool/">sr-tool</a>, a tool to verify runtimes before performing onchain upgrades.
+								On <strong>March 17th</strong>, Joshy will demonstrate creating a Proof of Work chain in Substrate, and cast light on building Substrate Services. We will also hear from Chevdor about <a href="https://www.chevdor.com/tags/srtool/">sr-tool</a>, a tool to verify runtimes before performing on-chain upgrades.
 							</p>
 							<p>
 								On <strong>March 24th</strong>, Kirill Taran, will give a code tour and demonstration of using Substrate's EVM pallet to run Ethereum contracts on a Substrate chain. Then we'll hear from Purestake's Derek about what Purestake is building and get an update on Moonbeam Dex.
