@@ -104,22 +104,13 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>March 10th</strong>, we will learn about two Substrate ecosystem projects,{' '}
-								<a href="https://github.com/akropolisio/polkahub-monorepo">PolkaHub</a>, and <a href="https://totemaccounting.com/">Totem Live Accounting</a>.
+								On <strong>March 17th</strong>, Joshy will demonstrate creating a Proof of Work chain in Substrate, and cast light on building Substrate Services. We will also hear from Chevdor about <a href="https://www.chevdor.com/tags/srtool/">sr-tool</a>, a tool to verify runtimes before performing on-chain upgrades.
 							</p>
 							<p>
-								<strong>PolkaHub</strong> is a containerized tool for fast deployment and re-deployment of Substrate-based nodes.
+								On <strong>March 24th</strong>, Kirill Taran, will give a code tour and demonstration of using Substrate's EVM pallet to run Ethereum contracts on a Substrate chain. Then we'll hear from Purestake's Derek about what Purestake is building and get an update on Moonbeam Dex.
 							</p>
 							<p>
-								<strong>Totem</strong> has been building building p2p accounting for the gig economy on Substrate since 2018.
-								Chris from the Totem team will conduct an intreractive session with anyone who wants to participate, using their live UI and network.
-							</p>
-							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
-							<p>
-								Yes! Seminar works best when everyone shares their projects and interests. To ensure a
-								slot to share, please contact Joshy Orndorff via{' '}
-								<a href='mailto:joshy@parity.io'>email</a> or{' '}
-								<a href='https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org'>Riot</a>.
+								On <strong>March 31st</strong>, Seun LanLege and Joshy Orndorff, will talk about all things Consensus in Substrate. As a demo, we'll play with a node configured for manual consensus.
 							</p>
 							<h4 className='mb-2'>How do I join the call?</h4>
 							<p>
@@ -134,6 +125,7 @@ function Seminar(props) {
 						</div>
 
 						<div className='col-md-6 second'>
+						{/*
 							<h4 className='mb-2'>How should I prepare for the call?</h4>
 							<p>
 								There are no specific preparation steps. You may find it useful to read the links for{' '}
@@ -145,7 +137,13 @@ function Seminar(props) {
 									Introductory Tutorials
 								</a>{' '}.
 							</p>
+							*/}
 
+							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
+							<p>
+								Yes! Seminar works best when everyone shares their projects and interests. To ensure a
+								slot to share, please contact the group on <a href='https://matrix.to/#/!oClBfIbtucPfGKlNpk:matrix.parity.io'>Riot</a>.
+							</p>
 							<h4 className='mb-2'>I am not a [Substrate] developer, can I still participate?</h4>
 							<p>
 								Yes! The seminar is open to everyone. The content is generally more developer-oriented,
@@ -199,6 +197,50 @@ function Seminar(props) {
 								/>
 								<a
 									className='video-play'
+									href='https://www.youtube.com/watch?v=D5oeAwuqGDQ&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									target='_blank'
+								/>
+							</section>
+							<section className='video-details'>
+								<h4 className='p-color'>PolkaHub and Totem Live</h4>
+								<p>
+									This week we explore PolkaHub and Totem Live Accounting. PolkaHub is a Heroku-like tool for deploying Substrate-based nodes. Totem Live is a Substrate-based accounting chain that plans to become a parachain.
+								</p>
+							</section>
+						</div>
+
+						<div className='col-md-4'>
+							<section className='video-cover video-cover-xs'>
+								<div
+									className='background-image-holder'
+									style={{
+										backgroundImage: `url('/img/seminar-t.jpg' )`
+									}}
+								/>
+								<a
+									className='video-play'
+									href='https://www.youtube.com/watch?v=eAXbcgWSzqc&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									target='_blank'
+								/>
+							</section>
+							<section className='video-details'>
+								<h4 className='p-color'>VuePolkadot, CLE Coin, Staking Demo</h4>
+								<p>
+									Matej and Victor show their work on VuePolkadot, Joshy talks about CLE Coin, a blockchain for Clevelanders, and Kian gives a demo of staking and offchain Phragmen.
+								</p>
+							</section>
+						</div>
+
+						<div className='col-md-4'>
+							<section className='video-cover video-cover-xs'>
+								<div
+									className='background-image-holder'
+									style={{
+										backgroundImage: `url('/img/seminar-t.jpg' )`
+									}}
+								/>
+								<a
+									className='video-play'
 									href='https://www.youtube.com/watch?v=MjOvVhc1oXw&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
@@ -207,50 +249,6 @@ function Seminar(props) {
 								<h4 className='p-color'>Solving the NPoS Problem with Phragmen</h4>
 								<p>
 									We're joined by Kian Paimani to discuss Substrate's use of Phragmen's algorithm and its various on- and off-chain implementations.
-								</p>
-							</section>
-						</div>
-
-						<div className='col-md-4'>
-							<section className='video-cover video-cover-xs'>
-								<div
-									className='background-image-holder'
-									style={{
-										backgroundImage: `url('/img/seminar-t.jpg' )`
-									}}
-								/>
-								<a
-									className='video-play'
-									href='https://www.youtube.com/watch?v=EuMbE6kce-I&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
-									target='_blank'
-								/>
-							</section>
-							<section className='video-details'>
-								<h4 className='p-color'>DatDot Substrate</h4>
-								<p>
-									Joshua Mir (JAM) demonstrates the DatDot project, an incentivization layer for file storage on Dat. We also chat about miscellaneous Kusama topics.
-								</p>
-							</section>
-						</div>
-
-						<div className='col-md-4'>
-							<section className='video-cover video-cover-xs'>
-								<div
-									className='background-image-holder'
-									style={{
-										backgroundImage: `url('/img/seminar-t.jpg' )`
-									}}
-								/>
-								<a
-									className='video-play'
-									href='https://www.youtube.com/watch?v=89qLUZeB4WU&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
-									target='_blank'
-								/>
-							</section>
-							<section className='video-details'>
-								<h4 className='p-color'>Account and Validator Permissioning</h4>
-								<p>
-									Gautam Dhameja shows us how to restrict the set of accounts that can use a Substrate chain as well as the Validator set.
 								</p>
 							</section>
 						</div>
