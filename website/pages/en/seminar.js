@@ -55,13 +55,13 @@ function Seminar(props) {
 							<section className='button-wrap'>
 								<Button
 									className='btn btn--white primary-color'
-									href='https://calendar.google.com/event?action=TEMPLATE&tmeid=ODFrdXNkNjczYTZwZzM1ZGg1c2RscHY2cG5fMjAxOTExMTlUMTQwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw&tmsrc=parity.io_39379343h073v06qht1vpqcefc%40group.calendar.google.com&scp=ALL'>
+									href='https://calendar.google.com/event?action=TEMPLATE&tmeid=MXFuaHJ1OWZyY2g1NTY0aDV1YW9zNXBlNThfMjAyMDAzMTdUMTQwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw&tmsrc=parity.io_39379343h073v06qht1vpqcefc%40group.calendar.google.com&scp=ALL'>
 									<span className='btn__text'>Add to Google Calendar</span>
 								</Button>
 							</section>
 							<section>
 								<span className='block type--fine-print'>
-									or <a href='https://zoom.us/j/440029011'>join live call »</a>
+									or <a href='https://zoom.us/j/916767726'>join live call »</a>
 								</span>
 							</section>
 						</div>
@@ -115,9 +115,9 @@ function Seminar(props) {
 							<h4 className='mb-2'>How do I join the call?</h4>
 							<p>
 								We meet using zoom video conferencing. Specifically we meet in{' '}
-								<a href='https://zoom.us/j/440029011'>https://zoom.us/j/440029011</a>. This link will
+								<a href='https://zoom.us/j/916767726'>https://zoom.us/j/916767726</a>. This link will
 								only work when the call is live, so you may prefer to add this{' '}
-								<a href='https://calendar.google.com/event?action=TEMPLATE&tmeid=ODFrdXNkNjczYTZwZzM1ZGg1c2RscHY2cG5fMjAxOTExMTlUMTQwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw&tmsrc=parity.io_39379343h073v06qht1vpqcefc%40group.calendar.google.com&scp=ALL'>
+								<a href='https://calendar.google.com/event?action=TEMPLATE&tmeid=MXFuaHJ1OWZyY2g1NTY0aDV1YW9zNXBlNThfMjAyMDAzMTdUMTQwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw&tmsrc=parity.io_39379343h073v06qht1vpqcefc%40group.calendar.google.com&scp=ALL'>
 									Google calendar invitation
 								</a>{' '}
 								to you own calendar.
@@ -270,13 +270,13 @@ function Seminar(props) {
 								<section className='button-wrap'>
 									<Button
 										className='btn btn--white primary-color'
-										href='https://calendar.google.com/event?action=TEMPLATE&tmeid=ODFrdXNkNjczYTZwZzM1ZGg1c2RscHY2cG5fMjAxOTExMTlUMTQwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw&tmsrc=parity.io_39379343h073v06qht1vpqcefc%40group.calendar.google.com&scp=ALL'>
+										href='https://calendar.google.com/event?action=TEMPLATE&tmeid=MXFuaHJ1OWZyY2g1NTY0aDV1YW9zNXBlNThfMjAyMDAzMTdUMTQwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw&tmsrc=parity.io_39379343h073v06qht1vpqcefc%40group.calendar.google.com&scp=ALL'>
 										<span className='btn__text'>Add to Google Calendar</span>
 									</Button>
 								</section>
 								<section>
 									<span className='block type--fine-print'>
-										or <a href='https://zoom.us/j/440029011'>join live call »</a>
+										or <a href='https://zoom.us/j/916767726'>join live call »</a>
 									</span>
 								</section>
 							</div>
