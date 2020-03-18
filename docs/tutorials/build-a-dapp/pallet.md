@@ -269,6 +269,10 @@ decl_module! {
 }
 ```
 
+> The functions you see here do not have return types explicitly stated. In reality they all return
+> [`DispatchResult`](https://substrate.dev/rustdocs/v2.0.0-alpha.3/frame_support/dispatch/type.DispatchResult.html)s.
+> This return type is added on your behalf by the `decl_module!` macro.
+
 ## Compile Your New Pallet
 
 After you've copied all of the parts of this pallet correctly into your `template/lib.rs` file, you
