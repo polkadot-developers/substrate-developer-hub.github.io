@@ -101,7 +101,7 @@ Since imports are pretty boring, you can start by copying this at the top of you
 #![cfg_attr(not(feature = "std"), no_std)]
 
 use frame_support::{
-	decl_module, decl_storage, decl_event, decl_error, dispatch::DispatchResult, ensure, StorageMap
+	decl_module, decl_storage, decl_event, decl_error, ensure, StorageMap
 };
 use system::ensure_signed;
 use sp_std::vec::Vec;
@@ -227,7 +227,7 @@ decl_module! {
         fn deposit_event() = default;
 
         /// Allow a user to claim ownership of an unclaimed proof
-        fn create_claim(origin, proof: Vec<u8>) -> DispatchResult {
+        fn create_claim(origin, proof: Vec<u8>) {
             // Verify that the incoming transaction is signed and store who the
             // caller of this function is.
             let sender = ensure_signed(origin)?;
@@ -243,11 +243,10 @@ decl_module! {
 
             // Emit an event that the claim was created
             Self::deposit_event(RawEvent::ClaimCreated(sender, proof));
-            Ok(())
         }
 
         /// Allow the owner to revoke their claim
-        fn revoke_claim(origin, proof: Vec<u8>) -> DispatchResult {
+        fn revoke_claim(origin, proof: Vec<u8>) {
             // Determine who is calling the function
             let sender = ensure_signed(origin)?;
 
@@ -265,11 +264,14 @@ decl_module! {
 
             // Emit an event that the claim was erased
             Self::deposit_event(RawEvent::ClaimRevoked(sender, proof));
-            Ok(())
         }
     }
 }
 ```
+
+> The functions you see here do not have return types explicitly stated. In reality they all return
+> [`DispatchResult`](https://substrate.dev/rustdocs/v2.0.0-alpha.3/frame_support/dispatch/type.DispatchResult.html)s.
+> This return type is added on your behalf by the `decl_module!` macro.
 
 ## Compile Your New Pallet
 
