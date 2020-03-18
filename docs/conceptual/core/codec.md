@@ -133,7 +133,7 @@ Tuple of compact unsigned integer and boolean:
 
 `(3, false)`: `0x0c00`
 
-> For ordered structures, the decoder is expected to verify that incoming bytes are valid, and silently interpret bytes so that a valid ordered structure gets decoded. This implicitly means that decoding encoded bytes and then encoding this structure could result in having a encoded version that differs from the original bytes (e.g. if bytes are `[8, 1, 0, 0, 0, 0, 0, 0, 1]` and the expected structure is a `BinaryHeap<u32>` than decoding the original bytes and encoding the object will result in `[8, 0, 0, 0, 1, 1, 0, 0, 0]`).
+> For ordered structures, the decoder is expected to verify that incoming bytes are valid, and silently interpret bytes so that a valid ordered structure gets decoded. This implicitly means that decoding encoded bytes and then encoding this structure could result in having an encoded version that differs from the original bytes (e.g. if bytes are `[8, 1, 0, 0, 0, 0, 0, 0, 1]` and the expected structure is a `BinaryHeap<u32>` then decoding the original bytes and encoding the object will result in `[8, 0, 0, 0, 1, 1, 0, 0, 0]`).
 
 ### Enumerations (tagged-unions)
 
