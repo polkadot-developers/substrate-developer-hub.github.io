@@ -95,7 +95,7 @@ Proof Of Existence pallet.
 ### Imports and Dependencies
 
 Since imports are pretty boring, you can start by copying this at the top of your empty
-`template.rs` file:
+`lib.rs` file:
 
 ```rust
 #![cfg_attr(not(feature = "std"), no_std)]
