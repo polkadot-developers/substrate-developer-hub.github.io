@@ -223,6 +223,11 @@ Here is what the pallet declaration looks like with these these two functions:
 decl_module! {
     /// The module declaration.
     pub struct Module<T: Trait> for enum Call where origin: T::Origin {
+        // Initializing errors
+        // this includes information about your errors in the node's metadata.
+        // it is needed only if you are using errors in your pallet
+        type Error = Error<T>;
+    
         // A default function for depositing events
         fn deposit_event() = default;
 
