@@ -2,16 +2,16 @@
 title: Session Keys
 ---
 
-Session keys are used by validators to sign consensus-related messages. `SessionKeys` is a generic, 
+Session keys are used by validators to sign consensus-related messages. `SessionKeys` is a generic,
 indexable type that is made concrete in the runtime.
 
-You can declare any number Session keys. For example, the default Substrate node uses four. Other 
-chains could have more or fewer depending on what operations the chain expects its validators to 
+You can declare any number Session keys. For example, the default Substrate node uses four. Other
+chains could have more or fewer depending on what operations the chain expects its validators to
 perform.
 
-In practice, validators amalgamate all of the session public keys into a single object, sign the 
-set of public keys with a "Controller" account, and submit a transaction to register the keys on 
-chain. This on-chain registration links a validator _node_ with an _account_ that holds funds. As 
+In practice, validators amalgamate all of the session public keys into a single object, sign the
+set of public keys with a "Controller" account, and submit a transaction to register the keys on
+chain. This on-chain registration links a validator _node_ with an _account_ that holds funds. As
 such, that account can be credited with rewards or slashed based on the node's behavior.
 
 The runtime declares what session keys will be included (`runtime/src/lib.rs`):
@@ -27,7 +27,7 @@ impl_opaque_keys! {
 }
 ```
 
-The actual cryptographic curve that each key uses gets defined in `primitives`. For example, BABE's 
+The actual cryptographic curve that each key uses gets defined in `primitives`. For example, BABE's
 key uses sr25519:
 
 ```rust
@@ -46,12 +46,12 @@ The default Substrate node implements Session keys in the
 
 ## Generation and Use
 
-Session keys are hot keys that must be kept online. The individual keys should **not** be used to 
-control funds. All the logic for handling session keys is in the Substrate client, primitives, and 
-Session pallet. If one of the Session keys is compromised, the attacker could commit slashable 
+Session keys are hot keys that must be kept online. The individual keys should **not** be used to
+control funds. All the logic for handling session keys is in the Substrate client, primitives, and
+Session pallet. If one of the Session keys is compromised, the attacker could commit slashable
 behavior.
 
-Session keys may be changed regularly (e.g. every session) for increased security. Node operators 
+Session keys may be changed regularly (e.g. every session) for increased security. Node operators
 can generate them via the RPC call
 [`author_rotateKeys`](https://substrate.dev/rustdocs/master/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys).
 You will then need to register the new keys on chain with a `session.setKeys` transaction.
