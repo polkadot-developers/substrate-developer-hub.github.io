@@ -120,12 +120,10 @@ SCALE Bytes:
 0x18040008000f00100017002a00
 ```
 
-### Tuples and Structures
+### Tuples
 
 A fixed-size series of values, each with a possibly different but predetermined
-and fixed type. This is simply the concatenation of each encoded value. For
-structures, the values are named, but that is irrelevant for the encoding (names
-are ignored - only order matters).
+and fixed type. This is simply the concatenation of each encoded value. 
 
 #### Example
 
@@ -133,7 +131,25 @@ Tuple of compact unsigned integer and boolean:
 
 `(3, false)`: `0x0c00`
 
-> For ordered structures, the decoder is expected to verify that incoming bytes are valid, and silently interpret bytes so that a valid ordered structure gets decoded. This implicitly means that decoding encoded bytes and then encoding this structure could result in having an encoded version that differs from the original bytes (e.g. if bytes are `[8, 1, 0, 0, 0, 0, 0, 0, 1]` and the expected structure is a `BinaryHeap<u32>` then decoding the original bytes and encoding the object will result in `[8, 0, 0, 0, 1, 1, 0, 0, 0]`).
+### Data Structures
+
+For structures, the values are named, but that is irrelevant for the encoding (names are ignored - 
+only order matters). **All containers store elements consecutively. The order of the elements is not 
+fixed, depends on the container, and cannot be relied on at decoding.**
+
+The decoder is expected to verify that incoming bytes are valid, and silently interpret bytes so 
+that a valid structure gets decoded. This implicitly means that decoding some byte-array into a 
+specified structure and then re-encoding it could result in a different byte array than the 
+original that was decoded.
+
+#### Example
+
+Imagine a `SortedVecAsc<u8>` structure that always has byte-elements in ascending order and you 
+have `[3, 5, 2, 8]`, where the first element is the number of bytes following (i.e. `[3, 5, 2]` 
+would be invalid).
+
+`SortedVecAsc::from([3, 5, 2, 8])` would decode to `[3, 2, 5, 8]`, which does not match the 
+original encoding.
 
 ### Enumerations (tagged-unions)
 
