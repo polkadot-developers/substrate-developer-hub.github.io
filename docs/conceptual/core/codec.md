@@ -139,7 +139,7 @@ fixed, depends on the container, and cannot be relied on at decoding.**
 
 The decoder is expected to verify that incoming bytes are valid, and silently interpret bytes so 
 that a valid structure gets decoded. This implicitly means that decoding some byte-array into a 
-specified structure and then re-encoding it could result in a different byte array than the 
+specified structure that enforces an order and then re-encoding it could result in a different byte array than the 
 original that was decoded.
 
 #### Example
