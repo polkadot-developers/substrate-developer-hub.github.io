@@ -142,29 +142,50 @@
 <pre><code class="hljs">&lt;br /&gt;SCALE 编码后的字节：
 </code></pre>
 <p>0x18040008000f00100017002a00</p>
-<pre><code class="hljs">&lt;br /&gt;### 元组和结构体
+<pre><code class="hljs">&lt;br /&gt;### Tuples
 
-固定大小的一系列值，每个值可能不同但已预先确定且固定类型。 这就变为每个值的编码的串联。 对于结构体，值是命名的，但这与编码无关（名称将被忽略 - 仅顺序重要）。
+A fixed-size series of values, each with a possibly different but predetermined
+and fixed type. 这就变为每个值的编码的串联。 
 
-#### 示例
+#### Example
 
-紧凑的无符号整数和布尔值的元组：
+Tuple of compact unsigned integer and boolean:
 
 `(3, false)`: `0x0c00`
 
-### 枚举（标记的联合）
+### Data Structures
 
-固定数量的变形，各个变体之间是互斥的，并可能隐含附加的一个值或一系列值。
+For structures, the values are named, but that is irrelevant for the encoding (names are ignored - 
+only order matters). **All containers store elements consecutively. The order of the elements is not 
+fixed, depends on the container, and cannot be relied on at decoding.**
 
-编码后的第一个字节表示该值所对应变体的索引。 任何后面的字节都用于编码该变量所隐含的数据。
+This implicitly means that decoding some byte-array into a specified structure that
+enforces an order and then re-encoding it could result in a different byte array than the
+original that was decoded.
+
+#### Example
+
+Imagine a `SortedVecAsc&lt;u8&gt;` structure that always has byte-elements in ascending order and you 
+have `[3, 5, 2, 8]`, where the first element is the number of bytes following (i.e. `[3, 5, 2]` 
+would be invalid).
+
+`SortedVecAsc::from([3, 5, 2, 8])` would decode to `[3, 2, 5, 8]`, which does not match the 
+original encoding.
+
+### Enumerations (tagged-unions)
+
+A fixed number of variants, each mutually exclusive and potentially implying a
+further value or series of values.
+
+编码后的第一个字节表示该值所对应变体的索引。 Any further bytes are used to encode any data that the variant implies.
 因此，最多支持256个变体。
 
-#### 示例
+#### Example
 
 ```rust
-enum IntOrBool 。
-  Int(u8)，
-  Bool(bool)，
+enum IntOrBool {
+  Int(u8),
+  Bool(bool),
 }
 </code></pre>
 <ul>
