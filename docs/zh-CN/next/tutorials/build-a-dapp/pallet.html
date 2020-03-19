@@ -221,6 +221,11 @@
 <span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span>
     <span class="token comment">/// The module declaration.</span>
     <span class="token keyword">pub</span> <span class="token keyword">struct</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> Call <span class="token keyword">where</span> origin<span class="token punctuation">:</span> T<span class="token punctuation">::</span>Origin <span class="token punctuation">{</span>
+        <span class="token comment">// Initializing errors</span>
+        <span class="token comment">// this includes information about your errors in the node's metadata.</span>
+        <span class="token comment">// it is needed only if you are using errors in your pallet</span>
+        <span class="token keyword">type</span> Error <span class="token operator">=</span> Error<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">;</span>
+
         <span class="token comment">// A default function for depositing events</span>
         <span class="token keyword">fn</span> <span class="token function">deposit_event</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> default<span class="token punctuation">;</span>
 
