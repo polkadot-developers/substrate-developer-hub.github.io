@@ -37,7 +37,7 @@ mod app {
 }
 ```
 
-> **Note:** This code is just an example of the Substrate node at the
+> This code is just an example of the Substrate node at the
 [time of writing](https://github.com/paritytech/substrate/tree/9fa8589d9b8cfe8716e9e4c48f9e3f238c1e502f).
 Refer to the runtime for the most up-to-date implementation.
 
