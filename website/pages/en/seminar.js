@@ -104,13 +104,13 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>March 17th</strong>, Joshy will demonstrate creating a Proof of Work chain in Substrate, and cast light on building Substrate Services. We will also hear from Chevdor about <a href="https://www.chevdor.com/tags/srtool/">sr-tool</a>, a tool to verify runtimes before performing on-chain upgrades.
-							</p>
-							<p>
 								On <strong>March 24th</strong>, Kirill Taran, will give a code tour and demonstration of using Substrate's EVM pallet to run Ethereum contracts on a Substrate chain. Then we'll hear from Purestake's Derek about what Purestake is building and get an update on Moonbeam Dex.
 							</p>
 							<p>
 								On <strong>March 31st</strong>, Seun LanLege and Joshy Orndorff, will talk about all things Consensus in Substrate. As a demo, we'll play with a node configured for manual consensus.
+							</p>
+							<p>
+								On <strong>April 7th</strong>, Alexander Popiak will present his work on a Substrate-based stablecoin.
 							</p>
 							<h4 className='mb-2'>How do I join the call?</h4>
 							<p>
@@ -197,6 +197,28 @@ function Seminar(props) {
 								/>
 								<a
 									className='video-play'
+									href='https://www.youtube.com/watch?v=MjOvVhc1oXw&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOShttps://www.youtube.com/watch?v=Z-ZH7wKW094&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									target='_blank'
+								/>
+							</section>
+							<section className='video-details'>
+								<h4 className='p-color'>SR-Tool and Substrate's Proof of Work</h4>
+								<p>
+									We explore srtool, a docker container for compiling and verifying Substrate runtimes for on-chain upgrades. Then we turn our attention to Substrate's Proof of Work consensus engine.
+								</p>
+							</section>
+						</div>
+
+						<div className='col-md-4'>
+							<section className='video-cover video-cover-xs'>
+								<div
+									className='background-image-holder'
+									style={{
+										backgroundImage: `url('/img/seminar-t.jpg' )`
+									}}
+								/>
+								<a
+									className='video-play'
 									href='https://www.youtube.com/watch?v=D5oeAwuqGDQ&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
@@ -230,29 +252,6 @@ function Seminar(props) {
 								</p>
 							</section>
 						</div>
-
-						<div className='col-md-4'>
-							<section className='video-cover video-cover-xs'>
-								<div
-									className='background-image-holder'
-									style={{
-										backgroundImage: `url('/img/seminar-t.jpg' )`
-									}}
-								/>
-								<a
-									className='video-play'
-									href='https://www.youtube.com/watch?v=MjOvVhc1oXw&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
-									target='_blank'
-								/>
-							</section>
-							<section className='video-details'>
-								<h4 className='p-color'>Solving the NPoS Problem with Phragmen</h4>
-								<p>
-									We're joined by Kian Paimani to discuss Substrate's use of Phragmen's algorithm and its various on- and off-chain implementations.
-								</p>
-							</section>
-						</div>
-
 					</div>
 
 				</div>
