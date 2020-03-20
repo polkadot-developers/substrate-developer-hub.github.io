@@ -197,6 +197,28 @@ function Seminar(props) {
 								/>
 								<a
 									className='video-play'
+									href='https://www.youtube.com/watch?v=MjOvVhc1oXw&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOShttps://www.youtube.com/watch?v=Z-ZH7wKW094&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									target='_blank'
+								/>
+							</section>
+							<section className='video-details'>
+								<h4 className='p-color'>SR-Tool and Substrate's Proof of Work</h4>
+								<p>
+									We explore srtool, a docker container for compiling and verifying Substrate runtimes for unchain upgrades. Then we turn our attention to Substrate's Proof of Work consensus engine.
+								</p>
+							</section>
+						</div>
+
+						<div className='col-md-4'>
+							<section className='video-cover video-cover-xs'>
+								<div
+									className='background-image-holder'
+									style={{
+										backgroundImage: `url('/img/seminar-t.jpg' )`
+									}}
+								/>
+								<a
+									className='video-play'
 									href='https://www.youtube.com/watch?v=D5oeAwuqGDQ&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
@@ -230,29 +252,6 @@ function Seminar(props) {
 								</p>
 							</section>
 						</div>
-
-						<div className='col-md-4'>
-							<section className='video-cover video-cover-xs'>
-								<div
-									className='background-image-holder'
-									style={{
-										backgroundImage: `url('/img/seminar-t.jpg' )`
-									}}
-								/>
-								<a
-									className='video-play'
-									href='https://www.youtube.com/watch?v=MjOvVhc1oXw&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
-									target='_blank'
-								/>
-							</section>
-							<section className='video-details'>
-								<h4 className='p-color'>Solving the NPoS Problem with Phragmen</h4>
-								<p>
-									We're joined by Kian Paimani to discuss Substrate's use of Phragmen's algorithm and its various on- and off-chain implementations.
-								</p>
-							</section>
-						</div>
-
 					</div>
 
 				</div>
