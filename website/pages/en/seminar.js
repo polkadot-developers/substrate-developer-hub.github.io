@@ -204,7 +204,7 @@ function Seminar(props) {
 							<section className='video-details'>
 								<h4 className='p-color'>SR-Tool and Substrate's Proof of Work</h4>
 								<p>
-									We explore srtool, a docker container for compiling and verifying Substrate runtimes for unchain upgrades. Then we turn our attention to Substrate's Proof of Work consensus engine.
+									We explore srtool, a docker container for compiling and verifying Substrate runtimes for on-chain upgrades. Then we turn our attention to Substrate's Proof of Work consensus engine.
 								</p>
 							</section>
 						</div>
