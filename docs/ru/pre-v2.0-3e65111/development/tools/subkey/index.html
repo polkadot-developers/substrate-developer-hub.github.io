@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="ru"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>The subkey Tool · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Subkey — это утилита для создания ключей, которая разрабатывается вместе с Substrate. Его основные функции - генерация [sr25519](https://github.com/w3f/schnorrkel) и ed25519 пар ключей, кодирование SS58 адресов и восстановление ключей из мнемонических фраз и необработанных сидов. Также она может создавать и проверять подписи, в том числе для закодированных транзакций."/><meta name="docsearch:version" content="pre-v2.0-3e65111"/><meta name="docsearch:language" content="ru"/><meta property="og:title" content="The subkey Tool · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="Subkey — это утилита для создания ключей, которая разрабатывается вместе с Substrate. Его основные функции - генерация [sr25519](https://github.com/w3f/schnorrkel) и ed25519 пар ключей, кодирование SS58 адресов и восстановление ключей из мнемонических фраз и необработанных сидов. Также она может создавать и проверять подписи, в том числе для закодированных транзакций."/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/ru"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/ru/versions"><h3>pre-v2.0-3e65111</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/ru/pre-v2.0-3e65111/" target="_self">Docs</a></li><li class=""><a href="/recipes" target="_self">Recipes</a></li><li class=""><a href="/ru/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/ru/community" target="_self">Community</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>Русский</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/pre-v2.0-3e65111/development/tools/subkey">English</a></li><li><a href="/docs/zh-CN/pre-v2.0-3e65111/development/tools/subkey">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Ecosystem Tools</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Overview<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/overview/getting-started">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/conceptual/runtime/frame">FRAME</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/overview/glossary">Glossary</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Core<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/conceptual/core/codec">SCALE Codec</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/conceptual/core/consensus">Consensus</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/conceptual/core/executor">Executor</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/conceptual/core/off-chain-workers">Off-Chain Workers</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/conceptual/core/storage">Storage</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Nodes<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/conceptual/node/extrinsics">Extrinsics</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Cryptography<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/conceptual/cryptography/">Cryptography</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/conceptual/cryptography/keys">Substrate Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/conceptual/cryptography/session-keys">Session Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/conceptual/cryptography/ss58-address-format">SS58 Address Format</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Runtime<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/conceptual/runtime/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/conceptual/runtime/weight">Transaction Weight</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/conceptual/runtime/primitives">Runtime Primitives</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/development/module/execution">Runtime Execution</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/development/module/macros">Runtime Macros</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/development/module/storage">Runtime Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/development/module/events">Runtime Events</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/development/module/off-chain-workers">Off-Chain Workers</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/development/module/fees">Transaction Fees</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/development/module/tests">Runtime Tests</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Smart Contracts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/conceptual/runtime/contracts/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/conceptual/runtime/contracts/contracts_module">Contracts Module</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/conceptual/runtime/contracts/evm_module">EVM Module</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/conceptual/runtime/contracts/ink">ink! Concepts</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/development/contracts/ink">ink! Development</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Deployment<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/development/deployment/chain-spec">Chain Specification</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/development/deployment/account-prefix">Account Prefix</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/development/deployment/boot-node">Boot Nodes</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/development/deployment/disabling-features">Disabling Features of Your Runtime</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Front End<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/development/front-end/polkadot-js">Polkadot-JS</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/development/front-end/json-rpc">JSON RPC</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Ecosystem Tools<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/development/tools/subkey">The subkey Tool</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Contribute<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/pre-v2.0-3e65111/contribute/help-translate">Help Translate</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">The subkey Tool</h1></header><article><div><span><p>Subkey — это утилита для создания ключей, которая разрабатывается вместе с Substrate. Его основные функции - генерация <a href="https://github.com/w3f/schnorrkel">sr25519</a> и ed25519 пар ключей, кодирование SS58 адресов и восстановление ключей из мнемонических фраз и необработанных сидов. Также она может создавать и проверять подписи, в том числе для закодированных транзакций.</p>
+<h2><a class="anchor" aria-hidden="true" id="installation"></a><a href="#installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h2>
+<h3><a class="anchor" aria-hidden="true" id="build-from-source"></a><a href="#build-from-source" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Build from Source</h3>
+<p>The Subkey binary, <code>subkey</code>, is also installed along with <a href="/docs/ru/pre-v2.0-3e65111/overview/getting-started#prerequisites">Substrate installation</a>. Если Вы хотите поиграть только с Subkey (без Substrate), Вам нужно будет иметь зависимости Substrate. Используйте следующие две команды для установки зависимостей и Subkey, соответственно:</p>
+<pre><code class="hljs css language-bash">$ <span class="token function">curl</span> https://getsubstrate.io -sSf <span class="token operator">|</span> <span class="token function">bash</span> -s -- --fast
+$ cargo <span class="token function">install</span> --force --git https://github.com/paritytech/substrate subkey
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="компилирование-с-cargo"></a><a href="#компилирование-с-cargo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Компилирование с Cargo</h3>
+<p>Если у Вас уже есть <a href="https://github.com/paritytech/substrate">репозиторий Substrate</a>, Вы можете собрать Subkey с помощью:</p>
+<pre><code class="hljs css language-bash">$ cargo build -p subkey
+</code></pre>
+<p>Это установит <code>subkey</code> в <code>./target/debug/subkey</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="binary"></a><a href="#binary" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Binary</h3>
+<p>Parity provides a signed binary for Linux operating systems.</p>
+<ul>
+<li><a href="https://github.com/paritytech/substrate/releases/tag/subkey2.0.0rc">Signed release</a></li>
+<li>GPG Fingerprint: <code>0xFF0812D491B96798</code></li>
+<li><a href="https://keys.mailvelope.com/pks/lookup?op=get&amp;search=security%40parity.io">Full GPG Key</a></li>
+</ul>
+<!-- RELEASE-TODO: Update tag link when we release 2.0 -->
+<h2><a class="anchor" aria-hidden="true" id="создание-ключей"></a><a href="#создание-ключей" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Создание ключей</h2>
+<p>Сгенерировать sr25519 ключ, запустив:</p>
+<pre><code class="hljs css language-bash">$ subkey generate
+
+Secret phrase <span class="token variable"><span class="token variable">`</span>favorite liar zebra assume hurt cage any damp inherit rescue delay panic<span class="token variable">`</span></span> is account:
+  Secret seed: 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
+</code></pre>
+<p>Для еще большей безопасности используйте <code>--words 24</code> (поддерживается 12, 15, 18, 21 и 24):</p>
+<pre><code class="hljs css language-bash">$ subkey generate --words <span class="token number">24</span>
+Secret phrase <span class="token variable"><span class="token variable">`</span>engine ghost pave tip coil undo when next finish between ignore mystery spread model mercy body sphere sense verify crumble ethics garment soon gold<span class="token variable">`</span></span> is account:
+  Secret seed: 0xddd41c017dd60770a48f7aa50aee940b591726117769bc0740b19c5acfbf24d8
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x8ae95a30cb9daa11db449eeb3243ec2e8937df3620c607d66a7f330a9d48cf01
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5FCqnWDeL8KFEhy9ccdeRw64kJbfPLfKgA45kMeo6THj1tkz
+</code></pre>
+<p>Subkey кодирует адрес в зависимости от сети. Вы можете использовать <code>-n</code> или <code>--network</code> флаг для этого изменения. Смотрите <code>subkey help</code> для поддерживаемых сетей.</p>
+<p>Чтобы сгенерировать ключ ed25519, передайте <code>-e</code> или <code>--ed25519</code> флаг:</p>
+<pre><code class="hljs css language-bash">$ subkey -e generate
+Secret phrase <span class="token variable"><span class="token variable">`</span>expire stage crawl shell boss any story swamp skull yellow bamboo copy<span class="token variable">`</span></span> is account:
+  Secret seed: 0xb034ad2704defa9dc0bea4ac8019fb0f805018f1be587cf04a03f9a033e3656b
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x3ff0766f9ebbbceee6c2f40d9323164d07e70c70994c9d00a9512be6680c2394
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5DWYJiPBSFBUFah2W49oPPSsrCRvrY4N4VmLcSH9XfjKfZvh
+</code></pre>
+<p>Вывод дает нам следующую информацию о нашем ключе:</p>
+<ul>
+<li><strong>Secret phrase</strong> (aka &quot;Mnemonic Phrase&quot;) - A series of English words that encodes the seed in a more human-friendly way. Мнемонические фразы впервые были введены в биткоин (см. <a href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki">BIP39</a>) и сделали намного проще запись своего ключа вручную.</li>
+<li><strong>Secret Seed</strong> (aka &quot;Private Key&quot; or &quot;Raw Seed&quot;) - The minimum necessary information to restore the key pair. Вся другая информация рассчитывается из сида.</li>
+<li><strong>Public Key (hex)</strong> - The public half of the cryptographic key pair in hexadecimal.</li>
+<li><strong>Address (SS58)</strong> (aka &quot;Public Address&quot;) - An SS58-encoded address based on the public key.</li>
+</ul>
+<p>Вы также можете создать vanity адрес, хотя Вы не получите мнемоническую фразу:</p>
+<pre><code class="hljs css language-bash">$ subkey vanity joe
+Generating key containing pattern <span class="token string">'joe'</span>
+best: <span class="token number">189</span> <span class="token operator">==</span> top: <span class="token number">189</span>
+Secret Key URI <span class="token variable"><span class="token variable">`</span>0xc645213712dc218e851ac0a47e987ee3f8e1cbbbad85522dbbf86e51963de434<span class="token variable">`</span></span> is account:
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0xfaff3b483564c4d2dab7229e4369841d3650a4ca9c36094e9faece3839ac6e06
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5HjoeXxUokiJwQPRucDXCgGzKwwf74q9srJcmsaFssUW2UHn
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="защищенные-паролем-ключи"></a><a href="#защищенные-паролем-ключи" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Защищенные паролем ключи</h2>
+<p>Чтобы сгенерировать защищенный паролем ключ, используйте <code>-p &lt;password&gt;</code> или <code>--password &lt;password&gt;</code> флаг:</p>
+<pre><code class="hljs css language-bash">$ subkey --password <span class="token string">"correct horse battery staple"</span> generate
+Secret phrase <span class="token variable"><span class="token variable">`</span>razor blouse enroll maximum lobster bacon raccoon ocean law question worry length<span class="token variable">`</span></span> is account:
+  Secret seed: 0x806e324821f6b09fa0329b7da35b8056b452fdcaadeac463ff2b8db1fc020c3e
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0xe2b410bdc959fcc7f756e6eefdb051000c80be339acd3a8dc6d941211160b266
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y
+</code></pre>
+<p>Note that the &quot;Secret seed&quot; is <em>not</em> password protected and can still recover the account. Однако &quot;Secret phrase&quot; недостаточно для восстановления учетной записи без пароля.</p>
+<h2><a class="anchor" aria-hidden="true" id="проверка-ключей"></a><a href="#проверка-ключей" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Проверка ключей</h2>
+<p>Команда inspect пересчитывает открытый ключ ключевой пары и публичный адрес с учетом ее seed. Это показывает, что для резервной копии достаточно только сида.</p>
+<pre><code class="hljs css language-bash">$ subkey inspect 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
+Secret Key URI <span class="token variable"><span class="token variable">`</span>0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2<span class="token variable">`</span></span> is account:
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
+</code></pre>
+<p>Вы также можете проверить ключ своей мнемонической фразой.</p>
+<pre><code class="hljs css language-bash">$ subkey inspect <span class="token string">"favorite liar zebra assume hurt cage any damp inherit rescue delay panic"</span>
+Secret phrase <span class="token variable"><span class="token variable">`</span>favorite liar zebra assume hurt cage any damp inherit rescue delay panic<span class="token variable">`</span></span> is account:
+  Secret seed: 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
+</code></pre>
+<p>Вы можете проверить защищенные паролем ключи либо, подставив <code>--password</code> флаг или используя <code>///</code> в конце мнемоники:</p>
+<pre><code class="hljs css language-bash">$ subkey inspect <span class="token string">"razor blouse enroll maximum lobster bacon raccoon ocean law question worry length///correct horse battery staple"</span>
+Secret Key URI <span class="token variable"><span class="token variable">`</span>razor blouse enroll maximum lobster bacon raccoon ocean law question worry length///correct horse battery staple<span class="token variable">`</span></span> is account:
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0xe2b410bdc959fcc7f756e6eefdb051000c80be339acd3a8dc6d941211160b266
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y
+</code></pre>
+<p>Давайте предположим, что Вы хотите использовать тот же приватный ключ на Polkadot. Используйте <code>-n</code> , чтобы получить Ваш адрес в формате Polkadot. Обратите внимание, что публичный ключ одинаковый, но адрес имеет другой формат.</p>
+<pre><code class="hljs css language-bash">$ subkey --network polkadot inspect <span class="token string">"favorite liar zebra assume hurt cage any damp inherit rescue delay panic"</span>
+Secret phrase <span class="token variable"><span class="token variable">`</span>favorite liar zebra assume hurt cage any damp inherit rescue delay panic<span class="token variable">`</span></span> is account:
+  Secret seed: 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x6ce96ae5c300096b09dbd4567b0574f6a1281ae0e5cfe4f6b0233d1821f6206b
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 13ToWeAsFe55Z7qGxwV8uJFch73aCEyHhhQb2hVAsspp4Xuo
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="hd-деривация"></a><a href="#hd-деривация" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>HD деривация</h2>
+<p>Subkey поддерживает жесткую и мягкую иерархическую детерминированную (HD) деривацию ключей, совместимую с <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki">BIP32</a>. HD-ключи позволяют Вам иметь мастер-ключ и определить дерево с ключевой парой на каждом листке. Дерево имеет структуру аналогичную файловой системе и может иметь любую глубину, которую Вы можете получить.</p>
+<p>Поддерживается жесткая и мягкая деривация ключей:</p>
+<ul>
+<li><code>родительский закрытый ключ + путь --&gt; дочерний закрытый ключ</code></li>
+<li><code>родительский закрытый ключ + путь --&gt; дочерний открытый ключ</code></li>
+</ul>
+<p>Кроме того, поддерживаются производные ключи:</p>
+<ul>
+<li><code>родительский открытый ключ + путь --&gt; дочерний открытый ключ</code></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="получение-жесткого-ключа"></a><a href="#получение-жесткого-ключа" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Получение жесткого ключа</h3>
+<p>Вы можете получить дочерний жесткий ключ, используя <code>//</code> после мнемонической фразы:</p>
+<pre><code class="hljs css language-bash">$ subkey inspect <span class="token string">"favorite liar zebra assume hurt cage any damp inherit rescue delay panic//joe//polkadot//0"</span>
+Secret Key URI <span class="token variable"><span class="token variable">`</span>favorite liar zebra assume hurt cage any damp inherit rescue delay panic//joe//polkadot//0<span class="token variable">`</span></span> is account:
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0xb660386488b17fb0989204820ab43c2eae3053f2882dede1688ce9ee48bd0e0a
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5GBq9ybWHynecioAmQtuBXjw7vKwzhm72mURRmK2sDpsBRdk
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="получение-мягкого-ключа"></a><a href="#получение-мягкого-ключа" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Получение мягкого ключа</h3>
+<p>Точно так же, Вы можете получить дочерний мягкий ключ, используя один <code>/</code> после мнемонической фразы:</p>
+<pre><code class="hljs css language-bash">$ subkey inspect <span class="token string">"favorite liar zebra assume hurt cage any damp inherit rescue delay panic/joe/polkadot/0"</span>
+Secret Key URI <span class="token variable"><span class="token variable">`</span>favorite liar zebra assume hurt cage any damp inherit rescue delay panic/joe/polkadot/0<span class="token variable">`</span></span> is account:
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x34ba6dcb945ff69d1457d1488d6b506738f8ce0a5a3e838ed91a5fa813624272
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5DFqjBd9BEsLaRdSqfWiDnPvomu5VaDmW4u5YWb1d176hTfC
+</code></pre>
+<p>Повторите адрес из той же сид фразы, <code>5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68</code>. Мы можем использовать это для получения того же дочернего адреса.</p>
+<pre><code class="hljs css language-bash">$ subkey inspect 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68/joe/polkadot/0
+Public Key URI <span class="token variable"><span class="token variable">`</span>5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68/joe/polkadot/0<span class="token variable">`</span></span> is account:
+  Network ID/version: substrate
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x34ba6dcb945ff69d1457d1488d6b506738f8ce0a5a3e838ed91a5fa813624272
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5DFqjBd9BEsLaRdSqfWiDnPvomu5VaDmW4u5YWb1d176hTfC
+</code></pre>
+<p>Обратите внимание, что два адреса здесь совпадают. Это не относится к жесткому ключу деривации.</p>
+<h2><a class="anchor" aria-hidden="true" id="собираем-все-это-вместе"></a><a href="#собираем-все-это-вместе" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Собираем все это вместе</h2>
+<p>Вы можете смешивать и сопоставлять жесткие и мягкие ключевые пути (хотя это не имеет большого смысла иметь жесткие пути как детей мягких путей). Например:</p>
+<pre><code class="hljs css language-bash">$ subkey inspect <span class="token string">"favorite liar zebra assume hurt cage any damp inherit rescue delay panic//joe//polkadot/0"</span>
+Secret Key URI <span class="token variable"><span class="token variable">`</span>favorite liar zebra assume hurt cage any damp inherit rescue delay panic//joe//polkadot/0<span class="token variable">`</span></span> is account:
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0xd09ab65c743e91b30d024469e8a8b823a3aa7e8f5b4791187adf531ac2af140f
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5GnDmyt7qnEN4esrLNRtjM7xHyRe4jQsbbAHpaNSsPNws7EB
+</code></pre>
+<p>Первые два уровня (<code>//joe//polkadot</code>) являются жесткими, в то время как лист (<code>/0</code>) является мягким.</p>
+<p>Чтобы использовать ключ производный с защищенным паролем ключом, добавьте пароль в конец:</p>
+<pre><code class="hljs css language-bash">$ subkey inspect <span class="token string">"razor blouse enroll maximum lobster bacon raccoon ocean law question worry length/joe/polkadot/0///correct horse battery staple"</span>
+Secret Key URI <span class="token variable"><span class="token variable">`</span>razor blouse enroll maximum lobster bacon raccoon ocean law question worry length/joe/polkadot/0///correct horse battery staple<span class="token variable">`</span></span> is account:
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x0816fe0689322e26cd2aa9c0dccb6c44851345e96f969ae85c8f1aec9fb4703d
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5CFK52zU59zUhC3s6mRobEJ3zm7JeXQZaS6ybvcuCDDhWwGG
+
+$ subkey inspect 5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y/joe/polkadot/0
+Public Key URI <span class="token variable"><span class="token variable">`</span>5HBxAo81NWBbg6DQNbTdFg7GWQDS1QmkMwNLQso1e11DfQ2Y/joe/polkadot/0<span class="token variable">`</span></span> is account:
+  Network ID/version: substrate
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x0816fe0689322e26cd2aa9c0dccb6c44851345e96f969ae85c8f1aec9fb4703d
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5CFK52zU59zUhC3s6mRobEJ3zm7JeXQZaS6ybvcuCDDhWwGG
+</code></pre>
+<p>Обратите внимание, что &quot;адрес плюс путь вывода&quot; создает тот же адрес, что и &quot;мнемоническая фраза плюс путь вывода плюс пароль&quot;. Таким образом, вы можете раскрыть свой родительский адрес и пути вывода, не раскрывая свою мнемоническую фразу или пароль, сохраняя при этом контроль над всеми производными адресами.</p>
+<h2><a class="anchor" aria-hidden="true" id="известные-ключи"></a><a href="#известные-ключи" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Известные Ключи</h2>
+<p>Если вы работали с Substrate ранее, Вы, вероятно, столкнулись с повсеместными учетными записями для Alice, Bob и их друзей. Эти ключи не являются частными, но полезны для игры с Substrate без постоянного генерирования новых ключей. Вы можете проверить эти &quot;известные&quot; ключи с помощью <code>subkey</code>.</p>
+<pre><code class="hljs css language-bash">$ subkey inspect //Alice
+Secret Key URI <span class="token variable"><span class="token variable">`</span>//Alice<span class="token variable">`</span></span> is account:
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+</code></pre>
+<p>Нет ничего особенного о имени Alice. Вы можете сделать то же самое трюк с Вашим именем. But remember that keys like this are <em>not</em> secure, and are only useful for experimenting.</p>
+<pre><code class="hljs css language-bash">$ subkey inspect //Joshy
+Secret Key URI <span class="token variable"><span class="token variable">`</span>//Joshy<span class="token variable">`</span></span> is account:
+  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x006f5081d495811a16724b317fcd70b8e42c9317da2ba1f5c36756a41fadec67
+  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5C5GvaAWfruRLnCJYgJrut1JovGeMMXV2VzXeiua7f691J9R
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="подписание-и-проверка-сообщений"></a><a href="#подписание-и-проверка-сообщений" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Подписание и проверка сообщений</h2>
+<h3><a class="anchor" aria-hidden="true" id="подписание"></a><a href="#подписание" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Подписание</h3>
+<p>Вы можете подписать сообщение, передав сообщение Subkey на STDIN. Вы можете подписать либо с вашей seed, либо с мнемонической фразой.</p>
+<pre><code class="hljs css language-bash">$ <span class="token builtin class-name">echo</span> <span class="token string">"message"</span> <span class="token operator">|</span> subkey sign 0x235c69907d33b85f27bd78e73ff5d0c67bd4894515cc30c77f4391859bc1a3f2
+50192c7f1a49dd169fa69f7fc703b3fe2e8c0b71871117e59b59b59e16462031d970b8a927d0e265e441a99f70203e0a2e0428add445970e257f4c536689e60c
+</code></pre>
+<pre><code class="hljs css language-bash">$ <span class="token builtin class-name">echo</span> <span class="token string">"message"</span> <span class="token operator">|</span> subkey sign <span class="token string">"favorite liar zebra assume hurt cage any damp inherit rescue delay panic"</span>
+50d830ac6ce90207584fcd46ada1db06d20db46370e440ae326e71c602d03641747031d66a9514b95a28462166336244bd401f25eb5e2e27b3f9dd5457b80d02
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="проверка"></a><a href="#проверка" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Проверка</h3>
+<p>Хотя вышеуказанные подписи отличаются друг от друга, они оба проверяются с адресом:</p>
+<pre><code class="hljs css language-bash">$ <span class="token builtin class-name">echo</span> <span class="token string">"message"</span> <span class="token operator">|</span> subkey verify <span class="token number">501</span><span class="token punctuation">..</span>.60c 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
+Signature verifies correctly.
+</code></pre>
+<pre><code class="hljs css language-bash">$ <span class="token builtin class-name">echo</span> <span class="token string">"message"</span> <span class="token operator">|</span> subkey verify 50d<span class="token punctuation">..</span>.d02 5EXWNJuoProc7apm1JS8m9RTqV3vVwR9dCg6sQVpKnoHtJ68
+Signature verifies correctly.
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="больше-для-изучения-subkey"></a><a href="#больше-для-изучения-subkey" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Больше для изучения Subkey</h2>
+<p>Learn more by running <code>subkey help</code> or see the <a href="https://github.com/paritytech/substrate/tree/master/bin/subkey">README</a>.</p>
+<p>Пары ключей также можно создавать в <a href="https://github.com/polkadot-js/apps">пользовательском интерфейсе приложений PolkadotJS</a>. Попробуйте создать ключи в пользовательском интерфейсе и восстановить их с помощью <code>subkey</code> или наоборот.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/pre-v2.0-3e65111/development/front-end/json-rpc"><span class="arrow-prev">← </span><span>JSON RPC</span></a><a class="docs-next button" href="/docs/ru/pre-v2.0-3e65111/contribute/help-translate"><span>Help Translate</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a><ul class="toc-headings"><li><a href="#build-from-source">Build from Source</a></li><li><a href="#компилирование-с-cargo">Компилирование с Cargo</a></li><li><a href="#binary">Binary</a></li></ul></li><li><a href="#создание-ключей">Создание ключей</a></li><li><a href="#защищенные-паролем-ключи">Защищенные паролем ключи</a></li><li><a href="#проверка-ключей">Проверка ключей</a></li><li><a href="#hd-деривация">HD деривация</a><ul class="toc-headings"><li><a href="#получение-жесткого-ключа">Получение жесткого ключа</a></li><li><a href="#получение-мягкого-ключа">Получение мягкого ключа</a></li></ul></li><li><a href="#собираем-все-это-вместе">Собираем все это вместе</a></li><li><a href="#известные-ключи">Известные Ключи</a></li><li><a href="#подписание-и-проверка-сообщений">Подписание и проверка сообщений</a><ul class="toc-headings"><li><a href="#подписание">Подписание</a></li><li><a href="#проверка">Проверка</a></li></ul></li><li><a href="#больше-для-изучения-subkey">Больше для изучения Subkey</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/ru/getting-started">Getting Started</a><a href="/ru/tutorials">Tutorials</a><a href="/rustdocs/master/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/ru/videos">Videos</a><a href="/ru/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></a></div></section><section class="copyright">Copyright © 2020 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:ru"]}
+              });
+            </script></body></html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Initializing Runtime Storage · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Most runtime modules contain storage values that may be changed or updated as the blockchain runs and users interact with the module. The ways that data may change are coded in the runtime module&#x27;s functions (both dispatchable and not), and are covered in several [tutorials](/tutorials)."/><meta name="docsearch:version" content="pre-v2.0-3e65111"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Initializing Runtime Storage · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="Most runtime modules contain storage values that may be changed or updated as the blockchain runs and users interact with the module. The ways that data may change are coded in the runtime module&#x27;s functions (both dispatchable and not), and are covered in several [tutorials](/tutorials)."/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/en/versions"><h3>pre-v2.0-3e65111</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/en/pre-v2.0-3e65111/" target="_self">Docs</a></li><li class=""><a href="/recipes" target="_self">Recipes</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/en/community" target="_self">Community</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/ru/pre-v2.0-3e65111/runtime/initializing-storage">Русский</a></li><li><a href="/docs/zh-CN/pre-v2.0-3e65111/runtime/initializing-storage">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/runtime/initializing-storage.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Initializing Runtime Storage</h1></header><article><div><span><p>Most runtime modules contain storage values that may be changed or updated as the blockchain runs and users interact with the module. The ways that data may change are coded in the runtime module's functions (both dispatchable and not), and are covered in several <a href="/tutorials">tutorials</a>.</p>
+<p>In some cases storage should be initialized with a value before any user has interacted with it. This is primarily the job of the genesis configuration. There are four ways runtime developers may specify initial values for their storage items, and this article will cover all four. Another article discusses how the genesis configuration works <a href="/docs/en/pre-v2.0-3e65111/runtime/types/genesisconfig-struct">behind the macros</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="hard-code-default-values"></a><a href="#hard-code-default-values" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hard-Code Default Values</h2>
+<p>The simplest way (and one that technically does not use genesis configuration) to initialize storage is simply to hard-code default values for each parameter. This option is best when there are clear default values that all deployments of the module will want to use. The runtime developer can choose this option by including <code>config()</code> in the <code>decl_storage!</code> macro, and an initial value at the end of the line.</p>
+<p>Consider this example module where players ante to play a game and add to the pot by raising.</p>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_storage!</span> <span class="token punctuation">{</span>
+  <span class="token keyword">trait</span> Store <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">as</span> MyModule <span class="token punctuation">{</span>
+    <span class="token comment">// Points ante'd to play the game</span>
+    <span class="token keyword">pub</span> Ante <span class="token function">get</span><span class="token punctuation">(</span>ante<span class="token punctuation">)</span> <span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> u32 <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Minimum raise on each turn</span>
+    <span class="token keyword">pub</span> MinRaise <span class="token function">get</span><span class="token punctuation">(</span>min_raise<span class="token punctuation">)</span> <span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> u32 <span class="token operator">=</span> <span class="token number">7</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p>Specifying default values this way has the effect that if you ever <a href="https://substrate.dev/rustdocs/v1.0/srml_support/storage/trait.StorageValue.html#tymethod.kill"><code>kill</code></a> your storage value, it will revert to the specified default value.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="defer-until-deploy-time-with-config"></a><a href="#defer-until-deploy-time-with-config" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Defer until Deploy Time with <code>config()</code></h2>
+<p>The second option available to runtime developers is to actually <em>not</em> specify their own genesis values, but to leave that option up to whomever actually deploys the module in a blockchain. This option makes sense when different deployments of the module, may reasonably want different configuration values, and the various storage values do not need to maintain a particular relationship to one another. The runtime developer can choose this option by including <code>config()</code> in the <code>decl_storage!</code> macro, and nothing more.</p>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_storage!</span> <span class="token punctuation">{</span>
+  <span class="token keyword">trait</span> Store <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">as</span> MyModule <span class="token punctuation">{</span>
+    <span class="token comment">// Points ante'd to play the game</span>
+    <span class="token keyword">pub</span> Ante <span class="token function">get</span><span class="token punctuation">(</span>ante<span class="token punctuation">)</span> <span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> u32<span class="token punctuation">;</span>
+
+    <span class="token comment">// Minimum raise on each turn</span>
+    <span class="token keyword">pub</span> MinRaise <span class="token function">get</span><span class="token punctuation">(</span>min_raise<span class="token punctuation">)</span> <span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> u32<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The runtime developer has explicitly chosen not to initialize storage values, but to defer to the deployer.</p>
+<blockquote>
+<p>The runtime developer may choose to give the field a specific name by including it in the parentheses like this</p>
+<p><code>pub Ante get(ante) config(value_to_ante): u32;</code></p>
+<p>If no name is supplied in <code>config</code>, the same name from <code>get</code> is used. When no getter is specified, <code>config</code> <em>must</em> supply a name.</p>
+</blockquote>
+<p>For this option, and all remaining options, the deployer must use <code>Config&lt;T&gt;</code> when installing the module in their runtime with something like.</p>
+<pre><code class="hljs css language-rust">MyModule<span class="token punctuation">:</span> my_module<span class="token punctuation">::</span><span class="token punctuation">{</span>Module<span class="token punctuation">,</span> Call<span class="token punctuation">,</span> Storage<span class="token punctuation">,</span> Event<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">,</span> Config<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre>
+<p>The deployer then has two options for how to specify this value.</p>
+<h3><a class="anchor" aria-hidden="true" id="enter-values-in-rust-code"></a><a href="#enter-values-in-rust-code" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Enter Values in Rust Code</h3>
+<p>When a deployer later includes this runtime module as part of their runtime, they may code the initial storage value directly into Rust code. If their node looks similar Substrate's node template, this code would go in <code>src/chain_spec.rs</code>. And, for our example module, would look like this.</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">use</span> my_blockchain_runtime<span class="token punctuation">::</span>MyModuleConfig<span class="token punctuation">;</span>
+<span class="token punctuation">...</span>
+GenesisConfig <span class="token punctuation">{</span>
+  <span class="token punctuation">...</span>
+  my_module<span class="token punctuation">:</span> <span class="token function">Some</span><span class="token punctuation">(</span>MyModuleConfig <span class="token punctuation">{</span>
+      ante<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+      min_raise<span class="token punctuation">:</span> <span class="token number">7</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p>A bug in the v1.0 branch, occasionally causes a compilation error when specifying the genesis configuration this way. Adding an additional field will resolve it.</p>
+<p><code>_genesis_phantom_data: Default::default(),</code></p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="enter-values-in-configuration-file"></a><a href="#enter-values-in-configuration-file" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Enter Values in Configuration File</h3>
+<p>While there must always be some value specified in code, the deployer may choose to override those values via a configuration file. In Substrate-based chains a chainspec can be generated with <code>substrate build-spec &gt; chainspec.json</code>. For our example module, the configuration would look like this.</p>
+<pre><code class="hljs css language-json"><span class="token punctuation">{</span>
+  ...
+  <span class="token property">"genesis"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"runtime"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      ...
+      <span class="token property">"my_module"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"ante"</span><span class="token operator">:</span> <span class="token number">55</span><span class="token punctuation">,</span>
+        <span class="token property">"minRaise"</span><span class="token operator">:</span> <span class="token number">77</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="calculate-individually-with-build"></a><a href="#calculate-individually-with-build" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Calculate Individually with <code>build()</code></h2>
+<p>The third option is ideal when the runtime module developer wants to specify the field's initial value, but it is not known at compile time. For example, it may need to be calculated from other initial values that are deferred to the deployer. To choose this option the runtime developer may include <code>build(&lt;closure&gt;)</code> and a <a href="https://doc.rust-lang.org/stable/book/ch13-01-closures.html">closure</a> that returns the desired initial value.</p>
+<p>In our example game, the minimum raise must always be twice the ante. But the ante may be configured by the module deployer.</p>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_storage!</span> <span class="token punctuation">{</span>
+  <span class="token keyword">trait</span> Store <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">as</span> MyModule <span class="token punctuation">{</span>
+    <span class="token comment">// Points ante'd to play the game</span>
+    <span class="token keyword">pub</span> Ante <span class="token function">get</span><span class="token punctuation">(</span>ante<span class="token punctuation">)</span> <span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> u32<span class="token punctuation">;</span>
+
+    <span class="token comment">// Minimum raise on each turn</span>
+    <span class="token keyword">pub</span> MinRaise <span class="token function">get</span><span class="token punctuation">(</span>min_raise<span class="token punctuation">)</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token operator">|</span>config<span class="token punctuation">:</span> <span class="token operator">&amp;</span>GenesisConfig<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">|</span> config<span class="token punctuation">.</span>ante <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span> u32<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p>A bug in the v1.0 branch, occasionally causes a compilation error when specifying the genesis configuration this way. Adding an additional field will resolve it.</p>
+<p><code>_genesis_phantom_data: Default::default(),</code></p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="calculate-multiple-values-with-add-extra-genesis"></a><a href="#calculate-multiple-values-with-add-extra-genesis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Calculate Multiple Values with <code>add-extra-genesis</code></h2>
+<p>A final option available to runtime developers is to manually add additional fields to the genesis configuration that are not associated with specific storage values. This is useful when all of the initial storage values can be calculated, and they can be calculated from parameters configurable by the deployer. The subtlety here is that the deployer <em>does</em> specify parameters, but those parameters are not, themselves, put into storage. Rather they are used to calculate the values that are put into storage.</p>
+<p>In our example game, the module author may want to allow the deployer to specify the smallest number of points worth considering, and calculate both the initial ante and minimum raise from those values.</p>
+<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_storage!</span> <span class="token punctuation">{</span>
+  <span class="token keyword">trait</span> Store <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">as</span> MyModule <span class="token punctuation">{</span>
+    <span class="token comment">// Points ante'd to play the game</span>
+    <span class="token keyword">pub</span> Ante <span class="token function">get</span><span class="token punctuation">(</span>ante<span class="token punctuation">)</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token operator">|</span>config<span class="token punctuation">:</span> <span class="token operator">&amp;</span>GenesisConfig<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">|</span> config<span class="token punctuation">.</span>atom <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span> u32<span class="token punctuation">;</span>
+
+    <span class="token comment">// Minimum raise on each turn</span>
+    <span class="token keyword">pub</span> MinRaise <span class="token function">get</span><span class="token punctuation">(</span>min_raise<span class="token punctuation">)</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token operator">|</span>config<span class="token punctuation">:</span> <span class="token operator">&amp;</span>GenesisConfig<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">|</span> config<span class="token punctuation">.</span>atom <span class="token operator">*</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">:</span> u32<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  add_extra_genesis <span class="token punctuation">{</span>
+    <span class="token comment">// The smallest (atomic) number of points worth considering</span>
+    <span class="token function">config</span><span class="token punctuation">(</span>atom<span class="token punctuation">)</span><span class="token punctuation">:</span> u32<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>It is also possible to use <code>build()</code> inside of <code>add_extra_genesis</code>. Doing so is not necessary in our simple game, but there is an <a href="https://github.com/paritytech/substrate/blob/v1.0/srml/staking/src/lib.rs#L525">excellent example</a> in the SRML's Staking module. The module deployer specifies a <code>Vec</code> of stakers and their roles. Then different parts of storage are modified depending on whether each staker is a nominator or validator.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/29/2019 by Julien Eluard</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#hard-code-default-values">Hard-Code Default Values</a></li><li><a href="#defer-until-deploy-time-with-config">Defer until Deploy Time with <code>config()</code></a><ul class="toc-headings"><li><a href="#enter-values-in-rust-code">Enter Values in Rust Code</a></li><li><a href="#enter-values-in-configuration-file">Enter Values in Configuration File</a></li></ul></li><li><a href="#calculate-individually-with-build">Calculate Individually with <code>build()</code></a></li><li><a href="#calculate-multiple-values-with-add-extra-genesis">Calculate Multiple Values with <code>add-extra-genesis</code></a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/getting-started">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="/rustdocs/master/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/en/videos">Videos</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></a></div></section><section class="copyright">Copyright © 2020 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:en"]}
+              });
+            </script></body></html>

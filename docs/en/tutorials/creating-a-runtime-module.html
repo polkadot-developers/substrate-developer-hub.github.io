@@ -1,10 +1,10 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Creating an External Pallet · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="In this tutorial, you&#x27;ll write a Substrate pallet that lives in its own"/><meta name="docsearch:version" content="pre-v2.0-3e65111"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Creating an External Pallet · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="In this tutorial, you&#x27;ll write a Substrate pallet that lives in its own"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Creating an External Pallet · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="In this tutorial, you&#x27;ll write a Substrate pallet that lives in its own"/><meta name="docsearch:version" content="v2.0.0-alpha.3"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Creating an External Pallet · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="In this tutorial, you&#x27;ll write a Substrate pallet that lives in its own"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
             {"zIndex":100}
           )
         });
-        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/en/versions"><h3>pre-v2.0-3e65111</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/en/" target="_self">Docs</a></li><li class=""><a href="/recipes" target="_self">Recipes</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/en/community" target="_self">Community</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/ru/tutorials/creating-a-runtime-module">Русский</a></li><li><a href="/docs/zh-CN/tutorials/creating-a-runtime-module">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/en/versions"><h3>v2.0.0-alpha.3</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/en/" target="_self">Docs</a></li><li class=""><a href="/recipes" target="_self">Recipes</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/en/community" target="_self">Community</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/ru/tutorials/creating-a-runtime-module">Русский</a></li><li><a href="/docs/zh-CN/tutorials/creating-a-runtime-module">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
         const languagesMenuItem = document.getElementById("languages-menu");
         const languagesDropDown = document.getElementById("languages-dropdown");
         languagesMenuItem.addEventListener("click", function(event) {
@@ -19,7 +19,7 @@
       </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/tutorials/creating-a-runtime-module.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Creating an External Pallet</h1></header><article><div><span><p>In this tutorial, you'll write a Substrate pallet that lives in its own
 crate, and include it in a node based on the <code>substrate-node-template</code>.</p>
 <h2><a class="anchor" aria-hidden="true" id="prerequisites"></a><a href="#prerequisites" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prerequisites</h2>
-<p>If you haven't already done so, follow the <a href="/docs/en/overview/getting-started">Getting Started</a>
+<p>If you haven't already done so, follow the <a href="getting-started.md">Getting Started</a>
 guide to download necessary tools to build Substrate.</p>
 <h3><a class="anchor" aria-hidden="true" id="clone-the-node-and-pallet-templates"></a><a href="#clone-the-node-and-pallet-templates" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Clone the Node and Pallet Templates</h3>
 <p>We're not going to write our pallet directly as part of the node template, but
@@ -28,10 +28,14 @@ separate from our node and also allows other to easily import this pallet into
 their own Substrate runtime.</p>
 <ol>
 <li><p>Clone the Substrate node template:</p>
-<pre><code class="hljs css language-bash"><span class="token function">git</span> clone -b pre-v2.0-3e65111 --depth <span class="token number">1</span> https://github.com/substrate-developer-hub/substrate-node-template my-node
+<pre><code class="hljs css language-bash"><span class="token function">git</span> clone -b v2.0.0-alpha.3 --depth <span class="token number">1</span> https://github.com/substrate-developer-hub/substrate-node-template
 </code></pre></li>
-<li><p>Clone the Substrate pallet template:</p>
-<pre><code class="hljs css language-bash"><span class="token function">git</span> clone -b pre-v2.0-3e65111 https://github.com/substrate-developer-hub/substrate-pallet-template.git my-pallet
+</ol>
+<p>my-node
+```</p>
+<ol start="2">
+<li><p>Clone the Substrate pallet template in the <code>pallets</code> directory of your node template:</p>
+<pre><code class="hljs css language-bash"><span class="token function">git</span> clone -b v2.0.0-alpha.3 https://github.com/substrate-developer-hub/substrate-pallet-template my-pallet
 </code></pre></li>
 <li><p>Build the Substrate node template:</p>
 <pre><code class="hljs css language-bash"><span class="token builtin class-name">cd</span> my-node
@@ -57,9 +61,9 @@ file.</p>
 <h3><a class="anchor" aria-hidden="true" id="renaming-your-crate"></a><a href="#renaming-your-crate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Renaming Your Crate</h3>
 <p>In the <code>Cargo.toml</code> file, you can update the crate's name and authorship. In
 this tutorial, we're focusing on how to create and use the pallet rather than
-writing interesting pallet logic. So let's call it <code>test_pallet</code>.</p>
+writing interesting pallet logic. So let's call it <code>test-pallet</code>.</p>
 <p>The beginning of the <code>Cargo.toml</code> now looks like:</p>
-<p><strong><code>my-pallet/Cargo.toml</code></strong></p>
+<p><strong><code>my-node/pallets/my-pallet/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">package</span><span class="token punctuation">]</span>
 <span class="token key property">name</span> <span class="token punctuation">=</span> <span class="token string">"test-pallet"</span>
 <span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">"2.0.0"</span>
@@ -67,7 +71,7 @@ writing interesting pallet logic. So let's call it <code>test_pallet</code>.</p>
 <span class="token key property">edition</span> <span class="token punctuation">=</span> <span class="token string">"2018"</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="your-pallets-std-feature"></a><a href="#your-pallets-std-feature" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Your Pallet's <code>std</code> Feature</h3>
-<p>In your <code>my-pallet/Cargo.toml</code> file, you will notice a few lines about the
+<p>In your <code>my-node/pallets/my-pallet/Cargo.toml</code> file, you will notice a few lines about the
 &quot;<code>std</code> feature&quot;. In Rust, when you enable <code>std</code>, you give your project access to
 <a href="https://doc.rust-lang.org/std/">the Rust standard libraries</a>. This works just
 fine when building native binaries.</p>
@@ -77,17 +81,15 @@ dependencies we use for our pallet, and our entire runtime, must be able to
 compile with <a href="https://rust-embedded.github.io/book/intro/no-std.html"><code>no_std</code></a>
 feature. Our <code>Cargo.toml</code> file tells our pallet's dependencies to only use their
 <code>std</code> feature when this pallet also uses its <code>std</code> feature, like so:</p>
-<p><strong><code>my-pallet/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">features</span><span class="token punctuation">]</span>
-<span class="token key property">default</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">'std'</span><span class="token punctuation">]</span>
-<span class="token key property">std</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span>
-    <span class="token string">'serde'</span><span class="token punctuation">,</span>
-    <span class="token string">'codec/std'</span><span class="token punctuation">,</span>
-    <span class="token string">'support/std'</span><span class="token punctuation">,</span>
-    <span class="token string">'system/std'</span><span class="token punctuation">,</span>
-    <span class="token string">'sp-runtime/std'</span><span class="token punctuation">,</span>
-    <span class="token string">'sp-io/std'</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span>
+<p><strong><code>my-node/pallets/my-pallet/Cargo.toml</code></strong></p>
+<pre><code class="hljs css language-TOML"><span class="hljs-section">[features]</span>
+<span class="hljs-attr">default</span> = [<span class="hljs-string">'std'</span>]
+<span class="hljs-attr">std</span> = [
+    <span class="hljs-string">'codec/std'</span>,
+    <span class="hljs-string">'frame-support/std'</span>,
+    <span class="hljs-string">'safe-mix/std'</span>,
+    <span class="hljs-string">'system/std'</span>,
+]
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="consistent-substrate-dependencies"></a><a href="#consistent-substrate-dependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Consistent Substrate Dependencies</h3>
 <p>All Substrate pallets will depend on some low-level FRAME libraries such as
@@ -102,39 +104,31 @@ where the Substrate versions may be incompatible, or different version of the
 same library are being used.
 Ultimately Cargo will not be able to resolve those conflicts and you will get a
 compile time error.</p>
-<p>When building your pallet, we recommend to develop against the <code>v2.0</code> branch as
-the template demonstrates. This ensures your pallet has the latest stable code.
-If you later prefer to have the freshly-baked features from Substrate, you can
-then choose to use a specific git commit of Substrate, as shown in the following
-code comment.</p>
-<p><strong><code>my-pallet/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-toml"><span class="token comment"># --snip--</span>
+<p><strong><code>my-node/pallets/my-pallet/Cargo.toml</code></strong></p>
+<pre><code class="hljs css language-TOML"><span class="hljs-comment"># --snip--</span>
 
-<span class="token punctuation">[</span><span class="token table class-name">dependencies.support</span><span class="token punctuation">]</span>
-<span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
-<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
-<span class="token key property">package</span> <span class="token punctuation">=</span> <span class="token string">'frame-support'</span>
-<span class="token key property">rev</span> <span class="token punctuation">=</span> <span class="token string">'&lt;git-commit>'</span>
-<span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">'2.0.0'</span>
+<span class="hljs-section">[dependencies.frame-support]</span>
+<span class="hljs-attr">default-features</span> = <span class="hljs-literal">false</span>
+<span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
+<span class="hljs-attr">rev</span> = <span class="hljs-string">'013c1ee167354a08283fb69915fda56a62fee943'</span>
+<span class="hljs-attr">version</span> = <span class="hljs-string">'2.0.0-alpha.3'</span>
 
-<span class="token comment"># Develop against a git commit by specifying the same Substrate commit as your main node.</span>
-<span class="token comment"># It is important to use the same Substrate commit to prevent dependencies mismatch.</span>
-<span class="token comment"># rev = "&lt;some commit hash>"</span>
+<span class="hljs-comment"># Develop against a git commit by specifying the same Substrate commit as your main node.</span>
+<span class="hljs-comment"># It is important to use the same Substrate commit to prevent dependencies mismatch.</span>
 
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="your-pallets-dev-dependencies"></a><a href="#your-pallets-dev-dependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Your Pallet's Dev Dependencies</h3>
 <p>The final section of the <code>Cargo.toml</code> file specifies the dev dependencies. These
 are the dependencies that are needed in your pallet's tests, but not necessary
 the actual pallet itself.</p>
-<p><strong><code>my-pallet/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-toml"><span class="token comment"># --snip--</span>
+<p><strong><code>my-node/pallets/my-pallet/Cargo.toml</code></strong></p>
+<pre><code class="hljs css language-TOML"><span class="hljs-comment"># --snip--</span>
 
-<span class="token punctuation">[</span><span class="token table class-name">dev-dependencies.sp-core</span><span class="token punctuation">]</span>
-<span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
-<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
-<span class="token key property">package</span> <span class="token punctuation">=</span> <span class="token string">'sp-core'</span>
-<span class="token key property">rev</span> <span class="token punctuation">=</span> <span class="token string">'&lt;git-commit>'</span>
-<span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">'2.0.0'</span>
+<span class="hljs-section">[dev-dependencies.sp-core]</span>
+<span class="hljs-attr">default-features</span> = <span class="hljs-literal">false</span>
+<span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
+<span class="hljs-attr">rev</span> = <span class="hljs-string">'013c1ee167354a08283fb69915fda56a62fee943'</span>
+<span class="hljs-attr">version</span> = <span class="hljs-string">'2.0.0-alpha.3'</span>
 </code></pre>
 <p>You can confirm that the tests in the Substrate pallet template pass with:</p>
 <pre><code class="hljs css language-bash">cargo <span class="token builtin class-name">test</span>
@@ -147,19 +141,19 @@ it to our node.</p>
 <code>Cargo.toml</code>. Then we tell the pallet to only build its <code>std</code> feature when the
 runtime itself does, as follows:</p>
 <p><strong><code>my-node/runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-toml"><span class="token comment"># --snip--</span>
+<pre><code class="hljs css language-TOML"><span class="hljs-comment"># --snip--</span>
 
-<span class="token punctuation">[</span><span class="token table class-name">dependencies.test-pallet</span><span class="token punctuation">]</span>
-<span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
-<span class="token key property">path</span> <span class="token punctuation">=</span> <span class="token string">'../../my-pallet'</span>
+<span class="hljs-section">[dependencies.test-pallet]</span>
+<span class="hljs-attr">default-features</span> = <span class="hljs-literal">false</span>
+<span class="hljs-attr">path</span> = <span class="hljs-string">'../pallets/template'</span>
 
-<span class="token comment"># toward the bottom</span>
-<span class="token punctuation">[</span><span class="token table class-name">features</span><span class="token punctuation">]</span>
-<span class="token key property">default</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">'std'</span><span class="token punctuation">]</span>
-<span class="token key property">std</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span>
-    <span class="token string">'test-pallet/std'</span><span class="token punctuation">,</span>
-    <span class="token comment"># --snip--</span>
-<span class="token punctuation">]</span>
+<span class="hljs-comment"># toward the bottom</span>
+<span class="hljs-section">[features]</span>
+<span class="hljs-attr">default</span> = [<span class="hljs-string">'std'</span>]
+<span class="hljs-attr">std</span> = [
+    <span class="hljs-string">'test-pallet/std'</span>,
+    <span class="hljs-comment"># --snip--</span>
+]
 </code></pre>
 <blockquote>
 <p>You <strong>must</strong> set <code>default_features = false</code> so that your runtime will
@@ -220,14 +214,14 @@ we just need to update your node to use the code that is on GitHub instead of a
 hard-coded file system path. The final edit to your runtime's <code>Cargo.toml</code> file
 is to update its dependency on your pallet. The new code is:</p>
 <p><strong><code>my-node/runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">dependencies.your-pallet-name</span><span class="token punctuation">]</span>
-<span class="token key property">default_features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
-<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/your-username/your-pallet'</span>
-<span class="token key property">branch</span> <span class="token punctuation">=</span> <span class="token string">'master'</span>
+<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies.your-pallet-name]</span>
+<span class="hljs-attr">default_features</span> = <span class="hljs-literal">false</span>
+<span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/your-username/your-pallet'</span>
+<span class="hljs-attr">branch</span> = <span class="hljs-string">'master'</span>
 
-<span class="token comment"># You may choose a specific commit or tag instead of branch</span>
-<span class="token comment"># rev = '&lt;git-commit>'</span>
-<span class="token comment"># tag = '&lt;some tag></span>
+<span class="hljs-comment"># You may choose a specific commit or tag instead of branch</span>
+<span class="hljs-comment"># rev = '&lt;git-commit&gt;'</span>
+<span class="hljs-comment"># tag = '&lt;some tag&gt;</span>
 </code></pre>
 <p>Compile one more time and notice that Cargo now grabs your pallet from GitHub
 instead of using the local files.</p>
