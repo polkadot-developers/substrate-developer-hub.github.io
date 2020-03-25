@@ -33,7 +33,8 @@
       "development/module/events",
       "development/module/off-chain-workers",
       "development/module/fees",
-      "development/module/tests"
+      "development/module/tests",
+      "development/module/debugging"
     ],
     "Smart Contracts": [
       "conceptual/runtime/contracts/index",
