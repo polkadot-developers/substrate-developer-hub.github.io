@@ -232,7 +232,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "< 1",
                 prerequisite: false,
-                version: "v2.0.0-alpha.3",
+                version: "2.0.0-alpha.3",
                 href: `${docUrl(
                   "next/tutorials/creating-your-first-substrate-chain/"
                 )}`
@@ -250,7 +250,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "1",
                 prerequisite: true,
-                version: "v2.0.0-alpha.3",
+                version: "2.0.0-alpha.3",
                 href: `${docUrl(
                   "next/tutorials/build-a-dapp"
                 )}`
@@ -269,7 +269,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "2",
                 prerequisite: false,
-                version: "v2.0.0-alpha.3",
+                version: "2.0.0-alpha.3",
                 href: `${docUrl(
                   "next/tutorials/start-a-private-network/"
                 )}`
@@ -286,7 +286,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "4",
                 prerequisite: false,
-                version: "2.0-3e65111",
+                version: "2.0.0-alpha.3",
                href:
                   "https://substrate-developer-hub.github.io/substrate-contracts-workshop/"
               }
@@ -317,7 +317,7 @@ class Tutorials extends React.Component {
                 difficulty: "medium",
                 length: "2",
                 prerequisite: false,
-                version: "2.0-3e65111",
+                version: "2.0.0-alpha.3",
                 href: `${docUrl(
                   "tutorials/adding-a-module-to-your-runtime/")}`
               },
@@ -335,7 +335,7 @@ class Tutorials extends React.Component {
                 difficulty: "medium",
                 length: "2",
                 prerequisite: false,
-                version: "2.0-3e65111",
+                version: "2.0.0-alpha.3",
                 href: `${docUrl("tutorials/creating-a-runtime-module/")}`
               },
               {
@@ -366,7 +366,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "2",
                 prerequisite: false,
-                version: "2.0-3e65111",
+                version: "2.0.0-alpha.3",
                 href: `${docUrl("tutorials/substrate-front-end/")}`
               },
               {
@@ -381,7 +381,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "< 1",
                 prerequisite: false,
-                version: "2.0-3e65111",
+                version: "2.0.0-alpha.3",
                 href: `${docUrl("next/tutorials/visualizing-node-metrics/")}`
               },
               {
