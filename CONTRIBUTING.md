@@ -4,8 +4,9 @@
 
 # Where to Contribute?
 
-We still welcome your contributions! The new home for substrate documentation is https://github.com/substrate-developer-hub/substrate-cms Please make your PR there. That content will be live around March 26
+We still welcome your contributions! The new home for substrate website is https://github.com/substrate-developer-hub/substrate-cms Please make your PR there. That content will be live around March 26.
 
+Substrate documentation lives in the [knowledge base](https://github.com/substrate-developer-hub/knowledge-base).
 
 ## Former Contribution Guidelines
 
