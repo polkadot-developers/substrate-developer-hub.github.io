@@ -38,150 +38,150 @@ class Tutorials extends React.Component {
     const FeaturedTutorialCards = props =>
       props.data.map(tutorial => (
         <a href={tutorial.href} target="_blank" className="a_wrapper">
-        <Col xl={3} lg={4} md={6} sm={12} className="mb-5 d-flex align-items-stretch">
-          <Card>
-            <Card.Img
-              variant="top"
-              src={
-                tutorial.img
-                  ? tutorial.img
-                  : `${baseUrl}img/substrate-placeholder.png`
-              }
-            />
-            <Card.Body className="d-flex flex-column">
-              <Card.Title>{tutorial.title}</Card.Title>
-              <Card.Text>{tutorial.text}</Card.Text>
-              <div className="mt-auto">
-                <Badge
-                  variant={
-                    tutorial.difficulty == `hard`
-                      ? `danger`
-                      : tutorial.difficulty == `medium`
-                      ? `warning`
-                      : `success`
-                  }
-                  className="m-1"
+          <Col xl={3} lg={4} md={6} sm={12} className="mb-5 d-flex align-items-stretch">
+            <Card>
+              <Card.Img
+                variant="top"
+                src={
+                  tutorial.img
+                    ? tutorial.img
+                    : `${baseUrl}img/substrate-placeholder.png`
+                }
+              />
+              <Card.Body className="d-flex flex-column">
+                <Card.Title>{tutorial.title}</Card.Title>
+                <Card.Text>{tutorial.text}</Card.Text>
+                <div className="mt-auto">
+                  <Badge
+                    variant={
+                      tutorial.difficulty == `hard`
+                        ? `danger`
+                        : tutorial.difficulty == `medium`
+                          ? `warning`
+                          : `success`
+                    }
+                    className="m-1"
+                  >
+                    {tutorial.difficulty.charAt(0).toUpperCase() +
+                      tutorial.difficulty.slice(1)}
+                  </Badge>
+                  <Badge
+                    variant={
+                      tutorial.length > 4
+                        ? `danger`
+                        : tutorial.length > 2
+                          ? `warning`
+                          : `success`
+                    }
+                    className="m-1"
+                  >
+                    {tutorial.length} Hour{tutorial.length > 1 ? `s` : ``}
+                  </Badge>
+                  <Badge
+                    variant={
+                      tutorial.prerequisite == true ? `warning` : `success`
+                    }
+                    className="m-1"
+                  >
+                    {tutorial.prerequisite == true
+                      ? `Prerequisites`
+                      : `No Prerequisites`}
+                  </Badge>
+                  <Badge
+                    variant={
+                      tutorial.version <= 1
+                        ? `danger`
+                        : `warning`
+                    }
+                    className="m-1"
+                  >
+                    {`v`}{tutorial.version}
+                  </Badge>
+                </div>
+              </Card.Body>
+              <Card.Footer className="text-center">
+                <Button
+                  variant="secondary"
+                  className="primary-color"
+                  href={tutorial.href}
+                  target="_blank"
                 >
-                  {tutorial.difficulty.charAt(0).toUpperCase() +
-                    tutorial.difficulty.slice(1)}
-                </Badge>
-                <Badge
-                  variant={
-                    tutorial.length > 4
-                      ? `danger`
-                      : tutorial.length > 2
-                      ? `warning`
-                      : `success`
-                  }
-                  className="m-1"
-                >
-                  {tutorial.length} Hour{tutorial.length > 1 ? `s` : ``}
-                </Badge>
-                <Badge
-                  variant={
-                    tutorial.prerequisite == true ? `warning` : `success`
-                  }
-                  className="m-1"
-                >
-                  {tutorial.prerequisite == true
-                    ? `Prerequisites`
-                    : `No Prerequisites`}
-                </Badge>
-                <Badge
-                  variant={
-                    tutorial.version <= 1
-                    ? `danger`
-                    : `warning`
-                  }
-                  className="m-1"
-                >
-                   {`v`}{tutorial.version}
-                </Badge>
-              </div>
-            </Card.Body>
-            <Card.Footer className="text-center">
-              <Button
-                variant="secondary"
-                className="primary-color"
-                href={tutorial.href}
-                target="_blank"
-              >
-                Try it now!
+                  Try it now!
               </Button>
-            </Card.Footer>
-          </Card>
-        </Col>
+              </Card.Footer>
+            </Card>
+          </Col>
         </a>
       ));
 
-      const OtherTutorialCards = props =>
+    const OtherTutorialCards = props =>
       props.data.map(tutorial => (
         <a href={tutorial.href} target="_blank" className="a_wrapper">
-        <Col xl={3} lg={4} md={6} sm={12} className="mb-5 d-flex align-items-stretch">
-          <Card>
-            <Card.Body className="d-flex flex-column">
-              <Card.Title>{tutorial.title}</Card.Title>
-              <Card.Text>{tutorial.text}</Card.Text>
-              <div className="mt-auto">
-                <Badge
-                  variant={
-                    tutorial.difficulty == `hard`
-                      ? `danger`
-                      : tutorial.difficulty == `medium`
-                      ? `warning`
-                      : `success`
-                  }
-                  className="m-1"
+          <Col xl={3} lg={4} md={6} sm={12} className="mb-5 d-flex align-items-stretch">
+            <Card>
+              <Card.Body className="d-flex flex-column">
+                <Card.Title>{tutorial.title}</Card.Title>
+                <Card.Text>{tutorial.text}</Card.Text>
+                <div className="mt-auto">
+                  <Badge
+                    variant={
+                      tutorial.difficulty == `hard`
+                        ? `danger`
+                        : tutorial.difficulty == `medium`
+                          ? `warning`
+                          : `success`
+                    }
+                    className="m-1"
+                  >
+                    {tutorial.difficulty.charAt(0).toUpperCase() +
+                      tutorial.difficulty.slice(1)}
+                  </Badge>
+                  <Badge
+                    variant={
+                      tutorial.length > 4
+                        ? `danger`
+                        : tutorial.length > 2
+                          ? `warning`
+                          : `success`
+                    }
+                    className="m-1"
+                  >
+                    {tutorial.length} Hour{tutorial.length > 1 ? `s` : ``}
+                  </Badge>
+                  <Badge
+                    variant={
+                      tutorial.prerequisite == true ? `warning` : `success`
+                    }
+                    className="m-1"
+                  >
+                    {tutorial.prerequisite == true
+                      ? `Prerequisites`
+                      : `No Prerequisites`}
+                  </Badge>
+                  <Badge
+                    variant={
+                      tutorial.version <= 1
+                        ? `danger`
+                        : `warning`
+                    }
+                    className="m-1"
+                  >
+                    {`v`}{tutorial.version}
+                  </Badge>
+                </div>
+              </Card.Body>
+              <Card.Footer className="text-center">
+                <Button
+                  variant="secondary"
+                  className="primary-color"
+                  href={tutorial.href}
+                  target="_blank"
                 >
-                  {tutorial.difficulty.charAt(0).toUpperCase() +
-                    tutorial.difficulty.slice(1)}
-                </Badge>
-                <Badge
-                  variant={
-                    tutorial.length > 4
-                      ? `danger`
-                      : tutorial.length > 2
-                      ? `warning`
-                      : `success`
-                  }
-                  className="m-1"
-                >
-                  {tutorial.length} Hour{tutorial.length > 1 ? `s` : ``}
-                </Badge>
-                <Badge
-                  variant={
-                    tutorial.prerequisite == true ? `warning` : `success`
-                  }
-                  className="m-1"
-                >
-                  {tutorial.prerequisite == true
-                    ? `Prerequisites`
-                    : `No Prerequisites`}
-                </Badge>
-                <Badge
-                  variant={
-                    tutorial.version <= 1
-                    ? `danger`
-                    : `warning`
-                  }
-                  className="m-1"
-                >
-                  {`v`}{tutorial.version}
-                </Badge>
-              </div>
-            </Card.Body>
-            <Card.Footer className="text-center">
-              <Button
-                variant="secondary"
-                className="primary-color"
-                href={tutorial.href}
-                target="_blank"
-              >
-                Try it now!
+                  Try it now!
               </Button>
-            </Card.Footer>
-          </Card>
-        </Col>
+              </Card.Footer>
+            </Card>
+          </Col>
         </a>
       ));
 
@@ -234,7 +234,7 @@ class Tutorials extends React.Component {
                 prerequisite: false,
                 version: "2.0.0-alpha.3",
                 href: `${docUrl(
-                  "next/tutorials/creating-your-first-substrate-chain/"
+                  "tutorials/creating-your-first-substrate-chain/"
                 )}`
               },
               {
@@ -252,7 +252,7 @@ class Tutorials extends React.Component {
                 prerequisite: true,
                 version: "2.0.0-alpha.3",
                 href: `${docUrl(
-                  "next/tutorials/build-a-dapp"
+                  "tutorials/build-a-dapp"
                 )}`
               },
               {
@@ -271,7 +271,7 @@ class Tutorials extends React.Component {
                 prerequisite: false,
                 version: "2.0.0-alpha.3",
                 href: `${docUrl(
-                  "next/tutorials/start-a-private-network/"
+                  "tutorials/start-a-private-network/"
                 )}`
               },
               {
@@ -287,7 +287,7 @@ class Tutorials extends React.Component {
                 length: "4",
                 prerequisite: false,
                 version: "2.0.0-alpha.3",
-               href:
+                href:
                   "https://substrate-developer-hub.github.io/substrate-contracts-workshop/"
               }
             ]}
@@ -311,7 +311,7 @@ class Tutorials extends React.Component {
                 ),
                 text: (
                   <translate>
-                  "Add the Contracts pallet or other FRAME pallets to your Substrate node template."
+                    "Add the Contracts pallet or other FRAME pallets to your Substrate node template."
                   </translate>
                 ),
                 difficulty: "medium",
@@ -375,7 +375,7 @@ class Tutorials extends React.Component {
                 ),
                 text: (
                   <translate>
-                  "Learn how to visualize the metrics that Substrate records using Prometheus."
+                    "Learn how to visualize the metrics that Substrate records using Prometheus."
                   </translate>
                 ),
                 difficulty: "easy",
