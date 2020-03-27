@@ -1,5 +1,5 @@
 ---
-title: Creating Your First Substrate chain`
+title: Creating Your First Substrate Chain
 ---
 
 <meta http-equiv="Refresh" content="0; url=./creating-your-first-substrate-chain/" />
