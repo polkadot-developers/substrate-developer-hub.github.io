@@ -104,9 +104,6 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>March 24th</strong>, Kirill Taran, will give a code tour and demonstration of using Substrate's EVM pallet to run Ethereum contracts on a Substrate chain. Then we'll hear from Purestake's Derek about what Purestake is building and get an update on Moonbeam Dex.
-							</p>
-							<p>
 								On <strong>March 31st</strong>, Seun LanLege and Joshy Orndorff, will talk about all things Consensus in Substrate. As a demo, we'll play with a node configured for manual consensus.
 							</p>
 							<p>
