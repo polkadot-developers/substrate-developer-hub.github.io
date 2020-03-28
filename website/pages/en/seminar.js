@@ -194,7 +194,29 @@ function Seminar(props) {
 								/>
 								<a
 									className='video-play'
-									href='https://www.youtube.com/watch?v=MjOvVhc1oXw&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOShttps://www.youtube.com/watch?v=Z-ZH7wKW094&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									href='https://www.youtube.com/watch?v=lXw6GTNh73Y&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									target='_blank'
+								/>
+							</section>
+							<section className='video-details'>
+								<h4 className='p-color'>Moonbeam and EVM Pallet</h4>
+								<p>
+									Derek from Purestake tells us about their Moonbeam contract chain, and Parity's Kirill Taran demonstrates using the EVM pallet.
+								</p>
+							</section>
+						</div>
+
+						<div className='col-md-4'>
+							<section className='video-cover video-cover-xs'>
+								<div
+									className='background-image-holder'
+									style={{
+										backgroundImage: `url('/img/seminar-t.jpg' )`
+									}}
+								/>
+								<a
+									className='video-play'
+									href='https://www.youtube.com/watch?v=MjOvVhc1oXw&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
 							</section>
@@ -228,27 +250,6 @@ function Seminar(props) {
 							</section>
 						</div>
 
-						<div className='col-md-4'>
-							<section className='video-cover video-cover-xs'>
-								<div
-									className='background-image-holder'
-									style={{
-										backgroundImage: `url('/img/seminar-t.jpg' )`
-									}}
-								/>
-								<a
-									className='video-play'
-									href='https://www.youtube.com/watch?v=eAXbcgWSzqc&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
-									target='_blank'
-								/>
-							</section>
-							<section className='video-details'>
-								<h4 className='p-color'>VuePolkadot, CLE Coin, Staking Demo</h4>
-								<p>
-									Matej and Victor show their work on VuePolkadot, Joshy talks about CLE Coin, a blockchain for Clevelanders, and Kian gives a demo of staking and offchain Phragmen.
-								</p>
-							</section>
-						</div>
 					</div>
 
 				</div>
