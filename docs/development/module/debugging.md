@@ -2,15 +2,15 @@
 title: Debugging
 ---
 
-Debugging is a necessity in all walks of software development, and blockchain is no exception. Most 
-of the same tools used for general purpose Rust debugging also apply to Substrate. However, there 
+Debugging is a necessity in all walks of software development, and blockchain is no exception. Most
+of the same tools used for general purpose Rust debugging also apply to Substrate. However, there
 are some restrictions when operating inside of a `no_std` environment like the Substrate runtime.
 
 ## Substrate's Own `print` Function
 
-To facilitate the debugging of the runtime, Substrate provides extra tools for `Print` debugging 
-(or tracing). You can use the 
-[`print` function](https://substrate.dev/rustdocs/master/sp_runtime/fn.print.html) to log the 
+To facilitate the debugging of the runtime, Substrate provides extra tools for `Print` debugging
+(or tracing). You can use the
+[`print` function](https://substrate.dev/rustdocs/master/sp_runtime/fn.print.html) to log the
 status of the runtime execution.
 
 ``` rust
@@ -39,8 +39,7 @@ Start the chain using the `RUST_LOG` environment variable to see the print logs.
 RUST_LOG=runtime=debug ./target/release/node-template --dev
 ```
 
-The values are printed in the terminal or the standard output every time that the
-runtime function gets called.
+The values are printed in the terminal or the standard output if the Error gets triggered.
 
 ``` sh
 2020-01-01 00:00:00 tokio-blocking-driver DEBUG runtime  Execute do_something
@@ -49,11 +48,17 @@ runtime function gets called.
 
 ## Printable Trait
 
-The `print` function works with any type that implements the 
-[`Printable` trait](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Printable.html). 
-Substrate implements this trait for some types (`u8`, `u32`, `u64`, `usize`, `&[u8]`, `&str`) by 
-default. You can also implement it for your own custom types. Here is an example of implementing it 
-for a pallet's `Error` type.
+The Printable trait is meant to be a way to print from the runtime in `no_std` and in `std`.
+The `print` function works with any type that implements the
+[`Printable` trait](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Printable.html).
+Substrate implements this trait for some types (`u8`, `u32`, `u64`, `usize`, `&[u8]`, `&str`) by
+default. You can also implement it for your own custom types. Here is an example of implementing it
+for a pallet's `Error` type using the node-template as the example codebase.
+
+```rust
+use sp_runtime::traits::Printable;
+use sp_runtime::print;
+```
 
 ``` rust
 // The pallet's errors
@@ -69,34 +74,56 @@ decl_error! {
 impl<T: Trait> Printable for Error<T> {
 	fn print(&self) {
 		match self {
-			Error::NoneValue => "Unexpected value".print(),
-			Error::StorageOverflow => "Value exceeded".print(),
-			_ => "Invalid case".print(),
-		}
-	}
-}
-
-```
-
-``` rust
-impl traits::Printable for DispatchError {
-	fn print(&self) {
-		"DispatchError".print();
-		match self {
-			Self::Other(err) => err.print(),
-			Self::CannotLookup => "Can not lookup".print(),
-			Self::BadOrigin => "Bad origin".print(),
-			Self::Module { index, error, message } => {
-				index.print();
-				error.print();
-				if let Some(msg) = message {
-					msg.print();
-				}
-			}
+			Error::NoneValue => "Invalid Value".print(),
+			Error::StorageOverflow => "Value Exceeded and Overflowed".print(),
+			_ => "Invalid Error Case".print(),
 		}
 	}
 }
 ```
+
+```rust
+/// takes no parameters, attempts to increment storage value, and possibly throws an error
+pub fn cause_error(origin) -> dispatch::DispatchResult {
+	// Check it was signed and get the signer. See also: ensure_root and ensure_none
+	let _who = ensure_signed(origin)?;
+
+	print("My Test Message");
+
+	match Something::get() {
+		None => {
+			print(Error::<T>::NoneValue);
+			Err(Error::<T>::NoneValue)?
+		}
+		Some(old) => {
+			let new = old.checked_add(1).ok_or(
+				{
+					print(Error::<T>::StorageOverflow);
+					Error::<T>::StorageOverflow
+				})?;
+			Something::put(new);
+			Ok(())
+		},
+	}
+}
+```
+Run the node binary with the RUST_LOG environment variable to print the values.
+``` sh
+RUST_LOG=runtime=debug ./target/release/node-template --dev
+```
+The values are printed in the terminal or the standard output every time that the
+runtime function gets called.
+
+```rust
+2020-01-01 tokio-blocking-driver DEBUG runtime  My Test Message  <-- str implements Printable by default
+2020-01-01 tokio-blocking-driver DEBUG runtime  Invalid Value    <-- the custom string from NoneValue
+2020-01-01 tokio-blocking-driver DEBUG runtime  DispatchError
+2020-01-01 tokio-blocking-driver DEBUG runtime  8
+2020-01-01 tokio-blocking-driver DEBUG runtime  0                <-- index value from the Error enum definition
+2020-01-01 tokio-blocking-driver DEBUG runtime  NoneValue        <-- str which holds the name of the ident of the error
+```
+> IMPORTANT: Adding many print functions to the runtime will produce a bigger binary and wasm blob
+with debug code not needed in production.
 
 ## If Std
 
