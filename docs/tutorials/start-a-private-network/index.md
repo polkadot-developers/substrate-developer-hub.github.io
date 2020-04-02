@@ -6,7 +6,7 @@ In this tutorial we will learn and practice how to start a blockchain network wi
 
 ## Install the Node Template
 
-You should already have version `v2.0.0-alpha.3` of the [Substrate Node
+You should already have version `v2.0.0-alpha.5` of the [Substrate Node
 Template](https://github.com/substrate-developer-hub/substrate-node-template) compiled on your
 computer from when you completed the [Creating Your First Substrate Chain
 Tutorial](tutorials/creating-your-first-substrate-chain/index.md). If you do not, please complete that

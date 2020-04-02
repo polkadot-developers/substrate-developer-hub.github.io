@@ -11,9 +11,16 @@ pre-defined (and definitely not private!) keys known as Alice and Bob.
 
 ## Alice Starts First
 
-Alice (or whomever is playing her) should run this command from node-template repository root.
+Alice (or whomever is playing her) should run these commands from node-template repository root.
+
+> Here we've explicitly shown the `purge-chain` command. In the future we will omit this
+> You should purge old chain data any time you're trying to start a new network.
 
 ```bash
+# Purge any chain data from previous runs
+# You will be prompted to type `y`
+./target/release/node-template purge-chain
+
 # Start Alice's node
 ./target/release/node-template \
   --base-path /tmp/alice \
@@ -43,7 +50,7 @@ When the node starts you should see output similar to this.
 
 ```
 2020-03-11 09:39:14 Substrate Node
-2020-03-11 09:39:14   version 2.0.0-alpha.3-5b41f0b-x86_64-linux-gnu
+2020-03-11 09:39:14   version 2.0.0-alpha.5-2ddc70d-x86_64-linux-gnu
 2020-03-11 09:39:14   by Anonymous, 2017-2020
 2020-03-11 09:39:14 Chain specification: Local Testnet
 2020-03-11 09:39:14 Node name: Alice
@@ -95,7 +102,7 @@ Apps UI, by default, connects to the Kusama network. To configure Apps UI to con
     ![Select Network](/docs/assets/private-network-select-network.png)
 
   - To connect to a custom node and port, you just need to specify the endpoint by choosing `custom
-  endpoint` and type in your own endpoint. By this way you can use a single instance of Apps UI to
+  endpoint` and type in your own endpoint. In this way you can use a single instance of Apps UI to
   connect to various nodes.
 
     ![Custom Endpoint](/docs/assets/private-network-custom-endpoint.png)
@@ -136,7 +143,7 @@ Most of these options are already explained above, but there are a few points wo
 * Bob has added the `--bootnodes` flag and specified a single boot node, namely Alice's. He must correctly specify these three pieces of information which Alice can supply for him.
   * Alice's IP Address, in the form `127.0.0.1`
   * Alice's Port, probably `30333`
-  * Alice's Peer ID, copied from the log output. (`QmWirz83uJTFEUVzoshXUf2SY2nTSJetd4nJGkZ7kozZPb`
+  * Alice's Peer ID, copied from her log output. (`QmWirz83uJTFEUVzoshXUf2SY2nTSJetd4nJGkZ7kozZPb`
   in the example output above.)
 
 If all is going well, after a few seconds, the nodes should peer together and start producing blocks.
