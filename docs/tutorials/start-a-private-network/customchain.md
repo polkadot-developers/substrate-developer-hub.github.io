@@ -14,7 +14,7 @@ Last time around, we used `--chain local` which is a predefined "chain spec" tha
 specified as validators along with many other useful defaults.
 
 Rather than writing our chain spec completely from scratch, we'll just make a few modifications to
-the the one we used before. To start we need to export the chain spec to a file named
+the one we used before. To start we need to export the chain spec to a file named
 `customSpec.json`. Remember, further details about all of these commands are available by running
 `node-template --help`.
 
@@ -25,7 +25,7 @@ $ ./target/release/node-template build-spec --chain local > customSpec.json
 ```
 
 The file we just created contains several fields, and you can learn a lot by exploring them. By far
-the largest field is a single hex number that is the Wasm binary of our runtime. It is part of what
+the largest field is a single binary blob that is the Wasm binary of our runtime. It is part of what
 you built earlier when you ran the `cargo build` command.
 
 The portion of the file we're interested in is the Aura authorities used for creating blocks,
@@ -124,7 +124,7 @@ You should see the console outputs something as follows:
 
 ```bash
 2020-01-10 16:50:24 Substrate Node
-2020-01-10 16:50:24   version 2.0.0-alpha.3-5b41f0b-x86_64-linux-gnu
+2020-01-10 16:50:24   version 2.0.0-alpha.5-2ddc70d-x86_64-linux-gnu
 2020-01-10 16:50:24   by Anonymous, 2017, 2018
 2020-01-10 16:50:24 Chain specification: Local Testnet
 2020-01-10 16:50:24 Node name: MyNode01
@@ -144,7 +144,7 @@ You should see the console outputs something as follows:
 ## Add Keys to Keystore
 
 Once your node is running, you will again notice that no blocks are being produced. At this point,
-you need to add your keys into the keystore.
+you need to add your keys into the keystore. Remember you will need to complete these steps for each node in your network.
 
 ### Option 1: Using Polkadot-JS App UI
 
@@ -169,6 +169,8 @@ suri: <your mnemonic phrase> (eg. clip organ olive upper oak void inject side su
 publicKey: <your raw ed25519 key> (eg. 0xb48004c6e1625282313b07d1c9950935e86894a2e4f21fb1ffee9854d180c781)
 ```
 > If you generated your keys with the Apps UI you will not know your raw public key. In this case you may use your SS58 address (`5G9NWJ5P9uk7am24yCKeLZJqXWW6hjuMyRJDmw4ofqxG8Js2`) instead.
+
+> Remember to switch the UIs connection to the second node before repeating these steps.
 
 ### Option 2: Using CLI
 
@@ -262,9 +264,9 @@ validators added their grandpa keys into their keystores.
 
 Congratulations! You've started your own blockchain!
 
-In this tutorial you've learned to compile the node-template, generate your own keypairs, create a
+In this tutorial you've learned to generate your own keypairs, create a
 custom chain spec that uses those keypairs, and start a private network based on your custom chain
-spec and the node-template.
+spec.
 
 ### Learn More
 
