@@ -24,7 +24,7 @@ $ ./target/release/node-template --dev
 
 2020-03-11 07:42:55 Running in --dev mode, RPC CORS has been disabled.
 2020-03-11 07:42:55 Substrate Node
-2020-03-11 07:42:55   version 2.0.0-alpha.3-5b41f0b-x86_64-linux-gnu
+2020-03-11 07:42:55   version 2.0.0-alpha.5-da88e4a-x86_64-linux-gnu
 2020-03-11 07:42:55   by Anonymous, 2017-2020
 2020-03-11 07:42:55 Chain specification: Development
 2020-03-11 07:42:55 Node name: deranged-faucet-4432
@@ -70,7 +70,7 @@ Success", and of course Charlie's balance will increase.
 ## Create Your Own Account
 
 You can create your own account by selecting the `+ Add Account` button. It won't have any tokens
-yet, but you can send some from Alice or any other pre-funded account. Only you will (and your
+yet, but you can send some from Alice or any other pre-funded account. Only you (and your
 browser) will know the private key for your own account which means nobody can transfer those tokens
 except you.
 
