@@ -2,53 +2,63 @@
 title: "Adding a Pallet to Your Runtime"
 ---
 
-The [Substrate node template](https://github.com/paritytech/substrate/tree/master/bin/node-template) provides a minimal working runtime which you can use to quickly get started building your own custom blockchain. However, in the attempts to remain minimal, it does not include most of the pallets from ([FRAME](overview/glossary.md#frame-framework-runtime-aggregation-modularised-entities)).
+The [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) provides a minimal working runtime which you can use to quickly get started building your own custom blockchain. However, in the attempts to remain minimal, it does not include most of the pallets from ([FRAME](overview/glossary.md#frame-framework-runtime-aggregation-modularised-entities)).
 
-This guide will show you how you can add the [Contracts pallet](https://substrate.dev/rustdocs/master/pallet_contracts/index.html) to your runtime in order to allow your blockchain to support Wasm smart contracts. You can follow similar patterns to add additional FRAME pallets to your runtime, however you should note that each pallet can be a little different in terms of the specific settings needed to import and use it correctly.
+This guide will show you how you can add the [Contracts pallet](https://substrate.dev/rustdocs/v2.0.0-alpha.5/pallet_contracts/index.html) to your runtime in order to allow your blockchain to support Wasm smart contracts. You can follow similar patterns to add additional FRAME pallets to your runtime, however you should note that each pallet is a little different in terms of the specific configuration settings needed to use it correctly.
 
-## Prerequisites
+## Install the Node Template
 
-Before you can follow this guide, you need to make sure that your computer is set up to work with and build Substrate.
+You should already have version `v2.0.0-alpha.5` of the [Substrate Node
+Template](https://github.com/substrate-developer-hub/substrate-node-template) compiled on your
+computer from when you completed the [Creating Your First Substrate Chain
+Tutorial](tutorials/creating-your-first-substrate-chain/index.md). If you do not, please complete that
+tutorial.
 
-To install all the prerequisites needed for the Substrate build environment, like Rust, you can run:
+> Experienced developers who truly prefer to skip that tutorial, you may install the node template according to the instructions in its readme.
 
-```bash
-curl https://getsubstrate.io -sSf | bash -s -- --fast
+## File Structure
+
+We will now modify the `substrate-node-template` to include the contracts pallet.
+
+Open the `substrate-node-template` in your favorite code editor. We will be editing two files:
+`runtime/src/lib.rs`, and `runtime/Cargo.toml`.
+
 ```
-
-#### Get the Node Template
-
-```bash
-git clone -b v2.0.0-alpha.3 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+substrate-node-template
+|
++-- runtime
+|   |
+|   +-- Cargo.toml    <-- One change in this file
+|   |
+|   +-- build.rs
+|   |
+|   +-- src
+|       |
+|       +-- lib.rs     <-- Most changes in this file
+|
++-- pallets
+|
++-- scripts
+|
++-- node
+|
++-- ...
 ```
-
-#### Run your node.
-
-It will take a little while for Rust to build your node, but once it is complete, you should be able to start your node with:
-
-```bash
-cd substrate-node-template/
-cargo run --release -- --dev
-```
-
-If you have gotten this far, then you are ready to start adding the new pallet to your runtime.
-
-Remember to stop your node with `control + C`!
 
 ## Importing a Pallet Crate
 
 The first thing you need to do to add the Contracts pallet is to import the `pallet-contracts` crate in your runtime's `Cargo.toml` file. If you want a proper primer into Cargo References, you should check out [their official documentation](https://doc.rust-lang.org/cargo/reference/index.html).
 
-Open `substrate-node-template/runtime/Cargo.toml` and you will see a file which lists all the dependencies your runtime has. For example, it depends on the [Balances pallet](https://substrate.dev/rustdocs/master/pallet_balances/index.html):
+Open `substrate-node-template/runtime/Cargo.toml` and you will see a list of
+all the dependencies your runtime has. For example, it depends on the [Balances pallet](https://substrate.dev/rustdocs/v2.0.0-alpha.5/pallet_balances/index.html):
 
 **`runtime/Cargo.toml`**
 
 ```TOML
 [dependencies.balances]
-default_features = false
-git = 'https://github.com/paritytech/substrate.git'
+default-features = false
 package = 'pallet-balances'
-rev = '<git-commit>'
+version = '2.0.0-alpha.5'
 ```
 
 ### Crate Features
@@ -92,44 +102,32 @@ To see how these features actually get used in the runtime code, we can open the
 #[cfg(feature = "std")]
 include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
 
-use sp_std::prelude::*;
-/* --snip-- */
-
-// A few exports that help ease life for downstream crates.
-#[cfg(any(feature = "std", test))]
-pub use sp_runtime::BuildStorage;
-pub use timestamp::Call as TimestampCall;
-pub use balances::Call as BalancesCall;
-/* --snip-- */
+// --snip--
 ```
 
 You can see that at the top of the file, we define that we will use `no_std` when we are *not* using the `std` feature. A few lines lower you can see `#[cfg(feature = "std")]` above the `wasm_binary.rs` import, which is a flag saying to only import the WASM binary when we have enabled the `std` feature.
 
 ### Importing the Contracts Pallet Crate
 
-Okay, now that we have covered the basics of crate features, we can actually import the Contracts pallet. The Contracts pallet is probably the most complicated pallet in FRAME, so it makes for a good example of some of the trickiness that can be involved when adding additional pallets. To give you a hint as to what is to come, you should take a look at the [`Cargo.toml` file for the Contracts pallet](https://github.com/paritytech/substrate/blob/master/frame/contracts/Cargo.toml).
+Okay, now that we have covered the basics of crate features, we can actually import the Contracts pallet. The Contracts pallet is probably the most complicated pallet in FRAME, so it makes for a good example of some of the trickiness that can be involved when adding additional pallets.
 
-First we will add the new dependency by simply copying an existing pallet, and changing the values. So based on the `balances` import shown above, my `contracts` import will look like:
+First we will add the new dependency by simply copying an existing pallet, and changing the values. So based on the `balances` import shown above, the `contracts` import will look like:
 
 **`runtime/Cargo.toml`**
 
 ```TOML
 [dependencies.contracts]
 default_features = false
-git = 'https://github.com/paritytech/substrate.git'
 package = 'pallet-contracts'
-rev = '013c1ee167354a08283fb69915fda56a62fee943'
-version = '2.0.0-alpha.3'
+version = '2.0.0-alpha.5'
 
 [dependencies.contracts-primitives]
 default_features = false
-git = 'https://github.com/paritytech/substrate.git'
 package = 'pallet-contracts-primitives'
-rev = '013c1ee167354a08283fb69915fda56a62fee943'
-version = '2.0.0-alpha.3'
+version = '2.0.0-alpha.5'
 ```
 
-You [can see](https://github.com/paritytech/substrate/blob/master/frame/contracts/Cargo.toml) that the Contracts pallet has `std` feature, thus we need to add that feature to our runtime:
+As with other pallets, the Contracts pallet has an `std` feature. We should build its `std` feature when the runtime is built with its own `std` feature. Add the following two lines to the runtime's `std` feature.
 
 **`runtime/Cargo.toml`**
 
@@ -147,65 +145,44 @@ std = [
 If you forget to set the feature, when building to your native binaries you will get errors like:
 
 ```rust
-error[E0603]: function `memory_teardown` is private
-  --> ~/.cargo/git/checkouts/substrate-7e08433d4c370a21/90fc723/primitives/sr-sandbox/src/../without_std.rs:53:12
+error[E0425]: cannot find function `memory_teardown` in module `sandbox`
+  --> ~/.cargo/registry/src/github.com-1ecc6299db9ec823/sp-sandbox-0.8.0-alpha.5/src/../without_std.rs:53:12
    |
 53 |         sandbox::memory_teardown(self.memory_idx);
-   |                  ^^^^^^^^^^^^^^^
+   |                  ^^^^^^^^^^^^^^^ not found in `sandbox`
 
-error[E0603]: function `memory_new` is private
-  --> ~/.cargo/git/checkouts/substrate-7e08433d4c370a21/90fc723/primitives/sr-sandbox/src/../without_std.rs:72:18
+error[E0425]: cannot find function `memory_new` in module `sandbox`
+  --> ~/.cargo/registry/src/github.com-1ecc6299db9ec823/sp-sandbox-0.8.0-alpha.5/src/../without_std.rs:72:18
    |
 72 |         match sandbox::memory_new(initial, maximum) {
-   |                        ^^^^^^^^^^
+   |  
 
-error[E0603]: function `memory_get` is private
-
-error: aborting due to previous errors
+...
 ```
 
-But since you did not forget, you should be able to sanity check that everything compiles correctly with:
+Now is a good time to check that everything compiles correctly so far with:
 
 ```bash
-cargo run --release -- --dev
+cargo check
 ```
 
 ## Adding the Contracts Pallet
 
-Now that we have successfully imported the Contracts pallet crate, we need to add it to our Runtime. The first thing we will add to our runtime is the Gas type.
+Now that we have successfully imported the Contracts pallet crate, we need to add it to our Runtime. Different pallets will require you to `use` different thing. For the contracts pallet we will use the `Gas` type. Add this line along with the other `pub use` statements at the beginning of your runtime.
 
 **`runtime/src/lib.rs`**
 
 ```rust
-//! The Substrate Node Template runtime. This can be compiled with `#[no_std]`, ready for Wasm.
-
-#![cfg_attr(not(feature = "std"), no_std)]
-// `construct_runtime!` does a lot of recursion and requires us to increase the limit to 256.
-#![recursion_limit="256"]
-
-// Make the WASM binary available.
-#[cfg(feature = "std")]
-include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
-
-use sp_std::prelude::*;
-/* --snip-- */
-
-// A few exports that help ease life for downstream crates.
-#[cfg(any(feature = "std", test))]
-pub use sp_runtime::BuildStorage;
-pub use timestamp::Call as TimestampCall;
-pub use balances::Call as BalancesCall;
-
 /*** Add This Line ***/
+/// Importing the contracts Gas type
 pub use contracts::Gas;
-/* --snip-- */
 ```
-
-If you have followed our [other basic tutorials](/tutorials), you may remember that we need to implement a `contracts::Trait` and also add `Contracts: contracts,` to our `construct_runtime!` macro.
 
 ### Implementing the Contract Trait
 
-To figure out what we need to implement, you can take a look to the FRAME [`contracts::Trait` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/trait.Trait.html) or the [Contracts pallet source code](https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs). For our runtime, the implementation will look like this:
+Every pallet has a configuration trait called `Trait` that the runtime must implement.
+
+To figure out what we need to implement for this pallet specifically, you can take a look to the FRAME [`contracts::Trait` documentation](https://substrate.dev/rustdocs/v2.0.0-alpha.5/pallet_contracts/trait.Trait.html) or the [Contracts pallet source code](https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs). For our runtime, the implementation will look like this:
 
 **`runtime/src/lib.rs`**
 
@@ -281,9 +258,9 @@ Fortunately, the Balances pallet implements this type, so we can simply referenc
 
 Similarly, `type DetermineContractAddress` requires the trait `ContractAddressFor`. The Contracts pallet itself implements a type with this trait in `contract::SimpleAddressDeterminator`, thus we can use that implementation to satisfy our `contracts::Trait`. At this point, I really recommend you explore the source code of the [Contracts pallet](https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs) if things don't make sense or you want to gain a deeper understanding.
 
-### Adding Contract to the Construct Runtime Macro
+### Adding Contracts to the `construct_runtime!` Macro
 
-Next, we need to add the pallet to the `construct_runtime!` macro. For this, we need to determine the types that the pallet exposes so that we can tell the our runtime that they exist. The complete list of possible types can be found in the [`construct_runtime!` macro documentation](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html).
+Next, we need to add the pallet to the `construct_runtime!` macro. For this, we need to determine the types that the pallet exposes so that we can tell the our runtime that they exist. The complete list of possible types can be found in the [`construct_runtime!` macro documentation](https://substrate.dev/rustdocs/v2.0.0-alpha.5/frame_support/macro.construct_runtime.html).
 
 If we look at the Contracts pallet in detail, we know it has:
 
@@ -314,26 +291,27 @@ construct_runtime!(
 
 Note that not all pallets will expose all of these runtime types, and some may expose more! You always look at the source code of a pallet or the documentation of the pallet to determine which of these types you need to expose.
 
+This is another good time to check that your runtime compiles correctly so far. Although the runtime should compile, the entire node will not (yet). So we will use this command to check just the runtime.
+
+```bash
+cargo check -p node-template-runtime
+```
+
 ### Exposing The Contracts API
 
-We now want to enable an easy way to get the contract's state. It's not required to
-enable RPC calls on the contracts pallet to use it in our chain.
+Some pallets, including the Contracts pallet, expose custom runtime APIs and RPC endpoints. In the case of the Contracts pallet, this enables reading contracts state from off chain.
+
+It's not required to enable the RPC calls on the contracts pallet to use it in our chain.
 However, we'll do it to make calls to our node's storage without making a transaction.
 
-Contracts do not return data at the end of their execution. Due to the nature of blockchains,
-a transaction needs to be valid to get finalized and included in a block before getting the
-current state.
-
-To achieve this, we need to start by adding the required API dependencies.
+We start by adding the required API dependencies in our `Cargo.toml`.
 
 **`runtime/Cargo.toml`**
 ```TOML
 [dependencies.contracts-rpc-runtime-api]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
 package = 'pallet-contracts-rpc-runtime-api'
-rev = '013c1ee167354a08283fb69915fda56a62fee943'
-version = '0.8.0-alpha.3'
+version = '0.8.0-alpha.5'
 ```
 
 **`runtime/Cargo.toml`**
@@ -346,22 +324,19 @@ std = [
 ]
 ```
 
-To get the state of a variable, we have to call a getter function that will
+To get the state of a contract variable, we have to call a getter function that will
 return a `ContractExecResult` wrapper with the current state of the execution.
 
-We need to add the return type to our runtime.
+We need to add the return type to our runtime. Add this with the other `use` statements.
 
 **`runtime/src/lib.rs`**
 ```rust
-/* --snip-- */
-use sp_std::prelude::*;
-
 /*** Add This Line ***/
 use contracts_rpc_runtime_api::ContractExecResult;
 /* --snip-- */
 ```
 
-The next step, is to implement the required functions to handle the returned data.
+We're now ready to implement the contracts runtime API. This happens in the `impl_runtime_apis!` macro near the end of your runtime.
 
 ```rust
 impl_runtime_apis! {
@@ -406,26 +381,28 @@ impl_runtime_apis! {
 }
 ```
 
-## Service Configuration
+This is another good time to check that your runtime compiles correctly so far.
 
-The next thing we need to do is to establish a service configuration for the Contracts pallet.
+```bash
+cargo check -p node-template-runtime
+```
+
+## Updating the Outer Node
+
+At this point we have finished adding a pallet to the runtime. We now turn our attention to the outer node which will often need some corresponding updates. In the case of the Contracts pallet we will add the custom RPC endpoint and a genesis configuration.
+
+### Adding the RPC endpoint
+
+With the proper runtime API exposed. We now add the RPC to the node's service to call
+into that runtime API. Because we are now working in the outer node, we are not building to `no_std` and we don't have to maintain a dedicated `std` feature.
 
 **`node/Cargo.toml`**
 ```toml
 [dependencies]
 #--snip--
 jsonrpc-core = '14.0.5'
-
-#--snip--
-[dependencies.pallet-contracts-rpc]
-git = 'https://github.com/paritytech/substrate.git'
-rev = '013c1ee167354a08283fb69915fda56a62fee943'
-version = '0.8.0-alpha.3'
-
-[dependencies.sc-rpc]
-git = 'https://github.com/paritytech/substrate.git'
-rev = '013c1ee167354a08283fb69915fda56a62fee943'
-version = '2.0.0-alpha.3'
+pallet-contracts-rpc = '0.8.0-alpha.5'
+sc-rpc = '2.0.0-alpha.5'
 ```
 
 **`node/src/service.rs`**
@@ -456,9 +433,11 @@ Substrate provides an RPC to interact with our node. However, it does not contai
     }}
 ```
 
-## Genesis Configuration
+### Genesis Configuration
 
-Not all pallets will have a genesis configuration, but if they do, you can use its documentation to learn about it. For example, [`pallet_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/master/pallet_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contracts pallet. This definition is controlled in `substrate-node-template/src/chain_spec.rs`. We need to modify this file to include the `ContractsConfig` type and the contract price units at the top:
+Not all pallets will have a genesis configuration, but if yours does, you can use its documentation to learn about it. For example, [`pallet_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/v2.0.0-alpha.5/pallet_contracts/struct.GenesisConfig.html) describes all the fields you need to define for the Contracts pallet.
+
+Genesis configurations are controlled in `node/src/chain_spec.rs`. We need to modify this file to include the `ContractsConfig` type and the contract price units at the top:
 
 **`node/src/chain_spec.rs`**
 
@@ -496,16 +475,22 @@ fn testnet_genesis(initial_authorities: Vec<(AuraId, GrandpaId)>,
 
 ## Start Your Upgraded Chain
 
-Now you are ready to compile and run your contract-capable node. We first need to purge the chain to remove the old runtime logic and have the genesis configuration initialized for the Contracts pallet. It is possible to upgrade the chain without purging it but it will remain out of scope for this tutorial.
+Now you are ready to compile and run your contract-capable node. Compile the node in release mode with
 
 ```bash
-cargo run --release -- purge-chain --dev
-cargo run --release -- --dev
+cargo build --release
+```
+
+Before running the chain, we first need to purge the chain to remove the old runtime logic and have the genesis configuration initialized for the Contracts pallet. It is possible to upgrade the chain without purging it but it will remain out of scope for this tutorial.
+
+```bash
+./target/release/node-template purge-chain --dev
+./target/release/node-template --dev
 ```
 
 ## Adding Other FRAME pallets
 
-In this guide, we walked through specifically how to import the Contracts pallet, but as mentioned in the beginning of this guide, each pallet will be a little different. Have no fear, you can always refer to the ["main" Substrate node runtime](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/) which includes nearly every pallet in the FRAME.
+In this guide, we walked through specifically how to import the Contracts pallet, but as mentioned in the beginning of this guide, each pallet will be a little different. Have no fear, you can always refer to the [demonstration Substrate node runtime](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/) which includes nearly every pallet in the FRAME.
 
 In the `Cargo.toml` file of the Substrate node runtime, you will see an example of how to import each of the different pallets, and in the `lib.rs` file you will find how to add each pallet to your runtime. You can basically copy what was done there to your own runtime.
 
@@ -513,8 +498,7 @@ In the `Cargo.toml` file of the Substrate node runtime, you will see an example 
 
 - [A minimalist tutorial on writing your runtime pallet in its own package](creating-a-runtime-module).
 - With your node now capable of running smart contracts, go learn to write your first smart contract in [Substrate Contracts workshop](https://substrate.dev/substrate-contracts-workshop).
-- To learn more about writing your own runtime with a front end, we have a [Substrate Collectables Workshop](https://substrate.dev/substrate-collectables-workshop) for building an end-to-end application.
-- For more information about runtime development tips and patterns, please refer to our [Substrate Recipes](https://substrate.dev/recipes/).
+- [Substrate Recipes](https://substrate.dev/recipes/) offers detailed tutorials  about writing [Runtime APIs](https://substrate.dev/recipes/3-entrees/runtime-api.html) and [Custom RPCs](https://substrate.dev/recipes/3-entrees/custom-rpc.html) like the onse explored in this tutorial.
 - Understand the chain-spec file to customize your [Genesis Configuration](docs/development/deployment/chain-spec).
 
 ### References
