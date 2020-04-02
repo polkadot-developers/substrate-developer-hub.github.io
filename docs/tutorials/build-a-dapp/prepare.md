@@ -4,7 +4,7 @@ title: Prepare to build a dApp
 
 ## Install the Node Template
 
-You should already have version `v2.0.0-alpha.3` of the [Substrate Node
+You should already have version `v2.0.0-alpha.5` of the [Substrate Node
 Template](https://github.com/substrate-developer-hub/substrate-node-template) compiled on your
 computer from when you completed the [Creating Your First Substrate Chain
 Tutorial](tutorials/creating-your-first-substrate-chain/index.md). If you do not, please complete that
@@ -14,8 +14,9 @@ tutorial.
 
 ## Install the Front End Template
 
-This tutorial also uses a ReactJS front end, which we will modify for interacting with our
-custom Substrate blockchain.
+This tutorial also uses a ReactJS front end template, which we will modify for interacting with our
+custom Substrate blockchain. You can use this same template to create front-ends for your own
+projects in the future.
 
 To use the front-end template, you need [Yarn](https://yarnpkg.com), which itself requires  [Node.js](https://nodejs.org/). If you don't have these tools, you may install them from these instructions:
 
@@ -26,7 +27,7 @@ Now you can proceed to set up the front-end template with these commands.
 
 ```bash
 # Clone the code from github
-git clone -b v2.0.0-alpha.3 https://github.com/substrate-developer-hub/substrate-front-end-template
+git clone -b v2.0.0-alpha.5 https://github.com/substrate-developer-hub/substrate-front-end-template
 
 # Install the dependencies
 cd substrate-front-end-template

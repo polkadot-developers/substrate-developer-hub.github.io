@@ -4,22 +4,22 @@ title: Building a Custom Pallet
 
 The Substrate runtime is composed of FRAME pallets. You can think of these pallets as individual
 pieces of logic that define what your blockchain can do! Substrate provides you with a number of
-pre-built pallets built with the FRAME framework.
+pre-built pallets for use in FRAME-based runtimes.
 
 ![Runtime Composition](assets/runtime.png)
 
 For example, FRAME includes a
-[Balances](https://substrate.dev/rustdocs/master/pallet_balances/index.html) pallet that controls
+[Balances](https://substrate.dev/rustdocs/v2.0.0-alpha.5/pallet_balances/index.html) pallet that controls
 the underlying currency of your blockchain by managing the _balance_ of all the accounts in your
 system.
 
 If you want to add smart contract functionality to your blockchain, you simply need to include the
-[Contracts](https://substrate.dev/rustdocs/master/pallet_contracts/index.html) pallet.
+[Contracts](https://substrate.dev/rustdocs/v2.0.0-alpha.5/pallet_contracts/index.html) pallet.
 
 Even things like on-chain governance can be added to your blockchain by including pallets like
-[Democracy](https://substrate.dev/rustdocs/master/pallet_democracy/index.html),
-[Elections](https://substrate.dev/rustdocs/master/pallet_elections/index.html), and
-[Collective](https://substrate.dev/rustdocs/master/pallet_collective/index.html).
+[Democracy](https://substrate.dev/rustdocs/v2.0.0-alpha.5/pallet_democracy/index.html),
+[Elections](https://substrate.dev/rustdocs/v2.0.0-alpha.5/pallet_elections/index.html), and
+[Collective](https://substrate.dev/rustdocs/v2.0.0-alpha.5/pallet_collective/index.html).
 
 The goal of this tutorial is to teach you how to create your own Substrate pallet to include
 in your custom blockchain! The `substrate-node-template` comes with a template pallet that
@@ -59,9 +59,10 @@ substrate-node-template
 +-- ...
 ```
 
-You will see some pre-written code which acts as a template for a new pallet. You can delete the
-contents of this file since we will start from scratch for full transparency. When writing your own
-pallets in the future, you will likely find the scaffolding in this template pallet useful.
+You will see some pre-written code which acts as a template for a new pallet. You read over this
+file if you like, and then delete the contents since we will start from scratch for full
+transparency. When writing your own pallets in the future, you will likely find the scaffolding in
+this template pallet useful.
 
 ## Build Your New Pallet
 
@@ -114,9 +115,7 @@ Most of these imports are already available because they were used in the templa
 ```toml
 [dependencies.sp-std]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-rev = '013c1ee167354a08283fb69915fda56a62fee943'
-version = '2.0.0-alpha.3'
+version = '2.0.0-alpha.5'
 ```
 
 Then, **Update** the existing `[features]` block to look like this. The last line is new.
@@ -165,7 +164,7 @@ Our pallet will only have two events:
 1. When a new proof is added to the blockchain.
 2. When a proof is removed.
 
-The events can contain some metadata, in this case, each event will also display who triggered the
+The events can contain some additional data, in this case, each event will also display who triggered the
 event (`AccountId`), and the proof data (as `Vec<u8>`) that is being stored or removed.
 
 ## Pallet Errors
@@ -200,13 +199,13 @@ decl_storage! {
     trait Store for Module<T: Trait> as TemplateModule {
         /// The storage item for our proofs.
         /// It maps a proof to the user who made the claim and when they made it.
-        Proofs: map hasher(blake2_256) Vec<u8> => (T::AccountId, T::BlockNumber);
+        Proofs: map hasher(blake2_128_concat) Vec<u8> => (T::AccountId, T::BlockNumber);
     }
 }
 ```
 
 If a proof has an owner and a block number, then we know that it has been claimed! Otherwise, the
-proof is still available to be claimed.
+proof is available to be claimed.
 
 ### Callable Pallet Functions
 
@@ -227,7 +226,7 @@ decl_module! {
         // this includes information about your errors in the node's metadata.
         // it is needed only if you are using errors in your pallet
         type Error = Error<T>;
-    
+
         // A default function for depositing events
         fn deposit_event() = default;
 
@@ -275,7 +274,7 @@ decl_module! {
 ```
 
 > The functions you see here do not have return types explicitly stated. In reality they all return
-> [`DispatchResult`](https://substrate.dev/rustdocs/v2.0.0-alpha.3/frame_support/dispatch/type.DispatchResult.html)s.
+> [`DispatchResult`](https://substrate.dev/rustdocs/v2.0.0-alpha.5/frame_support/dispatch/type.DispatchResult.html)s.
 > This return type is added on your behalf by the `decl_module!` macro.
 
 ## Compile Your New Pallet
