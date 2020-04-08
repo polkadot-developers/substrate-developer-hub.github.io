@@ -202,7 +202,7 @@ function Seminar(props) {
 								/>
 							</section>
 							<section className='video-details'>
-								<h4 className='p-color'>Stable Coin and Storage Adaters</h4>
+								<h4 className='p-color'>Stable Coin and Storage Adapters</h4>
 								<p>
 									Alexander Popiak joins us to discuss his uncollateralized stablecoin implementation and the "Transient Storage Adapters" pattern
 								</p>
