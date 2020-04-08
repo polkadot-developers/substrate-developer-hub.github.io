@@ -109,6 +109,9 @@ function Seminar(props) {
 							<p>
 								On <strong>April 21st</strong>, Joshy Orndorff and Nicole Zhu will discuss a UTXO pallet and creating a bitcoin-like chain on Substrate.
 							</p>
+							<p>
+								On <strong>April 28th, Seminar is Cancelled</strong>. Let's all attend <a href="https://sub0.parity.io">Sub0 Online</a> instead!
+							</p>
 							<h4 className='mb-2'>How do I join the call?</h4>
 							<p>
 								We meet using zoom video conferencing. Specifically we meet in{' '}
