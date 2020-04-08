@@ -104,10 +104,10 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>March 31st</strong>, Seun LanLege and Joshy Orndorff, will talk about all things Consensus in Substrate. As a demo, we'll play with a node configured for manual consensus.
+								On <strong>April 14th</strong>, Cecile Tonglet will join us to talk about the new Substrate CLI and how to use and extend it. We may also briefly explore the Substrate Service and Cumulus.
 							</p>
 							<p>
-								On <strong>April 7th</strong>, Alexander Popiak will present his work on a Substrate-based stablecoin.
+								On <strong>April 21st</strong>, Joshy Orndorff and Nicole Zhu will discuss a UTXO pallet and creating a bitcoin-like chain on Substrate.
 							</p>
 							<h4 className='mb-2'>How do I join the call?</h4>
 							<p>
@@ -194,6 +194,50 @@ function Seminar(props) {
 								/>
 								<a
 									className='video-play'
+									href='https://www.youtube.com/watch?v=bnC5RQsaAXQ&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									target='_blank'
+								/>
+							</section>
+							<section className='video-details'>
+								<h4 className='p-color'>Stable Coin and Storage Adaters</h4>
+								<p>
+									Alexander Popiak joins us to discuss his uncollateralized stablecoin implementation and the "Transient Storage Adapters" pattern
+								</p>
+							</section>
+						</div>
+
+						<div className='col-md-4'>
+							<section className='video-cover video-cover-xs'>
+								<div
+									className='background-image-holder'
+									style={{
+										backgroundImage: `url('/img/seminar-t.jpg' )`
+									}}
+								/>
+								<a
+									className='video-play'
+									href='https://www.youtube.com/watch?v=uhkV0jAcWDY&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									target='_blank'
+								/>
+							</section>
+							<section className='video-details'>
+								<h4 className='p-color'>Manual Seal and Instant Seal</h4>
+								<p>
+									This week Seun LanLege helps us build a Substrate node that uses manual seal and instant seal consensus engines.
+								</p>
+							</section>
+						</div>
+
+						<div className='col-md-4'>
+							<section className='video-cover video-cover-xs'>
+								<div
+									className='background-image-holder'
+									style={{
+										backgroundImage: `url('/img/seminar-t.jpg' )`
+									}}
+								/>
+								<a
+									className='video-play'
 									href='https://www.youtube.com/watch?v=lXw6GTNh73Y&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
@@ -202,50 +246,6 @@ function Seminar(props) {
 								<h4 className='p-color'>Moonbeam and EVM Pallet</h4>
 								<p>
 									Derek from Purestake tells us about their Moonbeam contract chain, and Parity's Kirill Taran demonstrates using the EVM pallet.
-								</p>
-							</section>
-						</div>
-
-						<div className='col-md-4'>
-							<section className='video-cover video-cover-xs'>
-								<div
-									className='background-image-holder'
-									style={{
-										backgroundImage: `url('/img/seminar-t.jpg' )`
-									}}
-								/>
-								<a
-									className='video-play'
-									href='https://www.youtube.com/watch?v=MjOvVhc1oXw&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
-									target='_blank'
-								/>
-							</section>
-							<section className='video-details'>
-								<h4 className='p-color'>SR-Tool and Substrate's Proof of Work</h4>
-								<p>
-									We explore srtool, a docker container for compiling and verifying Substrate runtimes for on-chain upgrades. Then we turn our attention to Substrate's Proof of Work consensus engine.
-								</p>
-							</section>
-						</div>
-
-						<div className='col-md-4'>
-							<section className='video-cover video-cover-xs'>
-								<div
-									className='background-image-holder'
-									style={{
-										backgroundImage: `url('/img/seminar-t.jpg' )`
-									}}
-								/>
-								<a
-									className='video-play'
-									href='https://www.youtube.com/watch?v=D5oeAwuqGDQ&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
-									target='_blank'
-								/>
-							</section>
-							<section className='video-details'>
-								<h4 className='p-color'>PolkaHub and Totem Live</h4>
-								<p>
-									This week we explore PolkaHub and Totem Live Accounting. PolkaHub is a Heroku-like tool for deploying Substrate-based nodes. Totem Live is a Substrate-based accounting chain that plans to become a parachain.
 								</p>
 							</section>
 						</div>
