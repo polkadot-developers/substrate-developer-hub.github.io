@@ -424,6 +424,13 @@ const usersList = [{
     pinned: false,
     type: "chain",
   },
+  {
+    name: "GameDAO",
+    image: "/img/users/gamedao.png",
+    homepage: "https://gamedao.co/",
+    pinned: false,
+    type: "infra",
+  },
 ];
 
 function alphabetize(a, b) {
