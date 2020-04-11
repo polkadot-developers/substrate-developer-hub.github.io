@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="ru"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Part 4 - Use external accounts · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="In this tutorial, we won&#x27;t show how to create accounts using this `api`. The reason is simple, we do not want to encourage developers to manage accounts in the browser. DNS attacks, phishing, and other common attacks put users at risk. If the use case of the DApp allows it, we suggest using injected accounts instead. Users will create and manage their accounts externally to the DApp, we will simply use these accounts if the user accepts it. In this part, we will show you how to access external accounts&#x27; balances and send transactions from these accounts."/><meta name="docsearch:version" content="v2.0.0-alpha.3"/><meta name="docsearch:language" content="ru"/><meta property="og:title" content="Part 4 - Use external accounts · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="In this tutorial, we won&#x27;t show how to create accounts using this `api`. The reason is simple, we do not want to encourage developers to manage accounts in the browser. DNS attacks, phishing, and other common attacks put users at risk. If the use case of the DApp allows it, we suggest using injected accounts instead. Users will create and manage their accounts externally to the DApp, we will simply use these accounts if the user accepts it. In this part, we will show you how to access external accounts&#x27; balances and send transactions from these accounts."/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/ru"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/ru/versions"><h3>v2.0.0-alpha.3</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/ru/v2.0.0-alpha.3/" target="_self">Docs</a></li><li class=""><a href="/recipes" target="_self">Recipes</a></li><li class=""><a href="/ru/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/ru/community" target="_self">Community</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>Русский</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/v2.0.0-alpha.3/tutorials/substrate-front-end/part-4-use-external-accounts">English</a></li><li><a href="/docs/zh-CN/v2.0.0-alpha.3/tutorials/substrate-front-end/part-4-use-external-accounts">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Substrate Front End Tutorial</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Front End Tutorial<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/tutorials/substrate-front-end/">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/tutorials/substrate-front-end/part-1-connect-to-a-node">Part 1 - Connect to a node</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/tutorials/substrate-front-end/part-2-query-balances">Part 2 - Display balances</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/tutorials/substrate-front-end/part-3-transfer-funds">Part 3 - Transfer funds</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/tutorials/substrate-front-end/part-4-use-external-accounts">Part 4 - Use external accounts</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Part 4 - Use external accounts</h1></header><article><div><span><p>In this tutorial, we won't show how to create accounts using this <code>api</code>. The reason is simple, we do not want to encourage developers to manage accounts in the browser. DNS attacks, phishing, and other common attacks put users at risk. If the use case of the DApp allows it, we suggest using injected accounts instead. Users will create and manage their accounts externally to the DApp, we will simply use these accounts if the user accepts it. In this part, we will show you how to access external accounts' balances and send transactions from these accounts.</p>
+<h2><a class="anchor" aria-hidden="true" id="41-get-polkadot-js-extension"></a><a href="#41-get-polkadot-js-extension" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.1 Get Polkadot-js extension</h2>
+<p>Get into our user's shoes and install the <a href="https://github.com/polkadot-js/extension">Polkadot-js extension</a> from the <a href="https://chrome.google.com/webstore/detail/polkadot%7Bjs%7D-extension/mopnmbcafieddcagagdcbnhejhlodfdd?hl=en">Chrome</a> or <a href="https://addons.mozilla.org/en-US/firefox/addon/polkadot-js-extension/">Firefox</a> stores. Create an account using the extension and give it a name.</p>
+<p>We will now adapt our application to inject any externally-created account in our current interface.</p>
+<p>This is how the extension looks with 2 accounts creatively named Bob and Alice:</p>
+<p><img src="/docs/assets/tutorials/substrate-front-end/part-4-1.jpg" alt="Pokadot-js extension"></p>
+<h2><a class="anchor" aria-hidden="true" id="42-display-external-accounts-balances"></a><a href="#42-display-external-accounts-balances" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.2 Display external accounts' balances</h2>
+<p>Externally-generated accounts can be accessed thanks to <a href="https://github.com/polkadot-js/extension/tree/master/packages/extension-dapp"><code>@polkadot/extension-dapp</code></a>. Let's add it to our application:</p>
+<pre><code class="hljs css language-bash"><span class="token function">yarn</span> <span class="token function">add</span> @polkadot/extension-dapp@beta
+</code></pre>
+<p>This package gives us access to:</p>
+<ul>
+<li><code>web3Enable</code> to declare our DApp and request the right to read the accounts from our users.</li>
+<li><code>web3Accounts</code> that should be called after <code>web3Enable</code>. It will return an array of accounts: if users have a compatible extension and have granted us access to their accounts. Otherwise, <code>web3Accounts</code> will return an empty array.</li>
+</ul>
+<p>To keep things simple, we will not display anything other than a loader to our users while authorization is requested. This is a blocking experience that should not be reproduced in a real DApp. Rather, show something useful to your users and patiently wait for them to accept the extension request.</p>
+<p>We will introduce a new state variable <code>accountLoaded</code> to remove the loader as soon as our users have granted us access. Bear in mind that we still want to let our users access the application even if they have no extension, of if they don't grant us access. We would simply show them the test accounts, and nothing else.</p>
+<pre><code class="hljs css language-js"><span class="token comment">// Toward the top of Apps.js</span>
+<span class="token comment">// new state variables to monitor the account loading status</span>
+<span class="token keyword">const</span> <span class="token punctuation">[</span>accountLoaded<span class="token punctuation">,</span> setaccountLoaded<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// in our render function, show a loader to users with a compatible extension while </span>
+<span class="token comment">// waiting for their authorization</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>accountLoaded<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">return</span> <span class="token function">loader</span><span class="token punctuation">(</span><span class="token string">'Loading accounts (please review any extension\'s authorization)'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>We will declare our DApp and request access to the external accounts in a <code>useEffect</code> React hook that we are now familiar with. We used to call <code>loadAccounts()</code> to initialize the keyring. This function also accepts injected accounts as arguments, so all we'll have to do is <code>loadAccounts(injectedAccounts)</code>. Quite handy, isn't it?</p>
+<p>Instead of calling the <code>loadAccounts</code> function in its own <code>useEffect</code> React hook, we will call it once we have collected the external accounts and the user has granted us access.</p>
+<pre><code class="hljs css language-js"><span class="token comment">// beginning of Apps.js</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> web3Accounts<span class="token punctuation">,</span> web3Enable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@polkadot/extension-dapp'</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">// new hook to get injected accounts</span>
+<span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+<span class="token function">web3Enable</span><span class="token punctuation">(</span><span class="token string">'substrate-front-end-tutorial'</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">extensions</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+<span class="token comment">// web3Accounts promise returns an array of accounts</span>
+<span class="token comment">// or an empty array if our user doesn't have an extension or hasn't given the</span>
+<span class="token comment">// access to any of their account.</span>
+<span class="token function">web3Accounts</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">accounts</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        <span class="token comment">// add the source to the name to avoid confusion</span>
+        <span class="token keyword">return</span> accounts<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> address<span class="token punctuation">,</span> meta <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+            address<span class="token punctuation">,</span>
+            meta<span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token operator">...</span>meta<span class="token punctuation">,</span>
+            name<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>meta<span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> (</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>meta<span class="token punctuation">.</span>source<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">)</span><span class="token template-punctuation string">`</span></span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token comment">// load our keyring with the newly injected accounts</span>
+    <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">injectedAccounts</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        <span class="token function">loadAccounts</span><span class="token punctuation">(</span>injectedAccounts<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span>console<span class="token punctuation">.</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span>console<span class="token punctuation">.</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">loadAccounts</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">injectedAccounts</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+keyring<span class="token punctuation">.</span><span class="token function">loadAll</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    isDevelopment<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> injectedAccounts<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">setaccountLoaded</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>We have added yet a little overhead to the above code, this part is not mandatory:</p>
+<pre><code class="hljs css language-js"><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">accounts</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token comment">// add the source to the name to avoid confusion</span>
+    <span class="token keyword">return</span> accounts<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> address<span class="token punctuation">,</span> meta <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+        address<span class="token punctuation">,</span>
+        meta<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token operator">...</span>meta<span class="token punctuation">,</span>
+        name<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>meta<span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> (</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>meta<span class="token punctuation">.</span>source<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">)</span><span class="token template-punctuation string">`</span></span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>What it does is extract the injected accounts' info to modify the displayed name and add the <code>meta.source</code> to it in brackets. This way, our external Alice and Bob will be clearly identified as coming from the <code>polkadot-js</code> extension.</p>
+<p>Because everything is nicely integrated into our Keyring, we don't have to touch our <code>Balances</code> component, it will manage external accounts just like the internal ones.</p>
+<p>You can get the working version of this code by visiting the <code>part-4-2</code> directory:</p>
+<pre><code class="hljs css language-bash"><span class="token builtin class-name">cd</span> part-4-2<span class="token punctuation">;</span>
+<span class="token function">yarn</span><span class="token punctuation">;</span>
+<span class="token function">yarn</span> start<span class="token punctuation">;</span>
+</code></pre>
+<p>If you run this example, you will get prompted with an authorization request from <code>substrate-front-end-tutorial</code>.</p>
+<p><img src="/docs/assets/tutorials/substrate-front-end/part-4-2-auth.jpg" alt="Extension authorization popup"></p>
+<p>You should see the balances of your external accounts below the testing accounts if you accepted the request.</p>
+<p><img src="/docs/assets/tutorials/substrate-front-end/part-4-2-external-balances.jpg" alt="External account balances"></p>
+<p>Also, if you open the console, you will see something similar to:</p>
+<pre><code class="hljs css language-bash">web3Enable: Enabled <span class="token number">1</span> extension: polkadot-js/0.5.1 index.js:135
+web3Accounts: Found <span class="token number">2</span> addresses: 5ECyNdxrwuzmsmfPJU64zMyJo8dV86hXfjjxK3PmZx1YCurj, 5ExttMT4rtnYJ7TLn19d8C8sVdTH8exj7pxWPC5xepz7J9KF
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="43-send-funds-from-external-accounts"></a><a href="#43-send-funds-from-external-accounts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.3 Send funds from external accounts</h2>
+<p>Although the <code>Balances</code> component doesn't have to be modified to cater for the external accounts, our <code>Transfer</code> component will need some changes. The reason is simple, our DApp doesn't have the cryptographic key pairs for those external accounts. Those are more securely handled by an extension and we will not have access to their private key. To make a transfer, we will have to send the transaction to the extension; the user will then be prompted to sign it.</p>
+<p>To detect if an account is an external account, we can read the <code>meta.isInjected</code> from an account in our Keyring. This flag will be set to <code>true</code> for external accounts. The <code>api</code> allows us to set a <code>signer</code> for a transaction. The <code>signer</code> for the extension can be retrieved from the <code>web3FromSource</code> promise.</p>
+<p>The code that needs to be changed is in the <code>makeTransfer</code> function, from our <code>Transfer.js</code>,</p>
+<pre><code class="hljs css language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> web3FromSource <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@polkadot/extension-dapp'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">{</span> addressTo<span class="token punctuation">,</span> addressFrom<span class="token punctuation">,</span> amount <span class="token punctuation">}</span> <span class="token operator">=</span> formState<span class="token punctuation">;</span>
+<span class="token keyword">const</span> fromPair <span class="token operator">=</span> keyring<span class="token punctuation">.</span><span class="token function">getPair</span><span class="token punctuation">(</span>addressFrom<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// extract isInjected from the keyring metadata</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> address<span class="token punctuation">,</span> meta<span class="token operator">:</span> <span class="token punctuation">{</span> source<span class="token punctuation">,</span> isInjected <span class="token punctuation">}</span> <span class="token punctuation">}</span> <span class="token operator">=</span> fromPair<span class="token punctuation">;</span>
+<span class="token keyword">let</span> fromParam<span class="token punctuation">;</span>
+
+<span class="token comment">// set the signer</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>isInjected<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> injected <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">web3FromSource</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    fromParam <span class="token operator">=</span> address<span class="token punctuation">;</span>
+    api<span class="token punctuation">.</span><span class="token function">setSigner</span><span class="token punctuation">(</span>injected<span class="token punctuation">.</span>signer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    fromParam <span class="token operator">=</span> fromPair<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">setStatus</span><span class="token punctuation">(</span><span class="token string">'Sending...'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+api<span class="token punctuation">.</span>tx<span class="token punctuation">.</span>balances
+<span class="token punctuation">.</span><span class="token function">transfer</span><span class="token punctuation">(</span>addressTo<span class="token punctuation">,</span> amount<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">signAndSend</span><span class="token punctuation">(</span>fromParam<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> status <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>
+</code></pre>
+<p>This is it, you can now send funds from an external account!</p>
+<p>You can get the working version of this code by visiting the <code>part-4-3</code> directory:</p>
+<pre><code class="hljs css language-bash"><span class="token builtin class-name">cd</span> part-4-3<span class="token punctuation">;</span>
+<span class="token function">yarn</span><span class="token punctuation">;</span>
+<span class="token function">yarn</span> start<span class="token punctuation">;</span>
+</code></pre>
+<p>If you run this example and send funds from an external account, you will get prompted with an authorization request from <code>substrate-front-end-tutorial</code>.</p>
+<p><img src="/docs/assets/tutorials/substrate-front-end/part-4-3.jpg" alt="Extension authorization popup"></p>
+<h2><a class="anchor" aria-hidden="true" id="44-good-to-know"></a><a href="#44-good-to-know" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.4 Good to know</h2>
+<p>If you play around with this DApp and send, for example, 1 &quot;unit&quot; from Alice to your newly-created extension account, you will realize a couple of things. First of all, Alice's account gets decreased by more than 1 unit. You probably got it, you have paid fees for the transfer.</p>
+<p>Now more curious, the transaction is successful, yet Bob's balance remains unchanged. It's not a bug, it's a feature, explication:</p>
+<p>The Substrate node we are querying has a Balances pallet. This pallet is responsible for keeping track of all the accounts on the blockchain. Our blockchain is a dev one that is being reset every hour, but imagine a production blockchain that anyone can access. Now imagine that this blockchain becomes popular and many accounts are created, some of them containing a fraction of a cent in value. The blockchain ends up using a lot of storage for useless accounts, which causes state bloat and slows down read/write operations. To combat this, the Balances pallet that our node contains has a so-called <em>Existential Deposit</em> a.k.a ED. If an account has fewer funds than this ED, the account will be removed entirely from the state. On a <code>--dev</code> node, the ED is <code>100'000'000</code>. So make sure to send a large number of units if you want to see things change.</p>
+<p>Also, if you transfer funds to a newly-created account, there will be a so-called creation fee applied. To have an overview of all the fees that may apply, there's a derive query for that <a href="https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/balances/fees.ts"><code>api.derive.balances.fees</code></a>!</p>
+<h2><a class="anchor" aria-hidden="true" id="45-going-further---extract-the-send-button-into-its-own-component"></a><a href="#45-going-further---extract-the-send-button-into-its-own-component" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.5 Going further - Extract the send button into its own component</h2>
+<p>The transaction we performed earlier was using <code>api.tx.balances.transfer</code>. The transfer function is exposed by the Balances pallet. In the future, you will very likely use different methods from different FRAME pallets. It is, therefore, a good idea to extract the logic from the <code>makeTransfer</code> function into its own component and make it generic regarding which method will be used.</p>
+<p>This exercise is left to the reader.</p>
+<p>You can get the working version of this code by visiting the <code>part-4-5</code> directory:</p>
+<pre><code class="hljs css language-bash"><span class="token builtin class-name">cd</span> part-4-5<span class="token punctuation">;</span>
+<span class="token function">yarn</span><span class="token punctuation">;</span>
+<span class="token function">yarn</span> start<span class="token punctuation">;</span>
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/v2.0.0-alpha.3/tutorials/substrate-front-end/part-3-transfer-funds"><span class="arrow-prev">← </span><span>Part 3 - Transfer funds</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#41-get-polkadot-js-extension">4.1 Get Polkadot-js extension</a></li><li><a href="#42-display-external-accounts-balances">4.2 Display external accounts' balances</a></li><li><a href="#43-send-funds-from-external-accounts">4.3 Send funds from external accounts</a></li><li><a href="#44-good-to-know">4.4 Good to know</a></li><li><a href="#45-going-further---extract-the-send-button-into-its-own-component">4.5 Going further - Extract the send button into its own component</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/ru/getting-started">Getting Started</a><a href="/ru/tutorials">Tutorials</a><a href="/rustdocs/master/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/ru/videos">Videos</a><a href="/ru/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></a></div></section><section class="copyright">Copyright © 2020 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:ru"]}
+              });
+            </script></body></html>

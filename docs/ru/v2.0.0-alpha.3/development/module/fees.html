@@ -1,0 +1,277 @@
+<!DOCTYPE html><html lang="ru"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Transaction Fees · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="When transactions are submitted to a blockchain, they are executed by the nodes in the network. To be economically sustainable, nodes charge a fee to execute a transaction. This fee must be covered by the sender of the transaction. The cost to execute transactions can vary, so Substrate provides a flexible mechanism to characterize the minimum cost to include a transaction in a block."/><meta name="docsearch:version" content="v2.0.0-alpha.3"/><meta name="docsearch:language" content="ru"/><meta property="og:title" content="Transaction Fees · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="When transactions are submitted to a blockchain, they are executed by the nodes in the network. To be economically sustainable, nodes charge a fee to execute a transaction. This fee must be covered by the sender of the transaction. The cost to execute transactions can vary, so Substrate provides a flexible mechanism to characterize the minimum cost to include a transaction in a block."/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/ru"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><a href="/ru/versions"><h3>v2.0.0-alpha.3</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/ru/v2.0.0-alpha.3/" target="_self">Docs</a></li><li class=""><a href="/recipes" target="_self">Recipes</a></li><li class=""><a href="/ru/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/ru/community" target="_self">Community</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>Русский</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/v2.0.0-alpha.3/development/module/fees">English</a></li><li><a href="/docs/zh-CN/v2.0.0-alpha.3/development/module/fees">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Substrate Runtime</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Overview<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/overview/getting-started">Getting Started</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/runtime/frame">FRAME</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/overview/glossary">Glossary</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Core<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/core/codec">SCALE Codec</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/core/consensus">Consensus</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/core/executor">Executor</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/core/off-chain-workers">Off-Chain Workers</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/core/storage">Storage</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Nodes<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/node/extrinsics">Extrinsics</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/node/tx-pool">Transaction Pool</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Cryptography<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/cryptography/">Cryptography</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/cryptography/keys">Substrate Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/cryptography/session-keys">Session Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/cryptography/ss58-address-format">SS58 Address Format</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Runtime<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/runtime/">Runtime Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/runtime/weight">Transaction Weight</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/runtime/primitives">Runtime Primitives</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/development/module/execution">Runtime Execution</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/development/module/macros">Runtime Macros</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/development/module/storage">Runtime Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/development/module/events">Runtime Events</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/development/module/off-chain-workers">Off-Chain Workers</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/development/module/fees">Transaction Fees</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/development/module/tests">Runtime Tests</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Smart Contracts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/runtime/contracts/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/runtime/contracts/contracts_module">Contracts Module</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/runtime/contracts/evm_module">EVM Module</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/conceptual/runtime/contracts/ink">ink! Concepts</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/development/contracts/ink">ink! Development</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Deployment<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/development/deployment/chain-spec">Chain Specification</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/development/deployment/account-prefix">Account Prefix</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/development/deployment/boot-node">Boot Nodes</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/development/deployment/disabling-features">Disabling Features of Your Runtime</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Front End<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/development/front-end/polkadot-js">Polkadot-JS</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/development/front-end/json-rpc">JSON RPC</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Ecosystem Tools<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/development/tools/subkey">The subkey Tool</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Contribute<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/v2.0.0-alpha.3/contribute/help-translate">Help Translate</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Transaction Fees</h1></header><article><div><span><p>When transactions are submitted to a blockchain, they are executed by the nodes in the network. To be economically sustainable, nodes charge a fee to execute a transaction. This fee must be covered by the sender of the transaction. The cost to execute transactions can vary, so Substrate provides a flexible mechanism to characterize the minimum cost to include a transaction in a block.</p>
+<p>The fee system is heavily linked to the <a href="/docs/ru/v2.0.0-alpha.3/conceptual/runtime/weight">weight system</a>. Make sure to understand weights before reading this document.</p>
+<h2><a class="anchor" aria-hidden="true" id="default-fees"></a><a href="#default-fees" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Default Fees</h2>
+<p>The default fee system uses the uses <em>fixed</em> weights represented by the following enum:</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">pub</span> <span class="token keyword">enum</span> SimpleDispatchInfo <span class="token punctuation">{</span>
+    <span class="token comment">/// A normal dispatch with fixed weight.</span>
+    <span class="token function">FixedNormal</span><span class="token punctuation">(</span>Weight<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment">/// A normal dispatch with the maximum weight.</span>
+    MaxNormal<span class="token punctuation">,</span>
+    <span class="token comment">/// A normal dispatch with no weight.</span>
+    FreeNormal<span class="token punctuation">,</span>
+    <span class="token comment">/// An operational dispatch with fixed weight.</span>
+    <span class="token function">FixedOperational</span><span class="token punctuation">(</span>Weight<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment">/// An operational dispatch with the maximum weight.</span>
+    MaxOperational<span class="token punctuation">,</span>
+    <span class="token comment">/// An operational dispatch with no weight.</span>
+    FreeOperational<span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>This enum groups all dispatches into <em>normal</em> or <em>operational</em> and gives them a fixed weight. This means that the arguments of a dispatchable function do not affect the weight. A dispatch classified as <em>operational</em> is exempt from paying both the <code>base_fee</code> and the <code>length_fee</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="free-normal"></a><a href="#free-normal" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Free Normal</h3>
+<p>This means that this function has no weight. It will not contribute to block fullness at all, and no weight-fee is applied.</p>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[weight = SimpleDispatchInfo::FreeNormal]</span>
+<span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function">some_normal_function_light</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token function">noop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="fixed-normal"></a><a href="#fixed-normal" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fixed Normal</h3>
+<p>This function will always have a weight <code>10</code>.</p>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[weight = SimpleDispatchInfo::FixedNormal(10)]</span>
+<span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function">some_normal_function_heavy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token function">some_computation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="fixed-operational"></a><a href="#fixed-operational" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fixed Operational</h3>
+<p>This function will have a fixed weight but can consume the reserved operational portion as well.</p>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[weight = SimpleDispatchInfo::FixedOperational(20)]</span>
+<span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function">mission_critical_function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token function">some_sudo_op</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="default"></a><a href="#default" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Default</h3>
+<p>This function will automatically get <code>#[weight = SimpleDispatchInfo::default()]</code>.</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function">something_else</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token function">noop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> Be careful! The default implementation of <code>SimpleDispatchInfo</code> resolves to <code>FixedNormal(10_000)</code>. This is due to how things work in <code>substrate-node</code> and the desired granularity of substrate. Even if you want to use the <code>SimpleDispatchInfo</code>, it is very likely that you would want it to have a different <code>Default</code>.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="fee-calculation"></a><a href="#fee-calculation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fee Calculation</h2>
+<p>The final fee of a dispatch is calculated using the weight of the function and a number of configurable parameters.</p>
+<h3><a class="anchor" aria-hidden="true" id="inclusion-fee"></a><a href="#inclusion-fee" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Inclusion Fee</h3>
+<p>A transaction fee consists of three parts:</p>
+<ul>
+<li><code>base_fee</code>: A fixed fee that is applied to every transaction. See <a href="https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionBaseFee"><code>TransactionBaseFee</code></a>.</li>
+<li><code>length_fee</code>: A per-byte fee that is multiplied by the length, in bytes, of the encoded transaction. See <a href="https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee"><code>TransactionByteFee</code></a>.</li>
+<li><code>weight_fee</code>: A per-weight-unit fee that is multiplied by the weight of the transaction. The weight of each dispatch is denoted via the flexible <code>#[weight]</code> annotation. Knowing the weight, it must be converted to the <code>Currency</code> type. For this, each runtime must define a <a href="https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee"><code>WeightToFee</code></a> type that makes the conversion. <code>WeightToFee</code> must be a struct that implements <a href="https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Convert.html"><code>Convert&lt;Weight, Balance&gt;</code></a>.</li>
+</ul>
+<p>Based on the above, the final fee of a dispatchable is:</p>
+<pre><code class="hljs">fee <span class="token operator">=</span>
+  base_fee <span class="token operator">+</span>
+  <span class="token function">len</span><span class="token punctuation">(</span>tx<span class="token punctuation">)</span> <span class="token operator">*</span> length_fee <span class="token operator">+</span>
+  <span class="token function">WeightToFee</span><span class="token punctuation">(</span>weight<span class="token punctuation">)</span>
+</code></pre>
+<p>This <code>fee</code> is known as the &quot;inclusion fee.&quot; Even if the extrinsic fails, the signer must pay this inclusion fee.</p>
+<h3><a class="anchor" aria-hidden="true" id="fee-multiplier"></a><a href="#fee-multiplier" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fee Multiplier</h3>
+<p>The above formula gives a fee that is always the same for the same input. However, weight can be dynamic and based on how <code>WeightToFee</code> is defined, the final fee can include some degree of variability. To fulfill this requirement, Substrate provides:</p>
+<ul>
+<li><a href="https://substrate.dev/rustdocs/master/pallet_transaction_payment/struct.Module.html#method.next_fee_multiplier"><code>NextFeeMultiplier</code></a>: A multiplier stored in the Transaction Payment module and configurable.</li>
+<li><a href="https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate"><code>FeeMultiplierUpdate</code></a>: A configurable parameter for a runtime to describe how this multiplier can change.</li>
+</ul>
+<p><code>NextFeeMultiplier</code> has the type <code>Fixed64</code>, which can represent a fixed point number. So, given the inclusion fee formula above, the final version would be:</p>
+<pre><code class="hljs">fee <span class="token operator">=</span>
+  base_fee <span class="token operator">+</span>
+  <span class="token function">len</span><span class="token punctuation">(</span>tx<span class="token punctuation">)</span> <span class="token operator">*</span> length_fee <span class="token operator">+</span>
+  <span class="token function">WeightToFee</span><span class="token punctuation">(</span>weight<span class="token punctuation">)</span>
+
+final_fee <span class="token operator">=</span> fee <span class="token operator">*</span> NextFeeMultiplier
+</code></pre>
+<p>Updating the <code>NextFeeMultiplier</code> has a similar effect as updating <code>WeightToFee</code>. The <code>FeeMultiplierUpdate</code> associated type in Transaction Payment module is defined as a <code>Convert&lt;Fixed64, Fixed64&gt;</code>, which should be read:</p>
+<blockquote>
+<p>&quot;it receives the previous multiplier and returns the next one&quot;.</p>
+</blockquote>
+<p>The default update function is inspired by the Polkadot network and implements a targeted adjustment in which a target saturation level of block weight is defined. If the previous block is more saturated, then the fees are slightly increased. Similarly, if the previous block has fewer transactions than the target, fees are decreased by a small amount. More information about this can be found in the <a href="https://research.web3.foundation/en/latest/polkadot/Token%20Economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits">Web3 research page</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="additional-fees"></a><a href="#additional-fees" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Additional Fees</h3>
+<p>Inclusion fees don't know anything about the logic of the transaction being executed. That is, Substrate doesn't care what happens in the transaction, it only cares about the size and weight of the transaction. The inclusion fee will always be paid by the sender.</p>
+<p>It's possible to add fees inside dispatchable functions that are only paid if certain logic paths are executed. Most likely, this will be if the transaction succeeds. The <code>transfer</code> function in the Balances module, for example, takes a fixed fee for transferring tokens.</p>
+<p>It is important to note that if you query the chain for a transaction fee, it will only return the inclusion fee.</p>
+<h2><a class="anchor" aria-hidden="true" id="custom-fees"></a><a href="#custom-fees" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom Fees</h2>
+<p>You can also define custom fee systems through custom weight functions or inclusion fee functions.</p>
+<h3><a class="anchor" aria-hidden="true" id="custom-weights"></a><a href="#custom-weights" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom Weights</h3>
+<p>Implementing a custom weight calculation function can vary in complexity. Using the <code>SimpleDispatchInfo</code> struct provided by Substrate is the easiest approach.</p>
+<p>A weight calculation function must provide two trait implementations:</p>
+<ul>
+<li>[<code>WeightData&lt;T&gt;</code>]: To determine the weight of the dispatch.</li>
+<li>[<code>ClassifyDispatch&lt;T&gt;</code>]: To determine the class of the dispatch.</li>
+</ul>
+<p>Substrate then bundles the output information of the two traits into the [<code>DispatchInfo</code>] struct and provides it by implementing the [<code>GetDispatchInfo</code>] for all <code>Call</code> variants and opaque extrinsic types. This is used internally by the System and Executive modules; you probably won't use it.</p>
+<p>Both <code>ClassifyDispatch</code> and <code>WeightData</code> are generic over <code>T</code>, which gets resolved into the tuple of all dispatch arguments except for the origin. To demonstrate, we will craft a struct that calculates the weight as <code>m * len(args)</code> where <code>m</code> is a given multiplier and <code>args</code> is the concatenated tuple of all dispatch arguments. Further, the dispatch class is <code>Operational</code> if the transaction has more than 100 bytes of length in arguments.</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">use</span> coded<span class="token punctuation">::</span>Encode<span class="token punctuation">;</span>
+<span class="token keyword">use</span> sr_primitives<span class="token punctuation">::</span>weights<span class="token punctuation">::</span><span class="token punctuation">{</span>DispatchClass<span class="token punctuation">,</span> ClassifyDispatch<span class="token punctuation">,</span> WeightData<span class="token punctuation">}</span>
+
+<span class="token comment">// self.0 is the multiplier, `m`</span>
+<span class="token keyword">struct</span> <span class="token function">LenWeight</span><span class="token punctuation">(</span>u32<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// We don't quite know what T is. After all, different dispatches have different arguments, hence</span>
+<span class="token comment">// `T` will be different. All that we care about is that `T` is encodable. That is always true by</span>
+<span class="token comment">// definition. All dispatch arguments are encodable.</span>
+<span class="token keyword">impl</span><span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Encode<span class="token operator">></span> WeighData<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token keyword">for</span> LenWeight <span class="token punctuation">{</span>
+    <span class="token keyword">fn</span> <span class="token function">weigh_data</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">self</span><span class="token punctuation">,</span> target<span class="token punctuation">:</span> T<span class="token punctuation">)</span> <span class="token punctuation">-></span> Weight <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> multiplier <span class="token operator">=</span> <span class="token keyword">self</span><span class="token punctuation">.</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> encoded_len <span class="token operator">=</span> target<span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">len</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> u32<span class="token punctuation">;</span>
+        multiplier <span class="token operator">*</span> encoded_len
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span><span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Encode<span class="token operator">></span> ClassifyDispatch<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token keyword">for</span> LenWeight <span class="token punctuation">{</span>
+    <span class="token keyword">fn</span> <span class="token function">classify_dispatch</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">self</span><span class="token punctuation">,</span> target<span class="token punctuation">:</span> T<span class="token punctuation">)</span> <span class="token punctuation">-></span> DispatchClass <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> encoded_len <span class="token operator">=</span> target<span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">len</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> u32<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> encoded_len <span class="token operator">></span> <span class="token number">100</span> <span class="token punctuation">{</span>
+            DispatchClass<span class="token punctuation">::</span>Operational
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            DispatchClass<span class="token punctuation">::</span>Normal
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>A weight calculator function can also be coerced to the final type of the argument, instead of defining it as a vague type that is encodable. <code>srml-example</code> contains an example of how to do this. Just note that, in that case, your code would roughly look like:</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">struct</span> CustomWeight<span class="token punctuation">;</span>
+<span class="token keyword">impl</span> WeighData<span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>u32<span class="token punctuation">,</span> <span class="token operator">&amp;</span>u64<span class="token punctuation">)</span><span class="token operator">></span> <span class="token keyword">for</span> CustomWeight <span class="token punctuation">{</span>
+    <span class="token keyword">fn</span> <span class="token function">weigh_data</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">self</span><span class="token punctuation">,</span> target<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token operator">&amp;</span>u32<span class="token punctuation">,</span> <span class="token operator">&amp;</span>u64<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> Weight <span class="token punctuation">{</span>
+        <span class="token punctuation">...</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// given dispatch:</span>
+<span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">fn</span> <span class="token function">foo</span><span class="token punctuation">(</span>a<span class="token punctuation">:</span> u32<span class="token punctuation">,</span> b<span class="token punctuation">:</span> u64<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>This means that <code>CustomWeight</code> can only be used in conjunction with a dispatch with a particular signature <code>(u32, u64)</code>, as opposed to <code>LenWeight</code>, which can be used with anything because they don't make any strict assumptions about <code>&lt;T&gt;</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="custom-inclusion-fee"></a><a href="#custom-inclusion-fee" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom Inclusion Fee</h3>
+<p>This is an example of how to customize your inclusion fee. You must configure the appropriate associated types in the respective module.</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">use</span> sr_primitives<span class="token punctuation">::</span><span class="token punctuation">{</span>traits<span class="token punctuation">::</span>Convert<span class="token punctuation">,</span> weights<span class="token punctuation">::</span>Weight<span class="token punctuation">}</span>
+<span class="token comment">// Assume this is the balance type</span>
+<span class="token keyword">type</span> Balance <span class="token operator">=</span> u64<span class="token punctuation">;</span>
+
+<span class="token comment">// Assume we want all the weights to have a `100 + 2 * w` conversion to fees</span>
+<span class="token keyword">struct</span> CustomWeightToFee<span class="token punctuation">;</span>
+<span class="token keyword">impl</span> Convert<span class="token operator">&lt;</span>Weight<span class="token punctuation">,</span> Balance<span class="token operator">></span> <span class="token keyword">for</span> CustomWeightToFee <span class="token punctuation">{</span>
+    <span class="token keyword">fn</span> <span class="token function">convert</span><span class="token punctuation">(</span>w<span class="token punctuation">:</span> Weight<span class="token punctuation">)</span> <span class="token punctuation">-></span> Balance <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> a <span class="token operator">=</span> Balance<span class="token punctuation">::</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> b <span class="token operator">=</span> Balance<span class="token punctuation">::</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> w <span class="token operator">=</span> Balance<span class="token punctuation">::</span><span class="token function">from</span><span class="token punctuation">(</span>w<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        a <span class="token operator">+</span> b <span class="token operator">*</span> w
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token macro-rules function">parameter_types!</span> <span class="token punctuation">{</span>
+    TransactionBaseFee<span class="token punctuation">:</span> Balance <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+    TransactionByteFee<span class="token punctuation">:</span> Balance <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span> transaction_payment<span class="token punctuation">::</span>Trait <span class="token punctuation">{</span>
+    TransactionBaseFee <span class="token operator">=</span> TransactionBaseFee<span class="token punctuation">;</span>
+    TransactionByteFee <span class="token operator">=</span> TransactionByteFee<span class="token punctuation">;</span>
+    WeightToFee <span class="token operator">=</span> CustomWeightToFee<span class="token punctuation">;</span>
+    <span class="token comment">// we will get to this one soon enough</span>
+    FeeMultiplierUpdate <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="next-steps"></a><a href="#next-steps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Next Steps</h2>
+<p>The entire logic of fees is encapsulated in <code>srml-transaction-payment</code> via a <code>SignedExtension</code>. While this module provides a high degree of flexibility, a user can opt to build their custom payment module drawing inspiration from Transaction Payment.</p>
+<h3><a class="anchor" aria-hidden="true" id="learn-more"></a><a href="#learn-more" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Learn More</h3>
+<ul>
+<li>Dedicated <a href="/docs/ru/v2.0.0-alpha.3/conceptual/runtime/weight">weight documentation</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs">Example module</a></li>
+<li><a href="https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.SignedExtension.html">SignedExtension</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="examples"></a><a href="#examples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h3>
+<p>Substrate Recipes contains examples of both <a href="https://github.com/substrate-developer-hub/recipes/tree/master/pallets/weights">custom weights</a> and custom <a href="https://github.com/substrate-developer-hub/recipes/tree/master/runtimes/weight-fee-runtime">WeightToFee</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h3>
+<ul>
+<li><a href="https://research.web3.foundation/en/latest/polkadot/Token%20Economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits">Web3 Foundation Research</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/v2.0.0-alpha.3/development/module/off-chain-workers"><span class="arrow-prev">← </span><span>Off-Chain Workers</span></a><a class="docs-next button" href="/docs/ru/v2.0.0-alpha.3/development/module/tests"><span>Runtime Tests</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#default-fees">Default Fees</a><ul class="toc-headings"><li><a href="#free-normal">Free Normal</a></li><li><a href="#fixed-normal">Fixed Normal</a></li><li><a href="#fixed-operational">Fixed Operational</a></li><li><a href="#default">Default</a></li></ul></li><li><a href="#fee-calculation">Fee Calculation</a><ul class="toc-headings"><li><a href="#inclusion-fee">Inclusion Fee</a></li><li><a href="#fee-multiplier">Fee Multiplier</a></li><li><a href="#additional-fees">Additional Fees</a></li></ul></li><li><a href="#custom-fees">Custom Fees</a><ul class="toc-headings"><li><a href="#custom-weights">Custom Weights</a></li><li><a href="#custom-inclusion-fee">Custom Inclusion Fee</a></li></ul></li><li><a href="#next-steps">Next Steps</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li><li><a href="#examples">Examples</a></li><li><a href="#references">References</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/ru/getting-started">Getting Started</a><a href="/ru/tutorials">Tutorials</a><a href="/rustdocs/master/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/ru/videos">Videos</a><a href="/ru/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></a></div></section><section class="copyright">Copyright © 2020 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:ru"]}
+              });
+            </script></body></html>
