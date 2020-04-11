@@ -180,7 +180,7 @@ runtime itself does, as follows:
 
 [dependencies.test-pallet]
 default-features = false
-path = '../pallets/template'
+path = '../pallets/my-pallet'
 
 # toward the bottom
 [features]
