@@ -1,60 +1,44 @@
 ---
 title: Creating an External Pallet
-id: version-v2.0.0-alpha.3-creating-a-runtime-module
+id: version-v2.0.0-alpha.5-creating-a-runtime-module
 original_id: creating-a-runtime-module
 ---
 
 In this tutorial, you'll write a Substrate pallet that lives in its own
 crate, and include it in a node based on the `substrate-node-template`.
 
-## Prerequisites
+## Install the Node Template
 
-If you haven't already done so, follow the [Getting Started](getting-started.md)
-guide to download necessary tools to build Substrate.
+You should already have version `v2.0.0-alpha.5` of the [Substrate Node
+Template](https://github.com/substrate-developer-hub/substrate-node-template) compiled on your
+computer from when you completed the [Creating Your First Substrate Chain
+Tutorial](tutorials/creating-your-first-substrate-chain/index.md). If you do not, please complete that
+tutorial.
 
-### Clone the Node and Pallet Templates
+> Experienced developers who truly prefer to skip that tutorial, you may install the node template according to the instructions in its readme.
+
+### Clone the Pallet Template
 
 We're not going to write our pallet directly as part of the node template, but
 rather as a separate Rust crate. This approach allows us to publish our pallet
-separate from our node and also allows other to easily import this pallet into
+separately from our node and also allows others to easily import this pallet into
 their own Substrate runtime.
 
-1. Clone the Substrate node template:
+Clone the Substrate pallet template in the `pallets` directory of your node template:
 
-    ```bash
-    git clone -b v2.0.0-alpha.3 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template my-node
-    ```
+```bash
+cd pallets
+git clone -b v2.0.0-alpha.5 https://github.com/substrate-developer-hub/substrate-pallet-template test-pallet
+```
 
-2. Clone the Substrate pallet template in the `pallets` directory of your node template:
-
-    ```bash
-    git clone -b v2.0.0-alpha.3 https://github.com/substrate-developer-hub/substrate-pallet-template my-pallet
-    ```
-
-3. Build the Substrate node template:
-
-    ```bash
-    cd my-node
-    cargo build --release
-    ```
-
-The `substrate-node-template` contains a working Substrate node, and the
-`substrate-pallet-template` contains an independent Rust crate which is a
-Substrate pallet that can be included in your node. The compilation of
-the node may take up to 30 minutes depending on your hardware, so let that run
-while you continue to follow this guide.
-
-If you aren't familiar with Rust including and using other pallets, you can
-refer to [the Cargo
-book](https://doc.rust-lang.org/cargo/guide/creating-a-new-project.html) for a
-more in-depth explanation.
+> In this tutorial we have placed the pallet template _inside_ the node template's directory structure. This pattern is not required, and you can place the pallet template anywhere you like. Another popular option would be as a _sibling_ to the node template.
 
 ## The Substrate Pallet Template
 
 You should be able to successfully compile the Substrate pallet template with:
 
 ```bash
-cd my-pallet
+cd test-pallet
 cargo build --release
 ```
 
@@ -69,7 +53,7 @@ writing interesting pallet logic. So let's call it `test-pallet`.
 
 The beginning of the `Cargo.toml` now looks like:
 
-**`my-node/pallets/my-pallet/Cargo.toml`**
+**`pallets/test-pallet/Cargo.toml`**
 
 ```toml
 [package]
@@ -81,7 +65,7 @@ edition = "2018"
 
 ### Your Pallet's `std` Feature
 
-In your `my-node/pallets/my-pallet/Cargo.toml` file, you will notice a few lines about the
+In your `pallets/test-pallet/Cargo.toml` file, you will notice a few lines about the
 "`std` feature". In Rust, when you enable `std`, you give your project access to
 [the Rust standard libraries](https://doc.rust-lang.org/std/). This works just
 fine when building native binaries.
@@ -93,7 +77,7 @@ compile with [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html)
 feature. Our `Cargo.toml` file tells our pallet's dependencies to only use their
 `std` feature when this pallet also uses its `std` feature, like so:
 
-**`my-node/pallets/my-pallet/Cargo.toml`**
+**`pallets/test-pallet/Cargo.toml`**
 
 ```TOML
 [features]
@@ -109,51 +93,35 @@ std = [
 ### Consistent Substrate Dependencies
 
 All Substrate pallets will depend on some low-level FRAME libraries such as
-`frame-system` and `frame-support`. These libraries are pulled from the main
-[Substrate GitHub repository](https://github.com/paritytech/substrate). When
-people build their own Substrate nodes, they will also have dependencies on the
-main Substrate repository.
+`frame-system` and `frame-support`. These libraries are pulled from crates.io. When
+people build their own FRAME-based runtimes, they will also have dependencies on these  low-level libraries. You will need to ensure consistent dependencies between your pallet and your runtime.
 
-Because of this, you will need to be careful to ensure consistent dependencies
-from your pallet and the your Substrate node. If your pallet is dependent on
-one version of Substrate, and the node on another, compilation will run into errors
-where the Substrate versions may be incompatible, or different version of the
-same library are being used.
-Ultimately Cargo will not be able to resolve those conflicts and you will get a
-compile time error.
-
-**`my-node/pallets/my-pallet/Cargo.toml`**
+**`pallets/test-pallet/Cargo.toml`**
 
 ```TOML
 # --snip--
 
 [dependencies.frame-support]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-rev = '013c1ee167354a08283fb69915fda56a62fee943'
-version = '2.0.0-alpha.3'
-
-# Develop against a git commit by specifying the same Substrate commit as your main node.
-# It is important to use the same Substrate commit to prevent dependencies mismatch.
-
+version = '2.0.0-alpha.5'
 ```
+
+From the above snippet, we see that this pallet template depends on version `2.0.0-alpha.5` of the low-level libraries. Thus it can be used in runtimes that also depend on `2.0.0-alpha.5`.
 
 ### Your Pallet's Dev Dependencies
 
 The final section of the `Cargo.toml` file specifies the dev dependencies. These
-are the dependencies that are needed in your pallet's tests, but not necessary
+are the dependencies that are needed in your pallet's tests, but not
 the actual pallet itself.
 
-**`my-node/pallets/my-pallet/Cargo.toml`**
+**`pallets/test-pallet/Cargo.toml`**
 
 ```TOML
 # --snip--
 
 [dev-dependencies.sp-core]
 default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-rev = '013c1ee167354a08283fb69915fda56a62fee943'
-version = '2.0.0-alpha.3'
+version = '2.0.0-alpha.5'
 ```
 
 You can confirm that the tests in the Substrate pallet template pass with:
@@ -162,25 +130,29 @@ You can confirm that the tests in the Substrate pallet template pass with:
 cargo test
 ```
 
-You may need to modify the dependencies you need for the pallets you create.
+When updating this pallet to include your own custom logic, you will likely add dependencies of your own to this `Cargo.toml` file.
 
 ## Add Your Pallet to Your Node
 
 With our pallet now compiling and passing it's tests, we're ready to add
 it to our node.
 
+> If you aren't familiar with including and using other crates, refer to [the Cargo
+> book](https://doc.rust-lang.org/cargo/guide/creating-a-new-project.html) for an
+> in-depth explanation.
+
 We first add our newly-created crate as a dependency in the node's runtime
 `Cargo.toml`. Then we tell the pallet to only build its `std` feature when the
 runtime itself does, as follows:
 
-**`my-node/runtime/Cargo.toml`**
+**`runtime/Cargo.toml`**
 
 ```TOML
 # --snip--
 
 [dependencies.test-pallet]
 default-features = false
-path = '../pallets/my-pallet'
+path = '../pallets/test-pallet'
 
 # toward the bottom
 [features]
@@ -194,11 +166,11 @@ std = [
 > You **must** set `default_features = false` so that your runtime will
 successfully compile to Wasm.
 
-Next we will update `my-node/runtime/src/lib.rs` to actually use our new runtime
+Next we will update `runtime/src/lib.rs` to actually use our new runtime
 pallet, by adding a trait implementation with our `test_pallet` and add it in
 our `construct_runtime!` macro.
 
-**`my-node/runtime/src/lib.rs`**
+**`runtime/src/lib.rs`**
 
 ```rust
 // add the following code block
@@ -228,7 +200,6 @@ your node's runtime.
 1. Compile and run your node with:
 
     ```bash
-    cd my-node
     cargo build --release
     ```
 
@@ -255,16 +226,24 @@ connect to** set to **Local Node**.
 ## Publish Your Pallet
 
 Once your pallet is no longer in test phase, you should consider publishing
-it to GitHub. Go ahead and [create a GitHub
+it to GitHub or crates.io.
+
+### Publishing on GitHub
+To publish on GitHub, you need to [create a GitHub
 repository](https://help.github.com/en/articles/create-a-repo) and [push your
 pallet's code](https://help.github.com/en/articles/pushing-to-a-remote) to it.
 
-With the code on GitHub, your pallet is properly published. Congratulations! Now
-we just need to update your node to use the code that is on GitHub instead of a
-hard-coded file system path. The final edit to your runtime's `Cargo.toml` file
-is to update its dependency on your pallet. The new code is:
+### Publishing on Crates.io
+Crates.io allows permissionless publishing. Learn the proceedure following their own guide about [publishing on crates.io](https://doc.rust-lang.org/cargo/reference/publishing.html)
 
-**`my-node/runtime/Cargo.toml`**
+## Updating your Runtime's Dependecy
+With your pallet now published on GitHub, crates.io, or both,
+we can update your runtime to use the code that is published instead of a
+hard-coded file system path.
+
+### Dependencies from GitHub
+
+**`runtime/Cargo.toml`**
 
 ```TOML
 [dependencies.your-pallet-name]
@@ -277,27 +256,32 @@ branch = 'master'
 # tag = '<some tag>
 ```
 
-Compile one more time and notice that Cargo now grabs your pallet from GitHub
-instead of using the local files.
+### Dependencies from Crates.io
+
+**`runtime/Cargo.toml`**
+
+```TOML
+[dependencies.your-pallet-name]
+default_features = false
+version = 'some-compatible-version'
+```
+
+## One Last Build
+
+Compile one more time and notice that Cargo now grabs your pallet from GitHub or crates.io instead of using the local files.
 
 ## Next Steps
 
 Congratulations! You've written a Substrate pallet in its own Rust
-crate, and published that crate to GitHub. Other blockchain developers can now
+crate, and published it. Other blockchain developers can now
 easily use your pallet in their runtime by simply including those same four
 lines of code in their runtime's `Cargo.toml` files and updating their runtime's
 `lib.rs` file.
-
-If you're not sure what to do next, check out the resources below.
 
 ### Learn More
 
 - We have [plenty of tutorials](https://substrate.dev/en/tutorials) to showcase
   Substrate development concepts and techniques.
-- To learn more about writing your own runtime with a front end, we have a
-  [Substrate Collectables
-  Workshop](https://substrate.dev/substrate-collectables-workshop) for building
-  an end-to-end application.
 - For more information about runtime development tips and patterns, refer to our
   [Substrate Recipes](https://substrate.dev/recipes/).
 
