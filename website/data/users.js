@@ -62,6 +62,15 @@ const usersList = [{
     type: "chain",
   },
   {
+    name: "Encointer",
+    image: "/img/users/encointer.svg",
+    homepage: "https://encointer.org/",
+    github: "https://github.com/encointer",
+    telemetry: "https://telemetry.polkadot.io/#list/Encointer%20Testnet%20Gesell",
+    pinned: false,
+    type: "chain",
+  },  
+  {
     name: "Ocean Protocol",
     image: "/img/users/oceanprotocol.svg",
     homepage: "https://oceanprotocol.com/",
