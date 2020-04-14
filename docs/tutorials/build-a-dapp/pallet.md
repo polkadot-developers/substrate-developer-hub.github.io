@@ -215,7 +215,7 @@ call in this Substrate pallet:
 1. `create_claim()`: Allow a user to claim the existence of a file with a proof.
 2. `revoke_claim()`: Allow the owner of a claim to revoke their claim.
 
-Here is what the pallet declaration looks like with these these two functions:
+Here is what the pallet declaration looks like with these two functions:
 
 ```rust
 // The pallet's dispatchable functions.
