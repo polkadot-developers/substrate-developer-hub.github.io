@@ -125,14 +125,14 @@ $ ./target/release/node-template build-spec --chain <span class="token builtin c
 <p>Once the chain spec is prepared, convert it to a &quot;raw&quot; chain spec. The raw chain spec contains all the same information, but it contains the encoded storage keys that the node will use to reference the data in its local storage. Distributing a raw spec ensures that each node will store the data at the proper storage keys.</p>
 <pre><code class="hljs css language-bash">./target/release/node-template build-spec --chain customSpec.json --raw <span class="token operator">></span> customSpecRaw.json
 </code></pre>
-<p>Finally share the <code>customSpecRaw.json</code> with your all the other validators in the network.</p>
+<p>最后与网络中的所有其他验证人共享<code>customSpecRaw.json</code>。</p>
 <blockquote>
 <p>A single person should create the chain spec and share the resulting <strong><code>customSpecRaw.json</code></strong> file with their fellow validators.</p>
 <p>Because Rust -&gt; Wasm optimized builds aren't &quot;reproducible&quot;, each person will get a slightly different Wasm blob which will break consensus if each participant generates the file themselves.</p>
 </blockquote>
 <h2><a class="anchor" aria-hidden="true" id="first-participant-starts-a-bootnode"></a><a href="#first-participant-starts-a-bootnode" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>First Participant Starts a Bootnode</h2>
-<p>You've completed all the necessary prep work and you're now ready to launch your chain. This process is very similar to when you launched a chain earlier as Alice and Bob. It's important to start with a clean base path, so if you plan to use the same path that you've used previously, please delete all contents from that directory.</p>
-<p>The first participant can launch her node with</p>
+<p>你已完成所有必要的准备工作，现在准备好启动链。 This process is very similar to when you launched a chain earlier as Alice and Bob. It's important to start with a clean base path, so if you plan to use the same path that you've used previously, please delete all contents from that directory.</p>
+<p>第一位参与者启动节点</p>
 <pre><code class="hljs css language-bash">./target/release/node-template <span class="token punctuation">\</span>
   --base-path /tmp/node01 <span class="token punctuation">\</span>
   --chain<span class="token operator">=</span>./customSpecRaw.json <span class="token punctuation">\</span>
@@ -143,7 +143,7 @@ $ ./target/release/node-template build-spec --chain <span class="token builtin c
   --validator <span class="token punctuation">\</span>
   --name MyNode01
 </code></pre>
-<p>Here are some differences from when we launched as Alice.</p>
+<p>以下是我们启动 Alice 时的一些不同之处。</p>
 <ul>
 <li>I've omitted the <code>--alice</code> flag. Instead we will insert our own custom keys into the keystore through the RPC shortly.</li>
 <li>The <code>--chain</code> flag has changed to use our custom chain spec.</li>
