@@ -7,7 +7,7 @@ prevent individual components of the chain from consuming too much of any resour
 
 NOTE: Weights are not used to restrict access to other resources, such as storage itself or memory footprint. Other mechanisms must be used for this.
 
-The amount of weight a block may contain is limited, and optional weight consumption (i.e. weight that is not required to be deployed as part of the block's initialization or finalization phases nor used in mandatory inherent extrinsics) will generally be limited through economic measures---or in simple terms, through transaction fees. The fee implications of the weight system are covered in the [Fee Developer document](development/module/fees.md).
+The amount of weight a block may contain is limited, and optional weight consumption (i.e. weight that is not required to be deployed as part of the block's initialization or finalization phases nor used in mandatory inherent extrinsics) will generally be limited through economic measures---or in simple terms, through transaction fees. The fee implications of the weight system are covered in the [Transaction Fees document](development/module/fees.md).
 
 ## Weight Fundamentals
 
@@ -55,6 +55,11 @@ dispatch class. This rule applies to both of the limits and the ratio can be fou
 For example, if the block length limit is 1 megabyte and the ratio is set to 80%, all transactions
 can fill the first 800 kilobytes of the block while the last 200 can only be filled by the
 operational class.
+
+There is also a `Mandatory` dispatch class that can be used to ensure an extrinsic is always
+included in a block regardless of its impact on block weight. Please refer to the
+[Transaction Fees document](development/module/fees.md) to learn more about the different dispatch
+classes and when to use them.
 
 ## Next Steps
 
