@@ -387,6 +387,14 @@ const usersList = [{
     type: "infra",
   },
   {
+    name: "Subsocial",
+    image: "/img/users/subsocial.svg",
+    homepage: "http://subsocial.network/",
+    github: "https://github.com/dappforce/dappforce-subsocial",
+    pinned: false,
+    type: "chain",
+  },
+  {
     name: "Swarm City",
     image: "/img/users/SwarmCity.png",
     homepage: "https://swarm.city/",
