@@ -88,16 +88,16 @@ configurable parameters.
 A transaction fee consists of three parts:
 
 * `base_fee`: A fixed fee that is applied to every transaction. See
-  [`TransactionBaseFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionBaseFee).
+  [`TransactionBaseFee`](https://crates.parity.io/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionBaseFee).
 * `length_fee`: A per-byte fee that is multiplied by the length, in bytes, of the encoded
   transaction. See
-  [`TransactionByteFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
+  [`TransactionByteFee`](https://crates.parity.io/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
 * `weight_fee`: A per-weight-unit fee that is multiplied by the weight of the transaction. The
   weight of each dispatch is denoted via the flexible `#[weight]` annotation. Knowing the weight, it
   must be converted to the `Currency` type. For this, each runtime must define a
-  [`WeightToFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
+  [`WeightToFee`](https://crates.parity.io/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
   type that makes the conversion. `WeightToFee` must be a struct that implements [`Convert<Weight,
-  Balance>`](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Convert.html).
+  Balance>`](https://crates.parity.io/sp_runtime/traits/trait.Convert.html).
 
 Based on the above, the final fee of a dispatchable is:
 
@@ -117,9 +117,9 @@ The above formula gives a fee that is always the same for the same input. Howeve
 dynamic and based on how `WeightToFee` is defined, the final fee can include some degree of
 variability. To fulfill this requirement, Substrate provides:
 
-  - [`NextFeeMultiplier`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/struct.Module.html#method.next_fee_multiplier):
+  - [`NextFeeMultiplier`](https://crates.parity.io/pallet_transaction_payment/struct.Module.html#method.next_fee_multiplier):
     A multiplier stored in the Transaction Payment module and configurable.
-  - [`FeeMultiplierUpdate`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate):
+  - [`FeeMultiplierUpdate`](https://crates.parity.io/pallet_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate):
     A configurable parameter for a runtime to describe how this multiplier can change.
 
 `NextFeeMultiplier` has the type `Fixed64`, which can represent a fixed point number. So, given the
@@ -281,7 +281,7 @@ payment module drawing inspiration from Transaction Payment.
 
 - Dedicated [weight documentation](conceptual/runtime/weight.md)
 - [Example module](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
-- [SignedExtension](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.SignedExtension.html)
+- [SignedExtension](https://crates.parity.io/sp_runtime/traits/trait.SignedExtension.html)
 
 ### Examples
 

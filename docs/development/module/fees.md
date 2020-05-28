@@ -23,15 +23,15 @@ of configurable parameters.
 A transaction fee consists of three parts:
 
 * `base_fee`: A fixed fee that is applied to every transaction. See
-  [`TransactionBaseFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionBaseFee).
+  [`TransactionBaseFee`](https://crates.parity.io/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionBaseFee).
 * `length_fee`: A per-byte fee that is multiplied by the length, in bytes, of the encoded extrinsic. See
-  [`TransactionByteFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
+  [`TransactionByteFee`](https://crates.parity.io/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
 * `weight_fee`: A fee based on the weight of the extrinsic. The weight of each dispatch is denoted
   via the flexible `#[weight]` annotation. The weight must be converted to the `Currency` type. For
   this, each runtime must define a
-  [`WeightToFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
+  [`WeightToFee`](https://crates.parity.io/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
   type that makes the conversion. `WeightToFee` must be a struct that implements [`Convert<Weight,
-  Balance>`](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Convert.html).
+  Balance>`](https://crates.parity.io/sp_runtime/traits/trait.Convert.html).
 
 Based on the above, the final fee of a dispatchable is:
 
@@ -53,13 +53,13 @@ logic perform checks prior to adding an extrinsic to a block.
 
 The above formula gives a fee that is always the same for the same input. However, weight can be
 dynamic and, based on how
-[`WeightToFee`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
+[`WeightToFee`](https://crates.parity.io/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
 is defined, the final fee can include some degree of variability. To fulfill this requirement,
 Substrate provides:
 
-  - [`NextFeeMultiplier`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/struct.Module.html#method.next_fee_multiplier):
+  - [`NextFeeMultiplier`](https://crates.parity.io/pallet_transaction_payment/struct.Module.html#method.next_fee_multiplier):
     A multiplier stored in the Transaction Payment module and configurable.
-  - [`FeeMultiplierUpdate`](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate):
+  - [`FeeMultiplierUpdate`](https://crates.parity.io/pallet_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate):
     A configurable parameter for a runtime to describe how this multiplier can change.
 
 `NextFeeMultiplier` has the type `Fixed64`, which can represent a fixed point number. So, given the
@@ -133,7 +133,7 @@ pub enum DispatchClass {
 
 Dispatches in this class represent normal user-triggered transactions. These types of dispatches may
 only consume a portion of a block's total weight limit; this portion can be found by examining the
-[`AvailableBlockRatio`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
+[`AvailableBlockRatio`](https://crates.parity.io/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
 Normal dispatches are sent to the [transaction pool](conceptual/node/tx-pool.md).
 
 #### `FixedNormal`
@@ -166,7 +166,7 @@ pub fn some_normal_function_light() { noop(); }
 As opposed to normal dispatches, which represent _usage_ of network capabilities, operational dispatches
 are those that _provide_ network capabilities. These types of dispatches may consume the entire weight
 limit of a block, which is to say that they are not bound by the
-[`AvailableBlockRatio`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
+[`AvailableBlockRatio`](https://crates.parity.io/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
 Dispatches in this class are given maximum priority and are exempt from paying the `base_fee` and
 `length_fee`.
 
@@ -329,7 +329,7 @@ payment module drawing inspiration from Transaction Payment.
 
 - Dedicated [weight documentation](conceptual/runtime/weight.md)
 - [Example module](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
-- [SignedExtension](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.SignedExtension.html)
+- [SignedExtension](https://crates.parity.io/sp_runtime/traits/trait.SignedExtension.html)
 
 ### Examples
 

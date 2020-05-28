@@ -10,13 +10,13 @@ Runtime storage allows you to store data in your blockchain which can be accesse
 
 Your runtime module has access to Substrate storage APIs which allows you to easily store common storage items:
 
-* [Storage Value](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html) - A single value.
+* [Storage Value](https://crates.parity.io/frame_support/storage/trait.StorageValue.html) - A single value.
 
-* [Storage Map](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html) - A key-value hash map.
+* [Storage Map](https://crates.parity.io/frame_support/storage/trait.StorageMap.html) - A key-value hash map.
 
-* [Storage Linked Map](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageLinkedMap.html) - Similar to a storage map, but allows enumeration of the stored elements.
+* [Storage Linked Map](https://crates.parity.io/frame_support/storage/trait.StorageLinkedMap.html) - Similar to a storage map, but allows enumeration of the stored elements.
 
-* [Storage Double Map](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html) - An implementation of a map with two keys.
+* [Storage Double Map](https://crates.parity.io/frame_support/storage/trait.StorageDoubleMap.html) - An implementation of a map with two keys.
 
 Any value which can be encoded by the [Parity SCALE codec](conceptual/core/codec.md) is supported by these storage APIs.
 
@@ -73,6 +73,6 @@ TODO
 
 ### References
 
-* Visit the reference docs for the [`decl_storage!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html) more details possible storage declarations.
+* Visit the reference docs for the [`decl_storage!` macro](https://crates.parity.io/frame_support/macro.decl_storage.html) more details possible storage declarations.
 
-* Visit the reference docs for [StorageValue](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageValue.html), [StorageMap](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageMap.html), [StorageLinkedMap](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageLinkedMap.html), and [StorageDoubleMap](https://substrate.dev/rustdocs/master/frame_support/storage/trait.StorageDoubleMap.html) to learn more about their API.
+* Visit the reference docs for [StorageValue](https://crates.parity.io/frame_support/storage/trait.StorageValue.html), [StorageMap](https://crates.parity.io/frame_support/storage/trait.StorageMap.html), [StorageLinkedMap](https://crates.parity.io/frame_support/storage/trait.StorageLinkedMap.html), and [StorageDoubleMap](https://crates.parity.io/frame_support/storage/trait.StorageDoubleMap.html) to learn more about their API.

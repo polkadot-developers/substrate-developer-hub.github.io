@@ -196,7 +196,7 @@ TODO
 ### References
 
 * Visit the reference docs for the
-  [`parity-scale-codec`](https://substrate.dev/rustdocs/master/parity_scale_codec/index.html).
+  [`parity-scale-codec`](https://crates.parity.io/parity_scale_codec/index.html).
 
 * Visit the auxiliary encoding section of the [Polkadot runtime environment
   specification](https://github.com/w3f/polkadot-spec/blob/master/runtime-environment-spec/polkadot_re_spec.pdf).

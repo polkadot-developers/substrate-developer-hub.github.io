@@ -71,6 +71,6 @@ There are an additional set of primitives that are assumed about a runtime built
 ### References
 
 - View the [primitive types defined in
-  `node-primitives`](https://substrate.dev/rustdocs/master/node_primitives/index.html).
+  `node-primitives`](https://crates.parity.io/node_primitives/index.html).
   
-- View the [`traits` defined in `sp-runtime`](https://substrate.dev/rustdocs/master/sp_runtime/traits/index.html)
+- View the [`traits` defined in `sp-runtime`](https://crates.parity.io/sp_runtime/traits/index.html)

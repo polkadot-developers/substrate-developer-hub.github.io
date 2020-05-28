@@ -36,9 +36,9 @@ By assigning `balances::Balance` and `system::AccountId` to `u64`, mock runtimes
 
 ### Mock Runtime Storage
 
-The [`runtime-io`](https://substrate.dev/rustdocs/master/sp_io/index.html) crate exposes a [`TestExternalities`](https://substrate.dev/rustdocs/master/sp_io/type.TestExternalities.html) implementation frequently used for mocking storage in tests. It is the type alias for an in-memory, hashmap-based externalities implementation in [`substrate_state_machine`](https://substrate.dev/rustdocs/master/sp_state_machine/index.html)] referred to as [`TestExternalities`](https://substrate.dev/rustdocs/master/sp_state_machine/struct.TestExternalities.html).
+The [`runtime-io`](https://crates.parity.io/sp_io/index.html) crate exposes a [`TestExternalities`](https://crates.parity.io/sp_io/type.TestExternalities.html) implementation frequently used for mocking storage in tests. It is the type alias for an in-memory, hashmap-based externalities implementation in [`substrate_state_machine`](https://crates.parity.io/sp_state_machine/index.html)] referred to as [`TestExternalities`](https://crates.parity.io/sp_state_machine/struct.TestExternalities.html).
 
-In the [basic mock runtime's recipe](https://substrate.dev/recipes/3-entrees/testing/mock.html), an `ExtBuilder` object is defined to build an instance of [`TestExternalities`](https://substrate.dev/rustdocs/master/sp_io/type.TestExternalities.html).
+In the [basic mock runtime's recipe](https://substrate.dev/recipes/3-entrees/testing/mock.html), an `ExtBuilder` object is defined to build an instance of [`TestExternalities`](https://crates.parity.io/sp_io/type.TestExternalities.html).
 
 ```rust
 pub struct ExtBuilder;
@@ -51,7 +51,7 @@ impl ExtBuilder {
 }
 ```
 
-To create the test environment in unit tests, the build method is called to generate a `TestExternalities` using the default genesis configuration. Then, [`with_externalities`](https://substrate.dev/rustdocs/master/sp_externalities/fn.with_externalities.html) provides the runtime environment in which we may call the pallet's methods to test that storage, events, and errors behave as expected.
+To create the test environment in unit tests, the build method is called to generate a `TestExternalities` using the default genesis configuration. Then, [`with_externalities`](https://crates.parity.io/sp_externalities/fn.with_externalities.html) provides the runtime environment in which we may call the pallet's methods to test that storage, events, and errors behave as expected.
 
 ```rust
 #[test]
@@ -63,9 +63,9 @@ fn fake_test_example() {
 ```
 
 Custom implementations of
-[Externalities](https://substrate.dev/rustdocs/master/sp_externalities/index.html) allow developers to
+[Externalities](https://crates.parity.io/sp_externalities/index.html) allow developers to
 construct runtime environments that provide access to features of the outer node. Another example of
-this can be found in [`offchain`](https://substrate.dev/rustdocs/master/sp_core/offchain/index.html), which
+this can be found in [`offchain`](https://crates.parity.io/sp_core/offchain/index.html), which
 maintains its own [Externalities](https://substrate.dev/rustdocs/pre-v2.0-3e65111/sp_core/offchain/trait.Externalities.html)
 implementation. [Implementing configurable
 externalities](https://substrate.dev/recipes/3-entrees/testing/externalities.html) is covered in more depth in

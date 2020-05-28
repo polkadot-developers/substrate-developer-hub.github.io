@@ -48,10 +48,10 @@ View our most [simple Substrate runtime](development/module/index.md) to see all
 
 ### References
 
-* Visit the reference docs for the [`decl_module!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_module.html).
+* Visit the reference docs for the [`decl_module!` macro](https://crates.parity.io/frame_support/macro.decl_module.html).
 
-* Visit the reference docs for the [`decl_event!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_event.html).
+* Visit the reference docs for the [`decl_event!` macro](https://crates.parity.io/frame_support/macro.decl_event.html).
 
-* Visit the reference docs for the [`decl_storage!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html).
+* Visit the reference docs for the [`decl_storage!` macro](https://crates.parity.io/frame_support/macro.decl_storage.html).
 
-* Visit the reference docs for the [`construct_runtime!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html).
+* Visit the reference docs for the [`construct_runtime!` macro](https://crates.parity.io/frame_support/macro.construct_runtime.html).

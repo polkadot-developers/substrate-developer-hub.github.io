@@ -57,6 +57,6 @@ to support earlier hard fork configurations.
 
 ### References
 
-- Visit the reference docs for the [EVM module](https://substrate.dev/rustdocs/master/pallet_evm/index.html).
+- Visit the reference docs for the [EVM module](https://crates.parity.io/pallet_evm/index.html).
 
 - Visit the reference docs for [SputnikVM's `evm` crate](https://docs.rs/evm/).

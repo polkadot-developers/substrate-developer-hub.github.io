@@ -12,7 +12,7 @@ Hash functions are used in Substrate to map arbitrary sized data to fixed-sized 
 
 Substrate provides two hash algorithms out of the box, but can support any hash algorithm which
 implements the [`Hasher`
-trait](https://substrate.dev/rustdocs/master/sp_core/trait.Hasher.html).
+trait](https://crates.parity.io/sp_core/trait.Hasher.html).
 
 ### xxHash
 
@@ -42,7 +42,7 @@ Public-key cryptography is used in Substrate to provide a robust authentication 
 
 Substrate provides multiple different cryptographic schemes and is generic such that it can support
 anything which implements the [`Pair`
-trait](https://substrate.dev/rustdocs/master/sp_core/crypto/trait.Pair.html).
+trait](https://crates.parity.io/sp_core/crypto/trait.Pair.html).
 
 ### ECDSA
 
@@ -93,9 +93,9 @@ but only ECDSA signatures communicate their public key.
 ### References
 
 * Take a look at the
-  [`Hash`](https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Hash.html) trait needed
+  [`Hash`](https://crates.parity.io/sp_runtime/traits/trait.Hash.html) trait needed
   for implementing new hashing algorithms.
 
 * Take a look at the
-  [`Pair`](https://substrate.dev/rustdocs/master/sp_core/crypto/trait.Pair.html) trait
+  [`Pair`](https://crates.parity.io/sp_core/crypto/trait.Pair.html) trait
   needed for implementing new cryptographic schemes.

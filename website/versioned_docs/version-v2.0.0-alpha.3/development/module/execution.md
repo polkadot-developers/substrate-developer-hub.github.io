@@ -54,10 +54,10 @@ TODO
 
 ### References
 
-* Visit the reference docs for the [Executive module](https://substrate.dev/rustdocs/master/frame_executive/index.html).
+* Visit the reference docs for the [Executive module](https://crates.parity.io/frame_executive/index.html).
 
-* Visit the reference docs for the [`decl_event!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_event.html).
+* Visit the reference docs for the [`decl_event!` macro](https://crates.parity.io/frame_support/macro.decl_event.html).
 
-* Visit the reference docs for the [`decl_storage!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_storage.html).
+* Visit the reference docs for the [`decl_storage!` macro](https://crates.parity.io/frame_support/macro.decl_storage.html).
 
-* Visit the reference docs for the [`construct_runtime!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html).
+* Visit the reference docs for the [`construct_runtime!` macro](https://crates.parity.io/frame_support/macro.construct_runtime.html).
