@@ -51,7 +51,7 @@ state of the blockchain and provide a basis for light clients to verify proofs.
 
 This trie only stores content for the canonical chain, not forks. There is a
 separate [`state_db`
-layer](https://substrate.dev/rustdocs/master/sc_state_db/index.html) that
+layer](https://crates.parity.io/sc_state_db/index.html) that
 maintains the trie state with references counted in memory for all that is
 non-canonical.
 
@@ -73,7 +73,7 @@ these needs automatically; thus a child trie is used instead.
 ## Runtime Storage API
 
 The Substrate's [Support
-module](https://substrate.dev/rustdocs/master/frame_support/index.html) provides
+module](https://crates.parity.io/frame_support/index.html) provides
 utilities to generate unique, deterministic keys for your runtime module storage
 items. These storage items are placed in the state trie and are accessible by
 querying the trie by key.
@@ -92,4 +92,4 @@ querying the trie by key.
 ### References
 
 - Visit the reference docs for
-  [`paritytech/trie`](https://substrate.dev/rustdocs/master/trie_db/trait.Trie.html).
+  [`paritytech/trie`](https://crates.parity.io/trie_db/trait.Trie.html).

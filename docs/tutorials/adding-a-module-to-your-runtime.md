@@ -503,4 +503,4 @@ In the `Cargo.toml` file of the Substrate node runtime, you will see an example 
 
 ### References
 
-- [FRAME `Contracts` Pallet API](https://substrate.dev/rustdocs/master/pallet_contracts/index.html)
+- [FRAME `Contracts` Pallet API](https://crates.parity.io/pallet_contracts/index.html)

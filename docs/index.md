@@ -72,4 +72,4 @@ Substrate is designed to be used in one of three ways:
 
 ### References
 
-- Check out [Rust reference documentation](https://substrate.dev/rustdocs/master).
+- Check out [Rust reference documentation](https://crates.parity.io).

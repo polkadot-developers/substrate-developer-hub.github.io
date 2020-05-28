@@ -79,7 +79,7 @@ decl_module! {
 }
 ```
 
-The default behavior of this function is to call [`deposit_event`](https://substrate.dev/rustdocs/master/frame_system/struct.Module.html#method.deposit_event) from the SRML System module.
+The default behavior of this function is to call [`deposit_event`](https://crates.parity.io/frame_system/struct.Module.html#method.deposit_event) from the SRML System module.
 
 This function places the event in the System module's runtime storage for that block. At the beginning of a new block, the System module automatically removes all events that were stored from the previous block.
 
@@ -113,8 +113,8 @@ These [Substrate Recipes](https://github.com/substrate-developer-hub/recipes) of
 
 ### References
 
-* Visit the reference docs for the [`decl_event!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_event.html).
+* Visit the reference docs for the [`decl_event!` macro](https://crates.parity.io/frame_support/macro.decl_event.html).
 
-* Visit the reference docs for the [`decl_module!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.decl_module.html).
+* Visit the reference docs for the [`decl_module!` macro](https://crates.parity.io/frame_support/macro.decl_module.html).
 
-* Visit the reference docs for the [`construct_runtime!` macro](https://substrate.dev/rustdocs/master/frame_support/macro.construct_runtime.html).
+* Visit the reference docs for the [`construct_runtime!` macro](https://crates.parity.io/frame_support/macro.construct_runtime.html).

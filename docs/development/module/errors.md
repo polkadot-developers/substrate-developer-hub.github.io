@@ -13,6 +13,6 @@ Reminder: verify first, write last
 
 Custom Error Messages
 
-[`decl_error`](https://substrate.dev/rustdocs/master/frame_support/macro.decl_error.html)
+[`decl_error`](https://crates.parity.io/frame_support/macro.decl_error.html)
 
 * testing from `balances`

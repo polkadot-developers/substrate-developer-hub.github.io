@@ -8,7 +8,7 @@ Because Substrate supports Wasm smart contracts, it means that any language that
 
 ## Contracts Pallet
 
-The Contracts pallet provides the ability for the runtime to deploy and execute WebAssembly smart contracts. Here we will provide a short overview of the major features of the contracts pallet. To really learn all of the fine details, you can take a look at the [reference documentation for `srml_contracts`](https://substrate.dev/rustdocs/master/pallet_contracts/index.html).
+The Contracts pallet provides the ability for the runtime to deploy and execute WebAssembly smart contracts. Here we will provide a short overview of the major features of the contracts pallet. To really learn all of the fine details, you can take a look at the [reference documentation for `srml_contracts`](https://crates.parity.io/pallet_contracts/index.html).
 
 ### Account Based
 

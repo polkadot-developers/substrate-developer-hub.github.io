@@ -27,7 +27,7 @@ Note: It's possible to design a custom runtime to remove the strict transaction 
 
 ## Transaction Dependencies
 
-The `ValidTransaction` [struct](https://substrate.dev/rustdocs/master/sp_runtime/transaction_validity/struct.ValidTransaction.html) defines the `requires` and `provides` parameters to build a dependency graph of transactions. Together with `priority` (discussed below), this dependency graph allows the pool to produce a valid linear ordering of transactions.
+The `ValidTransaction` [struct](https://crates.parity.io/sp_runtime/transaction_validity/struct.ValidTransaction.html) defines the `requires` and `provides` parameters to build a dependency graph of transactions. Together with `priority` (discussed below), this dependency graph allows the pool to produce a valid linear ordering of transactions.
 
 For runtimes built with FRAME, the nodes order transactions with an account-based system. Every signed transaction needs to contain a nonce, which is incremented by 1 every time a new transaction is made. For example, the first transaction from a new account will have `nonce = 0` and the second transaction will have `nonce = 1`.
 
@@ -37,7 +37,7 @@ Substrate supports multiple `provides` and `requires` tags, so custom runtimes c
 
 ## Transaction Priority
 
-Transaction `priority` in the `ValidTransaction` [struct](https://substrate.dev/rustdocs/master/sp_runtime/transaction_validity/struct.ValidTransaction.html) determines the ordering of transactions that are in the ready queue. If a node is the next block author, it will order transactions from high to low priority in the next block until it reaches the weight or length limit of the block.
+Transaction `priority` in the `ValidTransaction` [struct](https://crates.parity.io/sp_runtime/transaction_validity/struct.ValidTransaction.html) determines the ordering of transactions that are in the ready queue. If a node is the next block author, it will order transactions from high to low priority in the next block until it reaches the weight or length limit of the block.
 
 `priority` defines the linear ordering of a graph in the case of one transaction unlocking multiple dependent transactions. For example, if we have two (or more) transactions that have their dependencies satisfied, then we use `priority` to choose the order for them.
 

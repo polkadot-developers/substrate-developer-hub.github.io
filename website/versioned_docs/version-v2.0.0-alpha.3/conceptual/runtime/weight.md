@@ -15,7 +15,7 @@ The amount of weight a block may contain is limited, and optional weight consump
 
 Weights represent the _limited_ time that your blockchain has to validate a block. This includes computational cycles,
 and storage I/O. A custom implementation may use complex structures to express this. Substrate
-weights are simply a [numeric value](https://substrate.dev/rustdocs/master/frame_support/weights/type.Weight.html).
+weights are simply a [numeric value](https://crates.parity.io/frame_support/weights/type.Weight.html).
 
 A weight calculation should always:
 
@@ -32,10 +32,10 @@ In the case that the weight of a dispatchable is heavily dependent on chain-stat
 - Determine or introduce a forced upper limit to the amount of weight a dispatchable could possibly take. If the difference between the enforced upper limit and the least possible amount of weight a dispatchable could take is small, then it can just be assumed to always be at the upper limit of the weight without consulting the state. If the difference is too great, however, then the economic cost of making lesser transactions might be too great which will warp the incentives and create inefficiencies in throughput.
 - Require the effective weight (or precursors that can be used to efficiently compute it) be passed in as parameters to the dispatch. The weight charged should be based on these parameters but also cover the amount of time it takes to verify them during dispatch. Verification must take place to ensure the weighing parameters correspond accurately to on-chain state and if they don't then the operation should gracefully error.
 
-The [System pallet](https://substrate.dev/rustdocs/master/frame_system/struct.Module.html) is
+The [System pallet](https://crates.parity.io/frame_system/struct.Module.html) is
 responsible for accumulating the weight of each block as it gets executed and making sure that it
 does not exceed the limit. The [Transaction Payment
-pallet](https://substrate.dev/rustdocs/master/pallet_transaction_payment/index.html) is responsible
+pallet](https://crates.parity.io/pallet_transaction_payment/index.html) is responsible
 for interpreting these weights and deducting fees based upon them. The weighing function is part of
 the runtime so it can be upgraded if needed.
 
@@ -46,13 +46,13 @@ filled with transactions that would take too long to execute. While processing t
 accumulates both the total length of the block (sum of encoded transactions in bytes) and the total
 weight of the block. If either of these numbers surpass the limits, no further transactions are
 accepted in that block. These limits are defined in
-[`MaximumBlockLength`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.MaximumBlockLength)
+[`MaximumBlockLength`](https://crates.parity.io/frame_system/trait.Trait.html#associatedtype.MaximumBlockLength)
 and
-[`MaximumBlockWeight`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.MaximumBlockWeight).
+[`MaximumBlockWeight`](https://crates.parity.io/frame_system/trait.Trait.html#associatedtype.MaximumBlockWeight).
 
 One important note about these limits is that a portion of them are reserved for the `Operational`
 dispatch class. This rule applies to both of the limits and the ratio can be found in
-[`AvailableBlockRatio`](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
+[`AvailableBlockRatio`](https://crates.parity.io/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
 
 For example, if the block length limit is 1 megabyte and the ratio is set to 80%, all transactions
 can fill the first 800 kilobytes of the block while the last 200 can only be filled by the
