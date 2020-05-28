@@ -119,9 +119,9 @@
 <h3><a class="anchor" aria-hidden="true" id="打包费用"></a><a href="#打包费用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>打包费用</h3>
 <p>交易费包括三个部分：</p>
 <ul>
-<li>基本费用<code>base_fee</code>: 每次交易的固定费用。 查看 <a href="https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionBaseFee">交易基本费用<code>TransactionBaseFee</code></a>.</li>
-<li><code>length_fee</code>: A per-byte fee that is multiplied by the length, in bytes, of the encoded transaction. 查看 <a href="https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee">交易字节费用<code>TransactionByteFee</code></a>.</li>
-<li><code>weight_fee</code>: A per-weight-unit fee that is multiplied by the weight of the transaction. The weight of each dispatch is denoted via the flexible <code>#[weight]</code> annotation. Knowing the weight, it must be converted to the <code>Currency</code> type. For this, each runtime must define a <a href="https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee"><code>WeightToFee</code></a> type that makes the conversion. <code>WeightToFee</code> 必须是实现 <a href="https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.Convert.html"><code>Convert&lt;Weight, Balance&gt;</code></a> 的结构体。</li>
+<li>基本费用<code>base_fee</code>: 每次交易的固定费用。 See <a href="https://crates.parity.io/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionBaseFee"><code>TransactionBaseFee</code></a>.</li>
+<li><code>length_fee</code>: A per-byte fee that is multiplied by the length, in bytes, of the encoded transaction. See <a href="https://crates.parity.io/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee"><code>TransactionByteFee</code></a>.</li>
+<li><code>weight_fee</code>: A per-weight-unit fee that is multiplied by the weight of the transaction. The weight of each dispatch is denoted via the flexible <code>#[weight]</code> annotation. Knowing the weight, it must be converted to the <code>Currency</code> type. For this, each runtime must define a <a href="https://crates.parity.io/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee"><code>WeightToFee</code></a> type that makes the conversion. <code>WeightToFee</code> must be a struct that implements <a href="https://crates.parity.io/sp_runtime/traits/trait.Convert.html"><code>Convert&lt;Weight, Balance&gt;</code></a>.</li>
 </ul>
 <p>Based on the above, the final fee of a dispatchable is:</p>
 <pre><code class="hljs">fee <span class="token operator">=</span>
@@ -133,8 +133,8 @@
 <h3><a class="anchor" aria-hidden="true" id="费用乘数因子"></a><a href="#费用乘数因子" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>费用乘数因子</h3>
 <p>上述公式给出的费用对于相同的输入始终是相同的。 However, weight can be dynamic and based on how <code>WeightToFee</code> is defined, the final fee can include some degree of variability. To fulfill this requirement, Substrate provides:</p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/master/pallet_transaction_payment/struct.Module.html#method.next_fee_multiplier"><code>NextFeeMultiplier</code></a>: 存储在交易支付模块，并且可以配置。</li>
-<li><a href="https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate"><code>FeeMultiplierUplierUpdate</code></a>: Runtime的可配置参数，用来描述这个乘数的变化方式。</li>
+<li><a href="https://crates.parity.io/pallet_transaction_payment/struct.Module.html#method.next_fee_multiplier"><code>NextFeeMultiplier</code></a>: A multiplier stored in the Transaction Payment module and configurable.</li>
+<li><a href="https://crates.parity.io/pallet_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate"><code>FeeMultiplierUpdate</code></a>: A configurable parameter for a runtime to describe how this multiplier can change.</li>
 </ul>
 <p><code>NextFeeMultiplier</code> 的类型为 <code>Fixed64</code>，它可以表示一个固定的浮点数。 So, given the inclusion fee formula above, the final version would be:</p>
 <pre><code class="hljs">fee <span class="token operator">=</span>
@@ -242,7 +242,7 @@ final_fee <span class="token operator">=</span> fee <span class="token operator"
 <ul>
 <li><a href="/docs/zh-CN/v2.0.0-alpha.3/conceptual/runtime/weight">权重文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs">示例模块</a></li>
-<li><a href="https://substrate.dev/rustdocs/master/sp_runtime/traits/trait.SignedExtension.html">SignedExtension</a></li>
+<li><a href="https://crates.parity.io/sp_runtime/traits/trait.SignedExtension.html">SignedExtension</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="examples"></a><a href="#examples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h3>
 <p>Substrate Recipes 包含 <a href="https://github.com/substrate-developer-hub/recipes/tree/master/pallets/weights">自定义权重</a> 和自定义权重费用转换 <a href="https://github.com/substrate-developer-hub/recipes/tree/master/runtimes/weight-fee-runtime">WeightToFee</a> 的示例。</p>
