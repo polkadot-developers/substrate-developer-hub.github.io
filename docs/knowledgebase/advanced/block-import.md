@@ -34,7 +34,7 @@ steps sequentially. It does, however, abstract the notion of verification throug
 
 Any consensus engine that relies on the `BasicQueue` must implement the `Verifier` trait. The
 `Verifier` is typically responsible for tasks such as checking
-[inherent data](https://www.substrate.io/kb/learn-substrate/extrinsics#inherents), and ensuring that
+[inherent data](../learn-substrate/extrinsics#inherents), and ensuring that
 the block is signed by the appropriate authority.
 
 ## The Block Import Trait

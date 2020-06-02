@@ -13,7 +13,7 @@ interface to the core client.
 
 The following diagram shows the architectural overview of FRAME and its support libraries:
 
-![frame-arch](../assets/frame-arch.png)
+![frame-arch](../../../assets/frame-arch.png)
 
 ### Pallets
 

@@ -63,7 +63,7 @@ calculated.
 ### Learn More
 
 - Learn how how you can simulate the orchestration of the Executive module in your
-  [runtime tests](/current/runtime/tests.md).
+  [runtime tests](tests).
 
 ### References
 

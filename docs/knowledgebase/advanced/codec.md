@@ -6,7 +6,7 @@ The SCALE (Simple Concatenated Aggregate Little-Endian) Codec is a lightweight, 
 serialization and deserialization codec.
 
 It is designed for high-performance, copy-free encoding and decoding of data in resource-constrained
-execution contexts, like the [Substrate runtime](/current/runtime/index.md). It is not
+execution contexts, like the [Substrate runtime](../runtime). It is not
 self-describing in any way and assumes the decoding context has all type knowledge about the encoded
 data.
 

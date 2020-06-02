@@ -179,7 +179,7 @@ influence your decision on the kinds of situations you may want to use these dif
 - Follow a
   [tutorial to add a runtime module to your Substrate runtime](tutorials/adding-a-module-to-your-runtime.md).
 - Learn how to
-  [start developing with the Contracts pallet and ink!](/current/smart-contracts/ink-development.md).
+  [start developing with the Contracts pallet and ink!](ink-development).
 
 ### References
 

@@ -5,7 +5,7 @@ title: ink! Concepts
 ink! is a [Rust](https://www.rust-lang.org/)-based embedded domain specific language
 ([eDSL](https://wiki.haskell.org/Embedded_domain_specific_language)) for writing
 [Wasm](https://webassembly.org/) smart contracts specifically for the
-[FRAME Contracts pallet](/current/smart-contracts/contracts-pallet.md).
+[FRAME Contracts pallet](contracts-pallet).
 
 ## Design
 

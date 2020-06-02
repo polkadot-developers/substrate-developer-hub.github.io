@@ -5,7 +5,7 @@ title: ink! Development
 ink! is a [Rust](https://www.rust-lang.org/)-based embedded domain specific language
 ([eDSL](https://wiki.haskell.org/Embedded_domain_specific_language)) for writing
 [WebAssembly](https://webassembly.org/) smart contracts specifically for the
-[FRAME Contracts pallet](/current/smart-contracts/contracts-pallet.md).
+[FRAME Contracts pallet](contracts-pallet).
 
 ink! is still under development, so the documentation for using it is sparse. However, on this page
 you will find the best resources to get you started building ink! contracts right away.
@@ -97,7 +97,7 @@ Join the growing community of ink! smart contract developers:
 ### Learn More
 
 - Learn more about the design philosophy of
-  [ink! in our conceptual documentation](/current/smart-contracts/ink-fundamentals.md).
+  [ink! in our conceptual documentation](ink-fundamentals).
 - Learn more about the [Contracts pallet](https://docs.rs/pallet-contracts).
 
 ### Examples
