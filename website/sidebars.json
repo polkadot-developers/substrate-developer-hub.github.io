@@ -1,6 +1,7 @@
 {
   "docs": {
     "Getting Started": [
+      "index",
       "knowledgebase/getting-started/index",
       "knowledgebase/getting-started/windows-users",
       "knowledgebase/getting-started/glossary"
