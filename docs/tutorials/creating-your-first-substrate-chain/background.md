@@ -2,7 +2,8 @@
 title: Background Information
 ---
 
-In this section we will teach you about the Substrate blockchain development framework. The Node Template that you are currently developing is built from this framework.
+In this section we will teach you about the Substrate blockchain development framework. The Node
+Template that you are currently developing is built from this framework.
 
 ## Background on Blockchains
 
@@ -14,21 +15,21 @@ software that makes everything work.
 
 To function, a blockchain node needs:
 
-* A Database
-* P2P Networking
-* A Consensus Engine
-* Transaction Handling
-* A State Transition Function
-* and more...
+- A Database
+- P2P Networking
+- A Consensus Engine
+- Transaction Handling
+- A State Transition Function
+- and more...
 
 These technologies span a huge breadth of computer science, and thus usually require expert teams to
 develop. As a result, most blockchain projects are _not_ developed from the ground up. Instead,
 these projects are forked from already existing blockchain repositories. For instance:
 
-* The Bitcoin repository was forked to create: Litecoin, ZCash, Namecoin, Bitcoin Cash, etc...
-* The Ethereum repository was forked to create: Quorem, POA Network, KodakCoin, Musicoin, etc...
+- The Bitcoin repository was forked to create: Litecoin, ZCash, Namecoin, Bitcoin Cash, etc...
+- The Ethereum repository was forked to create: Quorem, POA Network, KodakCoin, Musicoin, etc...
 
-![Blockchain Project Repository Forks](assets/forks.png)
+![Blockchain Project Repository Forks](assets/tutorials/first-chain/forks.png)
 
 Building blockchains in this way has serious limitations as these existing platform were not
 designed with modification in mind.
@@ -43,10 +44,9 @@ build a customized blockchain node.
 
 ### Substrate Node Template
 
-We provide an out-of-the-box working Substrate-based node in the form of the Node Template,
-which should be compiling as you read this. Without making any changes, you and your friends could
-share this node template and create a working blockchain network with a cryptocurrency and
-everything!
+We provide an out-of-the-box working Substrate-based node in the form of the Node Template, which
+should be compiling as you read this. Without making any changes, you and your friends could share
+this node template and create a working blockchain network with a cryptocurrency and everything!
 
-We will teach you how to use this node in "development" mode, which allows you to run a network
-with a single node, and have some pre-configured user accounts with funds.
+We will teach you how to use this node in "development" mode, which allows you to run a network with
+a single node, and have some pre-configured user accounts with funds.

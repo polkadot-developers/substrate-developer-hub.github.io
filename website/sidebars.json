@@ -75,21 +75,23 @@
       "tutorials/build-a-dapp/front-end"
     ]
   },
+  "add-a-pallet": {
+    "Add a Pallet to Your Runtime": [
+      "tutorials/adding-a-module-to-your-runtime"
+    ]
+  },
   "start-a-private-network": {
     "Start a Private Network": [
       "tutorials/start-a-private-network/index",
       "tutorials/start-a-private-network/alicebob",
       "tutorials/start-a-private-network/keygen",
+      "tutorials/start-a-private-network/customspec",
       "tutorials/start-a-private-network/customchain"
     ]
   },
-  "substrate-front-end": {
-    "Substrate Front End Tutorial": [
-      "tutorials/substrate-front-end/index",
-      "tutorials/substrate-front-end/part-1-connect-to-a-node",
-      "tutorials/substrate-front-end/part-2-query-balances",
-      "tutorials/substrate-front-end/part-3-transfer-funds",
-      "tutorials/substrate-front-end/part-4-use-external-accounts"
+  "pallet-in-crate": {
+    "Write a Pallet in its Own Crate": [
+      "tutorials/creating-a-runtime-module"
     ]
   }
 }

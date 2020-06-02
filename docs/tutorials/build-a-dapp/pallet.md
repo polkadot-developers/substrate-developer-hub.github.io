@@ -6,24 +6,23 @@ The Substrate runtime is composed of FRAME pallets. You can think of these palle
 pieces of logic that define what your blockchain can do! Substrate provides you with a number of
 pre-built pallets for use in FRAME-based runtimes.
 
-![Runtime Composition](assets/runtime.png)
+![Runtime Composition](assets/tutorials/build-a-dapp/runtime.png)
 
-For example, FRAME includes a
-[Balances](https://crates.parity.io/pallet_balances/index.html) pallet that controls
-the underlying currency of your blockchain by managing the _balance_ of all the accounts in your
-system.
+For example, FRAME includes a [Balances](https://substrate.dev/rustdocs/v2.0.0-rc2/pallet_balances/)
+pallet that controls the underlying currency of your blockchain by managing the _balance_ of all the
+accounts in your system.
 
 If you want to add smart contract functionality to your blockchain, you simply need to include the
-[Contracts](https://crates.parity.io/pallet_contracts/index.html) pallet.
+[Contracts](https://substrate.dev/rustdocs/v2.0.0-rc2/pallet_contracts/) pallet.
 
 Even things like on-chain governance can be added to your blockchain by including pallets like
-[Democracy](https://crates.parity.io/pallet_democracy/index.html),
-[Elections](https://crates.parity.io/pallet_elections/index.html), and
-[Collective](https://crates.parity.io/pallet_collective/index.html).
+[Democracy](https://substrate.dev/rustdocs/v2.0.0-rc2/pallet_democracy/),
+[Elections](https://substrate.dev/rustdocs/v2.0.0-rc2/pallet_elections/), and
+[Collective](https://substrate.dev/rustdocs/v2.0.0-rc2/pallet_collective/).
 
-The goal of this tutorial is to teach you how to create your own Substrate pallet to include
-in your custom blockchain! The `substrate-node-template` comes with a template pallet that
-we will build your custom logic on top of.
+The goal of this tutorial is to teach you how to create your own Substrate pallet to include in your
+custom blockchain! The `substrate-node-template` comes with a template pallet that we will build
+your custom logic on top of.
 
 ## File Structure
 
@@ -59,7 +58,7 @@ substrate-node-template
 +-- ...
 ```
 
-You will see some pre-written code which acts as a template for a new pallet. You read over this
+You will see some pre-written code which acts as a template for a new pallet. You can read over this
 file if you like, and then delete the contents since we will start from scratch for full
 transparency. When writing your own pallets in the future, you will likely find the scaffolding in
 this template pallet useful.
@@ -70,33 +69,33 @@ At a high level, a Substrate pallet can be broken down into six sections:
 
 ```rust
 // 1. Imports
-use frame_support::{decl_module, decl_storage, decl_event, dispatch::DispatchResult};
-use system::ensure_signed;
+use frame_support::{decl_module, decl_storage, decl_event, decl_error, dispatch};
+use frame_system::{self as system, ensure_signed};
 
 // 2. Pallet Configuration
 pub trait Trait: system::Trait { /* --snip-- */ }
 
-// 3. Pallet Events
+// 3. Pallet Storage Items
+decl_storage! { /* --snip-- */ }
+
+// 4. Pallet Events
 decl_event! { /* --snip-- */ }
 
-// 4. Pallet Errors
+// 5. Pallet Errors
 decl_error! { /* --snip-- */ }
-
-// 5. Pallet Storage Items
-decl_storage! { /* --snip-- */ }
 
 // 6. Callable Pallet Functions
 decl_module! { /* --snip-- */ }
 ```
 
-Things like events, storage, and callable functions may look familiar to you if you have done
-other blockchain development. We will show you what each of these components look like for a basic
-Proof Of Existence pallet.
+Things like events, storage, and callable functions may look familiar to you if you have done other
+blockchain development. We will show you what each of these components look like for a basic Proof
+Of Existence pallet.
 
 ### Imports and Dependencies
 
-Since imports are pretty boring, you can start by copying this at the top of your empty
-`lib.rs` file:
+Since imports are pretty boring, you can start by copying this at the top of your empty `lib.rs`
+file:
 
 ```rust
 #![cfg_attr(not(feature = "std"), no_std)]
@@ -104,29 +103,31 @@ Since imports are pretty boring, you can start by copying this at the top of you
 use frame_support::{
 	decl_module, decl_storage, decl_event, decl_error, ensure, StorageMap
 };
-use system::ensure_signed;
+use frame_system::{self as system, ensure_signed};
 use sp_std::vec::Vec;
 ```
 
-Most of these imports are already available because they were used in the template pallet whose code we just deleted. However, `sp_std` is not available and we need to list it as a dependency.
+Most of these imports are already available because they were used in the template pallet whose code
+we just deleted. However, `sp_std` is not available and we need to list it as a dependency.
 
 **Add** this block to your `pallets/template/Cargo.toml` file.
 
 ```toml
 [dependencies.sp-std]
+git = 'https://github.com/paritytech/substrate.git'
 default-features = false
-version = '2.0.0-alpha.5'
+tag = 'v2.0.0-rc2'
 ```
 
 Then, **Update** the existing `[features]` block to look like this. The last line is new.
+
 ```toml
 [features]
 default = ['std']
 std = [
     'codec/std',
     'frame-support/std',
-    'safe-mix/std',
-    'system/std',
+    'frame-system/std',
     'sp-std/std',          <-- This line is new
 ]
 ```
@@ -161,15 +162,18 @@ decl_event! {
 ```
 
 Our pallet will only have two events:
+
 1. When a new proof is added to the blockchain.
 2. When a proof is removed.
 
-The events can contain some additional data, in this case, each event will also display who triggered the
-event (`AccountId`), and the proof data (as `Vec<u8>`) that is being stored or removed.
+The events can contain some additional data, in this case, each event will also display who
+triggered the event (`AccountId`), and the proof data (as `Vec<u8>`) that is being stored or
+removed.
 
 ## Pallet Errors
 
-The events we defined previously indicate when calls to the pallet have completed successfully. Similarly, errors indicate when a call has failed, and why it has failed.
+The events we defined previously indicate when calls to the pallet have completed successfully.
+Similarly, errors indicate when a call has failed, and why it has failed.
 
 ```rust
 // This pallet's errors.
@@ -185,7 +189,9 @@ decl_error! {
 }
 ```
 
-The first of these errors can occur when attempting to claim a new proof. Of course a user cannot claim a proof that has already been claimed. The latter two can occur when attempting to revoke a proof.
+The first of these errors can occur when attempting to claim a new proof. Of course a user cannot
+claim a proof that has already been claimed. The latter two can occur when attempting to revoke a
+proof.
 
 ### Pallet Storage Items
 
@@ -215,7 +221,7 @@ call in this Substrate pallet:
 1. `create_claim()`: Allow a user to claim the existence of a file with a proof.
 2. `revoke_claim()`: Allow the owner of a claim to revoke their claim.
 
-Here is what the pallet declaration looks like with these two functions:
+Here is what the pallet declaration looks like with these these two functions:
 
 ```rust
 // The pallet's dispatchable functions.
@@ -231,6 +237,7 @@ decl_module! {
         fn deposit_event() = default;
 
         /// Allow a user to claim ownership of an unclaimed proof
+        #[weight = 10_000]
         fn create_claim(origin, proof: Vec<u8>) {
             // Verify that the incoming transaction is signed and store who the
             // caller of this function is.
@@ -243,13 +250,14 @@ decl_module! {
             let current_block = <system::Module<T>>::block_number();
 
             // Store the proof with the sender and the current block number
-            Proofs::<T>::insert(&proof, (sender.clone(), current_block));
+            Proofs::<T>::insert(&proof, (&sender, current_block));
 
             // Emit an event that the claim was created
             Self::deposit_event(RawEvent::ClaimCreated(sender, proof));
         }
 
         /// Allow the owner to revoke their claim
+        #[weight = 10_000]
         fn revoke_claim(origin, proof: Vec<u8>) {
             // Determine who is calling the function
             let sender = ensure_signed(origin)?;
@@ -274,13 +282,13 @@ decl_module! {
 ```
 
 > The functions you see here do not have return types explicitly stated. In reality they all return
-> [`DispatchResult`](https://crates.parity.io/frame_support/dispatch/type.DispatchResult.html)s.
+> [`DispatchResult`](https://substrate.dev/rustdocs/v2.0.0-rc2/frame_support/dispatch/type.DispatchResult.html)s.
 > This return type is added on your behalf by the `decl_module!` macro.
 
 ## Compile Your New Pallet
 
-After you've copied all of the parts of this pallet correctly into your `template/lib.rs` file, you
-should be able to recompile your node without warning or error:
+After you've copied all of the parts of this pallet correctly into your `pallets/template/lib.rs`
+file, you should be able to recompile your node without warning or error:
 
 ```bash
 cargo build --release
