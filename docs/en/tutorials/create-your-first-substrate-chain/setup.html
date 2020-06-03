@@ -88,11 +88,15 @@ discourage you.</p>
 of those prerequisites installed for you:</p>
 <pre><code class="hljs css language-bash">curl https://getsubstrate.io -sSf | bash -s -- --fast
 </code></pre>
-<p>You can view the source code for this script by visiting
-<a href="https://getsubstrate.io">https://getsubstrate.io</a> in your browser.</p>
 <blockquote>
 <p>If you did not have Rust installed prior to running this script, make sure to add restart your
 terminal before continuing (command given in last line of the script output).</p>
+</blockquote>
+<p><details>
+<summary>Learn what this script does.</summary></p>
+<blockquote>
+<p>You can view the source code for this script by visiting
+<a href="https://getsubstrate.io">https://getsubstrate.io</a> in your browser.</p>
 </blockquote>
 <p>It will automatically install:</p>
 <ul>
@@ -102,6 +106,7 @@ terminal before continuing (command given in last line of the script output).</p
 <li><a href="https://git-scm.com/downloads">Git</a></li>
 <li><a href="https://www.rust-lang.org/tools/install">Rust</a></li>
 </ul>
+<p></details></p>
 <p>If you are using Windows and do not have the
 <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Windows Subsystem for Linux</a>, the
 process is a bit harder, but well documented <a href="../../knowledgebase/getting-started/windows-users">here</a>.</p>
@@ -138,7 +143,7 @@ moving on to the next steps.</p>
 which requires you to have <a href="https://nodejs.org/">Node.js</a> installed on your computer. You may want
 to use the time that your node is compiling to ensure that your development environment is prepared
 with these dependencies.</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/3/2020 by Ricardo Rius</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/tutorials/create-your-first-substrate-chain/index"><span class="arrow-prev">← </span><span>Introduction</span></a><a class="docs-next button" href="/docs/en/tutorials/create-your-first-substrate-chain/background"><span>Background Information</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#prerequisites">Prerequisites</a><ul class="toc-headings"><li><a href="#substrate-development">Substrate Development</a></li></ul></li><li><a href="#compiling-substrate">Compiling Substrate</a></li><li><a href="#front-end">Front-End</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/getting-started">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="https://crates.parity.io/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/en/videos">Videos</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/3/2020 by Dan Forbes</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/tutorials/create-your-first-substrate-chain/index"><span class="arrow-prev">← </span><span>Introduction</span></a><a class="docs-next button" href="/docs/en/tutorials/create-your-first-substrate-chain/background"><span>Background Information</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#prerequisites">Prerequisites</a><ul class="toc-headings"><li><a href="#substrate-development">Substrate Development</a></li></ul></li><li><a href="#compiling-substrate">Compiling Substrate</a></li><li><a href="#front-end">Front-End</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/getting-started">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="https://crates.parity.io/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/en/videos">Videos</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
               var cookieSettings = document.getElementById('cookie-settings');
               cookieSettings.onclick = function() {
                 return klaro.show();
