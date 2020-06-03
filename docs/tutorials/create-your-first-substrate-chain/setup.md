@@ -25,11 +25,14 @@ of those prerequisites installed for you:
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
 
-You can view the source code for this script by visiting
-[https://getsubstrate.io](https://getsubstrate.io) in your browser.
-
 > If you did not have Rust installed prior to running this script, make sure to add restart your
 > terminal before continuing (command given in last line of the script output).
+
+<details>
+<summary>Learn what this script does.</summary>
+
+> You can view the source code for this script by visiting
+> [https://getsubstrate.io](https://getsubstrate.io) in your browser.
 
 It will automatically install:
 
@@ -38,6 +41,8 @@ It will automatically install:
 - [OpenSSL](https://www.openssl.org/)
 - [Git](https://git-scm.com/downloads)
 - [Rust](https://www.rust-lang.org/tools/install)
+
+</details>
 
 If you are using Windows and do not have the
 [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), the
