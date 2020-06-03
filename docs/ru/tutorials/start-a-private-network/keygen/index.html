@@ -16,7 +16,7 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Start a Private Network</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Start a Private Network<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/start-a-private-network/">Start a Private Network</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/start-a-private-network/alicebob">Alice and Bob Start Blockchain</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/ru/tutorials/start-a-private-network/keygen">Generate Your Own Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/start-a-private-network/customchain">Creating Your Private Network</a></li></ul></div></div></section></div><script>
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Start a Private Network</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Start a Private Network<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/start-a-private-network/">Start a Private Network</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/start-a-private-network/alicebob">Alice and Bob Start Blockchain</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/ru/tutorials/start-a-private-network/keygen">Generate Your Own Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/start-a-private-network/customspec">Create a Custom Chain Spec</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/start-a-private-network/customchain">Creating Your Private Network</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -76,22 +76,30 @@
 <h2><a class="anchor" aria-hidden="true" id="option-1-subkey"></a><a href="#option-1-subkey" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Option 1: Subkey</h2>
 <p>Subkey is a tool the generates keys specifically designed to be used with Substrate.</p>
 <p>Begin by compiling and installing the utility. This may take up to 15 minutes or so.</p>
-<pre><code class="hljs css language-bash">cargo <span class="token function">install</span> --force subkey --git https://github.com/paritytech/substrate
+<pre><code class="hljs css language-bash">cargo install --force subkey --git https://github.com/paritytech/substrate --tag v2.0.0-rc2
 </code></pre>
 <p>We will need to generate at least <strong>2</strong> keys from each type. Every node will need to have its own keys.</p>
 <p>Generate a mnemonic and see the <code>sr25519</code> key and address associated with it. This key will be used by Aura for block production.</p>
 <pre><code class="hljs css language-bash">$ subkey --sr25519 generate
-Secret phrase <span class="token variable"><span class="token variable">`</span>keep matrix knee meat awake frown rubber position federal easily strategy inhale<span class="token variable">`</span></span> is account:
-  Secret seed: 0xb5d5cda89e139aecb67181e11d6d2d90a0cc80106afa035ab19264af7b5e5c0b
-  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0x8ed5f822065e5824d3e37d9ea36a81eacb98ff1a6fa04bb87d2fa4915e9ed147
-  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5FHzDem7A5aAq79tuEN9xJuNPXiYfmRQamhumTuqu6i57BuU
+
+Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song vital leisure` is account:
+  Network ID/version: substrate
+  Secret seed:        0xa2b0200f9666b743402289ca4f7e79c9a4a52ce129365578521b0b75396bd242
+  Public key (hex):   0x0a11c9bcc81f8bd314e80bc51cbfacf30eaeb57e863196a79cccdc8bf4750d21
+  Account ID:         0x0a11c9bcc81f8bd314e80bc51cbfacf30eaeb57e863196a79cccdc8bf4750d21
+  SS58 Address:       5CHucvTwrPg8L2tjneVoemApqXcUaEdUDsCEPyE7aDwrtR8D
+
 </code></pre>
 <p>Now see the <code>ed25519</code> key and address associated with the same mnemonic. This key will be used by GRANDPA for block finalization.</p>
-<pre><code class="hljs css language-bash">$ subkey --ed25519 inspect <span class="token string">"keep matrix knee meat awake frown rubber position federal easily strategy inhale"</span>
-Secret phrase <span class="token variable"><span class="token variable">`</span>keep matrix knee meat awake frown rubber position federal easily strategy inhale<span class="token variable">`</span></span> is account:
-  Secret seed: 0xb5d5cda89e139aecb67181e11d6d2d90a0cc80106afa035ab19264af7b5e5c0b
-  Public key <span class="token punctuation">(</span>hex<span class="token punctuation">)</span>: 0xfe68fdff17960cb8d45d861396a64d4086997353849403ee3352996ec68ff4af
-  Address <span class="token punctuation">(</span>SS58<span class="token punctuation">)</span>: 5HpHD5YseSWbHfni43Zm2SjtpyqSVmuaNhKkVmivp8L93Trs
+<pre><code class="hljs css language-bash">$ subkey --ed25519 inspect <span class="hljs-string">"infant salmon buzz patrol maple subject turtle cute legend song vital leisure"</span>
+
+Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song vital leisure` is account:
+  Network ID/version: substrate
+  Secret seed:        0xa2b0200f9666b743402289ca4f7e79c9a4a52ce129365578521b0b75396bd242
+  Public key (hex):   0x1a0e2bf1e0195a1f5396c5fd209a620a48fe90f6f336d89c89405a0183a857a3
+  Account ID:         0x1a0e2bf1e0195a1f5396c5fd209a620a48fe90f6f336d89c89405a0183a857a3
+  SS58 Address:       5CesK3uTmn4NGfD3oyGBd1jrp4EfRyYdtqL3ERe9SXv8jUHb
+
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="option-2-polkadot-js-apps"></a><a href="#option-2-polkadot-js-apps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Option 2: Polkadot-JS Apps</h2>
 <p>The same UI that we used to see blocks being produced can also be used to generate keys. This option is convenient if you do not want to install subkey. It can be used for production keys, but the system should not be connected to the internet when generating such keys.</p>
@@ -135,23 +143,7 @@ Secret phrase <span class="token variable"><span class="token variable">`</span>
 <tr><td>SS58 Address</td><td><code>5CRZoFgJs4zLzCCAGoCUUs2MRmuD5BKAh17pWtb62LMoCi9h</code></td></tr>
 </tbody>
 </table>
-<h3><a class="anchor" aria-hidden="true" id="pair-3"></a><a href="#pair-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pair 3</h3>
-<table>
-<thead>
-<tr><th>Key</th><th>Value</th></tr>
-</thead>
-<tbody>
-<tr><td>Secret phrase</td><td><code>ridge easy shift marine leave vendor clever mammal clown input race hollow</code></td></tr>
-<tr><td>Secret seed</td><td><code>0xfe97888532db5ecfbf87206184a232c7fc336d7aadb776419b24e3c0ff70c31a</code></td></tr>
-<tr><td><strong>SR25519</strong></td><td></td></tr>
-<tr><td>Public key</td><td><code>0x103aebd7ab1e971be446b1a13eb40541ec8ec162deb71b6ae594b3ce02ee5137</code></td></tr>
-<tr><td>SS58 Address</td><td><code>5CRz8J64ksqQ1DHuCUhyc5x1C2tC7exbQpkFVqEmfaG9RKdc</code></td></tr>
-<tr><td><strong>ED25519</strong></td><td></td></tr>
-<tr><td>Public key</td><td><code>0x4822d2a0b3c5665050cd3470717439ca23a3c3387b65efcf6a9fbcc93571ea4a</code></td></tr>
-<tr><td>SS58 Address</td><td><code>5DhHecmfy3hB9TpWJvCRXi1EwU3A4AwYvmCYJemsUUAcxf4V</code></td></tr>
-</tbody>
-</table>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/tutorials/start-a-private-network/alicebob"><span class="arrow-prev">← </span><span>Alice and Bob Start Blockchain</span></a><a class="docs-next button" href="/docs/ru/tutorials/start-a-private-network/customchain"><span>Creating Your Private Network</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#option-1-subkey">Option 1: Subkey</a></li><li><a href="#option-2-polkadot-js-apps">Option 2: Polkadot-JS Apps</a></li><li><a href="#option-3-use-pre-generated-keys">Option 3: Use Pre-Generated Keys</a><ul class="toc-headings"><li><a href="#pair-1">Pair 1</a></li><li><a href="#pair-2">Pair 2</a></li><li><a href="#pair-3">Pair 3</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/ru/getting-started">Getting Started</a><a href="/ru/tutorials">Tutorials</a><a href="https://crates.parity.io/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/ru/videos">Videos</a><a href="/ru/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/tutorials/start-a-private-network/alicebob"><span class="arrow-prev">← </span><span>Alice and Bob Start Blockchain</span></a><a class="docs-next button" href="/docs/ru/tutorials/start-a-private-network/customspec"><span>Create a Custom Chain Spec</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#option-1-subkey">Option 1: Subkey</a></li><li><a href="#option-2-polkadot-js-apps">Option 2: Polkadot-JS Apps</a></li><li><a href="#option-3-use-pre-generated-keys">Option 3: Use Pre-Generated Keys</a><ul class="toc-headings"><li><a href="#pair-1">Pair 1</a></li><li><a href="#pair-2">Pair 2</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/ru/getting-started">Getting Started</a><a href="/ru/tutorials">Tutorials</a><a href="https://crates.parity.io/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/ru/videos">Videos</a><a href="/ru/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
               var cookieSettings = document.getElementById('cookie-settings');
               cookieSettings.onclick = function() {
                 return klaro.show();

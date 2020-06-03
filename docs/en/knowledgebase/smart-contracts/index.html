@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ink! Smart Contracts · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Welcome to the smart contracts section of the Developer Hub!"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="ink! Smart Contracts · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="Welcome to the smart contracts section of the Developer Hub!"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/en/" target="_self">Docs</a></li><li class=""><a href="/recipes" target="_self">Recipes</a></li><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/en/community" target="_self">Community</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/ru/knowledgebase/smart-contracts/">Русский</a></li><li><a href="/docs/zh-CN/knowledgebase/smart-contracts/">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Smart Contracts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Getting Started<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/getting-started/">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/getting-started/windows-users">Getting Started on Windows</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/getting-started/glossary">Glossary</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Learn Substrate<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/learn-substrate/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/learn-substrate/extrinsics">Extrinsics</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/learn-substrate/tx-pool">Transaction Pool</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/learn-substrate/account-abstractions">Account Abstractions</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/learn-substrate/session-keys">Session Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/learn-substrate/weight">Transaction Weight</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/learn-substrate/off-chain-workers">Off-Chain Workers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Runtime<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/primitives">Runtime Primitives</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/frame">FRAME</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/pallets">Pallets</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/macros">Runtime Macros</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/metadata">Runtime Metadata</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/storage">Runtime Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/origin">Runtime Origin</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/execution">Runtime Execution</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/events">Runtime Events</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/fees">Transaction Fees</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/off-chain-workers">Off-Chain Workers</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/debugging">Debugging</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/tests">Runtime Tests</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Smart Contracts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/knowledgebase/smart-contracts/">ink! Smart Contracts</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/smart-contracts/overview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/smart-contracts/ink-fundamentals">ink! Concepts</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/smart-contracts/env-types">Smart Contract Runtime Environment Types</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/smart-contracts/ink-development">ink! Development</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/smart-contracts/evm-pallet">EVM Pallet</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/smart-contracts/faq">ink! F.A.Q.</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Integrate<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/integrate/polkadot-js">Polkadot-JS</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/integrate/libraries">Client Libraries</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/integrate/chain-spec">Chain Specification</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/integrate/subkey">The subkey Tool</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Advanced<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/advanced/codec">SCALE Codec</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/advanced/consensus">Consensus</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/advanced/block-import">The Block Import Pipeline</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/advanced/executor">Executor</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/advanced/cryptography">Cryptography</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/advanced/storage">Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/advanced/ss58-address-format">SS58 Address Format</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Contribute<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/contribute/help-translate">Help Translate</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/knowledgebase/smart-contracts/index.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">ink! Smart Contracts</h1></header><article><div><span><p>Welcome to the smart contracts section of the Developer Hub!</p>
+<p>Because Substrate supports Wasm smart contracts, it means that any language that can compile to Wasm
+could be used to write these contracts. ink! is Parity's answer for writing smart contracts using
+the Rust programming language.</p>
+<h2><a class="anchor" aria-hidden="true" id="contracts-pallet"></a><a href="#contracts-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contracts Pallet</h2>
+<p>The Contracts pallet provides the ability for the runtime to deploy and execute WebAssembly smart
+contracts. Here we will provide a short overview of the major features of the contracts pallet. To
+really learn all of the fine details, you can take a look at the
+<a href="https://docs.rs/pallet-contracts">reference documentation for <code>pallet-contracts</code></a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="account-based"></a><a href="#account-based" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Account Based</h3>
+<p>The Contracts pallet uses an account-based system similar to many existing smart contract platforms.
+To the Substrate runtime, contract accounts are just like normal user accounts; however, in addition
+to an <code>AccountID</code> and <code>Balance</code> that normal accounts have, a contract account also has associated
+contract code and some persistent contract storage.</p>
+<h3><a class="anchor" aria-hidden="true" id="two-step-deployment"></a><a href="#two-step-deployment" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Two Step Deployment</h3>
+<p>Deploying a contract with the Contracts pallet takes two steps:</p>
+<ol>
+<li>Store the Wasm contract on the blockchain.</li>
+<li>Instantiate a new account, with new storage, associated with that Wasm contract.</li>
+</ol>
+<p>This means that multiple contract instances, with different constructor arguments, can be
+initialized using the same Wasm code, reducing the amount of storage space needed by the Contracts
+pallet on your blockchain.</p>
+<h3><a class="anchor" aria-hidden="true" id="runtime-environment-types"></a><a href="#runtime-environment-types" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Runtime Environment Types</h3>
+<p>For writing contracts and interacting with the runtime, a set of types are available (e.g.
+<code>AccountId</code>, <code>Balance</code>, <code>Hash</code>, <code>Timestamp</code>). These types can be user defined for custom runtimes,
+or the supplied defaults can be used. See: <a href="env-types">EnvTypes</a></p>
+<h3><a class="anchor" aria-hidden="true" id="contract-calls"></a><a href="#contract-calls" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contract Calls</h3>
+<p>Calls to contracts can alter the storage of the contract, create new contracts, and call other
+contracts. Because Substrate provides you with the ability to write custom runtime pallets, the
+Contracts pallet also enables you to make asynchronous calls directly to those runtime functions on
+behalf of the contract's account.</p>
+<h3><a class="anchor" aria-hidden="true" id="sandboxed"></a><a href="#sandboxed" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Sandboxed</h3>
+<p>The Contracts pallet is intended to be used by any user on a public network. This means that
+contracts only have the ability to directly modify their own storage. To provide safety to the
+underlying blockchain state, the Contracts pallet enables revertible transactions, which roll back
+any changes to the storage by contract calls that do not complete successfully.</p>
+<h3><a class="anchor" aria-hidden="true" id="gas"></a><a href="#gas" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Gas</h3>
+<p>Contract calls are charged a gas fee to limit the amount of computational resources a transaction
+can use. When forming a contract transaction, a gas limit is specified. As the contract executes,
+gas is incrementally used up depending on the complexity of the computation. If the gas limit is
+reached before the contract execution completes, the transaction fails, contract storage is
+reverted, and the gas fee is <strong>not</strong> returned to the user. If the contract execution completes with
+remaining gas, it is returned to the user at the end of the transaction.</p>
+<p>The Contracts pallet determines the gas price, which is a conversion between the Substrate
+<code>Currency</code> and a single unit of gas. Thus, to execute a transaction, a user must have a free balance
+of at least <code>gas price</code> * <code>gas limit</code> which can be spent.</p>
+<h3><a class="anchor" aria-hidden="true" id="storage-rent"></a><a href="#storage-rent" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Storage Rent</h3>
+<p>Similar to how gas limits the amount of computational resources that can be used during a
+transaction, storage rent limits the footprint that a contract can have on the blockchain's storage.
+A contract account is charged proportionally to the amount of storage its account uses. When a
+contract's balance goes below a defined limit, the contract's account is turned into a &quot;tombstone&quot;
+and its storage is cleaned up. A tombstone contract can be restored by providing the data that was
+cleaned up when it became a tombstone as well as any additional funds needed to keep the contract
+alive.</p>
+<h2><a class="anchor" aria-hidden="true" id="ink"></a><a href="#ink" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ink!</h2>
+<p>ink! is a Rust-based embedded domain specific language
+(<a href="https://wiki.haskell.org/Embedded_domain_specific_language">eDSL</a>) for writing Wasm smart
+contracts specifically for the Contracts pallet. The main goals of ink! are user friendliness,
+conciseness, and efficiency.</p>
+<h3><a class="anchor" aria-hidden="true" id="abstraction-layers"></a><a href="#abstraction-layers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Abstraction Layers</h3>
+<p>The ink! language is composed of three different layers of abstractions with which you can write
+smart contracts:</p>
+<ul>
+<li><a href="https://github.com/paritytech/ink/tree/master/lang">Lang</a>: The actual eDSL to provide a
+user-friendly interface to writing smart contract code.</li>
+<li><a href="https://github.com/paritytech/ink/tree/master/core">Core</a>: The core utilities and APIs used to
+interact with the Contracts pallet.</li>
+</ul>
+<p>We expect that most users will develop using the language layer, but thanks to the other
+abstractions, it is possible for developers to create their own Rust eDSL for their specific needs.</p>
+<h3><a class="anchor" aria-hidden="true" id="contract-components"></a><a href="#contract-components" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contract Components</h3>
+<p>ink! should feel familiar to developers who have programmed using other modern smart contract
+languages. The skeleton of a contract has all of the same components that you might expect:</p>
+<ul>
+<li>Events</li>
+<li>Storage</li>
+<li>Deployment (Constructor) Function</li>
+<li>Public Functions</li>
+<li>Internal functions</li>
+</ul>
+<p>In ink!, mutability and visibility are explicitly defined per contract function. In these functions,
+you gain access to a number of common Substrate types like <code>AccountId</code>, <code>Balances</code>, <code>Hash</code>, etc.
+Additionally, you gain access to commonly used environment variables like the <code>caller</code>, <code>balance</code>,
+<code>gas_left</code>, and more!</p>
+<h3><a class="anchor" aria-hidden="true" id="overflow-safety"></a><a href="#overflow-safety" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overflow Safety</h3>
+<p>Being written in Rust, ink! can provide compile-time overflow/underflow safety. Using a Rust
+compiler configuration, you can specify whether you want to support overflowing math, or if you want
+contract execution to panic when overflows occur. No need to continually import &quot;Safe Math&quot;
+libraries, although Rust also provides
+<a href="https://doc.rust-lang.org/std/primitive.u32.html">integrated checked, wrapped, and saturated math functions</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="test-environment"></a><a href="#test-environment" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Test Environment</h3>
+<p>ink! provides a built in test environment that can be used to perform off-chain unit testing with
+the Rust framework. This makes it simple and easy to ensure that your contract code functions as
+expected, without the need for third party testing platforms.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/3/2020 by Ricardo Rius</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/knowledgebase/runtime/tests"><span class="arrow-prev">← </span><span>Runtime Tests</span></a><a class="docs-next button" href="/docs/en/knowledgebase/smart-contracts/overview"><span>Overview</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#contracts-pallet">Contracts Pallet</a><ul class="toc-headings"><li><a href="#account-based">Account Based</a></li><li><a href="#two-step-deployment">Two Step Deployment</a></li><li><a href="#runtime-environment-types">Runtime Environment Types</a></li><li><a href="#contract-calls">Contract Calls</a></li><li><a href="#sandboxed">Sandboxed</a></li><li><a href="#gas">Gas</a></li><li><a href="#storage-rent">Storage Rent</a></li></ul></li><li><a href="#ink">ink!</a><ul class="toc-headings"><li><a href="#abstraction-layers">Abstraction Layers</a></li><li><a href="#contract-components">Contract Components</a></li><li><a href="#overflow-safety">Overflow Safety</a></li><li><a href="#test-environment">Test Environment</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/getting-started">Getting Started</a><a href="/en/tutorials">Tutorials</a><a href="https://crates.parity.io/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/en/videos">Videos</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></a></div></section><section class="copyright">Copyright © 2020 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:en"]}
+              });
+            </script></body></html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Pallets · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="This document is a top-level entry point to documentation related to developing runtime modules for Substrate."/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="Pallets · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="This document is a top-level entry point to documentation related to developing runtime modules for Substrate."/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/zh-CN/" target="_self">文档</a></li><li class=""><a href="/recipes" target="_self">Recipes</a></li><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class=""><a href="/zh-CN/community" target="_self">社区</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/knowledgebase/runtime/pallets">English</a></li><li><a href="/docs/ru/knowledgebase/runtime/pallets">Русский</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">参与翻译</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Runtime</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">开始<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/">概览</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/windows-users">Getting Started on Windows</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/glossary">词汇表</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Learn Substrate<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/">概览</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/extrinsics">Extrinsics</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/tx-pool">Transaction Pool</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/account-abstractions">Account Abstractions</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/session-keys">会话密钥</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/weight">交易权重</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/off-chain-workers">链外计算</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Runtime<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/">概览</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/primitives">运行时原语</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/frame">FRAME</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/pallets">Pallets</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/macros">运行时宏</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/metadata">Runtime Metadata</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/storage">Runtime Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/origin">Runtime Origin</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/execution">运行时执行</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/events">运行时事件</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/fees">交易费用</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/off-chain-workers">链外计算</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/debugging">Debugging</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/tests">运行时测试</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">智能合约<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/">ink! Smart Contracts</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/overview">概览</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/ink-fundamentals">ink! Concepts</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/env-types">智能合约运行时环境类型</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/ink-development">ink! Development</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/evm-pallet">EVM Pallet</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/faq">ink! F.A.Q.</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Integrate<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/polkadot-js">Polkadot-JS</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/libraries">Client Libraries</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/chain-spec">链描述</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/subkey">The subkey Tool</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Advanced<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/codec">SCALE 编解码器</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/consensus">Consensus</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/block-import">The Block Import Pipeline</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/executor">Executor</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/cryptography">密码学</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/storage">Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/ss58-address-format">SS58 地址格式</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">贡献<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/contribute/help-translate">参与翻译</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Pallets</h1></header><article><div><span><p>This document is a top-level entry point to documentation related to developing runtime modules for Substrate.</p>
+<p>These documents are written for a technical audience, who is familiar with the Rust programming language.</p>
+<p>If you are getting started with Substrate runtime development for the first time, we suggest you try our introductory tutorial for <a href="/tutorials/create-your-first-substrate-chain">creating your first Substrate chain</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="what-is-a-pallet"></a><a href="#what-is-a-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is a Pallet?</h2>
+<p>Pallets are a special kind of Rust module from which Substrate runtimes can be composed. Each pallet has its own discrete logic which can modify the features and functionality of your blockchain's state transition function.</p>
+<p>For example, the Balances pallet, which is included in the Framework for Runtime Aggregation of Modularised Entities (FRAME), defines a cryptocurrency for your blockchain. More specifically, it defines storage items which tracks the tokens a user has, functions that users can call to transfer and manage those tokens, APIs which allow other modules to burn or mint those tokens, and hooks which allow other modules to trigger functions when a user's balance changes.</p>
+<p>You are able to write your own pallets which define logic and functionality you want to introduce to your blockchain, and the following documentation will show you how.</p>
+<h2><a class="anchor" aria-hidden="true" id="skeleton-of-a-pallet"></a><a href="#skeleton-of-a-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Skeleton of a Pallet</h2>
+<p>A Substrate pallet is composed of 5 main sections:</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// 1. Imports and Dependencies</span>
+<span class="token comment">// The pallet supports the use of any Rust library which compiles</span>
+<span class="token comment">// with the `no_std` flag.</span>
+<span class="token keyword">use</span> support<span class="token punctuation">::</span><span class="token punctuation">{</span>decl_module<span class="token punctuation">,</span> decl_event<span class="token punctuation">,</span> decl_storage<span class="token punctuation">,</span> <span class="token punctuation">...</span><span class="token punctuation">}</span>
+
+<span class="token comment">// 2. Runtime Configuration Trait</span>
+<span class="token comment">// All of the runtime types and consts go in here. If the pallet</span>
+<span class="token comment">// is dependent on specific other pallets, then their configuration traits</span>
+<span class="token comment">// should be added to the inherited traits list.</span>
+<span class="token keyword">pub</span> <span class="token keyword">trait</span> Trait<span class="token punctuation">:</span> system<span class="token punctuation">::</span>Trait <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
+
+<span class="token comment">// 3. Runtime Events</span>
+<span class="token comment">// Events are a simple means of reporting specific conditions and circumstances</span>
+<span class="token comment">// that have happened that users, Dapps and/or chain explorers would find</span>
+<span class="token comment">// interesting and otherwise difficult to detect.</span>
+<span class="token macro-rules function">decl_event!</span><span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
+
+<span class="token comment">// 4. Runtime Storage</span>
+<span class="token comment">// This allows for type-safe usage of the Substrate storage database, so you can</span>
+<span class="token comment">// keep things around between blocks.</span>
+<span class="token macro-rules function">decl_storage!</span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
+
+<span class="token comment">// 5. The Pallet Declaration</span>
+<span class="token comment">// This defines the `Module` struct that is ultimately exported from this pallet.</span>
+<span class="token comment">// It defines the callable functions that this pallet exposes and orchestrates</span>
+<span class="token comment">// actions this pallet takes throughout block execution.</span>
+<span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="example-module"></a><a href="#example-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example Module</h2>
+<p>Here is a minimal, working pallet which simply allows a user to put a <code>u64</code> value into storage.</p>
+<p>Parts of this example will be used to help teach concepts throughout the rest of the pallet documentation.</p>
+<p>It is written in full here for clarity:</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">use</span> support<span class="token punctuation">::</span><span class="token punctuation">{</span>decl_module<span class="token punctuation">,</span> decl_event<span class="token punctuation">,</span> decl_storage<span class="token punctuation">,</span> StorageValue<span class="token punctuation">,</span> StorageMap<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> system<span class="token punctuation">::</span>ensure_signed<span class="token punctuation">;</span>
+
+<span class="token keyword">pub</span> <span class="token keyword">trait</span> Trait<span class="token punctuation">:</span> system<span class="token punctuation">::</span>Trait <span class="token punctuation">{</span>
+    <span class="token comment">// The traits the `Event` type used in this pallet has.</span>
+    <span class="token keyword">type</span> Event<span class="token punctuation">:</span> From<span class="token operator">&lt;</span>Event<span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token operator">>></span> <span class="token operator">+</span> Into<span class="token operator">&lt;&lt;</span><span class="token keyword">Self</span> <span class="token keyword">as</span> system<span class="token punctuation">::</span>Trait<span class="token operator">></span><span class="token punctuation">::</span>Event<span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token macro-rules function">decl_event!</span><span class="token punctuation">{</span>
+    <span class="token keyword">pub</span> <span class="token keyword">enum</span> Event<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token keyword">where</span>
+        AccountId <span class="token operator">=</span> <span class="token operator">&lt;</span>T <span class="token keyword">as</span> system<span class="token punctuation">::</span>Trait<span class="token operator">></span><span class="token punctuation">::</span>AccountId<span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// An event which is emitted when `set_value` is called.</span>
+        <span class="token comment">// Contains information about the user who called the function</span>
+        <span class="token comment">// and the value they called with.</span>
+        <span class="token function">ValueSet</span><span class="token punctuation">(</span>AccountId<span class="token punctuation">,</span> u64<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token macro-rules function">decl_storage!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">trait</span> Store <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">as</span> Example <span class="token punctuation">{</span>
+        <span class="token comment">// The last value passed to `set_value`.</span>
+        <span class="token comment">// Used as an example of a `StorageValue`.</span>
+        <span class="token keyword">pub</span> LastValue <span class="token function">get</span><span class="token punctuation">(</span>last_value<span class="token punctuation">)</span><span class="token punctuation">:</span> u64<span class="token punctuation">;</span>
+        <span class="token comment">// The value each user has put into `set_value`.</span>
+        <span class="token comment">// Used as an example of a `StorageMap`.</span>
+        <span class="token keyword">pub</span> UserValue <span class="token function">get</span><span class="token punctuation">(</span>user_value<span class="token punctuation">)</span><span class="token punctuation">:</span> map T<span class="token punctuation">::</span>AccountId <span class="token operator">=></span> u64<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token macro-rules function">decl_module!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">pub</span> <span class="token keyword">struct</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> Call <span class="token keyword">where</span> origin<span class="token punctuation">:</span> T<span class="token punctuation">::</span>Origin <span class="token punctuation">{</span>
+        <span class="token comment">// A default function for depositing events in our runtime</span>
+        <span class="token keyword">fn</span> <span class="token function">deposit_event</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> default<span class="token punctuation">;</span>
+
+        <span class="token comment">// The only callable function of our runtime module.</span>
+        <span class="token comment">// Allows a user to set a `u64` value into the runtime storage.</span>
+        <span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function">set_value</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> value<span class="token punctuation">:</span> u64<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">let</span> sender <span class="token operator">=</span> <span class="token function">ensure_signed</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">;</span>
+            LastValue<span class="token punctuation">::</span><span class="token function">put</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            UserValue<span class="token punctuation">::</span><span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">::</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>sender<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token function">deposit_event</span><span class="token punctuation">(</span>RawEvent<span class="token punctuation">::</span><span class="token function">ValueSet</span><span class="token punctuation">(</span>sender<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/knowledgebase/runtime/frame"><span class="arrow-prev">← </span><span>FRAME</span></a><a class="docs-next button" href="/docs/zh-CN/knowledgebase/runtime/macros"><span>运行时宏</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#what-is-a-pallet">What is a Pallet?</a></li><li><a href="#skeleton-of-a-pallet">Skeleton of a Pallet</a></li><li><a href="#example-module">Example Module</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/getting-started">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="https://crates.parity.io/">Reference Docs</a><a href="/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="/zh-CN/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://builders.parity.io/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></a></div></section><section class="copyright">Copyright © 2020 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-CN"]}
+              });
+            </script></body></html>
