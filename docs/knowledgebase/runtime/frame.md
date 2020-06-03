@@ -294,7 +294,7 @@ a structure for making spending proposals from this pot.
 
 ### Learn More
 
-- Learn how to [develop custom Substrate pallets](pallet).
+- Learn how to [develop custom Substrate pallets](pallets).
 
 ### Examples
 

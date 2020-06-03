@@ -108,7 +108,7 @@ for increased security.
 ### Examples
 
 - Follow our
-  [tutorial to create a local network and generate keys](https://substrate.dev/docs/en/next/tutorials/start-a-private-network/).
+  [tutorial to create a local network and generate keys](../../tutorials/start-a-private-network/).
 
 ### References
 

@@ -58,6 +58,3 @@ If you are trying to set up a Windows computer to build Substrate, do the follow
    ```
 
 7. Finally, install `cmake`: https://cmake.org/download/
-
-You can now jump back to [Get the Source](#get-the-source) to learn how to download and compile
-Substrate!

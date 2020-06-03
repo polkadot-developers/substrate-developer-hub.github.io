@@ -201,7 +201,7 @@ be used.
 
 In the example above, all the storage items except `SomePrivateValue` are made public by way of the
 `pub` keyword. Blockchain storage is always publicly
-[visible from _outside_ of the runtime](#Accessing-Storage-Items); the visibility of Substrate
+[visible from _outside_ of the runtime](#accessing-storage-items); the visibility of Substrate
 storage items only impacts whether or not other pallets _within_ the runtime will be able to access
 a storage item.
 

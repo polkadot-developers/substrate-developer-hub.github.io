@@ -120,7 +120,6 @@ created by a large number of contributors can flow together. See
 ### How can I link to other docs in my documentation?
 
 Use absolute paths starting with `/` and ending with `.md`, like `/knowledgebase/getting-started/index.md`.
-Never use relative paths with ".." that point to content outside of `/docs`.
 
 ### How can I link to source code in my documentation?
 
