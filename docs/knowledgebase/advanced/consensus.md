@@ -62,14 +62,14 @@ chain selection rule with the
 [`LongestChain` struct](https://crates.parity.io/sc_consensus/struct.LongestChain.html).
 GRANDPA uses the longest chain rule for voting.
 
-![longest chain rule](../assets/consensus-longest-chain.png)
+![longest chain rule](assets/consensus-longest-chain.png)
 
 ### GHOST Rule
 
 The Greedy Heaviest Observed SubTree rule says that, starting at the genesis block, each fork is
 resolved by choosing the branch that has the most blocks built on it recursively.
 
-![GHOST rule](../assets/consensus-ghost.png)
+![GHOST rule](assets/consensus-ghost.png)
 
 ## Block Production
 

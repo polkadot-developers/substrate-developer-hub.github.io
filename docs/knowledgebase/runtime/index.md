@@ -17,7 +17,7 @@ pallets.
 The entire set of pallets and support libraries is called _FRAME._ FRAME interacts with the client
 by implementing the traits in _primitives._
 
-![Runtime Composition](../../../assets/runtime.png)
+![Runtime Composition](assets/runtime.png)
 
 For example, if you want to add smart contract functionality to your blockchain, you simply need to
 include the [Contracts](https://crates.parity.io/pallet_contracts/index.html) pallet.
@@ -30,6 +30,6 @@ can be upgraded without a hard fork.
 ### Learn More
 
 - Follow a
-  [tutorial to develop your first Substrate chain](https://substrate.dev/docs/en/next/tutorials/create-your-first-substrate-chain/).
+  [tutorial to develop your first Substrate chain](../../tutorials/create-your-first-substrate-chain/).
 - Follow a
-  [tutorial to add a pallet to your Substrate runtime](https://substrate.dev/docs/en/tutorials/add-a-pallet-to-your-runtime/).
+  [tutorial to add a pallet to your Substrate runtime](../../tutorials/add-a-pallet-to-your-runtime/).

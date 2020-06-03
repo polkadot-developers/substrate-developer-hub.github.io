@@ -13,7 +13,7 @@ interface to the core client.
 
 The following diagram shows the architectural overview of FRAME and its support libraries:
 
-![frame-arch](../../../assets/frame-arch.png)
+![frame-arch](assets/frame-arch.png)
 
 ### Pallets
 
@@ -299,7 +299,7 @@ a structure for making spending proposals from this pot.
 ### Examples
 
 - Follow a
-  [tutorial to add a pallet to your Substrate runtime](https://substrate.dev/docs/en/tutorials/add-a-pallet-to-your-runtime/).
+  [tutorial to add a pallet to your Substrate runtime](../../tutorials/add-a-pallet-to-your-runtime/).
 
 ### References
 
