@@ -93,6 +93,23 @@ As an exception, in the case that the type is a boolean, then it is always one b
 - `0x01` if it is the `false` value.
 - `0x02` if it is the `true` value.
 
+### Results
+
+Results are commonly used enumerations which indicate whether certain operations were successful or unsuccessful. Encoded as:
+
+- `0x00` if the operation was successful, followed by the encoded value.
+- `0x01` if the operation was unsuccessful, followed by the encoded error.
+
+#### Example
+
+```rust
+// A custom result type used in a crate.
+let Result = std::result::Result<u8, bool>;
+```
+
+- `Ok(42)`: `0x002a`
+- `Err(false)`: `0x0100`
+
 ### Vectors (lists, series, sets)
 
 A collection of same-typed values is encoded, prefixed with a _compact_ encoding of the number of
@@ -111,6 +128,10 @@ SCALE Bytes:
 ```
 0x18040008000f00100017002a00
 ```
+
+### Strings
+
+Strings are Vectors containing a valid UTF8 sequence.
 
 ### Tuples
 
