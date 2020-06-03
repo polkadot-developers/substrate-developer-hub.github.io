@@ -234,7 +234,7 @@ class Tutorials extends React.Component {
                 prerequisite: false,
                 version: "2.0.0-rc2",
                 href: `${docUrl(
-                  "tutorials/creating-your-first-substrate-chain/"
+                  "tutorials/create-your-first-substrate-chain/"
                 )}`
               },
               {
@@ -269,7 +269,7 @@ class Tutorials extends React.Component {
                 prerequisite: false,
                 version: "2.0.0-rc2",
                 href: `${docUrl(
-                  "tutorials/adding-a-module-to-your-runtime/")}`
+                  "tutorials/add-a-pallet-to-your-runtime/")}`
               },
               {
                 img: `${baseUrl}img/substrate-network.png`,
@@ -305,7 +305,7 @@ class Tutorials extends React.Component {
                 length: "2",
                 prerequisite: false,
                 version: "2.0.0-rc2",
-                href: `${docUrl("tutorials/creating-a-runtime-module/")}`
+                href: `${docUrl("tutorials/create-a-pallet/")}`
               }
             ]}
           />

@@ -103,7 +103,7 @@ Join the growing community of ink! smart contract developers:
 ### Examples
 
 - Follow a
-  [tutorial to add this Contracts pallet to your Substrate runtime](https://substrate.dev/docs/en/tutorials/adding-a-module-to-your-runtime/).
+  [tutorial to add this Contracts pallet to your Substrate runtime](https://substrate.dev/docs/en/tutorials/add-a-pallet-to-your-runtime/).
 
 ### References
 

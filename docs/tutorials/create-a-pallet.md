@@ -10,7 +10,7 @@ node based on the `substrate-node-template`.
 You should already have version `v2.0.0-rc2` of the
 [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
 compiled on your computer from when you completed the
-[Create Your First Substrate Chain Tutorial](../creating-your-first-substrate-chain).
+[Create Your First Substrate Chain Tutorial](../create-your-first-substrate-chain).
 If you do not, please complete that tutorial.
 
 > Experienced developers who truly prefer to skip that tutorial, you may install the node template

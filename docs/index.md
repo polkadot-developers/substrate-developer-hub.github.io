@@ -41,7 +41,7 @@ Substrate is designed to be used in one of three ways:
    syncing. If the block authoring logic needs to be modified, then a new block-authoring binary
    must be built as a separate project and used by validators. This is how the Polkadot relay chain
    is built and should suffice for almost all needs in the near future. For a tutorial on this, see
-   [creating your first Substrate chain](tutorials/creating-your-first-substrate-chain/index.md).
+   [creating your first Substrate chain](tutorials/create-your-first-substrate-chain/index.md).
 
 3. **With the Substrate Core**: The entire [FRAME](knowledgebase/runtime/frame.md) can be ignored, and
    the entire runtime can be designed and implemented from scratch. This could be done in _any
@@ -62,13 +62,13 @@ Substrate is designed to be used in one of three ways:
 ### Examples
 
 - Follow our [tutorial to create your first custom blockchain with
-  Substrate](tutorials/creating-your-first-substrate-chain/index).
+  Substrate](tutorials/create-your-first-substrate-chain/index).
 
 - Follow our [tutorial to start a private network with
   Substrate](tutorials/start-a-private-network-with-substrate).
 
 - Follow our [tutorial to add a runtime module to your Substrate
-  runtime](tutorials/adding-a-module-to-your-runtime).
+  runtime](tutorials/add-a-module-to-your-runtime).
 
 ### References
 

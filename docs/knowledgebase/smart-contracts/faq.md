@@ -51,5 +51,5 @@ cargo +nightly test
 ### How do I add the Contracts module to my custom chain?
 
 You can follow
-[our guide here](https://substrate.dev/docs/en/tutorials/adding-a-module-to-your-runtime/) for
+[our guide here](https://substrate.dev/docs/en/tutorials/add-a-pallet-to-your-runtime/) for
 instructions to add the Contracts pallet and other FRAME pallets to your blockchain runtime.

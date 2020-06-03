@@ -299,7 +299,7 @@ a structure for making spending proposals from this pot.
 ### Examples
 
 - Follow a
-  [tutorial to add a pallet to your Substrate runtime](https://substrate.dev/docs/en/tutorials/adding-a-module-to-your-runtime/).
+  [tutorial to add a pallet to your Substrate runtime](https://substrate.dev/docs/en/tutorials/add-a-pallet-to-your-runtime/).
 
 ### References
 

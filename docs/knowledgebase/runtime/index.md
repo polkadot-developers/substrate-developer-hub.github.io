@@ -30,6 +30,6 @@ can be upgraded without a hard fork.
 ### Learn More
 
 - Follow a
-  [tutorial to develop your first Substrate chain](https://substrate.dev/docs/en/next/tutorials/creating-your-first-substrate-chain/).
+  [tutorial to develop your first Substrate chain](https://substrate.dev/docs/en/next/tutorials/create-your-first-substrate-chain/).
 - Follow a
-  [tutorial to add a pallet to your Substrate runtime](https://substrate.dev/docs/en/tutorials/adding-a-module-to-your-runtime/).
+  [tutorial to add a pallet to your Substrate runtime](https://substrate.dev/docs/en/tutorials/add-a-pallet-to-your-runtime/).

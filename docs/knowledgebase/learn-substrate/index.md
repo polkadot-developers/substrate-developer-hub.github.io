@@ -27,7 +27,7 @@ Substrate is designed to be used in one of three ways:
    change datatypes, compose the library of modules, and add your own custom modules. Almost any
    blockchain can be made within FRAME, and the true power of Substrate lies here. If you want to
    dive right in, see the tutorial for
-   [creating your first Substrate chain](https://substrate.dev/docs/en/next/tutorials/creating-your-first-substrate-chain/).
+   [creating your first Substrate chain](https://substrate.dev/docs/en/next/tutorials/create-your-first-substrate-chain/).
 
 3. **With the Substrate Core**: The entire FRAME can be ignored, and the entire runtime can be
    designed and implemented from scratch. This could be done in _any language_ that can target
@@ -48,7 +48,7 @@ Substrate is designed to be used in one of three ways:
 ### Examples
 
 - Follow our
-  [tutorial to create your first custom blockchain with Substrate](https://substrate.dev/docs/en/next/tutorials/creating-your-first-substrate-chain/).
+  [tutorial to create your first custom blockchain with Substrate](https://substrate.dev/docs/en/next/tutorials/create-your-first-substrate-chain/).
 
 - Follow our
   [tutorial to start a private network with Substrate](https://substrate.dev/docs/en/next/tutorials/start-a-private-network/).

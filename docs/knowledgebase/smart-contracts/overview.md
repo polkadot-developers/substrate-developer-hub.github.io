@@ -177,7 +177,7 @@ influence your decision on the kinds of situations you may want to use these dif
 ### Examples
 
 - Follow a
-  [tutorial to add a runtime module to your Substrate runtime](tutorials/adding-a-module-to-your-runtime.md).
+  [tutorial to add a runtime module to your Substrate runtime](tutorials/add-a-pallet-to-your-runtime.md).
 - Learn how to
   [start developing with the Contracts pallet and ink!](ink-development).
 
