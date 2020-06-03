@@ -232,9 +232,9 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "< 1",
                 prerequisite: false,
-                version: "2.0.0-alpha.5",
+                version: "2.0.0-rc2",
                 href: `${docUrl(
-                  "tutorials/creating-your-first-substrate-chain/"
+                  "tutorials/create-your-first-substrate-chain/"
                 )}`
               },
               {
@@ -250,10 +250,26 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "1",
                 prerequisite: true,
-                version: "2.0.0-alpha.5",
+                version: "2.0.0-rc2",
                 href: `${docUrl(
                   "tutorials/build-a-dapp"
                 )}`
+              },
+              {
+                title: (
+                  <translate>Adding a Pallet to Your Runtime</translate>
+                ),
+                text: (
+                  <translate>
+                    "Add the Contracts pallet or other FRAME pallets to your Substrate node template."
+                  </translate>
+                ),
+                difficulty: "medium",
+                length: "2",
+                prerequisite: false,
+                version: "2.0.0-rc2",
+                href: `${docUrl(
+                  "tutorials/add-a-pallet-to-your-runtime/")}`
               },
               {
                 img: `${baseUrl}img/substrate-network.png`,
@@ -269,57 +285,10 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "2",
                 prerequisite: false,
-                version: "2.0.0-alpha.5",
+                version: "2.0.0-rc2",
                 href: `${docUrl(
                   "tutorials/start-a-private-network/"
                 )}`
-              },
-              {
-                img: `${baseUrl}img/ink-smart-contracts-tutorial.png`,
-                title: <translate>ink! Smart Contracts Tutorial</translate>,
-                text: (
-                  <translate>
-                    A comprehensive, end-to-end tutorial for building an ERC20
-                    token contract using ink!.
-                  </translate>
-                ),
-                difficulty: "easy",
-                length: "4",
-                prerequisite: false,
-                version: "2.0.0-alpha.5",
-                href:
-                  "https://substrate-developer-hub.github.io/substrate-contracts-workshop/"
-              }
-            ]}
-          />
-        </Row>
-      </div>
-    );
-
-    const OtherTutorials = () => (
-      <div className="mt-4">
-        <h2>
-          <translate>Other Tutorials</translate>
-        </h2>
-        <hr />
-        <Row>
-          <OtherTutorialCards
-            data={[
-              {
-                title: (
-                  <translate>Adding a Pallet to Your Runtime</translate>
-                ),
-                text: (
-                  <translate>
-                    "Add the Contracts pallet or other FRAME pallets to your Substrate node template."
-                  </translate>
-                ),
-                difficulty: "medium",
-                length: "2",
-                prerequisite: false,
-                version: "2.0.0-alpha.5",
-                href: `${docUrl(
-                  "tutorials/adding-a-module-to-your-runtime/")}`
               },
               {
                 img: `${baseUrl}img/crates.png`,
@@ -335,99 +304,8 @@ class Tutorials extends React.Component {
                 difficulty: "medium",
                 length: "2",
                 prerequisite: false,
-                version: "2.0.0-alpha.5",
-                href: `${docUrl("tutorials/creating-a-runtime-module/")}`
-              },
-              {
-                title: <translate>UTXO Workshop</translate>,
-                text: (
-                  <translate>
-                    A tutorial teaching you how to build a UTXO chain like
-                    Bitcoin using Substrate.
-                  </translate>
-                ),
-                difficulty: "medium",
-                length: "2",
-                prerequisite: true,
-                version: "2.0-3e65111",
-                href: "https://github.com/substrate-developer-hub/utxo-workshop"
-              },
-              {
-                img: `${baseUrl}img/polkadot-js-substrate-tutorial.png`,
-                title: (
-                  <translate>Build a Front End with Polkadot-js API</translate>
-                ),
-                text: (
-                  <translate>
-                    Learn to build a front-end application interacting with a
-                    Substrate based blockchain.
-                  </translate>
-                ),
-                difficulty: "easy",
-                length: "2",
-                prerequisite: false,
-                version: "2.0.0-alpha.5",
-                href: `${docUrl("tutorials/substrate-front-end/")}`
-              },
-              {
-                title: (
-                  <translate>Visualizing Node Metrics</translate>
-                ),
-                text: (
-                  <translate>
-                    "Learn how to visualize the metrics that Substrate records using Prometheus."
-                  </translate>
-                ),
-                difficulty: "easy",
-                length: "< 1",
-                prerequisite: false,
-                version: "2.0.0-alpha.5",
-                href: `${docUrl("next/tutorials/visualizing-node-metrics/")}`
-              },
-              {
-                img: `${baseUrl}img/substrate-collectables-workshop.png`,
-                title: <translate>Substrate Collectables Workshop</translate>,
-                text: (
-                  <translate>
-                    A comprehensive, end-to-end tutorial for creating a
-                    non-fungible token chain.
-                  </translate>
-                ),
-                difficulty: "easy",
-                length: "5",
-                prerequisite: false,
-                version: "1.0",
-                href:
-                  "https://substrate-developer-hub.github.io/substrate-collectables-workshop/"
-              },
-              {
-                title: (
-                  <translate>
-                    Substrate Verifiable Credentials Workshop
-                  </translate>
-                ),
-                text: (
-                  <translate>
-                    A comprehensive, end-to-end tutorial for creating an
-                    infrastructure chain for verifiable credentials.
-                  </translate>
-                ),
-                difficulty: "easy",
-                length: "3",
-                prerequisite: false,
-                version: "1.0",
-                href: "https://substrate.dev/substrate-verifiable-credentials/"
-              },
-              {
-                title: <translate>Substrate Token Curated Registry</translate>,
-                text: (
-                  <translate>Build a TCR module using Substrate.</translate>
-                ),
-                difficulty: "medium",
-                length: "3",
-                prerequisite: true,
-                version: "1.0",
-                href: `${docUrl("tutorials/tcr/")}`
+                version: "2.0.0-rc2",
+                href: `${docUrl("tutorials/create-a-pallet/")}`
               }
             ]}
           />
@@ -447,7 +325,6 @@ class Tutorials extends React.Component {
         <div className="mainContainer">
           <Container>
             <RecommendedTutorials />
-            <OtherTutorials />
           </Container>
         </div>
       </div>

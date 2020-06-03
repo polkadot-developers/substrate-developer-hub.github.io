@@ -13,11 +13,11 @@ This page is the top level entry point into the Substrate documentation.
 >case).
 
 Substrate is a blockchain development framework with a completely generic State Transition Function
-([STF](glossary.md#stf-state-transition-function)) and modular components for consensus, networking,
+([STF](knowledgebase/getting-started/glossary#stf-state-transition-function)) and modular components for consensus, networking,
 and configuration.
 
 Despite being "completely generic", it comes with both standards and conventions - particularly with
-the Substrate runtime module library (a.k.a [FRAME](conceptual/runtime/frame.md)) - regarding the underlying
+the Substrate runtime module library (a.k.a [FRAME](knowledgebase/runtime/frame.md)) - regarding the underlying
 data-structures that power the STF, thereby making rapid blockchain development a reality.
 
 ## Usage
@@ -41,9 +41,9 @@ Substrate is designed to be used in one of three ways:
    syncing. If the block authoring logic needs to be modified, then a new block-authoring binary
    must be built as a separate project and used by validators. This is how the Polkadot relay chain
    is built and should suffice for almost all needs in the near future. For a tutorial on this, see
-   [creating your first Substrate chain](tutorials/creating-your-first-substrate-chain/index.md).
+   [creating your first Substrate chain](tutorials/create-your-first-substrate-chain/index.md).
 
-3. **With the Substrate Core**: The entire [FRAME](conceptual/runtime/frame.md) can be ignored, and
+3. **With the Substrate Core**: The entire [FRAME](knowledgebase/runtime/frame.md) can be ignored, and
    the entire runtime can be designed and implemented from scratch. This could be done in _any
    language_ that can target WebAssembly. If the runtime can be made to be compatible with the
    abstract block authoring logic of the Substrate node, then you can simply construct a new genesis
@@ -57,18 +57,18 @@ Substrate is designed to be used in one of three ways:
 ### Learn More
 
 - View our developer documentation for [using the FRAME for module
-  development](development/module/index.md).
+  development](knowledgebase/runtime/frame.md).
 
 ### Examples
 
 - Follow our [tutorial to create your first custom blockchain with
-  Substrate](tutorials/creating-your-first-substrate-chain/index).
+  Substrate](tutorials/create-your-first-substrate-chain/index).
 
 - Follow our [tutorial to start a private network with
   Substrate](tutorials/start-a-private-network-with-substrate).
 
 - Follow our [tutorial to add a runtime module to your Substrate
-  runtime](tutorials/adding-a-module-to-your-runtime).
+  runtime](tutorials/add-a-module-to-your-runtime).
 
 ### References
 

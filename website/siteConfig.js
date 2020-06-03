@@ -134,7 +134,7 @@ const siteConfig = {
 	separateCss: [],
 
 	// Use prism for syntax highlighting
-	usePrism: true,
+	usePrism: ['rust', 'toml'],
 
 	// Edit this page button
 	editUrl: 'https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/',

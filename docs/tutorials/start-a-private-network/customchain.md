@@ -1,104 +1,17 @@
 ---
 title: Creating Your Private Network
 ---
-Now that each participant has their own keys generated, you're ready to start your own custom chain. In this section it is no longer required to use a single physical machine or a single binary.
 
-In this example we will create a two-node network, but the process generalizes to more nodes in a straight-forward manner.
-
-> Validators should not share the same keys, even for learning purposes. If two validators have the
-> same keys, they will produce conflicting blocks.
-
-## Create a Chain Specification
-
-Last time around, we used `--chain local` which is a predefined "chain spec" that has Alice and Bob
-specified as validators along with many other useful defaults.
-
-Rather than writing our chain spec completely from scratch, we'll just make a few modifications to
-the one we used before. To start we need to export the chain spec to a file named
-`customSpec.json`. Remember, further details about all of these commands are available by running
-`node-template --help`.
-
-```bash
-# Export the local chainspec to json
-$ ./target/release/node-template build-spec --chain local > customSpec.json
-2020-01-10 15:39:04 Building chain spec
-```
-
-The file we just created contains several fields, and you can learn a lot by exploring them. By far
-the largest field is a single binary blob that is the Wasm binary of our runtime. It is part of what
-you built earlier when you ran the `cargo build` command.
-
-The portion of the file we're interested in is the Aura authorities used for creating blocks,
-indicated by **"aura"** field below, and GRANDPA authorities used for finalizing blocks,
-indicated by **"grandpa"** field. That section looks like this
-
-```json
-{
-  //-- snip --
-  "genesis": {
-    "runtime": {
-      "system": {
-        "changesTrieConfig": null,
-        //-- snip --
-      },
-      "aura": {
-        "authorities": [
-          "5FfBQ3kwXrbdyoqLPvcXRp7ikWydXawpNs2Ceu3WwFdhZ8W4",
-          "5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty"
-        ]
-      },
-      "grandpa": {
-        "authorities": [
-          [
-            "5G9NWJ5P9uk7am24yCKeLZJqXWW6hjuMyRJDmw4ofqxG8Js2",
-            1
-          ],
-          [
-            "5GoNkf6WdbxCFnPdAnYYQyCjAKPJgLNxXwPjwTh6DGg6gN3E",
-            1
-          ]
-        ]
-      },
-      //-- snip --
-    }
-  }
-}
-```
-
-> These instructions are written for the node template. They will work with other Substrate-based nodes
-> with few modifications. In Substrate nodes that include the session pallet. You should leave the
-> Aura and Grandpa configs empty and instead insert this information in the session config. All of this
-> is demonstrated in the chain spec you export from your desired node.
-
-The format for the grandpa data is more complex because the grandpa protocol supports weighted
-votes. In this case we have given each validator a weight of **1**.
-
-All we need to do is change the authority addresses listed (currently Alice and Bob) to our own
-addresses that we generated in the previous step. The **sr25519** addresses go in the **aura** section,
-and the **ed25519** addresses in the **grandpa** section. You may add as many validators as you like.
-For additional context, read about [keys in Substrate](https://substrate.dev/docs/en/next/conceptual/cryptography/keys).
-
-Once the chain spec is prepared, convert it to a "raw" chain spec. The raw chain spec contains all
-the same information, but it contains the encoded storage keys that the node will use to reference
-the data in its local storage. Distributing a raw spec ensures that each node will store the data
-at the proper storage keys.
-
-```bash
-./target/release/node-template build-spec --chain customSpec.json --raw > customSpecRaw.json
-```
-Finally share the `customSpecRaw.json` with your all the other validators in the network.
-
-> A single person should create the chain spec and share the resulting **`customSpecRaw.json`** file with their fellow validators.
->
-> Because Rust -> Wasm optimized builds aren't "reproducible", each person will get a slightly different Wasm
-> blob which will break consensus if each participant generates the file themselves.
+With you custom chain spec created and distributed to all participants, you're ready to launch your
+own custom chain. In this section it is no longer required to use a single physical machine or a
+single binary.
 
 ## First Participant Starts a Bootnode
 
-You've completed all the necessary prep work and you're now ready to launch your chain. This
-process is very similar to when you launched a chain earlier as Alice and Bob. It's important to
-start with a clean base path, so if you plan to use the same path that you've used previously,
-please delete all contents from that directory.
+You've completed all the necessary prep work and you're now ready to launch your chain. This process
+is very similar to when you launched a chain earlier as Alice and Bob. It's important to start with
+a clean base path, so if you plan to use the same path that you've used previously, please delete
+all contents from that directory.
 
 The first participant can launch her node with
 
@@ -109,98 +22,91 @@ The first participant can launch her node with
   --port 30333 \
   --ws-port 9944 \
   --rpc-port 9933 \
-  --telemetry-url ws://telemetry.polkadot.io:1024 \
+  --telemetry-url 'ws://telemetry.polkadot.io:1024 0' \
   --validator \
+  --rpc-methods=Unsafe \
   --name MyNode01
 ```
+
 Here are some differences from when we launched as Alice.
 
-* I've omitted the `--alice` flag. Instead we will insert our own custom keys into the keystore
-through the RPC shortly.
-* The `--chain` flag has changed to use our custom chain spec.
-* I've added the optional `--name` flag. You may use it to give your node a human-readable name in the telemetry UI.
+- I've omitted the `--alice` flag. Instead we will insert our own custom keys into the keystore
+  through the RPC shortly.
+- The `--chain` flag has changed to use our custom chain spec.
+- I've added the optional `--name` flag. You may use it to give your node a human-readable name in
+  the telemetry UI.
+- The optional `--rpc-methods=Unsafe` flag has been added. As the name indicates, this flag is not
+  safe to use in a production setting, but it allows this tutorial to stay focused on the topic at
+  hand. In production, you should use a
+  [JSON-RPC proxy](../../knowledgebase/getting-started/glossary#json-rpc-proxy-crate), but that topic is out of the
+  scope of this tutorial.
 
 You should see the console outputs something as follows:
 
 ```bash
-2020-01-10 16:50:24 Substrate Node
-2020-01-10 16:50:24   version 2.0.0-alpha.5-2ddc70d-x86_64-linux-gnu
-2020-01-10 16:50:24   by Anonymous, 2017, 2018
-2020-01-10 16:50:24 Chain specification: Local Testnet
-2020-01-10 16:50:24 Node name: MyNode01
-2020-01-10 16:50:24 Roles: AUTHORITY
-2020-01-10 16:50:25 Initializing Genesis block/state (state: 0x4408…ff44, header-hash: 0x7268…81b7)
-2020-01-10 16:50:25 Loading GRANDPA authority set from genesis on what appears to be first startup.
-2020-01-10 16:50:25 Loaded block-time = 6000 milliseconds from genesis on first-launch
-2020-01-10 16:50:25 Highest known block at #0
-2020-01-10 16:50:25 Using default protocol ID "sup" because none is configured in the chain specs
-2020-01-10 16:50:25 Local node identity is: QmXPbznQUxJWXa4NwtVyLHtVtXnYH2h7utCH4LDN2sPXK1
-2020-01-10 16:50:25 Grafana data source server started at 127.0.0.1:9955
-2020-01-10 16:50:30 Idle (0 peers), best: #0 (0x7268…81b7), finalized #0 (0x7268…81b7), ⬇ 0.7kiB/s ⬆ 0.7kiB/s
-2020-01-10 16:50:35 Idle (0 peers), best: #0 (0x7268…81b7), finalized #0 (0x7268…81b7), ⬇ 0.2kiB/s ⬆ 0.2kiB/s
-2020-01-10 16:50:40 Idle (0 peers), best: #0 (0x7268…81b7), finalized #0 (0x7268…81b7), ⬇ 0.2kiB/s ⬆ 0.2kiB/s
+2020-05-28 13:43:02 Substrate Node
+2020-05-28 13:43:02 ✌️  version 2.0.0-rc2-83d7157-x86_64-linux-gnu
+2020-05-28 13:43:02 ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
+2020-05-28 13:43:02 📋 Chain specification: Local Testnet
+2020-05-28 13:43:02 🏷  Node name: MyNode01
+2020-05-28 13:43:02 👤 Role: AUTHORITY
+2020-05-28 13:43:02 💾 Database: RocksDb at /tmp/node01/chains/local_testnet/db
+2020-05-28 13:43:02 ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+2020-05-28 13:43:03 🔨 Initializing Genesis block/state (state: 0x7f04…10af, header-hash: 0x4328…9cc8)
+2020-05-28 13:43:03 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
+2020-05-28 13:43:03 ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
+2020-05-28 13:43:03 📦 Highest known block at #0
+2020-05-28 13:43:03 Using default protocol ID "sup" because none is configured in the chain specs
+2020-05-28 13:43:03 🏷  Local node identity is: 12D3KooWMNy8bTtD81UCv5Wm44iHeCpygr8LAvCRcAdq4mA5PPie (legacy representation: QmXHC17m265EJK51YpF8uq5wmQEsS86av66vpx9oeckuBW)
+2020-05-28 13:43:03 〽️ Prometheus server started at 127.0.0.1:9615
+2020-05-28 13:43:08 💤 Idle (0 peers), best: #0 (0x4328…9cc8), finalized #0 (0x4328…9cc8), ⬇ 0 ⬆ 0
+2020-05-28 13:43:13 💤 Idle (0 peers), best: #0 (0x4328…9cc8), finalized #0 (0x4328…9cc8), ⬇ 0 ⬆ 0
+2020-05-28 13:43:18 💤 Idle (0 peers), best: #0 (0x4328…9cc8), finalized #0 (0x4328…9cc8), ⬇ 0 ⬆ 0
 ```
 
 ## Add Keys to Keystore
 
 Once your node is running, you will again notice that no blocks are being produced. At this point,
-you need to add your keys into the keystore. Remember you will need to complete these steps for each node in your network.
+you need to add your keys into the keystore. Remember you will need to complete these steps for each
+node in your network.
 
-### Option 1: Using Polkadot-JS App UI
+### Add Keys with the Polkadot-JS App UI
 
-You can use the Apps UI to insert your keys into the keystore. Navigate to the "Toolbox" tab and the "RPC Call" sub-tab. Choose "author" and "insertKey". The fields can be filled like this:
+You can use the Apps UI to insert your keys into the keystore. Navigate to the "Toolbox" tab and the
+"RPC Call" sub-tab. Choose "author" and "insertKey". The fields can be filled like this:
 
-![Inserting a Aura key using Apps](/docs/assets/private-network-apps-insert-key-aura.png)
+![Inserting a Aura key using Apps](assets/tutorials/private-network/private-network-apps-insert-key-aura.png)
 
 ```
 keytype: aura
 suri: <your mnemonic phrase> (eg. clip organ olive upper oak void inject side suit toilet stick narrow)
 publicKey: <your raw sr25519 key> (eg. 0x9effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e)
 ```
-> If you generated your keys with the Apps UI you will not know your raw public key. In this case you may use your SS58 address (`5FfBQ3kwXrbdyoqLPvcXRp7ikWydXawpNs2Ceu3WwFdhZ8W4`) instead.
 
-You've now successfully inserted your **aura** key. You can repeat those steps to insert your **grandpa** key (the **ed25519** key)
+> If you generated your keys with the Apps UI you will not know your raw public key. In this case
+> you may use your SS58 address (`5FfBQ3kwXrbdyoqLPvcXRp7ikWydXawpNs2Ceu3WwFdhZ8W4`) instead.
 
-![Inserting a Grandpa key using Apps](/docs/assets/private-network-apps-insert-key.png)
+You've now successfully inserted your **aura** key. You can repeat those steps to insert your
+**grandpa** key (the **ed25519** key)
+
+![Inserting a Grandpa key using Apps](assets/tutorials/private-network/private-network-apps-insert-key.png)
 
 ```
 keytype: gran
 suri: <your mnemonic phrase> (eg. clip organ olive upper oak void inject side suit toilet stick narrow)
 publicKey: <your raw ed25519 key> (eg. 0xb48004c6e1625282313b07d1c9950935e86894a2e4f21fb1ffee9854d180c781)
 ```
-> If you generated your keys with the Apps UI you will not know your raw public key. In this case you may use your SS58 address (`5G9NWJ5P9uk7am24yCKeLZJqXWW6hjuMyRJDmw4ofqxG8Js2`) instead.
 
-> Remember to switch the UIs connection to the second node before repeating these steps.
+> If you generated your keys with the Apps UI you will not know your raw public key. In this case
+> you may use your SS58 address (`5G9NWJ5P9uk7am24yCKeLZJqXWW6hjuMyRJDmw4ofqxG8Js2`) instead.
 
-### Option 2: Using CLI
-
-You can also insert a key to the keystore by command line.
-
-```bash
-# Submit a new key via RPC, connect to where your `rpc-port` is listening
-$ curl http://localhost:9933 -H "Content-Type:application/json;charset=utf-8" -d \
-  '{
-    "jsonrpc":"2.0",
-    "id":1,
-    "method":"author_insertKey",
-    "params": [
-      "<aura/gran>",
-      "<mnemonic phrase>",
-      "<public key>"
-    ]
-  }'
-```
-
-If you enter the command and parameters correctly, the node will return a JSON response as follows.
-
-```json
-{ "jsonrpc": "2.0", "result": null, "id": 1 }
-```
+> If you are following these steps for the _second_ node in the network, you must connect the UI to
+> the second node before inserting the keys.
 
 ## Subsequent Participants Join
 
-Subsequent validators can now join the network. This can be done either by specifying the
-`--bootnodes` paramter as Bob did previously.
+Subsequent validators can now join the network. This can be done by specifying the `--bootnodes`
+paramter as Bob did previously.
 
 ```bash
 ./target/release/node-template \
@@ -209,66 +115,83 @@ Subsequent validators can now join the network. This can be done either by speci
   --port 30334 \
   --ws-port 9945 \
   --rpc-port 9934 \
-  --telemetry-url ws://telemetry.polkadot.io:1024 \
+  --telemetry-url 'ws://telemetry.polkadot.io:1024 0' \
   --validator \
+  --rpc-methods=Unsafe \
   --name MyNode02 \
   --bootnodes /ip4/<IP Address>/tcp/<Port>/p2p/<Peer ID>
 ```
 
-Note that:
-
-* We specify another `base-path`, give it another `name`, and also specify this node as a
+As before, we specify another `base-path`, give it another `name`, and also specify this node as a
 `validator`.
-* Once the node is up, we add another pair of `sr25519` and `ed25519` keys in this node keystore
-that we specify in the `customSpec.json`. Each participant will need to start their node and add
-both keys to the keystore to be a validator.
-* If there are multiple validators in the network, we want to add all of them in the
-`bootnodes` section of in the `customSpec.json`.
 
-> You must configure the UI to the correct
-> node's WebSocket endpoint.
-
-> Reminder: All validators must be using identical chain specifications in order to peer. You
-> should see the same genesis block and state root hashes.
-
-> You may obviate the `--bootnotes` flag, by putting your first node's bootnode address in the chain
-> spec file (there is a field at the beginning).
+Once the second node is up, you should see them authoring:
 
 ```
-...
-2020-01-10 14:30:28 Idle (0 peers), best: #0 (0x05e7…019e), finalized #0 (0x05e7…019e), ⬇ 0 ⬆ 0
-2020-01-10 14:30:30 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30333/p2p/QmZbVTa3n3CJUDMYCDqGPpDGwMmQJBkyGc5gRGkmYw88Pp
-2020-01-10 14:30:33 Idle (2 peers), best: #0 (0x05e7…019e), finalized #0 (0x05e7…019e), ⬇ 0.7kiB/s ⬆ 0.7kiB/s
-2020-01-10 14:30:36 Starting consensus session on top of parent 0x05e71d9c5e414bbe6f72e3b045eebfb5d9af22d59070bc29de4084544cef019e
-2020-01-10 14:30:36 Prepared block for proposing at 1 [hash: 0xbeba14c5c8ad5ffa91a007c2b84554f3e74151b87444f389d719fff60aecd616; parent_hash: 0x05e7…019e; extrinsics: [0xe4ff…6bd7]]
-2020-01-10 14:30:36 Pre-sealed block for proposal at 1. Hash now 0x1368112db340f6470a2edec9d8fb52031c8c63af4dc1ed86116ad048da93fe12, previously 0xbeba14c5c8ad5ffa91a007c2b84554f3e74151b87444f389d719fff60aecd616.
-2020-01-10 14:30:36 Imported #1 (0x1368…fe12)
-2020-01-10 14:30:38 Idle (3 peers), best: #1 (0x1368…fe12), finalized #0 (0x05e7…019e), ⬇ 0.6kiB/s ⬆ 0.7kiB/s
-2020-01-10 14:30:42 Imported #2 (0xe4ee…8863)
-2020-01-10 14:30:43 Idle (3 peers), best: #2 (0xe4ee…8863), finalized #1 (0x05e7…019e), ⬇ 0.8kiB/s ⬆ 0.7kiB/s
-2020-01-10 14:30:48 Starting consensus session on top of parent 0xe4ee9d721d1b179ba83bc253871c504f48a0d4d02f304acfdccd29bfb1798863
-2020-01-10 14:30:48 Prepared block for proposing at 3 [hash: 0x83f211e9e2d24101acf8097d46c6d348308a4a354fd0d60a7768ad51e4b0cc6b; parent_hash: 0xe4ee…8863; extrinsics: [0x81fa…3ab1]]
-2020-01-10 14:30:48 Pre-sealed block for proposal at 3. Hash now 0x42f2fcfdb65c9e26700ef779a0782f6de30cb9531f8de54043e1a3b3469a0aff, previously 0x83f211e9e2d24101acf8097d46c6d348308a4a354fd0d60a7768ad51e4b0cc6b.
-2020-01-10 14:30:48 Imported #3 (0x42f2…0aff)
-2020-01-10 14:30:48 Idle (3 peers), best: #3 (0x42f2…0aff), finalized #2 (0x1368…fe12), ⬇ 1.0kiB/s ⬆ 0.9kiB/s
-...
+2020-05-28 13:45:41 Substrate Node
+2020-05-28 13:45:41 ✌️  version 2.0.0-rc2-83d7157-x86_64-linux-gnu
+2020-05-28 13:45:41 ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
+2020-05-28 13:45:41 📋 Chain specification: Local Testnet
+2020-05-28 13:45:41 🏷  Node name: MyNode02
+2020-05-28 13:45:41 👤 Role: AUTHORITY
+2020-05-28 13:45:41 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db
+2020-05-28 13:45:41 ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+2020-05-28 13:45:41 🔨 Initializing Genesis block/state (state: 0x7f04…10af, header-hash: 0x4328…9cc8)
+2020-05-28 13:45:41 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
+2020-05-28 13:45:41 ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
+2020-05-28 13:45:41 📦 Highest known block at #0
+2020-05-28 13:45:41 Using default protocol ID "sup" because none is configured in the chain specs
+2020-05-28 13:45:41 🏷  Local node identity is: 12D3KooWEnRZxA2Uu2p2LNgttWy6QX6NyR4tFgwn5boqRcU2cqkx (legacy representation: QmXgKEtm3m6zgNpgrGQKk7yxZNCw6ivb64Pz2q9nso4W87)
+2020-05-28 13:45:45 🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWEnRZxA2Uu2p2LNgttWy6QX6NyR4tFgwn5boqRcU2cqkx
+2020-05-28 13:45:46 💤 Idle (1 peers), best: #0 (0x4328…9cc8), finalized #0 (0x4328…9cc8), ⬇ 1.1kiB/s ⬆ 1.1kiB/s
+2020-05-28 13:45:48 ✨ Imported #1 (0xa6d7…4d0e)
+2020-05-28 13:45:51 💤 Idle (1 peers), best: #1 (0xa6d7…4d0e), finalized #0 (0x4328…9cc8), ⬇ 0.2kiB/s ⬆ 0.2kiB/s
 ```
 
-This line shows that your node has peered with another (**`1 peers`**), they have produced a block
-(**`best: #1 (0x1368…fe12)`**).
+The final lines shows that your node has peered with another (**`1 peers`**), and they have produced
+a block (**`best: #1 (0xa6d7…4d0e)`**).
 
-Block finalization (**`finalized #1 (0x1368…fe12)`**) can only happen if **more than two thirds** of
-validators added their grandpa keys into their keystores.
+Now you're ready to add keys to its keystore by following the process (in the previous section) just
+like you did for the first node.
+
+> If you're inserting keys with the UI, you must connect the UI to the second node's WebSocket
+> endpoint before inserting the second node's keys.
+
+> Reminder: All validators must be using identical chain specifications in order to peer. You should
+> see the same genesis block and state root hashes.
+
+You will notice that even after you add the keys for the second node no block finalization has
+happened (**`finalized #0 (0x1b54…0198)`**). Substrate nodes require a restart after inserting a
+grandpa key. Kill your nodes and restart them with the same commands you used previously. Now blocks
+should be finalized.
+
+```
+2020-05-28 13:53:12 Substrate Node
+2020-05-28 13:53:12 ✌️  version 2.0.0-rc2-83d7157-x86_64-linux-gnu
+2020-05-28 13:53:12 ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
+2020-05-28 13:53:12 📋 Chain specification: Local Testnet
+2020-05-28 13:53:12 🏷  Node name: MyNode02
+2020-05-28 13:53:12 👤 Role: AUTHORITY
+2020-05-28 13:53:12 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db
+2020-05-28 13:53:12 ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+2020-05-28 13:53:12 📦 Highest known block at #42
+2020-05-28 13:53:12 Using default protocol ID "sup" because none is configured in the chain specs
+2020-05-28 13:53:12 🏷  Local node identity is: 12D3KooWEnRZxA2Uu2p2LNgttWy6QX6NyR4tFgwn5boqRcU2cqkx (legacy representation: QmXgKEtm3m6zgNpgrGQKk7yxZNCw6ivb64Pz2q9nso4W87)
+2020-05-28 13:53:14 🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWEnRZxA2Uu2p2LNgttWy6QX6NyR4tFgwn5boqRcU2cqkx
+2020-05-28 13:53:18 💤 Idle (1 peers), best: #42 (0xf09d…dbfa), finalized #40 (0x0e49…3118), ⬇ 1.7kiB/s ⬆ 1.7kiB/s
+```
 
 ## You're Finished
 
 Congratulations! You've started your own blockchain!
 
-In this tutorial you've learned to generate your own keypairs, create a
-custom chain spec that uses those keypairs, and start a private network based on your custom chain
-spec.
+In this tutorial you've learned to generate your own keypairs, create a custom chain spec that uses
+those keypairs, and start a private network based on your custom chain spec.
+
+<!-- TODO link to the followup tutorial about starting a 3 node network using the demo substrate node
+Details in https://github.com/substrate-developer-hub/tutorials/issues/16-->
 
 ### Learn More
 
 That big Wasm blob we encountered in the chain spec was was necessary to enable forkless upgrades.
-Learn more about how the [executor](conceptual/core/executor.md) uses on-chain Wasm.
+Learn more about how the [executor](../../knowledgebase/advanced/executor) uses on-chain Wasm.

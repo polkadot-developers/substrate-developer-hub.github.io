@@ -1,74 +1,70 @@
 {
   "docs": {
-    "Overview": [
+    "Getting Started": [
       "index",
-      "overview/getting-started",
-      "conceptual/runtime/frame",
-      "overview/glossary"
+      "knowledgebase/getting-started/index",
+      "knowledgebase/getting-started/windows-users",
+      "knowledgebase/getting-started/glossary"
     ],
-    "Substrate Core": [
-      "conceptual/core/codec",
-      "conceptual/core/consensus",
-      "conceptual/core/executor",
-      "conceptual/core/off-chain-workers",
-      "conceptual/core/storage"
+    "Learn Substrate": [
+      "knowledgebase/learn-substrate/index",
+      "knowledgebase/learn-substrate/extrinsics",
+      "knowledgebase/learn-substrate/tx-pool",
+      "knowledgebase/learn-substrate/account-abstractions",
+      "knowledgebase/learn-substrate/session-keys",
+      "knowledgebase/learn-substrate/weight",
+      "knowledgebase/learn-substrate/off-chain-workers"
     ],
-    "Substrate Nodes": [
-      "conceptual/node/extrinsics",
-      "conceptual/node/tx-pool"
-    ],
-    "Cryptography": [
-      "conceptual/cryptography/index",
-      "conceptual/cryptography/keys",
-      "conceptual/cryptography/session-keys",
-      "conceptual/cryptography/ss58-address-format"
-    ],
-    "Substrate Runtime": [
-      "conceptual/runtime/index",
-      "conceptual/runtime/weight",
-      "conceptual/runtime/primitives",
-      "development/module/execution",
-      "development/module/macros",
-      "development/module/storage",
-      "development/module/events",
-      "development/module/off-chain-workers",
-      "development/module/fees",
-      "development/module/tests",
-      "development/module/debugging"
+    "Runtime": [
+      "knowledgebase/runtime/index",
+      "knowledgebase/runtime/primitives",
+      "knowledgebase/runtime/frame",
+      "knowledgebase/runtime/pallets",
+      "knowledgebase/runtime/macros",
+      "knowledgebase/runtime/metadata",
+      "knowledgebase/runtime/storage",
+      "knowledgebase/runtime/origin",
+      "knowledgebase/runtime/execution",
+      "knowledgebase/runtime/events",
+      "knowledgebase/runtime/fees",
+      "knowledgebase/runtime/off-chain-workers",
+      "knowledgebase/runtime/debugging",
+      "knowledgebase/runtime/tests"
     ],
     "Smart Contracts": [
-      "conceptual/runtime/contracts/index",
-      "conceptual/runtime/contracts/contracts_module",
-      "conceptual/runtime/contracts/evm_module",
-      "conceptual/runtime/contracts/ink",
-      "development/contracts/ink"
+      "knowledgebase/smart-contracts/index",
+      "knowledgebase/smart-contracts/overview",
+      "knowledgebase/smart-contracts/ink-fundamentals",
+      "knowledgebase/smart-contracts/env-types",
+      "knowledgebase/smart-contracts/ink-development",
+      "knowledgebase/smart-contracts/evm-pallet",
+      "knowledgebase/smart-contracts/faq"
     ],
-    "Deployment": [
-      "development/build/prerequisites",
-      "development/build/purge-chain",
-      "development/build/upgrade",
-      "development/deployment/chain-spec",
-      "development/deployment/account-prefix",
-      "development/deployment/boot-node",
-      "development/deployment/disabling-features"
+    "Integrate": [
+      "knowledgebase/integrate/polkadot-js",
+      "knowledgebase/integrate/libraries",
+      "knowledgebase/integrate/chain-spec",
+      "knowledgebase/integrate/subkey"
     ],
-    "Front End": [
-      "development/front-end/polkadot-js",
-      "development/front-end/json-rpc"
-    ],
-    "Ecosystem Tools": [
-      "development/tools/subkey"
+    "Advanced": [
+      "knowledgebase/advanced/codec",
+      "knowledgebase/advanced/consensus",
+      "knowledgebase/advanced/block-import",
+      "knowledgebase/advanced/executor",
+      "knowledgebase/advanced/cryptography",
+      "knowledgebase/advanced/storage",
+      "knowledgebase/advanced/ss58-address-format"
     ],
     "Contribute": [
       "contribute/help-translate"
     ]
   },
-  "creating-your-first-substrate-chain": {
-    "Creating Your First Substrate Chain": [
-      "tutorials/creating-your-first-substrate-chain/index",
-      "tutorials/creating-your-first-substrate-chain/setup",
-      "tutorials/creating-your-first-substrate-chain/background",
-      "tutorials/creating-your-first-substrate-chain/interact"
+  "create-your-first-substrate-chain": {
+    "Create Your First Substrate Chain": [
+      "tutorials/create-your-first-substrate-chain/index",
+      "tutorials/create-your-first-substrate-chain/setup",
+      "tutorials/create-your-first-substrate-chain/background",
+      "tutorials/create-your-first-substrate-chain/interact"
     ]
   },
   "build-a-dapp": {
@@ -79,21 +75,23 @@
       "tutorials/build-a-dapp/front-end"
     ]
   },
+  "add-a-pallet": {
+    "Add a Pallet to Your Runtime": [
+      "tutorials/add-a-pallet-to-your-runtime"
+    ]
+  },
   "start-a-private-network": {
     "Start a Private Network": [
       "tutorials/start-a-private-network/index",
       "tutorials/start-a-private-network/alicebob",
       "tutorials/start-a-private-network/keygen",
+      "tutorials/start-a-private-network/customspec",
       "tutorials/start-a-private-network/customchain"
     ]
   },
-  "substrate-front-end": {
-    "Substrate Front End Tutorial": [
-      "tutorials/substrate-front-end/index",
-      "tutorials/substrate-front-end/part-1-connect-to-a-node",
-      "tutorials/substrate-front-end/part-2-query-balances",
-      "tutorials/substrate-front-end/part-3-transfer-funds",
-      "tutorials/substrate-front-end/part-4-use-external-accounts"
+  "pallet-in-crate": {
+    "Write a Pallet in its Own Crate": [
+      "tutorials/create-a-pallet"
     ]
   }
 }
