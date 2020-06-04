@@ -194,14 +194,14 @@ function Seminar(props) {
 								/>
 								<a
 									className='video-play'
-									href='https://www.youtube.com/watch?v=bnC5RQsaAXQ&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									href='https://www.youtube.com/watch?v=6omrrY11HEg&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
 							</section>
 							<section className='video-details'>
-								<h4 className='p-color'>Stable Coin and Storage Adapters</h4>
+								<h4 className='p-color'>Pallet Coupling, Runtime Upgrades, and Storage Migrations</h4>
 								<p>
-									Alexander Popiak joins us to discuss his uncollateralized stablecoin implementation and the "Transient Storage Adapters" pattern
+									Joshy Orndorff walks step-by-step through a demonstration that exemplifies pallet coupling, runtime upgrades, and storage migrations.
 								</p>
 							</section>
 						</div>
@@ -216,14 +216,14 @@ function Seminar(props) {
 								/>
 								<a
 									className='video-play'
-									href='https://www.youtube.com/watch?v=uhkV0jAcWDY&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									href='https://www.youtube.com/watch?v=6omrrY11HEg&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
 							</section>
 							<section className='video-details'>
-								<h4 className='p-color'>Manual Seal and Instant Seal</h4>
+								<h4 className='p-color'>Adding SM2 Crypto to Substrate</h4>
 								<p>
-									This week Seun LanLege helps us build a Substrate node that uses manual seal and instant seal consensus engines.
+									Parity's Maggie Dong demonstrates Substrate accounts that use alternative cryptographic schemes. She'll show her work adding the sm2 scheme and submitting transactions with subxt.
 								</p>
 							</section>
 						</div>
@@ -238,14 +238,14 @@ function Seminar(props) {
 								/>
 								<a
 									className='video-play'
-									href='https://www.youtube.com/watch?v=lXw6GTNh73Y&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									href='https://www.youtube.com/watch?v=6omrrY11HEg&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
 							</section>
 							<section className='video-details'>
-								<h4 className='p-color'>Moonbeam and EVM Pallet</h4>
+								<h4 className='p-color'>Offline Phragmen and Hybrid Consensus</h4>
 								<p>
-									Derek from Purestake tells us about their Moonbeam contract chain, and Parity's Kirill Taran demonstrates using the EVM pallet.
+									Kian Paimani demonstrates his Offline Phragmen tool and uses it as a template for making arbitrary Substrate Calls. Joshy Orndorff demonstrates hybrid consensus with Proof of Work authoring and Proof of Stake finality.
 								</p>
 							</section>
 						</div>
