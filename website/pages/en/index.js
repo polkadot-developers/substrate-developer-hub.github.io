@@ -113,38 +113,6 @@ class Index extends React.Component {
 						</section>
 					</Container>
 
-					<section className='py-4 bg-light builders-strip'>
-						<div className='container cta'>
-							<div className='small text-center text-muted mb-lg-3'>
-								<span className='bold'>They're building with Substrate.</span>
-								<br />
-								<a href='https://substrate.dev/en/users.html'>
-									<span>See more users</span>
-								</a>
-							</div>
-							<div className='row justify-content-center justify-content-lg-between text-center align-items-center'>
-								<div className='col mt-3 mb-lg-0'>
-									<img src='/img/logos/adex.png' width='99' />
-								</div>
-								<div className='col mt-3 mb-lg-0'>
-									<img src='/img/logos/chainlink.png' width='80' />
-								</div>
-								<div className='col mt-3 mb-lg-0'>
-									<img src='/img/logos/chainx.png' width='110' />
-								</div>
-								<div className='col mt-3 mb-lg-0'>
-									<img src='/img/logos/edgeware.png' width='95' />
-								</div>
-								<div className='col mt-3 mb-lg-0'>
-									<img src='/img/logos/polkascan.png' width='123' />
-								</div>
-								<div className='col mt-3 mb-lg-0'>
-									<img src='/img/logos/robonomics.png' width='159' />
-								</div>
-							</div>
-						</div>
-					</section>
-
 					<section className='bg-white what-is-substrate'>
 						<div className='container'>
 							<div className='pt-5'>
