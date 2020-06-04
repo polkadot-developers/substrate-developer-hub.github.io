@@ -88,7 +88,7 @@ class Index extends React.Component {
 								<p>Learn how to build interactive user experiences with Polkadot-JS.</p>
 								<section className='button-wrap'>
 									<a
-										href='https://substrate.dev/docs/en/tutorials/substrate-front-end/'
+										href='https://github.com/substrate-developer-hub/substrate-front-end-template'
 										className='with-arrow'
 									>
 										Learn More
@@ -212,7 +212,7 @@ class Index extends React.Component {
 									</p>
 									<a
 										className='action-link'
-										href='https://substrate.dev/docs/en/ecosystem/contracts/ink'>
+										href='https://substrate.dev/docs/en/knowledgebase/smart-contracts/overview'>
 										<span>Learn more about ink!</span>
 									</a>
 								</div>
@@ -322,7 +322,7 @@ class Index extends React.Component {
 											<div className='px-1'>
 												<a
 													className='btn btn-lg primary-color'
-													href='https://substrate.dev/docs/en/getting-started/'>
+													href='https://substrate.dev/docs/en/'>
 													Get Started
 												</a>
 											</div>
