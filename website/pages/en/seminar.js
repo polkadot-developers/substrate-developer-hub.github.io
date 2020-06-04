@@ -55,7 +55,7 @@ function Seminar(props) {
 							<section className='button-wrap'>
 								<Button
 									className='btn btn--white primary-color'
-									href='https://calendar.google.com/event?action=TEMPLATE&tmeid=MXFuaHJ1OWZyY2g1NTY0aDV1YW9zNXBlNThfMjAyMDAzMTdUMTQwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw&tmsrc=parity.io_39379343h073v06qht1vpqcefc%40group.calendar.google.com&scp=ALL'>
+									href='https://calendar.google.com/calendar/b/1?cid=cGFyaXR5LmlvXzJmc2tqN245cm1qcHE1Y2xiOWc3ZWUzZGhvQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20'>
 									<span className='btn__text'>Add to Google Calendar</span>
 								</Button>
 							</section>
@@ -79,7 +79,7 @@ function Seminar(props) {
 								together. We meet every Tuesday at 14:00UTC. Ask for help, show off your project, learn
 								Substrate, and make friends!
 							</p>
-							<a href='#'>Add next call to Google Calendar »</a>
+							<a href='https://calendar.google.com/calendar/b/1?cid=cGFyaXR5LmlvXzJmc2tqN245cm1qcHE1Y2xiOWc3ZWUzZGhvQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20'>Add next call to Google Calendar »</a>
 						</div>
 						<div className='col-md-4 col-lg-5 right'>
 							<div className='feature feature-2 boxed boxed--border box-shadow'>
@@ -104,20 +104,17 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>April 14th</strong>, Cecile Tonglet will join us to talk about the new Substrate CLI and how to use and extend it. We may also briefly explore the Substrate Service and Cumulus.
+								On <strong>June 9th</strong>, Brenzi will explain how the SubstraTEE framework can be used to protect privacy for your use case by instantiating your Substrate pallets inside a trusted execution environment.
 							</p>
 							<p>
-								On <strong>April 21st</strong>, Joshy Orndorff and Nicole Zhu will discuss a UTXO pallet and creating a bitcoin-like chain on Substrate.
-							</p>
-							<p>
-								On <strong>April 28th, Seminar is Cancelled</strong>. Let's all attend <a href="https://sub0.parity.io">Sub0 Online</a> instead!
+								On <strong>June 16th</strong>, SubSocial's Alex Siman will walk through theie recently overhauled Roles and Permissions pallets.
 							</p>
 							<h4 className='mb-2'>How do I join the call?</h4>
 							<p>
 								We meet using zoom video conferencing. Specifically we meet in{' '}
 								<a href='https://zoom.us/j/916767726'>https://zoom.us/j/916767726</a>. This link will
 								only work when the call is live, so you may prefer to add this{' '}
-								<a href='https://calendar.google.com/event?action=TEMPLATE&tmeid=MXFuaHJ1OWZyY2g1NTY0aDV1YW9zNXBlNThfMjAyMDAzMTdUMTQwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw&tmsrc=parity.io_39379343h073v06qht1vpqcefc%40group.calendar.google.com&scp=ALL'>
+								<a href='https://calendar.google.com/calendar/b/1?cid=cGFyaXR5LmlvXzJmc2tqN245cm1qcHE1Y2xiOWc3ZWUzZGhvQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20'>
 									Google calendar invitation
 								</a>{' '}
 								to you own calendar.
@@ -197,14 +194,14 @@ function Seminar(props) {
 								/>
 								<a
 									className='video-play'
-									href='https://www.youtube.com/watch?v=bnC5RQsaAXQ&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									href='https://www.youtube.com/watch?v=6omrrY11HEg&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
 							</section>
 							<section className='video-details'>
-								<h4 className='p-color'>Stable Coin and Storage Adapters</h4>
+								<h4 className='p-color'>Pallet Coupling, Runtime Upgrades, and Storage Migrations</h4>
 								<p>
-									Alexander Popiak joins us to discuss his uncollateralized stablecoin implementation and the "Transient Storage Adapters" pattern
+									Joshy Orndorff walks step-by-step through a demonstration that exemplifies pallet coupling, runtime upgrades, and storage migrations.
 								</p>
 							</section>
 						</div>
@@ -219,14 +216,14 @@ function Seminar(props) {
 								/>
 								<a
 									className='video-play'
-									href='https://www.youtube.com/watch?v=uhkV0jAcWDY&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									href='https://www.youtube.com/watch?v=6omrrY11HEg&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
 							</section>
 							<section className='video-details'>
-								<h4 className='p-color'>Manual Seal and Instant Seal</h4>
+								<h4 className='p-color'>Adding SM2 Crypto to Substrate</h4>
 								<p>
-									This week Seun LanLege helps us build a Substrate node that uses manual seal and instant seal consensus engines.
+									Parity's Maggie Dong demonstrates Substrate accounts that use alternative cryptographic schemes. She'll show her work adding the sm2 scheme and submitting transactions with subxt.
 								</p>
 							</section>
 						</div>
@@ -241,14 +238,14 @@ function Seminar(props) {
 								/>
 								<a
 									className='video-play'
-									href='https://www.youtube.com/watch?v=lXw6GTNh73Y&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									href='https://www.youtube.com/watch?v=6omrrY11HEg&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
 							</section>
 							<section className='video-details'>
-								<h4 className='p-color'>Moonbeam and EVM Pallet</h4>
+								<h4 className='p-color'>Offline Phragmen and Hybrid Consensus</h4>
 								<p>
-									Derek from Purestake tells us about their Moonbeam contract chain, and Parity's Kirill Taran demonstrates using the EVM pallet.
+									Kian Paimani demonstrates his Offline Phragmen tool and uses it as a template for making arbitrary Substrate Calls. Joshy Orndorff demonstrates hybrid consensus with Proof of Work authoring and Proof of Stake finality.
 								</p>
 							</section>
 						</div>
@@ -270,7 +267,7 @@ function Seminar(props) {
 								<section className='button-wrap'>
 									<Button
 										className='btn btn--white primary-color'
-										href='https://calendar.google.com/event?action=TEMPLATE&tmeid=MXFuaHJ1OWZyY2g1NTY0aDV1YW9zNXBlNThfMjAyMDAzMTdUMTQwMDAwWiBwYXJpdHkuaW9fMzkzNzkzNDNoMDczdjA2cWh0MXZwcWNlZmNAZw&tmsrc=parity.io_39379343h073v06qht1vpqcefc%40group.calendar.google.com&scp=ALL'>
+										href='https://calendar.google.com/calendar/b/1?cid=cGFyaXR5LmlvXzJmc2tqN245cm1qcHE1Y2xiOWc3ZWUzZGhvQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20'>
 										<span className='btn__text'>Add to Google Calendar</span>
 									</Button>
 								</section>
