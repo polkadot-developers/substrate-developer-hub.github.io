@@ -62,7 +62,6 @@ for Firefox</a>
 
 <!--
 ### Learn More
-
 * Learn how to interact with a Substrate node via [JSON RPC](TODO).
 -->
 
