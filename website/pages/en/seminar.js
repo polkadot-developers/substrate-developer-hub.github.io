@@ -104,13 +104,10 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>April 14th</strong>, Cecile Tonglet will join us to talk about the new Substrate CLI and how to use and extend it. We may also briefly explore the Substrate Service and Cumulus.
+								On <strong>June 9th</strong>, Brenzi will explain how the SubstraTEE framework can be used to protect privacy for your use case by instantiating your Substrate pallets inside a trusted execution environment.
 							</p>
 							<p>
-								On <strong>April 21st</strong>, Joshy Orndorff and Nicole Zhu will discuss a UTXO pallet and creating a bitcoin-like chain on Substrate.
-							</p>
-							<p>
-								On <strong>April 28th, Seminar is Cancelled</strong>. Let's all attend <a href="https://sub0.parity.io">Sub0 Online</a> instead!
+								On <strong>June 16th</strong>, SubSocial's Alex Siman will walk through theie recently overhauled Roles and Permissions pallets.
 							</p>
 							<h4 className='mb-2'>How do I join the call?</h4>
 							<p>
