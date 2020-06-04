@@ -322,7 +322,7 @@ class Index extends React.Component {
 											<div className='px-1'>
 												<a
 													className='btn btn-lg primary-color'
-													href='https://substrate.dev/docs/en/getting-started/'>
+													href='https://substrate.dev/docs/en/'>
 													Get Started
 												</a>
 											</div>
