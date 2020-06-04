@@ -456,8 +456,6 @@ the FRAME System pallet is declaring that it may raise the
 
 <!--
 ### Examples
-
--
 -->
 
 ### References
