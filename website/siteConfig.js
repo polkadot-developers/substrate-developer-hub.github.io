@@ -17,9 +17,6 @@
 // See https://docusaurus.io/docs/site-config for all the possible
 // site configuration options.
 
-// List of projects listed on the "users" page.
-const users = require('./data/users')
-
 // List of videos on the "videos" page
 const videos = require('./data/videos')
 
@@ -55,15 +52,12 @@ const siteConfig = {
 	// For no header links in the top nav bar -> headerLinks: [],
 	headerLinks: [
 		{ doc: 'index', label: 'Docs' },
-		{ href: '/recipes', label: 'Recipes' },
+		{ href: 'https://substrate.dev/recipes/', label: 'Recipes' },
 		{ page: 'tutorials', label: 'Tutorials' },
 		{ page: 'community', label: 'Community' },
 		{ href: 'https://github.com/paritytech/substrate', label: 'GitHub' },
 		{ search: true }
 	],
-
-	// If you have users set above, you add it here:
-	users,
 
 	// Presentations
 	videos,

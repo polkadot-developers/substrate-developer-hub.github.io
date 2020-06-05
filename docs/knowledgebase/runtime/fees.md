@@ -221,7 +221,7 @@ fn handle_users(origin, calls: Vec<User>) {
 
 Depending on the execution logic, a dispatchable may consume less weight than was prescribed
 pre-dispatch. Why this is useful is explained in the
-[weights article](../learn-substrate/weights#post-dispatch-weight-correction). In order to correct
+[weights article](../learn-substrate/weight#post-dispatch-weight-correction). In order to correct
 weight, the dispatchable declares a different return type and then returns its actual weight:
 
 ```rust

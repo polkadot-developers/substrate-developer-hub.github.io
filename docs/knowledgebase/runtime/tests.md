@@ -85,7 +85,7 @@ to construct runtime environments that provide access to features of the outer n
 of this can be found in
 [`offchain`](https://crates.parity.io/sp_core/offchain/index.html), which maintains its
 own
-[Externalities](https://substrate.dev/rustdocs/pre-v2.0-3e65111/sp_core/offchain/trait.Externalities.html)
+[Externalities](https://crates.parity.io/sp_core/offchain/trait.Externalities.html)
 implementation.
 [Implementing configurable externalities](https://substrate.dev/recipes/3-entrees/testing/externalities.html)
 is covered in more depth in the recipes.

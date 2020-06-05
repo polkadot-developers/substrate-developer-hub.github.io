@@ -73,20 +73,44 @@ jobs:
           command: |
             cd website && yarn install && yarn run write-translations && yarn build
 
+  check-links:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:10.15.2
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "a1:f6:36:72:14:54:c0:37:47:fe:0f:c1:01:7f:21:f5"
+      - checkout
+      - run:
+          name: Check if Links Work
+          working_directory: website
+          command: |
+            yarn && (yarn start &) && sleep 10 && yarn blc http://localhost:3000 -ro \
+            --exclude "http://localhost:3000/docs/ru" \
+            --exclude "http://localhost:3000/docs/zh-CN" \
+            --exclude "https://playground.substrate.dev/" \
+            --exclude "https://player.twitch.tv/?channel=paritylivecoding" \
+            --exclude "http://localhost:8000/"
+
 workflows:
   version: 2
   check_n_deploy:
     jobs:
       - check-build:
           filters: *non-deployment-branches
+      - check-links:
+          filters: *non-deployment-branches
       - deploy-to-prod:
           filters: *only-source
           requires:
             - check-build
+            - check-links
       - deploy-to-staging:
           filters: *only-staging-source
           requires:
             - check-build
+            - check-links
 
   nightly_deploy:
     triggers:

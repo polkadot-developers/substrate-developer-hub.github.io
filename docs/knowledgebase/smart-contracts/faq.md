@@ -22,23 +22,13 @@ Smart contract writers can use this to optimize for certain use cases. Using a
 the `memory::Vec<T>`. We advise to use the more general `storage::Vec` for storing information on
 the contract instance.
 
-### What is the test environment?
+### How do I run tests?
 
-ink provides a test environment
-([test_env](https://github.com/paritytech/ink/blob/master/core/src/env/test_env.rs)) which is used
-to emulate contract execution off-chain. This can be enabled by the crate feature `test-env` and is
-mainly useful for running tests off-chain.
-
-See [running off-chain tests](#running-off-chain-tests) for more information.
-
-### How do I run off-chain tests?
-
-When building a smart contract with ink, you can define a set of tests that can be run using the
-off-chain test environment.
+When building a smart contract with ink, you can define a set of tests.
 
 For example, in the minimal
-[flipper contract](https://github.com/paritytech/ink/blob/master/examples/lang/flipper/src/lib.rs),
-you can find a small off-chain test at the bottom of the contract.
+[flipper contract](https://github.com/paritytech/ink/blob/master/examples/flipper/src/lib.rs),
+you can find a small test at the bottom of the contract.
 
 To run this test, type the following command:
 

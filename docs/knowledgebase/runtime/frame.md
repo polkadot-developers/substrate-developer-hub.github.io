@@ -148,7 +148,7 @@ voting.
 ### Elections Phragmen
 
 The Phragmen Elections pallet is an election module based on
-[sequential phragmen](https://research.web3.foundation/en/latest/polkadot/NPoS/4.%20Sequential%20Phragm%C3%A9n%E2%80%99s%20method/).
+[sequential phragmen](https://research.web3.foundation/en/latest/polkadot/NPoS/4.%20Sequential%20Phragm%C3%A9n%E2%80%99s%20method.html).
 
 - [Docs](https://crates.parity.io/pallet_elections_phragmen/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/master/frame/elections-phragmen/src/lib.rs)

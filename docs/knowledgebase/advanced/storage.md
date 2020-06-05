@@ -197,12 +197,6 @@ storage items are placed in the [state trie](#Trie-Abstraction) and are accessib
 
 - Learn how to add [storage items](../runtime/storage) into your Substrate runtime modules.
 
-### Examples
-
-- View an example of creating
-  [child tries](https://substrate.dev/recipes/3-entrees/storage-api/childtries.html) in your
-  Substrate runtime module.
-
 ### References
 
 - Visit the reference docs for

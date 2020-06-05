@@ -40,7 +40,7 @@ the metadata and decode them for you. Once decoded, the structure may be seriali
 
 If you are using Javascript, [`polkadot-js/api`](https://polkadot.js.org/api/) already provides APIs
 to interact with a Substrate blockchain, including the
-[`getMetadata`](https://polkadot.js.org/api/METHODS_RPC.html#json-rpc) function.
+[`getMetadata`](https://polkadot.js.org/api/substrate/rpc.html#getmetadata-at-blockhash-metadata) function.
 
 You can try the following code snippets to fetch the metadata in this
 [Substrate UI](https://polkadot.js.org/apps/#/js) page:

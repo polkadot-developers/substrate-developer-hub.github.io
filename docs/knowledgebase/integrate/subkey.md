@@ -15,7 +15,7 @@ transactions.
 ### Build from Source
 
 The Subkey binary, `subkey`, is also installed along with
-[Substrate](https://substrate.dev/docs/en/overview/getting-started#unix-based-operating-systems). If
+[Substrate](../getting-started/#fast-installation). If
 you want to play with just Subkey (and not Substrate), you will need to have the Substrate
 dependencies. Use the following two commands to install the dependencies and Subkey, respectively:
 

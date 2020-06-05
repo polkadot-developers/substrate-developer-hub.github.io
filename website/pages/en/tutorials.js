@@ -252,7 +252,7 @@ class Tutorials extends React.Component {
                 prerequisite: true,
                 version: "2.0.0-rc2",
                 href: `${docUrl(
-                  "tutorials/build-a-dapp"
+                  "tutorials/build-a-dapp/"
                 )}`
               },
               {

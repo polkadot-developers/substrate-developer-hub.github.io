@@ -6,7 +6,7 @@ The SCALE (Simple Concatenated Aggregate Little-Endian) Codec is a lightweight, 
 serialization and deserialization codec.
 
 It is designed for high-performance, copy-free encoding and decoding of data in resource-constrained
-execution contexts, like the [Substrate runtime](../runtime). It is not
+execution contexts, like the [Substrate runtime](../runtime/). It is not
 self-describing in any way and assumes the decoding context has all type knowledge about the encoded
 data.
 
@@ -209,4 +209,4 @@ TODO
   [`parity-scale-codec`](https://crates.parity.io/parity_scale_codec/index.html).
 
 - Visit the auxiliary encoding section of the
-  [Polkadot runtime environment specification](https://github.com/w3f/polkadot-spec/blob/master/runtime-environment-spec/polkadot_re_spec.pdf).
+  [Polkadot runtime environment specification](https://github.com/w3f/polkadot-spec/blob/master/polkadot-host-spec/polkadot_host_spec.pdf).

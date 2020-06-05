@@ -57,7 +57,7 @@ of design and implementation to achieve very high speeds without compromising se
 
 ### SR25519
 
-[SR25519](https://research.web3.foundation/en/latest/polkadot/keys/1-accounts-more/) is based on the
+[SR25519](https://research.web3.foundation/en/latest/polkadot/keys/1-accounts-more.html) is based on the
 same underlying curve as [Ed25519](#ed25519). However, it uses Schnorr signatures instead of the
 EdDSA scheme.
 

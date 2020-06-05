@@ -10,7 +10,7 @@ language.
 
 If you are getting started with Substrate runtime development for the first time, we suggest you try
 our introductory tutorial for
-[creating your first Substrate chain](/tutorials/create-your-first-substrate-chain).
+[creating your first Substrate chain](../../tutorials/create-your-first-substrate-chain).
 
 ## What is a Pallet?
 

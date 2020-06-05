@@ -7,7 +7,6 @@
       "knowledgebase/getting-started/glossary"
     ],
     "Learn Substrate": [
-      "knowledgebase/learn-substrate/index",
       "knowledgebase/learn-substrate/extrinsics",
       "knowledgebase/learn-substrate/tx-pool",
       "knowledgebase/learn-substrate/account-abstractions",
@@ -76,9 +75,7 @@
     ]
   },
   "add-a-pallet": {
-    "Add a Pallet to Your Runtime": [
-      "tutorials/add-a-pallet-to-your-runtime"
-    ]
+    "Add a Pallet to Your Runtime": []
   },
   "start-a-private-network": {
     "Start a Private Network": [
@@ -90,8 +87,6 @@
     ]
   },
   "pallet-in-crate": {
-    "Write a Pallet in its Own Crate": [
-      "tutorials/create-a-pallet"
-    ]
+    "Write a Pallet in its Own Crate": []
   }
 }
