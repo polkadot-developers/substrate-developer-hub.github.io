@@ -45,8 +45,6 @@ To rename an existing document,
 
 The Substrate Developer Hub website should open in a browser window.
 
-Once you are done with your changes, feel free to submit a PR.
-
 #### Link Checker
 
 Once the website is running, you should use the included Yarn script (`yarn check-links`) to ensure that your changes
@@ -54,6 +52,8 @@ do not introduce any broken links and to check for any links that have broken si
 executed. Please ensure all links are fixed before submitting any changes; if you have questions about broken links that
 you did not introduce, please
 [create an Issue](https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/new).
+
+Once you are done with your changes, feel free to submit a PR.
 
 ### Staging Deployment
 
