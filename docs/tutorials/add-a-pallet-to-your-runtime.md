@@ -559,14 +559,14 @@ runtime. You can basically copy what was done there to your own runtime.
 
 ### Learn More
 
-- [A minimalist tutorial on writing your runtime pallet in its own package](/tutorials/pallet-in-own-crate/v2.0.0-rc2).
+- [A minimalist tutorial on writing your runtime pallet in its own package](../create-a-pallet).
 - With your node now capable of running smart contracts, go learn about
-  [Substrate ink! smart contracts](](../../knowledgebase/smart-contracts).
+  [Substrate ink! smart contracts](../../knowledgebase/smart-contracts).
 - [Substrate Recipes](https://substrate.dev/recipes/) offers detailed tutorials about writing
   [Runtime APIs](https://substrate.dev/recipes/3-entrees/runtime-api.html) and
   [Custom RPCs](https://substrate.dev/recipes/3-entrees/custom-rpc.html) like the ones explored in
   this tutorial.
-- Understand the [Chain Spec](](../../knowledgebase/integrate/chain-spec) file to customize your Genesis
+- Understand the [Chain Spec](../../knowledgebase/integrate/chain-spec) file to customize your Genesis
   Configuration.
 
 ### References

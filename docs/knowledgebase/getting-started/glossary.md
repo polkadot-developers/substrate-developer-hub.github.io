@@ -81,7 +81,7 @@ probabilistic-finality, with long-term absolute finality provided through GRANDP
 Block authoring protocol similar to Aura where authorities are chosen with a verifiable random
 function (VRF) instead of a rotating list. Authorities are assigned a time slot in which they can
 select a chain and submit a new block for it. See
-http://research.web3.foundation/en/latest/polkadot/BABE/1-cycle/
+https://w3f-research.readthedocs.io/en/latest/polkadot/BABE.html
 
 ## Block
 

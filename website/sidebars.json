@@ -7,7 +7,6 @@
       "knowledgebase/getting-started/glossary"
     ],
     "Learn Substrate": [
-      "knowledgebase/learn-substrate/index",
       "knowledgebase/learn-substrate/extrinsics",
       "knowledgebase/learn-substrate/tx-pool",
       "knowledgebase/learn-substrate/account-abstractions",

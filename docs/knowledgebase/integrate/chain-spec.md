@@ -120,7 +120,7 @@ Substrate node's chainspec json.
 ```
 
 Before this spec can be used to initialize a node's genesis storage, the human-readable keys must be
-transformed into actual storage keys for the [storage trie](/current/advanced/storage). This
+transformed into actual storage keys for the [storage trie](../advanced/storage). This
 transformation is straight-forward, but it requires that the node's runtime be able to understand
 the chain spec.
 
@@ -154,7 +154,7 @@ After the conversion process, the above snippet looks like this:
 ### Examples
 
 - Gain hands-on experience with chain specs by
-  [starting a private network](https://substrate.dev/docs/en/next/tutorials/start-a-private-network/).
+  [starting a private network](../../tutorials/start-a-private-network/).
 - The
-  [Node Template's Chainspec](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/src/chain_spec.rs)
+  [Node Template's Chainspec](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs)
   stored as rust code.

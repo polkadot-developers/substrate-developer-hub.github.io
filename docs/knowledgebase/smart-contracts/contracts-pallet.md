@@ -107,7 +107,7 @@ or upgradeable contracts on a Substrate based blockchain.
 ### Learn More
 
 - Learn about
-  [ink!, a Rust based embedded domain specific language](/current/smart-contracts/index.md) for
+  [ink!, a Rust based embedded domain specific language](index.md) for
   developing smart contracts for the SEAL pallet.
 
 ### Examples
