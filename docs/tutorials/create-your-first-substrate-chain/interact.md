@@ -136,8 +136,8 @@ made token transfers among users. We hope you'll continue learning about Substra
 Your next step may be:
 
 - Decentralize your network with more nodes in the
-  [Start a Private Network](../start-a-private-network) tutorial.
-- Add custom functionality in the [Build a dApp](../build-a-dapp) tutorial.
+  [Start a Private Network](../start-a-private-network/) tutorial.
+- Add custom functionality in the [Build a dApp](../build-a-dapp/) tutorial.
 
 If you experienced any issues with this tutorial or want to provide feedback, feel free to
 [open a GitHub issue](https://github.com/substrate-developer-hub/tutorials/issues/new) or reach out

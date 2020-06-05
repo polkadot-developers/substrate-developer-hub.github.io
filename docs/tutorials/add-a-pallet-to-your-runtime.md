@@ -18,7 +18,7 @@ different in terms of the specific configuration settings needed to use it corre
 You should already have version `v2.0.0-rc2` of the
 [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
 compiled on your computer from when you completed the
-[Create Your First Substrate Chain Tutorial](../create-your-first-substrate-chain).
+[Create Your First Substrate Chain Tutorial](../create-your-first-substrate-chain/).
 If you do not, please complete that tutorial.
 
 > Experienced developers who truly prefer to skip that tutorial, you may install the node template
@@ -559,9 +559,9 @@ runtime. You can basically copy what was done there to your own runtime.
 
 ### Learn More
 
-- [A minimalist tutorial on writing your runtime pallet in its own package](../create-a-pallet).
+- [A minimalist tutorial on writing your runtime pallet in its own package](../create-a-pallet/).
 - With your node now capable of running smart contracts, go learn about
-  [Substrate ink! smart contracts](../../knowledgebase/smart-contracts).
+  [Substrate ink! smart contracts](../../knowledgebase/smart-contracts/).
 - [Substrate Recipes](https://substrate.dev/recipes/) offers detailed tutorials about writing
   [Runtime APIs](https://substrate.dev/recipes/3-entrees/runtime-api.html) and
   [Custom RPCs](https://substrate.dev/recipes/3-entrees/custom-rpc.html) like the ones explored in
