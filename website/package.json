@@ -8,7 +8,8 @@
     "version": "docusaurus-version",
     "rename-version": "docusaurus-rename-version",
     "crowdin-upload": "crowdin --config ../crowdin.yaml upload sources --auto-update -b master",
-    "crowdin-download": "crowdin --config ../crowdin.yaml download -b master"
+    "crowdin-download": "crowdin --config ../crowdin.yaml download -b master",
+    "check-links": "yarn blc http://localhost:3000 -ro --exclude \"http://localhost:3000/docs/ru\" --exclude \"http://localhost:3000/docs/zh-CN\" --exclude \"https://playground.substrate.dev/\" --exclude \"https://player.twitch.tv/?channel=paritylivecoding\" --exclude \"http://localhost:8000/\""
   },
   "devDependencies": {
     "broken-link-checker": "^0.7.8",
