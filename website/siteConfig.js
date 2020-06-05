@@ -56,7 +56,7 @@ const siteConfig = {
 		{ page: 'tutorials', label: 'Tutorials' },
 		{ page: 'community', label: 'Community' },
 		{ href: 'https://github.com/paritytech/substrate', label: 'GitHub' },
-		{ search: false }
+		{ search: true }
 	],
 
 	// Presentations
@@ -141,6 +141,16 @@ const siteConfig = {
 
 	// Translation recruitment link, appears in the language drop down as "Help Translate"
 	translationRecruitingLink: 'https://crowdin.com/project/substrate-developer-hub',
+
+	// Algolia Search
+	algolia: {
+		apiKey: '9b6167fbfe26440cbf4cd75b254e0425',
+		indexName: 'substrate',
+		algoliaOptions: {
+			// https://www.algolia.com/doc/api-reference/api-parameters/
+			facetFilters: [ 'language:LANGUAGE' ]
+		}
+	},
 
 	// customised blast banner on top
 	// blast: {
