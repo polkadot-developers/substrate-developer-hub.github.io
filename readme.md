@@ -71,7 +71,7 @@ AND also pull in multilingual translations from our Crowdin project. The final b
 
 ### Production Deployment
 
-Our production site is at [substrate.dev](https://substrate.dev). To deploy to production, push your update in `source`
+Our production site is at [substrate.dev](https://substrate.dev). To deploy to production, merge your update into the `source`
 branch. This triggers the CI to build the website AND also pull in multilingual translation from our Crowdin project.
 The final built static site is then pushed to `master` branch and hosted on GitHub Pages.
 
