@@ -153,7 +153,7 @@ class Footer extends React.Component {
           </div>
           <div>
             <h5>More</h5>
-            <a href="https://builders.parity.io/">Substrate Builders Program</a>
+            <a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a>
             <a href="https://www.parity.io/blog/">Blog</a>
             <a href="https://github.com/paritytech/substrate">
               Substrate GitHub
