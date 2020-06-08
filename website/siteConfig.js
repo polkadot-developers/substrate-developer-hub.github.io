@@ -144,7 +144,7 @@ const siteConfig = {
 
 	// Algolia Search
 	algolia: {
-		apiKey: '9b6167fbfe26440cbf4cd75b254e0425',
+		apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
 		indexName: 'substrate',
 		algoliaOptions: {
 			// https://www.algolia.com/doc/api-reference/api-parameters/
