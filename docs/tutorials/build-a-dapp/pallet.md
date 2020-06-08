@@ -288,7 +288,8 @@ decl_module! {
 ## Compile Your New Pallet
 
 After you've copied all of the parts of this pallet correctly into your `pallets/template/lib.rs`
-file, you should be able to recompile your node without warning or error:
+file, you should be able to recompile your node without warning or error. Run this command in the
+root directory of the `substrate-node-template` repository.
 
 ```bash
 cargo build --release
