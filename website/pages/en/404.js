@@ -33,6 +33,9 @@ class ErrorPage extends React.Component {
           </a>
           !
         </p>
+         <p>
+       Alternatively, if you arrive here via a dead link, look at the most recent <a href="https://github.com/paritytech/substrate">documentation</a> and contributions.
+      </p>
         <p>
           <Button href="/" variant="secondary" className="primary-color">
             Back to Home
