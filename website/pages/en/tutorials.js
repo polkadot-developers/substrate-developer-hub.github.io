@@ -306,6 +306,22 @@ class Tutorials extends React.Component {
                 prerequisite: false,
                 version: "2.0.0-rc2",
                 href: `${docUrl("tutorials/create-a-pallet/")}`
+              },
+              {
+                img: `${baseUrl}img/grafana.png`,
+                title: (
+                  <translate>Visualizing Node Metrics</translate>
+                ),
+                text: (
+                  <translate>
+                    "Learn how to visualize the metrics that Substrate records using Prometheus."
+                  </translate>
+                ),
+                difficulty: "easy",
+                length: "< 1",
+                prerequisite: false,
+                version: "2.0.0-rc2",
+                href: `${docUrl("tutorials/visualize-node-metrics/")}`
               }
             ]}
           />
