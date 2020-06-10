@@ -15,7 +15,7 @@ Subkey is a tool the generates keys specifically designed to be used with Substr
 Begin by compiling and installing the utility. This may take up to 15 minutes or so.
 
 ```bash
-cargo install --force subkey --git https://github.com/paritytech/substrate --tag v2.0.0-rc2
+cargo install --force subkey --git https://github.com/paritytech/substrate --tag v2.0.0-rc3
 ```
 
 We will need to generate at least **2** keys from each type. Every node will need to have its own

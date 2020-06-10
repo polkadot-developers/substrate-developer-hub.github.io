@@ -51,32 +51,32 @@ Let's look at those flags in detail:
 When the node starts you should see output similar to this.
 
 ```
-2020-05-28 13:09:30 Substrate Node
-2020-05-28 13:09:30 ✌️  version 2.0.0-rc2-83d7157-x86_64-linux-gnu
-2020-05-28 13:09:30 ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
-2020-05-28 13:09:30 📋 Chain specification: Local Testnet
-2020-05-28 13:09:30 🏷  Node name: Alice
-2020-05-28 13:09:30 👤 Role: AUTHORITY
-2020-05-28 13:09:30 💾 Database: RocksDb at /tmp/alice/chains/local_testnet/db
-2020-05-28 13:09:30 ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
-2020-05-28 13:09:30 🔨 Initializing Genesis block/state (state: 0xf7ca…5c0f, header-hash: 0x1b54…0198)
-2020-05-28 13:09:30 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
-2020-05-28 13:09:30 ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
-2020-05-28 13:09:30 📦 Highest known block at #0
-2020-05-28 13:09:30 Using default protocol ID "sup" because none is configured in the chain specs
-2020-05-28 13:09:30 🏷  Local node identity is: 12D3KooWFGe9f8p88PVU3E4AwJEjU47DCWgJjU7SwGhvbDm6T7V2 (legacy representation: QmdYNXLKscxk45kK7VNnR95zkjYW2KVg9Qdv1WG6w73rQN)
-2020-05-28 13:09:30 〽️ Prometheus server started at 127.0.0.1:9615
-2020-05-28 13:09:35 💤 Idle (0 peers), best: #0 (0x1b54…0198), finalized #0 (0x1b54…0198), ⬇ 0 ⬆ 0
-2020-05-28 13:09:40 💤 Idle (0 peers), best: #0 (0x1b54…0198), finalized #0 (0x1b54…0198), ⬇ 0 ⬆ 0
+2020-06-10 13:19:04 Substrate Node
+2020-06-10 13:19:04 ✌️  version 2.0.0-rc3-f5acce1-x86_64-linux-gnu
+2020-06-10 13:19:04 ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
+2020-06-10 13:19:04 📋 Chain specification: Local Testnet
+2020-06-10 13:19:04 🏷  Node name: Alice
+2020-06-10 13:19:04 👤 Role: AUTHORITY
+2020-06-10 13:19:04 💾 Database: RocksDb at /tmp/alice/chains/local_testnet/db
+2020-06-10 13:19:04 ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+2020-06-10 13:19:05 🔨 Initializing Genesis block/state (state: 0xf583…2e1c, header-hash: 0x826a…389d)
+2020-06-10 13:19:05 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
+2020-06-10 13:19:05 ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
+2020-06-10 13:19:05 📦 Highest known block at #0
+2020-06-10 13:19:05 Using default protocol ID "sup" because none is configured in the chain specs
+2020-06-10 13:19:05 🏷  Local node identity is: 12D3KooWQsb4rFifmkZDsTCbjHdZ4GYca1PwDhETKiJnALSSbyEs (legacy representation: QmZoJwxoMLw6mLpYRy6ErXmZdPf62HuLFBFw6yKXwVqaPq)
+2020-06-10 13:19:05 〽️ Prometheus server started at 127.0.0.1:9615
+2020-06-10 13:19:10 💤 Idle (0 peers), best: #0 (0x826a…389d), finalized #0 (0x826a…389d), ⬇ 0 ⬆ 0
+2020-06-10 13:19:15 💤 Idle (0 peers), best: #0 (0x826a…389d), finalized #0 (0x826a…389d), ⬇ 0 ⬆ 0
 ...
 ```
 
 > **Notes**
 >
-> - `🔨 Initializing Genesis block/state (state: 0xf7ca…5c0f, header-hash: 0x1b54…0198)` tells which
+> - `🔨 Initializing Genesis block/state (state: 0xf583…2e1c, header-hash: 0x826a…389d)` tells which
 >   genesis block the node is using. When you start the next node, verify that these values are
 >   equal.
-> - `🏷 Local node identity is: 12D3KooWFGe9f8p88PVU3E4AwJEjU47DCWgJjU7SwGhvbDm6T7V2...` shows the
+> - `🏷  Local node identity is: 12D3KooWQsb4rFifmkZDsTCbjHdZ4GYca1PwDhETKiJnALSSbyEs...` shows the
 >   Peer ID that Bob will need when booting from Alice's node.
 
 You'll notice that no blocks are being produced yet. Blocks will start being produced once another
@@ -157,34 +157,31 @@ Most of these options are already explained above, but there are a few points wo
   - Alice's IP Address, probably `127.0.0.1`
   - Alice's Port, probably `30333`
   - Alice's Peer ID, copied from her log output.
-    (`12D3KooWFGe9f8p88PVU3E4AwJEjU47DCWgJjU7SwGhvbDm6T7V2` in the example output above.)
+    (`12D3KooWQsb4rFifmkZDsTCbjHdZ4GYca1PwDhETKiJnALSSbyEs` in the example output above.)
 
 If all is going well, after a few seconds, the nodes should peer together and start producing
 blocks. You should see some lines like the following in the console that started Alice node.
 
 ```
 ...
-2020-05-28 13:13:14 💤 Idle (0 peers), best: #0 (0x1b54…0198), finalized #0 (0x1b54…0198), ⬇ 0 ⬆ 0
-2020-05-28 13:13:19 💤 Idle (0 peers), best: #0 (0x1b54…0198), finalized #0 (0x1b54…0198), ⬇ 0 ⬆ 0
-2020-05-28 13:13:22 🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWFGe9f8p88PVU3E4AwJEjU47DCWgJjU7SwGhvbDm6T7V2
-2020-05-28 13:13:24 🙌 Starting consensus session on top of parent 0x1b54d33e7be756ecb667b4e10153511346ea1a5b95068c946134103f63690198
-2020-05-28 13:13:24 🎁 Prepared block for proposing at 1 [hash: 0xb54d18595c90ff39d4efd2835a883f60446f889500a16dbab18bafe480152dab; parent_hash: 0x1b54…0198; extrinsics (1): [0xb2b3…d97e]]
-2020-05-28 13:13:24 🔖 Pre-sealed block for proposal at 1. Hash now 0x84a61167bd9c2eecaa2f242e3bc747a49be40bbcd76d5897f908fee53e205967, previously 0xb54d18595c90ff39d4efd2835a883f60446f889500a16dbab18bafe480152dab.
-2020-05-28 13:13:24 ✨ Imported #1 (0x84a6…5967)
-2020-05-28 13:13:24 💤 Idle (1 peers), best: #1 (0x84a6…5967), finalized #0 (0x1b54…0198), ⬇ 0.9kiB/s ⬆ 1.0kiB/s
-2020-05-28 13:13:29 💤 Idle (1 peers), best: #1 (0x84a6…5967), finalized #0 (0x1b54…0198), ⬇ 0.7kiB/s ⬆ 0.6kiB/s
-2020-05-28 13:13:30 ✨ Imported #2 (0x5865…74d5)
-2020-05-28 13:13:34 💤 Idle (1 peers), best: #2 (0x5865…74d5), finalized #0 (0x1b54…0198), ⬇ 0.7kiB/s ⬆ 0.7kiB/s
-2020-05-28 13:13:36 🙌 Starting consensus session on top of parent 0x5865da4ba8dbf983845ef9b17f3e5920a067de5215120feb42a63778af0a74d5
-2020-05-28 13:13:36 🎁 Prepared block for proposing at 3 [hash: 0xd8f870209fcaca8d2372d39125561990fdd6b9d6941ced7b0835044ff7a77693; parent_hash: 0x5865…74d5; extrinsics (1): [0x309d…0d70]]
-2020-05-28 13:13:36 🔖 Pre-sealed block for proposal at 3. Hash now 0x1c03614c74ff7be6841777009dd368d864c850d3e238ffb27e871099ec54773d, previously 0xd8f870209fcaca8d2372d39125561990fdd6b9d6941ced7b0835044ff7a77693.
-2020-05-28 13:13:36 ✨ Imported #3 (0x1c03…773d)
-2020-05-28 13:13:39 💤 Idle (1 peers), best: #3 (0x1c03…773d), finalized #1 (0x84a6…5967), ⬇ 1.1kiB/s ⬆ 1.2kiB/s
+2020-06-10 13:21:20 💤 Idle (0 peers), best: #0 (0x826a…389d), finalized #0 (0x826a…389d), ⬇ 0 ⬆ 0
+2020-06-10 13:21:25 💤 Idle (0 peers), best: #0 (0x826a…389d), finalized #0 (0x826a…389d), ⬇ 0 ⬆ 0
+2020-06-10 13:21:27 🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWQsb4rFifmkZDsTCbjHdZ4GYca1PwDhETKiJnALSSbyEs
+2020-06-10 13:21:30 ✨ Imported #1 (0xe656…51b4)
+2020-06-10 13:21:30 💤 Idle (1 peers), best: #1 (0xe656…51b4), finalized #0 (0x826a…389d), ⬇ 1.4kiB/s ⬆ 1.4kiB/s
+2020-06-10 13:21:35 💤 Idle (1 peers), best: #1 (0xe656…51b4), finalized #0 (0x826a…389d), ⬇ 0.6kiB/s ⬆ 0.6kiB/s
+2020-06-10 13:21:36 🙌 Starting consensus session on top of parent 0xe6569d5358d6bb16c9f42840d6b67c16d82982aae8d4b726095a943f255e51b4
+2020-06-10 13:21:36 🎁 Prepared block for proposing at 2 [hash: 0x607dc092a07c4f86122da627ba9a243e3720087c80618d56b69ffbbf938eada4; parent_hash: 0xe656…51b4; extrinsics (1): [0x55fa…fccf]]
+2020-06-10 13:21:36 🔖 Pre-sealed block for proposal at 2. Hash now 0x4e68c8c84d4aa5010feceabbdb6280e72f274c5689a71876397a0aaba2b435e9, previously 0x607dc092a07c4f86122da627ba9a243e3720087c80618d56b69ffbbf938eada4.
+2020-06-10 13:21:36 ✨ Imported #2 (0x4e68…35e9)
+2020-06-10 13:21:40 💤 Idle (1 peers), best: #2 (0x4e68…35e9), finalized #0 (0x826a…389d), ⬇ 0.8kiB/s ⬆ 0.8kiB/s
+2020-06-10 13:21:42 ✨ Imported #3 (0x609b…116e)
+2020-06-10 13:21:45 💤 Idle (1 peers), best: #3 (0x609b…116e), finalized #1 (0xe656…51b4), ⬇ 1.0kiB/s ⬆ 1.1kiB/s
 ...
 ```
 
 These lines shows that Bob has peered with Alice (**`1 peers`**), they have produced some blocks
-(**`best: #3 (0x1c03…773d)`**), and blocks are being finalized (**`finalized #1 (0x84a6…5967)`**).
+(**`best: #3 (0x609b…116e)`**), and blocks are being finalized (**`finalized #1 (0xe656…51b4)`**).
 
 Looking at the console that started Bob's node, you should see something similar.
 
