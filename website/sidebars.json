@@ -88,5 +88,8 @@
   },
   "pallet-in-crate": {
     "Write a Pallet in its Own Crate": []
+  },
+  "visualize-node-metrics": {
+    "Visualize Node Metrics": []
   }
 }

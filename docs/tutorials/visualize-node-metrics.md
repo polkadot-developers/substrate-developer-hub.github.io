@@ -139,7 +139,7 @@ You can use [the above dashboard](https://grafana.com/grafana/dashboards/11784/)
 
 ### Learn More
 
-- Learn how to [set up a private Substrate network](start-a-private-network).
+- Learn how to [set up a private Substrate network](../../tutorials/start-a-private-network).
 
 ### Examples
 
@@ -151,5 +151,5 @@ You can use [the above dashboard](https://grafana.com/grafana/dashboards/11784/)
 <!-- TODO: Update this to RUSTDOC link-->
 
 - Visit the source code for
-  [grafana-data-source](https://github.com/paritytech/substrate/tree/master/client/grafana-data-source).
+  [Substrate Prometheus Exporter](https://github.com/paritytech/substrate/tree/master/utils/prometheus).
 

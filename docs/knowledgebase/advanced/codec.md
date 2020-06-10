@@ -209,4 +209,4 @@ TODO
   [`parity-scale-codec`](https://crates.parity.io/parity_scale_codec/index.html).
 
 - Visit the auxiliary encoding section of the
-  [Polkadot runtime environment specification](https://github.com/w3f/polkadot-spec/blob/master/polkadot-host-spec/polkadot_host_spec.pdf).
+  [Polkadot runtime environment specification](https://github.com/w3f/polkadot-spec/).
