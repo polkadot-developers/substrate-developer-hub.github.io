@@ -139,7 +139,7 @@ You can use [the above dashboard](https://grafana.com/grafana/dashboards/11784/)
 
 ### Learn More
 
-- Learn how to [set up a private Substrate network](../../tutorials/start-a-private-network).
+- Learn how to [set up a private Substrate network](../../tutorials/start-a-private-network/).
 
 ### Examples
 
