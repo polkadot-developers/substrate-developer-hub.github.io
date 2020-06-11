@@ -7,10 +7,10 @@ node based on the `substrate-node-template`.
 
 ## Install the Node Template
 
-You should already have version `v2.0.0-rc2` of the
+You should already have version `v2.0.0-rc3` of the
 [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
 compiled on your computer from when you completed the
-[Create Your First Substrate Chain Tutorial](../create-your-first-substrate-chain).
+[Create Your First Substrate Chain Tutorial](../create-your-first-substrate-chain/).
 If you do not, please complete that tutorial.
 
 > Experienced developers who truly prefer to skip that tutorial, you may install the node template
@@ -26,7 +26,7 @@ Clone the Substrate pallet template in the `pallets` directory of your node temp
 
 ```bash
 cd pallets
-git clone -b v2.0.0-rc2 https://github.com/substrate-developer-hub/substrate-pallet-template test-pallet
+git clone -b v2.0.0-rc3 https://github.com/substrate-developer-hub/substrate-pallet-template test-pallet
 ```
 
 > In this tutorial we have placed the pallet template _inside_ the node template's directory
@@ -39,11 +39,11 @@ Let's explore the Substrate pallet template, starting with the `Cargo.toml` file
 
 ### Renaming Your Crate
 
-In the `Cargo.toml` file, you can update the crate's name and authorship. In this tutorial, we're
-focusing on how to create and use the pallet rather than writing interesting pallet logic. So let's
-call it `test-pallet`.
+In the `Cargo.toml` file, you must update the crate's name. In this tutorial, we're focusing on how
+to create and use the pallet rather than writing interesting pallet logic. So let's update the
+value of the `package.name` attribute in the `Cargo.toml` file to `test-pallet`.
 
-The beginning of the `Cargo.toml` now looks like:
+The `package` section of the `Cargo.toml` file now looks like:
 
 **`pallets/test-pallet/Cargo.toml`**
 
@@ -56,7 +56,7 @@ homepage = 'https://substrate.io'
 license = 'Unlicense'
 name = 'test-pallet'
 repository = 'https://github.com/paritytech/substrate/'
-version = '2.0.0-rc2'
+version = '2.0.0-rc3'
 ```
 
 ### Compile the Template Pallet
@@ -113,13 +113,14 @@ consistent dependencies between your pallet and your runtime.
 # --snip--
 
 [dependencies.frame-support]
-git = 'https://github.com/paritytech/substrate.git'
 default-features = false
-tag = 'v2.0.0-rc2'
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'v2.0.0-rc3'
+version = '2.0.0-rc3'
 ```
 
-From the above snippet, we see that this pallet template depends on version `2.0.0-rc2` of the
-low-level libraries. Thus it can be used in runtimes that also depend on `2.0.0-rc2`.
+From the above snippet, we see that this pallet template depends on version `2.0.0-rc3` of the
+low-level libraries. Thus it can be used in runtimes that also depend on `2.0.0-rc3`.
 
 ### Your Pallet's Dev Dependencies
 
@@ -132,9 +133,10 @@ dependencies that are needed in your pallet's tests, but not the actual pallet i
 # --snip--
 
 [dev-dependencies.sp-core]
-git = 'https://github.com/paritytech/substrate.git'
 default-features = false
-tag = 'v2.0.0-rc2'
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'v2.0.0-rc3'
+version = '2.0.0-rc3'
 ```
 
 You can confirm that the tests in the Substrate pallet template pass with:
