@@ -18,9 +18,8 @@ const React = require('react')
 
 const FullSplash = require(`${process.cwd()}` + `/core/FullSplash`)
 
-const Container = require('../../../../react-bootstrap/Container')
-const Button = require('../../../../react-bootstrap/Button')
-const translate = require('../../server/translate').translate
+const Container = require('react-bootstrap/Container')
+const Button = require('react-bootstrap/Button')
 
 function Seminar(props) {
 	const { config: siteConfig, language = '' } = props

@@ -17,7 +17,7 @@
 // This page forwards users to the location of the Substrate Collectables Workshop
 
 const React = require("react");
-const Redirect = require("../../core/Redirect.js");
+const Redirect = require("react-router").Redirect;
 
 const siteConfig = require(process.cwd() + "/siteConfig.js");
 

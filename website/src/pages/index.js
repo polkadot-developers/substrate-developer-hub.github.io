@@ -16,14 +16,13 @@
 
 const React = require('react')
 
-const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash`)
+// const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash`)
 
-const Container = require('../../../../react-bootstrap/Container')
-const Button = require('../../../../react-bootstrap/Button')
-const Row = require('../../../../react-bootstrap/Row')
-const Col = require('../../../../react-bootstrap/Col')
-const Image = require('../../../../react-bootstrap/Image')
-const translate = require('../../server/translate').translate
+const Container = require('react-bootstrap/Container')
+const Button = require('react-bootstrap/Button')
+const Row = require('react-bootstrap/Row')
+const Col = require('react-bootstrap/Col')
+const Image = require('react-bootstrap/Image')
 
 class Index extends React.Component {
 	render() {
@@ -36,7 +35,7 @@ class Index extends React.Component {
 
 		return (
 			<section>
-				<HomeSplash
+				{/* <HomeSplash
 					id='home-hero'
 					siteConfig={siteConfig}
 					language={language}
@@ -50,7 +49,7 @@ class Index extends React.Component {
 					}
 					buttonText={<translate>Get Started</translate>}
 					buttonUrl={`tutorials`}
-				/>
+				/> */}
 
 				<section className='mainContainer' id='home'>
 					<Container>

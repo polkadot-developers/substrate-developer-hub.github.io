@@ -18,9 +18,8 @@ const React = require("react");
 
 const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash`);
 
-const Container = require("../../../../react-bootstrap/Container");
-const Button = require("../../../../react-bootstrap/Button");
-const translate = require('../../server/translate').translate;
+const Container = require("react-bootstrap/Container");
+const Button = require("react-bootstrap/Button");
 
 function Community(props) {
   const { config: siteConfig, language = "" } = props;
@@ -160,7 +159,7 @@ function Community(props) {
           style={{ backgroundColor: "#6441A5" }}
           className="m-1"
         >
-          Twitch Channel >
+          Twitch Channel
         </Button>
       </p>
     </CommunityResource>

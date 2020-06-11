@@ -16,8 +16,8 @@
 
 const React = require("react");
 
-const Container = require("../../../../react-bootstrap/Container");
-const Button = require("../../../../react-bootstrap/Button");
+const Container = require("react-bootstrap/Container");
+const Button = require("react-bootstrap/Button");
 
 class ErrorPage extends React.Component {
   render() {

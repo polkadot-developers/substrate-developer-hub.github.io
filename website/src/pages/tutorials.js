@@ -18,13 +18,12 @@ const React = require("react");
 
 const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash`);
 
-const Container = require("../../../../react-bootstrap/Container");
-const Button = require("../../../../react-bootstrap/Button");
-const Card = require("../../../../react-bootstrap/Card");
-const Col = require("../../../../react-bootstrap/Col");
-const Row = require("../../../../react-bootstrap/Row");
-const Badge = require("../../../../react-bootstrap/Badge");
-const translate = require("../../server/translate").translate;
+const Container = require("react-bootstrap/Container");
+const Button = require("react-bootstrap/Button");
+const Card = require("react-bootstrap/Card");
+const Col = require("react-bootstrap/Col");
+const Row = require("react-bootstrap/Row");
+const Badge = require("react-bootstrap/Badge");
 
 class Tutorials extends React.Component {
   render() {
@@ -204,7 +203,7 @@ class Tutorials extends React.Component {
             className="primary-color"
             href="https://substrate.dev/recipes"
           >
-            <translate>Substrate Runtime Recipes ></translate>
+            <translate>Substrate Runtime Recipes</translate>
           </Button>
         </p>
       </div>

@@ -83,15 +83,6 @@ const siteConfig = {
 			{ to: 'community', label: 'Community' },
 			{ href: 'https://github.com/paritytech/substrate', label: 'GitHub' },
 		],
-		// Algolia Search
-		algolia: {
-			apiKey: '9b6167fbfe26440cbf4cd75b254e0425',
-			indexName: 'substrate',
-			algoliaOptions: {
-				// https://www.algolia.com/doc/api-reference/api-parameters/
-				facetFilters: [ 'language:LANGUAGE' ]
-			}
-		},
 		footer:{
 			logo: {
 				src: 'img/Substrate-logo.svg'
