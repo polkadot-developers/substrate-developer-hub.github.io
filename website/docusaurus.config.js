@@ -74,15 +74,15 @@ const siteConfig = {
 		navbar: {
 			logo: {
 				src: 'img/Substrate-logo.svg',
-			}
+			},
+			links: [
+				{ to: 'docs/index', label: 'Docs', position: 'left' },
+				{ href: 'https://substrate.dev/recipes/', label: 'Recipes', position: 'left' },
+				{ to: 'tutorials', label: 'Tutorials', position: 'right' },
+				{ to: 'community', label: 'Community', position: 'right' },
+				{ href: 'https://github.com/paritytech/substrate', label: 'GitHub', position: 'right' },
+			],
 		},
-		links: [
-			{ to: 'docs/index', label: 'Docs', position: 'left' },
-			{ href: 'https://substrate.dev/recipes/', label: 'Recipes', position: 'left' },
-			{ to: 'tutorials', label: 'Tutorials' },
-			{ to: 'community', label: 'Community' },
-			{ href: 'https://github.com/paritytech/substrate', label: 'GitHub' },
-		],
 		footer:{
 			logo: {
 				src: 'img/Substrate-logo.svg'

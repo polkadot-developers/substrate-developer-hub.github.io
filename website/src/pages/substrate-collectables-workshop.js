@@ -19,7 +19,7 @@
 const React = require("react");
 const Redirect = require("react-router").Redirect;
 
-const siteConfig = require(process.cwd() + "/siteConfig.js");
+// const siteConfig = require(process.cwd() + "/siteConfig.js");
 
 class Forward extends React.Component {
     render() {

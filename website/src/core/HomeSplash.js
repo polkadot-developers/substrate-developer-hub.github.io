@@ -16,10 +16,12 @@
 
 const React = require('react')
 
-const Container = require('react-bootstrap/Container')
-const Button = require('react-bootstrap/Button')
+const Container = require('react-bootstrap/Container').default
+const Button = require('react-bootstrap/Button').default
 
-class HomeSplash extends React.Component {
+
+
+export default class HomeSplash extends React.Component {
 	render() {
 		const { siteConfig, language = '' } = this.props
 		const { baseUrl, docsUrl } = siteConfig
@@ -28,6 +30,7 @@ class HomeSplash extends React.Component {
 		const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`
 		const pageUrl = page => baseUrl + (language ? `${language}/` : '') + page
 
+		// TODO BAD: declare comp in render should be avoided
 		const SplashContainer = props => (
 			<div
 				className={`homeContainer heroImage pt-${this.props.padding} pb-${this.props.padding}`}
@@ -38,6 +41,7 @@ class HomeSplash extends React.Component {
 			</div>
 		)
 
+		// TODO BAD: declare comp in render should be avoided
 		const ProjectTitle = props => (
 			<Container>
 				<h1 className='projectTitle'>{this.props.title}</h1>
@@ -58,6 +62,7 @@ class HomeSplash extends React.Component {
 			</Container>
 		)
 
+		// TODO BAD: declare comp in render should be avoided
 		const PromoSection = props => (
 			<div className='section promoSection'>
 				<div className='promoRow'>
@@ -94,4 +99,3 @@ class HomeSplash extends React.Component {
 	}
 }
 
-module.exports = HomeSplash
