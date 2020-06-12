@@ -70,6 +70,13 @@ included with your runtime and configures them to work together to compose your 
 calls are made to your runtime, it uses the Executive pallet to dispatch those calls to the
 individual pallets.
 
+### Benchmarking
+
+Macro for benchmarking a FRAME runtime.
+
+- [Docs](https://crates.parity.io/frame_benchmarking/index.html)
+- [Source](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/lib.rs)
+
 ## Prebuilt Pallets
 
 Some pallets will be sufficiently general-purpose to be reused in many blockchains. Anyone is free
@@ -121,6 +128,14 @@ The Balances pallet provides functionality for handling accounts and balances.
 - [Docs](https://crates.parity.io/pallet_balances/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/master/frame/balances/src/lib.rs)
 
+### Benchmark
+
+A pallet that contains common runtime patterns in an isolated manner. This pallet is not meant to be
+used in a production blockchain, just for benchmarking and testing purposes.
+
+- [Docs](https://crates.parity.io/pallet_benchmark/index.html)
+- [Source](https://github.com/paritytech/substrate/blob/master/frame/benchmark/src/lib.rs)
+
 ### Collective
 
 The Collective pallet allows a set of account IDs to make their collective feelings known through
@@ -168,6 +183,14 @@ execution module for Substrate.
 - [Docs](https://crates.parity.io/pallet_evm/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/master/frame/evm/src/lib.rs)
 
+### Example Offchain Worker
+
+The Offchain Worker Example: A simple pallet demonstrating concepts, APIs and structures common to
+most offchain workers.
+
+- [Docs](https://crates.parity.io/pallet_example_offchain_worker/index.html)
+- [Source](https://github.com/paritytech/substrate/blob/master/frame/example-offchain-worker/src/lib.rs)
+
 ### Example
 
 The Example pallet is a simple example of a pallet demonstrating concepts, APIs, and structures
@@ -198,6 +221,16 @@ native code.
 - [Docs](https://crates.parity.io/pallet_grandpa/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/master/frame/grandpa/src/lib.rs)
 
+### Identity
+
+A federated naming system, allowing for multiple registrars to be added from a specified origin.
+Registrars can set a fee to provide identity-verification service. Anyone can put forth a proposed
+identity for a fixed deposit and ask for review by any number of registrars (paying each of their
+fees). Registrar judgements are given as an enum, allowing for sophisticated, multi-tier opinions.
+
+- [Docs](https://crates.parity.io/pallet_identity/index.html)
+- [Source](https://github.com/paritytech/substrate/blob/master/frame/identity/src/lib.rs)
+
 ### I'm Online
 
 The I'm Online pallet allows validators to gossip a heartbeat transaction with each new session to
@@ -222,12 +255,35 @@ membership of a collective.
 - [Docs](https://crates.parity.io/pallet_membership/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/master/frame/membership/src/lib.rs)
 
+### Multisig
+
+A module for doing multi-signature dispatches.
+
+- [Docs](https://crates.parity.io/pallet_multisig/index.html)
+- [Source](https://github.com/paritytech/substrate/blob/master/frame/multisig/src/lib.rs)
+
+### Nicks
+
+Nicks is a trivial module for keeping track of account names on-chain. It makes no effort to create
+a name hierarchy, be a DNS replacement or provide reverse lookups.
+
+- [Docs](https://crates.parity.io/pallet_nicks/index.html)
+- [Source](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs)
+
 ### Offences
 
 The Offences pallet tracks reported offences.
 
 - [Docs](https://crates.parity.io/pallet_offences/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/master/frame/offences/src/lib.rs)
+
+### Proxy
+
+A module allowing accounts to give permission to other accounts to dispatch types of calls from
+their signed origin.
+
+- [Docs](https://crates.parity.io/pallet_proxy/index.html)
+- [Source](https://github.com/paritytech/substrate/blob/master/frame/proxy/src/lib.rs)
 
 ### Randomness Collective Flip
 
@@ -236,6 +292,24 @@ random values based on the block hashes from the previous `81` blocks.
 
 - [Docs](https://crates.parity.io/pallet_randomness_collective_flip/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/master/frame/randomness-collective-flip/src/lib.rs)
+
+### Recovery
+
+The Recovery pallet is an M-of-N social recovery tool for users to gain access to their accounts if
+the private key or other authentication mechanism is lost. Through this pallet, a user is able to
+make calls on-behalf-of another account which they have recovered. The recovery process is protected
+by trusted "friends" whom the original account owner chooses. A threshold (M) out of N friends are
+needed to give another account access to the recoverable account.
+
+- [Docs](https://crates.parity.io/pallet_recovery/index.html)
+- [Source](https://github.com/paritytech/substrate/blob/master/frame/recovery/src/lib.rs)
+
+### Scheduler
+
+A pallet for scheduling dispatches.
+
+- [Docs](https://crates.parity.io/pallet_scheduler/index.html)
+- [Source](https://github.com/paritytech/substrate/blob/master/frame/scheduler/src/lib.rs)
 
 ### Scored Pool
 
@@ -252,6 +326,14 @@ the session length, and handles session rotation.
 
 - [Docs](https://crates.parity.io/pallet_session/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/master/frame/session/src/lib.rs)
+
+### Society
+
+The Society module is an economic game which incentivizes users to participate and maintain a
+membership society.
+
+- [Docs](https://crates.parity.io/pallet_society/index.html)
+- [Source](https://github.com/paritytech/substrate/blob/master/frame/society/src/lib.rs)
 
 ### Staking
 
@@ -289,6 +371,22 @@ a structure for making spending proposals from this pot.
 
 - [Docs](https://crates.parity.io/pallet_treasury/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/master/frame/treasury/src/lib.rs)
+
+### Utility
+
+A stateless module with helpers for dispatch management.
+
+- [Docs](https://crates.parity.io/pallet_utility/index.html)
+- [Source](https://github.com/paritytech/substrate/blob/master/frame/utility/src/lib.rs)
+
+### Vesting
+
+A simple module providing a means of placing a linear curve on an account's locked balance. This
+module ensures that there is a lock in place preventing the balance to drop below the unvested
+amount for any reason other than transaction fee payment.
+
+- [Docs](https://crates.parity.io/pallet_vesting/index.html)
+- [Source](https://github.com/paritytech/substrate/blob/master/frame/vesting/src/lib.rs)
 
 ## Next Steps
 
