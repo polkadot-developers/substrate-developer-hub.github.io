@@ -70,7 +70,7 @@ Once your node is running, you will again notice that no blocks are being produc
 you need to add your keys into the keystore. Remember you will need to complete these steps for each
 node in your network.
 
-### Option 1: Use the Polkadot-JS App UI
+### Option 1: Use the Polkadot-JS Apps UI
 
 You can use the Apps UI to insert your keys into the keystore. Navigate to the "Toolbox" tab and the
 "RPC Call" sub-tab. Choose "author" and "insertKey". The fields can be filled like this:
