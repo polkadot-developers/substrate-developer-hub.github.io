@@ -16,7 +16,8 @@
 
 const React = require('react')
 
-const FullSplash = require(`${process.cwd()}` + `/core/FullSplash`)
+const FullSplash = require('./../core/FullSplash');
+
 
 const Container = require('react-bootstrap/Container')
 const Button = require('react-bootstrap/Button')

@@ -14,42 +14,40 @@
  * limitations under the License.
  */
 
-const React = require('react')
+import React from 'react'
 
-// const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash`)
+import Layout from '@theme/Layout';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
-const Container = require('react-bootstrap/Container')
-const Button = require('react-bootstrap/Button')
-const Row = require('react-bootstrap/Row')
-const Col = require('react-bootstrap/Col')
-const Image = require('react-bootstrap/Image')
+import Container from 'react-bootstrap/Container';
 
-class Index extends React.Component {
-	render() {
-		const { config: siteConfig, language = '' } = this.props
-		const { baseUrl, docsUrl } = siteConfig
-		const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`
-		const langPart = `${language ? `${language}/` : ''}`
-		const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`
-		const pageUrl = page => baseUrl + (language ? `${language}/` : '') + page
+import HomeSplash from './../core/HomeSplash';
 
-		return (
+// TODO
+// This comp does not exist yet on Docusaurus 2
+const Translate = ({children}) => <>{children}</>
+
+const Index = () => {
+	const context = useDocusaurusContext();
+	return (
+		<Layout title="Official Substrate Documentation for Blockchain Developers"
+						description="Learn to build blockchains using the next generation blockchain framework." permalink="/">
 			<section>
-				{/* <HomeSplash
+				<HomeSplash
 					id='home-hero'
-					siteConfig={siteConfig}
-					language={language}
-					title={<translate>Substrate Developer Hub</translate>}
-					tagline={<translate>The blockchain framework that helps you focus on your vision.</translate>}
+					siteConfig={context.siteConfig}
+					language={"en"} // TODO
+					title={<Translate>Substrate Developer Hub</Translate>}
+					tagline={<Translate>The blockchain framework that helps you focus on your vision.</Translate>}
 					description={
-						<translate>
+						<Translate>
 							Substrate is a modular blockchain framework that lets you pick and choose the right
 							components for your application or enterprise.
-						</translate>
+						</Translate>
 					}
-					buttonText={<translate>Get Started</translate>}
+					buttonText={<Translate>Get Started</Translate>}
 					buttonUrl={`tutorials`}
-				/> */}
+				/>
 
 				<section className='mainContainer' id='home'>
 					<Container>
@@ -308,10 +306,8 @@ class Index extends React.Component {
 					</section>
 				</section>
 			</section>
-		)
-	}
+		</Layout>
+	);
 }
 
-Index.title = 'Official Substrate Documentation for Blockchain Developers'
-Index.description = 'Learn to build blockchains using the next generation blockchain framework.'
-module.exports = Index
+export default Index;

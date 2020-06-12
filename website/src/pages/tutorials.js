@@ -16,7 +16,7 @@
 
 const React = require("react");
 
-const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash`);
+const HomeSplash = require('./../core/HomeSplash');
 
 const Container = require("react-bootstrap/Container");
 const Button = require("react-bootstrap/Button");
