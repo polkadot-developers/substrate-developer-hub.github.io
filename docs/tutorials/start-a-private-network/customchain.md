@@ -70,7 +70,7 @@ Once your node is running, you will again notice that no blocks are being produc
 you need to add your keys into the keystore. Remember you will need to complete these steps for each
 node in your network.
 
-### Add Keys with the Polkadot-JS App UI
+### Option 1: Use the Polkadot-JS Apps UI
 
 You can use the Apps UI to insert your keys into the keystore. Navigate to the "Toolbox" tab and the
 "RPC Call" sub-tab. Choose "author" and "insertKey". The fields can be filled like this:
@@ -102,6 +102,44 @@ publicKey: <your raw ed25519 key> (eg. 0xb48004c6e1625282313b07d1c9950935e86894a
 
 > If you are following these steps for the _second_ node in the network, you must connect the UI to
 > the second node before inserting the keys.
+
+### Option 2: Use `curl`
+
+You can also insert a key into the keystore by using [`curl`](https://curl.haxx.se/) from the command
+line. This approach may be preferable in a production setting, where you may be using a cloud-based
+virtual private server.
+
+Because security is of the utmost concern in a production environment, it is important to take every
+precaution possible. In this case, that means taking care that you do not leave any traces of your
+keys behind, such as in your terminal's history. Create a file that you will use to define the body
+for your `curl` request:
+
+```json
+{
+  "jsonrpc":"2.0",
+  "id":1,
+  "method":"author_insertKey",
+  "params": [
+    "<aura/gran>",
+    "<mnemonic phrase>",
+    "<public key>"
+  ]
+}
+```
+
+```bash
+# Submit a new key via RPC, connect to where your `rpc-port` is listening
+$ curl http://localhost:9933 -H "Content-Type:application/json;charset=utf-8" -d "@/path/to/file"
+```
+
+If you enter the command and parameters correctly, the node will return a JSON response as follows.
+
+```json
+{ "jsonrpc": "2.0", "result": null, "id": 1 }
+```
+
+Make sure you delete the file that contains the keys when you are done.
+
 
 ## Subsequent Participants Join
 
