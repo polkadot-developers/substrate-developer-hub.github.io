@@ -18,12 +18,30 @@ const React = require("react");
 
 const Container = require("../../../../react-bootstrap/Container");
 const Button = require("../../../../react-bootstrap/Button");
+const Redirect = require("../../core/Redirect.js");
+
+const siteConfig = require(process.cwd() + "/siteConfig.js");
+
+// Putting this here for reference
+// class Forward extends React.Component {
+// 		render() {
+// 				return ( <
+// 						Redirect redirect = { "https://substrate.io/seminar" }
+// 						config = { siteConfig }
+// 						/>
+// 				);
+// 		}
+// }
 
 class ErrorPage extends React.Component {
   render() {
+
+    let path = window.location.path;
+
     return (
       <Container className="text-center">
         <h2 style={{ "fontSize": "400%" }}>404</h2>
+        <p>The path is {path}</p>
         <p>It seems we couldn't come to consensus...</p>
         <hr />
         <p>
