@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-const React = require('react')
+import React from 'react'
 
-const Container = require('react-bootstrap/Container').default
-const Button = require('react-bootstrap/Button').default
+import { Container, Button } from 'react-bootstrap'
 
 
 
@@ -98,4 +97,3 @@ export default class HomeSplash extends React.Component {
 		)
 	}
 }
-

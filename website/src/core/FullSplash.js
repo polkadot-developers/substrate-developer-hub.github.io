@@ -14,10 +14,8 @@
  * limitations under the License.
  */
 
-const React = require("react");
-
-const Container = require("react-bootstrap/Container");
-const Button = require("react-bootstrap/Button");
+import React from 'react';
+import { Containr, Button } from 'react-bootstrap';
 
 class HomeSplash extends React.Component {
   render() {

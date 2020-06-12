@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+//TODO For some reason these can't be re-written as imports
 const React = require("react");
 
 const Container = require("react-bootstrap/Container");

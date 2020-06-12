@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-const React = require("react");
-const Col = require("react-bootstrap/Col");
+import React from 'react';
+import { Col } from 'react-bootstrap';
 
 class Timeline extends React.Component {
   render() {

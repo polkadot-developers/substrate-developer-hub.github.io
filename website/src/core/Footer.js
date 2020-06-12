@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-const React = require("react");
+import React from 'react';
 
 class Blast extends React.Component {
   render() {
