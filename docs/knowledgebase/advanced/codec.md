@@ -185,7 +185,7 @@ enum IntOrBool {
 
 ## Implementations
 
-The Parity SCALE Codec is currently implemented for:
+The Parity SCALE Codec has been implemented in many languages. Many implementations are well-maintained, and the Rust implementation is an official Parity product.
 
 - Rust: [`paritytech/parity-scale-codec`](https://github.com/paritytech/parity-scale-codec)
 - Python: [`polkascan/py-scale-codec`](https://github.com/polkascan/py-scale-codec)
