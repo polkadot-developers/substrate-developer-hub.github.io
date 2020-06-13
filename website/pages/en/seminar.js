@@ -197,7 +197,29 @@ function Seminar(props) {
 								/>
 								<a
 									className='video-play'
-									href='https://www.youtube.com/watch?v=6omrrY11HEg&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									href='https://www.youtube.com/watch?v=XoL1Ur_6Lxk&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									target='_blank'
+								/>
+							</section>
+							<section className='video-details'>
+								<h4 className='p-color'>Execute Substrate pallets in a TEE with SubstraTEE</h4>
+								<p>
+									Brenzi explains how the SubstraTEE framework can be used to protect privacy for your use case by re-using your Substrate pallets and instantiating them inside a trusted execution environment.
+								</p>
+							</section>
+						</div>
+
+						<div className='col-md-4'>
+							<section className='video-cover video-cover-xs'>
+								<div
+									className='background-image-holder'
+									style={{
+										backgroundImage: `url('/img/seminar-t.jpg' )`
+									}}
+								/>
+								<a
+									className='video-play'
+									href='https://www.youtube.com/watch?v=0eNGZpNkJk4&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
 							</section>
@@ -219,7 +241,7 @@ function Seminar(props) {
 								/>
 								<a
 									className='video-play'
-									href='https://www.youtube.com/watch?v=6omrrY11HEg&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
+									href='https://www.youtube.com/watch?v=E1OymWVTZqM&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
 									target='_blank'
 								/>
 							</section>
@@ -227,28 +249,6 @@ function Seminar(props) {
 								<h4 className='p-color'>Adding SM2 Crypto to Substrate</h4>
 								<p>
 									Parity's Maggie Dong demonstrates Substrate accounts that use alternative cryptographic schemes. She'll show her work adding the sm2 scheme and submitting transactions with subxt.
-								</p>
-							</section>
-						</div>
-
-						<div className='col-md-4'>
-							<section className='video-cover video-cover-xs'>
-								<div
-									className='background-image-holder'
-									style={{
-										backgroundImage: `url('/img/seminar-t.jpg' )`
-									}}
-								/>
-								<a
-									className='video-play'
-									href='https://www.youtube.com/watch?v=6omrrY11HEg&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
-									target='_blank'
-								/>
-							</section>
-							<section className='video-details'>
-								<h4 className='p-color'>Offline Phragmen and Hybrid Consensus</h4>
-								<p>
-									Kian Paimani demonstrates his Offline Phragmen tool and uses it as a template for making arbitrary Substrate Calls. Joshy Orndorff demonstrates hybrid consensus with Proof of Work authoring and Proof of Stake finality.
 								</p>
 							</section>
 						</div>
