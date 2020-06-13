@@ -185,25 +185,20 @@ enum IntOrBool {
 
 ## Implementations
 
-The Parity SCALE Codec is currently implemented for:
+The Parity SCALE Codec has been implemented in many languages, including a reference
+implementation that is written in Rust and maintained by Parity Technologies.
 
 - Rust: [`paritytech/parity-scale-codec`](https://github.com/paritytech/parity-scale-codec)
 - Python: [`polkascan/py-scale-codec`](https://github.com/polkascan/py-scale-codec)
 - Golang: [`ChainSafe/gossamer`](https://github.com/ChainSafe/gossamer)
 - C++: [`soramitsu/scale`](https://github.com/soramitsu/kagome/tree/master/core/scale)
 - JavaScript: [`polkadot-js/api`](https://github.com/polkadot-js/api)
+- AssemblyScript: [`LimeChain/as-scale-codec`](https://github.com/LimeChain/as-scale-codec)
+- Haskell: [`airalab/hs-web3`](https://github.com/airalab/hs-web3/tree/master/src/Codec)
+- Java: [`emeraldpay/polkaj`](https://github.com/emeraldpay/polkaj)
+- Ruby: [`itering/scale.rb`](https://github.com/itering/scale.rb)
 
-## Next Steps
-
-### Learn More
-
-TODO
-
-### Examples
-
-TODO
-
-### References
+## References
 
 - Visit the reference docs for the
   [`parity-scale-codec`](https://crates.parity.io/parity_scale_codec/index.html).
