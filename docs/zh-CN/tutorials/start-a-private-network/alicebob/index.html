@@ -16,7 +16,7 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>启动私有网络</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">启动私有网络<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/start-a-private-network/">启动私有网络</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/tutorials/start-a-private-network/alicebob">Alice 和 Bob 启动区块链</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/start-a-private-network/keygen">生成密钥</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/start-a-private-network/customspec">Create a Custom Chain Spec</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/start-a-private-network/customchain">创建您的私链</a></li></ul></div></div></section></div><script>
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Start a Private Network</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Start a Private Network<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/start-a-private-network/">Start a Private Network</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/tutorials/start-a-private-network/alicebob">Alice 和 Bob 启动区块链</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/start-a-private-network/keygen">生成密钥</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/start-a-private-network/customspec">Create a Custom Chain Spec</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/start-a-private-network/customchain">Creating Your Private Network</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -76,7 +76,7 @@
 <blockquote>
 <p>This portion of the tutorial should be run on a single workstation with a single Substrate binary. If you've followed the tutorial up to this point, you have the correct setup.</p>
 </blockquote>
-<h2><a class="anchor" aria-hidden="true" id="alice-首先启动"></a><a href="#alice-首先启动" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Alice 首先启动</h2>
+<h2><a class="anchor" aria-hidden="true" id="alice-starts-first"></a><a href="#alice-starts-first" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Alice Starts First</h2>
 <p>Alice (or whomever is playing her) should run these commands from node-template repository root.</p>
 <blockquote>
 <p>Here we've explicitly shown the <code>purge-chain</code> command. In the future we will omit this You should purge old chain data any time you're trying to start a new network.</p>
@@ -96,20 +96,20 @@
   --telemetry-url <span class="hljs-string">'ws://telemetry.polkadot.io:1024 0'</span> \
   --validator
 </code></pre>
-<p>让我们详细查看这些选项：</p>
+<p>Let's look at those flags in detail:</p>
 <table>
 <thead>
 <tr><th><div style="min-width:110pt"> Flags </div></th><th>Descriptions</th></tr>
 </thead>
 <tbody>
-<tr><td><code>--base-path</code></td><td>指定一个目录，Substrate 用它来存储与此链有关的所有数据。 如果目录不存在，将创建它。 如果已经存在其它区块链的数据，启动将会报错。 这种情况下，要么清除目录，要么选择不同的目录。 如果未指定此值，将使用默认路径。</td></tr>
-<tr><td><code>--chain local</code></td><td>指定要使用的链条规格。 有几个预先准备的选项，包括 <code>local</code> <code>development</code> 和 <code>staging</code> ，但更常见的是我们指定自己的 chainspec 文件。 我们将在稍后阶段指定自己的文件。</td></tr>
-<tr><td><code>--alice</code></td><td>将预定义的Alice密钥(用于块production and finalization) 放入节点的密钥。 一般来说，一个人应该生成自己的密钥，并用RPC调用来插入它们。 我们将在稍后阶段指定自己的秘钥。 这个flag也使Alice成为验证器。</td></tr>
-<tr><td><code>--port 30333</code></td><td>指定您的节点将监听p2p 的端口。 30333是默认值，如果默认值可以，可以忽略flag。 如果 Bob 的节点在同一物理机上运行，您需要明确指定一个不同的端口。</td></tr>
-<tr><td><code>--ws-port 9944</code></td><td>指定您的节点将监听web socket的端口。 <code>9944</code> 是默认值，因此也可以省略它。</td></tr>
-<tr><td><code>-rpc-port 9933</code></td><td>指定您的节点将监听RPC的端口。 <code>9933</code> 是默认值，因此也可以省略它。</td></tr>
-<tr><td><code>--telemetry-url</code></td><td>告诉节点向某个特定服务器发送遥测数据。 我们在这里选择了由 Parity 维护、可供任何人使用的监测服务器。 你可以维护自己的观测服务器 (超出本文的范围)，或者完全忽略此 flag。</td></tr>
-<tr><td><code>--validator</code></td><td>表示我们想要参与区块生产和最后完成，而不仅仅是同步网络。</td></tr>
+<tr><td><code>--base-path</code></td><td>Specifies a directory where Substrate should store all the data related to this chain. 如果目录不存在，将创建它。 如果已经存在其它区块链的数据，启动将会报错。 这种情况下，要么清除目录，要么选择不同的目录。 If this value is not specified, a default path will be used.</td></tr>
+<tr><td><code>--chain local</code></td><td>Specifies which chain specification to use. There are a few pre-packaged options including <code>local</code>, <code>development</code>, and <code>staging</code> but generally one specifies their own chainspec file. 我们将在稍后阶段指定自己的文件。</td></tr>
+<tr><td><code>--alice</code></td><td>Puts the pre-defined Alice keys (both for block production and finalization) in the node's keystore. Generally one should generate their own keys and insert them with an RPC call. 我们将在稍后阶段指定自己的秘钥。 This flag also makes Alice a validator.</td></tr>
+<tr><td><code>--port 30333</code></td><td>Specifies the port that your node will listen for p2p traffic on. <code>30333</code> is the default and this flag can be omitted if you're happy with the default. 如果 Bob 的节点在同一物理机上运行，您需要明确指定一个不同的端口。</td></tr>
+<tr><td><code>--ws-port 9944</code></td><td>Specifies the port that your node will listen for incoming web socket traffic on. <code>9944</code> is the default, so it can also be omitted.</td></tr>
+<tr><td><code>--rpc-port 9933</code></td><td>Specifies the port that your node will listen for incoming RPC traffic on. <code>9933</code> is the default, so it can also be omitted.</td></tr>
+<tr><td><code>--telemetry-url</code></td><td>Tells the node to send telemetry data to a particular server. 我们在这里选择了由 Parity 维护、可供任何人使用的监测服务器。 You may also host your own (beyond the scope of this article) or omit this flag entirely.</td></tr>
+<tr><td><code>--validator</code></td><td>Means that we want to participate in block production and finalization rather than just sync the network.</td></tr>
 </tbody>
 </table>
 <p>当节点启动后，你应该看到类似下面的输出：</p>
@@ -133,13 +133,13 @@
 <span class="token punctuation">...</span>
 </code></pre>
 <blockquote>
-<p><strong>备注</strong></p>
+<p><strong>Notes</strong></p>
 <ul>
 <li><code>🔨 Initializing Genesis block/state (state: 0xf583…2e1c, header-hash: 0x826a…389d)</code> tells which genesis block the node is using. When you start the next node, verify that these values are equal.</li>
 <li><code>🏷 Local node identity is: 12D3KooWQsb4rFifmkZDsTCbjHdZ4GYca1PwDhETKiJnALSSbyEs...</code> shows the Peer ID that Bob will need when booting from Alice's node.</li>
 </ul>
 </blockquote>
-<p>你会注意到尚未生成任何块。 Blocks will start being produced once another node joins the network.</p>
+<p>You'll notice that no blocks are being produced yet. Blocks will start being produced once another node joins the network.</p>
 <p>More details about all of these flags and others that I haven't mentioned are available by running <code>./target/release/node-template --help</code>.</p>
 <h2><a class="anchor" aria-hidden="true" id="连接ui"></a><a href="#连接ui" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>连接UI</h2>
 <p>你可以通过节点在命令行中产生的输出了解很多信息。 There is also a nice graphical user interface known as the Polkadot-JS Apps, or just &quot;Apps&quot; for short.</p>
@@ -149,20 +149,20 @@
 </blockquote>
 <p>The link provided above includes the <code>rpc</code> URL parameter, which instructs the Apps UI to connect to the URL that was provided as its value (in this case, your local node). To manually configure Apps UI to connect to another node:</p>
 <ul>
-<li><p>点击左上角的网络图标</p>
+<li><p>Click on the top left network icon</p>
 <p><img src="/docs/assets/tutorials/private-network/private-network-top-left-network-icon.png" alt="Top Left Network Icon"></p></li>
-<li><p>弹出式下拉菜单。 选择最后一个条目，它是使用默认端口9944 的本地节点</p>
+<li><p>A popup dropdown appears. Choose the last entry, which is a local node using default port 9944</p>
 <p><img src="/docs/assets/tutorials/private-network/private-network-select-network.png" alt="Select Network"></p></li>
 <li><p>To connect to a custom node and port, you just need to specify the endpoint by choosing <code>custom endpoint</code> and type in your own endpoint. In this way you can use a single instance of Apps UI to connect to various nodes.</p>
 <p><img src="/docs/assets/tutorials/private-network/private-network-custom-endpoint.png" alt="Custom Endpoint"></p></li>
 </ul>
-<p>你应该看到类似下面的内容：</p>
-<p><img src="/docs/assets/tutorials/private-network/private-network-no-blocks.png" alt="polkadot-js-apps 中没有区块"></p>
+<p>You should now see something like this.</p>
+<p><img src="/docs/assets/tutorials/private-network/private-network-no-blocks.png" alt="No blocks in polkadot-js-apps"></p>
 <blockquote>
-<p><strong>备注</strong></p>
+<p><strong>Notes</strong></p>
 <p>If you do not want to run your hosted version of Polkadot-JS Apps UI while connecting to Substrate node you have deployed remotely, you can configure ssh local port forwarding to forward local request to the <code>ws-port</code> listened by the remote host. This is beyond the scope of this tutorial but is referenced at the bottom.</p>
 </blockquote>
-<h2><a class="anchor" aria-hidden="true" id="bob-加入"></a><a href="#bob-加入" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Bob 加入</h2>
+<h2><a class="anchor" aria-hidden="true" id="bob-joins"></a><a href="#bob-joins" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Bob Joins</h2>
 <p>现在，Alice节点已经启动并运行，Bob 可以通过引导节点来加入网络。 他的命令看起来非常类似下面：</p>
 <pre><code class="hljs css language-bash">./target/release/node-template purge-chain --base-path /tmp/bob --chain <span class="hljs-built_in">local</span>
 </code></pre>
@@ -177,17 +177,17 @@
   --validator \
   --bootnodes /ip4/&lt;Alices IP Address&gt;/tcp/&lt;Alices Port&gt;/p2p/&lt;Alices Peer ID&gt;
 </code></pre>
-<p>上面已经解释了大多数这些选项，但有几个要点。</p>
+<p>Most of these options are already explained above, but there are a few points worth mentioning.</p>
 <ul>
 <li>Because these two nodes are running on the same physical machine, Bob must specify a different <code>--base-path</code>, <code>--port</code>, <code>--ws-port</code>, and <code>--rpc-port</code>.</li>
-<li>Bob 添加了 <code>--bootnodes</code> 选项来指定一个启动节点，即 Alice 节点。 He must correctly specify these three pieces of information which Alice can supply for him.
+<li>Bob has added the <code>--bootnodes</code> flag and specified a single boot node, namely Alice's. He must correctly specify these three pieces of information which Alice can supply for him.
 <ul>
 <li>Alice's IP Address, probably <code>127.0.0.1</code></li>
-<li>Alice的端口，可能是 <code>30333</code></li>
+<li>Alice's Port, probably <code>30333</code></li>
 <li>Alice's Peer ID, copied from her log output. (<code>12D3KooWQsb4rFifmkZDsTCbjHdZ4GYca1PwDhETKiJnALSSbyEs</code> in the example output above.)</li>
 </ul></li>
 </ul>
-<p>If all is going well, after a few seconds, the nodes should peer together and start producing blocks. 您应该在启动Alice节点的控制台中看到一些像以下的行。</p>
+<p>If all is going well, after a few seconds, the nodes should peer together and start producing blocks. You should see some lines like the following in the console that started Alice node.</p>
 <pre><code class="hljs"><span class="token punctuation">...</span>
 <span class="token number">2020</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">10</span> <span class="token number">13</span><span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">:</span><span class="token number">20</span> 💤 <span class="token function">Idle</span> <span class="token punctuation">(</span><span class="token number">0</span> peers<span class="token punctuation">)</span><span class="token punctuation">,</span> best<span class="token punctuation">:</span> #<span class="token function">0</span> <span class="token punctuation">(</span><span class="token number">0x826a</span>…389d<span class="token punctuation">)</span><span class="token punctuation">,</span> finalized #<span class="token function">0</span> <span class="token punctuation">(</span><span class="token number">0x826a</span>…389d<span class="token punctuation">)</span><span class="token punctuation">,</span> ⬇ <span class="token number">0</span> ⬆ <span class="token number">0</span>
 <span class="token number">2020</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">10</span> <span class="token number">13</span><span class="token punctuation">:</span><span class="token number">21</span><span class="token punctuation">:</span><span class="token number">25</span> 💤 <span class="token function">Idle</span> <span class="token punctuation">(</span><span class="token number">0</span> peers<span class="token punctuation">)</span><span class="token punctuation">,</span> best<span class="token punctuation">:</span> #<span class="token function">0</span> <span class="token punctuation">(</span><span class="token number">0x826a</span>…389d<span class="token punctuation">)</span><span class="token punctuation">,</span> finalized #<span class="token function">0</span> <span class="token punctuation">(</span><span class="token number">0x826a</span>…389d<span class="token punctuation">)</span><span class="token punctuation">,</span> ⬇ <span class="token number">0</span> ⬆ <span class="token number">0</span>
@@ -207,11 +207,11 @@
 <p>These lines shows that Bob has peered with Alice (<strong><code>1 peers</code></strong>), they have produced some blocks (<strong><code>best: #3 (0x609b…116e)</code></strong>), and blocks are being finalized (<strong><code>finalized #1 (0xe656…51b4)</code></strong>).</p>
 <p>Looking at the console that started Bob's node, you should see something similar.</p>
 <p>Once you've verified that both nodes are running as expected, you can shut them down. The next section of this tutorial will include commands to restart the nodes when necessary.</p>
-<h2><a class="anchor" aria-hidden="true" id="參考資料"></a><a href="#參考資料" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>參考資料</h2>
+<h2><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h2>
 <ul>
-<li><a href="https://www.booleanworld.com/guide-ssh-port-forwarding-tunnelling/">配置 ssh 本地端口转发器</a></li>
+<li><a href="https://www.booleanworld.com/guide-ssh-port-forwarding-tunnelling/">Configure ssh local port forwarding</a></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/tutorials/start-a-private-network/index"><span class="arrow-prev">← </span><span>启动私有网络</span></a><a class="docs-next button" href="/docs/zh-CN/tutorials/start-a-private-network/keygen"><span>生成密钥</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#alice-首先启动">Alice 首先启动</a></li><li><a href="#连接ui">连接UI</a></li><li><a href="#bob-加入">Bob 加入</a></li><li><a href="#參考資料">參考資料</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="https://crates.parity.io/">Reference Docs</a><a href="https://substrate.dev/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="/zh-CN/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/tutorials/start-a-private-network/index"><span class="arrow-prev">← </span><span>Start a Private Network</span></a><a class="docs-next button" href="/docs/zh-CN/tutorials/start-a-private-network/keygen"><span>生成密钥</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#alice-starts-first">Alice Starts First</a></li><li><a href="#连接ui">连接UI</a></li><li><a href="#bob-joins">Bob Joins</a></li><li><a href="#references">References</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="https://crates.parity.io/">Reference Docs</a><a href="https://substrate.dev/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="/zh-CN/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
               var cookieSettings = document.getElementById('cookie-settings');
               cookieSettings.onclick = function() {
                 return klaro.show();
