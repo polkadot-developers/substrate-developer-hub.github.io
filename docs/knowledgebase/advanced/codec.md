@@ -197,17 +197,7 @@ The Parity SCALE Codec is currently implemented for:
 - Java: [`emeraldpay/polkaj`](https://github.com/emeraldpay/polkaj)
 - Ruby: [`itering/scale.rb`](https://github.com/itering/scale.rb)
 
-## Next Steps
-
-### Learn More
-
-TODO
-
-### Examples
-
-TODO
-
-### References
+## References
 
 - Visit the reference docs for the
   [`parity-scale-codec`](https://crates.parity.io/parity_scale_codec/index.html).
