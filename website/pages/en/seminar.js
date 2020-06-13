@@ -104,10 +104,13 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>June 9th</strong>, Brenzi will explain how the SubstraTEE framework can be used to protect privacy for your use case by instantiating your Substrate pallets inside a trusted execution environment.
+								On <strong>June 16th</strong>, SubSocial's Alex Siman will walk through their recently overhauled Roles and Permissions pallets.
 							</p>
 							<p>
-								On <strong>June 16th</strong>, SubSocial's Alex Siman will walk through theie recently overhauled Roles and Permissions pallets.
+								This will be an technical presentation demonstrating intermediate-level pallet development. Alex will do a code walkthrough demonstrating loose coupling of pallets in a runtime.
+							</p>
+							<p>
+								Also on <strong>June 16th</strong>, Parity's events team will present some efforts and get community input on ways to improve the format of Substrate Seminar. Come share your input, and shape the future of Seminar.
 							</p>
 							<h4 className='mb-2'>How do I join the call?</h4>
 							<p>
