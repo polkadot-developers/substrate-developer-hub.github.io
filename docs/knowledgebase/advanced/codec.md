@@ -6,9 +6,8 @@ The SCALE (Simple Concatenated Aggregate Little-Endian) Codec is a lightweight, 
 serialization and deserialization codec.
 
 It is designed for high-performance, copy-free encoding and decoding of data in resource-constrained
-execution contexts, like the [Substrate runtime](../runtime/). It is not
-self-describing in any way and assumes the decoding context has all type knowledge about the encoded
-data.
+execution contexts, like the [Substrate runtime](../runtime/). It is not self-describing in any way
+and assumes the decoding context has all type knowledge about the encoded data.
 
 ## SCALE for Substrate
 
@@ -95,7 +94,8 @@ As an exception, in the case that the type is a boolean, then it is always one b
 
 ### Results
 
-Results are commonly used enumerations which indicate whether certain operations were successful or unsuccessful. Encoded as:
+Results are commonly used enumerations which indicate whether certain operations were successful or
+unsuccessful. Encoded as:
 
 - `0x00` if the operation was successful, followed by the encoded value.
 - `0x01` if the operation was unsuccessful, followed by the encoded error.
@@ -185,8 +185,8 @@ enum IntOrBool {
 
 ## Implementations
 
-The Parity SCALE Codec has been implemented in many languages, including a reference
-implementation that is written in Rust and maintained by Parity Technologies.
+The Parity SCALE Codec has been implemented in many languages, including a reference implementation
+that is written in Rust and maintained by Parity Technologies.
 
 - Rust: [`paritytech/parity-scale-codec`](https://github.com/paritytech/parity-scale-codec)
 - Python: [`polkascan/py-scale-codec`](https://github.com/polkascan/py-scale-codec)
