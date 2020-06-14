@@ -48,15 +48,15 @@ It also has a number of system-critical storage items, such as:
 Finally, it defines a number of low level functions which can access your blockchain storage, verify
 the origin of an extrinsic, and more.
 
-### Executive Pallet
+### Executive Module
 
-The [Executive pallet](https://crates.parity.io/frame_executive/index.html) acts as the
+The [FRAME Executive module](https://crates.parity.io/frame_executive/index.html) acts as the
 orchestration layer for the runtime. It dispatches incoming extrinsic calls to the respective
 pallets in the runtime.
 
 ### Support Library
 
-The [FRAME support library](https://crates.parity.io/frame_support/index.html) is a
+The [FRAME Support library](https://crates.parity.io/frame_support/index.html) is a
 collection of Rust macros, types, traits, and functions that simplify the development of Substrate
 pallets.
 
@@ -287,8 +287,9 @@ their signed origin.
 
 ### Randomness Collective Flip
 
-The Randomness Collective Flip pallet provides a `random` function that generates low-influence
-random values based on the block hashes from the previous `81` blocks.
+The Randomness Collective Flip pallet provides a `random` function that can be used in tests and
+generates low-influence random values based on the block hashes from the previous `81` blocks. This
+pallet is not intended for use in production.
 
 - [Docs](https://crates.parity.io/pallet_randomness_collective_flip/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/master/frame/randomness-collective-flip/src/lib.rs)
