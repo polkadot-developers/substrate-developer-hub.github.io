@@ -307,7 +307,8 @@ needed to give another account access to the recoverable account.
 
 ### Scheduler
 
-A pallet for scheduling dispatches.
+This module exposes capabilities for scheduling dispatches to occur at a specified block number or
+at a specified period. These scheduled dispatches may be named or anonymous and may be canceled.
 
 - [Docs](https://crates.parity.io/pallet_scheduler/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/master/frame/scheduler/src/lib.rs)
