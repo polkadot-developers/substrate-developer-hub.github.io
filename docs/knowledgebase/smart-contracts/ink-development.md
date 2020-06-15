@@ -63,7 +63,7 @@ storing information on the contract instance.
 When building a smart contract with ink!, you can define a set of tests.
 
 For example, in the minimal
-[flipper contract](https://github.com/paritytech/ink/blob/master/examples/flipper/src/lib.rs), you
+[flipper contract](https://github.com/paritytech/ink/blob/master/examples/flipper/lib.rs), you
 can find a small test at the bottom of the contract.
 
 You should run this test just like you would any other Rust test:
