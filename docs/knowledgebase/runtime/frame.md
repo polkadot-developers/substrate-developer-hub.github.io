@@ -90,6 +90,15 @@ The Assets pallet is a simple, secure module for dealing with fungible assets.
 - [Docs](https://crates.parity.io/pallet_assets/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/master/frame/assets/src/lib.rs)
 
+### Atomic Swap
+
+A module for atomically sending funds from an origin to a target. A proof is used to allow the
+target to approve (claim) the swap. If the swap is not claimed within a specified duration of time,
+the sender may cancel it.
+
+- [Docs](https://crates.parity.io/pallet_atomic_swap/index.html)
+- [Source](https://github.com/paritytech/substrate/blob/master/frame/atomic-swap/src/lib.rs)
+
 ### Aura
 
 The Aura pallet extends Aura consensus by managing offline reporting.
