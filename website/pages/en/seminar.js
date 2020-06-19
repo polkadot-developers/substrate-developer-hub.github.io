@@ -107,10 +107,10 @@ function Seminar(props) {
 								On <strong>23 June</strong> Joshy Orndorff will demonstrate and discuss building parachains with Cumulus and Substrate.
 							</p>
 							<p>
-								This session will include a code walkthrough, a demonstration, and discussion of the sumulus and polkadot architecture.
+								This session will include a code walkthrough, a demonstration, and discussion of the Cumulus and Polkadot architecture.
 							</p>
 							<p>
-								The demo will be beginner-friendly, while the code-walkthrough and architecture discussion will cover intermediate to advanced consensus topics.
+								The demo will be beginner-friendly, while the code-walkthrough and architecture discussion will cover intermediate to advanced consensus topics. Attendees will learn the concepts and procedure for creating and registering parachains on Polkadot-like networks.
 							</p>
 							<h4 className='mb-2'>How do I join the call?</h4>
 							<p>
