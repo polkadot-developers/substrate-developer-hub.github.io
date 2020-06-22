@@ -61,7 +61,7 @@ function Seminar(props) {
 							</section>
 							<section>
 								<span className='block type--fine-print'>
-									or <a href='https://zoom.us/j/916767726'>join live call »</a>
+									or <a href='https://www.crowdcast.io/e/substrate-seminar'>join live call »</a>
 								</span>
 							</section>
 						</div>
@@ -114,8 +114,8 @@ function Seminar(props) {
 							</p>
 							<h4 className='mb-2'>How do I join the call?</h4>
 							<p>
-								We meet using zoom video conferencing. Specifically we meet in{' '}
-								<a href='https://zoom.us/j/916767726'>https://zoom.us/j/916767726</a>. This link will
+								We are trying the crowdcast platform for seminar. Specifically we meet in{' '}
+								<a href='https://www.crowdcast.io/e/substrate-seminar'>https://www.crowdcast.io/e/substrate-seminar</a>. This link will
 								only work when the call is live, so you may prefer to add this{' '}
 								<a href='https://calendar.google.com/calendar/b/1?cid=cGFyaXR5LmlvXzJmc2tqN245cm1qcHE1Y2xiOWc3ZWUzZGhvQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20'>
 									Google calendar invitation
@@ -276,7 +276,7 @@ function Seminar(props) {
 								</section>
 								<section>
 									<span className='block type--fine-print'>
-										or <a href='https://zoom.us/j/916767726'>join live call »</a>
+										or <a href='https://www.crowdcast.io/e/substrate-seminar'>join live call »</a>
 									</span>
 								</section>
 							</div>
