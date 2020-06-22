@@ -29,7 +29,7 @@ Build substrate/polkadot in release mode in your terminal `cargo build --release
 LD_PRELOAD=../memory-profiler/target/release/libmemory_profiler.so ./target/release/substrate
 ```
 
-You can pass cli arguments in substrate as usual, you can [configure the memory profiler via environment variables](https://github.com/koute/memory-profiler#environment-variables-used-by-libmemory_profilerso.
+You can pass cli arguments in substrate as usual, you can [configure the memory profiler via environment variables](https://github.com/koute/memory-profiler#environment-variables-used-by-libmemory_profilerso).
 
 This will create a `.dat` file in the directory which you defined and maintain the traces for analysing. 
 Additionally, you can utilize the memory-profiler server to do the same thing using a web ui. 
