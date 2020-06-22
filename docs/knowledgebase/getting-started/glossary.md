@@ -275,7 +275,7 @@ chain configuration logic from the modules and their persistent storage items.
 GRANDPA (GHOST-based Recursive ANcestor Deriving Prefix Agreement), also previously known as SHAFT
 (SHared Ancestry Finality Tool), and originally known as AfG, is a finality gadget for blockchains,
 implemented in Rust. The formal specification is published at
-https://github.com/w3f/consensus/blob/master/pdf/grandpa.pdf.
+https://w3f-research.readthedocs.io/en/latest/polkadot/GRANDPA.html.
 
 ---
 
@@ -296,7 +296,7 @@ Split blockchain consensus into Block Production and a Finality Gadget. This all
 speed to be as fast as in probabilistic "safety" consensus such as Ouroboros or Aurand but with same
 level of security guarantees as in Instant-Finality Consensus Protocols. See
 [the first implementation in Rust](https://github.com/paritytech/finality-afg), and
-[the GRANDPA article](https://github.com/w3f/consensus/blob/master/pdf/grandpa.pdf).
+[the GRANDPA article](https://w3f-research.readthedocs.io/en/latest/polkadot/GRANDPA.html).
 
 ---
 
