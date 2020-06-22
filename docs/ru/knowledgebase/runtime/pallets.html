@@ -136,10 +136,10 @@
     <span class="token keyword">trait</span> Store <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">as</span> Example <span class="token punctuation">{</span>
         <span class="token comment">// The last value passed to `set_value`.</span>
         <span class="token comment">// Used as an example of a `StorageValue`.</span>
-        <span class="token keyword">pub</span> LastValue <span class="token function">get</span><span class="token punctuation">(</span>last_value<span class="token punctuation">)</span><span class="token punctuation">:</span> u64<span class="token punctuation">;</span>
+        <span class="token keyword">pub</span> LastValue <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">fn</span> last_value<span class="token punctuation">)</span><span class="token punctuation">:</span> u64<span class="token punctuation">;</span>
         <span class="token comment">// The value each user has put into `set_value`.</span>
         <span class="token comment">// Used as an example of a `StorageMap`.</span>
-        <span class="token keyword">pub</span> UserValue <span class="token function">get</span><span class="token punctuation">(</span>user_value<span class="token punctuation">)</span><span class="token punctuation">:</span> map T<span class="token punctuation">::</span>AccountId <span class="token operator">=></span> u64<span class="token punctuation">;</span>
+        <span class="token keyword">pub</span> UserValue <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">fn</span> user_value<span class="token punctuation">)</span><span class="token punctuation">:</span> map T<span class="token punctuation">::</span>AccountId <span class="token operator">=></span> u64<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
