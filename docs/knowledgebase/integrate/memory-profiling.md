@@ -1,6 +1,6 @@
 # Memory profiling
 
-Memory profiling enables you to understand the memory allocation and behavior of your blockchain applications over time in Substrate and Polkadot. It identifies method calls in the context of how memory was allocated, combining this information with the number of allocated objects. In addition, profiling can be used to analyze memory leaks, identify where memory consumption is happening, define temporary allocations and investigate excessive memory fragmentation within applications. 
+Memory profiling enables you to understand the memory allocation and behavior of your blockchain applications over time in Substrate and Polkadot. It identifies method calls in the context of how memory was allocated, combining this information with the number of allocated objects. In addition, profiling can be used to analyze memory leaks, identify where memory consumption is happening, define temporary allocations and investigate excessive memory fragmentation within applications. When run natively, it also covers the runtime. 
 
 ## Understanding Modes
 
@@ -52,7 +52,8 @@ This will run the analyzing. On standard hardware this takes approximately a min
 [2020-05-06T08:59:20Z INFO  actix_server::builder] Starting server on 127.0.0.1:8080
 ```
 
-Now open your browser and point it to the URL (here `http://localhost:8080/`), select the session you want to investigate. This will propagate a graph and may need a few minutes to load if a lot of data is being parsed.
+Now open your browser and point it to the URL (here `http://localhost:8080/`), select the session you want to investigate. This will propagate a graph and may need a few minutes to load if a lot of data is being parsed. It is worth noting that 
+the tracing of Substrate becomes significantly large quickly and longer term or super-in-depth introspection for specific runtime calls are sometimes hard to source.
 
 ![Graphs from the web UI](https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/blob/source/docs/assets/memory-graph.png)
 
