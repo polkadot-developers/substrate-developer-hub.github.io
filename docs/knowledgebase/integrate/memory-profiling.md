@@ -64,7 +64,7 @@ Via the top [via the REST API](https://github.com/koute/memory-profiler#rest-api
 
 ### Heaptrack
 
-The heaptrack file and heaptrack_gui can be used to investigate specific calls and stack traces suspected to leaking memory:
+The heaptrack file and heaptrack GUI can be used to investigate specific calls and stack traces suspected to leaking memory:
 
 ### Tips & Tricks
 
