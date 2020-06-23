@@ -80,7 +80,7 @@ you can also download other versions of the data and analyze it with a secondary
 ### Heaptrack
 
 The heaptrack file and heaptrack GUI can be used to investigate specific calls and stack traces
-suspected to leaking memory:
+suspected to leaking memory.
 
 ### Tips & Tricks
 
