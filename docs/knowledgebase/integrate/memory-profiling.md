@@ -71,7 +71,7 @@ you want to investigate. This will propagate a graph and may need a few minutes 
 data is being parsed. Substrate tracing becomes significantly large quickly, and longer term or
 super-in-depth introspection for specific runtime calls are sometimes hard to source.
 
-![Graphs from the web UI](../../../assets/memory-graph.png)
+![Graphs from the web UI](../../assets/memory-graph.png)
 
 Via the top
 [via the REST API](https://github.com/koute/memory-profiler#rest-api-exposed-by-memory-profiler-cli-server)
