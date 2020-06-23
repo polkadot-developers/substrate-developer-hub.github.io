@@ -55,7 +55,7 @@ This will run the analyzing. On standard hardware this takes approximately a min
 ```
 
 Now open your browser and point it to the URL (here `http://localhost:8080/`) and select the session you want to investigate. This will propagate a graph and may need a few minutes to load if a lot of data is being parsed.
-the tracing of Substrate becomes significantly large quickly and longer term or super-in-depth introspection for specific runtime calls are sometimes hard to source.
+Substrate tracing becomes significantly large quickly, and longer term or super-in-depth introspection for specific runtime calls are sometimes hard to source.
 
 ![Graphs from the web UI](https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/blob/source/docs/assets/memory-graph.png)
 
