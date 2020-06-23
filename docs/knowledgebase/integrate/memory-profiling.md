@@ -72,8 +72,5 @@ While the profiler generates huge logs, especially if Substrate has been running
 
 ## Known issues
 
-(FIXME: report these!)
-
-
-- the memory profiler currently core dumps when running substrate with `--wasm-execution compiled`
-- clicking on `flamegraph` makes the server crash
+- The memory profiler currently core dumps when running substrate with `--wasm-execution compiled`.
+- Clicking on `flamegraph` makes the server crash.
