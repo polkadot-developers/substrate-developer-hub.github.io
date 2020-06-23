@@ -2,8 +2,6 @@
 title: Memory Profiling
 ---
 
-# Memory profiling
-
 Memory profiling enables you to understand the memory allocation and behavior of your blockchain applications over time in Substrate-based clients. It identifies method calls in the context of how memory was allocated, combining this information with the number of allocated objects. In addition, profiling can be used to analyze memory leaks, identify where memory consumption is happening, define temporary allocations, and investigate excessive memory fragmentation within applications. When running Substrate locally, it also accounts for runtime. 
 
 ## Understanding Modes
