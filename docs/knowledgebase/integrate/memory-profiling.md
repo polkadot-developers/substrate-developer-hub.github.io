@@ -68,7 +68,7 @@ The heaptrack file and heaptrack GUI can be used to investigate specific calls a
 
 ### Tips & Tricks
 
-With the profiler generates huge logs, especially if Substrate has been running for a while, the analyzer might itself run out of memory during the process and segmentation faults. To circumvent this, create smaller logs by toggling the memory profiler with the `USR1`-Signal. Whenever this call is sent, it restarts and creates a new log file. Additionally, a simpler way to have the tracing split in half-an-hour-chunks – around ~800MB each – is to use `watch`: `PID=12345 watch -n 1800 'kill -USR1 $PID && sleep 1 && kill -USR1 $PID'`.
+While the profiler generates huge logs, especially if Substrate has been running for a while, the analyzer might itself run out of memory during the process and experience a segmentation fault. To circumvent this, create smaller logs by toggling the memory profiler with the `USR1`-Signal. Whenever this call is sent, it restarts and creates a new log file. Additionally, a simpler way to have the tracing split in thirty minute chunks – around ~800MB each – is to use `watch`: `PID=12345 watch -n 1800 'kill -USR1 $PID && sleep 1 && kill -USR1 $PID'`.
 
 ## Known issues
 
