@@ -26,7 +26,7 @@ cargo build --release -p memory-profiler-cli # builds the cli
 
 ## Using the Profiler on Substrate
 
-Build substrate/polkadot in release mode in your terminal `cargo build --release`. After the command is completed, run the build binary with the memory profiler preloaded. This step assumes the memory-profiler directory is next to the substrate directory and will only function if the directory is correctly called and placed:
+Build the client in release mode in your terminal (`cargo build --release`). After the command is completed, run the build binary with the memory profiler preloaded. This step assumes the `memory-profiler` directory is next to the Substrate directory and will only function if the directory is correctly called and placed:
 
 ```
 LD_PRELOAD=../memory-profiler/target/release/libmemory_profiler.so ./target/release/substrate
