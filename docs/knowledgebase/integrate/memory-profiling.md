@@ -1,6 +1,6 @@
 # Memory profiling
 
-This implementation uses the linux system profile, utilizing memory allocation for Substrate & Polkadot. Memory profiling enables you to understand the memory allocation and behavior of your blockchain applications over time. It helps identify method calls in the context of how memory was allocated, combining this information with the number of allocated objects. In addition, profiling can be used to analyze memory leaks, identify where memory consumption is happening, define temporary allocations and investigate excessive memory fragmentation within applications. 
+Memory profiling enables you to understand the memory allocation and behavior of your blockchain applications over time in Substrate and Polkadot. It identifies method calls in the context of how memory was allocated, combining this information with the number of allocated objects. In addition, profiling can be used to analyze memory leaks, identify where memory consumption is happening, define temporary allocations and investigate excessive memory fragmentation within applications. 
 
 ## Understanding Modes
 
