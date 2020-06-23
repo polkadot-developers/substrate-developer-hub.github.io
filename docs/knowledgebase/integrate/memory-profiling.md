@@ -11,7 +11,7 @@ Memory profiling enables you to understand the memory allocation and behavior of
 ## Installing memory-profiler
 
 We recommend [koute's memory profiler](https://github.com/koute/memory-profiler).
-This assumes you have installed and running rust stable, GCC and YARN globally. 
+This assumes you have installed rust stable, GCC, and yarn globally. 
 
 [The following steps will build a memory profiler](https://github.com/koute/memory-profiler#building):
 
