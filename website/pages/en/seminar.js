@@ -109,7 +109,7 @@ function Seminar(props) {
 								, a REST API service that runs alongside a Substrate node. This intermediate session will be useful for anyone who runs a Substrate node or would like to learn more about using Polkadot JS to interact with one. Attendees will learn about the capabilities that Sidecar exposes as well as how to set it up and run it.
 							</p>
 							<p>
-								On <strong>07 July</strong>, community member Spencer Harris joins us to present an overview of FRAME, Parity's framework for composing Substrate runtimes from individual pallets, and to demonstrate setting up a Substrate and Hackusama developer environment. This is a beginner-friendly session focused on runtime development.
+								On <strong>07 July</strong>, community member <a href="https://github.com/spencerbh">Spencer Harris</a> joins us to present an overview of FRAME, Parity's framework for composing Substrate runtimes from individual pallets, and to demonstrate setting up a Substrate and Hackusama developer environment. This is a beginner-friendly session focused on runtime development.
 							</p>
 							<p>
 								On <strong>14 July</strong>, Parity's Dan Forbes will demonstrate and discuss how to write your own Substrate pallet and install it in a runtime. He will also explore the uses and idiosyncracies of Substrate's runtime storage. This is a beginner-friendly session focussed on runtime development.
