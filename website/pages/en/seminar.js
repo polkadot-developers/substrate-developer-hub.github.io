@@ -104,23 +104,18 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>23 June</strong> Joshy Orndorff will demonstrate and discuss building parachains with Cumulus and Substrate.
+								On <strong>30 June</strong>, Parity's Zeke Mostov will join us to discuss [Substrate Sidecar](https://github.com/paritytech/substrate-api-sidecar), a REST API service that runs alongside a Substrate node. This intermediate session will be useful for anyone who runs a Substrate node. Attendees will learn how to setup and run Sidecar, and what value it adds.
 							</p>
 							<p>
-								This session will include a code walkthrough, a demonstration, and discussion of the Cumulus and Polkadot architecture.
+								On <strong>07 July</strong>, community member Spencer Harris joins us to present an overview of FRAME, Parity's framework for composing Substrate runtimes from individual pallets, and to demonstrate setting up a Substrate and Hackusama developer environment. This is a beginner-friendly session focused on runtime development.
 							</p>
 							<p>
-								The demo will be beginner-friendly, while the code-walkthrough and architecture discussion will cover intermediate to advanced consensus topics. Attendees will learn the concepts and procedure for creating and registering parachains on Polkadot-like networks.
+								On <strong>14 July</strong>, Parity's Dan Forbes will demonstrate and discuss how to write your own Substrate pallet and install it in a runtime. He will also explore the uses and idiosyncracies of Substrate's runtime storage. This is a beginner-friendly session focussed on runtime development.
 							</p>
 							<h4 className='mb-2'>How do I join the call?</h4>
 							<p>
 								We are trying the crowdcast platform for seminar. Specifically we meet in{' '}
-								<a href='https://www.crowdcast.io/e/substrate-seminar'>https://www.crowdcast.io/e/substrate-seminar</a>. This link will
-								only work when the call is live, so you may prefer to add this{' '}
-								<a href='https://calendar.google.com/calendar/b/1?cid=cGFyaXR5LmlvXzJmc2tqN245cm1qcHE1Y2xiOWc3ZWUzZGhvQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20'>
-									Google calendar invitation
-								</a>{' '}
-								to you own calendar.
+								<a href='https://www.crowdcast.io/e/substrate-seminar'>https://www.crowdcast.io/e/substrate-seminar</a>.
 							</p>
 						</div>
 
