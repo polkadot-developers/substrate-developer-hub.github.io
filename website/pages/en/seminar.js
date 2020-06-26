@@ -104,7 +104,9 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>30 June</strong>, Parity's Zeke Mostov will join us to discuss [Substrate Sidecar](https://github.com/paritytech/substrate-api-sidecar), a REST API service that runs alongside a Substrate node. This intermediate session will be useful for anyone who runs a Substrate node. Attendees will learn how to setup and run Sidecar, and what value it adds.
+								On <strong>30 June</strong>, Parity's Zeke Mostov will join us to discuss{' '}
+								<a href='https://github.com/paritytech/substrate-api-sidecar'>Substrate Sidecar</a>
+								, a REST API service that runs alongside a Substrate node. This intermediate session will be useful for anyone who runs a Substrate node. Attendees will learn how to setup and run Sidecar, and what value it adds.
 							</p>
 							<p>
 								On <strong>07 July</strong>, community member Spencer Harris joins us to present an overview of FRAME, Parity's framework for composing Substrate runtimes from individual pallets, and to demonstrate setting up a Substrate and Hackusama developer environment. This is a beginner-friendly session focused on runtime development.
