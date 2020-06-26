@@ -148,7 +148,7 @@ function Seminar(props) {
 								out to be off-topic, we'll point you to a better resource.
 							</p>
 
-							<h4 className='mb-2'>Where are the Recordings?</h4>
+							<h4 className='mb-2'>Where are the recordings?</h4>
 							<p>
 								Seminar has changed formats a few times so the recordings are in a few places.
 								<ul>
