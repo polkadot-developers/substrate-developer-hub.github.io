@@ -146,16 +146,26 @@ function Seminar(props) {
 								out to be off-topic, we'll point you to a better resource.
 							</p>
 
-							<h4 className='mb-2'>Is this related to Substrate Collaborative Learning?</h4>
+							<h4 className='mb-2'>Where are the Recordings?</h4>
 							<p>
-								Yes! Substrate Collaborative Learning was the previous harder-to-pronounce iteration of
-								Substrate Seminar. When we decided to start meeting every week, and have a more
-								discoverable web presence, we rebranded. If you liked Substrate Collaborative Learning,
-								you'll love Substrate Seminar. The{' '}
-								<a href='https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx'>
-									SCL recordings
-								</a>{' '}
-								are still available.
+								Seminar has changed formats a few times so the recordings are in a few places.
+								<ul>
+									<li>
+										<a href='https://www.crowdcast.io/e/substrate-seminar/'>
+											June 23 2020 and later
+										</a>{' '} are on Crowdcast.
+									</li>
+									<li>
+										<a href='https://www.youtube.com/watch?v=XoL1Ur_6Lxk&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'>
+											19 November 2019 - June 23 2020
+										</a>{' '} are on the Substrate Seminar YouTube playlist.
+									</li>
+									<li>
+										<a href='https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx'>
+											03 June 2019 - 02 November 2019
+										</a>{' '} are on the Substrate Collaborative Learning YouTube playlist.
+									</li>
+								</ul>
 							</p>
 						</div>
 					</div>
