@@ -291,6 +291,22 @@ class Tutorials extends React.Component {
                 )}`
               },
               {
+                img: `${baseUrl}img/ink-smart-contracts-tutorial.png`,
+                title: <translate>ink! Smart Contracts Tutorial</translate>,
+                text: (
+                  <translate>
+                    A comprehensive, end-to-end tutorial for building an ERC20
+                    token contract using ink!.
+                  </translate>
+                ),
+                difficulty: "easy",
+                length: "4",
+                prerequisite: false,
+                version: "2.0.0-rc4",
+                href:
+                  "https://substrate-developer-hub.github.io/substrate-contracts-workshop/"
+              },
+              {
                 img: `${baseUrl}img/crates.png`,
                 title: (
                   <translate>Write a Pallet in its Own Crate</translate>
