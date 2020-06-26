@@ -134,11 +134,11 @@ function Seminar(props) {
 							</p>
 							*/}
 
-							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
+							<h4 className='mt-4 mb-2'>Can I ask my own Questions?</h4>
 							<p>
-								Yes! Seminar works best when everyone shares their projects and interests. To ensure a
-								slot to share, please contact the group on <a href='https://matrix.to/#/!oClBfIbtucPfGKlNpk:matrix.parity.io'>Riot</a>.
+								Yes! The second half of every seminar is for open Q & A like office hours. You can ask questions or even bring your code that doesn't compile. Participants will be invited on screen to share their work and their questions. You may also join us between Seminars on <a href='https://matrix.to/#/!oClBfIbtucPfGKlNpk:matrix.parity.io'>Riot</a>.
 							</p>
+
 							<h4 className='mb-2'>I am not a [Substrate] developer, can I still participate?</h4>
 							<p>
 								Yes! The seminar is open to everyone. The content is generally more developer-oriented,
