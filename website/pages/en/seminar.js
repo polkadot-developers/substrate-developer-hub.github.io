@@ -136,7 +136,7 @@ function Seminar(props) {
 							</p>
 							*/}
 
-							<h4 className='mt-4 mb-2'>Can I ask my own Questions?</h4>
+							<h4 className='mt-4 mb-2'>Can I ask my own questions?</h4>
 							<p>
 								Yes! The second half of every seminar is for open Q & A like office hours. You can ask questions or even bring your code that doesn't compile. Participants will be invited on screen to share their work and their questions. You may also join us between Seminars on <a href='https://matrix.to/#/!oClBfIbtucPfGKlNpk:matrix.parity.io'>Riot</a>.
 							</p>
