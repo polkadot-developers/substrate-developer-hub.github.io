@@ -80,19 +80,21 @@ jobs:
         - checkout
         - run:
             name: build
+            working_directory: website
             command: |
               yarn
         - run:
             name: serve
+            working_directory: website
             background: true
             command: |
-              yarn polkadot:start
+              yarn start
         - run:
-            name: wait website up
+            name: wait serve
             command: |
               while ! nc -z localhost 3000; do
                 sleep 1
-                echo waiting for website up...
+                echo waiting for website to start...
               done
         - run:
             name: check links
