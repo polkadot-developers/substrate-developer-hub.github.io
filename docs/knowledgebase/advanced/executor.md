@@ -69,7 +69,7 @@ needs to know the `spec_name`, `spec_version` and `authoring_version` of both th
 runtime.
 
 The runtime provides the following
-[versioning properties](https://crates.parity.io/sp_version/struct.RuntimeVersion.html):
+[versioning properties](https://substrate.dev/rustdocs/v2.0.0-rc4/sp_version/struct.RuntimeVersion.html):
 
 - `spec_name`: The identifier for the different Substrate runtimes.
 
@@ -128,10 +128,10 @@ TODO
 ### References
 
 - Check out the different
-  [Execution Strategies](https://crates.parity.io/sc_client_api/execution_extensions/struct.ExecutionStrategies.html).
+  [Execution Strategies](https://substrate.dev/rustdocs/v2.0.0-rc4/sc_client_api/execution_extensions/struct.ExecutionStrategies.html).
 
 - Take a look at the different
-  [Execution Strategy Options](https://crates.parity.io/sp_state_machine/enum.ExecutionStrategy.html)
+  [Execution Strategy Options](https://substrate.dev/rustdocs/v2.0.0-rc4/sp_state_machine/enum.ExecutionStrategy.html)
 
 - Review the
-  [Runtime Version definition](https://crates.parity.io/sp_version/struct.RuntimeVersion.html).
+  [Runtime Version definition](https://substrate.dev/rustdocs/v2.0.0-rc4/sp_version/struct.RuntimeVersion.html).
