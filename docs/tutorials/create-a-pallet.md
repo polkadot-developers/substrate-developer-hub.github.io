@@ -7,7 +7,7 @@ node based on the `substrate-node-template`.
 
 ## Install the Node Template
 
-You should already have version `v2.0.0-rc3` of the
+You should already have version `v2.0.0-rc4` of the
 [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
 compiled on your computer from when you completed the
 [Create Your First Substrate Chain Tutorial](../create-your-first-substrate-chain/).
@@ -26,7 +26,7 @@ Clone the Substrate pallet template in the `pallets` directory of your node temp
 
 ```bash
 cd pallets
-git clone -b v2.0.0-rc3 https://github.com/substrate-developer-hub/substrate-pallet-template test-pallet
+git clone -b v2.0.0-rc4 https://github.com/substrate-developer-hub/substrate-pallet-template test-pallet
 ```
 
 > In this tutorial we have placed the pallet template _inside_ the node template's directory
@@ -50,13 +50,13 @@ The `package` section of the `Cargo.toml` file now looks like:
 ```toml
 [package]
 authors = ['Substrate DevHub <https://github.com/substrate-developer-hub>']
-description = 'Substrate FRAME pallet template'
+description = 'FRAME pallet template'
 edition = '2018'
-homepage = 'https://substrate.io'
+homepage = 'https://substrate.dev'
 license = 'Unlicense'
 name = 'test-pallet'
-repository = 'https://github.com/paritytech/substrate/'
-version = '2.0.0-rc3'
+repository = 'https://github.com/substrate-developer-hub/substrate-pallet-template/'
+version = '2.0.0-rc4'
 ```
 
 ### Compile the Template Pallet
@@ -115,12 +115,12 @@ consistent dependencies between your pallet and your runtime.
 [dependencies.frame-support]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-tag = 'v2.0.0-rc3'
-version = '2.0.0-rc3'
+tag = 'v2.0.0-rc4'
+version = '2.0.0-rc4'
 ```
 
-From the above snippet, we see that this pallet template depends on version `2.0.0-rc3` of the
-low-level libraries. Thus it can be used in runtimes that also depend on `2.0.0-rc3`.
+From the above snippet, we see that this pallet template depends on version `2.0.0-rc4` of the
+low-level libraries. Thus it can be used in runtimes that also depend on `2.0.0-rc4`.
 
 ### Your Pallet's Dev Dependencies
 
@@ -135,8 +135,8 @@ dependencies that are needed in your pallet's tests, but not the actual pallet i
 [dev-dependencies.sp-core]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-tag = 'v2.0.0-rc3'
-version = '2.0.0-rc3'
+tag = 'v2.0.0-rc4'
+version = '2.0.0-rc4'
 ```
 
 You can confirm that the tests in the Substrate pallet template pass with:
