@@ -25,9 +25,7 @@ const translate = require('../../server/translate').translate;
 function Community(props) {
   const { config: siteConfig, language = "" } = props;
   const { baseUrl, docsUrl } = siteConfig;
-  const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
   const langPart = `${language ? `${language}/` : ""}`;
-  const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
   const pageUrl = doc => `${baseUrl}${langPart}${doc}`
 
   const CommunityResource = props => (
@@ -38,50 +36,17 @@ function Community(props) {
     </div>
   );
 
-  const StackOverflow = () => (
-    <CommunityResource title="StackOverflow">
-      Stack Overflow is a great place to ask code-level questions or if you’re
-      stuck with a specific error. Read through the existing questions/answers
-      or ask your own!
-      <p>
-        <translate>Tags:</translate>
-        <Button
-          target="_blank"
-          variant="info"
-          size="sm"
-          href="https://stackoverflow.com/questions/tagged/substrate"
-          className="m-1"
-        >
-          <code>substrate</code>
-        </Button>
-        <Button
-          target="_blank"
-          variant="dark"
-          size="sm"
-          href="https://stackoverflow.com/questions/tagged/ink"
-          className="m-1"
-        >
-          <code>ink</code>
-        </Button>
-        <Button
-          target="_blank"
-          variant="primary"
-          size="sm"
-          href="https://stackoverflow.com/questions/tagged/parity-io"
-          className="m-1"
-        >
-          <code>parity-io</code>
-        </Button>
-        <Button
-          target="_blank"
-          variant="warning"
-          size="sm"
-          href="https://stackoverflow.com/questions/tagged/rust"
-          className="m-1"
-        >
-          <code>rust</code>
-        </Button>
-      </p>
+  const Newsletter = () => (
+    <CommunityResource title="Newsletter">
+      <p>Subscribe to the Substrate newsletter to hear about updates and events.</p>
+      <Button
+        variant="secondary"
+        size="sm"
+        href="newsletter"
+        className="m-1 primary-color"
+      >
+        Subscribe
+      </Button>
     </CommunityResource>
   );
 
@@ -135,79 +100,7 @@ function Community(props) {
     </CommunityResource>
   );
 
-  const TwitchStream = () => (
-    <CommunityResource title={<translate>Twitch Stream</translate>}>
-      <p>
-        <translate>
-          You might catch us streaming cool live coding sessions. Follow our channel
-          to make sure you never miss a stream!
-        </translate>
-      </p>
-      <iframe
-        src="https://player.twitch.tv/?channel=paritylivecoding"
-        frameBorder="0"
-        allowFullScreen={true}
-        scrolling="no"
-        height="378"
-        width="620"
-      />
-      <p>
-        <Button
-          target="_blank"
-          variant="secondary"
-          size="sm"
-          href="https://www.twitch.tv/paritylivecoding"
-          style={{ backgroundColor: "#6441A5" }}
-          className="m-1"
-        >
-          Twitch Channel >
-        </Button>
-      </p>
-    </CommunityResource>
-  );
-
-  const AwesomeSubstrate = () => (
-    <CommunityResource title={<translate>Awesome Substrate</translate>}>
-      <p>
-        <translate>
-          An "awesome list" of up-to-date news, events, and onboarding materials for Substrate.
-        </translate>
-      </p>
-      <p>
-        <Button
-          target="_blank"
-          variant="secondary"
-          size="sm"
-          href="https://substrate.dev/awesome-substrate/"
-          className="m-1 primary-color"
-        >
-          Awesome Substrate
-        </Button>
-      </p>
-    </CommunityResource>
-  );
-
-  const Videos = () => (
-    <CommunityResource title={<translate>Videos</translate>}>
-      <p>
-        <translate>
-          A list of great videos to help you learn about Substrate.
-        </translate>
-      </p>
-      <p>
-        <Button
-          variant="secondary"
-          size="sm"
-          href={pageUrl("videos")}
-          className="m-1 primary-color"
-        >
-          Videos
-        </Button>
-      </p>
-    </CommunityResource>
-  );
-
-  const SubstrateSeminar = () => (
+  const Seminar = () => (
     <CommunityResource title={<translate>Substrate Seminar</translate>}>
       <p>
         <translate>
@@ -257,6 +150,91 @@ function Community(props) {
     </CommunityResource>
   );
 
+  const StackOverflow = () => (
+    <CommunityResource title="StackOverflow">
+      Stack Overflow is a great place to ask code-level questions or if you’re
+      stuck with a specific error. Read through the existing questions/answers
+      or ask your own!
+      <p>
+        <translate>Tags:</translate>
+        <Button
+          target="_blank"
+          variant="dark"
+          size="sm"
+          href="https://stackoverflow.com/questions/tagged/substrate"
+          className="m-1"
+        >
+          <code>substrate</code>
+        </Button>
+        <Button
+          target="_blank"
+          variant="dark"
+          size="sm"
+          href="https://stackoverflow.com/questions/tagged/ink"
+          className="m-1"
+        >
+          <code>ink</code>
+        </Button>
+        <Button
+          target="_blank"
+          variant="dark"
+          size="sm"
+          href="https://stackoverflow.com/questions/tagged/parity-io"
+          className="m-1"
+        >
+          <code>parity-io</code>
+        </Button>
+        <Button
+          target="_blank"
+          variant="dark"
+          size="sm"
+          href="https://stackoverflow.com/questions/tagged/rust"
+          className="m-1"
+        >
+          <code>rust</code>
+        </Button>
+      </p>
+    </CommunityResource>
+  );
+
+  const Twitter = () => (
+    <CommunityResource title="Twitter">
+      <p>Follow us on Twitter to stay up-to-date.</p>
+      <Button
+        variant="secondary"
+        size="sm"
+        href="https://twitter.com/substrate_io"
+        className="m-1 primary-color"
+      >
+        Substrate
+      </Button>
+      <Button
+        variant="secondary"
+        size="sm"
+        href="https://twitter.com/paritytech"
+        className="m-1 primary-color"
+      >
+        Parity Technologies
+      </Button>
+      <Button
+        variant="secondary"
+        size="sm"
+        href="https://twitter.com/Polkadot"
+        className="m-1 primary-color"
+      >
+        Polkadot Network
+      </Button>
+      <Button
+        variant="secondary"
+        size="sm"
+        href="https://twitter.com/kusamanetwork"
+        className="m-1 primary-color"
+      >
+        Kusama Network
+      </Button>
+    </CommunityResource>
+  );
+
   const Events = () => (
     <CommunityResource title={<translate>Events & Meetups</translate>}>
       <p>
@@ -268,12 +246,33 @@ function Community(props) {
       <p>
         <Button
           target="_blank"
-          variant="secondary"
+          variant="dark"
           size="sm"
           href="https://www.meetup.com/parity/"
-          className="m-1 primary-color"
+          className="m-1"
         >
           Events
+        </Button>
+      </p>
+    </CommunityResource>
+  );
+
+  const AwesomeSubstrate = () => (
+    <CommunityResource title={<translate>Awesome Substrate</translate>}>
+      <p>
+        <translate>
+          An "awesome list" of up-to-date news, events, and onboarding materials for Substrate.
+        </translate>
+      </p>
+      <p>
+        <Button
+          target="_blank"
+          variant="secondary"
+          size="sm"
+          href="https://substrate.dev/awesome-substrate/"
+          className="m-1 primary-color"
+        >
+          Awesome Substrate
         </Button>
       </p>
     </CommunityResource>
@@ -296,13 +295,13 @@ function Community(props) {
               be happy for you to join!
             </translate>
           </p>
-          <StackOverflow />
+          <Newsletter />
           <RiotChat />
-          <Videos />
-          <SubstrateSeminar />
+          <Seminar />
+          <StackOverflow />
+          <Twitter />
           <Events />
           <AwesomeSubstrate />
-          <TwitchStream />
         </Container>
       </div>
     </div>

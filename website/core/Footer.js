@@ -112,19 +112,23 @@ class Footer extends React.Component {
             )}
           </a>
           <div>
-            <h5>Docs</h5>
-            <a href={'/docs/' + this.props.language + '/'}>
-              Getting Started
-            </a>
+            <h5>Developer Hub</h5>
             <a href={this.pageUrl("tutorials", this.props.language)}>
               Tutorials
             </a>
-            <a href="https://crates.parity.io/">Reference Docs</a>
+            <a href={'/docs/' + this.props.language + '/'}>
+              Knowledge Base
+            </a>
             <a href="https://substrate.dev/recipes/">Recipes</a>
+            <a href="https://substrate.dev/rustdocs">Reference Documents</a>
           </div>
           <div>
             <h5>Community</h5>
-            <a href={this.pageUrl("videos", this.props.language)}>Videos</a>
+            <a href="community">Community Home</a>
+            <a href="newsletter">Newsletter</a>
+            <a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">
+              Riot Chat
+            </a>
             <a href={this.pageUrl("seminar", this.props.language)}>Substrate Seminar</a>
             <a
               href="http://stackoverflow.com/questions/tagged/substrate"
@@ -132,9 +136,6 @@ class Footer extends React.Component {
               rel="noreferrer noopener"
             >
               Stack Overflow
-            </a>
-            <a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">
-              Riot Chat
             </a>
             <a
               href="https://twitter.com/ParityTech"
