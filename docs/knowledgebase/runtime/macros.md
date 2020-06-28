@@ -181,7 +181,31 @@ This macro declares a `Module` struct and a `Call` enum for a pallet, and adding
 
 ### construct_runtime
 
-!!TODO
+**When to Use it?**
+
+It is part of the contruction process to integrate various pallets into your runtime.
+
+**Objective**
+
+The macro does a lot of things, as noted below. It creates and implements various struct and enum (e.g. `Runtime`, `Event`, `Origin`, `Call`, and `GenesisConfig`) and automated the implementation of them for helper traits. This macro also spit out the logic of mapping different events and dispatchable calls back to a particular pallet.
+
+[**API Documentation**](https://substrate.dev/rustdocs/v2.0.0-rc3/frame_support/macro.construct_runtime.html)
+
+[**Macro Definition**](https://github.com/paritytech/substrate/blob/v2.0.0-rc3/frame/support/procedural/src/construct_runtime/mod.rs#L31-L36)
+
+**Code Expansion Example**
+
+  - [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-rs-L260-L277)
+  - [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-expanded-rs-L763-L2475)
+
+**Somethings worth noting about on the macro expansion**
+
+  - a `Runtime` struct type is declared
+  - an `Event` enum is defined with variants of all pallets that emit events. There are also some encoding/decoding traits and helper methods are implemented for the enum. Various conversion traits `TryInto` are implemented for `Event` to convert the enum to the particular event of a certain pallet.
+  - an `Origin` enum is defined with its helper traits on `PartialEq`, `Clone`, `Debug` implemented. It maps each pallet included in the runtime to an index number.
+  - a `Call` enum is defined with all integrated pallet as variants. It contains the data and metadata of each of the integrated pallets, and redirect calls to the specific pallet via implementing `frame_support::dispatch::Dispatchable`.
+  - The `GenesisConfig` struct type is defined, and implement `sp_runtime::BuildStorage` trait for building up the storage genesis config.
+  - Provide a default `frame_support::unsigned::ValidateUnsigned` trait implementation if not provided.
 
 ### parameter_types
 
