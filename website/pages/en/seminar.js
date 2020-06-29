@@ -104,23 +104,20 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>23 June</strong> Joshy Orndorff will demonstrate and discuss building parachains with Cumulus and Substrate.
+								On <strong>30 June</strong>, Parity's Zeke Mostov will join us to discuss{' '}
+								<a href='https://github.com/paritytech/substrate-api-sidecar'>Substrate Sidecar</a>
+								, a REST API service that runs alongside a Substrate node. This intermediate session will be useful for anyone who runs a Substrate node or would like to learn more about using Polkadot JS to interact with one. Attendees will learn about the capabilities that Sidecar exposes as well as how to set it up and run it.
 							</p>
 							<p>
-								This session will include a code walkthrough, a demonstration, and discussion of the Cumulus and Polkadot architecture.
+								On <strong>07 July</strong>, community member <a href="https://github.com/spencerbh">Spencer Harris</a> joins us to present an overview of FRAME, Parity's framework for composing Substrate runtimes from individual pallets, and to demonstrate setting up a Substrate and Hackusama developer environment. This is a beginner-friendly session focused on runtime development.
 							</p>
 							<p>
-								The demo will be beginner-friendly, while the code-walkthrough and architecture discussion will cover intermediate to advanced consensus topics. Attendees will learn the concepts and procedure for creating and registering parachains on Polkadot-like networks.
+								On <strong>14 July</strong>, Parity's Dan Forbes will demonstrate and discuss how to write your own Substrate pallet and install it in a runtime. He will also explore the uses and idiosyncrasies of Substrate's runtime storage. This is a beginner-friendly session focused on runtime development.
 							</p>
 							<h4 className='mb-2'>How do I join the call?</h4>
 							<p>
 								We are trying the crowdcast platform for seminar. Specifically we meet in{' '}
-								<a href='https://www.crowdcast.io/e/substrate-seminar'>https://www.crowdcast.io/e/substrate-seminar</a>. This link will
-								only work when the call is live, so you may prefer to add this{' '}
-								<a href='https://calendar.google.com/calendar/b/1?cid=cGFyaXR5LmlvXzJmc2tqN245cm1qcHE1Y2xiOWc3ZWUzZGhvQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20'>
-									Google calendar invitation
-								</a>{' '}
-								to you own calendar.
+								<a href='https://www.crowdcast.io/e/substrate-seminar'>https://www.crowdcast.io/e/substrate-seminar</a>.
 							</p>
 						</div>
 
@@ -139,11 +136,11 @@ function Seminar(props) {
 							</p>
 							*/}
 
-							<h4 className='mt-4 mb-2'>Can I share a project I've been working on?</h4>
+							<h4 className='mt-4 mb-2'>Can I ask my own questions?</h4>
 							<p>
-								Yes! Seminar works best when everyone shares their projects and interests. To ensure a
-								slot to share, please contact the group on <a href='https://matrix.to/#/!oClBfIbtucPfGKlNpk:matrix.parity.io'>Riot</a>.
+								Yes! The second half of every Seminar is for open Q & A like office hours. You can ask questions or even bring your code that doesn't compile. Participants will be invited on-screen to share their work and their questions. You may also join us between Seminars on <a href='https://matrix.to/#/!oClBfIbtucPfGKlNpk:matrix.parity.io'>Riot</a>.
 							</p>
+
 							<h4 className='mb-2'>I am not a [Substrate] developer, can I still participate?</h4>
 							<p>
 								Yes! The seminar is open to everyone. The content is generally more developer-oriented,
@@ -151,111 +148,32 @@ function Seminar(props) {
 								out to be off-topic, we'll point you to a better resource.
 							</p>
 
-							<h4 className='mb-2'>Is this related to Substrate Collaborative Learning?</h4>
+							<h4 className='mb-2'>Where are the recordings?</h4>
 							<p>
-								Yes! Substrate Collaborative Learning was the previous harder-to-pronounce iteration of
-								Substrate Seminar. When we decided to start meeting every week, and have a more
-								discoverable web presence, we rebranded. If you liked Substrate Collaborative Learning,
-								you'll love Substrate Seminar. The{' '}
-								<a href='https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx'>
-									SCL recordings
-								</a>{' '}
-								are still available.
+								Seminar has changed formats a few times so the recordings are in a few places.
+								<ul>
+									<li>
+										<a href='https://www.crowdcast.io/e/substrate-seminar/'>
+											June 23 2020 and later
+										</a>{' '} are on Crowdcast.
+									</li>
+									<li>
+										<a href='https://www.youtube.com/watch?v=XoL1Ur_6Lxk&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'>
+											19 November 2019 - June 23 2020
+										</a>{' '} are on the Substrate Seminar YouTube playlist.
+									</li>
+									<li>
+										<a href='https://www.youtube.com/playlist?list=PLp0_ueXY_enUCPszf_3Q9ZxovLvKm1eMx'>
+											03 June 2019 - 02 November 2019
+										</a>{' '} are on the Substrate Collaborative Learning YouTube playlist.
+									</li>
+								</ul>
 							</p>
 						</div>
 					</div>
 				</div>
 			</section>
 			<section className='bg--secondary'>
-				<div className='container'>
-					<div
-						className='row pb-0'
-						style={{
-							marginBottom: '20px'
-						}}>
-						<div className='col-6'>
-							<h4 className='p-color'>Previous calls</h4>
-						</div>
-						<div className='col-6 text-right'>
-							<a
-								href='https://www.youtube.com/playlist?list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
-								target='_blank'>
-								View more recordings »
-							</a>
-						</div>
-					</div>
-
-					<div className='row featured-video pt-0'>
-
-						<div className='col-md-4'>
-							<section className='video-cover video-cover-xs'>
-								<div
-									className='background-image-holder'
-									style={{
-										backgroundImage: `url('/img/seminar-t.jpg' )`
-									}}
-								/>
-								<a
-									className='video-play'
-									href='https://www.youtube.com/watch?v=XoL1Ur_6Lxk&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
-									target='_blank'
-								/>
-							</section>
-							<section className='video-details'>
-								<h4 className='p-color'>Execute Substrate pallets in a TEE with SubstraTEE</h4>
-								<p>
-									Brenzi explains how the SubstraTEE framework can be used to protect privacy for your use case by re-using your Substrate pallets and instantiating them inside a trusted execution environment.
-								</p>
-							</section>
-						</div>
-
-						<div className='col-md-4'>
-							<section className='video-cover video-cover-xs'>
-								<div
-									className='background-image-holder'
-									style={{
-										backgroundImage: `url('/img/seminar-t.jpg' )`
-									}}
-								/>
-								<a
-									className='video-play'
-									href='https://www.youtube.com/watch?v=0eNGZpNkJk4&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
-									target='_blank'
-								/>
-							</section>
-							<section className='video-details'>
-								<h4 className='p-color'>Pallet Coupling, Runtime Upgrades, and Storage Migrations</h4>
-								<p>
-									Joshy Orndorff walks step-by-step through a demonstration that exemplifies pallet coupling, runtime upgrades, and storage migrations.
-								</p>
-							</section>
-						</div>
-
-						<div className='col-md-4'>
-							<section className='video-cover video-cover-xs'>
-								<div
-									className='background-image-holder'
-									style={{
-										backgroundImage: `url('/img/seminar-t.jpg' )`
-									}}
-								/>
-								<a
-									className='video-play'
-									href='https://www.youtube.com/watch?v=E1OymWVTZqM&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'
-									target='_blank'
-								/>
-							</section>
-							<section className='video-details'>
-								<h4 className='p-color'>Adding SM2 Crypto to Substrate</h4>
-								<p>
-									Parity's Maggie Dong demonstrates Substrate accounts that use alternative cryptographic schemes. She'll show her work adding the sm2 scheme and submitting transactions with subxt.
-								</p>
-							</section>
-						</div>
-
-					</div>
-
-				</div>
 
 				<div
 					className='container'
