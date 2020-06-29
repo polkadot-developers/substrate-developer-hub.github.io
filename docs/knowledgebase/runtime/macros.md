@@ -276,39 +276,51 @@ To expose version information about all implemented api traits, the constant `RU
 
 **Somethings worth noting about on the macro expansion**
 
-### impl_outer_origin!
+### impl_outer_origin
 
 **Context**
 
+To construct an `Origin` struct type for a runtime. This is usually called automatically by the `construct_runtime` macro. But developers may call this macro directly to construct a mock runtime to hold the target pallet for testing.
+
 **Objective**
 
-[**API Documentation**]
+This macro helps to convert the user intent on the `Origin` construction to concrete implementation of the `Origin` enum type.
 
-[**Macro Definition**]
+[**API Documentation**](https://substrate.dev/rustdocs/v2.0.0-rc3/frame_support/macro.impl_outer_origin.html)
+
+[**Macro Definition**](https://github.com/paritytech/substrate/blob/v2.0.0-rc3/frame/support/src/origin.rs#L23-L223)
 
 **Code Expansion Example**
 
-  - [original]
-  - [expanded]
+  - [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-mock-rs-L12-L14)
+  - [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-test-expanded-rs-L26-L147)
 
 **Somethings worth noting about on the macro expansion**
 
-### impl_outer_event!
+  - declaring and implementing the `Origin` enum and implements various helper traits, e.g. `Clone`, `StructuralPartialEq`, `Debug` etc for the type.
+
+### impl_outer_event
 
 **Context**
 
+Constructs an `Event` type for a runtime. This is usually called automatically by the construct_runtime macro. But developers may call this macro directly to construct `Event` enum to indicate events they are interested to listen for when building a mock runtime for testing.
+
 **Objective**
 
-[**API Documentation**]
+This macro replace the intent on interested pallet events to a concrete implementation of `Event` that includes the events of tar pallets and automatically implement various help traits on `Event` type.
 
-[**Macro Definition**]
+[**API Documentation**](https://substrate.dev/rustdocs/v2.0.0-rc3/frame_support/macro.impl_outer_event.html)
+
+[**Macro Definition**](https://github.com/paritytech/substrate/blob/v2.0.0-rc3/frame/support/src/event.rs#L334-L485)
 
 **Code Expansion Example**
 
-  - [original]
-  - [expanded]
+  - [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-mock-rs-L16-L21)
+  - [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-test-expanded-rs-L148-L361)
 
 **Somethings worth noting about on the macro expansion**
+
+  - declaring and implementing the Event enum and implements various helper traits, e.g. `Clone`, `StructuralPartialEq`, `Debug`, data encoding/decoding, and meta-data for the type.
 
 ## Conclusion
 
