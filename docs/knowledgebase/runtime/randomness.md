@@ -40,10 +40,9 @@ The first method is called `random_seed`. It takes no parameters and gives back 
 randomness. Calling this method multiple times in a block will return the same value each time.
 Thus, it is not recommended to use this method directly.
 
-The second method is called `random`. It takes a byte-array which is used as a context identifier.
-It returns a result that is influenced by both the raw random seed and the context provided. This
-method may be called multiple times in the same block and will return a result that is specific to
-the context provided and independently low-influence from any other context.
+The second method is called random. It takes a byte-array which is used as a context identifier and
+returns a result as unique to this context and as independently from other contexts as allowed by
+the underlying randomness source.
 
 ### Generating Randomness
 
