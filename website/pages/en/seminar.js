@@ -61,7 +61,7 @@ function Seminar(props) {
 							</section>
 							<section>
 								<span className='block type--fine-print'>
-									or <a href='https://zoom.us/j/916767726'>join live call »</a>
+									or <a href='https://www.crowdcast.io/e/substrate-seminar'>join live call »</a>
 								</span>
 							</section>
 						</div>
@@ -104,18 +104,18 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>June 16th</strong>, SubSocial's Alex Siman will walk through their recently overhauled Roles and Permissions pallets.
+								On <strong>23 June</strong> Joshy Orndorff will demonstrate and discuss building parachains with Cumulus and Substrate.
 							</p>
 							<p>
-								This will be an technical presentation demonstrating intermediate-level pallet development. Alex will do a code walkthrough demonstrating loose coupling of pallets in a runtime.
+								This session will include a code walkthrough, a demonstration, and discussion of the Cumulus and Polkadot architecture.
 							</p>
 							<p>
-								Also on <strong>June 16th</strong>, Parity's events team will present some efforts and get community input on ways to improve the format of Substrate Seminar. Come share your input, and shape the future of Seminar.
+								The demo will be beginner-friendly, while the code-walkthrough and architecture discussion will cover intermediate to advanced consensus topics. Attendees will learn the concepts and procedure for creating and registering parachains on Polkadot-like networks.
 							</p>
 							<h4 className='mb-2'>How do I join the call?</h4>
 							<p>
-								We meet using zoom video conferencing. Specifically we meet in{' '}
-								<a href='https://zoom.us/j/916767726'>https://zoom.us/j/916767726</a>. This link will
+								We are trying the crowdcast platform for seminar. Specifically we meet in{' '}
+								<a href='https://www.crowdcast.io/e/substrate-seminar'>https://www.crowdcast.io/e/substrate-seminar</a>. This link will
 								only work when the call is live, so you may prefer to add this{' '}
 								<a href='https://calendar.google.com/calendar/b/1?cid=cGFyaXR5LmlvXzJmc2tqN245cm1qcHE1Y2xiOWc3ZWUzZGhvQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20'>
 									Google calendar invitation
@@ -276,7 +276,7 @@ function Seminar(props) {
 								</section>
 								<section>
 									<span className='block type--fine-print'>
-										or <a href='https://zoom.us/j/916767726'>join live call »</a>
+										or <a href='https://www.crowdcast.io/e/substrate-seminar'>join live call »</a>
 									</span>
 								</section>
 							</div>

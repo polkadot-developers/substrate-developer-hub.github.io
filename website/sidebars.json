@@ -44,7 +44,8 @@
       "knowledgebase/integrate/polkadot-js",
       "knowledgebase/integrate/libraries",
       "knowledgebase/integrate/chain-spec",
-      "knowledgebase/integrate/subkey"
+      "knowledgebase/integrate/subkey",
+      "knowledgebase/integrate/memory-profiling"
     ],
     "Advanced": [
       "knowledgebase/advanced/codec",

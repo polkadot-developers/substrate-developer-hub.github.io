@@ -94,10 +94,10 @@ decl_storage! {
 	trait Store for Module<T: Trait> as Example {
 		// The last value passed to `set_value`.
 		// Used as an example of a `StorageValue`.
-		pub LastValue get(last_value): u64;
+		pub LastValue get(fn last_value): u64;
 		// The value each user has put into `set_value`.
 		// Used as an example of a `StorageMap`.
-		pub UserValue get(user_value): map T::AccountId => u64;
+		pub UserValue get(fn user_value): map T::AccountId => u64;
 	}
 }
 
