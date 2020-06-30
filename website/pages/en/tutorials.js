@@ -232,7 +232,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "< 1",
                 prerequisite: false,
-                version: "2.0.0-rc3",
+                version: "2.0.0-rc4",
                 href: `${docUrl(
                   "tutorials/create-your-first-substrate-chain/"
                 )}`
@@ -250,7 +250,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "1",
                 prerequisite: true,
-                version: "2.0.0-rc3",
+                version: "2.0.0-rc4",
                 href: `${docUrl(
                   "tutorials/build-a-dapp/"
                 )}`
@@ -267,7 +267,7 @@ class Tutorials extends React.Component {
                 difficulty: "medium",
                 length: "2",
                 prerequisite: false,
-                version: "2.0.0-rc3",
+                version: "2.0.0-rc4",
                 href: `${docUrl(
                   "tutorials/add-a-pallet-to-your-runtime/")}`
               },
@@ -285,10 +285,26 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "2",
                 prerequisite: false,
-                version: "2.0.0-rc3",
+                version: "2.0.0-rc4",
                 href: `${docUrl(
                   "tutorials/start-a-private-network/"
                 )}`
+              },
+              {
+                img: `${baseUrl}img/ink-smart-contracts-tutorial.png`,
+                title: <translate>ink! Smart Contracts Tutorial</translate>,
+                text: (
+                  <translate>
+                    A comprehensive, end-to-end tutorial for building an ERC20
+                    token contract using ink!.
+                  </translate>
+                ),
+                difficulty: "easy",
+                length: "4",
+                prerequisite: false,
+                version: "2.0.0-rc4",
+                href:
+                  "https://substrate-developer-hub.github.io/substrate-contracts-workshop/"
               },
               {
                 img: `${baseUrl}img/crates.png`,
@@ -304,7 +320,7 @@ class Tutorials extends React.Component {
                 difficulty: "medium",
                 length: "2",
                 prerequisite: false,
-                version: "2.0.0-rc3",
+                version: "2.0.0-rc4",
                 href: `${docUrl("tutorials/create-a-pallet/")}`
               },
               {
@@ -320,7 +336,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "< 1",
                 prerequisite: false,
-                version: "2.0.0-rc3",
+                version: "2.0.0-rc4",
                 href: `${docUrl("tutorials/visualize-node-metrics/")}`
               }
             ]}
