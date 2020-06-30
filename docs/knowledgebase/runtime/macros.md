@@ -31,6 +31,8 @@ There are three ways to learn about these runtime macros:
 
 When developing substrate runtime, there are a few macros that will be used frequently. The following is a relatively detail explanation to these macros. They will be explained in when they are used, what they do, how the code looks like when expanded within the [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template) project, and implementation notes that runtime engineers may find worth noting about.
 
+If you want to get into the nitty-gritty of macros in the following *Macro Implementation Notes* section, it is encouraged to follow the links in *Doc. and Example* to see how the original macro code got expanded out.
+
 ### decl_storage!
 
 **When to Use**
