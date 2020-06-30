@@ -63,14 +63,9 @@ used in Polkadot. Selecting this randomness source dictates that your blockchain
 ## Security Properties
 
 The `Randomness` trait provides a convenient and useful abstraction over randomness sources in
-Substrate runtimes. But not all implementations provide the same security guarantees. It is a
-runtime developer's job to ensure that the randomness source used meets the secutiry requirements of
+Substrate runtimes. But the trait itself does not make any security guarantees. A
+runtime developer must ensure that the randomness source used meets the security requirements of
 _all_ pallet's that consume its randomness.
-
-Occasionally, randomness can be strengthened... @gnunicorn you mentioned this in
-https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/578 Is this
-really true? Seems dangerously close to rolling ones own crypto. Let's evaluate what we want to
-advise here.
 
 ## Next Steps
 
