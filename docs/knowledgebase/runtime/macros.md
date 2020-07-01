@@ -4,9 +4,9 @@ title: Runtime Macros
 
 ## Introduction
 
-Rust macro is a way of writing code that writes code, also called metaprogramming. It is useful for reducing the amount of code one has to write and maintain. Macro also helps create domain specific language (DSL) by abstracting out some implementation details and defining its own rules and logics. 
+Rust macro is a way of writing code that writes code, also called metaprogramming. Generally speaking it can be designed to read, generate or transform other programs. Thus allowing programmers to minimize the number of lines of code to express a solution. It also allows programs greater flexibility to efficiently handle new situations without recompilation. Macro helps create domain specific language (DSL) by abstracting out some implementation details and defining its own rules and logics.
 
-In Substrate runtime development context, this helps runtime engineers to focus on the runtime logics and forget about details such as how the on-chain variables need to be encoded and decoded. That's why we frequently leverage these macros to simplify runtime development effort once the intent is made known via the succinct statements in macros. But the downside is that sometimes developers may encounter error messages of new structs or types that seem to come out of nowhere, but actually as a result of how the macros create new types and interact with contents inside.
+In Substrate runtime development context, this helps runtime engineers to focus on the runtime logics and forget about details such as how the on-chain variables need to be encoded and decoded. That's why developers frequently leverage these macros to simplify runtime development effort once the intent is made known via the succinct statements in macros. But the downside is that sometimes developers may encounter error messages of new structs or types that seem to come out of nowhere, but actually as a result of how the macros create new types and interact with contents inside.
 
 The purpose of this article is to give a basic overview of macros and explain some Substrate macros that runtime engineers frequently encountered.
 
@@ -25,19 +25,17 @@ These are additional way to learn about Substrate runtime macros:
 
   - read documentation of a particular macro
   - run [`cargo expand`](https://github.com/dtolnay/cargo-expand) to review the macros-expanded code
-  - read the macro definition. Readers are required to have a good grasp on [macro rules of expression pattern matching](https://danielkeep.github.io/tlborm/book/pim-README.html).
+  - read the macro definition. It is helpful to have a good understanding of [macro rules of expression pattern matching](https://danielkeep.github.io/tlborm/book/pim-README.html).
 
 ## Substrate Runtime Macros
 
-When developing substrate runtime, there are a few macros that will be used frequently. The following is a relatively detailed explanation of these macros. Developers will understand after this article how they are used, what they do, how the expanded code is like within the [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template) project, and further implementation notes for developers.
-
-Developers who want to know about the implementation details are encouraged to follow the links in *Doc. and Example* to see how macro code is expanded.
+When developing substrate runtime, there are a few macros that will be used frequently. The following is a relatively detailed explanation of these macros. After this article, a developer will have a better understanding of how they are used, what they do and how the expanded code is within [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template). Developers who want to know about the implementation details are encouraged to follow the links in *Doc. and Example* to see how macro code is expanded.
 
 ### decl_storage!
 
 **When to Use**
 
-To define storage items in a runtime pallet. For each storage item, you can define: 
+definitions for storage items in a runtime pallete can be defined as the following: 
 
 - its data type (a regular value `StorageValue`, a map `StorageMap`, a double-map `StorageDoubleMap`), 
 - its getter function, 
@@ -65,21 +63,21 @@ The macro also declare the core `Module` struct type and implements `Store` trai
 
 **Macro Implementation Notes**
 
-  - `Store` trait is declared with each storage name becoming an associated type inside the trait.
-  - `Module` struct type is declared and implements the `Store` trait.
+  - `Store` trait is declared with each storage name, thus becoming an associated type inside the trait.
+  - `Module` struct type is declared and implements within the `Store` trait.
   - `Module` implementation contains the getter function and metadata of each storage item.
-  - Each of the storage items becomes a struct. In the above expanded code, `Something` struct type [is declared and implements `StorageValue<u32>` trait](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-expanded-rs-L144-L164), the data type specified in the macro.
-  - Helper structs `__GetByteStructSomething` and `__InherentHiddenInstance` are defined. The former is for setting default value of the storage item, while the later implements traits for data encoding/decoding.
+  - Each of the storage items becomes a struct. Above in the expanded code `Something` struct type [is declared and implements `StorageValue<u32>` trait](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-expanded-rs-L144-L164) and the data type specified in the macro.
+  - Helper structs `__GetByteStructSomething` and `__InherentHiddenInstance` are defined for a setting default value of the storage item, while the later traits are implements for data encoding/decoding.
 
 ### decl_event!
 
 **When to Use**
 
-To define events that a runtime pallet emits.
+To define events when a runtime pallet emits.
 
 **What It Does**
 
-This macro defines pallet events by implementing `Event` enum type, with each event type in the macro as an enum variant inside `Event`.
+This macro defines pallet events by implementing `Event` enum type, with each event type in the macro being an enum variant inside `Event`.
 
 **Doc. and Example**
 
@@ -98,13 +96,13 @@ This macro defines pallet events by implementing `Event` enum type, with each ev
 
 **When to Use**
 
-To define error types a pallet may return in its dispatchable functions. Dispatchable functions return `DispatchResult`, with either an `Ok(())`, or `DispatchError` containing custom errors defined in this macro.
+To define error types which a pallet may return in its dispatchable functions. Dispatchable functions return `DispatchResult`, with either an `Ok(())`, or `DispatchError` containing custom errors defined in this macro.
 
 **What It Does**
 
 This macro defines `Error<T: Trait>` struct type, and implement helper methods for mapping each error type to sequential error code and corresponding string.
 
-One key is that the macro automatically implements the `From<Error<T>>` trait for `DispatchError`, so `DispatchError` returns the proper module index, error code, and the error string for a particular error type. 
+One key is that the macro automatically implements the `From<Error<T>>` trait for `DispatchError`. Therefore `DispatchError` returns the proper module index, error code, and the error string for a particular error type. 
 
 **Doc. and Example**
 
@@ -152,7 +150,7 @@ To construct Substrate runtime and integrating various pallets into the runtime.
 
 **What It Does**
 
-The macro does a lot, as noted below. It declares and implements various struct and enum, e.g.`Runtime`, `Event`, `Origin`, `Call`, `GenesisConfig` etc, and implements various helper traits for these struct types. The macro also adds logics of mapping different events and dispatchable calls from the overarching runtime back to a particular pallet.
+The macro declares and implements various struct and enum, e.g.`Runtime`, `Event`, `Origin`, `Call`, `GenesisConfig` etc, and implements various helper traits for these struct types. The macro also adds logics of mapping different events and dispatchable calls from the overarching runtime back to a particular pallet.
 
 **Doc. and Example**
 
@@ -252,7 +250,7 @@ This macro creates an `Origin` struct type, and implements various helper traits
 
 **When to Use**
 
-To construct an `Event` struct type for a runtime. This macro is typically called automatically by the `construct_runtime!` macro. However, developers may call this macro directly to construct `Event` enum handpicking pallet events they want to listen for. This is useful when constructing a mock runtime for testing.
+To construct an `Event` struct type for a runtime. This macro is typically called automatically by the `construct_runtime!` macro. However, developers may call this macro directly to construct `Event` enum selecting specific pallet events they want to listen for. This is useful when constructing a mock runtime for testing.
 
 **What It Does**
 
@@ -265,7 +263,7 @@ This macro creates an event enum type, implement various helper traits on `Event
 
 ## Conclusion
 
-Through this article, developers should have a good grasp on why Substrate runtime leverage on Rust macros and a basic understanding of some of the frequently used macros in runtime development.
+Through this article, developers will have a good understanding of how Substrate runtime leverage on Rust macros and a basic understanding of some of the frequently used macros in runtime development.
 
 ## References
 
