@@ -91,7 +91,8 @@ jobs:
             --exclude "http://localhost:3000/docs/zh-CN" \
             --exclude "https://playground.substrate.dev/" \
             --exclude "https://player.twitch.tv/?channel=paritylivecoding" \
-            --exclude "http://localhost:8000/"
+            --exclude "http://localhost:8000/" \
+            --exclude "https://twitter.com/ParityTech"
 
 workflows:
   version: 2
