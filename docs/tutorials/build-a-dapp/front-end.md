@@ -60,7 +60,7 @@ import { TxButton } from './substrate-lib/components';
 import { blake2AsHex } from '@polkadot/util-crypto';
 
 // Our main Proof Of Existence Component which is exported.
-export default function ProofOfExistence (props) {
+export function Main (props) {
   // Establish an API to talk to our Substrate node.
   const { api } = useSubstrate();
   // Get the 'selected user' from the `AccountSelector` component.
@@ -182,6 +182,12 @@ export default function ProofOfExistence (props) {
       </Form>
     </Grid.Column>
   );
+}
+
+export default function TemplateModule (props) {
+  const { api } = useSubstrate();
+  return (api.query.templateModule && api.query.templateModule.proofs
+    ? <Main {...props} /> : null);
 }
 ```
 

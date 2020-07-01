@@ -28,7 +28,8 @@
       "knowledgebase/runtime/fees",
       "knowledgebase/runtime/off-chain-workers",
       "knowledgebase/runtime/debugging",
-      "knowledgebase/runtime/tests"
+      "knowledgebase/runtime/tests",
+      "knowledgebase/runtime/randomness"
     ],
     "Smart Contracts": [
       "knowledgebase/smart-contracts/index",
