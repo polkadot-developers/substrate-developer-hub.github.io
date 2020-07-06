@@ -1,7 +1,7 @@
 # Q: What is this dockerfile for?
 # A: https://docusaurus.io/docs/en/docker
 
-FROM node:8.11.4
+FROM node:12.13.0
 
 WORKDIR /app/website
 
