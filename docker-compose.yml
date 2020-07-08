@@ -1,7 +1,13 @@
 version: "3"
 
 services:
-  docusaurus:
+  link-checker:
+    image: web3f/link-checker:v1.0.1
+    command: /bin/bash -c "sleep 20 && linkchecker --ignore-url=\"^(?:(?!\/en\/).)*$$\" --check-extern http://main:3000/"
+    depends_on:
+      - main
+
+  main:
     build: .
     ports:
       - 3000:3000

@@ -1,7 +1,8 @@
 # Q: What is this dockerfile for?
 # A: https://docusaurus.io/docs/en/docker
 
-FROM node:8.11.4
+# Unify with our CI test image node version
+FROM node:10.15.2
 
 WORKDIR /app/website
 
