@@ -1,9 +1,0 @@
-{
-  "name": "knowledgebase",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "Unlicense",
-  "scripts": {
-    "update-doc-versions": "find . -type f -name \"*.md\" -print0 | xargs -0 sed -i -e 's/substrate.dev\\/rustdocs\\/'\"$OLD_VERSION\"'/substrate.dev\\/rustdocs\\/'\"$NEW_VERSION\"'/g'"
-  }
-}
