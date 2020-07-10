@@ -296,7 +296,7 @@ class Terms extends React.Component {
                 </ul>
                 <p><span>Thank you for visiting the Site.</span></p>
                 <p><b><span>Terms last updated</span><span>: </span><span>10</span><span
-                >&nbsp;June 2020 </span><span
+                >&nbsp;July 2020 </span><span
                 >&nbsp;</span></b></p><br></br>
             </div>
         )
