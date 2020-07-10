@@ -4,7 +4,7 @@
             {"zIndex":100}
           )
         });
-        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/zh-CN/" target="_self">文档</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">Recipes</a></li><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class=""><a href="/zh-CN/community" target="_self">Community</a></li><li class=""><a href="https://github.com/paritytech/substrate" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/knowledgebase/runtime/frame">English</a></li><li><a href="/docs/ru/knowledgebase/runtime/frame">Русский</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">协助翻译</a></li></ul></div></li><script>
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class="siteNavGroupActive"><a href="/docs/zh-CN/" target="_self">Knowledge Base</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">Recipes</a></li><li class=""><a href="https://substrate.dev/rustdocs/" target="_self">Reference Documents</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/knowledgebase/runtime/frame">English</a></li><li><a href="/docs/ru/knowledgebase/runtime/frame">Русский</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">协助翻译</a></li></ul></div></li><script>
         const languagesMenuItem = document.getElementById("languages-menu");
         const languagesDropDown = document.getElementById("languages-dropdown");
         languagesMenuItem.addEventListener("click", function(event) {
@@ -80,7 +80,7 @@
 <h3><a class="anchor" aria-hidden="true" id="pallets"></a><a href="#pallets" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pallets</h3>
 <p>When building with FRAME, the Substrate runtime is composed of several smaller components called pallets. A pallet contains a set of types, storage items, and functions that define a set of features and functionality for a runtime.</p>
 <h3><a class="anchor" aria-hidden="true" id="system-library"></a><a href="#system-library" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>System Library</h3>
-<p>The <a href="https://crates.parity.io/frame_system/index.html">System library</a> provides low-level types, storage, and functions for your blockchain. All other pallets depend on the System library as the basis of your Substrate runtime.</p>
+<p>The <a href="https://substrate.dev/rustdocs/v2.0.0-rc4/frame_system/index.html">System library</a> provides low-level types, storage, and functions for your blockchain. All other pallets depend on the System library as the basis of your Substrate runtime.</p>
 <p>The System library defines all the core types for the Substrate runtime, such as:</p>
 <ul>
 <li>Origin</li>
@@ -101,16 +101,16 @@
 </ul>
 <p>Finally, it defines a number of low level functions which can access your blockchain storage, verify the origin of an extrinsic, and more.</p>
 <h3><a class="anchor" aria-hidden="true" id="executive-module"></a><a href="#executive-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Executive Module</h3>
-<p>The <a href="https://crates.parity.io/frame_executive/index.html">FRAME Executive module</a> acts as the orchestration layer for the runtime. It dispatches incoming extrinsic calls to the respective pallets in the runtime.</p>
+<p>The <a href="https://substrate.dev/rustdocs/v2.0.0-rc4/frame_executive/index.html">FRAME Executive module</a> acts as the orchestration layer for the runtime. It dispatches incoming extrinsic calls to the respective pallets in the runtime.</p>
 <h3><a class="anchor" aria-hidden="true" id="support-library"></a><a href="#support-library" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Support Library</h3>
-<p>The <a href="https://crates.parity.io/frame_support/index.html">FRAME Support library</a> is a collection of Rust macros, types, traits, and functions that simplify the development of Substrate pallets.</p>
+<p>The <a href="https://substrate.dev/rustdocs/v2.0.0-rc4/frame_support/index.html">FRAME Support library</a> is a collection of Rust macros, types, traits, and functions that simplify the development of Substrate pallets.</p>
 <p>The support macros expand at compile time to generate code that is used by the runtime and reduce boilerplate code for the most common components of a pallet.</p>
 <h3><a class="anchor" aria-hidden="true" id="runtime"></a><a href="#runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Runtime</h3>
 <p>The runtime library brings together all these components and pallets. It defines which pallets are included with your runtime and configures them to work together to compose your final runtime. When calls are made to your runtime, it uses the Executive pallet to dispatch those calls to the individual pallets.</p>
 <h3><a class="anchor" aria-hidden="true" id="benchmarking"></a><a href="#benchmarking" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Benchmarking</h3>
 <p>Macro for benchmarking a FRAME runtime.</p>
 <ul>
-<li><a href="https://crates.parity.io/frame_benchmarking/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/frame_benchmarking/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/lib.rs">Source</a></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="prebuilt-pallets"></a><a href="#prebuilt-pallets" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prebuilt Pallets</h2>
@@ -118,241 +118,241 @@
 <h3><a class="anchor" aria-hidden="true" id="assets"></a><a href="#assets" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Assets</h3>
 <p>The Assets pallet is a simple, secure module for dealing with fungible assets.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_assets/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_assets/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/assets/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="atomic-swap"></a><a href="#atomic-swap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Atomic Swap</h3>
 <p>A module for atomically sending funds from an origin to a target. A proof is used to allow the target to approve (claim) the swap. If the swap is not claimed within a specified duration of time, the sender may cancel it.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_atomic_swap/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_atomic_swap/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/atomic-swap/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="aura"></a><a href="#aura" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Aura</h3>
 <p>The Aura pallet extends Aura consensus by managing offline reporting.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_aura/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_aura/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/aura/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="authority-discovery"></a><a href="#authority-discovery" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Authority Discovery</h3>
 <p>The Authority Discovery pallet is used by <code>core/authority-discovery</code> to retrieve the current set of authorities, learn its own authority ID, as well as to sign and verify messages to and from other authorities.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_authority_discovery/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_authority_discovery/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/authority-discovery/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="authorship"></a><a href="#authorship" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Authorship</h3>
 <p>The Authorship pallet tracks the current author of the block and recent uncles.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_authorship/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_authorship/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/authorship/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="babe"></a><a href="#babe" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>BABE</h3>
 <p>The BABE pallet extends BABE consensus by collecting on-chain randomness from VRF outputs and managing epoch transitions.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_babe/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_babe/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/babe/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="balances"></a><a href="#balances" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Balances</h3>
 <p>The Balances pallet provides functionality for handling accounts and balances.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_balances/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_balances/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/balances/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="benchmark"></a><a href="#benchmark" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Benchmark</h3>
 <p>A pallet that contains common runtime patterns in an isolated manner. This pallet is not meant to be used in a production blockchain, just for benchmarking and testing purposes.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_benchmark/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_benchmark/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/benchmark/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="collective"></a><a href="#collective" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Collective</h3>
 <p>The Collective pallet allows a set of account IDs to make their collective feelings known through dispatched calls from specialized origins.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_collective/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_collective/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/collective/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="contracts"></a><a href="#contracts" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contracts</h3>
 <p>The Contracts pallet provides functionality for the runtime to deploy and execute WebAssembly smart-contracts.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_contracts/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_contracts/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="democracy"></a><a href="#democracy" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Democracy</h3>
 <p>The Democracy pallet provides a democratic system that handles administration of general stakeholder voting.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_democracy/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_democracy/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/democracy/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="elections-phragmen"></a><a href="#elections-phragmen" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Elections Phragmen</h3>
 <p>The Phragmen Elections pallet is an election module based on <a href="https://research.web3.foundation/en/latest/polkadot/NPoS/4.%20Sequential%20Phragm%C3%A9n%E2%80%99s%20method.html">sequential phragmen</a>.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_elections_phragmen/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_elections_phragmen/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/elections-phragmen/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="elections"></a><a href="#elections" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Elections</h3>
 <p>The Elections pallet is an election module for stake-weighted membership selection of a collective.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_elections/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_elections/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/elections/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="evm"></a><a href="#evm" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>EVM</h3>
 <p>The EVM pallet is an <a href="https://en.wikipedia.org/wiki/Ethereum">Ethereum</a> virtual machine (EVM) execution module for Substrate.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_evm/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_evm/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/evm/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="example-offchain-worker"></a><a href="#example-offchain-worker" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example Offchain Worker</h3>
 <p>The Offchain Worker Example: A simple pallet demonstrating concepts, APIs and structures common to most offchain workers.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_example_offchain_worker/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_example_offchain_worker/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/example-offchain-worker/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h3>
 <p>The Example pallet is a simple example of a pallet demonstrating concepts, APIs, and structures common to most pallets.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_example/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_example/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="finality-tracker"></a><a href="#finality-tracker" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Finality Tracker</h3>
 <p>The Finality Tracker pallet tracks the last finalized block, as perceived by block authors.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_finality_tracker/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_finality_tracker/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/finality-tracker/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="generic-asset"></a><a href="#generic-asset" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generic Asset</h3>
 <p>The Generic Asset pallet provides functionality for handling accounts and asset balances.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_generic_asset/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_generic_asset/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/generic-asset/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="grandpa"></a><a href="#grandpa" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GRANDPA</h3>
 <p>The GRANDPA pallet extends GRANDPA consensus by managing the GRANDPA authority set ready for the native code.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_grandpa/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_grandpa/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/grandpa/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="identity"></a><a href="#identity" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Identity</h3>
 <p>A federated naming system, allowing for multiple registrars to be added from a specified origin. Registrars can set a fee to provide identity-verification service. Anyone can put forth a proposed identity for a fixed deposit and ask for review by any number of registrars (paying each of their fees). Registrar judgements are given as an enum, allowing for sophisticated, multi-tier opinions.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_identity/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_identity/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/identity/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="im-online"></a><a href="#im-online" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>I'm Online</h3>
 <p>The I'm Online pallet allows validators to gossip a heartbeat transaction with each new session to signal that the node is online.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_im_online/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_im_online/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/im-online/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="indices"></a><a href="#indices" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Indices</h3>
 <p>The Indices pallet allocates indices for newly created accounts. An index is a short form of an address.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_indices/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_indices/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/indices/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="membership"></a><a href="#membership" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Membership</h3>
 <p>The Membership pallet allows control of membership of a set of <code>AccountId</code>s, useful for managing membership of a collective.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_membership/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_membership/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/membership/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="multisig"></a><a href="#multisig" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Multisig</h3>
 <p>A module for doing multi-signature dispatches.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_multisig/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_multisig/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/multisig/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="nicks"></a><a href="#nicks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Nicks</h3>
 <p>Nicks is a trivial module for keeping track of account names on-chain. It makes no effort to create a name hierarchy, be a DNS replacement or provide reverse lookups.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_nicks/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_nicks/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="offences"></a><a href="#offences" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Offences</h3>
 <p>The Offences pallet tracks reported offences.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_offences/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_offences/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/offences/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="proxy"></a><a href="#proxy" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Proxy</h3>
 <p>A module allowing accounts to give permission to other accounts to dispatch types of calls from their signed origin.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_proxy/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_proxy/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/proxy/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="randomness-collective-flip"></a><a href="#randomness-collective-flip" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Randomness Collective Flip</h3>
 <p>The Randomness Collective Flip pallet provides a <code>random</code> function that can be used in tests and generates low-influence random values based on the block hashes from the previous <code>81</code> blocks. This pallet is not intended for use in production.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_randomness_collective_flip/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_randomness_collective_flip/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/randomness-collective-flip/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="recovery"></a><a href="#recovery" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Recovery</h3>
 <p>The Recovery pallet is an M-of-N social recovery tool for users to gain access to their accounts if the private key or other authentication mechanism is lost. Through this pallet, a user is able to make calls on-behalf-of another account which they have recovered. The recovery process is protected by trusted &quot;friends&quot; whom the original account owner chooses. A threshold (M) out of N friends are needed to give another account access to the recoverable account.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_recovery/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_recovery/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/recovery/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="scheduler"></a><a href="#scheduler" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Scheduler</h3>
 <p>This module exposes capabilities for scheduling dispatches to occur at a specified block number or at a specified period. These scheduled dispatches may be named or anonymous and may be canceled.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_scheduler/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_scheduler/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/scheduler/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="scored-pool"></a><a href="#scored-pool" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Scored Pool</h3>
 <p>The Scored Pool pallet maintains a scored membership pool where the highest scoring entities are made members.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_scored_pool/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_scored_pool/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/scored-pool/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="session"></a><a href="#session" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Session</h3>
 <p>The Session pallet allows validators to manage their session keys, provides a function for changing the session length, and handles session rotation.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_session/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_session/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/session/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="society"></a><a href="#society" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Society</h3>
 <p>The Society module is an economic game which incentivizes users to participate and maintain a membership society.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_society/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_society/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/society/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="staking"></a><a href="#staking" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Staking</h3>
 <p>The Staking pallet is used to manage funds at stake by network maintainers.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_staking/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_staking/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/staking/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="sudo"></a><a href="#sudo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Sudo</h3>
 <p>The Sudo pallet allows for a single account (called the &quot;sudo key&quot;) to execute dispatchable functions that require a <code>Root</code> origin or designate a new account to replace them as the sudo key.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_sudo/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_sudo/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/sudo/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="timestamp"></a><a href="#timestamp" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Timestamp</h3>
 <p>The Timestamp pallet provides functionality to get and set the on-chain time.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_timestamp/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_timestamp/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/timestamp/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="transaction-payment"></a><a href="#transaction-payment" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Transaction Payment</h3>
 <p>The Transaction Payment pallet provides the basic logic to compute pre-dispatch transaction fees.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_transaction_payment/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_transaction_payment/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="treasury"></a><a href="#treasury" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Treasury</h3>
 <p>The Treasury pallet provides a &quot;pot&quot; of funds that can be managed by stakeholders in the system and a structure for making spending proposals from this pot.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_treasury/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_treasury/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/treasury/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="utility"></a><a href="#utility" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Utility</h3>
 <p>A stateless module with helpers for dispatch management.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_utility/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_utility/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/utility/src/lib.rs">Source</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="vesting"></a><a href="#vesting" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Vesting</h3>
 <p>A simple module providing a means of placing a linear curve on an account's locked balance. This module ensures that there is a lock in place preventing the balance to drop below the unvested amount for any reason other than transaction fee payment.</p>
 <ul>
-<li><a href="https://crates.parity.io/pallet_vesting/index.html">文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_vesting/index.html">文档</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/master/frame/vesting/src/lib.rs">Source</a></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="后续步骤"></a><a href="#后续步骤" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>后续步骤</h2>
@@ -366,11 +366,11 @@
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="参考文档"></a><a href="#参考文档" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文档</h3>
 <ul>
-<li><p>Visit the reference docs for the <a href="https://crates.parity.io/frame_system/index.html">System library</a>.</p></li>
-<li><p>Visit the reference docs for the <a href="https://crates.parity.io/frame_executive/index.html">Executive pallet</a>.</p></li>
-<li><p>Visit the reference docs for the <a href="https://crates.parity.io/frame_support/index.html">FRAME support library</a>.</p></li>
+<li><p>Visit the reference docs for the <a href="https://substrate.dev/rustdocs/v2.0.0-rc4/frame_system/index.html">System library</a>.</p></li>
+<li><p>Visit the reference docs for the <a href="https://substrate.dev/rustdocs/v2.0.0-rc4/frame_executive/index.html">Executive pallet</a>.</p></li>
+<li><p>Visit the reference docs for the <a href="https://substrate.dev/rustdocs/v2.0.0-rc4/frame_support/index.html">FRAME support library</a>.</p></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/knowledgebase/runtime/primitives"><span class="arrow-prev">← </span><span>Runtime Primitives</span></a><a class="docs-next button" href="/docs/zh-CN/knowledgebase/runtime/pallets"><span>Pallets</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#总览">总览</a><ul class="toc-headings"><li><a href="#pallets">Pallets</a></li><li><a href="#system-library">System Library</a></li><li><a href="#executive-module">Executive Module</a></li><li><a href="#support-library">Support Library</a></li><li><a href="#runtime">Runtime</a></li><li><a href="#benchmarking">Benchmarking</a></li></ul></li><li><a href="#prebuilt-pallets">Prebuilt Pallets</a><ul class="toc-headings"><li><a href="#assets">Assets</a></li><li><a href="#atomic-swap">Atomic Swap</a></li><li><a href="#aura">Aura</a></li><li><a href="#authority-discovery">Authority Discovery</a></li><li><a href="#authorship">Authorship</a></li><li><a href="#babe">BABE</a></li><li><a href="#balances">Balances</a></li><li><a href="#benchmark">Benchmark</a></li><li><a href="#collective">Collective</a></li><li><a href="#contracts">Contracts</a></li><li><a href="#democracy">Democracy</a></li><li><a href="#elections-phragmen">Elections Phragmen</a></li><li><a href="#elections">Elections</a></li><li><a href="#evm">EVM</a></li><li><a href="#example-offchain-worker">Example Offchain Worker</a></li><li><a href="#example">Example</a></li><li><a href="#finality-tracker">Finality Tracker</a></li><li><a href="#generic-asset">Generic Asset</a></li><li><a href="#grandpa">GRANDPA</a></li><li><a href="#identity">Identity</a></li><li><a href="#im-online">I'm Online</a></li><li><a href="#indices">Indices</a></li><li><a href="#membership">Membership</a></li><li><a href="#multisig">Multisig</a></li><li><a href="#nicks">Nicks</a></li><li><a href="#offences">Offences</a></li><li><a href="#proxy">Proxy</a></li><li><a href="#randomness-collective-flip">Randomness Collective Flip</a></li><li><a href="#recovery">Recovery</a></li><li><a href="#scheduler">Scheduler</a></li><li><a href="#scored-pool">Scored Pool</a></li><li><a href="#session">Session</a></li><li><a href="#society">Society</a></li><li><a href="#staking">Staking</a></li><li><a href="#sudo">Sudo</a></li><li><a href="#timestamp">Timestamp</a></li><li><a href="#transaction-payment">Transaction Payment</a></li><li><a href="#treasury">Treasury</a></li><li><a href="#utility">Utility</a></li><li><a href="#vesting">Vesting</a></li></ul></li><li><a href="#后续步骤">后续步骤</a><ul class="toc-headings"><li><a href="#进一步学习">进一步学习</a></li><li><a href="#例子">例子</a></li><li><a href="#参考文档">参考文档</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/zh-CN/">Getting Started</a><a href="/zh-CN/tutorials">Tutorials</a><a href="https://crates.parity.io/">Reference Docs</a><a href="https://substrate.dev/recipes/">Recipes</a></div><div><h5>Community</h5><a href="/zh-CN/videos">Videos</a><a href="/zh-CN/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/knowledgebase/runtime/primitives"><span class="arrow-prev">← </span><span>Runtime Primitives</span></a><a class="docs-next button" href="/docs/zh-CN/knowledgebase/runtime/pallets"><span>Pallets</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#总览">总览</a><ul class="toc-headings"><li><a href="#pallets">Pallets</a></li><li><a href="#system-library">System Library</a></li><li><a href="#executive-module">Executive Module</a></li><li><a href="#support-library">Support Library</a></li><li><a href="#runtime">Runtime</a></li><li><a href="#benchmarking">Benchmarking</a></li></ul></li><li><a href="#prebuilt-pallets">Prebuilt Pallets</a><ul class="toc-headings"><li><a href="#assets">Assets</a></li><li><a href="#atomic-swap">Atomic Swap</a></li><li><a href="#aura">Aura</a></li><li><a href="#authority-discovery">Authority Discovery</a></li><li><a href="#authorship">Authorship</a></li><li><a href="#babe">BABE</a></li><li><a href="#balances">Balances</a></li><li><a href="#benchmark">Benchmark</a></li><li><a href="#collective">Collective</a></li><li><a href="#contracts">Contracts</a></li><li><a href="#democracy">Democracy</a></li><li><a href="#elections-phragmen">Elections Phragmen</a></li><li><a href="#elections">Elections</a></li><li><a href="#evm">EVM</a></li><li><a href="#example-offchain-worker">Example Offchain Worker</a></li><li><a href="#example">Example</a></li><li><a href="#finality-tracker">Finality Tracker</a></li><li><a href="#generic-asset">Generic Asset</a></li><li><a href="#grandpa">GRANDPA</a></li><li><a href="#identity">Identity</a></li><li><a href="#im-online">I'm Online</a></li><li><a href="#indices">Indices</a></li><li><a href="#membership">Membership</a></li><li><a href="#multisig">Multisig</a></li><li><a href="#nicks">Nicks</a></li><li><a href="#offences">Offences</a></li><li><a href="#proxy">Proxy</a></li><li><a href="#randomness-collective-flip">Randomness Collective Flip</a></li><li><a href="#recovery">Recovery</a></li><li><a href="#scheduler">Scheduler</a></li><li><a href="#scored-pool">Scored Pool</a></li><li><a href="#session">Session</a></li><li><a href="#society">Society</a></li><li><a href="#staking">Staking</a></li><li><a href="#sudo">Sudo</a></li><li><a href="#timestamp">Timestamp</a></li><li><a href="#transaction-payment">Transaction Payment</a></li><li><a href="#treasury">Treasury</a></li><li><a href="#utility">Utility</a></li><li><a href="#vesting">Vesting</a></li></ul></li><li><a href="#后续步骤">后续步骤</a><ul class="toc-headings"><li><a href="#进一步学习">进一步学习</a></li><li><a href="#例子">例子</a></li><li><a href="#参考文档">参考文档</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/zh-CN/tutorials">Tutorials</a><a href="/docs/zh-CN/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">Reference Documents</a></div><div><h5>Community</h5><a href="/zh-CN/community">Community Home</a><a href="/zh-CN/newsletter">Newsletter</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="/zh-CN/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="#" id="cookie-settings">Cookie Settings<script>
               var cookieSettings = document.getElementById('cookie-settings');
               cookieSettings.onclick = function() {
                 return klaro.show();
