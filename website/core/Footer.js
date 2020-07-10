@@ -163,6 +163,7 @@ class Footer extends React.Component {
               Developer Hub GitHub
             </a>
             <a href="https://www.parity.io/privacy/">Privacy Policy</a>
+            <a href="/terms">Terms of Use</a>
             <a href="#" id="cookie-settings">
               Cookie Settings
               {/* Script for cookie settings pop-up. */}
