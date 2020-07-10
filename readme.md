@@ -7,7 +7,9 @@ The [docs are written in markdown](docs), processed by [Docusaurus](https://docu
 
 ## Contributing
 
-Thank you for your interest in contributing to the Developer Hub and to the larger Substrate community! Please review our contributor guidelines prior to any contribution. If you have any further questions, don't hesitate to [reach out](https://matrix.to/#/!NdxrIlxGUHXYwtRGrF:matrix.parity.io?via=matrix.parity.io) on our community channels. 
+Thank you for your interest in contributing to the Developer Hub and to the larger Substrate community! Please review
+our contributor guidelines prior to any contribution. If you have any further questions, don't hesitate to
+[reach out](https://matrix.to/#/!NdxrIlxGUHXYwtRGrF:matrix.parity.io?via=matrix.parity.io) on our community channels. 
 
 ### Directory Structure
 
@@ -70,6 +72,16 @@ Heroku. Note that multilingual translations are NOT pulled in.
 2. Commit to your local repository, and then push to `staging-source` branch. This triggers the CI to build the website
 AND also pull in multilingual translations from our Crowdin project. The final built static site is then pushed to the
 `staging` branch and deployed to Heroku.
+
+### Updates
+
+There is a helper script that can be used to update `substrate.dev/rustdocs` links in the `docs/knowledgebase`
+directory.
+
+```bash
+# This examples demonstrates updating links from v2.0.0-rc3 to v2.0.0-rc4
+OLD_VERSION=v2.0.0-rc3 NEW_VERSION=v2.0.0-rc4 ./scripts/update-kb-rustdocs
+```
 
 ### Production Deployment
 

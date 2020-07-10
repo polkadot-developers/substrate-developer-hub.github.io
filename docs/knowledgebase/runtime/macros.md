@@ -53,7 +53,7 @@ View our most [simple Substrate runtime](index) to see all these macros interact
 
 ### References
 
-- [`decl_module!` macro](https://crates.parity.io/frame_support/macro.decl_module.html)
-- [`decl_event!` macro](https://crates.parity.io/frame_support/macro.decl_event.html)
-- [`decl_storage!` macro](https://crates.parity.io/frame_support/macro.decl_storage.html)
-- [`construct_runtime!` macro](https://crates.parity.io/frame_support/macro.construct_runtime.html)
+- [`decl_module!` macro](https://substrate.dev/rustdocs/v2.0.0-rc4/frame_support/macro.decl_module.html)
+- [`decl_event!` macro](https://substrate.dev/rustdocs/v2.0.0-rc4/frame_support/macro.decl_event.html)
+- [`decl_storage!` macro](https://substrate.dev/rustdocs/v2.0.0-rc4/frame_support/macro.decl_storage.html)
+- [`construct_runtime!` macro](https://substrate.dev/rustdocs/v2.0.0-rc4/frame_support/macro.construct_runtime.html)
