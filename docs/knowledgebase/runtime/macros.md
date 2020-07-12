@@ -4,11 +4,9 @@ title: Runtime Macros
 
 ## Introduction
 
-Rust macro is a way of writing code that writes code, also called metaprogramming. Generally speaking it can be designed to read, generate or transform other programs. Thus allowing programmers to minimize the number of lines of code to express a solution. It also allows programs greater flexibility to efficiently handle new situations without recompilation. Macro helps create domain specific language (DSL) by abstracting out some implementation details and defining its own rules and logics.
+Within Substrate Runtime Macros give engineers the opportunity to focus on the runtime logic rather than how the on-chain variables need to be encoded and decoded. As a result, developers frequently leverage these macros to optimize runtime development with their intention declared utilizing the succinct statements in macros. The downside is that sometimes developers may encounter error messages of new structs or types, however these errors are a result of how the macros create new types and interact with contents inside.
 
-In Substrate runtime development context, this helps runtime engineers to focus on the runtime logics and forget about details such as how the on-chain variables need to be encoded and decoded. That's why developers frequently leverage these macros to simplify runtime development effort once the intent is made known via the succinct statements in macros. But the downside is that sometimes developers may encounter error messages of new structs or types that seem to come out of nowhere, but actually as a result of how the macros create new types and interact with contents inside.
-
-The purpose of this article is to give a basic overview of macros and explain some Substrate macros that runtime engineers frequently encountered.
+The purpose of this article is to give a basic overview of macros and explain the Substrate macros that runtime engineers frequently encountered.
 
 ## Macro Basics
 
@@ -21,7 +19,7 @@ There are four kinds of macro in Rust:
 
 Most Substrate runtime macros are defined using either declarative macros or function-like macros. 
 
-These are additional way to learn about Substrate runtime macros:
+There are additional way to learn about Substrate runtime macros:
 
   - read documentation of a particular macro
   - run [`cargo expand`](https://github.com/dtolnay/cargo-expand) to review the macros-expanded code
@@ -29,7 +27,7 @@ These are additional way to learn about Substrate runtime macros:
 
 ## Substrate Runtime Macros
 
-When developing substrate runtime, there are a few macros that will be used frequently. The following is a relatively detailed explanation of these macros. After this article, a developer will have a better understanding of how they are used, what they do and how the expanded code is within [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template). Developers who want to know about the implementation details are encouraged to follow the links in *Doc. and Example* to see how macro code is expanded.
+When developing Substrate runtime, there are key macros the majority of developers utilize. The following is a comprehensive explanation of these macros. After this article, a developer will have a better understanding of how they are used, what they do and how the expanded code is within [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template). Developers who want to know about the implementation details are encouraged to follow the links in *Doc. and Example* to see how macro code is expanded.
 
 ### decl_storage!
 
@@ -125,7 +123,7 @@ To define dispatchable functions in a pallet
 
 **What It Does**
 
-The macro declares a `Module` struct and `Call` enum type for the containing pallet. It adds the necessary logics together with user-defined dispatchable calls into these two types. In addition to various helper traits / functions implemented for `Module` and `Call`, e.g. `Copy`, `StructuralEq`, `Debug`, the macro also inserts lifecycle trait implementations for `Module`, e.g. `frame_support::traits::OnInitialize`, `frame_support::traits::OnFinalize`, `frame_support::traits::OnRuntimeUpgrade`, and `frame_support::traits::OffchainWorker`.
+The macro declares a `Module` struct and `Call` enum type for the containing pallet. It combines the necessary logics using user-defined dispatchable calls into the two types. In addition to various helper traits implemented for `Module` and `Call`, e.g. `Copy`, `StructuralEq`, `Debug`, the macro also inserts lifecycle trait implementations for `Module`, e.g. `frame_support::traits::OnInitialize`, `frame_support::traits::OnFinalize`, `frame_support::traits::OnRuntimeUpgrade`, and `frame_support::traits::OffchainWorker`.
 
 **Doc. and Example**
 
