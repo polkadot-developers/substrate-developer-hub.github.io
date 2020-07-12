@@ -20,11 +20,11 @@ The `storage` module in [FRAME Support](https://substrate.dev/rustdocs/v2.0.0-rc
 gives runtime developers access to Substrate's flexible storage APIs. Any value that can be encoded
 by the [Parity SCALE codec](../advanced/codec) is supported by these storage APIs:
 
-- [Storage Value](https://substrate.dev/rustdocs/v2.0.0-rc4/frame_support/storage/trait.StorageValue.html) - A single
+- [Storage Value](https://substrate.dev/rustdocs/v2.0.0-rc4/frame_support/storage/trait.storagevalue.html) - A single
   value
-- [Storage Map](https://substrate.dev/rustdocs/v2.0.0-rc4/frame_support/storage/trait.StorageMap.html) - A key-value
+- [Storage Map](https://substrate.dev/rustdocs/v2.0.0-rc4/frame_support/storage/trait.storagemap.html) - A key-value
   hash map
-- [Storage Double Map](https://substrate.dev/rustdocs/v2.0.0-rc4/frame_support/storage/trait.StorageDoubleMap.html) -
+- [Storage Double Map](https://substrate.dev/rustdocs/v2.0.0-rc4/frame_support/storage/trait.storagedoublemap.html) -
   An implementation of a map with two keys that provides the important ability to efficiently remove
   all entries that have a common first key
 
@@ -64,7 +64,7 @@ Map data structures are ideal for managing sets of items whose elements will be 
 as opposed to iterating over them sequentially in their entirety. Storage Maps in Substrate are
 implemented as key-value hash maps, which is a pattern that should be familiar to most developers.
 In order to give blockchain engineers increased control, Substrate allows developers to select
-[the hashing algorithm](#Hashing-Algorithms) that is used to generate a map's keys. Refer to
+[the hashing algorithm](#hashing-algorithms) that is used to generate a map's keys. Refer to
 [the advanced storage documentation](../advanced/storage) to learn more about how Substrate's
 Storage Maps are implemented.
 
@@ -94,7 +94,7 @@ exceed block production time by iterating over maps in their entirety within the
 Furthermore, because accessing the elements of a map requires more database reads than accessing the
 elements of a native list, maps are significantly _more_ costly than lists to iterate over with
 respect to time. This is not to say that it is "wrong" to iterate over maps in your runtime; in
-general Substrate focuses on "[first principles](#Best-Practices)" as opposed to hard and fast rules
+general Substrate focuses on "[first principles](#best-practices)" as opposed to hard and fast rules
 of right and wrong. Being efficient within the runtime of a blockchain is an important first
 principle of Substrate and this information is designed to help you understand _all_ of Substrate's
 storage capabilities and use them in a way that respects the important first principles around which
@@ -153,8 +153,8 @@ concatenating the algorithm's input to its output. This makes it trivial for use
 key's original unhashed value and verify it if they'd like (by re-hashing it). The creators of
 Substrate have **deprecated the use of non-transparent hashers** within FRAME-based runtimes, so
 this information is provided primarily for completeness. In fact, it is _necessary_ to use a
-transparent hashing algorithm if you would like to access [iterable map](#Iterable-Storage-Maps)
-capabilities. Refer to [the advanced storage documentation](../advanced/storage#Storage-Map-Keys) to
+transparent hashing algorithm if you would like to access [iterable map](#iterable-storage-maps)
+capabilities. Refer to [the advanced storage documentation](../advanced/storage#storage-map-keys) to
 learn more about the important capabilities that transparent hashing algorithms expose.
 
 ##### Common Substrate Hashers
@@ -194,7 +194,7 @@ decl_storage! {
 }
 ```
 
-Notice that the map's storage items specify [the hashing algorithm](#Hashing-Algorithms) that will
+Notice that the map's storage items specify [the hashing algorithm](#hashing-algorithms) that will
 be used.
 
 ### Visibility
@@ -212,7 +212,7 @@ method for a storage item on the module that contains that storage item; the ext
 desired name of the getter function as an argument. If you omit this optional extension, you will
 still be able to access the storage item's value, but you will not be able to do so by way of a
 getter method implemented on the module; instead, you will need to need to use
-[the storage item's `get` method](#Methods). Keep in mind that the optional `get` extension only
+[the storage item's `get` method](#methods). Keep in mind that the optional `get` extension only
 impacts the way that the storage item can be accessed from within Substrate code; you will always be
 able to [query the storage of your runtime](../advanced/storage#Querying-Storage) to get the value
 of a storage item.
@@ -278,7 +278,7 @@ When you use the `decl_storage` macro to declare a storage item, you can provide
 `config` extension that will add an attribute to the pallet's `GenesisConfig` data type; the value
 of this attribute will be used as the initial value of the storage item in your chain's genesis
 block. The `config` extension takes a parameter that will determine the name of the attribute on the
-`GenesisConfig` data type; this parameter is optional if [the `get` extension](#Getter-Methods) is
+`GenesisConfig` data type; this parameter is optional if [the `get` extension](#getter-methods) is
 provided (the name of the `get` function is used as the attribute's name).
 
 Here is an example that demonstrates using the `config` extension with a Storage Value named `MyVal`
@@ -434,7 +434,7 @@ pre-image associated with an object in [IPFS](https://ipfs.io/); this means that
 location (a hash that is bounded in size) needs to be stored on-chain.
 
 Hashes are only one mechanism that can be used to control the size of runtime storage. An example of
-another mechanism is [bounds](#Create-Bounds).
+another mechanism is [bounds](#create-bounds).
 
 ### Verify First, Write Last
 
@@ -472,11 +472,11 @@ storage item whose size is determined by user action should have a bound on it.
 [The multi-signature capabilities from the Utility pallet](https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_utility/trait.Trait.html#associatedtype.MaxSignatories)
 that were described above are one such example. In this case, the list of signatories associated
 with a multi-signature operation is provided by the multi-signature participants. Because this
-signatory list is [necessary to come to consensus](#What-to-Store) on the state of the
+signatory list is [necessary to come to consensus](#what-to-store) on the state of the
 multi-signature operation, it must be stored in the runtime. However, in order to give runtime
 developers control over how much space in storage these lists may occupy, the Utility pallet
 requires users to configure a bound on this number that will be included as a
-[precondition](#Verify-First-Write-Last) before anything is written to storage.
+[precondition](#verify-first-write-last) before anything is written to storage.
 
 ## Next Steps
 
