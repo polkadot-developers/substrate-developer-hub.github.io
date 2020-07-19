@@ -183,10 +183,10 @@ The macro declares and implements various struct and enum, e.g.`Runtime`, `Event
 
   - `Runtime` struct type is defined to represent the Substrate runtime.
   - `Event` enum type is defined with variants of all pallets that emit events, with helper traits and encoding/decoding traits implemented for the enum. Various conversion traits `Event` also implements `TryInto<pallets::Event<Runtime>>` trait to extract the event out from the enum type.
-  - `Origin` enum type is defined with helper traits, e.g. `PartialEq`, `Clone`, `Debug` implemented. This enum type defines who call an extrinsic, `NONE`, `ROOT`, or signed by a particular account.
-  - `Call` enum type is defined with all integrated pallets as variants. It contains the data and metadata of each of the integrated pallets, and redirects calls to the specific pallet via implementing `frame_support::dispatch::Dispatchable` trait.
+  - `Origin` enum type is defined with helper traits, e.g. `PartialEq`, `Clone`, `Debug` implemented. This enum type defines who call an extrinsic, `NONE`, `ROOT`, or signed by a particular account. The origin can also be defined by other pallets, not only system.
+  - `Call` enum type is defined with all integrated pallets as variants. It contains the data and metadata of each of the integrated pallets, and redirects calls to the specific pallet via implementing `frame_support::traits::UnfilteredDispatchable` trait.
   - `GenesisConfig` struct type is defined and implements `sp_runtime::BuildStorage` trait for building up the storage genesis config.
-  - The macro provides a default `frame_support::unsigned::ValidateUnsigned` trait implementation if not provided to disallow all unsigned transactions.
+  - The macro adopts the `frame_support::unsigned::ValidateUnsigned` trait implementation from each pallets. If no `ValidateUnsigned` trait is implemented in any included pallets, all unsigned transactions will be rejected.
 
 ### parameter_types!
 
@@ -281,6 +281,20 @@ This macro creates an event enum type, implement various helper traits on `Event
   - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc3/frame_support/macro.impl_outer_event.html)
   - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc3/frame/support/src/event.rs#L334-L485)
   - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-mock-rs-L16-L21), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-test-expanded-rs-L148-L361)
+
+### impl_outer_dispatch!
+
+**When to Use**
+
+To implement a meta-dispatch module to dispatch to other dispatchers. This macro is typically called automatically by the `construct_runtime!` macro. However, developers may call this macro directly to construct a `Call` enum selecting specific pallet that it dispatches. This is useful when constructing a mock runtime for testing.
+
+**What It Does**
+
+This macro creates a `Call` enum type, implement various helper traits on `Event` type, including `Clone`, `PartialEq`, `RuntimeDebug` etc. Finally, the macro implements `GetDispatchInfo`, `GetCallMetadata`, `IsSubType` traits for the `Call` enum.
+
+**Doc. and Example**
+  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc3/frame_support/macro.impl_outer_dispatch.html)
+  - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc3/frame/support/src/dispatch.rs#L1621)
 
 ## Conclusion
 
