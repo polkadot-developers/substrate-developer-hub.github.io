@@ -33,13 +33,33 @@ When developing Substrate runtime, there are key macros the majority of develope
 
 **When to Use**
 
-definitions for storage items in a runtime pallete can be defined as the following: 
+To define storage items in a runtime pallete. A storage item definition includes: 
 
-- its data type (a regular value `StorageValue`, a map `StorageMap`, a double-map `StorageDoubleMap`), 
+- its data type, being one of:
+
+  * for `StorageValue`: `rust-type`
+  * for `StorageMap`: `map hasher($hasher) rust_type => rust_type`
+  * for `StorageDoubleMap`: `doublemap hasher($hasher) rust_type, hasher($hasher) rust_type => rust_type`
+
 - its getter function, 
 - its key types and their hashing methods (if a map or double-map), 
-- the name of the storage, and 
-- its default value.
+- the name of the storage,
+- its default value
+
+These storage values can be initialized in its genesis block via an `add_extra_genesis` block afterwards.
+
+```rust
+decl_storage! {
+  trait Storage for Module<T: Trait> as MyModule {
+    // ...
+  }
+  add_extra_genesis {
+    build (|config| {
+      //...
+    });
+  }
+}
+```
 
 **What It Does**
 
@@ -51,7 +71,7 @@ This macro takes a succinct statement of:
 
 Replacing it with a new struct type defined by `#name` and have it implement the data type storage trait. 
 
-The macro also declare the core `Module` struct type and implements `Store` trait to set up the pallet to have storage space.
+The macro also declare and implements `Store` trait to set up the pallet to have storage space, and implements getters on `Module` struct defined by `decl_module!`.
 
 **Doc. and Example**
 
@@ -62,10 +82,8 @@ The macro also declare the core `Module` struct type and implements `Store` trai
 **Macro Implementation Notes**
 
   - `Store` trait is declared with each storage name, thus becoming an associated type inside the trait.
-  - `Module` struct type is declared and implements within the `Store` trait.
   - `Module` implementation contains the getter function and metadata of each storage item.
   - Each of the storage items becomes a struct. Above in the expanded code `Something` struct type [is declared and implements `StorageValue<u32>` trait](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-expanded-rs-L144-L164) and the data type specified in the macro.
-  - Helper structs `__GetByteStructSomething` and `__InherentHiddenInstance` are defined for a setting default value of the storage item, while the later traits are implements for data encoding/decoding.
 
 ### decl_event!
 
@@ -86,9 +104,9 @@ This macro defines pallet events by implementing `Event` enum type, with each ev
 **Macro Implementation Notes**
 
   - `Event` or `Event<T>` type is defined, assigned to `RawEvent`.
-  - `RawEvent<AccountId>` enum type is defined with all events specified in the macro as its enum variants.
+  - `RawEvent<...all generic types used>` enum type is defined with all events specified in the macro as its enum variants.
   - The macro implements various helper traits for`RawEvent`, including data encoding/decoding, `core::cmp::PartialEq`, `core::cmp::Clone`, and `core::fmt::Debug`.
-  - `RawEvent<AccountId>` implements `metadata()` function to retrieve meta-data for events emitted in the pallet.
+  - `RawEvent<...>` implements `metadata()` function to retrieve meta-data for events emitted in the pallet.
 
 ### decl_error!
 
@@ -100,7 +118,7 @@ To define error types which a pallet may return in its dispatchable functions. D
 
 This macro defines `Error<T: Trait>` struct type, and implement helper methods for mapping each error type to sequential error code and corresponding string.
 
-One key is that the macro automatically implements the `From<Error<T>>` trait for `DispatchError`. Therefore `DispatchError` returns the proper module index, error code, and the error string for a particular error type. 
+One key is that the macro automatically implements the `From<Error<T>>` trait for `DispatchError`. Therefore `DispatchError` returns the proper module index, error code, error string for a particular error type, and the documentation provided on top of each error as meta-data.  
 
 **Doc. and Example**
 
@@ -134,9 +152,14 @@ The macro declares a `Module` struct and `Call` enum type for the containing pal
 **Macro Implementation Notes**
 
   - This macro declares a `Module<T>` struct and a `Call<T>` enum which implements the dispatch logic.
-  - Helper traits are automatically imeplemented for `Module` struct, such as `core::cmp::Eq`, `core::clone::Clone`, etc.
-  - `Module` implements various lifecycle traits, such as `frame_support::traits::OnInitialize` (callback when a block is initialized), `frame_support::traits::OnRuntimeUpgrade` (callback when a chain is undergoing a runtime upgrade), `frame_support::traits::OnFinalize` (callback when a block is finalized), and `frame_support::traits::OffchainWorker` (entrance of an offchain worker upon a block is finalized). 
-  - `Call<T: Trait>` implements `frame_support::dispatch::GetDispatchInfo` and `frame_support::dispatch::Dispatchable` traits that contain the core logic for dispatching calls.
+  - Helper traits are automatically implemented for `Module` struct, such as `core::cmp::Eq`, `core::clone::Clone`, etc.
+  - `Module` implements various lifecycle traits, such as 
+    - `frame_support::traits::OnInitialize`: callback when a block is initialized, 
+    - `frame_support::traits::OnRuntimeUpgrade`: callback when a chain is undergoing a runtime upgrade, 
+    - `frame_support::traits::OnFinalize`: callback when a block is finalized, and 
+    - `frame_support::traits::OffchainWorker`: entrance of an offchain worker upon a block is finalized. 
+  
+  - `Call<T: Trait>` implements `frame_support::dispatch::GetDispatchInfo` and `frame_support::traits::UnfilteredDispatchable` traits that contain the core logic for dispatching calls.
   - `Module<T>` implements `frame_support::dispatch::Callable<T>` trait with its associated type `Call` assigned to the `Call` enum.
   - Each dispatchable function is prepended with internal tracing logic for keeping track of the node activities. Developers can set whether to trace for a dispatchable function by specifying its interest level.
 
