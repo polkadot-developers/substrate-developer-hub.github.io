@@ -226,6 +226,8 @@ should be finalized.
 2020-06-26 12:02:20 💤 Idle (1 peers), best: #17 (0x9acb…ce8d), finalized #15 (0x806e…c94a), ⬇ 1.8kiB/s ⬆ 2.0kiB/s
 ```
 
+>Block finalization (finalized #1 (0x1368…fe12)) can only happen if more than two thirds of validators added their grandpa keys into their keystores.
+
 ## You're Finished
 
 Congratulations! You've started your own blockchain!
