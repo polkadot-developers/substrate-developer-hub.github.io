@@ -53,7 +53,7 @@ authors = ['Substrate DevHub <https://github.com/substrate-developer-hub>']
 description = 'FRAME pallet template'
 edition = '2018'
 homepage = 'https://substrate.dev'
-license = 'Unlicense'
+license = 'Unlicensed'
 name = 'test-pallet'
 repository = 'https://github.com/substrate-developer-hub/substrate-pallet-template/'
 version = '2.0.0-rc5'
@@ -247,10 +247,10 @@ To publish on GitHub, you need to
 
 ### Publishing on Crates.io
 
-Crates.io allows permissionless publishing. Learn the proceedure following their own guide about
+Crates.io allows permissionless publishing. Learn the procedure following their own guide about
 [publishing on crates.io](https://doc.rust-lang.org/cargo/reference/publishing.html)
 
-## Updating your Runtime's Dependecy
+## Updating your Runtime's Dependency
 
 With your pallet now published on GitHub, crates.io, or both, we can update your runtime to use the
 code that is published instead of a hard-coded file system path.
@@ -302,3 +302,5 @@ four lines of code in their runtime's `Cargo.toml` files and updating their runt
 
 - [The Cargo book](https://doc.rust-lang.org/stable/cargo/)
 - More about [Rust and WebAssembly](https://rustwasm.github.io/)
+
+
