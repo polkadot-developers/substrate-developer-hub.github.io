@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# set -xe
+set -e
+
+APP_DIR=$(cd $(dirname "${BASH_SOURCE[0]}")/.. && pwd)
+
+find $APP_DIR/docs/knowledgebase -type f -name "*.md" -print0 \
+ | xargs -0 sed -i -e "s/substrate.dev\/rustdocs\/$OLD_VERSION/substrate.dev\/rustdocs\/$NEW_VERSION/g"

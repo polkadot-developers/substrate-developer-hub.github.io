@@ -10,7 +10,7 @@ are some restrictions when operating inside of a `no_std` environment like the S
 
 To facilitate the debugging of the runtime, Substrate provides extra tools for `Print` debugging (or
 tracing). You can use the
-[`print` function](https://crates.parity.io/sp_runtime/fn.print.html) to log the status
+[`print` function](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_runtime/fn.print.html) to log the status
 of the runtime execution.
 
 ```rust
@@ -50,7 +50,7 @@ The values are printed in the terminal or the standard output if the Error gets 
 
 The Printable trait is meant to be a way to print from the runtime in `no_std` and in `std`. The
 `print` function works with any type that implements the
-[`Printable` trait](https://crates.parity.io/sp_runtime/traits/trait.Printable.html).
+[`Printable` trait](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_runtime/traits/trait.Printable.html).
 Substrate implements this trait for some types (`u8`, `u32`, `u64`, `usize`, `&[u8]`, `&str`) by
 default. You can also implement it for your own custom types. Here is an example of implementing it
 for a pallet's `Error` type using the node-template as the example codebase.
@@ -134,7 +134,7 @@ gets called.
 The `print` function works well when you just want to print and you have an implementation of the
 `Printable` trait. In some cases you may want to do more than print, or not bother with
 Substrate-specific traits just for debugging purposes. The
-[`if_std!` macro](https://crates.parity.io/sp_std/macro.if_std.html) is for exactly
+[`if_std!` macro](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_std/macro.if_std.html) is for exactly
 this situation.
 
 One caveat of using this macro is that the code inside will only execute when you are actually

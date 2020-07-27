@@ -47,7 +47,7 @@ proposal.dispatch(system::RawOrigin::None.into())
 ```
 
 You can look at the source code of the
-[Sudo module](https://crates.parity.io/pallet_sudo/index.html) for a practical
+[Sudo module](https://substrate.dev/rustdocs/v2.0.0-rc5/pallet_sudo/index.html) for a practical
 implementation of this.
 
 ## Next Steps
@@ -71,4 +71,4 @@ implementation of this.
 ### References
 
 - Visit the reference docs for the
-  [`RawOrigin` enum](https://crates.parity.io/frame_system/enum.RawOrigin.html).
+  [`RawOrigin` enum](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_system/enum.RawOrigin.html).

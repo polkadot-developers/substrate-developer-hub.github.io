@@ -20,7 +20,7 @@ by implementing the traits in _primitives._
 ![Runtime Composition](assets/runtime.png)
 
 For example, if you want to add smart contract functionality to your blockchain, you simply need to
-include the [Contracts](https://crates.parity.io/pallet_contracts/index.html) pallet.
+include the [Contracts](https://substrate.dev/rustdocs/v2.0.0-rc5/pallet_contracts/index.html) pallet.
 Adding this pallet will expose the smart contract interface so that users can deploy smart contracts
 that execute in Wasm.
 

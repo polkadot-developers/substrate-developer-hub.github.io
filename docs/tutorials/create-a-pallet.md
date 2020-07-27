@@ -7,7 +7,7 @@ node based on the `substrate-node-template`.
 
 ## Install the Node Template
 
-You should already have version `v2.0.0-rc4` of the
+You should already have version `v2.0.0-rc5` of the
 [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
 compiled on your computer from when you completed the
 [Create Your First Substrate Chain Tutorial](../create-your-first-substrate-chain/).
@@ -26,7 +26,7 @@ Clone the Substrate pallet template in the `pallets` directory of your node temp
 
 ```bash
 cd pallets
-git clone -b v2.0.0-rc4 https://github.com/substrate-developer-hub/substrate-pallet-template test-pallet
+git clone -b v2.0.0-rc5 https://github.com/substrate-developer-hub/substrate-pallet-template test-pallet
 ```
 
 > In this tutorial we have placed the pallet template _inside_ the node template's directory
@@ -53,10 +53,10 @@ authors = ['Substrate DevHub <https://github.com/substrate-developer-hub>']
 description = 'FRAME pallet template'
 edition = '2018'
 homepage = 'https://substrate.dev'
-license = 'Unlicense'
+license = 'Unlicensed'
 name = 'test-pallet'
 repository = 'https://github.com/substrate-developer-hub/substrate-pallet-template/'
-version = '2.0.0-rc4'
+version = '2.0.0-rc5'
 ```
 
 ### Compile the Template Pallet
@@ -115,12 +115,12 @@ consistent dependencies between your pallet and your runtime.
 [dependencies.frame-support]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-tag = 'v2.0.0-rc4'
-version = '2.0.0-rc4'
+tag = 'v2.0.0-rc5'
+version = '2.0.0-rc5'
 ```
 
-From the above snippet, we see that this pallet template depends on version `2.0.0-rc4` of the
-low-level libraries. Thus it can be used in runtimes that also depend on `2.0.0-rc4`.
+From the above snippet, we see that this pallet template depends on version `2.0.0-rc5` of the
+low-level libraries. Thus it can be used in runtimes that also depend on `2.0.0-rc5`.
 
 ### Your Pallet's Dev Dependencies
 
@@ -135,8 +135,8 @@ dependencies that are needed in your pallet's tests, but not the actual pallet i
 [dev-dependencies.sp-core]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-tag = 'v2.0.0-rc4'
-version = '2.0.0-rc4'
+tag = 'v2.0.0-rc5'
+version = '2.0.0-rc5'
 ```
 
 You can confirm that the tests in the Substrate pallet template pass with:
@@ -247,10 +247,10 @@ To publish on GitHub, you need to
 
 ### Publishing on Crates.io
 
-Crates.io allows permissionless publishing. Learn the proceedure following their own guide about
+Crates.io allows permissionless publishing. Learn the procedure following their own guide about
 [publishing on crates.io](https://doc.rust-lang.org/cargo/reference/publishing.html)
 
-## Updating your Runtime's Dependecy
+## Updating your Runtime's Dependency
 
 With your pallet now published on GitHub, crates.io, or both, we can update your runtime to use the
 code that is published instead of a hard-coded file system path.
@@ -302,3 +302,5 @@ four lines of code in their runtime's `Cargo.toml` files and updating their runt
 
 - [The Cargo book](https://doc.rust-lang.org/stable/cargo/)
 - More about [Rust and WebAssembly](https://rustwasm.github.io/)
+
+

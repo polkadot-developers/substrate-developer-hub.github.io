@@ -41,17 +41,17 @@ requires tracking a `(AccountId: u64, Balance: u64)` mapping.
 
 ### Mock Runtime Storage
 
-The [`runtime-io`](https://crates.parity.io/sp_io/index.html) crate exposes a
-[`TestExternalities`](https://crates.parity.io/sp_io/type.TestExternalities.html)
+The [`runtime-io`](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_io/index.html) crate exposes a
+[`TestExternalities`](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_io/type.TestExternalities.html)
 implementation frequently used for mocking storage in tests. It is the type alias for an in-memory,
 hashmap-based externalities implementation in
-[`substrate_state_machine`](https://crates.parity.io/sp_state_machine/index.html)]
+[`substrate_state_machine`](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_state_machine/index.html)]
 referred to as
-[`TestExternalities`](https://crates.parity.io/sp_state_machine/struct.TestExternalities.html).
+[`TestExternalities`](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_state_machine/struct.TestExternalities.html).
 
 In the [basic mock runtime's recipe](https://substrate.dev/recipes/3-entrees/testing/mock.html), an
 `ExtBuilder` object is defined to build an instance of
-[`TestExternalities`](https://crates.parity.io/sp_io/type.TestExternalities.html).
+[`TestExternalities`](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_io/type.TestExternalities.html).
 
 ```rust
 pub struct ExtBuilder;
@@ -66,7 +66,7 @@ impl ExtBuilder {
 
 To create the test environment in unit tests, the build method is called to generate a
 `TestExternalities` using the default genesis configuration. Then,
-[`with_externalities`](https://crates.parity.io/sp_externalities/fn.with_externalities.html)
+[`with_externalities`](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_externalities/fn.with_externalities.html)
 provides the runtime environment in which we may call the pallet's methods to test that storage,
 events, and errors behave as expected.
 
@@ -80,12 +80,12 @@ fn fake_test_example() {
 ```
 
 Custom implementations of
-[Externalities](https://crates.parity.io/sp_externalities/index.html) allow developers
+[Externalities](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_externalities/index.html) allow developers
 to construct runtime environments that provide access to features of the outer node. Another example
 of this can be found in
-[`offchain`](https://crates.parity.io/sp_core/offchain/index.html), which maintains its
+[`offchain`](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_core/offchain/index.html), which maintains its
 own
-[Externalities](https://crates.parity.io/sp_core/offchain/trait.Externalities.html)
+[Externalities](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_core/offchain/trait.Externalities.html)
 implementation.
 [Implementing configurable externalities](https://substrate.dev/recipes/3-entrees/testing/externalities.html)
 is covered in more depth in the recipes.
