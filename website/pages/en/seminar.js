@@ -107,7 +107,7 @@ function Seminar(props) {
 								On <strong>28 July</strong>, Parity's Ricardo Rius (also being the host), Jimmy Chu, and Steve Degosserie join us to present a Substrate Enterprise demo. This intermediate presentation will show several features of Substrate that enterprise users may find valuable. It may even include a demonstration of running a Substrate node on Android.
 							</p>
 							<p>
-								On <strong>4 Aug</strong>, Chainlink will come and give us a talk about their project.
+								On <strong>4 Aug</strong>, Chainlink Developer Advocate Patrick Collins will discuss the Chainlink pallet, which allows FRAME-based blockchains to interact with the popular Chainlink network of decentralized oracles. This Seminar marks the return of Joshy as host!
 							</p>
 							<h4 className='mb-2'>How do I join the call?</h4>
 							<p>
