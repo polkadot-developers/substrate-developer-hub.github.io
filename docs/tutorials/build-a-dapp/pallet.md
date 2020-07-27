@@ -8,17 +8,17 @@ pre-built pallets for use in FRAME-based runtimes.
 
 ![Runtime Composition](assets/tutorials/build-a-dapp/runtime.png)
 
-For example, FRAME includes a [Balances](https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_balances/)
+For example, FRAME includes a [Balances](https://substrate.dev/rustdocs/v2.0.0-rc5/pallet_balances/)
 pallet that controls the underlying currency of your blockchain by managing the _balance_ of all the
 accounts in your system.
 
 If you want to add smart contract functionality to your blockchain, you simply need to include the
-[Contracts](https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_contracts/) pallet.
+[Contracts](https://substrate.dev/rustdocs/v2.0.0-rc5/pallet_contracts/) pallet.
 
 Even things like on-chain governance can be added to your blockchain by including pallets like
-[Democracy](https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_democracy/),
-[Elections](https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_elections/), and
-[Collective](https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_collective/).
+[Democracy](https://substrate.dev/rustdocs/v2.0.0-rc5/pallet_democracy/),
+[Elections](https://substrate.dev/rustdocs/v2.0.0-rc5/pallet_elections/), and
+[Collective](https://substrate.dev/rustdocs/v2.0.0-rc5/pallet_collective/).
 
 The goal of this tutorial is to teach you how to create your own Substrate pallet to include in your
 custom blockchain! The `substrate-node-template` comes with a template pallet that we will build
@@ -116,8 +116,8 @@ we just deleted. However, `sp_std` is not available and we need to list it as a 
 [dependencies.sp-std]
 git = 'https://github.com/paritytech/substrate.git'
 default-features = false
-tag = 'v2.0.0-rc4'
-version = '2.0.0-rc4'
+tag = 'v2.0.0-rc5'
+version = '2.0.0-rc5'
 ```
 
 Then, **Update** the existing `[features]` block to look like this. The last line is new.
@@ -283,7 +283,7 @@ decl_module! {
 ```
 
 > The functions you see here do not have return types explicitly stated. In reality they all return
-> [`DispatchResult`](https://substrate.dev/rustdocs/v2.0.0-rc4/frame_support/dispatch/type.DispatchResult.html)s.
+> [`DispatchResult`](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/dispatch/type.DispatchResult.html)s.
 > This return type is added on your behalf by the `decl_module!` macro.
 
 ## Compile Your New Pallet

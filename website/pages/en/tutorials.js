@@ -232,7 +232,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "< 1",
                 prerequisite: false,
-                version: "2.0.0-rc4",
+                version: "2.0.0-rc5",
                 href: `${docUrl(
                   "tutorials/create-your-first-substrate-chain/"
                 )}`
@@ -250,7 +250,7 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "1",
                 prerequisite: true,
-                version: "2.0.0-rc4",
+                version: "2.0.0-rc5",
                 href: `${docUrl(
                   "tutorials/build-a-dapp/"
                 )}`
@@ -285,10 +285,43 @@ class Tutorials extends React.Component {
                 difficulty: "easy",
                 length: "2",
                 prerequisite: false,
-                version: "2.0.0-rc4",
+                version: "2.0.0-rc5",
                 href: `${docUrl(
                   "tutorials/start-a-private-network/"
                 )}`
+              },
+              {
+                img: `${baseUrl}img/crates.png`,
+                title: (
+                  <translate>Write a Pallet in its Own Crate</translate>
+                ),
+                text: (
+                  <translate>
+                    Make your pallets re-usable by packaging them in
+                    their own rust crate.
+                  </translate>
+                ),
+                difficulty: "medium",
+                length: "2",
+                prerequisite: false,
+                version: "2.0.0-rc5",
+                href: `${docUrl("tutorials/create-a-pallet/")}`
+              },
+              {
+                img: `${baseUrl}img/grafana.png`,
+                title: (
+                  <translate>Visualizing Node Metrics</translate>
+                ),
+                text: (
+                  <translate>
+                    Learn how to visualize the metrics that Substrate records using Prometheus.
+                  </translate>
+                ),
+                difficulty: "easy",
+                length: "< 1",
+                prerequisite: false,
+                version: "2.0.0-rc5",
+                href: `${docUrl("tutorials/visualize-node-metrics/")}`
               },
               {
                 img: `${baseUrl}img/ink-smart-contracts-tutorial.png`,
@@ -306,39 +339,6 @@ class Tutorials extends React.Component {
                 href:
                   "https://substrate-developer-hub.github.io/substrate-contracts-workshop/"
               },
-              {
-                img: `${baseUrl}img/crates.png`,
-                title: (
-                  <translate>Write a Pallet in its Own Crate</translate>
-                ),
-                text: (
-                  <translate>
-                    Make your pallets re-usable by packaging them in
-                    their own rust crate.
-                  </translate>
-                ),
-                difficulty: "medium",
-                length: "2",
-                prerequisite: false,
-                version: "2.0.0-rc4",
-                href: `${docUrl("tutorials/create-a-pallet/")}`
-              },
-              {
-                img: `${baseUrl}img/grafana.png`,
-                title: (
-                  <translate>Visualizing Node Metrics</translate>
-                ),
-                text: (
-                  <translate>
-                    Learn how to visualize the metrics that Substrate records using Prometheus.
-                  </translate>
-                ),
-                difficulty: "easy",
-                length: "< 1",
-                prerequisite: false,
-                version: "2.0.0-rc4",
-                href: `${docUrl("tutorials/visualize-node-metrics/")}`
-              }
             ]}
           />
         </Row>

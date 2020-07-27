@@ -27,8 +27,8 @@ Substrate node, as well as language-agnostic HTTP and WebSocket APIs.
 
 The easiest way to get the metadata is by querying the automatically-generated JSON-RPC function
 `state_getMetadata`. This will return a vector of SCALE-encoded bytes. You can decode this using the
-[`frame-metadata`](https://substrate.dev/rustdocs/v2.0.0-rc4/frame_metadata/index.html) and
-[`parity-scale-codec`](https://substrate.dev/rustdocs/v2.0.0-rc4/parity_scale_codec/index.html) libraries.
+[`frame-metadata`](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_metadata/index.html) and
+[`parity-scale-codec`](https://substrate.dev/rustdocs/v2.0.0-rc5/parity_scale_codec/index.html) libraries.
 
 Some helpful libraries like [`substrate-subxt`](https://github.com/paritytech/substrate-subxt) fetch
 the metadata and decode them for you. Once decoded, the structure may be serialized into JSON with
@@ -54,9 +54,9 @@ console.log("Metadata: " + metadata.raw);
 
 ### HTTP & WebSocket APIs
 
-Substrate nodes expose [a JSON-RPC API](https://substrate.dev/rustdocs/v2.0.0-rc4/sc_rpc/index.html) that you can
+Substrate nodes expose [a JSON-RPC API](https://substrate.dev/rustdocs/v2.0.0-rc5/sc_rpc/index.html) that you can
 access by way of **HTTP** or **WebSocket** requests. The message to
-[request metadata](https://substrate.dev/rustdocs/v2.0.0-rc4/sc_rpc/state/struct.StateClient.html#method.metadata)
+[request metadata](https://substrate.dev/rustdocs/v2.0.0-rc5/sc_rpc/state/struct.StateClient.html#method.metadata)
 from a node looks like this:
 
 ```json
@@ -110,7 +110,7 @@ The hex blob that is returned by the JSON-RPCs `state_getMetadata` method starts
 magic number, `0x6d657461`, which represents "meta" in plain text. The next piece of data (`0x0b` in
 the example above) represents the metadata version; decoding the hexadecimal value `0x0b` yields the
 decimal value 11, which is
-[the version of the Substrate metadata format](https://substrate.dev/rustdocs/v2.0.0-rc4/frame_metadata/enum.RuntimeMetadata.html)
+[the version of the Substrate metadata format](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_metadata/enum.RuntimeMetadata.html)
 that the result encodes. After the metadata version, the next piece of information encoded in the
 result field is the number of pallets that inform the blockchain's runtime; in the example above,
 the hexadecimal value `0x7c` represents the decimal number 31, which is SCALE-encoded by taking its
@@ -118,9 +118,9 @@ binary representation (`11111` or `0x1F` in hex), shifting it two bits to the le
 encoding that as hex.
 
 The remaining blob encodes
-[the metadata of each pallet](https://substrate.dev/rustdocs/v2.0.0-rc4/frame_metadata/struct.ModuleMetadata.html),
+[the metadata of each pallet](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_metadata/struct.ModuleMetadata.html),
 which will be reviewed below as well as some
-[extrinsic metadata](https://substrate.dev/rustdocs/v2.0.0-rc4/frame_metadata/struct.ExtrinsicMetadata.html), which
+[extrinsic metadata](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_metadata/struct.ExtrinsicMetadata.html), which
 is mostly out of the scope of this document.
 
 ## Decoded Metadata Format
@@ -248,7 +248,7 @@ decl_storage! {
 ```
 
 Storage metadata provides blockchain clients with the information that is required to query
-[the JSON-RPC's storage function](https://substrate.dev/rustdocs/v2.0.0-rc4/sc_rpc/state/struct.StateClient.html#method.storage)
+[the JSON-RPC's storage function](https://substrate.dev/rustdocs/v2.0.0-rc5/sc_rpc/state/struct.StateClient.html#method.storage)
 to get information for a specific storage item.
 
 ##### Calls
@@ -442,7 +442,7 @@ This will expose the following metadata:
 
 These are errors that could occur during the submission or execution of an extrinsic. In this case,
 the FRAME System pallet is declaring that it may raise the
-[the `InvalidSpecName` error](https://substrate.dev/rustdocs/v2.0.0-rc4/frame_system/enum.Error.html#variant.InvalidSpecName).
+[the `InvalidSpecName` error](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_system/enum.Error.html#variant.InvalidSpecName).
 
 ## Next Steps
 
@@ -460,4 +460,4 @@ the FRAME System pallet is declaring that it may raise the
 
 ### References
 
-- [Metadata](https://substrate.dev/rustdocs/v2.0.0-rc4/frame_metadata/index.html)
+- [Metadata](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_metadata/index.html)
