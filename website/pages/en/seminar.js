@@ -104,19 +104,10 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>14 July</strong>, Parity's Dan Forbes will demonstrate and discuss how to write your own Substrate pallet and install it in a runtime. He will also explore the uses and idiosyncrasies of Substrate's runtime storage. This is a beginner-friendly session focused on runtime development. Ricardo Rius will be the host in this seminar.
+								On <strong>28 July</strong>, Parity's Ricardo Rius, Jimmy Chu, and Steve Degosserie will showcase Substrate enterprise use cases. This intermediate presentation will demonstrate several capabilities of Substrate that enterprise users may find valuable. It may even include a demonstration of running a Substrate node on the Android mobile operating system!
 							</p>
 							<p>
-								On <strong>21 July</strong>, Parity's Kian Paimani returns to demonstrate testing and debugging live chains locally. This is an intermediate session in which attendees will learn the challenges associated with testing upgrades and migrations on live blockchains, and explore a techinque to overcome those challenges. Addie Wagenknecht will be the host in this seminar.
-							</p>
-							<p>
-								On <strong>28 July</strong>, Parity's Ricardo Rius, Jimmy Chu, and Steve Degosserie join us to present a Substrate Enterprise demo. Using a supply chain example, they'll demonstrate Substrate's advanced features.
-									Some of the topics that will be explored are:
-									<ul>
-										<li>Update an external service using Offchain workers after a specific change took place on the chain.</li>
-										<li>Enforce accounts access control using Substrate's advanced capabilities.</li>
-										<li>Dynamically add validators to a POA network.</li>
-									</ul>
+								On <strong>4 Aug</strong>, Chainlink Developer Advocate Patrick Collins will discuss the Chainlink pallet, which allows FRAME-based blockchains to interact with the popular Chainlink network of decentralized oracles. This Seminar marks the return of Joshy as host!
 							</p>
 							<h4 className='mb-2'>How do I join the call?</h4>
 							<p>
