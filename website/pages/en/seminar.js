@@ -104,13 +104,10 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>14 July</strong>, Parity's Dan Forbes will demonstrate and discuss how to write your own Substrate pallet and install it in a runtime. He will also explore the uses and idiosyncrasies of Substrate's runtime storage. This is a beginner-friendly session focused on runtime development. Ricardo Rius will be the host in this seminar.
-							</p>
-							<p>
-								On <strong>21 July</strong>, Parity's Kian Paimani returns to demonstrate testing and debugging live chains locally. This is an intermediate session in which attendees will learn the challenges associated with testing upgrades and migrations on live blockchains, and explore a techinque to overcome those challenges. Addie Wagenknecht will be the host in this seminar.
-							</p>
-							<p>
 								On <strong>28 July</strong>, Parity's Ricardo Rius (also being the host), Jimmy Chu, and Steve Degosserie join us to present a Substrate Enterprise demo. This intermediate presentation will show several features of Substrate that enterprise users may find valuable. It may even include a demonstration of running a Substrate node on Android.
+							</p>
+							<p>
+								On <strong>4 Aug</strong>, Chainlink will come and give us a talk about their project.
 							</p>
 							<h4 className='mb-2'>How do I join the call?</h4>
 							<p>
