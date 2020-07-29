@@ -85,10 +85,13 @@ publicKey: <your raw sr25519 key> (eg. 0x9effc1668ca381c242885516ec9fa2b19c67b66
 > If you generated your keys with the Apps UI you will not know your raw public key. In this case
 > you may use your SS58 address (`5FfBQ3kwXrbdyoqLPvcXRp7ikWydXawpNs2Ceu3WwFdhZ8W4`) instead.
 
-You've now successfully inserted your **aura** key. You can repeat those steps to insert your
-**grandpa** key (the **ed25519** key)
+You've now successfully inserted your
+[**Aura**](https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#aura-aka-authority-round)
+key. You can repeat those steps to insert your
+[**GRANDPA**](https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#grandpa) key (the
+**ed25519** key)
 
-![Inserting a Grandpa key using Apps](assets/tutorials/private-network/private-network-apps-insert-key.png)
+![Inserting a GRANDPA key using Apps](assets/tutorials/private-network/private-network-apps-insert-key.png)
 
 ```
 keytype: gran
@@ -195,12 +198,17 @@ like you did for the first node.
 > If you're inserting keys with the UI, you must connect the UI to the second node's WebSocket
 > endpoint before inserting the second node's keys.
 
+> Block finalization can only happen if more than two-thirds of the validators have added their Aura
+> and GRANDPA keys to their keystores. Since this network was configured with two validators (in the
+> chain spec), block finalization can occur after the second node has added its keys (i.e. 50% < 66% <
+> 100%).
+
 > Reminder: All validators must be using identical chain specifications in order to peer. You should
 > see the same genesis block and state root hashes.
 
 You will notice that even after you add the keys for the second node no block finalization has
 happened (**`finalized #0 (0x60b2…88ec)`**). Substrate nodes require a restart after inserting a
-grandpa key. Kill your nodes and restart them with the same commands you used previously. Now blocks
+GRANDPA key. Kill your nodes and restart them with the same commands you used previously. Now blocks
 should be finalized.
 
 ```
