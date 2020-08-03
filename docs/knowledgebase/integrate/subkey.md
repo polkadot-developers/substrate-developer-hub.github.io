@@ -322,7 +322,7 @@ Secret Key URI `//Alice` is account:
   SS58 Address:     5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
 ```
 
-A mnemonic phrase is a secret group of words that represent a wallet. When used in sequence they allow access to the storage within. Specifically there is a dev phrase implemented whenever a mnemonic phrase is omitted.```Alice``` for example is:
+A mnemonic phrase is a secret group of words that can be used to uniquely generate a private key. In Subkey, there is a specific dev phrase used whenever a mnemonic phrase is omitted.```//Alice``` for example is actually:
 
 ```bottom drive obey lake curtain smoke basket hold race lonely fit walk//Alice```
 
