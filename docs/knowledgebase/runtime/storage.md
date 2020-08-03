@@ -166,7 +166,7 @@ those that are transparent:
 | ------------------------------------------------------------------------------------------ | ------------- | ----------- |
 | [Blake2 128 Concat](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/struct.Blake2_128Concat.html)   | X             | X           |
 | [TwoX 64 Concat](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/struct.Twox64Concat.html)          |               | X           |
-| [Identity](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/struct.Identity.html)                    |               |             |
+| [Identity](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/struct.Identity.html)                    |               | X           |
 
 
 The Identity hasher encapsulates a hashing algorithm that has an output equal to its input (the
