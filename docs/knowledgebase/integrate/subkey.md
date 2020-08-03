@@ -322,17 +322,11 @@ Secret Key URI `//Alice` is account:
   SS58 Address:     5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
 ```
 
-There is nothing special about the name Alice. You can do the same trick with your own name. But
-remember that keys like these are _not_ secure, and are only useful for experimenting.
+A mnemonic phrase is a secret group of words that represent a wallet. When used in sequence they allow access to the storage within. Specifically there is a dev phrase implemented whenever a mnemonic phrase is omitted.```Alice``` for example is:
 
-```bash
-$ subkey inspect //Jimmy
-Secret Key URI `//Jimmy` is account:
-  Secret seed:      0x21f0a255194ed226b08966da162321570916d85073b6bdcae07d55001ab74b64
-  Public key (hex): 0xd4acd1e68a71aeb85b885b8e20de1a20a62270eab49ca6cd224c194d0f135b75
-  Account ID:       0xd4acd1e68a71aeb85b885b8e20de1a20a62270eab49ca6cd224c194d0f135b75
-  SS58 Address:     5GsZM5RSjEgsStFPEtAVvtX2nTQk2HqtYR8BW3fyPBcCHabM
-```
+```bottom drive obey lake curtain smoke basket hold race lonely fit walk//Alice```
+
+It is important remember that keys such as this are _not_ secure, and should be deployed only for testing. In addition, anyone not using PolkadotJS or Subkey should note this information to properly generate the account.
 
 ## Signing and Verifying Messages
 
