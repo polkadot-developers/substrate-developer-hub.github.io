@@ -166,8 +166,8 @@ those that are transparent:
 | ------------------------------------------------------------------------------------------ | ------------- | ----------- |
 | [Blake2 128 Concat](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/struct.Blake2_128Concat.html)   | X             | X           |
 | [TwoX 64 Concat](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/struct.Twox64Concat.html)          |               | X           |
-| [Blake2_256](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/struct.Blake2_256.html)                |               |             |
 | [Identity](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/struct.Identity.html)                    |               |             |
+| [Blake2_256](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/struct.Blake2_256.html) **DEPRECATED** | X             |             |
 | [Blake2 128](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/struct.Blake2_128.html) **DEPRECATED** | X             |             |
 | [TwoX 128](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/struct.Twox128.html) **DEPRECATED**      |               |             |
 
