@@ -4,7 +4,7 @@ title: The Block Import Pipeline
 
 ## The Import Queue
 
-The import queue is the abstract worker queue present in every Substrate node. The import queue is responsible for processing pieces of incoming information, verifying validity and importing valid information into the node's state. The most fundamental piece of
+The import queue is an abstract worker queue present in every Substrate node. The import queue is responsible for processing pieces of incoming information, verifying validity and importing valid information into the node's state. The most fundamental piece of
 information that the import queue processes is blocks. It is also responsible for
 importing consensus-related messages such as justifications or in light clients, finality proofs.
 
