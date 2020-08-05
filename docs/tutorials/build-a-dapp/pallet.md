@@ -70,10 +70,10 @@ At a high level, a Substrate pallet can be broken down into six sections:
 ```rust
 // 1. Imports
 use frame_support::{decl_module, decl_storage, decl_event, decl_error, dispatch};
-use frame_system::{self as system, ensure_signed};
+use frame_system::ensure_signed;
 
 // 2. Pallet Configuration
-pub trait Trait: system::Trait { /* --snip-- */ }
+pub trait Trait: frame_system::Trait { /* --snip-- */ }
 
 // 3. Pallet Storage Items
 decl_storage! { /* --snip-- */ }
@@ -103,7 +103,7 @@ file:
 use frame_support::{
 	decl_module, decl_storage, decl_event, decl_error, ensure, StorageMap
 };
-use frame_system::{self as system, ensure_signed};
+use frame_system::ensure_signed;
 use sp_std::vec::Vec;
 ```
 
@@ -140,9 +140,9 @@ is that it will emit some Events.
 
 ```rust
 /// The pallet's configuration trait.
-pub trait Trait: system::Trait {
+pub trait Trait: frame_system::Trait {
     /// The overarching event type.
-    type Event: From<Event<Self>> + Into<<Self as system::Trait>::Event>;
+    type Event: From<Event<Self>> + Into<<Self as frame_system::Trait>::Event>;
 }
 ```
 
@@ -153,7 +153,7 @@ After we've configured our pallet to emit events, let's go ahead define which ev
 ```rust
 // This pallet's events.
 decl_event! {
-    pub enum Event<T> where AccountId = <T as system::Trait>::AccountId {
+    pub enum Event<T> where AccountId = <T as frame_system::Trait>::AccountId {
         /// Event emitted when a proof has been claimed.
         ClaimCreated(AccountId, Vec<u8>),
         /// Event emitted when a claim is revoked by the owner.
@@ -247,8 +247,8 @@ decl_module! {
             // Verify that the specified proof has not been claimed yet or error with the message
             ensure!(!Proofs::<T>::contains_key(&proof), Error::<T>::ProofAlreadyClaimed);
 
-            // Call the `system` pallet to get the current block number
-            let current_block = <system::Module<T>>::block_number();
+            // Call the `frame_system` pallet to get the current block number
+            let current_block = <frame_system::Module<T>>::block_number();
 
             // Store the proof with the sender and the current block number
             Proofs::<T>::insert(&proof, (&sender, current_block));
