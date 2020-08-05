@@ -61,6 +61,11 @@ Prometheus->Grafana: `substrate_peers_count (1582023828, 5), (1582023847, 4) [..
 
 
 
+## Step 0: Install Prometheus and Grafana
+
+1) Install Prometheus [here](https://prometheus.io/download/)
+2) Install Grafana [here](https://grafana.com/get)
+
 ## Step 1: Run your node
 
 Substrate exposes an endpoint which serves metrics in the [Prometheus exposition
@@ -152,4 +157,3 @@ You can use [the above dashboard](https://grafana.com/grafana/dashboards/11784/)
 
 - Visit the source code for
   [Substrate Prometheus Exporter](https://github.com/paritytech/substrate/tree/master/utils/prometheus).
-
