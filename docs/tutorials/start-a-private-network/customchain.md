@@ -198,8 +198,8 @@ like you did for the first node.
 > If you're inserting keys with the UI, you must connect the UI to the second node's WebSocket
 > endpoint before inserting the second node's keys.
 
-> Block finalization can only happen if more than two-thirds of the validators have added their Aura
-> and GRANDPA keys to their keystores. Since this network was configured with two validators (in the
+> Block finalization can only happen if more than two-thirds of the validators have added their
+> GRANDPA keys to their keystores. Since this network was configured with two validators (in the
 > chain spec), block finalization can occur after the second node has added its keys (i.e. 50% < 66% <
 > 100%).
 
