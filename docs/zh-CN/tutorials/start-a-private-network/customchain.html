@@ -114,7 +114,7 @@
 2020-07-25 10:48:43 💤 Idle (0 peers), best: <span class="hljs-comment">#0 (0x60b2…88ec), finalized #0 (0x60b2…88ec), ⬇ 0 ⬆ 0</span>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="add-keys-to-keystore"></a><a href="#add-keys-to-keystore" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add Keys to Keystore</h2>
-<p>Once your node is running, you will again notice that no blocks are being produced. At this point, you need to add your keys into the keystore. Remember you will need to complete these steps for each node in your network.</p>
+<p>Once your node is running, you will again notice that no blocks are being produced. At this point, you need to add your keys into the keystore. Remember you will need to complete these steps for each node in your network. You will add two types of keys for each node: Aura and GRANDPA keys. Aura keys are necessary for <a href="https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#author-aka-block-author-block-producer">block <em>production</em></a>; GRANDPA keys are necessary for <a href="https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#finality">block <em>finalization</em></a>.</p>
 <h3><a class="anchor" aria-hidden="true" id="option-1-use-the-polkadot-js-apps-ui"></a><a href="#option-1-use-the-polkadot-js-apps-ui" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Option 1: Use the Polkadot-JS Apps UI</h3>
 <p>You can use the Apps UI to insert your keys into the keystore. Navigate to the &quot;Toolbox&quot; tab and the &quot;RPC Call&quot; sub-tab. Choose &quot;author&quot; and &quot;insertKey&quot;. The fields can be filled like this:</p>
 <p><img src="/docs/assets/tutorials/private-network/private-network-apps-insert-key-aura.png" alt="Inserting a Aura key using Apps"></p>
@@ -200,7 +200,10 @@ $ curl http://localhost:9933 -H <span class="hljs-string">"Content-Type:applicat
 <p>If you're inserting keys with the UI, you must connect the UI to the second node's WebSocket endpoint before inserting the second node's keys.</p>
 </blockquote>
 <blockquote>
-<p>Block finalization can only happen if more than two-thirds of the validators have added their Aura and GRANDPA keys to their keystores. Since this network was configured with two validators (in the chain spec), block finalization can occur after the second node has added its keys (i.e. 50% &lt; 66% &lt; 100%).</p>
+<p>A node will not be able to produce blocks if it has not added its Aura key.</p>
+</blockquote>
+<blockquote>
+<p>Block finalization can only happen if more than two-thirds of the validators have added their GRANDPA keys to their keystores. Since this network was configured with two validators (in the chain spec), block finalization can occur after the second node has added its keys (i.e. 50% &lt; 66% &lt; 100%).</p>
 </blockquote>
 <blockquote>
 <p>Reminder: All validators must be using identical chain specifications in order to peer. You should see the same genesis block and state root hashes.</p>
