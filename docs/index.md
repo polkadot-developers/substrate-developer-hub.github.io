@@ -19,6 +19,31 @@ Despite being "completely generic", it comes with both standards and conventions
 runtime module library (a.k.a [FRAME](knowledgebase/runtime/frame.md)) - regarding the underlying data-structures that
 power the STF, thereby making rapid blockchain development a reality.
 
+## Architecture
+
+![Substrate Client Architecture](assets/substrate-arch.png)
+
+The Substrate client is an application that runs a Substrate-based blockchain node - it consists of several components
+that include, but are not limited to, the following:
+
+- **Storage** is used to persist the evolving state of the decentralized system represented by a blockchain. The
+  blockchain network allows participants to reach trustless [consensus](knowledgebase/advanced/consensus) about the
+  state of storage. Substrate ships with a simple and highly efficient
+  [key-value storage mechanism](knowledgebase/advanced/storage).
+- **Runtime** logic defines how blocks are processed, including state transition logic. In Substrate, runtime code is
+  compiled to [Wasm](knowledgebase/getting-started/glossary#webassembly-wasm) and becomes part of the blockchain's
+  storage state - this enables one of the defining features of a Substrate-based blockchain:
+  [forkless runtime upgrades](knowledgebase/advanced/executor#forkless-runtime-upgrades). Substrate clients may also
+  include a "native runtime" that is compiled for the same platform as the client itself (as opposed to Wasm).
+- **Peer-to-peer network** capabilities allow the client to communicate with other network participants. Substrate uses
+  [the `libp2p` network stack](https://libp2p.io/).
+- **Consensus** engines provide logic that allows network participants to agree on the state of the blockchain.
+  Substrate makes it possible to supply custom consensus engines and also ships with several consensus mechanisms that
+  have been built on top of [Web3 Foundation research](https://w3f-research.readthedocs.io/en/latest/index.html).
+- **Remote procedure calls** allow blockchain users to interact with the network. Substrate provides HTTP and WebSocket
+  RPC servers.
+- **Telemetry** metrics are exposed by way of an embedded [Prometheus](https://prometheus.io/) server.
+
 ## Usage
 
 ![Technical Freedom vs Development Ease](assets/technical-freedom.png)
@@ -31,10 +56,10 @@ Substrate is designed to be used in one of three ways:
    the included runtime modules such as: balances, staking, block-period, fees, governance, etc... For a tutorial on
    doing this, see [Start a Private Network with Substrate](tutorials/start-a-private-network/index.md).
 
-2. **With the Substrate FRAME**: You can easily create your own custom blockchain using the FRAME. This affords you a
-   very large amount of freedom over your own blockchain's logic, letting you change datatypes, select from the library
-   of modules, and add your own custom modules. Much can be changed without touching the block-authoring logic since it
-   is directed through on-chain logic. If this is the case, then the existing Substrate binary can be used for block
+2. **With Substrate FRAME**: You can easily create your own custom runtime using FRAME. This affords you a very large
+   amount of freedom over your own blockchain's logic, letting you change data types, select from the library of
+   modules, and add your own custom modules. Much can be changed without touching the block-authoring logic since it is
+   directed through on-chain logic. If this is the case, then the existing Substrate binary can be used for block
    authoring and syncing. If the block authoring logic needs to be modified, then a new block-authoring binary must be
    built as a separate project and used by validators. This is how the Polkadot relay chain is built and should suffice
    for almost all needs in the near future. For a tutorial on this, see
