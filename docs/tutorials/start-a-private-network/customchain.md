@@ -38,8 +38,8 @@ Here are some differences from when we launched as Alice.
 - The optional `--rpc-methods=Unsafe` flag has been added. As the name indicates, this flag is not
   safe to use in a production setting, but it allows this tutorial to stay focused on the topic at
   hand. In production, you should use a
-  [JSON-RPC proxy](../../knowledgebase/getting-started/glossary#json-rpc-proxy-crate), but that topic is out of the
-  scope of this tutorial.
+  [JSON-RPC proxy](../../knowledgebase/getting-started/glossary#json-rpc-proxy-crate), but that
+  topic is out of the scope of this tutorial.
 
 You should see the console outputs something as follows:
 
@@ -107,9 +107,9 @@ publicKey: <your raw ed25519 key> (eg. 0xb48004c6e1625282313b07d1c9950935e86894a
 
 ### Option 2: Use `curl`
 
-You can also insert a key into the keystore by using [`curl`](https://curl.haxx.se/) from the command
-line. This approach may be preferable in a production setting, where you may be using a cloud-based
-virtual private server.
+You can also insert a key into the keystore by using [`curl`](https://curl.haxx.se/) from the
+command line. This approach may be preferable in a production setting, where you may be using a
+cloud-based virtual private server.
 
 Because security is of the utmost concern in a production environment, it is important to take every
 precaution possible. In this case, that means taking care that you do not leave any traces of your
@@ -141,7 +141,6 @@ If you enter the command and parameters correctly, the node will return a JSON r
 ```
 
 Make sure you delete the file that contains the keys when you are done.
-
 
 ## Subsequent Participants Join
 
@@ -200,8 +199,8 @@ like you did for the first node.
 
 > Block finalization can only happen if more than two-thirds of the validators have added their
 > GRANDPA keys to their keystores. Since this network was configured with two validators (in the
-> chain spec), block finalization can occur after the second node has added its keys (i.e. 50% < 66% <
-> 100%).
+> chain spec), block finalization can occur after the second node has added its keys (i.e. 50% < 66%
+> < 100%).
 
 > Reminder: All validators must be using identical chain specifications in order to peer. You should
 > see the same genesis block and state root hashes.
