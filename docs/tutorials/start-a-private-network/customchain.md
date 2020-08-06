@@ -67,7 +67,11 @@ You should see the console outputs something as follows:
 
 Once your node is running, you will again notice that no blocks are being produced. At this point,
 you need to add your keys into the keystore. Remember you will need to complete these steps for each
-node in your network.
+node in your network. You will add two types of keys for each node: Aura and GRANDPA keys. Aura keys
+are necessary for
+[block _production_](https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#author-aka-block-author-block-producer);
+GRANDPA keys are necessary for
+[block _finalization_](https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#finality).
 
 ### Option 1: Use the Polkadot-JS Apps UI
 
@@ -196,6 +200,8 @@ like you did for the first node.
 
 > If you're inserting keys with the UI, you must connect the UI to the second node's WebSocket
 > endpoint before inserting the second node's keys.
+
+> A node will not be able to produce blocks if it has not added its Aura key.
 
 > Block finalization can only happen if more than two-thirds of the validators have added their
 > GRANDPA keys to their keystores. Since this network was configured with two validators (in the
