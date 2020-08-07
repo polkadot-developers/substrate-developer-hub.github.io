@@ -76,19 +76,19 @@
 <p>你可以声明任何数量的会话密钥。 For example, the default Substrate node uses four. Other chains could have more or fewer depending on what operations the chain expects its validators to perform.</p>
 <p>In practice, validators amalgamate all of the session public keys into a single object, sign the set of public keys with a &quot;Controller&quot; account, and submit a transaction to register the keys on chain. This on-chain registration links a validator <em>node</em> with an <em>account</em> that holds funds. As such, that account can be credited with rewards or slashed based on the node's behavior.</p>
 <p>The runtime declares what session keys will be included (<code>runtime/src/lib.rs</code>):</p>
-<pre><code class="hljs css language-rust"><span class="token macro-rules function">impl_opaque_keys!</span> <span class="token punctuation">{</span>
-    <span class="token keyword">pub</span> <span class="token keyword">struct</span> SessionKeys <span class="token punctuation">{</span>
-        <span class="token keyword">pub</span> grandpa<span class="token punctuation">:</span> Grandpa<span class="token punctuation">,</span>
-        <span class="token keyword">pub</span> babe<span class="token punctuation">:</span> Babe<span class="token punctuation">,</span>
-        <span class="token keyword">pub</span> im_online<span class="token punctuation">:</span> ImOnline<span class="token punctuation">,</span>
-        <span class="token keyword">pub</span> authority_discovery<span class="token punctuation">:</span> AuthorityDiscovery<span class="token punctuation">,</span>
+<pre><code class="hljs css language-rust"><span class="token macro property">impl_opaque_keys!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">SessionKeys</span> <span class="token punctuation">{</span>
+        <span class="token keyword">pub</span> grandpa<span class="token punctuation">:</span> <span class="token class-name">Grandpa</span><span class="token punctuation">,</span>
+        <span class="token keyword">pub</span> babe<span class="token punctuation">:</span> <span class="token class-name">Babe</span><span class="token punctuation">,</span>
+        <span class="token keyword">pub</span> im_online<span class="token punctuation">:</span> <span class="token class-name">ImOnline</span><span class="token punctuation">,</span>
+        <span class="token keyword">pub</span> authority_discovery<span class="token punctuation">:</span> <span class="token class-name">AuthorityDiscovery</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>The actual cryptographic curve that each key uses gets defined in <code>primitives</code>. For example, BABE's key uses sr25519:</p>
-<pre><code class="hljs css language-rust"><span class="token keyword">mod</span> app <span class="token punctuation">{</span>
-      <span class="token keyword">use</span> sp_application_crypto<span class="token punctuation">::</span><span class="token punctuation">{</span>app_crypto<span class="token punctuation">,</span> key_types<span class="token punctuation">::</span>BABE<span class="token punctuation">,</span> sr25519<span class="token punctuation">}</span><span class="token punctuation">;</span>
-      <span class="token function">app_crypto!</span><span class="token punctuation">(</span>sr25519<span class="token punctuation">,</span> BABE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-rust"><span class="token keyword">mod</span> <span class="token module-declaration namespace">app</span> <span class="token punctuation">{</span>
+      <span class="token keyword">use</span> <span class="token namespace">sp_application_crypto<span class="token punctuation">::</span></span><span class="token punctuation">{</span>app_crypto<span class="token punctuation">,</span> <span class="token namespace">key_types<span class="token punctuation">::</span></span><span class="token constant">BABE</span><span class="token punctuation">,</span> sr25519<span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token macro property">app_crypto!</span><span class="token punctuation">(</span>sr25519<span class="token punctuation">,</span> <span class="token constant">BABE</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <blockquote>

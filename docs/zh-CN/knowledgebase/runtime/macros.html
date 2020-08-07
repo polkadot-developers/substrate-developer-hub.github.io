@@ -108,12 +108,12 @@
 <li><p>its default value</p></li>
 </ul>
 <p>These storage values can be initialized in its genesis block via an <code>add_extra_genesis</code> block afterwards.</p>
-<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_storage!</span> <span class="token punctuation">{</span>
-  <span class="token keyword">trait</span> Storage <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">as</span> MyModule <span class="token punctuation">{</span>
+<pre><code class="hljs css language-rust"><span class="token macro property">decl_storage!</span> <span class="token punctuation">{</span>
+  <span class="token keyword">trait</span> <span class="token class-name">Storage</span> <span class="token keyword">for</span> <span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Trait</span><span class="token operator">></span> <span class="token keyword">as</span> <span class="token class-name">MyModule</span> <span class="token punctuation">{</span>
     <span class="token comment">// ...</span>
   <span class="token punctuation">}</span>
   add_extra_genesis <span class="token punctuation">{</span>
-    <span class="token function">build</span> <span class="token punctuation">(</span><span class="token closure-params"><span class="token punctuation">|</span>config<span class="token punctuation">|</span></span> <span class="token punctuation">{</span>
+    <span class="token function">build</span> <span class="token punctuation">(</span><span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>config<span class="token closure-punctuation punctuation">|</span></span> <span class="token punctuation">{</span>
       <span class="token comment">//...</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>

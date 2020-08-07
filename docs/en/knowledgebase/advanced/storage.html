@@ -132,8 +132,8 @@ example, the <a href="https://substrate.dev/rustdocs/v2.0.0-rc5/pallet_sudo/inde
 Storage Value item named
 <a href="https://substrate.dev/rustdocs/v2.0.0-rc5/pallet_sudo/struct.Module.html#method.key"><code>Key</code></a>:</p>
 <pre><code class="hljs"><span class="token function">twox_128</span><span class="token punctuation">(</span><span class="token string">"Sudo"</span><span class="token punctuation">)</span>                   <span class="token operator">=</span> <span class="token string">"0x5c0d1176a568c1f92944340dbfed9e9c"</span>
-<span class="token function">twox_128</span><span class="token punctuation">(</span><span class="token string">"Key)                     = "</span><span class="token number">0x530ebca703c85910e7164cb7d1c9e47b</span>"
-<span class="token function">twox_128</span><span class="token punctuation">(</span><span class="token string">"Sudo"</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">twox_128</span><span class="token punctuation">(</span><span class="token string">"Key"</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token string">"0x5c0d1176a568c1f92944340dbfed9e9c530ebca703c85910e7164cb7d1c9e47b"</span>
+<span class="token function">twox_128</span><span class="token punctuation">(</span><span class="token string">"Key)                     = "</span><span class="token number">0x530ebca703c85910e7164cb7d1c9e47</span><span class="token string">b"
+twox_128("</span><span class="token class-name">Sudo</span><span class="token string">") + twox_128("</span><span class="token class-name">Key</span><span class="token string">") = "</span><span class="token number">0x5c0d1176a568c1f92944340dbfed9e9c530ebca703c85910e7164cb7d1c9e47b</span>"
 </code></pre>
 <p>If the familiar <code>Alice</code> account is the sudo user, an RPC request and response to read the Sudo
 module's <code>Key</code> Storage Value could be represented as:</p>
@@ -163,13 +163,13 @@ keys for the elements in a map.</p>
 &quot;Balances&quot; for the balance of the familiar <code>Alice</code> account. In this example, the <code>FreeBalance</code> map
 is using
 <a href="../runtime/storage#Transparent-Hashing-Algorithms">the transparent Blake2 128 Concat hashing algorithm</a>:</p>
-<pre><code class="hljs"><span class="token function">twox_128</span><span class="token punctuation">(</span><span class="token string">"Balances)                                              = "</span><span class="token number">0xc2261276cc9d1f8598ea4b6a74b15c2f</span>"
-<span class="token function">twox_128</span><span class="token punctuation">(</span><span class="token string">"FreeBalance"</span><span class="token punctuation">)</span>                                          <span class="token operator">=</span> <span class="token string">"0x6482b9ade7bc6657aaca787ba1add3b4"</span>
-<span class="token function">scale_encode</span><span class="token punctuation">(</span><span class="token string">"5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token string">"0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d"</span>
+<pre><code class="hljs"><span class="token function">twox_128</span><span class="token punctuation">(</span><span class="token string">"Balances)                                              = "</span><span class="token number">0xc2261276cc9d1f8598ea4b6a74b15c2f</span><span class="token string">"
+twox_128("</span><span class="token class-name">FreeBalance</span><span class="token string">")                                          = "</span><span class="token number">0x6482b9ade7bc6657aaca787ba1add3b4</span><span class="token string">"
+scale_encode("</span>5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY<span class="token string">") = "</span><span class="token number">0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d</span><span class="token string">"
 
-<span class="token function">blake2_128_concat</span><span class="token punctuation">(</span><span class="token string">"0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d"</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token string">"0xde1e86a9a8c739864cf3cc5ec2bea59fd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d"</span>
+blake2_128_concat("</span><span class="token number">0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d</span><span class="token string">") = "</span><span class="token number">0xde1e86a9a8c739864cf3cc5ec2bea59fd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d</span><span class="token string">"
 
-<span class="token function">state_getStorage</span><span class="token punctuation">(</span><span class="token string">"0xc2261276cc9d1f8598ea4b6a74b15c2f6482b9ade7bc6657aaca787ba1add3b4de1e86a9a8c739864cf3cc5ec2bea59fd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d"</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token string">"0x0000a0dec5adc9353600000000000000"</span>
+state_getStorage("</span><span class="token number">0xc2261276cc9d1f8598ea4b6a74b15c2f6482b9ade7bc6657aaca787ba1add3b4de1e86a9a8c739864cf3cc5ec2bea59fd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d</span><span class="token string">") = "</span><span class="token number">0x0000a0dec5adc9353600000000000000</span>"
 </code></pre>
 <p>The value that is returned from the storage query (<code>&quot;0x0000a0dec5adc9353600000000000000&quot;</code> in the
 example above) is the <a href="./codec">SCALE</a>-encoded value of Alice's account balance
@@ -186,12 +186,12 @@ query the map for more details about that particular element. Here is another ex
 same example Storage Map (a map named <code>FreeBalances</code> that uses a Blake2 128 Concat hashing algorithm
 in a module named &quot;Balances&quot;) that will demonstrate using the Substrate RPC to query a Storage Map
 for its list of keys via the <code>state_getKeys</code> RPC endpoint:</p>
-<pre><code class="hljs"><span class="token function">twox_128</span><span class="token punctuation">(</span><span class="token string">"Balances)                                       = "</span><span class="token number">0xc2261276cc9d1f8598ea4b6a74b15c2f</span>"
-<span class="token function">twox_128</span><span class="token punctuation">(</span><span class="token string">"FreeBalance"</span><span class="token punctuation">)</span>                                   <span class="token operator">=</span> <span class="token string">"0x6482b9ade7bc6657aaca787ba1add3b4"</span>
+<pre><code class="hljs"><span class="token function">twox_128</span><span class="token punctuation">(</span><span class="token string">"Balances)                                       = "</span><span class="token number">0xc2261276cc9d1f8598ea4b6a74b15c2f</span><span class="token string">"
+twox_128("</span><span class="token class-name">FreeBalance</span><span class="token string">")                                   = "</span><span class="token number">0x6482b9ade7bc6657aaca787ba1add3b4</span><span class="token string">"
 
-<span class="token function">state_getKeys</span><span class="token punctuation">(</span><span class="token string">"0xc2261276cc9d1f8598ea4b6a74b15c2f6482b9ade7bc6657aaca787ba1add3b4"</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
-    <span class="token string">"0xc2261276cc9d1f8598ea4b6a74b15c2f6482b9ade7bc6657aaca787ba1add3b4de1e86a9a8c739864cf3cc5ec2bea59fd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d"</span><span class="token punctuation">,</span>
-    <span class="token string">"0xc2261276cc9d1f8598ea4b6a74b15c2f6482b9ade7bc6657aaca787ba1add3b432a5935f6edc617ae178fef9eb1e211fbe5ddb1579b72e84524fc29e78609e3caf42e85aa118ebfe0b0ad404b5bdd25f"</span><span class="token punctuation">,</span>
+state_getKeys("</span><span class="token number">0xc2261276cc9d1f8598ea4b6a74b15c2f6482b9ade7bc6657aaca787ba1add3b4</span><span class="token string">") = [
+    "</span><span class="token number">0xc2261276cc9d1f8598ea4b6a74b15c2f6482b9ade7bc6657aaca787ba1add3b4de1e86a9a8c739864cf3cc5ec2bea59fd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d</span><span class="token string">",
+    "</span><span class="token number">0xc2261276cc9d1f8598ea4b6a74b15c2f6482b9ade7bc6657aaca787ba1add3b432a5935f6edc617ae178fef9eb1e211fbe5ddb1579b72e84524fc29e78609e3caf42e85aa118ebfe0b0ad404b5bdd25f</span>"<span class="token punctuation">,</span>
     <span class="token punctuation">...</span>
 <span class="token punctuation">]</span>
 </code></pre>

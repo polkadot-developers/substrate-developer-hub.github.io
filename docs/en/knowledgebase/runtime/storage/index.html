@@ -230,14 +230,14 @@ cryptographic hash.</p>
 <a href="https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.decl_storage.html">the <code>decl_storage</code> macro</a> to easily
 create new runtime storage items. Here is an example of what it looks like to declare each type of
 storage item:</p>
-<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_storage!</span> <span class="token punctuation">{</span>
-    <span class="token keyword">trait</span> Store <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">as</span> Example <span class="token punctuation">{</span>
-        SomePrivateValue<span class="token punctuation">:</span> u32<span class="token punctuation">;</span>
-        <span class="token keyword">pub</span> SomePrimitiveValue <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">fn</span> some_primitive_value<span class="token punctuation">)</span><span class="token punctuation">:</span> u32<span class="token punctuation">;</span>
+<pre><code class="hljs css language-rust"><span class="token macro property">decl_storage!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">trait</span> <span class="token class-name">Store</span> <span class="token keyword">for</span> <span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Trait</span><span class="token operator">></span> <span class="token keyword">as</span> <span class="token class-name">Example</span> <span class="token punctuation">{</span>
+        <span class="token class-name">SomePrivateValue</span><span class="token punctuation">:</span> <span class="token keyword">u32</span><span class="token punctuation">;</span>
+        <span class="token keyword">pub</span> <span class="token class-name">SomePrimitiveValue</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">fn</span> <span class="token function-definition function">some_primitive_value</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">u32</span><span class="token punctuation">;</span>
         <span class="token comment">// types can make use of the generic `T: Trait`</span>
-        <span class="token keyword">pub</span> SomeComplexValue<span class="token punctuation">:</span> T<span class="token punctuation">::</span>AccountId<span class="token punctuation">;</span>
-        <span class="token keyword">pub</span> SomeMap <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">fn</span> some_map<span class="token punctuation">)</span><span class="token punctuation">:</span> map <span class="token function">hasher</span><span class="token punctuation">(</span>blake2_128_concat<span class="token punctuation">)</span> T<span class="token punctuation">::</span>AccountId <span class="token operator">=></span> u32<span class="token punctuation">;</span>
-        <span class="token keyword">pub</span> SomeDoubleMap<span class="token punctuation">:</span> double_map <span class="token function">hasher</span><span class="token punctuation">(</span>blake2_128_concat<span class="token punctuation">)</span> u32<span class="token punctuation">,</span> <span class="token function">hasher</span><span class="token punctuation">(</span>blake2_128_concat<span class="token punctuation">)</span> T<span class="token punctuation">::</span>AccountId <span class="token operator">=></span> u32<span class="token punctuation">;</span>
+        <span class="token keyword">pub</span> <span class="token class-name">SomeComplexValue</span><span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountId</span><span class="token punctuation">;</span>
+        <span class="token keyword">pub</span> <span class="token class-name">SomeMap</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">fn</span> <span class="token function-definition function">some_map</span><span class="token punctuation">)</span><span class="token punctuation">:</span> map <span class="token function">hasher</span><span class="token punctuation">(</span>blake2_128_concat<span class="token punctuation">)</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountId</span> <span class="token operator">=></span> <span class="token keyword">u32</span><span class="token punctuation">;</span>
+        <span class="token keyword">pub</span> <span class="token class-name">SomeDoubleMap</span><span class="token punctuation">:</span> double_map <span class="token function">hasher</span><span class="token punctuation">(</span>blake2_128_concat<span class="token punctuation">)</span> <span class="token keyword">u32</span><span class="token punctuation">,</span> <span class="token function">hasher</span><span class="token punctuation">(</span>blake2_128_concat<span class="token punctuation">)</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountId</span> <span class="token operator">=></span> <span class="token keyword">u32</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -262,9 +262,9 @@ of a storage item.</p>
 <p>Here is an example that implements a getter method named <code>some_value</code> for a Storage Value named
 <code>SomeValue</code>. This module would now have access to a <code>Self::some_value()</code> method in addition to the
 <code>SomeValue::get()</code> method:</p>
-<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_storage!</span> <span class="token punctuation">{</span>
-    <span class="token keyword">trait</span> Store <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">as</span> Example <span class="token punctuation">{</span>
-        <span class="token keyword">pub</span> SomeValue <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">fn</span> some_value<span class="token punctuation">)</span><span class="token punctuation">:</span> u64<span class="token punctuation">;</span>
+<pre><code class="hljs css language-rust"><span class="token macro property">decl_storage!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">trait</span> <span class="token class-name">Store</span> <span class="token keyword">for</span> <span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Trait</span><span class="token operator">></span> <span class="token keyword">as</span> <span class="token class-name">Example</span> <span class="token punctuation">{</span>
+        <span class="token keyword">pub</span> <span class="token class-name">SomeValue</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">fn</span> <span class="token function-definition function">some_value</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">u64</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -273,9 +273,9 @@ of a storage item.</p>
 set. The default value does <strong>not</strong> actually occupy runtime storage, but runtime logic will see this
 value during execution.</p>
 <p>Here is an example of specifying the default value for all items in a map:</p>
-<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_storage!</span> <span class="token punctuation">{</span>
-    <span class="token keyword">trait</span> Store <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">as</span> Example <span class="token punctuation">{</span>
-        <span class="token keyword">pub</span> SomeMap<span class="token punctuation">:</span> map u64 <span class="token operator">=></span> u64 <span class="token operator">=</span> <span class="token number">1337</span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-rust"><span class="token macro property">decl_storage!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">trait</span> <span class="token class-name">Store</span> <span class="token keyword">for</span> <span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Trait</span><span class="token operator">></span> <span class="token keyword">as</span> <span class="token class-name">Example</span> <span class="token punctuation">{</span>
+        <span class="token keyword">pub</span> <span class="token class-name">SomeMap</span><span class="token punctuation">:</span> map <span class="token keyword">u64</span> <span class="token operator">=></span> <span class="token keyword">u64</span> <span class="token operator">=</span> <span class="token number">1337</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -316,16 +316,16 @@ to create an attribute named <code>init_val</code> on the <code>GenesisConfig</c
 module. This attribute is then used in an example that demonstrates using the <code>GenesisConfig</code> types
 to set the Storage Value's initial value in your chain's genesis block.</p>
 <p>In <code>my_module/src/lib.rs</code>:</p>
-<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_storage!</span> <span class="token punctuation">{</span>
-    <span class="token keyword">trait</span> Store <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">as</span> MyModule <span class="token punctuation">{</span>
-        <span class="token keyword">pub</span> MyVal <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">fn</span> my_val<span class="token punctuation">)</span> <span class="token function">config</span><span class="token punctuation">(</span>init_val<span class="token punctuation">)</span><span class="token punctuation">:</span> u64<span class="token punctuation">;</span>
+<pre><code class="hljs css language-rust"><span class="token macro property">decl_storage!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">trait</span> <span class="token class-name">Store</span> <span class="token keyword">for</span> <span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Trait</span><span class="token operator">></span> <span class="token keyword">as</span> <span class="token class-name">MyModule</span> <span class="token punctuation">{</span>
+        <span class="token keyword">pub</span> <span class="token class-name">MyVal</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">fn</span> <span class="token function-definition function">my_val</span><span class="token punctuation">)</span> <span class="token function">config</span><span class="token punctuation">(</span>init_val<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">u64</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>In <code>chain_spec.rs</code>:</p>
-<pre><code class="hljs css language-rust">GenesisConfig <span class="token punctuation">{</span>
-    my_module<span class="token punctuation">:</span> <span class="token function">Some</span><span class="token punctuation">(</span>MyModuleConfig <span class="token punctuation">{</span>
-        init_val<span class="token punctuation">:</span> <span class="token number">221u64</span> <span class="token operator">+</span> SOME_CONSTANT_VALUE<span class="token punctuation">,</span>
+<pre><code class="hljs css language-rust"><span class="token class-name">GenesisConfig</span> <span class="token punctuation">{</span>
+    my_module<span class="token punctuation">:</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token class-name">MyModuleConfig</span> <span class="token punctuation">{</span>
+        init_val<span class="token punctuation">:</span> <span class="token number">221u64</span> <span class="token operator">+</span> <span class="token constant">SOME_CONSTANT_VALUE</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -347,17 +347,17 @@ and another that designates a special member from the list, the prime member. Th
 provided by way of the <code>config</code> extension and the prime member, who is assumed to be the first
 element in the list of members, is set using the <code>build</code> extension.</p>
 <p>In <code>my_module/src/lib.rs</code>:</p>
-<pre><code class="hljs css language-rust"><span class="token macro-rules function">decl_storage!</span> <span class="token punctuation">{</span>
-    <span class="token keyword">trait</span> Store <span class="token keyword">for</span> Module<span class="token operator">&lt;</span>T<span class="token punctuation">:</span> Trait<span class="token operator">></span> <span class="token keyword">as</span> MyModule <span class="token punctuation">{</span>
-        <span class="token keyword">pub</span> Members <span class="token function">config</span><span class="token punctuation">(</span>orig_ids<span class="token punctuation">)</span><span class="token punctuation">:</span> Vec<span class="token operator">&lt;</span>T<span class="token punctuation">::</span>AccountId<span class="token operator">></span><span class="token punctuation">;</span>
-        <span class="token keyword">pub</span> Prime <span class="token function">build</span><span class="token punctuation">(</span><span class="token operator">|</span>config<span class="token punctuation">:</span> <span class="token operator">&amp;</span>GenesisConfig<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">|</span> config<span class="token punctuation">.</span>orig_ids<span class="token punctuation">.</span><span class="token function">first</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cloned</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span> T<span class="token punctuation">::</span>AccountId<span class="token punctuation">;</span>
+<pre><code class="hljs css language-rust"><span class="token macro property">decl_storage!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">trait</span> <span class="token class-name">Store</span> <span class="token keyword">for</span> <span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Trait</span><span class="token operator">></span> <span class="token keyword">as</span> <span class="token class-name">MyModule</span> <span class="token punctuation">{</span>
+        <span class="token keyword">pub</span> <span class="token class-name">Members</span> <span class="token function">config</span><span class="token punctuation">(</span>orig_ids<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountId</span><span class="token operator">></span><span class="token punctuation">;</span>
+        <span class="token keyword">pub</span> <span class="token class-name">Prime</span> <span class="token function">build</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>config<span class="token punctuation">:</span> <span class="token operator">&amp;</span><span class="token class-name">GenesisConfig</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token closure-punctuation punctuation">|</span></span> config<span class="token punctuation">.</span>orig_ids<span class="token punctuation">.</span><span class="token function">first</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">cloned</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountId</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>In <code>chain_spec.rs</code>:</p>
-<pre><code class="hljs css language-rust">GenesisConfig <span class="token punctuation">{</span>
-    my_module<span class="token punctuation">:</span> <span class="token function">Some</span><span class="token punctuation">(</span>MyModuleConfig <span class="token punctuation">{</span>
-        orig_ids<span class="token punctuation">:</span> LIST_OF_IDS<span class="token punctuation">,</span>
+<pre><code class="hljs css language-rust"><span class="token class-name">GenesisConfig</span> <span class="token punctuation">{</span>
+    my_module<span class="token punctuation">:</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token class-name">MyModuleConfig</span> <span class="token punctuation">{</span>
+        orig_ids<span class="token punctuation">:</span> <span class="token constant">LIST_OF_IDS</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -390,9 +390,9 @@ imagination.</p>
 }
 </span></code></pre>
 <p>In <code>chain_spec.rs</code>:</p>
-<pre><code class="hljs css language-rust">GenesisConfig <span class="token punctuation">{</span>
-    my_module<span class="token punctuation">:</span> <span class="token function">Some</span><span class="token punctuation">(</span>MyModuleConfig <span class="token punctuation">{</span>
-        orig_ids<span class="token punctuation">:</span> LIST_OF_IDS<span class="token punctuation">,</span>
+<pre><code class="hljs css language-rust"><span class="token class-name">GenesisConfig</span> <span class="token punctuation">{</span>
+    my_module<span class="token punctuation">:</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token class-name">MyModuleConfig</span> <span class="token punctuation">{</span>
+        orig_ids<span class="token punctuation">:</span> <span class="token constant">LIST_OF_IDS</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span>
 </code></pre>

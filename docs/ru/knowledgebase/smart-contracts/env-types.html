@@ -76,23 +76,23 @@
 <p>Previously these types were fixed, requiring that the target substrate runtime had compatible types.</p>
 <p>Now smart contract authors can specify their own definitions of these types, in order to be compatible with their custom runtime. e.g.</p>
 <pre><code class="hljs"><span class="token comment">// 1. Define type and derive the implementations.</span>
-<span class="token attribute attr-name">#[cfg_attr(feature = "ink-generate-abi", derive(Metadata))]</span>
+<span class="token attribute attr-name">#[cfg_attr(feature = <span class="token string">"ink-generate-abi"</span>, derive(Metadata))]</span>
 <span class="token attribute attr-name">#[derive(Clone, Debug, PartialEq, Eq)]</span>
-<span class="token keyword">pub</span> <span class="token keyword">enum</span> CustomRuntimeTypes <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">CustomRuntimeTypes</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 
 <span class="token comment">// 2. Implement `EnvTypes` trait, specifying custom types</span>
-<span class="token keyword">impl</span> ink_core<span class="token punctuation">::</span>env<span class="token punctuation">::</span>EnvTypes <span class="token keyword">for</span> CustomRuntimeTypes <span class="token punctuation">{</span>
-    <span class="token keyword">type</span> AccountId <span class="token operator">=</span> AccountId<span class="token punctuation">;</span>
-    <span class="token keyword">type</span> Balance <span class="token operator">=</span> u128<span class="token punctuation">;</span>
-    <span class="token keyword">type</span> Hash <span class="token operator">=</span> Hash<span class="token punctuation">;</span>
-    <span class="token keyword">type</span> Timestamp <span class="token operator">=</span> u64<span class="token punctuation">;</span>
-    <span class="token keyword">type</span> BlockNumber <span class="token operator">=</span> BlockNumber<span class="token punctuation">;</span>
-    <span class="token keyword">type</span> Call <span class="token operator">=</span> calls<span class="token punctuation">::</span>Call<span class="token punctuation">;</span>
+<span class="token keyword">impl</span> <span class="token namespace">ink_core<span class="token punctuation">::</span>env<span class="token punctuation">::</span></span><span class="token class-name">EnvTypes</span> <span class="token keyword">for</span> <span class="token class-name">CustomRuntimeTypes</span> <span class="token punctuation">{</span>
+    <span class="token keyword">type</span> <span class="token class-name">AccountId</span> <span class="token operator">=</span> <span class="token class-name">AccountId</span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token keyword">u128</span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">Hash</span> <span class="token operator">=</span> <span class="token class-name">Hash</span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">Timestamp</span> <span class="token operator">=</span> <span class="token keyword">u64</span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">BlockNumber</span> <span class="token operator">=</span> <span class="token class-name">BlockNumber</span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">Call</span> <span class="token operator">=</span> <span class="token namespace">calls<span class="token punctuation">::</span></span><span class="token class-name">Call</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 
 <span class="token comment">// 3. Add contract attribute specifying custom types</span>
-    <span class="token attribute attr-name">#[ink::contract(version = "0.1.0", env = CustomRuntimeTypes)]</span>
+    <span class="token attribute attr-name">#[ink::contract(version = <span class="token string">"0.1.0"</span>, env = CustomRuntimeTypes)]</span>
     <span class="token punctuation">...</span>
 </code></pre>
 <p>A full example of implementing this as a library can be found <a href="https://github.com/paritytech/ink-types-node-runtime">here</a>.</p>

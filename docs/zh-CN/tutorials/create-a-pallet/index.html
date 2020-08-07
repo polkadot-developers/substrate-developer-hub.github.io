@@ -121,20 +121,20 @@ cargo build --release
 <p>Next we will update <code>runtime/src/lib.rs</code> to actually use our new runtime pallet, by adding a trait implementation with our <code>test_pallet</code> and add it in our <code>construct_runtime!</code> macro.</p>
 <p><strong><code>runtime/src/lib.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token comment">// add the following code block</span>
-<span class="token keyword">impl</span> test_pallet<span class="token punctuation">::</span>Trait <span class="token keyword">for</span> Runtime <span class="token punctuation">{</span>
-  <span class="token keyword">type</span> Event <span class="token operator">=</span> Event<span class="token punctuation">;</span>
+<span class="token keyword">impl</span> <span class="token namespace">test_pallet<span class="token punctuation">::</span></span><span class="token class-name">Trait</span> <span class="token keyword">for</span> <span class="token class-name">Runtime</span> <span class="token punctuation">{</span>
+  <span class="token keyword">type</span> <span class="token class-name">Event</span> <span class="token operator">=</span> <span class="token class-name">Event</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token comment">// --snip--</span>
-<span class="token function">construct_runtime!</span><span class="token punctuation">(</span>
-  <span class="token keyword">pub</span> <span class="token keyword">enum</span> Runtime <span class="token keyword">where</span>
-    Block <span class="token operator">=</span> Block<span class="token punctuation">,</span>
-    NodeBlock <span class="token operator">=</span> opaque<span class="token punctuation">::</span>Block<span class="token punctuation">,</span>
-    UncheckedExtrinsic <span class="token operator">=</span> UncheckedExtrinsic
+<span class="token macro property">construct_runtime!</span><span class="token punctuation">(</span>
+  <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Runtime</span> <span class="token keyword">where</span>
+    <span class="token class-name">Block</span> <span class="token operator">=</span> <span class="token class-name">Block</span><span class="token punctuation">,</span>
+    <span class="token class-name">NodeBlock</span> <span class="token operator">=</span> <span class="token namespace">opaque<span class="token punctuation">::</span></span><span class="token class-name">Block</span><span class="token punctuation">,</span>
+    <span class="token class-name">UncheckedExtrinsic</span> <span class="token operator">=</span> <span class="token class-name">UncheckedExtrinsic</span>
   <span class="token punctuation">{</span>
     <span class="token comment">// --snip--</span>
     <span class="token comment">// add the following line</span>
-    TestPallet<span class="token punctuation">:</span> test_pallet<span class="token punctuation">::</span><span class="token punctuation">{</span>Module<span class="token punctuation">,</span> Call<span class="token punctuation">,</span> Storage<span class="token punctuation">,</span> Event<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token class-name">TestPallet</span><span class="token punctuation">:</span> <span class="token namespace">test_pallet<span class="token punctuation">::</span></span><span class="token punctuation">{</span><span class="token class-name">Module</span><span class="token punctuation">,</span> <span class="token class-name">Call</span><span class="token punctuation">,</span> <span class="token class-name">Storage</span><span class="token punctuation">,</span> <span class="token class-name">Event</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
