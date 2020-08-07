@@ -56,9 +56,10 @@ databases, or both. To allow consensus engines this opportunity, it is common to
 another struct that also implements `BlockImport`. This nesting leads to the term "block import
 pipeline".
 
-An example of this wrapping is the
-[`PowBlockImport`](https://substrate.dev/rustdocs/v2.0.0-rc5/sc_consensus_pow/struct.PowBlockImport.html), which
-holds a reference and can implement `BlockImport`. Thus allowing the PoW consensus
+An example of this wrapping is
+[`PowBlockImport`](https://substrate.dev/rustdocs/v2.0.0-rc5/sc_consensus_pow/struct.PowBlockImport.html), it's inner fields are also 
+`BlockImport`. 
+This allows the PoW consensus
 engine to do its own import-related checks and pass the block to the nested `BlockImport` to the client. The pattern is also demonstrated in
 [`AuraBlockImport`](https://substrate.dev/rustdocs/v2.0.0-rc5/sc_consensus_aura/struct.AuraBlockImport.html),
 [`BabeBlockImport`](https://substrate.dev/rustdocs/v2.0.0-rc5/sc_consensus_babe/struct.BabeBlockImport.html), and
