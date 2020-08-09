@@ -40,8 +40,8 @@ that include, but are not limited to, the following:
 - **Consensus** engines provide logic that allows network participants to agree on the state of the blockchain.
   Substrate makes it possible to supply custom consensus engines and also ships with several consensus mechanisms that
   have been built on top of [Web3 Foundation research](https://w3f-research.readthedocs.io/en/latest/index.html).
-- **Remote procedure calls** allow blockchain users to interact with the network. Substrate provides HTTP and WebSocket
-  RPC servers.
+- **RPC** (remote procedure call) capabilities allow blockchain users to interact with the network. Substrate provides
+  HTTP and WebSocket RPC servers.
 - **Telemetry** metrics are exposed by way of an embedded [Prometheus](https://prometheus.io/) server.
 
 ## Usage
@@ -57,12 +57,12 @@ Substrate is designed to be used in one of three ways:
    doing this, see [Start a Private Network with Substrate](tutorials/start-a-private-network/index.md).
 
 2. **With Substrate FRAME**: You can easily create your own custom runtime using FRAME. This affords you a very large
-   amount of freedom over your own blockchain's logic, letting you change data types, select from the library of
-   modules, and add your own custom modules. Much can be changed without touching the block-authoring logic since it is
-   directed through on-chain logic. If this is the case, then the existing Substrate binary can be used for block
-   authoring and syncing. If the block authoring logic needs to be modified, then a new block-authoring binary must be
-   built as a separate project and used by validators. This is how the Polkadot relay chain is built and should suffice
-   for almost all needs in the near future. For a tutorial on this, see
+   amount of freedom over your blockchain's logic, and allows you to configure data types, select from a library of
+   modules (called "pallets"), and add your own custom pallets. Much can be changed without touching the block-authoring
+   logic since it is directed through on-chain logic. If this is the case, then the existing Substrate binary can be
+   used for block authoring and syncing. If the block authoring logic needs to be modified, then a new block-authoring
+   binary must be built as a separate project and used by validators. This is how the Polkadot relay chain is built and
+   should suffice for almost all needs in the near future. For a tutorial on this, see
    [creating your first Substrate chain](tutorials/create-your-first-substrate-chain/index.md).
 
 3. **With the Substrate Core**: The entire [FRAME](knowledgebase/runtime/frame.md) can be ignored, and the entire
