@@ -197,12 +197,16 @@ You can insert fixed keys into a Substrate-based node's keystore with the `inser
 
 ```bash
 # Usage
-$ subkey insert SEED KEY_TYPE node-url
+$ subkey [CRYPTO_TYPE] insert SEED KEY_TYPE node-url
 
-# Exmaple
-$ subkey insert 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0 test
+# Example: Inserting an Aura key (SR25519 Crypto)
+$ subkey insert 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0 aura http://localhost:9933
+
+# Example: Inserting a Grandpa key (ED25519 Crypto)
+$ subkey -e insert 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0 gran http://localhost:9933
 ```
 
+- `CRYPTO_TYPE` - an optional flag specifying what cryptography to use. Defaut is sr25519
 - `SEED` - Seed or secret phrase
 - `KEY_TYPE` - A 4-character string to specify the key type in the node
 - `node-url` - Node's RPC port. Default is `http://localhost:9933`
