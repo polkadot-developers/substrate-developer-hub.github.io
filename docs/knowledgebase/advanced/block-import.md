@@ -57,8 +57,8 @@ another struct that also implements `BlockImport`. This nesting leads to the ter
 pipeline".
 
 An example of this wrapping is
-[`PowBlockImport`](https://substrate.dev/rustdocs/v2.0.0-rc5/sc_consensus_pow/struct.PowBlockImport.html), it's inner fields are also 
-`BlockImport`. 
+[`PowBlockImport`](https://substrate.dev/rustdocs/v2.0.0-rc5/sc_consensus_pow/struct.PowBlockImport.html), it's inner fields are also
+`BlockImport`.
 This allows the PoW consensus
 engine to do its own import-related checks and pass the block to the nested `BlockImport` to the client. The pattern is also demonstrated in
 [`AuraBlockImport`](https://substrate.dev/rustdocs/v2.0.0-rc5/sc_consensus_aura/struct.AuraBlockImport.html),
@@ -79,5 +79,3 @@ Several of the Recipes' nodes demonstrate the block import pipeline:
   PoW and the client
 - [Hybrid Consensus](https://substrate.dev/recipes/3-entrees/hybrid-consensus.html) - the import
   pipeline is PoW, then Grandpa, then the client
-
-
