@@ -60,7 +60,7 @@ Substrate is designed to be used in one of three ways:
    the included runtime modules such as: balances, staking, block-period, fees, governance, etc... For a tutorial on
    doing this, see [Start a Private Network with Substrate](tutorials/start-a-private-network/index.md).
 
-2. **With Substrate FRAME**: You can easily create your own custom runtime using FRAME. This affords you a very large
+2. **With Substrate FRAME**: You can easily create your own custom runtime using the Framework for Runtime Aggregation of Modularized Entities (FRAME). This affords you a very large
    amount of freedom over your blockchain's logic, and allows you to configure data types, select from a library of
    modules (called "pallets"), and add your own custom pallets. Much can be changed without touching the block-authoring
    logic since it is directed through on-chain logic. If this is the case, then the existing Substrate binary can be
