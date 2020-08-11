@@ -71,10 +71,7 @@ Substrate is designed to be used in one of three ways:
    touching the block-authoring logic since it is directed through runtime logic. If this is sufficient, then the
    existing Substrate binary can be used for block authoring and syncing; the
    [Substrate Developer Hub Node Template](https://github.com/substrate-developer-hub/substrate-node-template) is a
-   helpful starting point for projects with such needs. If the block authoring logic needs to be modified, then a new
-   block-authoring binary must be built as a separate project and used by validators. This is how the
-   [Polkadot](https://github.com/paritytech/polkadot/) relay chain is built and should suffice for almost all needs in
-   the near future. For a tutorial on this, see
+   helpful starting point for projects with such needs. For a tutorial on this, see
    [Create Your First Substrate Chain](tutorials/create-your-first-substrate-chain/index.md).
 
 3. **With Substrate Core**: The entire FRAME system can be ignored, and the runtime can be designed and implemented from
