@@ -13,13 +13,15 @@ interface to the core client.
 
 The following diagram shows the architectural overview of FRAME and its support libraries:
 
-![frame-arch](assets/frame-arch.png)
+![FRAME Architecture](assets/frame-arch.png)
 
 ### Pallets
 
 When building with FRAME, the Substrate runtime is composed of several smaller components called
 pallets. A pallet contains a set of types, storage items, and functions that define a set of
 features and functionality for a runtime.
+
+![FRAME Runtime](assets/frame-runtime.png)
 
 ### System Library
 
