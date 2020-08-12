@@ -113,7 +113,7 @@ class Tutorials extends React.Component {
         </a>
       ));
 
-    const RuntimeRecipes = () => (
+    const Recipes = () => (
       <div>
         <h2>
           <translate>Runtime Recipes</translate>
@@ -121,8 +121,8 @@ class Tutorials extends React.Component {
         <hr />
         <p>
           <translate>
-            Find code samples for common patterns and best practices when
-            developing runtime modules on Substrate:
+            Code examples, common patterns, and best practices when
+            developing with Substrate:
           </translate>
         </p>
         <p>
@@ -131,7 +131,7 @@ class Tutorials extends React.Component {
             className="primary-color"
             href="https://substrate.dev/recipes"
           >
-            <translate>Substrate Runtime Recipes ></translate>
+            <translate>Substrate Recipes ></translate>
           </Button>
         </p>
       </div>
