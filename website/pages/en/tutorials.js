@@ -37,7 +37,7 @@ class Tutorials extends React.Component {
 
     const FeaturedTutorialCards = props =>
       props.data.map(tutorial => (
-        <a href={tutorial.href} target="_blank" className="a_wrapper">
+        <a href={tutorial.href} className="a_wrapper">
           <Col xl={3} lg={4} md={6} sm={12} className="mb-5 d-flex align-items-stretch">
             <Card>
               <Card.Img
@@ -104,7 +104,6 @@ class Tutorials extends React.Component {
                   variant="secondary"
                   className="primary-color"
                   href={tutorial.href}
-                  target="_blank"
                 >
                   Try it now!
               </Button>
@@ -116,7 +115,7 @@ class Tutorials extends React.Component {
 
     const OtherTutorialCards = props =>
       props.data.map(tutorial => (
-        <a href={tutorial.href} target="_blank" className="a_wrapper">
+        <a href={tutorial.href} className="a_wrapper">
           <Col xl={3} lg={4} md={6} sm={12} className="mb-5 d-flex align-items-stretch">
             <Card>
               <Card.Body className="d-flex flex-column">
@@ -199,7 +198,6 @@ class Tutorials extends React.Component {
         </p>
         <p>
           <Button
-            target="_blank"
             variant="secondary"
             className="primary-color"
             href="https://substrate.dev/recipes"
