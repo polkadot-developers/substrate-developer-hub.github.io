@@ -24,15 +24,15 @@ A transaction fee consists of two parts:
 
 - `length_fee`: A per-byte fee that is multiplied by the length, in bytes, of the encoded extrinsic.
   See
-  [`TransactionByteFee`](https://substrate.dev/rustdocs/v2.0.0-rc5/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
+  [`TransactionByteFee`](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
 - `weight_fee`: A fee based on the weight of the extrinsic, which is a function of two parameters.
   One, an `ExtrinsicBaseWeight` that is declared in the runtime and applies to all extrinsics. The
   base weight covers inclusion overhead like signature verification. Two, a flexible `#[weight]`
   annotation that accounts for an extrinsic's complexity. In order to convert the weight to
   `Currency`, the runtime must define a
-  [`WeightToFee`](https://substrate.dev/rustdocs/v2.0.0-rc5/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
+  [`WeightToFee`](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
   struct that implements a conversion function,
-  [`Convert<Weight,Balance>`](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_runtime/traits/trait.Convert.html).
+  [`Convert<Weight,Balance>`](https://substrate.dev/rustdocs/v2.0.0-rc6/sp_runtime/traits/trait.Convert.html).
 
 Based on the above, the final fee of a dispatchable is:
 
@@ -53,13 +53,13 @@ block construction logic perform checks prior to adding an extrinsic to a block.
 
 The above formula gives a fee that is always the same for the same input. However, weight can be
 dynamic and, based on how
-[`WeightToFee`](https://substrate.dev/rustdocs/v2.0.0-rc5/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
+[`WeightToFee`](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee)
 is defined, the final fee can include some degree of variability. To fulfill this requirement,
 Substrate provides:
 
-- [`NextFeeMultiplier`](https://substrate.dev/rustdocs/v2.0.0-rc5/pallet_transaction_payment/struct.Module.html#method.next_fee_multiplier):
+- [`NextFeeMultiplier`](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_transaction_payment/struct.Module.html#method.next_fee_multiplier):
   A configurable multiplier stored in the Transaction Payment module.
-- [`FeeMultiplierUpdate`](https://substrate.dev/rustdocs/v2.0.0-rc5/pallet_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate):
+- [`FeeMultiplierUpdate`](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate):
   A configurable parameter for a runtime to describe how this multiplier can change.
 
 `NextFeeMultiplier` has the type `Fixed64`, which can represent a fixed point number. So, given the
@@ -175,7 +175,7 @@ fn my_dispatchable() {
 
 Dispatches in this class represent normal user-triggered transactions. These types of dispatches may
 only consume a portion of a block's total weight limit; this portion can be found by examining the
-[`AvailableBlockRatio`](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
+[`AvailableBlockRatio`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
 Normal dispatches are sent to the [transaction pool](../learn-substrate/tx-pool).
 
 #### Operational Dispatches
@@ -183,7 +183,7 @@ Normal dispatches are sent to the [transaction pool](../learn-substrate/tx-pool)
 As opposed to normal dispatches, which represent _usage_ of network capabilities, operational
 dispatches are those that _provide_ network capabilities. These types of dispatches may consume the
 entire weight limit of a block, which is to say that they are not bound by the
-[`AvailableBlockRatio`](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
+[`AvailableBlockRatio`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
 Dispatches in this class are given maximum priority and are exempt from paying the `length_fee`.
 
 #### Mandatory Dispatches
@@ -385,7 +385,7 @@ payment module drawing inspiration from Transaction Payment.
 
 - Dedicated [weight documentation](../learn-substrate/weight)
 - [Example module](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
-- [SignedExtension](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_runtime/traits/trait.SignedExtension.html)
+- [SignedExtension](https://substrate.dev/rustdocs/v2.0.0-rc6/sp_runtime/traits/trait.SignedExtension.html)
 
 ### Examples
 
