@@ -32,4 +32,4 @@ can be upgraded without a hard fork.
 - Follow a
   [tutorial to develop your first Substrate chain](../../tutorials/create-your-first-substrate-chain/).
 - Follow a
-  [tutorial to add a pallet to your Substrate runtime](../../tutorials/add-a-pallet-to-your-runtime/).
+  [tutorial to add a pallet to your Substrate runtime](../../tutorials/add-a-pallet/).

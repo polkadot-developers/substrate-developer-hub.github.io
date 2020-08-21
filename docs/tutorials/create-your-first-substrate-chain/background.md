@@ -2,47 +2,45 @@
 title: Background Information
 ---
 
-In this section we will teach you about the Substrate blockchain development framework. The Node
-Template that you are currently developing is built from this framework.
+In this section, you will learn a little bit about blockchains and the Substrate blockchain
+development framework. The Node Template that you are compiling was built with this framework.
 
 ## Background on Blockchains
 
-Blockchain development is hard.
-
-Blockchain networks are composed of individual **nodes** that are connected together on a
-peer-to-peer (P2P) network. Nodes are the individual computers on a network running the blockchain
-software that makes everything work.
+Blockchain networks are composed of individual **nodes** that are connected by a peer-to-peer (P2P)
+network. Nodes are the individual computers on a network running the blockchain software that makes
+everything work.
 
 To function, a blockchain node needs:
 
-- A Database
-- P2P Networking
-- A Consensus Engine
-- Transaction Handling
-- A State Transition Function
+- Storage
+- Peer-to-peer networking
+- Consensus capabilities
+- Transaction handling
+- A runtime
 - and more...
 
-These technologies span a huge breadth of computer science, and thus usually require expert teams to
-develop. As a result, most blockchain projects are _not_ developed from the ground up. Instead,
-these projects are forked from already existing blockchain repositories. For instance:
+These technologies span a wide breadth of computer science, and so blockchains usually require teams
+of experts to develop. As a result, most blockchain projects are _not_ developed from the ground up.
+Instead, these projects are forked from existing blockchain projects. For instance:
 
 - The Bitcoin repository was forked to create: Litecoin, ZCash, Namecoin, Bitcoin Cash, etc...
 - The Ethereum repository was forked to create: Quorum, POA Network, KodakCoin, Musicoin, etc...
 
 ![Blockchain Project Repository Forks](assets/tutorials/first-chain/forks.png)
 
-Building blockchains in this way has serious limitations as these existing platform were not
+Building blockchains in this way has serious limitations as these existing platforms were not
 designed with modification in mind.
 
 ## Substrate
 
 Substrate is an **open source**, **modular**, and **extensible** framework for building blockchains.
 
-Substrate has been designed from the ground up to provide a flexible framework for innovators to
-design and build their next blockchain network. It provides all the core components you need to
+Substrate has been designed from the ground up to be flexible and allow innovators to design and
+build a blockchain network that meets their needs. It provides all the core components you need to
 build a customized blockchain node.
 
-### Substrate Node Template
+### Substrate Developer Hub Node Template
 
 We provide an out-of-the-box working Substrate-based node in the form of the Node Template, which
 should be compiling as you read this. Without making any changes, you and your friends could share

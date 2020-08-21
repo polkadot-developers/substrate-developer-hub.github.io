@@ -95,7 +95,7 @@ Substrate is designed to be used in one of three ways:
 
 - Follow our [tutorial to start a private network with Substrate](tutorials/start-a-private-network/).
 
-- Follow our [tutorial to add a runtime module to your Substrate runtime](tutorials/add-a-pallet-to-your-runtime/).
+- Follow our [tutorial to add a pallet to your FRAME runtime](tutorials/add-a-pallet/).
 
 ### References
 
