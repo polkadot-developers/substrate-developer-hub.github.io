@@ -166,7 +166,10 @@ complete list of possible types can be found in the
 If we look at the Nicks pallet in detail, we know it has:
 
 - Module **Storage**: Because it uses the `decl_storage!` macro.
-- Module **Event**s: Because it uses the `decl_event!` macro.
+- Module **Event**s: Because it uses the `decl_event!` macro. You will notice that in the case of
+  the Nicks pallet, the `Event` keyword is parameterized with respect to a type, `T`; this is
+  because at least one of the events defined by the Nicks pallet depends on a type that is
+  configured with the `Trait` configuration trait.
 - **Call**able Functions: Because it has dispatchable functions in the `decl_module!` macro.
 - The **Module** type from the `decl_module!` macro.
 
