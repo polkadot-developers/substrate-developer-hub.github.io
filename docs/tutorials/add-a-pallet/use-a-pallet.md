@@ -136,7 +136,10 @@ own runtime.
 
 ### Learn More
 
-- Complete the [Start a Private Network](../start-a-private-network) tutorial.
+- Learn how to add a more complex pallet to the Node Template by completing the
+  [Add the Contracts Pallet](../add-contracts-pallet) tutorial.
+- Complete the [Start a Private Network](../start-a-private-network) tutorial to learn how to use
+  the Substrate node in non-development mode.
 
 ### References
 
