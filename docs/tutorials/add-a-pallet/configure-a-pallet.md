@@ -34,31 +34,31 @@ already included in the documentation so be sure to read them:
 
 ```rust
 pub trait Trait: frame_system::Trait {
-	// The runtime must supply this pallet with an Event type that satisfies the pallet's requirements.
-	type Event: From<Event<Self>> + Into<<Self as frame_system::Trait>::Event>;
+    // The runtime must supply this pallet with an Event type that satisfies the pallet's requirements.
+    type Event: From<Event<Self>> + Into<<Self as frame_system::Trait>::Event>;
 
     // The currency type that will be used to place deposits on nicks.
     // It must implement ReservableCurrency.
     // https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/traits/trait.ReservableCurrency.html
-	type Currency: ReservableCurrency<Self::AccountId>;
+    type Currency: ReservableCurrency<Self::AccountId>;
 
-	// The amount required to reserve a nick.
-	type ReservationFee: Get<BalanceOf<Self>>;
+    // The amount required to reserve a nick.
+    type ReservationFee: Get<BalanceOf<Self>>;
 
-	// A callback that will be invoked when a deposit is forfeited.
-	type Slashed: OnUnbalanced<NegativeImbalanceOf<Self>>;
+    // A callback that will be invoked when a deposit is forfeited.
+    type Slashed: OnUnbalanced<NegativeImbalanceOf<Self>>;
 
     // Origins are used to identify network participants and control access.
     // This is used to identify the pallet's admin.
     // https://substrate.dev/docs/en/knowledgebase/runtime/origin
-	type ForceOrigin: EnsureOrigin<Self::Origin>;
+    type ForceOrigin: EnsureOrigin<Self::Origin>;
 
-	// This parameter is used to configure a nick's minimum length.
-	type MinLength: Get<usize>;
+    // This parameter is used to configure a nick's minimum length.
+    type MinLength: Get<usize>;
 
     // This parameter is used to configure a nick's maximum length.
     // https://substrate.dev/docs/en/knowledgebase/runtime/storage#create-bounds
-	type MaxLength: Get<usize>;
+    type MaxLength: Get<usize>;
 }
 ```
 
@@ -74,11 +74,11 @@ comments that you should be sure to read:
 ```rust
 parameter_types! {
     // The u128 constant value 500 is aliased to a type named ExistentialDeposit.
-	pub const ExistentialDeposit: u128 = 500;
+    pub const ExistentialDeposit: u128 = 500;
 }
 
 impl pallet_balances::Trait for Runtime {
-	// The "Balance" that appears after the equal sign is an alias for the u128 type.
+    // The "Balance" that appears after the equal sign is an alias for the u128 type.
     type Balance = Balance;
 
     // The empty value, (), is used to specify a no-op callback function.
@@ -93,8 +93,8 @@ impl pallet_balances::Trait for Runtime {
     // No weight information is supplied to the Balances pallet by the Node Template's runtime.
     type WeightInfo = ();
 
-	// The ubiquitous event type.
-	type Event = Event;
+    // The ubiquitous event type.
+    type Event = Event;
 }
 ```
 
@@ -116,10 +116,10 @@ configuration trait for the Nicks pallet. Add the following code to `runtime/src
 ```rust
 parameter_types! {
     // Choose a fee that incentivizes desireable behavior.
-	pub const NickReservationFee: u128 = 100;
+    pub const NickReservationFee: u128 = 100;
     pub const MinNickLength: usize = 8;
     // Maximum bounds on storage are important to secure your chain.
-	pub const MaxNickLength: usize = 32;
+    pub const MaxNickLength: usize = 32;
 }
 
 impl pallet_nicks::Trait for Runtime {
@@ -143,8 +143,8 @@ impl pallet_nicks::Trait for Runtime {
     // Use the MaxNickLength from the parameter_types block.
     type MaxLength = MaxNickLength;
 
-	// The ubiquitous event type.
-	type Event = Event;
+    // The ubiquitous event type.
+    type Event = Event;
 }
 ```
 
