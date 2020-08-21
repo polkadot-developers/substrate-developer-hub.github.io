@@ -127,7 +127,7 @@
 <p>The macro also declare and implements <code>Store</code> trait to set up the pallet to have storage space, and implements getters on <code>Module</code> struct defined by <code>decl_module!</code>.</p>
 <p><strong>Doc. and Example</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.decl_storage.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_storage.html">API Documentation</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/procedural/src/lib.rs#L236-L238">Macro Definition</a></li>
 <li>Macro Expansion Example: <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-rs-L30-L40">original</a>, <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-expanded-rs-L19-L164">expanded</a></li>
 </ul>
@@ -144,7 +144,7 @@
 <p>This macro defines pallet events by implementing <code>Event</code> enum type, with each event type in the macro being an enum variant inside <code>Event</code>.</p>
 <p><strong>Doc. and Example</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.decl_event.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_event.html">API Documentation</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/event.rs#L101-L149">Macro Definition</a></li>
 <li>Macro Expansion Example: <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-rs-L43-L50">original</a>, <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-expanded-rs-L169-L330">expanded</a></li>
 </ul>
@@ -163,7 +163,7 @@
 <p>One key is that the macro automatically implements the <code>From&lt;Error&lt;T&gt;&gt;</code> trait for <code>DispatchError</code>. Therefore <code>DispatchError</code> returns the proper module index, error code, error string for a particular error type, and the documentation provided on top of each error as meta-data.</p>
 <p><strong>Doc. and Example</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.decl_error.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_error.html">API Documentation</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/error.rs#L71-L203">Macro Definition</a></li>
 <li>Macro Expansion Example: <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-rs-L53-L60">original</a>, <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-expanded-rs-L331-L417">expanded</a></li>
 </ul>
@@ -181,7 +181,7 @@
 <p>The macro declares a <code>Module</code> struct and <code>Call</code> enum type for the containing pallet. It combines the necessary logics using user-defined dispatchable calls into the two types. In addition to various helper traits implemented for <code>Module</code> and <code>Call</code>, e.g. <code>Copy</code>, <code>StructuralEq</code>, <code>Debug</code>, the macro also inserts lifecycle trait implementations for <code>Module</code>, e.g. <code>frame_support::traits::OnInitialize</code>, <code>frame_support::traits::OnFinalize</code>, <code>frame_support::traits::OnRuntimeUpgrade</code>, and <code>frame_support::traits::OffchainWorker</code>.</p>
 <p><strong>Doc. and Example</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.decl_module.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_module.html">API Documentation</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/dispatch.rs#L275-L1613">Macro Definition</a></li>
 <li>Macro Expansion Example: <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-rs-L63-L109">original</a>, <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-expanded-rs-L419-L971">expanded</a></li>
 </ul>
@@ -207,7 +207,7 @@
 <p>The macro declares and implements various struct and enum, e.g.<code>Runtime</code>, <code>Event</code>, <code>Origin</code>, <code>Call</code>, <code>GenesisConfig</code> etc, and implements various helper traits for these struct types. The macro also adds logics of mapping different events and dispatchable calls from the overarching runtime back to a particular pallet.</p>
 <p><strong>Doc. and Example</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.construct_runtime.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.construct_runtime.html">API Documentation</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/procedural/src/construct_runtime/mod.rs#L31-L36">Macro Definition</a></li>
 <li>Macro Expansion Example: <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-rs-L260-L277">original</a>, <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-expanded-rs-L763-L2475">expanded</a></li>
 </ul>
@@ -227,7 +227,7 @@
 <p>The macro replaces each parameter specified into a struct type with a <code>get()</code> function returning its specified value. Each parameter struct type also implements a <code>frame_support::traits::Get&lt;I&gt;</code> trait to convert the type to its specified value.</p>
 <p><strong>Doc. and Example</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.parameter_types.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.parameter_types.html">API Documentation</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/lib.rs#L127-L174">Macro Definition</a></li>
 <li>Macro Expansion Example: <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-rs-L213-L215">original</a>, <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-expanded-rs-L700-L710">expanded</a></li>
 </ul>
@@ -238,7 +238,7 @@
 <p>The macro defines the <code>RuntimeApi</code> and <code>RuntimeApiImpl</code> exposed to the Substrate node client. It provides implementation details of the RuntimeApiImpl based on the setup and appended user specified implementation in the <code>RuntimeApiImpl</code>.</p>
 <p><strong>Doc. and Example</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc5/sp_api/macro.impl_runtime_apis.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/sp_api/macro.impl_runtime_apis.html">API Documentation</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/v2.0.0-rc5/primitives/api/proc-macro/src/impl_runtime_apis.rs#L701-L706">Macro Definition</a></li>
 <li>Macro Expansion Example: <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-rs-L306-L414">original</a>, <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-expanded-rs-L2503-L3562">expanded</a></li>
 </ul>
@@ -256,7 +256,7 @@
 <p>The macro declares three struct types, <code>Public</code>, <code>Signature</code>, and <code>Pair</code>. Aside from having various helper traits implemented for these three types, <code>Public</code> type is implemented to generating keypairs, signing and verifying signature, <code>Signature</code> type to hold the signature property given the signature chosen to be used (e.g. SR25519, ED25519 etc), and <code>Pair</code> type to generate a public-private key pair from a seed.</p>
 <p><strong>Doc. and Example</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc5/sp_application_crypto/macro.app_crypto.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/sp_application_crypto/macro.app_crypto.html">API Documentation</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/v2.0.0-rc5/primitives/application-crypto/src/lib.rs#L60-L69">Macro Definition</a></li>
 <li>Macro Expansion Example: <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-app-crypto-rs-L12">original</a>, <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-app-crypto-expanded-rs-L10-L613">expanded</a></li>
 </ul>
@@ -274,7 +274,7 @@
 <p>This macro creates an <code>Origin</code> struct type, and implements various helper traits for the type.</p>
 <p><strong>Doc. and Example</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.impl_outer_origin.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.impl_outer_origin.html">API Documentation</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/origin.rs#L23-L223">Macro Definition</a></li>
 <li>Macro Expansion Example: <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-mock-rs-L12-L14">original</a>, <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-test-expanded-rs-L26-L147">expanded</a></li>
 </ul>
@@ -285,7 +285,7 @@
 <p>This macro creates an event enum type, implement various helper traits on <code>Event</code> type, including <code>core::clone::Clone</code>, <code>core::marker::StructuralPartialEq</code>, <code>core::fmt::Debug</code>, data encoding/decoding traits etc. Finally, the macro implements only the specifying pallet events for the runtime.</p>
 <p><strong>Doc. and Example</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.impl_outer_event.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.impl_outer_event.html">API Documentation</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/event.rs#L334-L485">Macro Definition</a></li>
 <li>Macro Expansion Example: <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-mock-rs-L16-L21">original</a>, <a href="https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-test-expanded-rs-L148-L361">expanded</a></li>
 </ul>
@@ -296,7 +296,7 @@
 <p>This macro creates a <code>Call</code> enum type, implement various helper traits on <code>Event</code> type, including <code>Clone</code>, <code>PartialEq</code>, <code>RuntimeDebug</code> etc. Finally, the macro implements <code>GetDispatchInfo</code>, <code>GetCallMetadata</code>, <code>IsSubType</code> traits for the <code>Call</code> enum.</p>
 <p><strong>Doc. and Example</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.impl_outer_dispatch.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.impl_outer_dispatch.html">API Documentation</a></li>
 <li><a href="https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/dispatch.rs#L1621">Macro Definition</a></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="conclusion"></a><a href="#conclusion" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Conclusion</h2>

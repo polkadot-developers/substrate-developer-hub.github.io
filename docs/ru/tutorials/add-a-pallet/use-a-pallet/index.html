@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="ru"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Interact with the Nicks Pallet · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Now you are ready to compile and run your node that has been enhanced with nickname capabilities from the Nicks pallet. Compile the node in release mode with:"/><meta name="docsearch:language" content="ru"/><meta property="og:title" content="Interact with the Nicks Pallet · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="Now you are ready to compile and run your node that has been enhanced with nickname capabilities from the Nicks pallet. Compile the node in release mode with:"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/redirect-next.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/ru"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/ru/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/docs/ru/" target="_self">Knowledge Base</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">Recipes</a></li><li class=""><a href="https://substrate.dev/rustdocs/" target="_self">Reference Documents</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>Русский</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/tutorials/add-a-pallet/use-a-pallet">English</a></li><li><a href="/docs/zh-CN/tutorials/add-a-pallet/use-a-pallet">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Помочь с переводом</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Add a Pallet to Your Runtime</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Add a Pallet to Your Runtime<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/add-a-pallet/">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/add-a-pallet/import-a-pallet">Import the Nicks Pallet</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/add-a-pallet/configure-a-pallet">Configure the Nicks Pallet</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/ru/tutorials/add-a-pallet/use-a-pallet">Interact with the Nicks Pallet</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Interact with the Nicks Pallet</h1></header><article><div><span><p>Now you are ready to compile and run your node that has been enhanced with nickname capabilities from the Nicks pallet. Compile the node in release mode with:</p>
+<pre><code class="hljs css language-bash">cargo build --release
+</code></pre>
+<p>Now you can start the node:</p>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># Run a temporary node in development mode</span>
+./target/release/node-template --dev --tmp
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="start-the-front-end"></a><a href="#start-the-front-end" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Start the Front-End</h2>
+<p>As in the previous tutorials, this tutorial will use the Substrate Developer Hub Front-End Template to allow you to interact with the Node Template. As long as you have completed the <a href="../create-your-first-substrate-chain">Create Your First Chain</a> and <a href="../build-a-dapp">Build a dApp</a> tutorials, you should already be prepared to continue with the rest of this tutorial.</p>
+<blockquote>
+<p>Refer directly to the <a href="../create-your-first-substrate-chain/setup#install-the-front-end-template">front-end setup instructions</a> for the Create Your First Chain Tutorial if necessary.</p>
+</blockquote>
+<p>To start the Front-End Template, navigate to its directory and run:</p>
+<pre><code class="hljs css language-bash">yarn start
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="use-the-nicks-pallet"></a><a href="#use-the-nicks-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Use the Nicks Pallet</h2>
+<p>You should already be familiar with using the Front-End Template to <a href="../create-your-first-substrate-chain/interact#pallet-interactor-&amp;-events">interact with a pallet</a>. In this section we will use the Nicks pallet to further illustrate how the Front-End Template can be used to interact with FRAME pallets. We will also learn more about how to use the Front-End Template to invoke privileged functions with the Sudo pallet, which is included by default as part of the Node Template. Finally, you will learn how to interpret the different types of events and errors that FRAME pallets may emit. To get started, use the account selector from the Front-End Template to select Alice's account and then use the Pallet Interactor component to call <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_nicks/enum.Call.html#variant.set_name">the <code>setName</code> dispatchable</a> function from the <code>nicks</code> pallet. You can select any name you'd like as long as it is no shorter than the <code>MinNickLength</code> and no longer than the <code>MaxNickLength</code> you configured in the previous step.</p>
+<p><img src="/docs/assets/tutorials/add-a-pallet/set-name.png" alt="Set a Name"></p>
+<p>As you can see in the image above, the Front-End Template will report the status of the dispatchable, as well as allow you to observe the <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_nicks/enum.RawEvent.html">events</a> emitted by the Nicks pallet and the other pallets that compose your chain's runtime. Now use the Pallet Interactor's Query capabilities to read the value of Alice's nickname from the <a href="../../knowledgebase/runtime/storage">runtime storage</a> of the Nicks pallet.</p>
+<p><img src="/docs/assets/tutorials/add-a-pallet/name-of-alice.png" alt="Read a Name"></p>
+<p>The return type is a tuple that contains two values: Alice's hex-encoded nickname and the amount that was reserved from Alice's account in order to secure the nickname. If you query the Nicks pallet for Bob's nickname, you'll see that the <code>None</code> value is returned. This is because Bob has not invoked the <code>setName</code> dispatchable and deposited the funds needed to reserve a nickname.</p>
+<p><img src="/docs/assets/tutorials/add-a-pallet/name-of-bob.png" alt="Read an Empty Name"></p>
+<p>Use the &quot;Signed&quot; button to invoke <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_nicks/enum.Call.html#variant.kill_name">the <code>killName</code> dispatchable</a> function and use Bob's account ID as the function's argument. The <code>killName</code> function must be called by the <code>ForceOrigin</code> that was configured with the Nicks pallet's <code>Trait</code> interface in the previous section. You may recall that we configured this to be the FRAME system's <code>Root</code> origin. The Node Template's <a href="https://github.com/substrate-developer-hub/substrate-node-template/blob/v2.0.0-rc6/node/src/chain_spec.rs">chain specification</a> file is used to configure the <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_sudo/index.html">Sudo pallet</a> to give Alice access to this origin. The front-end template makes it easy to use the Sudo pallet to dispatch a call from the <code>Root</code> origin - just use the &quot;SUDO&quot; button to invoke the dispatchable. Since we just used the &quot;Signed&quot; button as opposed to the &quot;SUDO&quot; button, the function was <em>dispatched</em> by <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/enum.RawOrigin.html#variant.Signed">the <code>Signed</code> origin</a> associated with Alice's account as opposed to the <code>Root</code> origin.</p>
+<p><img src="/docs/assets/tutorials/add-a-pallet/clear-name-bad-origin.png" alt="&lt;code&gt;BadOrigin&lt;/code&gt; Error"></p>
+<p>You will notice that even though the function call was successfully dispatched, a <code>BadOrigin</code> error was emitted and is visible in the Events pane. This means that Alice's account was still charged <a href="../../knowledgebase/runtime/fees">fees</a> for the dispatch, but there weren't any state changes executed because the Nicks pallet follows the important <a href="../../knowledgebase/runtime/storage#verify-first-write-last">verify-first-write-last</a> pattern. Now use the &quot;SUDO&quot; button to dispatch the same call with the same parameter.</p>
+<p><img src="/docs/assets/tutorials/add-a-pallet/clear-name-error.png" alt="Nicks Pallet Error"></p>
+<p>The Sudo pallet emits a <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_sudo/enum.RawEvent.html#variant.Sudid"><code>Sudid</code> event</a> to inform network participants that the <code>Root</code> origin dispatched a call, however, you will notice that the inner dispatch failed with a <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/sp_runtime/enum.DispatchError.html"><code>DispatchError</code></a> (the Sudo pallet's <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_sudo/enum.Call.html#variant.sudo"><code>sudo</code> function</a> is the &quot;outer&quot; dispatch). In particular, this was an instance of <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/dispatch/enum.DispatchError.html#variant.Module">the <code>DispatchError::Module</code> variant</a>, which reports two pieces of metadata: an <code>index</code> number and an <code>error</code> number. The <code>index</code> number relates to the pallet from which the error originated; it corresponds with the <em>index</em> (position) of the pallet within the <code>construct_runtime!</code> macro. The <code>error</code> number corresponds with the index of the relevant variant from that pallet's <code>Error</code> enum. When using these numbers to find pallet errors, remember that the <em>first</em> position corresponds with index <em>zero</em>. In the screenshot above, the <code>index</code> is <code>9</code> (the <em>tenth</em> pallet) and the <code>error</code> is <code>2</code> (the <em>third</em> error). Depending on the position of the Nicks pallet in your <code>construct_runtime!</code> macro, you may see a different number for <code>index</code>. Regardless of the value of <code>index</code>, you should see that the <code>error</code> value is <code>2</code>, which corresponds to the <em>third</em> variant of the Nick's pallet's <code>Error</code> enum, <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_nicks/enum.Error.html#variant.Unnamed">the <code>Unnamed</code> variant</a>. This shouldn't be a surprise since Bob has not yet reserved a nickname.</p>
+<p>You should confirm that Alice can use the &quot;SUDO&quot; button to invoke the <code>killName</code> dispatchable and forcibly clear the nickname associated with any account (including her own) that actually has a nickname associated with it. Here are some other things you may want to try:</p>
+<ul>
+<li>Add a nickname that is shorter than the <code>MinNickLength</code> or longer than the <code>MaxNickLength</code> that you configured with the Nick's pallet's <code>Trait</code> configuration trait.</li>
+<li>Add a nickname for Bob then use Alice's account and the &quot;SUDO&quot; button to forcibly kill Bob's nickname. Switch back to Bob's account and dispatch the <code>clearName</code> function.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="adding-other-frame-pallets"></a><a href="#adding-other-frame-pallets" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding Other FRAME Pallets</h2>
+<p>In this guide, we walked through specifically how to import the Nicks pallet, but as mentioned in the beginning of this guide, each pallet will be a little different. Have no fear, you can always refer to the <a href="https://github.com/paritytech/substrate/blob/v2.0.0-rc6/bin/node/runtime/">demonstration Substrate node runtime</a> which includes nearly every pallet in the library of core FRAME pallets.</p>
+<p>In the <code>Cargo.toml</code> file of the Substrate node runtime, you will see an example of how to import each of the different pallets, and in the <code>lib.rs</code> file you will see how to add each pallet to your runtime. You can generally copy what was done there as a starting point to include a pallet in your own runtime.</p>
+<h3><a class="anchor" aria-hidden="true" id="learn-more"></a><a href="#learn-more" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Learn More</h3>
+<ul>
+<li>Learn how to add a more complex pallet to the Node Template by completing the <a href="../add-contracts-pallet">Add the Contracts Pallet</a> tutorial.</li>
+<li>Complete the <a href="../start-a-private-network">Start a Private Network</a> tutorial to learn how to use the Substrate node in non-development mode.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h3>
+<ul>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_nicks/index.html">Nicks pallet docs</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/tutorials/add-a-pallet/configure-a-pallet"><span class="arrow-prev">← </span><span>Configure the Nicks Pallet</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#start-the-front-end">Start the Front-End</a></li><li><a href="#use-the-nicks-pallet">Use the Nicks Pallet</a></li><li><a href="#adding-other-frame-pallets">Adding Other FRAME Pallets</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li><li><a href="#references">References</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/ru/tutorials">Tutorials</a><a href="/docs/ru/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">Reference Documents</a></div><div><h5>Community</h5><a href="/ru/community">Community Home</a><a href="/ru/newsletter">Newsletter</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="/ru/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></a></div></section><section class="copyright">Copyright © 2020 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:ru"]}
+              });
+            </script></body></html>

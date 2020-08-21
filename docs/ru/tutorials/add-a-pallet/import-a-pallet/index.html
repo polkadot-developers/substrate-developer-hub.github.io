@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="ru"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Import the Nicks Pallet · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="We will now modify the Substrate Developer Hub Node Template to include the Nicks pallet; this pallet allows blockchain users to pay a deposit to reserve a nickname and associate it with an account they control."/><meta name="docsearch:language" content="ru"/><meta property="og:title" content="Import the Nicks Pallet · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="We will now modify the Substrate Developer Hub Node Template to include the Nicks pallet; this pallet allows blockchain users to pay a deposit to reserve a nickname and associate it with an account they control."/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/redirect-next.js"></script><script type="text/javascript" src="/js/ui.js" defer=""></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/ru"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/ru/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/docs/ru/" target="_self">Knowledge Base</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">Recipes</a></li><li class=""><a href="https://substrate.dev/rustdocs/" target="_self">Reference Documents</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>Русский</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/tutorials/add-a-pallet/import-a-pallet">English</a></li><li><a href="/docs/zh-CN/tutorials/add-a-pallet/import-a-pallet">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Помочь с переводом</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Add a Pallet to Your Runtime</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Add a Pallet to Your Runtime<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/add-a-pallet/">Introduction</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/ru/tutorials/add-a-pallet/import-a-pallet">Import the Nicks Pallet</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/add-a-pallet/configure-a-pallet">Configure the Nicks Pallet</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/add-a-pallet/use-a-pallet">Interact with the Nicks Pallet</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Import the Nicks Pallet</h1></header><article><div><span><p>We will now modify the Substrate Developer Hub Node Template to include the Nicks pallet; this pallet allows blockchain users to pay a deposit to reserve a nickname and associate it with an account they control.</p>
+<p>Open the Node Template in your favorite code editor. We will be editing two files: <code>runtime/src/lib.rs</code>, and <code>runtime/Cargo.toml</code>.</p>
+<pre><code class="hljs">substrate<span class="token operator">-</span>node<span class="token operator">-</span>template
+<span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> runtime
+<span class="token operator">|</span>   <span class="token operator">|</span>
+<span class="token operator">|</span>   <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token class-name">Cargo</span><span class="token punctuation">.</span>toml    <span class="token operator">&lt;</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token class-name">One</span> change <span class="token keyword">in</span> this file
+<span class="token operator">|</span>   <span class="token operator">|</span>
+<span class="token operator">|</span>   <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> build<span class="token punctuation">.</span>rs
+<span class="token operator">|</span>   <span class="token operator">|</span>
+<span class="token operator">|</span>   <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> src
+<span class="token operator">|</span>       <span class="token operator">|</span>
+<span class="token operator">|</span>       <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> lib<span class="token punctuation">.</span>rs     <span class="token operator">&lt;</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token class-name">Most</span> changes <span class="token keyword">in</span> this file
+<span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> pallets
+<span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> scripts
+<span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> node
+<span class="token operator">|</span>
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token punctuation">...</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="importing-a-pallet-crate"></a><a href="#importing-a-pallet-crate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Importing a Pallet Crate</h2>
+<p>The first thing you need to do to add the Nicks pallet is to import the <code>pallet-nicks</code> crate in your runtime's <code>Cargo.toml</code> file. If you want a proper primer into Cargo References, you should check out <a href="https://doc.rust-lang.org/cargo/reference/index.html">their official documentation</a>.</p>
+<p>Open <code>substrate-node-template/runtime/Cargo.toml</code> and you will see a list of all the dependencies your runtime has. For example, it depends on the <a href="https://substrate.dev/rustdocs/v2.0.0-rc6">Balances pallet</a>:</p>
+<p><strong><code>runtime/Cargo.toml</code></strong></p>
+<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies.pallet-balances]</span>
+<span class="hljs-attr">default-features</span> = <span class="hljs-literal">false</span>
+<span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
+<span class="hljs-attr">tag</span> = <span class="hljs-string">'v2.0.0-rc6'</span>
+<span class="hljs-attr">version</span> = <span class="hljs-string">'2.0.0-rc6'</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="crate-features"></a><a href="#crate-features" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Crate Features</h3>
+<p>One important thing we need to call out with importing pallet crates is making sure to set up the crate <code>features</code> correctly. In the code snippet above, you will notice that we set <code>default_features = false</code>. If you explore the <code>Cargo.toml</code> file even closer, you will find something like:</p>
+<p><strong><code>runtime/Cargo.toml</code></strong></p>
+<pre><code class="hljs css language-TOML"><span class="hljs-section">[features]</span>
+<span class="hljs-attr">default</span> = [<span class="hljs-string">'std'</span>]
+<span class="hljs-attr">std</span> = [
+    <span class="hljs-string">'codec/std'</span>,
+    <span class="hljs-string">'frame-executive/std'</span>,
+    <span class="hljs-string">'frame-support/std'</span>,
+    <span class="hljs-string">'frame-system/std'</span>,
+    <span class="hljs-string">'frame-system-rpc-runtime-api/std'</span>,
+    <span class="hljs-string">'pallet-aura/std'</span>,
+    <span class="hljs-string">'pallet-balances/std'</span>,
+    <span class="hljs-comment">#--snip--</span>
+]
+</code></pre>
+<p>This second line defines the <code>default</code> features of your runtime crate as <code>std</code>. You can imagine, each pallet crate has a similar configuration defining the default feature for the crate. Your feature will determine the features that should be used on downstream dependencies. For example, the snippet above should be read as:</p>
+<blockquote>
+<p>The default feature for this Substrate runtime is <code>std</code>. When <code>std</code> feature is enabled for the runtime, <code>codec</code>, <code>frame-executive</code>, <code>frame-support</code>, and all the other listed dependencies should use their <code>std</code> feature too.</p>
+</blockquote>
+<p>This is important to enable the Substrate runtime to compile to both native binaries, which support Rust <a href="https://doc.rust-lang.org/std/"><code>std</code></a>, and <a href="https://webassembly.org/">Wasm</a> binaries, which do not (see: <a href="https://rust-embedded.github.io/book/intro/no-std.html"><code>no_std</code></a>).</p>
+<p>The use of Wasm runtime binaries is one of Substrate's defining features. It allows the runtime code to become a part of a blockchain's evolving state; it also means that the definition of the runtime itself is subject to the cryptographic consensus mechanisms that ensure the security of the blockchain network. The usage of Wasm runtimes enables one of Substrate's most innovative features: forkless runtime upgrades, which means that Substrate blockchain nodes can stay up-to-date and even acquire new features without needing to be replaced with an updated application binary.</p>
+<p>To see how the <code>std</code> and <code>no_std</code> features are actually used in the runtime code, we can open the project file:</p>
+<p><strong><code>runtime/src/lib.rs</code></strong></p>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#![cfg_attr(not(feature = <span class="token string">"std"</span>), no_std)]</span>
+<span class="token comment">// `construct_runtime!` does a lot of recursion and requires us to increase the limit to 256.</span>
+<span class="token attribute attr-name">#![recursion_limit=<span class="token string">"256"</span>]</span>
+
+<span class="token comment">// Make the WASM binary available.</span>
+<span class="token attribute attr-name">#[cfg(feature = <span class="token string">"std"</span>)]</span>
+<span class="token macro property">include!</span><span class="token punctuation">(</span><span class="token macro property">concat!</span><span class="token punctuation">(</span><span class="token macro property">env!</span><span class="token punctuation">(</span><span class="token string">"OUT_DIR"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"/wasm_binary.rs"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// --snip--</span>
+</code></pre>
+<p>You can see that at the top of the file, we define that we will use <code>no_std</code> when we are <em>not</em> using the <code>std</code> feature. A few lines lower you can see <code>#[cfg(feature = &quot;std&quot;)]</code> above the <code>wasm_binary.rs</code> import, which is a flag saying to only import the Wasm binary when we have enabled the <code>std</code> feature.</p>
+<h3><a class="anchor" aria-hidden="true" id="importing-the-nicks-pallet-crate"></a><a href="#importing-the-nicks-pallet-crate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Importing the Nicks Pallet Crate</h3>
+<p>Okay, now that we have covered the basics of crate features, we can actually import the Nicks pallet. The Nicks pallet is one of the simpler pallets in FRAME, so it makes for a good example of the common points you need to consider when adding a pallet to your runtime.</p>
+<p>First we will add the new dependency by simply copying an existing pallet and changing the values. So based on the <code>balances</code> import shown above, the <code>nicks</code> import will look like:</p>
+<p><strong><code>runtime/Cargo.toml</code></strong></p>
+<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies.pallet-nicks]</span>
+<span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
+<span class="hljs-attr">default-features</span> = <span class="hljs-literal">false</span>
+<span class="hljs-attr">tag</span> = <span class="hljs-string">'v2.0.0-rc6'</span>
+<span class="hljs-attr">version</span> = <span class="hljs-string">'2.0.0-rc6'</span>
+</code></pre>
+<p>As with other pallets, the Contracts pallet has an <code>std</code> feature. We should build its <code>std</code> feature when the runtime is built with its own <code>std</code> feature. Add the following line to the runtime's <code>std</code> feature.</p>
+<p><strong><code>runtime/Cargo.toml</code></strong></p>
+<pre><code class="hljs css language-TOML"><span class="hljs-section">[features]</span>
+<span class="hljs-attr">default</span> = [<span class="hljs-string">"std"</span>]
+<span class="hljs-attr">std</span> = [
+    <span class="hljs-comment">#--snip--</span>
+    <span class="hljs-string">'pallet-nicks/std'</span>,
+    <span class="hljs-comment">#--snip--</span>
+]
+</code></pre>
+<p>If you forget to set the feature, when building to your native binaries you will get errors like:</p>
+<pre><code class="hljs css language-rust">error<span class="token punctuation">[</span><span class="token constant">E0425</span><span class="token punctuation">]</span><span class="token punctuation">:</span> cannot find function `memory_teardown` <span class="token keyword">in</span> module `sandbox`
+  <span class="token operator">-</span><span class="token punctuation">-></span> ~<span class="token operator">/</span><span class="token punctuation">.</span>cargo<span class="token operator">/</span>git<span class="token operator">/</span>checkouts<span class="token operator">/</span>substrate<span class="token operator">-</span>7e08433d4c370a21<span class="token operator">/</span>83a6f1a<span class="token operator">/</span>primitives<span class="token operator">/</span>sandbox<span class="token operator">/</span>src<span class="token operator">/</span><span class="token punctuation">..</span><span class="token operator">/</span>without_std<span class="token punctuation">.</span>rs<span class="token punctuation">:</span><span class="token number">53</span><span class="token punctuation">:</span><span class="token number">12</span>
+   <span class="token operator">|</span>
+<span class="token number">53</span> <span class="token operator">|</span>         <span class="token namespace">sandbox<span class="token punctuation">::</span></span><span class="token function">memory_teardown</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">.</span>memory_idx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token operator">|</span>                  <span class="token operator">^</span><span class="token operator">^</span><span class="token operator">^</span><span class="token operator">^</span><span class="token operator">^</span><span class="token operator">^</span><span class="token operator">^</span><span class="token operator">^</span><span class="token operator">^</span><span class="token operator">^</span><span class="token operator">^</span><span class="token operator">^</span><span class="token operator">^</span><span class="token operator">^</span><span class="token operator">^</span> not found <span class="token keyword">in</span> `sandbox`
+
+error<span class="token punctuation">[</span><span class="token constant">E0425</span><span class="token punctuation">]</span><span class="token punctuation">:</span> cannot find function `memory_new` <span class="token keyword">in</span> module `sandbox`
+  <span class="token operator">-</span><span class="token punctuation">-></span> ~<span class="token operator">/</span><span class="token punctuation">.</span>cargo<span class="token operator">/</span>git<span class="token operator">/</span>checkouts<span class="token operator">/</span>substrate<span class="token operator">-</span>7e08433d4c370a21<span class="token operator">/</span>83a6f1a<span class="token operator">/</span>primitives<span class="token operator">/</span>sandbox<span class="token operator">/</span>src<span class="token operator">/</span><span class="token punctuation">..</span><span class="token operator">/</span>without_std<span class="token punctuation">.</span>rs<span class="token punctuation">:</span><span class="token number">72</span><span class="token punctuation">:</span><span class="token number">18</span>
+   <span class="token operator">|</span>
+<span class="token number">72</span> <span class="token operator">|</span>         <span class="token keyword">match</span> <span class="token namespace">sandbox<span class="token punctuation">::</span></span><span class="token function">memory_new</span><span class="token punctuation">(</span>initial<span class="token punctuation">,</span> maximum<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token operator">|</span>
+
+<span class="token punctuation">...</span>
+</code></pre>
+<p>Before moving on, check that the new dependencies resolve correctly by running:</p>
+<pre><code class="hljs css language-bash">cargo check
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/tutorials/add-a-pallet/index"><span class="arrow-prev">← </span><span>Introduction</span></a><a class="docs-next button" href="/docs/ru/tutorials/add-a-pallet/configure-a-pallet"><span>Configure the Nicks Pallet</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#importing-a-pallet-crate">Importing a Pallet Crate</a><ul class="toc-headings"><li><a href="#crate-features">Crate Features</a></li><li><a href="#importing-the-nicks-pallet-crate">Importing the Nicks Pallet Crate</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/ru/tutorials">Tutorials</a><a href="/docs/ru/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">Reference Documents</a></div><div><h5>Community</h5><a href="/ru/community">Community Home</a><a href="/ru/newsletter">Newsletter</a><a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Riot Chat</a><a href="/ru/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+              var cookieSettings = document.getElementById('cookie-settings');
+              cookieSettings.onclick = function() {
+                return klaro.show();
+              };
+              </script></a></div></section><section class="copyright">Copyright © 2020 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:ru"]}
+              });
+            </script></body></html>
