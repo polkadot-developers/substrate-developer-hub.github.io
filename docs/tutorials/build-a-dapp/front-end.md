@@ -5,12 +5,11 @@ title: Building a Custom Front End
 If you have made it this far, that means you _should_ have a brand new blockchain with custom
 functionality up and running.
 
-We will give you a custom react component that you can add to your `substrate-front-end-template`
-meant for interacting with your node.
+We will give you a custom React component that you can use to interact with your node.
 
-## Explore the Front End Template
+## Explore the Front-End Template
 
-To start the front-end template, navigate to its directory and run:
+To start the Front-End Template, navigate to its directory and run:
 
 ```bash
 yarn start
@@ -26,8 +25,7 @@ You'll see a list of pre-funded accounts, and you can make token transfers betwe
 
 ## Add Your Custom React Component
 
-In the `substrate-front-end-template` project, edit the `TemplateModule.js` file in the `/src/`
-folder:
+In the Front-End Template project, edit the `TemplateModule.js` file in the `/src/` folder:
 
 ```
 substrate-front-end-template
@@ -44,7 +42,7 @@ substrate-front-end-template
 +-- ...
 ```
 
-Delete the contents of that file, and instead use the following component.
+Delete the entire contents of that file, and replace it with the following:
 
 <div style="max-height: 20em; overflow: auto; margin-bottom: 1em;">
 
@@ -63,7 +61,7 @@ import { blake2AsHex } from '@polkadot/util-crypto';
 export function Main (props) {
   // Establish an API to talk to our Substrate node.
   const { api } = useSubstrate();
-  // Get the 'selected user' from the `AccountSelector` component.
+  // Get the selected user from the `AccountSelector` component.
   const { accountPair } = props;
   // React hooks for all the state variables we track.
   // Learn more at: https://reactjs.org/docs/hooks-intro.html
@@ -93,7 +91,7 @@ export function Main (props) {
     fileReader.readAsArrayBuffer(file);
   };
 
-  // React hook to update the 'Owner' and 'Block Number' information for a file.
+  // React hook to update the owner and block number information for a file.
   useEffect(() => {
     let unsubscribe;
 
@@ -198,7 +196,7 @@ comments to learn what each part is doing.
 
 ## Submit a Proof
 
-Your front end template should reload when you save your changes, and you'll notice our new
+Your Front-End Template should reload when you save your changes, and you'll notice our new
 component. Now we're ready to try out our new dApp. Select any file on your computer, and you will
 see that you can create a claim with its file digest:
 
@@ -220,10 +218,10 @@ you will see that the revoke option is disabled!
 
 This is the end of our journey into creating a Proof of Existence blockchain.
 
-You have seen first hand how simple it can be to develop a brand new pallet and launch a custom
-blockchain using Substrate. Furthermore, we have shown you that the Substrate ecosystem provides you
-with the tools to quickly create responsive front-end experiences so users can interact with your
-blockchain.
+You have seen firsthand how simple it can be to develop a brand new pallet and launch a custom
+blockchain using Substrate and FRAME. Furthermore, we have shown you that the Substrate ecosystem
+provides you with the tools to quickly create responsive front-end experiences so users can interact
+with your blockchain.
 
 This tutorial chose to omit some of the specific details around development in order to keep this
 experience short and satisfying. However, we want you to keep learning!
@@ -231,13 +229,13 @@ experience short and satisfying. However, we want you to keep learning!
 To learn more about building your own pallets, explore the
 [Substrate Recipes](https://substrate.dev/recipes).
 
-It would also be a good time to call out that your success on the Substrate framework will
-ultimately be limited on your ability to program in Rust. The
-[Rust Book](https://doc.rust-lang.org/book/) is a great resource for beginning and intermediate rust
-developers.
+Complete the [Add a Pallet](../add-a-pallet/) tutorial to learn how to extend the Node Template
+with additional capabilities from Substrate's set of
+[core FRAME pallets](../../knowledgebase/runtime/frame).
 
-If you experienced any issues with this tutorial or want to provide feedback, feel free to
-[open a GitHub issue](https://github.com/substrate-developer-hub/tutorials/issues/new) or reach out
-on [Riot](https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org).
+If you experienced any issues with this tutorial or want to provide feedback, You can
+[ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the
+`substrate` tag or contact us on
+[Element](https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org).
 
 We can't wait to see what you build next!

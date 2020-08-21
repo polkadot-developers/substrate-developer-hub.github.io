@@ -3,8 +3,8 @@ title: Introduction
 ---
 
 In this tutorial, you will learn to create a custom
-["Proof Of Existence"](https://en.wikipedia.org/wiki/Proof_of_Existence) dApp using the Substrate
-blockchain development framework.
+["Proof of Existence"](https://en.wikipedia.org/wiki/Proof_of_Existence) dApp using the Substrate
+blockchain development framework and [FRAME](../../knowledgebase/runtime/frame) runtime libraries.
 
 This tutorial should take you about **1 hour** to complete. We will be using the
 [Rust programming language](https://www.rust-lang.org/) and [ReactJS](https://reactjs.org/), but you
@@ -19,8 +19,9 @@ We only expect that:
 - You are open to learning about the bleeding edge of blockchain development.
 
 If you run into an issue on this tutorial, **we are here to help!** You can
-[create a new issue](https://github.com/substrate-developer-hub/tutorials/issues/new) or contact us
-on [Riot](https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org).
+[ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the
+`substrate` tag or contact us on
+[Element](https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org).
 
 ## What you will be doing
 

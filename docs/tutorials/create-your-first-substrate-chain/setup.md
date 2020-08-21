@@ -2,31 +2,27 @@
 title: Set Up Your Computer
 ---
 
-Normally we would teach you more about the Substrate blockchain development framework, however,
+Normally, we would teach you more about the Substrate blockchain development framework, however,
 setting up your computer for Substrate development can take a while.
 
-To optimize your time, we will have you start the setup process. In the next section, while things
-are compiling, you will learn more about Substrate and what we are building.
+To optimize your time, we will have you start the setup process. While things are compiling, you can
+continue to the next section to learn more about Substrate and what we are building.
 
 ## Prerequisites
 
-To develop on Substrate, your computer needs some prerequisites to establish a working development
-environment.
-
-> Setting up your computer is probably the hardest part of this tutorial, so don't let this
-> discourage you.
+You will probably need to do some set-up to prepare your computer for Substrate development.
 
 ### Substrate Development
 
-If you are using a Unix-based machine (Linux, MacOS), we have created a simple one-liner to get all
-of those prerequisites installed for you:
+If you are using a Unix-based machine (Linux, MacOS), we have created a simple one-liner to help you
+set up your computer:
 
 ```bash
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
 
-> If you did not have Rust installed prior to running this script, make sure to add restart your
-> terminal before continuing (command given in last line of the script output).
+> If you did not have Rust installed prior to running this script, make sure to restart your
+> terminal before continuing.
 
 <details>
 <summary>Learn what this script does.</summary>
@@ -46,14 +42,15 @@ It will automatically install:
 
 If you are using Windows and do not have the
 [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10), the
-process is a bit harder, but well documented [here](../../knowledgebase/getting-started/windows-users).
+process is a bit harder, but well documented
+[here](../../knowledgebase/getting-started/windows-users).
 
 ## Compiling Substrate
 
-Once the prerequisites are installed, you need to set up the skeleton for our project. The Substrate
-Node Template serves as a good starting point for building on Substrate.
+Once the prerequisites are installed, you can use Git to clone the Substrate Developer Hub Node
+Template, which serves as a good starting point for building on Substrate.
 
-1. Clone the Substrate Node Template (version `v2.0.0-rc6`).
+1. Clone the Node Template (version `v2.0.0-rc6`).
 
    ```bash
    	git clone -b v2.0.0-rc6 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
@@ -74,21 +71,36 @@ Node Template serves as a good starting point for building on Substrate.
    rustup target add wasm32-unknown-unknown --toolchain nightly
    ```
 
-3. Create a branch for your work and Compile your Substrate node
+3. Compile the Node Template
 
    ```bash
    cd substrate-node-template/
-   git checkout -b my-first-substrate-chain
    cargo build --release
    ```
 
-This final compilation can take up to 25 minutes depending on your hardware. So don't wait before
-moving on to the next steps.
+The time required for the compilation step depends on the hardware you're using. Don't wait before
+moving on.
 
-## Front-End
+## Install the Front-End Template
 
-In order to interact with your node, you will be running a local instance of
-[the Substrate Developer Hub Front-End Template](https://github.com/substrate-developer-hub/substrate-front-end-template),
-which requires you to have [Node.js](https://nodejs.org/) installed on your computer. You may want
-to use the time that your node is compiling to ensure that your development environment is prepared
-with these dependencies.
+This tutorial uses a ReactJS front-end template to allow you to interact with the Substrate-based
+blockchain node that you should have started compiling in the previous step. You can use this same
+front-end template to create UIs for your own projects in the future.
+
+To use the front-end template, you need [Yarn](https://yarnpkg.com), which itself requires
+[Node.js](https://nodejs.org/). If you don't have these tools, you may install them from these
+instructions:
+
+- [Install Node.js](https://nodejs.org/en/download/)
+- [Install Yarn](https://yarnpkg.com/lang/en/docs/install/)
+
+Now you can proceed to set up the front-end template with these commands.
+
+```bash
+# Clone the code from github
+git clone -b v2.0.0-rc5 --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
+
+# Install the dependencies
+cd substrate-front-end-template
+yarn install
+```

@@ -5,41 +5,27 @@ title: Prepare to build a dApp
 ## Install the Node Template
 
 You should already have version `v2.0.0-rc6` of the
-[Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
+[Substrate Developer Hub Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
 compiled on your computer from when you completed the
-[Creating Your First Substrate Chain Tutorial](../create-your-first-substrate-chain).
-If you do not, please complete that tutorial.
+[Create Your First Substrate Chain Tutorial](../create-your-first-substrate-chain). If you do not,
+please complete that tutorial.
 
-> Experienced developers who truly prefer to skip that tutorial, you may install the node template
-> according to the instructions in its readme.
+> Experienced developers who truly prefer to skip that tutorial may install the Node Template
+> according to
+> [the instructions in its readme](https://github.com/substrate-developer-hub/substrate-node-template#local-development).
 
-## Install the Front End Template
+## Install the Front-End Template
 
-This tutorial also uses a ReactJS front end template, which we will modify for interacting with our
-custom Substrate blockchain. You can use this same template to create front-ends for your own
-projects in the future.
+The Create Your First Substrate Chain Tutorial used the front-end template, so there is no
+additional set-up required if you have already completed that tutorial.
 
-To use the front-end template, you need [Yarn](https://yarnpkg.com), which itself requires
-[Node.js](https://nodejs.org/). If you don't have these tools, you may install them from these
-instructions:
-
-- [Install Node.js](https://nodejs.org/en/download/)
-- [Install Yarn](https://yarnpkg.com/lang/en/docs/install/)
-
-Now you can proceed to set up the front-end template with these commands.
-
-```bash
-# Clone the code from github
-git clone -b v2.0.0-rc6 https://github.com/substrate-developer-hub/substrate-front-end-template
-
-# Install the dependencies
-cd substrate-front-end-template
-yarn install
-```
+> Refer directly to the
+> [front-end setup instructions](../create-your-first-substrate-chain/setup#install-the-front-end-template)
+> for the Create Your First Chain Tutorial if necessary.
 
 ## About Proof of Existence
 
-The dApp we will build is a Proof of Existence service. From
+The dApp we will build is a Proof of Existence (PoE) service. From
 [Wikipedia](https://en.wikipedia.org/wiki/Proof_of_Existence):
 
 > Proof of Existence is an online service that verifies the existence of computer files as of a
@@ -58,12 +44,14 @@ To add to this, blockchains also provide a robust identity system. So when a fil
 on the blockchain, we can also record which user uploaded that digest. This allows that user to
 later prove that they were the original person to claim the file.
 
-Our Proof of Existence pallet will expose two callable functions:
+## Interface and Design
+
+Our PoE API will expose two callable functions:
 
 - `create_claim` - allows a user to claim the existence of a file by uploading a file digest.
 - `revoke_claim` - allows the current owner of a claim to revoke their ownership.
 
-We will only need to store information about the proofs that have been claimed, and who made those
-claims.
+In order to implement this, we will only need to store information about the proofs that have been
+claimed, and who made those claims.
 
 Sounds simple enough? Great, let's get coding.

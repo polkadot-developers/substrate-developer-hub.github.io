@@ -9,19 +9,17 @@ Now that your node has finished compiling, let's show you how everything works o
 Run the following commands to start your node:
 
 ```bash
-# Purge chain cleans up any old data from running a `dev` node in the past
+# Clean up any old data from running a development node in the past
 # You will be prompted to type `y`
 ./target/release/node-template purge-chain --dev
 
-# Run your actual node in "development" mode
+# Run the node in development mode
 ./target/release/node-template --dev
 ```
 
 You should see something like this if your node is running successfully:
 
 ```
-$ ./target/release/node-template --dev
-
 2020-08-20 15:49:19.045 main WARN sc_cli::commands::run_cmd  Running in --dev mode, RPC CORS has been disabled.
 2020-08-20 15:49:19.045 main INFO sc_cli::runner  Substrate Node
 2020-08-20 15:49:19.045 main INFO sc_cli::runner  ✌️  version 2.0.0-rc6-8682ee4-x86_64-linux-gnu
@@ -65,8 +63,13 @@ To interact with your local node, we will use
 [the Substrate Developer Hub Front-End Template](https://github.com/substrate-developer-hub/substrate-front-end-template),
 which is a collection of UI components that have been designed with common use cases in mind.
 
-To get started with the Front-End Template, clone its repository and
-[follow the simple steps to run it locally](https://github.com/substrate-developer-hub/substrate-front-end-template#using-the-template).
+You already installed the Front-End Template; launch it be executing the following command in the
+root directory of the Front-End Template:
+
+```bash
+# Make sure to run this command in the root directory of the Front-End Template
+yarn start
+```
 
 ## Interact
 
@@ -78,13 +81,13 @@ an account selector that will let you control the account you use to perform on-
 ![Chain Data & Account Selector](assets/tutorials/first-chain/chain-data.png)
 
 There is also a table that lists
-[the well-known test accounts](../../knowledgebase/integrate/subkey#well-known-keys) that you have access to. Some,
-like Alice and Bob, already have funds!
+[the well-known test accounts](../../knowledgebase/integrate/subkey#well-known-keys) that you have
+access to. Some, like Alice and Bob, already have funds!
 
 ![Account Table](assets/tutorials/first-chain/accts-prefunded.png)
 
-Beneath the account table there is a Transfer component that you can use to transfer funds from
-one account to another. Take note of the info box that describes the precision used by the Front-End
+Beneath the account table there is a Transfer component that you can use to transfer funds from one
+account to another. Take note of the info box that describes the precision used by the Front-End
 Template; you should transfer at least `1000000000000` to make it easy for you to observe the
 changes you're making.
 
@@ -110,21 +113,24 @@ a Substrate runtime.
 
 ![Pallet Interactor & Events](assets/tutorials/first-chain/interactor-events.png)
 
-[Extrinsics](../../knowledgebase/learn-substrate/extrinsics) are the runtime's callable functions; if you are
-already familiar with blockchain concepts, you can think of them as transactions for now. The Pallet
-Interactor allows you to submit [unsigned](../../knowledgebase/learn-substrate/extrinsics#unsigned-transactions) or
-[signed](../../knowledgebase/learn-substrate/extrinsics#signed-transactions) extrinsics and also provides a button
-that makes it easy to invoke an extrinsic by way of
+[Extrinsics](../../knowledgebase/learn-substrate/extrinsics) are the runtime's callable functions;
+if you are already familiar with blockchain concepts, you can think of them as transactions for now.
+The Pallet Interactor allows you to submit
+[unsigned](../../knowledgebase/learn-substrate/extrinsics#unsigned-transactions) or
+[signed](../../knowledgebase/learn-substrate/extrinsics#signed-transactions) extrinsics and also
+provides a button that makes it easy to invoke an extrinsic by way of
 [the `sudo` function from the Sudo pallet](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_sudo/enum.Call.html#variant.sudo).
+You will learn more about using the "SUDO" button to invoke privileged extrinsics in the third
+tutorial, the [Add a Pallet](../add-a-pallet) tutorial.
 
 You can select Query interactions to read
-[the values present in your runtime's storage](../../knowledgebase/runtime/storage). The RPC and Constant options
-provide additional mechanisms for runtime interaction.
+[the values present in your runtime's storage](../../knowledgebase/runtime/storage). The RPC and
+Constant options provide additional mechanisms for runtime interaction.
 
-Like many blockchains, Substrate chains use [events](../../knowledgebase/runtime/events) to report the results of
-asynchronous operations. If you have already used the Front-End Template to perform a balance
-transfer as described above, you should see an event for the transfer in the Event component next to
-the Pallet Interactor.
+Like many blockchains, Substrate chains use [events](../../knowledgebase/runtime/events) to report
+the results of asynchronous operations. If you have already used the Front-End Template to perform a
+balance transfer as described above, you should see an event for the transfer in the Event component
+next to the Pallet Interactor.
 
 ## Next Steps
 
@@ -135,10 +141,11 @@ made token transfers among users. We hope you'll continue learning about Substra
 
 Your next step may be:
 
+- Add custom functionality in the [Build a dApp](../build-a-dapp/) tutorial.
 - Decentralize your network with more nodes in the
   [Start a Private Network](../start-a-private-network/) tutorial.
-- Add custom functionality in the [Build a dApp](../build-a-dapp/) tutorial.
 
-If you experienced any issues with this tutorial or want to provide feedback, feel free to
-[open a GitHub issue](https://github.com/substrate-developer-hub/tutorials/issues/new) or reach out
-on [Riot](https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org).
+If you experienced any issues with this tutorial or want to provide feedback, You can
+[ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the
+`substrate` tag or contact us on
+[Element](https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org).
