@@ -233,6 +233,12 @@ Complete the [Add a Pallet](../add-a-pallet/) tutorial to learn how to extend th
 with additional capabilities from Substrate's set of
 [core FRAME pallets](../../knowledgebase/runtime/frame).
 
+Substrate is written in the Rust programming language, which has a great community and many helpful
+resources. If you would like to learn more about this powerful and
+[beloved](https://stackoverflow.blog/2020/01/20/what-is-rust-and-why-is-it-so-popular/) programming
+language, check out the information-packed [Rust Book](https://doc.rust-lang.org/book/) and the fun
+[Rustlings](https://github.com/rust-lang/rustlings) course.
+
 If you experienced any issues with this tutorial or want to provide feedback, You can
 [ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the
 `substrate` tag or contact us on
