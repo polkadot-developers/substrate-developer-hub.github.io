@@ -36,3 +36,7 @@ library specifically designed for submitting extrinsics to Substrate blockchains
 [the Substrate API Client](https://github.com/scs/substrate-api-client) is another Substrate client
 library for Rust that is maintained by Supercomputing Systems; its API is more general-purpose than
 `substrate-subxt`.
+
+## Python
+
+[py-substrate-interface](https://github.com/polkascan/py-substrate-interface) is a Python library to interface with a Substrate node RPC. It facilitates reading blocks, extrinsics and storage entries, submitting extrinsics, providing additional convenience methods to deal with SCALE encoding/decoding, metadata parsing and type registry management. This library is maintained by [Polkascan Foundation](https://polkascan.org/).
