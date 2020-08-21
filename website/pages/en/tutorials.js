@@ -164,7 +164,7 @@ class Tutorials extends React.Component {
                     difficulty: "easy",
                     length: "< 1",
                     prerequisite: false,
-                    version: "2.0.0-rc5",
+                    version: "2.0.0-rc6",
                     href: `${docUrl(
                       "tutorials/create-your-first-substrate-chain/"
                     )}`
@@ -182,7 +182,7 @@ class Tutorials extends React.Component {
                     difficulty: "easy",
                     length: "1",
                     prerequisite: true,
-                    version: "2.0.0-rc5",
+                    version: "2.0.0-rc6",
                     href: `${docUrl(
                       "tutorials/build-a-dapp/"
                     )}`
@@ -217,7 +217,7 @@ class Tutorials extends React.Component {
                     difficulty: "easy",
                     length: "2",
                     prerequisite: false,
-                    version: "2.0.0-rc5",
+                    version: "2.0.0-rc6",
                     href: `${docUrl(
                       "tutorials/start-a-private-network/"
                     )}`
@@ -236,7 +236,7 @@ class Tutorials extends React.Component {
                     difficulty: "medium",
                     length: "2",
                     prerequisite: false,
-                    version: "2.0.0-rc5",
+                    version: "2.0.0-rc6",
                     href: `${docUrl("tutorials/create-a-pallet/")}`
                   },
                   {

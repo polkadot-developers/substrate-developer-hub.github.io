@@ -22,38 +22,38 @@ You should see something like this if your node is running successfully:
 ```
 $ ./target/release/node-template --dev
 
-2020-07-24 18:58:37 Running in --dev mode, RPC CORS has been disabled.
-2020-07-24 18:58:37 Substrate Node
-2020-07-24 18:58:37 ✌️  version 2.0.0-rc5-3b3d098-x86_64-linux-gnu
-2020-07-24 18:58:37 ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
-2020-07-24 18:58:37 📋 Chain specification: Development
-2020-07-24 18:58:37 🏷  Node name: rapid-north-7569
-2020-07-24 18:58:37 👤 Role: AUTHORITY
-2020-07-24 18:58:37 💾 Database: RocksDb at /home/parity/.local/share/node-template/chains/dev/db
-2020-07-24 18:58:37 ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
-2020-07-24 18:58:38 🔨 Initializing Genesis block/state (state: 0xcd6c…da59, header-hash: 0x48c6…7b40)
-2020-07-24 18:58:38 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
-2020-07-24 18:58:38 ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
-2020-07-24 18:58:38 📦 Highest known block at #0
-2020-07-24 18:58:38 Using default protocol ID "sup" because none is configured in the chain specs
-2020-07-24 18:58:38 🏷  Local node identity is: 12D3KooWCJV1L6dEdRxE9HQnYzrNb3zTui2nWeKBDZUKsEyp8Qt7 (legacy representation: Qmct61NrFJjCU4ACCAqZRgyR4gdtaUVuFSNTfXUC8tzCBT)
-2020-07-24 18:58:38 〽️ Prometheus server started at 127.0.0.1:9615
-2020-07-24 18:58:42 🙌 Starting consensus session on top of parent 0x48c610ed625f896bbc1b358c71f1b3fa00b37efbe4b7d3be4d1f9e21596f7b40
-2020-07-24 18:58:42 🎁 Prepared block for proposing at 1 [hash: 0x00da96dcbcfecec889a28dccf8dc330cd7eb18075d2b567362d33a21bd9d9300; parent_hash: 0x48c6…7b40; extrinsics (1): [0x9a36…f631]]
-2020-07-24 18:58:42 🔖 Pre-sealed block for proposal at 1. Hash now 0x6a90b5e8f2ef8f271dde10a0d48ec15879792fa3654a883add9cdf954d996a9a, previously 0x00da96dcbcfecec889a28dccf8dc330cd7eb18075d2b567362d33a21bd9d9300.
-2020-07-24 18:58:42 ✨ Imported #1 (0x6a90…6a9a)
-2020-07-24 18:58:43 💤 Idle (0 peers), best: #1 (0x6a90…6a9a), finalized #0 (0x48c6…7b40), ⬇ 0 ⬆ 0
-2020-07-24 18:58:48 🙌 Starting consensus session on top of parent 0x6a90b5e8f2ef8f271dde10a0d48ec15879792fa3654a883add9cdf954d996a9a
-2020-07-24 18:58:48 🎁 Prepared block for proposing at 2 [hash: 0xee1bb2c0127aeac6d381e31af51bc3a55a8f4c354cfb12a2d329a29e0ed7cd9e; parent_hash: 0x6a90…6a9a; extrinsics (1): [0x46bd…9dc0]]
-2020-07-24 18:58:48 🔖 Pre-sealed block for proposal at 2. Hash now 0xdcd41fb9f39431a996fa2e06cfd8f48aad402830651613653c22d5d73f33087c, previously 0xee1bb2c0127aeac6d381e31af51bc3a55a8f4c354cfb12a2d329a29e0ed7cd9e.
-2020-07-24 18:58:48 ✨ Imported #2 (0xdcd4…087c)
-2020-07-24 18:58:48 💤 Idle (0 peers), best: #2 (0xdcd4…087c), finalized #0 (0x48c6…7b40), ⬇ 0 ⬆ 0
-2020-07-24 18:58:53 💤 Idle (0 peers), best: #2 (0xdcd4…087c), finalized #0 (0x48c6…7b40), ⬇ 0 ⬆ 0
-2020-07-24 18:58:54 🙌 Starting consensus session on top of parent 0xdcd41fb9f39431a996fa2e06cfd8f48aad402830651613653c22d5d73f33087c
-2020-07-24 18:58:54 🎁 Prepared block for proposing at 3 [hash: 0x6b0e9d9c53714213e89bc76d55cc44f7bb7ede82a219ee050e6c8b80df7ddb1f; parent_hash: 0xdcd4…087c; extrinsics (1): [0xc30e…dfd5]]
-2020-07-24 18:58:54 🔖 Pre-sealed block for proposal at 3. Hash now 0x606b6cf3e914916407f21a1d85ac7dcce91aa290588f80fe0a74d9953ea3dfd5, previously 0x6b0e9d9c53714213e89bc76d55cc44f7bb7ede82a219ee050e6c8b80df7ddb1f.
-2020-07-24 18:58:54 ✨ Imported #3 (0x606b…dfd5)
-2020-07-24 18:58:58 💤 Idle (0 peers), best: #3 (0x606b…dfd5), finalized #1 (0x6a90…6a9a), ⬇ 0 ⬆ 0
+2020-08-20 15:49:19.045 main WARN sc_cli::commands::run_cmd  Running in --dev mode, RPC CORS has been disabled.
+2020-08-20 15:49:19.045 main INFO sc_cli::runner  Substrate Node
+2020-08-20 15:49:19.045 main INFO sc_cli::runner  ✌️  version 2.0.0-rc6-8682ee4-x86_64-linux-gnu
+2020-08-20 15:49:19.045 main INFO sc_cli::runner  ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
+2020-08-20 15:49:19.045 main INFO sc_cli::runner  📋 Chain specification: Development
+2020-08-20 15:49:19.045 main INFO sc_cli::runner  🏷  Node name: utopian-quicksand-7565
+2020-08-20 15:49:19.045 main INFO sc_cli::runner  👤 Role: AUTHORITY
+2020-08-20 15:49:19.045 main INFO sc_cli::runner  💾 Database: RocksDb at /home/parity/.local/share/node-template/chains/dev/db
+2020-08-20 15:49:19.045 main INFO sc_cli::runner  ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+2020-08-20 15:49:19.190 main INFO sc_service::client::client  🔨 Initializing Genesis block/state (state: 0x49ff…ef9d, header-hash: 0x82e1…0111)
+2020-08-20 15:49:19.190 main INFO afg  👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
+2020-08-20 15:49:19.206 main INFO sc_consensus_slots  ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
+2020-08-20 15:49:19.207 main WARN sc_service::builder  Using default protocol ID "sup" because none is configured in the chain specs
+2020-08-20 15:49:19.207 main INFO sub-libp2p  🏷  Local node identity is: 12D3KooWCJV1L6dEdRxE9HQnYzrNb3zTui2nWeKBDZUKsEyp8Qt7 (legacy representation: Qmct61NrFJjCU4ACCAqZRgyR4gdtaUVuFSNTfXUC8tzCBT)
+2020-08-20 15:49:19.215 main INFO sc_service::builder  📦 Highest known block at #0
+2020-08-20 15:49:19.215 tokio-runtime-worker INFO substrate_prometheus_endpoint::known_os  〽️ Prometheus server started at 127.0.0.1:9615
+2020-08-20 15:49:24.020 tokio-runtime-worker INFO sc_basic_authorship::basic_authorship  🙌 Starting consensus session on top of parent 0x82e1dd371de05f76116ee0039430dcd218c77c473f450a9f4a6b58b101ad0111
+2020-08-20 15:49:24.035 tokio-blocking-driver INFO sc_basic_authorship::basic_authorship  🎁 Prepared block for proposing at 1 [hash: 0x7c3867c27cc0901ed6e8421270afaedb3d5614214d78b69f294aef263bd7861a; parent_hash: 0x82e1…0111; extrinsics (1): [0xe371…f93b]]
+2020-08-20 15:49:24.044 tokio-runtime-worker INFO sc_consensus_slots  🔖 Pre-sealed block for proposal at 1. Hash now 0x50455c95a01e645e3f754f49629f2687f72d547c64cd35910f199d05530bbf54, previously 0x7c3867c27cc0901ed6e8421270afaedb3d5614214d78b69f294aef263bd7861a.
+2020-08-20 15:49:24.045 tokio-runtime-worker INFO substrate  ✨ Imported #1 (0x5045…bf54)
+2020-08-20 15:49:24.216 tokio-runtime-worker INFO substrate  💤 Idle (0 peers), best: #1 (0x5045…bf54), finalized #0 (0x82e1…0111), ⬇ 0 ⬆ 0
+2020-08-20 15:49:29.217 tokio-runtime-worker INFO substrate  💤 Idle (0 peers), best: #1 (0x5045…bf54), finalized #0 (0x82e1…0111), ⬇ 0 ⬆ 0
+2020-08-20 15:49:30.006 tokio-runtime-worker INFO sc_basic_authorship::basic_authorship  🙌 Starting consensus session on top of parent 0x50455c95a01e645e3f754f49629f2687f72d547c64cd35910f199d05530bbf54
+2020-08-20 15:49:30.007 tokio-blocking-driver INFO sc_basic_authorship::basic_authorship  🎁 Prepared block for proposing at 2 [hash: 0xb608e0291490a9af5cfaa5f8fd318af661935666ebc88152f05b5b2f828b31c3; parent_hash: 0x5045…bf54; extrinsics (1): [0xc797…a8e0]]
+2020-08-20 15:49:30.012 tokio-runtime-worker INFO sc_consensus_slots  🔖 Pre-sealed block for proposal at 2. Hash now 0xc4276103ee9595e25e4b4ef2a2a5684ca1cbabfc4a3c1545a1fe5ad1f70fd4f6, previously 0xb608e0291490a9af5cfaa5f8fd318af661935666ebc88152f05b5b2f828b31c3.
+2020-08-20 15:49:30.012 tokio-runtime-worker INFO substrate  ✨ Imported #2 (0xc427…d4f6)
+2020-08-20 15:49:34.217 tokio-runtime-worker INFO substrate  💤 Idle (0 peers), best: #2 (0xc427…d4f6), finalized #0 (0x82e1…0111), ⬇ 0 ⬆ 0
+2020-08-20 15:49:36.008 tokio-runtime-worker INFO sc_basic_authorship::basic_authorship  🙌 Starting consensus session on top of parent 0xc4276103ee9595e25e4b4ef2a2a5684ca1cbabfc4a3c1545a1fe5ad1f70fd4f6
+2020-08-20 15:49:36.010 tokio-blocking-driver INFO sc_basic_authorship::basic_authorship  🎁 Prepared block for proposing at 3 [hash: 0xf6c5aac59e1c034e0fc65d7ccdc18df0a12d8cbc71660520e322542c940ba8f9; parent_hash: 0xc427…d4f6; extrinsics (1): [0xeeb9…f554]]
+2020-08-20 15:49:36.018 tokio-runtime-worker INFO sc_consensus_slots  🔖 Pre-sealed block for proposal at 3. Hash now 0x751b14ef67fcb64adc47fe31912facdc748032a4f3f87f1795769a1bce94d07c, previously 0xf6c5aac59e1c034e0fc65d7ccdc18df0a12d8cbc71660520e322542c940ba8f9.
+2020-08-20 15:49:36.019 tokio-runtime-worker INFO substrate  ✨ Imported #3 (0x751b…d07c)
+2020-08-20 15:49:39.217 tokio-runtime-worker INFO substrate  💤 Idle (0 peers), best: #3 (0x751b…d07c), finalized #1 (0x5045…bf54), ⬇ 0 ⬆ 0
 ```
 
 If the number after `finalized:` is increasing, your blockchain is producing new blocks and reaching
@@ -115,7 +115,7 @@ already familiar with blockchain concepts, you can think of them as transactions
 Interactor allows you to submit [unsigned](../../knowledgebase/learn-substrate/extrinsics#unsigned-transactions) or
 [signed](../../knowledgebase/learn-substrate/extrinsics#signed-transactions) extrinsics and also provides a button
 that makes it easy to invoke an extrinsic by way of
-[the `sudo` function from the Sudo pallet](https://substrate.dev/rustdocs/v2.0.0-rc5/pallet_sudo/enum.Call.html#variant.sudo).
+[the `sudo` function from the Sudo pallet](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_sudo/enum.Call.html#variant.sudo).
 
 You can select Query interactions to read
 [the values present in your runtime's storage](../../knowledgebase/runtime/storage). The RPC and Constant options

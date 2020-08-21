@@ -4,7 +4,7 @@ title: Prepare to build a dApp
 
 ## Install the Node Template
 
-You should already have version `v2.0.0-rc5` of the
+You should already have version `v2.0.0-rc6` of the
 [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
 compiled on your computer from when you completed the
 [Creating Your First Substrate Chain Tutorial](../create-your-first-substrate-chain).
@@ -30,7 +30,7 @@ Now you can proceed to set up the front-end template with these commands.
 
 ```bash
 # Clone the code from github
-git clone -b v2.0.0-rc5 https://github.com/substrate-developer-hub/substrate-front-end-template
+git clone -b v2.0.0-rc6 https://github.com/substrate-developer-hub/substrate-front-end-template
 
 # Install the dependencies
 cd substrate-front-end-template

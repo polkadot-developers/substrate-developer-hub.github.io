@@ -75,7 +75,7 @@ The macro also declare and implements `Store` trait to set up the pallet to have
 
 **Doc. and Example**
 
-  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.decl_storage.html)
+  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_storage.html)
   - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/procedural/src/lib.rs#L236-L238)
   - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-rs-L30-L40), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-expanded-rs-L19-L164)
 
@@ -97,7 +97,7 @@ This macro defines pallet events by implementing `Event` enum type, with each ev
 
 **Doc. and Example**
 
-  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.decl_event.html)
+  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_event.html)
   - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/event.rs#L101-L149)
   - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-rs-L43-L50), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-expanded-rs-L169-L330)
 
@@ -122,7 +122,7 @@ One key is that the macro automatically implements the `From<Error<T>>` trait fo
 
 **Doc. and Example**
 
-  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.decl_error.html)
+  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_error.html)
   - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/error.rs#L71-L203)
   - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-rs-L53-L60), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-expanded-rs-L331-L417)
 
@@ -145,7 +145,7 @@ The macro declares a `Module` struct and `Call` enum type for the containing pal
 
 **Doc. and Example**
 
-  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.decl_module.html)
+  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_module.html)
   - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/dispatch.rs#L275-L1613)
   - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-rs-L63-L109), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-expanded-rs-L419-L971)
 
@@ -175,7 +175,7 @@ The macro declares and implements various struct and enum, e.g.`Runtime`, `Event
 
 **Doc. and Example**
 
-  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.construct_runtime.html)
+  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.construct_runtime.html)
   - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/procedural/src/construct_runtime/mod.rs#L31-L36)
   - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-rs-L260-L277), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-expanded-rs-L763-L2475)
 
@@ -199,7 +199,7 @@ To declare parameter types to be assigned to pallet configurable trait associate
 The macro replaces each parameter specified into a struct type with a `get()` function returning its specified value. Each parameter struct type also implements a `frame_support::traits::Get<I>` trait to convert the type to its specified value.
 
 **Doc. and Example**
-  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.parameter_types.html)
+  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.parameter_types.html)
   - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/lib.rs#L127-L174)
   - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-rs-L213-L215), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-expanded-rs-L700-L710)
 
@@ -216,7 +216,7 @@ The macro defines the `RuntimeApi` and `RuntimeApiImpl` exposed to the Substrate
 
 **Doc. and Example**
 
-  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_api/macro.impl_runtime_apis.html)
+  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/sp_api/macro.impl_runtime_apis.html)
   - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/primitives/api/proc-macro/src/impl_runtime_apis.rs#L701-L706)
   - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-rs-L306-L414), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-expanded-rs-L2503-L3562)
 
@@ -239,7 +239,7 @@ The macro declares three struct types, `Public`, `Signature`, and `Pair`. Aside 
 
 
 **Doc. and Example**
-  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_application_crypto/macro.app_crypto.html)
+  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/sp_application_crypto/macro.app_crypto.html)
   - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/primitives/application-crypto/src/lib.rs#L60-L69)
   - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-app-crypto-rs-L12), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-app-crypto-expanded-rs-L10-L613)
 
@@ -263,7 +263,7 @@ This macro creates an `Origin` struct type, and implements various helper traits
 
 **Doc. and Example**
   
-  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.impl_outer_origin.html)
+  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.impl_outer_origin.html)
   - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/origin.rs#L23-L223)
   - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-mock-rs-L12-L14), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-test-expanded-rs-L26-L147)
 
@@ -278,7 +278,7 @@ To construct an `Event` struct type for a runtime. This macro is typically calle
 This macro creates an event enum type, implement various helper traits on `Event` type, including `core::clone::Clone`, `core::marker::StructuralPartialEq`, `core::fmt::Debug`, data encoding/decoding traits etc. Finally, the macro implements only the specifying pallet events for the runtime.
 
 **Doc. and Example**
-  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.impl_outer_event.html)
+  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.impl_outer_event.html)
   - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/event.rs#L334-L485)
   - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-mock-rs-L16-L21), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-test-expanded-rs-L148-L361)
 
@@ -293,7 +293,7 @@ To implement a meta-dispatch module to dispatch to other dispatchers. This macro
 This macro creates a `Call` enum type, implement various helper traits on `Event` type, including `Clone`, `PartialEq`, `RuntimeDebug` etc. Finally, the macro implements `GetDispatchInfo`, `GetCallMetadata`, `IsSubType` traits for the `Call` enum.
 
 **Doc. and Example**
-  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc5/frame_support/macro.impl_outer_dispatch.html)
+  - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.impl_outer_dispatch.html)
   - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/dispatch.rs#L1621)
 
 ## Conclusion
