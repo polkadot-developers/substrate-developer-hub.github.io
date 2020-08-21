@@ -22,7 +22,7 @@ The first participant can launch her node with
   --port 30333 \
   --ws-port 9944 \
   --rpc-port 9933 \
-  --telemetry-url 'ws://telemetry.polkadot.io:1024 0' \
+  --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
   --validator \
   --rpc-methods=Unsafe \
   --name MyNode01
@@ -158,7 +158,7 @@ paramter as Bob did previously.
   --port 30334 \
   --ws-port 9945 \
   --rpc-port 9934 \
-  --telemetry-url 'ws://telemetry.polkadot.io:1024 0' \
+  --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
   --validator \
   --rpc-methods=Unsafe \
   --name MyNode02 \
