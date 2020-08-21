@@ -26,8 +26,9 @@ If you run into an issue on this tutorial, **we are here to help!** You can
 ## Install the Node Template
 
 You should already have version `v2.0.0-rc6` of the Node Template compiled on your computer from
-when you completed the [Create Your First Substrate Chain](../create-your-first-substrate-chain/)
-and [Build a dApp](../build-a-dapp) tutorials. If you do not, please complete them.
+when you completed the
+[Create Your First Substrate Chain](../../tutorials/create-your-first-substrate-chain/) and
+[Build a dApp](../../tutorials/build-a-dapp) tutorials. If you do not, please complete them.
 
 > Experienced developers who truly prefer to skip those tutorials may install the Node Template
 > according to

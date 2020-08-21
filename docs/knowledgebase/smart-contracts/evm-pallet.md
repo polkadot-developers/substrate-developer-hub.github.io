@@ -51,8 +51,7 @@ to support earlier hard fork configurations.
 
 ### Examples
 
-- Follow a
-  [tutorial to add a runtime module to your Substrate runtime](https://substrate.dev/docs/en/tutorials/add-a-pallet-to-your-runtime/).
+- Follow a [tutorial to add a pallet to your FRAME runtime](../../tutorials/add-a-pallet/).
 
 ### References
 

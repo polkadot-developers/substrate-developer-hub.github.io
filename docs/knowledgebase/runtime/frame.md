@@ -410,7 +410,7 @@ amount for any reason other than transaction fee payment.
 ### Examples
 
 - Follow a
-  [tutorial to add a pallet to your Substrate runtime](../../tutorials/add-a-pallet-to-your-runtime/).
+  [tutorial to add a pallet to your FRAME runtime](../../tutorials/add-a-pallet/).
 
 ### References
 
