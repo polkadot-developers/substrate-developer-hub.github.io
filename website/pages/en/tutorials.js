@@ -193,15 +193,15 @@ class Tutorials extends React.Component {
                     ),
                     text: (
                       <translate>
-                        Add the Contracts pallet or other FRAME pallets to your Substrate node template.
+                        Add the Nicks pallet to your Substrate node template.
                       </translate>
                     ),
                     difficulty: "medium",
                     length: "2",
                     prerequisite: false,
-                    version: "2.0.0-rc4",
+                    version: "2.0.0-rc6",
                     href: `${docUrl(
-                      "tutorials/add-a-pallet-to-your-runtime/")}`
+                      "tutorials/add-a-pallet/")}`
                   },
                   {
                     img: `${baseUrl}img/substrate-network.png`,
@@ -254,6 +254,22 @@ class Tutorials extends React.Component {
                     prerequisite: false,
                     version: "2.0.0-rc5",
                     href: `${docUrl("tutorials/visualize-node-metrics/")}`
+                  },
+                  {
+                    title: (
+                      <translate>Add the Contracts Pallet to a Runtime</translate>
+                    ),
+                    text: (
+                      <translate>
+                        Add the Contracts pallet to your Substrate node template.
+                      </translate>
+                    ),
+                    difficulty: "medium",
+                    length: "2",
+                    prerequisite: false,
+                    version: "2.0.0-rc4",
+                    href: `${docUrl(
+                      "tutorials/add-contracts-pallet/")}`
                   },
                   {
                     img: `${baseUrl}img/ink-smart-contracts-tutorial.png`,

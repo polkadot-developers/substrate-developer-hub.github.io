@@ -77,7 +77,12 @@
     ]
   },
   "add-a-pallet": {
-    "Add a Pallet to Your Runtime": []
+    "Add a Pallet to Your Runtime": [
+      "tutorials/add-a-pallet/index",
+      "tutorials/add-a-pallet/import-a-pallet",
+      "tutorials/add-a-pallet/configure-a-pallet",
+      "tutorials/add-a-pallet/use-a-pallet"
+    ]
   },
   "start-a-private-network": {
     "Start a Private Network": [
@@ -90,6 +95,9 @@
   },
   "pallet-in-crate": {
     "Write a Pallet in its Own Crate": []
+  },
+  "add-contracts-pallet": {
+    "Add the Contracts Pallet": []
   },
   "visualize-node-metrics": {
     "Visualize Node Metrics": []
