@@ -44,23 +44,23 @@ Here are some differences from when we launched as Alice.
 You should see the console outputs something as follows:
 
 ```bash
-2020-07-25 10:48:33 Substrate Node
-2020-07-25 10:48:33 ✌️  version 2.0.0-rc5-unknown-x86_64-linux-gnu
-2020-07-25 10:48:33 ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
-2020-07-25 10:48:33 📋 Chain specification: Local Testnet
-2020-07-25 10:48:33 🏷  Node name: MyNode01
-2020-07-25 10:48:33 👤 Role: AUTHORITY
-2020-07-25 10:48:33 💾 Database: RocksDb at /tmp/node01/chains/local_testnet/db
-2020-07-25 10:48:33 ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
-2020-07-25 10:48:33 🔨 Initializing Genesis block/state (state: 0x5327…59d5, header-hash: 0x60b2…88ec)
-2020-07-25 10:48:33 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
-2020-07-25 10:48:33 ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
-2020-07-25 10:48:33 📦 Highest known block at #0
-2020-07-25 10:48:33 Using default protocol ID "sup" because none is configured in the chain specs
-2020-07-25 10:48:33 🏷  Local node identity is: 12D3KooWSDA5zyaXnJH4nHxKFgpd5HDH13uXUQoBLQd29QhrM9pm (legacy representation: QmcZZW2jEqNaFGUm8Bsfiuu3x9sY3cZQyWLyk98T7w7Dyy)
-2020-07-25 10:48:33 〽️ Prometheus server started at 127.0.0.1:9615
-2020-07-25 10:48:38 💤 Idle (0 peers), best: #0 (0x60b2…88ec), finalized #0 (0x60b2…88ec), ⬇ 0 ⬆ 0
-2020-07-25 10:48:43 💤 Idle (0 peers), best: #0 (0x60b2…88ec), finalized #0 (0x60b2…88ec), ⬇ 0 ⬆ 0
+2020-08-20 17:20:13.808 main INFO sc_cli::runner  Substrate Node
+2020-08-20 17:20:13.808 main INFO sc_cli::runner  ✌️  version 2.0.0-rc6-7c921bb-x86_64-linux-gnu
+2020-08-20 17:20:13.808 main INFO sc_cli::runner  ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
+2020-08-20 17:20:13.808 main INFO sc_cli::runner  📋 Chain specification: Local Testnet
+2020-08-20 17:20:13.808 main INFO sc_cli::runner  🏷  Node name: MyNode01
+2020-08-20 17:20:13.808 main INFO sc_cli::runner  👤 Role: AUTHORITY
+2020-08-20 17:20:13.808 main INFO sc_cli::runner  💾 Database: RocksDb at /tmp/node01/chains/local_testnet/db
+2020-08-20 17:20:13.808 main INFO sc_cli::runner  ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+2020-08-20 17:20:14.077 main INFO sc_service::client::client  🔨 Initializing Genesis block/state (state: 0x013d…7725, header-hash: 0x200a…c14a)
+2020-08-20 17:20:14.078 main INFO afg  👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
+2020-08-20 17:20:14.094 main INFO sc_consensus_slots  ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
+2020-08-20 17:20:14.094 main WARN sc_service::builder  Using default protocol ID "sup" because none is configured in the chain specs
+2020-08-20 17:20:14.094 main INFO sub-libp2p  🏷  Local node identity is: 12D3KooWF9akUHoUAmjMhmj1Wd7ccAeH496Yyin1pgYfsPesHU2h (legacy representation: QmdnHkojJg19yTnQnAKx7GSK5DQDxooeGHvqKAcn4wtEJV)
+2020-08-20 17:20:14.096 main INFO sc_service::builder  📦 Highest known block at #0
+2020-08-20 17:20:14.096 tokio-runtime-worker INFO substrate_prometheus_endpoint::known_os  〽️ Prometheus server started at 127.0.0.1:9615
+2020-08-20 17:20:19.099 tokio-runtime-worker INFO substrate  💤 Idle (0 peers), best: #0 (0x200a…c14a), finalized #0 (0x200a…c14a), ⬇ 0 ⬆ 0
+2020-08-20 17:20:24.099 tokio-runtime-worker INFO substrate  💤 Idle (0 peers), best: #0 (0x200a…c14a), finalized #0 (0x200a…c14a), ⬇ 0 ⬆ 0
 ```
 
 ## Add Keys to Keystore
@@ -171,29 +171,28 @@ As before, we specify another `base-path`, give it another `name`, and also spec
 Once the second node is up, you should see them authoring:
 
 ```
-2020-07-25 10:52:31 Substrate Node
-2020-07-25 10:52:31 ✌️  version 2.0.0-rc5-unknown-x86_64-linux-gnu
-2020-07-25 10:52:31 ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
-2020-07-25 10:52:31 📋 Chain specification: Local Testnet
-2020-07-25 10:52:31 🏷  Node name: MyNode02
-2020-07-25 10:52:31 👤 Role: AUTHORITY
-2020-07-25 10:52:31 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db
-2020-07-25 10:52:31 ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
-2020-07-25 10:52:31 🔨 Initializing Genesis block/state (state: 0x5327…59d5, header-hash: 0x60b2…88ec)
-2020-07-25 10:52:31 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
-2020-07-25 10:52:31 ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
-2020-07-25 10:52:31 📦 Highest known block at #0
-2020-07-25 10:52:31 Using default protocol ID "sup" because none is configured in the chain specs
-2020-07-25 10:52:31 🏷  Local node identity is: 12D3KooWSn4GHHQdmTtrJE4h2dRqm5xV5BG3FZsnrn6HQEr6hShM (legacy representation: QmSFpf3SgDy2WQmes41FGusqpZKr7PfS7aC9CRMLYdJwWF)
-2020-07-25 10:52:31 Received message on non-registered protocol: [70, 82, 78, 75]
-2020-07-25 10:52:31 🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWSn4GHHQdmTtrJE4h2dRqm5xV5BG3FZsnrn6HQEr6hShM
-2020-07-25 10:52:31 🔍 Discovered new external address for our node: /ip4/10.1.10.99/tcp/30334/p2p/12D3KooWSn4GHHQdmTtrJE4h2dRqm5xV5BG3FZsnrn6HQEr6hShM
-2020-07-25 10:52:36 ✨ Imported #1 (0xfc20…1be1)
-2020-07-25 10:52:36 💤 Idle (1 peers), best: #1 (0xfc20…1be1), finalized #0 (0x60b2…88ec), ⬇ 1.2kiB/s ⬆ 1.2kiB/s
+2020-08-20 17:27:35.152 main INFO sc_cli::runner  Substrate Node
+2020-08-20 17:27:35.152 main INFO sc_cli::runner  ✌️  version 2.0.0-rc6-7c921bb-x86_64-linux-gnu
+2020-08-20 17:27:35.152 main INFO sc_cli::runner  ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
+2020-08-20 17:27:35.152 main INFO sc_cli::runner  📋 Chain specification: Local Testnet
+2020-08-20 17:27:35.152 main INFO sc_cli::runner  🏷  Node name: MyNode02
+2020-08-20 17:27:35.152 main INFO sc_cli::runner  👤 Role: AUTHORITY
+2020-08-20 17:27:35.152 main INFO sc_cli::runner  💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db
+2020-08-20 17:27:35.152 main INFO sc_cli::runner  ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+2020-08-20 17:27:35.426 main INFO sc_service::client::client  🔨 Initializing Genesis block/state (state: 0x013d…7725, header-hash: 0x200a…c14a)
+2020-08-20 17:27:35.427 main INFO afg  👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
+2020-08-20 17:27:35.445 main INFO sc_consensus_slots  ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
+2020-08-20 17:27:35.445 main WARN sc_service::builder  Using default protocol ID "sup" because none is configured in the chain specs
+2020-08-20 17:27:35.445 main INFO sub-libp2p  🏷  Local node identity is: 12D3KooWRaL4KMYR5njwoohqetjT2wsuwEQijWdBqMxD1Tu3WCqE (legacy representation: QmcUwECyeg8142GiRenTY4euWU2hM98KAjWefNdHvwGuYf)
+2020-08-20 17:27:35.447 main INFO sc_service::builder  📦 Highest known block at #0
+2020-08-20 17:27:35.951 tokio-runtime-worker INFO sub-libp2p  🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWRaL4KMYR5njwoohqetjT2wsuwEQijWdBqMxD1Tu3WCqE
+2020-08-20 17:27:35.951 tokio-runtime-worker INFO sub-libp2p  🔍 Discovered new external address for our node: /ip4/192.168.0.118/tcp/30334/p2p/12D3KooWRaL4KMYR5njwoohqetjT2wsuwEQijWdBqMxD1Tu3WCqE
+2020-08-20 17:27:36.021 tokio-runtime-worker INFO substrate  ✨ Imported #1 (0x8258…05c2)
+2020-08-20 17:27:40.450 tokio-runtime-worker INFO substrate  💤 Idle (1 peers), best: #1 (0x8258…05c2), finalized #0 (0x200a…c14a), ⬇ 1.2kiB/s ⬆ 1.2kiB/s
 ```
 
 The final lines shows that your node has peered with another (**`1 peers`**), and they have produced
-a block (**`best: #1 (0xfc20…1be1)`**).
+a block (**`best: #1 (0x8258…05c2)`**).
 
 Now you're ready to add keys to its keystore by following the process (in the previous section) just
 like you did for the first node.
@@ -212,31 +211,25 @@ like you did for the first node.
 > see the same genesis block and state root hashes.
 
 You will notice that even after you add the keys for the second node no block finalization has
-happened (**`finalized #0 (0x60b2…88ec)`**). Substrate nodes require a restart after inserting a
+happened (**`finalized #0 (0x200a…c14a)`**). Substrate nodes require a restart after inserting a
 GRANDPA key. Kill your nodes and restart them with the same commands you used previously. Now blocks
 should be finalized.
 
 ```
-2020-07-25 10:56:17 Substrate Node
-2020-07-25 10:56:17 ✌️  version 2.0.0-rc5-unknown-x86_64-linux-gnu
-2020-07-25 10:56:17 ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
-2020-07-25 10:56:17 📋 Chain specification: Local Testnet
-2020-07-25 10:56:17 🏷  Node name: MyNode02
-2020-07-25 10:56:17 👤 Role: AUTHORITY
-2020-07-25 10:56:17 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db
-2020-07-25 10:56:17 ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
-2020-07-25 10:56:17 📦 Highest known block at #19
-2020-07-25 10:56:17 Using default protocol ID "sup" because none is configured in the chain specs
-2020-07-25 10:56:17 🏷  Local node identity is: 12D3KooWSn4GHHQdmTtrJE4h2dRqm5xV5BG3FZsnrn6HQEr6hShM (legacy representation: QmSFpf3SgDy2WQmes41FGusqpZKr7PfS7aC9CRMLYdJwWF)
-2020-07-25 10:56:17 Received message on non-registered protocol: [70, 82, 78, 75]
-2020-07-25 10:56:17 🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWSn4GHHQdmTtrJE4h2dRqm5xV5BG3FZsnrn6HQEr6hShM
-2020-07-25 10:56:17 🔍 Discovered new external address for our node: /ip4/10.1.10.99/tcp/30334/p2p/12D3KooWSn4GHHQdmTtrJE4h2dRqm5xV5BG3FZsnrn6HQEr6hShM
-2020-07-25 10:56:18 🙌 Starting consensus session on top of parent 0xd882a26e1d28a9b5a3a5281456138d5755b708284a0b96005767623ae63d6b02
-2020-07-25 10:56:18 Timeout fired waiting for transaction pool at block #19. Proceeding with production.
-2020-07-25 10:56:18 🎁 Prepared block for proposing at 20 [hash: 0x52ff2f4611b2e929f167acf514e59ba0cc95d57209df287eb154c9c48686f16d; parent_hash: 0xd882…6b02; extrinsics (1): [0x9bc5…aca0]]
-2020-07-25 10:56:18 🔖 Pre-sealed block for proposal at 20. Hash now 0x7501f730efa3f37978adb513c1c8809713f99d02ac67794c5bc93aa468d7fcdb, previously 0x52ff2f4611b2e929f167acf514e59ba0cc95d57209df287eb154c9c48686f16d.
-2020-07-25 10:56:18 ✨ Imported #20 (0x7501…fcdb)
-2020-07-25 10:56:22 💤 Idle (1 peers), best: #20 (0x7501…fcdb), finalized #18 (0xfb39…1a64), ⬇ 2.2kiB/s ⬆ 2.1kiB/s
+2020-08-20 17:30:42.415 main INFO sc_cli::runner  Substrate Node
+2020-08-20 17:30:42.415 main INFO sc_cli::runner  ✌️  version 2.0.0-rc6-7c921bb-x86_64-linux-gnu
+2020-08-20 17:30:42.415 main INFO sc_cli::runner  ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
+2020-08-20 17:30:42.415 main INFO sc_cli::runner  📋 Chain specification: Local Testnet
+2020-08-20 17:30:42.415 main INFO sc_cli::runner  🏷  Node name: MyNode02
+2020-08-20 17:30:42.415 main INFO sc_cli::runner  👤 Role: AUTHORITY
+2020-08-20 17:30:42.415 main INFO sc_cli::runner  💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db
+2020-08-20 17:30:42.415 main INFO sc_cli::runner  ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+2020-08-20 17:30:42.465 main WARN sc_service::builder  Using default protocol ID "sup" because none is configured in the chain specs
+2020-08-20 17:30:42.465 main INFO sub-libp2p  🏷  Local node identity is: 12D3KooWRaL4KMYR5njwoohqetjT2wsuwEQijWdBqMxD1Tu3WCqE (legacy representation: QmcUwECyeg8142GiRenTY4euWU2hM98KAjWefNdHvwGuYf)
+2020-08-20 17:30:42.467 main INFO sc_service::builder  📦 Highest known block at #16
+2020-08-20 17:30:42.971 tokio-runtime-worker INFO sub-libp2p  🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWRaL4KMYR5njwoohqetjT2wsuwEQijWdBqMxD1Tu3WCqE
+2020-08-20 17:30:42.971 tokio-runtime-worker INFO sub-libp2p  🔍 Discovered new external address for our node: /ip4/192.168.0.118/tcp/30334/p2p/12D3KooWRaL4KMYR5njwoohqetjT2wsuwEQijWdBqMxD1Tu3WCqE
+2020-08-20 17:30:47.470 tokio-runtime-worker INFO substrate  💤 Idle (1 peers), best: #16 (0x279c…a87f), finalized #14 (0xb8ec…9d12), ⬇ 1.9kiB/s ⬆ 2.1kiB/s
 ```
 
 ## You're Finished
