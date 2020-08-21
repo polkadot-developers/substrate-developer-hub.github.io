@@ -73,14 +73,9 @@ Replacing it with a new struct type defined by `#name` and have it implement the
 
 The macro also declare and implements `Store` trait to set up the pallet to have storage space, and implements getters on `Module` struct defined by `decl_module!`.
 
-**Doc. and Example**
+**Docs and Notes**
 
   - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_storage.html)
-  - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/procedural/src/lib.rs#L236-L238)
-  - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-rs-L30-L40), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-expanded-rs-L19-L164)
-
-**Macro Implementation Notes**
-
   - `Store` trait is declared with each storage name, thus becoming an associated type inside the trait.
   - `Module` implementation contains the getter function and metadata of each storage item.
   - Each of the storage items becomes a struct. Above in the expanded code `Something` struct type [is declared and implements `StorageValue<u32>` trait](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-expanded-rs-L144-L164) and the data type specified in the macro.
@@ -95,14 +90,9 @@ To define events when a runtime pallet emits.
 
 This macro defines pallet events by implementing `Event` enum type, with each event type in the macro being an enum variant inside `Event`.
 
-**Doc. and Example**
+**Docs and Notes**
 
   - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_event.html)
-  - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/event.rs#L101-L149)
-  - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-rs-L43-L50), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-expanded-rs-L169-L330)
-
-**Macro Implementation Notes**
-
   - `Event` or `Event<T>` type is defined, assigned to `RawEvent`.
   - `RawEvent<...all generic types used>` enum type is defined with all events specified in the macro as its enum variants.
   - The macro implements various helper traits for`RawEvent`, including data encoding/decoding, `core::cmp::PartialEq`, `core::cmp::Clone`, and `core::fmt::Debug`.
@@ -120,14 +110,9 @@ This macro defines `Error<T: Trait>` struct type, and implement helper methods f
 
 One key is that the macro automatically implements the `From<Error<T>>` trait for `DispatchError`. Therefore `DispatchError` returns the proper module index, error code, error string for a particular error type, and the documentation provided on top of each error as meta-data.  
 
-**Doc. and Example**
+**Docs and Notes**
 
   - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_error.html)
-  - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/error.rs#L71-L203)
-  - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-rs-L53-L60), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-expanded-rs-L331-L417)
-
-**Macro Implementation Notes**
-
   - `Error<T: Trait>` enum type is filled with enum variants specified in the macro.
   - `Error` implements various helper functions, and maps each error to a sequential error code and an error string.
   - `Error` type implementation contains a `fn metadata()` function.
@@ -143,14 +128,9 @@ To define dispatchable functions in a pallet
 
 The macro declares a `Module` struct and `Call` enum type for the containing pallet. It combines the necessary logics using user-defined dispatchable calls into the two types. In addition to various helper traits implemented for `Module` and `Call`, e.g. `Copy`, `StructuralEq`, `Debug`, the macro also inserts lifecycle trait implementations for `Module`, e.g. `frame_support::traits::OnInitialize`, `frame_support::traits::OnFinalize`, `frame_support::traits::OnRuntimeUpgrade`, and `frame_support::traits::OffchainWorker`.
 
-**Doc. and Example**
+**Docs and Notes**
 
   - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_module.html)
-  - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/dispatch.rs#L275-L1613)
-  - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-rs-L63-L109), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-expanded-rs-L419-L971)
-
-**Macro Implementation Notes**
-
   - This macro declares a `Module<T>` struct and a `Call<T>` enum which implements the dispatch logic.
   - Helper traits are automatically implemented for `Module` struct, such as `core::cmp::Eq`, `core::clone::Clone`, etc.
   - `Module` implements various lifecycle traits, such as 
@@ -173,14 +153,9 @@ To construct Substrate runtime and integrating various pallets into the runtime.
 
 The macro declares and implements various struct and enum, e.g.`Runtime`, `Event`, `Origin`, `Call`, `GenesisConfig` etc, and implements various helper traits for these struct types. The macro also adds logics of mapping different events and dispatchable calls from the overarching runtime back to a particular pallet.
 
-**Doc. and Example**
+**Docs and Notes**
 
   - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.construct_runtime.html)
-  - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/procedural/src/construct_runtime/mod.rs#L31-L36)
-  - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-rs-L260-L277), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-expanded-rs-L763-L2475)
-
-**Macro Implementation Notes**
-
   - `Runtime` struct type is defined to represent the Substrate runtime.
   - `Event` enum type is defined with variants of all pallets that emit events, with helper traits and encoding/decoding traits implemented for the enum. Various conversion traits `Event` also implements `TryInto<pallets::Event<Runtime>>` trait to extract the event out from the enum type.
   - `Origin` enum type is defined with helper traits, e.g. `PartialEq`, `Clone`, `Debug` implemented. This enum type defines who call an extrinsic, `NONE`, `ROOT`, or signed by a particular account. The origin can also be defined by other pallets, not only system.
@@ -198,10 +173,9 @@ To declare parameter types to be assigned to pallet configurable trait associate
 
 The macro replaces each parameter specified into a struct type with a `get()` function returning its specified value. Each parameter struct type also implements a `frame_support::traits::Get<I>` trait to convert the type to its specified value.
 
-**Doc. and Example**
+**Docs**
+
   - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.parameter_types.html)
-  - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/lib.rs#L127-L174)
-  - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-rs-L213-L215), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-expanded-rs-L700-L710)
 
 ### impl_runtime_apis!
 
@@ -214,14 +188,9 @@ This macro generates the API implementations for the client side through the `Ru
 The macro defines the `RuntimeApi` and `RuntimeApiImpl` exposed to the Substrate node client. It provides implementation details of the RuntimeApiImpl based on the setup and appended user specified implementation in the `RuntimeApiImpl`.
 
 
-**Doc. and Example**
+**Docs Notes**
 
   - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/sp_api/macro.impl_runtime_apis.html)
-  - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/primitives/api/proc-macro/src/impl_runtime_apis.rs#L701-L706)
-  - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-rs-L306-L414), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-runtime-lib-expanded-rs-L2503-L3562)
-
-**Macro Implementation Notes**
-
   - `RuntimeApi` and `RuntimeApiImpl` structs are declared. The macro also implements various helper traits for `RuntimeApiImpl`.
   - What developers define within `impl_runtime_apis!` macro are appended to the end of `RuntimeApiImpl` implementation.
   - To expose version information about the runtime, a constant `RUNTIME_API_VERSIONS` is defined. containing the runtime core `ID`/`VERSION`, metadata `ID`/`VERSION`, SessionKeys `ID`/`VERSION`, etc.
@@ -238,13 +207,9 @@ To specify cryptographic key pairs and its signature algorithm that are to be ma
 The macro declares three struct types, `Public`, `Signature`, and `Pair`. Aside from having various helper traits implemented for these three types, `Public` type is implemented to generating keypairs, signing and verifying signature, `Signature` type to hold the signature property given the signature chosen to be used (e.g. SR25519, ED25519 etc), and `Pair` type to generate a public-private key pair from a seed.
 
 
-**Doc. and Example**
+**Docs and Notes**
+
   - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/sp_application_crypto/macro.app_crypto.html)
-  - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/primitives/application-crypto/src/lib.rs#L60-L69)
-  - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-app-crypto-rs-L12), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-app-crypto-expanded-rs-L10-L613)
-
-**Macro Implementation Notes**
-
   - `Public` struct type is declared, and implements `sp_application_crypto::AppKey` trait defining the public key type, and `sp_application_crypto::RuntimeAppPublic` trait for generating keypairs, signing, and verifying signatures.
   - `Signature` struct type is declared, and implements `core::hash::Hash` trait on how the data with this signature type is hashed.
   - `Pair` struct type is declared to wrap over the crypto pair. This type implements `sp_application_crypto::Pair` and `sp_application_crypto::AppKey` traits determining how it generates public-private key pairs from a phrase or seed.
@@ -261,11 +226,9 @@ Each extrinsic call has an `Origin` type parameter passed, signaling if the call
 
 This macro creates an `Origin` struct type, and implements various helper traits for the type. 
 
-**Doc. and Example**
+**Docs**
   
   - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.impl_outer_origin.html)
-  - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/origin.rs#L23-L223)
-  - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-mock-rs-L12-L14), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-test-expanded-rs-L26-L147)
 
 ### impl_outer_event!
 
@@ -277,10 +240,9 @@ To construct an `Event` struct type for a runtime. This macro is typically calle
 
 This macro creates an event enum type, implement various helper traits on `Event` type, including `core::clone::Clone`, `core::marker::StructuralPartialEq`, `core::fmt::Debug`, data encoding/decoding traits etc. Finally, the macro implements only the specifying pallet events for the runtime.
 
-**Doc. and Example**
+**Docs**
+
   - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.impl_outer_event.html)
-  - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/event.rs#L334-L485)
-  - Macro Expansion Example: [original](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-mock-rs-L16-L21), [expanded](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-test-expanded-rs-L148-L361)
 
 ### impl_outer_dispatch!
 
@@ -292,9 +254,9 @@ To implement a meta-dispatch module to dispatch to other dispatchers. This macro
 
 This macro creates a `Call` enum type, implement various helper traits on `Event` type, including `Clone`, `PartialEq`, `RuntimeDebug` etc. Finally, the macro implements `GetDispatchInfo`, `GetCallMetadata`, `IsSubType` traits for the `Call` enum.
 
-**Doc. and Example**
+**Docs**
+
   - [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.impl_outer_dispatch.html)
-  - [Macro Definition](https://github.com/paritytech/substrate/blob/v2.0.0-rc5/frame/support/src/dispatch.rs#L1621)
 
 ## Conclusion
 
