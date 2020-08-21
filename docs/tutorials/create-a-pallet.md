@@ -215,16 +215,10 @@ At this point you have the pallet packaged up as it's own crate and included in 
    cargo build --release
    ```
 
-2. Purge any existing dev chain (Enter `y` on prompt):
+2. Start a temporary node in development mode:
 
    ```bash
-   ./target/release/node-template purge-chain --dev
-   ```
-
-3. Start your node:
-
-   ```bash
-   ./target/release/node-template --dev
+   ./target/release/node-template --dev --tmp
    ```
 
 Finally, start the

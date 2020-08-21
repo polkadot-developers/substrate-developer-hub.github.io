@@ -539,13 +539,11 @@ with
 cargo build --release
 ```
 
-Before running the chain, we first need to purge the chain to remove the old runtime logic and have
-the genesis configuration initialized for the Contracts pallet. It is possible to upgrade the chain
-without purging it but it will remain out of scope for this tutorial.
+Now launch the executable you just built by running this command
 
 ```bash
-./target/release/node-template purge-chain --dev
-./target/release/node-template --dev
+# Run a temporary node in development mode
+./target/release/node-template --dev --tmp
 ```
 
 ## Adding Other FRAME pallets

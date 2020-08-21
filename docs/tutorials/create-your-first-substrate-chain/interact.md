@@ -9,12 +9,8 @@ Now that your node has finished compiling, let's show you how everything works o
 Run the following commands to start your node:
 
 ```bash
-# Clean up any old data from running a development node in the past
-# You will be prompted to type `y`
-./target/release/node-template purge-chain --dev
-
-# Run the node in development mode
-./target/release/node-template --dev
+# Run a temporary node in development mode
+./target/release/node-template --dev --tmp
 ```
 
 You should see something like this if your node is running successfully:
@@ -27,7 +23,7 @@ You should see something like this if your node is running successfully:
 2020-08-20 15:49:19.045 main INFO sc_cli::runner  📋 Chain specification: Development
 2020-08-20 15:49:19.045 main INFO sc_cli::runner  🏷  Node name: utopian-quicksand-7565
 2020-08-20 15:49:19.045 main INFO sc_cli::runner  👤 Role: AUTHORITY
-2020-08-20 15:49:19.045 main INFO sc_cli::runner  💾 Database: RocksDb at /home/parity/.local/share/node-template/chains/dev/db
+2020-08-20 15:49:19.045 main INFO sc_cli::runner  💾 Database: RocksDb at /tmp/substrateTh6wKJ/chains/dev/db
 2020-08-20 15:49:19.045 main INFO sc_cli::runner  ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
 2020-08-20 15:49:19.190 main INFO sc_service::client::client  🔨 Initializing Genesis block/state (state: 0x49ff…ef9d, header-hash: 0x82e1…0111)
 2020-08-20 15:49:19.190 main INFO afg  👴 Loading GRANDPA authority set from genesis on what appears to be first startup.

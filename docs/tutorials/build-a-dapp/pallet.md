@@ -308,12 +308,8 @@ cargo build --release
 Now you can start your node:
 
 ```bash
-# Clean up any old data from running a development node in the past
-# You will be prompted to type `y`
-./target/release/node-template purge-chain --dev
-
-# Run the node in development mode
-./target/release/node-template --dev
+# Run a temporary node in development mode
+./target/release/node-template --dev --tmp
 ```
 
 Now it is time to interact with our new Proof of Existence pallet!

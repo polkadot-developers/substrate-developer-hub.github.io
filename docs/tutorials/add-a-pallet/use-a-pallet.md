@@ -12,7 +12,8 @@ cargo build --release
 Now you can start the node:
 
 ```bash
-./target/release/node-template --dev
+# Run a temporary node in development mode
+./target/release/node-template --dev --tmp
 ```
 
 ## Start the Front-End
