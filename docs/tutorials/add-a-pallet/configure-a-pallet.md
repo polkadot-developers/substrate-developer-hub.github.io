@@ -105,9 +105,8 @@ use the `u128` type to track balances. If you were developing a chain where it w
 optimize storage, you could use any unsigned integer type that was at least 32-bits in size; this is
 because
 [the `Balance` type](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_balances/trait.Trait.html#associatedtype.Balance)
-for the Balances pallet `Trait` configuration trait specifies
-[the `AtLeast32BitUnsigned` trait](https://substrate.dev/rustdocs/v2.0.0-rc6/sp_arithmetic/traits/trait.AtLeast32BitUnsigned.html)
-(or "trait" in Rust terminology).
+for the Balances pallet `Trait` configuration trait is "bound" to
+[the `AtLeast32BitUnsigned` trait](https://substrate.dev/rustdocs/v2.0.0-rc6/sp_arithmetic/traits/trait.AtLeast32BitUnsigned.html).
 
 Now that you have an idea of the purpose behind the `Trait` configuration trait and how you can
 implement a FRAME pallet's `Trait` interface for your runtime, let's implement the `Trait`
