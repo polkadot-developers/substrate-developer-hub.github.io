@@ -164,9 +164,8 @@ use the <code>u128</code> type to track balances. If you were developing a chain
 optimize storage, you could use any unsigned integer type that was at least 32-bits in size; this is
 because
 <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_balances/trait.Trait.html#associatedtype.Balance">the <code>Balance</code> type</a>
-for the Balances pallet <code>Trait</code> configuration trait specifies
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/sp_arithmetic/traits/trait.AtLeast32BitUnsigned.html">the <code>AtLeast32BitUnsigned</code> trait</a>
-(or &quot;trait&quot; in Rust terminology).</p>
+for the Balances pallet <code>Trait</code> configuration trait is &quot;bounded&quot; by
+<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/sp_arithmetic/traits/trait.AtLeast32BitUnsigned.html">the <code>AtLeast32BitUnsigned</code> trait</a>.</p>
 <p>Now that you have an idea of the purpose behind the <code>Trait</code> configuration trait and how you can
 implement a FRAME pallet's <code>Trait</code> interface for your runtime, let's implement the <code>Trait</code>
 configuration trait for the Nicks pallet. Add the following code to <code>runtime/src/lib.rs</code>:</p>
