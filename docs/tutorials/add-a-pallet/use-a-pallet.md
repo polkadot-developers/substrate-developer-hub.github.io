@@ -116,7 +116,7 @@ forcibly clear the nickname associated with any account (including her own) that
 nickname associated with it. Here are some other things you may want to try:
 
 - Add a nickname that is shorter than the `MinNickLength` or longer than the `MaxNickLength` that
-  you configured with the Nick's pallet's `Trait` configuration interface.
+  you configured with the Nick's pallet's `Trait` configuration trait.
 - Add a nickname for Bob then use Alice's account and the "SUDO" button to forcibly kill Bob's
   nickname. Switch back to Bob's account and dispatch the `clearName` function.
 

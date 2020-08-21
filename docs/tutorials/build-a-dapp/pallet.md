@@ -137,7 +137,9 @@ std = [
 
 ### Configuration
 
-Every pallet has a `Trait` configuration interface. For now, the only thing we will configure about
+Every pallet has a component called `Trait` that is used for configuration. This component is a
+[Rust "trait"](https://doc.rust-lang.org/book/ch10-02-traits.html); traits in Rust are similar to
+interfaces in languages such as C++, Java and Go. For now, the only thing we will configure about
 our pallet is that it will emit some Events. The `Trait` interface is another topic that will be
 covered in greater depth in the next tutorial, the [Add a Pallet](../add-a-pallet) tutorial.
 
