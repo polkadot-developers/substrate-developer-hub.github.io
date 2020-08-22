@@ -39,4 +39,7 @@ library for Rust that is maintained by Supercomputing Systems; its API is more g
 
 ## Python
 
-[py-substrate-interface](https://github.com/polkascan/py-substrate-interface) is a Python library to interface with a Substrate node RPC. It facilitates reading blocks, extrinsics and storage entries, submitting extrinsics, providing additional convenience methods to deal with SCALE encoding/decoding, metadata parsing and type registry management. This library is maintained by [Polkascan Foundation](https://polkascan.org/).
+[py-substrate-interface](https://github.com/polkascan/py-substrate-interface) is a Python
+library for interacting with the Substrate RPC. It supports a wide range of capabilities and
+powers the [Polkascan multi-chain block explorer](https://polkascan.io/). This library is
+maintained by [Polkascan Foundation](https://polkascan.org/).
