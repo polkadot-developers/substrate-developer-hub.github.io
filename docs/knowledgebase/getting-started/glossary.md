@@ -2,32 +2,32 @@
 title: Glossary
 ---
 
-Glossary (alphabetical) of terms and lingo used in the Substrate and Polkadot codebases, as well as
-architecture.
+This page defines and explains many of the domain-specific terms that are common to the Substrate
+ecosystem. This is a helpful resource for even the most experienced Substrate developers.
 
-## Author (aka Block Author, Block Producer)
-
-The node, actor or identity that is responsible for the creation of a block. Synonymous with "miner"
-or "coinbase" on legacy PoW chains.
+---
 
 ## Adaptive Quorum Biasing (AQB)
 
-A means of specifying the quorum needed for a proposal to pass dependent upon voter turnout.
-Positive bias means requiring increasingly more aye votes than nay votes as there is lower turnout;
-negative (aka inverted) bias is the opposite (see the
+A means of specifying the quorum (minimum vote) needed for a proposal to pass dependent upon voter
+turnout. Positive bias means requiring increasingly more aye votes than nay votes as there is lower
+turnout; negative (aka inverted) bias is the opposite (see the
 [graphs](https://youtu.be/VsZuDJMmVPY?t=25413)). It avoids the need for strict quorums, which are
-arbitrary and bring about undesirable mechanics.
+arbitrary and bring about undesirable mechanics. Adaptive quorum biasing is used by the
+[FRAME Collective pallet](../runtime/frame#collective) that materializes as a governing
+[Council](#council) on a number of Substrate-based chains.
 
 ## AfG
 
-An internal codename for "Al's Finality Gadget", which is named after Alistair Stewart who invented
-it. See GRANDPA.
+An internal codename for "Al's Finality Gadget", which is named after
+[Alistair Stewart](https://research.web3.foundation/en/latest/research_team_members/alistair.html)
+who invented it. AfG is a component of the [GRANDPA](#grandpa) finality mechanism.
 
 ## Aggregation
 
-Used in the context of "module aggregation", this means combining analogous types from multiple
-runtime modules into a single `enum` type with variants allowing each module's analogous type to be
-represented. Currently there are five such datatypes:
+Used in the context of [FRAME](#frame) "[pallet](#pallet) aggregation", this means combining
+analogous types from multiple runtime modules into a single type. This allows each module's
+analogous types to be represented. Currently there are five such data types:
 
 - `Log` (an extensible header item)
 - `Event` (an indicator of some particular state-transition)
@@ -43,59 +43,84 @@ overall amount of votes wins. Notably:
 - voting for all candidates is exactly equivalent to voting for none; and
 - it is possible to vote "against" a single candidate by voting for all other candidates.
 
+Approval voting is used by the [FRAME Collective pallet](../runtime/frame#collective) that
+materializes as a governing [Council](#council) on a number of Substrate-based chains.
+
+## Author
+
+The [account](../learn-substrate/account-abstractions) associated with the [node](#node) that is
+responsible for the creation of a [block](#block); block authors may be referred to as block
+"producers". This term is synonymous with "miner" or "coinbase" on other [blockchains](#blockchain).
+
 ## Authority
 
-Authorities are the actors, keys or identities who, as a collective, manage consensus on the
-network. `AuthorityId` can be used to identify them. In a PoS chain (such as one using the SRML's
-Staking module), authorities are determined through a token-weighted nomination/voting system.
+Authorities are the [accounts](../learn-substrate/account-abstractions) who, as a collective, manage
+[consensus](#consensus) on a [blockchain](#blockchain) network. In a
+[proof-of-stake](#nominated-proof-of-stake-npos) network (such as one using
+[the Staking pallet](../runtime/frame#staking) from [FRAME](#frame)), authorities are determined
+through a token-weighted nomination/voting system.
 
-> We sometimes use "authorities" and "validators" to refer to what seems like the same thing.
+> The terms "authorities" and "[validators](#validator)" may sometimes seem to refer the same thing.
 > "Validators" is a broader term that can include other aspects of chain maintenance such as
 > parachain validation. In general authorities are a (non-strict) subset of validators and many
 > validators will be authorities.
 
 ## Aura (aka "Authority Round")
 
-Deterministic consensus protocol with Non-Instant Finality where block production is achieved by a
-rotating list of authorities that take turns issuing blocks over time, and where the majority of
-those online are honest authorities. See https://wiki.parity.io/Aura
+Deterministic [consensus](#consensus) protocol with non-instant [finality](#finality) where
+[block](#block) production is limited to a rotating list of [authorities](#authority) that take
+turns creating blocks; the majority of online authorities are assumed to be honest. Learn more by
+reading [the official wiki article](https://openethereum.github.io/wiki/Aura) for the Aura consensus
+algorithm.
 
 ### Aurand
 
-A variant of Aura where authorities are shuffled randomly on each round, increasing security.
+A variant of [Aura](#aura) where [authorities](#authority) are shuffled randomly on each round,
+increasing security.
 
 ### Aurand/Ouroboros
 
-Extension of Aurand where block production involves validators competing over limited slots that
-move very quickly, where most slots are not populated, but with rare slot collisions.
+Extension of [Aurand](#aurand) where block production involves [authorities](#authority) competing
+over limited slots that move very quickly; most slots are not populated, albeit with rare slot
+collisions.
 
-### Aurand+GRANDPA
+### Aurand + GRANDPA
 
-A hybrid consensus scheme where Aurand is used for block production and short-term
-probabilistic-finality, with long-term absolute finality provided through GRANDPA.
+A hybrid [consensus](#consensus) scheme where [Aurand](#aurand) is used for block production and
+short-term probabilistic-[finality](#finality), with long-term absolute finality provided through
+[GRANDPA](#grandpa).
 
 ---
 
 ## Blind Assignment of Blockchain Extension (BABE)
 
-Block authoring protocol similar to Aura where authorities are chosen with a verifiable random
-function (VRF) instead of a rotating list. Authorities are assigned a time slot in which they can
-select a chain and submit a new block for it. See
+[Block authoring](#author) protocol similar to [Aura](#aura) where [authorities](#authority) are
+chosen with a verifiable random function (VRF) instead of a rotating list. Authorities are assigned
+a time slot in which they can select a chain and submit a new block for it. See
 https://w3f-research.readthedocs.io/en/latest/polkadot/BABE.html
 
 ## Block
 
-A single item of a block chain (or parachain) that amalgamates a series of extrinsic data (the
-"body") together with some cryptographic information (the "header"). Blocks are arranged into a tree
-through parent pointers (implemented as cryptographic digests of the parent) and the tree is pruned
-into a list via a "fork-choice rule".
+A single element of a blockchain that [cryptographically](#cryptographic-primitives) binds a set of
+[extrinsic](#extrinsic) data (the "body") to a "[header](#header)". Blocks are arranged into a tree
+through parent pointers (implemented as a hash of the parent) and the tree is pruned into a list via
+a "fork-choice rule".
+
+## Blockchain
+
+A blockchain is a mechanism that uses [cryptography](#cryptographic-primitives) to allow a group of
+users to trustlessly come to [consensus](#consensus) on the [state](#state) of a system as it
+evolves over time. A blockchain network is compromised of a group of [nodes](#node) that
+autonomously verify the network's state and allow end users to interact with the capabilities that
+the network exposes.
 
 ## Byzantine Fault Tolerance (BFT)
 
 The ability of a distributed computer system to remain operational in the face of a proportion of
-defective nodes or actors. "Byzantine" refers to the ultimate level of defectiveness, with such
-nodes assumed to be actively malicious and coordinating rather than merely offline or buggy.
-Typically BFT systems remain functional with up to around one third of Byzantine nodes.
+defective [nodes](#node) or [actors](#authority). "Byzantine" refers to the ultimate level of
+defectiveness, with such nodes assumed to be actively malicious and coordinating rather than merely
+offline or buggy. Typically, BFT systems remain functional with up to around one-third of Byzantine
+nodes.
 
 ### Byzantine Failure
 
@@ -106,45 +131,56 @@ is imperfect information about whether a component has failed) in systems that r
 
 ## Consensus
 
-The process by which validators agree upon the next valid block to be added to the relay chain.
+The process by which [authorities](#authority) agree upon the next valid [block](#block) to be added
+to the [relay chain](#relay-chain).
 
 ### Consensus Engine
 
-A means for forming consensus over what constitutes the (one true) canonical chain. In the context
-of Substrate, it refers to a set of trait implementations that dictate which of a number of input
-blocks form the chain.
+A means for forming consensus over what constitutes the canonical (true) chain. In the context of
+Substrate, it refers to a set of algorithms that dictate which of a number of input [blocks](#block)
+form the chain.
 
 ### Consensus Algorithms
 
-An algorithm that is able to ensure that a set of actors who don't necessarily trust each other can
-come to consensus over some computation. Often mentioned alongside "safety" (the ability to ensure
-that any progression will eventually be agreed as having happened by all honest nodes) and
-"liveness" (the ability to keep making progress).
+An algorithm that is able to ensure that a set of [actors](#authority), who don't necessarily trust
+each other, can come to consensus over some computation. Often mentioned alongside "**safety**" (the
+ability to ensure that any progression will eventually be agreed as having happened by all honest
+nodes) and "**liveness**" (the ability to keep making progress). Many consensus algorithm are
+referred to as being [Byzantine-fault-tolerant](#byzantine-fault-tolerance-bft).
 
-See
-https://medium.com/polkadot-network/grandpa-block-finality-in-polkadot-an-introduction-part-1-d08a24a021b5
+There is
+[an excellent blog series](https://polkadot.network/polkadot-consensus-part-1-introduction/) that
+provides a deep dive into the consensus strategies of [the Polkadot Network](#polkadot-network).
 
-## Crypto Primitives
+## Cryptographic Primitives
 
-The signature scheme and hashing algorithm. These are used for:
+A "primitive" is a basic abstraction that informs the foundation of some system. For instance, in
+many programming languages certain data types are referred to as "primitive types". The term
+"cryptographic primitive" refers to concepts like signature schemes and hashing algorithms.
+Cryptographic primitives are essential to many aspects of the Substrate ecosystem:
 
-- The blockchain: blocks must be hashed under some algorithm and reference their parent block's
-  hash.
-- State: the storage is encoded as a trie allowing a cryptographic reference to any given state of
-  it, which uses a hashing algorithm.
-- Consensus: authorities must often use digital signature schemes of some kind.
-- Transaction authentication: in runtimes where transactions and accounts are used, accounts must be
-  associated with some digital identity.
-
-In the SRML, SR25519 and ED25519 is favoured over ECDSA/SECP256k1.
+- [Blockchains](#blockchain): [blocks](#block) must be hashed under some algorithm and reference
+  their parent block's hash.
+- [State](#state): Substrate storage is encoded as a [trie](#trie-patricia-merkle-tree), a data
+  structure that uses hashing to facilitate efficient verification.
+- [Consensus](#consensus): [authorities](#authority) often use digital signature schemes of some
+  kind.
+- [Transaction](#transaction) authentication: in [runtimes](#runtime) where transactions and
+  [accounts](../learn-substrate/account-abstractions) are used, accounts are identified and
+  authenticated through the use of cryptography.
 
 ## Council
 
-The council is one of the SRML governance primitives and is a body of delegates chosen from a number
-of approval votes for fixed terms. The council primarily serves as a body to optimise and
-check/balance the more inclusive referendum system. It has a number of powers:
+The term "Council" is used on a number of Substrate-based networks, such as [Kusama](#kusama) and
+[Polkadot](#polkadot) to refer to an instance of
+[the Collective pallet](../runtime/frame#collective) that is used as a part of the network's
+[FRAME](#frame)-based [runtime](#runtime). The Collective pallet defines a body of delegates chosen
+from a number of [approval votes](#approval-voting) for fixed terms. The Council primarily serves as
+a body to optimise and check/balance the more inclusive referendum system. It has a number of
+powers:
 
-- introduce referenda with a removed or inverted (when unanimous only) AQB; and
+- introduce referenda with a removed or inverted (when unanimous only)
+  [AQB](#adaptive-quorum-biasing-aqb); and
 - cancel a referendum (when unanimous only); and
 - give up their seat.
 
@@ -152,29 +188,36 @@ check/balance the more inclusive referendum system. It has a number of powers:
 
 ## Database Backend
 
-The means by which data relating to the blockchain is persisted between invocations of the node.
+The means by which the [state](#state) of a [blockchain](#blockchain) network is persisted between
+invocations of the [blockchain node](#node) application. There is
+[advanced documentation](../advanced/storage) that documents the implementation of the database
+backend that is used by Substrate-based chains.
 
 ## Dev Phrase
 
-A Mnemonic phrase which is intentionally made public. All of the well-known development accounts
-(Alice, Bob, Charlie, Dave, Ferdie, and Eve) are generated from the same dev phrase. The dev phrase
-is: `bottom drive obey lake curtain smoke basket hold race lonely fit walk`.
+A
+[mnemonic phrase](https://en.wikipedia.org/wiki/Mnemonic#For_numerical_sequences_and_mathematical_operations)
+that is intentionally made public. All of the
+[well-known development accounts](../integrate/subkey#well-known-keys) (Alice, Bob, Charlie, Dave,
+Ferdie, and Eve) are generated from the same dev phrase. The dev phrase is:
+`bottom drive obey lake curtain smoke basket hold race lonely fit walk`.
 
-Many tools in the Substrate ecosystem, such as subkey, allow users to implicitly specify the dev
-phrase with by only specifying a derivation path such as `//Alice`.
+Many tools in the Substrate ecosystem, such as [`subkey`](../integrate/subkey), allow users to
+implicitly specify the dev phrase by only specifying a derivation path such as `//Alice`.
 
 ## Digest
 
-An extensible field of the block header that encodes information needed by header-only ("light")
-clients for chain synchronisation.
+An extensible field of the [block header](#header) that encodes information needed by
+[light clients](#light-client) for chain synchronisation.
 
 ## Dispatch
 
-The execution of a function with a pre-defined set of arguments. In the context of the SRML, this
-refers specifically to the "runtime dispatch" system, a means of taking some pure data (the type is
-known as `Call` by convention) and interpreting it in order to call a published function in a
-runtime module with some arguments. Such published functions take one additional parameter known as
-`origin` allowing the function to securely determine the provenance of its execution.
+A dispatch is the execution of a function with a pre-defined set of arguments. In the context of the
+[FRAME](#frame) system for [runtime](#runtime) development, this refers specifically to the "runtime
+dispatch" system, a means of taking some pure data (the type is known as `Call` by convention) and
+interpreting it in order to call a published function in a runtime module ("[pallet](#pallet)") with
+some arguments. Such published functions take one additional parameter, known as
+[`origin`](#origin), that allows the function to securely determine the provenance of its execution.
 
 ---
 
@@ -255,6 +298,27 @@ See also: [Aurand+GRANDPA](#aurand-grandpa), [Instant Finality](#instant-finalit
 [Proof-of-Finality](#proof-of-finality), [Probabilistic Finality](#probabilistic-finality),
 [Provable Finality](#provable-finality)
 
+## Flaming Fir
+
+Flaming Fir is a [Parity](https://www.parity.io/)-maintained Substrate-based
+[blockchain](#blockchain) that exists for developing and testing the Substrate blockchain
+development framework.
+
+## FRAME
+
+[FRAME](../runtime/frame) is Substrate's helpful system for [**runtime**](#runtime) development. The
+name stands for the Framework for Runtime Aggregation of Modularized Entities. FRAME allows
+developers to create a blockchain runtimes by composing modules, called "[pallets](#pallet)". At the
+heart of FRAME is a helpful [macro](#macro) language that makes it easy for developers to define
+custom pallets (e.g.
+[`decl_event!`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_event.html),
+[`decl_error!`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_error.html),
+[`decl_storage!`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_storage.html),
+[`decl_module!`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_module.html))
+and compose pallets (e.g.
+[`construct_runtime!`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.construct_runtime.html))
+into a "batteries-included" runtime that can easily be used to power a Substrate-based blockchain.
+
 ## Full Client
 
 A node able to synchronise a block chain in a maximally secure manner through execution (and thus
@@ -281,8 +345,9 @@ https://github.com/w3f/consensus/blob/master/pdf/grandpa-old.pdf.
 
 ## Header
 
-Pieces of primarily cryptographic information that summarise a block. This information is used by
-light-clients to get a minimally-secure but very efficient synchronisation of the chain.
+Pieces of primarily [cryptographic information](#cryptographic-primitives) that summarise a block.
+This information is used by [light-clients](#light-client) to get a minimally-secure but very
+efficient synchronisation of the chain.
 
 ## HoneyBadgerBFT
 
@@ -345,6 +410,21 @@ persistent connection between client and server (i.e. WS, TCP, IPC)
 
 A subsystem in Substrate for managing keys for the purpose of producing new blocks.
 
+## Kusama
+
+[Kusama](https://kusama.network/) is a Substrate-based [blockchain](#blockchain) that implements the
+concepts described by the [Polkadot Whitepaper](https://polkadot.network/PolkaDotPaper.pdf). Kusama
+is a "[canary](https://en.wiktionary.org/wiki/canary_in_a_coal_mine)" network (**not a test
+network!**) and is referred to as
+[Polkadot's "wild cousin"](https://polkadot.network/kusama-polkadot-comparing-the-cousins/). The
+differences between a canary network and a true test network are related to the expectations of
+permanence and stability; although Kusama is expected to be more stable than a true test network,
+like [Westend](#westend), it should not be expected to be as stable as an enterprise production
+network like [Polkadot](#polkadot). Unlike Westend, which is maintained by
+[Parity Technologies](https://www.parity.io/), Kusama (like Polkadot) is
+[controlled by its network participants](#council). The level of stability offered by canary
+networks like Kusama is intended to encourage meaningful experimentation.
+
 ---
 
 ## Libp2p Rust
@@ -353,7 +433,30 @@ Peer-to-peer networking library. Based on Protocol Labs' Libp2p implementations 
 JavaScript, and their (somewhat incomplete) specifications. Allows use of many transport protocols
 including WebSockets (usable in a web browser).
 
+## Light Client
+
+A light client is a type of blockchain [node](#node) that does not store the [chain state](#state)
+or produce ([author](#author)) blocks. It encapsulates basic capabilities for verifying
+[cryptographic primitives](#cryptographic-primitives) and exposes an
+[RPC (remote procedure call)](https://en.wikipedia.org/wiki/Remote_procedure_call) server to allow
+blockchain users to interact with the blockchain network.
+
 ---
+
+## Macro
+
+Macros are features of some programming languages, including Rust, that allow developers to "write
+code that writes code". Substrate, and in particular the [FRAME](#frame) system for
+[runtime](#runtime) development, makes extensive use of
+[Rust macros](https://doc.rust-lang.org/1.7.0/book/macros.html). Most users of Substrate will only
+need to _use_ the macros written by the developers of Substrate; you should not need to _write_ your
+own Rust macros to get started with Substrate development. Many developers find the
+[`cargo-expand`](https://github.com/dtolnay/cargo-expand) tool helpful; this add-on to the Rust
+toolchain makes it easy to "expand" Rust macros and inspect the code that they generate. Although
+macros enable many of Substrate and FRAME's most powerful capabilities, they are difficult for IDEs
+to support. The developers of Substrate and their colleagues work closely with the maintainers of
+Rust, the Rust community and the developers of IDE utilities to provide the best support possible
+for our powerful macros.
 
 ## Metadata
 
@@ -363,14 +466,24 @@ the runtime.
 
 ---
 
+## Node
+
+A node correlates to a running instance of a blockchain client - it is part of the
+[peer-to-peer](https://en.wikipedia.org/wiki/Peer-to-peer) network that allows blockchain
+participants to interact with one another. Substrate nodes can fill a number of roles in a
+blockchain network. For instance, [authors](#author) are the block-producing nodes that power the
+blockchain while [light-clients](#light-client) facilitate scalable interactions with user-facing
+applications.
+
 ## Nominated Proof-of-Stake (NPoS)
 
-A means of determining a set of validators (and thus authorities) from a number of accounts willing
-to commit their stake to the proper (non-Byzantine) functioning of one or more authoring/validator
-nodes. This was originally proposed in the Polkadot paper and phrases a set of staked nominations as
-a constraint optimisation problem to eventually give a maximally staked set of validators each with
-a number of supporting nominators lending their stake. Slashing and rewards are done in a pro-rata
-manner.
+A means of determining a set of [authorities](#authority) from a number of accounts willing to
+commit their stake to the proper (non-[Byzantine](#byzantine-failure)) functioning of one or more
+[authoring nodes](#author). This was originally proposed in
+[the Polkadot paper](https://polkadot.network/PolkaDotPaper.pdf) and phrases a set of staked
+nominations as a constraint optimisation problem to eventually give a maximally staked set of
+[validators](#validator) each with a number of supporting nominators lending their stake. Slashing
+and rewards are done in a pro-rata manner.
 
 ---
 
@@ -389,6 +502,32 @@ The provenance of a dispatched function call into the runtime. Can be customised
 - Signed: transaction origin, includes the account identifier of the signer;
 
 ---
+
+## Parachain
+
+A parachain is a [blockchain](#blockchain) that encapsulates capabilities that are specific to a
+domain or application. The term "parachain" was defined in
+[the Polkadot Whitepaper](https://polkadot.network/PolkaDotPaper.pdf) and refers to the blockchains
+that derive shared infrastructure and security from a "[relay chain](#relay-chain)".
+[Rococo](#rococo) is the Polkadot Network's parachain test network.
+
+## Pallet
+
+A module that encapsulates a set of related capabilities that is used to compose a
+[FRAME](#frame)-based [runtime](#runtime).
+
+## Polkadot Network
+
+The [Polkadot Network](https://polkadot.network/) is a next-generation platform that implements a
+heterogenous ("chain-of-chains") architecture. The Polkadot Network is a Substrate-based
+[blockchain](#blockchain) that serves the role of "[relay chain](#relay-chain)", a central hub in a
+heterogenous blockchain network that supports the other chains (the "[parachains](#parachain)") by
+providing shared infrastructure and security. The initial stages of
+[Polkadot's multi-phase launch process](https://polkadot.network/explaining-the-polkadot-launch-process/)
+do not include support for parachains; [Rococo](#rococo) is the Polkadot Network's parachain test
+network. Although the Polkadot Network was maintained by
+[Parity Technologies](https://www.parity.io/) when it initially launched, it is already controlled
+by [secure, decentralized, collective governance](#council).
 
 ## Practical Byzantine Fault Tolerance (pBFT)
 
@@ -416,11 +555,28 @@ interchain data is not ubiquitously distributed. See: [GRANDPA](#grandpa)
 
 ---
 
+## Relay Chain
+
+This term was defined in [the Polkadot Whitepaper](https://polkadot.network/PolkaDotPaper.pdf) and
+refers to the central hub in a heterogenous ("chain-of-chains") network. Relay chains are
+[blockchains](#blockchain) that provide shared infrastructure and security to the other blockchains
+in the network (the "[parachains](#parachain)"). In addition to providing [consensus](#consensus)
+capabilities, relay chains also allow parachains to communicate and exchange digital assets without
+needing to trust one another.
+
 ## Rhododendron
 
 An Instant-Finality BFT consensus algorithm, one of a number of adaptions of PBFT for the
 blockchain. Others include Stellar's consensus algorithm and Tendermint. See the
 [Rhododendron crate](https://github.com/paritytech/rhododendron).
+
+## Rococo
+
+Rococo is the [Polkadot](#polkadot) Network's [parachain](#parachain) test network. It is a
+Substrate-based [blockchain](#blockchain) that is an evolving testbed for the capabilities of
+heterogeneous blockchain networks. The term "[Rococo](https://en.wikipedia.org/wiki/Rococo)" refers
+to an elaborate style of embellishment and it refers to the painstaking work that has gone into
+designing and implementing the capabilities of the Polkadot Network.
 
 ## Runtime
 
@@ -526,9 +682,9 @@ An immutable cryptographic data-structure typically used to express maps or sets
 ## Validator
 
 A semi-trusted (or untrusted but well-incentivised) actor that helps maintain the network. In
-Substrate, validators broadly correspond to the authorities running the consensus system. In
-Polkadot, validators also manage other duties such as guaranteeing data availability and validating
-parachain candidate blocks.
+Substrate, validators broadly correspond to the [authorities](#authority) running the consensus
+system. In Polkadot, validators also manage other duties such as guaranteeing data availability and
+validating parachain candidate blocks.
 
 See https://wiki.parity.io/Validator-Set.html
 
@@ -539,5 +695,10 @@ See https://wiki.parity.io/Validator-Set.html
 An execution architecture based upon a virtual machine that allows for the efficient, platform
 neutral expression of deterministic machine-executable logic. Wasm is used across the Web platform
 and well-tooled and easily compiled from Rust.
+
+## Westend
+
+Westend is a [Parity](https://www.parity.io/)-maintained, Substrate-based [blockchain](#blockchain)
+that serves as the test network for [the Polkadot Network](#polkadot).
 
 ---
