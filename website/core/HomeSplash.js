@@ -21,12 +21,7 @@ const Button = require('react-bootstrap/Button')
 
 class HomeSplash extends React.Component {
 	render() {
-		const { siteConfig, language = '' } = this.props
-		const { baseUrl, docsUrl } = siteConfig
-		const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`
-		const langPart = `${language ? `${language}/` : ''}`
-		const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`
-		const pageUrl = page => baseUrl + (language ? `${language}/` : '') + page
+		const { siteConfig } = this.props
 
 		const SplashContainer = props => (
 			<div
@@ -50,7 +45,7 @@ class HomeSplash extends React.Component {
 				{this.props.buttonUrl && (
 					<Button
 						variant='secondary'
-						href={pageUrl(this.props.buttonUrl)}
+						href={this.props.buttonUrl}
 						className='m-1 primary-color btn-lg'>
 						{this.props.buttonText}
 					</Button>

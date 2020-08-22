@@ -126,8 +126,8 @@ class Footer extends React.Component {
             <h5>Community</h5>
             <a href={this.pageUrl("community", this.props.language)}>Community Home</a>
             <a href={this.pageUrl("newsletter", this.props.language)}>Newsletter</a>
-            <a href="https://riot.im/app/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">
-              Riot Chat
+            <a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">
+              Substrate Technical Chat
             </a>
             <a href={this.pageUrl("seminar", this.props.language)}>Substrate Seminar</a>
             <a

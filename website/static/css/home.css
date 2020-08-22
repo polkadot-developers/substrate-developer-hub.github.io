@@ -2,7 +2,7 @@
 	--primary-color: #ff1864;
 	--dark: #24292e;
 	--grey: #5a6268;
-	--font-size-p: 18px;
+	--font-size-p: 16px;
 }
 
 #home-hero .section,
@@ -34,7 +34,7 @@
 }
 
 #home-hero .homeWrapper .container .projectTitle {
-	font-size: var(--font-size-p);
+	font-size: 48px;
 	margin-bottom: 20px;
 	font-weight: bold;
 	color: var(--primary-color) !important;
@@ -52,14 +52,14 @@
 	color: white;
 	margin-bottom: 20px;
 	line-height: 1.6;
-	font-size: var(--font-size-p);
+	font-size: 18px;
 	max-width: 580px;
 	display: inline-block;
 }
 
 @media (min-width: 860px) {
 	#home-hero .homeWrapper .container .lead.text-muted {
-		font-size: 54px;
+		font-size: 64px;
 	}
 }
 /* end home-hero */
@@ -84,7 +84,7 @@
 }
 
 #home h4 {
-	font-size: 18px;
+	font-size: 24px;
 	line-height: 1.2;
 	margin-top: 10px;
 	margin-bottom: 0;
@@ -96,6 +96,10 @@
 	display: inline-block;
 	line-height: 1.6;
 	font-size: var(--font-size-p);
+}
+
+#home p.big {
+	font-size: 18px;
 }
 
 #home a {
@@ -148,7 +152,7 @@
 }
 
 #home .tagline {
-	font-size: 18px;
+	font-size: 32px;
 	color: var(--primary-color);
 	font-weight: bold;
 }
