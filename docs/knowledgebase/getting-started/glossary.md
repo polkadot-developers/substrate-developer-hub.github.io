@@ -518,7 +518,7 @@ A module that encapsulates a set of related capabilities that is used to compose
 
 ## Polkadot Network
 
-The [Polkadot Network](https://polkadot.network/) is a next-generation platform that implements a
+The [Polkadot Network](https://polkadot.network/) is a platform that implements a
 heterogenous ("chain-of-chains") architecture. The Polkadot Network is a Substrate-based
 [blockchain](#blockchain) that serves the role of "[relay chain](#relay-chain)", a central hub in a
 heterogenous blockchain network that supports the other chains (the "[parachains](#parachain)") by
