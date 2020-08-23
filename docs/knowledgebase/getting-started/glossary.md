@@ -213,7 +213,7 @@ An extensible field of the [block header](#header) that encodes information need
 ## Dispatch
 
 A dispatch is the execution of a function with a pre-defined set of arguments. In the context of the
-[FRAME](#frame) system for [runtime](#runtime) development, this refers specifically to the "runtime
+[FRAME](#frame) framework for [runtime](#runtime) development, this refers specifically to the "runtime
 dispatch" system, a means of taking some pure data (the type is known as `Call` by convention) and
 interpreting it in order to call a published function in a runtime module ("[pallet](#pallet)") with
 some arguments. Such published functions take one additional parameter, known as
