@@ -469,7 +469,7 @@ the runtime.
 ## Node
 
 A node correlates to a running instance of a blockchain client - it is part of the
-[peer-to-peer](https://en.wikipedia.org/wiki/Peer-to-peer) network that allows blockchain
+[peer-to-peer](https://en.wikipedia.org/wiki/Peer-to-peer) network that allow blockchain
 participants to interact with one another. Substrate nodes can fill a number of roles in a
 blockchain network. For instance, [authors](#author) are the block-producing nodes that power the
 blockchain while [light-clients](#light-client) facilitate scalable interactions with user-facing
