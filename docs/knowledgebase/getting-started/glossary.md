@@ -307,7 +307,7 @@ development framework.
 ## FRAME
 
 [FRAME](../runtime/frame) is Substrate's helpful system for [**runtime**](#runtime) development. The
-name stands for the Framework for Runtime Aggregation of Modularized Entities. FRAME allows
+name is an acronym for the "Framework for Runtime Aggregation of Modularized Entities". FRAME allows
 developers to create a blockchain runtimes by composing modules, called "[pallets](#pallet)". At the
 heart of FRAME is a helpful [macro](#macro) language that makes it easy for developers to define
 custom pallets (e.g.
