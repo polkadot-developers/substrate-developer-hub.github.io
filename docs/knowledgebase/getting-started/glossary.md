@@ -446,7 +446,7 @@ blockchain users to interact with the blockchain network.
 ## Macro
 
 Macros are features of some programming languages, including Rust, that allow developers to "write
-code that writes code". Substrate, and in particular the [FRAME](#frame) system for
+code that writes code". Substrate, and in particular the [FRAME](#frame) framework for
 [runtime](#runtime) development, makes extensive use of
 [Rust macros](https://doc.rust-lang.org/1.7.0/book/macros.html). Most users of Substrate will only
 need to _use_ the macros written by the developers of Substrate; you should not need to _write_ your
