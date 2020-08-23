@@ -50,7 +50,7 @@ materializes as a governing [Council](#council) on a number of Substrate-based c
 
 The [account](../learn-substrate/account-abstractions) associated with the [node](#node) that is
 responsible for the creation of a [block](#block); block authors may be referred to as block
-"producers". This term is synonymous with "miner" or "coinbase" on other [blockchains](#blockchain).
+"producers".
 
 ## Authority
 
