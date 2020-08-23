@@ -317,7 +317,7 @@ custom pallets (e.g.
 [`decl_module!`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_module.html))
 and compose pallets (e.g.
 [`construct_runtime!`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.construct_runtime.html))
-into a "batteries-included" runtime that can easily be used to power a Substrate-based blockchain.
+into a working runtime that can easily be used to power a Substrate-based blockchain.
 
 ## Full Client
 
