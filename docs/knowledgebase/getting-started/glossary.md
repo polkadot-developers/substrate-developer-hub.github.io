@@ -43,8 +43,9 @@ overall amount of votes wins. Notably:
 - voting for all candidates is exactly equivalent to voting for none; and
 - it is possible to vote "against" a single candidate by voting for all other candidates.
 
-Approval voting is used by the [FRAME Elections Phragmen pallet](../runtime/frame#elections-phragmen) that
-materializes as a governing [Council](#council) on a number of Substrate-based chains.
+Approval voting is used by the
+[FRAME Elections Phragmen pallet](../runtime/frame#elections-phragmen) that materializes as a
+governing [Council](#council) on a number of Substrate-based chains.
 
 ## Author
 
@@ -108,9 +109,10 @@ a "fork-choice rule".
 
 ## Blockchain
 
-A blockchain is a distributed network of computers that uses [cryptography](#cryptographic-primitives) to allow a group of
-participants to trustlessly come to [consensus](#consensus) on the [state](#state) of a system as it
-evolves over time. The computers that compose the blockchain network are called [nodes](#node).
+A blockchain is a distributed network of computers that uses
+[cryptography](#cryptographic-primitives) to allow a group of participants to trustlessly come to
+[consensus](#consensus) on the [state](#state) of a system as it evolves over time. The computers
+that compose the blockchain network are called [nodes](#node).
 
 ## Byzantine Fault Tolerance (BFT)
 
@@ -172,9 +174,8 @@ Cryptographic primitives are essential to many aspects of the Substrate ecosyste
 The term "Council" is used on a number of Substrate-based networks, such as [Kusama](#kusama) and
 [Polkadot](#polkadot) to refer to an instance of
 [the Collective pallet](../runtime/frame#collective) that is used as a part of the network's
-[FRAME](#frame)-based [runtime](#runtime). The Council primarily serves as
-a body to optimize and check/balance the more inclusive referendum system. It has a number of
-powers:
+[FRAME](#frame)-based [runtime](#runtime). The Council primarily serves as a body to optimize and
+check/balance the more inclusive referendum system. It has a number of powers:
 
 - introduce referenda with a removed or inverted (when unanimous only)
   [AQB](#adaptive-quorum-biasing-aqb); and
@@ -187,8 +188,8 @@ powers:
 
 The means by which the [state](#state) of a [blockchain](#blockchain) network is persisted between
 invocations of the [blockchain node](#node) application. There is
-[documentation](../advanced/storage) that explains the implementation of the database
-backend that is used by Substrate-based chains.
+[documentation](../advanced/storage) that explains the implementation of the database backend that
+is used by Substrate-based chains.
 
 ## Dev Phrase
 
@@ -210,11 +211,12 @@ An extensible field of the [block header](#header) that encodes information need
 ## Dispatch
 
 A dispatch is the execution of a function with a pre-defined set of arguments. In the context of the
-[FRAME](#frame) framework for [runtime](#runtime) development, this refers specifically to the "runtime
-dispatch" system, a means of taking some pure data (the type is known as `Call` by convention) and
-interpreting it in order to call a published function in a runtime module ("[pallet](#pallet)") with
-some arguments. Such published functions take one additional parameter, known as
-[`origin`](#origin), that allows the function to securely determine the provenance of its execution.
+[FRAME](#frame) framework for [runtime](#runtime) development, this refers specifically to the
+"runtime dispatch" system, a means of taking some pure data (the type is known as `Call` by
+convention) and interpreting it in order to call a published function in a runtime module
+("[pallet](#pallet)") with some arguments. Such published functions take one additional parameter,
+known as [`origin`](#origin), that allows the function to securely determine the provenance of its
+execution.
 
 ---
 
@@ -303,8 +305,8 @@ development framework.
 
 ## FRAME
 
-[FRAME](../runtime/frame) is Substrate's system for [**runtime**](#runtime) development. The
-name is an acronym for the "Framework for Runtime Aggregation of Modularized Entities". FRAME allows
+[FRAME](../runtime/frame) is Substrate's system for [**runtime**](#runtime) development. The name is
+an acronym for the "Framework for Runtime Aggregation of Modularized Entities". FRAME allows
 developers to create blockchain runtimes by composing modules, called "[pallets](#pallet)". At the
 heart of FRAME is a helpful [macro](#macro) language that makes it easy for developers to define
 custom pallets (e.g.
@@ -513,11 +515,11 @@ A module that encapsulates a set of related capabilities that is used to compose
 
 ## Polkadot Network
 
-The [Polkadot Network](https://polkadot.network/) is a platform that implements a
-heterogeneous ("chain-of-chains") architecture. The Polkadot Network is a
-[blockchain](#blockchain) that serves the role of "[relay chain](#relay-chain)", a central hub in a
-heterogenous blockchain network that supports the other chains (the "[parachains](#parachain)") by
-providing shared infrastructure and security. The initial stages of
+The [Polkadot Network](https://polkadot.network/) is a platform that implements a heterogeneous
+("chain-of-chains") architecture. The Polkadot Network is a [blockchain](#blockchain) that serves
+the role of "[relay chain](#relay-chain)", a central hub in a heterogenous blockchain network that
+supports the other chains (the "[parachains](#parachain)") by providing shared infrastructure and
+security. The initial stages of
 [Polkadot's multi-phase launch process](https://polkadot.network/explaining-the-polkadot-launch-process/)
 do not include support for parachains; [Rococo](#rococo) is the Polkadot Network's parachain test
 network. Although the Polkadot Network was maintained by
