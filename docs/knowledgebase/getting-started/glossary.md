@@ -454,9 +454,7 @@ own Rust macros to get started with Substrate development. Many developers find 
 [`cargo-expand`](https://github.com/dtolnay/cargo-expand) tool helpful; this add-on to the Rust
 toolchain makes it easy to "expand" Rust macros and inspect the code that they generate. Although
 macros enable many of Substrate and FRAME's most powerful capabilities, they are difficult for IDEs
-to support. The developers of Substrate and their colleagues work closely with the maintainers of
-Rust, the Rust community and the developers of IDE utilities to provide the best support possible
-for our powerful macros.
+to support.
 
 ## Metadata
 
