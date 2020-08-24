@@ -104,18 +104,7 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>4 August</strong>, Chainlink Developer Advocate Patrick Collins will discuss the Chainlink pallet, which allows FRAME-based blockchains to interact with the popular Chainlink network of decentralized oracles. This Seminar marks the return of Joshy as host!
-							</p>
-							<p>
-								On <strong>11 August</strong>, Parity's Shawn Tabrizi will join us to discuss Rust traits, and how they came to be in the Substrate runtime. Have you ever wondered why every pallet has a <span style={{"font-family": "monospace"}}>trait Trait</span> or why you see <span style={{"font-family": "monospace"}}>T::AccountId</span> or <span style={{"font-family": "monospace"}}>T::BlockNumber</span> throughout Substrate runtimes? In this intermediate developer-oriented seminar, Shawn will build up an example of how following Rust first principles and common design practices, these pallet traits came to be.
-							</p>
-							<p>
-								On <strong>18 August</strong>, Derek Yoo and Alan Sapède from Moonbeam, an Ethereum-compatible smart contract platform built on Substrate will join us. They will discuss the purpose of Moonbeam, demonstrate using a Moonbeam node with existing Ethereum tooling such as MetaMask, and walkthrough some aspects of Moonbeam's code and architecture.
-							</p>
-							<h4 className='mb-2'>How do I join the call?</h4>
-							<p>
-								We are trying the crowdcast platform for seminar. Specifically we meet in{' '}
-								<a href='https://www.crowdcast.io/e/substrate-seminar'>https://www.crowdcast.io/e/substrate-seminar</a>.
+								On <strong>25 August</strong>, Joshy Orndorff will discuss the fundamentals of consensus and finality in Substrate through a series of examples. Then Dan Forbes will focus on the runtime, discussing his NFT trait and cryptokitties clone on Substrate. This session will illuminate advanced topics in consensus and intermediate topics in runtime development in an approachable way.
 							</p>
 						</div>
 
