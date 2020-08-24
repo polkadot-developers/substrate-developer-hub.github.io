@@ -104,7 +104,7 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>25 August</strong>, Joshy Orndorff will discuss the fundamentals of consensus and finality in Substrate through a series of examples. Then Dan Forbes will focus on the runtime, discussing his NFT trait and cryptokitties clone on Substrate. This session will illuminate advanced topics in consensus and intermediate topics in runtime development in an approachable way.
+								On <strong>25 August</strong>, Joshy Orndorff will discuss the fundamentals of consensus and finality in Substrate through a series of examples. Then Dan Forbes will focus on the runtime, discussing his NFT trait and the new version of the popular Substratekitties tutorial that he is working on. This session will illuminate advanced topics in consensus and intermediate topics in runtime development in an approachable way.
 							</p>
 						</div>
 
