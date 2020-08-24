@@ -96,7 +96,7 @@ class Index extends React.Component {
 									<div className='icon smart-contract' />
 								</section>
 								<h4>Smart Contracts</h4>
-								<p>Use the WebAssembly based ink! language or EVM-compatible contracts.</p>
+								<p>Substrate supports multiple smart contract platforms, including the EVM.</p>
 								<section className='button-wrap'>
 									<a
 										href='https://substrate.dev/substrate-contracts-workshop/#/'
@@ -144,13 +144,13 @@ class Index extends React.Component {
 								<div className='col-12 col-md-4 mb-4'>
 									<div className='d-flex align-items-center mb-2'>
 										<img className='mr-2' src='/img/glyphs/rectangle-4.svg' width='40' />
-										<h3 className='mb-0'>Flexible Transaction Queue</h3>
+										<h3 className='mb-0'>Configurable Transaction Queue</h3>
 									</div>
 								</div>
 								<div className='col-12 col-md-4 mb-4'>
 									<div className='d-flex align-items-center mb-2'>
 										<img className='mr-2' src='/img/glyphs/rectangle-5.svg' width='40' />
-										<h3 className='mb-0'>Rich Runtime Library</h3>
+										<h3 className='mb-0'>Flexible Runtime Library</h3>
 									</div>
 								</div>
 								<div className='col-12 col-md-4'>
@@ -197,7 +197,7 @@ class Index extends React.Component {
 									<p className='large mb-4'>
 										Substrate has a Wasm smart contract platform that you can use out of the box.
 										Because Substrate uses Wasm, you can build your smart contracts using any
-										compatible language. We have built ink!, a Rust-based eDSL for this purpose.
+										compatible language. We have built ink!, a Rust-based eDSL, for this purpose.
 									</p>
 									<a
 										className='action-link'
