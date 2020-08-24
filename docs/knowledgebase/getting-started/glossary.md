@@ -21,7 +21,7 @@ arbitrary and bring about undesirable mechanics. Adaptive quorum biasing is used
 
 An internal codename for "Al's Finality Gadget", which is named after
 [Alistair Stewart](https://research.web3.foundation/en/latest/research_team_members/alistair.html)
-who invented it. AfG is a component of the [GRANDPA](#grandpa) finality mechanism.
+who invented it. AfG is synonymous with [GRANDPA](#grandpa).
 
 ## Aggregation
 
@@ -43,7 +43,7 @@ overall amount of votes wins. Notably:
 - voting for all candidates is exactly equivalent to voting for none; and
 - it is possible to vote "against" a single candidate by voting for all other candidates.
 
-Approval voting is used by the [FRAME Collective pallet](../runtime/frame#collective) that
+Approval voting is used by the [FRAME Elections Phragmen pallet](../runtime/frame#elections-phragmen) that
 materializes as a governing [Council](#council) on a number of Substrate-based chains.
 
 ## Author
@@ -87,7 +87,7 @@ collisions.
 ### Aurand + GRANDPA
 
 A hybrid [consensus](#consensus) scheme where [Aurand](#aurand) is used for block production and
-short-term probabilistic-[finality](#finality), with long-term absolute finality provided through
+short-term probabilistic [finality](#finality), with deterministic finality provided through
 [GRANDPA](#grandpa).
 
 ---
@@ -108,11 +108,9 @@ a "fork-choice rule".
 
 ## Blockchain
 
-A blockchain is a mechanism that uses [cryptography](#cryptographic-primitives) to allow a group of
-users to trustlessly come to [consensus](#consensus) on the [state](#state) of a system as it
-evolves over time. A blockchain network is compromised of a group of [nodes](#node) that
-autonomously verify the network's state and allow end users to interact with the capabilities that
-the network exposes.
+A blockchain is a distributed network of computers that uses [cryptography](#cryptographic-primitives) to allow a group of
+participants to trustlessly come to [consensus](#consensus) on the [state](#state) of a system as it
+evolves over time. The computers that compose the blockchain network are called [nodes](#node).
 
 ## Byzantine Fault Tolerance (BFT)
 
@@ -149,7 +147,7 @@ nodes) and "**liveness**" (the ability to keep making progress). Many consensus 
 referred to as being [Byzantine-fault-tolerant](#byzantine-fault-tolerance-bft).
 
 There is
-[an excellent blog series](https://polkadot.network/polkadot-consensus-part-1-introduction/) that
+[a comprehensive blog series](https://polkadot.network/polkadot-consensus-part-1-introduction/) that
 provides a deep dive into the consensus strategies of [the Polkadot Network](#polkadot-network).
 
 ## Cryptographic Primitives
@@ -174,9 +172,8 @@ Cryptographic primitives are essential to many aspects of the Substrate ecosyste
 The term "Council" is used on a number of Substrate-based networks, such as [Kusama](#kusama) and
 [Polkadot](#polkadot) to refer to an instance of
 [the Collective pallet](../runtime/frame#collective) that is used as a part of the network's
-[FRAME](#frame)-based [runtime](#runtime). The Collective pallet defines a body of delegates chosen
-from a number of [approval votes](#approval-voting) for fixed terms. The Council primarily serves as
-a body to optimise and check/balance the more inclusive referendum system. It has a number of
+[FRAME](#frame)-based [runtime](#runtime). The Council primarily serves as
+a body to optimize and check/balance the more inclusive referendum system. It has a number of
 powers:
 
 - introduce referenda with a removed or inverted (when unanimous only)
@@ -190,7 +187,7 @@ powers:
 
 The means by which the [state](#state) of a [blockchain](#blockchain) network is persisted between
 invocations of the [blockchain node](#node) application. There is
-[advanced documentation](../advanced/storage) that documents the implementation of the database
+[documentation](../advanced/storage) that explains the implementation of the database
 backend that is used by Substrate-based chains.
 
 ## Dev Phrase
@@ -208,7 +205,7 @@ implicitly specify the dev phrase by only specifying a derivation path such as `
 ## Digest
 
 An extensible field of the [block header](#header) that encodes information needed by
-[light clients](#light-client) for chain synchronisation.
+[light clients](#light-client) for chain synchronization.
 
 ## Dispatch
 
@@ -306,9 +303,9 @@ development framework.
 
 ## FRAME
 
-[FRAME](../runtime/frame) is Substrate's helpful system for [**runtime**](#runtime) development. The
+[FRAME](../runtime/frame) is Substrate's system for [**runtime**](#runtime) development. The
 name is an acronym for the "Framework for Runtime Aggregation of Modularized Entities". FRAME allows
-developers to create a blockchain runtimes by composing modules, called "[pallets](#pallet)". At the
+developers to create blockchain runtimes by composing modules, called "[pallets](#pallet)". At the
 heart of FRAME is a helpful [macro](#macro) language that makes it easy for developers to define
 custom pallets (e.g.
 [`decl_event!`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_event.html),
@@ -345,9 +342,9 @@ https://github.com/w3f/consensus/blob/master/pdf/grandpa-old.pdf.
 
 ## Header
 
-Pieces of primarily [cryptographic information](#cryptographic-primitives) that summarise a block.
+Pieces of primarily [cryptographic information](#cryptographic-primitives) that summarize a block.
 This information is used by [light-clients](#light-client) to get a minimally-secure but very
-efficient synchronisation of the chain.
+efficient synchronization of the chain.
 
 ## HoneyBadgerBFT
 
@@ -466,11 +463,11 @@ the runtime.
 
 ## Node
 
-A node correlates to a running instance of a blockchain client - it is part of the
-[peer-to-peer](https://en.wikipedia.org/wiki/Peer-to-peer) network that allow blockchain
+A node correlates to a running instance of a blockchain client; it is part of the
+[peer-to-peer](https://en.wikipedia.org/wiki/Peer-to-peer) network that allows blockchain
 participants to interact with one another. Substrate nodes can fill a number of roles in a
 blockchain network. For instance, [authors](#author) are the block-producing nodes that power the
-blockchain while [light-clients](#light-client) facilitate scalable interactions with user-facing
+blockchain, while [light-clients](#light-client) facilitate scalable interactions with user-facing
 applications.
 
 ## Nominated Proof-of-Stake (NPoS)
@@ -479,7 +476,7 @@ A means of determining a set of [authorities](#authority) from a number of accou
 commit their stake to the proper (non-[Byzantine](#byzantine-failure)) functioning of one or more
 [authoring nodes](#author). This was originally proposed in
 [the Polkadot paper](https://polkadot.network/PolkaDotPaper.pdf) and phrases a set of staked
-nominations as a constraint optimisation problem to eventually give a maximally staked set of
+nominations as a constraint optimization problem to eventually give a maximally staked set of
 [validators](#validator) each with a number of supporting nominators lending their stake. Slashing
 and rewards are done in a pro-rata manner.
 
@@ -517,7 +514,7 @@ A module that encapsulates a set of related capabilities that is used to compose
 ## Polkadot Network
 
 The [Polkadot Network](https://polkadot.network/) is a platform that implements a
-heterogenous ("chain-of-chains") architecture. The Polkadot Network is a Substrate-based
+heterogeneous ("chain-of-chains") architecture. The Polkadot Network is a
 [blockchain](#blockchain) that serves the role of "[relay chain](#relay-chain)", a central hub in a
 heterogenous blockchain network that supports the other chains (the "[parachains](#parachain)") by
 providing shared infrastructure and security. The initial stages of
