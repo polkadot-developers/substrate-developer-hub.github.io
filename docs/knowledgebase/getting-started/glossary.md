@@ -95,9 +95,9 @@ short-term probabilistic [finality](#finality), with deterministic finality prov
 
 ## Blind Assignment of Blockchain Extension (BABE)
 
-[Block authoring](#author) protocol similar to [Aura](#aura) where [authorities](#authority) are
-chosen with a verifiable random function (VRF) instead of a rotating list. Authorities are assigned
-a time slot in which they can select a chain and submit a new block for it. See
+[Block authoring](#author) protocol similar to [Aura](#aura) where [authorities](#authority) win
+time slots based on a verifiable random function (VRF) instead of a rotating list. The winning authority
+can select a chain and submit a new block for it. See
 https://w3f-research.readthedocs.io/en/latest/polkadot/BABE.html
 
 ## Block
