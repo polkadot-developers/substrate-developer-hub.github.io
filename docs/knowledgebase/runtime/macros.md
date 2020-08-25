@@ -4,7 +4,7 @@ title: Runtime Macros
 
 ## Introduction
 
-Within Substrate Runtime Macros give engineers the opportunity to focus on the runtime logic rather
+Within Substrate Runtime Macros engineers are given the opportunity to focus on runtime logic rather
 than how the on-chain variables need to be encoded and decoded. As a result, developers frequently
 leverage these macros to optimize runtime development with their intention declared utilizing the
 succinct statements in macros. The downside is that sometimes developers may encounter error
@@ -49,7 +49,7 @@ _Doc. and Example_ to see how macro code is expanded.
 
 **When to Use**
 
-To define storage items in a runtime pallete. A storage item definition includes:
+To define storage items in a runtime palette. A storage item definition includes:
 
 - its data type, being one of:
 
@@ -90,8 +90,8 @@ This macro takes a succinct statement of:
 Replacing it with a new struct type defined by `#name` and have it implement the data type storage
 trait.
 
-The macro also declare and implements `Store` trait to set up the pallet to have storage space, and
-implements getters on `Module` struct defined by `decl_module!`.
+The macro also declares and implements `Store` traits to set up the pallet to have storage space, and
+implements getters on the `Module` struct defined by `decl_module!`.
 
 **Docs and Notes**
 
@@ -212,15 +212,15 @@ a particular pallet.
   encoding/decoding traits implemented for the enum. Various conversion traits `Event` also
   implements `TryInto<pallets::Event<Runtime>>` trait to extract the event out from the enum type.
 - `Origin` enum type is defined with helper traits, e.g. `PartialEq`, `Clone`, `Debug` implemented.
-  This enum type defines who call an extrinsic, `NONE`, `ROOT`, or signed by a particular account.
-  The origin can also be defined by other pallets, not only system.
+  This enum type defines who calls an extrinsic, `NONE`, `ROOT`, or signed by a particular account.
+  The origin can also be defined by other pallets, not only systems.
 - `Call` enum type is defined with all integrated pallets as variants. It contains the data and
   metadata of each of the integrated pallets, and redirects calls to the specific pallet via
   implementing `frame_support::traits::UnfilteredDispatchable` trait.
 - `GenesisConfig` struct type is defined and implements `sp_runtime::BuildStorage` trait for
   building up the storage genesis config.
 - The macro adopts the `frame_support::unsigned::ValidateUnsigned` trait implementation from each
-  pallets. If no `ValidateUnsigned` trait is implemented in any included pallets, all unsigned
+  pallet. If no `ValidateUnsigned` trait is implemented in any included pallets, all unsigned
   transactions will be rejected.
 
 ### parameter_types!
@@ -316,13 +316,13 @@ This macro creates an `Origin` struct type, and implements various helper traits
 **When to Use**
 
 To construct an `Event` struct type for a runtime. This macro is typically called automatically by
-the `construct_runtime!` macro. However, developers may call this macro directly to construct
-`Event` enum selecting specific pallet events they want to listen for. This is useful when
+the `construct_runtime!` macro. However, developers may call this macro directly to construct an
+`Event` enum selecting the specific pallet events they want to listen for. This is useful when
 constructing a mock runtime for testing.
 
 **What It Does**
 
-This macro creates an event enum type, implement various helper traits on `Event` type, including
+This macro creates an event enum type, implements various helper traits on `Event` type, including
 `core::clone::Clone`, `core::marker::StructuralPartialEq`, `core::fmt::Debug`, data
 encoding/decoding traits etc. Finally, the macro implements only the specifying pallet events for
 the runtime.
