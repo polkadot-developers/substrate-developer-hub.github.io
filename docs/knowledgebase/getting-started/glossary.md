@@ -415,9 +415,9 @@ A subsystem in Substrate for managing keys for the purpose of producing new bloc
 
 ## Kusama
 
-[Kusama](https://kusama.network/) is a Substrate-based [blockchain](#blockchain) that implements the
-concepts described by the [Polkadot Whitepaper](https://polkadot.network/PolkaDotPaper.pdf). Kusama
-is a "[canary](https://en.wiktionary.org/wiki/canary_in_a_coal_mine)" network and is referred to as
+[Kusama](https://kusama.network/) is a Substrate-based [blockchain](#blockchain) that implements a
+design similar to the [Polkadot Network](#polkadot-network). Kusama is a
+"[canary](https://en.wiktionary.org/wiki/canary_in_a_coal_mine)" network and is referred to as
 [Polkadot's "wild cousin"](https://polkadot.network/kusama-polkadot-comparing-the-cousins/). The
 differences between a canary network and a true test network are related to the expectations of
 permanence and stability; although Kusama is expected to be more stable than a true test network,
@@ -474,8 +474,7 @@ embedded devices.
 
 A means of determining a set of [validators](#validator) (and thus [authorities](#authority)) from a
 number of accounts willing to commit their stake to the proper (non-[Byzantine](#byzantine-failure))
-functioning of one or more [authoring](#author)/validator nodes. This was originally proposed in
-[the Polkadot paper](https://polkadot.network/PolkaDotPaper.pdf) and phrases a set of staked
+functioning of one or more [authoring](#author)/validator nodes. This phrases a set of staked
 nominations as a constraint optimization problem to eventually give a maximally staked set of
 validators each with a number of supporting nominators lending their stake. Slashing and rewards are
 done in a pro-rata manner.
@@ -501,9 +500,8 @@ The provenance of a dispatched function call into the runtime. Can be customised
 ## Parachain
 
 A parachain is a [blockchain](#blockchain) that encapsulates capabilities that are specific to a
-domain or application. The term "parachain" was defined in
-[the Polkadot Whitepaper](https://polkadot.network/PolkaDotPaper.pdf) and refers to the blockchains
-that derive shared infrastructure and security from a "[relay chain](#relay-chain)".
+domain or application. The term "parachain" refers to the blockchains that derive shared
+infrastructure and security from a "[relay chain](#relay-chain)".
 
 ## Pallet
 
