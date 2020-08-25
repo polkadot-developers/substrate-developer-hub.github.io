@@ -98,7 +98,8 @@ short-term probabilistic [finality](#finality), with deterministic finality prov
 [Block authoring](#author) protocol similar to [Aura](#aura) where [authorities](#authority) win
 time slots based on a verifiable random function (VRF) instead of a rotating list. The winning authority
 can select a chain and submit a new block for it. See
-https://w3f-research.readthedocs.io/en/latest/polkadot/BABE.html
+[Web3 Research](https://w3f-research.readthedocs.io/en/latest/polkadot/BABE.html).
+
 
 ## Block
 
