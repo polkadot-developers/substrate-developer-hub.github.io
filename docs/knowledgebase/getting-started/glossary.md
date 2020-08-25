@@ -499,9 +499,10 @@ The provenance of a dispatched function call into the runtime. Can be customised
 
 ## Parachain
 
-A parachain is a [blockchain](#blockchain) that encapsulates capabilities that are specific to a
-domain or application. The term "parachain" refers to the blockchains that derive shared
-infrastructure and security from a "[relay chain](#relay-chain)".
+A parachain is (generally) a [blockchain](#blockchain) that encapsulates capabilities that are
+specific to a domain or application. The term "parachain" refers to the blockchains that derive
+shared infrastructure and security from a "[relay chain](#relay-chain)". You can
+[learn more about parachains on the Polkadot Wiki](https://wiki.polkadot.network/docs/en/learn-parachains).
 
 ## Pallet
 
@@ -511,16 +512,12 @@ and [storage items](#storage-items).
 
 ## Polkadot Network
 
-The [Polkadot Network](https://polkadot.network/) is a platform that implements a heterogeneous
-("chain-of-chains") architecture. The Polkadot Network is a [blockchain](#blockchain) that serves
-the role of "[relay chain](#relay-chain)", a central hub in a heterogenous blockchain network that
-supports the other chains (the "[parachains](#parachain)") by providing shared infrastructure and
-security. The initial stages of
-[Polkadot's multi-phase launch process](https://polkadot.network/explaining-the-polkadot-launch-process/)
-do not include support for parachains; [Rococo](#rococo) is the Polkadot Network's parachain test
-network. Although the Polkadot Network was maintained by
-[Parity Technologies](https://www.parity.io/) when it initially launched, it is already controlled
-by [secure, decentralized, collective governance](#council).
+The [Polkadot Network](https://polkadot.network/) is a [blockchain](#blockchain) that serves as the
+central hub of a heterogeneous blockchain network. It serves the role of
+"[relay chain](#relay-chain)" and supports the other chains (the "[parachains](#parachain)") by
+providing shared infrastructure and security. The Polkadot Network is progressing through a
+[multi-phase launch process](https://polkadot.network/explaining-the-polkadot-launch-process/) and
+does not currently support parachains.
 
 ## Practical Byzantine Fault Tolerance (pBFT)
 
