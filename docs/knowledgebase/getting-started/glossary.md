@@ -95,11 +95,11 @@ short-term probabilistic [finality](#finality), with deterministic finality prov
 
 ## Blind Assignment of Blockchain Extension (BABE)
 
-[Block authoring](#author) protocol similar to [Aura](#aura) where [authorities](#authority) win
-time slots based on a verifiable random function (VRF) instead of a rotating list. The winning authority
-can select a chain and submit a new block for it. See
-[Web3 Research](https://w3f-research.readthedocs.io/en/latest/polkadot/BABE.html).
-
+[Block authoring](#author) protocol similar to [Aura](#aura), however [authorities](#authority) win
+time slots based on a verifiable random function (VRF) as opposed to Aura's round-robin selection
+method. The winning authority can select a chain and submit a new block for it. Learn more about
+BABE by referring to its
+[official Web3 Foundation research document](https://w3f-research.readthedocs.io/en/latest/polkadot/BABE.html).
 
 ## Block
 
@@ -133,13 +133,13 @@ is imperfect information about whether a component has failed) in systems that r
 ## Consensus
 
 The process by which [authorities](#authority) agree upon the next valid [block](#block) to be added
-to the chain.
+to a [blockchain](#blockchain).
 
 ### Consensus Engine
 
 A means for forming consensus over what constitutes the canonical (true) chain. In the context of
 Substrate, it refers to a set of algorithms that dictate which of a number of input [blocks](#block)
-form the chain.
+form the [blockchain](#blockchain).
 
 ### Consensus Algorithms
 
@@ -155,9 +155,7 @@ provides a deep dive into the consensus strategies of [the Polkadot Network](#po
 
 ## Cryptographic Primitives
 
-A "primitive" is a basic abstraction that informs the foundation of some system. For instance, in
-many programming languages certain data types are referred to as "primitive types". The term
-"cryptographic primitive" refers to concepts like signature schemes and hashing algorithms.
+The term "cryptographic primitive" refers to concepts like signature schemes and hashing algorithms.
 Cryptographic primitives are essential to many aspects of the Substrate ecosystem:
 
 - [Blockchains](#blockchain): [blocks](#block) must be hashed under some algorithm and reference
@@ -212,7 +210,7 @@ An extensible field of the [block header](#header) that encodes information need
 ## Dispatch
 
 A dispatch is the execution of a function with a pre-defined set of arguments. In the context of the
-[FRAME](#frame) framework for [runtime](#runtime) development, this refers specifically to the
+[FRAME](#frame) library for [runtime](#runtime) development, this refers specifically to the
 "runtime dispatch" system, a means of taking some pure data (the type is known as `Call` by
 convention) and interpreting it in order to call a published function in a runtime module
 ("[pallet](#pallet)") with some arguments. Such published functions take one additional parameter,
@@ -446,15 +444,13 @@ blockchain users to interact with the blockchain network.
 ## Macro
 
 Macros are features of some programming languages, including Rust, that allow developers to "write
-code that writes code". Substrate, and in particular the [FRAME](#frame) framework for
+code that writes code". Substrate, and in particular the [FRAME](#frame) library for
 [runtime](#runtime) development, makes extensive use of
 [Rust macros](https://doc.rust-lang.org/1.7.0/book/macros.html). Most users of Substrate will only
 need to _use_ the macros written by the developers of Substrate; you should not need to _write_ your
 own Rust macros to get started with Substrate development. Many developers find the
 [`cargo-expand`](https://github.com/dtolnay/cargo-expand) tool helpful; this add-on to the Rust
-toolchain makes it easy to "expand" Rust macros and inspect the code that they generate. Although
-macros enable many of Substrate and FRAME's most powerful capabilities, they are difficult for IDEs
-to support.
+toolchain makes it easy to "expand" Rust macros and inspect the code that they generate.
 
 ## Metadata
 
