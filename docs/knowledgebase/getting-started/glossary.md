@@ -9,13 +9,13 @@ ecosystem. This is a helpful resource for even the most experienced Substrate de
 
 ## Adaptive Quorum Biasing (AQB)
 
-A means of specifying the quorum (minimum vote) needed for a proposal to pass dependent upon voter
-turnout. Positive bias means requiring increasingly more aye votes than nay votes as there is lower
-turnout; negative (aka inverted) bias is the opposite (see the
+A means of specifying a passing threshold based on the quorum (minimum vote) needed for a proposal
+to pass dependent upon voter turnout. Positive bias means requiring increasingly more aye votes than
+nay votes as there is lower turnout; negative (aka inverted) bias is the opposite (see the
 [graphs](https://youtu.be/VsZuDJMmVPY?t=25413)). It avoids the need for strict quorums, which are
 arbitrary and bring about undesirable mechanics. Adaptive quorum biasing is used by the
-[FRAME Collective pallet](../runtime/frame#collective) that materializes as a governing
-[Council](#council) on a number of Substrate-based chains.
+[FRAME Democracy pallet](../runtime/frame#democracy), which is used by chain-governing
+[councils](#council) on a number of Substrate-based chains.
 
 ## AfG
 
@@ -27,13 +27,14 @@ who invented it. AfG is synonymous with [GRANDPA](#grandpa).
 
 Used in the context of [FRAME](#frame) "[pallet](#pallet) aggregation", this means combining
 analogous types from multiple runtime modules into a single type. This allows each module's
-analogous types to be represented. Currently there are five such data types:
+analogous types to be represented. Currently there are six such data types:
 
-- `Log` (an extensible header item)
-- `Event` (an indicator of some particular state-transition)
-- `Call` (a functor allowing a published function to be called with a set of arguments)
-- `Origin` (the provenance of a function call)
-- `Metadata` (information allowing introspection of the above)
+- `Call` - published functions that may be called with a set of arguments
+- `Error` - used to inform users why a function invocation (`Call`) failed
+- `Event` - pallets can emit events to make users aware of some state changes
+- `Log` - an extensible header item
+- `Metadata` - information that allows inspection of the above
+- `Origin` - specifies the source of a function invocation (`Call`)
 
 ## Approval Voting
 
@@ -155,8 +156,8 @@ provides a deep dive into the consensus strategies of [the Polkadot Network](#po
 
 ## Cryptographic Primitives
 
-The term "cryptographic primitive" refers to concepts like signature schemes and hashing algorithms.
-Cryptographic primitives are essential to many aspects of the Substrate ecosystem:
+A term that refers to concepts like signature schemes and hashing algorithms. Cryptographic
+primitives are essential to many aspects of the Substrate ecosystem:
 
 - [Blockchains](#blockchain): [blocks](#block) must be hashed under some algorithm and reference
   their parent block's hash.
@@ -209,13 +210,12 @@ An extensible field of the [block header](#header) that encodes information need
 
 ## Dispatch
 
-A dispatch is the execution of a function with a pre-defined set of arguments. In the context of the
-[FRAME](#frame) library for [runtime](#runtime) development, this refers specifically to the
-"runtime dispatch" system, a means of taking some pure data (the type is known as `Call` by
-convention) and interpreting it in order to call a published function in a runtime module
-("[pallet](#pallet)") with some arguments. Such published functions take one additional parameter,
-known as [`origin`](#origin), that allows the function to securely determine the provenance of its
-execution.
+A dispatch is the execution of a function with a pre-defined set of arguments. In the context of
+[runtime](#runtime) development with [FRAME](#frame), this refers specifically to the "runtime
+dispatch" system, a means of taking some pure data (the type is known as `Call` by convention) and
+interpreting it in order to call a published function in a runtime module ("[pallet](#pallet)") with
+some arguments. Such published functions take one additional parameter, known as
+[`origin`](#origin), that allows the function to securely determine the provenance of its execution.
 
 ---
 
@@ -306,16 +306,21 @@ development framework.
 
 [FRAME](../runtime/frame) is Substrate's system for [**runtime**](#runtime) development. The name is
 an acronym for the "Framework for Runtime Aggregation of Modularized Entities". FRAME allows
-developers to create blockchain runtimes by composing modules, called "[pallets](#pallet)". At the
-heart of FRAME is a helpful [macro](#macro) language that makes it easy for developers to define
-custom pallets (e.g.
-[`decl_event!`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_event.html),
-[`decl_error!`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_error.html),
-[`decl_storage!`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_storage.html),
-[`decl_module!`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_module.html))
-and compose pallets (e.g.
-[`construct_runtime!`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.construct_runtime.html))
-into a working runtime that can easily be used to power a Substrate-based blockchain.
+developers to create blockchain runtimes by composing modules, called "[pallets](#pallet)". Runtime
+developers interact with FRAME by way of a [macro](#macro) language that makes it easy for
+developers to define custom pallets (e.g. [`decl_event!`](../runtime/macros#decl_event),
+[`decl_error!`](../runtime/macros#decl_error), [`decl_storage!`](../runtime/macros#decl_storage),
+[`decl_module!`](../runtime/macros#decl_module) and compose pallets (e.g.
+[`construct_runtime!`](../runtime/macros#construct_runtime) into a working runtime that can easily
+be used to power a Substrate-based blockchain. The convention used in
+[the Substrate codebase](https://github.com/paritytech/substrate/tree/master/frame) is to preface
+FRAME's core modules with `frame_` and the optional pallets with `pallet_*`. For instance, the
+macros mentioned above are all defined in the [`frame_support`](../runtime/frame#support-library)
+module and all FRAME-based runtimes _must_ include the
+[`frame_system`](../runtime/frame#system-library) module. Once the
+`frame_support::construct_runtime` macro has been used to create a runtime that includes the
+`frame_system` module, optional pallets such as the [Balances](../runtime/frame#balances) pallet may
+be used to extend the runtimes core capabilities.
 
 ## Full Client
 
@@ -412,16 +417,15 @@ A subsystem in Substrate for managing keys for the purpose of producing new bloc
 
 [Kusama](https://kusama.network/) is a Substrate-based [blockchain](#blockchain) that implements the
 concepts described by the [Polkadot Whitepaper](https://polkadot.network/PolkaDotPaper.pdf). Kusama
-is a "[canary](https://en.wiktionary.org/wiki/canary_in_a_coal_mine)" network (**not a test
-network!**) and is referred to as
+is a "[canary](https://en.wiktionary.org/wiki/canary_in_a_coal_mine)" network and is referred to as
 [Polkadot's "wild cousin"](https://polkadot.network/kusama-polkadot-comparing-the-cousins/). The
 differences between a canary network and a true test network are related to the expectations of
 permanence and stability; although Kusama is expected to be more stable than a true test network,
 like [Westend](#westend), it should not be expected to be as stable as an enterprise production
 network like [Polkadot](#polkadot). Unlike Westend, which is maintained by
 [Parity Technologies](https://www.parity.io/), Kusama (like Polkadot) is
-[controlled by its network participants](#council). The level of stability offered by canary
-networks like Kusama is intended to encourage meaningful experimentation.
+[controlled by its network participants](../runtime/frame#democracy). The level of stability offered
+by canary networks like Kusama is intended to encourage meaningful experimentation.
 
 ---
 
@@ -443,14 +447,10 @@ blockchain users to interact with the blockchain network.
 
 ## Macro
 
-Macros are features of some programming languages, including Rust, that allow developers to "write
-code that writes code". Substrate, and in particular the [FRAME](#frame) library for
-[runtime](#runtime) development, makes extensive use of
-[Rust macros](https://doc.rust-lang.org/1.7.0/book/macros.html). Most users of Substrate will only
-need to _use_ the macros written by the developers of Substrate; you should not need to _write_ your
-own Rust macros to get started with Substrate development. Many developers find the
-[`cargo-expand`](https://github.com/dtolnay/cargo-expand) tool helpful; this add-on to the Rust
-toolchain makes it easy to "expand" Rust macros and inspect the code that they generate.
+Macros are features of some programming languages,
+[including Rust](https://doc.rust-lang.org/1.7.0/book/macros.html), that allow developers to "write
+code that writes code". [FRAME](#frame) provides a number of [macros](../runtime/macros) that make
+it easy to compose a [runtime](#runtime).
 
 ## Metadata
 
@@ -465,19 +465,20 @@ the runtime.
 A node correlates to a running instance of a blockchain client; it is part of the
 [peer-to-peer](https://en.wikipedia.org/wiki/Peer-to-peer) network that allows blockchain
 participants to interact with one another. Substrate nodes can fill a number of roles in a
-blockchain network. For instance, [authors](#author) are the block-producing nodes that power the
-blockchain, while [light-clients](#light-client) facilitate scalable interactions with user-facing
-applications.
+blockchain network. For instance, [validators](#validator) are the block-producing nodes that power
+the blockchain, while [light-clients](#light-client) facilitate scalable interactions in
+resource-constrained environments like [UIs](https://github.com/paritytech/substrate-connect) or
+embedded devices.
 
 ## Nominated Proof-of-Stake (NPoS)
 
-A means of determining a set of [authorities](#authority) from a number of accounts willing to
-commit their stake to the proper (non-[Byzantine](#byzantine-failure)) functioning of one or more
-[authoring nodes](#author). This was originally proposed in
+A means of determining a set of [validators](#validator) (and thus [authorities](#authority)) from a
+number of accounts willing to commit their stake to the proper (non-[Byzantine](#byzantine-failure))
+functioning of one or more [authoring](#author)/validator nodes. This was originally proposed in
 [the Polkadot paper](https://polkadot.network/PolkaDotPaper.pdf) and phrases a set of staked
 nominations as a constraint optimization problem to eventually give a maximally staked set of
-[validators](#validator) each with a number of supporting nominators lending their stake. Slashing
-and rewards are done in a pro-rata manner.
+validators each with a number of supporting nominators lending their stake. Slashing and rewards are
+done in a pro-rata manner.
 
 ---
 
@@ -503,12 +504,12 @@ A parachain is a [blockchain](#blockchain) that encapsulates capabilities that a
 domain or application. The term "parachain" was defined in
 [the Polkadot Whitepaper](https://polkadot.network/PolkaDotPaper.pdf) and refers to the blockchains
 that derive shared infrastructure and security from a "[relay chain](#relay-chain)".
-[Rococo](#rococo) is the Polkadot Network's parachain test network.
 
 ## Pallet
 
-A module that encapsulates a set of related capabilities that is used to compose a
-[FRAME](#frame)-based [runtime](#runtime).
+A module that can be used to extend the capabilities of a [FRAME](#frame)-based [runtime](#runtime).
+Pallets bundle domain-specific logic along with related runtime primitives like [events](#event),
+and [storage items](#storage-items).
 
 ## Polkadot Network
 
@@ -551,8 +552,7 @@ interchain data is not ubiquitously distributed. See: [GRANDPA](#grandpa)
 
 ## Relay Chain
 
-This term was defined in [the Polkadot Whitepaper](https://polkadot.network/PolkaDotPaper.pdf) and
-refers to the central hub in a heterogenous ("chain-of-chains") network. Relay chains are
+The central hub in a heterogenous ("chain-of-chains") network. Relay chains are
 [blockchains](#blockchain) that provide shared infrastructure and security to the other blockchains
 in the network (the "[parachains](#parachain)"). In addition to providing [consensus](#consensus)
 capabilities, relay chains also allow parachains to communicate and exchange digital assets without
@@ -568,9 +568,7 @@ blockchain. Others include Stellar's consensus algorithm and Tendermint. See the
 
 Rococo is the [Polkadot](#polkadot) Network's [parachain](#parachain) test network. It is a
 Substrate-based [blockchain](#blockchain) that is an evolving testbed for the capabilities of
-heterogeneous blockchain networks. The term "[Rococo](https://en.wikipedia.org/wiki/Rococo)" refers
-to an elaborate style of embellishment and it refers to the painstaking work that has gone into
-designing and implementing the capabilities of the Polkadot Network.
+heterogeneous blockchain networks.
 
 ## Runtime
 
