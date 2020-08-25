@@ -133,7 +133,7 @@ is imperfect information about whether a component has failed) in systems that r
 ## Consensus
 
 The process by which [authorities](#authority) agree upon the next valid [block](#block) to be added
-to the [relay chain](#relay-chain).
+to the chain.
 
 ### Consensus Engine
 
