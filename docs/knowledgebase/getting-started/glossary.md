@@ -133,18 +133,15 @@ is imperfect information about whether a component has failed) in systems that r
 
 ## Consensus
 
-The process by which nodes agree which fork in the blockchain is canonical. Consensus is comprised
-of [authorship](#author), [finality](#finality), and fork-choice rule. In the Substrate ecosystem,
-these three components are cleanly separated from one another, and the term consensus often refers
-specifically to authorship.
+In the context of a [blockchain](#blockchain), consensus is the process nodes use to agree on the
+canonical [fork](#fork) of a chain. Consensus is comprised of [authorship](#author),
+[finality](#finality), and [fork-choice rule](../advanced/consensus#fork-choice-rules). In the
+Substrate ecosystem, these three components are cleanly separated from one another, and the term
+consensus often refers specifically to authorship.
 
 ### Consensus Engine
 
-A means for forming consensus over what constitutes the canonical (true) chain. In the context of A
-subsystem of a the Substrate node responsible for running an algorithm to reach
-[consensus](#consensus). Learn more about the consensus engines that ship with Substrate and the
-Traits that codify their APIs in the [knowledgebase article on consensus](../advanced/consensus).
-form the [blockchain](#blockchain).
+A subsystem of a Substrate [node](#node) that is responsible for consensus tasks.
 
 ### Consensus Algorithms
 
@@ -300,6 +297,11 @@ One example of a work in progress provable finality gadget is being used in Polk
 See also: [Aurand+GRANDPA](#aurand-grandpa), [Instant Finality](#instant-finality),
 [Proof-of-Finality](#proof-of-finality), [Probabilistic Finality](#probabilistic-finality),
 [Provable Finality](#provable-finality)
+
+## Fork
+
+Forks occur when two [blocks](#block) have the same parent. Forks must be
+[resolved](../advanced/consensus#fork-choice-rules) so that only one canonical chain exists.
 
 ## Flaming Fir
 
