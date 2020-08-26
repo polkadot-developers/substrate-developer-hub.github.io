@@ -4,12 +4,12 @@ title: Runtime Macros
 
 ## Introduction
 
-Within Substrate Runtime Macros engineers are given the opportunity to focus on runtime logic rather
-than how the on-chain variables need to be encoded and decoded. As a result, developers frequently
-leverage these macros to optimize runtime development with their intention declared utilizing the
-succinct statements in macros. The downside is that sometimes developers may encounter error
-messages of new structs or types, however these errors are a result of how the macros create new
-types and interact with contents inside.
+Substrate's runtime macros allow developers to focus on runtime logic rather than how the on-chain
+variables need to be encoded and decoded. As a result, developers frequently leverage these macros
+to optimize runtime development with their intention declared utilizing the succinct statements in
+macros. The downside is that sometimes developers may encounter error messages of new structs or
+types, however these errors are a result of how the macros create new types and interact with
+contents inside.
 
 The purpose of this article is to give a basic overview of macros and explain the Substrate macros
 that runtime engineers frequently encountered.
@@ -49,7 +49,7 @@ _Doc. and Example_ to see how macro code is expanded.
 
 **When to Use**
 
-To define storage items in a runtime palette. A storage item definition includes:
+To define storage items in a runtime pallet. A storage item definition includes:
 
 - its data type, being one of:
 
@@ -90,8 +90,8 @@ This macro takes a succinct statement of:
 Replacing it with a new struct type defined by `#name` and have it implement the data type storage
 trait.
 
-The macro also declares and implements `Store` traits to set up the pallet to have storage space, and
-implements getters on the `Module` struct defined by `decl_module!`.
+The macro also declares and implements the `Store` trait to set up the pallet to have storage space,
+and implements getters on the `Module` struct defined by `decl_module!`.
 
 **Docs and Notes**
 
@@ -212,8 +212,9 @@ a particular pallet.
   encoding/decoding traits implemented for the enum. Various conversion traits `Event` also
   implements `TryInto<pallets::Event<Runtime>>` trait to extract the event out from the enum type.
 - `Origin` enum type is defined with helper traits, e.g. `PartialEq`, `Clone`, `Debug` implemented.
-  This enum type defines who calls an extrinsic, `NONE`, `ROOT`, or signed by a particular account.
-  The origin can also be defined by other pallets, not only systems.
+  This enum type defines who calls an extrinsic: `NONE`, `ROOT`, or signed by a particular account.
+  These three primitive origins are defined by the FRAME System module, but optional FRAME pallets
+  may also define origins.
 - `Call` enum type is defined with all integrated pallets as variants. It contains the data and
   metadata of each of the integrated pallets, and redirects calls to the specific pallet via
   implementing `frame_support::traits::UnfilteredDispatchable` trait.
