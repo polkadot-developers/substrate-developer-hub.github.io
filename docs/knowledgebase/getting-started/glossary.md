@@ -50,9 +50,9 @@ governing [Council](#council) on a number of Substrate-based chains.
 
 ## Author
 
-The [account](../learn-substrate/account-abstractions) associated with the [node](#node) that is
+The [node](#node) that is
 responsible for the creation of a [block](#block); block authors may be referred to as block
-"producers".
+"producers". In a proof-of-work chain these nodes are called "miners".
 
 ## Authority
 
@@ -69,7 +69,7 @@ through a token-weighted nomination/voting system.
 
 ## Aura (aka "Authority Round")
 
-Deterministic [consensus](#consensus) protocol with non-instant [finality](#finality) where
+Deterministic [consensus](#consensus) protocol where
 [block](#block) production is limited to a rotating list of [authorities](#authority) that take
 turns creating blocks; the majority of online authorities are assumed to be honest. Learn more by
 reading [the official wiki article](https://openethereum.github.io/wiki/Aura) for the Aura consensus
@@ -86,9 +86,9 @@ Extension of [Aurand](#aurand) where block production involves [authorities](#au
 over limited slots that move very quickly; most slots are not populated, albeit with rare slot
 collisions.
 
-### Aurand + GRANDPA
+### Aura + GRANDPA
 
-A hybrid [consensus](#consensus) scheme where [Aurand](#aurand) is used for block production and
+A hybrid [consensus](#consensus) scheme where [Aura](#aura) is used for block production and
 short-term probabilistic [finality](#finality), with deterministic finality provided through
 [GRANDPA](#grandpa).
 
@@ -97,7 +97,7 @@ short-term probabilistic [finality](#finality), with deterministic finality prov
 ## Blind Assignment of Blockchain Extension (BABE)
 
 [Block authoring](#author) protocol similar to [Aura](#aura), however [authorities](#authority) win
-time slots based on a verifiable random function (VRF) as opposed to Aura's round-robin selection
+slots based on a verifiable random function (VRF) as opposed to Aura's round-robin selection
 method. The winning authority can select a chain and submit a new block for it. Learn more about
 BABE by referring to its
 [official Web3 Foundation research document](https://w3f-research.readthedocs.io/en/latest/polkadot/BABE.html).
@@ -107,7 +107,7 @@ BABE by referring to its
 A single element of a blockchain that [cryptographically](#cryptographic-primitives) binds a set of
 [extrinsic](#extrinsic) data (the "body") to a "[header](#header)". Blocks are arranged into a tree
 through parent pointers (implemented as a hash of the parent) and the tree is pruned into a list via
-a "fork-choice rule".
+a [fork-choice rule](../advanced/consensus#fork-choice-rules), and optional [finality gadget](#finality).
 
 ## Blockchain
 
@@ -133,13 +133,12 @@ is imperfect information about whether a component has failed) in systems that r
 
 ## Consensus
 
-The process by which [authorities](#authority) agree upon the next valid [block](#block) to be added
-to a [blockchain](#blockchain).
+The process by which nodes agree which fork in the blockchain is canonical. Consensus is comprised of [authorship](#author), [finality](#finality), and fork-choice rule. In the Substrate ecosystem, these three components are cleanly separated from one another, and the term consensus often refers specifically to authorship.
 
 ### Consensus Engine
 
 A means for forming consensus over what constitutes the canonical (true) chain. In the context of
-Substrate, it refers to a set of algorithms that dictate which of a number of input [blocks](#block)
+A subsystem of a the Substrate node responsible for running an algorithm to reach [consensus](#consensus). Learn more about the consensus engines that ship with Substrate and the Traits that codify their APIs in the [knowledgebase article on consensus](../advanced/consensus).
 form the [blockchain](#blockchain).
 
 ### Consensus Algorithms
@@ -206,7 +205,7 @@ implicitly specify the dev phrase by only specifying a derivation path such as `
 ## Digest
 
 An extensible field of the [block header](#header) that encodes information needed by
-[light clients](#light-client) for chain synchronization.
+several actors in a blockchain network including, [light clients](#light-client) for chain synchronization, consensus engines for block verification, and the runtime itself in the case of pre-runtime digests.
 
 ## Dispatch
 
@@ -474,8 +473,8 @@ embedded devices.
 
 A means of determining a set of [validators](#validator) (and thus [authorities](#authority)) from a
 number of accounts willing to commit their stake to the proper (non-[Byzantine](#byzantine-failure))
-functioning of one or more [authoring](#author)/validator nodes. This phrases a set of staked
-nominations as a constraint optimization problem to eventually give a maximally staked set of
+functioning of one or more [authoring](#author)/validator nodes. The Polkadot protocol describes validator selection
+as a constraint optimization problem to eventually give a maximally staked set of
 validators each with a number of supporting nominators lending their stake. Slashing and rewards are
 done in a pro-rata manner.
 
