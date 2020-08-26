@@ -55,11 +55,10 @@ referred to as block "producers". In a proof-of-work chain these nodes are calle
 
 ## Authority
 
-Authorities are the [accounts](../learn-substrate/account-abstractions) who, as a collective, manage
-[consensus](#consensus) on a [blockchain](#blockchain) network. In a
-[proof-of-stake](#nominated-proof-of-stake-npos) network (such as one using
-[the Staking pallet](../runtime/frame#staking) from [FRAME](#frame)), authorities are determined
-through a token-weighted nomination/voting system.
+Authorities are the [nodes](#node) who, as a collective, manage [consensus](#consensus) on a
+[blockchain](#blockchain) network. In a [proof-of-stake](#nominated-proof-of-stake-npos) network
+(such as one using [the Staking pallet](../runtime/frame#staking) from [FRAME](#frame)), authorities
+are determined through a token-weighted nomination/voting system.
 
 > The terms "authorities" and "[validators](#validator)" may sometimes seem to refer the same thing.
 > "Validators" is a broader term that can include other aspects of chain maintenance such as
@@ -96,9 +95,9 @@ short-term probabilistic [finality](#finality), with deterministic finality prov
 ## Blind Assignment of Blockchain Extension (BABE)
 
 [Block authoring](#author) protocol similar to [Aura](#aura), however [authorities](#authority) win
-slots based on a verifiable random function (VRF) as opposed to Aura's round-robin selection method.
-The winning authority can select a chain and submit a new block for it. Learn more about BABE by
-referring to its
+[slots](#slot) based on a verifiable random function (VRF) as opposed to Aura's round-robin
+selection method. The winning authority can select a chain and submit a new block for it. Learn more
+about BABE by referring to its
 [official Web3 Foundation research document](https://w3f-research.readthedocs.io/en/latest/polkadot/BABE.html).
 
 ## Block
@@ -176,12 +175,7 @@ The term "Council" is used on a number of Substrate-based networks, such as [Kus
 [Polkadot](#polkadot) to refer to an instance of
 [the Collective pallet](../runtime/frame#collective) that is used as a part of the network's
 [FRAME](#frame)-based [runtime](#runtime). The Council primarily serves as a body to optimize and
-check/balance the more inclusive referendum system. It has a number of powers:
-
-- introduce referenda with a removed or inverted (when unanimous only)
-  [AQB](#adaptive-quorum-biasing-aqb); and
-- cancel a referendum (when unanimous only); and
-- give up their seat.
+check/balance the more inclusive referendum system.
 
 ---
 
@@ -359,12 +353,6 @@ Pieces of primarily [cryptographic information](#cryptographic-primitives) that 
 This information is used by [light-clients](#light-client) to get a minimally-secure but very
 efficient synchronization of the chain.
 
-## HoneyBadgerBFT
-
-Instant-finality consensus algorithm with asynchronous "safety" and asynchronous "liveness" if
-tweaked. Originally slated as one of a number of directions that Polkadot might explore, but
-unlikely to be used now.
-
 ## Hybrid Consensus Protocol
 
 Split blockchain consensus into Block Production and a Finality Gadget. This allows chain growth
@@ -506,9 +494,8 @@ The provenance of a dispatched function call into the runtime. Can be customised
 
 ## Parachain
 
-A parachain is (generally) a [blockchain](#blockchain) that encapsulates capabilities that are
-specific to a domain or application. The term "parachain" refers to the blockchains that derive
-shared infrastructure and security from a "[relay chain](#relay-chain)". You can
+A parachain is a [blockchain](#blockchain) that derives shared infrastructure and security from a
+"[relay chain](#relay-chain)". You can
 [learn more about parachains on the Polkadot Wiki](https://wiki.polkadot.network/docs/en/learn-parachains).
 
 ## Pallet
@@ -584,6 +571,13 @@ Bitcoin).
 ## SHAFT
 
 SHAFT (SHared Ancestry Finality Tool). See [GRANDPA](#grandpa).
+
+## Slot
+
+A fixed, equal interval of time used by consensus engines such as [Aura](#aura-aka-authority-round)
+and [BABE](#blind-assignment-of-blockchain-extension-babe). In each slot, a subset of
+[authorities](#authority) is permitted (or obliged, depending on the engine) to [author](#author) a
+[block](#block).
 
 ## Stake-Weighted Voting
 
