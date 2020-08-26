@@ -49,7 +49,7 @@ _Doc. and Example_ to see how macro code is expanded.
 
 **When to Use**
 
-To define storage items in a runtime pallet. A storage item definition includes:
+To define storage items in a FRAME pallet. A storage item definition includes:
 
 - its data type, being one of:
 
@@ -99,9 +99,7 @@ and implements getters on the `Module` struct defined by `decl_module!`.
 - `Store` trait is declared with each storage name, thus becoming an associated type inside the
   trait.
 - `Module` implementation contains the getter function and metadata of each storage item.
-- Each of the storage items becomes a struct. Above in the expanded code `Something` struct type
-  [is declared and implements `StorageValue<u32>` trait](https://gist.github.com/jimmychu0807/c4a88ec8e0342ee9f4e14bd26287324e#file-pallet-template-expanded-rs-L144-L164)
-  and the data type specified in the macro.
+- Each of the storage items becomes a struct.
 
 ### decl_event!
 
@@ -135,12 +133,12 @@ errors defined in this macro.
 
 **What It Does**
 
-This macro defines `Error<T: Trait>` struct type, and implement helper methods for mapping each
-error type to sequential error code and corresponding string.
+This macro defines the `Error<T: Trait>` type, and implements helper methods for mapping each error
+type to a sequential error code and corresponding string.
 
-One key is that the macro automatically implements the `From<Error<T>>` trait for `DispatchError`.
-Therefore `DispatchError` returns the proper module index, error code, error string for a particular
-error type, and the documentation provided on top of each error as meta-data.
+One key feature is that the macro automatically implements the `From<Error<T>>` trait for
+`DispatchError`. Therefore, `DispatchError` returns the proper module index, error code, error
+string for a particular error type, and the documentation provided on top of each error as metadata.
 
 **Docs and Notes**
 
