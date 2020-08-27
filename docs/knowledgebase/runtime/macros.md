@@ -7,12 +7,12 @@ title: Runtime Macros
 Substrate's runtime macros allow developers to focus on runtime logic rather than how the on-chain
 variables need to be encoded and decoded. As a result, developers frequently leverage these macros
 to optimize runtime development with their intention declared utilizing the succinct statements in
-macros. The downside is that sometimes developers may encounter error messages of new structs or
-types, however these errors are a result of how the macros create new types and interact with
+macros. As a result, sometimes developers may encounter error messages of new structs or
+types, however these errors are a result of how the macros create new types interacting with
 contents inside.
 
 The purpose of this article is to give a basic overview of macros and explain the Substrate macros
-that runtime engineers frequently encountered.
+that runtime engineers frequently encounter.
 
 ## Macro Basics
 
@@ -336,12 +336,12 @@ the runtime.
 
 To implement a meta-dispatch module to dispatch to other dispatchers. This macro is typically called
 automatically by the `construct_runtime!` macro. However, developers may call this macro directly to
-construct a `Call` enum selecting specific pallet that it dispatches. This is useful when
+construct a `Call` enum selecting the specific pallet that it dispatches. This is useful when
 constructing a mock runtime for testing.
 
 **What It Does**
 
-This macro creates a `Call` enum type, implement various helper traits on `Event` type, including
+This macro creates a `Call` enum type, implements various helper traits on `Event` type, including
 `Clone`, `PartialEq`, `RuntimeDebug` etc. Finally, the macro implements `GetDispatchInfo`,
 `GetCallMetadata`, `IsSubType` traits for the `Call` enum.
 
