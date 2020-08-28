@@ -141,12 +141,12 @@ function Seminar(props) {
 								<ul>
 									<li>
 										<a href='https://www.crowdcast.io/e/substrate-seminar/'>
-											June 23 2020 and later
+											23 June 2020 and later
 										</a>{' '} are on Crowdcast.
 									</li>
 									<li>
 										<a href='https://www.youtube.com/watch?v=XoL1Ur_6Lxk&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'>
-											19 November 2019 - June 23 2020
+											19 November 2019 - 23 June 2020
 										</a>{' '} are on the Substrate Seminar YouTube playlist.
 									</li>
 									<li>
