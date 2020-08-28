@@ -104,7 +104,16 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>25 August</strong>, Joshy Orndorff will discuss the fundamentals of consensus and finality in Substrate through a series of examples. Then Dan Forbes will focus on the runtime, discussing his NFT trait and the new version of the popular Substratekitties tutorial that he is working on. This session will illuminate advanced topics in consensus and intermediate topics in runtime development in an approachable way.
+								On <strong>01 September</strong>, Dan Forbes will discuss the process of building and publishing a pallet, including how to know when you should publish your pallets. He'll give a code walkthrough and demonstration of his NFT Pallet. Finally he'll discuss some of the design iterations and compilation errors he went through along the way. This session targets beginner and intermediate runtime developers.
+							</p>
+							<p>
+								On <strong>08 September</strong>, Hernando Castano and the team building trustless Substrate bridges joins us to discuss bridges in general and how they are building them on Substrate. They will do a code walkthough and demonstration of moving funds between a Substrate chain and an OpenEthereum PoA chain.
+							</p>
+							<p>
+								The topic for <strong>15 September</strong> has not yet been chosen.
+							</p>
+							<p>
+								On <strong>22 September</strong> Parity's Andrew Plaza will discuss <a href='https://github.com/paritytech/substrate-archive'>Substrate Archive</a> a tool for indexing the contents of a blockchain into a Postgres SQL database.
 							</p>
 						</div>
 
@@ -141,12 +150,12 @@ function Seminar(props) {
 								<ul>
 									<li>
 										<a href='https://www.crowdcast.io/e/substrate-seminar/'>
-											June 23 2020 and later
+											23 June 2020 and later
 										</a>{' '} are on Crowdcast.
 									</li>
 									<li>
 										<a href='https://www.youtube.com/watch?v=XoL1Ur_6Lxk&list=PLp0_ueXY_enXRfoaW7sTudeQH10yDvFOS'>
-											19 November 2019 - June 23 2020
+											19 November 2019 - 23 June 2020
 										</a>{' '} are on the Substrate Seminar YouTube playlist.
 									</li>
 									<li>
