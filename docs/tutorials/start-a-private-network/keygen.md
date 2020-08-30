@@ -25,30 +25,27 @@ Generate a mnemonic and see the `sr25519` key and address associated with it. Th
 by Aura for block production.
 
 ```bash
-$ subkey --sr25519 generate
+$ subkey generate --scheme sr25519
 
 Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song vital leisure` is account:
-  Network ID/version: substrate
-  Secret seed:        0xa2b0200f9666b743402289ca4f7e79c9a4a52ce129365578521b0b75396bd242
-  Public key (hex):   0x0a11c9bcc81f8bd314e80bc51cbfacf30eaeb57e863196a79cccdc8bf4750d21
-  Account ID:         0x0a11c9bcc81f8bd314e80bc51cbfacf30eaeb57e863196a79cccdc8bf4750d21
-  SS58 Address:       5CHucvTwrPg8L2tjneVoemApqXcUaEdUDsCEPyE7aDwrtR8D
-
+  Secret seed:      0xa2b0200f9666b743402289ca4f7e79c9a4a52ce129365578521b0b75396bd242
+  Public key (hex): 0x0a11c9bcc81f8bd314e80bc51cbfacf30eaeb57e863196a79cccdc8bf4750d21
+  Account ID:       0x0a11c9bcc81f8bd314e80bc51cbfacf30eaeb57e863196a79cccdc8bf4750d21
+  SS58 Address:     5CHucvTwrPg8L2tjneVoemApqXcUaEdUDsCEPyE7aDwrtR8D
 ```
 
 Now see the `ed25519` key and address associated with the same mnemonic. This key will be used by
 GRANDPA for block finalization.
 
 ```bash
-$ subkey --ed25519 inspect "infant salmon buzz patrol maple subject turtle cute legend song vital leisure"
+$ subkey inspect-key --scheme ed25519
+URI: <enter secret key or phrase>
 
 Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song vital leisure` is account:
-  Network ID/version: substrate
-  Secret seed:        0xa2b0200f9666b743402289ca4f7e79c9a4a52ce129365578521b0b75396bd242
-  Public key (hex):   0x1a0e2bf1e0195a1f5396c5fd209a620a48fe90f6f336d89c89405a0183a857a3
-  Account ID:         0x1a0e2bf1e0195a1f5396c5fd209a620a48fe90f6f336d89c89405a0183a857a3
-  SS58 Address:       5CesK3uTmn4NGfD3oyGBd1jrp4EfRyYdtqL3ERe9SXv8jUHb
-
+  Secret seed:      0xa2b0200f9666b743402289ca4f7e79c9a4a52ce129365578521b0b75396bd242
+  Public key (hex): 0x1a0e2bf1e0195a1f5396c5fd209a620a48fe90f6f336d89c89405a0183a857a3
+  Account ID:       0x1a0e2bf1e0195a1f5396c5fd209a620a48fe90f6f336d89c89405a0183a857a3
+  SS58 Address:     5CesK3uTmn4NGfD3oyGBd1jrp4EfRyYdtqL3ERe9SXv8jUHb
 ```
 
 ## Option 2: Polkadot-JS Apps
