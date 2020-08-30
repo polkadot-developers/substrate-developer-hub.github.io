@@ -15,9 +15,9 @@ transactions.
 ### Build from Source
 
 The Subkey binary, `subkey`, is also installed along with
-[Substrate](../getting-started/#fast-installation). If
-you want to play with just Subkey (and not Substrate), you will need to have the Substrate
-dependencies. Use the following two commands to install the dependencies and Subkey, respectively:
+[Substrate](../getting-started/#fast-installation). If you want to play with just Subkey (and not
+Substrate), you will need to have the Substrate dependencies. Use the following two commands to
+install the dependencies and Subkey, respectively:
 
 ```bash
 $ curl https://getsubstrate.io -sSf | bash -s -- --fast
@@ -60,8 +60,8 @@ Secret phrase `enroll toss harvest pilot size end skin clog city knock bar cousi
   SS58 Address:     5GYTgcrom3pxWyHCcPPZX6iBB8xWJPARgLAng7MK4ZFaBAza
 ```
 
-Subkey encodes the address depending on the network. You can use the `--network` flag to
-change this. See `subkey help` for supported networks.
+Subkey encodes the address depending on the network. You can use the `--network` flag to change
+this. See `subkey help` for supported networks.
 
 Use the `--scheme` option to generate an ed25519 key:
 
@@ -116,8 +116,7 @@ Notice the SS58 Address 5D**joe**JSa7m4EsuSKwDN1GkrMtTiWwSMGxESQ6KSNPETPaPna con
 
 ## Password Protected Keys
 
-To generate a key that is password protected, use the `--password <password>`
-flag:
+To generate a key that is password protected, use the `--password <password>` flag:
 
 ```bash
 $ subkey generate --password "pencil laptop kitchen cutter"
@@ -175,9 +174,9 @@ Secret Key URI `image stomach entry drink rice hen abstract moment nature broken
   SS58 Address:     5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB
 ```
 
-Let's say you want to use the same private key on Kusama network. Use `--network` to get your address
-formatted for Kusama. Notice that the public key is the same, but the address has a different
-format.
+Let's say you want to use the same private key on Kusama network. Use `--network` to get your
+address formatted for Kusama. Notice that the public key is the same, but the address has a
+different format.
 
 ```bash
 $ subkey inspect-key --uri "spend report solution aspect tilt omit market cancel what type cave author" --network kusama
@@ -311,11 +310,15 @@ Secret Key URI `//Alice` is account:
   SS58 Address:     5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
 ```
 
-A mnemonic phrase is a secret group of words that can be used to uniquely generate a private key. In Subkey, there is a specific dev phrase used whenever a mnemonic phrase is omitted.```//Alice``` for example is actually:
+A mnemonic phrase is a secret group of words that can be used to uniquely generate a private key. In
+Subkey, there is a specific dev phrase used whenever a mnemonic phrase is omitted.`//Alice` for
+example is actually:
 
-```bottom drive obey lake curtain smoke basket hold race lonely fit walk//Alice```
+`bottom drive obey lake curtain smoke basket hold race lonely fit walk//Alice`
 
-It is important remember that keys such as this are _not_ secure, and should be deployed only for testing. In addition, anyone not using PolkadotJS or Subkey should note this information to properly generate the account.
+It is important remember that keys such as this are _not_ secure, and should be deployed only for
+testing. In addition, anyone not using PolkadotJS or Subkey should note this information to properly
+generate the account.
 
 ## Signing and Verifying Messages
 
