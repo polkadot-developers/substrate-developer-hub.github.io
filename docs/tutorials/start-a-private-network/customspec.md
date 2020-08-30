@@ -42,18 +42,24 @@ by **"grandpa"** field. That section looks like this
         "changesTrieConfig": null
         //-- snip --
       },
-      "aura": {
+      "palletAura": {
         "authorities": [
           "5FfBQ3kwXrbdyoqLPvcXRp7ikWydXawpNs2Ceu3WwFdhZ8W4",
           "5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty"
         ]
       },
-      "grandpa": {
+      "palletGrandpa": {
         "authorities": [
-          ["5G9NWJ5P9uk7am24yCKeLZJqXWW6hjuMyRJDmw4ofqxG8Js2", 1],
-          ["5GoNkf6WdbxCFnPdAnYYQyCjAKPJgLNxXwPjwTh6DGg6gN3E", 1]
+          [
+            "5G9NWJ5P9uk7am24yCKeLZJqXWW6hjuMyRJDmw4ofqxG8Js2",
+            1
+          ],
+          [
+            "5GoNkf6WdbxCFnPdAnYYQyCjAKPJgLNxXwPjwTh6DGg6gN3E",
+            1
+          ]
         ]
-      }
+      },
       //-- snip --
     }
   }
