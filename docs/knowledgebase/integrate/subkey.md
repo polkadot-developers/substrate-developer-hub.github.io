@@ -184,7 +184,7 @@ Secret phrase `spend report solution aspect tilt omit market cancel what type ca
   Secret seed:      0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
   Public key (hex): 0x143fa4ecea108937a2324d36ee4cbce3c6f3a08b0499b276cd7adb7a7631a559
   Account ID:       0x143fa4ecea108937a2324d36ee4cbce3c6f3a08b0499b276cd7adb7a7631a559
-  SS58 Address:     5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd
+  SS58 Address:     D2sP6XA4DBn3eadsRMYBPoggcDbCuSWUYZ5V63PifURFkcm
 ```
 
 ## Inserting Keys to a Node's Keystore
