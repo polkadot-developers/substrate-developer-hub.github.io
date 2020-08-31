@@ -15,9 +15,7 @@
  */
 
 const React = require("react");
-
 const HomeSplash = require(`${process.cwd()}` + `/core/HomeSplash`);
-
 const Container = require("../../../../react-bootstrap/Container");
 const Button = require("../../../../react-bootstrap/Button");
 const Card = require("../../../../react-bootstrap/Card");
@@ -69,7 +67,7 @@ const tutorialCardData = [{
   length: "2",
   prerequisite: false,
   version: "2.0.0-rc6",
-  href: 'tutorials/create-a-pallet/")}',
+  href: 'tutorials/create-a-pallet/',
 }, {
   img: 'img/grafana.png',
   title: <translate>Visualizing Node Metrics</translate>,
@@ -95,6 +93,7 @@ const tutorialCardData = [{
   length: "4",
   prerequisite: false,
   version: "2.0.0-rc4",
+  hrefFrom: 'baseUrl',
   href: 'tutorials/substrate-contracts-workshop/',
 }];
 
@@ -103,10 +102,9 @@ const capitalize = word =>
 
 const TutorialCards = props => {
   let { baseUrl, docUrl } = props;
+  const tutorialUrl = tut => tut.hrefFrom == 'baseUrl' ? baseUrl(tut.href) : docUrl(tut.href);
 
-  console.log(props.data);
-
-  return props.data.map(tutorial => <a href={tutorial.href} className="a_wrapper">
+  return props.data.map(tutorial => <a href={tutorialUrl(tutorial)} className="a_wrapper">
     <Col xl={3} lg={4} md={6} sm={12} className="mb-5 d-flex align-items-stretch"><Card>
       <Card.Img
         variant="top"
@@ -147,7 +145,7 @@ const TutorialCards = props => {
         <Button
           variant="secondary"
           className="primary-color"
-          href={ docUrl(tutorial.href) }
+          href={tutorialUrl(tutorial)}
         >Try it now!</Button>
       </Card.Footer>
     </Card></Col>
@@ -160,8 +158,14 @@ class Tutorials extends React.Component {
     const { baseUrl, docsUrl } = siteConfig;
     const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
     const langPart = `${language ? `${language}/` : ""}`;
-    const docUrlHandler = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
-    const baseUrlHandler = url => `${baseUrl}${url}`;
+
+    const docUrlHandler = url => (url.startsWith('http://') || url.startsWith('https://'))
+      ? url
+      : `${baseUrl}${docsPart}${langPart}${url}`;
+
+    const baseUrlHandler = url => (url.startsWith('http://') || url.startsWith('https://'))
+      ? url
+      : `${baseUrl}${url}`;
 
     return <div>
       <HomeSplash
