@@ -97,8 +97,7 @@ const tutorialCardData = [{
   href: 'tutorials/substrate-contracts-workshop/',
 }];
 
-const capitalize = word =>
-  `${word.charAt(0).toUpperCase()}${word.slice(1)}`
+const capitalize = word => `${word.charAt(0).toUpperCase()}${word.slice(1)}`;
 
 const TutorialCards = props => {
   let { baseUrl, docUrl } = props;
