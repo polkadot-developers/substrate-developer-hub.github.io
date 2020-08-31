@@ -29,132 +29,74 @@ const translate = require("../../server/translate").translate;
 const tutorialCardData = [{
   img: 'img/crates.png',
   title: <translate>Create Your First Substrate Chain</translate>,
-  text: <translate>Launch and interact with your first Substrate chain in this minimal end-to-end guide</translate>,
+  text: <translate>Launch and interact with your first Substrate chain in this minimal end-to-end guide.</translate>,
   difficulty: "easy",
   length: "< 1",
   prerequisite: false,
   version: "2.0.0-rc6",
-  href: 'tutorials/create-your-first-substrate-chain/'
-},
-  // {
-  //   img: `${baseUrl}img/first-substrate-chain.png`,
-  //   title: (
-  //     <translate>Build a PoE Decentralized Application</translate>
-  //   ),
-  //   text: (
-  //     <translate>
-  //       Build a customized Substrate chain with its own user interface.
-  //     </translate>
-  //   ),
-  //   difficulty: "easy",
-  //   length: "1",
-  //   prerequisite: true,
-  //   version: "2.0.0-rc6",
-  //   href: `${docUrl(
-  //     "tutorials/build-a-dapp/"
-  //   )}`
-  // },
-  // {
-  //   title: (
-  //     <translate>Adding a Pallet to Your Runtime</translate>
-  //   ),
-  //   text: (
-  //     <translate>
-  //       Add the Nicks pallet to your Substrate node template.
-  //     </translate>
-  //   ),
-  //   difficulty: "medium",
-  //   length: "2",
-  //   prerequisite: false,
-  //   version: "2.0.0-rc6",
-  //   href: `${docUrl(
-  //     "tutorials/add-a-pallet/")}`
-  // },
-  // {
-  //   img: `${baseUrl}img/substrate-network.png`,
-  //   title: (
-  //     <translate>Start a Private Network with Substrate</translate>
-  //   ),
-  //   text: (
-  //     <translate>
-  //       Learn to start a blockchain network using an
-  //       out-of-the-box Substrate node.
-  //     </translate>
-  //   ),
-  //   difficulty: "easy",
-  //   length: "2",
-  //   prerequisite: false,
-  //   version: "2.0.0-rc6",
-  //   href: `${docUrl(
-  //     "tutorials/start-a-private-network/"
-  //   )}`
-  // },
-  // {
-  //   img: `${baseUrl}img/crates.png`,
-  //   title: (
-  //     <translate>Write a Pallet in its Own Crate</translate>
-  //   ),
-  //   text: (
-  //     <translate>
-  //       Make your pallets re-usable by packaging them in
-  //       their own rust crate.
-  //     </translate>
-  //   ),
-  //   difficulty: "medium",
-  //   length: "2",
-  //   prerequisite: false,
-  //   version: "2.0.0-rc6",
-  //   href: `${docUrl("tutorials/create-a-pallet/")}`
-  // },
-  // {
-  //   img: `${baseUrl}img/grafana.png`,
-  //   title: (
-  //     <translate>Visualizing Node Metrics</translate>
-  //   ),
-  //   text: (
-  //     <translate>
-  //       Learn how to visualize the metrics that Substrate records using Prometheus.
-  //     </translate>
-  //   ),
-  //   difficulty: "easy",
-  //   length: "< 1",
-  //   prerequisite: false,
-  //   version: "2.0.0-rc5",
-  //   href: `${docUrl("tutorials/visualize-node-metrics/")}`
-  // },
-  // {
-  //   title: (
-  //     <translate>Add the Contracts Pallet to a Runtime</translate>
-  //   ),
-  //   text: (
-  //     <translate>
-  //       Add the Contracts pallet to your Substrate node template.
-  //     </translate>
-  //   ),
-  //   difficulty: "medium",
-  //   length: "2",
-  //   prerequisite: false,
-  //   version: "2.0.0-rc4",
-  //   href: `${docUrl(
-  //     "tutorials/add-contracts-pallet/")}`
-  // },
-  // {
-  //   img: `${baseUrl}img/ink-smart-contracts-tutorial.png`,
-  //   title: <translate>ink! Smart Contracts Tutorial</translate>,
-  //   text: (
-  //     <translate>
-  //       A comprehensive, end-to-end tutorial for building an ERC20
-  //       token contract using ink!.
-  //     </translate>
-  //   ),
-  //   difficulty: "easy",
-  //   length: "4",
-  //   prerequisite: false,
-  //   version: "2.0.0-rc4",
-  //   href:
-  //     "https://substrate-developer-hub.github.io/substrate-contracts-workshop/"
-  // },
-];
+  href: 'tutorials/create-your-first-substrate-chain/',
+}, {
+  img: 'img/first-substrate-chain.png',
+  title: <translate>Build a PoE Decentralized Application</translate>,
+  text: <translate>Build a customized Substrate chain with its own user interface.</translate>,
+  difficulty: "easy",
+  length: "1",
+  prerequisite: true,
+  version: "2.0.0-rc6",
+  href: 'tutorials/build-a-dapp/',
+}, {
+  title: <translate>Adding a Pallet to Your Runtime</translate>,
+  text: <translate>Add the Nicks pallet to your Substrate node template.</translate>,
+  difficulty: "medium",
+  length: "2",
+  prerequisite: false,
+  version: "2.0.0-rc6",
+  href: 'tutorials/add-a-pallet/',
+}, {
+  img: 'img/substrate-network.png',
+  title: <translate>Start a Private Network with Substrate</translate>,
+  text: <translate>Learn to start a blockchain network using an out-of-the-box Substrate node.</translate>,
+  difficulty: "easy",
+  length: "2",
+  prerequisite: false,
+  version: "2.0.0-rc6",
+  href: 'tutorials/start-a-private-network/',
+}, {
+  img: 'img/crates.png',
+  title: <translate>Write a Pallet in its Own Crate</translate>,
+  text: <translate>Make your pallets re-usable by packaging them in their own rust crate.</translate>,
+  difficulty: "medium",
+  length: "2",
+  prerequisite: false,
+  version: "2.0.0-rc6",
+  href: 'tutorials/create-a-pallet/")}',
+}, {
+  img: 'img/grafana.png',
+  title: <translate>Visualizing Node Metrics</translate>,
+  text: <translate>Learn how to visualize the metrics that Substrate records using Prometheus.</translate>,
+  difficulty: "easy",
+  length: "< 1",
+  prerequisite: false,
+  version: "2.0.0-rc5",
+  href: 'tutorials/visualize-node-metrics/',
+}, {
+  title: <translate>Add the Contracts Pallet to a Runtime</translate>,
+  text: <translate>Add the Contracts pallet to your Substrate node template.</translate>,
+  difficulty: "medium",
+  length: "2",
+  prerequisite: false,
+  version: "2.0.0-rc4",
+  href: 'tutorials/add-contracts-pallet/',
+}, {
+  img: 'img/ink-smart-contracts-tutorial.png',
+  title: <translate>ink! Smart Contracts Tutorial</translate>,
+  text: <translate>A comprehensive, end-to-end tutorial for building an ERC20 token contract using ink!.</translate>,
+  difficulty: "easy",
+  length: "4",
+  prerequisite: false,
+  version: "2.0.0-rc4",
+  href: 'tutorials/substrate-contracts-workshop/',
+}];
 
 const capitalize = word =>
   `${word.charAt(0).toUpperCase()}${word.slice(1)}`
@@ -229,10 +171,10 @@ class Tutorials extends React.Component {
         tagline={<translate>Let's learn together!</translate>}
         padding={0}
       />
-      <Container className="mainContainer">
+      <div className="mainContainer"><Container><Row>
         <TutorialCards baseUrl={baseUrlHandler} docUrl={docUrlHandler}
           data={ tutorialCardData } />
-      </Container>
+      </Row></Container></div>
     </div>;
   }
 }
