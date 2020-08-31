@@ -32,8 +32,8 @@
       "knowledgebase/runtime/randomness"
     ],
     "Smart Contracts": [
-      "knowledgebase/smart-contracts/index",
       "knowledgebase/smart-contracts/overview",
+      "knowledgebase/smart-contracts/index",
       "knowledgebase/smart-contracts/ink-fundamentals",
       "knowledgebase/smart-contracts/env-types",
       "knowledgebase/smart-contracts/ink-development",
