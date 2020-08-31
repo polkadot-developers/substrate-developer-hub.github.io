@@ -21,7 +21,7 @@ install the dependencies and Subkey, respectively:
 
 ```bash
 $ curl https://getsubstrate.io -sSf | bash -s -- --fast
-$ cargo install --force --git https://github.com/paritytech/substrate subkey
+$ cargo install --force subkey --git https://github.com/paritytech/substrate --tag v2.0.0-rc6
 ```
 
 ### Compiling with Cargo
