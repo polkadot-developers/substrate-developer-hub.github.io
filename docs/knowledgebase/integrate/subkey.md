@@ -179,7 +179,7 @@ address formatted for Kusama. Notice that the public key is the same, but the ad
 different format.
 
 ```bash
-$ subkey inspect-key --uri "spend report solution aspect tilt omit market cancel what type cave author" --network kusama
+$ subkey inspect-key --network kusama "spend report solution aspect tilt omit market cancel what type cave author"
 Secret phrase `spend report solution aspect tilt omit market cancel what type cave author` is account:
   Secret seed:      0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
   Public key (hex): 0x143fa4ecea108937a2324d36ee4cbce3c6f3a08b0499b276cd7adb7a7631a559
