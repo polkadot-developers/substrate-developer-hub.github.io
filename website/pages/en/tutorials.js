@@ -94,7 +94,7 @@ const tutorialCardData = [{
   prerequisite: false,
   version: "2.0.0-rc4",
   hrefFrom: 'baseUrl',
-  href: 'tutorials/substrate-contracts-workshop/',
+  href: 'tutorials/ink-smart-contracts-tutorial/',
 }];
 
 const capitalize = word => `${word.charAt(0).toUpperCase()}${word.slice(1)}`;

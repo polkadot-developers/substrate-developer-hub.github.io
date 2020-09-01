@@ -6,11 +6,8 @@ class Newsletter extends React.Component {
 			<section id='newsletter'>
 				<div className='container'>
 					<div className='_form_7' />
-					<script
-						src='https://paritytechnologies.activehosted.com/f/embed.php?id=7'
-						type='text/javascript'
-						charSet='utf-8'
-					/>
+					<script src='https://paritytechnologies.activehosted.com/f/embed.php?id=7'
+						type='text/javascript' charset='utf-8'></script>
 				</div>
 			</section>
 		)

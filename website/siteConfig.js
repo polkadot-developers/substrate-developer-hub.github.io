@@ -54,7 +54,7 @@ const siteConfig = {
 		{ page: 'tutorials', label: 'Tutorials' },
 		{ doc: 'index', label: 'Knowledge Base' },
 		{ href: 'https://substrate.dev/recipes/', label: 'Recipes' },
-		{ href: 'https://substrate.dev/rustdocs/', label: 'Reference Documents' },
+		{ href: 'https://substrate.dev/rustdocs/', label: 'API Reference' },
 		{ search: true }
 	],
 
@@ -88,10 +88,6 @@ const siteConfig = {
 		'/js/code-block-buttons.js',
 		'/js/load.js',
 		'/js/redirect-next.js',
-		{
-			src: '/js/ui.js',
-			defer: true
-		},
 		{
 			src: '/js/config.js',
 			defer: true
