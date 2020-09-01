@@ -15,7 +15,7 @@ Subkey is a tool the generates keys specifically designed to be used with Substr
 Begin by compiling and installing the utility. This may take up to 15 minutes or so.
 
 ```bash
-cargo install --force subkey --git https://github.com/paritytech/substrate --tag v2.0.0-rc6
+cargo install --force subkey --git https://github.com/paritytech/substrate --rev 638771d
 ```
 
 We will need to generate at least **2** keys from each type. Every node will need to have its own
@@ -38,8 +38,7 @@ Now see the `ed25519` key and address associated with the same mnemonic. This ke
 GRANDPA for block finalization.
 
 ```bash
-$ subkey inspect-key --scheme ed25519
-URI: <enter secret key or phrase>
+$ subkey inspect-key --scheme ed25519 "infant salmon buzz patrol maple subject turtle cute legend song vital leisure"
 
 Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song vital leisure` is account:
   Secret seed:      0xa2b0200f9666b743402289ca4f7e79c9a4a52ce129365578521b0b75396bd242
