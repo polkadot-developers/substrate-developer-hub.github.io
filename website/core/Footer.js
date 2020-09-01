@@ -1,6 +1,6 @@
 /**
  * Copyright 2019 Parity Technologies
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -120,7 +120,7 @@ class Footer extends React.Component {
               Knowledge Base
             </a>
             <a href="https://substrate.dev/recipes/">Recipes</a>
-            <a href="https://substrate.dev/rustdocs">Reference Documents</a>
+            <a href="https://substrate.dev/rustdocs">API Reference</a>
           </div>
           <div>
             <h5>Community</h5>
@@ -167,16 +167,12 @@ class Footer extends React.Component {
             <a href="#" id="cookie-settings">
               Cookie Settings
               {/* Script for cookie settings pop-up. */}
-              <script
-                dangerouslySetInnerHTML={{
-                  __html: `
-              var cookieSettings = document.getElementById('cookie-settings');
-              cookieSettings.onclick = function() {
-                return klaro.show();
-              };
-              `
-                }}
-              />
+              <script dangerouslySetInnerHTML={{ __html: `
+                var cookieSettings = document.getElementById('cookie-settings');
+                cookieSettings.onclick = function() {
+                  return klaro.show();
+                };
+              ` }}></script>
             </a>
           </div>
         </section>
