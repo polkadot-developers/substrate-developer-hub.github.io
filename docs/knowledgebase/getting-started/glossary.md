@@ -9,13 +9,16 @@ ecosystem. This is a helpful resource for even the most experienced Substrate de
 
 ## Adaptive Quorum Biasing (AQB)
 
-A means of specifying a passing threshold based on the quorum (minimum vote) needed for a proposal
-to pass dependent upon voter turnout. Positive bias means requiring increasingly more aye votes than
-nay votes as there is lower turnout; negative (aka inverted) bias is the opposite (see the
-[graphs](https://youtu.be/VsZuDJMmVPY?t=25413)). It avoids the need for strict quorums, which are
-arbitrary and bring about undesirable mechanics. Adaptive quorum biasing is used by the
-[FRAME Democracy pallet](../runtime/frame#democracy), which is used by chain-governing
-[councils](#council) on a number of Substrate-based chains.
+A means of specifying a passing threshold for a referendum based on voter turnout. Positive turnout
+bias means that as more votes are cast, the passing threshold _decreases_; i.e. a higher turnout
+positively increases the likelihood of a referendum passing. Negative turnout bias means that the
+passing threshold _increases_ as more votes are cast. Negative turnout bias is also called "default
+carries" as, given an apathetic voting body, the referendum will pass by default. A neutral turnout
+bias specifies a simple majority passing threshold. AQB removes the need for strict quorums, which
+are arbitrary and create undesirable governance mechanics. AQB is implemented in the
+[Democracy pallet](../runtime/frame#democracy), which provides the interfaces for a number of
+on-chain bodies (e.g. a [Collective](#council) or any token holder) to call referenda with positive,
+neutral, or negative biases.
 
 ## AfG
 
