@@ -28,7 +28,7 @@ who invented it. AfG is synonymous with [GRANDPA](#grandpa).
 
 ## Aggregation
 
-Used in the context of [FRAME](#frame) "[pallet](#pallet) aggregation", this means combining
+Used in the context of [FRAME](#frame), "[pallet](#pallet) aggregation" means combining
 analogous types from multiple runtime modules into a single type. This allows each module's
 analogous types to be represented. Currently there are six such data types:
 
