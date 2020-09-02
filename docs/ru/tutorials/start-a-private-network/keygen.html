@@ -76,30 +76,26 @@
 <h2><a class="anchor" aria-hidden="true" id="option-1-subkey"></a><a href="#option-1-subkey" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Option 1: Subkey</h2>
 <p>Subkey is a tool the generates keys specifically designed to be used with Substrate.</p>
 <p>Begin by compiling and installing the utility. This may take up to 15 minutes or so.</p>
-<pre><code class="hljs css language-bash">cargo install --force subkey --git https://github.com/paritytech/substrate --tag v2.0.0-rc6
+<pre><code class="hljs css language-bash">cargo install --force subkey --git https://github.com/paritytech/substrate --rev 638771d
 </code></pre>
 <p>We will need to generate at least <strong>2</strong> keys from each type. Every node will need to have its own keys.</p>
 <p>Generate a mnemonic and see the <code>sr25519</code> key and address associated with it. This key will be used by Aura for block production.</p>
-<pre><code class="hljs css language-bash">$ subkey --sr25519 generate
+<pre><code class="hljs css language-bash">$ subkey generate --scheme sr25519
 
 Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song vital leisure` is account:
-  Network ID/version: substrate
-  Secret seed:        0xa2b0200f9666b743402289ca4f7e79c9a4a52ce129365578521b0b75396bd242
-  Public key (hex):   0x0a11c9bcc81f8bd314e80bc51cbfacf30eaeb57e863196a79cccdc8bf4750d21
-  Account ID:         0x0a11c9bcc81f8bd314e80bc51cbfacf30eaeb57e863196a79cccdc8bf4750d21
-  SS58 Address:       5CHucvTwrPg8L2tjneVoemApqXcUaEdUDsCEPyE7aDwrtR8D
-
+  Secret seed:      0xa2b0200f9666b743402289ca4f7e79c9a4a52ce129365578521b0b75396bd242
+  Public key (hex): 0x0a11c9bcc81f8bd314e80bc51cbfacf30eaeb57e863196a79cccdc8bf4750d21
+  Account ID:       0x0a11c9bcc81f8bd314e80bc51cbfacf30eaeb57e863196a79cccdc8bf4750d21
+  SS58 Address:     5CHucvTwrPg8L2tjneVoemApqXcUaEdUDsCEPyE7aDwrtR8D
 </code></pre>
 <p>Now see the <code>ed25519</code> key and address associated with the same mnemonic. This key will be used by GRANDPA for block finalization.</p>
-<pre><code class="hljs css language-bash">$ subkey --ed25519 inspect <span class="hljs-string">"infant salmon buzz patrol maple subject turtle cute legend song vital leisure"</span>
+<pre><code class="hljs css language-bash">$ subkey inspect-key --scheme ed25519 <span class="hljs-string">"infant salmon buzz patrol maple subject turtle cute legend song vital leisure"</span>
 
 Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song vital leisure` is account:
-  Network ID/version: substrate
-  Secret seed:        0xa2b0200f9666b743402289ca4f7e79c9a4a52ce129365578521b0b75396bd242
-  Public key (hex):   0x1a0e2bf1e0195a1f5396c5fd209a620a48fe90f6f336d89c89405a0183a857a3
-  Account ID:         0x1a0e2bf1e0195a1f5396c5fd209a620a48fe90f6f336d89c89405a0183a857a3
-  SS58 Address:       5CesK3uTmn4NGfD3oyGBd1jrp4EfRyYdtqL3ERe9SXv8jUHb
-
+  Secret seed:      0xa2b0200f9666b743402289ca4f7e79c9a4a52ce129365578521b0b75396bd242
+  Public key (hex): 0x1a0e2bf1e0195a1f5396c5fd209a620a48fe90f6f336d89c89405a0183a857a3
+  Account ID:       0x1a0e2bf1e0195a1f5396c5fd209a620a48fe90f6f336d89c89405a0183a857a3
+  SS58 Address:     5CesK3uTmn4NGfD3oyGBd1jrp4EfRyYdtqL3ERe9SXv8jUHb
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="option-2-polkadot-js-apps"></a><a href="#option-2-polkadot-js-apps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Option 2: Polkadot-JS Apps</h2>
 <p>The same UI that we used to see blocks being produced can also be used to generate keys. This option is convenient if you do not want to install subkey. It can be used for production keys, but the system should not be connected to the internet when generating such keys.</p>

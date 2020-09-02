@@ -75,15 +75,15 @@
         </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">The subkey Tool</h1></header><article><div><span><p>Subkey is a key-generation utility that is developed alongside Substrate. Its main features are generating key pairs (currently supporting <a href="https://wiki.polkadot.network/docs/en/learn-cryptography">sr25519</a>, <a href="https://en.wikipedia.org/wiki/EdDSA#Ed25519">ed25519</a>, and <a href="https://en.bitcoin.it/wiki/Secp256k1">secp256k1</a>), encoding SS58 addresses, and restoring keys from mnemonics and raw seeds. It can also create and verify signatures on a message, including encoded transactions.</p>
 <h2><a class="anchor" aria-hidden="true" id="installation"></a><a href="#installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h2>
 <h3><a class="anchor" aria-hidden="true" id="build-from-source"></a><a href="#build-from-source" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Build from Source</h3>
-<p>The Subkey binary, <code>subkey</code>, is also installed along with <a href="../getting-started/#fast-installation">Substrate</a>. If you want to play with just Subkey (and not Substrate), you will need to have the Substrate dependencies. Use the following two commands to install the dependencies and Subkey, respectively:</p>
+<p>The Subkey binary, <code>subkey</code>, is also installed along with <a href="../getting-started/#fast-installation">Substrate</a>. If you want to play with just <code>subkey</code> (and not Substrate), you will need to have the Substrate dependencies. Use the following two commands to install the dependencies and <code>subkey</code>, respectively:</p>
 <pre><code class="hljs css language-bash">$ curl https://getsubstrate.io -sSf | bash -s -- --fast
-$ cargo install --force --git https://github.com/paritytech/substrate subkey
+$ cargo install --force subkey --git https://github.com/paritytech/substrate --rev 638771d
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="compiling-with-cargo"></a><a href="#compiling-with-cargo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Compiling with Cargo</h3>
 <p>If you already have the <a href="https://github.com/paritytech/substrate">Substrate repository</a>, you can build Subkey with:</p>
 <pre><code class="hljs css language-bash">$ cargo build -p subkey --release
 </code></pre>
-<p>This will generate the <code>subkey</code> binary in <code>./target/release/subkey</code>.</p>
+<p>This will generate the <code>subkey</code> binary in <code>./target/release/subkey</code>. Please be aware that the interface to <code>subkey</code> may change between versions; the commands described below have all been tested with the version of <code>subkey</code> specified by the <code>cargo install</code> command in the <a href="#build-from-source">Build from Source</a> section. If you follow the steps in this section to compile <code>subkey</code> with Cargo, the version of <code>subkey</code> will depend on the branch or commit of Substrate that you have checked out.</p>
 <h2><a class="anchor" aria-hidden="true" id="generating-keys"></a><a href="#generating-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generating Keys</h2>
 <p>Generate an sr25519 key by running:</p>
 <pre><code class="hljs css language-bash">$ subkey generate
@@ -102,9 +102,9 @@ Secret phrase `enroll toss harvest pilot size end skin clog city knock bar cousi
   Account ID:       0xc61c17f9a3d48ff3f0700081ac7a9c92ef05758d5cc069c41247e4392eb71e00
   SS58 Address:     5GYTgcrom3pxWyHCcPPZX6iBB8xWJPARgLAng7MK4ZFaBAza
 </code></pre>
-<p>Subkey encodes the address depending on the network. You can use the <code>-n</code> or <code>--network</code> flag to change this. See <code>subkey help</code> for supported networks.</p>
-<p>To generate an ed25519 key, pass the <code>-e</code> or <code>--ed25519</code> flag:</p>
-<pre><code class="hljs css language-bash">$ subkey -e generate
+<p>Subkey encodes the address depending on the network. You can use the <code>--network</code> flag to change this. See <code>subkey help</code> for supported networks.</p>
+<p>Use the <code>--scheme</code> option to generate an ed25519 key:</p>
+<pre><code class="hljs css language-bash">$ subkey generate --scheme ed25519
 Secret phrase `security snow crunch treat tone skill develop nominee hat slim omit stool` is account:
   Secret seed:      0xad282c9eda80640f588f812081d98b9a2333435f76ba4ad6258e9c6f4a488363
   Public key (hex): 0xf6a7ac42a6e1b5329bdb4e63c8bbafa5301add8102843bfe950907bd3969d944
@@ -120,13 +120,13 @@ Secret phrase `security snow crunch treat tone skill develop nominee hat slim om
 </ul>
 <p>Currently <code>subkey</code> supports the following cryptographic key pairs and signing algorithms:</p>
 <ul>
-<li><code>-s</code>, <code>--sr25519</code>: Schorr signatures on the Ristretto group</li>
-<li><code>-e</code>, <code>--ed25519</code>: ed25519</li>
-<li><code>-k</code>, <code>--secp256k1</code>: ECDSA signatures on secp256k1</li>
+<li><code>sr25519</code>: Schorr signatures on the Ristretto group</li>
+<li><code>ed25519</code>: ed25519</li>
+<li><code>secp256k1</code>: ECDSA signatures on secp256k1</li>
 </ul>
 <p>Note that the address for a secp256k1 key is the SS58 encoding of the hash of the public key in order to reduce the public key from 33 bytes to 32 bytes.</p>
 <p>You can also create a vanity address, meaning an address that contains a specified sub-string. But you will not receive a mnemonic phrase for this address.</p>
-<pre><code class="hljs css language-bash">$ subkey vanity joe  --number 1
+<pre><code class="hljs css language-bash">$ subkey vanity --pattern joe
 Generating key containing pattern <span class="hljs-string">'joe'</span>
 100000 keys searched; best is 185/189 complete
 200000 keys searched; best is 187/189 complete
@@ -139,10 +139,9 @@ Secret Key URI `0x380ba96e07933b89c2b3b6d3fa98b695aab99070b8982817b74044c6fa6a37
   SS58 Address:     5DjoeJSa7m4EsuSKwDN1GkrMtTiWwSMGxESQ6KSNPETPaPna
 </code></pre>
 <p>Notice the SS58 Address 5D<strong>joe</strong>JSa7m4EsuSKwDN1GkrMtTiWwSMGxESQ6KSNPETPaPna contains the string <code>joe</code>.</p>
-<p><code>--number</code> is for legacy purpose, so it will generate one vanity address no matter what value is passed in.</p>
 <h2><a class="anchor" aria-hidden="true" id="password-protected-keys"></a><a href="#password-protected-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Password Protected Keys</h2>
-<p>To generate a key that is password protected, use the <code>-p &lt;password&gt;</code> or <code>--password &lt;password&gt;</code> flag:</p>
-<pre><code class="hljs css language-bash">$ subkey --password <span class="hljs-string">"pencil laptop kitchen cutter"</span> generate
+<p>To generate a key that is password protected, use the <code>--password &lt;password&gt;</code> flag:</p>
+<pre><code class="hljs css language-bash">$ subkey generate --password <span class="hljs-string">"pencil laptop kitchen cutter"</span>
 Secret phrase `image stomach entry drink rice hen abstract moment nature broken gadget flash` is account:
   Secret seed:      0x11353649ecfb97ed44aa4b3516c646fa49ecd3f71cc0445647a25379f848b336
   Public key (hex): 0x1641450068c6ed825726c2a854d830352b75fb1a05e6fbcc9bc47a398a581a29
@@ -152,7 +151,7 @@ Secret phrase `image stomach entry drink rice hen abstract moment nature broken 
 <p>Note that the &quot;Secret seed&quot; is <em>not</em> password protected and can still recover the account. The &quot;Secret phrase&quot; however, is not sufficient to recover the account without the password.</p>
 <h2><a class="anchor" aria-hidden="true" id="inspecting-keys"></a><a href="#inspecting-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Inspecting Keys</h2>
 <p>The <code>inspect</code> command recalculates a key pair's public key and public address given its secret seed. This shows that it is sufficient to back up the seed alone.</p>
-<pre><code class="hljs css language-bash">$ subkey inspect 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
+<pre><code class="hljs css language-bash">$ subkey inspect-key 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
 Secret Key URI `0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0` is account:
   Secret seed:      0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
   Public key (hex): 0x143fa4ecea108937a2324d36ee4cbce3c6f3a08b0499b276cd7adb7a7631a559
@@ -160,7 +159,7 @@ Secret Key URI `0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4
   SS58 Address:     5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd
 </code></pre>
 <p>You can also inspect the key by its mnemonic phrase.</p>
-<pre><code class="hljs css language-bash">$ subkey inspect <span class="hljs-string">"spend report solution aspect tilt omit market cancel what type cave author"</span>
+<pre><code class="hljs css language-bash">$ subkey inspect-key <span class="hljs-string">"spend report solution aspect tilt omit market cancel what type cave author"</span>
 Secret phrase `spend report solution aspect tilt omit market cancel what <span class="hljs-built_in">type</span> cave author` is account:
   Secret seed:      0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
   Public key (hex): 0x143fa4ecea108937a2324d36ee4cbce3c6f3a08b0499b276cd7adb7a7631a559
@@ -168,22 +167,22 @@ Secret phrase `spend report solution aspect tilt omit market cancel what <span c
   SS58 Address:     5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd
 </code></pre>
 <p>You can inspect password-protected keys either by passing the <code>--password</code> flag or using <code>///</code> at the end of the mnemonic:</p>
-<pre><code class="hljs css language-bash">$ subkey -p <span class="hljs-string">"pencil laptop kitchen cutter"</span> inspect <span class="hljs-string">"image stomach entry drink rice hen abstract moment nature broken gadget flash"</span>
+<pre><code class="hljs css language-bash">$ subkey inspect-key <span class="hljs-string">"image stomach entry drink rice hen abstract moment nature broken gadget flash"</span> --password <span class="hljs-string">"pencil laptop kitchen cutter"</span>
 Secret phrase `image stomach entry drink rice hen abstract moment nature broken gadget flash` is account:
   Secret seed:      0x11353649ecfb97ed44aa4b3516c646fa49ecd3f71cc0445647a25379f848b336
   Public key (hex): 0x1641450068c6ed825726c2a854d830352b75fb1a05e6fbcc9bc47a398a581a29
   Account ID:       0x1641450068c6ed825726c2a854d830352b75fb1a05e6fbcc9bc47a398a581a29
   SS58 Address:     5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB
 
-$ subkey inspect <span class="hljs-string">"image stomach entry drink rice hen abstract moment nature broken gadget flash///pencil laptop kitchen cutter"</span>
+$ subkey inspect-key <span class="hljs-string">"image stomach entry drink rice hen abstract moment nature broken gadget flash///pencil laptop kitchen cutter"</span>
 Secret Key URI `image stomach entry drink rice hen abstract moment nature broken gadget flash///pencil laptop kitchen cutter` is account:
   Secret seed:      0x11353649ecfb97ed44aa4b3516c646fa49ecd3f71cc0445647a25379f848b336
   Public key (hex): 0x1641450068c6ed825726c2a854d830352b75fb1a05e6fbcc9bc47a398a581a29
   Account ID:       0x1641450068c6ed825726c2a854d830352b75fb1a05e6fbcc9bc47a398a581a29
   SS58 Address:     5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB
 </code></pre>
-<p>Let's say you want to use the same private key on Kusama network. Use <code>-n</code> to get your address formatted for Kusama. Notice that the public key is the same, but the address has a different format.</p>
-<pre><code class="hljs css language-bash">$ subkey -n kusama inspect <span class="hljs-string">"spend report solution aspect tilt omit market cancel what type cave author"</span>
+<p>Let's say you want to use the same private key on Kusama network. Use <code>--network</code> to get your address formatted for Kusama. Notice that the public key is the same, but the address has a different format.</p>
+<pre><code class="hljs css language-bash">$ subkey inspect-key --network kusama <span class="hljs-string">"spend report solution aspect tilt omit market cancel what type cave author"</span>
 Secret phrase `spend report solution aspect tilt omit market cancel what <span class="hljs-built_in">type</span> cave author` is account:
   Secret seed:      0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
   Public key (hex): 0x143fa4ecea108937a2324d36ee4cbce3c6f3a08b0499b276cd7adb7a7631a559
@@ -193,20 +192,14 @@ Secret phrase `spend report solution aspect tilt omit market cancel what <span c
 <h2><a class="anchor" aria-hidden="true" id="inserting-keys-to-a-nodes-keystore"></a><a href="#inserting-keys-to-a-nodes-keystore" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Inserting Keys to a Node's Keystore</h2>
 <p>You can insert fixed keys into a Substrate-based node's keystore with the <code>insert</code> command.</p>
 <pre><code class="hljs css language-bash"><span class="hljs-comment"># Usage</span>
-$ subkey [CRYPTO_TYPE] insert SEED KEY_TYPE node-url
+$ subkey insert [FLAGS] [OPTIONS] --key-type &lt;key-type&gt;
 
 <span class="hljs-comment"># Example: Inserting an Aura key (SR25519 Crypto)</span>
-$ subkey insert 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0 aura http://localhost:9933
+$ subkey insert --suri 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0 --base-path /tmp/node01 --key-type aura
 
 <span class="hljs-comment"># Example: Inserting a Grandpa key (ED25519 Crypto)</span>
-$ subkey -e insert 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0 gran http://localhost:9933
+$ subkey insert --suri 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0 --scheme ed25519 --base-path /tmp/node01 --key-type gran
 </code></pre>
-<ul>
-<li><code>CRYPTO_TYPE</code> - an optional flag specifying what cryptography to use. Defaut is sr25519</li>
-<li><code>SEED</code> - Seed or secret phrase</li>
-<li><code>KEY_TYPE</code> - A 4-character string to specify the key type in the node</li>
-<li><code>node-url</code> - Node's RPC port. Default is <code>http://localhost:9933</code></li>
-</ul>
 <h2><a class="anchor" aria-hidden="true" id="hd-derivation"></a><a href="#hd-derivation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>HD Derivation</h2>
 <p>Subkey supports hard and soft hierarchical deterministic (HD) key derivation compliant with <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki">BIP32</a>. HD keys allow you to have a master seed and define a tree with a key pair at each leaf. The tree has a similar structure to a filesystem and can have any depth you want.</p>
 <p>Hard and soft key derivation both support:</p>
@@ -220,7 +213,7 @@ $ subkey -e insert 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db206
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="hard-key-derivation"></a><a href="#hard-key-derivation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hard Key Derivation</h3>
 <p>You can derive a hard key child using <code>//</code> after the mnemonic phrase:</p>
-<pre><code class="hljs css language-bash">$ subkey inspect <span class="hljs-string">"spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot//0"</span>
+<pre><code class="hljs css language-bash">$ subkey inspect-key <span class="hljs-string">"spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot//0"</span>
 Secret Key URI `spend report solution aspect tilt omit market cancel what <span class="hljs-built_in">type</span> cave author//joe//polkadot//0` is account:
   Secret seed:      0xc25dda466c7749ac966b95e2ef8f5e758a063d26ac4d1895f479964aaf5679cc
   Public key (hex): 0xb49bdb8f2aa714b6e8b62426d03a1506878fc1f2937bdd396bc2102c95613f4b
@@ -229,7 +222,7 @@ Secret Key URI `spend report solution aspect tilt omit market cancel what <span 
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="soft-key-derivation"></a><a href="#soft-key-derivation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Soft Key Derivation</h3>
 <p>Likewise, you can derive a soft key child using a single <code>/</code> after the mnemonic phrase:</p>
-<pre><code class="hljs css language-bash">$ subkey inspect <span class="hljs-string">"spend report solution aspect tilt omit market cancel what type cave author/joe/polkadot/0"</span>
+<pre><code class="hljs css language-bash">$ subkey inspect-key <span class="hljs-string">"spend report solution aspect tilt omit market cancel what type cave author/joe/polkadot/0"</span>
 Secret Key URI `spend report solution aspect tilt omit market cancel what <span class="hljs-built_in">type</span> cave author/joe/polkadot/0` is account:
   Secret seed:      n/a
   Public key (hex): 0x06382e496cb8b1664501bbfcc8205c7b1ddc2402e32ef0479b18abdf326ca342
@@ -237,7 +230,7 @@ Secret Key URI `spend report solution aspect tilt omit market cancel what <span 
   SS58 Address:     5CCrqJffST8uh8RLn2sFJwg1JWs4HkKL88xmdZRdnHt8GDyA
 </code></pre>
 <p>Recall the SS58 address from the same seed phrase, <code>5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd</code>. We can use that to derive the same child address.</p>
-<pre><code class="hljs css language-bash">$ subkey inspect <span class="hljs-string">"5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd/joe/polkadot/0"</span>
+<pre><code class="hljs css language-bash">$ subkey inspect-key <span class="hljs-string">"5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd/joe/polkadot/0"</span>
 Public Key URI `5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd/joe/polkadot/0` is account:
   Network ID/version: substrate
   Public key (hex):   0x06382e496cb8b1664501bbfcc8205c7b1ddc2402e32ef0479b18abdf326ca342
@@ -247,7 +240,7 @@ Public Key URI `5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd/joe/polkadot/0`
 <p>Note that the two addresses here match. This is not the case in hard key derivation.</p>
 <h3><a class="anchor" aria-hidden="true" id="putting-it-all-together"></a><a href="#putting-it-all-together" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Putting it All Together</h3>
 <p>You can mix and match hard and soft key paths (although it doesn't make much sense to have hard paths as children of soft paths). For example:</p>
-<pre><code class="hljs css language-bash">$ subkey inspect <span class="hljs-string">"spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot/0"</span>
+<pre><code class="hljs css language-bash">$ subkey inspect-key <span class="hljs-string">"spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot/0"</span>
 Secret Key URI `spend report solution aspect tilt omit market cancel what <span class="hljs-built_in">type</span> cave author//joe//polkadot/0` is account:
   Secret seed:      n/a
   Public key (hex): 0x2c6d81f231fb2ee802e11a81e5d88c1dfaae2b945b66177bd041d4ef474bb70c
@@ -257,7 +250,7 @@ Secret Key URI `spend report solution aspect tilt omit market cancel what <span 
 <p>The first two levels (<code>//joe//polkadot</code>) are hard-derived, while the leaf (<code>/0</code>) is soft-derived.</p>
 <p>To use key derivation with a password-protected key, add your password to the end:</p>
 <pre><code class="hljs css language-bash"><span class="hljs-comment"># mnemonic phrase plus derivation path plus password</span>
-$ subkey inspect <span class="hljs-string">"image stomach entry drink rice hen abstract moment nature broken gadget flash/joe/polkadot/0///pencil laptop kitchen cutter"</span>
+$ subkey inspect-key <span class="hljs-string">"image stomach entry drink rice hen abstract moment nature broken gadget flash/joe/polkadot/0///pencil laptop kitchen cutter"</span>
 Secret Key URI `image stomach entry drink rice hen abstract moment nature broken gadget flash/joe/polkadot/0///pencil laptop kitchen cutter` is account:
   Secret seed:      n/a
   Public key (hex): 0xc69291081743ba7e8f587f1e848d1ffc7b634ce21793a231b7ac75d430b59068
@@ -265,7 +258,7 @@ Secret Key URI `image stomach entry drink rice hen abstract moment nature broken
   SS58 Address:     5GZ4srnepXvdsuNVoxCGyVZd8ScDm4gkGLTKuaGARy9akjTa
 </code></pre>
 <pre><code class="hljs css language-bash"><span class="hljs-comment"># SS58-address plus derivation path</span>
-$ subkey inspect <span class="hljs-string">"5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB/joe/polkadot/0"</span>
+$ subkey inspect-key <span class="hljs-string">"5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB/joe/polkadot/0"</span>
 Public Key URI `5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB/joe/polkadot/0` is account:
   Network ID/version: substrate
   Public key (hex):   0xc69291081743ba7e8f587f1e848d1ffc7b634ce21793a231b7ac75d430b59068
@@ -275,7 +268,7 @@ Public Key URI `5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB/joe/polkadot/0`
 <p>Notice that the &quot;SS58-address plus derivation path&quot; produces the same address as the &quot;mnemonic phrase plus derivation path plus password.&quot; As such, you can reveal your parent address and derivation paths without revealing your mnemonic phrase or password, retaining control of all derived addresses.</p>
 <h2><a class="anchor" aria-hidden="true" id="well-known-keys"></a><a href="#well-known-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Well-Known Keys</h2>
 <p>If you've worked with Substrate previously, you have likely encountered the ubiquitous accounts for Alice, Bob, and their friends. These keys are not at all private, but are useful for playing with Substrate without always generating new key pairs. You can inspect these &quot;well-known&quot; keys as well.</p>
-<pre><code class="hljs css language-bash">$ subkey inspect //Alice
+<pre><code class="hljs css language-bash">$ subkey inspect-key //Alice
 Secret Key URI `//Alice` is account:
   Secret seed:      0xe5be9a5092b81bca64be81d212e7f2f9eba183bb7a90954f7b76361f6edb5c0a
   Public key (hex): 0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
@@ -289,10 +282,10 @@ Secret Key URI `//Alice` is account:
 <h3><a class="anchor" aria-hidden="true" id="signing"></a><a href="#signing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Signing</h3>
 <p>You can sign a message by passing the message to Subkey on STDIN. You can sign with either your seed or mnemonic phrase.</p>
 <pre><code class="hljs css language-bash"><span class="hljs-comment"># Usage</span>
-$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"msg"</span> | subkey sign &lt;secret-seed&gt;
+$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"msg"</span> | subkey sign --suri &lt;secret-seed&gt;
 
 <span class="hljs-comment"># Example</span>
-$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"test message"</span> | subkey sign 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
+$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"test message"</span> | subkey sign --suri 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
 <span class="hljs-comment"># Output</span>
 1e298698ed97654189ed082b3a19634c9cc2743e6e2e4089cc1759c959a8226d7709916041e195dd861a556ca1fde3d4305c00be3f08f72d369b83b9e3fa9b87
 </code></pre>
@@ -312,10 +305,10 @@ Signature verifies correctly.
 <h2><a class="anchor" aria-hidden="true" id="generating-node-keys"></a><a href="#generating-node-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generating Node Keys</h2>
 <p>You can generate a node's libp2p key by the following:</p>
 <pre><code class="hljs css language-bash"><span class="hljs-comment"># Usage</span>
-$ subkey generate-node-key &lt;output-file&gt;
+$ subkey generate-node-key --file &lt;output-file&gt;
 
 <span class="hljs-comment"># Example</span>
-$ subkey generate-node-key node-key
+$ subkey generate-node-key --file node-key
 <span class="hljs-comment"># Output</span>
 Qmb8aDXsAMoCnozJmUSaYzDTTxathFrsSU12A4owZ5K6V3
 </code></pre>
