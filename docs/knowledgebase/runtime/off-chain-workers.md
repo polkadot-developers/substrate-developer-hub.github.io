@@ -201,7 +201,7 @@ the command line interface as follows.
 
 ```bash
 # Generate a new account
-$ subkey -s generate
+$ subkey generate
 
 # Submit a new key via RPC
 $ curl http://localhost:9933 -H "Content-Type:application/json;charset=utf-8" -d \

@@ -15,13 +15,13 @@ transactions.
 ### Build from Source
 
 The Subkey binary, `subkey`, is also installed along with
-[Substrate](../getting-started/#fast-installation). If
-you want to play with just Subkey (and not Substrate), you will need to have the Substrate
-dependencies. Use the following two commands to install the dependencies and Subkey, respectively:
+[Substrate](../getting-started/#fast-installation). If you want to play with just `subkey` (and not
+Substrate), you will need to have the Substrate dependencies. Use the following two commands to
+install the dependencies and `subkey`, respectively:
 
 ```bash
 $ curl https://getsubstrate.io -sSf | bash -s -- --fast
-$ cargo install --force --git https://github.com/paritytech/substrate subkey
+$ cargo install --force subkey --git https://github.com/paritytech/substrate --rev 638771d
 ```
 
 ### Compiling with Cargo
@@ -33,7 +33,12 @@ build Subkey with:
 $ cargo build -p subkey --release
 ```
 
-This will generate the `subkey` binary in `./target/release/subkey`.
+This will generate the `subkey` binary in `./target/release/subkey`. Please be aware that the
+interface to `subkey` may change between versions; the commands described below have all been tested
+with the version of `subkey` specified by the `cargo install` command in the
+[Build from Source](#build-from-source) section. If you follow the steps in this section to compile
+`subkey` with Cargo, the version of `subkey` will depend on the branch or commit of Substrate that
+you have checked out.
 
 ## Generating Keys
 
@@ -60,13 +65,13 @@ Secret phrase `enroll toss harvest pilot size end skin clog city knock bar cousi
   SS58 Address:     5GYTgcrom3pxWyHCcPPZX6iBB8xWJPARgLAng7MK4ZFaBAza
 ```
 
-Subkey encodes the address depending on the network. You can use the `-n` or `--network` flag to
-change this. See `subkey help` for supported networks.
+Subkey encodes the address depending on the network. You can use the `--network` flag to change
+this. See `subkey help` for supported networks.
 
-To generate an ed25519 key, pass the `-e` or `--ed25519` flag:
+Use the `--scheme` option to generate an ed25519 key:
 
 ```bash
-$ subkey -e generate
+$ subkey generate --scheme ed25519
 Secret phrase `security snow crunch treat tone skill develop nominee hat slim omit stool` is account:
   Secret seed:      0xad282c9eda80640f588f812081d98b9a2333435f76ba4ad6258e9c6f4a488363
   Public key (hex): 0xf6a7ac42a6e1b5329bdb4e63c8bbafa5301add8102843bfe950907bd3969d944
@@ -87,9 +92,9 @@ The output gives us the following information about our key:
 
 Currently `subkey` supports the following cryptographic key pairs and signing algorithms:
 
-- `-s`, `--sr25519`: Schorr signatures on the Ristretto group
-- `-e`, `--ed25519`: ed25519
-- `-k`, `--secp256k1`: ECDSA signatures on secp256k1
+- `sr25519`: Schorr signatures on the Ristretto group
+- `ed25519`: ed25519
+- `secp256k1`: ECDSA signatures on secp256k1
 
 Note that the address for a secp256k1 key is the SS58 encoding of the hash of the public key in
 order to reduce the public key from 33 bytes to 32 bytes.
@@ -98,7 +103,7 @@ You can also create a vanity address, meaning an address that contains a specifi
 you will not receive a mnemonic phrase for this address.
 
 ```bash
-$ subkey vanity joe  --number 1
+$ subkey vanity --pattern joe
 Generating key containing pattern 'joe'
 100000 keys searched; best is 185/189 complete
 200000 keys searched; best is 187/189 complete
@@ -114,16 +119,12 @@ Secret Key URI `0x380ba96e07933b89c2b3b6d3fa98b695aab99070b8982817b74044c6fa6a37
 Notice the SS58 Address 5D**joe**JSa7m4EsuSKwDN1GkrMtTiWwSMGxESQ6KSNPETPaPna contains the string
 `joe`.
 
-`--number` is for legacy purpose, so it will generate one vanity address no matter what value is
-passed in.
-
 ## Password Protected Keys
 
-To generate a key that is password protected, use the `-p <password>` or `--password <password>`
-flag:
+To generate a key that is password protected, use the `--password <password>` flag:
 
 ```bash
-$ subkey --password "pencil laptop kitchen cutter" generate
+$ subkey generate --password "pencil laptop kitchen cutter"
 Secret phrase `image stomach entry drink rice hen abstract moment nature broken gadget flash` is account:
   Secret seed:      0x11353649ecfb97ed44aa4b3516c646fa49ecd3f71cc0445647a25379f848b336
   Public key (hex): 0x1641450068c6ed825726c2a854d830352b75fb1a05e6fbcc9bc47a398a581a29
@@ -140,7 +141,7 @@ The `inspect` command recalculates a key pair's public key and public address gi
 This shows that it is sufficient to back up the seed alone.
 
 ```bash
-$ subkey inspect 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
+$ subkey inspect-key 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
 Secret Key URI `0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0` is account:
   Secret seed:      0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
   Public key (hex): 0x143fa4ecea108937a2324d36ee4cbce3c6f3a08b0499b276cd7adb7a7631a559
@@ -151,7 +152,7 @@ Secret Key URI `0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4
 You can also inspect the key by its mnemonic phrase.
 
 ```bash
-$ subkey inspect "spend report solution aspect tilt omit market cancel what type cave author"
+$ subkey inspect-key "spend report solution aspect tilt omit market cancel what type cave author"
 Secret phrase `spend report solution aspect tilt omit market cancel what type cave author` is account:
   Secret seed:      0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
   Public key (hex): 0x143fa4ecea108937a2324d36ee4cbce3c6f3a08b0499b276cd7adb7a7631a559
@@ -163,14 +164,14 @@ You can inspect password-protected keys either by passing the `--password` flag 
 the end of the mnemonic:
 
 ```bash
-$ subkey -p "pencil laptop kitchen cutter" inspect "image stomach entry drink rice hen abstract moment nature broken gadget flash"
+$ subkey inspect-key "image stomach entry drink rice hen abstract moment nature broken gadget flash" --password "pencil laptop kitchen cutter"
 Secret phrase `image stomach entry drink rice hen abstract moment nature broken gadget flash` is account:
   Secret seed:      0x11353649ecfb97ed44aa4b3516c646fa49ecd3f71cc0445647a25379f848b336
   Public key (hex): 0x1641450068c6ed825726c2a854d830352b75fb1a05e6fbcc9bc47a398a581a29
   Account ID:       0x1641450068c6ed825726c2a854d830352b75fb1a05e6fbcc9bc47a398a581a29
   SS58 Address:     5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB
 
-$ subkey inspect "image stomach entry drink rice hen abstract moment nature broken gadget flash///pencil laptop kitchen cutter"
+$ subkey inspect-key "image stomach entry drink rice hen abstract moment nature broken gadget flash///pencil laptop kitchen cutter"
 Secret Key URI `image stomach entry drink rice hen abstract moment nature broken gadget flash///pencil laptop kitchen cutter` is account:
   Secret seed:      0x11353649ecfb97ed44aa4b3516c646fa49ecd3f71cc0445647a25379f848b336
   Public key (hex): 0x1641450068c6ed825726c2a854d830352b75fb1a05e6fbcc9bc47a398a581a29
@@ -178,12 +179,12 @@ Secret Key URI `image stomach entry drink rice hen abstract moment nature broken
   SS58 Address:     5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB
 ```
 
-Let's say you want to use the same private key on Kusama network. Use `-n` to get your address
-formatted for Kusama. Notice that the public key is the same, but the address has a different
-format.
+Let's say you want to use the same private key on Kusama network. Use `--network` to get your
+address formatted for Kusama. Notice that the public key is the same, but the address has a
+different format.
 
 ```bash
-$ subkey -n kusama inspect "spend report solution aspect tilt omit market cancel what type cave author"
+$ subkey inspect-key --network kusama "spend report solution aspect tilt omit market cancel what type cave author"
 Secret phrase `spend report solution aspect tilt omit market cancel what type cave author` is account:
   Secret seed:      0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
   Public key (hex): 0x143fa4ecea108937a2324d36ee4cbce3c6f3a08b0499b276cd7adb7a7631a559
@@ -197,19 +198,14 @@ You can insert fixed keys into a Substrate-based node's keystore with the `inser
 
 ```bash
 # Usage
-$ subkey [CRYPTO_TYPE] insert SEED KEY_TYPE node-url
+$ subkey insert [FLAGS] [OPTIONS] --key-type <key-type>
 
 # Example: Inserting an Aura key (SR25519 Crypto)
-$ subkey insert 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0 aura http://localhost:9933
+$ subkey insert --suri 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0 --base-path /tmp/node01 --key-type aura
 
 # Example: Inserting a Grandpa key (ED25519 Crypto)
-$ subkey -e insert 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0 gran http://localhost:9933
+$ subkey insert --suri 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0 --scheme ed25519 --base-path /tmp/node01 --key-type gran
 ```
-
-- `CRYPTO_TYPE` - an optional flag specifying what cryptography to use. Defaut is sr25519
-- `SEED` - Seed or secret phrase
-- `KEY_TYPE` - A 4-character string to specify the key type in the node
-- `node-url` - Node's RPC port. Default is `http://localhost:9933`
 
 ## HD Derivation
 
@@ -232,7 +228,7 @@ Further, soft key derivation supports:
 You can derive a hard key child using `//` after the mnemonic phrase:
 
 ```bash
-$ subkey inspect "spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot//0"
+$ subkey inspect-key "spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot//0"
 Secret Key URI `spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot//0` is account:
   Secret seed:      0xc25dda466c7749ac966b95e2ef8f5e758a063d26ac4d1895f479964aaf5679cc
   Public key (hex): 0xb49bdb8f2aa714b6e8b62426d03a1506878fc1f2937bdd396bc2102c95613f4b
@@ -245,7 +241,7 @@ Secret Key URI `spend report solution aspect tilt omit market cancel what type c
 Likewise, you can derive a soft key child using a single `/` after the mnemonic phrase:
 
 ```bash
-$ subkey inspect "spend report solution aspect tilt omit market cancel what type cave author/joe/polkadot/0"
+$ subkey inspect-key "spend report solution aspect tilt omit market cancel what type cave author/joe/polkadot/0"
 Secret Key URI `spend report solution aspect tilt omit market cancel what type cave author/joe/polkadot/0` is account:
   Secret seed:      n/a
   Public key (hex): 0x06382e496cb8b1664501bbfcc8205c7b1ddc2402e32ef0479b18abdf326ca342
@@ -258,7 +254,7 @@ Recall the SS58 address from the same seed phrase,
 address.
 
 ```bash
-$ subkey inspect "5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd/joe/polkadot/0"
+$ subkey inspect-key "5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd/joe/polkadot/0"
 Public Key URI `5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd/joe/polkadot/0` is account:
   Network ID/version: substrate
   Public key (hex):   0x06382e496cb8b1664501bbfcc8205c7b1ddc2402e32ef0479b18abdf326ca342
@@ -274,7 +270,7 @@ You can mix and match hard and soft key paths (although it doesn't make much sen
 paths as children of soft paths). For example:
 
 ```bash
-$ subkey inspect "spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot/0"
+$ subkey inspect-key "spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot/0"
 Secret Key URI `spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot/0` is account:
   Secret seed:      n/a
   Public key (hex): 0x2c6d81f231fb2ee802e11a81e5d88c1dfaae2b945b66177bd041d4ef474bb70c
@@ -288,7 +284,7 @@ To use key derivation with a password-protected key, add your password to the en
 
 ```bash
 # mnemonic phrase plus derivation path plus password
-$ subkey inspect "image stomach entry drink rice hen abstract moment nature broken gadget flash/joe/polkadot/0///pencil laptop kitchen cutter"
+$ subkey inspect-key "image stomach entry drink rice hen abstract moment nature broken gadget flash/joe/polkadot/0///pencil laptop kitchen cutter"
 Secret Key URI `image stomach entry drink rice hen abstract moment nature broken gadget flash/joe/polkadot/0///pencil laptop kitchen cutter` is account:
   Secret seed:      n/a
   Public key (hex): 0xc69291081743ba7e8f587f1e848d1ffc7b634ce21793a231b7ac75d430b59068
@@ -298,7 +294,7 @@ Secret Key URI `image stomach entry drink rice hen abstract moment nature broken
 
 ```bash
 # SS58-address plus derivation path
-$ subkey inspect "5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB/joe/polkadot/0"
+$ subkey inspect-key "5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB/joe/polkadot/0"
 Public Key URI `5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB/joe/polkadot/0` is account:
   Network ID/version: substrate
   Public key (hex):   0xc69291081743ba7e8f587f1e848d1ffc7b634ce21793a231b7ac75d430b59068
@@ -318,7 +314,7 @@ Alice, Bob, and their friends. These keys are not at all private, but are useful
 Substrate without always generating new key pairs. You can inspect these "well-known" keys as well.
 
 ```bash
-$ subkey inspect //Alice
+$ subkey inspect-key //Alice
 Secret Key URI `//Alice` is account:
   Secret seed:      0xe5be9a5092b81bca64be81d212e7f2f9eba183bb7a90954f7b76361f6edb5c0a
   Public key (hex): 0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
@@ -326,11 +322,15 @@ Secret Key URI `//Alice` is account:
   SS58 Address:     5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
 ```
 
-A mnemonic phrase is a secret group of words that can be used to uniquely generate a private key. In Subkey, there is a specific dev phrase used whenever a mnemonic phrase is omitted.```//Alice``` for example is actually:
+A mnemonic phrase is a secret group of words that can be used to uniquely generate a private key. In
+Subkey, there is a specific dev phrase used whenever a mnemonic phrase is omitted.`//Alice` for
+example is actually:
 
-```bottom drive obey lake curtain smoke basket hold race lonely fit walk//Alice```
+`bottom drive obey lake curtain smoke basket hold race lonely fit walk//Alice`
 
-It is important remember that keys such as this are _not_ secure, and should be deployed only for testing. In addition, anyone not using PolkadotJS or Subkey should note this information to properly generate the account.
+It is important remember that keys such as this are _not_ secure, and should be deployed only for
+testing. In addition, anyone not using PolkadotJS or Subkey should note this information to properly
+generate the account.
 
 ## Signing and Verifying Messages
 
@@ -341,10 +341,10 @@ or mnemonic phrase.
 
 ```bash
 # Usage
-$ echo "msg" | subkey sign <secret-seed>
+$ echo "msg" | subkey sign --suri <secret-seed>
 
 # Example
-$ echo "test message" | subkey sign 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
+$ echo "test message" | subkey sign --suri 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
 # Output
 1e298698ed97654189ed082b3a19634c9cc2743e6e2e4089cc1759c959a8226d7709916041e195dd861a556ca1fde3d4305c00be3f08f72d369b83b9e3fa9b87
 ```
@@ -373,10 +373,10 @@ You can generate a node's libp2p key by the following:
 
 ```bash
 # Usage
-$ subkey generate-node-key <output-file>
+$ subkey generate-node-key --file <output-file>
 
 # Example
-$ subkey generate-node-key node-key
+$ subkey generate-node-key --file node-key
 # Output
 Qmb8aDXsAMoCnozJmUSaYzDTTxathFrsSU12A4owZ5K6V3
 ```
