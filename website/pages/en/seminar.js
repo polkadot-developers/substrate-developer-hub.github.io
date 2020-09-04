@@ -112,6 +112,9 @@ function Seminar(props) {
 							<p>
 								On <strong>22 September</strong>, Parity's Andrew Plaza will discuss <a href='https://github.com/paritytech/substrate-archive'>Substrate Archive</a> a tool for indexing the contents of a blockchain into a Postgres SQL database.
 							</p>
+							<p>
+								On <strong>29 September</strong>, Parity's Matt Rutheford and David Palm join us to discuss Substrate Analytics, a tool for benchmarking detailed performance of your Substrate node.
+							</p>
 						</div>
 
 						<div className='col-md-6 second'>
