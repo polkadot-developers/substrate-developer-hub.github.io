@@ -104,9 +104,6 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>01 September</strong>, Dan Forbes will discuss the process of building and publishing a pallet, including how to know when you should publish your pallets. He'll give a code walkthrough and demonstration of his NFT Pallet. Finally he'll discuss some of the design iterations and compilation errors he went through along the way. This session targets beginner and intermediate runtime developers.
-							</p>
-							<p>
 								On <strong>08 September</strong>, Hernando Castano and the team building trustless Substrate bridges joins us to discuss bridges in general and how they are building them on Substrate. They will do a code walkthough and demonstration of moving funds between a Substrate chain and an OpenEthereum PoA chain.
 							</p>
 							<p>
