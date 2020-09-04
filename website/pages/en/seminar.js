@@ -104,16 +104,16 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>01 September</strong>, Dan Forbes will discuss the process of building and publishing a pallet, including how to know when you should publish your pallets. He'll give a code walkthrough and demonstration of his NFT Pallet. Finally he'll discuss some of the design iterations and compilation errors he went through along the way. This session targets beginner and intermediate runtime developers.
-							</p>
-							<p>
 								On <strong>08 September</strong>, Hernando Castano and the team building trustless Substrate bridges joins us to discuss bridges in general and how they are building them on Substrate. They will do a code walkthough and demonstration of moving funds between a Substrate chain and an OpenEthereum PoA chain.
 							</p>
 							<p>
-								The topic for <strong>15 September</strong> has not yet been chosen.
+								On <strong>15 September</strong>, Parity's Jimmy Chu joins us to discuss the instant- and manual-seal consensus engines, and his recent addition of heartbeat blocks. This session will cover consensus topics at a conceptual level, and show how asynchronous Rust is used in Substrate.
 							</p>
 							<p>
-								On <strong>22 September</strong> Parity's Andrew Plaza will discuss <a href='https://github.com/paritytech/substrate-archive'>Substrate Archive</a> a tool for indexing the contents of a blockchain into a Postgres SQL database.
+								On <strong>22 September</strong>, Parity's Andrew Plaza will discuss <a href='https://github.com/paritytech/substrate-archive'>Substrate Archive</a> a tool for indexing the contents of a blockchain into a Postgres SQL database.
+							</p>
+							<p>
+								On <strong>29 September</strong>, Parity's Matt Rutheford and David Palm join us to discuss Substrate Analytics, a tool for benchmarking detailed performance of your Substrate node.
 							</p>
 						</div>
 
