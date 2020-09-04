@@ -107,10 +107,10 @@ function Seminar(props) {
 								On <strong>08 September</strong>, Hernando Castano and the team building trustless Substrate bridges joins us to discuss bridges in general and how they are building them on Substrate. They will do a code walkthough and demonstration of moving funds between a Substrate chain and an OpenEthereum PoA chain.
 							</p>
 							<p>
-								The topic for <strong>15 September</strong> has not yet been chosen.
+								On <strong>15 September</strong>, Parity's Jimmy Chu joins us to discuss the instant- and manual-seal consensus engines, and his recent addition of heartbeat blocks. This session will cover consensus topics at a conceptual level, and show how asynchronous Rust is used in Substrate.
 							</p>
 							<p>
-								On <strong>22 September</strong> Parity's Andrew Plaza will discuss <a href='https://github.com/paritytech/substrate-archive'>Substrate Archive</a> a tool for indexing the contents of a blockchain into a Postgres SQL database.
+								On <strong>22 September</strong>, Parity's Andrew Plaza will discuss <a href='https://github.com/paritytech/substrate-archive'>Substrate Archive</a> a tool for indexing the contents of a blockchain into a Postgres SQL database.
 							</p>
 						</div>
 
