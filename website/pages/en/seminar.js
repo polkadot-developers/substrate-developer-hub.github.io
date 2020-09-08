@@ -104,9 +104,6 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>08 September</strong>, Hernando Castano and the team building trustless Substrate bridges joins us to discuss bridges in general and how they are building them on Substrate. They will do a code walkthough and demonstration of moving funds between a Substrate chain and an OpenEthereum PoA chain.
-							</p>
-							<p>
 								On <strong>15 September</strong>, Parity's Jimmy Chu joins us to discuss the instant- and manual-seal consensus engines, and his recent addition of heartbeat blocks. This session will cover consensus topics at a conceptual level, and show how asynchronous Rust is used in Substrate.
 							</p>
 							<p>
