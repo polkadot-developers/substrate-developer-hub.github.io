@@ -1,9 +1,10 @@
 ---
-title: The subkey Tool
+title: The Subkey Tool
 ---
 
-Subkey is a key-generation utility that is developed alongside Substrate. Its main features are
-generating key pairs (currently supporting
+Subkey is a key-generation utility that is developed
+[alongside Substrate](https://github.com/paritytech/substrate/tree/master/bin/utils/subkey). Its
+main features are generating key pairs (currently supporting
 [sr25519](https://wiki.polkadot.network/docs/en/learn-cryptography),
 [ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519), and
 [secp256k1](https://en.bitcoin.it/wiki/Secp256k1)), encoding SS58 addresses, and restoring keys from
@@ -14,10 +15,10 @@ transactions.
 
 ### Build from Source
 
-The Subkey binary, `subkey`, is also installed along with
-[Substrate](../getting-started/#fast-installation). If you want to play with just `subkey` (and not
+The Subkey binary, `subkey`, is installed along with
+[Substrate](../getting-started/#fast-installation). If you want to play with just Subkey (and not
 Substrate), you will need to have the Substrate dependencies. Use the following two commands to
-install the dependencies and `subkey`, respectively:
+install the dependencies and Subkey, respectively:
 
 ```bash
 $ curl https://getsubstrate.io -sSf | bash -s -- --fast
@@ -33,12 +34,12 @@ build Subkey with:
 $ cargo build -p subkey --release
 ```
 
-This will generate the `subkey` binary in `./target/release/subkey`. Please be aware that the
-interface to `subkey` may change between versions; the commands described below have all been tested
-with the version of `subkey` specified by the `cargo install` command in the
+This will generate the Subkey binary in `./target/release/subkey`. Please be aware that the
+interface to Subkey may change between versions; the commands described below have all been tested
+with the version of Subkey specified by the `cargo install` command in the
 [Build from Source](#build-from-source) section. If you follow the steps in this section to compile
-`subkey` with Cargo, the version of `subkey` will depend on the branch or commit of Substrate that
-you have checked out.
+Subkey with Cargo, the version of Subkey will depend on the branch or commit of Substrate that you
+have checked out.
 
 ## Generating Keys
 
@@ -90,7 +91,7 @@ The output gives us the following information about our key:
 - **Public Key** (aka "Account ID") - The public half of the cryptographic key pair in hexadecimal.
 - **SS58 Address** (aka "Public Address") - An SS58-encoded address based on the public key.
 
-Currently `subkey` supports the following cryptographic key pairs and signing algorithms:
+Currently Subkey supports the following cryptographic key pairs and signing algorithms:
 
 - `sr25519`: Schorr signatures on the Ristretto group
 - `ed25519`: ed25519
@@ -388,6 +389,6 @@ The peer ID is displayed on screen and the actual key is saved in the `<output-f
 - Learn more by running `subkey help` or see the
   [README](https://github.com/paritytech/substrate/tree/master/bin/utils/subkey).
 - Key pairs can also be generated in the [PolkadotJS Apps UI](https://polkadot.js.org/apps/). Try
-  creating keys with the UI and restoring them with `subkey` or vice versa.
+  creating keys with the UI and restoring them with Subkey or vice versa.
 - Learn more about
   [different cryptographies and choosing between them](https://wiki.polkadot.network/docs/en/learn-cryptography).
