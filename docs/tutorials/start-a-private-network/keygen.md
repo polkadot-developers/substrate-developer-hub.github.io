@@ -10,7 +10,7 @@ sure to record all of the output from this section as you will need it later.
 
 ## Option 1: Subkey
 
-Subkey is a tool the generates keys specifically designed to be used with Substrate.
+Subkey is a tool that generates keys specifically designed to be used with Substrate.
 
 Begin by compiling and installing the utility. This may take up to 15 minutes or so.
 
@@ -47,10 +47,12 @@ Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song v
   SS58 Address:     5CesK3uTmn4NGfD3oyGBd1jrp4EfRyYdtqL3ERe9SXv8jUHb
 ```
 
+> [Learn more about Subkey](../../knowledgebase/integrate/subkey) in the Integrate section.
+
 ## Option 2: Polkadot-JS Apps
 
 The same UI that we used to see blocks being produced can also be used to generate keys. This option
-is convenient if you do not want to install subkey. It can be used for production keys, but the
+is convenient if you do not want to install Subkey. It can be used for production keys, but the
 system should not be connected to the internet when generating such keys.
 
 > A system that generates production keys should not be connected to the internet regardless of what
