@@ -7,7 +7,7 @@ node based on the `substrate-node-template`.
 
 ## Install the Node Template
 
-You should already have version `v2.0.0-rc6` of the
+You should already have version `v2.0.0-rc6+1` of the
 [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
 compiled on your computer from when you completed the
 [Create Your First Substrate Chain Tutorial](../create-your-first-substrate-chain/).
