@@ -168,7 +168,9 @@ provides a deep dive into the consensus strategies of [the Polkadot Network](#po
 A blockchain consensus protocol that consists of independent or loosely coupled mechanisms for
 [block production](#author) and [finality](#finality). This allows the chain to grow as fast as
 probabilistic consensus protocols, such [Aurand](#aurand), while still maintaining the same level of
-security as [instant finality](#instant-finality) consensus protocols.
+security as [instant finality](#instant-finality) consensus protocols. In general, block production
+algorithms tend to be faster than finality mechanisms; separating these concerns gives Substrate
+developers greater control of their chain's performance.
 
 ## Cryptographic Primitives
 
@@ -245,10 +247,10 @@ that which is used by the Ethereum blockchain. It was developed by
 ## Events
 
 A means of recording, for the benefit of the off-chain world, that some particular [state](#state)
-transition happened. Within the context of [FRAME](#frame), events are one of a number of
-composable data types that each [pallet](#pallet) may individually define. Events in FRAME are
-implemented as a set of ephemeral storage items that are inspected immediately after a block has
-executed and reset during block-initialization.
+transition happened. Within the context of [FRAME](#frame), events are one of a number of composable
+data types that each [pallet](#pallet) may individually define. Events in FRAME are implemented as a
+set of transient storage items that are inspected immediately after a block has executed and reset
+during block-initialization.
 
 ## Executor
 
@@ -263,9 +265,9 @@ is a performance optimization that up-to-date nodes can take advantage of.
 
 ### Wasm Executor
 
-This executor uses a [Wasm](#webassembly-wasm) binary and a Wasm interpreter to execute calls. Since
-Substrate-based chains include Wasm binaries as part of their [state](#state), this is guaranteed to
-be up-to-date regardless of the version of the blockchain [node](#node).
+This executor uses a [Wasm](#webassembly-wasm) binary and a Wasm interpreter to execute calls. The
+binary is guaranteed to be up-to-date regardless of the version of the blockchain [node](#node)
+since it is persisted in the [state](#state) of the Substrate-based chain.
 
 ## Extrinsic
 
@@ -288,12 +290,19 @@ an account's balance ever drops below this amount, then it is removed entirely.
 ## Finality
 
 A part of [consensus](#consensus) that deals with making a progression irreversible. If a
-[block](#block) is "finalized", then any [state](#state) changes it encapsulates are irreversible without a hard fork
-and it is safe to effect any off-chain repercussions that depend on them. The consensus algorithm
-_must_ guarantee that finalized blocks never need reverting.
+[block](#block) is "finalized", then any [state](#state) changes it encapsulates are irreversible
+without a hard fork and it is safe to effect any off-chain repercussions that depend on them. The
+consensus algorithm _must_ guarantee that finalized blocks never need reverting.
 
-[GRANDPA](#grandpa) is the [provable finality](#provable-finality) gadget that is used by the
-[Polkadot Network](#polkadot-network).
+[GRANDPA](#grandpa) is the [deterministic finality](#deterministic-finality) gadget that is used by
+the [Polkadot Network](#polkadot-network).
+
+### Deterministic Finality
+
+In these systems, all blocks are guaranteed to be the canonical block for that chain upon block
+inclusion. Deterministic finality is desirable in situations where the full chain is not available,
+such as in the case of [light clients](#light-client). [GRANDPA](#grandpa) is a deterministic
+finality gadget.
 
 ### Instant Finality
 
@@ -310,12 +319,6 @@ block, denoted by `B`, will remain in the canonical chain; as more blocks are pr
 ### Proof-of-Finality
 
 A piece of data that can be used to prove that a particular block is finalized.
-
-### Provable Finality
-
-In these systems, all blocks are guaranteed to be the canonical block for that chain upon block
-inclusion. Provable finality is desirable in situations where the full chain is not available, such
-as in the case of [light clients](#light-client). [GRANDPA](#grandpa) is a provable finality gadget.
 
 ## Fork
 
