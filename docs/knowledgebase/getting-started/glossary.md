@@ -528,10 +528,6 @@ The block execution logic of a blockchain, i.e. the
 
 ---
 
-## SHAFT
-
-A synonym for [GRANDPA](#grandpa) that is an acronym for SHared Ancestry Finality Tool.
-
 ## Slot
 
 A fixed, equal interval of time used by consensus engines such as [Aura](#aura-aka-authority-round)
