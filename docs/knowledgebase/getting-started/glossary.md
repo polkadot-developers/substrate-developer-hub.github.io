@@ -605,7 +605,7 @@ transaction models.
 
 ## Trie (Patricia Merkle Tree)
 
-An data structure that is used to represents sets of items where:
+An data structure that is used to represent sets of items where:
 
 - a cryptographic digest of the dataset is needed; and/or
 - it is cheap to recompute the digest with incremental changes to the dataset even when it is very
