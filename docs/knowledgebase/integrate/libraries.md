@@ -19,7 +19,7 @@ library for offline generation of Substrate transactions.
 [The Go Substrate RPC Client](https://github.com/centrifuge/go-substrate-rpc-client/), AKA GSRPC, is
 maintained by [Centrifuge](https://centrifuge.io/).
 
-## C
+## C#
 
 [Polkadot API DotNet](https://github.com/usetech-llc/polkadot_api_dotnet) is a Substrate RPC client
 library for .Net programmers. It is maintained by [Usetech](https://usetech.com/blockchain/).
