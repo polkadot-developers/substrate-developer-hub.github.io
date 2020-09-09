@@ -45,9 +45,9 @@ value of the `package.name` attribute in the `Cargo.toml` file to `test-pallet`.
 
 The `package` section of the `Cargo.toml` file now looks like:
 
-**`pallets/test-pallet/Cargo.toml`**
+**`./pallets/test-pallet/Cargo.toml`**
 
-```toml
+```TOML
 [package]
 authors = ['Substrate DevHub <https://github.com/substrate-developer-hub>']
 description = 'FRAME pallet template'
@@ -58,6 +58,25 @@ name = 'test-pallet'
 repository = 'https://github.com/substrate-developer-hub/substrate-pallet-template/'
 version = '2.0.0-rc6'
 ```
+
+### Add the Pallet to the Node's Cargo Workspace
+
+In the root directory holding the entire node source within it, we need to let Cargo know about our new pallet before we can compile it. Cargo will look for this new workspace member based on the *directory name* of your pallet: `./pallets/<PALLET_NAME>` . Add your pallet to `./Cargo.toml` like so:
+
+**`./Cargo.toml`**
+
+```TOML
+[profile.release]
+panic = 'unwind'
+
+[workspace]
+members = [
+    'pallets/test-pallet',
+    # --snip--
+]
+```
+
+> Note: the workspace uses the _directory name_ to identify workspace members. The `./pallets/test-pallet/Cargo.toml` _may_ specify a different name for the package itself in the `package.name` field.
 
 ### Compile the Template Pallet
 
@@ -76,7 +95,7 @@ cargo build --release
 
 ### Your Pallet's `std` Feature
 
-In your `pallets/test-pallet/Cargo.toml` file, you will notice a few lines about the "`std`
+In your `./pallets/test-pallet/Cargo.toml` file, you will notice a few lines about the "`std`
 feature". In Rust, when you enable `std`, you give your project access to
 [the Rust standard libraries](https://doc.rust-lang.org/std/). This works just fine when building
 native binaries.
@@ -88,7 +107,7 @@ our entire runtime, must be able to compile with
 tells our pallet's dependencies to only use their `std` feature when this pallet also uses its `std`
 feature, like so:
 
-**`pallets/test-pallet/Cargo.toml`**
+**`./pallets/test-pallet/Cargo.toml`**
 
 ```TOML
 [features]
@@ -107,7 +126,7 @@ All Substrate pallets will depend on some low-level FRAME libraries such as `fra
 runtimes, they will also have dependencies on these low-level libraries. You will need to ensure
 consistent dependencies between your pallet and your runtime.
 
-**`pallets/test-pallet/Cargo.toml`**
+**`./pallets/test-pallet/Cargo.toml`**
 
 ```TOML
 # --snip--
@@ -127,7 +146,7 @@ low-level libraries. Thus it can be used in runtimes that also depend on `2.0.0-
 The final section of the `Cargo.toml` file specifies the dev dependencies. These are the
 dependencies that are needed in your pallet's tests, but not the actual pallet itself.
 
-**`pallets/test-pallet/Cargo.toml`**
+**`./pallets/test-pallet/Cargo.toml`**
 
 ```TOML
 # --snip--
@@ -180,10 +199,10 @@ std = [
 > You **must** set `default_features = false` so that your runtime will successfully compile to
 > Wasm.
 
-Next we will update `runtime/src/lib.rs` to actually use our new runtime pallet, by adding a trait
+Next we will update `./runtime/src/lib.rs` to actually use our new runtime pallet, by adding a trait
 implementation with our `test_pallet` and add it in our `construct_runtime!` macro.
 
-**`runtime/src/lib.rs`**
+**`./runtime/src/lib.rs`**
 
 ```rust
 // add the following code block
@@ -251,7 +270,7 @@ code that is published instead of a hard-coded file system path.
 
 ### Dependencies from GitHub
 
-**`runtime/Cargo.toml`**
+**`./runtime/Cargo.toml`**
 
 ```TOML
 [dependencies.your-pallet-name]
@@ -266,7 +285,7 @@ branch = 'master'
 
 ### Dependencies from Crates.io
 
-**`runtime/Cargo.toml`**
+**`./runtime/Cargo.toml`**
 
 ```TOML
 [dependencies.your-pallet-name]
