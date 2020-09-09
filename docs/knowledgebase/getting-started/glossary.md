@@ -134,7 +134,7 @@ is imperfect information about whether a component has failed) in systems that r
 ### Practical Byzantine Fault Tolerance (pBFT)
 
 An early approach to Byzantine fault tolerance. pBFT systems tolerate Byzantine behavior from up to
-one-third of participants. The communication overhead for such systems is `O(2n²)`, where `n` is the
+one-third of participants. The communication overhead for such systems is `O(n²)`, where `n` is the
 number of nodes (participants) in the system.
 
 ---
@@ -245,7 +245,7 @@ that which is used by the Ethereum blockchain. It was developed by
 ## Events
 
 A means of recording, for the benefit of the off-chain world, that some particular [state](#state)
-transition has happened. Within the context of [FRAME](#frame), events are one of a number of
+transition happened. Within the context of [FRAME](#frame), events are one of a number of
 composable data types that each [pallet](#pallet) may individually define. Events in FRAME are
 implemented as a set of ephemeral storage items that are inspected immediately after a block has
 executed and reset during block-initialization.
@@ -288,7 +288,7 @@ an account's balance ever drops below this amount, then it is removed entirely.
 ## Finality
 
 A part of [consensus](#consensus) that deals with making a progression irreversible. If a
-[block](#block) is "finalized", then any [state](#state) changes it encapsulates are irreversible
+[block](#block) is "finalized", then any [state](#state) changes it encapsulates are irreversible without a hard fork
 and it is safe to effect any off-chain repercussions that depend on them. The consensus algorithm
 _must_ guarantee that finalized blocks never need reverting.
 
