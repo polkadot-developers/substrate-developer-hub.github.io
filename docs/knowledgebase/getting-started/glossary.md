@@ -28,9 +28,9 @@ who invented it. AfG is synonymous with [GRANDPA](#grandpa).
 
 ## Aggregation
 
-Used in the context of [FRAME](#frame), "[pallet](#pallet) aggregation" means combining
-analogous types from multiple runtime modules into a single type. This allows each module's
-analogous types to be represented. Currently there are six such data types:
+Used in the context of [FRAME](#frame), "[pallet](#pallet) aggregation" means combining analogous
+types from multiple runtime modules into a single type. This allows each module's analogous types to
+be represented. Currently there are six such data types:
 
 - `Call` - published functions that may be called with a set of arguments
 - `Error` - used to inform users why a function invocation (`Call`) failed
@@ -76,22 +76,11 @@ authorities are assumed to be honest. Learn more by reading
 [the official wiki article](https://openethereum.github.io/wiki/Aura) for the Aura consensus
 algorithm.
 
-### Aurand
-
-A variant of [Aura](#aura) where [authorities](#authority) are shuffled randomly on each round,
-increasing security.
-
-### Aurand/Ouroboros
-
-Extension of [Aurand](#aurand) where block production involves [authorities](#authority) competing
-over limited slots that move very quickly; most slots are not populated, albeit with rare slot
-collisions.
-
 ### Aura + GRANDPA
 
-A hybrid [consensus](#consensus) scheme where [Aura](#aura) is used for block production and
-short-term probabilistic [finality](#finality), with deterministic finality provided through
-[GRANDPA](#grandpa).
+A [hybrid consensus](#hybrid-consensus) scheme where [Aura](#aura) is used for block production and
+short-term [probabilistic finality](#probabilistic-finality), with
+[deterministic finality](#deterministic-finality) provided through [GRANDPA](#grandpa).
 
 ---
 
@@ -131,6 +120,12 @@ nodes.
 The loss of a system service due to a Byzantine Fault (i.e. components in the system fail and there
 is imperfect information about whether a component has failed) in systems that require consensus.
 
+### Practical Byzantine Fault Tolerance (pBFT)
+
+An early approach to Byzantine fault tolerance. pBFT systems tolerate Byzantine behavior from up to
+one-third of participants. The communication overhead for such systems is `O(n²)`, where `n` is the
+number of nodes (participants) in the system.
+
 ---
 
 ## Consensus
@@ -156,6 +151,16 @@ referred to as being [Byzantine-fault-tolerant](#byzantine-fault-tolerance-bft).
 There is
 [a comprehensive blog series](https://polkadot.network/polkadot-consensus-part-1-introduction/) that
 provides a deep dive into the consensus strategies of [the Polkadot Network](#polkadot-network).
+
+### Hybrid Consensus
+
+A blockchain consensus protocol that consists of independent or loosely coupled mechanisms for
+[block production](#author) and [finality](#finality). This allows the chain to grow as fast as
+probabilistic consensus protocols, such as [Aura](#aura), while still maintaining the same level of
+security as [deterministic finality](#deterministic-finality) consensus protocols, such as
+[GRANDPA](#grandpa). In general, block production algorithms tend to be faster than finality
+mechanisms; separating these concerns gives Substrate developers greater control of their chain's
+performance.
 
 ## Cryptographic Primitives
 
@@ -220,80 +225,93 @@ some arguments. Such published functions take one additional parameter, known as
 
 ## Equivocating
 
-Voting or otherwise backing multiple mutually-exclusive options within the consensus mechanism. This
-is considered fundamentally Byzantine behaviour.
+A type of [Byzantine](#byzantine-fault-tolerance-bft) (erroneous/malicious) behavior that involves
+backing multiple mutually-exclusive options within the [consensus](#consensus) mechanism.
 
 ## Ethash
 
-One of a number of proofs of work, to be used in a Proof-of-Work (PoW) consensus algorithm.
-Originally developed for, and used in, Ethereum by a team led by Tim Hughes.
+A function used by some [proof-of-work](#proof-of-work) [consensus](#consensus) systems, notably
+that which is used by the Ethereum blockchain. It was developed by
+[a team led by Tim Hughes](https://github.com/ethereum/ethash/graphs/contributors).
 
 ## Events
 
-A means of recording, for the benefit of the off-chain world, that some particular state transition
-has happened. Within the context of the SRML, events are one of a number of amalgamatable datatypes
-that each module defines individually and which are aggregated together into a single overall `enum`
-type that can represent all module's types. Events are implemented through a transient set of
-storage items which are inspected immediately after a block has executed and reset during
-block-initialisation.
+A means of recording, for the benefit of the off-chain world, that some particular [state](#state)
+transition happened. Within the context of [FRAME](#frame), events are one of a number of composable
+data types that each [pallet](#pallet) may individually define. Events in FRAME are implemented as a
+set of transient storage items that are inspected immediately after a block has executed and reset
+during block-initialization.
 
 ## Executor
 
-A means of executing a function call in a given runtime with a set of externalities. There are two
-executor implementations present in Substrate, _Wasm_ and _Native_.
-
-### Wasm Executor
-
-An Executor that uses the Wasm binary and a Wasm interpreter to execute the needed call. This tends
-to be slow but is guaranteed correct.
+A means of executing a function call in a given [runtime](#runtime) with a set of dependencies.
+There are two [executor](../../knowledgebase/advanced/executor) implementations present in
+Substrate, _Wasm_ and _Native_.
 
 ### Native Executor
 
-An Executor that uses the current inbuilt and natively compiled runtime to execute the needed call.
-If the code is compatible with the on-chain Wasm code, then it will be a lot faster and correct.
-Incorrect versioning will result in a consensus error.
+This executor uses a natively compiled runtime embedded in the [node](#node) to execute calls. This
+is a performance optimization that up-to-date nodes can take advantage of.
+
+### Wasm Executor
+
+This executor uses a [Wasm](#webassembly-wasm) binary and a Wasm interpreter to execute calls. The
+binary is guaranteed to be up-to-date regardless of the version of the blockchain [node](#node)
+since it is persisted in the [state](#state) of the Substrate-based chain.
 
 ## Extrinsic
 
-A piece of data bundled into a block that expresses something from the "external" (i.e. off-chain)
-world. There are, broadly speaking, two types of extrinsic: transactions (which tend to be signed)
-and inherents (which don't).
+A piece of data that is bundled into a [block](#block) in order to express something from the
+"external" (i.e. off-chain) world. There are, broadly speaking, two types of extrinsics:
+transactions, which may be
+[signed](../../knowledgebase/learn-substrate/extrinsics#signed-transactions) or
+[unsigned](../../knowledgebase/learn-substrate/extrinsics#unsigned-transactions), and
+[inherents](../../knowledgebase/learn-substrate/extrinsics#inherents), which are inserted by
+[block authors](#author).
 
 ## Existential Deposit
 
-Within the SRML Balances module, this is the minimum balance an account may have. Accounts cannot be
-created with a balance less than some minimal amount, and if an account's balance ever drops below
-amount, then it is removed entirely from the system.
-
-> As long as both the sender and receiver keep a balance of at least the existential deposit,
-> transfers, including of very small amounts, will work intuitively. However, an attempt to transfer
-> a small balance from one account to another can have slightly less-than-intuitive consequences
-> when either the sender or receiver balances are very low.
->
-> If the amount transferred is less than the existential deposit and the destination account did not
-> previously exist, then the transfer will "succeed" without actually creating and crediting the
-> destination account; this appears to essentially just burn the transfer balance from the sender.
-> If the transfer takes the sender to below the existential balance, then its account will be
-> deleted. In this way, a transfer can even "successfully" result in the sender account being
-> completely deleted, with the receiver account never being created.
->
-> It is up to middleware to ensure that end-users are made aware of and/or protected from these edge
-> cases.
+Within the [Balances pallet](../../knowledgebase/runtime/frame#balances), this is the minimum
+balance an account may have. Accounts cannot be created with a balance less than this amount, and if
+an account's balance ever drops below this amount, the Balances pallet will use
+[a FRAME System API](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/struct.Module.html#method.dec_ref)
+to drop its references to that account. If all the references to an account are dropped, it
+[may be reaped](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/struct.Module.html#method.allow_death).
 
 ---
 
 ## Finality
 
-A part of consensus dealing with making a progression be irreversible. If a block is finalised, then
-any real-world repercussions can be effected. The consensus algorithm must guarantee that finalised
-blocks never need reverting.
+A part of [consensus](#consensus) that deals with making a progression irreversible. If a
+[block](#block) is "finalized", then any [state](#state) changes it encapsulates are irreversible
+without a hard fork and it is safe to effect any off-chain repercussions that depend on them. The
+consensus algorithm _must_ guarantee that finalized blocks never need reverting.
 
-One example of a work in progress provable finality gadget is being used in Polkadot:
-[GRANDPA](#grandpa).
+[GRANDPA](#grandpa) is the [deterministic finality](#deterministic-finality) gadget that is used by
+the [Polkadot Network](#polkadot-network).
 
-See also: [Aurand+GRANDPA](#aurand-grandpa), [Instant Finality](#instant-finality),
-[Proof-of-Finality](#proof-of-finality), [Probabilistic Finality](#probabilistic-finality),
-[Provable Finality](#provable-finality)
+### Deterministic Finality
+
+In these systems, all blocks are guaranteed to be the canonical block for that chain upon block
+inclusion. Deterministic finality is desirable in situations where the full chain is not available,
+such as in the case of [light clients](#light-client). [GRANDPA](#grandpa) is a deterministic
+finality gadget.
+
+### Instant Finality
+
+A non-probabilistic consensus protocol that gives a guarantee of finality immediately upon block
+production. These tend to be [pBFT](#practical-byzantine-fault-tolerance-pbft)-based and thus very
+expensive in terms of communication requirements.
+
+### Probabilistic Finality
+
+In these systems, finality is expressed in terms of a probability, denoted by `p`, that a proposed
+block, denoted by `B`, will remain in the canonical chain; as more blocks are produced on top of
+`B`, `p` approaches 1.
+
+### Proof-of-Finality
+
+A piece of data that can be used to prove that a particular block is finalized.
 
 ## Fork
 
@@ -328,82 +346,34 @@ be used to extend the runtimes core capabilities.
 
 ## Full Client
 
-A node able to synchronise a block chain in a maximally secure manner through execution (and thus
-verification) of all logic. Compare to Light Client.
+A [node](#node) that is able to synchronize a block chain in a maximally secure manner through
+execution (and thus verification) of all logic. Full clients stand in contrast to
+[light clients](#light-client).
 
 ---
 
 ## Genesis Configuration
 
-A JSON-based configuration file that can be used to determine a genesis block and which thus allows
-a single blockchain runtime to underpin multiple independent chains. Analogous to a "chain spec"
-file in Parity Ethereum, and, when used with Substrate Node, could be considered the third and
-highest-level usage paradigm of Substrate. The SRML provides a means of automatically generating the
-chain configuration logic from the modules and their persistent storage items.
+A mechanism for specifying the initial (genesis) [state](#state) of a [blockchain](#blockchain).
+Genesis configuration of Substrate-based chains is accomplished by way of a
+[chain specification](../../knowledgebase/integrate/chain-spec) file, which makes it easy to use a
+single Substrate codebase to underpin multiple independently configured chains.
 
 ## GRANDPA
 
-GRANDPA (GHOST-based Recursive ANcestor Deriving Prefix Agreement), also previously known as SHAFT
-(SHared Ancestry Finality Tool), and originally known as AfG, is a finality gadget for blockchains,
-implemented in Rust. The formal specification is published at
-https://github.com/w3f/consensus/blob/master/pdf/grandpa-old.pdf.
+A [deterministic finality](#deterministic-finality) gadget for [blockchains](#blockchain) that is
+implemented in the [Rust](https://www.rust-lang.org/) programming language. The
+[formal specification](https://github.com/w3f/consensus/blob/master/pdf/grandpa-old.pdf) is
+maintained by the [Web3 Foundation](https://web3.foundation/)
 
 ---
 
 ## Header
 
-Pieces of primarily [cryptographic information](#cryptographic-primitives) that summarize a block.
-This information is used by [light-clients](#light-client) to get a minimally-secure but very
-efficient synchronization of the chain.
-
-## Hybrid Consensus Protocol
-
-Split blockchain consensus into Block Production and a Finality Gadget. This allows chain growth
-speed to be as fast as in probabilistic "safety" consensus such as Ouroboros or Aurand but with same
-level of security guarantees as in Instant-Finality Consensus Protocols. See
-[the first implementation in Rust](https://github.com/paritytech/finality-afg), and
-[the GRANDPA article](https://github.com/w3f/consensus/blob/master/pdf/grandpa-old.pdf).
-
----
-
-## Instant-Finality
-
-A non-probabilistic consensus protocol that gives a guarantee of finality immediately upon block
-production, for example Tendermint and Rhododendron. These tend to be PBFT based and thus very
-expensive in terms of communication requirements.
-
----
-
-## JSON-RPC
-
-A standard to call functions on a remote system using a JSON protocol. For Substrate, this is
-implemented through the [Parity JSONRPC](https://github.com/paritytech/jsonrpc) crate.
-
-### JSON-RPC Core Crate
-
-Allows creation of JSON-RPC server handler, with supported methods registered. Exposes the Substrate
-Core via different types of Transport Protocols (i.e. WS, HTTP, TCP, IPC)
-
-### JSON-RPC Macros Crate
-
-Allows simplifying in code the creation process of the JSON-RPC server through creating a Rust Trait
-that is annotated with RPC method names, so you can just implement the methods names
-
-### JSON-RPC Proxy Crate
-
-Expose a simple server such as TCP from binaries, with another binary in front to serve as a proxy
-that will expose all other Transport Protocols, and process incoming RPC calls before reaching an
-upstream server, making it possible to implement Caching Middleware (saves having to go all the way
-to the node), Permissioning Middleware, load balancing between node instances, or moving account
-management to the proxy which processes the signed transaction. This provides an alternative to
-embedding the whole JSON-RPC in each project and all the configuration options for each server.
-
-### JSON-RPC PubSub Crate
-
-Custom (though conventional) extension that is useful for Dapp developers. It allows "subscriptions"
-so that the server sends notifications to the client automatically (instead of having to call and
-poll a remote procedure manually all the time) but only with Transport Protocols that support
-persistent connection between client and server (i.e. WS, TCP, IPC)
+A structure that is used to aggregate pieces of (primarily
+[cryptographic](#cryptographic-primitives)) information that summarize a [block](#block). This
+information is used by [light-clients](#light-client) to get a minimally-secure but very efficient
+synchronization of the chain.
 
 ---
 
@@ -427,11 +397,11 @@ by canary networks like Kusama is intended to encourage meaningful experimentati
 
 ---
 
-## Libp2p Rust
+## libp2p
 
-Peer-to-peer networking library. Based on Protocol Labs' Libp2p implementations in Go and
-JavaScript, and their (somewhat incomplete) specifications. Allows use of many transport protocols
-including WebSockets (usable in a web browser).
+A peer-to-peer networking stack that allows use of many transport mechanisms, including WebSockets
+(usable in a web browser). Substrate uses the
+[Rust implementation](https://github.com/libp2p/rust-libp2p) of the libp2p networking stack.
 
 ## Light Client
 
@@ -452,9 +422,9 @@ it easy to compose a [runtime](#runtime).
 
 ## Metadata
 
-Information capture allowing external code to introspect runtime data structures. Includes
-comprehensive descriptions of the dispatch functions, events and storage items for each module in
-the runtime.
+Metadata is information about a system, such as a [blockchain](#blockchain), that makes it easier to
+interact with that system. Blockchain [runtimes](#runtime) that are built with [FRAME](#frame)
+expose [lots of helpful metadata](../../knowledgebase/runtime/metadata).
 
 ---
 
@@ -479,19 +449,13 @@ are done in a pro-rata manner.
 
 ---
 
-## OAS3
-
-OpenAPI Specification 3 (OAS3), which was formally referred to as a Swagger API Specification, is
-the specification used to author a Swagger File in either JSON or YAML format that may be used to
-generate API Reference documentation.
-
 ## Origin
 
-The provenance of a dispatched function call into the runtime. Can be customised (e.g. the Council
-"Motion" origin), but there are two special "built-in"s:
-
-- Root: system level origin, assumed to be omnipotent;
-- Signed: transaction origin, includes the account identifier of the signer;
+A [FRAME](#frame) primitive that identifies the source of a [dispatched](#dispatch) function call
+into the [runtime](#runtime). The FRAME System module defines
+[three built-in origins](../../knowledgebase/runtime/origin#raw-origins); [pallet](#pallet)
+developers can easily define custom origins, such as those defined by the
+[Collective pallet](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_collective/enum.RawOrigin.html).
 
 ---
 
@@ -516,29 +480,11 @@ providing shared infrastructure and security. The Polkadot Network is progressin
 [multi-phase launch process](https://polkadot.network/explaining-the-polkadot-launch-process/) and
 does not currently support parachains.
 
-## Practical Byzantine Fault Tolerance (pBFT)
+## Proof-of-Work
 
-An original method to address the Byzantine Generals Problem. This allows for a system tolerant to
-Byzantine behaviour from up to one third of its participants with an `O(2N**2)` communications
-overhead per node.
-
-## Probabilistic Finality
-
-In a probabilistic finality based chain (e.g. Bitcoin), network participants rely on some
-probability p that a proposed block B will remain in the canonical chain indefinitely, with p
-approaching 1 as further blocks are produced on top of the block B.
-
-## Proof-of-Finality
-
-A piece of data that can be used to prove that a particular block is finalised. Potentially very
-large unless signature aggregation is used.
-
-## Provable Finality
-
-Some consensus mechanisms aim for provable finality, whereby all blocks are guaranteed to be the
-canonical block for that chain upon block inclusion. Provable finality is desirable in cases such as
-when light clients do not have the full chain state, or when communicating with other chains, where
-interchain data is not ubiquitously distributed. See: [GRANDPA](#grandpa)
+A [consensus](#consensus) mechanism that deters attacks by requiring work on the part of network
+participants. For instance, some proof-of-work systems require participants to use the
+[Ethash](#ethash) function to calculate a hash as a proof of completed work.
 
 ---
 
@@ -550,11 +496,23 @@ in the network (the "[parachains](#parachain)"). In addition to providing [conse
 capabilities, relay chains also allow parachains to communicate and exchange digital assets without
 needing to trust one another.
 
+## Remote Procedure Call (RPC)
+
+A mechanism for interacting with a computer program that allows developers to easily query the
+computer program or even invoke its logic with parameters they supply. Substrate nodes expose an RPC
+server on HTTP and WebSocket endpoints.
+
+### JSON-RPC
+
+A standard way to call functions on a remote system by using a JSON protocol. For Substrate, this is
+implemented through the [Parity JSON-RPC](https://github.com/paritytech/jsonrpc) crate.
+
 ## Rhododendron
 
-An Instant-Finality BFT consensus algorithm, one of a number of adaptions of PBFT for the
-blockchain. Others include Stellar's consensus algorithm and Tendermint. See the
-[Rhododendron crate](https://github.com/paritytech/rhododendron).
+An [instant finality](#instant-finality),
+[Byzantine fault tolerant (BFT)](#byzantine-fault-tolerance-bft) [consensus](#consensus) algorithm.
+One of a number of adaptions of [pBFT](#practical-byzantine-fault-tolerance-pbft) for blockchains.
+Refer to its [implementation on GitHub](https://github.com/paritytech/rhododendron).
 
 ## Rococo
 
@@ -564,16 +522,11 @@ heterogeneous blockchain networks.
 
 ## Runtime
 
-The block execution logic of a blockchain, i.e. the state transition function. In Substrate, this is
-stored on-chain in an implementation-neutral, machine-executable format as a WebAssembly binary.
-Other systems tend to express it only in human-readable format (e.g. Ethereum) or not at all (e.g.
-Bitcoin).
+The block execution logic of a blockchain, i.e. the
+[state transition function](#stf-state-transition-function). In Substrate, this is stored as a
+[WebAssembly](#webassembly-wasm) binary in the [chain state](#state).
 
 ---
-
-## SHAFT
-
-SHAFT (SHared Ancestry Finality Tool). See [GRANDPA](#grandpa).
 
 ## Slot
 
@@ -584,84 +537,67 @@ and [BABE](#blind-assignment-of-blockchain-extension-babe). In each slot, a subs
 
 ## Stake-Weighted Voting
 
-Democratic system with one-vote-per-token, rather than one-vote-per-head.
+Democratic voting system that uses one-vote-per-token, rather than one-vote-per-head.
 
 ## State
 
-The data that can be drawn upon by, and that persists between, the executions of sequential blocks.
-State is stored in a "Trie", a cryptographic immutable data-structure that makes incremental digests
-very efficient. In Substrate, this trie is exposed to the runtime as a simple key/value map where
-both keys and values can be arbitrary byte arrays.
+In a [blockchain](#blockchain), the state refers to the cryptographically secure data that persists
+between blocks and can be used to create new blocks as part of the state transition function. In
+Substrate-based blockchains, state is stored in a [trie](#trie), a data structure that supports the
+efficient creation of incremental digests. This trie is exposed to the [runtime](#runtime) as
+[a simple key/value map](../../knowledgebase/advanced/storage) where both keys and values can be
+arbitrary byte arrays.
 
-## SRML (Substrate Runtime Module Library)
+## State Transition Function (STF))
 
-An extensible, generic, configurable and modular system for constructing runtimes and sharing
-reusable components of them. Broadly speaking, this corresponds to the second usage paradigm of
-Substrate, higher-level than using Substrate Core, but lower-level than simply running Substrate
-Node with a custom configuration.
-
-## STF (State Transition Function)
-
-The logic of a blockchain that determines how the state changes when any given block is executed. In
-Substrate, this is essentially equivalent to the Runtime.
+The logic of a [blockchain](#blockchain) that determines how the state changes when a
+[block](#block) is processed. In Substrate, this is effectively equivalent to the
+[runtime](#runtime).
 
 ## Storage Items
 
-Within the SRML, storage items are a means of providing type-safe persistent data for the runtime,
-achieved with a compiler macro, the `parity-codec` crate and the State API. All storage items must
-have a type for which the `parity-codec::Codec` trait is implemented, and, if they have a
-corresponding JSON Genesis Configuration entry, then also the `serde` traits.
+[FRAME](#frame) primitives that provide type-safe data persistence capabilities to the
+[runtime](#runtime). Learn more about storage items in the Knowledge Base article for
+[runtime storage](../../knowledgebase/runtime/storage).
 
 ## Substrate
 
-A framework and toolkit for building and deploying upgradable, modular and efficient blockchains.
-There are three usage paradigms in increasing levels of functionality and opinionation: Core, SRML
-and Node.
-
-### Substrate Core
-
-The lowest level of the three Substrate usage paradigms, this is a minimalist/purist blockchain
-building framework that contains essential functionality at the lowest level including consensus,
-block production, chain synchronisation, I/O for JSON-RPC, runtime, network synchronisation,
-database backend, telemetry, sandboxing, and versioning.
-
-### Substrate Execution Environment
-
-The runtime environment under which WebAssembly code runs in order to execute blocks.
+A flexible framework for building modular, efficient, and upgradeable [blockchains](#blockchain).
+Substrate is written in the [Rust](https://www.rust-lang.org/) programming language and is
+maintained by [Parity Technologies](https://www.parity.io/).
 
 ---
 
 ## Transaction
 
-A type of Extrinsic that includes a signature, and all valid instances cost the signer some amount
-of tokens when included on-chain. Because validity can be determined efficiently, transactions can
-be gossipped on the network with reasonable safety against DoS attacks, much as with Bitcoin and
-Ethereum.
+A type of [extrinsic](#extrinsic) that can be safely gossiped between [nodes](#node) on the network
+thanks to efficient [verification](#cryptographic-primitives) through
+[signatures](../../knowledgebase/learn-substrate/extrinsics#signed-transactions) or
+[signed extensions](../../knowledgebase/learn-substrate/extrinsics#signed-extension).
 
 ## Transaction Era
 
-A definable period, expressed as a range of block numbers, where a transaction may validly be
-included in a block. Eras are a backstop against transaction replay attacks in the case that an
-account is reaped and its (replay-protecting) nonce is reset to zero. Eras are efficiently
-expressible in transactions and cost only two bytes.
-
-See [reclaiming an account](https://github.com/paritytech/substrate/wiki/Reclaiming-an-index).
+A definable period, expressed as a range of [block](#block) numbers, where a transaction may be
+included in a block. Transaction eras are used to protect against transaction replay attacks in the
+event that an account is reaped and its (replay-protecting) nonce is reset to zero.
 
 ## Transaction Pool
 
-A collection of transactions that are not yet included in blocks but have been determined to be
-valid.
+A collection of transactions that are not yet included in [blocks](#block) but have been determined
+to be valid.
 
 ### Tagged Transaction Pool
 
-A "generic" transaction pool implementation allowing the runtime to specify whether a given
-transaction is valid, how it should be prioritised and how it relates to other transactions in terms
-of dependency and mutual exclusivity. It is designed to be easily extensible and general enough to
-have both UTXO and account-based transaction modules be trivially expressible.
+A generic Substrate-based transaction pool implementation that allows the [runtime](#runtime) to
+specify whether a given transaction is valid, how it should be prioritized, and how it relates to
+other transactions in the pool in terms of dependency and mutual-exclusivity. It is designed to be
+easily extensible and general enough to express both the
+[UTXO](https://github.com/danforbes/danforbes/blob/master/writings/utxo.md) and account-based
+transaction models.
 
 ## Trie (Patricia Merkle Tree)
 
-An immutable cryptographic data-structure typically used to express maps or sets of items where:
+An data structure that is used to represent sets of items where:
 
 - a cryptographic digest of the dataset is needed; and/or
 - it is cheap to recompute the digest with incremental changes to the dataset even when it is very
@@ -672,20 +608,20 @@ An immutable cryptographic data-structure typically used to express maps or sets
 
 ## Validator
 
-A semi-trusted (or untrusted but well-incentivised) actor that helps maintain the network. In
-Substrate, validators broadly correspond to the [authorities](#authority) running the consensus
-system. In Polkadot, validators also manage other duties such as guaranteeing data availability and
-validating parachain candidate blocks.
-
-See https://wiki.parity.io/Validator-Set.html
+A semi-trusted (or untrusted but well-incentivized) actor that helps maintain a
+[blockchain](#blockchain) network. In Substrate, validators broadly correspond to the
+[authorities](#authority) running the [consensus](#consensus) system. In
+[Polkadot](#polkadot-network), validators also manage other duties such as guaranteeing data
+availability and validating [parachain](#parachain) candidate [blocks](#block).
 
 ---
 
 ## WebAssembly (Wasm)
 
-An execution architecture based upon a virtual machine that allows for the efficient, platform
-neutral expression of deterministic machine-executable logic. Wasm is used across the Web platform
-and well-tooled and easily compiled from Rust.
+An execution architecture that allows for the efficient, platform-neutral expression of
+deterministic, machine-executable logic. [Wasm](https://webassembly.org/) is easily compiled from
+the [Rust](http://rust-lang.org/) programming language and is used by Substrate-based chains to
+provide portable [runtimes](#runtime) that can be included as part of the chain's [state](#state).
 
 ## Westend
 
