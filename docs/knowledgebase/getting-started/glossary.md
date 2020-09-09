@@ -76,22 +76,11 @@ authorities are assumed to be honest. Learn more by reading
 [the official wiki article](https://openethereum.github.io/wiki/Aura) for the Aura consensus
 algorithm.
 
-### Aurand
-
-A variant of [Aura](#aura) where [authorities](#authority) are shuffled randomly on each round,
-increasing security.
-
-### Aurand/Ouroboros
-
-Extension of [Aurand](#aurand) where block production involves [authorities](#authority) competing
-over limited slots that move very quickly; most slots are not populated, albeit with rare slot
-collisions.
-
 ### Aura + GRANDPA
 
-A hybrid [consensus](#consensus) scheme where [Aura](#aura) is used for block production and
-short-term probabilistic [finality](#finality), with deterministic finality provided through
-[GRANDPA](#grandpa).
+A [hybrid consensus](#hybrid-consensus) scheme where [Aura](#aura) is used for block production and
+short-term [probabilistic finality](#probabilistic-finality), with
+[deterministic finality](#deterministic-finality) provided through [GRANDPA](#grandpa).
 
 ---
 
@@ -167,10 +156,11 @@ provides a deep dive into the consensus strategies of [the Polkadot Network](#po
 
 A blockchain consensus protocol that consists of independent or loosely coupled mechanisms for
 [block production](#author) and [finality](#finality). This allows the chain to grow as fast as
-probabilistic consensus protocols, such [Aurand](#aurand), while still maintaining the same level of
-security as [instant finality](#instant-finality) consensus protocols. In general, block production
-algorithms tend to be faster than finality mechanisms; separating these concerns gives Substrate
-developers greater control of their chain's performance.
+probabilistic consensus protocols, such as [Aura](#aura), while still maintaining the same level of
+security as [deterministic finality](#deterministic-finality) consensus protocols, such as
+[GRANDPA](#grandpa). In general, block production algorithms tend to be faster than finality
+mechanisms; separating these concerns gives Substrate developers greater control of their chain's
+performance.
 
 ## Cryptographic Primitives
 
@@ -283,7 +273,10 @@ transactions, which may be
 
 Within the [Balances pallet](../../knowledgebase/runtime/frame#balances), this is the minimum
 balance an account may have. Accounts cannot be created with a balance less than this amount, and if
-an account's balance ever drops below this amount, then it is removed entirely.
+an account's balance ever drops below this amount, the Balances pallet will use
+[a FRAME System API](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/struct.Module.html#method.dec_ref)
+to drop its references to that account. If all the references to an account are dropped, it
+[may be reaped](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/struct.Module.html#method.allow_death).
 
 ---
 
@@ -368,8 +361,8 @@ single Substrate codebase to underpin multiple independently configured chains.
 
 ## GRANDPA
 
-A [finality](#finality) gadget for [blockchains](#blockchain) that is implemented in the
-[Rust](https://www.rust-lang.org/) programming language. The
+A [deterministic finality](#deterministic-finality) gadget for [blockchains](#blockchain) that is
+implemented in the [Rust](https://www.rust-lang.org/) programming language. The
 [formal specification](https://github.com/w3f/consensus/blob/master/pdf/grandpa-old.pdf) is
 maintained by the [Web3 Foundation](https://web3.foundation/)
 
@@ -581,7 +574,10 @@ maintained by [Parity Technologies](https://www.parity.io/).
 
 ## Transaction
 
-A type of [extrinsic](#extrinsic) that may include a signature.
+A type of [extrinsic](#extrinsic) that can be safely gossiped between [nodes](#node) on the network
+thanks to efficient [verification](#cryptographic-primitives) through
+[signatures](../../knowledgebase/learn-substrate/extrinsics#signed-transactions) or
+[signed extensions](../../knowledgebase/learn-substrate/extrinsics#signed-extension).
 
 ## Transaction Era
 
