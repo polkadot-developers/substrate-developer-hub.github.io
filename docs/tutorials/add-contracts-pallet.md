@@ -201,7 +201,7 @@ cargo check
 ## Adding the Contracts Pallet
 
 Now that we have successfully imported the Contracts pallet crate, we need to add it to our Runtime.
-Different pallets will require you to `use` different thing. For the contracts pallet we will use
+Different pallets will require you to `use` different things. For the contracts pallet we will use
 the `Schedule` type. Add this line along with the other `pub use` statements at the beginning of
 your runtime.
 
@@ -340,12 +340,11 @@ We start by adding the required API dependencies in our `Cargo.toml`.
 **`runtime/Cargo.toml`**
 
 ```TOML
-[dependencies.contracts-rpc-runtime-api]
+[dependencies.pallet-contracts-rpc-runtime-api]
 git = 'https://github.com/paritytech/substrate.git'
 default-features = false
-package = 'pallet-contracts-rpc-runtime-api'
-version = '0.8.0-rc6'
 tag = 'v2.0.0-rc6'
+version = '0.8.0-rc6'
 ```
 
 **`runtime/Cargo.toml`**
@@ -355,7 +354,7 @@ tag = 'v2.0.0-rc6'
 default = ["std"]
 std = [
     #--snip--
-    'contracts-rpc-runtime-api/std',
+    'pallet-contracts-rpc-runtime-api/std',
 ]
 ```
 
@@ -368,7 +367,7 @@ We need to add the return type to our runtime. Add this with the other `use` sta
 
 ```rust
 /*** Add This Line ***/
-use contracts_rpc_runtime_api::ContractExecResult;
+use pallet_contracts_rpc_runtime_api::ContractExecResult;
 /* --snip-- */
 ```
 
@@ -380,9 +379,7 @@ impl_runtime_apis! {
    /* --snip-- */
 
    /*** Add This Block ***/
-    impl contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, BlockNumber>
-		for Runtime
-	{
+	impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, BlockNumber> for Runtime {
 		fn call(
 			origin: AccountId,
 			dest: AccountId,
@@ -404,13 +401,13 @@ impl_runtime_apis! {
 		fn get_storage(
 			address: AccountId,
 			key: [u8; 32],
-		) -> contracts_primitives::GetStorageResult {
+		) -> pallet_contracts_primitives::GetStorageResult {
 			Contracts::get_storage(address, key)
 		}
 
 		fn rent_projection(
 			address: AccountId,
-		) -> contracts_primitives::RentProjectionResult<BlockNumber> {
+		) -> pallet_contracts_primitives::RentProjectionResult<BlockNumber> {
 			Contracts::rent_projection(address)
 		}
 	}
