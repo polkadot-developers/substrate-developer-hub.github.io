@@ -76,21 +76,21 @@ function Seminar(props) {
 							<h2>An open collaborative learning call</h2>
 							<p className='lead'>
 								Substrate Seminar is an open Collaborative Learning call where we learn about Substrate
-								together. We meet every Tuesday at 14:00UTC. Ask for help, show off your project, learn
-								Substrate, and make friends!
+								together. Run by DevHub, we meet every Tuesday at 14:00UTC. Learn, show off a Substrate
+								project, and make friends!
 							</p>
 							<a href='https://calendar.google.com/calendar/b/1?cid=cGFyaXR5LmlvXzJmc2tqN245cm1qcHE1Y2xiOWc3ZWUzZGhvQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20'>Add next call to Google Calendar »</a>
 						</div>
-						<div className='col-md-4 col-lg-5 right'>
-							<div className='feature feature-2 boxed boxed--border box-shadow'>
-								<img className='image-host' src='/img/joshy.jpg' />
-								<div className='feature__body'>
-									<h4>Seminar Host</h4>
-									<p>
-										<strong>Joshy Orndorff</strong>
-										<br />Developer Advocate at<br />Parity Technologies
-									</p>
-								</div>
+					//	<div className='col-md-4 col-lg-5 right'>
+					//		<div className='feature feature-2 boxed boxed--border box-shadow'>
+					//			<img className='image-host' src='/img/joshy.jpg' />
+					//			<div className='feature__body'>
+					//				<h4>Seminar Host</h4>
+					//				<p>
+					//					<strong>Joshy Orndorff</strong>
+					//					<br />Developer Advocate at<br />Parity Technologies
+					//				</p>
+					//			</div>
 							</div>
 						</div>
 					</div>
