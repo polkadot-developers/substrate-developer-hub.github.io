@@ -276,7 +276,7 @@ We will use `type DetermineContractAddress` as an example to go into a bit more 
 from
 [the `DetermineContractAddress` documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_contracts/trait.Trait.html#associatedtype.DetermineContractAddress)
 that it requires the trait `ContractAddressFor`. The Contracts pallet itself implements a type with
-this trait in `contract::SimpleAddressDeterminator`, thus we can use that implementation to satisfy
+this trait in `pallet_contracts::SimpleAddressDeterminator`, thus we can use that implementation to satisfy
 our `pallet_contracts::Trait`. At this point, I really recommend you explore the source code of the
 [Contracts pallet](https://github.com/paritytech/substrate/blob/v2.0.0-rc6/frame/contracts/src/lib.rs)
 if things don't make sense or you want to gain a deeper understanding.
