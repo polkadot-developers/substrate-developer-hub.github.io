@@ -210,7 +210,7 @@ your runtime.
 ```rust
 /*** Add This Line ***/
 /// Importing the contracts Schedule type.
-pub use contracts::Schedule as ContractsSchedule;
+pub use pallet_contracts::Schedule as ContractsSchedule;
 ```
 
 ### Implementing the Contract Trait
@@ -239,7 +239,7 @@ pub const DOLLARS: Balance = 100 * CENTS;
 
 ```rust
 
-impl timestamp::Trait for Runtime {
+impl pallet_timestamp::Trait for Runtime {
     /* --snip-- */
 }
 
@@ -251,22 +251,22 @@ parameter_types! {
 	pub const SurchargeReward: Balance = 150 * MILLICENTS;
 }
 
-impl contracts::Trait for Runtime {
+impl pallet_contracts::Trait for Runtime {
 	type Time = Timestamp;
 	type Randomness = RandomnessCollectiveFlip;
 	type Currency = Balances;
 	type Event = Event;
-	type DetermineContractAddress = contracts::SimpleAddressDeterminer<Runtime>;
-	type TrieIdGenerator = contracts::TrieIdFromParentCounter<Runtime>;
+	type DetermineContractAddress = pallet_contracts::SimpleAddressDeterminer<Runtime>;
+	type TrieIdGenerator = pallet_contracts::TrieIdFromParentCounter<Runtime>;
 	type RentPayment = ();
-	type SignedClaimHandicap = contracts::DefaultSignedClaimHandicap;
+	type SignedClaimHandicap = pallet_contracts::DefaultSignedClaimHandicap;
 	type TombstoneDeposit = TombstoneDeposit;
-	type StorageSizeOffset = contracts::DefaultStorageSizeOffset;
+	type StorageSizeOffset = pallet_contracts::DefaultStorageSizeOffset;
 	type RentByteFee = RentByteFee;
 	type RentDepositOffset = RentDepositOffset;
 	type SurchargeReward = SurchargeReward;
-	type MaxDepth = contracts::DefaultMaxDepth;
-	type MaxValueSize = contracts::DefaultMaxValueSize;
+	type MaxDepth = pallet_contracts::DefaultMaxDepth;
+	type MaxValueSize = pallet_contracts::DefaultMaxValueSize;
 	type WeightPrice = transaction_payment::Module<Self>;
 }
 /*** End Added Block ***/
@@ -277,7 +277,7 @@ from
 [the `DetermineContractAddress` documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_contracts/trait.Trait.html#associatedtype.DetermineContractAddress)
 that it requires the trait `ContractAddressFor`. The Contracts pallet itself implements a type with
 this trait in `contract::SimpleAddressDeterminator`, thus we can use that implementation to satisfy
-our `contracts::Trait`. At this point, I really recommend you explore the source code of the
+our `pallet_contracts::Trait`. At this point, I really recommend you explore the source code of the
 [Contracts pallet](https://github.com/paritytech/substrate/blob/v2.0.0-rc6/frame/contracts/src/lib.rs)
 if things don't make sense or you want to gain a deeper understanding.
 
@@ -310,7 +310,7 @@ construct_runtime!(
         /* --snip-- */
 
         /*** Add This Line ***/
-        Contracts: contracts::{Module, Call, Config, Storage, Event<T>},
+        Contracts: pallet_contracts::{Module, Call, Config, Storage, Event<T>},
     }
 );
 ```
