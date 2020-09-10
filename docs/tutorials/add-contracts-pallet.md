@@ -8,7 +8,7 @@ blockchain. However, in the attempts to remain minimal, it does not include most
 [FRAME](../../knowledgebase/runtime/frame).
 
 This guide will show you how you can add the
-[Contracts pallet](https://substrate.dev/rustdocs/v2.0.0-rc6) to your runtime in order to
+[Contracts pallet](https://github.com/paritytech/substrate/tree/v2.0.0-rc6/frame/contracts) to your runtime in order to
 allow your blockchain to support Wasm smart contracts. You can follow similar patterns to add
 additional FRAME pallets to your runtime, however you should note that each pallet is a little
 different in terms of the specific configuration settings needed to use it correctly.
@@ -61,15 +61,14 @@ check out [their official documentation](https://doc.rust-lang.org/cargo/referen
 
 Open `substrate-node-template/runtime/Cargo.toml` and you will see a list of all the dependencies
 your runtime has. For example, it depends on the
-[Balances pallet](https://substrate.dev/rustdocs/v2.0.0-rc6):
+[Balances pallet](https://github.com/paritytech/substrate/tree/v2.0.0-rc6/frame/balances):
 
 **`runtime/Cargo.toml`**
 
 ```TOML
-[dependencies.balances]
+[dependencies.pallt-balances]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-package = 'pallet-balances'
 tag = 'v2.0.0-rc6'
 version = '2.0.0-rc6'
 ```
@@ -145,17 +144,15 @@ So based on the `balances` import shown above, the `contracts` import will look 
 **`runtime/Cargo.toml`**
 
 ```TOML
-[dependencies.contracts]
+[dependencies.pallet-contracts]
 git = 'https://github.com/paritytech/substrate.git'
 default-features = false
-package = 'pallet-contracts'
 tag = 'v2.0.0-rc6'
 version = '2.0.0-rc6'
 
-[dependencies.contracts-primitives]
+[dependencies.pallet-contracts-primitives]
 git = 'https://github.com/paritytech/substrate.git'
 default-features = false
-package = 'pallet-contracts-primitives'
 tag = 'v2.0.0-rc6'
 version = '2.0.0-rc6'
 ```
@@ -171,8 +168,8 @@ when the runtime is built with its own `std` feature. Add the following two line
 default = ["std"]
 std = [
     #--snip--
-    'contracts/std',
-    'contracts-primitives/std',
+    'pallet-contracts/std',
+    'pallet-contracts-primitives/std',
     #--snip--
 ]
 ```
@@ -222,7 +219,7 @@ Every pallet has a configuration trait called `Trait` that the runtime must impl
 
 To figure out what we need to implement for this pallet specifically, you can take a look to the
 FRAME
-[`contracts::Trait` documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_contracts/trait.Trait.html).
+[`pallet_contracts::Trait` documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_contracts/trait.Trait.html).
 For our runtime, the implementation will look like this:
 
 **`runtime/src/lib.rs`**
