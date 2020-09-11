@@ -7,7 +7,10 @@ Every pallet has a component called `Trait` that is used for configuration. This
 interfaces in languages such as C++, Java and Go. FRAME developers must implement this trait for
 each pallet they would like to include in a runtime in order to configure that pallet with the
 parameters and types that it needs from the outer runtime. For instance, in the template pallet that
-is included in the Node Template, you will see the following `Trait` configuration trait:
+is included in the [Node Template](https://github.com/substrate-developer-hub/substrate-node-template),
+you will see the following `Trait` configuration trait:
+
+**`pallets/template/src/lib.rs`**
 
 ```rust
 /// Configure the pallet by specifying the parameters and types on which it depends.
