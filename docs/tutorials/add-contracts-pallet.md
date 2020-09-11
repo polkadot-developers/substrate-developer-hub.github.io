@@ -61,7 +61,7 @@ check out [their official documentation](https://doc.rust-lang.org/cargo/referen
 
 Open `substrate-node-template/runtime/Cargo.toml` and you will see a list of all the dependencies
 your runtime has. For example, it depends on the
-[Balances pallet](https://github.com/paritytech/substrate/tree/v2.0.0-rc6/frame/balances):
+[Balances pallet](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_balances/):
 
 **`runtime/Cargo.toml`**
 
