@@ -8,7 +8,7 @@ blockchain. However, in the attempts to remain minimal, it does not include most
 [FRAME](../../knowledgebase/runtime/frame).
 
 This guide will show you how you can add the
-[Contracts pallet](https://github.com/paritytech/substrate/tree/v2.0.0-rc6/frame/contracts) to your runtime in order to
+[Contracts pallet](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_contracts/) to your runtime in order to
 allow your blockchain to support Wasm smart contracts. You can follow similar patterns to add
 additional FRAME pallets to your runtime, however you should note that each pallet is a little
 different in terms of the specific configuration settings needed to use it correctly.
@@ -277,8 +277,8 @@ from
 [the `DetermineContractAddress` documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_contracts/trait.Trait.html#associatedtype.DetermineContractAddress)
 that it requires the trait `ContractAddressFor`. The Contracts pallet itself implements a type with
 this trait in `pallet_contracts::SimpleAddressDeterminator`, thus we can use that implementation to satisfy
-our `pallet_contracts::Trait`. At this point, I really recommend you explore the source code of the
-[Contracts pallet](https://github.com/paritytech/substrate/blob/v2.0.0-rc6/frame/contracts/src/lib.rs)
+our `pallet_contracts::Trait`. At this point, I really recommend you explore the
+[Contracts pallet source code](https://github.com/paritytech/substrate/blob/v2.0.0-rc6/frame/contracts/src/lib.rs)
 if things don't make sense or you want to gain a deeper understanding.
 
 ### Adding Contracts to the `construct_runtime!` Macro
