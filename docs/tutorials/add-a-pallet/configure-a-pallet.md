@@ -10,7 +10,7 @@ parameters and types that it needs from the outer runtime. For instance, in the 
 is included in the [Node Template](https://github.com/substrate-developer-hub/substrate-node-template),
 you will see the following `Trait` configuration trait:
 
-**`./pallets/template/src/lib.rs`**
+**`pallets/template/src/lib.rs`**
 
 ```rust
 /// Configure the pallet by specifying the parameters and types on which it depends.
