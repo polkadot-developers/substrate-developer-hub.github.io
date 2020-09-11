@@ -81,18 +81,20 @@ function Seminar(props) {
 							</p>
 							<a href='https://calendar.google.com/calendar/b/1?cid=cGFyaXR5LmlvXzJmc2tqN245cm1qcHE1Y2xiOWc3ZWUzZGhvQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20'>Add next call to Google Calendar »</a>
 						</div>
-					//	<div className='col-md-4 col-lg-5 right'>
-					//		<div className='feature feature-2 boxed boxed--border box-shadow'>
-					//			<img className='image-host' src='/img/joshy.jpg' />
-					//			<div className='feature__body'>
-					//				<h4>Seminar Host</h4>
-					//				<p>
-					//					<strong>Joshy Orndorff</strong>
-					//					<br />Developer Advocate at<br />Parity Technologies
-					//				</p>
-					//			</div>
+						{/*
+						<div className='col-md-4 col-lg-5 right'>
+							<div className='feature feature-2 boxed boxed--border box-shadow'>
+								<img className='image-host' src='/img/joshy.jpg' />
+								<div className='feature__body'>
+									<h4>Seminar Host</h4>
+									<p>
+										<strong>Joshy Orndorff</strong>
+										<br />Developer Advocate at<br />Parity Technologies
+									</p>
+								</div>
 							</div>
 						</div>
+						*/}
 					</div>
 					<hr />
 					<div className='row pb-0'>
