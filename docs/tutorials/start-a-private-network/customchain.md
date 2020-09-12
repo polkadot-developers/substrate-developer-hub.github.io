@@ -149,7 +149,7 @@ Make sure you delete the file that contains the keys when you are done.
 ## Subsequent Participants Join
 
 Subsequent validators can now join the network. This can be done by specifying the `--bootnodes`
-paramter as Bob did previously.
+parameter as Bob did previously.
 
 ```bash
 ./target/release/node-template \
