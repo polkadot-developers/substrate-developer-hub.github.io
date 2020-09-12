@@ -18,7 +18,7 @@ The first participant can launch her node with:
 ```bash
 ./target/release/node-template \
   --base-path /tmp/node01 \
-  --chain=./customSpecRaw.json \
+  --chain ./customSpecRaw.json \
   --port 30333 \
   --ws-port 9944 \
   --rpc-port 9933 \
@@ -149,7 +149,7 @@ Make sure you delete the file that contains the keys when you are done.
 ## Subsequent Participants Join
 
 Subsequent validators can now join the network. This can be done by specifying the `--bootnodes`
-paramter as Bob did previously.
+parameter as Bob did previously.
 
 ```bash
 ./target/release/node-template \
