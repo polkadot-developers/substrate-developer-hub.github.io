@@ -2,18 +2,18 @@
 title: Creating Your Private Network
 ---
 
-With you custom chain spec created and distributed to all participants, you're ready to launch your
+With your custom chain spec created and distributed to all participants, you're ready to launch your
 own custom chain. In this section it is no longer required to use a single physical machine or a
 single binary.
 
 ## First Participant Starts a Bootnode
 
 You've completed all the necessary prep work and you're now ready to launch your chain. This process
-is very similar to when you launched a chain earlier as Alice and Bob. It's important to start with
+is very similar to when you launched a chain earlier, as Alice and Bob. It's important to start with
 a clean base path, so if you plan to use the same path that you've used previously, please delete
 all contents from that directory.
 
-The first participant can launch her node with
+The first participant can launch her node with:
 
 ```bash
 ./target/release/node-template \
