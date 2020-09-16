@@ -7,7 +7,7 @@ The
 provides a minimal working runtime which you can use to quickly get started building your own custom
 blockchain. The Node Template includes [a number of components](../../index#architecture), including
 a [runtime](../../knowledgebase/getting-started/glossary#runtime) that is constructed using the
-[FRAME](../../knowledgebase/runtime/frame) runtime development framework, However, in order to
+[FRAME](../../knowledgebase/runtime/frame) runtime development framework. However, in order to
 remain minimal, it does not include most of the modules (called "pallets") from Substrate's set of
 core FRAME pallets.
 
