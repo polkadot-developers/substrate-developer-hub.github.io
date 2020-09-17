@@ -1,0 +1,163 @@
+---
+title: Use the Sudo Pallet
+---
+
+As the name of the [Sudo pallet](../../knowledgebase/runtime/frame#sudo) implies, it provides
+capabilities related to the management of a single
+[`sudo` ("superuser do")](https://en.wikipedia.org/wiki/Sudo) administrator. In FRAME, the `Root`
+Origin is used to identify the runtime administrator; some of FRAME's features, including the
+ability to update the runtime by way of
+[the `set_code` function](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/enum.Call.html#variant.set_code),
+are only accessible to this administrator. The Sudo pallet maintains a single
+[storage item](../../knowledgebase/runtime/storage): the ID of the account that has access to the
+pallet's [dispatchable functions](../../knowledgebase/getting-started/glossary#dispatch). The Sudo
+pallet's `sudo` function allows the holder of this account to invoke a dispatchable as the `Root`
+origin. The following pseudo-code demonstrates how this is achieved, refer to the
+[Sudo pallet's source code](https://github.com/paritytech/substrate/blob/v2.0.0-rc6/frame/sudo/src/lib.rs)
+to learn more.
+
+```rust
+fn sudo(origin, call) -> Result {
+  // Ensure caller is the account identified by the administrator key
+  let sender = ensure_signed(origin)?;
+  ensure!(sender == Self::key(), Error::RequireSudo);
+
+  // Dispatch the specified call as the Root origin
+  let res = call.dispatch(Origin::Root);
+  Ok()
+}
+```
+
+## Start the Template Node
+
+Since forkless runtime upgrades do not require network participants to restart their blockchain
+clients, the first step of this tutorial is to start the template node as-is. Build and start the
+unmodified [Node Template](https://github.com/substrate-developer-hub/substrate-node-template).
+
+```shell
+cargo run --release -- --dev --tmp
+```
+
+## Runtime Upgrade Resource Accounting
+
+Dispatchable calls in Substrate are always associated with a
+[weight](../../knowledgebase/learn-substrate/weight), which is used for resource accounting. FRAME's
+System module enforces a
+[`MaximumExtrinsicWeight`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/trait.Trait.html#associatedtype.MaximumExtrinsicWeight)
+and a
+[`MaximumBlockWeight`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/trait.Trait.html#associatedtype.MaximumBlockWeight),
+and the `set_code` function in
+[the System module](https://github.com/paritytech/substrate/blob/v2.0.0-rc6/frame/system/src/lib.rs)
+is intentionally designed to consume the maximum weight that may fit in a block. The `set_code`
+function's weight annotation also specifies that `set_code` is in
+[the `Operational` class](../../knowledgebase/runtime/fees#operational-dispatches) of dispatchable
+functions, which identifies it as relating to network _operations_ and impacts the accounting of its
+resources, such as by exempting it from the
+[`TransactionByteFee`](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
+In order to work within FRAME's safeguards around resource accounting, the Sudo pallet provides the
+[`sudo_unchecked_weight`](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
+function, which provides the same capability as the `sudo` function, but accepts an additional
+parameter that is used to specify the (possibly zero) weight to use for the call that is dispatched
+from the `Root` origin. The `sudo_unchecked_weight` function is what will be used to invoke the
+runtime upgrade in this section of this tutorial; in the next section, the Scheduler pallet will be
+used to manage the resources consumed by the `set_code` function.
+
+## Prepare an Upgraded Runtime
+
+Because the template node doesn't come with the Scheduler pallet included in its runtime, the first
+runtime upgrade performed in this tutorial will add that pallet. First, add the Scheduler pallet as
+a dependency in the template node's `runtime/Cargo.toml` file.
+
+```toml
+[dependencies.pallet-scheduler]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'v2.0.0-rc6'
+version = '2.0.0-rc6'
+
+#--snip--
+
+[features]
+default = ['std']
+std = [
+    #--snip--
+    'pallet-scheduler/std',
+    #--snip--
+]
+```
+
+Next, add the pallet to the runtime by updating `runtime/src/lib.rs`.
+
+```rust
+// Define the types required by the Scheduler pallet.
+parameter_types! {
+	pub MaximumSchedulerWeight: Weight = Perbill::from_percent(80) * MaximumBlockWeight::get();
+}
+
+// Configure the runtime's implementation of the Scheduler pallet.
+impl pallet_scheduler::Trait for Runtime {
+	type Event = Event;
+	type Origin = Origin;
+	type PalletsOrigin = OriginCaller;
+	type Call = Call;
+	type MaximumWeight = MaximumSchedulerWeight;
+	type ScheduleOrigin = frame_system::EnsureRoot<AccountId>;
+	type WeightInfo = ();
+}
+
+// Add the Scheduler pallet inside the construct_runtime! macro.
+construct_runtime!(
+	pub enum Runtime where
+		Block = Block,
+		NodeBlock = opaque::Block,
+		UncheckedExtrinsic = UncheckedExtrinsic
+	{
+		/*** snip ***/
+		Scheduler: pallet_scheduler::{Module, Call, Storage, Event<T>},
+	}
+);
+```
+
+The final step to preparing an upgraded FRAME runtime is to increment its
+[`spec_version`](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_version/struct.RuntimeVersion.html#structfield.spec_version),
+which is a member of
+[the `RuntimeVersion` struct](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_version/struct.RuntimeVersion.html)
+that is defined in `runtime/src/lib.rs`.
+
+```rust
+pub const VERSION: RuntimeVersion = RuntimeVersion {
+	spec_name: create_runtime_str!("node-template"),
+	impl_name: create_runtime_str!("node-template"),
+	authoring_version: 1,
+	spec_version: 2,  // Update this value.
+	impl_version: 1,
+	apis: RUNTIME_API_VERSIONS,
+	transaction_version: 1,
+};
+```
+
+Build the upgraded runtime.
+
+```shell
+cargo build --release -p node-template-runtime
+```
+
+## Upgrade the Runtime
+
+Use this link to open the Polkadot JS Apps UI and automatically configure the UI to connect to the
+local node: https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:9944. Use Alice's account
+to invoke the `sudo_unchecked_weight` function and use the `set_code` function from the System
+pallet as its parameter. In order to supply the build artifact that was generated by the previous
+build step, toggle the "file upload" switch on the right-hand side of the "code" input field for the
+parameter to the `set_code` function. Click the "code" input field, and select the Wasm binary that
+defines the upgraded runtime:
+`target/release/wbuild/node-template-runtime/node_template_runtime.compact.wasm`. Leave the value
+for the `_weight` parameter at the default of `0`. Click "Submit Transaction" and then "Sign and
+Submit".
+
+![Sudo Upgrade](assets/tutorials/upgrade-a-chain/sudo-upgrade.png)
+
+After the transaction has been included in a block, the version number in the upper-left-hand corner
+of Polkadot JS Apps UI should reflect that the runtime version is now `2`.
+
+![Version 2](assets/tutorials/upgrade-a-chain/version-2.png)

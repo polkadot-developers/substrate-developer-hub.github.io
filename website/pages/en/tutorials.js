@@ -34,6 +34,22 @@ const tutorialCardData = [{
   version: "2.0.0-rc6",
   href: 'tutorials/create-your-first-substrate-chain/',
 }, {
+  title: <translate>Add a Pallet to Your Runtime</translate>,
+  text: <translate>Add the Nicks pallet to your Substrate node template.</translate>,
+  difficulty: "medium",
+  length: "2",
+  prerequisite: false,
+  version: "2.0.0-rc6",
+  href: 'tutorials/add-a-pallet/',
+}, {
+  title: "Upgrade a Chain",
+  text: "Perform a forkless runtime upgrade on a running Substrate network.",
+  difficulty: "medium",
+  length: "2",
+  prerequisite: false,
+  version: "2.0.0-rc6",
+  href: 'tutorials/upgrade-a-chain/',
+}, {
   img: 'img/first-substrate-chain.png',
   title: <translate>Build a PoE Decentralized Application</translate>,
   text: <translate>Build a customized Substrate chain with its own user interface.</translate>,
@@ -42,14 +58,6 @@ const tutorialCardData = [{
   prerequisite: true,
   version: "2.0.0-rc6",
   href: 'tutorials/build-a-dapp/',
-}, {
-  title: <translate>Adding a Pallet to Your Runtime</translate>,
-  text: <translate>Add the Nicks pallet to your Substrate node template.</translate>,
-  difficulty: "medium",
-  length: "2",
-  prerequisite: false,
-  version: "2.0.0-rc6",
-  href: 'tutorials/add-a-pallet/',
 }, {
   img: 'img/substrate-network.png',
   title: <translate>Start a Private Network with Substrate</translate>,
