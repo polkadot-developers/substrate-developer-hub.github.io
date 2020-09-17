@@ -7,8 +7,8 @@ forkless runtime upgrades. This means that Substrate-based networks can be enhan
 supported and protected by the capabilities of the blockchain itself. A blockchain's
 [runtime](../../knowledgebase/runtime) is the mechanism by which
 [state](../../knowledgebase/runtime/storage) changes are effected. Because the definition of the
-runtime is itself an element in a Substrate chain's state, network participates may update this
-value by way of an [extrinsic](../../knowledgebase/learn-substrate/extrinsics),
+runtime is itself an element in a Substrate chain's state, network participants may update this
+value by way of an [extrinsic](../../knowledgebase/learn-substrate/extrinsics) and
 [the `set_code` function](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/enum.Call.html#variant.set_code).
 Since updates to runtime state are bound by the blockchain's consensus mechanisms and cryptographic
 guarantees, network participants can use the blockchain itself to trustlessly distribute updated or
@@ -32,7 +32,7 @@ maintain an active
 monitor the
 [`substrate` tag on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate). You can
 also use the [`subport` GitHub repository](https://github.com/paritytech/subport/issues/new) to
-create an Issue.
+create an issue. We encourage community to be actively part of the future of Substrate. 
 
 ## The Node Template
 
@@ -41,8 +41,7 @@ If you haven't already, you should complete the first two tutorials. The
 will guide you through the process of setting up your development environment. The
 [Add a Pallet to Your Runtime](../../tutorials/add-a-pallet) tutorial will introduce the FRAME
 system for runtime development and guide you through the process of extending the capabilities of a
-FRAME runtime by adding a pallet. If you're an experienced developer and wish to skip those
-tutorials, you can clone the
+FRAME runtime by adding a pallet. If you're an experienced developer, you can clone the
 [Node Template repository](https://github.com/substrate-developer-hub/substrate-node-template) and
-refer to its
+refer to the
 [documentation for local development](https://github.com/substrate-developer-hub/substrate-node-template#local-development).
