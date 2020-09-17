@@ -32,7 +32,7 @@ maintain an active
 monitor the
 [`substrate` tag on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate). You can
 also use the [`subport` GitHub repository](https://github.com/paritytech/subport/issues/new) to
-create an issue. We encourage community to be actively part of the future of Substrate. 
+create an issue. We encourage the community to actively participate in the future of Substrate. 
 
 ## The Node Template
 
