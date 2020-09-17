@@ -45,7 +45,7 @@ impl pallet_balances::Trait for Runtime {
 
 This change increases the value of the Balances pallet's
 [`ExistentialDeposit`](../../knowledgebase/getting-started/glossary#existential-deposit) - the
-minimum balance needed to keep an account alive from the point-of-view of the Balance's pallet. Keep
+minimum balance needed to keep an account alive from the point-of-view of the Balances pallet. Keep
 in mind that this change will _not_ cause all accounts with balances between 500 and 1000 to be
 dropped - that would require a storage migration, which is out of the scope of this tutorial.
 
