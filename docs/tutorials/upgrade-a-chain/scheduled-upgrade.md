@@ -57,7 +57,7 @@ cargo build --release -p node-template-runtime
 
 ## Upgrade the Runtime
 
-In the previous section, the Scheduler pallet was configured with the `root` origin as its
+In the previous section, the Scheduler pallet was configured with the `Root` origin as its
 [`ScheduleOrigin`](https://substrate.dev/rustdocs/v2.0.0-rc5/pallet_scheduler/trait.Trait.html#associatedtype.ScheduleOrigin),
 which means that the `sudo` function (_not_ `sudo_unchecked_weight`) can be used to invoke the
 `schedule` function. Use this link to open the Polkadot JS Apps UI's Sudo tab:
