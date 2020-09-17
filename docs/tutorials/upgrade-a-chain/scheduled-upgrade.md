@@ -65,9 +65,9 @@ https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944. Wait until all the 
 been filled in before providing the `when` parameter. Leave the `maybe_periodic` parameter empty and
 the `priority` parameter at its default value of `0`. Select the System pallet's `set_code` function
 as the `call` parameter and provide the Wasm binary as before. Leave the "with weight override"
-option deactivated. Once all the other fields have been filled in, use a block number about 5 blocks
-(30 seconds) in the future to fill in the `when` parameter and quickly submit the transaction. You
-can use the template node's command line output or the
+option deactivated. Once all the other fields have been filled in, use a block number about 10
+blocks (1 minute) in the future to fill in the `when` parameter and quickly submit the transaction.
+You can use the template node's command line output or the
 [Polkadot JS Apps UI block explorer](https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944)
 to select a block number.
 
@@ -77,3 +77,7 @@ After the target block has been included in the chain, the version number in the
 corner of Polkadot JS Apps UI should reflect that the runtime version is now `3`.
 
 ![Version 3](assets/tutorials/upgrade-a-chain/version-3.png)
+
+You can observe the changes that were made in the upgrade by using the
+[Polkadot JS Apps UI Chain State](https://polkadot.js.org/apps/#/chainstate/constants?rpc=ws://127.0.0.1:9944)
+app to query the `existentialDeposit` constant value from the Balances pallet.

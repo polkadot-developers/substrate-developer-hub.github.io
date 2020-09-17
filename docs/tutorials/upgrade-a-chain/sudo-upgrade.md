@@ -143,6 +143,18 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 };
 ```
 
+Take a moment to review the components of the `RuntimeVersion` struct:
+
+- `spec_name`: The name of the runtime/chain, e.g. Ethereum.
+- `impl_name`: The name of the client, e.g. OpenEthereum.
+- `authoring_version`: The authorship version for
+  [block authors](../../knowledgebase/getting-started/glossary#author).
+- `spec_version`: The version of the runtime/chain.
+- `impl_version`: The version of the client.
+- `apis`: The list of supported APIs.
+- `transaction_version`: The version of the
+  [dispatchable function](../../knowledgebase/getting-started/glossary#dispatch) interface.
+
 Build the upgraded runtime.
 
 ```shell

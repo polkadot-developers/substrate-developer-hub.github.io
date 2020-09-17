@@ -3,10 +3,10 @@ title: Introduction
 ---
 
 One of the defining features of the Substrate blockchain development framework is its support for
-forkless runtime upgrades. This means that Substrate-based networks can be enhanced in a way that is
-supported and protected by the capabilities of the blockchain itself. A blockchain's
-[runtime](../../knowledgebase/runtime) is the mechanism by which
-[state](../../knowledgebase/runtime/storage) changes are effected. Because the definition of the
+forkless runtime upgrades. Forkless upgrades are a means of enhancing a blockchain runtime in a way
+that is supported and protected by the capabilities of the blockchain itself. A blockchain's
+[runtime](../../knowledgebase/runtime) is the mechanism through which
+[state](../../knowledgebase/runtime/storage) changes are carried out. Because the definition of the
 runtime is itself an element in a Substrate chain's state, network participants may update this
 value by way of an [extrinsic](../../knowledgebase/learn-substrate/extrinsics),
 [the `set_code` function](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/enum.Call.html#variant.set_code).
