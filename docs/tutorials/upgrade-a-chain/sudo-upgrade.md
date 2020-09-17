@@ -4,7 +4,7 @@ title: Use the Sudo Pallet
 
 As the name of the [Sudo pallet](../../knowledgebase/runtime/frame#sudo) implies, it provides
 capabilities related to the management of a single
-[`sudo` ("superuser do")](https://en.wikipedia.org/wiki/Sudo) administrator. In FRAME, the `Root`
+[`sudo` ("superuser do")](https://en.wikipedia.org/wiki/Sudo) administrator. In FRAME, the `root`
 Origin is used to identify the runtime administrator; some of FRAME's features, including the
 ability to update the runtime by way of
 [the `set_code` function](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/enum.Call.html#variant.set_code),
@@ -41,32 +41,31 @@ cargo run --release -- --dev --tmp
 ## Runtime Upgrade Resource Accounting
 
 Dispatchable calls in Substrate are always associated with a
-[weight](../../knowledgebase/learn-substrate/weight), which is used for resource accounting. FRAME's
+[weight](../../knowledgebase/learn-substrate/weight) which is used for resource accounting. FRAME's
 System module enforces a
 [`MaximumExtrinsicWeight`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/trait.Trait.html#associatedtype.MaximumExtrinsicWeight)
 and a
-[`MaximumBlockWeight`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/trait.Trait.html#associatedtype.MaximumBlockWeight),
-and the `set_code` function in
+[`MaximumBlockWeight`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/trait.Trait.html#associatedtype.MaximumBlockWeight).
+The `set_code` function in
 [the System module](https://github.com/paritytech/substrate/blob/v2.0.0-rc6/frame/system/src/lib.rs)
 is intentionally designed to consume the maximum weight that may fit in a block. The `set_code`
 function's weight annotation also specifies that `set_code` is in
 [the `Operational` class](../../knowledgebase/runtime/fees#operational-dispatches) of dispatchable
-functions, which identifies it as relating to network _operations_ and impacts the accounting of its
-resources, such as by exempting it from the
+functions. By identifying it as relating to network _operations_ it directly impacts the accounting of 
+its resources by exempting it from the
 [`TransactionByteFee`](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
 In order to work within FRAME's safeguards around resource accounting, the Sudo pallet provides the
 [`sudo_unchecked_weight`](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
 function, which provides the same capability as the `sudo` function, but accepts an additional
 parameter that is used to specify the (possibly zero) weight to use for the call that is dispatched
 from the `Root` origin. The `sudo_unchecked_weight` function is what will be used to invoke the
-runtime upgrade in this section of this tutorial; in the next section, the Scheduler pallet will be
-used to manage the resources consumed by the `set_code` function.
+runtime upgrade in this section of this tutorial.
 
 ## Prepare an Upgraded Runtime
 
-Because the template node doesn't come with the Scheduler pallet included in its runtime, the first
-runtime upgrade performed in this tutorial will add that pallet. First, add the Scheduler pallet as
-a dependency in the template node's `runtime/Cargo.toml` file.
+The first runtime upgrade performed in this tutorial will add a pallet. 
+First, add the Scheduler pallet as a dependency in the template node's `runtime/Cargo.toml` file.
+(We will learn more about the Scheduler pallet specifications later).
 
 ```toml
 [dependencies.pallet-scheduler]
@@ -161,3 +160,6 @@ After the transaction has been included in a block, the version number in the up
 of Polkadot JS Apps UI should reflect that the runtime version is now `2`.
 
 ![Version 2](assets/tutorials/upgrade-a-chain/version-2.png)
+
+
+Congratulations! You've successfully implemented a Runtime. 
