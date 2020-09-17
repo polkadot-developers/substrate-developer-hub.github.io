@@ -126,9 +126,9 @@ construct_runtime!(
 ```
 
 The final step to preparing an upgraded FRAME runtime is to increment its
-[`spec_version`](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_version/struct.RuntimeVersion.html#structfield.spec_version),
+[`spec_version`](https://substrate.dev/rustdocs/v2.0.0-rc6/sp_version/struct.RuntimeVersion.html#structfield.spec_version),
 which is a member of
-[the `RuntimeVersion` struct](https://substrate.dev/rustdocs/v2.0.0-rc5/sp_version/struct.RuntimeVersion.html)
+[the `RuntimeVersion` struct](https://substrate.dev/rustdocs/v2.0.0-rc6/sp_version/struct.RuntimeVersion.html)
 that is defined in `runtime/src/lib.rs`.
 
 ```rust
