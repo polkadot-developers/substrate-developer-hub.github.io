@@ -2,27 +2,22 @@
 title: "Add a Pallet"
 ---
 
-The [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template)
+The [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
 provides a minimal working runtime which you can use to quickly get started building your own custom
 blockchain. However, in the attempts to remain minimal, it does not include most of the pallets from
 [FRAME](../../knowledgebase/runtime/frame).
 
 This guide will show you how you can add the
-[Contracts pallet](https://substrate.dev/rustdocs/v2.0.0-rc4) to your runtime in order to
-allow your blockchain to support Wasm smart contracts. You can follow similar patterns to add
-additional FRAME pallets to your runtime, however you should note that each pallet is a little
-different in terms of the specific configuration settings needed to use it correctly.
+[Contracts pallet](https://substrate.dev/rustdocs/v2.0.0-rc4/pallet_contracts/index.html) to your
+runtime in order to allow your blockchain to support Wasm smart contracts. You can follow similar
+patterns to add additional FRAME pallets to your runtime, however you should note that each pallet
+is a little different in terms of the specific configuration settings needed to use it correctly.
 
 ## Install the Node Template
 
-You should already have version `v2.0.0-rc4` of the
-[Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
-compiled on your computer from when you completed the
-[Create Your First Substrate Chain Tutorial](../../tutorials/create-your-first-substrate-chain/).
-If you do not, please complete that tutorial.
-
-> Experienced developers who truly prefer to skip that tutorial, you may install the node template
-> according to the instructions in its readme.
+The Contracts pallet is compatible with Substrate v2.0.0-rc4, so please check out
+[the `v2.0.0-rc4` tag](https://github.com/substrate-developer-hub/substrate-node-template/tree/v2.0.0-rc4)
+of the Node Template and use that as the starting point for this tutorial.
 
 ## File Structure
 

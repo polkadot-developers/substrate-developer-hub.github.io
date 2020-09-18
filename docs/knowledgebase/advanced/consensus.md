@@ -181,8 +181,8 @@ passed from the outer part of the node, where consensus lives, to the runtime, o
 Because both BABE and GRANDPA will be used in the Polkadot network, Web3 Foundation provides
 research-level presentations of the algorithms.
 
-- [BABE Research](https://research.web3.foundation/en/latest/polkadot/BABE/Babe.html)
-- [GRANDPA Research](https://research.web3.foundation/en/latest/polkadot/GRANDPA.html)
+- [BABE Research](https://research.web3.foundation/en/latest/polkadot/block-production/Babe.html)
+- [GRANDPA Research](https://research.web3.foundation/en/latest/polkadot/finality.html)
 
 All deterministic finality algorithms, including GRANDPA, require at least `2f + 1` non-faulty
 nodes, where `f` is the number of faulty or malicious nodes. Learn more about where this threshold

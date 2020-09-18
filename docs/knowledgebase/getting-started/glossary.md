@@ -90,7 +90,7 @@ short-term [probabilistic finality](#probabilistic-finality), with
 [slots](#slot) based on a verifiable random function (VRF) as opposed to Aura's round-robin
 selection method. The winning authority can select a chain and submit a new block for it. Learn more
 about BABE by referring to its
-[official Web3 Foundation research document](https://w3f-research.readthedocs.io/en/latest/polkadot/BABE.html).
+[official Web3 Foundation research document](https://research.web3.foundation/en/latest/polkadot/block-production/Babe.html).
 
 ## Block
 
