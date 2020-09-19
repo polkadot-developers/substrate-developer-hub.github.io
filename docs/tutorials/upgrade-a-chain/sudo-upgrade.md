@@ -32,10 +32,12 @@ fn sudo(origin, call) -> Result {
 
 Since forkless runtime upgrades do not require network participants to restart their blockchain
 clients, the first step of this tutorial is to start the template node as-is. Build and start the
-unmodified [Node Template](https://github.com/substrate-developer-hub/substrate-node-template).
+unmodified [Node Template](https://github.com/substrate-developer-hub/substrate-node-template). The
+node will not be restarted as part of this tutorial despite the fact that two runtime upgrades are
+performed.
 
 ```shell
-cargo run --release -- --dev --tmp
+cargo run -- --dev --tmp
 ```
 
 Notice that the [well-known Alice account](../../knowledgebase/integrate/subkey#well-known-keys) is
@@ -52,8 +54,8 @@ Dispatchable calls in Substrate are always associated with a
 System module enforces a
 [`MaximumExtrinsicWeight`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/trait.Trait.html#associatedtype.MaximumExtrinsicWeight)
 and a
-[`MaximumBlockWeight`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/trait.Trait.html#associatedtype.MaximumBlockWeight),
-and the `set_code` function in
+[`MaximumBlockWeight`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/trait.Trait.html#associatedtype.MaximumBlockWeight).
+The `set_code` function in
 [the System module](https://github.com/paritytech/substrate/blob/v2.0.0-rc6/frame/system/src/lib.rs)
 is intentionally designed to consume the maximum weight that may fit in a block. The `set_code`
 function's weight annotation also specifies that `set_code` is in
@@ -154,6 +156,12 @@ Take a moment to review the components of the `RuntimeVersion` struct:
 - `apis`: The list of supported APIs.
 - `transaction_version`: The version of the
   [dispatchable function](../../knowledgebase/getting-started/glossary#dispatch) interface.
+
+In order to upgrade the runtime it is _required_ to _increase_ the `spec_version`; refer to the
+implementation of the
+[FRAME System](https://github.com/paritytech/substrate/blob/v2.0.0-rc6/frame/system/src/lib.rs)
+module and in particular the `can_set_code` function to to see how this requirement and others are
+enforced by runtime logic.
 
 Build the upgraded runtime.
 
