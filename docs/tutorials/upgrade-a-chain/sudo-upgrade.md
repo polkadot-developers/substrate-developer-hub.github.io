@@ -66,10 +66,10 @@ resources, such as by exempting it from the
 In order to work within FRAME's safeguards around resource accounting, the Sudo pallet provides the
 [`sudo_unchecked_weight`](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
 function, which provides the same capability as the `sudo` function, but accepts an additional
-parameter that is used to specify the (possibly zero) weight to use for the call that is dispatched
-from the `Root` origin. The `sudo_unchecked_weight` function is what will be used to invoke the
-runtime upgrade in this section of this tutorial; in the next section, the Scheduler pallet will be
-used to manage the resources consumed by the `set_code` function.
+parameter that is used to specify the (possibly zero) weight to use for the call. The
+`sudo_unchecked_weight` function is what will be used to invoke the runtime upgrade in this section
+of this tutorial; in the next section, the Scheduler pallet will be used to manage the resources
+consumed by the `set_code` function.
 
 ## Prepare an Upgraded Runtime
 
