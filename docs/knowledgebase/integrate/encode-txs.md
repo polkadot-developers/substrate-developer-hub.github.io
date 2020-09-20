@@ -24,7 +24,7 @@ follows:
 Substrate uses
 "[signed extensions](../../knowledgebase/learn-substrate/extrinsics#signed-extension)" to allow
 developers to extend its transaction-verification capabilities. Despite the name, signed extensions
-can also be applied to unsiqned transactions. They are intended to be used in any situation where it
+can also be applied to unsigned transactions. They are intended to be used in any situation where it
 is desireable to access or verify some information about a transaction prior to executing it. Signed
 extensions are defined at the runtime layer and the signed extensions that a runtime uses are
 exposed by way of its [metadata](../../knowledgebase/runtime/metadata). In order to construct
