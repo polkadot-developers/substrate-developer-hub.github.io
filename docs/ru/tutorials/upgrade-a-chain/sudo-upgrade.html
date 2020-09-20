@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="ru"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Use the Sudo Pallet · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="As the name of the [Sudo pallet](../../knowledgebase/runtime/frame#sudo) implies, it provides capabilities related to the management of a single [`sudo` (&quot;superuser do&quot;)](https://en.wikipedia.org/wiki/Sudo) administrator. In FRAME, the `Root` Origin is used to identify the runtime administrator; some of FRAME&#x27;s features, including the ability to update the runtime by way of [the `set_code` function](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/enum.Call.html#variant.set_code), are only accessible to this administrator. The Sudo pallet maintains a single [storage item](../../knowledgebase/runtime/storage): the ID of the account that has access to the pallet&#x27;s [dispatchable functions](../../knowledgebase/getting-started/glossary#dispatch). The Sudo pallet&#x27;s `sudo` function allows the holder of this account to invoke a dispatchable as the `Root` origin. The following pseudo-code demonstrates how this is achieved, refer to the [Sudo pallet&#x27;s source code](https://github.com/paritytech/substrate/blob/v2.0.0-rc6/frame/sudo/src/lib.rs) to learn more."/><meta name="docsearch:language" content="ru"/><meta property="og:title" content="Use the Sudo Pallet · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="As the name of the [Sudo pallet](../../knowledgebase/runtime/frame#sudo) implies, it provides capabilities related to the management of a single [`sudo` (&quot;superuser do&quot;)](https://en.wikipedia.org/wiki/Sudo) administrator. In FRAME, the `Root` Origin is used to identify the runtime administrator; some of FRAME&#x27;s features, including the ability to update the runtime by way of [the `set_code` function](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/enum.Call.html#variant.set_code), are only accessible to this administrator. The Sudo pallet maintains a single [storage item](../../knowledgebase/runtime/storage): the ID of the account that has access to the pallet&#x27;s [dispatchable functions](../../knowledgebase/getting-started/glossary#dispatch). The Sudo pallet&#x27;s `sudo` function allows the holder of this account to invoke a dispatchable as the `Root` origin. The following pseudo-code demonstrates how this is achieved, refer to the [Sudo pallet&#x27;s source code](https://github.com/paritytech/substrate/blob/v2.0.0-rc6/frame/sudo/src/lib.rs) to learn more."/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/redirect-next.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/ru"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/ru/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/docs/ru/" target="_self">Knowledge Base</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">Recipes</a></li><li class=""><a href="https://substrate.dev/rustdocs/" target="_self">API Reference</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>Русский</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/tutorials/upgrade-a-chain/sudo-upgrade">English</a></li><li><a href="/docs/zh-CN/tutorials/upgrade-a-chain/sudo-upgrade">中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Помочь с переводом</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Perform a Forkless Upgrade</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Perform a Forkless Upgrade<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/upgrade-a-chain/">Introduction</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/ru/tutorials/upgrade-a-chain/sudo-upgrade">Use the Sudo Pallet</a></li><li class="navListItem"><a class="navItem" href="/docs/ru/tutorials/upgrade-a-chain/scheduled-upgrade">Schedule an Upgrade</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/ru" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Use the Sudo Pallet</h1></header><article><div><span><p>As the name of the <a href="../../knowledgebase/runtime/frame#sudo">Sudo pallet</a> implies, it provides capabilities related to the management of a single <a href="https://en.wikipedia.org/wiki/Sudo"><code>sudo</code> (&quot;superuser do&quot;)</a> administrator. In FRAME, the <code>Root</code> Origin is used to identify the runtime administrator; some of FRAME's features, including the ability to update the runtime by way of <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/enum.Call.html#variant.set_code">the <code>set_code</code> function</a>, are only accessible to this administrator. The Sudo pallet maintains a single <a href="../../knowledgebase/runtime/storage">storage item</a>: the ID of the account that has access to the pallet's <a href="../../knowledgebase/getting-started/glossary#dispatch">dispatchable functions</a>. The Sudo pallet's <code>sudo</code> function allows the holder of this account to invoke a dispatchable as the <code>Root</code> origin. The following pseudo-code demonstrates how this is achieved, refer to the <a href="https://github.com/paritytech/substrate/blob/v2.0.0-rc6/frame/sudo/src/lib.rs">Sudo pallet's source code</a> to learn more.</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">sudo</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> call<span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Result</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Ensure caller is the account identified by the administrator key</span>
+  <span class="token keyword">let</span> sender <span class="token operator">=</span> <span class="token function">ensure_signed</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">;</span>
+  <span class="token macro property">ensure!</span><span class="token punctuation">(</span>sender <span class="token operator">==</span> <span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token function">key</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Error</span><span class="token punctuation">::</span><span class="token class-name">RequireSudo</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Dispatch the specified call as the Root origin</span>
+  <span class="token keyword">let</span> res <span class="token operator">=</span> call<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token class-name">Origin</span><span class="token punctuation">::</span><span class="token class-name">Root</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="start-the-template-node"></a><a href="#start-the-template-node" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Start the Template Node</h2>
+<p>Since forkless runtime upgrades do not require network participants to restart their blockchain clients, the first step of this tutorial is to start the template node as-is. Build and start the unmodified <a href="https://github.com/substrate-developer-hub/substrate-node-template">Node Template</a>. The node will not be restarted as part of this tutorial despite the fact that two runtime upgrades are performed.</p>
+<pre><code class="hljs css language-shell">cargo run -- --dev --tmp
+</code></pre>
+<p>Notice that the <a href="../../knowledgebase/integrate/subkey#well-known-keys">well-known Alice account</a> is configured as the holder of the Sudo pallet's key in the <code>development_config</code> function of the template node's <a href="https://github.com/substrate-developer-hub/substrate-node-template/blob/master/node/src/chain_spec.rs">chain specification file</a> - this is the configuration that is used when the node is launched with the <code>--dev</code> flag. That means that Alice's account will be the one used to perform runtime upgrades throughout this tutorial.</p>
+<h2><a class="anchor" aria-hidden="true" id="runtime-upgrade-resource-accounting"></a><a href="#runtime-upgrade-resource-accounting" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Runtime Upgrade Resource Accounting</h2>
+<p>Dispatchable calls in Substrate are always associated with a <a href="../../knowledgebase/learn-substrate/weight">weight</a>, which is used for resource accounting. FRAME's System module enforces a <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/trait.Trait.html#associatedtype.MaximumExtrinsicWeight"><code>MaximumExtrinsicWeight</code></a> and a <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/trait.Trait.html#associatedtype.MaximumBlockWeight"><code>MaximumBlockWeight</code></a>. The <code>set_code</code> function in <a href="https://github.com/paritytech/substrate/blob/v2.0.0-rc6/frame/system/src/lib.rs">the System module</a> is intentionally designed to consume the maximum weight that may fit in a block. The <code>set_code</code> function's weight annotation also specifies that <code>set_code</code> is in <a href="../../knowledgebase/runtime/fees#operational-dispatches">the <code>Operational</code> class</a> of dispatchable functions, which identifies it as relating to network <em>operations</em> and impacts the accounting of its resources, such as by exempting it from the <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee"><code>TransactionByteFee</code></a>. In order to work within FRAME's safeguards around resource accounting, the Sudo pallet provides the <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight"><code>sudo_unchecked_weight</code></a> function, which provides the same capability as the <code>sudo</code> function, but accepts an additional parameter that is used to specify the (possibly zero) weight to use for the call. The <code>sudo_unchecked_weight</code> function is what will be used to invoke the runtime upgrade in this section of this tutorial; in the next section, the Scheduler pallet will be used to manage the resources consumed by the <code>set_code</code> function.</p>
+<h2><a class="anchor" aria-hidden="true" id="prepare-an-upgraded-runtime"></a><a href="#prepare-an-upgraded-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prepare an Upgraded Runtime</h2>
+<p>Because the template node doesn't come with the Scheduler pallet included in its runtime, the first runtime upgrade performed in this tutorial will add that pallet. First, add the Scheduler pallet as a dependency in the template node's <code>runtime/Cargo.toml</code> file.</p>
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">dependencies.pallet-scheduler</span><span class="token punctuation">]</span>
+<span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
+<span class="token key property">tag</span> <span class="token punctuation">=</span> <span class="token string">'v2.0.0-rc6'</span>
+<span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">'2.0.0-rc6'</span>
+
+<span class="token comment">#--snip--</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">features</span><span class="token punctuation">]</span>
+<span class="token key property">default</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">'std'</span><span class="token punctuation">]</span>
+<span class="token key property">std</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span>
+    <span class="token comment">#--snip--</span>
+    <span class="token string">'pallet-scheduler/std'</span><span class="token punctuation">,</span>
+    <span class="token comment">#--snip--</span>
+<span class="token punctuation">]</span>
+</code></pre>
+<p>Next, add the pallet to the runtime by updating <code>runtime/src/lib.rs</code>.</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// Define the types required by the Scheduler pallet.</span>
+<span class="token macro property">parameter_types!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">pub</span> <span class="token class-name">MaximumSchedulerWeight</span><span class="token punctuation">:</span> <span class="token class-name">Weight</span> <span class="token operator">=</span> <span class="token class-name">Perbill</span><span class="token punctuation">::</span><span class="token function">from_percent</span><span class="token punctuation">(</span><span class="token number">80</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token class-name">MaximumBlockWeight</span><span class="token punctuation">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Configure the runtime's implementation of the Scheduler pallet.</span>
+<span class="token keyword">impl</span> <span class="token namespace">pallet_scheduler<span class="token punctuation">::</span></span><span class="token class-name">Trait</span> <span class="token keyword">for</span> <span class="token class-name">Runtime</span> <span class="token punctuation">{</span>
+    <span class="token keyword">type</span> <span class="token class-name">Event</span> <span class="token operator">=</span> <span class="token class-name">Event</span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">Origin</span> <span class="token operator">=</span> <span class="token class-name">Origin</span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">PalletsOrigin</span> <span class="token operator">=</span> <span class="token class-name">OriginCaller</span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">Call</span> <span class="token operator">=</span> <span class="token class-name">Call</span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">MaximumWeight</span> <span class="token operator">=</span> <span class="token class-name">MaximumSchedulerWeight</span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">ScheduleOrigin</span> <span class="token operator">=</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">EnsureRoot</span><span class="token operator">&lt;</span><span class="token class-name">AccountId</span><span class="token operator">></span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">WeightInfo</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Add the Scheduler pallet inside the construct_runtime! macro.</span>
+<span class="token macro property">construct_runtime!</span><span class="token punctuation">(</span>
+    <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Runtime</span> <span class="token keyword">where</span>
+        <span class="token class-name">Block</span> <span class="token operator">=</span> <span class="token class-name">Block</span><span class="token punctuation">,</span>
+        <span class="token class-name">NodeBlock</span> <span class="token operator">=</span> <span class="token namespace">opaque<span class="token punctuation">::</span></span><span class="token class-name">Block</span><span class="token punctuation">,</span>
+        <span class="token class-name">UncheckedExtrinsic</span> <span class="token operator">=</span> <span class="token class-name">UncheckedExtrinsic</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">/*** snip ***/</span>
+        <span class="token class-name">Scheduler</span><span class="token punctuation">:</span> <span class="token namespace">pallet_scheduler<span class="token punctuation">::</span></span><span class="token punctuation">{</span><span class="token class-name">Module</span><span class="token punctuation">,</span> <span class="token class-name">Call</span><span class="token punctuation">,</span> <span class="token class-name">Storage</span><span class="token punctuation">,</span> <span class="token class-name">Event</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>The final step to preparing an upgraded FRAME runtime is to increment its <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/sp_version/struct.RuntimeVersion.html#structfield.spec_version"><code>spec_version</code></a>, which is a member of <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/sp_version/struct.RuntimeVersion.html">the <code>RuntimeVersion</code> struct</a> that is defined in <code>runtime/src/lib.rs</code>.</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token constant">VERSION</span><span class="token punctuation">:</span> <span class="token class-name">RuntimeVersion</span> <span class="token operator">=</span> <span class="token class-name">RuntimeVersion</span> <span class="token punctuation">{</span>
+    spec_name<span class="token punctuation">:</span> <span class="token macro property">create_runtime_str!</span><span class="token punctuation">(</span><span class="token string">"node-template"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    impl_name<span class="token punctuation">:</span> <span class="token macro property">create_runtime_str!</span><span class="token punctuation">(</span><span class="token string">"node-template"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    authoring_version<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    spec_version<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span>  <span class="token comment">// Update this value.</span>
+    impl_version<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    apis<span class="token punctuation">:</span> <span class="token constant">RUNTIME_API_VERSIONS</span><span class="token punctuation">,</span>
+    transaction_version<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Take a moment to review the components of the <code>RuntimeVersion</code> struct:</p>
+<ul>
+<li><code>spec_name</code>: The name of the runtime/chain, e.g. Ethereum.</li>
+<li><code>impl_name</code>: The name of the client, e.g. OpenEthereum.</li>
+<li><code>authoring_version</code>: The authorship version for <a href="../../knowledgebase/getting-started/glossary#author">block authors</a>.</li>
+<li><code>spec_version</code>: The version of the runtime/chain.</li>
+<li><code>impl_version</code>: The version of the client.</li>
+<li><code>apis</code>: The list of supported APIs.</li>
+<li><code>transaction_version</code>: The version of the <a href="../../knowledgebase/getting-started/glossary#dispatch">dispatchable function</a> interface.</li>
+</ul>
+<p>In order to upgrade the runtime it is <em>required</em> to <em>increase</em> the <code>spec_version</code>; refer to the implementation of the <a href="https://github.com/paritytech/substrate/blob/v2.0.0-rc6/frame/system/src/lib.rs">FRAME System</a> module and in particular the <code>can_set_code</code> function to to see how this requirement and others are enforced by runtime logic.</p>
+<p>Build the upgraded runtime.</p>
+<pre><code class="hljs css language-shell">cargo build --release -p node-template-runtime
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="upgrade-the-runtime"></a><a href="#upgrade-the-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Upgrade the Runtime</h2>
+<p>Use this link to open the Polkadot JS Apps UI and automatically configure the UI to connect to the local node: <a href="https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:9944">https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:9944</a>. Use Alice's account to invoke the <code>sudo_unchecked_weight</code> function and use the <code>set_code</code> function from the System pallet as its parameter. In order to supply the build artifact that was generated by the previous build step, toggle the &quot;file upload&quot; switch on the right-hand side of the &quot;code&quot; input field for the parameter to the <code>set_code</code> function. Click the &quot;code&quot; input field, and select the Wasm binary that defines the upgraded runtime: <code>target/release/wbuild/node-template-runtime/node_template_runtime.compact.wasm</code>. Leave the value for the <code>_weight</code> parameter at the default of <code>0</code>. Click &quot;Submit Transaction&quot; and then &quot;Sign and Submit&quot;.</p>
+<p><img src="/docs/assets/tutorials/upgrade-a-chain/sudo-upgrade.png" alt="Sudo Upgrade"></p>
+<p>After the transaction has been included in a block, the version number in the upper-left-hand corner of Polkadot JS Apps UI should reflect that the runtime version is now <code>2</code>.</p>
+<p><img src="/docs/assets/tutorials/upgrade-a-chain/version-2.png" alt="Version 2"></p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/ru/tutorials/upgrade-a-chain/index"><span class="arrow-prev">← </span><span>Introduction</span></a><a class="docs-next button" href="/docs/ru/tutorials/upgrade-a-chain/scheduled-upgrade"><span>Schedule an Upgrade</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#start-the-template-node">Start the Template Node</a></li><li><a href="#runtime-upgrade-resource-accounting">Runtime Upgrade Resource Accounting</a></li><li><a href="#prepare-an-upgraded-runtime">Prepare an Upgraded Runtime</a></li><li><a href="#upgrade-the-runtime">Upgrade the Runtime</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/ru/tutorials">Tutorials</a><a href="/docs/ru/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/ru/community">Community Home</a><a href="/ru/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/ru/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+                var cookieSettings = document.getElementById('cookie-settings');
+                cookieSettings.onclick = function() {
+                  return klaro.show();
+                };
+              </script></a></div></section><section class="copyright">Copyright © 2020 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:ru"]}
+              });
+            </script></body></html>
