@@ -71,6 +71,7 @@ function Seminar(props) {
 
 			<section className='switchable switchable--switch intro'>
 				<div className='container'>
+
 					<div className='row justify-content-between'>
 						<div className='col-md-8 col-lg-7 left'>
 							<h2>An open collaborative learning call</h2>
@@ -81,33 +82,18 @@ function Seminar(props) {
 							</p>
 							<a href='https://calendar.google.com/calendar/b/1?cid=cGFyaXR5LmlvXzJmc2tqN245cm1qcHE1Y2xiOWc3ZWUzZGhvQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20'>Add next call to Google Calendar »</a>
 						</div>
-						{/*
-						<div className='col-md-4 col-lg-5 right'>
-							<div className='feature feature-2 boxed boxed--border box-shadow'>
-								<img className='image-host' src='/img/joshy.jpg' />
-								<div className='feature__body'>
-									<h4>Seminar Host</h4>
-									<p>
-										<strong>Joshy Orndorff</strong>
-										<br />Developer Advocate at<br />Parity Technologies
-									</p>
-								</div>
-							</div>
-						</div>
-						*/}
 					</div>
 					<hr />
+
 					<div className='row pb-0'>
 						<div className='col-md-12'>
 							<h2 style={{ fontSize: '32px' }}>FAQ</h2>
 						</div>
 					</div>
+
 					<div className='row justify-content-between pt-0 faqs'>
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
-							<p>
-								On <strong>15 September</strong>, Jimmy Chu joins us to discuss the instant- and manual-seal consensus engines, and his recent addition of heartbeat blocks. This session will cover consensus topics at a conceptual level, and show how asynchronous Rust is used in Substrate.
-							</p>
 							<p>
 								On <strong>22 September</strong>, Andrew Plaza will discuss <a href='https://github.com/paritytech/substrate-archive'>Substrate Archive</a> a tool for indexing the contents of a blockchain into a Postgres SQL database.
 							</p>
@@ -117,21 +103,7 @@ function Seminar(props) {
 						</div>
 
 						<div className='col-md-6 second'>
-						{/*
-							<h4 className='mb-2'>How should I prepare for the call?</h4>
-							<p>
-								There are no specific preparation steps. You may find it useful to read the links for{' '}
-								<a href="https://github.com/akropolisio/polkahub-monorepo">PolkaHub</a>{' '}
-								and{' '}
-								<a href="https://totemaccounting.com/">Totem Live Accounting</a>
-								{' '}or complete one of our{' '}
-								<a href='https://substrate.dev/en/tutorials'>
-									Introductory Tutorials
-								</a>{' '}.
-							</p>
-							*/}
-
-							<h4 className='mt-4 mb-2'>Can I ask my own questions?</h4>
+							<h4 className='mb-2'>Can I ask my own questions?</h4>
 							<p>
 								Yes! The second half of every Seminar is for open Q & A like office hours. You can ask questions or even bring your code that doesn't compile. Participants will be invited on-screen to share their work and their questions. You may also join us between Seminars on <a href='https://matrix.to/#/!oClBfIbtucPfGKlNpk:matrix.parity.io'>Riot</a>.
 							</p>

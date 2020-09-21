@@ -236,7 +236,7 @@ class Index extends React.Component {
 												</p>
 												<a
 													className='btn primary-color'
-													href='https://substrate.dev/en/seminar'>
+													href='/en/seminar'>
 													Join the Learning Group
 												</a>
 											</div>
