@@ -548,7 +548,7 @@ efficient creation of incremental digests. This trie is exposed to the [runtime]
 [a simple key/value map](../../knowledgebase/advanced/storage) where both keys and values can be
 arbitrary byte arrays.
 
-## State Transition Function (STF))
+## State Transition Function (STF)
 
 The logic of a [blockchain](#blockchain) that determines how the state changes when a
 [block](#block) is processed. In Substrate, this is effectively equivalent to the
