@@ -39,16 +39,12 @@ runtime's `Cargo.toml` file. If you want a proper primer into Cargo References, 
 
 Open `substrate-node-template/runtime/Cargo.toml` and you will see a list of all the dependencies
 your runtime has. For example, it depends on the
-[Balances pallet](https://substrate.dev/rustdocs/v2.0.0-rc6):
+[Balances pallet](https://substrate.dev/rustdocs/v2.0.0):
 
 **`runtime/Cargo.toml`**
 
 ```TOML
-[dependencies.pallet-balances]
-default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'v2.0.0-rc6'
-version = '2.0.0-rc6'
+pallet-balances = { default-features = false, version = '2.0.0' }
 ```
 
 ### Crate Features
@@ -65,6 +61,7 @@ something like:
 default = ['std']
 std = [
     'codec/std',
+    'serde',
     'frame-executive/std',
     'frame-support/std',
     'frame-system/std',
@@ -81,8 +78,8 @@ feature will determine the features that should be used on downstream dependenci
 snippet above should be read as:
 
 > The default feature for this Substrate runtime is `std`. When `std` feature is enabled for the
-> runtime, `codec`, `frame-executive`, `frame-support`, and all the other listed dependencies should
-> use their `std` feature too.
+> runtime, `codec`, `serde`, `frame-executive`, `frame-support`, and all the other listed
+> dependencies should use their `std` feature too.
 
 This is important to enable the Substrate runtime to compile to both native binaries, which support
 Rust [`std`](https://doc.rust-lang.org/std/), and [Wasm](https://webassembly.org/) binaries, which
@@ -129,11 +126,7 @@ So based on the `balances` import shown above, the `nicks` import will look like
 **`runtime/Cargo.toml`**
 
 ```TOML
-[dependencies.pallet-nicks]
-git = 'https://github.com/paritytech/substrate.git'
-default-features = false
-tag = 'v2.0.0-rc6'
-version = '2.0.0-rc6'
+pallet-nicks = { default-features = false, version = '2.0.0' }
 ```
 
 As with other pallets, the Contracts pallet has an `std` feature. We should build its `std` feature
@@ -173,5 +166,5 @@ error[E0425]: cannot find function `memory_new` in module `sandbox`
 Before moving on, check that the new dependencies resolve correctly by running:
 
 ```bash
-cargo check
+cargo check -p node-template-runtime
 ```
