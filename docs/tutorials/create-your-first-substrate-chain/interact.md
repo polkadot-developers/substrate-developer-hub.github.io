@@ -10,44 +10,44 @@ Run the following commands to start your node:
 
 ```bash
 # Run a temporary node in development mode
-./target/release/node-template --dev --tmp
+./target/debug/node-template --dev --tmp
 ```
 
 You should see something like this if your node is running successfully:
 
 ```
-2020-08-20 15:49:19.045 main WARN sc_cli::commands::run_cmd  Running in --dev mode, RPC CORS has been disabled.
-2020-08-20 15:49:19.045 main INFO sc_cli::runner  Substrate Node
-2020-08-20 15:49:19.045 main INFO sc_cli::runner  ✌️  version 2.0.0-rc6-8682ee4-x86_64-linux-gnu
-2020-08-20 15:49:19.045 main INFO sc_cli::runner  ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
-2020-08-20 15:49:19.045 main INFO sc_cli::runner  📋 Chain specification: Development
-2020-08-20 15:49:19.045 main INFO sc_cli::runner  🏷  Node name: utopian-quicksand-7565
-2020-08-20 15:49:19.045 main INFO sc_cli::runner  👤 Role: AUTHORITY
-2020-08-20 15:49:19.045 main INFO sc_cli::runner  💾 Database: RocksDb at /tmp/substrateTh6wKJ/chains/dev/db
-2020-08-20 15:49:19.045 main INFO sc_cli::runner  ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
-2020-08-20 15:49:19.190 main INFO sc_service::client::client  🔨 Initializing Genesis block/state (state: 0x49ff…ef9d, header-hash: 0x82e1…0111)
-2020-08-20 15:49:19.190 main INFO afg  👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
-2020-08-20 15:49:19.206 main INFO sc_consensus_slots  ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
-2020-08-20 15:49:19.207 main WARN sc_service::builder  Using default protocol ID "sup" because none is configured in the chain specs
-2020-08-20 15:49:19.207 main INFO sub-libp2p  🏷  Local node identity is: 12D3KooWCJV1L6dEdRxE9HQnYzrNb3zTui2nWeKBDZUKsEyp8Qt7 (legacy representation: Qmct61NrFJjCU4ACCAqZRgyR4gdtaUVuFSNTfXUC8tzCBT)
-2020-08-20 15:49:19.215 main INFO sc_service::builder  📦 Highest known block at #0
-2020-08-20 15:49:19.215 tokio-runtime-worker INFO substrate_prometheus_endpoint::known_os  〽️ Prometheus server started at 127.0.0.1:9615
-2020-08-20 15:49:24.020 tokio-runtime-worker INFO sc_basic_authorship::basic_authorship  🙌 Starting consensus session on top of parent 0x82e1dd371de05f76116ee0039430dcd218c77c473f450a9f4a6b58b101ad0111
-2020-08-20 15:49:24.035 tokio-blocking-driver INFO sc_basic_authorship::basic_authorship  🎁 Prepared block for proposing at 1 [hash: 0x7c3867c27cc0901ed6e8421270afaedb3d5614214d78b69f294aef263bd7861a; parent_hash: 0x82e1…0111; extrinsics (1): [0xe371…f93b]]
-2020-08-20 15:49:24.044 tokio-runtime-worker INFO sc_consensus_slots  🔖 Pre-sealed block for proposal at 1. Hash now 0x50455c95a01e645e3f754f49629f2687f72d547c64cd35910f199d05530bbf54, previously 0x7c3867c27cc0901ed6e8421270afaedb3d5614214d78b69f294aef263bd7861a.
-2020-08-20 15:49:24.045 tokio-runtime-worker INFO substrate  ✨ Imported #1 (0x5045…bf54)
-2020-08-20 15:49:24.216 tokio-runtime-worker INFO substrate  💤 Idle (0 peers), best: #1 (0x5045…bf54), finalized #0 (0x82e1…0111), ⬇ 0 ⬆ 0
-2020-08-20 15:49:29.217 tokio-runtime-worker INFO substrate  💤 Idle (0 peers), best: #1 (0x5045…bf54), finalized #0 (0x82e1…0111), ⬇ 0 ⬆ 0
-2020-08-20 15:49:30.006 tokio-runtime-worker INFO sc_basic_authorship::basic_authorship  🙌 Starting consensus session on top of parent 0x50455c95a01e645e3f754f49629f2687f72d547c64cd35910f199d05530bbf54
-2020-08-20 15:49:30.007 tokio-blocking-driver INFO sc_basic_authorship::basic_authorship  🎁 Prepared block for proposing at 2 [hash: 0xb608e0291490a9af5cfaa5f8fd318af661935666ebc88152f05b5b2f828b31c3; parent_hash: 0x5045…bf54; extrinsics (1): [0xc797…a8e0]]
-2020-08-20 15:49:30.012 tokio-runtime-worker INFO sc_consensus_slots  🔖 Pre-sealed block for proposal at 2. Hash now 0xc4276103ee9595e25e4b4ef2a2a5684ca1cbabfc4a3c1545a1fe5ad1f70fd4f6, previously 0xb608e0291490a9af5cfaa5f8fd318af661935666ebc88152f05b5b2f828b31c3.
-2020-08-20 15:49:30.012 tokio-runtime-worker INFO substrate  ✨ Imported #2 (0xc427…d4f6)
-2020-08-20 15:49:34.217 tokio-runtime-worker INFO substrate  💤 Idle (0 peers), best: #2 (0xc427…d4f6), finalized #0 (0x82e1…0111), ⬇ 0 ⬆ 0
-2020-08-20 15:49:36.008 tokio-runtime-worker INFO sc_basic_authorship::basic_authorship  🙌 Starting consensus session on top of parent 0xc4276103ee9595e25e4b4ef2a2a5684ca1cbabfc4a3c1545a1fe5ad1f70fd4f6
-2020-08-20 15:49:36.010 tokio-blocking-driver INFO sc_basic_authorship::basic_authorship  🎁 Prepared block for proposing at 3 [hash: 0xf6c5aac59e1c034e0fc65d7ccdc18df0a12d8cbc71660520e322542c940ba8f9; parent_hash: 0xc427…d4f6; extrinsics (1): [0xeeb9…f554]]
-2020-08-20 15:49:36.018 tokio-runtime-worker INFO sc_consensus_slots  🔖 Pre-sealed block for proposal at 3. Hash now 0x751b14ef67fcb64adc47fe31912facdc748032a4f3f87f1795769a1bce94d07c, previously 0xf6c5aac59e1c034e0fc65d7ccdc18df0a12d8cbc71660520e322542c940ba8f9.
-2020-08-20 15:49:36.019 tokio-runtime-worker INFO substrate  ✨ Imported #3 (0x751b…d07c)
-2020-08-20 15:49:39.217 tokio-runtime-worker INFO substrate  💤 Idle (0 peers), best: #3 (0x751b…d07c), finalized #1 (0x5045…bf54), ⬇ 0 ⬆ 0
+Sep 23 15:23:21.759  WARN Running in --dev mode, RPC CORS has been disabled.
+Sep 23 15:23:21.759  INFO Substrate Node
+Sep 23 15:23:21.759  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu
+Sep 23 15:23:21.759  INFO ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
+Sep 23 15:23:21.759  INFO 📋 Chain specification: Development
+Sep 23 15:23:21.759  INFO 🏷  Node name: unbiased-dress-7993
+Sep 23 15:23:21.759  INFO 👤 Role: AUTHORITY
+Sep 23 15:23:21.759  INFO 💾 Database: RocksDb at /tmp/substrate9CaTUC/chains/dev/db
+Sep 23 15:23:21.759  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+Sep 23 15:23:22.549  INFO 🔨 Initializing Genesis block/state (state: 0x0971…6ec2, header-hash: 0x22e7…7290)
+Sep 23 15:23:22.552  INFO 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
+Sep 23 15:23:22.708  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
+Sep 23 15:23:22.709  WARN Using default protocol ID "sup" because none is configured in the chain specs
+Sep 23 15:23:22.709  INFO 🏷  Local node identity is: 12D3KooWB4SfTtXEEYbPHEdZPndkq1oTxExwx6ku1esPq3Pq9nwF (legacy representation: 12D3KooWB4SfTtXEEYbPHEdZPndkq1oTxExwx6ku1esPq3Pq9nwF)
+Sep 23 15:23:22.935  INFO 📦 Highest known block at #0
+Sep 23 15:23:22.937  INFO 〽️ Prometheus server started at 127.0.0.1:9615
+Sep 23 15:23:22.940  INFO Listening for new connections on 127.0.0.1:9944.
+Sep 23 15:23:24.178  INFO 🙌 Starting consensus session on top of parent 0x22e7a22d9745b5af63c11626498c08726e45b40b95abcd2092117b3337ff7290
+Sep 23 15:23:24.281  INFO 🎁 Prepared block for proposing at 1 [hash: 0x515b6280f0d4536ee225a93f4ea56071b86d3bca8020487b2666060b0b739c41; parent_hash: 0x22e7…7290; extrinsics (1): [0x1783…fefe]]
+Sep 23 15:23:24.384  INFO 🔖 Pre-sealed block for proposal at 1. Hash now 0x2aa4fb6eeba88eead4f2ea975d6827f3bbf5973e6be01077bd9c920a006d0098, previously 0x515b6280f0d4536ee225a93f4ea56071b86d3bca8020487b2666060b0b739c41.
+Sep 23 15:23:24.386  INFO ✨ Imported #1 (0x2aa4…0098)
+Sep 23 15:23:27.942  INFO 💤 Idle (0 peers), best: #1 (0x2aa4…0098), finalized #0 (0x22e7…7290), ⬇ 0 ⬆ 0
+Sep 23 15:23:30.115  INFO 🙌 Starting consensus session on top of parent 0x2aa4fb6eeba88eead4f2ea975d6827f3bbf5973e6be01077bd9c920a006d0098
+Sep 23 15:23:30.122  INFO 🎁 Prepared block for proposing at 2 [hash: 0x1692ea3bed6539b7268b14b35d4be319a32aac79aa709cc71d304722ca7766f4; parent_hash: 0x2aa4…0098; extrinsics (1): [0x0d1a…78da]]
+Sep 23 15:23:30.203  INFO 🔖 Pre-sealed block for proposal at 2. Hash now 0x919fab4399075fb75e24005a4a63448e09174199fc073b4f3cd9d72782c46b8c, previously 0x1692ea3bed6539b7268b14b35d4be319a32aac79aa709cc71d304722ca7766f4.
+Sep 23 15:23:30.205  INFO ✨ Imported #2 (0x919f…6b8c)
+Sep 23 15:23:32.942  INFO 💤 Idle (0 peers), best: #2 (0x919f…6b8c), finalized #0 (0x22e7…7290), ⬇ 0 ⬆ 0
+Sep 23 15:23:36.087  INFO 🙌 Starting consensus session on top of parent 0x919fab4399075fb75e24005a4a63448e09174199fc073b4f3cd9d72782c46b8c
+Sep 23 15:23:36.094  INFO 🎁 Prepared block for proposing at 3 [hash: 0x0df26c2b2559bfb11c6d1be63005b0f4408468de3dfef7957df86b95cfb68473; parent_hash: 0x919f…6b8c; extrinsics (1): [0x1079…1874]]
+Sep 23 15:23:36.178  INFO 🔖 Pre-sealed block for proposal at 3. Hash now 0xb6dca495b5530ca8c97d1d3de8eb71fc945e5b367e219c26164d94e77954b583, previously 0x0df26c2b2559bfb11c6d1be63005b0f4408468de3dfef7957df86b95cfb68473.
+Sep 23 15:23:36.180  INFO ✨ Imported #3 (0xb6dc…b583)
+Sep 23 15:23:37.942  INFO 💤 Idle (0 peers), best: #3 (0xb6dc…b583), finalized #1 (0x2aa4…0098), ⬇ 0 ⬆ 0
 ```
 
 If the number after `finalized:` is increasing, your blockchain is producing new blocks and reaching
@@ -115,7 +115,7 @@ The Pallet Interactor allows you to submit
 [unsigned](../../knowledgebase/learn-substrate/extrinsics#unsigned-transactions) or
 [signed](../../knowledgebase/learn-substrate/extrinsics#signed-transactions) extrinsics and also
 provides a button that makes it easy to invoke an extrinsic by way of
-[the `sudo` function from the Sudo pallet](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_sudo/enum.Call.html#variant.sudo).
+[the `sudo` function from the Sudo pallet](https://substrate.dev/rustdocs/v2.0.0/pallet_sudo/enum.Call.html#variant.sudo).
 You will learn more about using the "SUDO" button to invoke privileged extrinsics in the third
 tutorial, the [Add a Pallet](../add-a-pallet) tutorial.
 
@@ -137,9 +137,8 @@ made token transfers among users. We hope you'll continue learning about Substra
 
 Your next step may be:
 
-- Add custom functionality in the [Build a dApp](../build-a-dapp/) tutorial.
-- Decentralize your network with more nodes in the
-  [Start a Private Network](../start-a-private-network/) tutorial.
+- Extend the features of the template node in the [Add a Pallet](../add-a-pallet) tutorial.
+- Learn about forkless runtime upgrades in the [Upgrade a Chain](../upgrade-a-chain) tutorial.
 
 If you experienced any issues with this tutorial or want to provide feedback, You can
 [ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the

@@ -31,7 +31,7 @@ const tutorialCardData = [{
   difficulty: "easy",
   length: "< 1",
   prerequisite: false,
-  version: "2.0.0-rc6",
+  version: "2.0.0",
   href: 'tutorials/create-your-first-substrate-chain/',
 }, {
   title: <translate>Add a Pallet to Your Runtime</translate>,
