@@ -74,7 +74,7 @@ const tutorialCardData = [{
   difficulty: "medium",
   length: "2",
   prerequisite: false,
-  version: "2.0.0-rc6",
+  version: "2.0.0",
   href: 'tutorials/create-a-pallet/',
 }, {
   img: 'img/grafana.png',
@@ -83,7 +83,7 @@ const tutorialCardData = [{
   difficulty: "easy",
   length: "< 1",
   prerequisite: false,
-  version: "2.0.0-rc5",
+  version: "2.0.0",
   href: 'tutorials/visualize-node-metrics/',
 }, {
   title: <translate>Add the Contracts Pallet to a Runtime</translate>,
