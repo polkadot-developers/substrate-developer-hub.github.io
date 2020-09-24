@@ -65,7 +65,7 @@ const tutorialCardData = [{
   difficulty: "easy",
   length: "2",
   prerequisite: false,
-  version: "2.0.0-rc6",
+  version: "2.0.0",
   href: 'tutorials/start-a-private-network/',
 }, {
   img: 'img/crates.png',
