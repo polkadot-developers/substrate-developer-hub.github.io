@@ -56,7 +56,7 @@ const tutorialCardData = [{
   difficulty: "easy",
   length: "1",
   prerequisite: true,
-  version: "2.0.0-rc6",
+  version: "2.0.0",
   href: 'tutorials/build-a-dapp/',
 }, {
   img: 'img/substrate-network.png',
