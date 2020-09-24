@@ -52,7 +52,7 @@ dropped - that would require a storage migration, which is out of the scope of t
 Build the upgraded runtime.
 
 ```shell
-cargo build --release -p node-template-runtime
+cargo build -p node-template-runtime
 ```
 
 ## Upgrade the Runtime

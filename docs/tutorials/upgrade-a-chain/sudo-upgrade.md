@@ -7,13 +7,13 @@ capabilities related to the management of a single
 [`sudo` ("superuser do")](https://en.wikipedia.org/wiki/Sudo) administrator. In FRAME, the `Root`
 Origin is used to identify the runtime administrator; some of FRAME's features, including the
 ability to update the runtime by way of
-[the `set_code` function](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/enum.Call.html#variant.set_code),
+[the `set_code` function](https://substrate.dev/rustdocs/v2.0.0/frame_system/enum.Call.html#variant.set_code),
 are only accessible to this administrator. The Sudo pallet maintains a single
 [storage item](../../knowledgebase/runtime/storage): the ID of the account that has access to the
 pallet's [dispatchable functions](../../knowledgebase/getting-started/glossary#dispatch). The Sudo
 pallet's `sudo` function allows the holder of this account to invoke a dispatchable as the `Root`
 origin. The following pseudo-code demonstrates how this is achieved, refer to the
-[Sudo pallet's source code](https://github.com/paritytech/substrate/blob/v2.0.0-rc6/frame/sudo/src/lib.rs)
+[Sudo pallet's source code](https://github.com/paritytech/substrate/blob/v2.0.0/frame/sudo/src/lib.rs)
 to learn more.
 
 ```rust
@@ -52,19 +52,19 @@ that Alice's account will be the one used to perform runtime upgrades throughout
 Dispatchable calls in Substrate are always associated with a
 [weight](../../knowledgebase/learn-substrate/weight), which is used for resource accounting. FRAME's
 System module enforces a
-[`MaximumExtrinsicWeight`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/trait.Trait.html#associatedtype.MaximumExtrinsicWeight)
+[`MaximumExtrinsicWeight`](https://substrate.dev/rustdocs/v2.0.0/frame_system/trait.Trait.html#associatedtype.MaximumExtrinsicWeight)
 and a
-[`MaximumBlockWeight`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/trait.Trait.html#associatedtype.MaximumBlockWeight).
+[`MaximumBlockWeight`](https://substrate.dev/rustdocs/v2.0.0/frame_system/trait.Trait.html#associatedtype.MaximumBlockWeight).
 The `set_code` function in
-[the System module](https://github.com/paritytech/substrate/blob/v2.0.0-rc6/frame/system/src/lib.rs)
+[the System module](https://github.com/paritytech/substrate/blob/v2.0.0/frame/system/src/lib.rs)
 is intentionally designed to consume the maximum weight that may fit in a block. The `set_code`
 function's weight annotation also specifies that `set_code` is in
 [the `Operational` class](../../knowledgebase/runtime/fees#operational-dispatches) of dispatchable
 functions, which identifies it as relating to network _operations_ and impacts the accounting of its
 resources, such as by exempting it from the
-[`TransactionByteFee`](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
+[`TransactionByteFee`](https://substrate.dev/rustdocs/v2.0.0/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
 In order to work within FRAME's safeguards around resource accounting, the Sudo pallet provides the
-[`sudo_unchecked_weight`](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
+[`sudo_unchecked_weight`](https://substrate.dev/rustdocs/v2.0.0/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
 function, which provides the same capability as the `sudo` function, but accepts an additional
 parameter that is used to specify the (possibly zero) weight to use for the call. The
 `sudo_unchecked_weight` function is what will be used to invoke the runtime upgrade in this section
@@ -78,11 +78,7 @@ runtime upgrade performed in this tutorial will add that pallet. First, add the 
 a dependency in the template node's `runtime/Cargo.toml` file.
 
 ```toml
-[dependencies.pallet-scheduler]
-default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'v2.0.0-rc6'
-version = '2.0.0-rc6'
+pallet-scheduler = { default-features = false, version = '2.0.0' }
 
 #--snip--
 
@@ -101,6 +97,7 @@ Next, add the pallet to the runtime by updating `runtime/src/lib.rs`.
 // Define the types required by the Scheduler pallet.
 parameter_types! {
 	pub MaximumSchedulerWeight: Weight = Perbill::from_percent(80) * MaximumBlockWeight::get();
+	pub const MaxScheduledPerBlock: u32 = 50;
 }
 
 // Configure the runtime's implementation of the Scheduler pallet.
@@ -111,6 +108,7 @@ impl pallet_scheduler::Trait for Runtime {
 	type Call = Call;
 	type MaximumWeight = MaximumSchedulerWeight;
 	type ScheduleOrigin = frame_system::EnsureRoot<AccountId>;
+	type MaxScheduledPerBlock = MaxScheduledPerBlock;
 	type WeightInfo = ();
 }
 
@@ -128,9 +126,9 @@ construct_runtime!(
 ```
 
 The final step to preparing an upgraded FRAME runtime is to increment its
-[`spec_version`](https://substrate.dev/rustdocs/v2.0.0-rc6/sp_version/struct.RuntimeVersion.html#structfield.spec_version),
+[`spec_version`](https://substrate.dev/rustdocs/v2.0.0/sp_version/struct.RuntimeVersion.html#structfield.spec_version),
 which is a member of
-[the `RuntimeVersion` struct](https://substrate.dev/rustdocs/v2.0.0-rc6/sp_version/struct.RuntimeVersion.html)
+[the `RuntimeVersion` struct](https://substrate.dev/rustdocs/v2.0.0/sp_version/struct.RuntimeVersion.html)
 that is defined in `runtime/src/lib.rs`.
 
 ```rust
@@ -159,14 +157,14 @@ Take a moment to review the components of the `RuntimeVersion` struct:
 
 In order to upgrade the runtime it is _required_ to _increase_ the `spec_version`; refer to the
 implementation of the
-[FRAME System](https://github.com/paritytech/substrate/blob/v2.0.0-rc6/frame/system/src/lib.rs)
+[FRAME System](https://github.com/paritytech/substrate/blob/v2.0.0/frame/system/src/lib.rs)
 module and in particular the `can_set_code` function to to see how this requirement and others are
 enforced by runtime logic.
 
 Build the upgraded runtime.
 
 ```shell
-cargo build --release -p node-template-runtime
+cargo build -p node-template-runtime
 ```
 
 ## Upgrade the Runtime
@@ -178,7 +176,7 @@ pallet as its parameter. In order to supply the build artifact that was generate
 build step, toggle the "file upload" switch on the right-hand side of the "code" input field for the
 parameter to the `set_code` function. Click the "code" input field, and select the Wasm binary that
 defines the upgraded runtime:
-`target/release/wbuild/node-template-runtime/node_template_runtime.compact.wasm`. Leave the value
+`target/debug/wbuild/node-template-runtime/node_template_runtime.compact.wasm`. Leave the value
 for the `_weight` parameter at the default of `0`. Click "Submit Transaction" and then "Sign and
 Submit".
 
