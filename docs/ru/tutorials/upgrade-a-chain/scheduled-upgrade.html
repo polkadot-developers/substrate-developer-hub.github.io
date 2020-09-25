@@ -89,9 +89,11 @@
 
 <span class="token macro property">parameter_types!</span> <span class="token punctuation">{</span>
     <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">ExistentialDeposit</span><span class="token punctuation">:</span> <span class="token keyword">u128</span> <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>  <span class="token comment">// Update this value.</span>
+    <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">MaxLocks</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">impl</span> <span class="token namespace">pallet_balances<span class="token punctuation">::</span></span><span class="token class-name">Trait</span> <span class="token keyword">for</span> <span class="token class-name">Runtime</span> <span class="token punctuation">{</span>
+    <span class="token keyword">type</span> <span class="token class-name">MaxLocks</span> <span class="token operator">=</span> <span class="token class-name">MaxLocks</span><span class="token punctuation">;</span>
     <span class="token comment">/// The type for recording an account's balance.</span>
     <span class="token keyword">type</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token class-name">Balance</span><span class="token punctuation">;</span>
     <span class="token comment">/// The ubiquitous event type.</span>

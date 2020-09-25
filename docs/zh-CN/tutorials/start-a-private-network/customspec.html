@@ -78,7 +78,7 @@
 <p>Last time around, we used <code>--chain local</code> which is a predefined &quot;chain spec&quot; that has Alice and Bob specified as validators along with many other useful defaults.</p>
 <p>Rather than writing our chain spec completely from scratch, we'll just make a few modifications to the one we used before. To start, we need to export the chain spec to a file named <code>customSpec.json</code>. Remember, further details about all of these commands are available by running <code>node-template --help</code>.</p>
 <pre><code class="hljs css language-bash"><span class="hljs-comment"># Export the local chainspec to json</span>
-$ ./target/release/node-template build-spec --<span class="hljs-built_in">disable</span>-default-bootnode --chain <span class="hljs-built_in">local</span> &gt; customSpec.json
+$ ./target/debug/node-template build-spec --<span class="hljs-built_in">disable</span>-default-bootnode --chain <span class="hljs-built_in">local</span> &gt; customSpec.json
 2020-05-28 13:29:05 Building chain spec
 </code></pre>
 <p>The file we just created contains several fields, and you can learn a lot by exploring them. By far the largest field is a single binary blob that is the Wasm binary of our runtime. It is part of what you built earlier when you ran the <code>cargo build</code> command.</p>
@@ -124,7 +124,7 @@ $ ./target/release/node-template build-spec --<span class="hljs-built_in">disabl
 <p>Validators should not share the same keys, even for learning purposes. If two validators have the same keys, they will produce conflicting blocks.</p>
 </blockquote>
 <p>Once the chain spec is prepared, convert it to a &quot;raw&quot; chain spec. The raw chain spec contains all the same information, but it contains the encoded storage keys that the node will use to reference the data in its local storage. Distributing a raw spec ensures that each node will store the data at the proper storage keys.</p>
-<pre><code class="hljs css language-bash">$ ./target/release/node-template build-spec --chain=customSpec.json --raw --<span class="hljs-built_in">disable</span>-default-bootnode &gt; customSpecRaw.json
+<pre><code class="hljs css language-bash">$ ./target/debug/node-template build-spec --chain=customSpec.json --raw --<span class="hljs-built_in">disable</span>-default-bootnode &gt; customSpecRaw.json
 2020-05-28 13:31:37 Building chain spec
 </code></pre>
 <p>最后与网络中的所有其他验证人共享<code>customSpecRaw.json</code>。</p>
