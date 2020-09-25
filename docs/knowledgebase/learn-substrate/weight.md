@@ -37,7 +37,7 @@ keep up with hardware and software improvements.
 Weights represent the _limited_ time that your blockchain has to validate a block. This includes
 computational cycles, and storage I/O. A custom implementation may use complex structures to express
 this. Substrate weights are simply a
-[numeric value](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/weights/type.Weight.html).
+[numeric value](https://substrate.dev/rustdocs/v2.0.0/frame_support/weights/type.Weight.html).
 
 A weight calculation should always:
 
@@ -81,10 +81,10 @@ execution time depends on, for example, the length of one parameter. It is impor
 calculations do not entail any meaningful work themselves. The pre-dispatch maximum weight should be
 trivially computable from the input arguments with some basic arithmetic.
 
-The [System pallet](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/struct.Module.html) is
+The [System pallet](https://substrate.dev/rustdocs/v2.0.0/frame_system/struct.Module.html) is
 responsible for accumulating the weight of each block as it gets executed and making sure that it
 does not exceed the limit. The
-[Transaction Payment pallet](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_transaction_payment/index.html)
+[Transaction Payment pallet](https://substrate.dev/rustdocs/v2.0.0/pallet_transaction_payment/index.html)
 is responsible for interpreting these weights and deducting fees based upon them. The weighing
 function is part of the runtime so it can be upgraded if needed.
 
@@ -108,13 +108,13 @@ filled with transactions that would take too long to execute. While processing t
 block, the System pallet accumulates both the total length of the block (sum of encoded transactions
 in bytes) and the total weight of the block. If either of these numbers surpass the limits, no
 further transactions are accepted in that block. These limits are defined in
-[`MaximumBlockLength`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/trait.Trait.html#associatedtype.MaximumBlockLength)
+[`MaximumBlockLength`](https://substrate.dev/rustdocs/v2.0.0/frame_system/trait.Trait.html#associatedtype.MaximumBlockLength)
 and
-[`MaximumBlockWeight`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/trait.Trait.html#associatedtype.MaximumBlockWeight).
+[`MaximumBlockWeight`](https://substrate.dev/rustdocs/v2.0.0/frame_system/trait.Trait.html#associatedtype.MaximumBlockWeight).
 
 One important note about these limits is that a portion of them are reserved for the `Operational`
 dispatch class. This rule applies to both of the limits and the ratio can be found in
-[`AvailableBlockRatio`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
+[`AvailableBlockRatio`](https://substrate.dev/rustdocs/v2.0.0/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio).
 
 For example, if the block length limit is 1 megabyte and the ratio is set to 80%, all transactions
 can fill the first 800 kilobytes of the block while the last 200 can only be filled by the
@@ -125,24 +125,9 @@ included in a block regardless of its impact on block weight. Please refer to th
 [Transaction Fees document](../runtime/fees) to learn more about the different dispatch classes and
 when to use them.
 
-## Next Steps
-
 ### Learn More
 
-- Substrate Recipes contains examples of both
-  [custom weights](https://github.com/substrate-developer-hub/recipes/tree/master/pallets/weights)
-  and custom
-  [WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/runtimes/weight-fee-runtime).
-- The [Example](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
+- [Example](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
   pallet.
-
-### Examples
-
-- See an example of
-  [adding a transaction weight](https://substrate.dev/recipes/3-entrees/weights.html) to a custom
-  runtime function.
-
-### References
-
 - [Transaction Payment pallet](https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/src/lib.rs)
 - [Weights](https://github.com/paritytech/substrate/blob/master/frame/support/src/weights.rs)
