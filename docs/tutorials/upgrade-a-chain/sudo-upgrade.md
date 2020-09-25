@@ -56,8 +56,8 @@ System module enforces a
 and a
 [`MaximumBlockWeight`](https://substrate.dev/rustdocs/v2.0.0/frame_system/trait.Trait.html#associatedtype.MaximumBlockWeight).
 The `set_code` function in
-[the System module](https://github.com/paritytech/substrate/blob/v2.0.0/frame/system/src/lib.rs)
-is intentionally designed to consume the maximum weight that may fit in a block. The `set_code`
+[the System module](https://github.com/paritytech/substrate/blob/v2.0.0/frame/system/src/lib.rs) is
+intentionally designed to consume the maximum weight that may fit in a block. The `set_code`
 function's weight annotation also specifies that `set_code` is in
 [the `Operational` class](../../knowledgebase/runtime/fees#operational-dispatches) of dispatchable
 functions, which identifies it as relating to network _operations_ and impacts the accounting of its
@@ -157,15 +157,24 @@ Take a moment to review the components of the `RuntimeVersion` struct:
 
 In order to upgrade the runtime it is _required_ to _increase_ the `spec_version`; refer to the
 implementation of the
-[FRAME System](https://github.com/paritytech/substrate/blob/v2.0.0/frame/system/src/lib.rs)
-module and in particular the `can_set_code` function to to see how this requirement and others are
-enforced by runtime logic.
+[FRAME System](https://github.com/paritytech/substrate/blob/v2.0.0/frame/system/src/lib.rs) module
+and in particular the `can_set_code` function to to see how this requirement and others are enforced
+by runtime logic.
 
 Build the upgraded runtime.
 
 ```shell
-cargo build -p node-template-runtime
+cargo build --release -p node-template-runtime
 ```
+
+Notice that the `--release` flag has been added to the `cargo build` command; although this will
+result in a longer compile time, it will generate a smaller build artifact that is better suited for
+submitting to the blockchain network. Aside from this use case, the `--release` flag should be used
+any time you are preparing a binary for use in production, as it will result in an optimized
+executable application. When the `--release` flag is specified, build artifacts are output to the
+`target/release` directory; when the flag is omitted they will be sent to `target/debug`. Refer to
+[the official documentation](https://doc.rust-lang.org/cargo/commands/cargo-build.html) to learn
+more about building Rust code with Cargo.
 
 ## Upgrade the Runtime
 
@@ -176,7 +185,7 @@ pallet as its parameter. In order to supply the build artifact that was generate
 build step, toggle the "file upload" switch on the right-hand side of the "code" input field for the
 parameter to the `set_code` function. Click the "code" input field, and select the Wasm binary that
 defines the upgraded runtime:
-`target/debug/wbuild/node-template-runtime/node_template_runtime.compact.wasm`. Leave the value
+`target/release/wbuild/node-template-runtime/node_template_runtime.compact.wasm`. Leave the value
 for the `_weight` parameter at the default of `0`. Click "Submit Transaction" and then "Sign and
 Submit".
 

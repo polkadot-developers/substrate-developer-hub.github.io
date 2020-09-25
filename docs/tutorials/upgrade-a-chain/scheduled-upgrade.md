@@ -29,9 +29,11 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 
 parameter_types! {
 	pub const ExistentialDeposit: u128 = 1000;  // Update this value.
+	pub const MaxLocks: u32 = 50;
 }
 
 impl pallet_balances::Trait for Runtime {
+	type MaxLocks = MaxLocks;
 	/// The type for recording an account's balance.
 	type Balance = Balance;
 	/// The ubiquitous event type.
@@ -52,7 +54,7 @@ dropped - that would require a storage migration, which is out of the scope of t
 Build the upgraded runtime.
 
 ```shell
-cargo build -p node-template-runtime
+cargo build --release -p node-template-runtime
 ```
 
 ## Upgrade the Runtime
