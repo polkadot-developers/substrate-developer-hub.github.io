@@ -75,7 +75,7 @@ Template, which serves as a good starting point for building on Substrate.
 
    ```bash
    cd substrate-node-template/
-   cargo build --release
+   cargo build
    ```
 
 The time required for the compilation step depends on the hardware you're using. Don't wait before

@@ -11,17 +11,17 @@ you with a number of pre-built pallets for use in FRAME-based runtimes.
 
 ![Runtime Composition](assets/tutorials/build-a-dapp/frame-runtime.png)
 
-For example, FRAME includes a [Balances](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_balances/)
+For example, FRAME includes a [Balances](https://substrate.dev/rustdocs/v2.0.0/pallet_balances/)
 pallet that controls the underlying currency of your blockchain by managing the _balance_ of all the
 accounts in your system.
 
 If you want to add smart contract functionality to your blockchain, you simply need to include the
-[Contracts](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_contracts/) pallet.
+[Contracts](https://substrate.dev/rustdocs/v2.0.0/pallet_contracts/) pallet.
 
 Even things like on-chain governance can be added to your blockchain by including pallets like
-[Democracy](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_democracy/),
-[Elections](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_elections/), and
-[Collective](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_collective/).
+[Democracy](https://substrate.dev/rustdocs/v2.0.0/pallet_democracy/),
+[Elections](https://substrate.dev/rustdocs/v2.0.0/pallet_elections/), and
+[Collective](https://substrate.dev/rustdocs/v2.0.0/pallet_collective/).
 
 The goal of this tutorial is to teach you how to create your own FRAME pallet to include in your
 custom blockchain! The Substrate Developer Hub Node Template comes with a template pallet that you
@@ -113,11 +113,7 @@ we just deleted. However, `sp_std` is not available and we need to list it as a 
 **Add** this block to your `pallets/template/Cargo.toml` file.
 
 ```toml
-[dependencies.sp-std]
-git = 'https://github.com/paritytech/substrate.git'
-default-features = false
-tag = 'v2.0.0-rc6'
-version = '2.0.0-rc6'
+sp-std = { default-features = false, version = '2.0.0' }
 ```
 
 Then, **Update** the existing `[features]` block to look like this. The last line is new. You will
@@ -292,24 +288,17 @@ decl_module! {
 ```
 
 > The functions you see here do not have return types explicitly stated. In reality they all return
-> [`DispatchResult`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/dispatch/type.DispatchResult.html)s.
+> [`DispatchResult`](https://substrate.dev/rustdocs/v2.0.0/frame_support/dispatch/type.DispatchResult.html)s.
 > This return type is added on your behalf by the `decl_module!` macro.
 
 ## Compile Your New Pallet
 
 After you've copied all of the parts of this pallet correctly into your `pallets/template/lib.rs`
 file, you should be able to recompile your node without warning or error. Run this command in the
-root directory of the `substrate-node-template` repository.
+root directory of the `substrate-node-template` repository to build and run the node:
 
 ```bash
-cargo build --release
-```
-
-Now you can start your node:
-
-```bash
-# Run a temporary node in development mode
-./target/release/node-template --dev --tmp
+cargo run -- --dev --tmp
 ```
 
 Now it is time to interact with our new Proof of Existence pallet!

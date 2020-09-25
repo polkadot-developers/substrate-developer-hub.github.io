@@ -229,8 +229,8 @@ experience short and satisfying. However, we want you to keep learning!
 To learn more about building your own pallets, explore the
 [Substrate Recipes](https://substrate.dev/recipes).
 
-Complete the [Add a Pallet](../add-a-pallet/) tutorial to learn how to extend the Node Template
-with additional capabilities from Substrate's set of
+Complete the [Add a Pallet](../add-a-pallet/) tutorial to learn how to extend the Node Template with
+additional capabilities from Substrate's set of
 [core FRAME pallets](../../knowledgebase/runtime/frame).
 
 Substrate is written in the Rust programming language, which has a great community and many helpful

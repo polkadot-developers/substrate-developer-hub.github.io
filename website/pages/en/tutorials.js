@@ -31,7 +31,7 @@ const tutorialCardData = [{
   difficulty: "easy",
   length: "< 1",
   prerequisite: false,
-  version: "2.0.0-rc6",
+  version: "2.0.0",
   href: 'tutorials/create-your-first-substrate-chain/',
 }, {
   title: <translate>Add a Pallet to Your Runtime</translate>,
@@ -39,7 +39,7 @@ const tutorialCardData = [{
   difficulty: "medium",
   length: "2",
   prerequisite: false,
-  version: "2.0.0-rc6",
+  version: "2.0.0",
   href: 'tutorials/add-a-pallet/',
 }, {
   title: "Upgrade a Chain",
@@ -47,7 +47,7 @@ const tutorialCardData = [{
   difficulty: "medium",
   length: "2",
   prerequisite: false,
-  version: "2.0.0-rc6",
+  version: "2.0.0",
   href: 'tutorials/upgrade-a-chain/',
 }, {
   img: 'img/first-substrate-chain.png',
@@ -56,7 +56,7 @@ const tutorialCardData = [{
   difficulty: "easy",
   length: "1",
   prerequisite: true,
-  version: "2.0.0-rc6",
+  version: "2.0.0",
   href: 'tutorials/build-a-dapp/',
 }, {
   img: 'img/substrate-network.png',
@@ -65,7 +65,7 @@ const tutorialCardData = [{
   difficulty: "easy",
   length: "2",
   prerequisite: false,
-  version: "2.0.0-rc6",
+  version: "2.0.0",
   href: 'tutorials/start-a-private-network/',
 }, {
   img: 'img/crates.png',
@@ -74,7 +74,7 @@ const tutorialCardData = [{
   difficulty: "medium",
   length: "2",
   prerequisite: false,
-  version: "2.0.0-rc6",
+  version: "2.0.0",
   href: 'tutorials/create-a-pallet/',
 }, {
   img: 'img/grafana.png',
@@ -83,7 +83,7 @@ const tutorialCardData = [{
   difficulty: "easy",
   length: "< 1",
   prerequisite: false,
-  version: "2.0.0-rc5",
+  version: "2.0.0",
   href: 'tutorials/visualize-node-metrics/',
 }, {
   title: <translate>Add the Contracts Pallet to a Runtime</translate>,
