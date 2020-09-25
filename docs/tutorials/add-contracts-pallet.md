@@ -61,7 +61,7 @@ check out [their official documentation](https://doc.rust-lang.org/cargo/referen
 
 Open `substrate-node-template/runtime/Cargo.toml` and you will see a list of all the dependencies
 your runtime has. For example, it depends on the
-[Balances pallet](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_balances/):
+[Balances pallet](https://substrate.dev/rustdocs/v2.0.0/pallet_balances/):
 
 **`runtime/Cargo.toml`**
 
@@ -69,8 +69,8 @@ your runtime has. For example, it depends on the
 [dependencies.pallet-balances]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-tag = 'v2.0.0'
 version = '2.0.0'
+tag = 'v2.0.0'
 ```
 
 ### Crate Features
@@ -147,14 +147,14 @@ So based on the `balances` import shown above, the `contracts` import will look 
 [dependencies.pallet-contracts]
 git = 'https://github.com/paritytech/substrate.git'
 default-features = false
-tag = 'v2.0.0'
 version = '2.0.0'
+tag = 'v2.0.0'
 
 [dependencies.pallet-contracts-primitives]
 git = 'https://github.com/paritytech/substrate.git'
 default-features = false
-tag = 'v2.0.0'
 version = '2.0.0'
+tag = 'v2.0.0'
 ```
 
 As with other pallets, the Contracts pallet has an `std` feature. We should build its `std` feature
@@ -219,7 +219,7 @@ Every pallet has a configuration trait called `Trait` that the runtime must impl
 
 To figure out what we need to implement for this pallet specifically, you can take a look to the
 FRAME
-[`pallet_contracts::Trait` documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_contracts/trait.Trait.html).
+[`pallet_contracts::Trait` documentation](https://substrate.dev/rustdocs/v2.0.0/pallet_contracts/trait.Trait.html).
 For our runtime, the implementation will look like this:
 
 **`runtime/src/lib.rs`**
@@ -343,8 +343,8 @@ We start by adding the required API dependencies in our `Cargo.toml`.
 [dependencies.pallet-contracts-rpc-runtime-api]
 git = 'https://github.com/paritytech/substrate.git'
 default-features = false
-tag = 'v2.0.0'
 version = '0.8.0-rc6'
+tag = 'v2.0.0'
 ```
 
 **`runtime/Cargo.toml`**
