@@ -103,6 +103,14 @@ const tutorialCardData = [{
   version: "2.0.0-rc4",
   hrefFrom: 'baseUrl',
   href: 'tutorials/ink-smart-contracts-tutorial/',
+}, {
+  title: <translate>Build a permissioned network</translate>,
+  text: <translate>A comprehensive, end-to-end tutorial for building a permissioned network using node-authorization pallet.</translate>,
+  difficulty: "easy",
+  length: "2",
+  prerequisite: false,
+  version: "2.0.0",
+  href: 'tutorials/build-permission-network/',
 }];
 
 const capitalize = word => `${word.charAt(0).toUpperCase()}${word.slice(1)}`;
