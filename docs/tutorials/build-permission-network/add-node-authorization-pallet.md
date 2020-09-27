@@ -83,7 +83,7 @@ use sp_core::OpaquePeerId; // A struct wraps Vec<u8>, represents as our `PeerId`
 use node_template_runtime::NodeAuthorizationConfig; // The genesis config that serves for our pallet.
 ```
 
-在`testnet_genesis`帮助函数中添加对应的genesis config，
+Adding our genesis config in the helper function `testnet_genesis`,
 
 ```rust
 pallet_node_authorization: Some(NodeAuthorizationConfig {
