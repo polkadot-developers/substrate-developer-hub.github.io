@@ -128,34 +128,33 @@ is mostly out of the scope of this document.
 Here is a condensed version of decoded metadata:
 
 ```json
-[
-  1635018093,
-  {
+{
+  "magicNumber": 1635018093,
+  "metadata": {
     "V11": {
-        "modules": [
-            {
-                ...
-            },
-            {
-                ...
-            }
-       ],
-       "extrinsic" {
-           "version": 4,
-           "signed_extensions": [
-               "RestrictFunctionality",
-               "CheckVersion",
-               "CheckGenesis",
-               "CheckEra",
-               "CheckNonce",
-               "CheckWeight",
-               "ChargeTransactionPayment",
-               "LimitParathreadCommits"
-           ]
-       }
-    }
+      "modules": [
+        {
+          // ...
+        },
+        {
+          // ...
+        }
+      ],
+      "extrinsic": {
+        "version": 4,
+        "signedExtensions": [
+          "CheckSpecVersion",
+          "CheckTxVersion",
+          "CheckGenesis",
+          "CheckMortality",
+          "CheckNonce",
+          "CheckWeight",
+          "ChargeTransactionPayment"
+        ]
+      }
+    } 
   }
-]
+}
 ```
 
 As described above, the integer `1635018093` is a "magic number" that represents "meta" in plain
@@ -170,22 +169,23 @@ Here is a condensed example of a single element in the `modules` array:
 
 ```json
 {
-    "name": "System",
-    "storage": {
-      ..
-    },
-    "calls": [
-      ..
-    ],
-    "event": [
-      ..
-    ],
-    "constants": [
-        ..
-    ],
-    "errors": [
-        ..
-    ]
+  "name": "System",
+  "storage": {
+    // ..
+  },
+  "calls": [
+    // ..
+  ],
+  "events": [
+    // ..
+  ],
+  "constants": [
+    // ..
+  ],
+  "errors": [
+    // ..
+  ],
+  "index": 0
 }
 ```
 
@@ -202,36 +202,42 @@ about the module's storage:
 
 ```json
 {
- "name": "System",
- "storage": {
-   "prefix": "System",
-   "entries": [
-     {
-       "name": "Account",
-       "modifier": "Default",
-       "ty": {
-         "Map": {
-           "hasher": "Blake2_128Concat",
-           "key": "T::AccountId",
-           "value": "AccountInfo<T::Index, T::AccountData>",
-           "unused": false
-         }
-       },
-       "default": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-       "documentation": [
-         " The full account information for a particular account ID."
-       ]
-    },
-    {
+  "name": "System",
+  "storage": {
+    "prefix": "System",
+    "items": [
+      {
+        "name": "Account",
+        "modifier": "Default",
+        "type": {
+          "Map": {
+            "hasher": "Blake2_128Concat",
+            "key": "AccountId",
+            "value": "AccountInfo",
+            "linked": false
+          }
+        },
+        "fallback": "0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "documentation": [
+          " The full account information for a particular account ID."
+        ]
+      },
+      {
         "name": "ExtrinsicCount",
-      ..
-    },
-    {
-      "name": "AlLExtrinsicsWeight",
-      ..
-    }
-  ]
-},
+        // ..
+      },
+      {
+        "name": "AllExtrinsicsLen",
+        // ..
+      }
+    ]
+  },
+  "calls": [/*...*/],
+  "events": [/*...*/],
+  "constants": [/*...*/],
+  "errors": [/*...*/],
+  "index": 0
+}
 ```
 
 Every storage item that is defined in a pallet will have a corresponding metadata entry. For
@@ -293,11 +299,11 @@ This materializes in the metadata as follows:
 "calls": [
   {
     "name": "set",
-    "arguments": [
-        {
-          "name": "now",
-          "ty": "Compact<T::Moment>"
-        }
+    "args": [
+      {
+        "name": "now",
+        "ty": "Compact<T::Moment>"
+      }
     ],
     "documentation": [
       " Set the current time.",
@@ -318,7 +324,7 @@ This materializes in the metadata as follows:
 
 This metadata snippet is generated from this declaration in `frame-system`:
 
-```Rust
+```rust
 decl_event!(
     /// Event for the System module
     pub enum Event<T> where AccountId = <T as Trait>::AccountId {
@@ -335,25 +341,25 @@ Substrate's metadata would describe these events as follows:
 
 ```json
 "event": [
-    {
-      "name": "ExtrinsicSuccess",
-      "arguments": [
-        "DispatchInfo"
-      ],
-      "documentation": [
-          " An extrinsic completed successfully."
-      ]
-    },
-    {
-      "name": "ExtrinsicFailed",
-      "arguments": [
-        "DispatchError",
-        "DispatchInfo"
-      ],
-      "documentation": [
-        " An extrinsic failed."
-      ]
-    },
+  {
+    "name": "ExtrinsicSuccess",
+    "arguments": [
+      "DispatchInfo"
+    ],
+    "documentation": [
+      " An extrinsic completed successfully."
+    ]
+  },
+  {
+    "name": "ExtrinsicFailed",
+    "arguments": [
+      "DispatchError",
+      "DispatchInfo"
+    ],
+    "documentation": [
+      " An extrinsic failed."
+    ]
+  },
 ],
 ```
 
@@ -364,7 +370,7 @@ The metadata will include any module constants. From `pallet-babe`:
 ```rust
 decl_module! {
     /// The BABE Pallet
-	pub struct Module<T: Trait> for enum Call where origin: T::Origin {
+    pub struct Module<T: Trait> for enum Call where origin: T::Origin {
         /// The number of **slots** that an epoch takes. We couple sessions to
         /// epochs, i.e. we start a new session once the new epoch begins.
         const EpochDuration: u64 = T::EpochDuration::get();
@@ -378,25 +384,17 @@ The metadata for this constant looks like this:
 
 ```json
 "constants": [
-    {
-      "name": "EpochDuration",
-      "ty": "u64",
-      "value": [
-        88,
-        2,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "documentation": [
-        " The number of **slots** that an epoch takes. We couple sessions to",
-        " epochs, i.e. we start a new session once the new epoch begins."
-      ]
-    },
-],
+  {
+    "name": "EpochDuration",
+    "type": "u64",
+    "value": "0x6009000000000000",
+    "documentation": [
+      " The number of **slots** that an epoch takes. We couple sessions to",
+      " epochs, i.e. we start a new session once the new epoch begins."
+    ]
+  },
+  // ...
+]
 ```
 
 The metadata also includes constants defined in the runtime's `lib.rs`. For example, from Kusama:
@@ -414,7 +412,7 @@ Where `EPOCH_DURATION_IN_BLOCKS` is a constant defined in `runtime/src/constants
 Metadata will pull all the possible runtime errors from `decl_error!`. For example, from
 `frame-system`:
 
-```Rust
+```rust
 decl_error! {
     /// Error for the system module
     pub enum Error for Module<T: Trait> {
@@ -430,13 +428,14 @@ This will expose the following metadata:
 
 ```json
 "errors": [
-    {
-        "name": "InvalidSpecName",
-        "documentation": [
-            " The name of specification does not match between the current runtime",
-            " and the new runtime."
-         ]
-    },
+  {
+    "name": "InvalidSpecName",
+    "documentation": [
+      " The name of specification does not match between the current runtime",
+      " and the new runtime."
+    ]
+  },
+  // ...
 ]
 ```
 
