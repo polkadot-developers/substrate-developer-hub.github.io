@@ -95,7 +95,7 @@ and implements getters on the `Module` struct defined by `decl_module!`.
 
 **Docs and Notes**
 
-- [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_storage.html)
+- [API Documentation](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_storage.html)
 - `Store` trait is declared with each storage name, thus becoming an associated type inside the
   trait.
 - `Module` implementation contains the getter function and metadata of each storage item.
@@ -114,7 +114,7 @@ macro being an enum variant inside `Event`.
 
 **Docs and Notes**
 
-- [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_event.html)
+- [API Documentation](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_event.html)
 - `Event` or `Event<T>` type is defined, assigned to `RawEvent`.
 - `RawEvent<...all generic types used>` enum type is defined with all events specified in the macro
   as its enum variants.
@@ -142,7 +142,7 @@ string for a particular error type, and the documentation provided on top of eac
 
 **Docs and Notes**
 
-- [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_error.html)
+- [API Documentation](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_error.html)
 - `Error<T: Trait>` enum type is filled with enum variants specified in the macro.
 - `Error` implements various helper functions, and maps each error to a sequential error code and an
   error string.
@@ -167,7 +167,7 @@ also inserts lifecycle trait implementations for `Module`, e.g.
 
 **Docs and Notes**
 
-- [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_module.html)
+- [API Documentation](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_module.html)
 - This macro declares a `Module<T>` struct and a `Call<T>` enum which implements the dispatch logic.
 - Helper traits are automatically implemented for `Module` struct, such as `core::cmp::Eq`,
   `core::clone::Clone`, etc.
@@ -204,7 +204,7 @@ a particular pallet.
 
 **Docs and Notes**
 
-- [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.construct_runtime.html)
+- [API Documentation](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.construct_runtime.html)
 - `Runtime` struct type is defined to represent the Substrate runtime.
 - `Event` enum type is defined with variants of all pallets that emit events, with helper traits and
   encoding/decoding traits implemented for the enum. Various conversion traits `Event` also
@@ -281,7 +281,7 @@ public-private key pair from a seed.
 
 **Docs and Notes**
 
-- [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/sp_application_crypto/macro.app_crypto.html)
+- [API Documentation](https://substrate.dev/rustdocs/v2.0.0/sp_application_crypto/macro.app_crypto.html)
 - `Public` struct type is declared, and implements `sp_application_crypto::AppKey` trait defining
   the public key type, and `sp_application_crypto::RuntimeAppPublic` trait for generating keypairs,
   signing, and verifying signatures.
@@ -308,7 +308,7 @@ This macro creates an `Origin` struct type, and implements various helper traits
 
 **Docs**
 
-- [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.impl_outer_origin.html)
+- [API Documentation](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.impl_outer_origin.html)
 
 ### impl_outer_event!
 
@@ -328,7 +328,7 @@ the runtime.
 
 **Docs**
 
-- [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.impl_outer_event.html)
+- [API Documentation](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.impl_outer_event.html)
 
 ### impl_outer_dispatch!
 
@@ -347,7 +347,7 @@ This macro creates a `Call` enum type, implements various helper traits on `Even
 
 **Docs**
 
-- [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.impl_outer_dispatch.html)
+- [API Documentation](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.impl_outer_dispatch.html)
 
 ## Conclusion
 
