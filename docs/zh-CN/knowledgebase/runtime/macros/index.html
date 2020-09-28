@@ -127,7 +127,7 @@
 <p>The macro also declares and implements the <code>Store</code> trait to set up the pallet to have storage space, and implements getters on the <code>Module</code> struct defined by <code>decl_module!</code>.</p>
 <p><strong>Docs and Notes</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_storage.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_storage.html">API Documentation</a></li>
 <li><code>Store</code> trait is declared with each storage name, thus becoming an associated type inside the trait.</li>
 <li><code>Module</code> implementation contains the getter function and metadata of each storage item.</li>
 <li>Each of the storage items becomes a struct.</li>
@@ -139,7 +139,7 @@
 <p>This macro defines pallet events by implementing <code>Event</code> enum type, with each event type in the macro being an enum variant inside <code>Event</code>.</p>
 <p><strong>Docs and Notes</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_event.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_event.html">API Documentation</a></li>
 <li><code>Event</code> or <code>Event&lt;T&gt;</code> type is defined, assigned to <code>RawEvent</code>.</li>
 <li><code>RawEvent&lt;...all generic types used&gt;</code> enum type is defined with all events specified in the macro as its enum variants.</li>
 <li>The macro implements various helper traits for<code>RawEvent</code>, including data encoding/decoding, <code>core::cmp::PartialEq</code>, <code>core::cmp::Clone</code>, and <code>core::fmt::Debug</code>.</li>
@@ -153,7 +153,7 @@
 <p>One key feature is that the macro automatically implements the <code>From&lt;Error&lt;T&gt;&gt;</code> trait for <code>DispatchError</code>. Therefore, <code>DispatchError</code> returns the proper module index, error code, error string for a particular error type, and the documentation provided on top of each error as metadata.</p>
 <p><strong>Docs and Notes</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_error.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_error.html">API Documentation</a></li>
 <li><code>Error&lt;T: Trait&gt;</code> enum type is filled with enum variants specified in the macro.</li>
 <li><code>Error</code> implements various helper functions, and maps each error to a sequential error code and an error string.</li>
 <li><code>Error</code> type implementation contains a <code>fn metadata()</code> function.</li>
@@ -166,7 +166,7 @@
 <p>The macro declares a <code>Module</code> struct and <code>Call</code> enum type for the containing pallet. It combines the necessary logics using user-defined dispatchable calls into the two types. In addition to various helper traits implemented for <code>Module</code> and <code>Call</code>, e.g. <code>Copy</code>, <code>StructuralEq</code>, <code>Debug</code>, the macro also inserts lifecycle trait implementations for <code>Module</code>, e.g. <code>frame_support::traits::OnInitialize</code>, <code>frame_support::traits::OnFinalize</code>, <code>frame_support::traits::OnRuntimeUpgrade</code>, and <code>frame_support::traits::OffchainWorker</code>.</p>
 <p><strong>Docs and Notes</strong></p>
 <ul>
-<li><p><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_module.html">API Documentation</a></p></li>
+<li><p><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_module.html">API Documentation</a></p></li>
 <li><p>This macro declares a <code>Module&lt;T&gt;</code> struct and a <code>Call&lt;T&gt;</code> enum which implements the dispatch logic.</p></li>
 <li><p>Helper traits are automatically implemented for <code>Module</code> struct, such as <code>core::cmp::Eq</code>, <code>core::clone::Clone</code>, etc.</p></li>
 <li><p><code>Module</code> implements various lifecycle traits, such as</p>
@@ -187,7 +187,7 @@
 <p>The macro declares and implements various struct and enum, e.g.<code>Runtime</code>, <code>Event</code>, <code>Origin</code>, <code>Call</code>, <code>GenesisConfig</code> etc, and implements various helper traits for these struct types. The macro also adds logics of mapping different events and dispatchable calls from the overarching runtime back to a particular pallet.</p>
 <p><strong>Docs and Notes</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.construct_runtime.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.construct_runtime.html">API Documentation</a></li>
 <li><code>Runtime</code> struct type is defined to represent the Substrate runtime.</li>
 <li><code>Event</code> enum type is defined with variants of all pallets that emit events, with helper traits and encoding/decoding traits implemented for the enum. Various conversion traits <code>Event</code> also implements <code>TryInto&lt;pallets::Event&lt;Runtime&gt;&gt;</code> trait to extract the event out from the enum type.</li>
 <li><code>Origin</code> enum type is defined with helper traits, e.g. <code>PartialEq</code>, <code>Clone</code>, <code>Debug</code> implemented. This enum type defines who calls an extrinsic: <code>NONE</code>, <code>ROOT</code>, or signed by a particular account. These three primitive origins are defined by the FRAME System module, but optional FRAME pallets may also define origins.</li>
@@ -224,7 +224,7 @@
 <p>The macro declares three struct types, <code>Public</code>, <code>Signature</code>, and <code>Pair</code>. Aside from having various helper traits implemented for these three types, <code>Public</code> type is implemented to generating keypairs, signing and verifying signature, <code>Signature</code> type to hold the signature property given the signature chosen to be used (e.g. SR25519, ED25519 etc), and <code>Pair</code> type to generate a public-private key pair from a seed.</p>
 <p><strong>Docs and Notes</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/sp_application_crypto/macro.app_crypto.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/sp_application_crypto/macro.app_crypto.html">API Documentation</a></li>
 <li><code>Public</code> struct type is declared, and implements <code>sp_application_crypto::AppKey</code> trait defining the public key type, and <code>sp_application_crypto::RuntimeAppPublic</code> trait for generating keypairs, signing, and verifying signatures.</li>
 <li><code>Signature</code> struct type is declared, and implements <code>core::hash::Hash</code> trait on how the data with this signature type is hashed.</li>
 <li><code>Pair</code> struct type is declared to wrap over the crypto pair. This type implements <code>sp_application_crypto::Pair</code> and <code>sp_application_crypto::AppKey</code> traits determining how it generates public-private key pairs from a phrase or seed.</li>
@@ -237,7 +237,7 @@
 <p>This macro creates an <code>Origin</code> struct type, and implements various helper traits for the type.</p>
 <p><strong>文档</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.impl_outer_origin.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.impl_outer_origin.html">API Documentation</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="impl_outer_event"></a><a href="#impl_outer_event" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>impl_outer_event!</h3>
 <p><strong>When to Use</strong></p>
@@ -246,7 +246,7 @@
 <p>This macro creates an event enum type, implements various helper traits on <code>Event</code> type, including <code>core::clone::Clone</code>, <code>core::marker::StructuralPartialEq</code>, <code>core::fmt::Debug</code>, data encoding/decoding traits etc. Finally, the macro implements only the specifying pallet events for the runtime.</p>
 <p><strong>文档</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.impl_outer_event.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.impl_outer_event.html">API Documentation</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="impl_outer_dispatch"></a><a href="#impl_outer_dispatch" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>impl_outer_dispatch!</h3>
 <p><strong>When to Use</strong></p>
@@ -255,7 +255,7 @@
 <p>This macro creates a <code>Call</code> enum type, implements various helper traits on <code>Event</code> type, including <code>Clone</code>, <code>PartialEq</code>, <code>RuntimeDebug</code> etc. Finally, the macro implements <code>GetDispatchInfo</code>, <code>GetCallMetadata</code>, <code>IsSubType</code> traits for the <code>Call</code> enum.</p>
 <p><strong>文档</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.impl_outer_dispatch.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.impl_outer_dispatch.html">API Documentation</a></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="conclusion"></a><a href="#conclusion" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Conclusion</h2>
 <p>Through this article, developers will have a good understanding of how Substrate runtime leverage on Rust macros and a basic understanding of some of the frequently used macros in runtime development.</p>
