@@ -84,15 +84,15 @@ document is intended to provide information and best practices about Substrate's
 interfaces. Please refer to <a href="../advanced/storage">the advanced storage documentation</a> for more
 information about how these interfaces are implemented.</p>
 <h2><a class="anchor" aria-hidden="true" id="storage-items"></a><a href="#storage-items" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Storage Items</h2>
-<p>The <code>storage</code> module in <a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/index.html">FRAME Support</a>
+<p>The <code>storage</code> module in <a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/index.html">FRAME Support</a>
 gives runtime developers access to Substrate's flexible storage APIs. Any value that can be encoded
 by the <a href="../advanced/codec">Parity SCALE codec</a> is supported by these storage APIs:</p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.storagevalue.html">Storage Value</a> - A single
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.storagevalue.html">Storage Value</a> - A single
 value</li>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.storagemap.html">Storage Map</a> - A key-value
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.storagemap.html">Storage Map</a> - A key-value
 hash map</li>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.storagedoublemap.html">Storage Double Map</a> -
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.storagedoublemap.html">Storage Double Map</a> -
 An implementation of a map with two keys that provides the important ability to efficiently remove
 all entries that have a common first key</li>
 </ul>
@@ -110,16 +110,16 @@ in your runtime may result in exceeding the block production time - if this occu
 will stop producing blocks, which means that it will stop functioning.</p>
 <h4><a class="anchor" aria-hidden="true" id="methods"></a><a href="#methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h4>
 <p>Refer to the Storage Value documentation for
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.StorageValue.html#required-methods">a comprehensive list of the methods that Storage Values expose</a>.
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageValue.html#required-methods">a comprehensive list of the methods that Storage Values expose</a>.
 Some of the most important methods are summarized here:</p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.StorageValue.html#tymethod.get"><code>get()</code></a> -
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageValue.html#tymethod.get"><code>get()</code></a> -
 Load the value from storage.</li>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.StorageValue.html#tymethod.put"><code>put(val)</code></a> -
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageValue.html#tymethod.put"><code>put(val)</code></a> -
 Store the provided value.</li>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.StorageValue.html#tymethod.mutate"><code>mutate(fn)</code></a> -
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageValue.html#tymethod.mutate"><code>mutate(fn)</code></a> -
 Mutate the value with the provided function.</li>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.StorageValue.html#tymethod.take"><code>take()</code></a> -
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageValue.html#tymethod.take"><code>take()</code></a> -
 Load the value and remove it from storage.</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="storage-maps"></a><a href="#storage-maps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Storage Maps</h3>
@@ -131,21 +131,21 @@ In order to give blockchain engineers increased control, Substrate allows develo
 <a href="../advanced/storage">the advanced storage documentation</a> to learn more about how Substrate's
 Storage Maps are implemented.</p>
 <h4><a class="anchor" aria-hidden="true" id="methods-1"></a><a href="#methods-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h4>
-<p><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.StorageMap.html#required-methods">Storage Maps expose an API</a>
+<p><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageMap.html#required-methods">Storage Maps expose an API</a>
 that is similar to that of Storage Values.</p>
 <ul>
 <li><code>get</code> - Load the value associated with the provided key from storage. Docs:
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.StorageMap.html#tymethod.get"><code>StorageMap#get(key)</code></a>,
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.StorageDoubleMap.html#tymethod.get"><code>StorageDoubleMap#get(key1, key2)</code></a></li>
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageMap.html#tymethod.get"><code>StorageMap#get(key)</code></a>,
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageDoubleMap.html#tymethod.get"><code>StorageDoubleMap#get(key1, key2)</code></a></li>
 <li><code>insert</code> - Store the provided value by associating it with the given key. Docs:
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.StorageMap.html#tymethod.insert"><code>StorageMap#insert(key, val)</code></a>,
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.StorageDoubleMap.html#tymethod.insert"><code>StorageDoubleMap#insert(key1, key2, val)</code></a></li>
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageMap.html#tymethod.insert"><code>StorageMap#insert(key, val)</code></a>,
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageDoubleMap.html#tymethod.insert"><code>StorageDoubleMap#insert(key1, key2, val)</code></a></li>
 <li><code>mutate</code> - Use the provided function to mutate the value associated with the given key. Docs:
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.StorageMap.html#tymethod.mutate"><code>StorageMap#mutate(key, fn)</code></a>,
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.StorageDoubleMap.html#tymethod.mutate"><code>StorageDoubleMap#mutate(key1, key2, fn)</code></a></li>
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageMap.html#tymethod.mutate"><code>StorageMap#mutate(key, fn)</code></a>,
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageDoubleMap.html#tymethod.mutate"><code>StorageDoubleMap#mutate(key1, key2, fn)</code></a></li>
 <li><code>take</code> - Load the value associated with the given key and remove it from storage. Docs:
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.StorageMap.html#tymethod.take"><code>StorageMap#take(key)</code></a>,
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.StorageDoubleMap.html#tymethod.take"><code>StorageDoubleMap#take(key1, key2)</code></a></li>
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageMap.html#tymethod.take"><code>StorageMap#take(key)</code></a>,
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageDoubleMap.html#tymethod.take"><code>StorageDoubleMap#take(key1, key2)</code></a></li>
 </ul>
 <h4><a class="anchor" aria-hidden="true" id="iterable-storage-maps"></a><a href="#iterable-storage-maps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Iterable Storage Maps</h4>
 <p>Substrate Storage Maps are iterable with respect to their keys and values. Because maps are often
@@ -165,16 +165,16 @@ Storage Double Maps, the <code>iter</code> and <code>drain</code> methods requir
 <ul>
 <li><code>iter</code> - Enumerate all elements in the map in no particular order. If you alter the map while
 doing this, you'll get undefined results. Docs:
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter"><code>IterableStorageMap#iter()</code></a>,
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter"><code>IterableStorageDoubleMap#iter(key1)</code></a></li>
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter"><code>IterableStorageMap#iter()</code></a>,
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter"><code>IterableStorageDoubleMap#iter(key1)</code></a></li>
 <li><code>drain</code> - Remove all elements from the map and iterate through them in no particular order. If you
 add elements to the map while doing this, you'll get undefined results. Docs:
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain"><code>IterableStorageMap#drain()</code></a>,
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain"><code>IterableStorageDoubleMap#drain(key1)</code></a></li>
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain"><code>IterableStorageMap#drain()</code></a>,
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain"><code>IterableStorageDoubleMap#drain(key1)</code></a></li>
 <li><code>translate</code> - Use the provided function to translate all elements of the map, in no particular
 order. To remove an element from the map, return <code>None</code> from the translation function. Docs:
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate"><code>IterableStorageMap#translate(fn)</code></a>,
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate"><code>IterableStorageDoubleMap#translate(fn)</code></a></li>
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate"><code>IterableStorageMap#translate(fn)</code></a>,
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate"><code>IterableStorageDoubleMap#translate(fn)</code></a></li>
 </ul>
 <h4><a class="anchor" aria-hidden="true" id="hashing-algorithms"></a><a href="#hashing-algorithms" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hashing Algorithms</h4>
 <p>As mentioned above, a novel feature of Substrate Storage Maps is that they allow developers to
@@ -217,9 +217,9 @@ those that are transparent:</p>
 <tr><th>Hasher</th><th>Cryptographic</th><th>Transparent</th></tr>
 </thead>
 <tbody>
-<tr><td><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/struct.Blake2_128Concat.html">Blake2 128 Concat</a></td><td>X</td><td>X</td></tr>
-<tr><td><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/struct.Twox64Concat.html">TwoX 64 Concat</a></td><td></td><td>X</td></tr>
-<tr><td><a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/struct.Identity.html">Identity</a></td><td></td><td>X</td></tr>
+<tr><td><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/struct.Blake2_128Concat.html">Blake2 128 Concat</a></td><td>X</td><td>X</td></tr>
+<tr><td><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/struct.Twox64Concat.html">TwoX 64 Concat</a></td><td></td><td>X</td></tr>
+<tr><td><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/struct.Identity.html">Identity</a></td><td></td><td>X</td></tr>
 </tbody>
 </table>
 <p>The Identity hasher encapsulates a hashing algorithm that has an output equal to its input (the
@@ -227,7 +227,7 @@ identity function). This type of hasher should only be used when the starting ke
 cryptographic hash.</p>
 <h2><a class="anchor" aria-hidden="true" id="declaring-storage-items"></a><a href="#declaring-storage-items" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Declaring Storage Items</h2>
 <p>You can use
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_storage.html">the <code>decl_storage</code> macro</a> to easily
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_storage.html">the <code>decl_storage</code> macro</a> to easily
 create new runtime storage items. Here is an example of what it looks like to declare each type of
 storage item:</p>
 <pre><code class="hljs css language-rust"><span class="token macro property">decl_storage!</span> <span class="token punctuation">{</span>
@@ -284,20 +284,20 @@ value during execution.</p>
 block of your blockchain. The genesis storage configuration APIs expose a number of mechanisms for
 initializing storage, all of which have entry points in the <code>decl_storage</code> macro. These mechanisms
 all result in the creation of a <code>GenesisConfig</code> data type that implements
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/sp_runtime/trait.BuildModuleGenesisStorage.html">the <code>BuildModuleGenesisStorage</code> trait</a>
+<a href="https://substrate.dev/rustdocs/v2.0.0/sp_runtime/trait.BuildModuleGenesisStorage.html">the <code>BuildModuleGenesisStorage</code> trait</a>
 and will be added to the module that contains the storage items (e.g.
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_balances/struct.GenesisConfig.html"><code>Struct pallet_balances::GenesisConfig</code></a>);
+<a href="https://substrate.dev/rustdocs/v2.0.0/pallet_balances/struct.GenesisConfig.html"><code>Struct pallet_balances::GenesisConfig</code></a>);
 storage items that are tagged for genesis configuration will have a corresponding attribute on this
 data type. In order to consume a module's genesis configuration capabilities, you must include the
 <code>Config</code> element when adding the module to your runtime with
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.construct_runtime.html">the <code>construct_runtime</code> macro</a>.
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.construct_runtime.html">the <code>construct_runtime</code> macro</a>.
 All the <code>GenesisConfig</code> types for the modules that inform a runtime will be aggregated into a single
 <code>GenesisConfig</code> type for that runtime, which implements
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/sp_runtime/trait.BuildStorage.html">the <code>BuildStorage</code> trait</a> (e.g.
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/node_template_runtime/struct.GenesisConfig.html"><code>Struct node_template_runtime::GenesisConfig</code></a>);
+<a href="https://substrate.dev/rustdocs/v2.0.0/sp_runtime/trait.BuildStorage.html">the <code>BuildStorage</code> trait</a> (e.g.
+<a href="https://substrate.dev/rustdocs/v2.0.0/node_template_runtime/struct.GenesisConfig.html"><code>Struct node_template_runtime::GenesisConfig</code></a>);
 each attribute on this type corresponds to a <code>GenesisConfig</code> from one of the runtime's modules.
 Ultimately, the runtime's <code>GenesisConfig</code> is exposed by way of
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/sc_chain_spec/trait.ChainSpec.html">the <code>ChainSpec</code> trait</a>. For a complete
+<a href="https://substrate.dev/rustdocs/v2.0.0/sc_chain_spec/trait.ChainSpec.html">the <code>ChainSpec</code> trait</a>. For a complete
 and concrete example of using Substrate's genesis storage configuration capabilities, refer to the
 <code>decl_storage</code> macro in
 <a href="https://github.com/paritytech/substrate/blob/master/frame/society/src/lib.rs">the Society pallet</a>
@@ -418,7 +418,7 @@ important first principles that motivated them.</p>
 <em>consensus-critical</em> data should be stored in your runtime. When possible, use techniques like
 hashing to reduce the amount of data you must store. For instance, many of Substrate's governance
 capabilities (e.g.
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_democracy/enum.Call.html#variant.propose">the Democracy pallet's <code>propose</code> dispatchable</a>)
+<a href="https://substrate.dev/rustdocs/v2.0.0/pallet_democracy/enum.Call.html#variant.propose">the Democracy pallet's <code>propose</code> dispatchable</a>)
 allow network participants to vote on the <em>hash</em> of a dispatchable call, which is always bounded in
 size, as opposed to the call itself, which may be unbounded in length. This is especially true in
 the case of runtime upgrades where the dispatchable call takes an entire runtime Wasm blob as its
@@ -451,7 +451,7 @@ met. In general, code blocks that may result in mutating storage should be struc
 operation that is logically atomic or data that will not be needed if the operation is to fail. This
 does not mean that runtime storage should not be used to track the state of ongoing actions that
 require multiple atomic operations, as in the case of
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_utility/enum.Call.html#variant.as_multi">the multi-signature capabilities from the Utility pallet</a>.
+<a href="https://substrate.dev/rustdocs/v2.0.0/pallet_utility/enum.Call.html#variant.as_multi">the multi-signature capabilities from the Utility pallet</a>.
 In this case, runtime storage is used to track the signatories on a dispatchable call even though a
 given call may never receive enough signatures to actually be invoked. In this case, each signature
 is considered an atomic event in the ongoing multi-signature operation; the data needed to record a
@@ -461,7 +461,7 @@ been met.</p>
 <p>Creating bounds on the size of storage items is an extremely effective way to control the use of
 runtime storage and one that is used repeatedly throughout the Substrate codebase. In general, any
 storage item whose size is determined by user action should have a bound on it.
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_utility/trait.Trait.html#associatedtype.MaxSignatories">The multi-signature capabilities from the Utility pallet</a>
+<a href="https://substrate.dev/rustdocs/v2.0.0/pallet_utility/trait.Trait.html#associatedtype.MaxSignatories">The multi-signature capabilities from the Utility pallet</a>
 that were described above are one such example. In this case, the list of signatories associated
 with a multi-signature operation is provided by the multi-signature participants. Because this
 signatory list is <a href="#what-to-store">necessary to come to consensus</a> on the state of the
@@ -478,15 +478,15 @@ requires users to configure a bound on this number that will be included as a
 <h3><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h3>
 <ul>
 <li>Visit the reference docs for the
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_storage.html"><code>decl_storage!</code> macro</a> for more
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_storage.html"><code>decl_storage!</code> macro</a> for more
 details about the available storage declarations.</li>
 <li>Visit the reference docs for
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.StorageValue.html">StorageValue</a>,
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.StorageMap.html">StorageMap</a> and
-<a href="https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/storage/trait.StorageDoubleMap.html">StorageDoubleMap</a> to
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageValue.html">StorageValue</a>,
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageMap.html">StorageMap</a> and
+<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageDoubleMap.html">StorageDoubleMap</a> to
 learn more about their APIs.</li>
 </ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 8/21/2020 by Dan Forbes</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/knowledgebase/runtime/metadata"><span class="arrow-prev">← </span><span>Runtime Metadata</span></a><a class="docs-next button" href="/docs/en/knowledgebase/runtime/origin"><span>Runtime Origin</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#storage-items">Storage Items</a><ul class="toc-headings"><li><a href="#storage-value">Storage Value</a></li><li><a href="#storage-maps">Storage Maps</a></li></ul></li><li><a href="#declaring-storage-items">Declaring Storage Items</a><ul class="toc-headings"><li><a href="#visibility">Visibility</a></li><li><a href="#getter-methods">Getter Methods</a></li><li><a href="#default-values">Default Values</a></li><li><a href="#genesis-configuration">Genesis Configuration</a></li></ul></li><li><a href="#accessing-storage-items">Accessing Storage Items</a></li><li><a href="#best-practices">Best Practices</a><ul class="toc-headings"><li><a href="#what-to-store">What to Store</a></li><li><a href="#verify-first-write-last">Verify First, Write Last</a></li><li><a href="#create-bounds">Create Bounds</a></li></ul></li><li><a href="#next-steps">Next Steps</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li><li><a href="#examples">Examples</a></li><li><a href="#references">References</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 9/28/2020 by Addie Wagenknecht</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/knowledgebase/runtime/metadata"><span class="arrow-prev">← </span><span>Runtime Metadata</span></a><a class="docs-next button" href="/docs/en/knowledgebase/runtime/origin"><span>Runtime Origin</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#storage-items">Storage Items</a><ul class="toc-headings"><li><a href="#storage-value">Storage Value</a></li><li><a href="#storage-maps">Storage Maps</a></li></ul></li><li><a href="#declaring-storage-items">Declaring Storage Items</a><ul class="toc-headings"><li><a href="#visibility">Visibility</a></li><li><a href="#getter-methods">Getter Methods</a></li><li><a href="#default-values">Default Values</a></li><li><a href="#genesis-configuration">Genesis Configuration</a></li></ul></li><li><a href="#accessing-storage-items">Accessing Storage Items</a></li><li><a href="#best-practices">Best Practices</a><ul class="toc-headings"><li><a href="#what-to-store">What to Store</a></li><li><a href="#verify-first-write-last">Verify First, Write Last</a></li><li><a href="#create-bounds">Create Bounds</a></li></ul></li><li><a href="#next-steps">Next Steps</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li><li><a href="#examples">Examples</a></li><li><a href="#references">References</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();
