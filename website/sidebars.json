@@ -108,5 +108,12 @@
   },
   "visualize-node-metrics": {
     "Visualize Node Metrics": []
+  },
+  "build-permission-network": {
+    "Build a permissioned network": [
+      "tutorials/build-permission-network/index",
+      "tutorials/build-permission-network/add-node-authorization-pallet",
+      "tutorials/build-permission-network/launch-network"
+    ]
   }
 }
