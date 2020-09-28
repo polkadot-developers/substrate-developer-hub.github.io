@@ -27,8 +27,8 @@ Substrate node, as well as language-agnostic HTTP and WebSocket APIs.
 
 The easiest way to get the metadata is by querying the automatically-generated JSON-RPC function
 `state_getMetadata`. This will return a vector of SCALE-encoded bytes. You can decode this using the
-[`frame-metadata`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_metadata/index.html) and
-[`parity-scale-codec`](https://substrate.dev/rustdocs/v2.0.0-rc6/parity_scale_codec/index.html) libraries.
+[`frame-metadata`](https://substrate.dev/rustdocs/v2.0.0/frame_metadata/index.html) and
+[`parity-scale-codec`](https://substrate.dev/rustdocs/v2.0.0/parity_scale_codec/index.html) libraries.
 
 Some helpful libraries like [`substrate-subxt`](https://github.com/paritytech/substrate-subxt) fetch
 the metadata and decode them for you. Once decoded, the structure may be serialized into JSON with
@@ -54,9 +54,9 @@ console.log("Metadata: " + metadata.raw);
 
 ### HTTP & WebSocket APIs
 
-Substrate nodes expose [a JSON-RPC API](https://substrate.dev/rustdocs/v2.0.0-rc6/sc_rpc/index.html) that you can
+Substrate nodes expose [a JSON-RPC API](https://substrate.dev/rustdocs/v2.0.0/sc_rpc/index.html) that you can
 access by way of **HTTP** or **WebSocket** requests. The message to
-[request metadata](https://substrate.dev/rustdocs/v2.0.0-rc6/sc_rpc/state/struct.StateClient.html#method.metadata)
+[request metadata](https://substrate.dev/rustdocs/v2.0.0/sc_rpc/state/struct.StateClient.html#method.metadata)
 from a node looks like this:
 
 ```json
@@ -110,7 +110,7 @@ The hex blob that is returned by the JSON-RPCs `state_getMetadata` method starts
 magic number, `0x6d657461`, which represents "meta" in plain text. The next piece of data (`0x0b` in
 the example above) represents the metadata version; decoding the hexadecimal value `0x0b` yields the
 decimal value 11, which is
-[the version of the Substrate metadata format](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_metadata/enum.RuntimeMetadata.html)
+[the version of the Substrate metadata format](https://substrate.dev/rustdocs/v2.0.0/frame_metadata/enum.RuntimeMetadata.html)
 that the result encodes. After the metadata version, the next piece of information encoded in the
 result field is the number of pallets that inform the blockchain's runtime; in the example above,
 the hexadecimal value `0x7c` represents the decimal number 31, which is SCALE-encoded by taking its
@@ -118,9 +118,9 @@ binary representation (`11111` or `0x1F` in hex), shifting it two bits to the le
 encoding that as hex.
 
 The remaining blob encodes
-[the metadata of each pallet](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_metadata/struct.ModuleMetadata.html),
+[the metadata of each pallet](https://substrate.dev/rustdocs/v2.0.0/frame_metadata/struct.ModuleMetadata.html),
 which will be reviewed below as well as some
-[extrinsic metadata](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_metadata/struct.ExtrinsicMetadata.html), which
+[extrinsic metadata](https://substrate.dev/rustdocs/v2.0.0/frame_metadata/struct.ExtrinsicMetadata.html), which
 is mostly out of the scope of this document.
 
 ## Decoded Metadata Format
@@ -128,34 +128,33 @@ is mostly out of the scope of this document.
 Here is a condensed version of decoded metadata:
 
 ```json
-[
-  1635018093,
-  {
+{
+  "magicNumber": 1635018093,
+  "metadata": {
     "V11": {
-        "modules": [
-            {
-                ...
-            },
-            {
-                ...
-            }
-       ],
-       "extrinsic" {
-           "version": 4,
-           "signed_extensions": [
-               "RestrictFunctionality",
-               "CheckVersion",
-               "CheckGenesis",
-               "CheckEra",
-               "CheckNonce",
-               "CheckWeight",
-               "ChargeTransactionPayment",
-               "LimitParathreadCommits"
-           ]
-       }
-    }
+      "modules": [
+        {
+          // ...
+        },
+        {
+          // ...
+        }
+      ],
+      "extrinsic": {
+        "version": 4,
+        "signedExtensions": [
+          "CheckSpecVersion",
+          "CheckTxVersion",
+          "CheckGenesis",
+          "CheckMortality",
+          "CheckNonce",
+          "CheckWeight",
+          "ChargeTransactionPayment"
+        ]
+      }
+    } 
   }
-]
+}
 ```
 
 As described above, the integer `1635018093` is a "magic number" that represents "meta" in plain
@@ -170,22 +169,23 @@ Here is a condensed example of a single element in the `modules` array:
 
 ```json
 {
-    "name": "System",
-    "storage": {
-      ..
-    },
-    "calls": [
-      ..
-    ],
-    "event": [
-      ..
-    ],
-    "constants": [
-        ..
-    ],
-    "errors": [
-        ..
-    ]
+  "name": "System",
+  "storage": {
+    // ..
+  },
+  "calls": [
+    // ..
+  ],
+  "events": [
+    // ..
+  ],
+  "constants": [
+    // ..
+  ],
+  "errors": [
+    // ..
+  ],
+  "index": 0
 }
 ```
 
@@ -202,36 +202,42 @@ about the module's storage:
 
 ```json
 {
- "name": "System",
- "storage": {
-   "prefix": "System",
-   "entries": [
-     {
-       "name": "Account",
-       "modifier": "Default",
-       "ty": {
-         "Map": {
-           "hasher": "Blake2_128Concat",
-           "key": "T::AccountId",
-           "value": "AccountInfo<T::Index, T::AccountData>",
-           "unused": false
-         }
-       },
-       "default": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-       "documentation": [
-         " The full account information for a particular account ID."
-       ]
-    },
-    {
+  "name": "System",
+  "storage": {
+    "prefix": "System",
+    "items": [
+      {
+        "name": "Account",
+        "modifier": "Default",
+        "type": {
+          "Map": {
+            "hasher": "Blake2_128Concat",
+            "key": "AccountId",
+            "value": "AccountInfo",
+            "linked": false
+          }
+        },
+        "fallback": "0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "documentation": [
+          " The full account information for a particular account ID."
+        ]
+      },
+      {
         "name": "ExtrinsicCount",
-      ..
-    },
-    {
-      "name": "AlLExtrinsicsWeight",
-      ..
-    }
-  ]
-},
+        // ..
+      },
+      {
+        "name": "AllExtrinsicsLen",
+        // ..
+      }
+    ]
+  },
+  "calls": [/*...*/],
+  "events": [/*...*/],
+  "constants": [/*...*/],
+  "errors": [/*...*/],
+  "index": 0
+}
 ```
 
 Every storage item that is defined in a pallet will have a corresponding metadata entry. For
@@ -248,7 +254,7 @@ decl_storage! {
 ```
 
 Storage metadata provides blockchain clients with the information that is required to query
-[the JSON-RPC's storage function](https://substrate.dev/rustdocs/v2.0.0-rc6/sc_rpc/state/struct.StateClient.html#method.storage)
+[the JSON-RPC's storage function](https://substrate.dev/rustdocs/v2.0.0/sc_rpc/state/struct.StateClient.html#method.storage)
 to get information for a specific storage item.
 
 ##### Calls
@@ -293,11 +299,11 @@ This materializes in the metadata as follows:
 "calls": [
   {
     "name": "set",
-    "arguments": [
-        {
-          "name": "now",
-          "ty": "Compact<T::Moment>"
-        }
+    "args": [
+      {
+        "name": "now",
+        "ty": "Compact<T::Moment>"
+      }
     ],
     "documentation": [
       " Set the current time.",
@@ -318,7 +324,7 @@ This materializes in the metadata as follows:
 
 This metadata snippet is generated from this declaration in `frame-system`:
 
-```Rust
+```rust
 decl_event!(
     /// Event for the System module
     pub enum Event<T> where AccountId = <T as Trait>::AccountId {
@@ -335,25 +341,25 @@ Substrate's metadata would describe these events as follows:
 
 ```json
 "event": [
-    {
-      "name": "ExtrinsicSuccess",
-      "arguments": [
-        "DispatchInfo"
-      ],
-      "documentation": [
-          " An extrinsic completed successfully."
-      ]
-    },
-    {
-      "name": "ExtrinsicFailed",
-      "arguments": [
-        "DispatchError",
-        "DispatchInfo"
-      ],
-      "documentation": [
-        " An extrinsic failed."
-      ]
-    },
+  {
+    "name": "ExtrinsicSuccess",
+    "arguments": [
+      "DispatchInfo"
+    ],
+    "documentation": [
+      " An extrinsic completed successfully."
+    ]
+  },
+  {
+    "name": "ExtrinsicFailed",
+    "arguments": [
+      "DispatchError",
+      "DispatchInfo"
+    ],
+    "documentation": [
+      " An extrinsic failed."
+    ]
+  },
 ],
 ```
 
@@ -364,7 +370,7 @@ The metadata will include any module constants. From `pallet-babe`:
 ```rust
 decl_module! {
     /// The BABE Pallet
-	pub struct Module<T: Trait> for enum Call where origin: T::Origin {
+    pub struct Module<T: Trait> for enum Call where origin: T::Origin {
         /// The number of **slots** that an epoch takes. We couple sessions to
         /// epochs, i.e. we start a new session once the new epoch begins.
         const EpochDuration: u64 = T::EpochDuration::get();
@@ -378,25 +384,17 @@ The metadata for this constant looks like this:
 
 ```json
 "constants": [
-    {
-      "name": "EpochDuration",
-      "ty": "u64",
-      "value": [
-        88,
-        2,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "documentation": [
-        " The number of **slots** that an epoch takes. We couple sessions to",
-        " epochs, i.e. we start a new session once the new epoch begins."
-      ]
-    },
-],
+  {
+    "name": "EpochDuration",
+    "type": "u64",
+    "value": "0x6009000000000000",
+    "documentation": [
+      " The number of **slots** that an epoch takes. We couple sessions to",
+      " epochs, i.e. we start a new session once the new epoch begins."
+    ]
+  },
+  // ...
+]
 ```
 
 The metadata also includes constants defined in the runtime's `lib.rs`. For example, from Kusama:
@@ -414,7 +412,7 @@ Where `EPOCH_DURATION_IN_BLOCKS` is a constant defined in `runtime/src/constants
 Metadata will pull all the possible runtime errors from `decl_error!`. For example, from
 `frame-system`:
 
-```Rust
+```rust
 decl_error! {
     /// Error for the system module
     pub enum Error for Module<T: Trait> {
@@ -430,19 +428,20 @@ This will expose the following metadata:
 
 ```json
 "errors": [
-    {
-        "name": "InvalidSpecName",
-        "documentation": [
-            " The name of specification does not match between the current runtime",
-            " and the new runtime."
-         ]
-    },
+  {
+    "name": "InvalidSpecName",
+    "documentation": [
+      " The name of specification does not match between the current runtime",
+      " and the new runtime."
+    ]
+  },
+  // ...
 ]
 ```
 
 These are errors that could occur during the submission or execution of an extrinsic. In this case,
 the FRAME System pallet is declaring that it may raise the
-[the `InvalidSpecName` error](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/enum.Error.html#variant.InvalidSpecName).
+[the `InvalidSpecName` error](https://substrate.dev/rustdocs/v2.0.0/frame_system/enum.Error.html#variant.InvalidSpecName).
 
 ## Next Steps
 
@@ -460,4 +459,4 @@ the FRAME System pallet is declaring that it may raise the
 
 ### References
 
-- [Metadata](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_metadata/index.html)
+- [Metadata](https://substrate.dev/rustdocs/v2.0.0/frame_metadata/index.html)
