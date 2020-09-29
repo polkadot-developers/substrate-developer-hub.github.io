@@ -159,7 +159,7 @@ impl pallet_nicks::Trait for Runtime {
 ### Adding Nicks to the `construct_runtime!` Macro
 
 Next, we need to add the Nicks pallet to the `construct_runtime!` macro. For this, we need to
-determine the types that the pallet exposes so that we can tell the our runtime that they exist. The
+determine the types that the pallet exposes so that we can tell the runtime that they exist. The
 complete list of possible types can be found in the
 [`construct_runtime!` macro documentation](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.construct_runtime.html).
 
