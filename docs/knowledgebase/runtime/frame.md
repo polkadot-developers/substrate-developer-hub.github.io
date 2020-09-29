@@ -76,7 +76,7 @@ individual pallets.
 
 Macro for benchmarking a FRAME runtime.
 
-- [Docs](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_benchmarking/index.html)
+- [Docs](https://substrate.dev/rustdocs/v2.0.0/frame_benchmarking/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/lib.rs)
 
 ## Prebuilt Pallets

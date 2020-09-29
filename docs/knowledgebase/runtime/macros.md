@@ -237,7 +237,7 @@ to convert the type to its specified value.
 
 **Docs**
 
-- [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.parameter_types.html)
+- [API Documentation](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.parameter_types.html)
 
 ### impl_runtime_apis!
 
@@ -254,7 +254,7 @@ implementation in the `RuntimeApiImpl`.
 
 **Docs Notes**
 
-- [API Documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/sp_api/macro.impl_runtime_apis.html)
+- [API Documentation](https://substrate.dev/rustdocs/v2.0.0/sp_api/macro.impl_runtime_apis.html)
 - `RuntimeApi` and `RuntimeApiImpl` structs are declared. The macro also implements various helper
   traits for `RuntimeApiImpl`.
 - What developers define within `impl_runtime_apis!` macro are appended to the end of
