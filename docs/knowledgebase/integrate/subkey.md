@@ -22,7 +22,7 @@ install the dependencies and Subkey, respectively:
 
 ```bash
 $ curl https://getsubstrate.io -sSf | bash -s -- --fast
-$ cargo install --force subkey --git https://github.com/paritytech/substrate --rev 638771d
+$ cargo install --force subkey --git https://github.com/paritytech/substrate --version 2.0.0
 ```
 
 ### Compiling with Cargo
@@ -142,7 +142,7 @@ The `inspect` command recalculates a key pair's public key and public address gi
 This shows that it is sufficient to back up the seed alone.
 
 ```bash
-$ subkey inspect-key 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
+$ subkey inspect 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
 Secret Key URI `0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0` is account:
   Secret seed:      0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
   Public key (hex): 0x143fa4ecea108937a2324d36ee4cbce3c6f3a08b0499b276cd7adb7a7631a559
@@ -153,7 +153,7 @@ Secret Key URI `0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4
 You can also inspect the key by its mnemonic phrase.
 
 ```bash
-$ subkey inspect-key "spend report solution aspect tilt omit market cancel what type cave author"
+$ subkey inspect "spend report solution aspect tilt omit market cancel what type cave author"
 Secret phrase `spend report solution aspect tilt omit market cancel what type cave author` is account:
   Secret seed:      0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
   Public key (hex): 0x143fa4ecea108937a2324d36ee4cbce3c6f3a08b0499b276cd7adb7a7631a559
@@ -165,14 +165,14 @@ You can inspect password-protected keys either by passing the `--password` flag 
 the end of the mnemonic:
 
 ```bash
-$ subkey inspect-key "image stomach entry drink rice hen abstract moment nature broken gadget flash" --password "pencil laptop kitchen cutter"
+$ subkey inspect "image stomach entry drink rice hen abstract moment nature broken gadget flash" --password "pencil laptop kitchen cutter"
 Secret phrase `image stomach entry drink rice hen abstract moment nature broken gadget flash` is account:
   Secret seed:      0x11353649ecfb97ed44aa4b3516c646fa49ecd3f71cc0445647a25379f848b336
   Public key (hex): 0x1641450068c6ed825726c2a854d830352b75fb1a05e6fbcc9bc47a398a581a29
   Account ID:       0x1641450068c6ed825726c2a854d830352b75fb1a05e6fbcc9bc47a398a581a29
   SS58 Address:     5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB
 
-$ subkey inspect-key "image stomach entry drink rice hen abstract moment nature broken gadget flash///pencil laptop kitchen cutter"
+$ subkey inspect "image stomach entry drink rice hen abstract moment nature broken gadget flash///pencil laptop kitchen cutter"
 Secret Key URI `image stomach entry drink rice hen abstract moment nature broken gadget flash///pencil laptop kitchen cutter` is account:
   Secret seed:      0x11353649ecfb97ed44aa4b3516c646fa49ecd3f71cc0445647a25379f848b336
   Public key (hex): 0x1641450068c6ed825726c2a854d830352b75fb1a05e6fbcc9bc47a398a581a29
@@ -185,7 +185,7 @@ address formatted for Kusama. Notice that the public key is the same, but the ad
 different format.
 
 ```bash
-$ subkey inspect-key --network kusama "spend report solution aspect tilt omit market cancel what type cave author"
+$ subkey inspect --network kusama "spend report solution aspect tilt omit market cancel what type cave author"
 Secret phrase `spend report solution aspect tilt omit market cancel what type cave author` is account:
   Secret seed:      0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0
   Public key (hex): 0x143fa4ecea108937a2324d36ee4cbce3c6f3a08b0499b276cd7adb7a7631a559
@@ -229,7 +229,7 @@ Further, soft key derivation supports:
 You can derive a hard key child using `//` after the mnemonic phrase:
 
 ```bash
-$ subkey inspect-key "spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot//0"
+$ subkey inspect "spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot//0"
 Secret Key URI `spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot//0` is account:
   Secret seed:      0xc25dda466c7749ac966b95e2ef8f5e758a063d26ac4d1895f479964aaf5679cc
   Public key (hex): 0xb49bdb8f2aa714b6e8b62426d03a1506878fc1f2937bdd396bc2102c95613f4b
@@ -242,7 +242,7 @@ Secret Key URI `spend report solution aspect tilt omit market cancel what type c
 Likewise, you can derive a soft key child using a single `/` after the mnemonic phrase:
 
 ```bash
-$ subkey inspect-key "spend report solution aspect tilt omit market cancel what type cave author/joe/polkadot/0"
+$ subkey inspect "spend report solution aspect tilt omit market cancel what type cave author/joe/polkadot/0"
 Secret Key URI `spend report solution aspect tilt omit market cancel what type cave author/joe/polkadot/0` is account:
   Secret seed:      n/a
   Public key (hex): 0x06382e496cb8b1664501bbfcc8205c7b1ddc2402e32ef0479b18abdf326ca342
@@ -255,7 +255,7 @@ Recall the SS58 address from the same seed phrase,
 address.
 
 ```bash
-$ subkey inspect-key "5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd/joe/polkadot/0"
+$ subkey inspect "5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd/joe/polkadot/0"
 Public Key URI `5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd/joe/polkadot/0` is account:
   Network ID/version: substrate
   Public key (hex):   0x06382e496cb8b1664501bbfcc8205c7b1ddc2402e32ef0479b18abdf326ca342
@@ -271,7 +271,7 @@ You can mix and match hard and soft key paths (although it doesn't make much sen
 paths as children of soft paths). For example:
 
 ```bash
-$ subkey inspect-key "spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot/0"
+$ subkey inspect "spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot/0"
 Secret Key URI `spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot/0` is account:
   Secret seed:      n/a
   Public key (hex): 0x2c6d81f231fb2ee802e11a81e5d88c1dfaae2b945b66177bd041d4ef474bb70c
@@ -285,7 +285,7 @@ To use key derivation with a password-protected key, add your password to the en
 
 ```bash
 # mnemonic phrase plus derivation path plus password
-$ subkey inspect-key "image stomach entry drink rice hen abstract moment nature broken gadget flash/joe/polkadot/0///pencil laptop kitchen cutter"
+$ subkey inspect "image stomach entry drink rice hen abstract moment nature broken gadget flash/joe/polkadot/0///pencil laptop kitchen cutter"
 Secret Key URI `image stomach entry drink rice hen abstract moment nature broken gadget flash/joe/polkadot/0///pencil laptop kitchen cutter` is account:
   Secret seed:      n/a
   Public key (hex): 0xc69291081743ba7e8f587f1e848d1ffc7b634ce21793a231b7ac75d430b59068
@@ -295,7 +295,7 @@ Secret Key URI `image stomach entry drink rice hen abstract moment nature broken
 
 ```bash
 # SS58-address plus derivation path
-$ subkey inspect-key "5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB/joe/polkadot/0"
+$ subkey inspect "5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB/joe/polkadot/0"
 Public Key URI `5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB/joe/polkadot/0` is account:
   Network ID/version: substrate
   Public key (hex):   0xc69291081743ba7e8f587f1e848d1ffc7b634ce21793a231b7ac75d430b59068
@@ -315,7 +315,7 @@ Alice, Bob, and their friends. These keys are not at all private, but are useful
 Substrate without always generating new key pairs. You can inspect these "well-known" keys as well.
 
 ```bash
-$ subkey inspect-key //Alice
+$ subkey inspect //Alice
 Secret Key URI `//Alice` is account:
   Secret seed:      0xe5be9a5092b81bca64be81d212e7f2f9eba183bb7a90954f7b76361f6edb5c0a
   Public key (hex): 0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
