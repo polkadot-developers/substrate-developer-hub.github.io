@@ -73,7 +73,6 @@ _all_ pallet's that consume its randomness.
 
 - https://en.wikipedia.org/wiki/Random_number_generation
 - https://en.wikipedia.org/wiki/Applications_of_randomness
--
 
 ### Examples
 
