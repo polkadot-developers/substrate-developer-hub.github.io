@@ -172,6 +172,16 @@ input#search_input_react {
     display: contents;
     color: black;
 }
+.announcement {
+    display: inline-block;
+    width: 100%;
+    padding: .5em;
+    text-align: center;
+    color: white;
+    background-color: #131313;
+    border-bottom: 1px solid #990036;
+    border-top: 1px solid #990036;
+}
 
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
