@@ -98,10 +98,10 @@ function Seminar(props) {
 								On <strong>6 October</strong>, Matt Rutheford and David Palm will join us to discuss <a href="https://github.com/paritytech/substrate-analytics">Substrate Analytics</a>, a tool for benchmarking detailed performance of your Substrate node. Addie Wagenknecht will be our host.
 							</p>
 							<p>
-								On <strong>13 Oct</strong>, Kirill Pimenov will come over to discuss about <a href="https://github.com/paritytech/parity-signer">Parity Signer</a> and Key management. Kirill is also the person we go to when we have any security questions. Dan Forbes will be our host.
+								On <strong>13 October</strong>, Kirill Pimenov will come over to discuss about <a href="https://github.com/paritytech/parity-signer">Parity Signer</a> and Key management. Kirill is also the person we go to when we have any security questions. Dan Forbes will be our host.
 							</p>
 							<p>
-								On <strong>20 Oct</strong>, Alexander Popiak will drop by to share insights on Substrate runtime upgrade and storage migration. This is a key aspect for those who are operating a Substrate-based chain in production environment. Jimmy Chu will be our host.
+								On <strong>20 October</strong>, Alexander Popiak will drop by to share insights on Substrate runtime upgrade and storage migration. This is a key aspect for those who are operating a Substrate-based chain in production environment. Jimmy Chu will be our host.
 							</p>
 						</div>
 
