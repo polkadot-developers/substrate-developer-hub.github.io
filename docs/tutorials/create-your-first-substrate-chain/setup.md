@@ -48,7 +48,9 @@ process is a bit harder, but well documented
 ## Compiling Substrate
 
 Once the prerequisites are installed, you can use Git to clone the Substrate Developer Hub Node
-Template, which serves as a good starting point for building on Substrate.
+Template, which serves as a good starting point for building on Substrate. Further more, you may
+want to try [sup](https://github.com/clearloop/sup) which is a substrate package manager to init
+or upgrade your Node Template in command-line.
 
 1. Clone the Node Template (version `v2.0.0`).
 
