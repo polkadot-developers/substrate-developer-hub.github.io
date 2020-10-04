@@ -89,8 +89,8 @@ One or zero values of a particular type. Encoded as:
 As an exception, in the case that the type is a boolean, then it is always one byte:
 
 - `0x00` if it is `None` ("empty" or "null").
-- `0x01` if it is the `false` value.
-- `0x02` if it is the `true` value.
+- `0x01` if it is the `true` value.
+- `0x02` if it is the `false` value.
 
 ### Results
 
