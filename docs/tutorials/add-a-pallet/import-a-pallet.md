@@ -129,7 +129,7 @@ So based on the `balances` import shown above, the `nicks` import will look like
 pallet-nicks = { default-features = false, version = '2.0.0' }
 ```
 
-As with other pallets, the Contracts pallet has an `std` feature. We should build its `std` feature
+As with other pallets, the Nicks pallet has an `std` feature. We should build its `std` feature
 when the runtime is built with its own `std` feature. Add the following line to the runtime's `std`
 feature.
 
