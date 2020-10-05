@@ -107,9 +107,9 @@ string before taking a more detailed look at the metadata's decoded format.
 ### Encoded Metadata Format
 
 The hex blob that is returned by the JSON-RPCs `state_getMetadata` method starts with a hard-coded
-magic number, `0x6d657461`, which represents "meta" in plain text. The next piece of data (`0x0b` in
-the example above) represents the metadata version; decoding the hexadecimal value `0x0b` yields the
-decimal value 11, which is
+magic number, `0x6d657461`, which represents "meta" in plain text. The next piece of data (`0x0c` in
+the example above) represents the metadata version; decoding the hexadecimal value `0x0c` yields the
+decimal value 12, which is
 [the version of the Substrate metadata format](https://substrate.dev/rustdocs/v2.0.0/frame_metadata/enum.RuntimeMetadata.html)
 that the result encodes. After the metadata version, the next piece of information encoded in the
 result field is the number of pallets that inform the blockchain's runtime; in the example above,
@@ -131,7 +131,7 @@ Here is a condensed version of decoded metadata:
 {
   "magicNumber": 1635018093,
   "metadata": {
-    "V11": {
+    "V12": {
       "modules": [
         {
           // ...
