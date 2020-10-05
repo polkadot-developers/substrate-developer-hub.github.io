@@ -10,7 +10,7 @@ Run the following commands to start your node:
 
 ```bash
 # Run a temporary node in development mode
-./target/debug/node-template --dev --tmp
+./target/release/node-template --dev --tmp
 ```
 
 You should see something like this if your node is running successfully:
