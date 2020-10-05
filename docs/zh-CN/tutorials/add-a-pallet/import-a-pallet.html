@@ -142,7 +142,7 @@
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-attr">pallet-nicks</span> = { default-features = <span class="hljs-literal">false</span>, version = <span class="hljs-string">'2.0.0'</span> }
 </code></pre>
-<p>As with other pallets, the Contracts pallet has an <code>std</code> feature. We should build its <code>std</code> feature when the runtime is built with its own <code>std</code> feature. Add the following line to the runtime's <code>std</code> feature.</p>
+<p>As with other pallets, the Nicks pallet has an <code>std</code> feature. We should build its <code>std</code> feature when the runtime is built with its own <code>std</code> feature. Add the following line to the runtime's <code>std</code> feature.</p>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-section">[features]</span>
 <span class="hljs-attr">default</span> = [<span class="hljs-string">"std"</span>]
