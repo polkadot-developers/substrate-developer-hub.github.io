@@ -24,6 +24,13 @@ maintained by [Centrifuge](https://centrifuge.io/).
 [Polkadot API DotNet](https://github.com/usetech-llc/polkadot_api_dotnet) is a Substrate RPC client
 library for .Net programmers. It is maintained by [Usetech](https://usetech.com/blockchain/).
 
+Substrate community member Cedric Decoster
+([@darkfriend77 on GitHub](https://github.com/darkfriend77)) maintains the
+[SubstrateNetApi](https://github.com/darkfriend77/SubstrateNetApi) and a
+[starter template project](https://github.com/darkfriend77/Unity3DExample) for Unity3D. The library
+is also available via the [NuGetForUnity](https://github.com/GlitchEnzo/NuGetForUnity) package
+manager.
+
 ## C++
 
 [Usetech](https://usetech.com/blockchain/) also maintains Polkadot API CPP, which is a C++ library
