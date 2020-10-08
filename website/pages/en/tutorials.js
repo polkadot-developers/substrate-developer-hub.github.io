@@ -68,6 +68,22 @@ const tutorialCardData = [{
   version: "2.0.0",
   href: 'tutorials/start-a-private-network/',
 }, {
+  title: <translate>Add the Contracts Pallet to a Runtime</translate>,
+  text: <translate>Add the Contracts pallet to your Substrate node template.</translate>,
+  difficulty: "medium",
+  length: "2",
+  prerequisite: false,
+  version: "2.0.0",
+  href: 'tutorials/add-contracts-pallet/',
+}, {
+  title: <translate>Build a permissioned network</translate>,
+  text: <translate>A comprehensive, end-to-end tutorial for building a permissioned network using node-authorization pallet.</translate>,
+  difficulty: "easy",
+  length: "2",
+  prerequisite: false,
+  version: "2.0.0",
+  href: 'tutorials/build-permission-network/',
+}, {
   img: 'img/crates.png',
   title: <translate>Write a Pallet in its Own Crate</translate>,
   text: <translate>Make your pallets re-usable by packaging them in their own rust crate.</translate>,
@@ -76,23 +92,6 @@ const tutorialCardData = [{
   prerequisite: false,
   version: "2.0.0",
   href: 'tutorials/create-a-pallet/',
-}, {
-  img: 'img/grafana.png',
-  title: <translate>Visualizing Node Metrics</translate>,
-  text: <translate>Learn how to visualize the metrics that Substrate records using Prometheus.</translate>,
-  difficulty: "easy",
-  length: "< 1",
-  prerequisite: false,
-  version: "2.0.0",
-  href: 'tutorials/visualize-node-metrics/',
-}, {
-  title: <translate>Add the Contracts Pallet to a Runtime</translate>,
-  text: <translate>Add the Contracts pallet to your Substrate node template.</translate>,
-  difficulty: "medium",
-  length: "2",
-  prerequisite: false,
-  version: "2.0.0-rc4",
-  href: 'tutorials/add-contracts-pallet/',
 }, {
   img: 'img/ink-smart-contracts-tutorial.png',
   title: <translate>ink! Smart Contracts Tutorial</translate>,
@@ -104,13 +103,14 @@ const tutorialCardData = [{
   hrefFrom: 'baseUrl',
   href: 'tutorials/ink-smart-contracts-tutorial/',
 }, {
-  title: <translate>Build a permissioned network</translate>,
-  text: <translate>A comprehensive, end-to-end tutorial for building a permissioned network using node-authorization pallet.</translate>,
+  img: 'img/grafana.png',
+  title: <translate>Visualizing Node Metrics</translate>,
+  text: <translate>Learn how to visualize the metrics that Substrate records using Prometheus.</translate>,
   difficulty: "easy",
-  length: "2",
+  length: "< 1",
   prerequisite: false,
   version: "2.0.0",
-  href: 'tutorials/build-permission-network/',
+  href: 'tutorials/visualize-node-metrics/',
 }];
 
 const capitalize = word => `${word.charAt(0).toUpperCase()}${word.slice(1)}`;
