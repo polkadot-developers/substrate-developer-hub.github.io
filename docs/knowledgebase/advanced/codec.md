@@ -89,8 +89,8 @@ One or zero values of a particular type. Encoded as:
 As an exception, in the case that the type is a boolean, then it is always one byte:
 
 - `0x00` if it is `None` ("empty" or "null").
-- `0x01` if it is the `false` value.
-- `0x02` if it is the `true` value.
+- `0x01` if it is the `true` value.
+- `0x02` if it is the `false` value.
 
 ### Results
 
@@ -201,7 +201,7 @@ that is written in Rust and maintained by Parity Technologies.
 ## References
 
 - Visit the reference docs for the
-  [`parity-scale-codec`](https://substrate.dev/rustdocs/v2.0.0-rc6/parity_scale_codec/index.html).
+  [`parity-scale-codec`](https://substrate.dev/rustdocs/v2.0.0/parity_scale_codec/index.html).
 
 - Visit the auxiliary encoding section of the
   [Polkadot runtime environment specification](https://github.com/w3f/polkadot-spec/).

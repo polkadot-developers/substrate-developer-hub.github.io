@@ -23,6 +23,7 @@ const Button = require('../../../../react-bootstrap/Button')
 const Row = require('../../../../react-bootstrap/Row')
 const Col = require('../../../../react-bootstrap/Col')
 const Image = require('../../../../react-bootstrap/Image')
+const Alert = require('../../../../react-bootstrap/Alert')
 const translate = require('../../server/translate').translate
 
 class Index extends React.Component {
@@ -31,6 +32,10 @@ class Index extends React.Component {
 
 		return (
 			<section>
+				<div className="announcement">
+					Sub0 Online conference is back on Oct 15th! &nbsp;👉&nbsp;<a href="https://sub0.parity.io/?utm_source=substratedev&utm_medium=referral&utm_campaign=sub0&utm_term=parity">Register Here</a> 	
+				</div>
+
 				<HomeSplash
 					id='home-hero'
 					siteConfig={siteConfig}
@@ -236,7 +241,7 @@ class Index extends React.Component {
 												</p>
 												<a
 													className='btn primary-color'
-													href='https://substrate.dev/en/seminar'>
+													href='/en/seminar'>
 													Join the Learning Group
 												</a>
 											</div>

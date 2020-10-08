@@ -90,7 +90,7 @@ short-term [probabilistic finality](#probabilistic-finality), with
 [slots](#slot) based on a verifiable random function (VRF) as opposed to Aura's round-robin
 selection method. The winning authority can select a chain and submit a new block for it. Learn more
 about BABE by referring to its
-[official Web3 Foundation research document](https://w3f-research.readthedocs.io/en/latest/polkadot/BABE.html).
+[official Web3 Foundation research document](https://research.web3.foundation/en/latest/polkadot/block-production/Babe.html).
 
 ## Block
 
@@ -274,9 +274,9 @@ transactions, which may be
 Within the [Balances pallet](../../knowledgebase/runtime/frame#balances), this is the minimum
 balance an account may have. Accounts cannot be created with a balance less than this amount, and if
 an account's balance ever drops below this amount, the Balances pallet will use
-[a FRAME System API](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/struct.Module.html#method.dec_ref)
+[a FRAME System API](https://substrate.dev/rustdocs/v2.0.0/frame_system/struct.Module.html#method.dec_ref)
 to drop its references to that account. If all the references to an account are dropped, it
-[may be reaped](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/struct.Module.html#method.allow_death).
+[may be reaped](https://substrate.dev/rustdocs/v2.0.0/frame_system/struct.Module.html#method.allow_death).
 
 ---
 
@@ -455,7 +455,7 @@ A [FRAME](#frame) primitive that identifies the source of a [dispatched](#dispat
 into the [runtime](#runtime). The FRAME System module defines
 [three built-in origins](../../knowledgebase/runtime/origin#raw-origins); [pallet](#pallet)
 developers can easily define custom origins, such as those defined by the
-[Collective pallet](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_collective/enum.RawOrigin.html).
+[Collective pallet](https://substrate.dev/rustdocs/v2.0.0/pallet_collective/enum.RawOrigin.html).
 
 ---
 
@@ -548,7 +548,7 @@ efficient creation of incremental digests. This trie is exposed to the [runtime]
 [a simple key/value map](../../knowledgebase/advanced/storage) where both keys and values can be
 arbitrary byte arrays.
 
-## State Transition Function (STF))
+## State Transition Function (STF)
 
 The logic of a [blockchain](#blockchain) that determines how the state changes when a
 [block](#block) is processed. In Substrate, this is effectively equivalent to the

@@ -29,7 +29,7 @@ your blockchain, and the following documentation will show you how.
 
 ## Skeleton of a Pallet
 
-A Substrate pallet is composed of 5 main sections:
+A Substrate pallet is composed of 5 sections:
 
 ```rust
 // 1. Imports and Dependencies

@@ -7,7 +7,11 @@ Every pallet has a component called `Trait` that is used for configuration. This
 interfaces in languages such as C++, Java and Go. FRAME developers must implement this trait for
 each pallet they would like to include in a runtime in order to configure that pallet with the
 parameters and types that it needs from the outer runtime. For instance, in the template pallet that
-is included in the Node Template, you will see the following `Trait` configuration trait:
+is included in the
+[Node Template](https://github.com/substrate-developer-hub/substrate-node-template), you will see
+the following `Trait` configuration trait:
+
+**`pallets/template/src/lib.rs`**
 
 ```rust
 /// Configure the pallet by specifying the parameters and types on which it depends.
@@ -26,11 +30,11 @@ trait for the Nicks pallet.
 
 To figure out what you need to implement for the Nicks pallet specifically, you can take a look at
 the
-[`pallet_nicks::Trait` documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_nicks/trait.Trait.html)
+[`pallet_nicks::Trait` documentation](https://substrate.dev/rustdocs/v2.0.0/pallet_nicks/trait.Trait.html)
 or the definition of the trait itself in
-[the source code](https://github.com/paritytech/substrate/blob/v2.0.0-rc6/frame/nicks/src/lib.rs) of
-the Nicks pallet. We have annotated the source code below with new comments that expand on those
-already included in the documentation so be sure to read them:
+[the source code](https://github.com/paritytech/substrate/blob/v2.0.0/frame/nicks/src/lib.rs) of the
+Nicks pallet. We have annotated the source code below with new comments that expand on those already
+included in the documentation so be sure to read them:
 
 ```rust
 pub trait Trait: frame_system::Trait {
@@ -39,7 +43,7 @@ pub trait Trait: frame_system::Trait {
 
     // The currency type that will be used to place deposits on nicks.
     // It must implement ReservableCurrency.
-    // https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/traits/trait.ReservableCurrency.html
+    // https://substrate.dev/rustdocs/v2.0.0/frame_support/traits/trait.ReservableCurrency.html
     type Currency: ReservableCurrency<Self::AccountId>;
 
     // The amount required to reserve a nick.
@@ -75,9 +79,14 @@ comments that you should be sure to read:
 parameter_types! {
     // The u128 constant value 500 is aliased to a type named ExistentialDeposit.
     pub const ExistentialDeposit: u128 = 500;
+    // A heuristic that is used for weight estimation.
+    pub const MaxLocks: u32 = 50;
 }
 
 impl pallet_balances::Trait for Runtime {
+    // The previously defined parameter_type is used as a configuration parameter.
+    type MaxLocks = MaxLocks;
+
     // The "Balance" that appears after the equal sign is an alias for the u128 type.
     type Balance = Balance;
 
@@ -104,9 +113,9 @@ their runtime to configure the types and parameters that are specified by the Ba
 use the `u128` type to track balances. If you were developing a chain where it was important to
 optimize storage, you could use any unsigned integer type that was at least 32-bits in size; this is
 because
-[the `Balance` type](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_balances/trait.Trait.html#associatedtype.Balance)
+[the `Balance` type](https://substrate.dev/rustdocs/v2.0.0/pallet_balances/trait.Trait.html#associatedtype.Balance)
 for the Balances pallet `Trait` configuration trait is "bounded" by
-[the `AtLeast32BitUnsigned` trait](https://substrate.dev/rustdocs/v2.0.0-rc6/sp_arithmetic/traits/trait.AtLeast32BitUnsigned.html).
+[the `AtLeast32BitUnsigned` trait](https://substrate.dev/rustdocs/v2.0.0/sp_arithmetic/traits/trait.AtLeast32BitUnsigned.html).
 
 Now that you have an idea of the purpose behind the `Trait` configuration trait and how you can
 implement a FRAME pallet's `Trait` interface for your runtime, let's implement the `Trait`
@@ -123,7 +132,7 @@ parameter_types! {
 
 impl pallet_nicks::Trait for Runtime {
     // The Balances pallet implements the ReservableCurrency trait.
-    // https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_balances/index.html#implementations-2
+    // https://substrate.dev/rustdocs/v2.0.0/pallet_balances/index.html#implementations-2
     type Currency = pallet_balances::Module<Runtime>;
 
     // Use the NickReservationFee from the parameter_types block.
@@ -133,8 +142,8 @@ impl pallet_nicks::Trait for Runtime {
     type Slashed = ();
 
     // Configure the FRAME System Root origin as the Nick pallet admin.
-    // https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/enum.RawOrigin.html#variant.Root
-    type ForceOrigin = EnsureRoot<AccountId>;
+    // https://substrate.dev/rustdocs/v2.0.0/frame_system/enum.RawOrigin.html#variant.Root
+    type ForceOrigin = frame_system::EnsureRoot<AccountId>;
 
     // Use the MinNickLength from the parameter_types block.
     type MinLength = MinNickLength;
@@ -147,20 +156,12 @@ impl pallet_nicks::Trait for Runtime {
 }
 ```
 
-In order to use the `EnsureRoot<AccountId>` type as the `ForceOrigin` for the Nicks pallet, you will
-need to add the following line along with the other `import` statements at the top of
-`runtime/src/lib.rs`:
-
-```rust
-use frame_system::EnsureRoot;
-```
-
 ### Adding Nicks to the `construct_runtime!` Macro
 
 Next, we need to add the Nicks pallet to the `construct_runtime!` macro. For this, we need to
-determine the types that the pallet exposes so that we can tell the our runtime that they exist. The
+determine the types that the pallet exposes so that we can tell the runtime that they exist. The
 complete list of possible types can be found in the
-[`construct_runtime!` macro documentation](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.construct_runtime.html).
+[`construct_runtime!` macro documentation](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.construct_runtime.html).
 
 If we look at the Nicks pallet in detail, we know it has:
 
@@ -194,10 +195,3 @@ construct_runtime!(
 Note that not all pallets will expose all of these runtime types, and some may expose more! You
 should always look at the documentation or source code of a pallet to determine which of these types
 you need to expose.
-
-This is another good time to check that your runtime compiles correctly so far. Use this command to
-check just the runtime.
-
-```bash
-cargo check -p node-template-runtime
-```

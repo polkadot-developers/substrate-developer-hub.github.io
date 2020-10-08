@@ -7,11 +7,11 @@ node based on the `substrate-node-template`.
 
 ## Install the Node Template
 
-You should already have version `v2.0.0-rc6+1` of the
+You should already have version `v2.0.0` of the
 [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
 compiled on your computer from when you completed the
-[Create Your First Substrate Chain Tutorial](../create-your-first-substrate-chain/).
-If you do not, please complete that tutorial.
+[Create Your First Substrate Chain Tutorial](../create-your-first-substrate-chain/). If you do not,
+please complete that tutorial.
 
 > Experienced developers who truly prefer to skip that tutorial, you may install the node template
 > according to the instructions in its readme.
@@ -26,7 +26,7 @@ Clone the Substrate pallet template in the `pallets` directory of your node temp
 
 ```bash
 cd pallets
-git clone -b v2.0.0-rc6 https://github.com/substrate-developer-hub/substrate-pallet-template test-pallet
+git clone -b v2.0.0 https://github.com/substrate-developer-hub/substrate-pallet-template test-pallet
 ```
 
 > In this tutorial we have placed the pallet template _inside_ the node template's directory
@@ -40,8 +40,8 @@ Let's explore the Substrate pallet template, starting with the `Cargo.toml` file
 ### Renaming Your Crate
 
 In the `Cargo.toml` file, you must update the crate's name. In this tutorial, we're focusing on how
-to create and use the pallet rather than writing interesting pallet logic. So let's update the
-value of the `package.name` attribute in the `Cargo.toml` file to `test-pallet`.
+to create and use the pallet rather than writing interesting pallet logic. So let's update the value
+of the `package.name` attribute in the `Cargo.toml` file to `test-pallet`.
 
 The `package` section of the `Cargo.toml` file now looks like:
 
@@ -56,22 +56,34 @@ homepage = 'https://substrate.dev'
 license = 'Unlicensed'
 name = 'test-pallet'
 repository = 'https://github.com/substrate-developer-hub/substrate-pallet-template/'
-version = '2.0.0-rc6'
+version = '2.0.0'
+```
+
+Update the `Cargo.toml` file in the root directory of the template node to include a reference to
+the new pallet:
+
+**`Cargo.toml`**
+
+```toml
+[profile.release]
+panic = 'unwind'
+
+[workspace]
+members = [
+    'node',
+    'pallets/template',
+    'pallets/test-pallet',  # <-- add this
+    'runtime',
+]
 ```
 
 ### Compile the Template Pallet
 
-> If you have been following the steps of this tutorial and cloned the template pallet into the
-> `pallets` directory of your node template, you will need to add the template pallet to the
-> `workspace.members` array of the `Cargo.toml` file in the root of the node template directory; you
-> will need to include the path and the name of the package, so add this element to the `members`
-> array: `'pallets/test-pallet',`.
-
-You should be able to successfully compile the Substrate pallet template with:
+You should be able to successfully check the Substrate pallet template with:
 
 ```bash
 cd test-pallet
-cargo build --release
+cargo check
 ```
 
 ### Your Pallet's `std` Feature
@@ -111,16 +123,13 @@ consistent dependencies between your pallet and your runtime.
 
 ```TOML
 # --snip--
-
-[dependencies.frame-support]
-default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'v2.0.0-rc6'
-version = '2.0.0-rc6'
+[dependencies]
+frame-support = { default-features = false, version = '2.0.0' }
+# --snip--
 ```
 
-From the above snippet, we see that this pallet template depends on version `2.0.0-rc6` of the
-low-level libraries. Thus it can be used in runtimes that also depend on `2.0.0-rc6`.
+From the above snippet, we see that this pallet template depends on version `2.0.0` of the low-level
+libraries. Thus it can be used in runtimes that also depend on `2.0.0`.
 
 ### Your Pallet's Dev Dependencies
 
@@ -131,12 +140,9 @@ dependencies that are needed in your pallet's tests, but not the actual pallet i
 
 ```TOML
 # --snip--
-
-[dev-dependencies.sp-core]
-default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'v2.0.0-rc6'
-version = '2.0.0-rc6'
+[dev-dependencies]
+sp-core = { default-features = false, version = '2.0.0' }
+# --snip--
 ```
 
 You can confirm that the tests in the Substrate pallet template pass with:
@@ -163,10 +169,7 @@ tell the pallet to only build its `std` feature when the runtime itself does, as
 
 ```TOML
 # --snip--
-
-[dependencies.test-pallet]
-default-features = false
-path = '../pallets/test-pallet'
+test-pallet = { path = '../pallets/test-pallet', default-features = false, version = '2.0.0' }
 
 # toward the bottom
 [features]
@@ -209,20 +212,15 @@ construct_runtime!(
 
 At this point you have the pallet packaged up as it's own crate and included in your node's runtime.
 
-1. Make sure you're back in the node template's root directory, then compile and run your node with:
+Make sure you're back in the node template's root directory, then compile the node and start in
+development mode with the following command:
 
-   ```bash
-   cargo build --release
-   ```
+```bash
+cargo run -- --dev --tmp
+```
 
-2. Start a temporary node in development mode:
-
-   ```bash
-   ./target/release/node-template --dev --tmp
-   ```
-
-Finally, start the
-[Polkadot-JS Apps connecting to your local node](https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944)
+Now, start the
+[Polkadot-JS Apps connecting to your local node](https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:9944)
 to confirm that the pallet is working as expected.
 
 > **Notes:** You can also manually set the node URL in Polkadot-JS Apps by navigating to the
@@ -296,5 +294,3 @@ four lines of code in their runtime's `Cargo.toml` files and updating their runt
 
 - [The Cargo book](https://doc.rust-lang.org/stable/cargo/)
 - More about [Rust and WebAssembly](https://rustwasm.github.io/)
-
-

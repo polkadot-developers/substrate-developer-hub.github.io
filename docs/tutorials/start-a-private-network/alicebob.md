@@ -19,12 +19,12 @@ Alice (or whomever is playing her) should run these commands from node-template 
 ```bash
 # Purge any chain data from previous runs
 # You will be prompted to type `y`
-./target/release/node-template purge-chain --base-path /tmp/alice --chain local
+./target/debug/node-template purge-chain --base-path /tmp/alice --chain local
 ```
 
 ```bash
 # Start Alice's node
-./target/release/node-template \
+./target/debug/node-template \
   --base-path /tmp/alice \
   --chain local \
   --alice \
@@ -53,29 +53,30 @@ Let's look at those flags in detail:
 When the node starts you should see output similar to this.
 
 ```
-2020-08-20 17:11:10.759 main INFO sc_cli::runner  Substrate Node
-2020-08-20 17:11:10.759 main INFO sc_cli::runner  ✌️  version 2.0.0-rc6-7c921bb-x86_64-linux-gnu
-2020-08-20 17:11:10.759 main INFO sc_cli::runner  ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
-2020-08-20 17:11:10.759 main INFO sc_cli::runner  📋 Chain specification: Local Testnet
-2020-08-20 17:11:10.759 main INFO sc_cli::runner  🏷  Node name: Alice
-2020-08-20 17:11:10.759 main INFO sc_cli::runner  👤 Role: AUTHORITY
-2020-08-20 17:11:10.759 main INFO sc_cli::runner  💾 Database: RocksDb at /tmp/alice/chains/local_testnet/db
-2020-08-20 17:11:10.759 main INFO sc_cli::runner  ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
-2020-08-20 17:11:10.990 main INFO sc_service::client::client  🔨 Initializing Genesis block/state (state: 0x5e50…60d3, header-hash: 0x3e48…2b04)
-2020-08-20 17:11:10.991 main INFO afg  👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
-2020-08-20 17:11:11.004 main INFO sc_consensus_slots  ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
-2020-08-20 17:11:11.004 main WARN sc_service::builder  Using default protocol ID "sup" because none is configured in the chain specs
-2020-08-20 17:11:11.005 main INFO sub-libp2p  🏷  Local node identity is: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp (legacy representation: QmRpheLN4JWdAnY7HGJfWFNbfkQCb6tFf4vvA6hgjMZKrR)
-2020-08-20 17:11:11.012 main INFO sc_service::builder  📦 Highest known block at #0
-2020-08-20 17:11:11.012 tokio-runtime-worker INFO substrate_prometheus_endpoint::known_os  〽️ Prometheus server started at 127.0.0.1:9615
-2020-08-20 17:11:16.015 tokio-runtime-worker INFO substrate  💤 Idle (0 peers), best: #0 (0x3e48…2b04), finalized #0 (0x3e48…2b04), ⬇ 0 ⬆ 0
-2020-08-20 17:11:21.015 tokio-runtime-worker INFO substrate  💤 Idle (0 peers), best: #0 (0x3e48…2b04), finalized #0 (0x3e48…2b04), ⬇ 0 ⬆ 0
+Sep 24 12:53:30.728  INFO Substrate Node    
+Sep 24 12:53:30.728  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu    
+Sep 24 12:53:30.729  INFO ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020    
+Sep 24 12:53:30.729  INFO 📋 Chain specification: Local Testnet    
+Sep 24 12:53:30.729  INFO 🏷  Node name: Alice    
+Sep 24 12:53:30.729  INFO 👤 Role: AUTHORITY    
+Sep 24 12:53:30.729  INFO 💾 Database: RocksDb at /tmp/alice/chains/local_testnet/db    
+Sep 24 12:53:30.729  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)    
+Sep 24 12:53:32.312  INFO 🔨 Initializing Genesis block/state (state: 0x0118…493b, header-hash: 0x2533…1d36)    
+Sep 24 12:53:32.315  INFO 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.    
+Sep 24 12:53:32.474  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch    
+Sep 24 12:53:32.475  WARN Using default protocol ID "sup" because none is configured in the chain specs    
+Sep 24 12:53:32.475  INFO 🏷  Local node identity is: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp (legacy representation: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp)    
+Sep 24 12:53:32.704  INFO 📦 Highest known block at #0    
+Sep 24 12:53:32.705  INFO 〽️ Prometheus server started at 127.0.0.1:9615    
+Sep 24 12:53:32.730  INFO Listening for new connections on 127.0.0.1:9944.    
+Sep 24 12:53:37.733  INFO 💤 Idle (0 peers), best: #0 (0x2533…1d36), finalized #0 (0x2533…1d36), ⬇ 0 ⬆ 0    
+Sep 24 12:53:42.734  INFO 💤 Idle (0 peers), best: #0 (0x2533…1d36), finalized #0 (0x2533…1d36), ⬇ 0 ⬆ 0
 ...
 ```
 
 > **Notes**
 >
-> - `🔨 Initializing Genesis block/state (state: 0x5e50…60d3, header-hash: 0x3e48…2b04)` tells which
+> - `🔨 Initializing Genesis block/state (state: 0x0118…493b, header-hash: 0x2533…1d36)` tells which
 >   genesis block the node is using. When you start the next node, verify that these values are
 >   equal.
 > - `🏷  Local node identity is: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp...` shows the
@@ -135,11 +136,11 @@ Now that Alice's node is up and running, Bob can join the network by bootstrappi
 His command will look very similar.
 
 ```bash
-./target/release/node-template purge-chain --base-path /tmp/bob --chain local
+./target/debug/node-template purge-chain --base-path /tmp/bob --chain local
 ```
 
 ```bash
-./target/release/node-template \
+./target/debug/node-template \
   --base-path /tmp/bob \
   --chain local \
   --bob \
@@ -166,25 +167,28 @@ blocks. You should see some lines like the following in the console that started
 
 ```
 ...
-2020-08-20 17:13:31.024 tokio-runtime-worker INFO substrate  💤 Idle (0 peers), best: #0 (0x3e48…2b04), finalized #0 (0x3e48…2b04), ⬇ 0 ⬆ 0
-2020-08-20 17:13:36.025 tokio-runtime-worker INFO substrate  💤 Idle (0 peers), best: #0 (0x3e48…2b04), finalized #0 (0x3e48…2b04), ⬇ 0 ⬆ 0
-2020-08-20 17:13:40.067 tokio-runtime-worker INFO sub-libp2p  🔍 Discovered new external address for our node: /ip4/192.168.0.118/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
-2020-08-20 17:13:40.067 tokio-runtime-worker INFO sub-libp2p  🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
-2020-08-20 17:13:41.025 tokio-runtime-worker INFO substrate  💤 Idle (1 peers), best: #0 (0x3e48…2b04), finalized #0 (0x3e48…2b04), ⬇ 1.2kiB/s ⬆ 1.2kiB/s
-2020-08-20 17:13:42.078 tokio-runtime-worker INFO substrate  ✨ Imported #1 (0x2335…80ad)
-2020-08-20 17:13:46.026 tokio-runtime-worker INFO substrate  💤 Idle (1 peers), best: #1 (0x2335…80ad), finalized #0 (0x3e48…2b04), ⬇ 0.7kiB/s ⬆ 0.6kiB/s
-2020-08-20 17:13:48.010 tokio-runtime-worker INFO sc_basic_authorship::basic_authorship  🙌 Starting consensus session on top of parent 0x233562021d92a974344bd83f070688ecfe178cae33355fa26e4b8544f6e380ad
-2020-08-20 17:13:48.021 tokio-blocking-driver INFO sc_basic_authorship::basic_authorship  🎁 Prepared block for proposing at 2 [hash: 0x5c05288cf3c7726db6fb7b3b3997cb92f9340662060938e4c25c7b9a3d61e412; parent_hash: 0x2335…80ad; extrinsics (1): [0x69d9…d1b6]]
-2020-08-20 17:13:48.031 tokio-runtime-worker INFO sc_consensus_slots  🔖 Pre-sealed block for proposal at 2. Hash now 0xf7f80a0fcdb764135d9814bb7a917a829bbc46e052e84e3ef605b652541b71d6, previously 0x5c05288cf3c7726db6fb7b3b3997cb92f9340662060938e4c25c7b9a3d61e412.
-2020-08-20 17:13:48.031 tokio-runtime-worker INFO substrate  ✨ Imported #2 (0xf7f8…71d6)
-2020-08-20 17:13:51.026 tokio-runtime-worker INFO substrate  💤 Idle (1 peers), best: #2 (0xf7f8…71d6), finalized #0 (0x3e48…2b04), ⬇ 0.7kiB/s ⬆ 0.8kiB/s
-2020-08-20 17:13:54.084 tokio-runtime-worker INFO substrate  ✨ Imported #3 (0x0681…2d89)
-2020-08-20 17:13:56.027 tokio-runtime-worker INFO substrate  💤 Idle (1 peers), best: #3 (0x0681…2d89), finalized #1 (0x2335…80ad), ⬇ 0.9kiB/s ⬆ 0.9kiB/s
+Sep 24 12:55:12.755  INFO 💤 Idle (0 peers), best: #0 (0x2533…1d36), finalized #0 (0x2533…1d36), ⬇ 0 ⬆ 0    
+Sep 24 12:55:17.755  INFO 💤 Idle (0 peers), best: #0 (0x2533…1d36), finalized #0 (0x2533…1d36), ⬇ 0 ⬆ 0    
+Sep 24 12:55:21.937  INFO 🔍 Discovered new external address for our node: /ip4/192.168.0.117/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp    
+Sep 24 12:55:21.981  INFO 🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp    
+Sep 24 12:55:22.756  INFO 💤 Idle (1 peers), best: #0 (0x2533…1d36), finalized #0 (0x2533…1d36), ⬇ 1.2kiB/s ⬆ 1.2kiB/s    
+Sep 24 12:55:24.153  INFO 🙌 Starting consensus session on top of parent 0x2533ac58ba9931d1ed7e1c8779a51d0413c77c4f258691c2819411c457aa1d36    
+Sep 24 12:55:24.302  INFO 🎁 Prepared block for proposing at 1 [hash: 0x380c14f5773d8eaf326e9a29f73f992bea1d8c1258dd1ac669073c3aac798036; parent_hash: 0x2533…1d36; extrinsics (1): [0x4ade…ab32]]    
+Sep 24 12:55:24.382  INFO 🔖 Pre-sealed block for proposal at 1. Hash now 0xd7dfb9b8bf8f36d10a22fcdad0b9753a54c38fed326e837e9639d39eb2895e0c, previously 0x380c14f5773d8eaf326e9a29f73f992bea1d8c1258dd1ac669073c3aac798036.    
+Sep 24 12:55:24.385  INFO ✨ Imported #1 (0xd7df…5e0c)    
+Sep 24 12:55:27.757  INFO 💤 Idle (1 peers), best: #1 (0xd7df…5e0c), finalized #0 (0x2533…1d36), ⬇ 0.6kiB/s ⬆ 0.7kiB/s    
+Sep 24 12:55:30.344  INFO ✨ Imported #2 (0xa1cb…562d)    
+Sep 24 12:55:32.759  INFO 💤 Idle (1 peers), best: #2 (0xa1cb…562d), finalized #0 (0x2533…1d36), ⬇ 0.7kiB/s ⬆ 0.6kiB/s    
+Sep 24 12:55:36.120  INFO 🙌 Starting consensus session on top of parent 0xa1cb3ff2f34833ab3bbb0791e8ab894b59dae6cbd83e9aceec49d05b3254562d    
+Sep 24 12:55:36.176  INFO 🎁 Prepared block for proposing at 3 [hash: 0xb1e91198d861dfa7fb71489a89871551bef8b92cf0a5a305315fa3221039abaa; parent_hash: 0xa1cb…562d; extrinsics (1): [0x2ac1…af5e]]    
+Sep 24 12:55:36.258  INFO 🔖 Pre-sealed block for proposal at 3. Hash now 0x632d162c6765b4ad31d7174a7e959ce108c3a4d9e8e1b2dd8c7b84664eb5a43f, previously 0xb1e91198d861dfa7fb71489a89871551bef8b92cf0a5a305315fa3221039abaa.    
+Sep 24 12:55:36.260  INFO ✨ Imported #3 (0x632d…a43f)    
+Sep 24 12:55:37.761  INFO 💤 Idle (1 peers), best: #3 (0x632d…a43f), finalized #1 (0xd7df…5e0c), ⬇ 0.8kiB/s ⬆ 0.9kiB/s
 ...
 ```
 
 These lines shows that Bob has peered with Alice (**`1 peers`**), they have produced some blocks
-(**`best: #3 (0x0681…2d89)`**), and blocks are being finalized (**`finalized #1 (0x2335…80ad)`**).
+(**`best: #3 (0x632d…a43f)`**), and blocks are being finalized (**`finalized #1 (0xd7df…5e0c)`**).
 
 Looking at the console that started Bob's node, you should see something similar.
 

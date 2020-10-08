@@ -83,7 +83,7 @@ decl_module! {
 ```
 
 The default behavior of this function is to call
-[`deposit_event`](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_system/struct.Module.html#method.deposit_event)
+[`deposit_event`](https://substrate.dev/rustdocs/v2.0.0/frame_system/struct.Module.html#method.deposit_event)
 from the FRAME system, which writes the event to storage.
 
 This function places the event in the System module's runtime storage for that block. At the
@@ -126,6 +126,6 @@ runtime events are used:
 
 ### References
 
-- [`decl_event!` macro](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_event.html)
-- [`decl_module!` macro](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.decl_module.html)
-- [`construct_runtime!` macro](https://substrate.dev/rustdocs/v2.0.0-rc6/frame_support/macro.construct_runtime.html)
+- [`decl_event!` macro](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_event.html)
+- [`decl_module!` macro](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_module.html)
+- [`construct_runtime!` macro](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.construct_runtime.html)

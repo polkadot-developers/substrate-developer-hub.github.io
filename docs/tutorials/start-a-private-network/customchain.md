@@ -2,23 +2,23 @@
 title: Creating Your Private Network
 ---
 
-With you custom chain spec created and distributed to all participants, you're ready to launch your
+With your custom chain spec created and distributed to all participants, you're ready to launch your
 own custom chain. In this section it is no longer required to use a single physical machine or a
 single binary.
 
 ## First Participant Starts a Bootnode
 
 You've completed all the necessary prep work and you're now ready to launch your chain. This process
-is very similar to when you launched a chain earlier as Alice and Bob. It's important to start with
+is very similar to when you launched a chain earlier, as Alice and Bob. It's important to start with
 a clean base path, so if you plan to use the same path that you've used previously, please delete
 all contents from that directory.
 
-The first participant can launch her node with
+The first participant can launch her node with:
 
 ```bash
-./target/release/node-template \
+./target/debug/node-template \
   --base-path /tmp/node01 \
-  --chain=./customSpecRaw.json \
+  --chain ./customSpecRaw.json \
   --port 30333 \
   --ws-port 9944 \
   --rpc-port 9933 \
@@ -44,23 +44,24 @@ Here are some differences from when we launched as Alice.
 You should see the console outputs something as follows:
 
 ```bash
-2020-08-20 17:20:13.808 main INFO sc_cli::runner  Substrate Node
-2020-08-20 17:20:13.808 main INFO sc_cli::runner  ✌️  version 2.0.0-rc6-7c921bb-x86_64-linux-gnu
-2020-08-20 17:20:13.808 main INFO sc_cli::runner  ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
-2020-08-20 17:20:13.808 main INFO sc_cli::runner  📋 Chain specification: Local Testnet
-2020-08-20 17:20:13.808 main INFO sc_cli::runner  🏷  Node name: MyNode01
-2020-08-20 17:20:13.808 main INFO sc_cli::runner  👤 Role: AUTHORITY
-2020-08-20 17:20:13.808 main INFO sc_cli::runner  💾 Database: RocksDb at /tmp/node01/chains/local_testnet/db
-2020-08-20 17:20:13.808 main INFO sc_cli::runner  ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
-2020-08-20 17:20:14.077 main INFO sc_service::client::client  🔨 Initializing Genesis block/state (state: 0x013d…7725, header-hash: 0x200a…c14a)
-2020-08-20 17:20:14.078 main INFO afg  👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
-2020-08-20 17:20:14.094 main INFO sc_consensus_slots  ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
-2020-08-20 17:20:14.094 main WARN sc_service::builder  Using default protocol ID "sup" because none is configured in the chain specs
-2020-08-20 17:20:14.094 main INFO sub-libp2p  🏷  Local node identity is: 12D3KooWF9akUHoUAmjMhmj1Wd7ccAeH496Yyin1pgYfsPesHU2h (legacy representation: QmdnHkojJg19yTnQnAKx7GSK5DQDxooeGHvqKAcn4wtEJV)
-2020-08-20 17:20:14.096 main INFO sc_service::builder  📦 Highest known block at #0
-2020-08-20 17:20:14.096 tokio-runtime-worker INFO substrate_prometheus_endpoint::known_os  〽️ Prometheus server started at 127.0.0.1:9615
-2020-08-20 17:20:19.099 tokio-runtime-worker INFO substrate  💤 Idle (0 peers), best: #0 (0x200a…c14a), finalized #0 (0x200a…c14a), ⬇ 0 ⬆ 0
-2020-08-20 17:20:24.099 tokio-runtime-worker INFO substrate  💤 Idle (0 peers), best: #0 (0x200a…c14a), finalized #0 (0x200a…c14a), ⬇ 0 ⬆ 0
+Sep 24 13:28:56.804  INFO Substrate Node    
+Sep 24 13:28:56.804  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu    
+Sep 24 13:28:56.804  INFO ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020    
+Sep 24 13:28:56.804  INFO 📋 Chain specification: Local Testnet    
+Sep 24 13:28:56.804  INFO 🏷  Node name: MyNode01    
+Sep 24 13:28:56.804  INFO 👤 Role: AUTHORITY    
+Sep 24 13:28:56.804  INFO 💾 Database: RocksDb at /tmp/node01/chains/local_testnet/db    
+Sep 24 13:28:56.804  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)    
+Sep 24 13:28:57.188  INFO 🔨 Initializing Genesis block/state (state: 0xe3cb…c5ca, header-hash: 0x0ded…9b9d)    
+Sep 24 13:28:57.191  INFO 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.    
+Sep 24 13:28:57.380  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch    
+Sep 24 13:28:57.381  WARN Using default protocol ID "sup" because none is configured in the chain specs    
+Sep 24 13:28:57.382  INFO 🏷  Local node identity is: 12D3KooWQa2M77x2hFviVAFLHt9pMUYQVC93fdiVMKDbL3XvYSzj (legacy representation: 12D3KooWQa2M77x2hFviVAFLHt9pMUYQVC93fdiVMKDbL3XvYSzj)    
+Sep 24 13:28:57.402  INFO 📦 Highest known block at #0    
+Sep 24 13:28:57.403  INFO 〽️ Prometheus server started at 127.0.0.1:9615    
+Sep 24 13:28:57.434  INFO Listening for new connections on 127.0.0.1:9944.    
+Sep 24 13:29:02.436  INFO 💤 Idle (0 peers), best: #0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 0 ⬆ 0    
+Sep 24 13:29:07.437  INFO 💤 Idle (0 peers), best: #0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 0 ⬆ 0
 ```
 
 ## Add Keys to Keystore
@@ -149,10 +150,10 @@ Make sure you delete the file that contains the keys when you are done.
 ## Subsequent Participants Join
 
 Subsequent validators can now join the network. This can be done by specifying the `--bootnodes`
-paramter as Bob did previously.
+parameter as Bob did previously.
 
 ```bash
-./target/release/node-template \
+./target/debug/node-template \
   --base-path /tmp/node02 \
   --chain ./customSpecRaw.json \
   --port 30334 \
@@ -171,28 +172,30 @@ As before, we specify another `base-path`, give it another `name`, and also spec
 Once the second node is up, you should see them authoring:
 
 ```
-2020-08-20 17:27:35.152 main INFO sc_cli::runner  Substrate Node
-2020-08-20 17:27:35.152 main INFO sc_cli::runner  ✌️  version 2.0.0-rc6-7c921bb-x86_64-linux-gnu
-2020-08-20 17:27:35.152 main INFO sc_cli::runner  ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
-2020-08-20 17:27:35.152 main INFO sc_cli::runner  📋 Chain specification: Local Testnet
-2020-08-20 17:27:35.152 main INFO sc_cli::runner  🏷  Node name: MyNode02
-2020-08-20 17:27:35.152 main INFO sc_cli::runner  👤 Role: AUTHORITY
-2020-08-20 17:27:35.152 main INFO sc_cli::runner  💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db
-2020-08-20 17:27:35.152 main INFO sc_cli::runner  ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
-2020-08-20 17:27:35.426 main INFO sc_service::client::client  🔨 Initializing Genesis block/state (state: 0x013d…7725, header-hash: 0x200a…c14a)
-2020-08-20 17:27:35.427 main INFO afg  👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
-2020-08-20 17:27:35.445 main INFO sc_consensus_slots  ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
-2020-08-20 17:27:35.445 main WARN sc_service::builder  Using default protocol ID "sup" because none is configured in the chain specs
-2020-08-20 17:27:35.445 main INFO sub-libp2p  🏷  Local node identity is: 12D3KooWRaL4KMYR5njwoohqetjT2wsuwEQijWdBqMxD1Tu3WCqE (legacy representation: QmcUwECyeg8142GiRenTY4euWU2hM98KAjWefNdHvwGuYf)
-2020-08-20 17:27:35.447 main INFO sc_service::builder  📦 Highest known block at #0
-2020-08-20 17:27:35.951 tokio-runtime-worker INFO sub-libp2p  🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWRaL4KMYR5njwoohqetjT2wsuwEQijWdBqMxD1Tu3WCqE
-2020-08-20 17:27:35.951 tokio-runtime-worker INFO sub-libp2p  🔍 Discovered new external address for our node: /ip4/192.168.0.118/tcp/30334/p2p/12D3KooWRaL4KMYR5njwoohqetjT2wsuwEQijWdBqMxD1Tu3WCqE
-2020-08-20 17:27:36.021 tokio-runtime-worker INFO substrate  ✨ Imported #1 (0x8258…05c2)
-2020-08-20 17:27:40.450 tokio-runtime-worker INFO substrate  💤 Idle (1 peers), best: #1 (0x8258…05c2), finalized #0 (0x200a…c14a), ⬇ 1.2kiB/s ⬆ 1.2kiB/s
+Sep 24 13:32:29.909  INFO Substrate Node    
+Sep 24 13:32:29.909  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu    
+Sep 24 13:32:29.909  INFO ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020    
+Sep 24 13:32:29.909  INFO 📋 Chain specification: Local Testnet    
+Sep 24 13:32:29.909  INFO 🏷  Node name: MyNode02    
+Sep 24 13:32:29.909  INFO 👤 Role: AUTHORITY    
+Sep 24 13:32:29.909  INFO 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db    
+Sep 24 13:32:29.909  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)    
+Sep 24 13:32:30.342  INFO 🔨 Initializing Genesis block/state (state: 0xe3cb…c5ca, header-hash: 0x0ded…9b9d)    
+Sep 24 13:32:30.346  INFO 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.    
+Sep 24 13:32:30.552  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch    
+Sep 24 13:32:30.553  WARN Using default protocol ID "sup" because none is configured in the chain specs    
+Sep 24 13:32:30.554  INFO 🏷  Local node identity is: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn (legacy representation: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn)    
+Sep 24 13:32:30.577  INFO 📦 Highest known block at #0    
+Sep 24 13:32:30.611  INFO Listening for new connections on 127.0.0.1:9945.    
+Sep 24 13:32:31.126  INFO 🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn    
+Sep 24 13:32:31.175  INFO 🔍 Discovered new external address for our node: /ip4/192.168.0.117/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn    
+Sep 24 13:32:35.614  INFO 💤 Idle (1 peers), best: #0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 1.1kiB/s ⬆ 1.1kiB/s    
+Sep 24 13:32:36.844  INFO ✨ Imported #1 (0xad75…d784)    
+Sep 24 13:32:40.615  INFO 💤 Idle (1 peers), best: #1 (0xad75…d784), finalized #0 (0x0ded…9b9d), ⬇ 0.2kiB/s ⬆ 0.1kiB/s
 ```
 
 The final lines shows that your node has peered with another (**`1 peers`**), and they have produced
-a block (**`best: #1 (0x8258…05c2)`**).
+a block (**`best: #1 (0xad75…d784)`**).
 
 Now you're ready to add keys to its keystore by following the process (in the previous section) just
 like you did for the first node.
@@ -211,25 +214,26 @@ like you did for the first node.
 > see the same genesis block and state root hashes.
 
 You will notice that even after you add the keys for the second node no block finalization has
-happened (**`finalized #0 (0x200a…c14a)`**). Substrate nodes require a restart after inserting a
+happened (**`finalized #0 (0x0ded…9b9d)`**). Substrate nodes require a restart after inserting a
 GRANDPA key. Kill your nodes and restart them with the same commands you used previously. Now blocks
 should be finalized.
 
 ```
-2020-08-20 17:30:42.415 main INFO sc_cli::runner  Substrate Node
-2020-08-20 17:30:42.415 main INFO sc_cli::runner  ✌️  version 2.0.0-rc6-7c921bb-x86_64-linux-gnu
-2020-08-20 17:30:42.415 main INFO sc_cli::runner  ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
-2020-08-20 17:30:42.415 main INFO sc_cli::runner  📋 Chain specification: Local Testnet
-2020-08-20 17:30:42.415 main INFO sc_cli::runner  🏷  Node name: MyNode02
-2020-08-20 17:30:42.415 main INFO sc_cli::runner  👤 Role: AUTHORITY
-2020-08-20 17:30:42.415 main INFO sc_cli::runner  💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db
-2020-08-20 17:30:42.415 main INFO sc_cli::runner  ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
-2020-08-20 17:30:42.465 main WARN sc_service::builder  Using default protocol ID "sup" because none is configured in the chain specs
-2020-08-20 17:30:42.465 main INFO sub-libp2p  🏷  Local node identity is: 12D3KooWRaL4KMYR5njwoohqetjT2wsuwEQijWdBqMxD1Tu3WCqE (legacy representation: QmcUwECyeg8142GiRenTY4euWU2hM98KAjWefNdHvwGuYf)
-2020-08-20 17:30:42.467 main INFO sc_service::builder  📦 Highest known block at #16
-2020-08-20 17:30:42.971 tokio-runtime-worker INFO sub-libp2p  🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWRaL4KMYR5njwoohqetjT2wsuwEQijWdBqMxD1Tu3WCqE
-2020-08-20 17:30:42.971 tokio-runtime-worker INFO sub-libp2p  🔍 Discovered new external address for our node: /ip4/192.168.0.118/tcp/30334/p2p/12D3KooWRaL4KMYR5njwoohqetjT2wsuwEQijWdBqMxD1Tu3WCqE
-2020-08-20 17:30:47.470 tokio-runtime-worker INFO substrate  💤 Idle (1 peers), best: #16 (0x279c…a87f), finalized #14 (0xb8ec…9d12), ⬇ 1.9kiB/s ⬆ 2.1kiB/s
+Sep 24 13:37:33.863  INFO Substrate Node    
+Sep 24 13:37:33.864  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu    
+Sep 24 13:37:33.864  INFO ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020    
+Sep 24 13:37:33.864  INFO 📋 Chain specification: Local Testnet    
+Sep 24 13:37:33.864  INFO 🏷  Node name: MyNode02    
+Sep 24 13:37:33.864  INFO 👤 Role: AUTHORITY    
+Sep 24 13:37:33.864  INFO 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db    
+Sep 24 13:37:33.864  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)    
+Sep 24 13:37:33.918  WARN Using default protocol ID "sup" because none is configured in the chain specs    
+Sep 24 13:37:33.918  INFO 🏷  Local node identity is: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn (legacy representation: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn)    
+Sep 24 13:37:33.942  INFO 📦 Highest known block at #23    
+Sep 24 13:37:33.973  INFO Listening for new connections on 127.0.0.1:9945.    
+Sep 24 13:37:34.486  INFO 🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn    
+Sep 24 13:37:36.593  INFO ✨ Imported #24 (0xa7e8…7596)    
+Sep 24 13:37:38.976  INFO 💤 Idle (1 peers), best: #24 (0xa7e8…7596), finalized #22 (0x753e…ddb0), ⬇ 1.5kiB/s ⬆ 1.5kiB/s
 ```
 
 ## You're Finished

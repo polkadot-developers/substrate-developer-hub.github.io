@@ -2,7 +2,7 @@
 title: "Add a Pallet"
 ---
 
-The [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template)
+The [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
 provides a minimal working runtime which you can use to quickly get started building your own custom
 blockchain. However, in the attempts to remain minimal, it does not include most of the pallets from
 [FRAME](../../knowledgebase/runtime/frame).

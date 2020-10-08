@@ -31,8 +31,24 @@ const tutorialCardData = [{
   difficulty: "easy",
   length: "< 1",
   prerequisite: false,
-  version: "2.0.0-rc6",
+  version: "2.0.0",
   href: 'tutorials/create-your-first-substrate-chain/',
+}, {
+  title: <translate>Add a Pallet to Your Runtime</translate>,
+  text: <translate>Add the Nicks pallet to your Substrate node template.</translate>,
+  difficulty: "medium",
+  length: "2",
+  prerequisite: false,
+  version: "2.0.0",
+  href: 'tutorials/add-a-pallet/',
+}, {
+  title: "Upgrade a Chain",
+  text: "Perform a forkless runtime upgrade on a running Substrate network.",
+  difficulty: "medium",
+  length: "2",
+  prerequisite: false,
+  version: "2.0.0",
+  href: 'tutorials/upgrade-a-chain/',
 }, {
   img: 'img/first-substrate-chain.png',
   title: <translate>Build a PoE Decentralized Application</translate>,
@@ -40,16 +56,8 @@ const tutorialCardData = [{
   difficulty: "easy",
   length: "1",
   prerequisite: true,
-  version: "2.0.0-rc6",
+  version: "2.0.0",
   href: 'tutorials/build-a-dapp/',
-}, {
-  title: <translate>Adding a Pallet to Your Runtime</translate>,
-  text: <translate>Add the Nicks pallet to your Substrate node template.</translate>,
-  difficulty: "medium",
-  length: "2",
-  prerequisite: false,
-  version: "2.0.0-rc6",
-  href: 'tutorials/add-a-pallet/',
 }, {
   img: 'img/substrate-network.png',
   title: <translate>Start a Private Network with Substrate</translate>,
@@ -57,7 +65,7 @@ const tutorialCardData = [{
   difficulty: "easy",
   length: "2",
   prerequisite: false,
-  version: "2.0.0-rc6",
+  version: "2.0.0",
   href: 'tutorials/start-a-private-network/',
 }, {
   img: 'img/crates.png',
@@ -66,7 +74,7 @@ const tutorialCardData = [{
   difficulty: "medium",
   length: "2",
   prerequisite: false,
-  version: "2.0.0-rc6",
+  version: "2.0.0",
   href: 'tutorials/create-a-pallet/',
 }, {
   img: 'img/grafana.png',
@@ -75,7 +83,7 @@ const tutorialCardData = [{
   difficulty: "easy",
   length: "< 1",
   prerequisite: false,
-  version: "2.0.0-rc5",
+  version: "2.0.0",
   href: 'tutorials/visualize-node-metrics/',
 }, {
   title: <translate>Add the Contracts Pallet to a Runtime</translate>,
@@ -95,6 +103,14 @@ const tutorialCardData = [{
   version: "2.0.0-rc4",
   hrefFrom: 'baseUrl',
   href: 'tutorials/ink-smart-contracts-tutorial/',
+}, {
+  title: <translate>Build a permissioned network</translate>,
+  text: <translate>A comprehensive, end-to-end tutorial for building a permissioned network using node-authorization pallet.</translate>,
+  difficulty: "easy",
+  length: "2",
+  prerequisite: false,
+  version: "2.0.0",
+  href: 'tutorials/build-permission-network/',
 }];
 
 const capitalize = word => `${word.charAt(0).toUpperCase()}${word.slice(1)}`;
