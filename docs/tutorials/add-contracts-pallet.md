@@ -405,7 +405,7 @@ pallet-contracts-rpc = '0.8.0'
 ```
 
 
-Substrate provides an RPC to interact with our node. However, it does not contains access to the
+Substrate provides an RPC to interact with our node. However, it does not contain access to the
 contracts pallet by default. To interact with this pallet, we have to extend the existing RPC and
 add the contracts pallet along with its API.
 
