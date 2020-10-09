@@ -20,11 +20,11 @@ The `storage` module in [FRAME Support](https://substrate.dev/rustdocs/v2.0.0/fr
 gives runtime developers access to Substrate's flexible storage APIs. Any value that can be encoded
 by the [Parity SCALE codec](../advanced/codec) is supported by these storage APIs:
 
-- [Storage Value](https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.storagevalue.html) - A single
+- [Storage Value](https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageValue.html) - A single
   value
-- [Storage Map](https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.storagemap.html) - A key-value
+- [Storage Map](https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageMap.html) - A key-value
   hash map
-- [Storage Double Map](https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.storagedoublemap.html) -
+- [Storage Double Map](https://substrate.dev/rustdocs/v2.0.0/frame_support/storage/trait.StorageDoubleMap.html) -
   An implementation of a map with two keys that provides the important ability to efficiently remove
   all entries that have a common first key
 
