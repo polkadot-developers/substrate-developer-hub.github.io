@@ -78,25 +78,64 @@ rustup default stable
 ### WebAssembly Compilation
 
 Substrate uses [WebAssembly](https://webassembly.org/) (Wasm) to produce portable blockchain
-runtimes. You will need to configure your Rust compiler to use `nightly` builds to allow you to
-compile Rust code to the Wasm target:
+runtimes. You will need to configure your Rust compiler to use
+[`nightly` builds](https://doc.rust-lang.org/book/appendix-07-nightly-rust.html) to allow you to
+compile Rust code to the Wasm target.
+
+#### Rust Nightly Toolchain
+
+Developers that are building _with_ Substrate (as opposed to the developers building Substrate
+_itself_) should use a specific Rust nightly version that is known to be compatible with the version
+of Substrate they are using. For instance, The Substrate Developer Hub Node Template includes
+[a toolchain file](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/rust-toolchain)
+that specifies the Rust nightly version to use. Use Rustup to install the correct nightly:
 
 ```bash
+rustup install nightly-<yyyy-MM-dd>
+```
+
+#### Wasm Toolchain
+
+Now, configure the nightly version to work with the Wasm compilation target:
+
+```bash
+rustup target add wasm32-unknown-unknown --toolchain nightly-<yyyy-MM-dd>
+```
+
+#### Specifying Nightly Version
+
+If you are working with a Substrate-based project that does not include a toolchain file, you can
+use the Rust build and package manager, [Cargo](https://doc.rust-lang.org/cargo/), to specify a
+nightly version:
+
+```bash
+cargo +nightly-<yyyy-MM-dd> ...
+```
+
+#### Latest Nightly
+
+Developers that are building Substrate _itself_ should always uses the latest version of Rust stable
+and nightly for compilation. To ensure your Rust compiler is always up to date, you should run:
+
+```bash
+rustup update
 rustup update nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
 ```
 
-### Updating the Rust Toolchain
-
-Substrate always uses the latest version of Rust stable and nightly for compilation. To ensure your
-Rust compiler is always up to date, you should run:
-
-```bash
-rustup update
-```
-
 **It may be necessary to occasionally rerun `rustup update`** if a change in the upstream Substrate
 codebase depends on a new feature of the Rust compiler.
+
+#### Downgrading Rust Nightly
+
+If your computer is configured to use the latest Rust nightly and you would like to downgrade to a
+specific nightly version, follow these steps:
+
+```bash
+rustup uninstall nightly
+rustup install nightly-<yyyy-MM-dd>
+rustup target add wasm32-unknown-unknown --toolchain nightly-<yyyy-MM-dd>
+```
 
 ## Test Your Set-Up
 
