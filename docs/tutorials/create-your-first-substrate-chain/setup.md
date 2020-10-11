@@ -70,6 +70,14 @@ Template, which serves as a good starting point for building on Substrate.
    # Add Wasm target
    rustup target add wasm32-unknown-unknown --toolchain nightly
    ```
+   If you are getting `cargo build failed`, please follow below instructions
+   
+   ```bash
+   # Change Rust nightly version
+   rustup uninstall nightly
+   rustup install nightly-2020-10-06
+   rustup target add wasm32-unknown-unknown --toolchain nightly-2020-10-06   
+   ```
 
 3. Compile the Node Template
 
