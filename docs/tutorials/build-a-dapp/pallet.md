@@ -113,6 +113,8 @@ we just deleted. However, `sp_std` is not available and we need to list it as a 
 **Add** this block to your `pallets/template/Cargo.toml` file.
 
 ```toml
+[dependencies]
+#--snip--
 sp-std = { default-features = false, version = '2.0.0' }
 ```
 
