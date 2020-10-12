@@ -6,7 +6,7 @@ Now you are ready to compile and run your node that has been enhanced with nickn
 from the Nicks pallet. Compile the node in release mode with:
 
 ```bash
-cargo build
+cargo build --release
 ```
 
 If the build fails, go back to the previous section and make sure you followed all the steps
@@ -14,7 +14,7 @@ correctly. After the build succeeds, you can start the node:
 
 ```bash
 # Run a temporary node in development mode
-./target/debug/node-template --dev --tmp
+./target/release/node-template --dev --tmp
 ```
 
 ## Start the Front-End

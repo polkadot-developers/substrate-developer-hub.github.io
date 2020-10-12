@@ -44,6 +44,8 @@ your runtime has. For example, it depends on the
 **`runtime/Cargo.toml`**
 
 ```TOML
+[dependencies]
+#--snip--
 pallet-balances = { default-features = false, version = '2.0.0' }
 ```
 
@@ -126,6 +128,8 @@ So based on the `balances` import shown above, the `nicks` import will look like
 **`runtime/Cargo.toml`**
 
 ```TOML
+[dependencies]
+#--snip--
 pallet-nicks = { default-features = false, version = '2.0.0' }
 ```
 

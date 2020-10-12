@@ -19,12 +19,12 @@ Alice (or whomever is playing her) should run these commands from node-template 
 ```bash
 # Purge any chain data from previous runs
 # You will be prompted to type `y`
-./target/debug/node-template purge-chain --base-path /tmp/alice --chain local
+./target/release/node-template purge-chain --base-path /tmp/alice --chain local
 ```
 
 ```bash
 # Start Alice's node
-./target/debug/node-template \
+./target/release/node-template \
   --base-path /tmp/alice \
   --chain local \
   --alice \
@@ -136,11 +136,11 @@ Now that Alice's node is up and running, Bob can join the network by bootstrappi
 His command will look very similar.
 
 ```bash
-./target/debug/node-template purge-chain --base-path /tmp/bob --chain local
+./target/release/node-template purge-chain --base-path /tmp/bob --chain local
 ```
 
 ```bash
-./target/debug/node-template \
+./target/release/node-template \
   --base-path /tmp/bob \
   --chain local \
   --bob \

@@ -21,13 +21,13 @@ the one we used before. To start, we need to export the chain spec to a file nam
 
 ```bash
 # Export the local chainspec to json
-$ ./target/debug/node-template build-spec --disable-default-bootnode --chain local > customSpec.json
+$ ./target/release/node-template build-spec --disable-default-bootnode --chain local > customSpec.json
 2020-05-28 13:29:05 Building chain spec
 ```
 
 The file we just created contains several fields, and you can learn a lot by exploring them. By far
 the largest field is a single binary blob that is the Wasm binary of our runtime. It is part of what
-you built earlier when you ran the `cargo build` command.
+you built earlier when you ran the `cargo build --release` command.
 
 The portion of the file we're interested in is the Aura authorities used for creating blocks,
 indicated by **"aura"** field below, and GRANDPA authorities used for finalizing blocks, indicated
@@ -91,7 +91,7 @@ the data in its local storage. Distributing a raw spec ensures that each node wi
 the proper storage keys.
 
 ```bash
-$ ./target/debug/node-template build-spec --chain=customSpec.json --raw --disable-default-bootnode > customSpecRaw.json
+$ ./target/release/node-template build-spec --chain=customSpec.json --raw --disable-default-bootnode > customSpecRaw.json
 2020-05-28 13:31:37 Building chain spec
 ```
 

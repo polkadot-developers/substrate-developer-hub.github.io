@@ -16,7 +16,7 @@ all contents from that directory.
 The first participant can launch her node with:
 
 ```bash
-./target/debug/node-template \
+./target/release/node-template \
   --base-path /tmp/node01 \
   --chain ./customSpecRaw.json \
   --port 30333 \
@@ -153,7 +153,7 @@ Subsequent validators can now join the network. This can be done by specifying t
 parameter as Bob did previously.
 
 ```bash
-./target/debug/node-template \
+./target/release/node-template \
   --base-path /tmp/node02 \
   --chain ./customSpecRaw.json \
   --port 30334 \

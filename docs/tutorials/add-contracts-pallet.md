@@ -67,6 +67,7 @@ your runtime has. For example, it depends on the
 
 ```TOML
 [dependencies]
+#--snip--
 pallet-balances = { default-features = false, version = '2.0.0' }
 ```
 
@@ -141,6 +142,8 @@ So based on the `balances` import shown above, the `contracts` import will look 
 **`runtime/Cargo.toml`**
 
 ```TOML
+[dependencies]
+#--snip--
 pallet-contracts = { version = '2.0.0', default_features = false }
 pallet-contracts-primitives = { version = '2.0.0', default_features = false }
 ```
