@@ -67,7 +67,7 @@ pub trait Trait: frame_system::Trait {
 ```
 
 Just like we used the Balances pallet as a template for importing the Nicks pallet, let's use the
-Balances pallet as an example to help us understand how can implement the `Trait` interface for the
+Balances pallet as an example to help us understand how we can implement the `Trait` interface for the
 Nicks pallet. You will notice that this implementation consists of two parts: a `parameter_types!`
 block where constant values are defined and an `impl` block where the types and values defined by
 the `Trait` interface are configured. This code block has also been annotated with additional
