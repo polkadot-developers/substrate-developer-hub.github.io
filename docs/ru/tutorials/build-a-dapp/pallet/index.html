@@ -139,7 +139,9 @@
 </code></pre>
 <p>Most of these imports are already available because they were used in the template pallet whose code we just deleted. However, <code>sp_std</code> is not available and we need to list it as a dependency.</p>
 <p><strong>Add</strong> this block to your <code>pallets/template/Cargo.toml</code> file.</p>
-<pre><code class="hljs css language-toml"><span class="token key property">sp-std</span> <span class="token punctuation">=</span> <span class="token punctuation">{</span> <span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">'2.0.0'</span> <span class="token punctuation">}</span>
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">dependencies</span><span class="token punctuation">]</span>
+<span class="token comment">#--snip--</span>
+<span class="token key property">sp-std</span> <span class="token punctuation">=</span> <span class="token punctuation">{</span> <span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">'2.0.0'</span> <span class="token punctuation">}</span>
 </code></pre>
 <p>Then, <strong>Update</strong> the existing <code>[features]</code> block to look like this. The last line is new. You will learn more about why this is necessary in the next tutorial, the <a href="../add-a-pallet">Add a Pallet</a> tutorial.</p>
 <pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">features</span><span class="token punctuation">]</span>

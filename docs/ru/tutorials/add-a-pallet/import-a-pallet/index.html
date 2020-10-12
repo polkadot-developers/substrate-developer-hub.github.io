@@ -98,7 +98,9 @@
 <p>The first thing you need to do to add the Nicks pallet is to import the <code>pallet-nicks</code> crate in your runtime's <code>Cargo.toml</code> file. If you want a proper primer into Cargo References, you should check out <a href="https://doc.rust-lang.org/cargo/reference/index.html">their official documentation</a>.</p>
 <p>Open <code>substrate-node-template/runtime/Cargo.toml</code> and you will see a list of all the dependencies your runtime has. For example, it depends on the <a href="https://substrate.dev/rustdocs/v2.0.0">Balances pallet</a>:</p>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"><span class="hljs-attr">pallet-balances</span> = { default-features = <span class="hljs-literal">false</span>, version = <span class="hljs-string">'2.0.0'</span> }
+<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies]</span>
+<span class="hljs-comment">#--snip--</span>
+<span class="hljs-attr">pallet-balances</span> = { default-features = <span class="hljs-literal">false</span>, version = <span class="hljs-string">'2.0.0'</span> }
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="crate-features"></a><a href="#crate-features" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Crate Features</h3>
 <p>One important thing we need to call out with importing pallet crates is making sure to set up the crate <code>features</code> correctly. In the code snippet above, you will notice that we set <code>default_features = false</code>. If you explore the <code>Cargo.toml</code> file even closer, you will find something like:</p>
@@ -140,7 +142,9 @@
 <p>Okay, now that we have covered the basics of crate features, we can actually import the Nicks pallet. The Nicks pallet is one of the simpler pallets in FRAME, so it makes for a good example of the common points you need to consider when adding a pallet to your runtime.</p>
 <p>First we will add the new dependency by simply copying an existing pallet and changing the values. So based on the <code>balances</code> import shown above, the <code>nicks</code> import will look like:</p>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"><span class="hljs-attr">pallet-nicks</span> = { default-features = <span class="hljs-literal">false</span>, version = <span class="hljs-string">'2.0.0'</span> }
+<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies]</span>
+<span class="hljs-comment">#--snip--</span>
+<span class="hljs-attr">pallet-nicks</span> = { default-features = <span class="hljs-literal">false</span>, version = <span class="hljs-string">'2.0.0'</span> }
 </code></pre>
 <p>As with other pallets, the Nicks pallet has an <code>std</code> feature. We should build its <code>std</code> feature when the runtime is built with its own <code>std</code> feature. Add the following line to the runtime's <code>std</code> feature.</p>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
