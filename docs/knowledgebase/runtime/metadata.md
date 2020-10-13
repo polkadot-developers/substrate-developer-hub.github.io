@@ -131,7 +131,7 @@ Here is a condensed version of decoded metadata:
 {
   "magicNumber": 1635018093,
   "metadata": {
-    "V11": {
+    "V12": {
       "modules": [
         {
           // ...
