@@ -59,7 +59,7 @@ To interact with your local node, we will use
 [the Substrate Developer Hub Front-End Template](https://github.com/substrate-developer-hub/substrate-front-end-template),
 which is a collection of UI components that have been designed with common use cases in mind.
 
-You already installed the Front-End Template; launch it be executing the following command in the
+You already installed the Front-End Template; launch it by executing the following command in the
 root directory of the Front-End Template:
 
 ```bash
