@@ -80,18 +80,18 @@
 <h3><a class="anchor" aria-hidden="true" id="execution-strategy"></a><a href="#execution-strategy" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Execution Strategy</h3>
 <p>Before runtime execution begins, the Substrate client proposes which runtime execution environment should be used. This is controlled by the execution strategy, which can be configured for the different parts of the blockchain execution process. The strategies are:</p>
 <ul>
-<li><code>Native</code>: Execute with native build (if available, WebAssembly otherwise); if it fails, do not fallback to Wasm.</li>
-<li><code>Wasm</code>: Only execute with the WebAssembly build.</li>
-<li><code>Both</code>: Execute with both native (where available) and WebAssembly builds.</li>
-<li><code>NativeElseWasm</code>: Execute with the native build if possible; if it fails, then execute with WebAssembly.</li>
+<li><code>NativeWhenPossible</code>: Execute with the native equivalent if it is compatible with the given wasm module; otherwise fall back to the wasm.</li>
+<li><code>Wasm</code>: Use the given wasm module..</li>
+<li><code>Both</code>: Run with both the wasm and the native variant (if compatible). Report any discrepancy as an error.</li>
+<li><code>NativeElseWasm</code>: First native, then if that fails or is not possible, wasm.</li>
 </ul>
 <p>The default execution strategies for the different parts of the blockchain execution process are:</p>
 <ul>
 <li>Syncing: <code>NativeElseWasm</code></li>
 <li>Block Import: <code>NativeElseWasm</code></li>
 <li>Block Construction: <code>Wasm</code></li>
-<li>Off-Chain Worker: <code>Native</code></li>
-<li>Other: <code>Native</code></li>
+<li>Off-Chain Worker: <code>NativeWhenPossible</code></li>
+<li>Other: <code>NativeWhenPossible</code></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="wasm-execution"></a><a href="#wasm-execution" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Wasm Execution</h3>
 <p>The Wasm representation of the Substrate runtime is considered the canonical runtime. Because this Wasm runtime is placed in the blockchain storage, the network must come to consensus about this binary. Thus it can be verified to be consistent across all syncing nodes.</p>
