@@ -20,20 +20,20 @@ Before runtime execution begins, the Substrate client proposes which runtime exe
 should be used. This is controlled by the execution strategy, which can be configured for the
 different parts of the blockchain execution process. The strategies are:
 
-- `Native`: Execute with native build (if available, WebAssembly otherwise); if it fails, do not
-  fallback to Wasm.
-- `Wasm`: Only execute with the WebAssembly build.
-- `Both`: Execute with both native (where available) and WebAssembly builds.
-- `NativeElseWasm`: Execute with the native build if possible; if it fails, then execute with
-  WebAssembly.
+- `NativeWhenPossible`: Execute with the native equivalent if it is compatible with the given
+wasm module; otherwise fall back to the wasm.
+- `Wasm`: Use the given wasm module..
+- `Both`: Run with both the wasm and the native variant (if compatible).
+Report any discrepancy as an error.
+- `NativeElseWasm`: First native, then if that fails or is not possible, wasm.
 
 The default execution strategies for the different parts of the blockchain execution process are:
 
 - Syncing: `NativeElseWasm`
 - Block Import: `NativeElseWasm`
 - Block Construction: `Wasm`
-- Off-Chain Worker: `Native`
-- Other: `Native`
+- Off-Chain Worker: `NativeWhenPossible`
+- Other: `NativeWhenPossible`
 
 ### Wasm Execution
 
