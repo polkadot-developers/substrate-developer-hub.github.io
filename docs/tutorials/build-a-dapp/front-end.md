@@ -44,9 +44,16 @@ substrate-front-end-template
 
 Delete the entire contents of that file, and replace it with the following:
 
-<div style="max-height: 20em; overflow: auto; margin-bottom: 1em;">
+<div class="overflow-code">
+  <style>
+    .overflow-code + pre {
+      max-height: 20em;
+      overflow-y: scroll;
+    }
+  </style>
+</div>
 
-```js
+```javascript
 // React and Semantic UI elements.
 import React, { useState, useEffect } from 'react';
 import { Form, Input, Grid, Message } from 'semantic-ui-react';
@@ -131,7 +138,7 @@ export function Main (props) {
             type='file'
             id='file'
             label='Your File'
-            onChange={(e) => handleFileChosen(e.target.files[0])}
+            onChange={ e => handleFileChosen(e.target.files[0]) }
           />
           {/* Show this message if the file is available to be claimed */}
           <Message success header='File Digest Unclaimed' content={digest} />
@@ -188,8 +195,6 @@ export default function TemplateModule (props) {
     ? <Main {...props} /> : null);
 }
 ```
-
-</div>
 
 We won't walk you step by step through the creation of this component, but do look over the code
 comments to learn what each part is doing.
