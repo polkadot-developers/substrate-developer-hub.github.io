@@ -190,7 +190,7 @@ that is written in Rust and maintained by Parity Technologies.
 
 - Rust: [`paritytech/parity-scale-codec`](https://github.com/paritytech/parity-scale-codec)
 - Python: [`polkascan/py-scale-codec`](https://github.com/polkascan/py-scale-codec)
-- Golang: [`ChainSafe/gossamer`](https://github.com/ChainSafe/gossamer)
+- Golang: [`itering/scale.go`](https://github.com/itering/scale.go)
 - C++: [`soramitsu/scale`](https://github.com/soramitsu/kagome/tree/master/core/scale)
 - JavaScript: [`polkadot-js/api`](https://github.com/polkadot-js/api)
 - AssemblyScript: [`LimeChain/as-scale-codec`](https://github.com/LimeChain/as-scale-codec)
