@@ -12,6 +12,9 @@ We will give you a custom React component that you can use to interact with your
 To start the Front-End Template, navigate to its directory and run:
 
 ```bash
+# Install dependencies if this is the first time you run front-end template 
+yarn install
+# Start the template
 yarn start
 ```
 
