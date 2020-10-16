@@ -35,12 +35,6 @@ This means that multiple contract instances, with different constructor argument
 initialized using the same Wasm code, reducing the amount of storage space needed by the Contracts
 module on your blockchain.
 
-### Runtime Environment Types
-
-For writing contracts and interacting with the runtime, a set of types are available (e.g.
-`AccountId`, `Balance`, `Hash`, `Moment`). These types can be user defined for custom runtimes, or
-the supplied defaults can be used.
-
 ### Contract Calls
 
 Calls to contracts can alter the storage of the contract, create new contracts, and call other
@@ -65,7 +59,7 @@ reverted, and the gas fee is **not** returned to the user. If the contract execu
 remaining gas, it is returned to the user at the end of the transaction.
 
 The Contracts module determines the gas price, which is a conversion between the Substrate
-`Currency` and a single unit of gas. Thus, to execute a transaction, a user must have a free balance
+**weight system** and a single unit of gas. Thus, to execute a transaction, a user must have a free balance
 of at least `gas price` \* `gas limit` which can be spent.
 
 ### Storage Rent

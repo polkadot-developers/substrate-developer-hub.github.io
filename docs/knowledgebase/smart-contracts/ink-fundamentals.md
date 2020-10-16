@@ -33,15 +33,6 @@ languages. The skeleton of a contract has all of the same components that you mi
 - Constructor Functions
 - Message Functions
 
-### Custom Types
-
-ink! supports custom type definitions needed to interact with the Substrate runtime. By default,
-ink! has access to all the [primitive Substrate types](../runtime/primitives) like `AccountId`,
-`Balance`, `Hash`, etc...
-
-You can specify and interact with additional types which may be specific to your Substrate runtime
-environment.
-
 ### Overflow Safety
 
 Being written in Rust, ink! can provide compile-time overflow/underflow safety. Using a Rust

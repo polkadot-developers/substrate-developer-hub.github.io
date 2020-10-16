@@ -36,19 +36,11 @@ const tutorialCardData = [{
 }, {
   title: <translate>Add a Pallet to Your Runtime</translate>,
   text: <translate>Add the Nicks pallet to your Substrate node template.</translate>,
-  difficulty: "medium",
+  difficulty: "easy",
   length: "2",
-  prerequisite: false,
+  prerequisite: true,
   version: "2.0.0",
   href: 'tutorials/add-a-pallet/',
-}, {
-  title: "Upgrade a Chain",
-  text: "Perform a forkless runtime upgrade on a running Substrate network.",
-  difficulty: "medium",
-  length: "2",
-  prerequisite: false,
-  version: "2.0.0",
-  href: 'tutorials/upgrade-a-chain/',
 }, {
   img: 'img/first-substrate-chain.png',
   title: <translate>Build a PoE Decentralized Application</translate>,
@@ -58,6 +50,14 @@ const tutorialCardData = [{
   prerequisite: true,
   version: "2.0.0",
   href: 'tutorials/build-a-dapp/',
+}, {
+  title: "Upgrade a Chain",
+  text: "Perform a forkless runtime upgrade on a running Substrate network.",
+  difficulty: "medium",
+  length: "2",
+  prerequisite: true,
+  version: "2.0.0",
+  href: 'tutorials/upgrade-a-chain/',
 }, {
   img: 'img/substrate-network.png',
   title: <translate>Start a Private Network with Substrate</translate>,
@@ -72,7 +72,7 @@ const tutorialCardData = [{
   text: <translate>Add the Contracts pallet to your Substrate node template.</translate>,
   difficulty: "medium",
   length: "2",
-  prerequisite: false,
+  prerequisite: true,
   version: "2.0.0",
   href: 'tutorials/add-contracts-pallet/',
 }, {
@@ -80,7 +80,7 @@ const tutorialCardData = [{
   text: <translate>A comprehensive, end-to-end tutorial for building a permissioned network using node-authorization pallet.</translate>,
   difficulty: "easy",
   length: "2",
-  prerequisite: false,
+  prerequisite: true,
   version: "2.0.0",
   href: 'tutorials/build-permission-network/',
 }, {
@@ -89,7 +89,7 @@ const tutorialCardData = [{
   text: <translate>Make your pallets re-usable by packaging them in their own rust crate.</translate>,
   difficulty: "medium",
   length: "2",
-  prerequisite: false,
+  prerequisite: true,
   version: "2.0.0",
   href: 'tutorials/create-a-pallet/',
 }, {
@@ -99,7 +99,7 @@ const tutorialCardData = [{
   difficulty: "easy",
   length: "4",
   prerequisite: false,
-  version: "2.0.0-rc4",
+  version: "2.0.0",
   hrefFrom: 'baseUrl',
   href: 'tutorials/ink-smart-contracts-tutorial/',
 }, {
