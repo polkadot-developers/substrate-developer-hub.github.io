@@ -11,13 +11,11 @@ Transactions on Substrate-based chains are used to invoke
 "[dispatchable calls](../../knowledgebase/getting-started/glossary#dispatch)", which are encoded as
 follows:
 
-- 1 byte: `04`, magic number that identifies a dispatchable call
 - 1 byte: 0-based module index from
   [`construct_runtime!`](../../knowledgebase/runtime/macros#construct_runtime) (modules without
   calls are ignored)
 - 1 byte: 0-based call index that corresponds to the target variant on the module's `Call` enum
 - variable: [SCALE](../../knowledgebase/advanced/codec)-encoded function parameters
-- 32 bytes: [address](../../knowledgebase/learn-substrate/account-abstractions) of function caller
 
 ## Signed Extensions
 
@@ -45,7 +43,7 @@ account). Signed extensions can contribute two types of information to a transac
 
 ## Signing
 
-- 1 byte: magic number that indicates signing scheme; `00` for Ed25519, `ff` for sr25519
+- 1 byte: magic number that indicates signing scheme; `00` for Ed25519, `01` for sr25519
 - 64 bytes: sig(call + unsigned/extra + signed/additional)
 
 ## Transaction Construction
@@ -53,6 +51,8 @@ account). Signed extensions can contribute two types of information to a transac
 Given the above, transactions are encoded as follows:
 
 - variable: SCALE compact integer-encoded length of the entire transaction
-- variable: dispatchable call
+- 1 byte: `0x8` for signed transactions; append extrinsic version from runtime metadata
+- variable: signer's account ID
 - 65 bytes: signed data
 - variable: signed extension unsigned (extra) information
+- variable: dispatchable call
