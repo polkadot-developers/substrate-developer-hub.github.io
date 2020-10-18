@@ -25,6 +25,7 @@
       "knowledgebase/runtime/origin",
       "knowledgebase/runtime/execution",
       "knowledgebase/runtime/events",
+      "knowledgebase/runtime/errors",
       "knowledgebase/runtime/fees",
       "knowledgebase/runtime/off-chain-workers",
       "knowledgebase/runtime/debugging",
