@@ -41,7 +41,7 @@ requires tracking a `(AccountId: u64, Balance: u64)` mapping.
 
 ### Mock Runtime Storage
 
-The [`runtime-io`](https://substrate.dev/rustdocs/v2.0.0/sp_io/index.html) crate exposes a
+The [`sp-io`](https://substrate.dev/rustdocs/v2.0.0/sp_io/index.html) crate exposes a
 [`TestExternalities`](https://substrate.dev/rustdocs/v2.0.0/sp_io/type.TestExternalities.html)
 implementation frequently used for mocking storage in tests. It is the type alias for an in-memory,
 hashmap-based externalities implementation in
@@ -49,17 +49,16 @@ hashmap-based externalities implementation in
 referred to as
 [`TestExternalities`](https://substrate.dev/rustdocs/v2.0.0/sp_state_machine/struct.TestExternalities.html).
 
-In the [basic mock runtime's recipe](https://substrate.dev/recipes/3-entrees/testing/mock.html), an
-`ExtBuilder` object is defined to build an instance of
+This examples demonstrates defining a struct called `ExtBuilder` to build an instance of
 [`TestExternalities`](https://substrate.dev/rustdocs/v2.0.0/sp_io/type.TestExternalities.html).
 
 ```rust
 pub struct ExtBuilder;
 
 impl ExtBuilder {
-	pub fn build() -> runtime_io::TestExternalities {
+	pub fn build() -> sp_io::TestExternalities {
 		let mut storage = system::GenesisConfig::default().build_storage::<TestRuntime>().unwrap();
-		runtime_io::TestExternalities::from(storage)
+		sp_io::TestExternalities::from(storage)
 	}
 }
 ```
@@ -84,11 +83,8 @@ Custom implementations of
 to construct runtime environments that provide access to features of the outer node. Another example
 of this can be found in
 [`offchain`](https://substrate.dev/rustdocs/v2.0.0/sp_core/offchain/index.html), which maintains its
-own
-[Externalities](https://substrate.dev/rustdocs/v2.0.0/sp_core/offchain/trait.Externalities.html)
+own [Externalities](https://substrate.dev/rustdocs/v2.0.0/sp_core/offchain/trait.Externalities.html)
 implementation.
-[Implementing configurable externalities](https://substrate.dev/recipes/3-entrees/testing/externalities.html)
-is covered in more depth in the recipes.
 
 #### Genesis Config
 
@@ -103,7 +99,7 @@ above. Place `(u64, u64)` pairs in the `balances` vec to seed `(AccountId, Balan
 account balances.
 
 ```rust
-pub fn build(self) -> runtime_io::TestExternalities {
+pub fn build(self) -> sp_io::TestExternalities {
 	GenesisConfig {
 		balances: Some(balances::GenesisConfig::<TestRuntime>{
 			balances: vec![
@@ -129,10 +125,9 @@ time dependent changes.
 
 A simple way of doing this increments the System module's block number between `on_initialize` and
 `on_finalize` calls from all modules with `System::block_number()` as the sole input. While it is
-important for runtime code to
-[cache calls](https://substrate.dev/recipes/3-entrees/storage-api/cache.html) to storage or the
-system module, the test environment scaffolding should prioritize readability to facilitate future
-maintenance.
+important for runtime code to [cache calls](https://substrate.dev/recipes/cache.html) to storage or
+the system module, the test environment scaffolding should prioritize readability to facilitate
+future maintenance.
 
 ```rust
 fn run_to_block(n: u64) {
@@ -162,9 +157,3 @@ fn my_runtime_test() {
 	});
 }
 ```
-
-## Next Steps
-
-The [testing chapter](https://substrate.dev/recipes/3-entrees/testing/index.html) of the Substrate
-Recipes compliments the samples shown above, and provides an environment to run the tests, change
-the logic, and tinker with the code.
