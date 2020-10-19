@@ -32,9 +32,6 @@ class Index extends React.Component {
 
 		return (
 			<section>
-				<div className="announcement">
-					Sub0 Online conference is back on Oct 15th! &nbsp;👉&nbsp;<a href="https://sub0.parity.io/?utm_source=substratedev&utm_medium=referral&utm_campaign=sub0&utm_term=parity">Register Here</a> 	
-				</div>
 
 				<HomeSplash
 					id='home-hero'
