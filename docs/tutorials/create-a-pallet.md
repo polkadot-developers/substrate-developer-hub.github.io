@@ -289,6 +289,7 @@ four lines of code in their runtime's `Cargo.toml` files and updating their runt
   techniques.
 - For more information about runtime development tips and patterns, refer to our
   [Substrate Recipes](https://substrate.dev/recipes/).
+- For a bare FRAME pallet with higly detailed doc comments on specifics of what more you can access within FRAME, see [this example in `substrate`](https://github.com/paritytech/substrate/tree/master/frame/example)
 
 ### References
 
