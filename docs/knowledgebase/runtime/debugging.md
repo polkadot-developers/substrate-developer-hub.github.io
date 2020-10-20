@@ -6,17 +6,18 @@ Debugging is a necessity in all walks of software development, and blockchain is
 of the same tools used for general purpose Rust debugging also apply to Substrate. However, there
 are some restrictions when operating inside of a `no_std` environment like the Substrate runtime.
 
-## Substrate's Own `print` Function
+## FRAME Debugging & Logging Utilities
 
-To facilitate the debugging of the runtime, Substrate provides extra tools for `Print` debugging (or
-tracing). You can use the
-[`print` function](https://substrate.dev/rustdocs/v2.0.0/sp_runtime/fn.print.html) to log the status
-of the runtime execution.
+The FRAME Support
+[`debug` module](https://substrate.dev/rustdocs/v2.0.0/frame_support/debug/index.html) contains
+macros and functions that make it possible to print logs out of runtime code.
+
+### Log from Native Runtimes
+
+For performance-preserving, native-only debugging, use the macros in the
+[`frame_support::debug::native` module](https://substrate.dev/rustdocs/v2.0.0/frame_support/debug/native/index.html).
 
 ```rust
-use sp_runtime::print;
-
-// --snip--
 pub fn do_something(origin) -> DispatchResult {
 	print("Execute do_something");
 
@@ -25,25 +26,50 @@ pub fn do_something(origin) -> DispatchResult {
 
 	Something::put(my_val);
 
-	print("After storing my_val");
+	frame_support::debug::native::debug!("called by {:?}", who);
 
 	Self::deposit_event(RawEvent::SomethingStored(my_val, who));
 	Ok(())
 }
-// --snip--
 ```
 
-Start the chain using the `RUST_LOG` environment variable to see the print logs.
+The
+[`frame_support::debug::native::debug!`](https://substrate.dev/rustdocs/v2.0.0/frame_support/debug/native/macro.debug.html)
+macro avoids extra overhead in Wasm runtimes, but is only effective when the runtime is executing in
+native mode. In order to view these log messages, it's necessary to configure the node to use the
+right logging target. By default, the name of the target is the name of the crate that contains the
+log messages.
 
 ```sh
-RUST_LOG=runtime=debug ./target/release/node-template --dev
+./target/release/node-template --dev -lpallet_template=debug
 ```
 
-The values are printed in the terminal or the standard output if the Error gets triggered.
+The `debug!` macro takes an optional parameter, `target`, that can be used to specify the target
+name.
 
-```sh
-2020-01-01 00:00:00 tokio-blocking-driver DEBUG runtime  Execute do_something
-2020-01-01 00:00:00 tokio-blocking-driver DEBUG runtime  After storing my_val
+```rust
+frame_support::debug::native::debug!(target: "customTarget", "called by {:?}", who);
+```
+
+### Log from Wasm Runtimes
+
+It is possible to pay a performance price in order to log from Wasm runtimes.
+
+```rust
+pub fn do_something(origin) -> DispatchResult {
+	print("Execute do_something");
+
+	let who = ensure_signed(origin)?;
+	let my_val: u32 = 777;
+
+	Something::put(my_val);
+
+	frame_support::debug::RuntimeLogger::init();
+	frame_support::debug::debug!("called by {:?}", who);
+
+	Self::deposit_event(RawEvent::SomethingStored(my_val, who));
+	Ok(())
+}
 ```
 
 ## Printable Trait
@@ -129,13 +155,52 @@ gets called.
 > IMPORTANT: Adding many print functions to the runtime will produce a bigger binary and wasm blob
 > with debug code not needed in production.
 
+## Substrate's Own `print` Function
+
+For legacy use cases, Substrate provides extra tools for `Print` debugging (or tracing). You can use
+the [`print` function](https://substrate.dev/rustdocs/v2.0.0/sp_runtime/fn.print.html) to log the
+status of the runtime execution.
+
+```rust
+use sp_runtime::print;
+
+// --snip--
+pub fn do_something(origin) -> DispatchResult {
+	print("Execute do_something");
+
+	let who = ensure_signed(origin)?;
+	let my_val: u32 = 777;
+
+	Something::put(my_val);
+
+	print("After storing my_val");
+
+	Self::deposit_event(RawEvent::SomethingStored(my_val, who));
+	Ok(())
+}
+// --snip--
+```
+
+Start the chain using the `RUST_LOG` environment variable to see the print logs.
+
+```sh
+RUST_LOG=runtime=debug ./target/release/node-template --dev
+```
+
+The values are printed in the terminal or the standard output if the Error gets triggered.
+
+```sh
+2020-01-01 00:00:00 tokio-blocking-driver DEBUG runtime  Execute do_something
+2020-01-01 00:00:00 tokio-blocking-driver DEBUG runtime  After storing my_val
+```
+
 ## If Std
 
-The `print` function works well when you just want to print and you have an implementation of the
-`Printable` trait. In some cases you may want to do more than print, or not bother with
+The legacy `print` function allows you to print and have an implementation of the `Printable` trait.
+However, in some legacy cases you may want to do more than print, or not bother with
 Substrate-specific traits just for debugging purposes. The
-[`if_std!` macro](https://substrate.dev/rustdocs/v2.0.0/sp_std/macro.if_std.html) is for exactly
-this situation.
+[`if_std!` macro](https://substrate.dev/rustdocs/v2.0.0/sp_std/macro.if_std.html) is useful for this
+situation.
 
 One caveat of using this macro is that the code inside will only execute when you are actually
 running the native version of the runtime.
