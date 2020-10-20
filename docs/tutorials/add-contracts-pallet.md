@@ -400,9 +400,10 @@ don't have to maintain a dedicated `std` feature.
 
 ```toml
 [dependencies]
-#--snip--
 jsonrpc-core = '15.0.0'
+structopt = '0.3.8'
 #--snip--
+# *** Add this 2 lines ***
 pallet-contracts = '2.0.0'
 pallet-contracts-rpc = '0.8.0'
 ```
