@@ -38,7 +38,7 @@ decl_module! {
 		// Errors must be initialized if they are used by the pallet.
 		type Error = Error<T>;
 
-		/* snip */
+		/* --snip-- */
   }
 }
 ```
