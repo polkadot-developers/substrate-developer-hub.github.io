@@ -95,13 +95,23 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>6 October</strong>, Matt Rutheford and David Palm will join us to discuss <a href="https://github.com/paritytech/substrate-analytics">Substrate Analytics</a>, a tool for benchmarking detailed performance of your Substrate node. Addie Wagenknecht will be our host.
+								On <strong>20 October</strong>, Substrate core developer Shawn Tabrizi will come over
+								to discuss how to perform runtime benchmarking for your Substrate pallet. Dan Forbes
+								will be our host.
 							</p>
 							<p>
-								On <strong>13 October</strong>, Kirill Pimenov will come over to discuss about <a href="https://github.com/paritytech/parity-signer">Parity Signer</a> and Key management. Kirill is also the person we go to when we have any security questions. Dan Forbes will be our host.
+								On <strong>27 October</strong>, Substrate runtime engineer Alexander Popiak will drop
+								by to share insights on Substrate runtime upgrade and storage migration. This is a
+								key aspect for those who are operating a Substrate-based chain in production
+								environment. Addie Wagenknecht will be our host.
 							</p>
 							<p>
-								On <strong>20 October</strong>, Alexander Popiak will drop by to share insights on Substrate runtime upgrade and storage migration. This is a key aspect for those who are operating a Substrate-based chain in production environment. Jimmy Chu will be our host.
+								On <strong>3 Nov</strong>, Joshy Orndorff will share with us two different concepts
+								that he encountered when working on Moonbeam
+								<a href='https://github.com/paritytech/frontier/tree/master/consensus' target='_blank'>FrontierBlockImport</a>
+								and
+								<a href='https://github.com/PureStake/moonbeam/pull/60' target='_blank'>Unified Moonbeam runtime</a>.
+								Jimmy Chu will be our host.
 							</p>
 						</div>
 
