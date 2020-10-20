@@ -15,7 +15,7 @@ that _should_ be a
 [`DispatchError`](https://substrate.dev/rustdocs/v2.0.0/frame_support/dispatch/enum.DispatchError.html)
 if the dispatchable function encountered an error.
 
-Each FRAME pallet may define custom `DispatchError`s by using
+Each FRAME pallet may define custom **DispatchError**s by using
 [the `decl_error!` macro](macros#decl_error).
 
 ```rust
