@@ -400,9 +400,10 @@ don't have to maintain a dedicated `std` feature.
 
 ```toml
 [dependencies]
-#--snip--
 jsonrpc-core = '15.0.0'
+structopt = '0.3.8'
 #--snip--
+# *** Add this 2 lines ***
 pallet-contracts = '2.0.0'
 pallet-contracts-rpc = '0.8.0'
 ```
@@ -469,11 +470,14 @@ Then inside the `testnet_genesis` function we need to add the contract configura
 > remove the underscore that precedes the parameter definition.
 
 ```rust
-fn testnet_genesis(initial_authorities: Vec<(AuraId, GrandpaId)>,
+/// Configure initial storage state for FRAME modules.
+fn testnet_genesis(
+	wasm_binary: &[u8],
+	initial_authorities: Vec<(AuraId, GrandpaId)>,
 	root_key: AccountId,
 	endowed_accounts: Vec<AccountId>,
-	enable_println: bool) -> GenesisConfig {
-
+	enable_println: bool,
+) -> GenesisConfig {
 	GenesisConfig {
 		/* --snip-- */
 
