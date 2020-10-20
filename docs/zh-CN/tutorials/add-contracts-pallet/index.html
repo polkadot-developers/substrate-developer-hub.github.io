@@ -268,9 +268,10 @@
 <p>With the proper runtime API exposed. We now add the RPC to the node's service to call into that runtime API. Because we are now working in the outer node, we are not building to <code>no_std</code> and we don't have to maintain a dedicated <code>std</code> feature.</p>
 <p><strong><code>node/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">dependencies</span><span class="token punctuation">]</span>
-<span class="token comment">#--snip--</span>
 <span class="token key property">jsonrpc-core</span> <span class="token punctuation">=</span> <span class="token string">'15.0.0'</span>
+<span class="token key property">structopt</span> <span class="token punctuation">=</span> <span class="token string">'0.3.8'</span>
 <span class="token comment">#--snip--</span>
+<span class="token comment"># *** Add this 2 lines ***</span>
 <span class="token key property">pallet-contracts</span> <span class="token punctuation">=</span> <span class="token string">'2.0.0'</span>
 <span class="token key property">pallet-contracts-rpc</span> <span class="token punctuation">=</span> <span class="token string">'0.8.0'</span>
 </code></pre>
@@ -315,11 +316,14 @@
 <blockquote>
 <p>IMPORTANT: We are taking the value <code>_enable_println</code> from the function parameters. Make sure to remove the underscore that precedes the parameter definition.</p>
 </blockquote>
-<pre><code class="hljs css language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">testnet_genesis</span><span class="token punctuation">(</span>initial_authorities<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token class-name">AuraId</span><span class="token punctuation">,</span> <span class="token class-name">GrandpaId</span><span class="token punctuation">)</span><span class="token operator">></span><span class="token punctuation">,</span>
+<pre><code class="hljs css language-rust"><span class="token comment">/// Configure initial storage state for FRAME modules.</span>
+<span class="token keyword">fn</span> <span class="token function-definition function">testnet_genesis</span><span class="token punctuation">(</span>
+    wasm_binary<span class="token punctuation">:</span> <span class="token operator">&amp;</span><span class="token punctuation">[</span><span class="token keyword">u8</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    initial_authorities<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token class-name">AuraId</span><span class="token punctuation">,</span> <span class="token class-name">GrandpaId</span><span class="token punctuation">)</span><span class="token operator">></span><span class="token punctuation">,</span>
     root_key<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
     endowed_accounts<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token class-name">AccountId</span><span class="token operator">></span><span class="token punctuation">,</span>
-    enable_println<span class="token punctuation">:</span> <span class="token keyword">bool</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">GenesisConfig</span> <span class="token punctuation">{</span>
-
+    enable_println<span class="token punctuation">:</span> <span class="token keyword">bool</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">GenesisConfig</span> <span class="token punctuation">{</span>
     <span class="token class-name">GenesisConfig</span> <span class="token punctuation">{</span>
         <span class="token comment">/* --snip-- */</span>
 
