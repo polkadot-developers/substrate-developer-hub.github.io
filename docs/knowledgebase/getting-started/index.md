@@ -86,9 +86,7 @@ compile Rust code to the Wasm target.
 
 Developers that are building _with_ Substrate (as opposed to the developers building Substrate
 _itself_) should use a specific Rust nightly version that is known to be compatible with the version
-of Substrate they are using. For instance, The Substrate Developer Hub Node Template includes
-[a toolchain file](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/rust-toolchain)
-that specifies the Rust nightly version to use. Use Rustup to install the correct nightly:
+of Substrate they are using. Use Rustup to install the correct nightly:
 
 ```bash
 rustup install nightly-<yyyy-MM-dd>
