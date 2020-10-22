@@ -30,7 +30,7 @@ Open the Terminal application and execute the following commands:
 
 # Make sure Homebrew is up-to-date and install some dependencies
 brew update
-brew install openssl cmake llvm
+brew install openssl cmake
 ```
 
 #### Ubuntu/Debian
