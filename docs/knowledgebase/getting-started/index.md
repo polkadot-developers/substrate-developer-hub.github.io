@@ -65,7 +65,8 @@ configure `rustup`:
 ```bash
 # Install
 curl https://sh.rustup.rs -sSf | sh
-# Configure
+# Add the rust compiler and other tools to your PATH.
+# Make sure to add this to your shell startup script, too.
 source ~/.cargo/env
 ```
 
