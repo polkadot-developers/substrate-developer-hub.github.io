@@ -24,7 +24,7 @@ command-line flags, and the values can be changed after the blockchain has been 
 > Caution: While all properties in this section can be changed after genesis, nodes will only add
 > peers who use the same `protocolId`.
 
-### Extension
+#### Extension
 
 Because the Substrate framework is extensible, it provides a way to customize the client spec with
 additional data to configure customized parts of the client. One example use case is telling the
