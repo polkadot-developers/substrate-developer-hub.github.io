@@ -38,7 +38,7 @@ Here are some differences from when we launched as Alice.
 - The optional `--rpc-methods=Unsafe` flag has been added. As the name indicates, this flag is not
   safe to use in a production setting, but it allows this tutorial to stay focused on the topic at
   hand. In production, you should use a
-  [JSON-RPC proxy](../../knowledgebase/getting-started/glossary#json-rpc-proxy-crate), but that
+  [JSON-RPC proxy](https://github.com/paritytech/jsonrpc), but that
   topic is out of the scope of this tutorial.
 
 You should see the console outputs something as follows:
