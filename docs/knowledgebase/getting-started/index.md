@@ -6,16 +6,16 @@ This page will guide you through the steps needed to prepare a computer for Subs
 As Substrate is built with [the Rust programming language](https://www.rust-lang.org/), the first
 thing you will need to do is prepare the development enviroment, these steps will vary based
 on the computer's operating system. You can utilize helpful utilities from the Rust toolchain
-to configure the Rust development environment. Note that these steps will be the same for all 
+to configure the Rust development environment. Note that these steps will be the same for all
 Unix-based operating systems discussed on this page.
 
 ### Unix-Based Operating Systems
 
-Substrate development is optimized for Unix-based operating systems like MacOS or Linux. The examples
+Substrate development is optimized for Unix-based operating systems like macOS or Linux. The examples
 in the Substrate [Tutorials](../../../../tutorials) and [Recipes](https://substrate.dev/recipes/)
 use the terminal to demonstrate how to interact with Substrate from the command line.
 
-#### MacOS
+#### macOS
 
 Open the Terminal application and execute the following commands:
 
