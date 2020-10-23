@@ -3,24 +3,19 @@ title: Installation
 ---
 
 This page will guide you through the steps needed to prepare a computer for Substrate development.
-Since Substrate is built with [the Rust programming language](https://www.rust-lang.org/), the first
-thing you will need to do is prepare the computer for Rust development - these steps will vary based
-on the computer's operating system. Then, you can use the helpful utilities from the Rust toolchain
-to configure the Rust development environment - these steps will be the same for all the
-(Unix-based) operating systems discussed on this page.
-
-## Operating System-Dependent Set-Up
-
-Follow the steps for your computer's operating system before installing and configuring the Rust
-toolchain.
+As Substrate is built with [the Rust programming language](https://www.rust-lang.org/), the first
+thing you will need to do is prepare the development enviroment, these steps will vary based
+on the computer's operating system. You can utilize helpful utilities from the Rust toolchain
+to configure the Rust development environment. Note that these steps will be the same for all 
+Unix-based operating systems discussed on this page.
 
 ### Unix-Based Operating Systems
 
-Substrate development is easiest on Unix-based operating systems, like macOS or Linux. The examples
+Substrate development is optimized for Unix-based operating systems like MacOS or Linux. The examples
 in the Substrate [Tutorials](../../../../tutorials) and [Recipes](https://substrate.dev/recipes/)
-use Unix-style terminals to demonstrate how to interact with Substrate from the command line.
+use the terminal to demonstrate how to interact with Substrate from the command line.
 
-#### macOS
+#### MacOS
 
 Open the Terminal application and execute the following commands:
 
@@ -59,7 +54,7 @@ Please refer to the separate [guide for Windows users](windows-users.md).
 
 ## Rust Developer Environment
 
-This guide uses [`rustup`](https://rustup.rs/) to help manage the Rust toolchain; first, install and
+This guide uses [`rustup`](https://rustup.rs/) to help manage the Rust toolchain. First install and
 configure `rustup`:
 
 ```bash
@@ -80,13 +75,13 @@ rustup default stable
 
 Substrate uses [WebAssembly](https://webassembly.org/) (Wasm) to produce portable blockchain
 runtimes. You will need to configure your Rust compiler to use
-[`nightly` builds](https://doc.rust-lang.org/book/appendix-07-nightly-rust.html) to allow you to
-compile substrate compatible runtimes to Wasm.
+[`nightly` builds](https://doc.rust-lang.org/book/appendix-07-nightly-rust.html) to allow
+compiled substrate compatible runtimes to Wasm.
 
 #### Rust Nightly Toolchain
 
 Because the nightly toolchain is a moving target and receives daily changes the chance
-that some of them break the substrate build from time to time is non negligible.
+that some of them break the substrate build from time to time is non-negligible.
 
 Therefore it is advised to use a fixed nightly version rather than the latest one to
 build the runtime. You can install a specific version using this command:
@@ -97,8 +92,8 @@ rustup install nightly-<yyyy-MM-dd>
 
 ---
 **NOTE**
-Due to a regression in the rust compiler using the newest rust nightly for compiling
-the runtime will result in compilation errors. Therefore it is advised to use the
+Due to a regression in the rust compiler, using the newest rust nightly for compiling
+the runtime will result in compilation errors. Therefore, it is advised to use the
 following version until this issue is resolved:
 
 ```bash
@@ -117,18 +112,17 @@ rustup target add wasm32-unknown-unknown --toolchain nightly-<yyyy-MM-dd>
 
 #### Specifying Nightly Version
 
-When a Substrate-based project builds its included runtime it picks the latest
-installed nightly version by default in order to do so. If that version is incompatible
+When a Substrate based project builds its included runtime it picks the latest
+installed nightly version by default. If the nightly version is incompatible
 you can override that decision by setting the `WASM_BUILD_TOOLCHAIN` environment variable
-when building the project:
+when building the project by using the following command:
 
 ```bash
 WASM_BUILD_TOOLCHAIN=nightly-<yyyy-MM-dd> cargo build
 ```
 
 Note that this builds only the runtime with the specified toolchain. The rest of project will
-be compiled with your default toolchain which is usually the latest installed stable toolchain
-as it should be.
+be compiled with your default toolchain which is usually the latest installed stable toolchain.
 
 #### Latest Nightly
 
@@ -140,15 +134,15 @@ rustup install nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
 ```
 
-This toolchain is not tight to a specific version and will be updated, just as the
-`stable` toolchain, when you issue:
+This toolchain is not tied to a specific version and will be updated just as the
+`stable` toolchain:
 
 ```bash
 rustup update
 ```
 
 **It may be necessary to occasionally rerun `rustup update`** if a change in the upstream Substrate
-codebase depends on a new feature of the Rust compiler.
+codebase depends on the most recent version of the Rust compiler.
 
 ## Test Your Set-Up
 
