@@ -96,7 +96,7 @@ the runtime will result in compilation errors. Therefore, it is advised to use t
 following version until this issue is resolved:
 
 ```bash
-rustup install nightly-2010-10-06
+rustup install nightly-2020-10-06
 ```
 
 ---
@@ -183,6 +183,7 @@ nix-shell # start the nix shell environment by using dependencies in file `shell
 ```
 
 ## Run cargo commands in the nix shell
+
 
 ```shell
 cargo build --release # build the project
