@@ -149,3 +149,42 @@ codebase depends on the most recent version of the Rust compiler.
 The best way to ensure that you have successfully prepared a computer for Substrate development is
 to follow the steps in our first tutorial,
 [Create Your First Substrate Chain](../../tutorials/create-your-first-substrate-chain/).
+
+## Build with Nix shell
+
+Nix is a package manager for many different types of projects, including those based on Rust. Using Nix makes developers confident that the compilation output of their substrate-based projects is reliable and reproducible. Find more benefits on the [Nix website] (https://nixos.org/).
+
+### Steps to use Nix shell
+
+#### Install Nix
+
+Run the following command on a Unix based operating system:
+```shell
+sh <(curl -L https://nixos.org/nix/install) --daemon
+```
+
+#### Verify that Nix was properly installed
+
+```shell
+nix-env --version
+```
+
+You should see an output like: `nix-env (Nix) 2.3.7`.
+
+#### How to use
+
+If you are using `substrate` or `substrate-node-template`, the `shell.nix` file should already be in the project's root directory.
+
+```shell
+cd substrate-node-template # or substrate
+
+nix-shell # start the nix shell environment by using dependencies in file `shell.nix`, it may take some time if this's your first time.
+```
+
+Now you can use the cargo commands in the nix shell.
+
+```shell
+cargo build --release # build the project
+
+./target/release/node-template # run the compiled binary
+```
