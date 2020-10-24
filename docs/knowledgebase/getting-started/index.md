@@ -6,8 +6,7 @@ This page will guide you through the steps needed to prepare a computer for Subs
 As Substrate is built with [the Rust programming language](https://www.rust-lang.org/), the first
 thing you will need to do is prepare the development enviroment, these steps will vary based
 on the computer's operating system. You can utilize helpful utilities from the Rust toolchain
-to configure the Rust development environment. Note that these steps will be the same for all
-Unix-based operating systems discussed on this page.
+to configure the Rust development environment. 
 
 ### Unix-Based Operating Systems
 
@@ -122,7 +121,7 @@ WASM_BUILD_TOOLCHAIN=nightly-<yyyy-MM-dd> cargo build
 ```
 
 Note that this builds only the runtime with the specified toolchain. The rest of project will
-be compiled with your default toolchain which is usually the latest installed stable toolchain.
+be compiled with your default toolchain, which is usually the latest installed stable toolchain.
 
 #### Latest Nightly
 
@@ -140,6 +139,8 @@ This toolchain is not tied to a specific version and will be updated just as the
 ```bash
 rustup update
 ```
+
+## Tips
 
 **It may be necessary to occasionally rerun `rustup update`** if a change in the upstream Substrate
 codebase depends on the most recent version of the Rust compiler.
@@ -181,7 +182,8 @@ cd substrate-node-template # or substrate
 nix-shell # start the nix shell environment by using dependencies in file `shell.nix`, it may take some time if this's your first time.
 ```
 
-Now you can use the cargo commands in the nix shell.
+#### Run cargo commands in the nix shell
+
 
 ```shell
 cargo build --release # build the project
