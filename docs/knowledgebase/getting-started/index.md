@@ -152,7 +152,7 @@ to follow the steps in our first tutorial,
 
 ## Build with Nix shell
 
-Nix is a package manager for many different kinds of projects includes Rust based ones. Using Nix makes developers be confident that the build result of their Substrate based projects are reliable and reproducible. More goodness can be found in [Nix's website]((https://nixos.org/)).
+Nix is a package manager for many different types of projects, including those based on Rust. Using Nix makes developers confident that the compilation output of their substrate-based projects is reliable and reproducible. Find more benefits on the [Nix website] (https://nixos.org/).
 
 ### Steps to use Nix shell
 
