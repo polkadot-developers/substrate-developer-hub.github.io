@@ -158,7 +158,7 @@ Nix is a package manager for many different kinds of projects includes Rust base
 
 #### Install Nix
 
-With a Unix based operating system in hand, simply run following command:
+Run the following command on a Unix based operating system:
 ```shell
 sh <(curl -L https://nixos.org/nix/install) --daemon
 ```
