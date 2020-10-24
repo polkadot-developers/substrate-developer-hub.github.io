@@ -163,7 +163,7 @@ With a Unix based operating system in hand, simply run following command:
 sh <(curl -L https://nixos.org/nix/install) --daemon
 ```
 
-#### Verify Nix was installed properly
+#### Verify that Nix was properly installed
 
 ```shell
 nix-env --version
