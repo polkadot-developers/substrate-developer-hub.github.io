@@ -169,7 +169,7 @@ sh <(curl -L https://nixos.org/nix/install) --daemon
 nix-env --version
 ```
 
-You should see output like `nix-env (Nix) 2.3.7`.
+You should see an output like: `nix-env (Nix) 2.3.7`.
 
 #### How to use
 
