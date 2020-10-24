@@ -173,7 +173,7 @@ You should see output like `nix-env (Nix) 2.3.7`.
 
 #### How to use
 
-If you are using `substrate` or `substrate-node-template`, the file `shell.nix` should already be put in the root of project folder.
+If you are using `substrate` or `substrate-node-template`, the `shell.nix` file should already be in the project's root directory.
 
 ```shell
 cd substrate-node-template # or substrate
