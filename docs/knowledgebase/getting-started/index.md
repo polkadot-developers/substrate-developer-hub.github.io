@@ -181,7 +181,7 @@ cd substrate-node-template # or substrate
 nix-shell # start the nix shell environment by using dependencies in file `shell.nix`, it may take some time if this's your first time.
 ```
 
-In the fresh nix shell, you can use cargo related command directly like, 
+Now you can use the cargo commands in the nix shell.
 
 ```shell
 cargo build --release # build the project
