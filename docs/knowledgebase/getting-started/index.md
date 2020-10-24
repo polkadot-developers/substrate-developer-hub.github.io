@@ -182,7 +182,7 @@ cd substrate-node-template # or substrate
 nix-shell # start the nix shell environment by using dependencies in file `shell.nix`, it may take some time if this's your first time.
 ```
 
-## Run cargo commands in the nix shell
+#### Run cargo commands in the nix shell
 
 
 ```shell
