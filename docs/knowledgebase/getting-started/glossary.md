@@ -359,6 +359,10 @@ Genesis configuration of Substrate-based chains is accomplished by way of a
 [chain specification](../../knowledgebase/integrate/chain-spec) file, which makes it easy to use a
 single Substrate codebase to underpin multiple independently configured chains.
 
+## Gossip
+
+The specific protocol ([gossipsub]https://github.com/libp2p/specs/tree/master/pubsub/gossipsub) of messaging between nodes with [libp2p](#libp2p) that substrate uses. More details on other `pubsub` messaging variations and methods are [here](https://docs.libp2p.io/introduction/what-is-libp2p/#messaging-pubsub).
+
 ## GRANDPA
 
 A [deterministic finality](#deterministic-finality) gadget for [blockchains](#blockchain) that is
@@ -570,7 +574,7 @@ maintained by [Parity Technologies](https://www.parity.io/).
 
 ## Transaction
 
-A type of [extrinsic](#extrinsic) that can be safely gossiped between [nodes](#node) on the network
+A type of [extrinsic](#extrinsic) that can be safely [gossiped](#gossip) between [nodes](#node) on the network
 thanks to efficient [verification](#cryptographic-primitives) through
 [signatures](../../knowledgebase/learn-substrate/extrinsics#signed-transactions) or
 [signed extensions](../../knowledgebase/learn-substrate/extrinsics#signed-extension).
