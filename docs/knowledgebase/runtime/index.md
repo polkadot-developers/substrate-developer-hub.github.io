@@ -1,35 +1,38 @@
 ---
-title: Overview
+title: Runtime
 ---
 
-## Substrate Runtime
+The runtime of a blockchain is the business logic that defines its behavior. In Substrate-based
+chains, the runtime is referred to as the
+"[state transition function](../getting-started/glossary#state-transition-function-stf)"; it is
+where Substrate developers define the storage items that are used to represent the blockchain's
+[state](../getting-started/glossary#state) as well as the [functions](../learn-substrate/extrinsics)
+that allow blockchain users to make changes to this state.
 
-The runtime contains the business logic that will define your blockchain's behavior, a.k.a. its
-state transition function. The runtime will define the storage items and functions that users can
-dispatch.
+In order to provide its defining forkless runtime upgrade capabilities, Substrate uses runtimes that
+are expressed as [WebAssembly (Wasm)](../getting-started/glossary#webassembly-wasm) bytecode.
+Substrate also defines the [core primitives](primitives#core-primitives) that the runtime must
+implement.
 
-Substrate provides a set of modules, called pallets, that can be composed and configured. Substrate
-also provides the support libraries necessary to let these pallets interact with the client. Each
-pallet contains domain-specific logic and storage items. At the runtime level, you can add your own
-pallets by using the standard pallet interfaces and access the public methods and traits of other
-pallets.
-
-The entire set of pallets and support libraries is called _FRAME._ FRAME interacts with the client
-by implementing the traits in _primitives._
+The core Substrate codebase ships with [FRAME](frame), Parity's system for Substrate runtime
+development that is used for chains like
+[Kusama](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/lib.rs) and
+[Polkadot](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/src/lib.rs). FRAME
+defines additional [runtime primitives](primitives#frame-primitives) and provides a framework that
+makes it easy to construct a runtime by composing modules, called "pallets". Each pallet
+encapsulates domain-specific logic that is expressed as a set of a [storage items](storage),
+[events](events), [errors](errors) and
+[dispatchable functions](../getting-started/glossary#dispatch). FRAME developers can
+[create their own pallets](pallets) and reuse existing pallets, including
+[over 50 that ship with Substrate](frame#prebuilt-pallets).
 
 ![Runtime Composition](assets/frame-runtime.png)
 
-For example, if you want to add smart contract functionality to your blockchain, you simply need to
-include the [Contracts](https://substrate.dev/rustdocs/v2.0.0/pallet_contracts/index.html) pallet.
-Adding this pallet will expose the smart contract interface so that users can deploy smart contracts
-that execute in Wasm.
-
-Because Substrate can execute a runtime in both native and Wasm, anything that you write in FRAME
-can be upgraded without a hard fork.
+For the most part, this section is focused on Substrate runtime development with FRAME. Keep in mind
+that FRAME is not the only system for Substrate runtime development.
 
 ### Learn More
 
 - Follow a
   [tutorial to develop your first Substrate chain](../../tutorials/create-your-first-substrate-chain/).
-- Follow a
-  [tutorial to add a pallet to your Substrate runtime](../../tutorials/add-a-pallet/).
+- Follow a [tutorial to add a pallet to your Substrate runtime](../../tutorials/add-a-pallet/).
