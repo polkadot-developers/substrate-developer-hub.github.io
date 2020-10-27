@@ -95,11 +95,11 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>3 Nov</strong>, Joshy Orndorff will share with us two different concepts
-								that he encountered when working on Moonbeam
-								<a href='https://github.com/paritytech/frontier/tree/master/consensus' target='_blank'>FrontierBlockImport</a>
-								and
-								<a href='https://github.com/PureStake/moonbeam/pull/60' target='_blank'>Unified Moonbeam runtime</a>.
+								On <strong>3 Nov</strong>, PureStake's Joshy Orndorff will share with us two different concepts
+								that he's encountered while working on Moonbeam,{' '}
+								<a href='https://github.com/paritytech/frontier/tree/master/consensus' target='_blank'>FrontierBlockImport</a>{' '}
+								and{' '}
+								<a href='https://github.com/PureStake/moonbeam/pull/60' target='_blank'>Unified Moonbeam runtime</a>.{' '}
 								Jimmy Chu will be our host.
 							</p>
 						</div>
