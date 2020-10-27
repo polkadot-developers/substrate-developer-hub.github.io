@@ -30,7 +30,8 @@
       "knowledgebase/runtime/off-chain-workers",
       "knowledgebase/runtime/debugging",
       "knowledgebase/runtime/tests",
-      "knowledgebase/runtime/randomness"
+      "knowledgebase/runtime/randomness",
+      "knowledgebase/runtime/upgrades"
     ],
     "Smart Contracts": [
       "knowledgebase/smart-contracts/overview",
