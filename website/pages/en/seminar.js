@@ -98,8 +98,8 @@ function Seminar(props) {
 								On <strong>3 Nov</strong>, PureStake's Joshy Orndorff will share with us two different concepts
 								that he's encountered while working on Moonbeam,{' '}
 								<a href='https://github.com/paritytech/frontier/tree/master/consensus' target='_blank'>FrontierBlockImport</a>{' '}
-								and{' '}
-								<a href='https://github.com/PureStake/moonbeam/pull/60' target='_blank'>Unified Moonbeam runtime</a>.{' '}
+								and Moonbeam's{' '}
+								<a href='https://github.com/PureStake/moonbeam/pull/60' target='_blank'>dual Parachain / Standalone runtime</a>.{' '}
 								This presentation will be particularly relevant for anyone building a Parachain. Jimmy Chu will be our host.
 							</p>
 						</div>
