@@ -100,7 +100,7 @@ function Seminar(props) {
 								<a href='https://github.com/paritytech/frontier/tree/master/consensus' target='_blank'>FrontierBlockImport</a>{' '}
 								and{' '}
 								<a href='https://github.com/PureStake/moonbeam/pull/60' target='_blank'>Unified Moonbeam runtime</a>.{' '}
-								Jimmy Chu will be our host.
+								This presentation will be particularly relevant for anyone building a Parachain. Jimmy Chu will be our host.
 							</p>
 						</div>
 
