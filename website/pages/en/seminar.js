@@ -95,17 +95,6 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>20 October</strong>, Substrate core developer Shawn Tabrizi will come over
-								to discuss how to perform runtime benchmarking for your Substrate pallet. Dan Forbes
-								will be our host.
-							</p>
-							<p>
-								On <strong>27 October</strong>, Substrate runtime engineer Alexander Popiak will drop
-								by to share insights on Substrate runtime upgrade and storage migration. This is a
-								key aspect for those who are operating a Substrate-based chain in production
-								environment. Addie Wagenknecht will be our host.
-							</p>
-							<p>
 								On <strong>3 Nov</strong>, Joshy Orndorff will share with us two different concepts
 								that he encountered when working on Moonbeam
 								<a href='https://github.com/paritytech/frontier/tree/master/consensus' target='_blank'>FrontierBlockImport</a>
