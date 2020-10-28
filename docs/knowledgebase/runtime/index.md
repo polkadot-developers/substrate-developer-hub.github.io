@@ -6,25 +6,27 @@ The runtime of a blockchain is the business logic that defines its behavior. In 
 chains, the runtime is referred to as the
 "[state transition function](../getting-started/glossary#state-transition-function-stf)"; it is
 where Substrate developers define the storage items that are used to represent the blockchain's
-[state](../getting-started/glossary#state) as well as the [functions](../learn-substrate/extrinsics)
-that allow blockchain users to make changes to this state.
+[state](../../knowledgebase/getting-started/glossary#state) as well as the
+[functions](../../knowledgebase/learn-substrate/extrinsics) that allow blockchain users to make
+changes to this state.
 
 In order to provide its defining forkless runtime upgrade capabilities, Substrate uses runtimes that
 are expressed as [WebAssembly (Wasm)](../getting-started/glossary#webassembly-wasm) bytecode.
-Substrate also defines the [core primitives](primitives#core-primitives) that the runtime must
-implement.
+Substrate also defines the [core primitives](../../knowledgebase/runtime/primitives#core-primitives)
+that the runtime must implement.
 
-The core Substrate codebase ships with [FRAME](frame), Parity's system for Substrate runtime
-development that is used for chains like
+The core Substrate codebase ships with [FRAME](../../knowledgebase/runtime/frame), Parity's system
+for Substrate runtime development that is used for chains like
 [Kusama](https://github.com/paritytech/polkadot/blob/master/runtime/kusama/src/lib.rs) and
 [Polkadot](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/src/lib.rs). FRAME
-defines additional [runtime primitives](primitives#frame-primitives) and provides a framework that
-makes it easy to construct a runtime by composing modules, called "pallets". Each pallet
-encapsulates domain-specific logic that is expressed as a set of a [storage items](storage),
-[events](events), [errors](errors) and
-[dispatchable functions](../getting-started/glossary#dispatch). FRAME developers can
-[create their own pallets](pallets) and reuse existing pallets, including
-[over 50 that ship with Substrate](frame#prebuilt-pallets).
+defines additional [runtime primitives](../../knowledgebase/runtime/primitives#frame-primitives) and
+provides a framework that makes it easy to construct a runtime by composing modules, called
+"pallets". Each pallet encapsulates domain-specific logic that is expressed as a set of a
+[storage items](../../knowledgebase/runtime/storage), [events](../../knowledgebase/runtime/events),
+[errors](../../knowledgebase/runtime/errors) and
+[dispatchable functions](../../knowledgebase/getting-started/glossary#dispatch). FRAME developers
+can [create their own pallets](../../knowledgebase/runtime/pallets) and reuse existing pallets,
+including [over 50 that ship with Substrate](../../knowledgebase/runtime/frame#prebuilt-pallets).
 
 ![Runtime Composition](assets/frame-runtime.png)
 
