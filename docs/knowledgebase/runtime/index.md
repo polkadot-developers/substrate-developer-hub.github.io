@@ -4,9 +4,9 @@ title: Runtime Overview
 
 The runtime of a blockchain is the business logic that defines its behavior. In Substrate-based
 chains, the runtime is referred to as the
-"[state transition function](../getting-started/glossary#state-transition-function-stf)"; it is
-where Substrate developers define the storage items that are used to represent the blockchain's
-[state](../../knowledgebase/getting-started/glossary#state) as well as the
+"[state transition function](../../knowledgebase/getting-started/glossary#state-transition-function-stf)";
+it is where Substrate developers define the storage items that are used to represent the
+blockchain's [state](../../knowledgebase/getting-started/glossary#state) as well as the
 [functions](../../knowledgebase/learn-substrate/extrinsics) that allow blockchain users to make
 changes to this state.
 

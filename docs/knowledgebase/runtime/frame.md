@@ -171,10 +171,10 @@ voting.
 - [Docs](https://substrate.dev/rustdocs/v2.0.0/pallet_democracy/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/master/frame/democracy/src/lib.rs)
 
-### Elections Phragmen
+### Elections Phragmén
 
-The Phragmen Elections pallet is an election module based on
-[sequential phragmen](https://research.web3.foundation/en/latest/polkadot/NPoS/4.%20Sequential%20Phragm%C3%A9n%E2%80%99s%20method.html).
+The Phragmén Elections pallet is an election module based on
+[sequential Phragmén](https://wiki.polkadot.network/docs/en/learn-phragmen).
 
 - [Docs](https://substrate.dev/rustdocs/v2.0.0/pallet_elections_phragmen/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/master/frame/elections-phragmen/src/lib.rs)
