@@ -10,7 +10,7 @@ where Substrate developers define the storage items that are used to represent t
 that allow blockchain users to make changes to this state.
 
 In order to provide its defining forkless runtime upgrade capabilities, Substrate uses runtimes that
-are expressed as [WebAssembly (Wasm)](../getting-started/glossary#webassembly-wasm) bytecode.
+are built as [WebAssembly (Wasm)](../getting-started/glossary#webassembly-wasm) bytecode.
 Substrate also defines the [core primitives](primitives#core-primitives) that the runtime must
 implement.
 
