@@ -36,11 +36,11 @@ FRAME storage migrations are implemented by way of
 [the `OnRuntimeUpgrade` trait](https://substrate.dev/rustdocs/v2.0.0/frame_support/traits/trait.OnRuntimeUpgrade.html),
 which specifies a single function, `on_runtime_upgrade`. This function provides a hook that allows
 runtime developers to specify logic that will run immediately _after_ a runtime upgrade but _before_
-any [extrinsics or even the `on_initialize` function](execution#executing-a-block) have executed.
+any [extrinsics or even the `on_initialize` function](execution#executing-a-block) has executed.
 
 ### Preparing for a Migration
 
-Preparing for a storage migrations means understanding the changes that are defined by a runtime
+Preparing for a storage migration means understanding the changes that are defined by a runtime
 upgrade. The Substrate repository uses
 [the `D1-runtime-migration` label](https://github.com/paritytech/substrate/pulls?q=is%3Apr+label%3AD1-runtime-migration)
 to designate such changes.
@@ -77,7 +77,7 @@ FRAME storage migrations will run in this order:
 It is important to test storage migrations and a number of utilities exist to assist in this
 process. The [Substrate Debug Kit](https://github.com/paritytech/substrate-debug-kit) includes a
 [Remote Externalities](https://github.com/paritytech/substrate-debug-kit/tree/master/remote-externalities)
-tool that allows storage migration unit tests to be safely performed on live chain data. The
+tool that allows storage migration unit testing to be safely performed on live chain data. The
 [Fork Off Substrate](https://github.com/maxsam4/fork-off-substrate) script makes it easy to create a
 chain specification that can be used to bootstrap a local test chain for testing runtime upgrades
 and storage migrations.
