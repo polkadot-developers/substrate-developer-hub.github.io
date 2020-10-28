@@ -46,7 +46,7 @@ class Index extends React.Component {
 						</translate>
 					}
 					buttonText={<translate>Get Started</translate>}
-					buttonUrl={`docs/` + language}
+					buttonUrl={siteConfig.baseUrl + siteConfig.docsUrl + '/' + language}
 				/>
 
 				<section className='mainContainer' id='home'>
