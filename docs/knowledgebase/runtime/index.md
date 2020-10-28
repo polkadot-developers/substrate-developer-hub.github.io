@@ -11,9 +11,10 @@ where Substrate developers define the storage items that are used to represent t
 changes to this state.
 
 In order to provide its defining forkless runtime upgrade capabilities, Substrate uses runtimes that
-are expressed as [WebAssembly (Wasm)](../getting-started/glossary#webassembly-wasm) bytecode.
-Substrate also defines the [core primitives](../../knowledgebase/runtime/primitives#core-primitives)
-that the runtime must implement.
+are built as [WebAssembly (Wasm)](../../knowledgebase/getting-started/glossary#webassembly-wasm)
+bytecode. Substrate also defines the
+[core primitives](../../knowledgebase/runtime/primitives#core-primitives) that the runtime must
+implement.
 
 The core Substrate codebase ships with [FRAME](../../knowledgebase/runtime/frame), Parity's system
 for Substrate runtime development that is used for chains like
