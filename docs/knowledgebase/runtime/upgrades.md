@@ -70,7 +70,7 @@ FRAME storage migrations will run in this order:
 
 1. `frame_system::on_runtime_upgrade`
 1. Custom `on_runtime_upgrade`, as described above
-1. Any pallet's `on_runtime_upgrade` function, in the order described above
+1. All `on_runtime_upgrade` functions defined in the pallets included in the runtime, in the order described above
 
 ### Testing Migrations
 
