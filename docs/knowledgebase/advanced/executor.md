@@ -119,7 +119,7 @@ processes.
 
 ### Learn More
 
-- Learn more about
+- Read more about runtime upgrades in the [Runtime documentation](../runtime/upgrades).
 
 ### Examples
 
