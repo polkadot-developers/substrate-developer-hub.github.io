@@ -180,7 +180,7 @@ std = [
 ]
 ```
 
-> You **must** set `default_features = false` so that your runtime will successfully compile to
+> You **must** set `default-features = false` so that your runtime will successfully compile to
 > Wasm.
 
 Next we will update `runtime/src/lib.rs` to actually use our new runtime pallet, by adding a trait
