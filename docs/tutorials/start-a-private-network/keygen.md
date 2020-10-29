@@ -66,7 +66,7 @@ Generate an `sr25519` key which will be used by Aura for block production. Take 
 menmonic phrase, and the SS58 address which can be copied by clicking on the identicon in the top
 left.
 
-Then generate an `ed25519` key which will be used by GRANDPA for for block finalization. Again, note
+Then generate an `ed25519` key which will be used by GRANDPA for block finalization. Again, note
 the menmonic phrase and ss58 address.
 
 ## Option 3: Use Pre-Generated Keys
