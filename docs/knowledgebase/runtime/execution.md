@@ -4,7 +4,7 @@ title: Runtime Execution
 
 The execution of the Substrate runtime is orchestrated by the Executive module.
 
-Unlike the other modules within FRAME, this is not a _runtime_ module, but just a normal Rust module
+Unlike the other modules within FRAME, this is not a _runtime_ module. Rather it is a normal Rust module
 that calls into the various runtime modules included in your blockchain.
 
 The Executive module exposes the `execute_block` function that:
@@ -15,7 +15,7 @@ The Executive module exposes the `execute_block` function that:
 
 ## Validating Transactions
 
-Before block execution begins, signed transaction are checked for validity. This doesn't execute any
+Before block execution begins, signed transactions are checked for validity. This doesn't execute any
 side-effects; it merely checks whether the transaction would panic if it were included or not. Thus,
 changes made to storage are discarded.
 
@@ -62,7 +62,7 @@ calculated.
 
 ### Learn More
 
-- Learn how how you can simulate the orchestration of the Executive module in your
+- Learn how you can simulate the orchestration of the Executive module in your
   [runtime tests](tests).
 
 ### References
@@ -71,3 +71,4 @@ calculated.
 - [`decl_event!` macro](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_event.html)
 - [`decl_storage!` macro](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_storage.html)
 - [`construct_runtime!` macro](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.construct_runtime.html)
+- [`OnInitialize` trait](https://substrate.dev/rustdocs/v2.0.0/frame_support/traits/trait.OnInitialize.html)
