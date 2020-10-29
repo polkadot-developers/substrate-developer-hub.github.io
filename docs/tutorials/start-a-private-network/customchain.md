@@ -246,5 +246,5 @@ Details in https://github.com/substrate-developer-hub/tutorials/issues/16-->
 
 ### Learn More
 
-That big Wasm blob we encountered in the chain spec was was necessary to enable forkless upgrades.
+That big Wasm blob we encountered in the chain spec was necessary to enable forkless upgrades.
 Learn more about how the [executor](../../knowledgebase/advanced/executor) uses on-chain Wasm.
