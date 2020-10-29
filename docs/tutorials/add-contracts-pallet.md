@@ -476,7 +476,7 @@ fn testnet_genesis(
 	initial_authorities: Vec<(AuraId, GrandpaId)>,
 	root_key: AccountId,
 	endowed_accounts: Vec<AccountId>,
-	enable_println: bool,
+	enable_println: bool, // Update this line
 ) -> GenesisConfig {
 	GenesisConfig {
 		/* --snip-- */
