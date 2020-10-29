@@ -117,7 +117,7 @@ cargo check
 ]
 </code></pre>
 <blockquote>
-<p>You <strong>must</strong> set <code>default_features = false</code> so that your runtime will successfully compile to Wasm.</p>
+<p>You <strong>must</strong> set <code>default-features = false</code> so that your runtime will successfully compile to Wasm.</p>
 </blockquote>
 <p>Next we will update <code>runtime/src/lib.rs</code> to actually use our new runtime pallet, by adding a trait implementation with our <code>test_pallet</code> and add it in our <code>construct_runtime!</code> macro.</p>
 <p><strong><code>runtime/src/lib.rs</code></strong></p>
