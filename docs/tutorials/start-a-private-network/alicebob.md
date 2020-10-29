@@ -95,7 +95,7 @@ You can tell a lot about your node by watching the output it produces in your te
 also a nice graphical user interface known as the Polkadot-JS Apps, or just "Apps" for short.
 
 In your web browser, navigate to
-[https://polkadot.js.org/apps/#/settings?rpc=ws://127.0.0.1:9944](https://polkadot.js.org/apps/#/settings?rpc=ws://127.0.0.1:9944).
+[https://polkadot.js.org/apps/#/settings?rpc=ws://127.0.0.1:9945](https://polkadot.js.org/apps/#/settings?rpc=ws://127.0.0.1:9945).
 
 > Some browsers, notably Firefox, will not connect to a local node from an https website. An easy
 > work around is to try another browser, like Chromium. Another option is to
