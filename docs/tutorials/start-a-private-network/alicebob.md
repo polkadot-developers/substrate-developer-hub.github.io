@@ -145,7 +145,7 @@ His command will look very similar.
   --chain local \
   --bob \
   --port 30334 \
-  --ws-port 9945 \
+  --ws-port 9946 \
   --rpc-port 9934 \
   --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
   --validator \
