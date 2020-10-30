@@ -29,7 +29,7 @@ Alice (or whomever is playing her) should run these commands from node-template 
   --chain local \
   --alice \
   --port 30333 \
-  --ws-port 9944 \
+  --ws-port 994 \
   --rpc-port 9933 \
   --node-key 0000000000000000000000000000000000000000000000000000000000000001 \
   --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
@@ -38,13 +38,13 @@ Alice (or whomever is playing her) should run these commands from node-template 
 
 Let's look at those flags in detail:
 
-| <div style="min-width:110pt"> Flags </div> | Descriptions                                                                                                                                                                                                                                                                                                                               |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| <div style="min-width:110pt"> Flags </div> | Descriptions                                                                                                                                                                                                                                                                                                       |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  |
 | `--base-path`      | Specifies a directory where Substrate should store all the data related to this chain. If the directory does not exist it will be created for you. If other blockchain data already exists there you will get an error. Either clear the directory or choose a different one. If this value is not specified, a default path will be used. |
 | `--chain local`    | Specifies which chain specification to use. There are a few pre-packaged options including `local`, `development`, and `staging` but generally one specifies their own chainspec file. We'll specify our own file in a later step.                                                                                                         |
 | `--alice`          | Puts the pre-defined Alice keys (both for block production and finalization) in the node's keystore. Generally one should generate their own keys and insert them with an RPC call. We'll generate our own keys in a later step. This flag also makes Alice a validator.                                                                   |
 | `--port 30333`     | Specifies the port that your node will listen for p2p traffic on. `30333` is the default and this flag can be omitted if you're happy with the default. If Bob's node will run on the same physical system, you will need to explicitly specify a different port for it.                                                                   |
-| `--ws-port 9944`   | Specifies the port that your node will listen for incoming web socket traffic on. `9944` is the default, so it can also be omitted.                                                                                                                                                                                                        |
+| `--ws-port 9944`   | Specifies the port that your node will listen for incoming web socket traffic on. `9944` is the default. This example uses 9945 as the value.                                                                                                                                                                                              |
 | `--rpc-port 9933`  | Specifies the port that your node will listen for incoming RPC traffic on. `9933` is the default, so it can also be omitted.                                                                                                                                                                                                               |
 | `--node-key <key>` | The Ed25519 secret key to use for `libp2p` networking. The value is parsed as a hex-encoded Ed25519 32 byte secret key, i.e. 64 hex characters. WARNING: Secrets provided as command-line arguments are easily exposed. Use of this option should be limited to development and testing.                                                   |
 | `--telemetry-url`  | Tells the node to send telemetry data to a particular server. The one we've chosen here is hosted by Parity and is available for anyone to use. You may also host your own (beyond the scope of this article) or omit this flag entirely.                                                                                                  |
@@ -68,7 +68,7 @@ Sep 24 12:53:32.475  WARN Using default protocol ID "sup" because none is config
 Sep 24 12:53:32.475  INFO 🏷  Local node identity is: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp (legacy representation: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp)    
 Sep 24 12:53:32.704  INFO 📦 Highest known block at #0    
 Sep 24 12:53:32.705  INFO 〽️ Prometheus server started at 127.0.0.1:9615    
-Sep 24 12:53:32.730  INFO Listening for new connections on 127.0.0.1:9944.    
+Sep 24 12:53:32.730  INFO Listening for new connections on 127.0.0.1:9945.    
 Sep 24 12:53:37.733  INFO 💤 Idle (0 peers), best: #0 (0x2533…1d36), finalized #0 (0x2533…1d36), ⬇ 0 ⬆ 0    
 Sep 24 12:53:42.734  INFO 💤 Idle (0 peers), best: #0 (0x2533…1d36), finalized #0 (0x2533…1d36), ⬇ 0 ⬆ 0
 ...
