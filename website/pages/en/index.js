@@ -32,7 +32,9 @@ class Index extends React.Component {
 
 		return (
 			<section>
-
+				<div className="announcement">
+					The first Polkadot community conference is coming Dec 3rd!<br/> <a href="https://parity.link/UFsVd">Register Here</a> for Polkadot Decoded.
+				</div>
 				<HomeSplash
 					id='home-hero'
 					siteConfig={siteConfig}
