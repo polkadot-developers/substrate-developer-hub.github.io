@@ -92,5 +92,6 @@ Join the growing community of ink! smart contract developers:
 
 - Visit the
   [ink! repository for additional docs and to look at the source](https://github.com/paritytech/ink).
-- Visit the reference docs for the [ink! abi](https://paritytech.github.io/ink/ink_abi/).
-- Visit the reference docs for the [ink! core](https://paritytech.github.io/ink/ink_core/).
+- Visit the [ink! developer homepage](https://paritytech.github.io/ink/)
+- Visit the reference docs for the [ink! metadata](https://paritytech.github.io/ink/ink_metadata/).
+- Visit the reference docs for the [core ink! language](https://paritytech.github.io/ink/ink_lang/).
