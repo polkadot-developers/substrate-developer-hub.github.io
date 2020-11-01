@@ -109,7 +109,7 @@ UI to connect to another node:
 
   ![Top Left Network Icon](assets/tutorials/private-network/private-network-top-left-network-icon.png)
 
-- A popout dialog appears. Expand **DEVELOPMENT** and ensure the custom endpoint is set to `ws://127.0.0.1:9945`.
+- A popup dialog appears. Expand **DEVELOPMENT** and ensure the custom endpoint is set to `ws://127.0.0.1:9945`.
 
   ![Select Network](assets/tutorials/private-network/private-network-select-network.png)
 
