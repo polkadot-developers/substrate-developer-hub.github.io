@@ -40,9 +40,9 @@ Let's look at those flags in detail:
 
 | <div style="min-width:110pt"> Flags </div> | Descriptions                                                                                                                                                                                                                                                                                                       |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  |
-| `--base-path`      | Specifies a directory where Substrate should store all the data related to this chain. If the directory does not exist it will be created for you. If other blockchain data already exists there you will get an error. Either clear the directory or choose a different one. If this value is not specified, a default path will be used. |
-| `--chain local`    | Specifies which chain specification to use. There are a few pre-packaged options including `local`, `development`, and `staging` but generally one specifies their own chainspec file. We'll specify our own file in a later step.                                                                                                         |
-| `--alice`          | Puts the pre-defined Alice keys (both for block production and finalization) in the node's keystore. Generally one should generate their own keys and insert them with an RPC call. We'll generate our own keys in a later step. This flag also makes Alice a validator.                                                                   |
+| `--base-path`      | Specifies a directory where Substrate should store all the data related to this chain, if this value is not specified, a default path will be used. If the directory does not exist it will be created for you. If other blockchain data already exists there you will get an error. Either clear the directory or choose a different one. |
+| `--chain local`    | Specifies which chain specification to use. There are a few prepackaged options including `local`, `development`, and `staging` but generally one specifies their own chainspec file. We'll specify our own file in a later step.                                                                                                         |
+| `--alice`          | Puts the predefined Alice keys (both for block production and finalization) in the node's keystore. Generally one should generate their own keys and insert them with an RPC call. We'll generate our own keys in a later step. This flag also makes Alice a validator.                                                                   |
 | `--port 30333`     | Specifies the port that your node will listen for p2p traffic on. `30333` is the default and this flag can be omitted if you're happy with the default. If Bob's node will run on the same physical system, you will need to explicitly specify a different port for it.                                                                   |
 | `--ws-port 9945`   | Specifies the port that your node will listen for incoming web socket traffic on; `9944` is the default, so it can also be omitted. This example uses a custom web socket port number. This example uses 9945 as the value. This example uses a custom web socket port number.                                                                                                                  |
 | `--rpc-port 9933`  | Specifies the port that your node will listen for incoming RPC traffic on. `9933` is the default, so it can also be omitted.                                                                                                                                                                                                               |
@@ -92,13 +92,13 @@ More details about all of these flags and others that I haven't mentioned are av
 ## Attach a UI
 
 You can tell a lot about your node by watching the output it produces in your terminal. There is
-also a nice graphical user interface known as the Polkadot-JS Apps, or just "Apps" for short.
+also a nice graphical user interface called Polkadot-JS Apps, or just "Apps" for short.
 
 In your web browser, navigate to
 [https://polkadot.js.org/apps/#/settings?rpc=ws://127.0.0.1:9945](https://polkadot.js.org/apps/#/settings?rpc=ws://127.0.0.1:9945).
 
-> Some browsers, notably Firefox, will not connect to a local node from an https website. An easy
-> work around is to try another browser, like Chromium. Another option is to
+> Some browsers, notably Firefox, will not connect to a local node from a https website. An easy
+> work around is to try another browser, like Chromium. Alternatively
 > [host this interface locally](https://github.com/polkadot-js/apps#development).
 
 The link provided above includes the `rpc` URL parameter, which instructs the Apps UI to connect to
