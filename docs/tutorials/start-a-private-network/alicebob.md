@@ -119,7 +119,7 @@ UI to connect to another node:
 
   ![Custom Endpoint](assets/tutorials/private-network/private-network-custom-endpoint.png)
 
-You should now observe result like this example from the **Network** and **Explorer** page.
+You should now see something like this example from the **Network** and **Explorer** page.
 
 ![No blocks in polkadot-js-apps](assets/tutorials/private-network/private-network-no-blocks.png)
 
