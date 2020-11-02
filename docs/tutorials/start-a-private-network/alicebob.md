@@ -38,38 +38,38 @@ Alice (or whomever is playing her) should run these commands from node-template 
 
 Let's look at those flags in detail:
 
-| <div style="min-width:110pt"> Flags </div> | Descriptions                                                                                                                                                                                                                                                                                                       |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  |
-| `--base-path`      | Specifies a directory where Substrate should store all the data related to this chain, if this value is not specified, a default path will be used. If the directory does not exist it will be created for you. If other blockchain data already exists there you will get an error. Either clear the directory or choose a different one. |
-| `--chain local`    | Specifies which chain specification to use. There are a few prepackaged options including `local`, `development`, and `staging` but generally one specifies their own chainspec file. We'll specify our own file in a later step.                                                                                                         |
-| `--alice`          | Puts the predefined Alice keys (both for block production and finalization) in the node's keystore. Generally one should generate their own keys and insert them with an RPC call. We'll generate our own keys in a later step. This flag also makes Alice a validator.                                                                   |
-| `--port 30333`     | Specifies the port that your node will listen for p2p traffic on. `30333` is the default and this flag can be omitted if you're happy with the default. If Bob's node will run on the same physical system, you will need to explicitly specify a different port for it.                                                                   |
-| `--ws-port 9945`   | Specifies the port that your node will listen for incoming web socket traffic on; `9944` is the default, so it can also be omitted. This example uses a custom web socket port number. This example uses 9945 as the value. This example uses a custom web socket port number.                                                                                                                  |
-| `--rpc-port 9933`  | Specifies the port that your node will listen for incoming RPC traffic on. `9933` is the default, so it can also be omitted.                                                                                                                                                                                                               |
-| `--node-key <key>` | The Ed25519 secret key to use for `libp2p` networking. The value is parsed as a hex-encoded Ed25519 32 byte secret key, i.e. 64 hex characters. WARNING: Secrets provided as command-line arguments are easily exposed. Use of this option should be limited to development and testing.                                                   |
-| `--telemetry-url`  | Tells the node to send telemetry data to a particular server. The one we've chosen here is hosted by Parity and is available for anyone to use. You may also host your own (beyond the scope of this article) or omit this flag entirely.                                                                                                  |
-| `--validator`      | Means that we want to participate in block production and finalization rather than just sync the network.                                                                                                                                                                                                                                  |
+| <div style="min-width:110pt"> Flags </div> | Descriptions                                                                                                                                                                                                                                                                                                                               |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `--base-path`                              | Specifies a directory where Substrate should store all the data related to this chain, if this value is not specified, a default path will be used. If the directory does not exist it will be created for you. If other blockchain data already exists there you will get an error. Either clear the directory or choose a different one. |
+| `--chain local`                            | Specifies which chain specification to use. There are a few prepackaged options including `local`, `development`, and `staging` but generally one specifies their own chainspec file. We'll specify our own file in a later step.                                                                                                          |
+| `--alice`                                  | Puts the predefined Alice keys (both for block production and finalization) in the node's keystore. Generally one should generate their own keys and insert them with an RPC call. We'll generate our own keys in a later step. This flag also makes Alice a validator.                                                                    |
+| `--port 30333`                             | Specifies the port that your node will listen for p2p traffic on. `30333` is the default and this flag can be omitted if you're happy with the default. If Bob's node will run on the same physical system, you will need to explicitly specify a different port for it.                                                                   |
+| `--ws-port 9945`                           | Specifies the port that your node will listen for incoming web socket traffic on; `9944` is the default, so it can also be omitted. This example uses a custom web socket port number. This example uses 9945 as the value. This example uses a custom web socket port number.                                                             |
+| `--rpc-port 9933`                          | Specifies the port that your node will listen for incoming RPC traffic on. `9933` is the default, so it can also be omitted.                                                                                                                                                                                                               |
+| `--node-key <key>`                         | The Ed25519 secret key to use for `libp2p` networking. The value is parsed as a hex-encoded Ed25519 32 byte secret key, i.e. 64 hex characters. WARNING: Secrets provided as command-line arguments are easily exposed. Use of this option should be limited to development and testing.                                                   |
+| `--telemetry-url`                          | Tells the node to send telemetry data to a particular server. The one we've chosen here is hosted by Parity and is available for anyone to use. You may also host your own (beyond the scope of this article) or omit this flag entirely.                                                                                                  |
+| `--validator`                              | Means that we want to participate in block production and finalization rather than just sync the network.                                                                                                                                                                                                                                  |
 
 When the node starts you should see output similar to this.
 
 ```
-Sep 24 12:53:30.728  INFO Substrate Node    
-Sep 24 12:53:30.728  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu    
-Sep 24 12:53:30.729  INFO ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020    
-Sep 24 12:53:30.729  INFO 📋 Chain specification: Local Testnet    
-Sep 24 12:53:30.729  INFO 🏷  Node name: Alice    
-Sep 24 12:53:30.729  INFO 👤 Role: AUTHORITY    
-Sep 24 12:53:30.729  INFO 💾 Database: RocksDb at /tmp/alice/chains/local_testnet/db    
-Sep 24 12:53:30.729  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)    
-Sep 24 12:53:32.312  INFO 🔨 Initializing Genesis block/state (state: 0x0118…493b, header-hash: 0x2533…1d36)    
-Sep 24 12:53:32.315  INFO 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.    
-Sep 24 12:53:32.474  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch    
-Sep 24 12:53:32.475  WARN Using default protocol ID "sup" because none is configured in the chain specs    
-Sep 24 12:53:32.475  INFO 🏷  Local node identity is: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp (legacy representation: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp)    
-Sep 24 12:53:32.704  INFO 📦 Highest known block at #0    
-Sep 24 12:53:32.705  INFO 〽️ Prometheus server started at 127.0.0.1:9615    
-Sep 24 12:53:32.730  INFO Listening for new connections on 127.0.0.1:9945.    
-Sep 24 12:53:37.733  INFO 💤 Idle (0 peers), best: #0 (0x2533…1d36), finalized #0 (0x2533…1d36), ⬇ 0 ⬆ 0    
+Sep 24 12:53:30.728  INFO Substrate Node
+Sep 24 12:53:30.728  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu
+Sep 24 12:53:30.729  INFO ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
+Sep 24 12:53:30.729  INFO 📋 Chain specification: Local Testnet
+Sep 24 12:53:30.729  INFO 🏷  Node name: Alice
+Sep 24 12:53:30.729  INFO 👤 Role: AUTHORITY
+Sep 24 12:53:30.729  INFO 💾 Database: RocksDb at /tmp/alice/chains/local_testnet/db
+Sep 24 12:53:30.729  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+Sep 24 12:53:32.312  INFO 🔨 Initializing Genesis block/state (state: 0x0118…493b, header-hash: 0x2533…1d36)
+Sep 24 12:53:32.315  INFO 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
+Sep 24 12:53:32.474  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
+Sep 24 12:53:32.475  WARN Using default protocol ID "sup" because none is configured in the chain specs
+Sep 24 12:53:32.475  INFO 🏷  Local node identity is: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp (legacy representation: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp)
+Sep 24 12:53:32.704  INFO 📦 Highest known block at #0
+Sep 24 12:53:32.705  INFO 〽️ Prometheus server started at 127.0.0.1:9615
+Sep 24 12:53:32.730  INFO Listening for new connections on 127.0.0.1:9945.
+Sep 24 12:53:37.733  INFO 💤 Idle (0 peers), best: #0 (0x2533…1d36), finalized #0 (0x2533…1d36), ⬇ 0 ⬆ 0
 Sep 24 12:53:42.734  INFO 💤 Idle (0 peers), best: #0 (0x2533…1d36), finalized #0 (0x2533…1d36), ⬇ 0 ⬆ 0
 ...
 ```
@@ -79,9 +79,9 @@ Sep 24 12:53:42.734  INFO 💤 Idle (0 peers), best: #0 (0x2533…1d36), finaliz
 > - `🔨 Initializing Genesis block/state (state: 0x0118…493b, header-hash: 0x2533…1d36)` tells which
 >   genesis block the node is using. When you start the next node, verify that these values are
 >   equal.
-> - `🏷  Local node identity is: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp...` shows the
+> - `🏷 Local node identity is: 12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp...` shows the
 >   Peer ID that Bob will need when booting from Alice's node. This value was determined by the
->   `--node-key` that was used to start Alice's node. 
+>   `--node-key` that was used to start Alice's node.
 
 You'll notice that no blocks are being produced yet. Blocks will start being produced once another
 node joins the network.
@@ -109,13 +109,15 @@ UI to connect to another node:
 
   ![Top Left Network Icon](assets/tutorials/private-network/private-network-top-left-network-icon.png)
 
-- A popup dialog appears. Expand **DEVELOPMENT** and ensure the custom endpoint is set to `ws://127.0.0.1:9945`.
+- A popup dialog appears. Expand **DEVELOPMENT** and ensure the custom endpoint is set to
+  `ws://127.0.0.1:9945`.
 
   ![Select Network](assets/tutorials/private-network/private-network-select-network.png)
 
 - To connect to a custom node and port, you just need to specify the endpoint by choosing
   `custom endpoint` and type in your own endpoint. In this way you can use a single instance of Apps
-  UI to connect to various nodes. Click **Switch** icon to actually switch to the new endpoint when necessary.
+  UI to connect to various nodes. Click **Switch** icon to actually switch to the new endpoint when
+  necessary.
 
   ![Custom Endpoint](assets/tutorials/private-network/private-network-custom-endpoint.png)
 
@@ -167,22 +169,22 @@ blocks. You should see some lines like the following in the console that started
 
 ```
 ...
-Sep 24 12:55:12.755  INFO 💤 Idle (0 peers), best: #0 (0x2533…1d36), finalized #0 (0x2533…1d36), ⬇ 0 ⬆ 0    
-Sep 24 12:55:17.755  INFO 💤 Idle (0 peers), best: #0 (0x2533…1d36), finalized #0 (0x2533…1d36), ⬇ 0 ⬆ 0    
-Sep 24 12:55:21.937  INFO 🔍 Discovered new external address for our node: /ip4/192.168.0.117/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp    
-Sep 24 12:55:21.981  INFO 🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp    
-Sep 24 12:55:22.756  INFO 💤 Idle (1 peers), best: #0 (0x2533…1d36), finalized #0 (0x2533…1d36), ⬇ 1.2kiB/s ⬆ 1.2kiB/s    
-Sep 24 12:55:24.153  INFO 🙌 Starting consensus session on top of parent 0x2533ac58ba9931d1ed7e1c8779a51d0413c77c4f258691c2819411c457aa1d36    
-Sep 24 12:55:24.302  INFO 🎁 Prepared block for proposing at 1 [hash: 0x380c14f5773d8eaf326e9a29f73f992bea1d8c1258dd1ac669073c3aac798036; parent_hash: 0x2533…1d36; extrinsics (1): [0x4ade…ab32]]    
-Sep 24 12:55:24.382  INFO 🔖 Pre-sealed block for proposal at 1. Hash now 0xd7dfb9b8bf8f36d10a22fcdad0b9753a54c38fed326e837e9639d39eb2895e0c, previously 0x380c14f5773d8eaf326e9a29f73f992bea1d8c1258dd1ac669073c3aac798036.    
-Sep 24 12:55:24.385  INFO ✨ Imported #1 (0xd7df…5e0c)    
-Sep 24 12:55:27.757  INFO 💤 Idle (1 peers), best: #1 (0xd7df…5e0c), finalized #0 (0x2533…1d36), ⬇ 0.6kiB/s ⬆ 0.7kiB/s    
-Sep 24 12:55:30.344  INFO ✨ Imported #2 (0xa1cb…562d)    
-Sep 24 12:55:32.759  INFO 💤 Idle (1 peers), best: #2 (0xa1cb…562d), finalized #0 (0x2533…1d36), ⬇ 0.7kiB/s ⬆ 0.6kiB/s    
-Sep 24 12:55:36.120  INFO 🙌 Starting consensus session on top of parent 0xa1cb3ff2f34833ab3bbb0791e8ab894b59dae6cbd83e9aceec49d05b3254562d    
-Sep 24 12:55:36.176  INFO 🎁 Prepared block for proposing at 3 [hash: 0xb1e91198d861dfa7fb71489a89871551bef8b92cf0a5a305315fa3221039abaa; parent_hash: 0xa1cb…562d; extrinsics (1): [0x2ac1…af5e]]    
-Sep 24 12:55:36.258  INFO 🔖 Pre-sealed block for proposal at 3. Hash now 0x632d162c6765b4ad31d7174a7e959ce108c3a4d9e8e1b2dd8c7b84664eb5a43f, previously 0xb1e91198d861dfa7fb71489a89871551bef8b92cf0a5a305315fa3221039abaa.    
-Sep 24 12:55:36.260  INFO ✨ Imported #3 (0x632d…a43f)    
+Sep 24 12:55:12.755  INFO 💤 Idle (0 peers), best: #0 (0x2533…1d36), finalized #0 (0x2533…1d36), ⬇ 0 ⬆ 0
+Sep 24 12:55:17.755  INFO 💤 Idle (0 peers), best: #0 (0x2533…1d36), finalized #0 (0x2533…1d36), ⬇ 0 ⬆ 0
+Sep 24 12:55:21.937  INFO 🔍 Discovered new external address for our node: /ip4/192.168.0.117/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
+Sep 24 12:55:21.981  INFO 🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
+Sep 24 12:55:22.756  INFO 💤 Idle (1 peers), best: #0 (0x2533…1d36), finalized #0 (0x2533…1d36), ⬇ 1.2kiB/s ⬆ 1.2kiB/s
+Sep 24 12:55:24.153  INFO 🙌 Starting consensus session on top of parent 0x2533ac58ba9931d1ed7e1c8779a51d0413c77c4f258691c2819411c457aa1d36
+Sep 24 12:55:24.302  INFO 🎁 Prepared block for proposing at 1 [hash: 0x380c14f5773d8eaf326e9a29f73f992bea1d8c1258dd1ac669073c3aac798036; parent_hash: 0x2533…1d36; extrinsics (1): [0x4ade…ab32]]
+Sep 24 12:55:24.382  INFO 🔖 Pre-sealed block for proposal at 1. Hash now 0xd7dfb9b8bf8f36d10a22fcdad0b9753a54c38fed326e837e9639d39eb2895e0c, previously 0x380c14f5773d8eaf326e9a29f73f992bea1d8c1258dd1ac669073c3aac798036.
+Sep 24 12:55:24.385  INFO ✨ Imported #1 (0xd7df…5e0c)
+Sep 24 12:55:27.757  INFO 💤 Idle (1 peers), best: #1 (0xd7df…5e0c), finalized #0 (0x2533…1d36), ⬇ 0.6kiB/s ⬆ 0.7kiB/s
+Sep 24 12:55:30.344  INFO ✨ Imported #2 (0xa1cb…562d)
+Sep 24 12:55:32.759  INFO 💤 Idle (1 peers), best: #2 (0xa1cb…562d), finalized #0 (0x2533…1d36), ⬇ 0.7kiB/s ⬆ 0.6kiB/s
+Sep 24 12:55:36.120  INFO 🙌 Starting consensus session on top of parent 0xa1cb3ff2f34833ab3bbb0791e8ab894b59dae6cbd83e9aceec49d05b3254562d
+Sep 24 12:55:36.176  INFO 🎁 Prepared block for proposing at 3 [hash: 0xb1e91198d861dfa7fb71489a89871551bef8b92cf0a5a305315fa3221039abaa; parent_hash: 0xa1cb…562d; extrinsics (1): [0x2ac1…af5e]]
+Sep 24 12:55:36.258  INFO 🔖 Pre-sealed block for proposal at 3. Hash now 0x632d162c6765b4ad31d7174a7e959ce108c3a4d9e8e1b2dd8c7b84664eb5a43f, previously 0xb1e91198d861dfa7fb71489a89871551bef8b92cf0a5a305315fa3221039abaa.
+Sep 24 12:55:36.260  INFO ✨ Imported #3 (0x632d…a43f)
 Sep 24 12:55:37.761  INFO 💤 Idle (1 peers), best: #3 (0x632d…a43f), finalized #1 (0xd7df…5e0c), ⬇ 0.8kiB/s ⬆ 0.9kiB/s
 ...
 ```
