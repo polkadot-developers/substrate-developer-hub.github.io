@@ -83,7 +83,7 @@ You should be able to successfully check the Substrate pallet template with:
 
 ```bash
 cd test-pallet
-cargo check
+SKIP_WASM_BUILD= cargo check
 ```
 
 ### Your Pallet's `std` Feature
@@ -148,7 +148,7 @@ sp-core = { default-features = false, version = '2.0.0' }
 You can confirm that the tests in the Substrate pallet template pass with:
 
 ```bash
-cargo test
+SKIP_WASM_BUILD= cargo test
 ```
 
 When updating this pallet to include your own custom logic, you will likely add dependencies of your
@@ -216,7 +216,7 @@ Make sure you're back in the node template's root directory, then compile the no
 development mode with the following command:
 
 ```bash
-cargo run -- --dev --tmp
+WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo run --release -- --dev --tmp
 ```
 
 Now, start the

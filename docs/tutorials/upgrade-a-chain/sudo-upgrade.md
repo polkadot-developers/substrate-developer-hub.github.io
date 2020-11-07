@@ -37,7 +37,7 @@ node will not be restarted as part of this tutorial despite the fact that two ru
 performed.
 
 ```shell
-cargo run -- --dev --tmp
+WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo run --release -- --dev --tmp
 ```
 
 Notice that the [well-known Alice account](../../knowledgebase/integrate/subkey#well-known-keys) is
@@ -164,7 +164,7 @@ by runtime logic.
 Build the upgraded runtime.
 
 ```shell
-cargo build --release -p node-template-runtime
+WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release -p node-template-runtime
 ```
 
 Notice that the `--release` flag has been added to the `cargo build` command; although this will

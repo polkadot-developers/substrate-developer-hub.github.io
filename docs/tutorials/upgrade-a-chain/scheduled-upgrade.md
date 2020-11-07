@@ -54,7 +54,7 @@ dropped - that would require a storage migration, which is out of the scope of t
 Build the upgraded runtime.
 
 ```shell
-cargo build --release -p node-template-runtime
+WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release -p node-template-runtime
 ```
 
 ## Upgrade the Runtime

@@ -168,7 +168,7 @@ std = [
 Now is a good time to check that everything compiles correctly so far with:
 
 ```bash
-cargo check
+SKIP_WASM_BUILD= cargo check
 ```
 
 ## Adding the Contracts Pallet
@@ -286,7 +286,7 @@ should compile, the entire node will not (yet). So we will use this command to c
 runtime.
 
 ```bash
-cargo check -p node-template-runtime
+SKIP_WASM_BUILD= cargo check -p node-template-runtime
 ```
 
 ### Exposing The Contracts API
@@ -381,7 +381,7 @@ impl_runtime_apis! {
 This is another good time to check that your runtime compiles correctly so far.
 
 ```bash
-cargo check -p node-template-runtime
+SKIP_WASM_BUILD= cargo check -p node-template-runtime
 ```
 
 ## Updating the Outer Node
@@ -499,7 +499,7 @@ Now you are ready to compile and run your contract-capable node. Compile the nod
 with
 
 ```bash
-cargo build --release
+WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release
 ```
 
 Now launch the executable you just built by running this command

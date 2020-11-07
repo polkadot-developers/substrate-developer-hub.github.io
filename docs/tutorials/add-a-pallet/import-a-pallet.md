@@ -170,5 +170,5 @@ error[E0425]: cannot find function `memory_new` in module `sandbox`
 Before moving on, check that the new dependencies resolve correctly by running:
 
 ```bash
-cargo check -p node-template-runtime
+SKIP_WASM_BUILD= cargo check -p node-template-runtime
 ```
