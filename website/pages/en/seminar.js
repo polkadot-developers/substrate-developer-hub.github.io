@@ -95,8 +95,8 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>10 Nov</strong>, Jesse Abramowitz will share with everything about Feeless Transaction Pallet.
-								This presentation will be particularly relevant for anyone working with fee systems. Shawn Tabrizi will be our host.
+								On <strong>10 Nov</strong>, Jesse Abramowitz will share all things Feeless Transaction Pallet.
+								This presentation will be particularly relevant for anyone working on fee systems. Shawn Tabrizi will be our host.
 							</p>
 						</div>
 
