@@ -95,12 +95,8 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>3 Nov</strong>, PureStake's Joshy Orndorff will share with us two different concepts
-								that he's encountered while working on Moonbeam,{' '}
-								<a href='https://github.com/paritytech/frontier/tree/master/consensus' target='_blank'>FrontierBlockImport</a>{' '}
-								and Moonbeam's{' '}
-								<a href='https://github.com/PureStake/moonbeam/pull/60' target='_blank'>dual Parachain / Standalone runtime</a>.{' '}
-								This presentation will be particularly relevant for anyone building a Parachain. Jimmy Chu will be our host.
+								On <strong>10 Nov</strong>, Jesse Abramowitz will share with everything about Feeless Transaction Pallet.
+								This presentation will be particularly relevant for anyone working with fee systems. Shawn Tabrizi will be our host.
 							</p>
 						</div>
 
