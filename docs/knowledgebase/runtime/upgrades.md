@@ -86,6 +86,6 @@ and storage migrations.
 ## Learn More
 
 - Read more about runtime upgrades in the [Executor documentation](../advanced/executor).
-- Parity Runtime Engineer Alex Popiak maintains a
+- Parity Runtime Engineer Alexander Popiak maintains a
   [Substrate Migrations](https://github.com/apopiak/substrate-migrations) repository with lots of
   helpful information about Substrate runtime upgrades and storage migrations.
