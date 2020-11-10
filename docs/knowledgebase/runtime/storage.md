@@ -485,8 +485,11 @@ Read [the advanced storage documentation](../advanced/storage).
 
 ### Examples
 
-Check out
-[the Substrate Recipes section on storage](https://substrate.dev/recipes/3-entrees/storage-api/index.html).
+Check out the Substrate Recipes covering various topics on storage: 
+- [Storage Maps](https://substrate.dev/recipes/storage-maps.html).
+- [Caching Storage Calls](https://substrate.dev/recipes/cache.html).
+- [Using Vectors](https://substrate.dev/recipes/vec-set.html).
+- [Using Maps](https://substrate.dev/recipes/map-set.html).
 
 ### References
 
