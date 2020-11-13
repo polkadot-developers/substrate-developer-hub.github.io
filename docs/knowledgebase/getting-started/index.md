@@ -75,7 +75,9 @@ rustup default stable
 Substrate uses [WebAssembly](https://webassembly.org/) (Wasm) to produce portable blockchain
 runtimes. You will need to configure your Rust compiler to use
 [`nightly` builds](https://doc.rust-lang.org/book/appendix-07-nightly-rust.html) to allow you to
-compile Rust code to the Wasm target.
+compile Substrate runtime code to the Wasm target. There is
+[a GitHub Issue](https://github.com/paritytech/substrate/issues/1252) that describes this
+requirement in greater detail.
 
 #### Rust Nightly Toolchain
 
@@ -106,7 +108,7 @@ rustup target add wasm32-unknown-unknown --toolchain nightly-<yyyy-MM-dd>
 Use the `WASM_BUILD_TOOLCHAIN` environment variable to specify the Rust nightly version a Substrate
 project should use for Wasm compilation:
 
-```sh
+```bash
 WASM_BUILD_TOOLCHAIN=nightly-<yyyy-MM-dd> cargo build --release
 ```
 
@@ -115,7 +117,7 @@ WASM_BUILD_TOOLCHAIN=nightly-<yyyy-MM-dd> cargo build --release
 Developers that are building Substrate _itself_ should always uses the latest bug-free versions of
 Rust stable and nightly. To ensure your Rust compiler is always up to date, you should run:
 
-```sh
+```bash
 rustup update
 rustup update nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
