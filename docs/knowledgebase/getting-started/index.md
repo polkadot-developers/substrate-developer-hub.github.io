@@ -30,7 +30,7 @@ brew install openssl cmake
 
 ### Ubuntu/Debian
 
-Use a favorite terminal shell to execute the following commands:
+Use a terminal shell to execute the following commands:
 
 ```bash
 sudo apt update
