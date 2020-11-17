@@ -11,7 +11,7 @@ Unix-based operating systems.
 
 ## Unix-Based Operating Systems
 
-Substrate development is optimized for Unix-based operating systems like macOS or Linux. The examples
+Substrate development is easiest on Unix-based operating systems like macOS or Linux. The examples
 in the Substrate [Tutorials](../../../../tutorials) and [Recipes](https://substrate.dev/recipes/)
 use Unix-style terminals to demonstrate how to interact with Substrate from the command line.
 
@@ -81,13 +81,17 @@ requirement in detail.
 
 #### Rust Nightly Toolchain
 
-Developers building _with_ Substrate should use a specific Rust nightly version that is known to
-be compatible with the version of Substrate they are using. Refer to the Polkadot [release notes](https://github.com/paritytech/polkadot/releases) for more specific information. The Substrate Node Template uses an
+Developers building with Substrate should use a specific Rust nightly version that is known to be
+compatible with the version of Substrate they are using; this version will vary from project to
+project and different projects may use different mechanisms to communicate this version to
+developers. For instance, the Polkadot client specifies this information in its
+[release notes](https://github.com/paritytech/polkadot/releases). The Substrate Node Template uses
+an
 [init script](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/scripts/init.sh)
-and [Makefile](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/Makefile)
-to specify the Rust nightly version by encapsulating the following steps. Use Rustup to install the
+and
+[Makefile](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/Makefile)
+to specify the Rust nightly version and encapsulate the following steps. Use Rustup to install the
 correct nightly:
-
 
 ```bash
 rustup install nightly-<yyyy-MM-dd>
@@ -112,8 +116,10 @@ WASM_BUILD_TOOLCHAIN=nightly-<yyyy-MM-dd> cargo build --release
 
 #### Developing Substrate
 
-Developers that are building Substrate _itself_ should always uses the latest bug-free versions of
-Rust stable and nightly. To ensure your Rust compiler is always up to date, you should run:
+Developers that are building Substrate _itself_ should always use the latest bug-free versions of
+Rust stable and nightly. This is because the Substrate codebase follows the tip of Rust nightly,
+which means that changes in Substrate often depend on upstream changes in the Rust nightly compiler.
+To ensure your Rust compiler is always up to date, you should run:
 
 ```bash
 rustup update
