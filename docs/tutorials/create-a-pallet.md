@@ -83,7 +83,7 @@ You should be able to successfully check the Substrate pallet template with:
 
 ```bash
 cd test-pallet
-SKIP_WASM_BUILD= cargo check
+SKIP_WASM_BUILD=1 cargo check
 ```
 
 ### Your Pallet's `std` Feature
@@ -148,7 +148,7 @@ sp-core = { default-features = false, version = '2.0.0' }
 You can confirm that the tests in the Substrate pallet template pass with:
 
 ```bash
-SKIP_WASM_BUILD= cargo test
+SKIP_WASM_BUILD=1 cargo test
 ```
 
 When updating this pallet to include your own custom logic, you will likely add dependencies of your
