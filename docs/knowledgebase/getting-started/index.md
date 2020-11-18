@@ -112,6 +112,9 @@ project should use for Wasm compilation:
 WASM_BUILD_TOOLCHAIN=nightly-<yyyy-MM-dd> cargo build --release
 ```
 
+Note that this only builds _the runtime_ with the specified nightly. The rest of project will be
+compiled with the default toolchain, i.e. the latest installed stable toolchain.
+
 #### Developing Substrate
 
 Developers that are building Substrate _itself_ should always use the latest bug-free versions of
