@@ -75,9 +75,7 @@ rustup default stable
 Substrate uses [WebAssembly](https://webassembly.org/) (Wasm) to produce portable blockchain
 runtimes. You will need to configure your Rust compiler to use
 [`nightly` builds](https://doc.rust-lang.org/book/appendix-07-nightly-rust.html) to allow you to
-compile Substrate runtime code to the Wasm target. There is
-[a GitHub Issue](https://github.com/paritytech/substrate/issues/1252) that describes this
-requirement in detail.
+compile Substrate runtime code to the Wasm target.
 
 #### Rust Nightly Toolchain
 
