@@ -95,9 +95,7 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>17 Nov</strong>, Parity integration engineer Zeke Mostov will discuss and demonstrate how
-								Substrate's blockchain primitives can be used to easily implement a secure, flexible, and ergonomic hot
-								wallet architecture.
+								On <strong>24 Nov</strong>, join us for an overview of the FRAME origin primitive, which provides the runtime with authentication and authorization capabilities.
 							</p>
 						</div>
 
