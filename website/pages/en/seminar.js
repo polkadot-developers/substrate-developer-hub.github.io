@@ -95,10 +95,7 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>24 Nov</strong>, join us for an overview of the FRAME origin primitive, which provides the runtime with authentication and authorization capabilities.
-							</p>
-							<p>
-								On <strong>1 Dec</strong> Substrate community member Sacha Lanksy will present his exploration into FRAME's rich governance capabilities.
+								On <strong>1 Dec</strong> Substrate community member Sacha Lansky will present his exploration into FRAME's rich governance capabilities.
 							</p>
 						</div>
 
