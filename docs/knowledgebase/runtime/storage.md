@@ -210,7 +210,7 @@ The `decl_storage` macro provides an optional `get` extension that can be used t
 method for a storage item on the module that contains that storage item; the extension takes the
 desired name of the getter function as an argument. If you omit this optional extension, you will
 still be able to access the storage item's value, but you will not be able to do so by way of a
-getter method implemented on the module; instead, you will need to need to use
+getter method implemented on the module; instead, you will need to use
 [the storage item's `get` method](#methods). Keep in mind that the optional `get` extension only
 impacts the way that the storage item can be accessed from within Substrate code; you will always be
 able to [query the storage of your runtime](../advanced/storage#Querying-Storage) to get the value

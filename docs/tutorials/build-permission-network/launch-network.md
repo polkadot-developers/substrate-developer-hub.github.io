@@ -5,7 +5,7 @@ title: Launch our permissioned network
 Before even starting a node, let's make sure everything is compiled for our project.
 
 ```shell
-cargo build --release
+WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release
 ```
 
 In this part, we'll launch 4 nodes, include 3 well known nodes and 1 normal node. Here are the node keys and peer ids that are used in this tutorial.
