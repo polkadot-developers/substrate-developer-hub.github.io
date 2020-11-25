@@ -1,11 +1,13 @@
 # Cheatsheet on translation work
 
-Set the two environment variable in your shell
+- Make the translation in [crowdin platform](https://crowdin.com/)
+  
+  - register a login, and send the login ID to Jimmy 
 
-- `CROWDIN_SUBSTRATEDEVHUB_ID`: the project ID 
-- `CROWDIN_PERSONAL_TOKEN`: your personal crowdin token
+- You can use the [crowdin CLI](https://github.com/crowdin/crowdin-cli/tree/3.4.0) (v3.4) to view the current translation status and download the translation to run locally. To do that, set the following two environment variables in your shell.
 
-Then you can install the [crowdin CLI](https://github.com/crowdin/crowdin-cli/tree/3.4.0) (v3.4)
+  - `CROWDIN_SUBSTRATEDEVHUB_ID`: the project ID 
+  - `CROWDIN_PERSONAL_TOKEN`: your personal crowdin token
 
 ## Usual Commands
 
@@ -24,7 +26,5 @@ crowdin status
 ```
 
 ## References:
-
 - [Docusaurus translation](https://docusaurus.io/docs/en/translation)
 - [Crowdin CLI](https://support.crowdin.com/cli-tool/)
-
