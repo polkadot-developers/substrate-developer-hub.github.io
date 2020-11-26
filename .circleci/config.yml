@@ -34,7 +34,7 @@ jobs:
   deploy-to-prod:
     docker:
       # specify the version you desire here
-      - image: circleci/node:10.15.2
+      - image: circleci/node:erbium
     steps:
       - add_ssh_keys:
           fingerprints:
@@ -48,7 +48,7 @@ jobs:
   deploy-to-staging:
     docker:
       # specify the version you desire here
-      - image: circleci/node:10.15.2
+      - image: circleci/node:erbium
     steps:
       - add_ssh_keys:
           fingerprints:

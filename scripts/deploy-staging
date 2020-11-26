@@ -6,7 +6,7 @@ APP_DIR=$(cd $(dirname "${BASH_SOURCE[0]}")/.. && pwd)
 GIT_REPO="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io.git"
 PROJECT_BUILD_DIR="build/substrate-developer-hub.github.io"
 
-HTPASSWD='parity-devEx:$apr1$P.1bMHSB$u2PQ7KitD5aNk371vsQB0/'
+HTPASSWD='parity-devhub:$apr1$CJZJktOW$PEHfLAfsglPPvjnOhuIuV.'
 HTACCESS="AuthUserFile /app/.htpasswd\n
 AuthType Basic\n
 AuthName \"Restricted Access\"\n
