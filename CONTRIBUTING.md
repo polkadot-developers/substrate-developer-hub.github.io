@@ -15,6 +15,8 @@ We lovingly stole these guidelines from [Google's Fuchsia project](https://fuchs
 
 * [Documentation Style](#documentation-style)
 
+* [Multilingual Translation](./translation.md)
+
 ## PR Checklist
 
 - [ ] Are the audience and objective of the document clear? E.g. a document

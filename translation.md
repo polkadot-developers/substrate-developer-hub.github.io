@@ -25,6 +25,10 @@ crowdin upload sources --auto-update -b master
 crowdin status
 ```
 
+## Contribute to Translation
+
+Currently we have contents partially translated to Simplified Chinese (~40%), Japanese (~30%), and Spanish (~30%), as of Nov 27th 2020. We welcome translation of all languages and particularly on the mentioned three languages. If you are interested to help, please contact us at [substrate-developer-hub@parity.io](mailto:substrate-developer-hub@parity.io) .
+
 ## References:
 - [Docusaurus translation](https://docusaurus.io/docs/en/translation)
 - [Crowdin CLI](https://support.crowdin.com/cli-tool/)
