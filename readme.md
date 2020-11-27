@@ -73,6 +73,11 @@ Heroku. Note that multilingual translations are NOT pulled in.
 AND also pull in multilingual translations from our Crowdin project. The final built static site is then pushed to the
 `staging` branch and deployed to Heroku.
 
+### Multilingual Support
+
+If you are interested to contribute to multilingual translation, refer to our 
+[translation documentation](./translation.md).
+
 ### Updates
 
 There is a helper script that can be used to update `substrate.dev/rustdocs` links in the `docs/knowledgebase`

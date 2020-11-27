@@ -1,5 +1,3 @@
-project_identifier_env: CROWDIN_DOCUSAURUS_PROJECT_ID
-api_key_env: CROWDIN_DOCUSAURUS_API_KEY
 project_id_env: CROWDIN_SUBSTRATEDEVHUB_ID
 api_token_env: CROWDIN_PERSONAL_TOKEN
 base_path: "./"

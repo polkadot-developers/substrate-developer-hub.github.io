@@ -13,9 +13,9 @@ aliases:
         - master
         - staging
 
-  - &build-cmds
+  - &build-site
     run:
-      name: Building Site
+      name: Build Site
       command: |
         git config --global user.email "devhub-deploy@users.noreply.github.com"
         git config --global user.name "Devhub Deployer"
@@ -40,7 +40,7 @@ jobs:
           fingerprints:
             - "a1:f6:36:72:14:54:c0:37:47:fe:0f:c1:01:7f:21:f5"
       - checkout
-      - *build-cmds
+      - *build-site
       - run:
           name: Push to Production (Github Pages)
           command: cd website && USE_SSH=true GIT_USER=git yarn run publish-gh-pages
@@ -54,7 +54,7 @@ jobs:
           fingerprints:
             - "a1:f6:36:72:14:54:c0:37:47:fe:0f:c1:01:7f:21:f5"
       - checkout
-      - *build-cmds
+      - *build-site
       - run:
           name: Push to Staging (Heroku)
           command: scripts/deploy-staging
