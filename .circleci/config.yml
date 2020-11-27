@@ -23,11 +23,13 @@ aliases:
         cd website && yarn install && yarn run write-translations && cd ..
         # crowdin install
         sudo apt-get update && sudo apt-get install default-jre
-        wget https://artifacts.crowdin.com/repo/deb/crowdin.deb -O crowdin.deb
+        wget https://artifacts.crowdin.com/repo/deb/crowdin3.deb -O crowdin.deb
         sudo dpkg -i crowdin.deb
         # translations upload/download
-        crowdin --config crowdin.yaml upload sources --auto-update -b master
-        crowdin --config crowdin.yaml download -b master
+        crowdin upload sources --auto-update -b master
+        crowdin download --verbose -b master
+        # also check the current translation status
+        crowdin status
 
 version: 2
 jobs:
@@ -52,7 +54,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "a1:f6:36:72:14:54:c0:37:47:fe:0f:c1:01:7f:21:f5"
+            - "6b:4c:54:91:18:12:49:6a:8e:44:f3:5e:c2:20:c2:68"
       - checkout
       - *build-site
       - run:
@@ -62,11 +64,8 @@ jobs:
   check-build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:10.15.2
+      - image: circleci/node:erbium
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "a1:f6:36:72:14:54:c0:37:47:fe:0f:c1:01:7f:21:f5"
       - checkout
       - run:
           name: Check if Site Builds
