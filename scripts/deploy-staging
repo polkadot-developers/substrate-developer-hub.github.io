@@ -30,8 +30,8 @@ echo '<?php header("Location: /index.html");?>' > index.php
 echo $HTPASSWD > .htpasswd
 echo -e $HTACCESS > .htaccess
 
-# Everything need to be done locally should be completed by this point. Push to `staging` branch
-#   in github. Notice we have generated a keypair and set deploy key with write access in github.
+# Everything needs to be done locally should be completed by this point. Push the `staging` branch
+# in github. Notice we have generated a keypair and set to deploy keys with write access in github.
 git add .
 git commit -m "Updated"
 git push -f origin staging
