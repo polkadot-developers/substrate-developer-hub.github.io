@@ -392,7 +392,7 @@ will add the custom RPC endpoint and a genesis configuration.
 
 ### Adding the RPC API extension
 
-With the proper runtime API exposed. We now add the RPC to the node's service to call into that
+With the proper runtime API exposed, now we can add the RPC to the node's service to call into that
 runtime API. Because we are now working in the outer node, we are not building to `no_std` and we
 don't have to maintain a dedicated `std` feature.
 
