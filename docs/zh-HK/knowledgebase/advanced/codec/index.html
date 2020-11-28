@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="zh-HK"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>SCALE Codec · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="The SCALE (Simple Concatenated Aggregate Little-Endian) Codec is a lightweight, efficient, binary serialization and deserialization codec."/><meta name="docsearch:language" content="zh-HK"/><meta property="og:title" content="SCALE Codec · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="The SCALE (Simple Concatenated Aggregate Little-Endian) Codec is a lightweight, efficient, binary serialization and deserialization codec."/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/redirect-next.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-HK"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/zh-HK/tutorials" target="_self">Tutorials</a></li><li class="siteNavGroupActive"><a href="/docs/zh-HK/" target="_self">Knowledge Base</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">Recipes</a></li><li class=""><a href="https://substrate.dev/rustdocs/" target="_self">API Reference</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>繁體中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/knowledgebase/advanced/codec">English</a></li><li><a href="/docs/zh-CN/knowledgebase/advanced/codec">简体中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">幫忙翻譯</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Advanced</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Getting Started<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-HK/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/getting-started/">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/getting-started/windows-users">Getting Started on Windows</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/getting-started/glossary">Glossary</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Learn Substrate<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/learn-substrate/extrinsics">Extrinsics</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/learn-substrate/tx-pool">Transaction Pool</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/learn-substrate/account-abstractions">Account Abstractions</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/learn-substrate/session-keys">Session Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/learn-substrate/weight">Transaction Weight</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/learn-substrate/off-chain-workers">Off-Chain Workers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Runtime<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/">Runtime Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/primitives">Runtime Primitives</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/frame">FRAME</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/pallets">Pallets</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/macros">Runtime Macros</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/metadata">Runtime Metadata</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/storage">Runtime Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/origin">Runtime Origin</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/execution">Runtime Execution</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/events">Runtime Events</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/errors">Runtime Errors</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/fees">Transaction Fees</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/off-chain-workers">Off-Chain Workers</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/debugging">Debugging</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/tests">Runtime Tests</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/randomness">On-Chain Randomness</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/upgrades">Runtime Upgrades</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Smart Contracts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/smart-contracts/overview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/smart-contracts/">ink! Smart Contracts</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/smart-contracts/ink-fundamentals">ink! Concepts</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/smart-contracts/ink-development">ink! Development</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/smart-contracts/evm-pallet">EVM Pallet</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/smart-contracts/faq">ink! F.A.Q.</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Integrate<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/integrate/polkadot-js">Polkadot-JS</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/integrate/libraries">Client Libraries</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/integrate/chain-spec">Chain Specification</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/integrate/subkey">The Subkey Tool</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/integrate/memory-profiling">Memory Profiling</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Advanced<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-HK/knowledgebase/advanced/codec">SCALE Codec</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/advanced/consensus">Consensus</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/advanced/block-import">The Block Import Pipeline</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/advanced/executor">Executor</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/advanced/cryptography">Cryptography</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/advanced/storage">Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/advanced/ss58-address-format">SS58 Address Format</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Contribute<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-HK/contribute/help-translate">幫忙翻譯</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-HK" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">SCALE Codec</h1></header><article><div><span><p>The SCALE (Simple Concatenated Aggregate Little-Endian) Codec is a lightweight, efficient, binary serialization and deserialization codec.</p>
+<p>It is designed for high-performance, copy-free encoding and decoding of data in resource-constrained execution contexts, like the <a href="../runtime/">Substrate runtime</a>. It is not self-describing in any way and assumes the decoding context has all type knowledge about the encoded data.</p>
+<h2><a class="anchor" aria-hidden="true" id="scale-for-substrate"></a><a href="#scale-for-substrate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SCALE for Substrate</h2>
+<p>Substrate uses the <a href="https://github.com/paritytech/parity-scale-codec"><code>parity-scale-codec</code></a>, a Rust implementation of the SCALE Codec. This library and the SCALE codec are advantageous for Substrate and blockchain systems because:</p>
+<ul>
+<li>It is lightweight relative to generic serialization frameworks like <a href="https://serde.rs/">serde</a>, which add significant boilerplate that can bloat the size of the binary.</li>
+<li>It does not use Rust STD, and thus can compile to Wasm for the Substrate runtime.</li>
+<li>It is built to have great support in Rust for deriving codec logic for new types:
+<pre><code class="hljs"><span class="token attribute attr-name">#[derive(Encode, Decode)]</span>
+</code></pre></li>
+</ul>
+<p>It is important to define the encoding scheme used on Substrate rather than reuse an existing Rust codec library because this codec needs to be re-implemented on other platforms and languages that want to support interoperability.</p>
+<h2><a class="anchor" aria-hidden="true" id="codec-definition"></a><a href="#codec-definition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Codec Definition</h2>
+<p>Here you will find how the SCALE codec encodes different types.</p>
+<h3><a class="anchor" aria-hidden="true" id="fixed-width-integers"></a><a href="#fixed-width-integers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fixed-width Integers</h3>
+<p>Basic integers are encoded using a fixed-width little-endian (LE) format.</p>
+<h4><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h4>
+<ul>
+<li><code>signed 8-bit integer 69</code>: <code>0x45</code></li>
+<li><code>unsigned 16-bit integer 42</code>: <code>0x2a00</code></li>
+<li><code>unsigned 32-bit integer 16777215</code>: <code>0xffffff00</code></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="compactgeneral-integers"></a><a href="#compactgeneral-integers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Compact/General Integers</h3>
+<p>A &quot;compact&quot; or general integer encoding is sufficient for encoding large integers (up to 2**536) and is more efficient at encoding most values than the fixed-width version. (Though for single-byte values, the fixed-width integer is never worse.)</p>
+<p>It is encoded with the two least significant bits denoting the mode:</p>
+<ul>
+<li><code>0b00</code>: single-byte mode; upper six bits are the LE encoding of the value (valid only for values of 0-63).</li>
+<li><code>0b01</code>: two-byte mode: upper six bits and the following byte is the LE encoding of the value (valid only for values <code>64-(2**14-1)</code>).</li>
+<li><code>0b10</code>: four-byte mode: upper six bits and the following three bytes are the LE encoding of the value (valid only for values <code>(2**14-1)-(2**30-1)</code>).</li>
+<li><code>0b11</code>: Big-integer mode: The upper six bits are the number of bytes following, less four. The value is contained, LE encoded, in the bytes following. The final (most significant) byte must be non-zero. Valid only for values <code>(2**30-1)-(2**536-1)</code>.</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="example-1"></a><a href="#example-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h4>
+<ul>
+<li><code>unsigned integer 0</code>: <code>0x00</code></li>
+<li><code>unsigned integer 1</code>: <code>0x04</code></li>
+<li><code>unsigned integer 42</code>: <code>0xa8</code></li>
+<li><code>unsigned integer 69</code>: <code>0x1501</code></li>
+</ul>
+<p>Error:</p>
+<ul>
+<li><del><code>0x0100</code>: Zero encoded in mode 1</del></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="boolean"></a><a href="#boolean" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Boolean</h3>
+<p>Boolean values are encoded using the least significant bit of a single byte.</p>
+<h4><a class="anchor" aria-hidden="true" id="example-2"></a><a href="#example-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h4>
+<ul>
+<li><code>boolean false</code>: <code>0x00</code></li>
+<li><code>boolean true</code>: <code>0x01</code></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="options"></a><a href="#options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Options</h3>
+<p>One or zero values of a particular type. Encoded as:</p>
+<ul>
+<li><code>0x00</code> if it is <code>None</code> (&quot;empty&quot; or &quot;null&quot;).</li>
+<li><code>0x01</code> followed by the encoded value if it is <code>Some</code>.</li>
+</ul>
+<p>As an exception, in the case that the type is a boolean, then it is always one byte:</p>
+<ul>
+<li><code>0x00</code> if it is <code>None</code> (&quot;empty&quot; or &quot;null&quot;).</li>
+<li><code>0x01</code> if it is the <code>true</code> value.</li>
+<li><code>0x02</code> if it is the <code>false</code> value.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="results"></a><a href="#results" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Results</h3>
+<p>Results are commonly used enumerations which indicate whether certain operations were successful or unsuccessful. Encoded as:</p>
+<ul>
+<li><code>0x00</code> if the operation was successful, followed by the encoded value.</li>
+<li><code>0x01</code> if the operation was unsuccessful, followed by the encoded error.</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="example-3"></a><a href="#example-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h4>
+<pre><code class="hljs css language-rust"><span class="token comment">// A custom result type used in a crate.</span>
+<span class="token keyword">let</span> <span class="token class-name">Result</span> <span class="token operator">=</span> <span class="token namespace">std<span class="token punctuation">::</span>result<span class="token punctuation">::</span></span><span class="token class-name">Result</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token punctuation">,</span> <span class="token keyword">bool</span><span class="token operator">></span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li><code>Ok(42)</code>: <code>0x002a</code></li>
+<li><code>Err(false)</code>: <code>0x0100</code></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="vectors-lists-series-sets"></a><a href="#vectors-lists-series-sets" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Vectors (lists, series, sets)</h3>
+<p>A collection of same-typed values is encoded, prefixed with a <em>compact</em> encoding of the number of items, followed by each item's encoding concatenated in turn.</p>
+<h4><a class="anchor" aria-hidden="true" id="example-4"></a><a href="#example-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h4>
+<p>Vector of unsigned 16-bit integers:</p>
+<pre><code class="hljs"><span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">]</span>
+</code></pre>
+<p>SCALE Bytes:</p>
+<pre><code class="hljs"><span class="token number">0x18040008000f00100017002a00</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="strings"></a><a href="#strings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Strings</h3>
+<p>Strings are Vectors containing a valid UTF8 sequence.</p>
+<h3><a class="anchor" aria-hidden="true" id="tuples"></a><a href="#tuples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tuples</h3>
+<p>A fixed-size series of values, each with a possibly different but predetermined and fixed type. This is simply the concatenation of each encoded value.</p>
+<h4><a class="anchor" aria-hidden="true" id="example-5"></a><a href="#example-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h4>
+<p>Tuple of compact unsigned integer and boolean:</p>
+<p><code>(3, false)</code>: <code>0x0c00</code></p>
+<h3><a class="anchor" aria-hidden="true" id="data-structures"></a><a href="#data-structures" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Data Structures</h3>
+<p>For structures, the values are named, but that is irrelevant for the encoding (names are ignored - only order matters). <strong>All containers store elements consecutively. The order of the elements is not fixed, depends on the container, and cannot be relied on at decoding.</strong></p>
+<p>This implicitly means that decoding some byte-array into a specified structure that enforces an order and then re-encoding it could result in a different byte array than the original that was decoded.</p>
+<h4><a class="anchor" aria-hidden="true" id="example-6"></a><a href="#example-6" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h4>
+<p>Imagine a <code>SortedVecAsc&lt;u8&gt;</code> structure that always has byte-elements in ascending order and you have <code>[3, 5, 2, 8]</code>, where the first element is the number of bytes following (i.e. <code>[3, 5, 2]</code> would be invalid).</p>
+<p><code>SortedVecAsc::from([3, 5, 2, 8])</code> would decode to <code>[3, 2, 5, 8]</code>, which does not match the original encoding.</p>
+<h3><a class="anchor" aria-hidden="true" id="enumerations-tagged-unions"></a><a href="#enumerations-tagged-unions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Enumerations (tagged-unions)</h3>
+<p>A fixed number of variants, each mutually exclusive and potentially implying a further value or series of values.</p>
+<p>Encoded as the first byte identifying the index of the variant that the value is. Any further bytes are used to encode any data that the variant implies. Thus, no more than 256 variants are supported.</p>
+<h4><a class="anchor" aria-hidden="true" id="example-7"></a><a href="#example-7" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h4>
+<pre><code class="hljs css language-rust"><span class="token keyword">enum</span> <span class="token type-definition class-name">IntOrBool</span> <span class="token punctuation">{</span>
+  <span class="token class-name">Int</span><span class="token punctuation">(</span><span class="token keyword">u8</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token class-name">Bool</span><span class="token punctuation">(</span><span class="token keyword">bool</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li><code>Int(42)</code>: <code>0x002a</code></li>
+<li><code>Bool(true)</code>: <code>0x0101</code></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="implementations"></a><a href="#implementations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Implementations</h2>
+<p>The Parity SCALE Codec has been implemented in many languages, including a reference implementation that is written in Rust and maintained by Parity Technologies.</p>
+<ul>
+<li>Rust: <a href="https://github.com/paritytech/parity-scale-codec"><code>paritytech/parity-scale-codec</code></a></li>
+<li>Python: <a href="https://github.com/polkascan/py-scale-codec"><code>polkascan/py-scale-codec</code></a></li>
+<li>Golang: <a href="https://github.com/itering/scale.go"><code>itering/scale.go</code></a></li>
+<li>C++: <a href="https://github.com/soramitsu/kagome/tree/master/core/scale"><code>soramitsu/scale</code></a></li>
+<li>JavaScript: <a href="https://github.com/polkadot-js/api"><code>polkadot-js/api</code></a></li>
+<li>AssemblyScript: <a href="https://github.com/LimeChain/as-scale-codec"><code>LimeChain/as-scale-codec</code></a></li>
+<li>Haskell: <a href="https://github.com/airalab/hs-web3/tree/master/src/Codec"><code>airalab/hs-web3</code></a></li>
+<li>Java: <a href="https://github.com/emeraldpay/polkaj"><code>emeraldpay/polkaj</code></a></li>
+<li>Ruby: <a href="https://github.com/itering/scale.rb"><code>itering/scale.rb</code></a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h2>
+<ul>
+<li><p>Visit the reference docs for the <a href="https://substrate.dev/rustdocs/v2.0.0/parity_scale_codec/index.html"><code>parity-scale-codec</code></a>.</p></li>
+<li><p>Visit the auxiliary encoding section of the <a href="https://github.com/w3f/polkadot-spec/">Polkadot runtime environment specification</a>.</p></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-HK/knowledgebase/integrate/memory-profiling"><span class="arrow-prev">← </span><span>Memory Profiling</span></a><a class="docs-next button" href="/docs/zh-HK/knowledgebase/advanced/consensus"><span>Consensus</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#scale-for-substrate">SCALE for Substrate</a></li><li><a href="#codec-definition">Codec Definition</a><ul class="toc-headings"><li><a href="#fixed-width-integers">Fixed-width Integers</a></li><li><a href="#compactgeneral-integers">Compact/General Integers</a></li><li><a href="#boolean">Boolean</a></li><li><a href="#options">Options</a></li><li><a href="#results">Results</a></li><li><a href="#vectors-lists-series-sets">Vectors (lists, series, sets)</a></li><li><a href="#strings">Strings</a></li><li><a href="#tuples">Tuples</a></li><li><a href="#data-structures">Data Structures</a></li><li><a href="#enumerations-tagged-unions">Enumerations (tagged-unions)</a></li></ul></li><li><a href="#implementations">Implementations</a></li><li><a href="#references">References</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/zh-HK/tutorials">Tutorials</a><a href="/docs/zh-HK/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/zh-HK/community">Community Home</a><a href="/zh-HK/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/zh-HK/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+                var cookieSettings = document.getElementById('cookie-settings');
+                cookieSettings.onclick = function() {
+                  return klaro.show();
+                };
+              </script></a></div></section><section class="copyright">Copyright © 2020 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-HK"]}
+              });
+            </script></body></html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="zh-HK"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Getting Started on Windows · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="If you are trying to set up a Windows computer to build Substrate, do the following:"/><meta name="docsearch:language" content="zh-HK"/><meta property="og:title" content="Getting Started on Windows · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="If you are trying to set up a Windows computer to build Substrate, do the following:"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/redirect-next.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-HK"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/zh-HK/tutorials" target="_self">Tutorials</a></li><li class="siteNavGroupActive"><a href="/docs/zh-HK/" target="_self">Knowledge Base</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">Recipes</a></li><li class=""><a href="https://substrate.dev/rustdocs/" target="_self">API Reference</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>繁體中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/knowledgebase/getting-started/windows-users">English</a></li><li><a href="/docs/zh-CN/knowledgebase/getting-started/windows-users">简体中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">幫忙翻譯</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Getting Started</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Getting Started<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-HK/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/getting-started/">Installation</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-HK/knowledgebase/getting-started/windows-users">Getting Started on Windows</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/getting-started/glossary">Glossary</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Learn Substrate<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/learn-substrate/extrinsics">Extrinsics</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/learn-substrate/tx-pool">Transaction Pool</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/learn-substrate/account-abstractions">Account Abstractions</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/learn-substrate/session-keys">Session Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/learn-substrate/weight">Transaction Weight</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/learn-substrate/off-chain-workers">Off-Chain Workers</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Runtime<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/">Runtime Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/primitives">Runtime Primitives</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/frame">FRAME</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/pallets">Pallets</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/macros">Runtime Macros</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/metadata">Runtime Metadata</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/storage">Runtime Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/origin">Runtime Origin</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/execution">Runtime Execution</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/events">Runtime Events</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/errors">Runtime Errors</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/fees">Transaction Fees</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/off-chain-workers">Off-Chain Workers</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/debugging">Debugging</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/tests">Runtime Tests</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/randomness">On-Chain Randomness</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/runtime/upgrades">Runtime Upgrades</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Smart Contracts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/smart-contracts/overview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/smart-contracts/">ink! Smart Contracts</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/smart-contracts/ink-fundamentals">ink! Concepts</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/smart-contracts/ink-development">ink! Development</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/smart-contracts/evm-pallet">EVM Pallet</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/smart-contracts/faq">ink! F.A.Q.</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Integrate<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/integrate/polkadot-js">Polkadot-JS</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/integrate/libraries">Client Libraries</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/integrate/chain-spec">Chain Specification</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/integrate/subkey">The Subkey Tool</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/integrate/memory-profiling">Memory Profiling</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Advanced<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/advanced/codec">SCALE Codec</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/advanced/consensus">Consensus</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/advanced/block-import">The Block Import Pipeline</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/advanced/executor">Executor</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/advanced/cryptography">Cryptography</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/advanced/storage">Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-HK/knowledgebase/advanced/ss58-address-format">SS58 Address Format</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Contribute<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-HK/contribute/help-translate">幫忙翻譯</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-HK" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Getting Started on Windows</h1></header><article><div><span><p>If you are trying to set up a Windows computer to build Substrate, do the following:</p>
+<ol>
+<li><p>Download and install &quot;Build Tools for Visual Studio:&quot;</p>
+<ul>
+<li>You can get it at this link: <a href="https://aka.ms/buildtools">https://aka.ms/buildtools</a>.</li>
+<li>Run the installation file: <code>vs_buildtools.exe</code>.</li>
+<li>Ensure the &quot;Windows 10 SDK&quot; component is included when installing the Visual C++ Build Tools.</li>
+<li>Restart your computer.</li>
+</ul></li>
+<li><p>Install Rust:</p>
+<ul>
+<li><p>Detailed instructions are provided by the <a href="https://doc.rust-lang.org/book/ch01-01-installation.html#installing-rustup-on-windows">Rust Book</a>.</p>
+<ul>
+<li><p>Download from: <a href="https://www.rust-lang.org/tools/install">https://www.rust-lang.org/tools/install</a>.</p></li>
+<li><p>Run the installation file: <code>rustup-init.exe</code>.</p>
+<blockquote>
+<p>Note that it should <strong>not</strong> prompt you to install <code>vs_buildtools</code> since you did it in step 1.</p>
+</blockquote></li>
+<li><p>Choose &quot;Default Installation.&quot;</p></li>
+<li><p>To get started, you need Cargo's bin directory (<code>%USERPROFILE%\.cargo\bin</code>) in your PATH environment variable. Future applications will automatically have the correct environment, but you may need to restart your current shell.</p></li>
+</ul></li>
+</ul></li>
+<li><p>Run these commands in Command Prompt (<code>CMD</code>) to set up your Wasm Build Environment:</p>
+<pre><code class="hljs css language-bash">rustup update nightly
+rustup update stable
+rustup target add wasm32-unknown-unknown --toolchain nightly
+</code></pre></li>
+<li><p>Install LLVM: <a href="https://releases.llvm.org/download.html">https://releases.llvm.org/download.html</a></p></li>
+<li><p>Install OpenSSL with <code>vcpkg</code>:</p>
+<pre><code class="hljs css language-bash">mkdir C:\Tools
+<span class="hljs-built_in">cd</span> C:\Tools
+git <span class="hljs-built_in">clone</span> https://github.com/Microsoft/vcpkg.git
+<span class="hljs-built_in">cd</span> vcpkg
+.\bootstrap-vcpkg.bat
+.\vcpkg.exe install openssl:x64-windows-static
+</code></pre></li>
+<li><p>Add OpenSSL to your System Variables using PowerShell:</p>
+<pre><code class="hljs css language-powershell"><span class="hljs-variable">$env:OPENSSL_DIR</span> = <span class="hljs-string">'C:\Tools\vcpkg\installed\x64-windows-static'</span>
+<span class="hljs-variable">$env:OPENSSL_STATIC</span> = <span class="hljs-string">'Yes'</span>
+[<span class="hljs-type">System.Environment</span>]::SetEnvironmentVariable(<span class="hljs-string">'OPENSSL_DIR'</span>, <span class="hljs-variable">$env:OPENSSL_DIR</span>, [<span class="hljs-type">System.EnvironmentVariableTarget</span>]::User)
+[<span class="hljs-type">System.Environment</span>]::SetEnvironmentVariable(<span class="hljs-string">'OPENSSL_STATIC'</span>, <span class="hljs-variable">$env:OPENSSL_STATIC</span>, [<span class="hljs-type">System.EnvironmentVariableTarget</span>]::User)
+</code></pre></li>
+<li><p>Finally, install <code>cmake</code>: <a href="https://cmake.org/download/">https://cmake.org/download/</a></p></li>
+</ol>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-HK/knowledgebase/getting-started/index"><span class="arrow-prev">← </span><span>Installation</span></a><a class="docs-next button" href="/docs/zh-HK/knowledgebase/getting-started/glossary"><span>Glossary</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/zh-HK/tutorials">Tutorials</a><a href="/docs/zh-HK/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/zh-HK/community">Community Home</a><a href="/zh-HK/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/zh-HK/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+                var cookieSettings = document.getElementById('cookie-settings');
+                cookieSettings.onclick = function() {
+                  return klaro.show();
+                };
+              </script></a></div></section><section class="copyright">Copyright © 2020 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-HK"]}
+              });
+            </script></body></html>
