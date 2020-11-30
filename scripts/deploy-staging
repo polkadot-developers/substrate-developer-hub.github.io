@@ -2,7 +2,7 @@
 set -xe
 
 APP_DIR=$(cd $(dirname "${BASH_SOURCE[0]}")/.. && pwd)
-GIT_REPO="https://github.com/jimmychu0807/devhub-maindocs.git"
+GIT_REPO="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io.git"
 PROJECT_BUILD_DIR="build/substrate-developer-hub.github.io"
 
 HTPASSWD='parity-devhub:$apr1$CJZJktOW$PEHfLAfsglPPvjnOhuIuV.'

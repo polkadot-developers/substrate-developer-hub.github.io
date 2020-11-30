@@ -54,7 +54,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "6b:4c:54:91:18:12:49:6a:8e:44:f3:5e:c2:20:c2:68"
+            - "a1:f6:36:72:14:54:c0:37:47:fe:0f:c1:01:7f:21:f5"
       - checkout
       - *build-site
       - run:
