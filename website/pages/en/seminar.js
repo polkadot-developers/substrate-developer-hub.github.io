@@ -95,7 +95,7 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>8 Dec</strong> ...
+								On <strong>8 Dec</strong> Kaichao Sun, Parity Developer Advocate, will share about his implementation of permissioned network in Substrate, referring to this <a href='https://github.com/paritytech/substrate/pull/6996'>PR #6996</a>, and an alternative attempt <a href='https://github.com/paritytech/substrate/pull/6863'>PR #6863</a>. This talk is particularly suitable for those who are interested to build a private/consortium chain with Substrate.
 							</p>
 							<p>
 								On <strong>15 Dec</strong> Julien du Bois will discuss his journey with Substrate, which he used to implement the next generation of <a href='https://pirl.io/en/'>PIRL</a>.
