@@ -95,7 +95,10 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>1 Dec</strong> Substrate community member Sacha Lansky will present his exploration into FRAME's rich governance capabilities.
+								On <strong>8 Dec</strong> ...
+							</p>
+							<p>
+								On <strong>15 Dec</strong> Julien du Bois will discuss his journey with Substrate, which he used to implement the next generation of <a href='https://pirl.io/en/'>PIRL</a>.
 							</p>
 						</div>
 
