@@ -127,7 +127,7 @@ $ ./target/release/node-template build-spec --<span class="hljs-built_in">disabl
 <pre><code class="hljs css language-bash">$ ./target/release/node-template build-spec --chain=customSpec.json --raw --<span class="hljs-built_in">disable</span>-default-bootnode &gt; customSpecRaw.json
 2020-05-28 13:31:37 Building chain spec
 </code></pre>
-<p>最后与网络中的所有其他验证人共享<code>customSpecRaw.json</code>。</p>
+<p>最后，将 <code>customSpecRaw.json</code> 与网络中的所有其他验证节点共享。</p>
 <blockquote>
 <p>A single person should create the chain spec and share the resulting <strong><code>customSpecRaw.json</code></strong> file with their fellow validators.</p>
 <p>Because Rust -&gt; Wasm optimized builds aren't &quot;reproducible&quot;, each person will get a slightly different Wasm blob which will break consensus if each participant generates the file themselves.</p>
