@@ -103,8 +103,8 @@
 <tr><th><div style="min-width:110pt"> Flags </div></th><th>描述</th></tr>
 </thead>
 <tbody>
-<tr><td><code>--base-path</code></td><td>指定一个目录，Substrate 将用它来存储与此链有关的所有数据。 如果未指定目录，将使用默认路径。 如果目录不存在，将创建它。 若该路径下已经存在其它区块链的数据，系统将会报错。 Either clear the directory or choose a different one.</td></tr>
-<tr><td><code>--chain local</code></td><td>Specifies which chain specification to use. There are a few prepackaged options including <code>local</code>, <code>development</code>, and <code>staging</code> but generally one specifies their own chain spec file. We'll specify our own file in a later step.</td></tr>
+<tr><td><code>--base-path</code></td><td>指定一个目录，Substrate 将用它来存储与此链有关的所有数据。 如果未指定目录，将使用默认路径。 如果目录不存在，将创建它。 若该路径下已经存在其它区块链的数据，系统将会报错。 在该情况下，请清除此目录，或选择不同的目录。</td></tr>
+<tr><td><code>--chain local</code></td><td>指定要使用的链的规范。 这里有一些预设的选项，包括 <code>local</code> <code>development</code> 和 <code>staging</code> ，但通常由开发者指定自己的chain spec文件。 我们将在后续阶段指定自己的文件。</td></tr>
 <tr><td><code>--alice</code></td><td>Puts the predefined Alice keys (both for block production and finalization) in the node's keystore. Generally one should generate their own keys and insert them with an RPC call. We'll generate our own keys in a later step. This flag also makes Alice a validator.</td></tr>
 <tr><td><code>--port 30333</code></td><td>Specifies the port that your node will listen for p2p traffic on. <code>30333</code> is the default and this flag can be omitted if you're happy with the default. If Bob's node will run on the same physical system, you will need to explicitly specify a different port for it.</td></tr>
 <tr><td><code>--ws-port 9945</code></td><td>Specifies the port that your node will listen for incoming WebSocket traffic on. The default value is <code>9944</code>. This example uses a custom web socket port number (<code>9945</code>).</td></tr>
