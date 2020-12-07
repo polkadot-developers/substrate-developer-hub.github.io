@@ -100,7 +100,7 @@ pallet_node_authorization: Some(NodeAuthorizationConfig {
 }),
 ```
 
-`NodeAuthorizationConfig` contains a property named `nodes`, which is vector of tuple. The first element of the tuple is the `OpaquePeerId` and we use `bs58::decode` to convert the `PeerId` in human readable format to bytes. The second element of the tuple is `AccountId` and represents the owner of this node, here we are using one of the provided endowned accounts for demonstration. To make it clear, the owner of the first node is Alice, and Bob owns the seconde node.
+`NodeAuthorizationConfig` contains a property named `nodes`, which is vector of tuple. The first element of the tuple is the `OpaquePeerId` and we use `bs58::decode` to convert the `PeerId` in human readable format to bytes. The second element of the tuple is `AccountId` and represents the owner of this node, here we are using one of the provided endowned accounts for demonstration. To make it clear, the owner of the first node is Alice, and Bob owns the second node.
 
 You may wondering where the `12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2` comes from. If you have missed reading the document [P2P Networking](https://wiki.polkadot.network/docs/en/maintain-guides-how-to-setup-sentry-node#p2p-networking), I highly recommend you finish it first. Then we can use [subkey](https://substrate.dev/docs/en/knowledgebase/integrate/subkey#generating-node-keys) to generate the above human readable `PeerId`.
 

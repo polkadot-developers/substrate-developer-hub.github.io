@@ -5,7 +5,7 @@ title: Launch our permissioned network
 Before even starting a node, let's make sure everything is compiled for our project.
 
 ```shell
-cargo build --release
+WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release
 ```
 
 In this part, we'll launch 4 nodes, include 3 well known nodes and 1 normal node. Here are the node keys and peer ids that are used in this tutorial.
@@ -23,7 +23,7 @@ c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a
 0024080112201ce5f00ef6e89374afb625f1ae4c1546d31234e87e3c3f51a62b91dd6bfa57df
 ```
 
-> Notes: You can get the above bs59 decoded peer id by using `bs58::decode` similar to how it was used in our genese storage configuration. Otherwise, there is a small [tool](https://whisperd.tech/bs58-codec/) to ease your life.
+> Notes: You can get the above bs58 decoded peer id by using `bs58::decode` similar to how it was used in our genese storage configuration. Otherwise, there is a small [tool](https://whisperd.tech/bs58-codec/) to ease your life.
 
 For Bob's node,
 

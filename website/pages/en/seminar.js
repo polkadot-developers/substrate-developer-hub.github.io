@@ -95,12 +95,10 @@ function Seminar(props) {
 						<div className='col-md-6 first'>
 							<h4 className='mb-2'>What topics are coming up?</h4>
 							<p>
-								On <strong>3 Nov</strong>, PureStake's Joshy Orndorff will share with us two different concepts
-								that he's encountered while working on Moonbeam,{' '}
-								<a href='https://github.com/paritytech/frontier/tree/master/consensus' target='_blank'>FrontierBlockImport</a>{' '}
-								and Moonbeam's{' '}
-								<a href='https://github.com/PureStake/moonbeam/pull/60' target='_blank'>dual Parachain / Standalone runtime</a>.{' '}
-								This presentation will be particularly relevant for anyone building a Parachain. Jimmy Chu will be our host.
+								On <strong>8 Dec</strong> Kaichao Sun, Parity Developer Advocate, will share about his implementation of permissioned network in Substrate, referring to <a href='https://github.com/paritytech/substrate/pull/6996'>PR #6996</a>, and an alternative attempt <a href='https://github.com/paritytech/substrate/pull/6863'>PR #6863</a>. This talk is particularly suitable for those who are interested to build a private/consortium chain with Substrate. We also have <a href='/docs/en/tutorials/build-permission-network/'>a tutorial</a> to help you exactly on this.
+							</p>
+							<p>
+								On <strong>15 Dec</strong> Julien du Bois will discuss his journey with Substrate, which he used to implement the next generation of <a href='https://pirl.io/en/'>PIRL</a>.
 							</p>
 						</div>
 

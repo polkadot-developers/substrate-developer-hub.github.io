@@ -70,7 +70,8 @@ FRAME storage migrations will run in this order:
 
 1. `frame_system::on_runtime_upgrade`
 1. Custom `on_runtime_upgrade`, as described above
-1. All `on_runtime_upgrade` functions defined in the pallets included in the runtime, in the order described above
+1. All `on_runtime_upgrade` functions defined in the pallets included in the runtime, in the order
+   described above
 
 ### Testing Migrations
 
@@ -85,3 +86,6 @@ and storage migrations.
 ## Learn More
 
 - Read more about runtime upgrades in the [Executor documentation](../advanced/executor).
+- Parity Runtime Engineer Alexander Popiak maintains a
+  [Substrate Migrations](https://github.com/apopiak/substrate-migrations) repository with lots of
+  helpful information about Substrate runtime upgrades and storage migrations.
