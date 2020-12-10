@@ -24,7 +24,7 @@ The first participant can launch her node with:
   --rpc-port 9933 \
   --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
   --validator \
-  --rpc-methods=Unsafe \
+  --rpc-methods Unsafe \
   --name MyNode01
 ```
 
@@ -35,7 +35,7 @@ Here are some differences from when we launched as Alice.
 - The `--chain` flag has changed to use our custom chain spec.
 - I've added the optional `--name` flag. You may use it to give your node a human-readable name in
   the telemetry UI.
-- The optional `--rpc-methods=Unsafe` flag has been added. As the name indicates, this flag is not
+- The optional `--rpc-methods Unsafe` flag has been added. As the name indicates, this flag is not
   safe to use in a production setting, but it allows this tutorial to stay focused on the topic at
   hand.
 
@@ -159,7 +159,7 @@ parameter as Bob did previously.
   --rpc-port 9934 \
   --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
   --validator \
-  --rpc-methods=Unsafe \
+  --rpc-methods Unsafe \
   --name MyNode02 \
   --bootnodes /ip4/<IP Address>/tcp/<Port>/p2p/<Peer ID>
 ```
