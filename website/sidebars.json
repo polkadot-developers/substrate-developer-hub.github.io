@@ -12,8 +12,7 @@
       "knowledgebase/learn-substrate/account-abstractions",
       "knowledgebase/learn-substrate/session-keys",
       "knowledgebase/learn-substrate/weight",
-      "knowledgebase/learn-substrate/off-chain-workers",
-      "knowledgebase/learn-substrate/off-chain-indexing"
+      "knowledgebase/learn-substrate/off-chain-workers"
     ],
     "Runtime": [
       "knowledgebase/runtime/index",
