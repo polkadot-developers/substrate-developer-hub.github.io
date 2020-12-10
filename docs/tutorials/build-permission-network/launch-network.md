@@ -129,7 +129,7 @@ Now we have 3 well known nodes.
 
 ## Add an extra connection
 
-Let's add another node, but not well known, only a "sub-node" of Charlie, which can only conneted to Charlie's well known node.
+Let's add another node, not a well-known node but a "sub-node" of Charlie, which can only connect to Charlie's well-known node.
 
 Start the node with following command.
 
