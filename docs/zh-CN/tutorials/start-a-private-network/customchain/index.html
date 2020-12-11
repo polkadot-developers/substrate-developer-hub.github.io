@@ -84,7 +84,7 @@
   --rpc-port 9933 \
   --telemetry-url <span class="hljs-string">'wss://telemetry.polkadot.io/submit/ 0'</span> \
   --validator \
-  --rpc-methods=Unsafe \
+  --rpc-methods Unsafe \
   --name MyNode01
 </code></pre>
 <p>以下是该启动流程与以 Alice 身份启动时的不同之处：</p>
@@ -92,7 +92,7 @@
 <li><code>--alice</code> 我们省略了该 flag。 但很快我们就会通过 RPC 将我们自己的密钥加进密钥库中。</li>
 <li><code>--chain</code> 该 flag 选项已更改，以使用我们自定义的 chain spec。</li>
 <li><code>--name</code> 添加了该 flag。 让你可在 telemetry 界面给该节点命名。</li>
-<li><code>--rpc-methods=Unsafe</code> 添加了这可选 flag。 顾名思义，在生产环境中使用该 flag 并不安全，但它可让本教程专注于当前主旨。</li>
+<li>The optional <code>--rpc-methods Unsafe</code> flag has been added. 顾名思义，在生产环境中使用该 flag 并不安全，但它可让本教程专注于当前主旨。</li>
 </ul>
 <p>你应该看到控制台输出如下内容：</p>
 <pre><code class="hljs css language-bash">Sep 24 13:28:56.804  INFO Substrate Node    
@@ -169,7 +169,7 @@ $ curl http://localhost:9933 -H <span class="hljs-string">"Content-Type:applicat
   --rpc-port 9934 \
   --telemetry-url <span class="hljs-string">'wss://telemetry.polkadot.io/submit/ 0'</span> \
   --validator \
-  --rpc-methods=Unsafe \
+  --rpc-methods Unsafe \
   --name MyNode02 \
   --bootnodes /ip4/&lt;IP Address&gt;/tcp/&lt;Port&gt;/p2p/&lt;Peer ID&gt;
 </code></pre>
