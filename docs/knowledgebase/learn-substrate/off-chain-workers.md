@@ -11,7 +11,7 @@ their results are submitted back to the blockchain using transactions. While thi
 still has several flaws with respect to security, scalability, and infrastructure efficiency.
 
 To make the off-chain data integration secure and more efficient, Substrate provides off-chain
-workers. The off-chain worker subsystem (OCWs) allows execution of long-running and possibly non-
+workers. The off-chain worker (OCW) subsystem allows execution of long-running and possibly non-
 deterministic tasks (e.g. web requests, encryption/decryption and signing of data, random number
 generation, CPU-intensive computations, enumeration/aggregation of on-chain data, etc.) that could
 otherwise require longer than the block execution time.
@@ -65,4 +65,3 @@ be exactly the same for every node with indexing enabled.
 
 Off-chain database can be read using remote procedure calls (RPC) so it fits the use case of storing
 indefinitely growing data without over-consuming the on-chain storage.
-
