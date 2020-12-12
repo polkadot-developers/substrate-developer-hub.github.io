@@ -1,5 +1,5 @@
 ---
-title: Off-Chain Workers
+title: Off-Chain Features
 ---
 
 ## Overview
@@ -11,19 +11,30 @@ their results are submitted back to the blockchain using transactions. While thi
 still has several flaws with respect to security, scalability, and infrastructure efficiency.
 
 To make the off-chain data integration secure and more efficient, Substrate provides off-chain
-workers. The off-chain worker (OCW) subsystem allows execution of long-running and possibly non-
+features:
+
+- **Off-Chain Worker (OCW)** subsystem allows execution of long-running and possibly non-
 deterministic tasks (e.g. web requests, encryption/decryption and signing of data, random number
 generation, CPU-intensive computations, enumeration/aggregation of on-chain data, etc.) that could
 otherwise require longer than the block execution time.
 
-Off-chain workers have their own Wasm execution environment outside of the Substrate runtime. This
-separation of concerns is to make sure that the block production is not impacted by the long-running
-tasks. However, as the off-chain workers are declared in the same code as the runtime, they can
+- **Off-Chain Storage** offers storage that is local to a Substrate node that can be accessed both by 
+on-chain logic and off-chain worker. This is great for different worker threads to communicate to 
+each others and for storing user- / node-specific data that does  not require consensus over the
+whole network.
+
+- **Off-Chain Indexing** allows the runtime, if opted-in, to write directly to the off-chain storage
+independently from OCWs. This serves as a local/temporary storage for on-chain logic and complement
+ to its on-chain state.
+
+Off-chain features run in their own Wasm execution environment outside of the Substrate runtime. This
+separation of concerns makes sure that block production is not impacted by long-running off-chain 
+tasks. However, as the off-chain features are declared in the same code as the runtime, they can
 easily access on-chain state for their computations.
 
 ![Off-chain Workers](assets/off-chain-workers-v2.png)
 
-## APIs
+## Off-Chain Workers
 
 Off-chain workers have access to extended APIs for communicating with the external world:
 
@@ -47,15 +58,30 @@ should be implemented to determine what information gets into the chain.
 For more information on how to use off-chain workers in your next runtime development project,
 please refer to our [Development Guide](../runtime/off-chain-workers).
 
-# Off-Chain Indexing
+## Off-Chain Storage
+
+As its name indicated, the storage is not stored on-chain. It can be accessed (both read and write) 
+by on-chain logic and off-chain worker threads. This storage is not populated among the blockchain 
+network and does not need to have consensus computation over. 
+
+As an off-chain worker thread is being spawned off during each block import, there could be more 
+than one off-chain worker thread running at any given time. So, similar to any multi-threaded 
+programming environment, there are also utilities to 
+[mutex lock](https://en.wikipedia.org/wiki/Lock_(computer_science)) the storage when accessing them 
+for data consistency.
+
+Off-chain storage serves as a bridge for various off-chain worker threads to communicate to each 
+others and between off-chain and on-chain logics. 
+
+## Off-Chain Indexing
 
 Storage in the context of blockchain is mostly about on-chain state. But it is expensive (as 
 it is populated to each node in the network) and not recommended for historical or user-generated 
 data which grow indefinitely over time.
 
-Luckily every Substrate node comes with off-chain database also. One of the main use cases is to be
+Luckily every Substrate node comes with off-chain storage also. One of the main use cases is to be
 used together with off-chain workers mentioned above. In addition, Substrate also includes a feature
-called "off-chain indexing", which allows the runtime to write directly to the off-chain database
+called "off-chain indexing", which allows the runtime to write directly to the off-chain storage
 independently from OCWs. Nodes have to opt-in for persistency of this data via 
 `--enable-offchain-indexing` flag when starting up the Substrate node.
 
