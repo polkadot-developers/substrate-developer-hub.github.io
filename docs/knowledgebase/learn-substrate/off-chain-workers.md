@@ -25,7 +25,7 @@ easily access on-chain state for their computations.
 
 ## APIs
 
-OCWs have access to extended APIs for communicating with the external world:
+Off-chain workers have access to extended APIs for communicating with the external world:
 
 - Ability to submit transactions (either signed or unsigned) to the chain to publish computation
   results.
