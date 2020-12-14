@@ -27,8 +27,7 @@ class Terms extends React.Component {
             website.</span></p>
                 <p><span>Parity Technologies Limited (&quot;</span><span><b>Parity</b></span><span
                 >&quot;) is a company registered in England and Wales under company number 09760015 with its
-                    registered office at Ignition Law, Moray House, Floor 1, Moray House, 23-31 Great Titchfield Street, London,
-                    United Kingdom, WC1W 7PA. We operate the website substrate.dev and any subdomains (including as identified
+                    registered office at Ignition Law, 1 Sans Walk, London, England, EC1R 0LT. We operate the website substrate.dev and any subdomains (including as identified
             below, as may change from time to time) (the &quot;</span><span><b>Site</b></span><span
                     >&quot;). </span></p>
                 <p><span><h2>Understanding these Terms of Use</h2></span></p>
@@ -291,12 +290,11 @@ class Terms extends React.Component {
                 <ul>
                     <li><span>Registered in England and Wales</span></li>
                     <li><span>Registered Number: 09760015</span></li>
-                    <li><span>Registered Office: Ignition Law, Moray House Floor 1, 23-31 Great Titchfield
-                Street, London, United Kingdom, WC1W 7PA.</span></li>
+                    <li><span>Registered Office: Ignition Law, 1 Sans Walk, London, England, EC1R 0LT.</span></li>
                 </ul>
                 <p><span>Thank you for visiting the Site.</span></p>
                 <p><b><span>Terms last updated</span><span>: </span><span>10</span><span
-                >&nbsp;July 2020 </span><span
+                >&nbsp;December 2020 </span><span
                 >&nbsp;</span></b></p><br></br>
             </div>
         )
