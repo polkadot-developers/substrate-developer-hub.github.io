@@ -19,7 +19,7 @@ generation, CPU-intensive computations, enumeration/aggregation of on-chain data
 otherwise require longer than the block execution time.
 
 - **Off-Chain Storage** offers storage that is local to a Substrate node that can be accessed both by 
-on-chain logic and off-chain worker. This is great for different worker threads to communicate to 
+on-chain logic (via off-chain indexing) and off-chain worker. This is great for different worker threads to communicate to 
 each others and for storing user- / node-specific data that does  not require consensus over the
 whole network.
 
