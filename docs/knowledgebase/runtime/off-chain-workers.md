@@ -4,7 +4,7 @@ title: Off-Chain Workers
 
 This article covers the technical aspects of using off-chain workers in a Substrate runtime. For a
 conceptual overview of off-chain workers see the
-[Conceptual Guide](../learn-substrate/off-chain-workers).
+[Conceptual Guide](../learn-substrate/off-chain-features#off-chain-workers).
 
 ## Using Off-Chain Workers in the Runtime
 
@@ -401,6 +401,7 @@ using an external library to parse the JSON result in a `no_std` environment.
 
 ### Learn More
 
+- [Off-Chain Features Conceptual Guide](../learn-substrate/off-chain-features#off-chain-workers)
 - [Signed Transactions](../learn-substrate/extrinsics#signed-transactions)
 - [Unsigned Transactions](../learn-substrate/extrinsics#unsigned-transactions)
 
