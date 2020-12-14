@@ -39,16 +39,21 @@ easily access on-chain state for their computations.
 
 Off-chain workers have access to extended APIs for communicating with the external world:
 
-- Ability to submit transactions (either signed or unsigned) to the chain to publish computation
-  results.
+- Ability to
+  [submit transactions](https://substrate.dev/rustdocs/v2.0.0/sp_runtime/offchain/trait.TransactionPool.html)
+  (either signed or unsigned) to the chain to publish computation results.
 - A fully-featured HTTP client allowing the worker to access and fetch data from external services.
 - Access to the local keystore to sign and verify statements or transactions.
-- An additional, local key-value database shared between all off-chain workers.
+- An additional, local
+  [key-value database](https://substrate.dev/rustdocs/v2.0.0/sp_runtime/offchain/trait.OffchainStorage.html)
+  shared between all off-chain workers.
 - A secure, local entropy source for random number generation.
-- Access to the node's precise local time and the ability to sleep and resume work.
+- Access to the node's precise
+  [local time](https://substrate.dev/rustdocs/v2.0.0/sp_runtime/offchain/struct.Timestamp.html).
+- The ability to sleep and resume work.
 
 OCWs can be initiated from within a special function in your runtime implementation,
-`fn offchain_worker(block: T::BlockNumber)`. The function is executed after each block import. To
+[`fn offchain_worker(block: T::BlockNumber)`](https://substrate.dev/rustdocs/v2.0.0/frame_support/traits/trait.OffchainWorker.html).
 communicate results back to the chain, off-chain workers can submit signed or unsigned transactions
 to be included in subsequent blocks.
 
@@ -64,7 +69,7 @@ please refer to our [Development Guide](../runtime/off-chain-workers).
 As its name indicated, the storage is not stored on-chain. It can be accessed by off-chain worker 
 threads (both read and write access) and on-chain logic (write only, refer to off-chain indexing
 below). This storage is not populated among the blockchain network and does not need to have 
-consensus computation over. 
+consensus computation over it.
 
 As an off-chain worker thread is being spawned off during each block import, there could be more 
 than one off-chain worker thread running at any given time. So, similar to any multi-threaded 
@@ -91,3 +96,6 @@ off-chain storage independently from OCWs. Nodes have to opt-in for persistency 
 Unlike OCWs, which are not executed during initial blockchain synchronization, off-chain indexing is 
 populating the storage every time a block is processed, so the data is always consistent and will
 be exactly the same for every node with indexing enabled.
+## Learn More
+
+- [Off-Chain Workers Development Guide](../runtime/off-chain-workers)

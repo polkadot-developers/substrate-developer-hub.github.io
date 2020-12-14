@@ -401,6 +401,7 @@ using an external library to parse the JSON result in a `no_std` environment.
 
 ### Learn More
 
+- [Off-Chain Features Conceptual Guide](../learn-substrate/off-chain-features#off-chain-workers)
 - [Signed Transactions](../learn-substrate/extrinsics#signed-transactions)
 - [Unsigned Transactions](../learn-substrate/extrinsics#unsigned-transactions)
 
