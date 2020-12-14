@@ -14,24 +14,24 @@ To make the off-chain data integration secure and more efficient, Substrate prov
 features:
 
 - **Off-Chain Worker (OCW)** subsystem allows execution of long-running and possibly non-
-deterministic tasks (e.g. web requests, encryption/decryption and signing of data, random number
-generation, CPU-intensive computations, enumeration/aggregation of on-chain data, etc.) that could
-otherwise require longer than the block execution time.
+  deterministic tasks (e.g. web requests, encryption/decryption and signing of data, random number
+  generation, CPU-intensive computations, enumeration/aggregation of on-chain data, etc.) that could
+  otherwise require longer than the block execution time.
 
-- **Off-Chain Storage** offers storage that is local to a Substrate node that can be accessed both 
-by off-chain workers (both read and write access) and on-chain logic (write access via off-chain 
-indexing but not read access). This is great for different worker threads to communicate to each 
-others and for storing user- / node-specific data that does not require consensus over the whole 
-network.
+- **Off-Chain Storage** offers storage that is local to a Substrate node that can be accessed both
+  by off-chain workers (both read and write access) and on-chain logic (write access via off-chain
+  indexing but not read access). This is great for different worker threads to communicate to each
+  others and for storing user- / node-specific data that does not require consensus over the whole
+  network.
 
 - **Off-Chain Indexing** allows the runtime, if opted-in, to write directly to the off-chain storage
-independently from OCWs. This serves as a local/temporary storage for on-chain logic and complement
- to its on-chain state.
+  independently from OCWs. This serves as a local/temporary storage for on-chain logic and
+  complement to its on-chain state.
 
-Off-chain features run in their own Wasm execution environment outside of the Substrate runtime. This
-separation of concerns makes sure that block production is not impacted by long-running off-chain 
-tasks. However, as the off-chain features are declared in the same code as the runtime, they can
-easily access on-chain state for their computations.
+Off-chain features run in their own Wasm execution environment outside of the Substrate runtime.
+This separation of concerns makes sure that block production is not impacted by long-running
+off-chain tasks. However, as the off-chain features are declared in the same code as the runtime,
+they can easily access on-chain state for their computations.
 
 ![Off-chain Workers](assets/off-chain-workers-v2.png)
 
@@ -66,36 +66,37 @@ please refer to our [Development Guide](../runtime/off-chain-workers).
 
 ## Off-Chain Storage
 
-As its name indicated, the storage is not stored on-chain. It can be accessed by off-chain worker 
+As its name indicated, the storage is not stored on-chain. It can be accessed by off-chain worker
 threads (both read and write access) and on-chain logic (write only, refer to off-chain indexing
-below). This storage is not populated among the blockchain network and does not need to have 
+below). This storage is not populated among the blockchain network and does not need to have
 consensus computation over it.
 
-As an off-chain worker thread is being spawned off during each block import, there could be more 
-than one off-chain worker thread running at any given time. So, similar to any multi-threaded 
-programming environment, there are also utilities to 
-[mutex lock](https://en.wikipedia.org/wiki/Lock_(computer_science)) the storage when accessing them 
-for data consistency.
+As an off-chain worker thread is being spawned off during each block import, there could be more
+than one off-chain worker thread running at any given time. So, similar to any multi-threaded
+programming environment, there are also utilities to
+[mutex lock](<https://en.wikipedia.org/wiki/Lock_(computer_science)>) the storage when accessing
+them for data consistency.
 
-Off-chain storage serves as a bridge for various off-chain worker threads to communicate to each 
-others and between off-chain and on-chain logics. It can also be read using remote procedure calls 
-(RPC) so it fits the use case of storing indefinitely growing data without over-consuming the 
+Off-chain storage serves as a bridge for various off-chain worker threads to communicate to each
+others and between off-chain and on-chain logics. It can also be read using remote procedure calls
+(RPC) so it fits the use case of storing indefinitely growing data without over-consuming the
 on-chain storage.
 
 ## Off-Chain Indexing
 
-Storage in the context of blockchain is mostly about on-chain state. But it is expensive (as 
-it is populated to each node in the network) and not recommended for historical or user-generated 
-data which grow indefinitely over time.
+Storage in the context of blockchain is mostly about on-chain state. But it is expensive (as it is
+populated to each node in the network) and not recommended for historical or user-generated data
+which grow indefinitely over time.
 
-We have off-chain storage for this purpose. In addition of being accessible by OCWs, Substrate also 
-includes a feature called "off-chain indexing" allowing the runtime to write directly to the 
-off-chain storage independently from OCWs. Nodes have to opt-in for persistency of this data via 
+We have off-chain storage for this purpose. In addition of being accessible by OCWs, Substrate also
+includes a feature called "off-chain indexing" allowing the runtime to write directly to the
+off-chain storage independently from OCWs. Nodes have to opt-in for persistency of this data via
 `--enable-offchain-indexing` flag when starting up the Substrate node.
 
-Unlike OCWs, which are not executed during initial blockchain synchronization, off-chain indexing is 
-populating the storage every time a block is processed, so the data is always consistent and will
-be exactly the same for every node with indexing enabled.
+Unlike OCWs, which are not executed during initial blockchain synchronization, off-chain indexing is
+populating the storage every time a block is processed, so the data is always consistent and will be
+exactly the same for every node with indexing enabled.
+
 ## Learn More
 
 - [Off-Chain Workers Development Guide](../runtime/off-chain-workers)
