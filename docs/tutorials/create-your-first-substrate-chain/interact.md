@@ -15,7 +15,7 @@ Run the following commands to start your node:
 
 You should see something like this if your node is running successfully:
 
-```
+```bash
 Sep 23 15:23:21.759  WARN Running in --dev mode, RPC CORS has been disabled.
 Sep 23 15:23:21.759  INFO Substrate Node
 Sep 23 15:23:21.759  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu

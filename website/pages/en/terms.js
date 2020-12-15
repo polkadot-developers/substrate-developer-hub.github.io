@@ -17,17 +17,18 @@
 const React = require("react");
 
 const Container = require("../../../../react-bootstrap/Container");
+const translate = require("../../server/translate").translate;
 
 class Terms extends React.Component {
   render() {
     return (
       <div style={{ textAlign: "left" }}>
-        <h1 style={{ textAlign: "center" }}>
-          <span>SUBSTRATE.DEV &ndash; WEBSITE TERMS OF USE</span>
-        </h1>
-        <p style={{ fontStyle: "italic", textAlign: "center" }}>
-          <span>Please read these terms and conditions carefully before using this website.</span>
-        </p>
+        <h1 style={{ textAlign: "center" }}><span><translate>
+          SUBSTRATE.DEV &ndash; WEBSITE TERMS OF USE
+        </translate></span></h1>
+        <p style={{ fontStyle: "italic", textAlign: "center" }}><span><translate>
+            Please read these terms and conditions carefully before using this website.
+        </translate></span></p>
         <p>
           <span>Parity Technologies Limited (&quot;</span>
           <span>
