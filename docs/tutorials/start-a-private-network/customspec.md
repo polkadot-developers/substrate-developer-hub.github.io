@@ -80,7 +80,7 @@ All we need to do is change the authority addresses listed (currently Alice and 
 addresses that we generated in the previous step. The **sr25519** addresses go in the **aura**
 section, and the **ed25519** addresses in the **grandpa** section. You may add as many validators as
 you like. For additional context, read about
-[keys in Substrate](https://substrate.dev/docs/en/knowledgebase/advanced/cryptography#public-key-cryptography).
+[keys in Substrate](../../knowledgebase/advanced/cryptography.md#public-key-cryptography).
 
 > Validators should not share the same keys, even for learning purposes. If two validators have the
 > same keys, they will produce conflicting blocks.
