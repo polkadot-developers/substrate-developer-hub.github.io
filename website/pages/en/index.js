@@ -28,10 +28,11 @@ const translate = require('../../server/translate').translate
 
 class Index extends React.Component {
   render() {
-    const { config: siteConfig, language = '' } = this.props
+    const { config: siteConfig, language = '' } = this.props;
     const { baseUrl } = siteConfig;
-    const langPart = `${language ? `${language}/` : ""}`;
-    const pageUrl = doc => `${baseUrl}${langPart}${doc}`
+    const langPart = language ? `${language}/` : '';
+    const pageUrl = page => `${baseUrl}${langPart}${page}`;
+    const docUrl = (doc = '') => `${baseUrl}docs/${langPart}${doc}`;
 
     return (
       <section>
@@ -51,7 +52,7 @@ class Index extends React.Component {
             </translate>
           }
           buttonText={<translate>Get Started</translate>}
-          buttonUrl={siteConfig.baseUrl + siteConfig.docsUrl + '/' + language}
+          buttonUrl={ docUrl() }
         />
 
         <section className='mainContainer' id='home'>
@@ -81,7 +82,7 @@ class Index extends React.Component {
                 </translate></p>
                 <section className='button-wrap'>
                   <a
-                    href={`docs/` + language + `/knowledgebase/runtime`}
+                    href={ docUrl('knowledgebase/runtime') }
                     className='with-arrow'>
                     <translate>Learn More</translate>
                   </a>
@@ -98,7 +99,7 @@ class Index extends React.Component {
                 </translate></p>
                 <section className='button-wrap'>
                   <a
-                    href={`docs/` + language + `/knowledgebase/integrate/polkadot-js`}
+                    href={ docUrl('knowledgebase/integrate/polkadot-js') }
                     className='with-arrow'
                   >
                     <translate>Learn More</translate>
@@ -116,7 +117,7 @@ class Index extends React.Component {
                 </translate></p>
                 <section className='button-wrap'>
                   <a
-                    href='https://substrate.dev/substrate-contracts-workshop/#/'
+                    href='/tutorials/ink-smart-contracts-tutorial'
                     className='with-arrow'>
                     <translate>Learn More</translate>
                   </a>
@@ -232,7 +233,7 @@ class Index extends React.Component {
                   </translate></p>
                   <a
                     className='action-link'
-                    href='https://substrate.dev/docs/en/knowledgebase/smart-contracts/overview'>
+                    href= { docUrl('knowledgebase/smart-contracts/overview') } >
                     <span><translate>Learn more about ink!</translate></span>
                   </a>
                 </div>
@@ -316,7 +317,7 @@ class Index extends React.Component {
                       <div className='px-1'>
                         <a
                           className='btn btn-lg primary-color'
-                          href={ pageUrl("/") }>
+                          href={ docUrl() }>
                           <translate>Get Started</translate>
                         </a>
                       </div>
