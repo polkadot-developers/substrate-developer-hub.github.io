@@ -27,7 +27,8 @@ key (hex), Account ID, and SS58 values.
 
 Subkey currently works for keys generated using: sr25519, ed25519, and secp256k1.
 
-> **NOTE:** If you input a valid SS58 value Subkey will also return a Network ID/version value which indicates which network the address has been encoded for.
+> **NOTE:** If you input a valid SS58 value Subkey will also return a Network ID/version value
+> which indicates which network the address has been encoded for.
 
 ```bash
 $ subkey inspect "12bzRJfh7arnnfPPUZHeJUaE62QLEwhK48QnH9LXeK2m1iZU"
@@ -91,7 +92,8 @@ Polkascan helpful. Here is where you can find their
 
 ##### Go
 
-Centrifuge has a client [implemented in Go](https://github.com/centrifuge/go-substrate-rpc-client/tree/3e974433f8417e386b033fb64a6ac4971f02c737) that has Subkey as a dependency that you could use as a
+Centrifuge has a client [implemented in Go](https://github.com/centrifuge/go-substrate-rpc-client/tree/3e974433f8417e386b033fb64a6ac4971f02c737)
+that has Subkey as a dependency that you could use as a
 [starting point](https://github.com/centrifuge/go-substrate-rpc-client/tree/3e974433f8417e386b033fb64a6ac4971f02c737).
 
 ##### C++
