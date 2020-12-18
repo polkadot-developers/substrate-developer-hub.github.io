@@ -119,15 +119,15 @@
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p><strong>What It Does</strong></p>
+<p><strong>有何作用</strong></p>
 <p>这个宏使用了简炼的语句：</p>
 <pre><code class="hljs">#vis #name <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">fn</span> #getter<span class="token punctuation">)</span> <span class="token function">config</span><span class="token punctuation">(</span>#field_name<span class="token punctuation">)</span> <span class="token function">build</span><span class="token punctuation">(</span>#closure<span class="token punctuation">)</span><span class="token punctuation">:</span> #<span class="token keyword">type</span> <span class="token operator">=</span> #default<span class="token punctuation">;</span>
 </code></pre>
 <p>可在<code>#name</code>的位置定义一个名字，该宏即可生成同名的新结构体，并自动实现其存储 trait。</p>
-<p>The macro also declares and implements the <code>Store</code> trait to set up the pallet to have storage space, and implements getters on the <code>Module</code> struct defined by <code>decl_module!</code>.</p>
-<p><strong>Docs and Notes</strong></p>
+<p>该宏还声明并实现了<code>Store</code> trait，为pallet设置存储空间，并在由 <code>decl_module！</code>定义的<code>Module</code>结构体上实现了获取函数。</p>
+<p><strong>文档和注释</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_storage.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_storage.html">API 文档</a></li>
 <li>每个存储名称都声明了<code>Store</code> trait，因此均成为了trait中的关联类型。</li>
 <li><code>Module</code> 的实现包含了每个存储项的获取函数和元数据的实现。</li>
 <li>每个存储项都变成了一个结构体。</li>
@@ -135,38 +135,38 @@
 <h3><a class="anchor" aria-hidden="true" id="decl_event"></a><a href="#decl_event" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>decl_event!</h3>
 <p><strong>何时使用</strong></p>
 <p>该宏用于定义runtime pallet发出的事件。</p>
-<p><strong>What It Does</strong></p>
+<p><strong>有何作用</strong></p>
 <p>该宏通过实现 <code>Event</code>枚举类型来定义pallet事件，而宏中的每个事件类型都是<code>Event</code>枚举类型内的一个成员。</p>
-<p><strong>Docs and Notes</strong></p>
+<p><strong>文档和注释</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_event.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_event.html">API 文档</a></li>
 <li>定义<code>Event</code> 或<code>Event&lt;T&gt;</code> 类型, 赋值给 <code>RawEvent</code>.</li>
-<li><code>RawEvent&lt;...all generic types used&gt;</code> enum type is defined with all events specified in the macro as its enum variants.</li>
-<li>The macro implements various helper traits for<code>RawEvent</code>, including data encoding/decoding, <code>core::cmp::PartialEq</code>, <code>core::cmp::Clone</code>, and <code>core::fmt::Debug</code>.</li>
-<li><code>RawEvent&lt;...&gt;</code> implements <code>metadata()</code> function to retrieve meta-data for events emitted in the pallet.</li>
+<li><code>RawEvent&lt;...使用的所有泛型&gt;</code> 枚举类型里面的枚举成员是宏内列出的所有事件。</li>
+<li>宏为<code>RawEvent</code>实现了各种辅助traits，包括数据编码/解码，<code>core::cmp::PartialEq</code>，<code>core::cmp:: Clone</code>和 <code>core::fmt:: Debug</code>。</li>
+<li><code>RawEvent t&lt;...&gt;</code> 实现了 <code>metadata()</code>函数，以检索pallet中发出的事件元数据。</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="decl_error"></a><a href="#decl_error" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>decl_error!</h3>
 <p><strong>何时使用</strong></p>
-<p>To define error types which a pallet may return in its dispatchable functions. Dispatchable functions return <code>DispatchResult</code>, with either an <code>Ok(())</code>, or <code>DispatchError</code> containing custom errors defined in this macro.</p>
-<p><strong>What It Does</strong></p>
-<p>This macro defines the <code>Error&lt;T: Trait&gt;</code> type, and implements helper methods for mapping each error type to a sequential error code and corresponding string.</p>
-<p>One key feature is that the macro automatically implements the <code>From&lt;Error&lt;T&gt;&gt;</code> trait for <code>DispatchError</code>. Therefore, <code>DispatchError</code> returns the proper module index, error code, error string for a particular error type, and the documentation provided on top of each error as metadata.</p>
-<p><strong>Docs and Notes</strong></p>
+<p>此宏用于定义pallet在可调用函数中可能返回的错误类型。 可调用函数将返回 <code>DispatchResult</code>类型，它的值可能是<code>Ok(())</code>，也可能是包含了宏自定义错误的<code>DispatchError</code>。</p>
+<p><strong>有何作用</strong></p>
+<p>此宏定义了<code>Error&lt;T: Trait&gt;</code>类型，并实现了一些可把每个错误类型都映射到一个错误代码序数及相应字符串的辅助方法。</p>
+<p>一个关键功能是，宏自动为<code>DispatchError</code>实现了 <code>From&lt;Error&lt;T&gt;&gt;</code> trait， 因此，<code>DispatchError</code> 能为特定的错误类型返回正确的模块索引、错误代码、错误字符串，以及返回作为元数据的文档。</p>
+<p><strong>文档和注释</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_error.html">API Documentation</a></li>
-<li><code>Error&lt;T: Trait&gt;</code> enum type is filled with enum variants specified in the macro.</li>
-<li><code>Error</code> implements various helper functions, and maps each error to a sequential error code and an error string.</li>
-<li><code>Error</code> type implementation contains a <code>fn metadata()</code> function.</li>
-<li><code>Error</code> implements <code>From&lt;Error&lt;T&gt;&gt;</code> for <code>DispatchError</code>, so the error type can be returned in dispatchable functions.</li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_error.html">API 文档</a></li>
+<li><code>Error&lt;T: Trait&gt;</code> 枚举类型是由宏内定义的错误类型成员构成的。</li>
+<li><code>Error</code> 实现了各种帮助函数，并将每个错误映射到相应的错误代码序号和错误字符串。</li>
+<li><code>Error</code> 类型的实现包含了 <code>fn metadata()</code>函数的实现。</li>
+<li><code>Error</code> 为<code>DispatchError</code>实现了 <code>From&lt;Error&lt;T&gt;&gt;</code>这个trait，因此可调用函数能够返回相应的错误类型。</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="decl_module"></a><a href="#decl_module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>decl_module!</h3>
 <p><strong>何时使用</strong></p>
 <p>此宏用于定义pallet中的可调用函数。</p>
-<p><strong>What It Does</strong></p>
-<p>The macro declares a <code>Module</code> struct and <code>Call</code> enum type for the containing pallet. It combines the necessary logics using user-defined dispatchable calls into the two types. In addition to various helper traits implemented for <code>Module</code> and <code>Call</code>, e.g. <code>Copy</code>, <code>StructuralEq</code>, <code>Debug</code>, the macro also inserts lifecycle trait implementations for <code>Module</code>, e.g. <code>frame_support::traits::OnInitialize</code>, <code>frame_support::traits::OnFinalize</code>, <code>frame_support::traits::OnRuntimeUpgrade</code>, and <code>frame_support::traits::OffchainWorker</code>.</p>
-<p><strong>Docs and Notes</strong></p>
+<p><strong>有何作用</strong></p>
+<p>此宏为包含它的pallet声明了一个名为 <code>Module</code>的结构体，以及一个名为 <code>Call</code> 的枚举类型。 它通过用户自定义的可调用函数，将必要的逻辑组合成两种类型。 除了为 <code>Module</code> 和 <code>Call</code>实现了各种辅助traits，如 <code>Copy</code>、<code>StructuralEq</code>、 <code>Debug</code>以外，该宏还为<code>Module</code>实现了生命周期trait，如 <code>frame_support::traits::OnInitialize</code>， <code>frame_support::traits::OnFinalize</code>， <code>frame_support::traits::OnRuntimeUpgrade</code>，和<code>frame_support::traits::OffchainWorker</code>。</p>
+<p><strong>文档和注释</strong></p>
 <ul>
-<li><p><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_module.html">API Documentation</a></p></li>
+<li><p><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_module.html">API 文档</a></p></li>
 <li><p>This macro declares a <code>Module&lt;T&gt;</code> struct and a <code>Call&lt;T&gt;</code> enum which implements the dispatch logic.</p></li>
 <li><p>Helper traits are automatically implemented for <code>Module</code> struct, such as <code>core::cmp::Eq</code>, <code>core::clone::Clone</code>, etc.</p></li>
 <li><p><code>Module</code> implements various lifecycle traits, such as</p>
@@ -182,12 +182,12 @@
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="construct_runtime"></a><a href="#construct_runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>construct_runtime!</h3>
 <p><strong>何时使用</strong></p>
-<p>To construct Substrate runtime and integrating various pallets into the runtime.</p>
-<p><strong>What It Does</strong></p>
-<p>The macro declares and implements various struct and enum, e.g.<code>Runtime</code>, <code>Event</code>, <code>Origin</code>, <code>Call</code>, <code>GenesisConfig</code> etc, and implements various helper traits for these struct types. The macro also adds logics of mapping different events and dispatchable calls from the overarching runtime back to a particular pallet.</p>
-<p><strong>Docs and Notes</strong></p>
+<p>此宏用于构造Substrate runtime，将各个pallets集成到runtime。</p>
+<p><strong>有何作用</strong></p>
+<p>该宏声明及实现了各种不同的结构体和枚举类型，如<code>Runtime</code>、<code>Event</code>、<code>Origin</code>、 <code>Call</code>、<code>GenesisConfig</code> 等，同时也为这些结构体类型实现了不同的辅助traits。 该宏还添加了一个逻辑，映射不同的事件和可调用函数，从整体的runtime到一个特定的pallet。</p>
+<p><strong>文档和注释</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.construct_runtime.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.construct_runtime.html">API 文档</a></li>
 <li><code>Runtime</code> struct type is defined to represent the Substrate runtime.</li>
 <li><code>Event</code> enum type is defined with variants of all pallets that emit events, with helper traits and encoding/decoding traits implemented for the enum. Various conversion traits <code>Event</code> also implements <code>TryInto&lt;pallets::Event&lt;Runtime&gt;&gt;</code> trait to extract the event out from the enum type.</li>
 <li><code>Origin</code> enum type is defined with helper traits, e.g. <code>PartialEq</code>, <code>Clone</code>, <code>Debug</code> implemented. This enum type defines who calls an extrinsic: <code>NONE</code>, <code>ROOT</code>, or signed by a particular account. These three primitive origins are defined by the FRAME System module, but optional FRAME pallets may also define origins.</li>
@@ -198,20 +198,20 @@
 <h3><a class="anchor" aria-hidden="true" id="parameter_types"></a><a href="#parameter_types" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parameter_types!</h3>
 <p><strong>何时使用</strong></p>
 <p>To declare parameter types to be assigned to pallet configurable trait associated types during runtime construction.</p>
-<p><strong>What It Does</strong></p>
+<p><strong>有何作用</strong></p>
 <p>The macro replaces each parameter specified into a struct type with a <code>get()</code> function returning its specified value. Each parameter struct type also implements a <code>frame_support::traits::Get&lt;I&gt;</code> trait to convert the type to its specified value.</p>
 <p><strong>文档</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.parameter_types.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.parameter_types.html">API 文档</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="impl_runtime_apis"></a><a href="#impl_runtime_apis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>impl_runtime_apis!</h3>
 <p><strong>何时使用</strong></p>
 <p>This macro generates the API implementations for the client side through the <code>RuntimeApi</code> and <code>RuntimeApiImpl</code> struct type.</p>
-<p><strong>What It Does</strong></p>
+<p><strong>有何作用</strong></p>
 <p>The macro defines the <code>RuntimeApi</code> and <code>RuntimeApiImpl</code> exposed to the Substrate node client. It provides implementation details of the RuntimeApiImpl based on the setup and appended user specified implementation in the <code>RuntimeApiImpl</code>.</p>
 <p><strong>Docs Notes</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/sp_api/macro.impl_runtime_apis.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/sp_api/macro.impl_runtime_apis.html">API 文档</a></li>
 <li><code>RuntimeApi</code> and <code>RuntimeApiImpl</code> structs are declared. The macro also implements various helper traits for <code>RuntimeApiImpl</code>.</li>
 <li>What developers define within <code>impl_runtime_apis!</code> macro are appended to the end of <code>RuntimeApiImpl</code> implementation.</li>
 <li>To expose version information about the runtime, a constant <code>RUNTIME_API_VERSIONS</code> is defined. containing the runtime core <code>ID</code>/<code>VERSION</code>, metadata <code>ID</code>/<code>VERSION</code>, SessionKeys <code>ID</code>/<code>VERSION</code>, etc.</li>
@@ -220,51 +220,51 @@
 <h3><a class="anchor" aria-hidden="true" id="app_crypto"></a><a href="#app_crypto" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>app_crypto!</h3>
 <p><strong>何时使用</strong></p>
 <p>To specify cryptographic key pairs and its signature algorithm that are to be managed by a pallet.</p>
-<p><strong>What It Does</strong></p>
+<p><strong>有何作用</strong></p>
 <p>The macro declares three struct types, <code>Public</code>, <code>Signature</code>, and <code>Pair</code>. Aside from having various helper traits implemented for these three types, <code>Public</code> type is implemented to generating keypairs, signing and verifying signature, <code>Signature</code> type to hold the signature property given the signature chosen to be used (e.g. SR25519, ED25519 etc), and <code>Pair</code> type to generate a public-private key pair from a seed.</p>
-<p><strong>Docs and Notes</strong></p>
+<p><strong>文档和注释</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/sp_application_crypto/macro.app_crypto.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/sp_application_crypto/macro.app_crypto.html">API 文档</a></li>
 <li><code>Public</code> struct type is declared, and implements <code>sp_application_crypto::AppKey</code> trait defining the public key type, and <code>sp_application_crypto::RuntimeAppPublic</code> trait for generating keypairs, signing, and verifying signatures.</li>
 <li><code>Signature</code> struct type is declared, and implements <code>core::hash::Hash</code> trait on how the data with this signature type is hashed.</li>
 <li><code>Pair</code> struct type is declared to wrap over the crypto pair. This type implements <code>sp_application_crypto::Pair</code> and <code>sp_application_crypto::AppKey</code> traits determining how it generates public-private key pairs from a phrase or seed.</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="impl_outer_origin"></a><a href="#impl_outer_origin" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>impl_outer_origin!</h3>
 <p><strong>何时使用</strong></p>
-<p>To construct an <code>Origin</code> struct type for a runtime. This macro is typically called automatically by the <code>construct_runtime!</code> macro, but developers may call this macro directly to construct a mock runtime for testing that has a less complex structure than an actual runtime.</p>
-<p>Each extrinsic call has an <code>Origin</code> type parameter passed, signaling if the call is made from <code>NONE</code>, <code>ROOT</code>, or a particular account.</p>
-<p><strong>What It Does</strong></p>
-<p>This macro creates an <code>Origin</code> struct type, and implements various helper traits for the type.</p>
+<p>此宏用于为runtime构造一个 <code>Origin</code>结构体类型。 它通常由<code>construct_runtime!</code>自动调用，但是开发人员也可以直接调用它，以构建用于测试的模拟runtime，而模拟runtime通常会比实际运行的runtime要简单很多。</p>
+<p>每个extrinsic调用都传入了一个<code>Origin</code>类型参数，以表示该调用是从<code>NONE</code>、 <code>ROOT</code>还是某个特定帐户发起的。</p>
+<p><strong>有何作用</strong></p>
+<p>该宏创建了一个<code>Origin</code>结构体类型，并为该类型实现了各种辅助traits。</p>
 <p><strong>文档</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.impl_outer_origin.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.impl_outer_origin.html">API 文档</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="impl_outer_event"></a><a href="#impl_outer_event" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>impl_outer_event!</h3>
 <p><strong>何时使用</strong></p>
 <p>To construct an <code>Event</code> struct type for a runtime. This macro is typically called automatically by the <code>construct_runtime!</code> macro. However, developers may call this macro directly to construct an <code>Event</code> enum selecting the specific pallet events they want to listen for. This is useful when constructing a mock runtime for testing.</p>
-<p><strong>What It Does</strong></p>
+<p><strong>有何作用</strong></p>
 <p>This macro creates an event enum type, implements various helper traits on <code>Event</code> type, including <code>core::clone::Clone</code>, <code>core::marker::StructuralPartialEq</code>, <code>core::fmt::Debug</code>, data encoding/decoding traits etc. Finally, the macro implements only the specifying pallet events for the runtime.</p>
 <p><strong>文档</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.impl_outer_event.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.impl_outer_event.html">API 文档</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="impl_outer_dispatch"></a><a href="#impl_outer_dispatch" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>impl_outer_dispatch!</h3>
 <p><strong>何时使用</strong></p>
-<p>To implement a meta-dispatch module to dispatch to other dispatchers. This macro is typically called automatically by the <code>construct_runtime!</code> macro. However, developers may call this macro directly to construct a <code>Call</code> enum selecting the specific pallet that it dispatches. This is useful when constructing a mock runtime for testing.</p>
-<p><strong>What It Does</strong></p>
-<p>This macro creates a <code>Call</code> enum type, implements various helper traits on <code>Event</code> type, including <code>Clone</code>, <code>PartialEq</code>, <code>RuntimeDebug</code> etc. Finally, the macro implements <code>GetDispatchInfo</code>, <code>GetCallMetadata</code>, <code>IsSubType</code> traits for the <code>Call</code> enum.</p>
+<p>此宏用于实现一个元调用模块，以把调用分派给其它调用者。 它通常是由 <code>construct_runtime!</code>自动调用的。 然而开发者可以直接调用该宏来构造一个 <code>Call</code>枚举类型，并筛选要调用的特定pallet， This is useful when constructing a mock runtime for testing.</p>
+<p><strong>有何作用</strong></p>
+<p>该宏创建了一个<code>Call</code> 枚举类型，并在<code>Event</code> 类型上实现了各种辅助traits，包括<code>Clone</code>、<code>PartialEq</code>和<code>RuntimeDebug</code> 等。 最后，该宏还为 <code>Call</code>枚举类型实现了 <code>GetDispatchInfo</code>、<code>GetCallMetadata</code>、<code>IsSubType</code>这几个traits。</p>
 <p><strong>文档</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.impl_outer_dispatch.html">API Documentation</a></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.impl_outer_dispatch.html">API 文档</a></li>
 </ul>
-<h2><a class="anchor" aria-hidden="true" id="conclusion"></a><a href="#conclusion" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Conclusion</h2>
-<p>Through this article, developers will have a good understanding of how Substrate runtime leverage on Rust macros and a basic understanding of some of the frequently used macros in runtime development.</p>
+<h2><a class="anchor" aria-hidden="true" id="结论"></a><a href="#结论" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>结论</h2>
+<p>通过本文，开发人员将能对Substrate runtime如何利用Rust宏有很好的了解，并对runtime开发中一些常用的宏有基本的掌握。</p>
 <h2><a class="anchor" aria-hidden="true" id="参考文档"></a><a href="#参考文档" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文档</h2>
 <ul>
-<li><a href="https://doc.rust-lang.org/book/ch19-06-macros.html">The Rust Programming Language ch 19.5 Macros</a></li>
-<li><a href="https://danielkeep.github.io/tlborm/book/index.html">The Little Book of Rust Macros</a></li>
+<li><a href="https://doc.rust-lang.org/book/ch19-06-macros.html">《Rustic编程语言》第19章第5节《宏》</a></li>
+<li><a href="https://danielkeep.github.io/tlborm/book/index.html">《Rust宏小册》</a></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/knowledgebase/runtime/pallets"><span class="arrow-prev">← </span><span>Pallets</span></a><a class="docs-next button" href="/docs/zh-CN/knowledgebase/runtime/metadata"><span>Runtime 元数据</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#介绍">介绍</a></li><li><a href="#宏基础知识">宏基础知识</a></li><li><a href="#substrate-runtime宏">Substrate Runtime宏</a><ul class="toc-headings"><li><a href="#decl_storage">decl_storage!</a></li><li><a href="#decl_event">decl_event!</a></li><li><a href="#decl_error">decl_error!</a></li><li><a href="#decl_module">decl_module!</a></li><li><a href="#construct_runtime">construct_runtime!</a></li><li><a href="#parameter_types">parameter_types!</a></li><li><a href="#impl_runtime_apis">impl_runtime_apis!</a></li><li><a href="#app_crypto">app_crypto!</a></li><li><a href="#impl_outer_origin">impl_outer_origin!</a></li><li><a href="#impl_outer_event">impl_outer_event!</a></li><li><a href="#impl_outer_dispatch">impl_outer_dispatch!</a></li></ul></li><li><a href="#conclusion">Conclusion</a></li><li><a href="#参考文档">参考文档</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/rustdocs">API 文档</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/knowledgebase/runtime/pallets"><span class="arrow-prev">← </span><span>Pallets</span></a><a class="docs-next button" href="/docs/zh-CN/knowledgebase/runtime/metadata"><span>Runtime 元数据</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#介绍">介绍</a></li><li><a href="#宏基础知识">宏基础知识</a></li><li><a href="#substrate-runtime宏">Substrate Runtime宏</a><ul class="toc-headings"><li><a href="#decl_storage">decl_storage!</a></li><li><a href="#decl_event">decl_event!</a></li><li><a href="#decl_error">decl_error!</a></li><li><a href="#decl_module">decl_module!</a></li><li><a href="#construct_runtime">construct_runtime!</a></li><li><a href="#parameter_types">parameter_types!</a></li><li><a href="#impl_runtime_apis">impl_runtime_apis!</a></li><li><a href="#app_crypto">app_crypto!</a></li><li><a href="#impl_outer_origin">impl_outer_origin!</a></li><li><a href="#impl_outer_event">impl_outer_event!</a></li><li><a href="#impl_outer_dispatch">impl_outer_dispatch!</a></li></ul></li><li><a href="#结论">结论</a></li><li><a href="#参考文档">参考文档</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/rustdocs">API 文档</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();
