@@ -10,25 +10,25 @@ The basic idea is a base-58 encoded value that can identify a specific account o
 chain. Different chains have different means of identifying accounts. SS58 is designed to be
 extensible for this reason.
 
-The living specification for the SS-58 address format can be found on the Substrate GitHub wiki:
+The living specification for the SS58 address format can be found on the Substrate GitHub wiki:
 
 https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58)
 
-## Validating addresses
+## Validating Addresses
 
 There are several ways to verify that a value is a valid SS58 address.
 
 ### Subkey
 
-You can use the [Subkey](https://substrate.dev/docs/en/knowledgebase/integrate/subkey) inspect
-subcommand which will accept the seed phrase, an address as hex or an SS58 address as the input
-URI. If the input is a valid address, it will return a list containing the corresponding Public
-key (hex), Account ID, and SS58 values.
+You can use the [Subkey](https://substrate.dev/docs/en/knowledgebase/integrate/subkey) `inspect`
+subcommand, which accepts the seed phrase, a hex-encoded address, or an SS58 address as the input
+URI. If the input is a valid address, it will return a list containing the corresponding public
+key (hex), account ID, and SS58 values.
 
 Subkey currently works for keys generated using: sr25519, ed25519, and secp256k1.
 
-> **NOTE:** If you input a valid SS58 value Subkey will also return a Network ID/version value
-> which indicates which network the address has been encoded for.
+> **NOTE:** If you input a valid SS58 value, Subkey will also return a network ID/version value
+> that indicates which network the address has been encoded for.
 
 ```bash
 $ subkey inspect "12bzRJfh7arnnfPPUZHeJUaE62QLEwhK48QnH9LXeK2m1iZU"
@@ -68,11 +68,11 @@ console.log(isValid);
 
 ### Subscan
 
-You can also manually convert and verify an address is valid by using the web tool on
+You can also verify an address is valid by using the web tool on
 [Subscan](https://polkadot.subscan.io/tools/ss58_transform). They have also made the
 [essentials](https://github.com/itering/subscan-essentials/tree/78de8d163a3543a217f0cb3d48c6b9816bb5a231)
 behind their web interface open source so you can take advantage of their
-[Go implemented Utilities](https://github.com/itering/subscan-essentials/tree/78de8d163a3543a217f0cb3d48c6b9816bb5a231/util)
+[Go implemented utilities](https://github.com/itering/subscan-essentials/tree/78de8d163a3543a217f0cb3d48c6b9816bb5a231/util)
 to suit your needs
 
 ### Custom Solution
