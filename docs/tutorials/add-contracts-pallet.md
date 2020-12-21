@@ -168,7 +168,7 @@ std = [
 Now is a good time to check that everything compiles correctly so far with:
 
 ```bash
-cargo check
+SKIP_WASM_BUILD=1 cargo check
 ```
 
 ## Adding the Contracts Pallet
@@ -286,7 +286,7 @@ should compile, the entire node will not (yet). So we will use this command to c
 runtime.
 
 ```bash
-cargo check -p node-template-runtime
+SKIP_WASM_BUILD=1 cargo check -p node-template-runtime
 ```
 
 ### Exposing The Contracts API
@@ -381,7 +381,7 @@ impl_runtime_apis! {
 This is another good time to check that your runtime compiles correctly so far.
 
 ```bash
-cargo check -p node-template-runtime
+SKIP_WASM_BUILD=1 cargo check -p node-template-runtime
 ```
 
 ## Updating the Outer Node
@@ -392,7 +392,7 @@ will add the custom RPC endpoint and a genesis configuration.
 
 ### Adding the RPC API extension
 
-With the proper runtime API exposed. We now add the RPC to the node's service to call into that
+With the proper runtime API exposed, now we can add the RPC to the node's service to call into that
 runtime API. Because we are now working in the outer node, we are not building to `no_std` and we
 don't have to maintain a dedicated `std` feature.
 
@@ -499,7 +499,7 @@ Now you are ready to compile and run your contract-capable node. Compile the nod
 with
 
 ```bash
-cargo build --release
+WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release
 ```
 
 Now launch the executable you just built by running this command

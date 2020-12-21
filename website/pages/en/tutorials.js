@@ -28,16 +28,16 @@ const tutorialCardData = [{
   img: 'img/crates.png',
   title: <translate>Create Your First Substrate Chain</translate>,
   text: <translate>Launch and interact with your first Substrate chain in this minimal end-to-end guide.</translate>,
-  difficulty: "easy",
-  length: "< 1",
+  difficulty: <translate>Easy</translate>,
+  length: <translate>&lt; 1 Hour</translate>,
   prerequisite: false,
   version: "2.0.0",
   href: 'tutorials/create-your-first-substrate-chain/',
 }, {
   title: <translate>Add a Pallet to Your Runtime</translate>,
   text: <translate>Add the Nicks pallet to your Substrate node template.</translate>,
-  difficulty: "easy",
-  length: "2",
+  difficulty: <translate>Easy</translate>,
+  length: <translate>2 Hours</translate>,
   prerequisite: true,
   version: "2.0.0",
   href: 'tutorials/add-a-pallet/',
@@ -45,16 +45,16 @@ const tutorialCardData = [{
   img: 'img/first-substrate-chain.png',
   title: <translate>Build a PoE Decentralized Application</translate>,
   text: <translate>Build a customized Substrate chain with its own user interface.</translate>,
-  difficulty: "easy",
-  length: "1",
+  difficulty: <translate>Easy</translate>,
+  length: <translate>1 Hour</translate>,
   prerequisite: true,
   version: "2.0.0",
   href: 'tutorials/build-a-dapp/',
 }, {
   title: "Upgrade a Chain",
   text: "Perform a forkless runtime upgrade on a running Substrate network.",
-  difficulty: "medium",
-  length: "2",
+  difficulty: <translate>Medium</translate>,
+  length: <translate>2 Hours</translate>,
   prerequisite: true,
   version: "2.0.0",
   href: 'tutorials/upgrade-a-chain/',
@@ -62,24 +62,24 @@ const tutorialCardData = [{
   img: 'img/substrate-network.png',
   title: <translate>Start a Private Network with Substrate</translate>,
   text: <translate>Learn to start a blockchain network using an out-of-the-box Substrate node.</translate>,
-  difficulty: "easy",
-  length: "2",
+  difficulty: <translate>Easy</translate>,
+  length: <translate>2 Hours</translate>,
   prerequisite: false,
   version: "2.0.0",
   href: 'tutorials/start-a-private-network/',
 }, {
   title: <translate>Add the Contracts Pallet to a Runtime</translate>,
   text: <translate>Add the Contracts pallet to your Substrate node template.</translate>,
-  difficulty: "medium",
-  length: "2",
+  difficulty: <translate>Medium</translate>,
+  length: <translate>2 Hours</translate>,
   prerequisite: true,
   version: "2.0.0",
   href: 'tutorials/add-contracts-pallet/',
 }, {
   title: <translate>Build a permissioned network</translate>,
   text: <translate>A comprehensive, end-to-end tutorial for building a permissioned network using node-authorization pallet.</translate>,
-  difficulty: "easy",
-  length: "2",
+  difficulty: <translate>Easy</translate>,
+  length: <translate>2 Hours</translate>,
   prerequisite: true,
   version: "2.0.0",
   href: 'tutorials/build-permission-network/',
@@ -87,8 +87,8 @@ const tutorialCardData = [{
   img: 'img/crates.png',
   title: <translate>Write a Pallet in its Own Crate</translate>,
   text: <translate>Make your pallets re-usable by packaging them in their own rust crate.</translate>,
-  difficulty: "medium",
-  length: "2",
+  difficulty: <translate>Medium</translate>,
+  length: <translate>2 Hours</translate>,
   prerequisite: true,
   version: "2.0.0",
   href: 'tutorials/create-a-pallet/',
@@ -96,24 +96,32 @@ const tutorialCardData = [{
   img: 'img/ink-smart-contracts-tutorial.png',
   title: <translate>ink! Smart Contracts Tutorial</translate>,
   text: <translate>A comprehensive, end-to-end tutorial for building an ERC20 token contract using ink!.</translate>,
-  difficulty: "easy",
-  length: "4",
+  difficulty: <translate>Easy</translate>,
+  length: <translate>4 Hours</translate>,
   prerequisite: false,
   version: "2.0.0",
   hrefFrom: 'baseUrl',
   href: 'tutorials/ink-smart-contracts-tutorial/',
 }, {
+  title: <translate>Substrate Frontier Workshop</translate>,
+  text: <translate>A workshop on how to configure Substrate to be EVM-compatible and able to run
+    EVM Solidity contracts</translate>,
+  difficulty: <translate>Medium</translate>,
+  length: <translate>1 Hour</translate>,
+  prerequisite: false,
+  version: "2.0.0",
+  hrefFrom: 'baseUrl',
+  href: 'tutorials/substrate-frontier-workshop/',
+}, {
   img: 'img/grafana.png',
   title: <translate>Visualizing Node Metrics</translate>,
   text: <translate>Learn how to visualize the metrics that Substrate records using Prometheus.</translate>,
-  difficulty: "easy",
-  length: "< 1",
+  difficulty: <translate>Easy</translate>,
+  length: <translate>&lt; 1 Hour</translate>,
   prerequisite: false,
   version: "2.0.0",
   href: 'tutorials/visualize-node-metrics/',
 }];
-
-const capitalize = word => `${word.charAt(0).toUpperCase()}${word.slice(1)}`;
 
 const TutorialCards = props => {
   let { baseUrl, docUrl } = props;
@@ -136,23 +144,25 @@ const TutorialCards = props => {
               : tutorial.difficulty == `medium` ? `warning` : `success`
             }
             className="m-1"
-          >{capitalize(tutorial.difficulty)}
-          </Badge>
+          >{tutorial.difficulty}</Badge>
           <Badge
             variant={tutorial.length > 4
               ? `danger`
               : tutorial.length > 2 ? `warning` : `success`
             }
             className="m-1"
-          >{tutorial.length} Hour{tutorial.length > 1 ? `s` : ``}</Badge>
+          >{tutorial.length}</Badge>
           <Badge
             variant={tutorial.prerequisite == true ? `warning` : `success`}
             className="m-1"
-          >{tutorial.prerequisite ? `Prerequisites` : `No Prerequisites`}</Badge>
+          >{tutorial.prerequisite
+            ? <translate>Prerequisites</translate>
+            : <translate>No Prerequisites</translate>
+          }</Badge>
           <Badge
             variant={tutorial.version <= 1 ? `danger` : `warning`}
             className="m-1"
-          >{`v`}{tutorial.version}</Badge>
+          >{`v${tutorial.version}`}</Badge>
         </div>
       </Card.Body>
 
@@ -161,7 +171,7 @@ const TutorialCards = props => {
           variant="secondary"
           className="primary-color"
           href={tutorialUrl(tutorial)}
-        >Try it now!</Button>
+        ><translate>Try it now!</translate></Button>
       </Card.Footer>
     </Card></Col>
   </a>);

@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
-# set -xe
-set -e
+set -xe
 
 APP_DIR=$(cd $(dirname "${BASH_SOURCE[0]}")/.. && pwd)
 GIT_REPO="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io.git"
 PROJECT_BUILD_DIR="build/substrate-developer-hub.github.io"
 
-HTPASSWD='parity-devEx:$apr1$P.1bMHSB$u2PQ7KitD5aNk371vsQB0/'
+HTPASSWD='parity-devhub:$apr1$CJZJktOW$PEHfLAfsglPPvjnOhuIuV.'
 HTACCESS="AuthUserFile /app/.htpasswd\n
 AuthType Basic\n
 AuthName \"Restricted Access\"\n
@@ -17,8 +16,6 @@ echo $APP_DIR
 pushd $APP_DIR > /dev/null
 
 cd website
-rm -rf $PROJECT_BUILD_DIR
-
 yarn install
 NODE_ENV=staging GIT_REV=`git rev-parse --short HEAD` yarn build
 
@@ -33,7 +30,8 @@ echo '<?php header("Location: /index.html");?>' > index.php
 echo $HTPASSWD > .htpasswd
 echo -e $HTACCESS > .htaccess
 
-# Everything need to be done locally should be completed by this point. Push to upstream.
+# Everything needs to be done locally should be completed by this point. Push the `staging` branch
+# in github. Notice we have generated a keypair and set to deploy keys with write access in github.
 git add .
 git commit -m "Updated"
 git push -f origin staging

@@ -1,5 +1,5 @@
-project_identifier_env: CROWDIN_DOCUSAURUS_PROJECT_ID
-api_key_env: CROWDIN_DOCUSAURUS_API_KEY
+project_id_env: CROWDIN_SUBSTRATEDEVHUB_ID
+api_token_env: CROWDIN_PERSONAL_TOKEN
 base_path: "./"
 preserve_hierarchy: true
 
@@ -9,45 +9,18 @@ files:
     translation: '/website/translated_docs/%locale%/**/%original_file_name%'
     languages_mapping: &anchor
       locale:
-        'af': 'af'
-        'ar': 'ar'
-        'bs-BA': 'bs-BA'
-        'ca': 'ca'
-        'cs': 'cs'
-        'da': 'da'
-        'de': 'de'
-        'el': 'el'
         'es-ES': 'es-ES'
-        'fa': 'fa-IR'
-        'fi': 'fi'
-        'fr': 'fr'
-        'he': 'he'
-        'hu': 'hu'
-        'id': 'id-ID'
-        'it': 'it'
         'ja': 'ja'
-        'ko': 'ko'
-        'mr': 'mr-IN'
-        'nl': 'nl'
-        'no': 'no-NO'
-        'pl': 'pl'
-        'pt-BR': 'pt-BR'
-        'pt-PT': 'pt-PT'
-        'ro': 'ro'
-        'ru': 'ru'
-        'sk': 'sk-SK'
-        'sr': 'sr'
-        'sv-SE': 'sv-SE'
-        'tr': 'tr'
-        'uk': 'uk'
-        'vi': 'vi'
         'zh-CN': 'zh-CN'
-        'zh-TW': 'zh-TW'
+        'zh-HK': 'zh-HK'
   -
     source: '/website/i18n/en.json'
     translation: '/website/i18n/%locale%.json'
     languages_mapping: *anchor
-  -
-    source: '/website/versioned_docs/**/*.md'
-    translation: '/website/translated_docs/%locale%/**/%original_file_name%'
-    languages_mapping: *anchor
+
+  # note: Uncomment the following if we have `website/versioned_docs`. Otherwise, returns
+  #   error when running `crowdin upload sources` and fail the CI.
+  # -
+  #   source: '/website/versioned_docs/**/*.md'
+  #   translation: '/website/translated_docs/%locale%/**/%original_file_name%'
+  #   languages_mapping: *anchor

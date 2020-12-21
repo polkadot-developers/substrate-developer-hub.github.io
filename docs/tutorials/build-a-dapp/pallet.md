@@ -300,7 +300,7 @@ file, you should be able to recompile your node without warning or error. Run th
 root directory of the `substrate-node-template` repository to build and run the node:
 
 ```bash
-cargo run -- --dev --tmp
+WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo run --release -- --dev --tmp
 ```
 
 Now it is time to interact with our new Proof of Existence pallet!
