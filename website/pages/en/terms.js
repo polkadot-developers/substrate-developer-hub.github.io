@@ -662,8 +662,7 @@ class Terms extends React.Component {
         </p>
         <p>
           <span>
-            Address:&nbsp;Ignition Law, Moray House Floor 1, 23-31 Great Titchfield Street, London,
-            United Kingdom, WC1W 7PA
+            Address:&nbsp;Ignition Law, 1 Sans Walk, London, England, EC1R 0LT.
           </span>
         </p>
         <p>
