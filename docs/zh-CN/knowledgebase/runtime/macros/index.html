@@ -167,18 +167,18 @@
 <p><strong>文档和注释</strong></p>
 <ul>
 <li><p><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_module.html">API 文档</a></p></li>
-<li><p>This macro declares a <code>Module&lt;T&gt;</code> struct and a <code>Call&lt;T&gt;</code> enum which implements the dispatch logic.</p></li>
-<li><p>Helper traits are automatically implemented for <code>Module</code> struct, such as <code>core::cmp::Eq</code>, <code>core::clone::Clone</code>, etc.</p></li>
-<li><p><code>Module</code> implements various lifecycle traits, such as</p>
+<li><p>该宏声明了一个 <code>Module&lt;T&gt;</code> 结构体和一个 <code>Call&lt;T&gt;</code> 枚举类型，而其中枚举类型实现了可调用逻辑。</p></li>
+<li><p>宏会自动为<code>Module</code>结构体实现诸如<code>core::cmp::Eq</code>、<code>core::clone::Clone</code>等的辅助traits。</p></li>
+<li><p><code>Module</code> 实现了各种生命周期traits，如</p>
 <ul>
-<li><code>frame_support::traits::OnInitialize</code>: callback when a block is initialized,</li>
-<li><code>frame_support::traits::OnRuntimeUpgrade</code>: callback when a chain is undergoing a runtime upgrade,</li>
-<li><code>frame_support::traits::OnFinalize</code>: callback when a block is finalized, and</li>
-<li><code>frame_support::traits::OffchainWorker</code>: entrance of an offchain worker upon a block is finalized.</li>
+<li><code>frame_support::traits::OnInitialize</code>: 区块在初始化时的回调函数，</li>
+<li><code>frame_support::traits::OnRuntimeUpgrade</code>: 链上正在进行runtime升级时的回调函数，</li>
+<li><code>frame_support::traits::OnFinalize</code>: 区块在完结时的回调函数，以及</li>
+<li><code>frame_support::traits::OffchainWorker</code>: 区块完结时链下工作机的入口</li>
 </ul></li>
-<li><p><code>Call&lt;T: Trait&gt;</code> implements <code>frame_support::dispatch::GetDispatchInfo</code> and <code>frame_support::traits::UnfilteredDispatchable</code> traits that contain the core logic for dispatching calls.</p></li>
-<li><p><code>Module&lt;T&gt;</code> implements <code>frame_support::dispatch::Callable&lt;T&gt;</code> trait with its associated type <code>Call</code> assigned to the <code>Call</code> enum.</p></li>
-<li><p>Each dispatchable function is prepended with internal tracing logic for keeping track of the node activities. Developers can set whether to trace for a dispatchable function by specifying its interest level.</p></li>
+<li><p><code>Call&lt;T: Trait&gt;</code>实现了<code>frame_support::dispatch::GetDispatchInfo</code> 和<code>frame_support::traits::UnfilteredDispatchable</code> 这两个traits，包含了可调用函数核心逻辑。</p></li>
+<li><p><code>Module&lt;T&gt;</code> 实现了 <code>frame_support::dispatch::Callable&lt;T&gt;</code> 这个trait，而该trait关联类型<code>Call</code>则被赋值给了<code>Call</code>枚举类型。</p></li>
+<li><p>每个可调用函数都预先规划了其内部追踪逻辑，用于追踪节点活动。 Developers can set whether to trace for a dispatchable function by specifying its interest level.</p></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="construct_runtime"></a><a href="#construct_runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>construct_runtime!</h3>
 <p><strong>何时使用</strong></p>
@@ -188,46 +188,46 @@
 <p><strong>文档和注释</strong></p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.construct_runtime.html">API 文档</a></li>
-<li><code>Runtime</code> struct type is defined to represent the Substrate runtime.</li>
-<li><code>Event</code> enum type is defined with variants of all pallets that emit events, with helper traits and encoding/decoding traits implemented for the enum. Various conversion traits <code>Event</code> also implements <code>TryInto&lt;pallets::Event&lt;Runtime&gt;&gt;</code> trait to extract the event out from the enum type.</li>
-<li><code>Origin</code> enum type is defined with helper traits, e.g. <code>PartialEq</code>, <code>Clone</code>, <code>Debug</code> implemented. This enum type defines who calls an extrinsic: <code>NONE</code>, <code>ROOT</code>, or signed by a particular account. These three primitive origins are defined by the FRAME System module, but optional FRAME pallets may also define origins.</li>
-<li><code>Call</code> enum type is defined with all integrated pallets as variants. It contains the data and metadata of each of the integrated pallets, and redirects calls to the specific pallet via implementing <code>frame_support::traits::UnfilteredDispatchable</code> trait.</li>
-<li><code>GenesisConfig</code> struct type is defined and implements <code>sp_runtime::BuildStorage</code> trait for building up the storage genesis config.</li>
-<li>The macro adopts the <code>frame_support::unsigned::ValidateUnsigned</code> trait implementation from each pallet. If no <code>ValidateUnsigned</code> trait is implemented in any included pallets, all unsigned transactions will be rejected.</li>
+<li><code>Runtime</code> 结构类型是为Substrate runtime而定义的。</li>
+<li><code>Event</code>枚举类型的成员变量是所有可发出事件的pallets，并且实现了辅助traits和编码/解码traits。 用于不同类型转换的trait<code>Event</code>，实现了<code>TryInto&lt;pallets::Event&lt;Runtime&gt;&gt;</code>这个trait，以从枚举类型中提取事件。</li>
+<li><code>Origin</code>枚举类型是通过实现辅助traits来定义的，如 <code>PartialEq</code>、<code>Clone</code>、 <code>Debug</code>等traits。 此枚举类型定义了是谁调用了extrinsic：<code>NONE</code>、 <code>ROOT</code>还是由特定帐户签名调用。 这三个原生的来源类型是由FRAME系统模块定义的，但是可选的FRAME pallets也可以定义额外的来源类型。</li>
+<li><code>Call</code>枚举类型由所有的集成pallet作为成员变量来定义的。 它包含每个集成pallet的数据和元数据，并通过实现<code>frame_support::traits::UnfilteredDispatchable</code> trait将调用重定向到特定pallet。</li>
+<li>该宏定义了<code>GenesisConfig</code> 结构类型，并实现了<code>sp_runtime:: BuildStorage</code> trait以建立存储的创世配置。</li>
+<li>该宏收集每一个pallet对 <code>frame_support::unsigned::ValidateUnsigned</code> 这个trait的实现， 如果没有任何一个pallet实现了 <code>ValidateUnsigned</code> trait，则所有的无签名交易都将被拒绝。</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="parameter_types"></a><a href="#parameter_types" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>parameter_types!</h3>
 <p><strong>何时使用</strong></p>
-<p>To declare parameter types to be assigned to pallet configurable trait associated types during runtime construction.</p>
+<p>此宏用于在构造runtime时声明参数类型，这些参数类型将赋值给各pallet的可配置trait关联类型。</p>
 <p><strong>有何作用</strong></p>
-<p>The macro replaces each parameter specified into a struct type with a <code>get()</code> function returning its specified value. Each parameter struct type also implements a <code>frame_support::traits::Get&lt;I&gt;</code> trait to convert the type to its specified value.</p>
+<p>该宏使用<code>get()</code>函数返回的具体值，来替换掉结构体中指定的类型。 每个参数的结构体类型还实现了 <code>frame_support::traits::Get&lt;I&gt;</code> 这个trait，以将类型转换为其指定的值。</p>
 <p><strong>文档</strong></p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.parameter_types.html">API 文档</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="impl_runtime_apis"></a><a href="#impl_runtime_apis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>impl_runtime_apis!</h3>
 <p><strong>何时使用</strong></p>
-<p>This macro generates the API implementations for the client side through the <code>RuntimeApi</code> and <code>RuntimeApiImpl</code> struct type.</p>
+<p>此宏通过<code>RuntimeApi</code>和<code>RuntimeApiImpl</code>这两个结构体类型为客户端实现API。</p>
 <p><strong>有何作用</strong></p>
-<p>The macro defines the <code>RuntimeApi</code> and <code>RuntimeApiImpl</code> exposed to the Substrate node client. It provides implementation details of the RuntimeApiImpl based on the setup and appended user specified implementation in the <code>RuntimeApiImpl</code>.</p>
-<p><strong>Docs Notes</strong></p>
+<p>该宏定义了 <code>RuntimeApi</code> 和 <code>RuntimeApiImpl</code>这两个结构体，以暴露给Substrate节点客户端。 它提供了RuntimeApiImpl初始的具体实现细节，在加上用户对<code>RuntimeApiImpl</code>的特定实现。</p>
+<p><strong>文档和注释</strong></p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/sp_api/macro.impl_runtime_apis.html">API 文档</a></li>
-<li><code>RuntimeApi</code> and <code>RuntimeApiImpl</code> structs are declared. The macro also implements various helper traits for <code>RuntimeApiImpl</code>.</li>
-<li>What developers define within <code>impl_runtime_apis!</code> macro are appended to the end of <code>RuntimeApiImpl</code> implementation.</li>
-<li>To expose version information about the runtime, a constant <code>RUNTIME_API_VERSIONS</code> is defined. containing the runtime core <code>ID</code>/<code>VERSION</code>, metadata <code>ID</code>/<code>VERSION</code>, SessionKeys <code>ID</code>/<code>VERSION</code>, etc.</li>
-<li>A public module <code>api</code> is defined with a <code>dispatch()</code> function implemented deciding how various strings are mapped to metadata or chain lifecycle calls.</li>
+<li>宏声明了<code>RuntimeApi</code> 和 <code>RuntimeApiImpl</code> 两个结构体， 并为 <code>RuntimeApiImpl</code>实现了各种辅助trait。</li>
+<li>开发人员在 <code>impl_runtime_apis!</code> 宏内定义的内容将被追加到<code>RuntimeApiImpl</code>实现的末尾。</li>
+<li>为了暴露runtime的版本信息，宏定义了一个常量<code>RUNTIME_API_VERSIONS</code> 。 该常量包含runtime内核的 <code>ID</code>/<code>VERSION</code>，元数据 的<code>ID</code>/<code>VERSION</code>，以及会话密钥的 <code>ID</code>/<code>VERSION</code>等等。</li>
+<li>公有模块<code>api</code>定义了一个 <code>dispatch()</code>函数，该函数可决定如何将不同的字符串映射到相应的元数据或链上生命周期函数。</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="app_crypto"></a><a href="#app_crypto" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>app_crypto!</h3>
 <p><strong>何时使用</strong></p>
-<p>To specify cryptographic key pairs and its signature algorithm that are to be managed by a pallet.</p>
+<p>此宏用于指定交给pallet管理的密钥对及其签名算法。</p>
 <p><strong>有何作用</strong></p>
-<p>The macro declares three struct types, <code>Public</code>, <code>Signature</code>, and <code>Pair</code>. Aside from having various helper traits implemented for these three types, <code>Public</code> type is implemented to generating keypairs, signing and verifying signature, <code>Signature</code> type to hold the signature property given the signature chosen to be used (e.g. SR25519, ED25519 etc), and <code>Pair</code> type to generate a public-private key pair from a seed.</p>
+<p>该宏声明了三种结构体类型， <code>Public</code>、<code>Signature</code>和<code>Pair</code>。 这三种类型除实现了各种辅助traits外， <code>Public</code>类型还用于生成密钥对、签名和验证签名，<code>Signature</code> type则用于在确定了签名加密方法 (e.g. SR25519, ED25519 etc)情况下保存签名属性，<code>Pair</code>类型则用于用种子生成一个公私密钥对。</p>
 <p><strong>文档和注释</strong></p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/sp_application_crypto/macro.app_crypto.html">API 文档</a></li>
-<li><code>Public</code> struct type is declared, and implements <code>sp_application_crypto::AppKey</code> trait defining the public key type, and <code>sp_application_crypto::RuntimeAppPublic</code> trait for generating keypairs, signing, and verifying signatures.</li>
-<li><code>Signature</code> struct type is declared, and implements <code>core::hash::Hash</code> trait on how the data with this signature type is hashed.</li>
-<li><code>Pair</code> struct type is declared to wrap over the crypto pair. This type implements <code>sp_application_crypto::Pair</code> and <code>sp_application_crypto::AppKey</code> traits determining how it generates public-private key pairs from a phrase or seed.</li>
+<li>宏声明了<code>Public</code> 结构体类型，并实现了定义公钥类型的<code>sp_application_crypto::AppKey</code> trait，及实现了用于生成密钥对、签名和验证签名的 <code>sp_application_crypto::RuntimeAppPublic</code> trait。</li>
+<li>宏声明了<code>Signature</code> 结构体类型，并就签名数据如何哈希处理实现了<code>core::hash::Hash</code> trait。</li>
+<li>宏定义了<code>Pair</code>结构体类型来封装密钥对。 该类型实现了<code>sp_application_crypto::Pair</code>和 <code>sp_application_crypto::AppKey</code>两个traits，从而决定了如何从助记词或者密码种子生成公私密钥对。</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="impl_outer_origin"></a><a href="#impl_outer_origin" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>impl_outer_origin!</h3>
 <p><strong>何时使用</strong></p>
@@ -241,16 +241,16 @@
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="impl_outer_event"></a><a href="#impl_outer_event" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>impl_outer_event!</h3>
 <p><strong>何时使用</strong></p>
-<p>To construct an <code>Event</code> struct type for a runtime. This macro is typically called automatically by the <code>construct_runtime!</code> macro. However, developers may call this macro directly to construct an <code>Event</code> enum selecting the specific pallet events they want to listen for. This is useful when constructing a mock runtime for testing.</p>
+<p>此宏用于在runtime时构造一个 <code>Event</code> 结构体类型， 这个宏通常由 <code>construct_runtime!</code>宏自动调用。 然而开发人员也可以直接调用该宏来构造一个<code>Event</code> 枚举类型，以筛选其想要接收的特定pallet事件， 这对于构造测试用的模拟runtime非常有用。</p>
 <p><strong>有何作用</strong></p>
-<p>This macro creates an event enum type, implements various helper traits on <code>Event</code> type, including <code>core::clone::Clone</code>, <code>core::marker::StructuralPartialEq</code>, <code>core::fmt::Debug</code>, data encoding/decoding traits etc. Finally, the macro implements only the specifying pallet events for the runtime.</p>
+<p>此宏创建了一个<code>Event</code>枚举类型，并在该类型上实现各种了辅助traits，包括<code>core::clone::Clone</code>、<code>core::marker::StructuralPartialEq</code>、<code>core::fmt::Debug</code>、数据编码/解码traits等。 但最终该宏仅会为runtime实现指定的pallet事件。</p>
 <p><strong>文档</strong></p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.impl_outer_event.html">API 文档</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="impl_outer_dispatch"></a><a href="#impl_outer_dispatch" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>impl_outer_dispatch!</h3>
 <p><strong>何时使用</strong></p>
-<p>此宏用于实现一个元调用模块，以把调用分派给其它调用者。 它通常是由 <code>construct_runtime!</code>自动调用的。 然而开发者可以直接调用该宏来构造一个 <code>Call</code>枚举类型，并筛选要调用的特定pallet， This is useful when constructing a mock runtime for testing.</p>
+<p>此宏用于实现一个元调用模块，以把调用分派给其它调用者。 它通常是由 <code>construct_runtime!</code>自动调用的。 然而开发者可以直接调用该宏来构造一个 <code>Call</code>枚举类型，并筛选要调用的特定pallet， 这对于构造测试用的模拟runtime非常有用。</p>
 <p><strong>有何作用</strong></p>
 <p>该宏创建了一个<code>Call</code> 枚举类型，并在<code>Event</code> 类型上实现了各种辅助traits，包括<code>Clone</code>、<code>PartialEq</code>和<code>RuntimeDebug</code> 等。 最后，该宏还为 <code>Call</code>枚举类型实现了 <code>GetDispatchInfo</code>、<code>GetCallMetadata</code>、<code>IsSubType</code>这几个traits。</p>
 <p><strong>文档</strong></p>
