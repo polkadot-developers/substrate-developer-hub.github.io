@@ -25,7 +25,7 @@ const Badge = require("../../../../react-bootstrap/Badge");
 const translate = require("../../server/translate").translate;
 
 const tutorialCardData = [{
-  img: 'img/crates.png',
+  img: 'img/tutorials/crates.png',
   title: <translate>Create Your First Substrate Chain</translate>,
   text: <translate>Launch and interact with your first Substrate chain in this minimal end-to-end guide.</translate>,
   difficulty: <translate>Easy</translate>,
@@ -42,7 +42,7 @@ const tutorialCardData = [{
   version: "2.0.0",
   href: 'tutorials/add-a-pallet/',
 }, {
-  img: 'img/first-substrate-chain.png',
+  img: 'img/tutorials/first-substrate-chain.png',
   title: <translate>Build a PoE Decentralized Application</translate>,
   text: <translate>Build a customized Substrate chain with its own user interface.</translate>,
   difficulty: <translate>Easy</translate>,
@@ -59,7 +59,7 @@ const tutorialCardData = [{
   version: "2.0.0",
   href: 'tutorials/upgrade-a-chain/',
 }, {
-  img: 'img/substrate-network.png',
+  img: 'img/tutorials/substrate-network.png',
   title: <translate>Start a Private Network with Substrate</translate>,
   text: <translate>Learn to start a blockchain network using an out-of-the-box Substrate node.</translate>,
   difficulty: <translate>Easy</translate>,
@@ -76,7 +76,7 @@ const tutorialCardData = [{
   version: "2.0.0",
   href: 'tutorials/add-contracts-pallet/',
 }, {
-  title: <translate>Build a permissioned network</translate>,
+  title: <translate>Build a Permissioned Network</translate>,
   text: <translate>A comprehensive, end-to-end tutorial for building a permissioned network using node-authorization pallet.</translate>,
   difficulty: <translate>Easy</translate>,
   length: <translate>2 Hours</translate>,
@@ -84,7 +84,7 @@ const tutorialCardData = [{
   version: "2.0.0",
   href: 'tutorials/build-permission-network/',
 }, {
-  img: 'img/crates.png',
+  img: 'img/tutorials/crates.png',
   title: <translate>Write a Pallet in its Own Crate</translate>,
   text: <translate>Make your pallets re-usable by packaging them in their own rust crate.</translate>,
   difficulty: <translate>Medium</translate>,
@@ -93,7 +93,7 @@ const tutorialCardData = [{
   version: "2.0.0",
   href: 'tutorials/create-a-pallet/',
 }, {
-  img: 'img/ink-smart-contracts-tutorial.png',
+  img: 'img/tutorials/ink-smart-contracts-tutorial.png',
   title: <translate>ink! Smart Contracts Tutorial</translate>,
   text: <translate>A comprehensive, end-to-end tutorial for building an ERC20 token contract using ink!.</translate>,
   difficulty: <translate>Easy</translate>,
@@ -102,10 +102,22 @@ const tutorialCardData = [{
   version: "2.0.0",
   hrefFrom: 'baseUrl',
   href: 'tutorials/ink-smart-contracts-tutorial/',
-}, {
+},
+/* {
+  img: 'img/tutorials/relaychain-parachains.png',
+  title: <translate>Substrate Cumulus Workshop</translate>,
+  text: <translate>A workshop on how to launch a relay chain and parachains and interact with them.</translate>,
+  difficulty: <translate>Medium</translate>,
+  length: <translate>2 Hours</translate>,
+  prerequisite: true,
+  version: "2.0.0",
+  hrefFrom: 'baseUrl',
+  href: 'tutorials/substrate-cumulus-workshop/',
+}, */
+{
+  img: 'img/tutorials/substrate-evm.png',
   title: <translate>Substrate Frontier Workshop</translate>,
-  text: <translate>A workshop on how to configure Substrate to be EVM-compatible and able to run
-    EVM Solidity contracts</translate>,
+  text: <translate>A workshop to configure Substrate node to run Substrate EVM and Solidity contracts.</translate>,
   difficulty: <translate>Medium</translate>,
   length: <translate>1 Hour</translate>,
   prerequisite: false,
@@ -113,7 +125,7 @@ const tutorialCardData = [{
   hrefFrom: 'baseUrl',
   href: 'tutorials/substrate-frontier-workshop/',
 }, {
-  img: 'img/grafana.png',
+  img: 'img/tutorials/grafana.png',
   title: <translate>Visualizing Node Metrics</translate>,
   text: <translate>Learn how to visualize the metrics that Substrate records using Prometheus.</translate>,
   difficulty: <translate>Easy</translate>,
@@ -208,6 +220,6 @@ class Tutorials extends React.Component {
   }
 }
 
-Tutorials.title = "Tutorials";
-Tutorials.description = "Find the latest tutorials for Substrate.";
+Tutorials.title = "Tutorials & Workshops";
+Tutorials.description = "Find the latest tutorials and workshops for Substrate.";
 module.exports = Tutorials;
