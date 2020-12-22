@@ -102,7 +102,8 @@ const tutorialCardData = [{
   version: "2.0.0",
   hrefFrom: 'baseUrl',
   href: 'tutorials/ink-smart-contracts-tutorial/',
-}, {
+},
+/* {
   img: 'img/tutorials/relaychain-parachains.png',
   title: <translate>Substrate Cumulus Workshop</translate>,
   text: <translate>A workshop on how to launch a relay chain and parachains and interact with them.</translate>,
@@ -112,10 +113,11 @@ const tutorialCardData = [{
   version: "2.0.0",
   hrefFrom: 'baseUrl',
   href: 'tutorials/substrate-cumulus-workshop/',
-}, {
+}, */
+{
   img: 'img/tutorials/substrate-evm.png',
   title: <translate>Substrate Frontier Workshop</translate>,
-  text: <translate>A workshop to configure Substrate node to run Substrate EVM and Solidity contracts</translate>,
+  text: <translate>A workshop to configure Substrate node to run Substrate EVM and Solidity contracts.</translate>,
   difficulty: <translate>Medium</translate>,
   length: <translate>1 Hour</translate>,
   prerequisite: false,
