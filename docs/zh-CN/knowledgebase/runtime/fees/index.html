@@ -80,9 +80,8 @@
 <p>交易费用由两部分组成：</p>
 <ul>
 <li><code>length_fee</code>: 每字节的费用乘以编码后的extrinsic长度（以字节为单位）。 查看<a href="https://substrate.dev/rustdocs/v2.0.0/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee"><code>TransactionByteFee</code></a>。</li>
-<li><code>weight_fee</code>: 基于extrinsic权重的费用，是一个接收两个入参的函数。 第一个参数为 <code>ExtrinsicBaseWeight</code>，它是在runtime中声明的，且应用于所有的extrinsics。 基本权重涵盖了如签名验证之类的不可变开销。 第二个参数为可供灵活使用的<code>#[weight]</code>注释，它用于标记extrinsic的复杂性。 为了将权重转换为<code>Currency</code>，runtime必须定义一个</li>
+<li><code>weight_fee</code>: 基于extrinsic权重的费用，是一个接收两个入参的函数。 第一个参数为 <code>ExtrinsicBaseWeight</code>，它是在runtime中声明的，且应用于所有的extrinsics。 基本权重涵盖了如签名验证之类的不可变开销。 第二个参数为可供灵活使用的<code>#[weight]</code>注释，它用于标记extrinsic的复杂性。 为了将权重转换为<code>Currency</code>，runtime必须定义一个 <a href="https://substrate.dev/rustdocs/v2.0.0/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee"><code>WeightToFee</code></a> 以实现转换功能，<a href="https://substrate.dev/rustdocs/v2.0.0/sp_runtime/traits/trait.Convert.html"><code>Convert&lt;Weight,Balance&gt;</code></a>。</li>
 </ul>
-<p>以实现转换功能，<a href="https://substrate.dev/rustdocs/v2.0.0/sp_runtime/traits/trait.Convert.html"><code>Convert&lt;Weight,Balance&gt;</code></a>。</p></li> </ul></p>
 <p>基于上述情况，一个可调用函数的最终费用为：</p>
 <pre><code class="hljs">fee <span class="token operator">=</span>
   <span class="token function">len</span><span class="token punctuation">(</span>tx<span class="token punctuation">)</span> <span class="token operator">*</span> length_fee <span class="token operator">+</span>
@@ -92,8 +91,8 @@
 <h3><a class="anchor" aria-hidden="true" id="费用乘数因子"></a><a href="#费用乘数因子" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>费用乘数因子</h3>
 <p>上述公式给出的费用对于相同的输入始终是相同的。 然而权重可以是动态的，并且根据<a href="https://substrate.dev/rustdocs/v2.0.0/pallet_transaction_payment/trait.Trait.html#associatedtype.WeightToFee"><code>WeightToFee</code></a>的定义方式，最终费用可以包含一定程度的可变性。 为了满足这个要求，Substrate提供了：</p>
 <ul>
-<li><p><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_transaction_payment/struct.Module.html#method.next_fee_multiplier"><code>NextFeeMultiplier</code></a>:存储在Transaction Payment模块中的可配置乘数。</p></li>
-<li><p><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate">Trait.html#associatedtype.FeeMultiplierUpdate&quot;&gt;<code>FeeMultiplierUpdate</code></a>: Runtime的可配置参数，用于描述该乘数的变化方式。</p></li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_transaction_payment/struct.Module.html#method.next_fee_multiplier"><code>NextFeeMultiplier</code></a>:存储在Transaction Payment模块中的可配置乘数。</li>
+<li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_transaction_payment/trait.Trait.html#associatedtype.FeeMultiplierUpdate">Trait.html#associatedtype.FeeMultiplierUpdate&quot;&gt;<code>FeeMultiplierUpdate</code></a>: Runtime的可配置参数，用于描述该乘数的变化方式。</li>
 </ul>
 <p><code>NextFeeMultiplier</code> 的类型为 <code>Fixed64</code>，它可以表示一个固定的浮点数。 因此根据上述的打包费公式，最终版本将为：</p>
 <pre><code class="hljs">fee <span class="token operator">=</span>
@@ -110,10 +109,10 @@ final_fee <span class="token operator">=</span> fee <span class="token operator"
 <h2><a class="anchor" aria-hidden="true" id="附加费用："></a><a href="#附加费用：" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>附加费用：</h2>
 <p>打包费必须在extrinsic执行之前是可计算的，因此只能代表固定的逻辑。 有些交易则需要使用其他策略来限制资源的使用。 例如：</p>
 <ul>
-<li><p>保证金：保证金是用于在某些链上事件触发后，要么退还要么罚没的一种费用。 例如，runtime开发人员可能会希望实现一种用于投票的保证金机制。在这个情景下，保证金会在投票结束之后正常退还。但如果投票人尝试作恶，则保证金会在投票结束后被罚没。</p></li>
-<li><p>押金：押金是可被返还的费用。 例如，用户可能会被要求支付押金以执行占用存储的操作； 如果后续操作释放了该存储空间，则用户的押金将被返还。</p></li>
-<li><p>销毁：交易可能会基于其逻辑在执行中销毁资金。 例如，如果交易的结果是创建了新的存储条目，从而增加了链上状态的占用空间，则交易可能会因此销毁请求方发送的资金。</p></li>
-<li><p>限制：runtime开发人员可以自由地对某些操作强制执行恒定的或可配置的限制。 例如，默认的Staking pallet仅允许1个提名人提名16个验证人，以限制验证人选举过程的复杂性。</p></li>
+<li>保证金：保证金是用于在某些链上事件触发后，要么退还要么罚没的一种费用。 例如，runtime开发人员可能会希望实现一种用于投票的保证金机制。在这个情景下，保证金会在投票结束之后正常退还。但如果投票人尝试作恶，则保证金会在投票结束后被罚没。</li>
+<li>押金：押金是可被返还的费用。 例如，用户可能会被要求支付押金以执行占用存储的操作； 如果后续操作释放了该存储空间，则用户的押金将被返还。</li>
+<li>销毁：交易可能会基于其逻辑在执行中销毁资金。 例如，如果交易的结果是创建了新的存储条目，从而增加了链上状态的占用空间，则交易可能会因此销毁请求方发送的资金。</li>
+<li>限制：runtime开发人员可以自由地对某些操作强制执行恒定的或可配置的限制。 例如，默认的Staking pallet仅允许1个提名人提名16个验证人，以限制验证人选举过程的复杂性。</li>
 </ul>
 <p>重点要注意，如果在链中查询交易费用，它只会返回打包费。</p>
 <h2><a class="anchor" aria-hidden="true" id="缺省的权重注释"></a><a href="#缺省的权重注释" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>缺省的权重注释</h2>
@@ -133,10 +132,10 @@ final_fee <span class="token operator">=</span> fee <span class="token operator"
 </code></pre>
 <p>可调用函数增加了20,000权重，包含一个数据库读取和两个数据库写入操作，以及其他一些操作。 通常我们所说的一次数据库访问，就是指对在 <code>decl_storage!</code> 代码块中声明的值的一次访问。 然而，由于某个值被访问了一次后就会被缓存，而再次访问则不会导致重复的数据库操作。因此，只有第一次访问会被计入权重。 这意味着：</p>
 <ul>
-<li><p>多次读取相同的值只计算一次读取权重。</p></li>
-<li><p>多次写入相同的值只计算一次写入权重。</p></li>
-<li><p>多次读取相同值并随后对该值进行写入，只计算一次读取和一次写入的权重。</p></li>
-<li><p>一次写入并随后跟着一次读取，只计算一次写入的权重。</p></li>
+<li>多次读取相同的值只计算一次读取权重。</li>
+<li>多次写入相同的值只计算一次写入权重。</li>
+<li>多次读取相同值并随后对该值进行写入，只计算一次读取和一次写入的权重。</li>
+<li>一次写入并随后跟着一次读取，只计算一次写入的权重。</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="可调用函数的类"></a><a href="#可调用函数的类" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>可调用函数的类</h3>
 <p>可调用函数可分成三个类：<code>Normal</code>, <code>Operational</code>, 和<code>Mandatory</code>。 如果未在权重标注中额外定义，则可调用函数默认为<code>Normal</code>。 开发人员可以指定可调用函数使用另一个类，例如：</p>
@@ -152,7 +151,8 @@ final_fee <span class="token operator">=</span> fee <span class="token operator"
 <span class="token punctuation">}</span>
 </code></pre>
 <h4><a class="anchor" aria-hidden="true" id="normal类的可调用函数"></a><a href="#normal类的可调用函数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Normal类的可调用函数</h4>
-<p>此类的可调用函数表示常规的用户触发交易。 这种类型的可调用函数只被允许消耗区块总权重上限的一个比例；这个比例可以通过检查[<code>AvailableBlockRatio</code>](<a href="https://substrate">https://substrate</a>. dev/rustdocs/v2.0.0/frame_system/trait. Trait. html#associatedtype. AvailableBlockRatio)来找到。 Normal类的可调用函数将被发送到<a href="../learn-substrate/tx-pool">交易池</a>中。</p></p>
+<p>此类的可调用函数表示常规的用户触发交易。 这种类型的可调用函数只被允许消耗区块总权重上限的一个比例；这个比例可以通过检查</p>
+<p>[<code>AvailableBlockRatio</code>](<a href="https://substrate">https://substrate</a>. dev/rustdocs/v2.0.0/frame_system/trait. Trait. html#associatedtype. AvailableBlockRatio)来找到。 Normal类的可调用函数将被发送到<a href="../learn-substrate/tx-pool">交易池</a>中。</p></p>
 <h4><a class="anchor" aria-hidden="true" id="operational类可调用函数"></a><a href="#operational类可调用函数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Operational类可调用函数</h4>
 <p>与normal类的可调用函数相反，operational类的可调用函数 <em>提供了</em> 网络功能，而不是<em>使用了</em> 网络功能。 这些类型的可调用函数有可能会消耗掉整个区块的权重上限，这就是说，他们不受 &lt;a href=&quot;<a href="https://substrate.dev/rustdocs/v2.0.0/frame_system/trait.[">https://substrate.dev/rustdocs/v2.0.0/frame_system/trait.[</a><code>AvailableBlockRatio</code>](<a href="https://substrate">https://substrate</a>. dev/rustdocs/v2.0.0/frame_system/trait. Trait. html#associatedtype. AvailableBlockRatio)来找到。 此类可调用函数将获得最高优先级，并且无需支付<code>length_fee</code>。</p></p>
 <h4><a class="anchor" aria-hidden="true" id="mandatory类的可调用函数"></a><a href="#mandatory类的可调用函数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Mandatory类的可调用函数</h4>
@@ -188,9 +188,9 @@ final_fee <span class="token operator">=</span> fee <span class="token operator"
 <h3><a class="anchor" aria-hidden="true" id="自定义权重"></a><a href="#自定义权重" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>自定义权重</h3>
 <p>可通过创建一种自定义的权重计算类型，来代替使用上述默认的权重注释系统。 这种类型必须实现下列traits：</p>
 <ul>
-<li></li>
-<li></li>
-<li></li>
+<li>WeighData: 用于确定可调用函数的权重。</li>
+<li>ClassifyDispatch: 确定可调用函数的类别。</li>
+<li>PaysFee: 用于确定是否由函数调用方来支付费用。</li>
 </ul>
 <p>接下来，Substrate 会将以上二个traits的输出信息绑定到[<code>DispatchInfo</code>] 结构体中，并通过为所有<code>Call</code> 变量和不透明的extrinsic类型实现 <code>GetDispatchInfo</code> trait 来提供以上信息。 这被 System 和 Executive 模块内部使用；您可能不会使用它。</p>
 <p><code>ClassifyDispatch</code> 和 <code>WeightData</code> 都是基于泛型 <code>T</code> 的，这里T最终会解析为 可调用函数所有参数（除origin之外）的元组。 作为演示，我们将构建一个结构体来计算权重<code>m * len(args)</code>，其中 <code>m</code>是给定的乘数，而<code>args</code>则是可调用函数的所有参数串联组成的元组。 另外，如果交易的入参长度超过100个字节，则该交易的可调用函数类别被定为 <code>Operational</code>；如果该交易经编码后长度大于10个字节，则交易发送方将需要支付费用。</p>
