@@ -443,6 +443,34 @@ These are errors that could occur during the submission or execution of an extri
 the FRAME System pallet is declaring that it may raise the
 [the `InvalidSpecName` error](https://substrate.dev/rustdocs/v2.0.0/frame_system/enum.Error.html#variant.InvalidSpecName).
 
+## Runtime Version
+
+Substrate chain runtime version is encoded in the struct [sp_version::RuntimeVersion](https://substrate.dev/rustdocs/v2.0.0/sp_version/struct.RuntimeVersion.html). A sample runtime version struct is shown below:
+
+```rust
+pub const VERSION: RuntimeVersion = RuntimeVersion {
+  spec_name: create_runtime_str!("node-template"),
+  impl_name: create_runtime_str!("node-template"),
+  authoring_version: 1,
+  spec_version: 1,
+  impl_version: 1,
+  apis: RUNTIME_API_VERSIONS,
+  transaction_version: 1,
+};
+```
+
+- `spec_name` is the name of the runtime specification.
+- `impl_name` is the implementation of the runtime specification. A runtime can has the same specification (same `spec_name`) but implemented differently such as in another language (different `impl_name`).
+- `authoring_version` is the version of the authorship interface.
+- `spec_version` is the version of the runtime specification. A full-node will use the native runtime over the on-chain Wasm runtime only if all of `spec_name`, `spec_version` and `authoring_version` are the same between Wasm and native.
+- `impl_version` is the version of the runtime implementation. Non-consensus-breaking code optimizations would be an example where `impl_version` is incremented but not the `spec_version`.
+- `transaction_version` is the version of the extrinsics interface. This number is updated when the chain extrinsic interface and ID (both module and dispatch ID) are changed. This means this number is updated if extrinsic parameters and their types have been changed; extrinsics or modules are being removed; or module order in `construct_runtime!` macro and extrinsic order in a module has been changed (causing a change in their module/dispatch ID). If this number is updated, then the `spec_version` must also be updated. 
+- `apis` is a list of supported API "features" along with their versions.
+
+When submitting an extrinsic to a chain, one could query the `transaction_version` of the runtime and its metadata to learn the chain extrinsic interface. When submitting another extrinsic at a latter point in time, one could query the chain `transaction_version` first to check if the chain extrinsic interface is staying the same. If the `trasaction_version` has been updated, then the runtime metadata must be queried again to get the latest chain extrinsic interface.
+
+Runtime version structure can be queried using the chain RPC call [`state.getMetadata()`](https://polkadot.js.org/docs/substrate/rpc#getmetadataat-blockhash-metadata).
+
 ## Next Steps
 
 ### Learn More
