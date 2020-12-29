@@ -68,8 +68,21 @@ In order for the executor to be able to select the appropriate runtime execution
 needs to know the `spec_name`, `spec_version` and `authoring_version` of both the native and Wasm
 runtime.
 
-The runtime provides the following
-[versioning properties](https://substrate.dev/rustdocs/v2.0.0/sp_version/struct.RuntimeVersion.html):
+The runtime provides a 
+[runtime version struct](https://substrate.dev/rustdocs/v2.0.0/sp_version/struct.RuntimeVersion.html). 
+A sample runtime version struct is shown below:
+
+```rust
+pub const VERSION: RuntimeVersion = RuntimeVersion {
+  spec_name: create_runtime_str!("node-template"),
+  impl_name: create_runtime_str!("node-template"),
+  authoring_version: 1,
+  spec_version: 1,
+  impl_version: 1,
+  apis: RUNTIME_API_VERSIONS,
+  transaction_version: 1,
+};
+```
 
 - `spec_name`: The identifier for the different Substrate runtimes.
 
@@ -89,12 +102,32 @@ The runtime provides the following
   do the same thing. Non-consensus-breaking optimizations are about the only changes that could be
   made which would result in only the `impl_version` changing.
 
+- `transaction_version`: The version of the extrinsics interface. This number is updated when the 
+  chain extrinsic interface and ID (both module and dispatch ID) are changed. This means this number 
+  is updated if extrinsic parameters and their types have been changed; extrinsics or modules are 
+  being removed; or module order in `construct_runtime!` macro and extrinsic order in a module has 
+  been changed (causing a change in their module/dispatch ID). If this number is updated, then the 
+  `spec_version` must also be updated. 
+
+- `apis` is a list of supported API "features" along with their versions.
+
 As mentioned above, the executor always verifies that the native runtime has the same
 consensus-driven logic before it chooses to execute it, independent of whether the version is higher
 or lower.
 
 > **Note:** The runtime versioning is manually set. Thus the executor can still make inappropriate
 > decisions if the runtime version is misrepresented.
+
+Also, when submitting an extrinsic to a chain, one could query the `spec_version` of the runtime 
+and its metadata to learn about the chain extrinsic interface. When submitting another extrinsic at 
+a latter point in time, one could query the chain `spec_version` first. If the `spec_version` is 
+the same, the extrinsic interface is staying the same given the runtime maintainer 
+properly version its upgrade, and the previously known runtime metadata can be reused. If the 
+`spec_version` has been updated, then the runtime metadata must be queried again to get the 
+latest chain extrinsic interface.
+
+The above runtime version structure can be queried using the chain RPC call 
+[`state.getMetadata()`](https://polkadot.js.org/docs/substrate/rpc#getmetadataat-blockhash-metadata).
 
 ### Forkless Runtime Upgrades
 
