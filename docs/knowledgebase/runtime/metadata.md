@@ -13,8 +13,8 @@ Since the runtime of a Substrate blockchain is an evolving part of the blockchai
 blockchain metadata is stored on a per-block basis. Be aware that querying the metadata for an older
 block (with an archive node, for example) could result in acquiring out-of-date metadata that is not
 compatible with a blockchain's current state. As described in the
-[Executor documentation](../advanced/executor), developers building on top of Substrate chains can
-expect that the metadata for a chain will only change when the chain's
+[Upgrades documentation](upgrades), developers building on top of Substrate chains can
+expect that the metadata for a chain should _only_ change when the chain's
 [runtime `spec_version`](https://substrate.dev/rustdocs/v2.0.0/sp_version/struct.RuntimeVersion.html#structfield.spec_version)
 changes.
 
