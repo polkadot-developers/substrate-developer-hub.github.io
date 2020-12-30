@@ -102,12 +102,11 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
   do the same thing. Non-consensus-breaking optimizations are about the only changes that could be
   made which would result in only the `impl_version` changing.
 
-- `transaction_version`: The version of the extrinsics interface. This number is updated when the 
-  chain extrinsic interface and ID (both module and dispatch ID) are changed. This means this number 
-  is updated if extrinsic parameters and their types have been changed; extrinsics or modules are 
-  being removed; or module order in `construct_runtime!` macro and extrinsic order in a module has 
-  been changed (causing a change in their module/dispatch ID). If this number is updated, then the 
-  `spec_version` must also be updated. 
+- `transaction_version`: The version of the extrinsics interface. This number must be updated in the
+  following circumstances: extrinsic parameters (number, order, or types) have been changed;
+  extrinsics or pallets have been removed; or the pallet order in the `construct_runtime!` macro
+  _or_ extrinsic order in a pallet has been changed. If this number is updated, then the
+  `spec_version` must also be updated.
 
 - `apis` is a list of supported API "features" along with their versions.
 
