@@ -68,8 +68,8 @@ In order for the executor to be able to select the appropriate runtime execution
 needs to know the `spec_name`, `spec_version` and `authoring_version` of both the native and Wasm
 runtime.
 
-The runtime provides a 
-[runtime version struct](https://substrate.dev/rustdocs/v2.0.0/sp_version/struct.RuntimeVersion.html). 
+The runtime provides a
+[runtime version struct](https://substrate.dev/rustdocs/v2.0.0/sp_version/struct.RuntimeVersion.html).
 A sample runtime version struct is shown below:
 
 ```rust
@@ -117,15 +117,15 @@ or lower.
 > **Note:** The runtime versioning is manually set. Thus the executor can still make inappropriate
 > decisions if the runtime version is misrepresented.
 
-Also, when submitting an extrinsic to a chain, one could query the `spec_version` of the runtime 
-and its metadata to learn about the chain extrinsic interface. When submitting another extrinsic at 
-a latter point in time, one could query the chain `spec_version` first. If the `spec_version` is 
-the same, the extrinsic interface is staying the same given the runtime maintainer 
-properly version its upgrade, and the previously known runtime metadata can be reused. If the 
-`spec_version` has been updated, then the runtime metadata must be queried again to get the 
-latest chain extrinsic interface.
+Also, when submitting an extrinsic to a chain, one could query the `spec_version` of the runtime and
+its metadata to learn about the chain extrinsic interface. When submitting another extrinsic at a
+latter point in time, one could query the chain `spec_version` first. If the `spec_version` is the
+same, the extrinsic interface is staying the same given the runtime maintainer properly version its
+upgrade, and the previously known runtime metadata can be reused. If the `spec_version` has been
+updated, then the runtime metadata must be queried again to get the latest chain extrinsic
+interface.
 
-The above runtime version structure can be queried using the chain RPC call 
+The above runtime version structure can be queried using the chain RPC call
 [`state.getMetadata()`](https://polkadot.js.org/docs/substrate/rpc#getmetadataat-blockhash-metadata).
 
 ### Forkless Runtime Upgrades
