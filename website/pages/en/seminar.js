@@ -93,7 +93,9 @@ function Seminar(props) {
             <div className='col-md-6 first'>
               <h4 className='mb-2'><translate>What topics are coming up?</translate></h4>
               <p>
-                <translate>Seminar will be on hiatus until January 5th.</translate>
+                <translate>On <strong>5 Jan</strong> Dan Forbes, Parity Developer Advocate, will discuss Rust syntax for Substrate.</translate>
+                <translate>On <strong>12 Jan</strong> Parity's Master of Validators, Will Pankiewicz, will discuss network security.</translate>
+                <translate>On <strong>19 Jan</strong> Substrate Core Developer Guillaume Tholliere will discuss FRAME v2.</translate>
               </p>
             </div>
 
