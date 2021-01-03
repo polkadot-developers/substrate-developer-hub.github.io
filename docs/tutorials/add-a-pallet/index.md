@@ -32,4 +32,4 @@ you do not, please complete it.
 
 > Experienced developers who truly prefer to skip those tutorials may install the Node Template
 > according to
-> [the instructions in its readme](https://github.com/substrate-developer-hub/substrate-node-template#local-development).
+> [the instructions in its readme](https://github.com/substrate-developer-hub/substrate-node-template#getting-started).
