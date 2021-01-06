@@ -94,6 +94,8 @@ function Seminar(props) {
               <h4 className='mb-2'><translate>What topics are coming up?</translate></h4>
               <p>On <strong>12 Jan</strong> Parity's Master of Validators, Will Pankiewicz, will discuss network security.</p>
               <p>On <strong>19 Jan</strong> Substrate Core Developer Guillaume Tholliere will discuss FRAME v2.</p>
+              <p>On <strong>26 Jan</strong> Dastan Beksamatov from <a href='https://limechain.tech/'>LimeChain</a> will discuss the design&nbsp;
+              and use of their AssemblyScript libraries for developing on the Polkadot stack.</p>
             </div>
 
             <div className='col-md-6 second'>
