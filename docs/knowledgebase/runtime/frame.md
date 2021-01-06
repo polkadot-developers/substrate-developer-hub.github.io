@@ -145,7 +145,7 @@ A pallet that contains common runtime patterns in an isolated manner. This palle
 used in a production blockchain, just for benchmarking and testing purposes.
 
 - [Docs](https://substrate.dev/rustdocs/v2.0.0/pallet_benchmark/index.html)
-- [Source](https://github.com/paritytech/substrate/blob/master/frame/benchmark/src/lib.rs)
+- [Source](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/lib.rs)
 
 ### Collective
 
