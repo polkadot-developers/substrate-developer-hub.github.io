@@ -112,7 +112,7 @@
 <p>这是用于对 FRAME runtime 进行基准测试的宏。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_benchmarking/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/benchmarking/src/lib.rs">源代码</a></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="内置模块"></a><a href="#内置模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>内置模块</h2>
 <p>一些模块具有通适性，可在不同链中复用。 任何人都可以自由编写和共享模块， 而 Substrate 本身也自带了一系列功能通用的模块。 让我们一起来探索吧。</p>
@@ -120,235 +120,235 @@
 <p>Assets 模块是一个用于处理可替代资产，简单而安全的模块。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_assets/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/assets/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/assets/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="atomic-swap-模块"></a><a href="#atomic-swap-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Atomic Swap 模块</h3>
 <p>此模块用于处理原子性的资金转账。 在此类情景下，收款方必须能提供相关证明以使转账获批 (认领款项) 。 若款项未能在指定时间窗口被认领，付款方可取消本次交易。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_atomic_swap/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/atomic-swap/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/atomic-swap/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="aura-模块"></a><a href="#aura-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Aura 模块</h3>
 <p>Aura 模塊通过管理链下报告机制拓展了 Aura 共识系统。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_aura/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/aura/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/aura/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="authority-discovery-模块"></a><a href="#authority-discovery-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Authority Discovery 模块</h3>
 <p>Substrate 的 <code>core/authority-discovery</code> 库使用了 Authority Discovery 模块来获取当前权威集，获取本节点权威 ID，以及签署和验证与本节点与其他权威节点之间交换的消息。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_authority_discovery/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/authority-discovery/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/authority-discovery/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="authorship-模块"></a><a href="#authorship-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Authorship 模块</h3>
 <p>Authorship 模块用于追踪当前区块的创建者，以及邻近的 “叔块”。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_authorship/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/authorship/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/authorship/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="babe-模块"></a><a href="#babe-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>BABE 模块</h3>
 <p>BABE 模块通过从 VRF 算法的输出中收集链上随机因子，和有效管理区块的周期更替来实现 BABE 共识机制的部份功能。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_babe/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/babe/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/babe/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="balances-模块"></a><a href="#balances-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Balances 模块</h3>
 <p>Balances 模块提供了帐户和余额的管理功能。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_balances/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/balances/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/balances/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="benchmark-模块"></a><a href="#benchmark-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Benchmark 模块</h3>
 <p>此模块把通用 runtime 开发模式从运行依赖中隔离出来， 注意它只是用于评估基准数据及测试，并不适用于生产环境。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_benchmark/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/benchmarking/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/benchmarking/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="collective-模块"></a><a href="#collective-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Collective 模块</h3>
 <p>Collective 模块可使某些指定账号集可通过让某些特殊来源的函数调用来得知它们的一些集体信息。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_collective/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/collective/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/collective/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="contracts-模块"></a><a href="#contracts-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contracts 模块</h3>
 <p>Contracts 模块为 runtime 提供了部署和执行 WebAssembly 智能合约的能力。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_contracts/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/contracts/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="democracy-模块"></a><a href="#democracy-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Democracy 模块</h3>
 <p>Democracy 模块提供了一个民主系统来处理持份者的投票事宜。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_democracy/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/democracy/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/democracy/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="elections-phragmén-模块"></a><a href="#elections-phragmén-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Elections Phragmén 模块</h3>
 <p>Phragmén Elections 模块是基于 <a href="https://wiki.polkadot.network/docs/en/learn-phragmen">序贯 Phragmén 算法</a> 的一个选举模块。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_elections_phragmen/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/elections-phragmen/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/elections-phragmen/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="elections-模块"></a><a href="#elections-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Elections 模块</h3>
 <p>Elections 模块是用在为持份加权的成员选举内的。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_elections/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/elections/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/elections/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="evm-模块"></a><a href="#evm-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>EVM 模块</h3>
 <p>EVM 模块是 Substrate 体系内的 <a href="https://en.wikipedia.org/wiki/Ethereum">以太坊</a> 虚拟机(EVM) 的执行模块。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_evm/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/evm/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/evm/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="example-offchain-worker-模块"></a><a href="#example-offchain-worker-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example Offchain Worker 模块</h3>
 <p>一个用于展示链下工作机通用概念、API和结构的简单模块。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_example_offchain_worker/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/example-offchain-worker/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/example-offchain-worker/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="example-模块"></a><a href="#example-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example 模块</h3>
 <p>Example 模块是用于展示开发模块时的共通概念、API 和结构体。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_example/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/example/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="finality-tracker-模块"></a><a href="#finality-tracker-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Finality Tracker 模块</h3>
 <p>Finality Tracker 模块追踪当前区块创建者所知的最新确定的区块。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_finality_tracker/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/finality-tracker/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/finality-tracker/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="grandpa-模块"></a><a href="#grandpa-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GRANDPA 模块</h3>
 <p>GRANDPA 模块通过为 GRANDPA 权威集作原生代码的运行作准备，来实现 GRANDPA 共识机制的部份功能。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_grandpa/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/grandpa/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/grandpa/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="identity-模块"></a><a href="#identity-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Identity 模块</h3>
 <p>Identity 模块是一个联合命名系统，它允许特定的 origin 往里添加多个注册服务机构。 注册服务机构可以收取一定费用以提供身份验证服务。 任何人都可通过提供定额押金来标注自己的身份，并邀请任意数量的注册服务机构进行审核 (需分别支付费用)。 注册服务机构的判断结果是以枚举类型的形式给出的，可支持复杂的多层级意见。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_identity/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/identity/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/identity/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="im-online-模块"></a><a href="#im-online-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>I'm Online 模块</h3>
 <p>I'm Online 模块允许验证人在每次新会话中广播一次心跳，以表明该节点处于在线状态。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_im_online/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/im-online/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/im-online/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="indices-模块"></a><a href="#indices-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Indices 模块</h3>
 <p>Indices 模块可为新创建的帐户分配索引。 索引是地址的缩写形式。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_indices/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/indices/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/indices/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="membership-模块"></a><a href="#membership-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Membership 模块</h3>
 <p>Membership 模块允许控制一组 <code>AccountId</code> 的成员资格，它对于管理集合类型的成员资格十分有用。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_membership/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/membership/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/membership/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="multisig-模块"></a><a href="#multisig-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Multisig 模块</h3>
 <p>Multisig 模块是一个用于调用多重签名函数的模块。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_multisig/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/multisig/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/multisig/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="nicks-模块"></a><a href="#nicks-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Nicks 模块</h3>
 <p>Nicks 模块是一个用于记录着链上帐户匿称的简单模块。 它既不会创建账户名的多层级结构，也无意作为 DNS 的替代品，或是提供反向查找功能。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_nicks/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/nicks/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="offences-模块"></a><a href="#offences-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Offences 模块</h3>
 <p>Offences 模块用于记录着被举报的违规行为。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_offences/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/offences/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/offences/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="proxy-模块"></a><a href="#proxy-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Proxy 模块</h3>
 <p>Proxy 模块允许一个帐户授权其他帐户以其名义调用不同函数的模块。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_proxy/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/proxy/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/proxy/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="randomness-collective-flip-模块"></a><a href="#randomness-collective-flip-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Randomness Collective Flip 模块</h3>
 <p>Randomity Collective Flip 模块提供了可供测试使用的 <code>random</code> 函数，并基于之前 <code>81</code> 个区块哈希值生成了一组难受外部环境影响的随机值。 但此模块不应用于生产环境内。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_randomness_collective_flip/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/randomness-collective-flip/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/randomness-collective-flip/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="recovery-模块"></a><a href="#recovery-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Recovery 模块</h3>
 <p>Recovery 模块是一种依靠 M-of-N 的社交来恢复用户帐户的工具。如果用户帐户的私钥或其他身份验证机制丢失，用户可使用这模块重新获取账户访问权限。 通过这个模块，用户可以另一个帐户代替其原本帐户对外发出请求调用。 账户的恢复过程受到了原始帐户主所选的受信 “朋友” 的保护。 需要得到 N 个朋友当中的最低门鉴数 (M) 个人的同意，才能把原有账户的访问权限授予给另一个账户。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_recovery/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/recovery/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/recovery/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="scheduler-模块"></a><a href="#scheduler-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Scheduler 模块</h3>
 <p>此模块提供了预约功能，可以提前设定可调用函数于指定区块数或指定时间段发出。 这些提前设定的可调用函数，可以包含调用者名称或匿名，也可跟着被取消。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_scheduler/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/scheduler/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/scheduler/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="scored-pool-模块"></a><a href="#scored-pool-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Scored Pool 模块</h3>
 <p>Scored Pool 模块记录着一个计分的成员池，其中得分靠前的实体获得成员的身份。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_scored_pool/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/scored-pool/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/scored-pool/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="session-模块"></a><a href="#session-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Session 模块</h3>
 <p>Session 模块允许验证人管理其会话密钥，提供了更改会话长度的及处理会话轮换的功能。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_session/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/session/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/session/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="society-模块"></a><a href="#society-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Society 模块</h3>
 <p>Society 模块是一种旨在激励用户参与并维护会员制社区的经济游戏。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_society/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/society/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/society/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="staking-模块"></a><a href="#staking-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Staking 模块</h3>
 <p>Staking 模块为网络维护者提供管理质押资金的功能。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_staking/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/staking/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/staking/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="sudo-模块"></a><a href="#sudo-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Sudo 模块</h3>
 <p>Sudo 模块允许单个帐户 (称为“ sudo密钥”) 执行只有 <code>Root</code> 源头才可调用的函数，或指定一个新帐户来替换它作为新的 sudo 密钥。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_sudo/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/sudo/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/sudo/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="timestamp-模块"></a><a href="#timestamp-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Timestamp 模块</h3>
 <p>Timestamp 模块提供了获取和设置链上时间的功能。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_timestamp/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/timestamp/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/timestamp/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="transaction-payment-模块"></a><a href="#transaction-payment-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Transaction Payment 模块</h3>
 <p>Transaction Payment 模块提供了函数调用前计算交易费用的基本逻辑。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_transaction_payment/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/transaction-payment/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="treasury-模块"></a><a href="#treasury-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Treasury 模块</h3>
 <p>Treasury 模块提供了一个可由系统中的持份者共同管理的 “资金” 库，以及用于从该资金库作出支出提案决策的流程结构。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_treasury/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/treasury/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/treasury/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="utility-模块"></a><a href="#utility-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Utility 模块</h3>
 <p>一个用于管理函数调用的无状态 (存储) 的模块，并有着一系列的支援函数。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_utility/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/utility/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/utility/src/lib.rs">源代码</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="vesting-模块"></a><a href="#vesting-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Vesting 模块</h3>
 <p>此模块提供了把账户内锁定余额以线性公式释放的功能。 此模块确保足额锁定，以防止余额因交易费用支付以外的任何原因而降至非锁定金额以下。</p>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_vesting/index.html">文档</a></li>
-<li><a href="https://github.com/paritytech/substrate/blob/master/frame/vesting/src/lib.rs">源代码</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/vesting/src/lib.rs">源代码</a></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="后续步骤"></a><a href="#后续步骤" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>后续步骤</h2>
 <h3><a class="anchor" aria-hidden="true" id="进一步学习"></a><a href="#进一步学习" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>进一步学习</h3>
