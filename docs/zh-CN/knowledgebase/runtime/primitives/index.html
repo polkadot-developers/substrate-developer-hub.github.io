@@ -74,16 +74,16 @@
             });
         </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Runtime 的基本类型</h1></header><article><div><span><p>Substrate的runtime是由一系列原语所组合而成，Substrate框架其它部分都需要它。</p>
 <h2><a class="anchor" aria-hidden="true" id="核心原语"></a><a href="#核心原语" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>核心原语</h2>
-<p>Substrate 框架对运行时必须提供给Substrate其他层的内容有一个最小假设。 它们必须被定义并且必须满足特定的接口才能在 Substrate 框架内工作。</p>
+<p>Substrate 框架对运行时必须提供给 Substrate 其他层的内容有一个最小假设。 它们必须被定义并且必须满足特定的接口才能在 Substrate 框架内工作。</p>
 <p>它们是:</p>
 <ul>
-<li><p><code>Hash</code>，一种编码了数据加密摘要的类型， 通常是一个256位的数值。</p></li>
-<li><p><code>DigestItem</code>: A type which must be able to encode one of a number of &quot;hard-wired&quot; alternatives relevant to consensus and change-tracking as well as any number of &quot;soft-coded&quot; variants, relevant to specific modules within the runtime.</p></li>
-<li><p><code>Digest</code>: 一系列“DigestItem”的组合， 它对当前区块中轻客户端所需知晓的所有信息进行了编码。</p></li>
-<li><p><code>Extrinsic</code>，这种类型代表着一段来自链外、且被区块链认可的数据。 它通常包括一个或多个签名，以及某种编码指令(例如转移资金所有权或调用智能合约)。</p></li>
-<li><p><code>Header</code>, 一种包含了单个区块所有信息(以加密或其它形式) 的类型。 它包括父区块哈希、存储根哈希和extrinsic根哈希、区块摘要及区块号。</p></li>
-<li><p><code>Block</code>，基本上就是<code>Header</code>和一系列<code>Extrinsics</code>的组合，以及所使用的哈希算法说明。</p></li>
-<li><p><code>BlockNumber</code> 一种类型，代表一个有效区块的祖先区块的总数量。 通常是32字节数值。</p></li>
+<li><p><code>Hash</code>：一种编码了数据加密摘要的类型， 通常是一个256位的数值。</p></li>
+<li><p><code>DigestItem</code>：一种可编码类型，需要能同时支持静态编码写死的代码内容（与共识系统和变化追踪相关的备选方案），和多个对应指定模块的 “软变量”。</p></li>
+<li><p><code>Digest</code>：一系列 &quot;DigestItem&quot; 的组合， 它对当前区块中轻客户端所需知晓的所有信息进行了编码。</p></li>
+<li><p><code>Extrinsic</code>：这种类型代表着一段来自链外、且被区块链认可的数据。 它通常包括一个或多个签名，以及某种编码指令(例如转移资金所有权或调用智能合约)。</p></li>
+<li><p><code>Header</code>：一种包含了单个区块所有信息 (以加密或其它形式) 的类型。 它包括父区块哈希、存储根哈希和 extrinsic 根哈希、区块摘要及区块号。</p></li>
+<li><p><code>Block</code>：基本上就是 <code>Header</code> 和一系列 <code>Extrinsics</code> 的组合，以及所使用的哈希算法说明。</p></li>
+<li><p><code>BlockNumber</code>：一种类型，代表一个有效区块的祖先区块的总数量。 通常是32字节数值。</p></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="frame原语"></a><a href="#frame原语" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>FRAME原语</h2>
 <p>如果是通过Substrate FRAME搭建的runtime，还可以使用如下的FRAME原语：</p>
