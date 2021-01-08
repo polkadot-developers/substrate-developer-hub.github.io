@@ -178,7 +178,7 @@
 </ul></li>
 <li><p><code>Call&lt;T: Trait&gt;</code>实现了<code>frame_support::dispatch::GetDispatchInfo</code> 和<code>frame_support::traits::UnfilteredDispatchable</code> 这两个traits，包含了可调用函数核心逻辑。</p></li>
 <li><p><code>Module&lt;T&gt;</code> 实现了 <code>frame_support::dispatch::Callable&lt;T&gt;</code> 这个trait，而该trait关联类型<code>Call</code>则被赋值给了<code>Call</code>枚举类型。</p></li>
-<li><p>每个可调用函数都预先规划了其内部追踪逻辑，用于追踪节点活动。 Developers can set whether to trace for a dispatchable function by specifying its interest level.</p></li>
+<li><p>每个可调用函数都预先规划了其内部追踪逻辑，用于追踪节点活动。 开发者可设置一个兴趣等级，来决定是否要追踪一个可调用函数。</p></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="construct_runtime"></a><a href="#construct_runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>construct_runtime!</h3>
 <p><strong>何时使用</strong></p>
