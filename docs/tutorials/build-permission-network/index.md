@@ -13,7 +13,7 @@ This tutorial should take you about **1 hour** to complete.
 
 Before play with this tutorial, we expect that:
 
-* You have completed the [Build a PoE Decentralized Application Tutorial](https://substrate.dev/docs/en/tutorials/build-a-dapp/)
+* You have completed the [Add a Pallet Tutorial](https://substrate.dev/docs/en/tutorials/add-a-pallet/)
 * You have completed the [Start a Private Network Tutorial](https://substrate.dev/docs/en/tutorials/start-a-private-network/)
 * You are **conceptually** comforatble with [LibP2P Networking](https://docs.libp2p.io/introduction/what-is-libp2p/) 
     as it is used in Substrate to address nodes and peers on your network.
