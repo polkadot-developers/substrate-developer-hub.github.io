@@ -83,7 +83,7 @@ Here is a brief comparison of features between ink! and Solidity:
 
 ### Learn More
 
-- Learn about the [FREAME Contracts Pallet](https://docs.rs/pallet-contracts) which is used to
+- Learn about the [FRAME Contracts Pallet](https://docs.rs/pallet-contracts) which is used to
   deploy and execute ink! contracts.
 
 ### Examples
