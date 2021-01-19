@@ -177,15 +177,15 @@ Hit `Save & Test` to ensure that you have the data source set correctly. Now you
 
 ### Template Grafana Dashboard
 
-If you would like a basic dashboard to start [here is a template example](https://grafana.com/grafana/dashboards/11784/) that you can `Import` in Grafana to get basic information about your node:
+If you would like a basic dashboard to start [here is a template example](../assets/tutorials/visualize-node-metrics/Substrate-Node-Template-Metrics.json) that you can `Import` in Grafana to get basic information about your node:
 
-![https://grafana.com/grafana/dashboards/11784](https://grafana.com/api/dashboards/11784/images/7618/image)
+![../assets/tutorials/visualize-node-metrics/Substrate-Node-Template-Metrics.json](../../website/static/img/tutorials/grafana.png)
 
 If you create your own, the [prometheus docs for grafana use](https://prometheus.io/docs/visualization/grafana/)
-may be helpful. \*\*And if you do create one, consider uploading it to the
+may be helpful. <b>If you do create one, consider uploading it to the
 [community list of dashboards](https://grafana.com/grafana/dashboards) and letting
 the substrate builder community know it exists by listing in on
-[Awesome Substrate](https://github.com/substrate-developer-hub/awesome-substrate)
+[Awesome Substrate](https://github.com/substrate-developer-hub/awesome-substrate)!</b>
 
 ## Next Steps
 
