@@ -52,9 +52,9 @@ git checkout perm-network
 You should be able to `check` the project (or `build`) without any error: 
 
 ```shell
-cd substrate-node-template/
-make init
-make check
+cd substrate-node-template #if not already there
+make init # only need to run once
+make check # run every time you want to check
 ```
 
 > If you do run into issues building, checkout
@@ -76,7 +76,7 @@ pallet-node-authorization = { default-features = false, version = '2.0.0' }
 default = ['std']
 std = [
     #--snip--
-    pallet-node-authorization/std,
+    'pallet-node-authorization/std',
     #--snip--
 ]
 ```
@@ -201,10 +201,17 @@ and represents the owner of this node, here we are using one of the provided end
 for demonstration. To make it clear, the owner of the first node is Alice, and Bob owns the second node.
 
 You may wondering where the `12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2` comes from.
-We can use [subkey](https://substrate.dev/docs/en/knowledgebase/integrate/subkey#generating-node-keys) to generate the above human readable `PeerId`.
+We can use [subkey](https://substrate.dev/docs/en/knowledgebase/integrate/subkey#generating-node-keys) to
+generate a **new** node key pair, or **recover** one from a known secret, and view it inhuman readable
+`PeerId` format.
 
 ```shell
-subkey generate-node-key
+# 1. Option to *recover* the well know key in this example (from a known secret)
+printf "c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a" > node-key.secret
+
+# Option to use a *new* key just for you
+# NOTE: this saves your node key in *plain text!* keep is safe!
+subkey generate-node-key --file node-key.secret
 ```
 
 > Note: `subkey` is a CLI tool that comes bundled with substrate, and you can install it natively too! 
@@ -213,9 +220,14 @@ subkey generate-node-key
 The output of the command is like:
 
 ```shell
-12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2 // this is PeerId.
-c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a // This is node-key.
+# Note the `echo` here is just to give nice output, see the commands inside $() for raw use.
+echo PeerID: $(subkey inspect-node-key --file node-key.secret) && echo node key \(SECRET\): $(cat node-key.secret)
+PeerID: 12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2
+node key (SECRET): c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a
 ```
+
+> Note: if you genereate a *new* key, you will need to replace the peer ID's in your `node/src/chain_spec.rs` file!
+> You will also need to replace the node-key in the next step of this tutorial.
 
 Now all the code changes are finished, we are ready to launch our permissoned network. Go get yourself some water!
 
