@@ -71,7 +71,7 @@ The nodes of Alice and Bob are already configured in genesis storage and serve a
 Let's start Alice's node first:
 
 ```shell
-./target/release/node-template --chain=local --base-path ~/tmp/validator1 --alice --node-key=c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a --port 30333 --ws-port 9944
+./target/release/node-template --chain=local --base-path /tmp/validator1 --alice --node-key=c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a --port 30333 --ws-port 9944
 ```
 
 Here we are using `--node-key` to specify the key that are used for the security connection of the network. This key is also used to generate the human readable PeerId as shown in above section.
@@ -88,7 +88,7 @@ Other used CLI flags are,
 Start Bob's node:
 
 ```shell
-./target/release/node-template --chain=local --base-path ~/tmp/validator2 --bob --node-key=6ce3be907dbcabf20a9a5a60a712b4256a54196000a8ed4050d352bc113f8c58 --port 30334 --ws-port 9945
+./target/release/node-template --chain=local --base-path /tmp/validator2 --bob --node-key=6ce3be907dbcabf20a9a5a60a712b4256a54196000a8ed4050d352bc113f8c58 --port 30334 --ws-port 9945
 ```
 
 After both nodes are started, you should be able to see new blocks authored and finalized. Now let's use the [polkadot.js apps](https://polkadot.js.org/apps/) and check the well known nodes of our blockchain. Don't forget to use our local node `127.0.0.1:9944`.
@@ -112,7 +112,7 @@ We can also check the owner of one node by querying the storage `owners` with th
 Let's start Charlie's node,
 
 ```shell
-./target/release/node-template --chain=local --base-path ~/tmp/validator3 --name charlie  --node-key=3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e --port 30335 --ws-port=9946 --offchain-worker always
+./target/release/node-template --chain=local --base-path /tmp/validator3 --name charlie  --node-key=3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e --port 30335 --ws-port=9946 --offchain-worker always
 ```
 
 After it was started, you should see there is no connected peers for this node. This is because we are already in a permissioned network, you need to get authorization to to be connectable! 
@@ -134,7 +134,7 @@ Let's add another node, not a well-known node but a "sub-node" of Charlie, which
 Start the node with following command.
 
 ```shell
-./target/release/node-template --chain=local --base-path ~/tmp/validator4 --name dave --node-key=a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a --port 30336 --ws-port 9947 --offchain-worker always
+./target/release/node-template --chain=local --base-path /tmp/validator4 --name dave --node-key=a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a --port 30336 --ws-port 9947 --offchain-worker always
 ```
 
 After it was started, there is no avaliable connections. Firstly, Charlie need to configure his well known node to allow the connection from Dave's node.
