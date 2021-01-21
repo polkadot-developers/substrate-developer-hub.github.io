@@ -34,12 +34,12 @@ that include, but are not limited to, the following:
 - **Runtime** logic defines how blocks are processed, including state transition logic. In Substrate, runtime code is
   compiled to [Wasm](knowledgebase/getting-started/glossary#webassembly-wasm) and becomes part of the blockchain's
   storage state - this enables one of the defining features of a Substrate-based blockchain:
-  [forkless runtime upgrades](knowledgebase/advanced/executor#forkless-runtime-upgrades). Substrate clients may also
+  [forkless runtime upgrades](knowledgebase/runtime/upgrades#forkless-runtime-upgrades). Substrate clients may also
   include a "native runtime" that is compiled for the same platform as the client itself (as opposed to Wasm). The
   component of the client that dispatches calls to the runtime is known as the
   [executor](knowledgebase/advanced/executor) and it selects between the native code and interpreted Wasm. Although the
   native runtime may offer a performance advantage, the executor will select to interpret the Wasm runtime if it
-  implements a newer [version](knowledgebase/advanced/executor#runtime-versioning).
+  implements a newer [version](knowledgebase/runtime/upgrades#runtime-versioning).
 - **Peer-to-peer network** capabilities allow the client to communicate with other network participants. Substrate uses
   [the `libp2p` network stack](https://libp2p.io/).
 - **Consensus** engines provide logic that allows network participants to agree on the state of the blockchain.
