@@ -221,9 +221,11 @@ The output of the command is like:
 
 ```shell
 # Note the `echo` here is just to give nice output, see the commands inside $() for raw use.
-echo PeerID: $(subkey inspect-node-key --file node-key.secret) && echo node key \(SECRET\): $(cat node-key.secret)
-PeerID: 12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2
+echo -e "---\nPeerID: $(subkey inspect-node-key --file node-key.secret) \nnode key (SECRET): $(cat node-key.secret)\n---"
+---
+PeerID: 12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2 
 node key (SECRET): c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a
+---
 ```
 
 > Note: if you genereate a *new* key, you will need to replace the peer ID's in your `node/src/chain_spec.rs` file!
