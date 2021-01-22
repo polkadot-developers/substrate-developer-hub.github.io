@@ -179,12 +179,16 @@ Hit `Save & Test` to ensure that you have the data source set correctly. Now you
 
 If you would like a basic dashboard to start [here is a template example](assets/tutorials/visualize-node-metrics/Substrate-Node-Template-Metrics.json) that you can `Import` in Grafana to get basic information about your node:
 
-![grafana dashboard](assets/tutorials/visualize-node-metrics/grafana.png)
-If you create your own, the [prometheus docs for grafana use](https://prometheus.io/docs/visualization/grafana/)
-may be helpful. <b>If you do create one, consider uploading it to the
+<center><img src="assets/tutorials/visualize-node-metrics/grafana.png" alt="grafana dashbord" width="50%"/></center>
+
+If you create your own, the [prometheus docs for grafana](https://prometheus.io/docs/visualization/grafana/)
+may be helpful.
+
+<b>If you do create one, consider uploading it to the
 [community list of dashboards](https://grafana.com/grafana/dashboards) and letting
 the substrate builder community know it exists by listing in on
-[Awesome Substrate](https://github.com/substrate-developer-hub/awesome-substrate)!</b>
+[Awesome Substrate](https://github.com/substrate-developer-hub/awesome-substrate)!
+Here is ours on [the grafana public dashboards](https://grafana.com/grafana/dashboards/13759/)</b>
 
 ## Next Steps
 
@@ -198,7 +202,7 @@ the substrate builder community know it exists by listing in on
 
 - The Grafana dashboard configuration for the [Polkadot
   network](https://github.com/w3f/polkadot-dashboard).
-- [Grafana Template](https://grafana.com/grafana/dashboards/11784/) for a Substrate Node Template
+- [Grafana Template](https://grafana.com/grafana/dashboards/13759/) for a Substrate Node Template
 
 ### References
 
