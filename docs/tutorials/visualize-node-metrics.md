@@ -179,7 +179,9 @@ Hit `Save & Test` to ensure that you have the data source set correctly. Now you
 
 If you would like a basic dashboard to start [here is a template example](assets/tutorials/visualize-node-metrics/Substrate-Node-Template-Metrics.json) that you can `Import` in Grafana to get basic information about your node:
 
-<center><img src="assets/tutorials/visualize-node-metrics/grafana.png" alt="grafana dashbord" width="50%"/></center>
+<br>
+<center><img src="assets/tutorials/visualize-node-metrics/grafana.png" alt="grafana dashboard" width="50%"/></center>
+<br>
 
 If you create your own, the [prometheus docs for grafana](https://prometheus.io/docs/visualization/grafana/)
 may be helpful.
