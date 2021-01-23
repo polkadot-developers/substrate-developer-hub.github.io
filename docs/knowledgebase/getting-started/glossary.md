@@ -23,7 +23,7 @@ neutral, or negative biases.
 ## AfG
 
 An internal codename for "Al's Finality Gadget", which is named after
-[Alistair Stewart](https://research.web3.foundation/en/latest/research_team_members/alistair.html)
+[Alistair Stewart](https://w3f-research.readthedocs.io/en/latest/team_members/alistair.html)
 who invented it. AfG is synonymous with [GRANDPA](#grandpa).
 
 ## Aggregation
