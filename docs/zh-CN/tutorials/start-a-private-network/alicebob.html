@@ -169,15 +169,15 @@
 <pre><code class="hljs css language-bash">./target/release/node-template purge-chain --base-path / tmp/bob --chain <span class="hljs-built_in">local</span>
 </code></pre>
 <pre><code class="hljs css language-bash">./target/release/node-template \
-  --base-path/tmp/bob
+  --base-path /tmp/bob \
   --chain <span class="hljs-built_in">local</span> \
-  --bob
-  --ws-端口 30334 \
-  --ws-端口 9946 \
-  --rpc-端口 9934 \
-  --telemetry-url <span class="hljs-string">'wss://telemetry. olkadot.io/submit/ 0'</span> \
+  --bob \
+  --port 30334 \
+  --ws-port 9946 \
+  --rpc-port 9934 \
+  --telemetry-url <span class="hljs-string">'wss://telemetry.polkadot.io/submit/ 0'</span> \
   --validator \
-  --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWeyopNCUx8Yx66oV9fJnriXwCXwDUA2kj6vnc6iDEp
+  --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
 </code></pre>
 <p>上文已经解释了这些 flag 中的大部分，但有几点依然值得一提。</p>
 <ul>
