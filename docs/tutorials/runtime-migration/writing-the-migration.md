@@ -57,11 +57,31 @@ We use an enum with two variants that indicate pre- and post-migration state of 
 
 ```Rust
 if PalletVersion::get() == StorageVersion::V1Bytes {
-  // --- snip (TODO) ---
+  // --- ✂️ snip (the actual migration) ---
 } else {
   // The pallet version is different from what we expect so we
   // do nothing.
   frame_support::debug::info!(" >>> Unused migration!");
   0
+}
+```
+
+### Iterating and Migrating the Storage Items
+We remove the storage entries one by one by using the `drain` iterator, then transform them into
+the new storage format and store them again.
+```Rust
+if PalletVersion::get() == StorageVersion::V1Bytes {
+  // We remove the nicks from the old storage via `drain`.
+  for (key, (nick, deposit)) in deprecated::NameOf::<T>::drain() {
+    // We split the nick at ' ' (<space>).
+    match nick.iter().rposition(|&x| x == b" "[0]) {
+      Some(ndx) => NameOf::<T>::insert(&key, (Nickname {
+        first: nick[0..ndx].to_vec(),
+        last: Some(nick[ndx + 1..].to_vec())
+      }, deposit)),
+      None => NameOf::<T>::insert(&key, (Nickname { first: nick, last: None }, deposit))
+    }
+  }
+  // --- ✂️ snip (new version and logging) ---
 }
 ```
