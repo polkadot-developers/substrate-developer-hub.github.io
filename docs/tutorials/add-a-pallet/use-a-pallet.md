@@ -46,9 +46,11 @@ that FRAME pallets may emit. To get started, use the account selector from the F
 select Alice's account and then use the Pallet Interactor component to call
 [the `setName` dispatchable](https://substrate.dev/rustdocs/v2.0.0/pallet_nicks/enum.Call.html#variant.set_name)
 function from the `nicks` pallet. You can select any name you'd like as long as it is no shorter
-than the `MinNickLength` and no longer than the `MaxNickLength` you configured in the previous step.
+than the `MinNickLength` and no longer than the `MaxNickLength` you configured in the previous step. 
+Once you filled the fields click on the "Signed" button.
 
 ![Set a Name](assets/tutorials/add-a-pallet/set-name.png)
+
 
 As you can see in the image above, the Front-End Template will report the status of the
 dispatchable, as well as allow you to observe the
