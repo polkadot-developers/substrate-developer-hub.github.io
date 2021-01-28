@@ -201,18 +201,18 @@ $ subkey insert --suri 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4d
 $ subkey insert --suri 0x554b6fc625fbea8f56eb56262d92ccb083fd6eaaf5ee9a966eaab4db2062f4d0 --scheme ed25519 --base-path /tmp/node01 --key-type gran
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="hd-派生"></a><a href="#hd-派生" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>HD 派生</h2>
-<p>Subkey支持与<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki">BIP32</a>兼容的硬性和软性多层级确定性(HD)密钥派生。 HD键可支持使用主密钥种子，并同时定义了一个在每片叶子上都有键值对的树状结构。 该树状结构类似于文件系统，可容纳任何深度。</p>
-<p>Hard and soft key derivation both support:</p>
+<p>Subkey支持与<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki">BIP32</a>兼容的硬性和软性多层级确定性(HD)密钥派生。 HD键可支持使用主密钥种子，并同时定义了在每片叶子上都有键值对的一个树状结构。 该树状结构类似于文件系统，可容纳任何深度。</p>
+<p>硬性和软性密钥派生均支持：</p>
 <ul>
-<li>parent private key + path ➔ child private key</li>
-<li>parent private key + path ➔ child public key</li>
+<li>父私钥 + 路径 ➔ 子私钥</li>
+<li>父私钥 + 路径 ➔ 子公钥</li>
 </ul>
-<p>Further, soft key derivation supports:</p>
+<p>此外，软性密钥派生还支持：</p>
 <ul>
-<li>parent public key + path ➔ child public key</li>
+<li>父公钥 + 路径 ➔ 子公钥</li>
 </ul>
-<h3><a class="anchor" aria-hidden="true" id="hard-key-derivation"></a><a href="#hard-key-derivation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hard Key Derivation</h3>
-<p>You can derive a hard key child using <code>//</code> after the mnemonic phrase:</p>
+<h3><a class="anchor" aria-hidden="true" id="硬性密钥派生"></a><a href="#硬性密钥派生" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>硬性密钥派生</h3>
+<p>您可以在助记词之后使用 <code>//</code>来派生出一套硬性子密钥:</p>
 <pre><code class="hljs css language-bash">$ subkey inspect <span class="hljs-string">"spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot//0"</span>
 Secret Key URI `spend report solution aspect tilt omit market cancel what <span class="hljs-built_in">type</span> cave author//joe//polkadot//0` is account:
   Secret seed:      0xc25dda466c7749ac966b95e2ef8f5e758a063d26ac4d1895f479964aaf5679cc
@@ -220,8 +220,8 @@ Secret Key URI `spend report solution aspect tilt omit market cancel what <span 
   Account ID:       0xb49bdb8f2aa714b6e8b62426d03a1506878fc1f2937bdd396bc2102c95613f4b
   SS58 Address:     5G9Wmx3mgRk7yKWPs421ZVuz1W34KxjKi3NDo7rVtdPMc6ju
 </code></pre>
-<h3><a class="anchor" aria-hidden="true" id="soft-key-derivation"></a><a href="#soft-key-derivation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Soft Key Derivation</h3>
-<p>Likewise, you can derive a soft key child using a single <code>/</code> after the mnemonic phrase:</p>
+<h3><a class="anchor" aria-hidden="true" id="软性密钥派生"></a><a href="#软性密钥派生" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>软性密钥派生</h3>
+<p>同样，您可以在助记词短语后使用单个<code>/</code> 来派生出一套软性子密钥：</p>
 <pre><code class="hljs css language-bash">$ subkey inspect <span class="hljs-string">"spend report solution aspect tilt omit market cancel what type cave author/joe/polkadot/0"</span>
 Secret Key URI `spend report solution aspect tilt omit market cancel what <span class="hljs-built_in">type</span> cave author/joe/polkadot/0` is account:
   Secret seed:      n/a
@@ -229,7 +229,7 @@ Secret Key URI `spend report solution aspect tilt omit market cancel what <span 
   Account ID:       0x06382e496cb8b1664501bbfcc8205c7b1ddc2402e32ef0479b18abdf326ca342
   SS58 Address:     5CCrqJffST8uh8RLn2sFJwg1JWs4HkKL88xmdZRdnHt8GDyA
 </code></pre>
-<p>Recall the SS58 address from the same seed phrase, <code>5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd</code>. We can use that to derive the same child address.</p>
+<p>还记得前面提到过的，从以上相同种子短语生成的SS58地址<code>5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd</code>吗？ 我们可以利用那个SS58地址来生成与上面相同的子地址。</p>
 <pre><code class="hljs css language-bash">$ subkey inspect <span class="hljs-string">"5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd/joe/polkadot/0"</span>
 Public Key URI `5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd/joe/polkadot/0` is account:
   Network ID/version: substrate
@@ -237,9 +237,9 @@ Public Key URI `5CXFinBHRrArHzmC6iYVHSSgY1wMQEdL2AiL6RmSEsFvWezd/joe/polkadot/0`
   Account ID:         0x06382e496cb8b1664501bbfcc8205c7b1ddc2402e32ef0479b18abdf326ca342
   SS58 Address:       5CCrqJffST8uh8RLn2sFJwg1JWs4HkKL88xmdZRdnHt8GDyA
 </code></pre>
-<p>Note that the two addresses here match. This is not the case in hard key derivation.</p>
-<h3><a class="anchor" aria-hidden="true" id="putting-it-all-together"></a><a href="#putting-it-all-together" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Putting it All Together</h3>
-<p>You can mix and match hard and soft key paths (although it doesn't make much sense to have hard paths as children of soft paths). 例如：</p>
+<p>请注意，这里的两个不同地址能够匹配出一致的结果。 但硬性子密钥派生却不支持这种情况。</p>
+<h3><a class="anchor" aria-hidden="true" id="总结"></a><a href="#总结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总结</h3>
+<p>您可以把硬性和软性密钥路径混合并匹配起来 (尽管将硬性路径作为软性路径的子路径并没有多大意义)。 例如：</p>
 <pre><code class="hljs css language-bash">$ subkey inspect <span class="hljs-string">"spend report solution aspect tilt omit market cancel what type cave author//joe//polkadot/0"</span>
 Secret Key URI `spend report solution aspect tilt omit market cancel what <span class="hljs-built_in">type</span> cave author//joe//polkadot/0` is account:
   Secret seed:      n/a
@@ -247,8 +247,8 @@ Secret Key URI `spend report solution aspect tilt omit market cancel what <span 
   Account ID:       0x2c6d81f231fb2ee802e11a81e5d88c1dfaae2b945b66177bd041d4ef474bb70c
   SS58 Address:     5D4xVeDs9osZBjZ72in3hGvqRvDaWh63sw2xBdAS589m3BHG
 </code></pre>
-<p>The first two levels (<code>//joe//polkadot</code>) are hard-derived, while the leaf (<code>/0</code>) is soft-derived.</p>
-<p>To use key derivation with a password-protected key, add your password to the end:</p>
+<p>前面两层路径 (<code>//joe//polkadot</code>) 是硬性派生，而叶子路径(<code>/0</code>) 则是软性派生。</p>
+<p>要将受密码保护的密钥进行密钥派生，请在结尾处添加您的密码：</p>
 <pre><code class="hljs css language-bash"><span class="hljs-comment"># mnemonic phrase plus derivation path plus password</span>
 $ subkey inspect <span class="hljs-string">"image stomach entry drink rice hen abstract moment nature broken gadget flash/joe/polkadot/0///pencil laptop kitchen cutter"</span>
 Secret Key URI `image stomach entry drink rice hen abstract moment nature broken gadget flash/joe/polkadot/0///pencil laptop kitchen cutter` is account:
@@ -265,9 +265,9 @@ Public Key URI `5CZtJLXtVzrBJq1fMWfywDa6XuRwXekGdShPR4b8i9GWSbzB/joe/polkadot/0`
   Account ID:         0xc69291081743ba7e8f587f1e848d1ffc7b634ce21793a231b7ac75d430b59068
   SS58 Address:       5GZ4srnepXvdsuNVoxCGyVZd8ScDm4gkGLTKuaGARy9akjTa
 </code></pre>
-<p>Notice that the &quot;SS58-address plus derivation path&quot; produces the same address as the &quot;mnemonic phrase plus derivation path plus password.&quot; As such, you can reveal your parent address and derivation paths without revealing your mnemonic phrase or password, retaining control of all derived addresses.</p>
-<h2><a class="anchor" aria-hidden="true" id="well-known-keys"></a><a href="#well-known-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Well-Known Keys</h2>
-<p>If you've worked with Substrate previously, you have likely encountered the ubiquitous accounts for Alice, Bob, and their friends. These keys are not at all private, but are useful for playing with Substrate without always generating new key pairs. You can inspect these &quot;well-known&quot; keys as well.</p>
+<p>请注意，“ SS58地址加派生路径”生成的地址，与“助记词加派生路径加密码”生成的地址相同。 因此，您可以只显示父地址和派生路径，而无需透露出助记词或密码，从而能够保持对所有派生地址的控制。</p>
+<h2><a class="anchor" aria-hidden="true" id="众所周知的密钥"></a><a href="#众所周知的密钥" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>众所周知的密钥</h2>
+<p>如果您曾使用过Substrate进行开发，很有可能遇到过无处不在的Alice，Bob及其朋友的帐户。 这些密钥并不私密，但对于实验Sustrate却很有用，因为不需要每次去生成新的密钥对。 您可以用 subkey 来检查这些“众所周知的”密钥。</p>
 <pre><code class="hljs css language-bash">$ subkey inspect //Alice
 Secret Key URI `//Alice` is account:
   Secret seed:      0xe5be9a5092b81bca64be81d212e7f2f9eba183bb7a90954f7b76361f6edb5c0a
@@ -275,12 +275,12 @@ Secret Key URI `//Alice` is account:
   Account ID:       0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
   SS58 Address:     5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
 </code></pre>
-<p>A mnemonic phrase is a secret group of words that can be used to uniquely generate a private key. In Subkey, there is a specific dev phrase used whenever a mnemonic phrase is omitted.<code>//Alice</code> for example is actually:</p>
+<p>助记词是一组秘密单词，可用于生成唯一的私钥。 在Subkey中，每当省略助记词时，我们都会使用到一个特定的开发环境专用短语。例如，<code>//Alice</code>实际上是：</p>
 <p><code>bottom drive obey lake curtain smoke basket hold race lonely fit walk//Alice</code></p>
-<p>It is important remember that keys such as this are <em>not</em> secure, and should be deployed only for testing. In addition, anyone not using PolkadotJS or Subkey should note this information to properly generate the account.</p>
-<h2><a class="anchor" aria-hidden="true" id="signing-and-verifying-messages"></a><a href="#signing-and-verifying-messages" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Signing and Verifying Messages</h2>
-<h3><a class="anchor" aria-hidden="true" id="signing"></a><a href="#signing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Signing</h3>
-<p>You can sign a message by passing the message to Subkey on STDIN. You can sign with either your seed or mnemonic phrase.</p>
+<p>重要的是要记住，此类密钥并<em>不</em>安全，应仅用于测试。 此外，任何不使用PolkadotJS或Subkey的人都应了解此信息以正确生成帐户。</p>
+<h2><a class="anchor" aria-hidden="true" id="签名并验证信息"></a><a href="#签名并验证信息" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>签名并验证信息</h2>
+<h3><a class="anchor" aria-hidden="true" id="签名"></a><a href="#签名" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>签名</h3>
+<p>您可以通过STDIN将消息传递给Subkey来对消息进行签名。 您可使用种子或助记词短语进行签名。</p>
 <pre><code class="hljs css language-bash"><span class="hljs-comment"># Usage</span>
 $ <span class="hljs-built_in">echo</span> <span class="hljs-string">"msg"</span> | subkey sign --suri &lt;secret-seed&gt;
 
@@ -289,8 +289,8 @@ $ <span class="hljs-built_in">echo</span> <span class="hljs-string">"test messag
 <span class="hljs-comment"># Output</span>
 1e298698ed97654189ed082b3a19634c9cc2743e6e2e4089cc1759c959a8226d7709916041e195dd861a556ca1fde3d4305c00be3f08f72d369b83b9e3fa9b87
 </code></pre>
-<h3><a class="anchor" aria-hidden="true" id="verifying"></a><a href="#verifying" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Verifying</h3>
-<p>Although the signatures above are different, they both verify with the address:</p>
+<h3><a class="anchor" aria-hidden="true" id="验证"></a><a href="#验证" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>验证</h3>
+<p>尽管上面的签名是不同的，但两者都用以下地址来验证：</p>
 <pre><code class="hljs css language-bash"><span class="hljs-comment"># Usage</span>
 $ <span class="hljs-built_in">echo</span> <span class="hljs-string">"msg"</span> | subkey verify &lt;signature&gt; &lt;SS58-address&gt;
 
@@ -300,10 +300,10 @@ $ <span class="hljs-built_in">echo</span> <span class="hljs-string">"test messag
 Signature verifies correctly.
 </code></pre>
 <blockquote>
-<p>Note: <code>echo</code> appends a newline character to the end of strings. Therefore, if you verify a message that was signed elsewhere, e.g. Polkadot JS, then you will need to use <code>echo -n</code> to remove the newline character and verify the correct message.</p>
+<p>注意：<code>echo</code> 会将换行符附加到字符串的末尾。 因此，如果您要验证在其他地方签名的消息，例如 Polkadot JS，那么您将需要使用 <code>echo -n</code>命令来删除换行符，以正确验证消息。</p>
 </blockquote>
-<h2><a class="anchor" aria-hidden="true" id="generating-node-keys"></a><a href="#generating-node-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generating Node Keys</h2>
-<p>You can generate a node's libp2p key by the following:</p>
+<h2><a class="anchor" aria-hidden="true" id="生成节点密钥"></a><a href="#生成节点密钥" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>生成节点密钥</h2>
+<p>您可以通过以下方式生成节点的libp2p密钥：</p>
 <pre><code class="hljs css language-bash"><span class="hljs-comment"># Usage</span>
 $ subkey generate-node-key --file &lt;output-file&gt;
 
@@ -312,14 +312,14 @@ $ subkey generate-node-key --file node-key
 <span class="hljs-comment"># Output</span>
 Qmb8aDXsAMoCnozJmUSaYzDTTxathFrsSU12A4owZ5K6V3
 </code></pre>
-<p>The peer ID is displayed on screen and the actual key is saved in the <code>&lt;output-file&gt;</code>.</p>
-<h2><a class="anchor" aria-hidden="true" id="more-subkey-to-explore"></a><a href="#more-subkey-to-explore" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>More Subkey to Explore</h2>
+<p>屏幕上显示的是peer ID，实际密钥则保存在<code>&lt;输出文件&gt;</code>中。</p>
+<h2><a class="anchor" aria-hidden="true" id="探索更多关于subkey的内容"></a><a href="#探索更多关于subkey的内容" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>探索更多关于Subkey的内容</h2>
 <ul>
-<li>Learn more by running <code>subkey help</code> or see the <a href="https://github.com/paritytech/substrate/tree/master/bin/utils/subkey">README</a>.</li>
-<li>Key pairs can also be generated in the <a href="https://polkadot.js.org/apps/">PolkadotJS Apps UI</a>. Try creating keys with the UI and restoring them with Subkey or vice versa.</li>
-<li>Learn more about <a href="https://wiki.polkadot.network/docs/en/learn-cryptography">different cryptographies and choosing between them</a>.</li>
+<li>通过运行 <code>subkey help</code>命令或参阅<a href="https://github.com/paritytech/substrate/tree/master/bin/utils/subkey">README</a>文件，以获取更多信息。</li>
+<li>密钥对也可以在<a href="https://polkadot.js.org/apps/">PolkadotJS Apps UI</a>中生成。 尝试使用UI创建密钥，然后用Subkey还原密钥。完成后交换上述工具再操作一遍。</li>
+<li>了解更多关于<a href="https://wiki.polkadot.network/docs/en/learn-cryptography">不同密码学方法及如何进行选择</a>的信息。</li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/knowledgebase/integrate/chain-spec"><span class="arrow-prev">← </span><span>链描述</span></a><a class="docs-next button" href="/docs/zh-CN/knowledgebase/integrate/memory-profiling"><span>内存分析</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#安装">安装</a><ul class="toc-headings"><li><a href="#从源文件编译">从源文件编译</a></li><li><a href="#用cargo编译">用Cargo编译</a></li></ul></li><li><a href="#生成密钥">生成密钥</a></li><li><a href="#受密码保护的密钥">受密码保护的密钥</a></li><li><a href="#审查密钥">审查密钥</a></li><li><a href="#将密钥写入节点的密钥库">将密钥写入节点的密钥库</a></li><li><a href="#hd-派生">HD 派生</a><ul class="toc-headings"><li><a href="#hard-key-derivation">Hard Key Derivation</a></li><li><a href="#soft-key-derivation">Soft Key Derivation</a></li><li><a href="#putting-it-all-together">Putting it All Together</a></li></ul></li><li><a href="#well-known-keys">Well-Known Keys</a></li><li><a href="#signing-and-verifying-messages">Signing and Verifying Messages</a><ul class="toc-headings"><li><a href="#signing">Signing</a></li><li><a href="#verifying">Verifying</a></li></ul></li><li><a href="#generating-node-keys">Generating Node Keys</a></li><li><a href="#more-subkey-to-explore">More Subkey to Explore</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/rustdocs">API 文档</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/knowledgebase/integrate/chain-spec"><span class="arrow-prev">← </span><span>链描述</span></a><a class="docs-next button" href="/docs/zh-CN/knowledgebase/integrate/memory-profiling"><span>内存分析</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#安装">安装</a><ul class="toc-headings"><li><a href="#从源文件编译">从源文件编译</a></li><li><a href="#用cargo编译">用Cargo编译</a></li></ul></li><li><a href="#生成密钥">生成密钥</a></li><li><a href="#受密码保护的密钥">受密码保护的密钥</a></li><li><a href="#审查密钥">审查密钥</a></li><li><a href="#将密钥写入节点的密钥库">将密钥写入节点的密钥库</a></li><li><a href="#hd-派生">HD 派生</a><ul class="toc-headings"><li><a href="#硬性密钥派生">硬性密钥派生</a></li><li><a href="#软性密钥派生">软性密钥派生</a></li><li><a href="#总结">总结</a></li></ul></li><li><a href="#众所周知的密钥">众所周知的密钥</a></li><li><a href="#签名并验证信息">签名并验证信息</a><ul class="toc-headings"><li><a href="#签名">签名</a></li><li><a href="#验证">验证</a></li></ul></li><li><a href="#生成节点密钥">生成节点密钥</a></li><li><a href="#探索更多关于subkey的内容">探索更多关于Subkey的内容</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/rustdocs">API 文档</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();
