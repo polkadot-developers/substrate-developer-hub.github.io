@@ -42,11 +42,14 @@ In this section we will use the Nicks pallet to further illustrate how the Front
 used to interact with FRAME pallets. We will also learn more about how to use the Front-End Template
 to invoke privileged functions with the Sudo pallet, which is included by default as part of the
 Node Template. Finally, you will learn how to interpret the different types of events and errors
-that FRAME pallets may emit. To get started, use the account selector from the Front-End Template to
+that FRAME pallets may emit. 
+
+To get started, use the account selector from the Front-End Template to
 select Alice's account and then use the Pallet Interactor component to call
 [the `setName` dispatchable](https://substrate.dev/rustdocs/v2.0.0/pallet_nicks/enum.Call.html#variant.set_name)
 function from the `nicks` pallet. You can select any name you'd like as long as it is no shorter
-than the `MinNickLength` and no longer than the `MaxNickLength` you configured in the previous step.
+than the `MinNickLength` and no longer than the `MaxNickLength` you configured in the previous step.  
+Use the "Signed" button to execute the function.
 
 ![Set a Name](assets/tutorials/add-a-pallet/set-name.png)
 
