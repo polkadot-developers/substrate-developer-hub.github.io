@@ -115,7 +115,7 @@ Secret phrase `security snow crunch treat tone skill develop nominee hat slim om
 <ul>
 <li><strong>秘密短语</strong> (又名“助记词”) - 一系列英语单词，以更人性化的方式编码种子。 助记词最早出现在比特币中(请参阅<a href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki">BIP39</a>)，它使手动写下密钥变得更加容易。</li>
 <li><strong>秘密种子</strong>(又名“私钥”或“原始种子”) - 恢复密钥对所需的最少信息。 所有其他信息均从该种子计算得出。</li>
-<li><strong>公钥</strong>(又名“帐户ID”) - 密钥对中对外公开的那一半，是用十六进制加密的。</li>
+<li><strong>公钥</strong>(又名“帐户ID”) - 密钥对中对外公开的那一半，是用十六进制编码的。</li>
 <li><strong>SS58地址</strong>(又名“公共地址”) - 基于公钥的SS58编码地址。</li>
 </ul>
 <p>当前，Subkey支持以下加密密钥对和签名算法：</p>
@@ -125,7 +125,7 @@ Secret phrase `security snow crunch treat tone skill develop nominee hat slim om
 <li><code>secp256k1</code>:：secp256k1上的ECDSA签名</li>
 </ul>
 <p>请注意，secp256k1密钥的地址用的是公钥哈希的SS58编码，以便将公钥从33个字节减少到32个字节。</p>
-<p>您还可以创建一个包含指定字符串的虚拟地址。 但是您获取不到该地址的助记词。</p>
+<p>您还可以创建一个包含指定子字符串的虚拟地址。 但是您获取不到该地址的助记词。</p>
 <pre><code class="hljs css language-bash">$ subkey vanity --pattern joe
 Generating key containing pattern <span class="hljs-string">'joe'</span>
 100000 keys searched; best is 185/189 complete
