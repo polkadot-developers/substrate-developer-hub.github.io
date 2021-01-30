@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>添加节点授权模块 · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## About `node-authorization` pallet"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="添加节点授权模块 · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="## About `node-authorization` pallet"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/redirect-next.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>添加节点授权模块 · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 关于 `node-authorization` pallet"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="添加节点授权模块 · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="## 关于 `node-authorization` pallet"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/redirect-next.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
             {"zIndex":100}
@@ -72,17 +72,17 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">添加节点授权模块</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="about-node-authorization-pallet"></a><a href="#about-node-authorization-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>About <code>node-authorization</code> pallet</h2>
-<p>The <code>node-authorization</code> pallet is a build-in pallet in Substrate FRAME, which manages a configurable set of nodes for a permissioned network. Each node is identified by a <code>PeerId</code> which is simply a wrapper on <code>Vec&lt;u8&gt;</code>. Each <code>PeerId</code> is owned by an <code>AccountId</code> that claims it (these are <a href="https://substrate.dev/rustdocs/v2.0.0/pallet_node_authorization/struct.Owners.html">associated in a map</a>). With this pallet, you have two ways to authorize a node which wants to join the network:</p>
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">添加节点授权模块</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="关于-node-authorization-pallet"></a><a href="#关于-node-authorization-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>关于 <code>node-authorization</code> pallet</h2>
+<p><code>node-authorization</code> pallet 是 Substrate FRAME 内置的一个功能模块，可以用来管理许可网络中节点连接。 每个节点通过 <code>PeerId</code> 进行标识，它仅仅包含了 <code>Vec&lt;u8&gt;</code> 这一数据类型。 每个 <code>PeerId</code> 只能被一个账户 <code>AccountId</code> 所拥有，认领的过程是通过 claim 操作实现的（在这个  <a href="https://substrate.dev/rustdocs/v2.0.0/pallet_node_authorization/struct.Owners.html">map</a> 里关联着)。 通过这个模块，你有两种方法来授权节点加入到区块链网络中：</p>
 <ol>
-<li>Join the set of well known nodes between which the connections are allowed. Such effort usually needs to be approved by the governance in the system.</li>
-<li>Ask for the connection from a node which is already a member of the network. Such node can either be a well known node or a normal one.</li>
+<li>加入到 well known 节点集合中，这些节点彼此可以连接。 这一方式通常要经过系统中治理机制的同意。</li>
+<li>请求允许连接到某个已经加入到网络中的节点。 这一节点可以是 well known 节点，也可以是普通节点。</li>
 </ol>
-<p>A node associated with a <code>PeerId</code> must have <strong>one and only one owner</strong>. The owner of a well known node is specified when adding it. If it's a normal node, <em>any</em> user can claim a <code>PeerId</code> as its owner. To protect against false claims, the maintainer of the node should claim it <em>before even starting the node</em> (after getting the <code>PeerId</code> of course).</p>
-<p>The owner can then change the additional connections for his (or her) node. To make it clear, you can't change the connections between well known nodes, they are always allowed to connect with each other. Instead, you can manipulate the connection between a well know node and a normal node or between two normal nodes.</p>
-<p>It uses <a href="https://substrate.dev/docs/en/knowledgebase/runtime/off-chain-workers">offchain worker</a> to set authorized nodes in node-authorization pallet. Make sure to enable offchain worker with the right CLI flag as offchain worker is diabled by default for non-authority nodes. Your node can be lagged with the latest block, in this case you need to disable offchain worker and manually set reachable reserved nodes to sync up with the network.</p>
-<h2><a class="anchor" aria-hidden="true" id="add-the-node-authorization-pallet"></a><a href="#add-the-node-authorization-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add the <code>node-authorization</code> pallet</h2>
-<p>If you already hace Node Template cloned, you can just create a <strong>new branch and check it out</strong> from the base template, otherwise, clone <code>v2.0.0</code> of the project:</p>
+<p>通过 <code>PeerId</code> 关联的某个节点 <strong>有且仅有一个拥有者</strong>。 Well known 节点的拥有者是在添加它们时指定的。 如果是普通节点，<em>任何</em> 用户都可以 claim 认领这一 <code>PeerId</code> 作为对应节点的拥有者。 为了防止被其他人认领，节点的维护人员应当在<em>启动该节点之前</em>就去认领（当然，需要你已经拿到了对应的 <code>PeerId</code>）。</p>
+<p>之后，拥有者可以为自己的节点修改额外的连接。 需要指出的是，拥有者不能修改 well known 节点之间的连接，因为它们之间始终是允许连接的。 但是拥有者可以配置 well known 节点和普通节点之间，以及两个普通节点直接的连接。</p>
+<p>在 node-authorization pallet 中使用了 <a href="https://substrate.dev/docs/en/knowledgebase/runtime/off-chain-workers">链下工作机</a>来设置授权的节点。 请使用相应的命令行参数确保链下工作机处于开启状态，这是因为对于非验证人节点链下工作机默认是关闭的。 你的节点有可能无法同步到最新区块，如果出现这种情况，关闭链下工作机并且手动指定允许连接的节点来完成网络同步。</p>
+<h2><a class="anchor" aria-hidden="true" id="添加-node-authorization-pallet"></a><a href="#添加-node-authorization-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加 <code>node-authorization</code> pallet</h2>
+<p>如果已经克隆了 Node Template，你可以创建一个<strong>新的分支</strong>进行开发，如果没有的话，先克隆 Node Template 的 <code>v2.0.0</code> 版本：</p>
 <pre><code class="hljs css language-shell"><span class="hljs-meta">#</span><span class="bash"> Fresh <span class="hljs-built_in">clone</span>, <span class="hljs-keyword">if</span> needed:</span>
 git clone -b v2.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
 <span class="hljs-meta">#</span><span class="bash"> From the working directory, create a new branch and check it out</span>
@@ -90,16 +90,16 @@ cd substrate-node-template
 git branch perm-network
 git checkout perm-network
 </code></pre>
-<p>You should be able to <code>check</code> the project (or <code>build</code>) without any error:</p>
+<p>你应该可以 <code>check</code>  (或者 <code>build</code>) 成功：</p>
 <pre><code class="hljs css language-shell">cd substrate-node-template/
 make init
 make check
 </code></pre>
 <blockquote>
-<p>If you do run into issues building, checkout <a href="https://substrate.dev/docs/en/knowledgebase/getting-started/#rust-developer-environment">these helpful tips</a></p>
+<p>如果在编译时遇到了问题，参考<a href="https://substrate.dev/docs/en/knowledgebase/getting-started/#rust-developer-environment">这些帮助信息</a></p>
 </blockquote>
-<p>Now open the code with your favorite editor, can't wait to make some changes right?</p>
-<p>In <strong>runtime/Cargo.toml</strong>, add the dependency of our pallet:</p>
+<p>现在可以用你最喜欢的编译器打开代码，等不及了是不是？</p>
+<p>在 <strong>runtime/Cargo.toml</strong> 中，添加我们模块的依赖：</p>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies]</span>
 <span class="hljs-comment">#--snip--</span>
@@ -114,7 +114,7 @@ make check
     <span class="hljs-comment">#--snip--</span>
 ]
 </code></pre>
-<p>Let's import and use our pallet in <strong>runtime/src/lib.rs</strong>. Firstly Import the dependency with <code>use frame_system::EnsureRoot</code>, we need it to simulate the governance in our simple blockchain. Then implement the configure trait of our pallet. More description on the trait can be found in its <a href="https://docs.rs/pallet-node-authorization/2.0.0/pallet_node_authorization/trait.Trait.html">reference doc</a>.</p>
+<p>现在我们在 <strong>runtime/src/lib.rs</strong> 中引入和使用我们的模块。 首先引入 <code>use frame_system::EnsureRoot</code>，在本文这个简单的区块链中，我们需要用它来模拟治理机制。 之后实现模块的配置接口。 可以在 <a href="https://docs.rs/pallet-node-authorization/2.0.0/pallet_node_authorization/trait.Trait.html">reference doc</a> 中找到更多关于这一 trait 的描述信息。</p>
 <p><strong><code>runtime/src/lib.rs</code></strong></p>
 <pre><code class="hljs css language-rust">
 <span class="token comment">/* --snip-- */</span>
@@ -141,7 +141,7 @@ make check
 
 <span class="token comment">/* --snip-- */</span>
 </code></pre>
-<p>Finally, we are ready to put our pallet in <code>construct_runtime</code> macro with following extra line of code:</p>
+<p>最后，就可以把我们的 pallet 放在 <code>construct_runtime</code> 宏里，使用下面一行代码：</p>
 <p><strong><code>runtime/src/lib.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token macro property">construct_runtime!</span><span class="token punctuation">(</span>
     <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Runtime</span> <span class="token keyword">where</span>
@@ -159,22 +159,22 @@ make check
     <span class="token punctuation">}</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<h2><a class="anchor" aria-hidden="true" id="为我们的托盘增加genesis-storage"></a><a href="#为我们的托盘增加genesis-storage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>为我们的托盘增加genesis storage</h2>
-<p><code>PeerId</code> is encoded in bs58 format, so we need a new library <a href="https://docs.rs/bs58/0.3.1/bs58/">bs58</a> in <strong>node/cargo.toml</strong> to decode it to get its bytes.</p>
+<h2><a class="anchor" aria-hidden="true" id="为我们的模块添加创世存储配置"></a><a href="#为我们的模块添加创世存储配置" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>为我们的模块添加创世存储配置</h2>
+<p><code>PeerId</code> 是 bs58 编码格式，我们需要在  <strong>node/cargo.toml</strong> 引入一个新的库 <a href="https://docs.rs/bs58/0.3.1/bs58/">bs58</a>，来解码获取 PeerId 的字节集合。</p>
 <p><strong><code>node/cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies]</span>
 <span class="hljs-comment">#--snip--</span>
 <span class="hljs-attr">bs58</span> = <span class="hljs-string">"0.3.1"</span>
 <span class="hljs-comment">#--snip--</span>
 </code></pre>
-<p>Now we add a proper genesis storage in <strong>node/src/chain_spec.rs</strong>. Similarly, import the necessary dependencies:</p>
+<p>现在我们在 <strong>node/src/chain_spec.rs</strong> 中添加合适的创世存储。 类似地引入必要的依赖：</p>
 <p><strong>node/src/chain_spec.rs</strong></p>
 <pre><code class="hljs css language-rust"><span class="token comment">/* --snip-- */</span>
 <span class="token keyword">use</span> <span class="token namespace">sp_core<span class="token punctuation">::</span></span><span class="token class-name">OpaquePeerId</span><span class="token punctuation">;</span> <span class="token comment">// A struct wraps Vec&lt;u8>, represents as our `PeerId`.</span>
-<span class="token keyword">use</span> <span class="token namespace">node_template_runtime<span class="token punctuation">::</span></span><span class="token class-name">NodeAuthorizationConfig</span><span class="token punctuation">;</span> <span class="token comment">// 这个创世配置服务于我们的托盘。</span>
+<span class="token keyword">use</span> <span class="token namespace">node_template_runtime<span class="token punctuation">::</span></span><span class="token class-name">NodeAuthorizationConfig</span><span class="token punctuation">;</span> <span class="token comment">// The genesis config that serves for our pallet.</span>
 <span class="token comment">/* --snip-- */</span>
 </code></pre>
-<p>Adding our genesis config in the helper function <code>testnet_genesis</code>,</p>
+<p>在帮助函数 <code>testnet_genesis</code> 中添加我们的创世配置，</p>
 <pre><code class="hljs css language-rust"><span class="token comment">/// Configure initial storage state for FRAME modules.</span>
 <span class="token keyword">fn</span> <span class="token function-definition function">testnet_genesis</span><span class="token punctuation">(</span>
     wasm_binary<span class="token punctuation">:</span> <span class="token operator">&amp;</span><span class="token punctuation">[</span><span class="token keyword">u8</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
@@ -204,22 +204,22 @@ make check
 
 <span class="token punctuation">}</span>
 </code></pre>
-<p><code>NodeAuthorizationConfig</code> contains a property named <code>nodes</code>, which is vector of tuple. The first element of the tuple is the <code>OpaquePeerId</code> and we use <code>bs58::decode</code> to convert the <code>PeerId</code> in human readable format to bytes. The second element of the tuple is <code>AccountId</code> and represents the owner of this node, here we are using one of the provided endowned accounts for demonstration. To make it clear, the owner of the first node is Alice, and Bob owns the second node.</p>
-<p>You may wondering where the <code>12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2</code> comes from. We can use <a href="https://substrate.dev/docs/en/knowledgebase/integrate/subkey#generating-node-keys">subkey</a> to generate the above human readable <code>PeerId</code>.</p>
+<p><code>NodeAuthorizationConfig</code> 包含了一个属性叫做 <code>nodes</code>，类型是元组的集合。 元组的第一个元素是 <code>OpaquePeerId</code>，我们使用了 <code>bs58::decode</code> 把可读性友好的 <code>PeerId</code> 格式转换成字节集合。 元组的第二个元素是 <code>AccountId</code>，代表了节点的拥有者，这里我们使用的是预置的账户。 也就是说，第一个节点的拥有者是 Alice，而 Bob 拥有第二个节点。</p>
+<p>你可能好奇 <code>12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2</code> 是从哪来的。 我们可以使用 <a href="https://substrate.dev/docs/en/knowledgebase/integrate/subkey#generating-node-keys">subkey</a> 工具来生成这个可读性强的 <code>PeerId</code>。</p>
 <pre><code class="hljs css language-shell">subkey generate-node-key
 </code></pre>
 <blockquote>
-<p>Note: <code>subkey</code> is a CLI tool that comes bundled with substrate, and you can install it natively too! - <a href="https://substrate.dev/docs/en/knowledgebase/integrate/subkey#installation">Install Intructions</a></p>
+<p>说明：<code>subkey</code> 是 Substrate 提供的一个命令行工具，也可以在本机直接安装！ - <a href="https://substrate.dev/docs/en/knowledgebase/integrate/subkey#installation">Install Intructions</a></p>
 </blockquote>
-<p>The output of the command is like:</p>
+<p>这一命令的输出为：</p>
 <pre><code class="hljs css language-shell">12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2 // this is PeerId.
 c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a // This is node-key.
 </code></pre>
-<p>Now all the code changes are finished, we are ready to launch our permissoned network. Go get yourself some water!</p>
+<p>现在，所有的代码修改都已经完成了，可以去启动我们的许可网络了。 休息一下再继续吧！</p>
 <blockquote>
-<p>Stuck? The solution with all required changes to the base template can be found <a href="https://github.com/kaichaosun/substrate-permission-network/commit/c8b8f610afaab024c16da0917d059dc5050d3807">here</a>.</p>
+<p>卡住了？ 可以在<a href="https://github.com/kaichaosun/substrate-permission-network/commit/c8b8f610afaab024c16da0917d059dc5050d3807">这里</a>找到所有需要的修改。</p>
 </blockquote>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/tutorials/build-permission-network/index"><span class="arrow-prev">← </span><span>介绍</span></a><a class="docs-next button" href="/docs/zh-CN/tutorials/build-permission-network/launch-network"><span>创建联盟链</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#about-node-authorization-pallet">About <code>node-authorization</code> pallet</a></li><li><a href="#add-the-node-authorization-pallet">Add the <code>node-authorization</code> pallet</a></li><li><a href="#为我们的托盘增加genesis-storage">为我们的托盘增加genesis storage</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/rustdocs">API 文档</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/tutorials/build-permission-network/index"><span class="arrow-prev">← </span><span>介绍</span></a><a class="docs-next button" href="/docs/zh-CN/tutorials/build-permission-network/launch-network"><span>创建联盟链</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#关于-node-authorization-pallet">关于 <code>node-authorization</code> pallet</a></li><li><a href="#添加-node-authorization-pallet">添加 <code>node-authorization</code> pallet</a></li><li><a href="#为我们的模块添加创世存储配置">为我们的模块添加创世存储配置</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/rustdocs">API 文档</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();

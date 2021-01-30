@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>创建联盟链 · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="在开始启动一个节点之前，我们首先要确认我们要启动的项目已被完整的编译完毕。"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="创建联盟链 · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="在开始启动一个节点之前，我们首先要确认我们要启动的项目已被完整的编译完毕。"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/redirect-next.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>创建联盟链 · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="在启动节点之前，我们先确认项目已被完整编译完毕。"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="创建联盟链 · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="在启动节点之前，我们先确认项目已被完整编译完毕。"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/redirect-next.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
             {"zIndex":100}
@@ -72,50 +72,54 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">创建联盟链</h1></header><article><div><span><p>在开始启动一个节点之前，我们首先要确认我们要启动的项目已被完整的编译完毕。</p>
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">创建联盟链</h1></header><article><div><span><p>在启动节点之前，我们先确认项目已被完整编译完毕。</p>
 <pre><code class="hljs css language-shell">WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release
 </code></pre>
-<p>在这一部分，我们将开始启动4个节点，包括3个已知节点和1个普通节点。 这是本教程中会用到的node keys 和 peer ids。</p>
+<p>在这一部分，我们将开始启动4个节点，包括3个 well known （知名）节点和1个普通节点。 这是本教程中会用到的node keys 和 peer ids。</p>
 <p>Alice 的节点，</p>
-<pre><code class="hljs css language-shell"><span class="hljs-meta">#</span><span class="bash"> peerid</span>
+<pre><code class="hljs css language-shell"><span class="hljs-meta">#</span><span class="bash"> node key</span>
+c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a
+<span class="hljs-meta">
+#</span><span class="bash"> peerid</span>
 12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2
 <span class="hljs-meta">
-#</span><span class="bash"> 用bs58解码，十六进制表示的peer id ：</span>
+#</span><span class="bash"> bs58 decoded peer id <span class="hljs-keyword">in</span> hex:</span>
+0024080112201ce5f00ef6e89374afb625f1ae4c1546d31234e87e3c3f51a62b91dd6bfa57df
 </code></pre>
 <blockquote>
-<p>注意：您可以通过使用 <code>bs58::decode</code> 获取上述解码后的 bs58 peerid，类似于我们 genese 存储配置中的使用方式。 另外，为了方便，也可以使用一个简单的小<a href="https://whisperd.tech/bs58-codec/">工具</a>来进行处理。</p>
+<p>注意：你可以使用代码 <code>bs58::decode</code> 获取上述 bs58 解码格式的 peer id，类似于我们创世存储配置中的使用方式。 另外，为了方便，也可以使用一个简单的小<a href="https://whisperd.tech/bs58-codec/">工具</a>来进行处理。</p>
 </blockquote>
 <p>Bob 的节点，</p>
 <pre><code class="hljs css language-shell"><span class="hljs-meta">#</span><span class="bash"> node key</span>
 6ce3be907dbcabf20a9a5a60a712b4256a54196000a8ed4050d352bc113f8c58
 <span class="hljs-meta">
-#</span><span class="bash"> peerid</span>
+#</span><span class="bash"> peer id</span>
 12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust
 <span class="hljs-meta">
-#</span><span class="bash"> 用bs58解码，十六进制表示的peer id ：</span>
+#</span><span class="bash"> bs58 decoded peer id <span class="hljs-keyword">in</span> hex:</span>
 002408011220dacde7714d8551f674b8bb4b54239383c76a2b286fa436e93b2b7eb226bf4de7
 </code></pre>
 <p>Charlie 的节点，</p>
 <pre><code class="hljs css language-shell"><span class="hljs-meta">#</span><span class="bash"> node key</span>
 3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e
 <span class="hljs-meta">
-#</span><span class="bash"> peerid</span>
+#</span><span class="bash"> peer id</span>
 12D3KooWJvyP3VJYymTqG7eH4PM5rN4T2agk5cdNCfNymAqwqcvZ
 <span class="hljs-meta">
-#</span><span class="bash"> 用bs58解码，十六进制表示的peer id ：</span>
+#</span><span class="bash"> bs58 decoded peer id <span class="hljs-keyword">in</span> hex:</span>
 002408011220876a7b4984f98006dc8d666e28b60de307309835d775e7755cc770328cdacf2e
 </code></pre>
 <p>Dave 的节点，</p>
-<pre><code class="hljs css language-shell"><span class="hljs-meta">#</span><span class="bash"> node key</span>
+<pre><code class="hljs css language-shell"><span class="hljs-meta">#</span><span class="bash"> node key </span>
 a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a
 <span class="hljs-meta">
-#</span><span class="bash"> peerid</span>
+#</span><span class="bash"> peer id</span>
 12D3KooWPHWFrfaJzxPnqnAYAoRUyAHHKqACmEycGTVmeVhQYuZN
 <span class="hljs-meta">
-#</span><span class="bash"> 用bs58解码，十六进制表示的peer id ：</span>
+#</span><span class="bash"> bs58 decoded peer id <span class="hljs-keyword">in</span> hex:</span>
 002408011220c81bc1d7057a1511eb9496f056f6f53cdfe0e14c8bd5ffca47c70a8d76c1326d
 </code></pre>
-<p>Alice 和 Bob 的节点已经配置在创世文件中，并且作为已知节点。 然后我们将 Charlie 的节点添加到已知的节点中。 最后，我们将 Charlie 的节点和 Dave 的节点连接起来，而不用将Dave的节点作为已知节点。</p>
+<p>Alice 和 Bob 的节点已经配置在创世文件中，并且作为 well known 节点。 之后，我们将 Charlie 的节点添加到 well known 节点集合中。 最后，我们可以把 Charlie 的节点和 Dave 的节点连接起来，而不用把 Dave 的节点也作为 well known 节点。</p>
 <h2><a class="anchor" aria-hidden="true" id="启动-alice-和-bob-的节点"></a><a href="#启动-alice-和-bob-的节点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>启动 Alice 和 Bob 的节点</h2>
 <p>我们先启动 Alice 的节点：</p>
 <pre><code class="hljs css language-shell">./target/release/node-template --chain=local --base-path /tmp/validator1 --alice --node-key=c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a --port 30333 --ws-port 9944
@@ -124,9 +128,9 @@ a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a
 <p>其他用到的 CLI flag 如下：</p>
 <ul>
 <li><code>--chain</code> 用于本地测试网。</li>
-<li><code>--alice</code> 使节点成为一个可以授权和最终确定区块的权威节点，同时给节点取名为 <code>alice</code>。</li>
+<li><code>--alice</code> 使节点成为一个可以生产和最终确定区块的权威节点，同时给节点取名为 <code>alice</code>。</li>
 <li><code>--port</code> 为p2p连接指定一个端口。</li>
-<li><code>--ws-端口</code> 为WebSocket 连接指定一个监听端口。</li>
+<li><code>--ws-port</code> 为WebSocket 连接指定一个监听端口。</li>
 </ul>
 <blockquote>
 <p>您可以通过运行 <code>./target/release/node-template -h</code> 来获取以上flags的详细描述。</p>
@@ -134,41 +138,41 @@ a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a
 <p>启动 Bob 的节点。</p>
 <pre><code class="hljs css language-shell">./target/release/node-template --chain=local --base-path /tmp/validator2 --bob --node-key=6ce3be907dbcabf20a9a5a60a712b4256a54196000a8ed4050d352bc113f8c58 --port 30334 --ws-port 9945
 </code></pre>
-<p>在这两个节点启动后，您应该能够看到新的授权区块和确认区块。 现在让我们使用 <a href="https://polkadot.js.org/apps/">polkadot.js apps</a> 来检查我们区块链中的已知节点。 别忘了使用我们的本地节点 <code>127.0.0.1:9944</code>。</p>
-<p>首先，我们需要增加一个额外的设置来告诉前端在node-authorization pallet中使用的 <code>PeerId</code>的类型。 注意：这里的 <code>PeerId</code> 的格式是对 bs58 解码后的 peer id 的封装，单位是字节。 进入 app 的 <strong>Settings Developer</strong> 页面，添加以下类型信息：</p>
+<p>在这两个节点启动后，你应该能够看到新的区块被生产出来并最终确认。 现在让我们使用 <a href="https://polkadot.js.org/apps/">polkadot.js apps</a> 来检查我们的区块链中的 well known 节点。 别忘了使用我们的本地节点 <code>127.0.0.1:9944</code>。</p>
+<p>首先，我们需要增加一个额外的设置来告诉前端在node-authorization pallet中使用的 <code>PeerId</code>的类型。 注意：这里 <code>PeerId</code> 是对 bs58 解码后格式，以字节集合的形式封装在 PeerId 结构体里。 进入 app 的 <strong>Settings Developer</strong> 页面，添加以下类型信息：</p>
 <pre><code class="hljs css language-json">{
   <span class="hljs-attr">"PeerId"</span>: <span class="hljs-string">"(Vec&lt;u8&gt;)"</span>
 }
 </code></pre>
-<p>然后，我们进入 <strong>Developer Chain state</strong> 页面，查看 <code>nodeAuthorization pallet</code> ，<code>wellKnownNodes</code> 存储的数据。 你应该可以看到 Alice 和 Bob 的节点的 peer Id，前缀为<code>0x</code>，以十六进制格式显示其字节。</p>
+<p>然后，我们进入 <strong>Developer Chain state</strong> 页面，查看 <code>nodeAuthorization</code> 模块、<code>wellKnownNodes</code> 存储的数据。 你应该可以看到 Alice 和 Bob 节点的 peer Id，前缀为<code>0x</code>，表示以十六进制格式显示其字节集合。</p>
 <p>我们还可以通过查询存储 <code>owners</code>，以节点的 peer id 为输入，查询一个节点的所有者，应该可以得到所有者的账号地址。</p>
-<p><img src="/docs/assets/tutorials/permission-network/get_well_known_nodes.png" alt="查询已知节点"></p>
-<h2><a class="anchor" aria-hidden="true" id="添加另一个已知节点"></a><a href="#添加另一个已知节点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加另一个已知节点</h2>
+<p><img src="/docs/assets/tutorials/permission-network/get_well_known_nodes.png" alt="query_well_known_nodes"></p>
+<h2><a class="anchor" aria-hidden="true" id="添加另一个-well-known-节点"></a><a href="#添加另一个-well-known-节点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加另一个 well known 节点</h2>
 <p>让我们启动 Charlie 的节点，</p>
 <pre><code class="hljs css language-shell">./target/release/node-template --chain=local --base-path /tmp/validator3 --name charlie  --node-key=3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e --port 30335 --ws-port=9946 --offchain-worker always
 </code></pre>
 <p>启动后，您应该看到此节点没有相连的节点。 这是因为我们已经在一个许可网络中，您需要获得授权才能连接！</p>
-<p>请记住，我们使用 <code>sudo</code> 模块进行治理，我们可以在节点授权模块提供的 <code>add_well_known_node</code> 调用中进行 sudo 调用来添加我们的节点。 您可以在这个 <a href="https://docs.rs/pallet-node-authorization/2.0.0/pallet_node_authorization/enum.Call.html"> reference doc </a> 中找到更多的调用命令。</p>
-<p>在应用中跳转到 ** Developer Sudo** 页面，提交 <code>nodeAuthorization</code> -  <code>add_well_known_node</code> 和 Charlie 十六进制节点中的peer id，所有者是Charlie。</p>
-<p><img src="/docs/assets/tutorials/permission-network/add_well_known_node.png" alt="增加已知节点"></p>
-<p>当交易打包入区块中后， 你应该能看到 Charlie 的节点已连接到 Alice 和 Bob 的节点，并逐渐进行区块同步。 在本地网络中默认启用了 <a href="https://docs.rs/sc-network/0.8.0/sc_network/">mdns</a> 发现机制，因此三个节点可以互相找到。 如果在公共互联网中运行节点，您需要在启动 Charlie 的节点时使用 <code>--reserved-nodes</code> flag 来分配可访问节点。 或将可访问的节点作为链规范中的启动节点。</p>
-<p>现在我们有3个已知节点。</p>
-<h2><a class="anchor" aria-hidden="true" id="添加额外连接"></a><a href="#添加额外连接" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加额外连接</h2>
-<p>让我们增加一个只能够连接Charlie已知节点的“子节点”，但不是一个已知节点。</p>
+<p>刚提到过，我们使用 <code>sudo</code> 模块进行治理，我们可以使用 sudo 权限调用 node authorization pallet 提供的 <code>add_well_known_node</code>，来添加我们的节点。 您可以在这个 <a href="https://docs.rs/pallet-node-authorization/2.0.0/pallet_node_authorization/enum.Call.html"> reference doc </a> 中找到更多的调用命令。</p>
+<p>在 apps 应用中跳转到 ** Developer Sudo** 页面，提交 <code>nodeAuthorization</code> -  <code>add_well_known_node</code> 交易，参数为用十六进制表示的 Charlie 节点的 peer id 和所有者也就是Charlie。</p>
+<p><img src="/docs/assets/tutorials/permission-network/add_well_known_node.png" alt="add_well_known_node"></p>
+<p>当交易打包入区块中后， 你应该能看到 Charlie 的节点已连接到 Alice 和 Bob 的节点，并逐渐进行区块同步。 在本地网络中默认启用了 <a href="https://docs.rs/sc-network/0.8.0/sc_network/">mdns</a> 发现机制，因此三个节点可以互相找到。 如果在公共互联网中运行节点，您需要在启动 Charlie 的节点时使用 <code>--reserved-nodes</code> flag 来指定可访问的节点。 或将可访问的节点作为 Chain Spec 中的启动节点。</p>
+<p>现在我们已经有 3 个 well known 节点了。</p>
+<h2><a class="anchor" aria-hidden="true" id="添加一个额外的连接"></a><a href="#添加一个额外的连接" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加一个额外的连接</h2>
+<p>现在让我们增加另外一个节点，不过它不是 well known 节点，而是 Charlie 节点的“子节点”。</p>
 <p>使用以下命令启动节点。</p>
 <pre><code class="hljs css language-shell">./target/release/node-template --chain=local --base-path /tmp/validator4 --name dave --node-key=a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a --port 30336 --ws-port 9947 --offchain-worker always
 </code></pre>
-<p>在启动后，没有任何可用的联系。 首先，Charlie 需要配置他的已知节点，允许 Dave 的节点与其连接。</p>
-<p>在 ** Developer Extrinsics ** 页面中，Charlie 提交了一个 <code>addConnections</code> 交易。 第一个 PeerId 是 Charlie 节点中的 peer id。 这是一个允许连接到 Charlie 节点的 peer id 列表，在此我们只添加 Dave 的节点。</p>
-<p><img src="/docs/assets/tutorials/permission-network/charlie_add_connections.png" alt="charlie增加连接"></p>
-<p>然后，Dave 需要配置他的节点来允许来自 Charlie 节点的连接。 但在添加连接之前，Dave 需要先声明他的节点。希望这不会太晚！</p>
-<p><img src="/docs/assets/tutorials/permission-network/dave_claim_node.png" alt="dave_claim节点"></p>
-<p>同样，Dave 可以从 Charlie 的节点中添加连接。</p>
-<p><img src="/docs/assets/tutorials/permission-network/dave_add_connections.png" alt="dave增加连接"></p>
-<p>若没有连接到其他节点，则请重启 Dave 的节点。 你现在应该看到 Dave 正在同步区块，并只有一个与 Charlie 的配对。</p>
+<p>在启动后，没有任何节点间的可用连接。 首先，Charlie 需要配置他的 well known 节点，允许 Dave 的节点与其连接。</p>
+<p>在 ** Developer Extrinsics ** 页面中，Charlie 提交了一个 <code>addConnections</code> 交易。 第一个 PeerId 是 Charlie 节点中的 peer id。 connections 这一参数是允许连接到 Charlie 节点的节点集合，在此我们只添加 Dave 的节点。</p>
+<p><img src="/docs/assets/tutorials/permission-network/charlie_add_connections.png" alt="charlie_add_connections"></p>
+<p>然后，Dave 需要配置他的节点来允许来自 Charlie 节点的连接。 但在添加连接之前，Dave 需要先认领他的节点。希望这不会太晚！</p>
+<p><img src="/docs/assets/tutorials/permission-network/dave_claim_node.png" alt="dave_claim_node"></p>
+<p>同样，Dave 可以添加来自 Charlie 节点的连接。</p>
+<p><img src="/docs/assets/tutorials/permission-network/dave_add_connections.png" alt="dave_add_connections"></p>
+<p>若没有连接到其他节点，则请重启 Dave 的节点。 你现在应该看到 Dave 正在同步区块，并且只连接了一个节点，是属于 Charlie 的。</p>
 <p><strong>恭喜你！</strong></p>
-<p>您正处于本教程的末尾，并已基本学会了如何建立一个新的权限网络。 您也可以通过其他可调度的调用来尝试，如 <code>remove_well_known_node</code>, <code>remove_connection</code>。 请随时与社区联系并分享您在构建许可区块链中所学习到的的经验。</p>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/tutorials/build-permission-network/add-node-authorization-pallet"><span class="arrow-prev">← </span><span>添加节点授权模块</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#启动-alice-和-bob-的节点">启动 Alice 和 Bob 的节点</a></li><li><a href="#添加另一个已知节点">添加另一个已知节点</a></li><li><a href="#添加额外连接">添加额外连接</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/rustdocs">API 文档</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
+<p>你已经完成了本教程，并了解了如何建立一个新的需要授权的区块链网络。 你也可以测试其他可调用函数，如 <code>remove_well_known_node</code>, <code>remove_connection</code>。 请随时与我们联系并分享你在构建许可区块链中所学习到的的经验。</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/tutorials/build-permission-network/add-node-authorization-pallet"><span class="arrow-prev">← </span><span>添加节点授权模块</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#启动-alice-和-bob-的节点">启动 Alice 和 Bob 的节点</a></li><li><a href="#添加另一个-well-known-节点">添加另一个 well known 节点</a></li><li><a href="#添加一个额外的连接">添加一个额外的连接</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/rustdocs">API 文档</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();
