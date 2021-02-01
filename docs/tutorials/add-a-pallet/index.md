@@ -25,7 +25,7 @@ If you run into an issue on this tutorial, **we are here to help!** You can
 
 ## Install the Node Template
 
-You should already have version `v2.0.0` of the Node Template compiled on your computer from when
+You should already have version `v2.0.1` of the Node Template compiled on your computer from when
 you completed the
 [Create Your First Substrate Chain](../../tutorials/create-your-first-substrate-chain/) tutorial. If
 you do not, please complete it.
