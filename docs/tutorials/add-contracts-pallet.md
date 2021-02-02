@@ -416,7 +416,7 @@ add the contracts pallet along with its API.
 **`node/src/rpc.rs`**
 
 ```rust
-use node_template_runtime::{opaque::Block, AccountId, Balance, Index, BlockNumber};
+use node_template_runtime::{opaque::Block, AccountId, Balance, Index, BlockNumber}; // NOTE THIS IS AN ADJUSTMENT TO AN EXISTING LINE
 use pallet_contracts_rpc::{Contracts, ContractsApi};
 ```
 
