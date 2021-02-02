@@ -199,13 +199,13 @@ Here is ours on [the grafana public dashboards](https://grafana.com/grafana/dash
 
 - Learn how to [set up a private Substrate network](../../tutorials/start-a-private-network/).
 - Further configuration, notification services, and permanent installation of
-  [Substrate/Polkadot monitoring tools](https://wiki.polkadot.network/docs/en/maintain-guides-how-to-monitor-your-node)
+  [Substrate/Polkadot monitoring tools](https://wiki.polkadot.network/docs/en/maintain-guides-how-to-monitor-your-node).
 
 ### Examples
 
 - The Grafana dashboard configuration for the [Polkadot
   network](https://github.com/w3f/polkadot-dashboard).
-- [Grafana Template](https://grafana.com/grafana/dashboards/13759/) for a Substrate Node Template
+- [Grafana Template](https://grafana.com/grafana/dashboards/13759/) for a Substrate Node Template.
 
 ### References
 
@@ -213,4 +213,4 @@ Here is ours on [the grafana public dashboards](https://grafana.com/grafana/dash
 
 - Visit the source code for
   [Substrate Prometheus Exporter](https://github.com/paritytech/substrate/tree/master/utils/prometheus).
-- See the [docs for prometheus in substrate](https://substrate.dev/rustdocs/v2.0.0/prometheus/index.html)
+- See the [docs for prometheus in substrate](https://substrate.dev/rustdocs/v2.0.0/prometheus/index.html).
