@@ -95,6 +95,7 @@ function Seminar(props) {
               <p>On <strong>19 Jan</strong> Substrate Core Developer Guillaume Tholliere will discuss FRAME v2.</p>
               <p>On <strong>26 Jan</strong> Dastan Samatov from <a href='https://limechain.tech/'>LimeChain</a> will discuss the design and&nbsp;
               use of their AssemblyScript libraries for developing on the Polkadot stack.</p>
+              <p>On <strong>2 Feb</strong> Parity Runtime Engineer Ricardo Rius will discuss parachains, Cumulus, and Rococo v1.</p>
             </div>
 
             <div className='col-md-6 second'>
