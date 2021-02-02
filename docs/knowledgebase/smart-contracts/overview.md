@@ -10,7 +10,7 @@ FRAME provides two smart contract virtual machines which can be added to your Su
 
 ### Contracts Module
 
-The [**FRAME Contracts pallet**](contracts-pallet) (SEAL) provides functionality for the runtime to deploy and execute
+The [**FRAME Contracts pallet**](contracts-pallet) provides functionality for the runtime to deploy and execute
 WebAssembly smart-contracts. It is designed to iterate on the design of modern smart contract
 platforms.
 
