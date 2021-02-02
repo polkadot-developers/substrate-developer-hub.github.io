@@ -29,7 +29,6 @@ const TutorialCards = props => {
   const tutorialUrl = tut => tut.hrefFrom == 'baseUrl' ? baseUrl(tut.href) : docUrl(tut.href);
 
   return props.data.map(tutorial => <a href={tutorialUrl(tutorial)} className="a_wrapper">
-    { console.log(tutorial) }
     <Col xl={3} lg={4} md={6} sm={12} className="mb-5 d-flex align-items-stretch"><Card>
       <Card.Img
         variant="top"
