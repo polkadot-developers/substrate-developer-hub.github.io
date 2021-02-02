@@ -191,7 +191,7 @@ may be helpful.
 [community list of dashboards](https://grafana.com/grafana/dashboards) and letting
 the substrate builder community know it exists by listing in on
 [Awesome Substrate](https://github.com/substrate-developer-hub/awesome-substrate)!
-Here is ours on [the grafana public dashboards](https://grafana.com/grafana/dashboards/13759/)</b>
+Here is ours on [the grafana public dashboards](https://grafana.com/grafana/dashboards/13759/).</b>
 
 ## Next Steps
 
