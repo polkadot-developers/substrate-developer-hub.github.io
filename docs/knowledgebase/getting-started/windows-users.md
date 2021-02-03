@@ -37,7 +37,7 @@ If you are trying to set up a Windows computer to build Substrate, do the follow
 
 4. Install LLVM: https://releases.llvm.org/download.html
 
-5. Install OpenSSL with `vcpkg`:
+5. Install OpenSSL with `vcpkg` using PowerShell:
 
    ```bash
    mkdir C:\Tools
