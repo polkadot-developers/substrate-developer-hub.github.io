@@ -100,8 +100,8 @@
 <ul>
 <li><code>0b00</code>：单字节模式；前面6位是数值的LE编码 (只对0-63的数值有效)。</li>
 <li><code>0b01</code>：双字节模式：前面6位和下一字节是值的LE编码(只对值 <code>64-(2**14-1)</code> 有效)。</li>
-<li><code>0b10</code>：四字节模式：前面6位和接下来的3个字节是该值的LE编码(仅对值 <code>(2**14-1)-(2**30-1)</code> 有效)。</li>
-<li><code>0b11</code>：大整数模式。前面6位表示的值是后面的字节数减4。 值以 LE 编码形式包含在后面的字节中。 最后 (最重要的) 的字节必须为不能为零。 仅对值 <code>(2**30-1)-(2**536-1)</code> 有效。</li>
+<li><code>0b10</code>: four-byte mode: upper six bits and the following three bytes are the LE encoding of the value (valid only for values <code>(2**14)-(2**30-1)</code>).</li>
+<li><code>0b11</code>：大整数模式。前面6位表示的值是后面的字节数减4。 值以 LE 编码形式包含在后面的字节中。 最后 (最重要的) 的字节必须为不能为零。 Valid only for values <code>(2**30)-(2**536-1)</code>.</li>
 </ul>
 <h4><a class="anchor" aria-hidden="true" id="示例-1"></a><a href="#示例-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>示例</h4>
 <ul>
