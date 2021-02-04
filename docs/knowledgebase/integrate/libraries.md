@@ -31,6 +31,8 @@ Substrate community member Cedric Decoster
 is also available via the [NuGetForUnity](https://github.com/GlitchEnzo/NuGetForUnity) package
 manager.
 
+[SubstrateNetApi](https://github.com/dotmog/SubstrateNetApi) .NET Standard API ([nuget](https://www.nuget.org/packages/SubstrateNetApi/)) allowing full substrate integration in Unity3D for gaming development, [starter template project](https://github.com/darkfriend77/Unity3DExample). It is maintained by [DOTMog Team](https://www.dotmog.com/).
+
 ## C++
 
 [Usetech](https://usetech.com/blockchain/) also maintains Polkadot API CPP, which is a C++ library
