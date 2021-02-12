@@ -9,7 +9,7 @@ to `MyNicks`.
 
 ## Getting the Modified Node Template
 
-+ check out the node template at "insert migration tutorial branch here"
++ check out the node template at `tutorial/initial-state`
 + compile with
 ```bash
 WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release
@@ -23,7 +23,7 @@ WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release
 # Run a node in development mode
 ./target/release/node-template --dev
 ```
-to get the state set up (note that we do note want a temporary node with `--tmp` because we want state to migrate)
+to get the state set up (note that we do not want a temporary node with `--tmp` because we want state to migrate)
 
 ## Creating the Storage Entries to Migrate
 
