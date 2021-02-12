@@ -7,6 +7,8 @@ The reason for the migration is that we want to introduce a distinction between 
 ## Introducing the Storage Change
 To achieve that we introduce a new `Nickname` struct:
 
+
+`./pallets/nicks/src/lib.rs`
 ```Rust
 #[derive(codec::Encode, codec::Decode, Default, frame_support::RuntimeDebug, PartialEq)]
 pub struct Nickname {
@@ -16,6 +18,8 @@ pub struct Nickname {
 ```
 
 We then adjust the pallet storage to use the new struct:
+
+`./pallets/nicks/src/lib.rs`
 ```Rust
 decl_storage! {
   trait Store for Module<T: Trait> as MyNicks {
@@ -55,6 +59,7 @@ frame_support::debug::RuntimeLogger::init();
 In order to not mangle the runtime storage, we need to check that the storage version is what we expect it to be.
 We use an enum with two variants that indicate pre- and post-migration state of the storage.
 
+`./pallets/nicks/src/lib.rs`
 ```Rust
 if PalletVersion::get() == StorageVersion::V1Bytes {
   // --- ✂️ snip (the actual migration) ---
@@ -69,6 +74,8 @@ if PalletVersion::get() == StorageVersion::V1Bytes {
 ### Iterating and Migrating the Storage Items
 We remove the storage entries one by one by using the `drain` iterator, then transform them into
 the new storage format and store them again.
+
+`./pallets/nicks/src/lib.rs`
 ```Rust
 if PalletVersion::get() == StorageVersion::V1Bytes {
   // We remove the nicks from the old storage via `drain`.
