@@ -201,7 +201,7 @@ that is written in Rust and maintained by Parity Technologies.
 ## References
 
 - Visit the reference docs for the
-  [`parity-scale-codec`](https://substrate.dev/rustdocs/v2.0.0/parity_scale_codec/index.html).
+  [`parity-scale-codec`](https://substrate.dev/rustdocs/v3.0.0/parity_scale_codec/index.html).
 
 - Visit the auxiliary encoding section of the
   [Polkadot runtime environment specification](https://github.com/w3f/polkadot-spec/).

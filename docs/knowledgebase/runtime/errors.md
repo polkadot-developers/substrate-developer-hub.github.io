@@ -6,13 +6,13 @@ Runtime code should explicitly and gracefully handle all error cases, which is t
 code **must** be "non-throwing", or must never
 "[panic](https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html)" to use Rust
 terminology. A common idiom for writing non-throwing Rust code is to write functions that return
-[`Result` types](https://substrate.dev/rustdocs/v2.0.0/frame_support/dispatch/result/enum.Result.html).
+[`Result` types](https://substrate.dev/rustdocs/v3.0.0/frame_support/dispatch/result/enum.Result.html).
 The `Result` enum type possesses an `Err` variant that allows a function to indicate that it failed
 to execute successfully without needing to panic. Dispatchable calls in the FRAME system for runtime
 development _must_ return a
-[`DispatchResult` type](https://substrate.dev/rustdocs/v2.0.0/frame_support/dispatch/type.DispatchResult.html)
+[`DispatchResult` type](https://substrate.dev/rustdocs/v3.0.0/frame_support/dispatch/type.DispatchResult.html)
 that _should_ be a
-[`DispatchError`](https://substrate.dev/rustdocs/v2.0.0/frame_support/dispatch/enum.DispatchError.html)
+[`DispatchError`](https://substrate.dev/rustdocs/v3.0.0/frame_support/dispatch/enum.DispatchError.html)
 if the dispatchable function encountered an error.
 
 Each FRAME pallet may define custom **DispatchError**s by using
@@ -21,7 +21,7 @@ Each FRAME pallet may define custom **DispatchError**s by using
 ```rust
 // Errors inform users that something went wrong.
 decl_error! {
-	pub enum Error for Module<T: Trait> {
+	pub enum Error for Module<T: Config> {
 		/// Error names should be descriptive.
 		InvalidParameter,
 		/// Errors should have helpful documentation associated with them.
@@ -34,7 +34,7 @@ In order to emit custom errors from a pallet, the pallet's module must configure
 
 ```rust
 decl_module! {
-	pub struct Module<T: Trait> for enum Call where origin: T::Origin {
+	pub struct Module<T: Config> for enum Call where origin: T::Origin {
 		// Errors must be initialized if they are used by the pallet.
 		type Error = Error<T>;
 
@@ -47,7 +47,7 @@ The
 [Pallet Template](https://github.com/substrate-developer-hub/substrate-pallet-template/blob/master/src/lib.rs)
 demonstrates some ways to correctly handle errors in dispatchable functions. The FRAME Support
 module also includes a helpful
-[`ensure!` macro](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.ensure.html) that can be
+[`ensure!` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.ensure.html) that can be
 used to check pre-conditions and emit an errors if they are not met.
 
 ```rust
@@ -62,5 +62,5 @@ frame_support::ensure!(param < T::MaxVal::get(), Error::<T>::InvalidParameter);
 
 ### References
 
-- [`decl_error!` macro](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_error.html)
-- [`decl_module!` macro](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_module.html)
+- [`decl_error!` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_error.html)
+- [`decl_module!` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_module.html)
