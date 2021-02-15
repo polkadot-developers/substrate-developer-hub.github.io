@@ -100,7 +100,7 @@ feature will determine the features that should be used on downstream dependenci
 snippet above should be read as:
 
 > The default feature for this Substrate runtime is `std`. When `std` feature is enabled for the
-> runtime, `parity-scale-codec`, `primitives`, `client`, and all the other listed dependencies
+> runtime, `codec`, `frame-executive`, `frame-support`, and all the other listed dependencies
 > should use their `std` feature too.
 
 This is important to enable the Substrate runtime to compile to both native binaries (which support
