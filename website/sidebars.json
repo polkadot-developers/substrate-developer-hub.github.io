@@ -84,6 +84,13 @@
       "tutorials/upgrade-a-chain/scheduled-upgrade"
     ]
   },
+  runtime-migration: {
+    Write a Runtime Migration: [
+      tutorials/runtime-migration/setting-up,
+      tutorials/runtime-migration/writing-the-migration,
+      tutorials/runtime-migration/upgrading-the-runtime
+    ]
+  },
   "build-a-dapp": {
     "Build a PoE Decentralized Application": [
       "tutorials/build-a-dapp/index",
