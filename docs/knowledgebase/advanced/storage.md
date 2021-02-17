@@ -83,7 +83,7 @@ Storage Value item named
 
 ```
 twox_128("Sudo")                   = "0x5c0d1176a568c1f92944340dbfed9e9c"
-twox_128("Key")                     = "0x530ebca703c85910e7164cb7d1c9e47b"
+twox_128("Key")                    = "0x530ebca703c85910e7164cb7d1c9e47b"
 twox_128("Sudo") + twox_128("Key") = "0x5c0d1176a568c1f92944340dbfed9e9c530ebca703c85910e7164cb7d1c9e47b"
 ```
 
@@ -124,7 +124,7 @@ is using
 [the transparent Blake2 128 Concat hashing algorithm](../runtime/storage#Transparent-Hashing-Algorithms):
 
 ```
-twox_128("Balances")                                              = "0xc2261276cc9d1f8598ea4b6a74b15c2f"
+twox_128("Balances")                                             = "0xc2261276cc9d1f8598ea4b6a74b15c2f"
 twox_128("FreeBalance")                                          = "0x6482b9ade7bc6657aaca787ba1add3b4"
 scale_encode("5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY") = "0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d"
 
@@ -150,7 +150,7 @@ in a module named "Balances") that will demonstrate using the Substrate RPC to q
 for its list of keys via the `state_getKeys` RPC endpoint:
 
 ```
-twox_128("Balances")                                       = "0xc2261276cc9d1f8598ea4b6a74b15c2f"
+twox_128("Balances")                                      = "0xc2261276cc9d1f8598ea4b6a74b15c2f"
 twox_128("FreeBalance")                                   = "0x6482b9ade7bc6657aaca787ba1add3b4"
 
 state_getKeys("0xc2261276cc9d1f8598ea4b6a74b15c2f6482b9ade7bc6657aaca787ba1add3b4") = [
