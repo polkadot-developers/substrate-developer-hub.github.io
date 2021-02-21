@@ -6,7 +6,7 @@ Now you are ready to compile and run your node that has been enhanced with nickn
 from the Nicks pallet. Compile the node in release mode with:
 
 ```bash
-WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release
+cargo build --release
 ```
 
 If the build fails, go back to the previous section and make sure you followed all the steps
