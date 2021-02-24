@@ -139,7 +139,8 @@ Every pallet has a component called `Trait` that is used for configuration. This
 [Rust "trait"](https://doc.rust-lang.org/book/ch10-02-traits.html); traits in Rust are similar to
 interfaces in languages such as C++, Java and Go. For now, the only thing we will configure about
 our pallet is that it will emit some Events. The `Trait` interface is another topic that will be
-covered in greater depth in the next tutorial, the [Add a Pallet](../add-a-pallet) tutorial.
+covered in greater depth in the next tutorial, the [Add a Pallet](../add-a-pallet) tutorial.  The 
+following code will need to be added to your `pallets/template/src/lib.rs` file:
 
 ```rust
 /// Configure the pallet by specifying the parameters and types on which it depends.
