@@ -9,13 +9,13 @@ are some restrictions when operating inside of a `no_std` environment like the S
 ## FRAME Debugging & Logging Utilities
 
 The FRAME Support
-[`debug` module](https://substrate.dev/rustdocs/v2.0.0/frame_support/debug/index.html) contains
+[`debug` module](https://substrate.dev/rustdocs/v3.0.0/frame_support/debug/index.html) contains
 macros and functions that make it possible to print logs out of runtime code.
 
 ### Log from Native Runtimes
 
 For performance-preserving, native-only debugging, use the macros in the
-[`frame_support::debug::native` module](https://substrate.dev/rustdocs/v2.0.0/frame_support/debug/native/index.html).
+[`frame_support::debug::native` module](https://substrate.dev/rustdocs/v3.0.0/frame_support/debug/native/index.html).
 
 ```rust
 pub fn do_something(origin) -> DispatchResult {
@@ -34,7 +34,7 @@ pub fn do_something(origin) -> DispatchResult {
 ```
 
 The
-[`frame_support::debug::native::debug!`](https://substrate.dev/rustdocs/v2.0.0/frame_support/debug/native/macro.debug.html)
+[`frame_support::debug::native::debug!`](https://substrate.dev/rustdocs/v3.0.0/frame_support/debug/native/macro.debug.html)
 macro avoids extra overhead in Wasm runtimes, but is only effective when the runtime is executing in
 native mode. In order to view these log messages, it's necessary to configure the node to use the
 right logging target. By default, the name of the target is the name of the crate that contains the
@@ -76,7 +76,7 @@ pub fn do_something(origin) -> DispatchResult {
 
 The Printable trait is meant to be a way to print from the runtime in `no_std` and in `std`. The
 `print` function works with any type that implements the
-[`Printable` trait](https://substrate.dev/rustdocs/v2.0.0/sp_runtime/traits/trait.Printable.html).
+[`Printable` trait](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/traits/trait.Printable.html).
 Substrate implements this trait for some types (`u8`, `u32`, `u64`, `usize`, `&[u8]`, `&str`) by
 default. You can also implement it for your own custom types. Here is an example of implementing it
 for a pallet's `Error` type using the node-template as the example codebase.
@@ -89,7 +89,7 @@ use sp_runtime::print;
 ```rust
 // The pallet's errors
 decl_error! {
-	pub enum Error for Module<T: Trait> {
+	pub enum Error for Module<T: Config> {
 		/// Value was None
 		NoneValue,
 		/// Value reached maximum and cannot be incremented further
@@ -97,7 +97,7 @@ decl_error! {
 	}
 }
 
-impl<T: Trait> Printable for Error<T> {
+impl<T: Config> Printable for Error<T> {
 	fn print(&self) {
 		match self {
 			Error::NoneValue => "Invalid Value".print(),
@@ -158,7 +158,7 @@ gets called.
 ## Substrate's Own `print` Function
 
 For legacy use cases, Substrate provides extra tools for `Print` debugging (or tracing). You can use
-the [`print` function](https://substrate.dev/rustdocs/v2.0.0/sp_runtime/fn.print.html) to log the
+the [`print` function](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/fn.print.html) to log the
 status of the runtime execution.
 
 ```rust
@@ -199,7 +199,7 @@ The values are printed in the terminal or the standard output if the Error gets 
 The legacy `print` function allows you to print and have an implementation of the `Printable` trait.
 However, in some legacy cases you may want to do more than print, or not bother with
 Substrate-specific traits just for debugging purposes. The
-[`if_std!` macro](https://substrate.dev/rustdocs/v2.0.0/sp_std/macro.if_std.html) is useful for this
+[`if_std!` macro](https://substrate.dev/rustdocs/v3.0.0/sp_std/macro.if_std.html) is useful for this
 situation.
 
 One caveat of using this macro is that the code inside will only execute when you are actually

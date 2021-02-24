@@ -21,7 +21,7 @@ or Substrate chains using Javascript.
 ### Getting Started
 
 Developer documentation for the Polkadot-JS API can be found on their site. Follow the
-[Getting Started](https://polkadot.js.org/api/start/) guide to learn how to install and start using
+[Getting Started](https://polkadot.js.org/docs/api/) guide to learn how to install and start using
 the Polkadot-JS API right away.
 
 ## Polkadot-JS Apps

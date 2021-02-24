@@ -81,7 +81,7 @@ Join the growing community of ink! smart contract developers:
 
 - Learn more about the design philosophy of
   [ink! in our conceptual documentation](ink-fundamentals).
-- Learn more about the [Contracts pallet](https://docs.rs/pallet-contracts).
+- Learn more about the [Contracts pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/index.html).
 
 ### Examples
 

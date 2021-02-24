@@ -213,4 +213,4 @@ Here is ours on [the grafana public dashboards](https://grafana.com/grafana/dash
 
 - Visit the source code for
   [Substrate Prometheus Exporter](https://github.com/paritytech/substrate/tree/master/utils/prometheus).
-- See the [docs for prometheus in substrate](https://substrate.dev/rustdocs/v2.0.0/prometheus/index.html).
+- See the [docs for prometheus in substrate](https://substrate.dev/rustdocs/v3.0.0/prometheus/).

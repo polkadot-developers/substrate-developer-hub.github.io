@@ -194,14 +194,14 @@ that is written in Rust and maintained by Parity Technologies.
 - C++: [`soramitsu/scale`](https://github.com/soramitsu/kagome/tree/master/core/scale)
 - JavaScript: [`polkadot-js/api`](https://github.com/polkadot-js/api)
 - AssemblyScript: [`LimeChain/as-scale-codec`](https://github.com/LimeChain/as-scale-codec)
-- Haskell: [`airalab/hs-web3`](https://github.com/airalab/hs-web3/tree/master/src/Codec)
+- Haskell: [`airalab/hs-web3`](https://github.com/airalab/hs-web3/tree/master/packages/scale)
 - Java: [`emeraldpay/polkaj`](https://github.com/emeraldpay/polkaj)
 - Ruby: [`itering/scale.rb`](https://github.com/itering/scale.rb)
 
 ## References
 
 - Visit the reference docs for the
-  [`parity-scale-codec`](https://substrate.dev/rustdocs/v2.0.0/parity_scale_codec/index.html).
+  [`parity-scale-codec`](https://substrate.dev/rustdocs/v3.0.0/parity_scale_codec/index.html).
 
 - Visit the auxiliary encoding section of the
   [Polkadot runtime environment specification](https://github.com/w3f/polkadot-spec/).

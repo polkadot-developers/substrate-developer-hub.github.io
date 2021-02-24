@@ -27,13 +27,13 @@ Include the following associated types in your pallet's configuration trait for 
 unsigned transactions from an off-chain worker.
 
 ```rust
-pub trait Trait: timestamp::Trait + system::Trait {
+pub trait Config: timestamp::Config + system::Config {
   /// The overarching event type.
-  type Event: From<Event<Self>> + Into<<Self as system::Trait>::Event>;
+  type Event: From<Event<Self>> + Into<<Self as system::Config>::Event>;
   type Call: From<Call<Self>>;
 
-  type SubmitSignedTransaction: offchain::SubmitSignedTransaction<Self, <Self as Trait>::Call>;
-  type SubmitUnsignedTransaction: offchain::SubmitUnsignedTransaction<Self, <Self as Trait>::Call>;
+  type SubmitSignedTransaction: offchain::SubmitSignedTransaction<Self, <Self as Config>::Call>;
+  type SubmitUnsignedTransaction: offchain::SubmitUnsignedTransaction<Self, <Self as Config>::Call>;
 }
 ```
 
@@ -42,7 +42,7 @@ entry point of the off-chain worker and runs after every block import.
 
 ```rust
 decl_module! {
-  pub struct Module<T: Trait> for enum Call where origin: T::Origin {
+  pub struct Module<T: Config> for enum Call where origin: T::Origin {
 
     // --snip--
 
@@ -78,7 +78,7 @@ runtime's `lib.rs` at `runtime/src/lib.rs`.
 type SubmitTransaction = system::offchain::TransactionSubmitter<
   offchain_pallet::crypto::Public, Runtime, UncheckedExtrinsic>;
 
-impl offchain_pallet::Trait for Runtime {
+impl offchain_pallet::Config for Runtime {
   type Event = Event;
   type Call = Call;
 
@@ -232,7 +232,7 @@ in `my_offchain_worker.rs`.
 
 ```rust
 decl_module! {
-  pub struct Module<T: Trait> for enum Call where origin: T::Origin {
+  pub struct Module<T: Config> for enum Call where origin: T::Origin {
     // --snip--
 
     pub fn onchain_callback(origin, _block: T::BlockNumber, input: Vec<u8>) -> dispatch::Result {
@@ -267,7 +267,7 @@ With the following code, you are able to send an unsigned transaction back to th
 
 ```rust
 decl_module! {
-  pub struct Module<T: Trait> for enum Call where origin: T::Origin {
+  pub struct Module<T: Config> for enum Call where origin: T::Origin {
     // --snip--
 
     pub fn onchain_callback(_origin, _block: T::BlockNumber, input: Vec<u8>) -> dispatch::Result {
@@ -293,12 +293,12 @@ decl_module! {
   // --snip--
 }
 
-impl<T: Trait> Module<T> {
+impl<T: Config> Module<T> {
   // --snip--
 }
 
 #[allow(deprecated)]
-impl<T: Trait> support::unsigned::ValidateUnsigned for Module<T> {
+impl<T: Config> support::unsigned::ValidateUnsigned for Module<T> {
   type Call = Call<T>;
 
   fn validate_unsigned(call: &Self::Call) -> TransactionValidity {
@@ -352,7 +352,7 @@ use sp_runtime::{
 // --snip--
 
 decl_module! {
-  pub struct Module<T: Trait> for enum Call where origin: T::Origin {
+  pub struct Module<T: Config> for enum Call where origin: T::Origin {
     // --snip--
     fn offchain_worker(block: T::BlockNumber) {
       match Self::fetch_data() {
@@ -363,7 +363,7 @@ decl_module! {
   }
 }
 
-impl<T: Trait> Module<T> {
+impl<T: Config> Module<T> {
   fn fetch_data() -> Result<Vec<u8>, &'static str> {
 
     // Specifying the request

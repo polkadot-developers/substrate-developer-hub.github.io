@@ -41,7 +41,7 @@ use support::{decl_module, decl_event, decl_storage, ...}
 // All of the runtime types and consts go in here. If the pallet
 // is dependent on specific other pallets, then their configuration traits
 // should be added to the inherited traits list.
-pub trait Trait: system::Trait { ... }
+pub trait Config: system::Config { ... }
 
 // 3. Runtime Events
 // Events are a simple means of reporting specific conditions and circumstances
@@ -74,14 +74,14 @@ It is written in full here for clarity:
 use support::{decl_module, decl_event, decl_storage, StorageValue, StorageMap};
 use system::ensure_signed;
 
-pub trait Trait: system::Trait {
+pub trait Config: system::Config {
 	// The traits the `Event` type used in this pallet has.
-	type Event: From<Event<Self>> + Into<<Self as system::Trait>::Event>;
+	type Event: From<Event<Self>> + Into<<Self as system::Config>::Event>;
 }
 
 decl_event!{
 	pub enum Event<T> where
-		AccountId = <T as system::Trait>::AccountId,
+		AccountId = <T as system::Config>::AccountId,
 	{
 		// An event which is emitted when `set_value` is called.
 		// Contains information about the user who called the function
@@ -91,7 +91,7 @@ decl_event!{
 }
 
 decl_storage! {
-	trait Store for Module<T: Trait> as Example {
+	trait Store for Module<T: Config> as Example {
 		// The last value passed to `set_value`.
 		// Used as an example of a `StorageValue`.
 		pub LastValue get(fn last_value): u64;
@@ -102,7 +102,7 @@ decl_storage! {
 }
 
 decl_module! {
-	pub struct Module<T: Trait> for enum Call where origin: T::Origin {
+	pub struct Module<T: Config> for enum Call where origin: T::Origin {
 		// A default function for depositing events in our runtime
 		fn deposit_event() = default;
 

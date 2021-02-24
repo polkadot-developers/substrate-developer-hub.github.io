@@ -70,10 +70,10 @@ TODO
 ### References
 
 - Check out the different
-  [Execution Strategies](https://substrate.dev/rustdocs/v2.0.0/sc_client_api/execution_extensions/struct.ExecutionStrategies.html).
+  [Execution Strategies](https://substrate.dev/rustdocs/v3.0.0/sc_client_api/execution_extensions/struct.ExecutionStrategies.html).
 
 - Take a look at the different
-  [Execution Strategy Options](https://substrate.dev/rustdocs/v2.0.0/sp_state_machine/enum.ExecutionStrategy.html)
+  [Execution Strategy Options](https://substrate.dev/rustdocs/v3.0.0/sp_state_machine/enum.ExecutionStrategy.html)
 
 - Review the
-  [Runtime Version definition](https://substrate.dev/rustdocs/v2.0.0/sp_version/struct.RuntimeVersion.html).
+  [Runtime Version definition](https://substrate.dev/rustdocs/v3.0.0/sp_version/struct.RuntimeVersion.html).

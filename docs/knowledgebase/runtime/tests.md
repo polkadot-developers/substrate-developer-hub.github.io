@@ -26,10 +26,10 @@ used in the mock runtime.
 pub struct Test;
 ```
 
-If `Test` implements `balances::Trait`, the assignment might use `u64` for the `Balance` type.
+If `Test` implements `balances::Config`, the assignment might use `u64` for the `Balance` type.
 
 ```rust
-impl balances::Trait for TestRuntime {
+impl balances::Config for TestRuntime {
 	type Balance = u64;
 	//..
 }
@@ -41,16 +41,16 @@ requires tracking a `(AccountId: u64, Balance: u64)` mapping.
 
 ### Mock Runtime Storage
 
-The [`sp-io`](https://substrate.dev/rustdocs/v2.0.0/sp_io/index.html) crate exposes a
-[`TestExternalities`](https://substrate.dev/rustdocs/v2.0.0/sp_io/type.TestExternalities.html)
+The [`sp-io`](https://substrate.dev/rustdocs/v3.0.0/sp_io/index.html) crate exposes a
+[`TestExternalities`](https://substrate.dev/rustdocs/v3.0.0/sp_io/type.TestExternalities.html)
 implementation frequently used for mocking storage in tests. It is the type alias for an in-memory,
 hashmap-based externalities implementation in
-[`substrate_state_machine`](https://substrate.dev/rustdocs/v2.0.0/sp_state_machine/index.html)]
+[`substrate_state_machine`](https://substrate.dev/rustdocs/v3.0.0/sp_state_machine/index.html)]
 referred to as
-[`TestExternalities`](https://substrate.dev/rustdocs/v2.0.0/sp_state_machine/struct.TestExternalities.html).
+[`TestExternalities`](https://substrate.dev/rustdocs/v3.0.0/sp_state_machine/struct.TestExternalities.html).
 
 This examples demonstrates defining a struct called `ExtBuilder` to build an instance of
-[`TestExternalities`](https://substrate.dev/rustdocs/v2.0.0/sp_io/type.TestExternalities.html).
+[`TestExternalities`](https://substrate.dev/rustdocs/v3.0.0/sp_io/type.TestExternalities.html).
 
 ```rust
 pub struct ExtBuilder;
@@ -65,7 +65,7 @@ impl ExtBuilder {
 
 To create the test environment in unit tests, the build method is called to generate a
 `TestExternalities` using the default genesis configuration. Then,
-[`with_externalities`](https://substrate.dev/rustdocs/v2.0.0/sp_externalities/fn.with_externalities.html)
+[`with_externalities`](https://substrate.dev/rustdocs/v3.0.0/sp_externalities/fn.with_externalities.html)
 provides the runtime environment in which we may call the pallet's methods to test that storage,
 events, and errors behave as expected.
 
@@ -79,11 +79,11 @@ fn fake_test_example() {
 ```
 
 Custom implementations of
-[Externalities](https://substrate.dev/rustdocs/v2.0.0/sp_externalities/index.html) allow developers
+[Externalities](https://substrate.dev/rustdocs/v3.0.0/sp_externalities/index.html) allow developers
 to construct runtime environments that provide access to features of the outer node. Another example
 of this can be found in
-[`offchain`](https://substrate.dev/rustdocs/v2.0.0/sp_core/offchain/index.html), which maintains its
-own [Externalities](https://substrate.dev/rustdocs/v2.0.0/sp_core/offchain/trait.Externalities.html)
+[`offchain`](https://substrate.dev/rustdocs/v3.0.0/sp_core/offchain/index.html), which maintains its
+own [Externalities](https://substrate.dev/rustdocs/v3.0.0/sp_core/offchain/trait.Externalities.html)
 implementation.
 
 #### Genesis Config
@@ -94,7 +94,7 @@ testing.
 
 An example might involve pre-seeding account balances before testing.
 
-In the implementation of `system::Trait`, `AccountId` is set to `u64` just like `Balance` shown
+In the implementation of `system::Config`, `AccountId` is set to `u64` just like `Balance` shown
 above. Place `(u64, u64)` pairs in the `balances` vec to seed `(AccountId, Balance)` pairs as the
 account balances.
 

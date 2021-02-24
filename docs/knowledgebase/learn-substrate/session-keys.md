@@ -42,7 +42,7 @@ mod app {
 > Refer to the runtime for the most up-to-date implementation.
 
 The default Substrate node implements Session keys in the
-[Session pallet](https://substrate.dev/rustdocs/v2.0.0/pallet_session/).
+[Session pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_session/).
 
 ## Generation and Use
 
@@ -52,7 +52,7 @@ Session pallet. If one of the Session keys is compromised, the attacker could co
 behavior.
 
 Node operators can generate keys via the RPC call
-[`author_rotateKeys`](https://substrate.dev/rustdocs/v2.0.0/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys).
+[`author_rotateKeys`](https://substrate.dev/rustdocs/v3.0.0/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys).
 You will then need to register the new keys on chain with a `session.setKeys` transaction.
 
 Keys can be changed regularly; by creating a certificate via signing a session public key
