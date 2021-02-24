@@ -30,7 +30,7 @@ trait for the Nicks pallet.
 
 To figure out what you need to implement for the Nicks pallet specifically, you can take a look at
 the
-[`pallet_nicks::Trait` documentation](https://substrate.dev/rustdocs/v3.0.0/pallet_nicks/trait.Trait.html)
+[`pallet_nicks::Trait` documentation](https://substrate.dev/rustdocs/v3.0.0/pallet_nicks/trait.Config.html)
 or the definition of the trait itself in
 [the source code](https://github.com/paritytech/substrate/blob/v3.0.0/frame/nicks/src/lib.rs) of the
 Nicks pallet. We have annotated the source code below with new comments that expand on those already
@@ -113,7 +113,7 @@ their runtime to configure the types and parameters that are specified by the Ba
 use the `u128` type to track balances. If you were developing a chain where it was important to
 optimize storage, you could use any unsigned integer type that was at least 32-bits in size; this is
 because
-[the `Balance` type](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/trait.Trait.html#associatedtype.Balance)
+[the `Balance` type](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/pallet/trait.Config.html#associatedtype.Balance)
 for the Balances pallet `Trait` configuration trait is "bounded" by
 [the `AtLeast32BitUnsigned` trait](https://substrate.dev/rustdocs/v3.0.0/sp_arithmetic/traits/trait.AtLeast32BitUnsigned.html).
 

@@ -177,11 +177,11 @@ Now that we have successfully imported the Contracts pallet crate, we need to ad
 
 ### Implementing the Contract Trait
 
-Every pallet has a configuration trait called `Trait` that the runtime must implement.
+Every pallet has a configuration trait called `Config` that the runtime must implement.
 
 To figure out what we need to implement for this pallet specifically, you can take a look to the
 FRAME
-[`pallet_contracts::Trait` documentation](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/trait.Trait.html).
+[`pallet_contracts::Config` documentation](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/trait.Config.html).
 For our runtime, the implementation will look like this:
 
 **`runtime/src/lib.rs`**
@@ -234,12 +234,16 @@ impl pallet_contracts::Trait for Runtime {
 /*** End Added Block ***/
 ```
 
+<!--
 We will use `type DetermineContractAddress` as an example to go into a bit more detail - you can see
 from
-[the `DetermineContractAddress` documentation](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/trait.Trait.html#associatedtype.DetermineContractAddress)
+[the `DetermineContractAddress` documentation](TODO)
 that it requires the trait `ContractAddressFor`. The Contracts pallet itself implements a type with
 this trait in `pallet_contracts::SimpleAddressDeterminator`, thus we can use that implementation to satisfy
-our `pallet_contracts::Trait`. At this point, it is recommend to explore the
+our `pallet_contracts::Trait`.
+-->
+
+At this point, it is recommended to explore the
 [Contracts pallet source code](https://github.com/paritytech/substrate/blob/v3.0.0/frame/contracts/src/lib.rs)
 if things don't make sense or you want to gain a deeper understanding.
 

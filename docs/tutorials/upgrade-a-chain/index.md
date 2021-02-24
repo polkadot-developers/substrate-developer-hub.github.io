@@ -11,7 +11,7 @@ it possible to deploy enhanced runtime capabilities (including _breaking_ change
 [hard fork](../../knowledgebase/getting-started/glossary#fork). Because the definition of the
 runtime is itself an element in a Substrate chain's state, network participants may update this
 value by way of an [extrinsic](../../knowledgebase/learn-substrate/extrinsics),
-[the `set_code` function](https://substrate.dev/rustdocs/v3.0.0/frame_system/enum.Call.html#variant.set_code).
+[the `set_code` function](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Call.html#variant.set_code).
 Since updates to runtime state are bound by the blockchain's consensus mechanisms and cryptographic
 guarantees, network participants can use the blockchain itself to trustlessly distribute updated or
 extended runtime logic without needing to fork the chain or even release a new blockchain client.

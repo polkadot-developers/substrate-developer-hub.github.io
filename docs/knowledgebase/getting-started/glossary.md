@@ -274,9 +274,9 @@ transactions, which may be
 Within the [Balances pallet](../../knowledgebase/runtime/frame#balances), this is the minimum
 balance an account may have. Accounts cannot be created with a balance less than this amount, and if
 an account's balance ever drops below this amount, the Balances pallet will use
-[a FRAME System API](TODO:LINK-https://substrate.dev/rustdocs/v3.0.0/frame_system/struct.Module.html#method.dec_ref)
+[a FRAME System API](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/struct.Pallet.html#method.dec_ref)
 to drop its references to that account. If all the references to an account are dropped, it
-[may be reaped](TODO:LINK-https://substrate.dev/rustdocs/v3.0.0/frame_system/struct.Module.html#method.allow_death).
+[may be reaped](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/struct.Pallet.html#method.allow_death).
 
 ---
 
