@@ -104,23 +104,23 @@ safe to use in a production setting, but it allows this tutorial to stay focused
 hand.</li>
 </ul>
 <p>You should see the console outputs something as follows:</p>
-<pre><code class="hljs css language-bash">Sep 24 13:28:56.804  INFO Substrate Node    
-Sep 24 13:28:56.804  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu    
-Sep 24 13:28:56.804  INFO ❤️  by Substrate DevHub &lt;https://github.com/substrate-developer-hub&gt;, 2017-2020    
-Sep 24 13:28:56.804  INFO 📋 Chain specification: Local Testnet    
-Sep 24 13:28:56.804  INFO 🏷  Node name: MyNode01    
-Sep 24 13:28:56.804  INFO 👤 Role: AUTHORITY    
-Sep 24 13:28:56.804  INFO 💾 Database: RocksDb at /tmp/node01/chains/local_testnet/db    
-Sep 24 13:28:56.804  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)    
-Sep 24 13:28:57.188  INFO 🔨 Initializing Genesis block/state (state: 0xe3cb…c5ca, header-hash: 0x0ded…9b9d)    
-Sep 24 13:28:57.191  INFO 👴 Loading GRANDPA authority <span class="hljs-built_in">set</span> from genesis on what appears to be first startup.    
-Sep 24 13:28:57.380  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch    
-Sep 24 13:28:57.381  WARN Using default protocol ID <span class="hljs-string">"sup"</span> because none is configured <span class="hljs-keyword">in</span> the chain specs    
-Sep 24 13:28:57.382  INFO 🏷  Local node identity is: 12D3KooWQa2M77x2hFviVAFLHt9pMUYQVC93fdiVMKDbL3XvYSzj (legacy representation: 12D3KooWQa2M77x2hFviVAFLHt9pMUYQVC93fdiVMKDbL3XvYSzj)    
-Sep 24 13:28:57.402  INFO 📦 Highest known block at <span class="hljs-comment">#0    </span>
-Sep 24 13:28:57.403  INFO 〽️ Prometheus server started at 127.0.0.1:9615    
-Sep 24 13:28:57.434  INFO Listening <span class="hljs-keyword">for</span> new connections on 127.0.0.1:9944.    
-Sep 24 13:29:02.436  INFO 💤 Idle (0 peers), best: <span class="hljs-comment">#0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 0 ⬆ 0    </span>
+<pre><code class="hljs css language-bash">Sep 24 13:28:56.804  INFO Substrate Node
+Sep 24 13:28:56.804  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu
+Sep 24 13:28:56.804  INFO ❤️  by Substrate DevHub &lt;https://github.com/substrate-developer-hub&gt;, 2017-2020
+Sep 24 13:28:56.804  INFO 📋 Chain specification: Local Testnet
+Sep 24 13:28:56.804  INFO 🏷  Node name: MyNode01
+Sep 24 13:28:56.804  INFO 👤 Role: AUTHORITY
+Sep 24 13:28:56.804  INFO 💾 Database: RocksDb at /tmp/node01/chains/local_testnet/db
+Sep 24 13:28:56.804  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+Sep 24 13:28:57.188  INFO 🔨 Initializing Genesis block/state (state: 0xe3cb…c5ca, header-hash: 0x0ded…9b9d)
+Sep 24 13:28:57.191  INFO 👴 Loading GRANDPA authority <span class="hljs-built_in">set</span> from genesis on what appears to be first startup.
+Sep 24 13:28:57.380  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
+Sep 24 13:28:57.381  WARN Using default protocol ID <span class="hljs-string">"sup"</span> because none is configured <span class="hljs-keyword">in</span> the chain specs
+Sep 24 13:28:57.382  INFO 🏷  Local node identity is: 12D3KooWQa2M77x2hFviVAFLHt9pMUYQVC93fdiVMKDbL3XvYSzj (legacy representation: 12D3KooWQa2M77x2hFviVAFLHt9pMUYQVC93fdiVMKDbL3XvYSzj)
+Sep 24 13:28:57.402  INFO 📦 Highest known block at <span class="hljs-comment">#0</span>
+Sep 24 13:28:57.403  INFO 〽️ Prometheus server started at 127.0.0.1:9615
+Sep 24 13:28:57.434  INFO Listening <span class="hljs-keyword">for</span> new connections on 127.0.0.1:9944.
+Sep 24 13:29:02.436  INFO 💤 Idle (0 peers), best: <span class="hljs-comment">#0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 0 ⬆ 0</span>
 Sep 24 13:29:07.437  INFO 💤 Idle (0 peers), best: <span class="hljs-comment">#0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 0 ⬆ 0</span>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="add-keys-to-keystore"></a><a href="#add-keys-to-keystore" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add Keys to Keystore</h2>
@@ -128,7 +128,7 @@ Sep 24 13:29:07.437  INFO 💤 Idle (0 peers), best: <span class="hljs-comment">
 you need to add your keys into the keystore. Remember you will need to complete these steps for each
 node in your network. You will add two types of keys for each node: Aura and GRANDPA keys. Aura keys
 are necessary for
-<a href="https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#author-aka-block-author-block-producer">block <em>production</em></a>;
+<a href="https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#author">block <em>production</em></a>;
 GRANDPA keys are necessary for
 <a href="https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#finality">block <em>finalization</em></a>.</p>
 <h3><a class="anchor" aria-hidden="true" id="option-1-use-the-polkadot-js-apps-ui"></a><a href="#option-1-use-the-polkadot-js-apps-ui" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Option 1: Use the Polkadot-JS Apps UI</h3>
@@ -205,25 +205,25 @@ parameter as Bob did previously.</p>
 <p>As before, we specify another <code>base-path</code>, give it another <code>name</code>, and also specify this node as a
 <code>validator</code>.</p>
 <p>Once the second node is up, you should see them authoring:</p>
-<pre><code class="hljs css language-bash">Sep 24 13:32:29.909  INFO Substrate Node    
-Sep 24 13:32:29.909  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu    
-Sep 24 13:32:29.909  INFO ❤️  by Substrate DevHub &lt;https://github.com/substrate-developer-hub&gt;, 2017-2020    
-Sep 24 13:32:29.909  INFO 📋 Chain specification: Local Testnet    
-Sep 24 13:32:29.909  INFO 🏷  Node name: MyNode02    
-Sep 24 13:32:29.909  INFO 👤 Role: AUTHORITY    
-Sep 24 13:32:29.909  INFO 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db    
-Sep 24 13:32:29.909  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)    
-Sep 24 13:32:30.342  INFO 🔨 Initializing Genesis block/state (state: 0xe3cb…c5ca, header-hash: 0x0ded…9b9d)    
-Sep 24 13:32:30.346  INFO 👴 Loading GRANDPA authority <span class="hljs-built_in">set</span> from genesis on what appears to be first startup.    
-Sep 24 13:32:30.552  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch    
-Sep 24 13:32:30.553  WARN Using default protocol ID <span class="hljs-string">"sup"</span> because none is configured <span class="hljs-keyword">in</span> the chain specs    
-Sep 24 13:32:30.554  INFO 🏷  Local node identity is: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn (legacy representation: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn)    
-Sep 24 13:32:30.577  INFO 📦 Highest known block at <span class="hljs-comment">#0    </span>
-Sep 24 13:32:30.611  INFO Listening <span class="hljs-keyword">for</span> new connections on 127.0.0.1:9945.    
-Sep 24 13:32:31.126  INFO 🔍 Discovered new external address <span class="hljs-keyword">for</span> our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn    
-Sep 24 13:32:31.175  INFO 🔍 Discovered new external address <span class="hljs-keyword">for</span> our node: /ip4/192.168.0.117/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn    
-Sep 24 13:32:35.614  INFO 💤 Idle (1 peers), best: <span class="hljs-comment">#0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 1.1kiB/s ⬆ 1.1kiB/s    </span>
-Sep 24 13:32:36.844  INFO ✨ Imported <span class="hljs-comment">#1 (0xad75…d784)    </span>
+<pre><code class="hljs css language-bash">Sep 24 13:32:29.909  INFO Substrate Node
+Sep 24 13:32:29.909  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu
+Sep 24 13:32:29.909  INFO ❤️  by Substrate DevHub &lt;https://github.com/substrate-developer-hub&gt;, 2017-2020
+Sep 24 13:32:29.909  INFO 📋 Chain specification: Local Testnet
+Sep 24 13:32:29.909  INFO 🏷  Node name: MyNode02
+Sep 24 13:32:29.909  INFO 👤 Role: AUTHORITY
+Sep 24 13:32:29.909  INFO 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db
+Sep 24 13:32:29.909  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+Sep 24 13:32:30.342  INFO 🔨 Initializing Genesis block/state (state: 0xe3cb…c5ca, header-hash: 0x0ded…9b9d)
+Sep 24 13:32:30.346  INFO 👴 Loading GRANDPA authority <span class="hljs-built_in">set</span> from genesis on what appears to be first startup.
+Sep 24 13:32:30.552  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
+Sep 24 13:32:30.553  WARN Using default protocol ID <span class="hljs-string">"sup"</span> because none is configured <span class="hljs-keyword">in</span> the chain specs
+Sep 24 13:32:30.554  INFO 🏷  Local node identity is: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn (legacy representation: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn)
+Sep 24 13:32:30.577  INFO 📦 Highest known block at <span class="hljs-comment">#0</span>
+Sep 24 13:32:30.611  INFO Listening <span class="hljs-keyword">for</span> new connections on 127.0.0.1:9945.
+Sep 24 13:32:31.126  INFO 🔍 Discovered new external address <span class="hljs-keyword">for</span> our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn
+Sep 24 13:32:31.175  INFO 🔍 Discovered new external address <span class="hljs-keyword">for</span> our node: /ip4/192.168.0.117/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn
+Sep 24 13:32:35.614  INFO 💤 Idle (1 peers), best: <span class="hljs-comment">#0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 1.1kiB/s ⬆ 1.1kiB/s</span>
+Sep 24 13:32:36.844  INFO ✨ Imported <span class="hljs-comment">#1 (0xad75…d784)</span>
 Sep 24 13:32:40.615  INFO 💤 Idle (1 peers), best: <span class="hljs-comment">#1 (0xad75…d784), finalized #0 (0x0ded…9b9d), ⬇ 0.2kiB/s ⬆ 0.1kiB/s</span>
 </code></pre>
 <p>The final lines shows that your node has peered with another (<strong><code>1 peers</code></strong>), and they have produced
@@ -251,20 +251,20 @@ see the same genesis block and state root hashes.</p>
 happened (<strong><code>finalized #0 (0x0ded…9b9d)</code></strong>). Substrate nodes require a restart after inserting a
 GRANDPA key. Kill your nodes and restart them with the same commands you used previously. Now blocks
 should be finalized.</p>
-<pre><code class="hljs css language-bash">Sep 24 13:37:33.863  INFO Substrate Node    
-Sep 24 13:37:33.864  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu    
-Sep 24 13:37:33.864  INFO ❤️  by Substrate DevHub &lt;https://github.com/substrate-developer-hub&gt;, 2017-2020    
-Sep 24 13:37:33.864  INFO 📋 Chain specification: Local Testnet    
-Sep 24 13:37:33.864  INFO 🏷  Node name: MyNode02    
-Sep 24 13:37:33.864  INFO 👤 Role: AUTHORITY    
-Sep 24 13:37:33.864  INFO 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db    
-Sep 24 13:37:33.864  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)    
-Sep 24 13:37:33.918  WARN Using default protocol ID <span class="hljs-string">"sup"</span> because none is configured <span class="hljs-keyword">in</span> the chain specs    
-Sep 24 13:37:33.918  INFO 🏷  Local node identity is: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn (legacy representation: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn)    
-Sep 24 13:37:33.942  INFO 📦 Highest known block at <span class="hljs-comment">#23    </span>
-Sep 24 13:37:33.973  INFO Listening <span class="hljs-keyword">for</span> new connections on 127.0.0.1:9945.    
-Sep 24 13:37:34.486  INFO 🔍 Discovered new external address <span class="hljs-keyword">for</span> our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn    
-Sep 24 13:37:36.593  INFO ✨ Imported <span class="hljs-comment">#24 (0xa7e8…7596)    </span>
+<pre><code class="hljs css language-bash">Sep 24 13:37:33.863  INFO Substrate Node
+Sep 24 13:37:33.864  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu
+Sep 24 13:37:33.864  INFO ❤️  by Substrate DevHub &lt;https://github.com/substrate-developer-hub&gt;, 2017-2020
+Sep 24 13:37:33.864  INFO 📋 Chain specification: Local Testnet
+Sep 24 13:37:33.864  INFO 🏷  Node name: MyNode02
+Sep 24 13:37:33.864  INFO 👤 Role: AUTHORITY
+Sep 24 13:37:33.864  INFO 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db
+Sep 24 13:37:33.864  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+Sep 24 13:37:33.918  WARN Using default protocol ID <span class="hljs-string">"sup"</span> because none is configured <span class="hljs-keyword">in</span> the chain specs
+Sep 24 13:37:33.918  INFO 🏷  Local node identity is: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn (legacy representation: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn)
+Sep 24 13:37:33.942  INFO 📦 Highest known block at <span class="hljs-comment">#23</span>
+Sep 24 13:37:33.973  INFO Listening <span class="hljs-keyword">for</span> new connections on 127.0.0.1:9945.
+Sep 24 13:37:34.486  INFO 🔍 Discovered new external address <span class="hljs-keyword">for</span> our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn
+Sep 24 13:37:36.593  INFO ✨ Imported <span class="hljs-comment">#24 (0xa7e8…7596)</span>
 Sep 24 13:37:38.976  INFO 💤 Idle (1 peers), best: <span class="hljs-comment">#24 (0xa7e8…7596), finalized #22 (0x753e…ddb0), ⬇ 1.5kiB/s ⬆ 1.5kiB/s</span>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="youre-finished"></a><a href="#youre-finished" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>You're Finished</h2>
@@ -276,7 +276,7 @@ Details in https://github.com/substrate-developer-hub/tutorials/issues/16-->
 <h3><a class="anchor" aria-hidden="true" id="learn-more"></a><a href="#learn-more" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Learn More</h3>
 <p>That big Wasm blob we encountered in the chain spec was necessary to enable forkless upgrades.
 Learn more about how the <a href="../../knowledgebase/advanced/executor">executor</a> uses on-chain Wasm.</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 12/15/2020 by Jimmy Chu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/tutorials/start-a-private-network/customspec"><span class="arrow-prev">← </span><span>Create a Custom Chain Spec</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#first-participant-starts-a-bootnode">First Participant Starts a Bootnode</a></li><li><a href="#add-keys-to-keystore">Add Keys to Keystore</a><ul class="toc-headings"><li><a href="#option-1-use-the-polkadot-js-apps-ui">Option 1: Use the Polkadot-JS Apps UI</a></li><li><a href="#option-2-use-curl">Option 2: Use <code>curl</code></a></li></ul></li><li><a href="#subsequent-participants-join">Subsequent Participants Join</a></li><li><a href="#youre-finished">You're Finished</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2/24/2021 by Dan Forbes</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/tutorials/start-a-private-network/customspec"><span class="arrow-prev">← </span><span>Create a Custom Chain Spec</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#first-participant-starts-a-bootnode">First Participant Starts a Bootnode</a></li><li><a href="#add-keys-to-keystore">Add Keys to Keystore</a><ul class="toc-headings"><li><a href="#option-1-use-the-polkadot-js-apps-ui">Option 1: Use the Polkadot-JS Apps UI</a></li><li><a href="#option-2-use-curl">Option 2: Use <code>curl</code></a></li></ul></li><li><a href="#subsequent-participants-join">Subsequent Participants Join</a></li><li><a href="#youre-finished">You're Finished</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();

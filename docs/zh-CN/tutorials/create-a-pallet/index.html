@@ -18,7 +18,7 @@
         });
       </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">把模块写到自己的包内</h1></header><article><div><span><p>在这个教程中，您会在自己 crate 中编写一个 Substrate 模块， 并把他引入到基于 <code>substrate-node-template</code> 构建的节点中。</p>
 <h2><a class="anchor" aria-hidden="true" id="安装-node-template"></a><a href="#安装-node-template" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装 Node Template</h2>
-<p>在完成<a href="../create-your-first-substrate-chain/">创建您的第一条 Substrate 链教程</a>后，您的计算机上应该已编译了<code>v2.0.0-rc4</code>版本的<a href="https://github.com/substrate-developer-hub/substrate-node-template">Substrate Node Template</a>。 如果您尚未完成该教程，请先完成它。</p>
+<p>You should already have version <code>v3.0.0</code> of the <a href="https://github.com/substrate-developer-hub/substrate-node-template">Substrate Node Template</a> compiled on your computer from when you completed the <a href="../create-your-first-substrate-chain/">Create Your First Substrate Chain Tutorial</a>. 如果您尚未完成该教程，请先完成它。</p>
 <blockquote>
 <p>有经验的开发者可以跳过该教程，您可以参考 readme 里的步骤说明。</p>
 </blockquote>
@@ -26,7 +26,7 @@
 <p>我们不会直接在节点模板中创建模块，而是创建单独的 Rust crate 。 这样我们可以分离节点和模块，从而单独发布创建的模块，这样也方便其他开发者将此模块引入到他们自己的 Substrate runtime 中。</p>
 <p>在您的节点模板的 <code>pallets</code> 目录中克隆 Substrate 模块模板：</p>
 <pre><code class="hljs css language-bash"><span class="hljs-built_in">cd</span> pallets
-git <span class="hljs-built_in">clone</span> -b v2.0.0 https://github.com/substrate-developer-hub/substrate-pallet-template <span class="hljs-built_in">test</span>-pallet
+git <span class="hljs-built_in">clone</span> -b v3.0.0 https://github.com/substrate-developer-hub/substrate-pallet-template <span class="hljs-built_in">test</span>-pallet
 </code></pre>
 <blockquote>
 <p>本教程中，我们把已经把模块模板放在了节点模板 <em>目录下</em>。 这种方式不是强制性的，您也可以将模块放置在你喜欢的任何地方。 比如，另一个常见的做法是把是它放在节点模板的 <em>同级目录</em>。</p>

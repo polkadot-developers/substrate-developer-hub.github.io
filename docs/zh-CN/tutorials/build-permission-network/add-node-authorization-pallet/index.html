@@ -73,18 +73,18 @@
               }
             });
         </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">添加节点授权模块</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="关于-node-authorization-pallet"></a><a href="#关于-node-authorization-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>关于 <code>node-authorization</code> pallet</h2>
-<p><code>node-authorization</code> pallet 是 Substrate FRAME 内置的一个功能模块，可以用来管理许可网络中节点连接。 每个节点通过 <code>PeerId</code> 进行标识，它仅仅包含了 <code>Vec&lt;u8&gt;</code> 这一数据类型。 每个 <code>PeerId</code> 只能被一个账户 <code>AccountId</code> 所拥有，认领的过程是通过 claim 操作实现的（在这个  <a href="https://substrate.dev/rustdocs/v2.0.0/pallet_node_authorization/struct.Owners.html">map</a> 里关联着)。 通过这个模块，你有两种方法来授权节点加入到区块链网络中：</p>
+<p>The <code>node-authorization</code> pallet is a build-in pallet in Substrate FRAME, which manages a configurable set of nodes for a permissioned network. 每个节点通过 <code>PeerId</code> 进行标识，它仅仅包含了 <code>Vec&lt;u8&gt;</code> 这一数据类型。 Each <code>PeerId</code> is owned by an <code>AccountId</code> that claims it (these are <a href="https://substrate.dev/rustdocs/v3.0.0/pallet_node_authorization/struct.Owners.html">associated in a map</a>). 通过这个模块，你有两种方法来授权节点加入到区块链网络中：</p>
 <ol>
 <li>加入到 well known 节点集合中，这些节点彼此可以连接。 这一方式通常要经过系统中治理机制的同意。</li>
 <li>请求允许连接到某个已经加入到网络中的节点。 这一节点可以是 well known 节点，也可以是普通节点。</li>
 </ol>
 <p>通过 <code>PeerId</code> 关联的某个节点 <strong>有且仅有一个拥有者</strong>。 Well known 节点的拥有者是在添加它们时指定的。 如果是普通节点，<em>任何</em> 用户都可以 claim 认领这一 <code>PeerId</code> 作为对应节点的拥有者。 为了防止被其他人认领，节点的维护人员应当在<em>启动该节点之前</em>就去认领（当然，需要你已经拿到了对应的 <code>PeerId</code>）。</p>
-<p>之后，拥有者可以为自己的节点修改额外的连接。 需要指出的是，拥有者不能修改 well known 节点之间的连接，因为它们之间始终是允许连接的。 但是拥有者可以配置 well known 节点和普通节点之间，以及两个普通节点直接的连接。</p>
+<p>之后，拥有者可以为自己的节点修改额外的连接。 需要指出的是，拥有者不能修改 well known 节点之间的连接，因为它们之间始终是允许连接的。 Instead, you can manipulate the connection between a well know node and a normal node or between two normal nodes.</p>
 <p>在 node-authorization pallet 中使用了 <a href="https://substrate.dev/docs/en/knowledgebase/runtime/off-chain-workers">链下工作机</a>来设置授权的节点。 请使用相应的命令行参数确保链下工作机处于开启状态，这是因为对于非验证人节点链下工作机默认是关闭的。 你的节点有可能无法同步到最新区块，如果出现这种情况，关闭链下工作机并且手动指定允许连接的节点来完成网络同步。</p>
 <h2><a class="anchor" aria-hidden="true" id="添加-node-authorization-pallet"></a><a href="#添加-node-authorization-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加 <code>node-authorization</code> pallet</h2>
-<p>如果已经克隆了 Node Template，你可以创建一个<strong>新的分支</strong>进行开发，如果没有的话，先克隆 Node Template 的 <code>v2.0.0</code> 版本：</p>
+<p>If you already hace Node Template cloned, you can just create a <strong>new branch and check it out</strong> from the base template, otherwise, clone <code>v3.0.0</code> of the project:</p>
 <pre><code class="hljs css language-shell"><span class="hljs-meta">#</span><span class="bash"> Fresh <span class="hljs-built_in">clone</span>, <span class="hljs-keyword">if</span> needed:</span>
-git clone -b v2.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+git clone -b v3.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
 <span class="hljs-meta">#</span><span class="bash"> From the working directory, create a new branch and check it out</span>
 cd substrate-node-template
 git branch perm-network
@@ -114,7 +114,7 @@ make check
     <span class="hljs-comment">#--snip--</span>
 ]
 </code></pre>
-<p>现在我们在 <strong>runtime/src/lib.rs</strong> 中引入和使用我们的模块。 首先引入 <code>use frame_system::EnsureRoot</code>，在本文这个简单的区块链中，我们需要用它来模拟治理机制。 之后实现模块的配置接口。 可以在 <a href="https://docs.rs/pallet-node-authorization/2.0.0/pallet_node_authorization/trait.Trait.html">API 文档</a> 中找到更多关于这一 trait 的描述信息。</p>
+<p>现在我们在 <strong>runtime/src/lib.rs</strong> 中引入和使用我们的模块。 首先引入 <code>use frame_system::EnsureRoot</code>，在本文这个简单的区块链中，我们需要用它来模拟治理机制。 之后实现模块的配置接口。 More description on the trait can be found in its <a href="https://docs.rs/pallet-node-authorization/2.0.0/pallet_node_authorization/trait.Trait.html">reference doc</a>.</p>
 <p><strong><code>runtime/src/lib.rs</code></strong></p>
 <pre><code class="hljs css language-rust">
 <span class="token comment">/* --snip-- */</span>
@@ -160,7 +160,7 @@ make check
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="为我们的模块添加创世存储配置"></a><a href="#为我们的模块添加创世存储配置" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>为我们的模块添加创世存储配置</h2>
-<p><code>PeerId</code> 是 bs58 编码格式，我们需要在  <strong>node/cargo.toml</strong> 引入一个新的库 <a href="https://docs.rs/bs58/0.3.1/bs58/">bs58</a>，来解码获取 PeerId 的字节集合。</p>
+<p><code>PeerId</code> is encoded in bs58 format, so we need a new library <a href="https://docs.rs/bs58/0.3.1/bs58/">bs58</a> in <strong>node/cargo.toml</strong> to decode it to get its bytes.</p>
 <p><strong><code>node/cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies]</span>
 <span class="hljs-comment">#--snip--</span>

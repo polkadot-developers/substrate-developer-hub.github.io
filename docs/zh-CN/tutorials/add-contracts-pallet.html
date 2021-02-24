@@ -17,9 +17,9 @@
           }
         });
       </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">添加一个模块</h1></header><article><div><span><p><a href="https://github.com/substrate-developer-hub/substrate-node-template">Substrate Node Template</a> 提供了一个最小可运行的 runtime，让你可快速打造自定义的区块链。 不过，为了让它保持细小，有许多 <a href="../../knowledgebase/runtime/frame">FRAME</a> 里的模块都没有被包含在内。</p>
-<p>本指南将向您展示如何可以将 <a href="https://substrate.dev/rustdocs/v2.0.0/pallet_contracts/">Contracts 模块</a> 添加到您的 runtime，以便允许您的区块链支持 Wasm 智能合同。 你可按照类似的方式将其他 FRAME 模块添加到 runtime 里。但需要注意，每个模块在具体配置设定上都会略有差异。</p>
+<p>This guide will show you how you can add the <a href="https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/">Contracts pallet</a> to your runtime in order to allow your blockchain to support Wasm smart contracts. 你可按照类似的方式将其他 FRAME 模块添加到 runtime 里。但需要注意，每个模块在具体配置设定上都会略有差异。</p>
 <h2><a class="anchor" aria-hidden="true" id="安装-node-template"></a><a href="#安装-node-template" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装 Node Template</h2>
-<p>当你完成 <a href=".../.../tutorials/create-your-first-substrate-chain/">创建你第一条 Substrate 链教程</a> 时，你的计算机上应该已编译了 <code>v2.0.0</code> 版本的 <a href="https://github.com/substrate-developer-hub/substrate-node-template">Substrate Node Template</a>。 如果您尚未完成，请完成该教程。</p>
+<p>You should already have version <code>v3.0.0</code> of the <a href="https://github.com/substrate-developer-hub/substrate-node-template">Substrate Node Template</a> compiled on your computer from when you completed the <a href="../../tutorials/create-your-first-substrate-chain/">Create Your First Substrate Chain Tutorial</a>. 如果您尚未完成，请完成该教程。</p>
 <blockquote>
 <p>有经验的开发者可以跳过该教程，您可以参考readme里的步骤说明来安装 。 。</p>
 </blockquote>
@@ -48,7 +48,7 @@
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="导入模块-crate"></a><a href="#导入模块-crate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>导入模块 Crate</h2>
 <p>要添加合约模块，首先应把 <code>pallet-contracts</code> 导入到 runtime 的 <code>Cargo.toml</code> 文件中。 如果您需要 Cargo 相关参考资料的入门导读，可查询 <a href="https://doc.rust-lang.org/cargo/reference/index.html">它的官方文档</a>。</p>
-<p>打开 <code>substrate-node-template/runtime/Cargo.toml</code> 文件，您将看到 runtime 的所有依赖组件。 例如，它取决于 <a href="https://substrate.dev/rustdocs/v2.0.0/pallet_balances/">Balances 模块</a>：</p>
+<p>打开 <code>substrate-node-template/runtime/Cargo.toml</code> 文件，您将看到 runtime 的所有依赖组件。 For example, it depends on the <a href="https://substrate.dev/rustdocs/v3.0.0/pallet_balances/">Balances pallet</a>:</p>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies]</span>
 <span class="hljs-comment">#--snip--</span>
@@ -115,8 +115,8 @@
 <h2><a class="anchor" aria-hidden="true" id="添加合约模块"></a><a href="#添加合约模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加合约模块</h2>
 <p>现在，我们已成功导入 Contracts 模块，我们现在需要把它添加到我们的 Runtime 中。</p>
 <h3><a class="anchor" aria-hidden="true" id="实现-contract-trait"></a><a href="#实现-contract-trait" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>实现 Contract Trait</h3>
-<p>每个模块都有称为 <code>Trait</code> 的 runtime 须实现的配置。</p>
-<p>要了解我们现在需要为这模块实现什么，你可以查看 <a href="https://substrate.dev/rustdocs/v2.0.0/pallet_contracts/trait.Trait.html"><code>pallet_contracts::Trait</code> 文档</a>。 对于我们的 runtime，实现代码大概看起来这样：</p>
+<p>Every pallet has a configuration trait called <code>Config</code> that the runtime must implement.</p>
+<p>To figure out what we need to implement for this pallet specifically, you can take a look to the FRAME <a href="https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/trait.Config.html"><code>pallet_contracts::Config</code> documentation</a>. 对于我们的 runtime，实现代码大概看起来这样：</p>
 <p><strong><code>runtime/src/lib.rs</code></strong></p>
 <pre><code class="hljs css language-rust">
 <span class="token comment">// These time units are defined in number of blocks.</span>
@@ -162,10 +162,18 @@
 <span class="token punctuation">}</span>
 <span class="token comment">/*** End Added Block ***/</span>
 </code></pre>
-<p>我们将使用 <code>DetermineContractAddress</code> 类型作为一个例子来深入讲解更多细节，你可从 <a href="https://substrate.dev/rustdocs/v2.0.0/pallet_contracts/trait.Trait.html#associatedtype.DetermineContractAddress"><code>DetermineContractAddress</code> 的文档</a> 看到它需要 <code>ContractAddressFor</code> 的 Trait。 Contracts 模块本身已经实现了 <code>pallet_contracts::SimpleAddressDeterminator</code> Trait，因此我们可以使用该实现代码来满足我们的 <code>pallet_contracts::Trait</code> 条件。 到现在，如果你还不太理解或想深入了解，建议可查看 <a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/contracts/src/lib.rs">Contracts 模块代码</a>。</p>
+<!--
+We will use `type DetermineContractAddress` as an example to go into a bit more detail - you can see
+from
+[the `DetermineContractAddress` documentation](TODO)
+that it requires the trait `ContractAddressFor`. The Contracts pallet itself implements a type with
+this trait in `pallet_contracts::SimpleAddressDeterminator`, thus we can use that implementation to satisfy
+our `pallet_contracts::Trait`.
+-->
+<p>At this point, it is recommended to explore the <a href="https://github.com/paritytech/substrate/blob/v3.0.0/frame/contracts/src/lib.rs">Contracts pallet source code</a> if things don't make sense or you want to gain a deeper understanding.</p>
 <h3><a class="anchor" aria-hidden="true" id="将合约模块添加到-construct_runtime-宏"></a><a href="#将合约模块添加到-construct_runtime-宏" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>将合约模块添加到 <code>construct_runtime!</code> 宏</h3>
-<p>接下来，我们需要将模块添加到 <code>construct_runtime!</code> 宏里面。 为此我们应先确定这模块对外开放的类型，以便让 runtime 得知这些类型的存在。 所有类型的完整列表可在 <a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.construct_runtime.html"><code>construct_runtime!</code> 宏的文档</a> 中查看到。</p>
-<p>如果我们仔细查看 Contracts 模块，我们知道它具有：</p>
+<p>Next, we need to add the pallet to the <code>construct_runtime!</code> macro. For this, we need to determine the types that the pallet exposes so that we can tell the our runtime that they exist. The complete list of possible types can be found in the <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.construct_runtime.html"><code>construct_runtime!</code> macro documentation</a>.</p>
+<p>If we look at the Contracts pallet in detail, we know it has:</p>
 <ul>
 <li><strong>Storage</strong> 模块：因为它使用了 <code>decl_storage!</code> 宏。</li>
 <li><strong>Event</strong>模块：因为它使用了<code>decl_event!</code> 宏。</li>
@@ -173,7 +181,7 @@
 <li><strong>可配置</strong> 值：因为 <code>decl_storage!</code> 宏有 <code>config()</code> 参数。</li>
 <li>在 <code>decl_module!</code> 宏里定义的 <strong>Module</strong> 类型。</li>
 </ul>
-<p>因此当我们添加模块时，它看起来就像：</p>
+<p>因此当我们添加pallet时，它看起来就像：</p>
 <p><strong><code>runtime/src/lib.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token macro property">construct_runtime!</span><span class="token punctuation">(</span>
     <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Runtime</span> <span class="token keyword">where</span>
@@ -188,14 +196,14 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p>请注意并非所有的模块都会开放出这些 runtime 类型，有些也有可能开放更多！ 您总是可以查看模块的源代码或模块的文档来确定您需要开放出的数据类型。</p>
-<p>现在也正好是时间来检查您的 runtime 到目前为止是否能够正确编译。 虽然 runtime 可以编译，但整个节点不会通过。 所以我们将使用此命令来检查 runtime。</p>
+<p>请注意，并非所有的pallet都会暴露这些runtime类型，有些可能会暴露更多！ You always look at the source code of a pallet or the documentation of the pallet to determine which of these types you need to expose.</p>
+<p>This is another good time to check that your runtime compiles correctly so far. Although the runtime should compile, the entire node will not (yet). So we will use this command to check just the runtime.</p>
 <pre><code class="hljs css language-bash">SKIP_WASM_BUILD=1 cargo check -p node-template-runtime
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="开放出-contracts-api"></a><a href="#开放出-contracts-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>开放出 Contracts API</h3>
-<p>一些模块 (包括 Contracts 模块)，会开放自定义的 runtime APIs 和 RPC 端点。 在 Contracts 模块这例子，它允许从链外读取合约状态。</p>
-<p>但注意要使用这个模块，也不是一定要开放 RPC 端点。 然而我们这样做，可在没有发起交易的情况下也可以调用节点存储。</p>
-<p>首先我们在 <code>Cargo.toml</code> 中添加所需的 API 依赖关系。</p>
+<p>Some pallets, including the Contracts pallet, expose custom runtime APIs and RPC endpoints. In the case of the Contracts pallet, this enables reading contracts state from off chain.</p>
+<p>It's not required to enable the RPC calls on the contracts pallet to use it in our chain. However, we'll do it to make calls to our node's storage without making a transaction.</p>
+<p>We start by adding the required API dependencies in our <code>Cargo.toml</code>.</p>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies]</span>
 <span class="hljs-comment">#--snip--</span>
@@ -209,14 +217,14 @@
     <span class="hljs-string">'pallet-contracts-rpc-runtime-api/std'</span>,
 ]
 </code></pre>
-<p>为获取合约变量状态，我们须要调用获取函数 (getter function) 返回 <code>ContractExecResult</code> ，它是对当前执行状态的封装。</p>
-<p>我们需要将返回类型添加到 runtime 里。 我们用 <code>use</code> 语句来添加，如下：</p>
+<p>To get the state of a contract variable, we have to call a getter function that will return a <code>ContractExecResult</code> wrapper with the current state of the execution.</p>
+<p>We need to add the return type to our runtime. Add this with the other <code>use</code> statements.</p>
 <p><strong><code>runtime/src/lib.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token comment">/*** Add This Line ***/</span>
 <span class="token keyword">use</span> <span class="token namespace">pallet_contracts_rpc_runtime_api<span class="token punctuation">::</span></span><span class="token class-name">ContractExecResult</span><span class="token punctuation">;</span>
 <span class="token comment">/* --snip-- */</span>
 </code></pre>
-<p>现在我们可实现 Contracts 在 runtime 里的 API。 这是在 runtime 末尾 <code>impl_runtime_apis!</code> 宏里面发生的。</p>
+<p>We're now ready to implement the contracts runtime API. This happens in the <code>impl_runtime_apis!</code> macro near the end of your runtime.</p>
 <pre><code class="hljs css language-rust"><span class="token macro property">impl_runtime_apis!</span> <span class="token punctuation">{</span>
    <span class="token comment">/* --snip-- */</span>
 
@@ -259,13 +267,13 @@
    <span class="token comment">/*** End Added Block ***/</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>现在又是一个好时候检查您的 runtime 是否可正确编译。</p>
+<p>This is another good time to check that your runtime compiles correctly so far.</p>
 <pre><code class="hljs css language-bash">SKIP_WASM_BUILD=1 cargo check -p node-template-runtime
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="更新外部节点"></a><a href="#更新外部节点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>更新外部节点</h2>
-<p>此时，我们已经完成添加一个模块到 runtime 里。 我们现在将注意力转向外部节点，这些节点常常需要一些相应的更新。 对于 Contracts 模块，我们将添加自定义 RPC 端点和创世配置 (genesis configuration)。</p>
+<p>At this point we have finished adding a pallet to the runtime. We now turn our attention to the outer node which will often need some corresponding updates. In the case of the Contracts pallet we will add the custom RPC endpoint and a genesis configuration.</p>
 <h3><a class="anchor" aria-hidden="true" id="添加-rpc-api-扩展"></a><a href="#添加-rpc-api-扩展" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加 RPC API 扩展</h3>
-<p>開放了 runtime API 后，我们现在可以将 RPC 添加到节点服务中来调用 runtime API。 因为我们现在是在外部节点寫代碼，我们不需要以 <code>no_std</code> feature 來构建，也不需要维持专用的 <code>std</code> feature。</p>
+<p>With the proper runtime API exposed, now we can add the RPC to the node's service to call into that runtime API. Because we are now working in the outer node, we are not building to <code>no_std</code> and we don't have to maintain a dedicated <code>std</code> feature.</p>
 <p><strong><code>node/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">dependencies</span><span class="token punctuation">]</span>
 <span class="token key property">jsonrpc-core</span> <span class="token punctuation">=</span> <span class="token string">'15.0.0'</span>
@@ -275,7 +283,7 @@
 <span class="token key property">pallet-contracts</span> <span class="token punctuation">=</span> <span class="token string">'2.0.0'</span>
 <span class="token key property">pallet-contracts-rpc</span> <span class="token punctuation">=</span> <span class="token string">'0.8.0'</span>
 </code></pre>
-<p>Substrate 提供一个 RPC 与我们的节点交互。 然而，默认它不具备访问Contracts 模块的权限。 要与这个模块进行交互，我们必须扩展现有的 RPC 和添加 Contracts 模块的 API 实现。</p>
+<p>Substrate provides an RPC to interact with our node. However, it does not contain access to the contracts pallet by default. To interact with this pallet, we have to extend the existing RPC and add the contracts pallet along with its API.</p>
 <p><strong><code>node/src/rpc.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token keyword">use</span> <span class="token namespace">node_template_runtime<span class="token punctuation">::</span></span><span class="token punctuation">{</span><span class="token namespace">opaque<span class="token punctuation">::</span></span><span class="token class-name">Block</span><span class="token punctuation">,</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">Balance</span><span class="token punctuation">,</span> <span class="token class-name">Index</span><span class="token punctuation">,</span> <span class="token class-name">BlockNumber</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// NOTE THIS IS AN ADJUSTMENT TO AN EXISTING LINE</span>
 <span class="token keyword">use</span> <span class="token namespace">pallet_contracts_rpc<span class="token punctuation">::</span></span><span class="token punctuation">{</span><span class="token class-name">Contracts</span><span class="token punctuation">,</span> <span class="token class-name">ContractsApi</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -307,12 +315,12 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="创世配置"></a><a href="#创世配置" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>创世配置</h3>
-<p>并非所有模块都有创世配置，但如果有，你可透过阅读文档来学习它。 例如 <a href="https://substrate.dev/rustdocs/v2.0.0/pallet_contracts/struct.GenesisConfig.html"><code>pallet_contracts::GenesisConfig</code> 的文档</a> 描述了所有需要为 Contracts 模块定义的字段。</p>
-<p>创世配置是在 <code>node/src/chain_spec.rs</code> 中设置的。 我们修改此文件，包括 <code>ContractsConfig</code> 类型和把合约价格单位放在文件顶端：</p>
+<p>Not all pallets will have a genesis configuration, but if yours does, you can use its documentation to learn about it. For example, <a href="https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/struct.GenesisConfig.html"><code>pallet_contracts::GenesisConfig</code> documentation</a> describes all the fields you need to define for the Contracts pallet.</p>
+<p>Genesis configurations are controlled in <code>node/src/chain_spec.rs</code>. We need to modify this file to include the <code>ContractsConfig</code> type and the contract price units at the top:</p>
 <p><strong><code>node/src/chain_spec.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token keyword">use</span> <span class="token namespace">node_template_runtime<span class="token punctuation">::</span></span><span class="token class-name">ContractsConfig</span><span class="token punctuation">;</span>
 </code></pre>
-<p>然后在 <code>testnet_genesis</code> 函数中，我们需要将合约配置添加到返回的 <code>GenesisConfig</code> 对象中，示例如下：</p>
+<p>Then inside the <code>testnet_genesis</code> function we need to add the contract configuration to the returned <code>GenesisConfig</code> object as followed:</p>
 <blockquote>
 <p>重要：我们正在从函数参数中获取 <code>_enable_println</code> 的值。 确保移除参数名称前面的下划线。</p>
 </blockquote>
@@ -339,26 +347,26 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="启动您升级过的链"></a><a href="#启动您升级过的链" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>启动您升级过的链</h2>
-<p>现在您已经准备好编译和运行能处理合约的节点。 用以下命令以发布 (release) 模式编译节点：</p>
+<p>Now you are ready to compile and run your contract-capable node. Compile the node in release mode with</p>
 <pre><code class="hljs css language-bash">WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release
 </code></pre>
-<p>现在通过运行此命令来启动您刚刚建立的可执行程序</p>
+<p>Now launch the executable you just built by running this command</p>
 <pre><code class="hljs css language-bash"><span class="hljs-comment"># 在开发模式运行一个临时节点</span>
 ./target/release/node-template --dev --tmp
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="添加其它-frame-pallets"></a><a href="#添加其它-frame-pallets" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加其它 FRAME Pallets</h2>
-<p>在本教程中，我们专门介绍了如何导入合约模块，但是正如开头所提到的，每个模块的导入方法都会有些许不同。 请不要担心，您总是可以参考 <a href="https://github.com/paritytech/substrate/blob/v2.0.0/bin/node/runtime/">演示 Substrate node runtime </a>，该 runtime 几乎包含了核心库中的所有模块。</p>
-<p>在 Substrate runtime 的 <code>Cargo.toml</code> 文件中，您将看到如何导入不同的模块，在 <code>lib.rs</code> 文件中，您会看到如何把每个模块添加到您的 runtime 里去。 您基本上可以将在那里完成的操作复制到您自己的 runtime。</p>
+<p>In this guide, we walked through specifically how to import the Contracts pallet, but as mentioned in the beginning of this guide, each pallet will be a little different. Have no fear, you can always refer to the <a href="https://github.com/paritytech/substrate/tree/v3.0.0/bin/node/runtime">demonstration Substrate node runtime</a> which includes nearly every pallet in the FRAME.</p>
+<p>In the <code>Cargo.toml</code> file of the Substrate node runtime, you will see an example of how to import each of the different pallets, and in the <code>lib.rs</code> file you will find how to add each pallet to your runtime. You can basically copy what was done there to your own runtime.</p>
 <h3><a class="anchor" aria-hidden="true" id="进一步学习"></a><a href="#进一步学习" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>进一步学习</h3>
 <ul>
 <li><a href="../../tutorials/create-a-pallet/">最简指南：在您自己的 package 中编写 runtime</a>。</li>
 <li>您的节点现在能够运行智能合约，学习 <a href="../../knowledgebase/smart-contracts/">Substrate ink！ 智能合约</a>。</li>
-<li><a href="https://substrate.dev/recipes/">Substrate Recipes</a> 提供详细教程，如何写 <a href="https://substrate.dev/recipes/3-entrees/runtime-api.html">Runtime API</a> 和 <a href="https://substrate.dev/recipes/3-entrees/custom-rpc.html">自定义 RPC</a> ，类以于本教程中提到那些。</li>
+<li><a href="https://substrate.dev/recipes/">Substrate Recipes</a> offers detailed tutorials about writing <a href="https://substrate.dev/recipes/runtime-api.html">Runtime APIs</a> and <a href="https://substrate.dev/recipes/custom-rpc.html">Custom RPCs</a> like the ones explored in this tutorial.</li>
 <li>了解 <a href="../../knowledgebase/integrate/chain-spec">Chain Spec</a> 文件以自定义创世配置。</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="参考文档"></a><a href="#参考文档" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文档</h3>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/pallet_contracts/index.html">FRAME <code>Contract</code> 模块 API</a></li>
+<li><a href="https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/index.html">FRAME <code>Contract</code> 模块 API</a></li>
 </ul>
 </span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#安装-node-template">安装 Node Template</a></li><li><a href="#文件结构">文件结构</a></li><li><a href="#导入模块-crate">导入模块 Crate</a><ul class="toc-headings"><li><a href="#crate-特性">Crate 特性</a></li><li><a href="#导入合约模块">导入合约模块</a></li></ul></li><li><a href="#添加合约模块">添加合约模块</a><ul class="toc-headings"><li><a href="#实现-contract-trait">实现 Contract Trait</a></li><li><a href="#将合约模块添加到-construct_runtime-宏">将合约模块添加到 <code>construct_runtime!</code> 宏</a></li><li><a href="#开放出-contracts-api">开放出 Contracts API</a></li></ul></li><li><a href="#更新外部节点">更新外部节点</a><ul class="toc-headings"><li><a href="#添加-rpc-api-扩展">添加 RPC API 扩展</a></li><li><a href="#创世配置">创世配置</a></li></ul></li><li><a href="#启动您升级过的链">启动您升级过的链</a></li><li><a href="#添加其它-frame-pallets">添加其它 FRAME Pallets</a><ul class="toc-headings"><li><a href="#进一步学习">进一步学习</a></li><li><a href="#参考文档">参考文档</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/rustdocs">API 文档</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/ParityTech" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
                 var cookieSettings = document.getElementById('cookie-settings');

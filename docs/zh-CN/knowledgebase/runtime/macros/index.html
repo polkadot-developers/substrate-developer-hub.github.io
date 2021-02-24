@@ -109,7 +109,7 @@
 </ul>
 <p>这些存储值可通过其后的<code>add_extra_genesis</code>模块在其创世区块中进行初始化。</p>
 <pre><code class="hljs css language-rust"><span class="token macro property">decl_storage!</span> <span class="token punctuation">{</span>
-  <span class="token keyword">trait</span> <span class="token class-name">Storage</span> <span class="token keyword">for</span> <span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Trait</span><span class="token operator">></span> <span class="token keyword">as</span> <span class="token class-name">MyModule</span> <span class="token punctuation">{</span>
+  <span class="token keyword">trait</span> <span class="token class-name">Storage</span> <span class="token keyword">for</span> <span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token keyword">as</span> <span class="token class-name">MyModule</span> <span class="token punctuation">{</span>
     <span class="token comment">// ...</span>
   <span class="token punctuation">}</span>
   add_extra_genesis <span class="token punctuation">{</span>
@@ -127,7 +127,7 @@
 <p>该宏还声明并实现了<code>Store</code> trait，为pallet设置存储空间，并在由 <code>decl_module！</code>定义的<code>Module</code>结构体上实现了获取函数。</p>
 <p><strong>文档和注释</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_storage.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_storage.html">API 文档</a></li>
 <li>每个存储名称都声明了<code>Store</code> trait，因此均成为了trait中的关联类型。</li>
 <li><code>Module</code> 的实现包含了每个存储项的获取函数和元数据的实现。</li>
 <li>每个存储项都变成了一个结构体。</li>
@@ -139,7 +139,7 @@
 <p>该宏通过实现 <code>Event</code>枚举类型来定义pallet事件，而宏中的每个事件类型都是<code>Event</code>枚举类型内的一个成员。</p>
 <p><strong>文档和注释</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_event.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_event.html">API 文档</a></li>
 <li>定义<code>Event</code> 或<code>Event&lt;T&gt;</code> 类型, 赋值给 <code>RawEvent</code>.</li>
 <li><code>RawEvent&lt;...使用的所有泛型&gt;</code> 枚举类型里面的枚举成员是宏内列出的所有事件。</li>
 <li>宏为<code>RawEvent</code>实现了各种辅助traits，包括数据编码/解码，<code>core::cmp::PartialEq</code>，<code>core::cmp:: Clone</code>和 <code>core::fmt:: Debug</code>。</li>
@@ -149,12 +149,12 @@
 <p><strong>何时使用</strong></p>
 <p>此宏用于定义pallet在可调用函数中可能返回的错误类型。 可调用函数将返回 <code>DispatchResult</code>类型，它的值可能是<code>Ok(())</code>，也可能是包含了宏自定义错误的<code>DispatchError</code>。</p>
 <p><strong>有何作用</strong></p>
-<p>此宏定义了<code>Error&lt;T: Trait&gt;</code>类型，并实现了一些可把每个错误类型都映射到一个错误代码序数及相应字符串的辅助方法。</p>
+<p>This macro defines the <code>Error&lt;T: Config&gt;</code> type, and implements helper methods for mapping each error type to a sequential error code and corresponding string.</p>
 <p>一个关键功能是，宏自动为<code>DispatchError</code>实现了 <code>From&lt;Error&lt;T&gt;&gt;</code> trait， 因此，<code>DispatchError</code> 能为特定的错误类型返回正确的模块索引、错误代码、错误字符串，以及返回作为元数据的文档。</p>
 <p><strong>文档和注释</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_error.html">API 文档</a></li>
-<li><code>Error&lt;T: Trait&gt;</code> 枚举类型是由宏内定义的错误类型成员构成的。</li>
+<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_error.html">API 文档</a></li>
+<li><code>Error&lt;T: Config&gt;</code> enum type is filled with enum variants specified in the macro.</li>
 <li><code>Error</code> 实现了各种帮助函数，并将每个错误映射到相应的错误代码序号和错误字符串。</li>
 <li><code>Error</code> 类型的实现包含了 <code>fn metadata()</code>函数的实现。</li>
 <li><code>Error</code> 为<code>DispatchError</code>实现了 <code>From&lt;Error&lt;T&gt;&gt;</code>这个trait，因此可调用函数能够返回相应的错误类型。</li>
@@ -166,7 +166,7 @@
 <p>此宏为包含它的pallet声明了一个名为 <code>Module</code>的结构体，以及一个名为 <code>Call</code> 的枚举类型。 它通过用户自定义的可调用函数，将必要的逻辑组合成两种类型。 除了为 <code>Module</code> 和 <code>Call</code>实现了各种辅助traits，如 <code>Copy</code>、<code>StructuralEq</code>、 <code>Debug</code>以外，该宏还为<code>Module</code>实现了生命周期trait，如 <code>frame_support::traits::OnInitialize</code>， <code>frame_support::traits::OnFinalize</code>， <code>frame_support::traits::OnRuntimeUpgrade</code>，和<code>frame_support::traits::OffchainWorker</code>。</p>
 <p><strong>文档和注释</strong></p>
 <ul>
-<li><p><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_module.html">API 文档</a></p></li>
+<li><p><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_module.html">API 文档</a></p></li>
 <li><p>该宏声明了一个 <code>Module&lt;T&gt;</code> 结构体和一个 <code>Call&lt;T&gt;</code> 枚举类型，而其中枚举类型实现了可调用逻辑。</p></li>
 <li><p>宏会自动为<code>Module</code>结构体实现诸如<code>core::cmp::Eq</code>、<code>core::clone::Clone</code>等的辅助traits。</p></li>
 <li><p><code>Module</code> 实现了各种生命周期traits，如</p>
@@ -176,7 +176,7 @@
 <li><code>frame_support::traits::OnFinalize</code>: 区块在完结时的回调函数，以及</li>
 <li><code>frame_support::traits::OffchainWorker</code>: 区块完结时链下工作机的入口</li>
 </ul></li>
-<li><p><code>Call&lt;T: Trait&gt;</code>实现了<code>frame_support::dispatch::GetDispatchInfo</code> 和<code>frame_support::traits::UnfilteredDispatchable</code> 这两个traits，包含了可调用函数核心逻辑。</p></li>
+<li><p><code>Call&lt;T: Config&gt;</code> implements <code>frame_support::dispatch::GetDispatchInfo</code> and <code>frame_support::traits::UnfilteredDispatchable</code> traits that contain the core logic for dispatching calls.</p></li>
 <li><p><code>Module&lt;T&gt;</code> 实现了 <code>frame_support::dispatch::Callable&lt;T&gt;</code> 这个trait，而该trait关联类型<code>Call</code>则被赋值给了<code>Call</code>枚举类型。</p></li>
 <li><p>每个可调用函数都预先规划了其内部追踪逻辑，用于追踪节点活动。 开发者可设置一个兴趣等级，来决定是否要追踪一个可调用函数。</p></li>
 </ul>
@@ -187,7 +187,7 @@
 <p>该宏声明及实现了各种不同的结构体和枚举类型，如<code>Runtime</code>、<code>Event</code>、<code>Origin</code>、 <code>Call</code>、<code>GenesisConfig</code> 等，同时也为这些结构体类型实现了不同的辅助traits。 该宏还添加了一个逻辑，映射不同的事件和可调用函数，从整体的runtime到一个特定的pallet。</p>
 <p><strong>文档和注释</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.construct_runtime.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.construct_runtime.html">API 文档</a></li>
 <li><code>Runtime</code> 结构类型是为Substrate runtime而定义的。</li>
 <li><code>Event</code>枚举类型的成员变量是所有可发出事件的pallets，并且实现了辅助traits和编码/解码traits。 用于不同类型转换的trait<code>Event</code>，实现了<code>TryInto&lt;pallets::Event&lt;Runtime&gt;&gt;</code>这个trait，以从枚举类型中提取事件。</li>
 <li><code>Origin</code>枚举类型是通过实现辅助traits来定义的，如 <code>PartialEq</code>、<code>Clone</code>、 <code>Debug</code>等traits。 此枚举类型定义了是谁调用了extrinsic：<code>NONE</code>、 <code>ROOT</code>还是由特定帐户签名调用。 这三个原生的来源类型是由FRAME系统模块定义的，但是可选的FRAME pallets也可以定义额外的来源类型。</li>
@@ -202,7 +202,7 @@
 <p>该宏使用<code>get()</code>函数返回的具体值，来替换掉结构体中指定的类型。 每个参数的结构体类型还实现了 <code>frame_support::traits::Get&lt;I&gt;</code> 这个trait，以将类型转换为其指定的值。</p>
 <p><strong>文档</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.parameter_types.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.parameter_types.html">API 文档</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="impl_runtime_apis"></a><a href="#impl_runtime_apis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>impl_runtime_apis!</h3>
 <p><strong>何时使用</strong></p>
@@ -211,7 +211,7 @@
 <p>该宏定义了 <code>RuntimeApi</code> 和 <code>RuntimeApiImpl</code>这两个结构体，以暴露给Substrate节点客户端。 它提供了RuntimeApiImpl初始的具体实现细节，在加上用户对<code>RuntimeApiImpl</code>的特定实现。</p>
 <p><strong>文档和注释</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/sp_api/macro.impl_runtime_apis.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v3.0.0/sp_api/macro.impl_runtime_apis.html">API 文档</a></li>
 <li>宏声明了<code>RuntimeApi</code> 和 <code>RuntimeApiImpl</code> 两个结构体， 并为 <code>RuntimeApiImpl</code>实现了各种辅助trait。</li>
 <li>开发人员在 <code>impl_runtime_apis!</code> 宏内定义的内容将被追加到<code>RuntimeApiImpl</code>实现的末尾。</li>
 <li>为了暴露runtime的版本信息，宏定义了一个常量<code>RUNTIME_API_VERSIONS</code> 。 该常量包含runtime内核的 <code>ID</code>/<code>VERSION</code>，元数据 的<code>ID</code>/<code>VERSION</code>，以及会话密钥的 <code>ID</code>/<code>VERSION</code>等等。</li>
@@ -224,7 +224,7 @@
 <p>该宏声明了三种结构体类型， <code>Public</code>、<code>Signature</code>和<code>Pair</code>。 这三种类型除实现了各种辅助traits外， <code>Public</code>类型还用于生成密钥对、签名和验证签名，<code>Signature</code> type则用于在确定了签名加密方法 (e.g. SR25519, ED25519 etc)情况下保存签名属性，<code>Pair</code>类型则用于用种子生成一个公私密钥对。</p>
 <p><strong>文档和注释</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/sp_application_crypto/macro.app_crypto.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v3.0.0/sp_application_crypto/macro.app_crypto.html">API 文档</a></li>
 <li>宏声明了<code>Public</code> 结构体类型，并实现了定义公钥类型的<code>sp_application_crypto::AppKey</code> trait，及实现了用于生成密钥对、签名和验证签名的 <code>sp_application_crypto::RuntimeAppPublic</code> trait。</li>
 <li>宏声明了<code>Signature</code> 结构体类型，并就签名数据如何哈希处理实现了<code>core::hash::Hash</code> trait。</li>
 <li>宏定义了<code>Pair</code>结构体类型来封装密钥对。 该类型实现了<code>sp_application_crypto::Pair</code>和 <code>sp_application_crypto::AppKey</code>两个traits，从而决定了如何从助记词或者密码种子生成公私密钥对。</li>
@@ -237,7 +237,7 @@
 <p>该宏创建了一个<code>Origin</code>结构体类型，并为该类型实现了各种辅助traits。</p>
 <p><strong>文档</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.impl_outer_origin.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.impl_outer_origin.html">API 文档</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="impl_outer_event"></a><a href="#impl_outer_event" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>impl_outer_event!</h3>
 <p><strong>何时使用</strong></p>
@@ -246,7 +246,7 @@
 <p>此宏创建了一个<code>Event</code>枚举类型，并在该类型上实现各种了辅助traits，包括<code>core::clone::Clone</code>、<code>core::marker::StructuralPartialEq</code>、<code>core::fmt::Debug</code>、数据编码/解码traits等。 但最终该宏仅会为runtime实现指定的pallet事件。</p>
 <p><strong>文档</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.impl_outer_event.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.impl_outer_event.html">API 文档</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="impl_outer_dispatch"></a><a href="#impl_outer_dispatch" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>impl_outer_dispatch!</h3>
 <p><strong>何时使用</strong></p>
@@ -255,7 +255,7 @@
 <p>该宏创建了一个<code>Call</code> 枚举类型，并在<code>Event</code> 类型上实现了各种辅助traits，包括<code>Clone</code>、<code>PartialEq</code>和<code>RuntimeDebug</code> 等。 最后，该宏还为 <code>Call</code>枚举类型实现了 <code>GetDispatchInfo</code>、<code>GetCallMetadata</code>、<code>IsSubType</code>这几个traits。</p>
 <p><strong>文档</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.impl_outer_dispatch.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.impl_outer_dispatch.html">API 文档</a></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="结论"></a><a href="#结论" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>结论</h2>
 <p>通过本文，开发人员将能对Substrate runtime如何利用Rust宏有很好的了解，并对runtime开发中一些常用的宏有基本的掌握。</p>

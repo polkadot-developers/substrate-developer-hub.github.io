@@ -95,27 +95,27 @@
 <li><code>--rpc-methods Unsafe</code> 加了这个可选的 flag。 顾名思义，在生产环境中使用该 flag 并不安全，但它可让本教程专注于当前主旨。</li>
 </ul>
 <p>你应该看到控制台输出如下内容：</p>
-<pre><code class="hljs css language-bash">Sep 24 13:28:56.804  INFO Substrate Node    
-Sep 24 13:28:56.804  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu    
-Sep 24 13:28:56.804  INFO ❤️  by Substrate DevHub &lt;https://github.com/substrate-developer-hub&gt;, 2017-2020    
-Sep 24 13:28:56.804  INFO 📋 Chain specification: Local Testnet    
-Sep 24 13:28:56.804  INFO 🏷  Node name: MyNode01    
-Sep 24 13:28:56.804  INFO 👤 Role: AUTHORITY    
-Sep 24 13:28:56.804  INFO 💾 Database: RocksDb at /tmp/node01/chains/local_testnet/db    
-Sep 24 13:28:56.804  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)    
-Sep 24 13:28:57.188  INFO 🔨 Initializing Genesis block/state (state: 0xe3cb…c5ca, header-hash: 0x0ded…9b9d)    
-Sep 24 13:28:57.191  INFO 👴 Loading GRANDPA authority <span class="hljs-built_in">set</span> from genesis on what appears to be first startup.    
-Sep 24 13:28:57.380  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch    
-Sep 24 13:28:57.381  WARN Using default protocol ID <span class="hljs-string">"sup"</span> because none is configured <span class="hljs-keyword">in</span> the chain specs    
-Sep 24 13:28:57.382  INFO 🏷  Local node identity is: 12D3KooWQa2M77x2hFviVAFLHt9pMUYQVC93fdiVMKDbL3XvYSzj (legacy representation: 12D3KooWQa2M77x2hFviVAFLHt9pMUYQVC93fdiVMKDbL3XvYSzj)    
-Sep 24 13:28:57.402  INFO 📦 Highest known block at <span class="hljs-comment">#0    </span>
-Sep 24 13:28:57.403  INFO 〽️ Prometheus server started at 127.0.0.1:9615    
-Sep 24 13:28:57.434  INFO Listening <span class="hljs-keyword">for</span> new connections on 127.0.0.1:9944.    
-Sep 24 13:29:02.436  INFO 💤 Idle (0 peers), best: <span class="hljs-comment">#0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 0 ⬆ 0    </span>
+<pre><code class="hljs css language-bash">Sep 24 13:28:56.804  INFO Substrate Node
+Sep 24 13:28:56.804  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu
+Sep 24 13:28:56.804  INFO ❤️  by Substrate DevHub &lt;https://github.com/substrate-developer-hub&gt;, 2017-2020
+Sep 24 13:28:56.804  INFO 📋 Chain specification: Local Testnet
+Sep 24 13:28:56.804  INFO 🏷  Node name: MyNode01
+Sep 24 13:28:56.804  INFO 👤 Role: AUTHORITY
+Sep 24 13:28:56.804  INFO 💾 Database: RocksDb at /tmp/node01/chains/local_testnet/db
+Sep 24 13:28:56.804  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+Sep 24 13:28:57.188  INFO 🔨 Initializing Genesis block/state (state: 0xe3cb…c5ca, header-hash: 0x0ded…9b9d)
+Sep 24 13:28:57.191  INFO 👴 Loading GRANDPA authority <span class="hljs-built_in">set</span> from genesis on what appears to be first startup.
+Sep 24 13:28:57.380  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
+Sep 24 13:28:57.381  WARN Using default protocol ID <span class="hljs-string">"sup"</span> because none is configured <span class="hljs-keyword">in</span> the chain specs
+Sep 24 13:28:57.382  INFO 🏷  Local node identity is: 12D3KooWQa2M77x2hFviVAFLHt9pMUYQVC93fdiVMKDbL3XvYSzj (legacy representation: 12D3KooWQa2M77x2hFviVAFLHt9pMUYQVC93fdiVMKDbL3XvYSzj)
+Sep 24 13:28:57.402  INFO 📦 Highest known block at <span class="hljs-comment">#0</span>
+Sep 24 13:28:57.403  INFO 〽️ Prometheus server started at 127.0.0.1:9615
+Sep 24 13:28:57.434  INFO Listening <span class="hljs-keyword">for</span> new connections on 127.0.0.1:9944.
+Sep 24 13:29:02.436  INFO 💤 Idle (0 peers), best: <span class="hljs-comment">#0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 0 ⬆ 0</span>
 Sep 24 13:29:07.437  INFO 💤 Idle (0 peers), best: <span class="hljs-comment">#0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 0 ⬆ 0</span>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="将密钥添加到密钥库"></a><a href="#将密钥添加到密钥库" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>将密钥添加到密钥库</h2>
-<p>一旦节点开始运行，你会再次发现没有区块生成。 此时，你应该将你的密钥加进密钥库里。 請注意你需要在网络中的每一个节点都完成这些步骤。 每个节点都需要添加两种类型的密钥：Aura 和 GRANDPA 密钥。 <a href="https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#author-aka-block-author-block-producer">区块 <em>生成</em></a> 需要 Aura 密钥; 而 <a href="https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#finality">区块 <em>达到最终性</em></a> 则需要 GRANDPA 密钥。</p>
+<p>一旦节点开始运行，你会再次发现没有区块生成。 此时，你应该将你的密钥加进密钥库里。 請注意你需要在网络中的每一个节点都完成这些步骤。 每个节点都需要添加两种类型的密钥：Aura 和 GRANDPA 密钥。 Aura keys are necessary for <a href="https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#author">block <em>production</em></a>; GRANDPA keys are necessary for <a href="https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#finality">block <em>finalization</em></a>.</p>
 <h3><a class="anchor" aria-hidden="true" id="选项-1：使用-polkadot-js-app-ui"></a><a href="#选项-1：使用-polkadot-js-app-ui" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>选项 1：使用 Polkadot-JS App UI</h3>
 <p>你可以使用 Apps UI 将你的密钥加进密钥库内。 导航到 &quot;Toolbox&quot; 选项栏里的 &quot;RPC Call&quot; 子选项栏。 选择 &quot;author&quot; 和 &quot;insertKey&quot;。 空白处如下填写：</p>
 <p><img src="/docs/assets/tutorials/private-network/private-network-apps-insert-key-aura.png" alt="用 Apps 添加 Aura 密鈅"></p>
@@ -175,25 +175,25 @@ $ curl http://localhost:9933 -H <span class="hljs-string">"Content-Type:applicat
 </code></pre>
 <p>和之前一样，我们指定了另一个 <code>base-path</code> 参数，给它另一个 <code>name</code> 参数，并指定此节点为 <code>validator</code>。</p>
 <p>当第二个节点开启后，你可看到区块在生成：</p>
-<pre><code class="hljs css language-bash">Sep 24 13:32:29.909  INFO Substrate Node    
-Sep 24 13:32:29.909  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu    
-Sep 24 13:32:29.909  INFO ❤️  by Substrate DevHub &lt;https://github.com/substrate-developer-hub&gt;, 2017-2020    
-Sep 24 13:32:29.909  INFO 📋 Chain specification: Local Testnet    
-Sep 24 13:32:29.909  INFO 🏷  Node name: MyNode02    
-Sep 24 13:32:29.909  INFO 👤 Role: AUTHORITY    
-Sep 24 13:32:29.909  INFO 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db    
-Sep 24 13:32:29.909  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)    
-Sep 24 13:32:30.342  INFO 🔨 Initializing Genesis block/state (state: 0xe3cb…c5ca, header-hash: 0x0ded…9b9d)    
-Sep 24 13:32:30.346  INFO 👴 Loading GRANDPA authority <span class="hljs-built_in">set</span> from genesis on what appears to be first startup.    
-Sep 24 13:32:30.552  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch    
-Sep 24 13:32:30.553  WARN Using default protocol ID <span class="hljs-string">"sup"</span> because none is configured <span class="hljs-keyword">in</span> the chain specs    
-Sep 24 13:32:30.554  INFO 🏷  Local node identity is: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn (legacy representation: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn)    
-Sep 24 13:32:30.577  INFO 📦 Highest known block at <span class="hljs-comment">#0    </span>
-Sep 24 13:32:30.611  INFO Listening <span class="hljs-keyword">for</span> new connections on 127.0.0.1:9945.    
-Sep 24 13:32:31.126  INFO 🔍 Discovered new external address <span class="hljs-keyword">for</span> our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn    
-Sep 24 13:32:31.175  INFO 🔍 Discovered new external address <span class="hljs-keyword">for</span> our node: /ip4/192.168.0.117/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn    
-Sep 24 13:32:35.614  INFO 💤 Idle (1 peers), best: <span class="hljs-comment">#0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 1.1kiB/s ⬆ 1.1kiB/s    </span>
-Sep 24 13:32:36.844  INFO ✨ Imported <span class="hljs-comment">#1 (0xad75…d784)    </span>
+<pre><code class="hljs css language-bash">Sep 24 13:32:29.909  INFO Substrate Node
+Sep 24 13:32:29.909  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu
+Sep 24 13:32:29.909  INFO ❤️  by Substrate DevHub &lt;https://github.com/substrate-developer-hub&gt;, 2017-2020
+Sep 24 13:32:29.909  INFO 📋 Chain specification: Local Testnet
+Sep 24 13:32:29.909  INFO 🏷  Node name: MyNode02
+Sep 24 13:32:29.909  INFO 👤 Role: AUTHORITY
+Sep 24 13:32:29.909  INFO 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db
+Sep 24 13:32:29.909  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+Sep 24 13:32:30.342  INFO 🔨 Initializing Genesis block/state (state: 0xe3cb…c5ca, header-hash: 0x0ded…9b9d)
+Sep 24 13:32:30.346  INFO 👴 Loading GRANDPA authority <span class="hljs-built_in">set</span> from genesis on what appears to be first startup.
+Sep 24 13:32:30.552  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
+Sep 24 13:32:30.553  WARN Using default protocol ID <span class="hljs-string">"sup"</span> because none is configured <span class="hljs-keyword">in</span> the chain specs
+Sep 24 13:32:30.554  INFO 🏷  Local node identity is: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn (legacy representation: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn)
+Sep 24 13:32:30.577  INFO 📦 Highest known block at <span class="hljs-comment">#0</span>
+Sep 24 13:32:30.611  INFO Listening <span class="hljs-keyword">for</span> new connections on 127.0.0.1:9945.
+Sep 24 13:32:31.126  INFO 🔍 Discovered new external address <span class="hljs-keyword">for</span> our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn
+Sep 24 13:32:31.175  INFO 🔍 Discovered new external address <span class="hljs-keyword">for</span> our node: /ip4/192.168.0.117/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn
+Sep 24 13:32:35.614  INFO 💤 Idle (1 peers), best: <span class="hljs-comment">#0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 1.1kiB/s ⬆ 1.1kiB/s</span>
+Sep 24 13:32:36.844  INFO ✨ Imported <span class="hljs-comment">#1 (0xad75…d784)</span>
 Sep 24 13:32:40.615  INFO 💤 Idle (1 peers), best: <span class="hljs-comment">#1 (0xad75…d784), finalized #0 (0x0ded…9b9d), ⬇ 0.2kiB/s ⬆ 0.1kiB/s</span>
 </code></pre>
 <p>最后一行显示，你的节点已和另一个节点配对上 (<strong><code>1 peers</code></strong>)，他们已成功生成一个区块 (<strong><code>best: #1 (0xad75…d784)</code></strong>)。</p>
@@ -211,20 +211,20 @@ Sep 24 13:32:40.615  INFO 💤 Idle (1 peers), best: <span class="hljs-comment">
 <p>提醒：所有验证节点必须使用绝对相同的chain spec 才能进行配对。 你应当看到相同的创世块和状态根哈希。</p>
 </blockquote>
 <p>你会注意到，即使在为第二个节点添加密钥之后，依然没有区块完成最终确定性 (<strong><code>finalized #0 (0x0ded…9b9d)</code></strong>)。 Substrate 节点在添加 GRANDPA 密钥后需要重启。 使用与之前相同的命令，关闭节点并重启他们。 现在区块应可达到最终确定性。</p>
-<pre><code class="hljs css language-bash">Sep 24 13:37:33.863  INFO Substrate Node    
-Sep 24 13:37:33.864  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu    
-Sep 24 13:37:33.864  INFO ❤️  by Substrate DevHub &lt;https://github.com/substrate-developer-hub&gt;, 2017-2020    
-Sep 24 13:37:33.864  INFO 📋 Chain specification: Local Testnet    
-Sep 24 13:37:33.864  INFO 🏷  Node name: MyNode02    
-Sep 24 13:37:33.864  INFO 👤 Role: AUTHORITY    
-Sep 24 13:37:33.864  INFO 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db    
-Sep 24 13:37:33.864  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)    
-Sep 24 13:37:33.918  WARN Using default protocol ID <span class="hljs-string">"sup"</span> because none is configured <span class="hljs-keyword">in</span> the chain specs    
-Sep 24 13:37:33.918  INFO 🏷  Local node identity is: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn (legacy representation: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn)    
-Sep 24 13:37:33.942  INFO 📦 Highest known block at <span class="hljs-comment">#23    </span>
-Sep 24 13:37:33.973  INFO Listening <span class="hljs-keyword">for</span> new connections on 127.0.0.1:9945.    
-Sep 24 13:37:34.486  INFO 🔍 Discovered new external address <span class="hljs-keyword">for</span> our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn    
-Sep 24 13:37:36.593  INFO ✨ Imported <span class="hljs-comment">#24 (0xa7e8…7596)    </span>
+<pre><code class="hljs css language-bash">Sep 24 13:37:33.863  INFO Substrate Node
+Sep 24 13:37:33.864  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu
+Sep 24 13:37:33.864  INFO ❤️  by Substrate DevHub &lt;https://github.com/substrate-developer-hub&gt;, 2017-2020
+Sep 24 13:37:33.864  INFO 📋 Chain specification: Local Testnet
+Sep 24 13:37:33.864  INFO 🏷  Node name: MyNode02
+Sep 24 13:37:33.864  INFO 👤 Role: AUTHORITY
+Sep 24 13:37:33.864  INFO 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db
+Sep 24 13:37:33.864  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+Sep 24 13:37:33.918  WARN Using default protocol ID <span class="hljs-string">"sup"</span> because none is configured <span class="hljs-keyword">in</span> the chain specs
+Sep 24 13:37:33.918  INFO 🏷  Local node identity is: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn (legacy representation: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn)
+Sep 24 13:37:33.942  INFO 📦 Highest known block at <span class="hljs-comment">#23</span>
+Sep 24 13:37:33.973  INFO Listening <span class="hljs-keyword">for</span> new connections on 127.0.0.1:9945.
+Sep 24 13:37:34.486  INFO 🔍 Discovered new external address <span class="hljs-keyword">for</span> our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn
+Sep 24 13:37:36.593  INFO ✨ Imported <span class="hljs-comment">#24 (0xa7e8…7596)</span>
 Sep 24 13:37:38.976  INFO 💤 Idle (1 peers), best: <span class="hljs-comment">#24 (0xa7e8…7596), finalized #22 (0x753e…ddb0), ⬇ 1.5kiB/s ⬆ 1.5kiB/s</span>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="您已完成本教程"></a><a href="#您已完成本教程" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>您已完成本教程</h2>

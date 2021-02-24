@@ -81,14 +81,14 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p>正如注释所指出的，我们正在使用名称为<code>Trait</code>的配置trait里定义的 <code>Event</code>类型，以使 <code>TemplateModule</code> pallet能触发出与外部runtime兼容的事件类型。 <code>Trait</code> 配置trait还可以用于调整参数，以获取该pallet与其它pallet交互所需的资源，甚至还能限制该pallet所能消耗的runtime的资源。 当为 Nicks pallet 实现 <code>Trait</code> 配置 trait 时，您将看到这两种情况的示例。</p>
-<p>为了弄清楚具体需要为Nicks pallet实现的功能，可查看Nicks pallet的<a href="https://github.com/paritytech/substrate/blob/v2.0.0/frame/nicks/src/lib.rs">源代码</a>中的<a href="https://substrate.dev/rustdocs/v2.0.0/pallet_nicks/trait.Trait.html"><code>pallet_nicks::Trait</code> 文档</a>或trait本身的定义。 我们在下面的源代码中添加了新注释，这些注释扩展了文档中已包含的注释，因此请务必阅读它们：</p>
+<p>To figure out what you need to implement for the Nicks pallet specifically, you can take a look at the <a href="https://substrate.dev/rustdocs/v3.0.0/pallet_nicks/trait.Config.html"><code>pallet_nicks::Trait</code> documentation</a> or the definition of the trait itself in <a href="https://github.com/paritytech/substrate/blob/v3.0.0/frame/nicks/src/lib.rs">the source code</a> of the Nicks pallet. 我们在下面的源代码中添加了新注释，这些注释扩展了文档中已包含的注释，因此请务必阅读它们：</p>
 <pre><code class="hljs css language-rust"><span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token class-name">Trait</span><span class="token punctuation">:</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Trait</span> <span class="token punctuation">{</span>
     <span class="token comment">// The runtime must supply this pallet with an Event type that satisfies the pallet's requirements.</span>
     <span class="token keyword">type</span> <span class="token class-name">Event</span><span class="token punctuation">:</span> <span class="token class-name">From</span><span class="token operator">&lt;</span><span class="token class-name">Event</span><span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token operator">>></span> <span class="token operator">+</span> <span class="token class-name">Into</span><span class="token operator">&lt;&lt;</span><span class="token keyword">Self</span> <span class="token keyword">as</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Trait</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">Event</span><span class="token operator">></span><span class="token punctuation">;</span>
 
     <span class="token comment">// The currency type that will be used to place deposits on nicks.</span>
     <span class="token comment">// It must implement ReservableCurrency.</span>
-    <span class="token comment">// https://substrate.dev/rustdocs/v2.0.0/frame_support/traits/trait.ReservableCurrency.html</span>
+    <span class="token comment">// https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.ReservableCurrency.html</span>
     <span class="token keyword">type</span> <span class="token class-name">Currency</span><span class="token punctuation">:</span> <span class="token class-name">ReservableCurrency</span><span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">AccountId</span><span class="token operator">></span><span class="token punctuation">;</span>
 
     <span class="token comment">// The amount required to reserve a nick.</span>
@@ -142,7 +142,7 @@
     <span class="token keyword">type</span> <span class="token class-name">Event</span> <span class="token operator">=</span> <span class="token class-name">Event</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>在向runtime添加Balances pallet的过程中，runtime开发人员可通过使用<code>impl balances::Trait</code>代码块，来配置由Balances pallet <code>Trait</code> 配置trait指定的类型和参数。 例如，上面的<code>impl</code> 代码块将Balances pallet配置为使用<code>u128</code>类型来跟踪余额。 如果要开发一条侧重存储优化的区块链，您可以使用大小至少为32位的任何无符号整数类型； 这是因为<a href="https://substrate.dev/rustdocs/v2.0.0/sp_arithmetic/traits/trait.AtLeast32BitUnsigned.html"> <code>AtLeast32BitUnsigned</code> trait</a>把 Balances pallet<code>Trait</code>的配置trait中的<a href="https://substrate.dev/rustdocs/v2.0.0/pallet_balances/trait.Trait.html#associatedtype.Balance"> <code>Balance</code> 类型</a>给“限制”了。</p>
+<p>在向runtime添加Balances pallet的过程中，runtime开发人员可通过使用<code>impl balances::Trait</code>代码块，来配置由Balances pallet <code>Trait</code> 配置trait指定的类型和参数。 例如，上面的<code>impl</code> 代码块将Balances pallet配置为使用<code>u128</code>类型来跟踪余额。 If you were developing a chain where it was important to optimize storage, you could use any unsigned integer type that was at least 32-bits in size; this is because <a href="https://substrate.dev/rustdocs/v3.0.0/pallet_balances/pallet/trait.Config.html#associatedtype.Balance">the <code>Balance</code> type</a> for the Balances pallet <code>Trait</code> configuration trait is &quot;bounded&quot; by <a href="https://substrate.dev/rustdocs/v3.0.0/sp_arithmetic/traits/trait.AtLeast32BitUnsigned.html">the <code>AtLeast32BitUnsigned</code> trait</a>.</p>
 <p>现在您已经了解了使用<code>Trait</code> 的配置trait的目的以及如何为runtime实现一个FRAME pallet的 <code>Trait</code>接口，让我们开始为Nicks pallet实现 <code>Trait</code>的配置trait吧。 将以下代码添加到 <code>runtime/src/lib.rs</code>文件中：</p>
 <pre><code class="hljs css language-rust"><span class="token macro property">parameter_types!</span> <span class="token punctuation">{</span>
     <span class="token comment">// Choose a fee that incentivizes desireable behavior.</span>
@@ -154,7 +154,7 @@
 
 <span class="token keyword">impl</span> <span class="token namespace">pallet_nicks<span class="token punctuation">::</span></span><span class="token class-name">Trait</span> <span class="token keyword">for</span> <span class="token class-name">Runtime</span> <span class="token punctuation">{</span>
     <span class="token comment">// The Balances pallet implements the ReservableCurrency trait.</span>
-    <span class="token comment">// https://substrate.dev/rustdocs/v2.0.0/pallet_balances/index.html#implementations-2</span>
+    <span class="token comment">// https://substrate.dev/rustdocs/v3.0.0/pallet_balances/index.html#implementations-2</span>
     <span class="token keyword">type</span> <span class="token class-name">Currency</span> <span class="token operator">=</span> <span class="token namespace">pallet_balances<span class="token punctuation">::</span></span><span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">Runtime</span><span class="token operator">></span><span class="token punctuation">;</span>
 
     <span class="token comment">// Use the NickReservationFee from the parameter_types block.</span>
@@ -164,7 +164,7 @@
     <span class="token keyword">type</span> <span class="token class-name">Slashed</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token comment">// Configure the FRAME System Root origin as the Nick pallet admin.</span>
-    <span class="token comment">// https://substrate.dev/rustdocs/v2.0.0/frame_system/enum.RawOrigin.html#variant.Root</span>
+    <span class="token comment">// https://substrate.dev/rustdocs/v3.0.0/frame_system/enum.RawOrigin.html#variant.Root</span>
     <span class="token keyword">type</span> <span class="token class-name">ForceOrigin</span> <span class="token operator">=</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">EnsureRoot</span><span class="token operator">&lt;</span><span class="token class-name">AccountId</span><span class="token operator">></span><span class="token punctuation">;</span>
 
     <span class="token comment">// Use the MinNickLength from the parameter_types block.</span>
@@ -178,7 +178,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="将nicks添加到construct_runtime-macro里面"></a><a href="#将nicks添加到construct_runtime-macro里面" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>将Nicks添加到<code>construct_runtime!</code> Macro里面</h3>
-<p>接下来，我们需要将Nicks pallet添加到<code>construct_runtime!</code>宏里面。 为此我们应先确定Nicks pallet要暴露的类型，以便让runtime得知这些类型的存在。 支持的类型的完整列表可在<a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.construct_runtime.html"><code>construct_runtime!</code> 宏的文档</a>中查找到。</p>
+<p>接下来，我们需要将Nicks pallet添加到<code>construct_runtime!</code>宏里面。 为此我们应先确定Nicks pallet要暴露的类型，以便让runtime得知这些类型的存在。 The complete list of possible types can be found in the <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.construct_runtime.html"><code>construct_runtime!</code> macro documentation</a>.</p>
 <p>如果我们仔细查看Nicks pallet，我们知道它具有：</p>
 <ul>
 <li><strong>Storage</strong>模块：因为它使用了<code>decl_storage!</code> 宏。</li>

@@ -85,15 +85,15 @@
 <h2><a class="anchor" aria-hidden="true" id="链下工作机"></a><a href="#链下工作机" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>链下工作机</h2>
 <p>Off-chain workers have access to extended APIs for communicating with the external world:</p>
 <ul>
-<li>Ability to <a href="https://substrate.dev/rustdocs/v2.0.0/sp_runtime/offchain/trait.TransactionPool.html">submit transactions</a> (either signed or unsigned) to the chain to publish computation results.</li>
+<li>Ability to <a href="https://substrate.dev/rustdocs/v3.0.0/sp_runtime/offchain/trait.TransactionPool.html">submit transactions</a> (either signed or unsigned) to the chain to publish computation results.</li>
 <li>一个功能齐全的 HTTP 客户端，使链下工作机可访问和获取到外部数据。</li>
 <li>访问本地密钥库以签署和验证声明（statements）或交易。</li>
-<li>An additional, local <a href="https://substrate.dev/rustdocs/v2.0.0/sp_runtime/offchain/trait.OffchainStorage.html">key-value database</a> shared between all off-chain workers.</li>
+<li>An additional, local <a href="https://substrate.dev/rustdocs/v3.0.0/sp_runtime/offchain/trait.OffchainStorage.html">key-value database</a> shared between all off-chain workers.</li>
 <li>一个安全的本地熵源（entropy），用于生成随机数。</li>
-<li>Access to the node's precise <a href="https://substrate.dev/rustdocs/v2.0.0/sp_runtime/offchain/struct.Timestamp.html">local time</a>.</li>
+<li>Access to the node's precise <a href="https://substrate.dev/rustdocs/v3.0.0/sp_runtime/offchain/struct.Timestamp.html">local time</a>.</li>
 <li>The ability to sleep and resume work.</li>
 </ul>
-<p>OCWs can be initiated from within a special function in your runtime implementation, <a href="https://substrate.dev/rustdocs/v2.0.0/frame_support/traits/trait.OffchainWorker.html"><code>fn offchain_worker(block: T::BlockNumber)</code></a>. communicate results back to the chain, off-chain workers can submit signed or unsigned transactions to be included in subsequent blocks.</p>
+<p>OCWs can be initiated from within a special function in your runtime implementation, <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.OffchainWorker.html"><code>fn offchain_worker(block: T::BlockNumber)</code></a>. communicate results back to the chain, off-chain workers can submit signed or unsigned transactions to be included in subsequent blocks.</p>
 <p>值得注意的是，链下工作机的交易不会受到常规交易验证的约束。 所以需要另外实现一套交易验证机制 (例如投票，取平均值，检查提交人签名或简单地 &quot;信任&quot;)，以确定哪些信息能够记录在链上。</p>
 <p>想要了解更多如何在你下一个 runtime 开发项目中使用到链下工作机，请参考我们的 <a href="../runtime/off-chain-workers">开发指南</a>。</p>
 <h2><a class="anchor" aria-hidden="true" id="off-chain-storage"></a><a href="#off-chain-storage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Off-Chain Storage</h2>
