@@ -73,7 +73,7 @@ are determined through a token-weighted nomination/voting system.
 Deterministic [consensus](#consensus) protocol where [block](#block) production is limited to a
 rotating list of [authorities](#authority) that take turns creating blocks; the majority of online
 authorities are assumed to be honest. Learn more by reading
-[the official wiki article](https://openethereum.github.io/wiki/Aura) for the Aura consensus
+[the official wiki article](https://openethereum.github.io/Aura) for the Aura consensus
 algorithm.
 
 ### Aura + GRANDPA
@@ -274,9 +274,9 @@ transactions, which may be
 Within the [Balances pallet](../../knowledgebase/runtime/frame#balances), this is the minimum
 balance an account may have. Accounts cannot be created with a balance less than this amount, and if
 an account's balance ever drops below this amount, the Balances pallet will use
-[a FRAME System API](https://substrate.dev/rustdocs/v3.0.0/frame_system/struct.Module.html#method.dec_ref)
+[a FRAME System API](TODO:LINK-https://substrate.dev/rustdocs/v3.0.0/frame_system/struct.Module.html#method.dec_ref)
 to drop its references to that account. If all the references to an account are dropped, it
-[may be reaped](https://substrate.dev/rustdocs/v3.0.0/frame_system/struct.Module.html#method.allow_death).
+[may be reaped](TODO:LINK-https://substrate.dev/rustdocs/v3.0.0/frame_system/struct.Module.html#method.allow_death).
 
 ---
 

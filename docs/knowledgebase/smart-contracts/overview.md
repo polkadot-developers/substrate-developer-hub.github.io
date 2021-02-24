@@ -185,6 +185,6 @@ influence your decision on the kinds of situations you may want to use these dif
 
 - Visit the reference docs for the
   [Contracts pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/index.html).
-- Visit the reference docs for the
-  [EVM pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_evm/index.html).
+- View source code and documentation of the
+  [EVM module](https://github.com/paritytech/frontier/tree/master/frame/evm).
 - Take a look at the [repository for ink!](https://github.com/paritytech/ink).

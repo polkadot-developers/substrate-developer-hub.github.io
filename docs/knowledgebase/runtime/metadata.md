@@ -44,7 +44,7 @@ the metadata and decode them for you. Once decoded, the structure may be seriali
 
 If you are using Javascript, [`polkadot-js/api`](https://polkadot.js.org/api/) already provides APIs
 to interact with a Substrate blockchain, including the
-[`getMetadata`](https://polkadot.js.org/api/substrate/rpc.html#getmetadata-at-blockhash-metadata) function.
+[`getMetadata`](https://polkadot.js.org/docs/substrate/rpc#getmetadataat-blockhash-metadata) function.
 
 You can try the following code snippets to fetch the metadata in this
 [Substrate UI](https://polkadot.js.org/apps/#/js) page:
@@ -156,7 +156,7 @@ Here is a condensed version of decoded metadata:
           "ChargeTransactionPayment"
         ]
       }
-    } 
+    }
   }
 }
 ```
@@ -445,7 +445,7 @@ This will expose the following metadata:
 
 These are errors that could occur during the submission or execution of an extrinsic. In this case,
 the FRAME System pallet is declaring that it may raise the
-[the `InvalidSpecName` error](https://substrate.dev/rustdocs/v3.0.0/frame_system/enum.Error.html#variant.InvalidSpecName).
+[the `InvalidSpecName` error](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Error.html#variant.InvalidSpecName).
 
 ## Next Steps
 

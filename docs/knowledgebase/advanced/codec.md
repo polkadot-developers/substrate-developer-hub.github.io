@@ -194,7 +194,7 @@ that is written in Rust and maintained by Parity Technologies.
 - C++: [`soramitsu/scale`](https://github.com/soramitsu/kagome/tree/master/core/scale)
 - JavaScript: [`polkadot-js/api`](https://github.com/polkadot-js/api)
 - AssemblyScript: [`LimeChain/as-scale-codec`](https://github.com/LimeChain/as-scale-codec)
-- Haskell: [`airalab/hs-web3`](https://github.com/airalab/hs-web3/tree/master/src/Codec)
+- Haskell: [`airalab/hs-web3`](https://github.com/airalab/hs-web3/tree/master/packages/scale)
 - Java: [`emeraldpay/polkaj`](https://github.com/emeraldpay/polkaj)
 - Ruby: [`itering/scale.rb`](https://github.com/itering/scale.rb)
 

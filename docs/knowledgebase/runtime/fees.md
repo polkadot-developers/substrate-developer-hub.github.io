@@ -175,7 +175,7 @@ fn my_dispatchable() {
 
 Dispatches in this class represent normal user-triggered transactions. These types of dispatches may
 only consume a portion of a block's total weight limit; this portion can be found by examining the
-[`AvailableBlockRatio`](https://substrate.dev/rustdocs/v3.0.0/frame_system/trait.Config.html#associatedtype.AvailableBlockRatio).
+[`AvailableBlockRatio`](https://substrate.dev/rustdocs/v3.0.0/frame_system/limits/struct.BlockLength.html#method.max_with_normal_ratio).
 Normal dispatches are sent to the [transaction pool](../learn-substrate/tx-pool).
 
 #### Operational Dispatches
@@ -183,7 +183,7 @@ Normal dispatches are sent to the [transaction pool](../learn-substrate/tx-pool)
 As opposed to normal dispatches, which represent _usage_ of network capabilities, operational
 dispatches are those that _provide_ network capabilities. These types of dispatches may consume the
 entire weight limit of a block, which is to say that they are not bound by the
-[`AvailableBlockRatio`](https://substrate.dev/rustdocs/v3.0.0/frame_system/trait.Config.html#associatedtype.AvailableBlockRatio).
+[`AvailableBlockRatio`](https://substrate.dev/rustdocs/v3.0.0/frame_system/limits/struct.BlockLength.html#method.max_with_normal_ratio).
 Dispatches in this class are given maximum priority and are exempt from paying the `length_fee`.
 
 #### Mandatory Dispatches

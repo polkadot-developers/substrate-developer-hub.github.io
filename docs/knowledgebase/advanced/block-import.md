@@ -76,9 +76,7 @@ Polkadot's block import pipeline consists of a `BabeBlockImport`, which wraps a
 
 Several of the Recipes' nodes demonstrate the block import pipeline:
 
-- [Manual Seal](https://substrate.dev/recipes/3-entrees/manual-seal.html) - all blocks are valid so
-  the block import pipeline is just the client
-- [Basic PoW](https://substrate.dev/recipes/3-entrees/basic-pow.html) - the import pipeline includes
+- [Basic PoW](https://substrate.dev/recipes/basic-pow.html) - the import pipeline includes
   PoW and the client
-- [Hybrid Consensus](https://substrate.dev/recipes/3-entrees/hybrid-consensus.html) - the import
+- [Hybrid Consensus](https://substrate.dev/recipes/hybrid-consensus.html) - the import
   pipeline is PoW, then Grandpa, then the client

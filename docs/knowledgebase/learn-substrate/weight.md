@@ -81,7 +81,7 @@ execution time depends on, for example, the length of one parameter. It is impor
 calculations do not entail any meaningful work themselves. The pre-dispatch maximum weight should be
 trivially computable from the input arguments with some basic arithmetic.
 
-The [System pallet](https://substrate.dev/rustdocs/v3.0.0/frame_system/struct.Module.html) is
+The [System pallet](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/index.html) is
 responsible for accumulating the weight of each block as it gets executed and making sure that it
 does not exceed the limit. The
 [Transaction Payment pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_transaction_payment/index.html)
@@ -108,13 +108,13 @@ filled with transactions that would take too long to execute. While processing t
 block, the System pallet accumulates both the total length of the block (sum of encoded transactions
 in bytes) and the total weight of the block. If either of these numbers surpass the limits, no
 further transactions are accepted in that block. These limits are defined in
-[`MaximumBlockLength`](https://substrate.dev/rustdocs/v3.0.0/frame_system/trait.Config.html#associatedtype.MaximumBlockLength)
+[`MaximumBlockLength`](https://substrate.dev/rustdocs/v3.0.0/frame_system/limits/struct.BlockLength.html)
 and
-[`MaximumBlockWeight`](https://substrate.dev/rustdocs/v3.0.0/frame_system/trait.Config.html#associatedtype.MaximumBlockWeight).
+[`MaximumBlockWeight`](https://substrate.dev/rustdocs/v3.0.0/frame_system/limits/struct.BlockWeights.html).
 
 One important note about these limits is that a portion of them are reserved for the `Operational`
 dispatch class. This rule applies to both of the limits and the ratio can be found in
-[`AvailableBlockRatio`](https://substrate.dev/rustdocs/v3.0.0/frame_system/trait.Config.html#associatedtype.AvailableBlockRatio).
+[`AvailableBlockRatio`](https://substrate.dev/rustdocs/v3.0.0/frame_system/limits/struct.BlockLength.html#method.max_with_normal_ratio).
 
 For example, if the block length limit is 1 megabyte and the ratio is set to 80%, all transactions
 can fill the first 800 kilobytes of the block while the last 200 can only be filled by the

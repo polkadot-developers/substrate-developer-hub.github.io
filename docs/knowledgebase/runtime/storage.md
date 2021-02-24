@@ -252,7 +252,7 @@ initializing storage, all of which have entry points in the `decl_storage` macro
 all result in the creation of a `GenesisConfig` data type that implements
 [the `BuildModuleGenesisStorage` trait](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/trait.BuildModuleGenesisStorage.html)
 and will be added to the module that contains the storage items (e.g.
-[`Struct pallet_balances::GenesisConfig`](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/struct.GenesisConfig.html));
+[`Struct pallet_balances::GenesisConfig`](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/pallet/struct.GenesisConfig.html));
 storage items that are tagged for genesis configuration will have a corresponding attribute on this
 data type. In order to consume a module's genesis configuration capabilities, you must include the
 `Config` element when adding the module to your runtime with
@@ -485,7 +485,7 @@ Read [the advanced storage documentation](../advanced/storage).
 
 ### Examples
 
-Check out the Substrate Recipes covering various topics on storage: 
+Check out the Substrate Recipes covering various topics on storage:
 - [Storage Maps](https://substrate.dev/recipes/storage-maps.html).
 - [Caching Storage Calls](https://substrate.dev/recipes/cache.html).
 - [Using Vectors](https://substrate.dev/recipes/vec-set.html).

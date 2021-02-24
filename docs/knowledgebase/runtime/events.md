@@ -83,7 +83,7 @@ decl_module! {
 ```
 
 The default behavior of this function is to call
-[`deposit_event`](https://substrate.dev/rustdocs/v3.0.0/frame_system/struct.Module.html#method.deposit_event)
+[`deposit_event`](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/struct.Pallet.html#method.deposit_event)
 from the FRAME system, which writes the event to storage.
 
 This function places the event in the System module's runtime storage for that block. At the
@@ -122,7 +122,6 @@ These [Substrate Recipes](https://github.com/substrate-developer-hub/recipes) of
 runtime events are used:
 
 - [A pallet that implements standard events](https://github.com/substrate-developer-hub/recipes/blob/master/pallets/last-caller/src/lib.rs)
-- [A pallet that does not emit events with generic types](https://github.com/substrate-developer-hub/recipes/blob/master/pallets/adding-machine/src/lib.rs)
 
 ### References
 

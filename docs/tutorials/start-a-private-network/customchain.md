@@ -42,23 +42,23 @@ Here are some differences from when we launched as Alice.
 You should see the console outputs something as follows:
 
 ```bash
-Sep 24 13:28:56.804  INFO Substrate Node    
-Sep 24 13:28:56.804  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu    
-Sep 24 13:28:56.804  INFO ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020    
-Sep 24 13:28:56.804  INFO 📋 Chain specification: Local Testnet    
-Sep 24 13:28:56.804  INFO 🏷  Node name: MyNode01    
-Sep 24 13:28:56.804  INFO 👤 Role: AUTHORITY    
-Sep 24 13:28:56.804  INFO 💾 Database: RocksDb at /tmp/node01/chains/local_testnet/db    
-Sep 24 13:28:56.804  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)    
-Sep 24 13:28:57.188  INFO 🔨 Initializing Genesis block/state (state: 0xe3cb…c5ca, header-hash: 0x0ded…9b9d)    
-Sep 24 13:28:57.191  INFO 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.    
-Sep 24 13:28:57.380  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch    
-Sep 24 13:28:57.381  WARN Using default protocol ID "sup" because none is configured in the chain specs    
-Sep 24 13:28:57.382  INFO 🏷  Local node identity is: 12D3KooWQa2M77x2hFviVAFLHt9pMUYQVC93fdiVMKDbL3XvYSzj (legacy representation: 12D3KooWQa2M77x2hFviVAFLHt9pMUYQVC93fdiVMKDbL3XvYSzj)    
-Sep 24 13:28:57.402  INFO 📦 Highest known block at #0    
-Sep 24 13:28:57.403  INFO 〽️ Prometheus server started at 127.0.0.1:9615    
-Sep 24 13:28:57.434  INFO Listening for new connections on 127.0.0.1:9944.    
-Sep 24 13:29:02.436  INFO 💤 Idle (0 peers), best: #0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 0 ⬆ 0    
+Sep 24 13:28:56.804  INFO Substrate Node
+Sep 24 13:28:56.804  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu
+Sep 24 13:28:56.804  INFO ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
+Sep 24 13:28:56.804  INFO 📋 Chain specification: Local Testnet
+Sep 24 13:28:56.804  INFO 🏷  Node name: MyNode01
+Sep 24 13:28:56.804  INFO 👤 Role: AUTHORITY
+Sep 24 13:28:56.804  INFO 💾 Database: RocksDb at /tmp/node01/chains/local_testnet/db
+Sep 24 13:28:56.804  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+Sep 24 13:28:57.188  INFO 🔨 Initializing Genesis block/state (state: 0xe3cb…c5ca, header-hash: 0x0ded…9b9d)
+Sep 24 13:28:57.191  INFO 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
+Sep 24 13:28:57.380  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
+Sep 24 13:28:57.381  WARN Using default protocol ID "sup" because none is configured in the chain specs
+Sep 24 13:28:57.382  INFO 🏷  Local node identity is: 12D3KooWQa2M77x2hFviVAFLHt9pMUYQVC93fdiVMKDbL3XvYSzj (legacy representation: 12D3KooWQa2M77x2hFviVAFLHt9pMUYQVC93fdiVMKDbL3XvYSzj)
+Sep 24 13:28:57.402  INFO 📦 Highest known block at #0
+Sep 24 13:28:57.403  INFO 〽️ Prometheus server started at 127.0.0.1:9615
+Sep 24 13:28:57.434  INFO Listening for new connections on 127.0.0.1:9944.
+Sep 24 13:29:02.436  INFO 💤 Idle (0 peers), best: #0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 0 ⬆ 0
 Sep 24 13:29:07.437  INFO 💤 Idle (0 peers), best: #0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 0 ⬆ 0
 ```
 
@@ -68,7 +68,7 @@ Once your node is running, you will again notice that no blocks are being produc
 you need to add your keys into the keystore. Remember you will need to complete these steps for each
 node in your network. You will add two types of keys for each node: Aura and GRANDPA keys. Aura keys
 are necessary for
-[block _production_](https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#author-aka-block-author-block-producer);
+[block _production_](https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#author);
 GRANDPA keys are necessary for
 [block _finalization_](https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#finality).
 
@@ -170,25 +170,25 @@ As before, we specify another `base-path`, give it another `name`, and also spec
 Once the second node is up, you should see them authoring:
 
 ```bash
-Sep 24 13:32:29.909  INFO Substrate Node    
-Sep 24 13:32:29.909  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu    
-Sep 24 13:32:29.909  INFO ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020    
-Sep 24 13:32:29.909  INFO 📋 Chain specification: Local Testnet    
-Sep 24 13:32:29.909  INFO 🏷  Node name: MyNode02    
-Sep 24 13:32:29.909  INFO 👤 Role: AUTHORITY    
-Sep 24 13:32:29.909  INFO 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db    
-Sep 24 13:32:29.909  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)    
-Sep 24 13:32:30.342  INFO 🔨 Initializing Genesis block/state (state: 0xe3cb…c5ca, header-hash: 0x0ded…9b9d)    
-Sep 24 13:32:30.346  INFO 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.    
-Sep 24 13:32:30.552  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch    
-Sep 24 13:32:30.553  WARN Using default protocol ID "sup" because none is configured in the chain specs    
-Sep 24 13:32:30.554  INFO 🏷  Local node identity is: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn (legacy representation: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn)    
-Sep 24 13:32:30.577  INFO 📦 Highest known block at #0    
-Sep 24 13:32:30.611  INFO Listening for new connections on 127.0.0.1:9945.    
-Sep 24 13:32:31.126  INFO 🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn    
-Sep 24 13:32:31.175  INFO 🔍 Discovered new external address for our node: /ip4/192.168.0.117/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn    
-Sep 24 13:32:35.614  INFO 💤 Idle (1 peers), best: #0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 1.1kiB/s ⬆ 1.1kiB/s    
-Sep 24 13:32:36.844  INFO ✨ Imported #1 (0xad75…d784)    
+Sep 24 13:32:29.909  INFO Substrate Node
+Sep 24 13:32:29.909  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu
+Sep 24 13:32:29.909  INFO ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
+Sep 24 13:32:29.909  INFO 📋 Chain specification: Local Testnet
+Sep 24 13:32:29.909  INFO 🏷  Node name: MyNode02
+Sep 24 13:32:29.909  INFO 👤 Role: AUTHORITY
+Sep 24 13:32:29.909  INFO 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db
+Sep 24 13:32:29.909  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+Sep 24 13:32:30.342  INFO 🔨 Initializing Genesis block/state (state: 0xe3cb…c5ca, header-hash: 0x0ded…9b9d)
+Sep 24 13:32:30.346  INFO 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
+Sep 24 13:32:30.552  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
+Sep 24 13:32:30.553  WARN Using default protocol ID "sup" because none is configured in the chain specs
+Sep 24 13:32:30.554  INFO 🏷  Local node identity is: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn (legacy representation: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn)
+Sep 24 13:32:30.577  INFO 📦 Highest known block at #0
+Sep 24 13:32:30.611  INFO Listening for new connections on 127.0.0.1:9945.
+Sep 24 13:32:31.126  INFO 🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn
+Sep 24 13:32:31.175  INFO 🔍 Discovered new external address for our node: /ip4/192.168.0.117/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn
+Sep 24 13:32:35.614  INFO 💤 Idle (1 peers), best: #0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 1.1kiB/s ⬆ 1.1kiB/s
+Sep 24 13:32:36.844  INFO ✨ Imported #1 (0xad75…d784)
 Sep 24 13:32:40.615  INFO 💤 Idle (1 peers), best: #1 (0xad75…d784), finalized #0 (0x0ded…9b9d), ⬇ 0.2kiB/s ⬆ 0.1kiB/s
 ```
 
@@ -217,20 +217,20 @@ GRANDPA key. Kill your nodes and restart them with the same commands you used pr
 should be finalized.
 
 ```bash
-Sep 24 13:37:33.863  INFO Substrate Node    
-Sep 24 13:37:33.864  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu    
-Sep 24 13:37:33.864  INFO ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020    
-Sep 24 13:37:33.864  INFO 📋 Chain specification: Local Testnet    
-Sep 24 13:37:33.864  INFO 🏷  Node name: MyNode02    
-Sep 24 13:37:33.864  INFO 👤 Role: AUTHORITY    
-Sep 24 13:37:33.864  INFO 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db    
-Sep 24 13:37:33.864  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)    
-Sep 24 13:37:33.918  WARN Using default protocol ID "sup" because none is configured in the chain specs    
-Sep 24 13:37:33.918  INFO 🏷  Local node identity is: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn (legacy representation: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn)    
-Sep 24 13:37:33.942  INFO 📦 Highest known block at #23    
-Sep 24 13:37:33.973  INFO Listening for new connections on 127.0.0.1:9945.    
-Sep 24 13:37:34.486  INFO 🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn    
-Sep 24 13:37:36.593  INFO ✨ Imported #24 (0xa7e8…7596)    
+Sep 24 13:37:33.863  INFO Substrate Node
+Sep 24 13:37:33.864  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu
+Sep 24 13:37:33.864  INFO ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
+Sep 24 13:37:33.864  INFO 📋 Chain specification: Local Testnet
+Sep 24 13:37:33.864  INFO 🏷  Node name: MyNode02
+Sep 24 13:37:33.864  INFO 👤 Role: AUTHORITY
+Sep 24 13:37:33.864  INFO 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db
+Sep 24 13:37:33.864  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
+Sep 24 13:37:33.918  WARN Using default protocol ID "sup" because none is configured in the chain specs
+Sep 24 13:37:33.918  INFO 🏷  Local node identity is: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn (legacy representation: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn)
+Sep 24 13:37:33.942  INFO 📦 Highest known block at #23
+Sep 24 13:37:33.973  INFO Listening for new connections on 127.0.0.1:9945.
+Sep 24 13:37:34.486  INFO 🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn
+Sep 24 13:37:36.593  INFO ✨ Imported #24 (0xa7e8…7596)
 Sep 24 13:37:38.976  INFO 💤 Idle (1 peers), best: #24 (0xa7e8…7596), finalized #22 (0x753e…ddb0), ⬇ 1.5kiB/s ⬆ 1.5kiB/s
 ```
 

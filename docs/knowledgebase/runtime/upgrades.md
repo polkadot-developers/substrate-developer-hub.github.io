@@ -9,7 +9,7 @@ evolving runtime state. This allows network maintainers to leverage the blockcha
 for trustless, decentralized consensus to securely make enhancements to the runtime.
 
 In the FRAME system for runtime development, the System library defines
-[the `set_code` call](https://substrate.dev/rustdocs/v3.0.0/frame_system/enum.Call.html#variant.set_code)
+[the `set_code` call](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Call.html#variant.set_code)
 that is used to update the definition of the runtime. The
 [Upgrade a Chain tutorial](../../tutorials/upgrade-a-chain/scheduled-upgrade) describes the details
 of FRAME runtime upgrades and demonstrates two mechanisms for performing them. Both upgrades
