@@ -77,7 +77,7 @@ runtime upgrade performed in this tutorial will add that pallet. First, add the 
 a dependency in the template node's `runtime/Cargo.toml` file.
 
 ```toml
-pallet-scheduler = { default-features = false, version = '2.0.0' }
+pallet-scheduler = { default-features = false, version = '3.0.0' }
 
 #--snip--
 
