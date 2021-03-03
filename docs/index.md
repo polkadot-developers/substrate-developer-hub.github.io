@@ -5,7 +5,7 @@ title: Overview
 Welcome to the wonderful world of blockchain development with Substrate! This is the Substrate Knowledge Base, the
 official documentation hub for Substrate developers. The purpose of this resource is to help readers understand the
 multi-disciplinary field of blockchain development with Substrate. This guide is broken down into several sections that
-explain the principles and design decisions that Substrate is built on as well as the specific skills needed to to be an
+explain the principles and design decisions that Substrate is built on as well as the specific skills needed to be an
 effective Substrate blockchain developer.
 
 > **Some Expertise Needed**
@@ -65,7 +65,7 @@ Substrate is designed to be used in one of three ways:
    [Start a Private Network](tutorials/start-a-private-network/index.md) tutorials.
 
 2. **With Substrate FRAME**: You can easily create your own custom runtime using [FRAME](knowledgebase/runtime/frame.md)
-   (Framework for Runtime Aggregation of Modularized Entities), which is the method used by the Substrate Node. This
+   (Framework for Runtime Aggregation of Modularized Entities), which is what is used to build the Substrate Node. This
    affords you a large amount of freedom over your blockchain's logic, and allows you to configure data types, select
    from a library of modules (called "pallets"), and even add your own custom pallets. The
    [Substrate Developer Hub Node Template](https://github.com/substrate-developer-hub/substrate-node-template) is a
@@ -94,7 +94,7 @@ Substrate is designed to be used in one of three ways:
 ### Examples
 
 - Follow our [tutorials](../../tutorials) to learn about building and running blockchains with Substrate and FRAME.
-- Refer to the [Substrate Recipes](https://substrate.dev/recipes/) to find complete working examples that demonstrate
+- Refer to [Substrate Recipes](https://substrate.dev/recipes/) to find complete working examples that demonstrate
   solutions to common problems.
 
 ### References
