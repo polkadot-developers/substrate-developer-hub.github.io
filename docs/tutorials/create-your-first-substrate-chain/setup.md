@@ -34,6 +34,7 @@ Template, which serves as a good starting point for building on Substrate.
 2. Initialize your WebAssembly build environment
 
     ```bash
+    cd substrate-node-template
     make init
     ```
 
