@@ -69,11 +69,11 @@ At a high level, a FRAME pallet can be broken down into six sections:
 
 ```rust
 // 1. Imports
-use frame_support::{decl_module, decl_storage, decl_event, decl_error, dispatch};
+use frame_support::{decl_module, decl_storage, decl_event, decl_error, dispatch, traits::Get};
 use frame_system::ensure_signed;
 
 // 2. Configuration
-pub trait Trait: frame_system::Trait { /* --snip-- */ }
+pub trait Config: frame_system::Config { /* --snip-- */ }
 
 // 3. Storage
 decl_storage! { /* --snip-- */ }
@@ -110,12 +110,12 @@ use sp_std::vec::Vec;
 Most of these imports are already available because they were used in the template pallet whose code
 we just deleted. However, `sp_std` is not available and we need to list it as a dependency.
 
-**Add** this block to your `pallets/template/Cargo.toml` file.
+**Add** this block to your `pallets/template/Cargo.toml` file under `[dependencies]` section.
 
 ```toml
 [dependencies]
 #--snip--
-sp-std = { default-features = false, version = '2.0.0' }
+sp-std = { default-features = false, version = '3.0.0' }
 ```
 
 Then, **Update** the existing `[features]` block to look like this. The last line is new. You will
@@ -135,18 +135,18 @@ std = [
 
 ### Configuration
 
-Every pallet has a component called `Trait` that is used for configuration. This component is a
+Every pallet has a component called `Config` that is used for configuration. This component is a
 [Rust "trait"](https://doc.rust-lang.org/book/ch10-02-traits.html); traits in Rust are similar to
 interfaces in languages such as C++, Java and Go. For now, the only thing we will configure about
-our pallet is that it will emit some Events. The `Trait` interface is another topic that will be
+our pallet is that it will emit some Events. The `Config` interface is another topic that will be
 covered in greater depth in the next tutorial, the [Add a Pallet](../add-a-pallet) tutorial.  The 
 following code will need to be added to your `pallets/template/src/lib.rs` file:
 
 ```rust
 /// Configure the pallet by specifying the parameters and types on which it depends.
-pub trait Trait: frame_system::Trait {
-    /// Because this pallet emits events, it depends on the runtime's definition of an event.
-    type Event: From<Event<Self>> + Into<<Self as frame_system::Trait>::Event>;
+pub trait Config: frame_system::Config {
+	  /// Because this pallet emits events, it depends on the runtime's definition of an event.
+	  type Event: From<Event<Self>> + Into<<Self as frame_system::Config>::Event>;
 }
 ```
 
@@ -159,7 +159,7 @@ After we've configured our pallet to emit events, let's go ahead and define whic
 // Event documentation should end with an array that provides descriptive names for parameters.
 // https://substrate.dev/docs/en/knowledgebase/runtime/events
 decl_event! {
-    pub enum Event<T> where AccountId = <T as frame_system::Trait>::AccountId {
+    pub enum Event<T> where AccountId = <T as frame_system::Config>::AccountId {
         /// Event emitted when a proof has been claimed. [who, claim]
         ClaimCreated(AccountId, Vec<u8>),
         /// Event emitted when a claim is revoked by the owner. [who, claim]
@@ -186,7 +186,7 @@ Similarly, errors indicate when a call has failed, and why it has failed.
 ```rust
 // Errors inform users that something went wrong.
 decl_error! {
-	pub enum Error for Module<T: Trait> {
+	pub enum Error for Module<T: Config> {
 		/// The proof has already been claimed.
 		ProofAlreadyClaimed,
 		/// The proof does not exist, so it cannot be revoked.
@@ -211,7 +211,7 @@ proof to the owner of that proof and the block number the proof was made.
 // The pallet's runtime storage items.
 // https://substrate.dev/docs/en/knowledgebase/runtime/storage
 decl_storage! {
-    trait Store for Module<T: Trait> as TemplateModule {
+    trait Store for Module<T: Config> as TemplateModule {
         /// The storage item for our proofs.
         /// It maps a proof to the user who made the claim and when they made it.
         Proofs: map hasher(blake2_128_concat) Vec<u8> => (T::AccountId, T::BlockNumber);
@@ -235,7 +235,7 @@ call in this FRAME pallet:
 // These functions materialize as "extrinsics", which are often compared to transactions.
 // Dispatchable functions must be annotated with a weight and must return a DispatchResult.
 decl_module! {
-    pub struct Module<T: Trait> for enum Call where origin: T::Origin {
+    pub struct Module<T: Config> for enum Call where origin: T::Origin {
         // Errors must be initialized if they are used by the pallet.
         type Error = Error<T>;
 
