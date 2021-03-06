@@ -30,6 +30,7 @@
       "knowledgebase/runtime/off-chain-workers",
       "knowledgebase/runtime/debugging",
       "knowledgebase/runtime/tests",
+      "knowledgebase/runtime/benchmarking",
       "knowledgebase/runtime/randomness",
       "knowledgebase/runtime/upgrades"
     ],

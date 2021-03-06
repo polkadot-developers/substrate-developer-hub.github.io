@@ -17,8 +17,11 @@ used in mandatory inherent extrinsics) will generally be limited through economi
 simple terms, through transaction fees. The fee implications of the weight system are covered in the
 [Transaction Fees document](../runtime/fees).
 
-Substrate defines one unit of weight as one picosecond of execution time on fixed reference hardware
-(Intel Core i7-7700K CPU with 64GB of RAM and an NVMe SSD). Benchmarking on reference hardware makes
+Substrate defines one unit of weight as one picosecond of execution time, that is **10<sup>12</sup>
+weight = 1 second**, or 1,000 weight = 1 nanosecond, on fixed reference hardware (Intel Core
+i7-7700K CPU with 64GB of RAM and an NVMe SSD).
+
+Benchmarking on reference hardware makes
 weights comparable across runtimes, which allows composability of software components from different
 sources. In order to tune a runtime for different validator hardware assumptions, you can set a
 different maximum block weight. For example, in order to allow validators to participate that are
