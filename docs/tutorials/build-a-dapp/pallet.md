@@ -69,7 +69,7 @@ At a high level, a FRAME pallet can be broken down into six sections:
 
 ```rust
 // 1. Imports
-use frame_support::{decl_module, decl_storage, decl_event, decl_error, dispatch, traits::Get};
+use frame_support::{decl_module, decl_storage, decl_event, decl_error, dispatch};
 use frame_system::ensure_signed;
 
 // 2. Configuration
