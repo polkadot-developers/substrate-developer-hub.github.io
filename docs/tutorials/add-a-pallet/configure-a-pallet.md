@@ -130,7 +130,7 @@ parameter_types! {
     pub const MaxNickLength: usize = 32;
 }
 
-impl pallet_nicks::Trait for Runtime {
+impl pallet_nicks::Config for Runtime {
     // The Balances pallet implements the ReservableCurrency trait.
     // https://substrate.dev/rustdocs/v3.0.0/pallet_balances/index.html#implementations-2
     type Currency = pallet_balances::Module<Runtime>;
