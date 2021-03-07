@@ -145,8 +145,8 @@ following code will need to be added to your `pallets/template/src/lib.rs` file:
 ```rust
 /// Configure the pallet by specifying the parameters and types on which it depends.
 pub trait Config: frame_system::Config {
-	  /// Because this pallet emits events, it depends on the runtime's definition of an event.
-	  type Event: From<Event<Self>> + Into<<Self as frame_system::Config>::Event>;
+    /// Because this pallet emits events, it depends on the runtime's definition of an event.
+    type Event: From<Event<Self>> + Into<<Self as frame_system::Config>::Event>;
 }
 ```
 
