@@ -152,7 +152,7 @@
     <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">MaxNickLength</span><span class="token punctuation">:</span> <span class="token keyword">usize</span> <span class="token operator">=</span> <span class="token number">32</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">impl</span> <span class="token namespace">pallet_nicks<span class="token punctuation">::</span></span><span class="token class-name">Trait</span> <span class="token keyword">for</span> <span class="token class-name">Runtime</span> <span class="token punctuation">{</span>
+<span class="token keyword">impl</span> <span class="token namespace">pallet_nicks<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token keyword">for</span> <span class="token class-name">Runtime</span> <span class="token punctuation">{</span>
     <span class="token comment">// The Balances pallet implements the ReservableCurrency trait.</span>
     <span class="token comment">// https://substrate.dev/rustdocs/v3.0.0/pallet_balances/index.html#implementations-2</span>
     <span class="token keyword">type</span> <span class="token class-name">Currency</span> <span class="token operator">=</span> <span class="token namespace">pallet_balances<span class="token punctuation">::</span></span><span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">Runtime</span><span class="token operator">></span><span class="token punctuation">;</span>
