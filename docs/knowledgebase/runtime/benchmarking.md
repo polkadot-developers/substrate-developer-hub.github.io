@@ -9,7 +9,7 @@ and functional. This is the target blocktime. So in each block production phase,
 take so many extrinsic calls and compute for their results. We use weight to represent how much
 computations are needed for a runtime extrinsic.
 
-Some extrinsics has more computation and has a larger weight. If this extrinsic is included, then
+Some extrinsics have more computation and therefore have a larger weight. If this extrinsic is included, then
 there is less capacity left to include other extrinsics in the block. This is further explained in
 the [Transaction Weight chapter](../learn-substrate/weight).
 
