@@ -236,6 +236,8 @@ to confirm that the pallet is working as expected.
 > **Note:** You can also manually set the node URL in Polkadot-JS Apps by navigating to the
 > **Settings** tab, and have the **remote node/endpoint to connect to** set to **Local Node**.
 
+Congrats! You have created and integrated a new pallet inside it's own create for your node! If you want to see a solution to get to this step [here is one to compare to](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/create-a-pallet) using FRAME v1 macros.
+
 ## Publish Your Pallet
 
 Once your pallet is no longer in test phase, you should consider publishing it to GitHub or
