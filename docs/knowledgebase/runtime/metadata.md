@@ -344,10 +344,10 @@ decl_event!(
 Substrate's metadata would describe these events as follows:
 
 ```json
-"event": [
+"events": [
   {
     "name": "ExtrinsicSuccess",
-    "arguments": [
+    "args": [
       "DispatchInfo"
     ],
     "documentation": [
@@ -356,7 +356,7 @@ Substrate's metadata would describe these events as follows:
   },
   {
     "name": "ExtrinsicFailed",
-    "arguments": [
+    "args": [
       "DispatchError",
       "DispatchInfo"
     ],
