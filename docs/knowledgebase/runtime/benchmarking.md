@@ -195,8 +195,8 @@ Benchmarking](../../tutorials/runtime-benchmarking).
     ```
 
     At the last line in the `benchmarks!` macro, `impl_benchmark_test_suite!` takes three input: the
-    module name, the function that generates a test genesis storage `new_text_ext()`, and a test
-    runtime we built when writing our test cases, and expand them into testing code.
+    module name, the function that generates a test genesis storage (i.e. `new_text_ext()`), and a test
+    runtime, and expand them into testing code. The test runtime can often be the same one used for testing. 
 
     Ultimately benchmarking code is expanded as testing code, so it takes the code you write in
     testing (you do, right?) to build up [the mock
@@ -258,7 +258,7 @@ Benchmarking](../../tutorials/runtime-benchmarking).
     ```
 
     There seems to be a lot of code, but we are mainly setting up an environment that all
-    benchmarking code will run, such as we pass in a set of storage keys that should not be counted
+    benchmarking code will run. For example, we pass in a set of storage keys that should not be counted
     as pallet-specific database read-write, because these read-write are issued from the Substrate
     system (`frame-system`).
 
@@ -473,7 +473,7 @@ pub mod pallet {
   // -- snip --
   #[pallet::call]
   impl<T: Config> Pallet<T> {
-    #[pallet::weight(<T as pallet::Config>::WeightInfo::accumulate_dummy(0))]
+    #[pallet::weight(T::WeightInfo::accumulate_dummy(0))]
     pub(super) fn accumulate_dummy() -> DispatchResultWithPostInfo {
       // -- snip
 
