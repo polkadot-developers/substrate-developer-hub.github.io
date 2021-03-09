@@ -14,7 +14,7 @@ there is less capacity left to include other extrinsics in the block. This is fu
 the [Transaction Weight chapter](../learn-substrate/weight).
 
 In Substrate, **10^12 Weight = 1 Second**, and i.e 1,000 weight = 1 nanosecond, measured on a
-referenced hardware.
+referenced hardware<sup>[#1](#footnote-ref-hardware)</sup>.
 
 So we want to have an estimate of how much computation it takes before actually running the
 extrinsics, and this will also affect how much transaction fee we charge beforehand. If the
@@ -82,8 +82,10 @@ security safeguard in Substrate.
     }
     ```
 
+  The detail syntax and functionality can be seen in the [`benchmarks!` macro documentation](https://substrate.dev/rustdocs/v3.0.0/frame_benchmarking/macro.benchmarks.html).
+
 - At the end, it deduces a multi-variable linear equation for the weight function on how the
-  computation time changes with respect to the change of your specified variables.
+  execution time changes with respect to the change of your specified variables.
 
 - It generates a `WeightInfo` structure in Rust that can either be further tweaked, or easily
   integrated into your runtime.
@@ -128,7 +130,7 @@ Benchmarking](../../tutorials/runtime-benchmarking).
       }
 
       impl_benchmark_test_suite!(
-        Pallet, 
+        Pallet,
         crate::tests::new_test_ext(),
         crate::tests::Test,
       );
@@ -199,7 +201,7 @@ Benchmarking](../../tutorials/runtime-benchmarking).
     Ultimately benchmarking code is expanded as testing code, so it takes the code you write in
     testing (you do, right?) to build up [the mock
     runtime](https://substrate.dev/docs/en/knowledgebase/runtime/tests#mock-runtime-environment). If
-    you are not familiar with how pallet test cases are written, please refer to our [Runtime Tests
+    you are not familiar with how to write pallet test cases, please refer to our [Runtime Tests
     chapter](tests).
 
 5. With all the code completed on the pallet side, you need to add code in the node runtime. First
@@ -225,9 +227,9 @@ Benchmarking](../../tutorials/runtime-benchmarking).
     Then in the node runtime, as usual, have your runtime implemements the pallet configurable trait
     and add the pallet in `construct_runtime!`. For details, refer to [Add a Pallet to Your Runtime
     Tutorial](../../tutorials/add-a-pallet). Then our runtime also implements
-    `frame_benchmarking::Benchmark` trait under a feature flag, and implement the
+    `frame_benchmarking::Benchmark` trait under a feature flag and implement the
     `dispatch_benchmark` method, as [shown in the
-    file](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs#L1412).
+    file](https://github.com/paritytech/substrate/blob/v3.0.0/bin/node/runtime/src/lib.rs#L1328).
 
     ```rust
     #[cfg(feature = "runtime-benchmarks")]
@@ -548,3 +550,8 @@ up, but not doing fancy computation.
     Pallet](https://www.youtube.com/watch?v=Qa6sTyUqgek)
 
   - [Tutorial: Runtime Benchmarking](../../tutorials/runtime-benchmarking)
+
+## Footnotes
+
+  1. <span id="footnote-ref-hardware">The</span> reference hardware has a spec of Intel Core
+  i7-7700K CPU with 64GB of RAM and an NVMe SSD.

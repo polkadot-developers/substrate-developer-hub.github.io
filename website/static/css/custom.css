@@ -183,6 +183,10 @@ input#search_input_react {
     border-top: 1px solid #990036;
 }
 
+sup {
+  font-size: 70%;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
