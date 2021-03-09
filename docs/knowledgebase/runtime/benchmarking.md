@@ -27,7 +27,7 @@ might also be a relationship between the time and the input or the existing stat
 database storage) when running the extrinsic. As any computer scientist can tell, we are getting
 into a time complexity analysis of the function.
 
-This is where Substrate Runtime Benchmarking comes in. It has a set of toolchain to help determine
+This is where Substrate Runtime Benchmarking comes in. It has a set of toolchains to help determine
 the computation time and thus the transaction weight of a runtime extrinsic. It runs the benchmarked
 extrinsic over and over with varying inputs and the computation time is measured. At the end, it:
 
