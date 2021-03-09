@@ -256,7 +256,7 @@ Benchmarking](../../tutorials/runtime-benchmarking).
     ```
 
     There seems to be a lot of code, but we are mainly setting up an environment that all
-    benchmarking code will run, such as we pass in a set of storage keys that should not be counted
+    benchmarking code will run. For example, we pass in a set of storage keys that should not be counted
     as pallet-specific database read-write, because these read-write are issued from the Substrate
     system (`frame-system`).
 
