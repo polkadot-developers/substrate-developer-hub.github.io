@@ -473,8 +473,13 @@ pub mod pallet {
   // -- snip --
   #[pallet::call]
   impl<T: Config> Pallet<T> {
-    #[pallet::weight(T::WeightInfo::accumulate_dummy(0))]
-    pub(super) fn accumulate_dummy() -> DispatchResultWithPostInfo {
+    #[pallet::weight(
+      T::WeightInfo::set_dummy((*new_value).saturated_into())
+    )]
+    pub(super) fn set_dummy(
+      origin: OriginFor<T>,
+      #[pallet::compact] new_value: T::Balance,
+    ) -> DispatchResultWithPostInfo {
       // -- snip
 
       // All good, no refund.
@@ -485,8 +490,8 @@ pub mod pallet {
 ```
 
 For each extrinsic, we add an attribute macro `pallet::weight` and pass in the weight implementation
-function with the same name as the extrinsic, and pass in input variables that the weight function
-depends on.
+function with the same name as the extrinsic and variables that affect the weight. In the above,
+the parameter passed to `set_dummy` is also passed to the weight function.
 
 ## Best Practice and Common Patterns
 
