@@ -177,7 +177,7 @@ Benchmarking](../../tutorials/runtime-benchmarking).
     accumulate_dummy {
       let b in 1 .. 1000;
       let caller = account("caller", 0, 0);
-    }: _ (RawOrigin::Signed(caller), b.into())
+    }: _(RawOrigin::Signed(caller), b.into())
     ```
 
     This is when the execution section is just a one-line code that call the extrinsic with the same
