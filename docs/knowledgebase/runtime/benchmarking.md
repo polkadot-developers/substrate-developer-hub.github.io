@@ -471,7 +471,7 @@ pub mod pallet {
   // -- snip --
   #[pallet::call]
   impl<T: Config> Pallet<T> {
-    #[pallet::weight(<T as pallet::Config>::WeightInfo::accumulate_dummy(0))]
+    #[pallet::weight(T::WeightInfo::accumulate_dummy(0))]
     pub(super) fn accumulate_dummy() -> DispatchResultWithPostInfo {
       // -- snip
 
