@@ -159,7 +159,7 @@ Benchmarking](../../tutorials/runtime-benchmarking).
     set_dummy_benchmark {
       let b in 1 .. 1000;
     }: {
-      set_dummy (RawOrigin::Root, b.into());
+      set_dummy(RawOrigin::Root, b.into());
     }
     ```
 
