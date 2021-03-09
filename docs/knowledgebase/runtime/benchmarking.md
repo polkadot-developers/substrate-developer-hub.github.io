@@ -194,7 +194,7 @@ Benchmarking](../../tutorials/runtime-benchmarking).
 
     At the last line in the `benchmarks!` macro, `impl_benchmark_test_suite!` takes three input: the
     module name, the function that generates a test genesis storage (i.e. `new_text_ext()`), and a test
-    runtime we built when writing our test cases, and expand them into testing code.
+    runtime, and expand them into testing code. The test runtime can often be the same one used for testing. 
 
     Ultimately benchmarking code is expanded as testing code, so it takes the code you write in
     testing (you do, right?) to build up [the mock
