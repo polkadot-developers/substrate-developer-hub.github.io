@@ -86,7 +86,7 @@ security safeguard in Substrate.
   computation time changes with respect to the change of your specified variables.
 
 - It generates a `WeightInfo` structure in Rust that can either be further tweaked, or easily
-  integrated and called in your runtime.
+  integrated into your runtime.
 
 ## How to Benchmark?
 
