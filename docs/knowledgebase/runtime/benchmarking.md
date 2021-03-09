@@ -127,8 +127,11 @@ Benchmarking](../../tutorials/runtime-benchmarking).
         // Individual benchmark cases here
       }
 
-      impl_benchmark_test_suite!(Pallet, crate::tests::new_test_ext(),
-        crate::tests::Test);
+      impl_benchmark_test_suite!(
+        Pallet, 
+        crate::tests::new_test_ext(),
+        crate::tests::Test,
+      );
     }
     ```
 
