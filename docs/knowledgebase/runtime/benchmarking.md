@@ -82,7 +82,7 @@ security safeguard in Substrate.
     }
     ```
 
-  The detail syntax and functionality can be seen in the [`benchmarks!` macro documentation](https://substrate.dev/rustdocs/v3.0.0/frame_benchmarking/macro.benchmarks.html).
+  The full syntax and functionality can be seen in the [`benchmarks!` macro API documentation](https://substrate.dev/rustdocs/v3.0.0/frame_benchmarking/macro.benchmarks.html).
 
 - At the end, it deduces a multi-variable linear equation for the weight function on how the
   execution time changes with respect to the change of your specified variables.
@@ -196,7 +196,7 @@ Benchmarking](../../tutorials/runtime-benchmarking).
 
     At the last line in the `benchmarks!` macro, `impl_benchmark_test_suite!` takes three input: the
     module name, the function that generates a test genesis storage (i.e. `new_text_ext()`), and a test
-    runtime, and expand them into testing code. The test runtime can often be the same one used for testing. 
+    runtime, and expand them into testing code. The test runtime can often be the same one used for testing.
 
     Ultimately benchmarking code is expanded as testing code, so it takes the code you write in
     testing (you do, right?) to build up [the mock
