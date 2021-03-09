@@ -132,7 +132,7 @@ libraries. Thus it can be used in runtimes that also depend on `3.0.0`.
 > Note that substrate adheres to the [semver](https://semver.org/) standards - thus each release is 
 on the form `major.minor.patch`. In general it is _not_ expected that major releases are compatible!
 Thus if you are developing a pallet, or integrating ones, be sure to match versions to keep things
-all working collectively correctly. 
+all working correctly. 
 
 ### Your Pallet's Dev Dependencies
 
