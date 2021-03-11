@@ -68,7 +68,7 @@ your runtime has. For example, it depends on the
 ```TOML
 [dependencies]
 #--snip--
-pallet-balances = { default-features = false, version = '2.0.0' }
+pallet-balances = { default-features = false, version = '3.0.0' }
 ```
 
 ### Crate Features
@@ -144,8 +144,8 @@ So based on the `balances` import shown above, the `contracts` import will look 
 ```TOML
 [dependencies]
 #--snip--
-pallet-contracts = { version = '2.0.0', default_features = false }
-pallet-contracts-primitives = { version = '2.0.0', default_features = false }
+pallet-contracts = { default-features = false, version = '3.0.0' }
+pallet-contracts-primitives = { default-features = false, version = '3.0.0' }
 ```
 
 As with other pallets, the Contracts pallet has an `std` feature. We should build its `std` feature
@@ -165,12 +165,6 @@ std = [
 ]
 ```
 
-Now is a good time to check that everything compiles correctly so far with:
-
-```bash
-SKIP_WASM_BUILD=1 cargo check
-```
-
 ## Adding the Contracts Pallet
 
 Now that we have successfully imported the Contracts pallet crate, we need to add it to our Runtime.
@@ -187,6 +181,13 @@ For our runtime, the implementation will look like this:
 **`runtime/src/lib.rs`**
 
 ```rust
+use pallet_transaction_payment::CurrencyAdapter;
+   /* --snip-- */
+
+/*** Add This Line ***/
+use pallet_contracts::weights::WeightInfo;
+```
+```rust
 
 // These time units are defined in number of blocks.
    /* --snip-- */
@@ -196,6 +197,16 @@ For our runtime, the implementation will look like this:
 pub const MILLICENTS: Balance = 1_000_000_000;
 pub const CENTS: Balance = 1_000 * MILLICENTS;
 pub const DOLLARS: Balance = 100 * CENTS;
+pub const CANS: Balance = CENTS;
+
+const fn deposit(items: u32, bytes: u32) -> Balance {
+	items as Balance * 15 * CENTS + (bytes as Balance) * 6 * CENTS
+}
+
+/// We assume that ~10% of the block weight is consumed by `on_initalize` handlers.
+/// This is used to limit the maximal weight of a single extrinsic.
+const AVERAGE_ON_INITIALIZE_RATIO: Perbill = Perbill::from_percent(10);
+
 /*** End Added Block ***/
 ```
 
@@ -207,41 +218,54 @@ impl pallet_timestamp::Trait for Runtime {
 
 /*** Add This Block ***/
 parameter_types! {
-	pub const TombstoneDeposit: Balance = 16 * MILLICENTS;
-	pub const RentByteFee: Balance = 4 * MILLICENTS;
-	pub const RentDepositOffset: Balance = 1000 * MILLICENTS;
+	pub const TombstoneDeposit: Balance = deposit(
+		1,
+		sp_std::mem::size_of::<pallet_contracts::ContractInfo<Runtime>>() as u32
+	);
+	pub const DepositPerContract: Balance = TombstoneDeposit::get();
+	pub const DepositPerStorageByte: Balance = deposit(0, 1);
+	pub const DepositPerStorageItem: Balance = deposit(1, 0);
+	pub RentFraction: Perbill = Perbill::from_rational_approximation(1u32, 30 * DAYS);
 	pub const SurchargeReward: Balance = 150 * MILLICENTS;
+	pub const SignedClaimHandicap: u32 = 2;
+	pub const MaxDepth: u32 = 32;
+	pub const MaxValueSize: u32 = 16 * 1024;
+	// The lazy deletion runs inside on_initialize.
+	pub DeletionWeightLimit: Weight = AVERAGE_ON_INITIALIZE_RATIO *
+		BlockWeights::get().max_block;
+	// The weight needed for decoding the queue should be less or equal than a fifth
+	// of the overall weight dedicated to the lazy deletion.
+	pub DeletionQueueDepth: u32 = ((DeletionWeightLimit::get() / (
+			<Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(1) -
+			<Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(0)
+		)) / 5) as u32;
+	pub MaxCodeSize: u32 = 128 * 1024;
 }
 
-impl pallet_contracts::Trait for Runtime {
+impl pallet_contracts::Config for Runtime {
 	type Time = Timestamp;
 	type Randomness = RandomnessCollectiveFlip;
 	type Currency = Balances;
 	type Event = Event;
-	type DetermineContractAddress = pallet_contracts::SimpleAddressDeterminer<Runtime>;
-	type TrieIdGenerator = pallet_contracts::TrieIdFromParentCounter<Runtime>;
 	type RentPayment = ();
-	type SignedClaimHandicap = pallet_contracts::DefaultSignedClaimHandicap;
+	type SignedClaimHandicap = SignedClaimHandicap;
 	type TombstoneDeposit = TombstoneDeposit;
-	type StorageSizeOffset = pallet_contracts::DefaultStorageSizeOffset;
-	type RentByteFee = RentByteFee;
-	type RentDepositOffset = RentDepositOffset;
+	type DepositPerContract = DepositPerContract;
+	type DepositPerStorageByte = DepositPerStorageByte;
+	type DepositPerStorageItem = DepositPerStorageItem;
+	type RentFraction = RentFraction;
 	type SurchargeReward = SurchargeReward;
-	type MaxDepth = pallet_contracts::DefaultMaxDepth;
-	type MaxValueSize = pallet_contracts::DefaultMaxValueSize;
+	type MaxDepth = MaxDepth;
+	type MaxValueSize = MaxValueSize;
 	type WeightPrice = pallet_transaction_payment::Module<Self>;
+	type WeightInfo = pallet_contracts::weights::SubstrateWeight<Self>;
+	type ChainExtension = ();
+	type DeletionQueueDepth = DeletionQueueDepth;
+	type DeletionWeightLimit = DeletionWeightLimit;
+	type MaxCodeSize = MaxCodeSize;
 }
 /*** End Added Block ***/
 ```
-
-<!--
-We will use `type DetermineContractAddress` as an example to go into a bit more detail - you can see
-from
-[the `DetermineContractAddress` documentation](TODO)
-that it requires the trait `ContractAddressFor`. The Contracts pallet itself implements a type with
-this trait in `pallet_contracts::SimpleAddressDeterminator`, thus we can use that implementation to satisfy
-our `pallet_contracts::Trait`.
--->
 
 At this point, it is recommended to explore the
 [Contracts pallet source code](https://github.com/paritytech/substrate/blob/v3.0.0/frame/contracts/src/lib.rs)
@@ -276,7 +300,7 @@ construct_runtime!(
 		/* --snip-- */
 
 		/*** Add This Line ***/
-		Contracts: pallet_contracts::{Module, Call, Config, Storage, Event<T>},
+		Contracts: pallet_contracts::{Module, Call, Config<T>, Storage, Event<T>},
 	}
 );
 ```
@@ -290,7 +314,7 @@ should compile, the entire node will not (yet). So we will use this command to c
 runtime.
 
 ```bash
-SKIP_WASM_BUILD=1 cargo check -p node-template-runtime
+cargo check -p node-template-runtime
 ```
 
 ### Exposing The Contracts API
@@ -308,7 +332,7 @@ We start by adding the required API dependencies in our `Cargo.toml`.
 ```TOML
 [dependencies]
 #--snip--
-pallet-contracts-rpc-runtime-api = { version = '0.8.0', default-features = false }
+pallet-contracts-rpc-runtime-api = { default-features = false, version = '3.0.0' }
 ```
 
 **`runtime/Cargo.toml`**
@@ -325,15 +349,7 @@ std = [
 To get the state of a contract variable, we have to call a getter function that will return a
 `ContractExecResult` wrapper with the current state of the execution.
 
-We need to add the return type to our runtime. Add this with the other `use` statements.
-
 **`runtime/src/lib.rs`**
-
-```rust
-/*** Add This Line ***/
-use pallet_contracts_rpc_runtime_api::ContractExecResult;
-/* --snip-- */
-```
 
 We're now ready to implement the contracts runtime API. This happens in the `impl_runtime_apis!`
 macro near the end of your runtime.
@@ -344,7 +360,7 @@ impl_runtime_apis! {
 
    /*** Add This Block ***/
 	impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, BlockNumber>
-		for Runtime
+	for Runtime
 	{
 		fn call(
 			origin: AccountId,
@@ -352,17 +368,8 @@ impl_runtime_apis! {
 			value: Balance,
 			gas_limit: u64,
 			input_data: Vec<u8>,
-		) -> ContractExecResult {
-			let (exec_result, gas_consumed) =
-				Contracts::bare_call(origin, dest.into(), value, gas_limit, input_data);
-			match exec_result {
-				Ok(v) => ContractExecResult::Success {
-					flags: v.flags.bits(),
-					data: v.data,
-					gas_consumed: gas_consumed,
-				},
-				Err(_) => ContractExecResult::Error,
-			}
+		) -> pallet_contracts_primitives::ContractExecResult {
+			Contracts::bare_call(origin, dest, value, gas_limit, input_data)
 		}
 
 		fn get_storage(
@@ -385,7 +392,7 @@ impl_runtime_apis! {
 This is another good time to check that your runtime compiles correctly so far.
 
 ```bash
-SKIP_WASM_BUILD=1 cargo check -p node-template-runtime
+cargo check -p node-template-runtime
 ```
 
 ## Updating the Outer Node
@@ -404,12 +411,12 @@ don't have to maintain a dedicated `std` feature.
 
 ```toml
 [dependencies]
-jsonrpc-core = '15.0.0'
+jsonrpc-core = '15.1.0'
 structopt = '0.3.8'
 #--snip--
 # *** Add this 2 lines ***
-pallet-contracts = '2.0.0'
-pallet-contracts-rpc = '0.8.0'
+pallet-contracts  = '3.0.0'
+pallet-contracts-rpc  = '3.0.0'
 ```
 
 
@@ -433,17 +440,11 @@ pub fn create_full<C, P>(
 	C: Send + Sync + 'static,
 	C::Api: substrate_frame_rpc_system::AccountNonceApi<Block, AccountId, Index>,
 	/*** Add This Line ***/
-    C::Api: pallet_contracts_rpc::ContractsRuntimeApi<Block, AccountId, Balance, BlockNumber>,
+	C::Api: pallet_contracts_rpc::ContractsRuntimeApi<Block, AccountId, Balance, BlockNumber>,
 	/* --snip-- */
-{
-	/* --snip-- */
-
-	// Extend this RPC with a custom API by using the following syntax.
-	// `YourRpcStruct` should have a reference to a client, which is needed
-	// to call into the runtime.
-	// `io.extend_with(YourRpcTrait::to_delegate(YourRpcStruct::new(ReferenceToClient, ...)));`
 
 	/*** Add This Block ***/
+	// Contracts RPC API extension
 	io.extend_with(
 		ContractsApi::to_delegate(Contracts::new(client.clone()))
 	);
@@ -503,7 +504,7 @@ Now you are ready to compile and run your contract-capable node. Compile the nod
 with
 
 ```bash
-WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release
+cargo build --release
 ```
 
 Now launch the executable you just built by running this command
