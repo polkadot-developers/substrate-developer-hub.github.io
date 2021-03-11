@@ -1,0 +1,26 @@
+{
+  "_comment": "This file is used to provide custom strings for translations, including overriding defaults",
+  "localized-strings": {},
+  "pages-strings": {
+    "Developer Hub|no description given": "Developer Hub",
+    "Tutorials|no description given": "Tutorials",
+    "Knowledge Base|no description given": "Knowledge Base",
+    "Recipes|no description given": "Recipes",
+    "API Reference|no description given": "API Reference",
+    "Community|no description given": "Community",
+    "Community Home|no description given": "Community Home",
+    "Newsletter|no description given": "Newsletter",
+    "Substrate Technical Chat|no description given": "Substrate Technical Chat",
+    "Substrate Seminar|no description given": "Substrate Seminar",
+    "Stack Overflow|no description given": "Stack Overflow",
+    "Twitter|no description given": "Twitter",
+    "Events|no description given": "Events",
+    "More|no description given": "More",
+    "Substrate Builders Program|no description given": "Substrate Builders Program",
+    "Substrate GitHub|no description given": "Substrate GitHub",
+    "Developer Hub GitHub|no description given": "Developer Hub GitHub",
+    "Privacy Policy|no description given": "Privacy Policy",
+    "Terms of Use|no description given": "Terms of Use",
+    "Cookie Settings|no description given": "Cookie Settings"
+  }
+}

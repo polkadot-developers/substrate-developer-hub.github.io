@@ -44,9 +44,9 @@ A possible architecture could look like:
 <details>
  <summary>Reproduce diagram</summary>
 
- Go to: https://textart.io/sequence
+Go to: https://textart.io/sequence
 
- ```
+```
 object Substrate Prometheus Grafana
 note left of Prometheus: Every 1 minute
 Prometheus->Substrate: GET current metric values
@@ -55,18 +55,21 @@ note right of Prometheus: Save metric value with corresponding time stamp in loc
 note left of Grafana: Every time user opens graphs
 Grafana->Prometheus: GET values of metric `substrate_peers_count` from time-X to time-Y
 Prometheus->Grafana: `substrate_peers_count (1582023828, 5), (1582023847, 4) [...]`
- ```
+```
 
 </details>
 
+## Install Prometheus and Grafana
 
+1. Install Prometheus [here](https://prometheus.io/docs/prometheus/latest/installation/)
+2. Install Grafana [here](https://grafana.com/get)
 
-## Step 0: Install Prometheus and Grafana
+> Note: we suggest for _testing_ that you download the compiled `bin` programs for these apps
+> as apposed to fully installing them or using them in docker. Just `download` for your
+> architecture, and run it from the `working directory` that is convenient for you.
+> The links above provide instruction on this, and this guide assume you do it this way.
 
-1) Install Prometheus [here](https://prometheus.io/download/)
-2) Install Grafana [here](https://grafana.com/get)
-
-## Step 1: Run your node
+## Start a Substrate Node
 
 Substrate exposes an endpoint which serves metrics in the [Prometheus exposition
 format](https://prometheus.io/docs/concepts/data_model/) available on port
@@ -75,12 +78,57 @@ be accessed over an interface other than local host with
 `--prometheus-external`.
 
 ```bash
-./substrate
+# clear the dev database
+./target/release/node-template purge-chain --dev -y
+# start the template node with
+# optional --prometheus-port <PORT>
+# or --prometheus-external flags added
+./target/release/node-template --dev
 ```
 
-## Step 2: Retrieve the metrics
+## Configure Prometheus to scrape your Substrate node
 
-In a second terminal run:
+In the working directory where you installed Prometheus, you will find a `prometheus.yml` configuration file.
+Let's modify this (or create a custom new on) to configure Prometheus to scrape the exposed endpoint by adding
+it to the targets array. If you modify the default, here is what will be different:
+
+```yml
+# --snip--
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: "substrate_node"
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    # ** NOTE: you want to have this *LESS THAN* the block time in order to ensure
+    # ** that you have a data point for every block!
+    scrape_interval: 5s
+
+    static_configs:
+      - targets: ["localhost:9615"]
+```
+
+> **NOTE:** you want to have `scrape_interval` _less than_ the block time
+> in order to ensure that you have a data point for every block!
+
+Now we can start a Prometheus instance with the prometheus.yml config file. Presuming you downloaded the binary,
+`cd` into the install directory and run:
+
+```bash
+# specify a custom config file instead if you made one here:
+./prometheus --config.file prometheus.yml
+```
+
+leave this process running.
+
+## Check All Prometheus Metrics
+
+In a new terminal, we can do a quick status check on prometheus:
 
 ```bash
 curl localhost:9615/metrics
@@ -88,68 +136,76 @@ curl localhost:9615/metrics
 
 Which should return a similar output to:
 
-```
-# HELP substrate_block_height_number Height of the chain
-# TYPE substrate_block_height_number gauge
-substrate_block_height_number{status="best"} 12591
-substrate_block_height_number{status="finalized"} 11776
-substrate_block_height_number{status="sync_target"} 1236089
-# HELP substrate_cpu_usage_percentage Node CPU usage
-# TYPE substrate_cpu_usage_percentage gauge
-substrate_cpu_usage_percentage 98.90908813476563
-# HELP substrate_memory_usage_bytes Node memory usage
-# TYPE substrate_memory_usage_bytes gauge
-substrate_memory_usage_bytes 195504
-# HELP substrate_network_per_sec_bytes Networking bytes per second
-# TYPE substrate_network_per_sec_bytes gauge
-substrate_network_per_sec_bytes{direction="download"} 4117
-substrate_network_per_sec_bytes{direction="upload"} 437
-# HELP substrate_peers_count Number of network gossip peers
-# TYPE substrate_peers_count gauge
-substrate_peers_count 3
-# HELP substrate_ready_transactions_number Number of transactions in the ready queue
-# TYPE substrate_ready_transactions_number gauge
-substrate_ready_transactions_number 0
-```
-
-## Step 3: Configure Prometheus to scrape your Substrate node
-
-In a prometheus.yml configuration file, configure Prometheus to scrape the exposed endpoint by adding it to the targets array.
-
-```
-scrape_configs:
-  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-  - job_name: 'substrate_node'
-
-    # Override the global default and scrape targets from this job every 5 seconds.
-    scrape_interval: 5s
-
-    static_configs:
-      - targets: ['127.0.0.1:9615']
-```
-
-Launch a Prometheus instance with the prometheus.yml config file.
-
 ```bash
-./prometheus --config.file prometheus.yml
+# HELP substrate_block_height Block height info of the chain
+# TYPE substrate_block_height gauge
+substrate_block_height{status="best"} 7
+substrate_block_height{status="finalized"} 4
+# HELP substrate_build_info A metric with a constant '1' value labeled by name, version
+# TYPE substrate_build_info gauge
+substrate_build_info{name="available-vacation-6791",version="2.0.0-4d97032-x86_64-linux-gnu"} 1
+# HELP substrate_database_cache_bytes RocksDB cache size in bytes
+# TYPE substrate_database_cache_bytes gauge
+substrate_database_cache_bytes 0
+# HELP substrate_finality_grandpa_precommits_total Total number of GRANDPA precommits cast locally.
+# TYPE substrate_finality_grandpa_precommits_total counter
+substrate_finality_grandpa_precommits_total 31
+# HELP substrate_finality_grandpa_prevotes_total Total number of GRANDPA prevotes cast locally.
+# TYPE substrate_finality_grandpa_prevotes_total counter
+substrate_finality_grandpa_prevotes_total 31
+#
+# --snip--
+#
 ```
 
-## Step 4: Visualizing Prometheus metrics with Grafana
+Alternatively in a browser open that same URL (http://localhost:9615/metrics) to view
+all available metric data.
 
-![https://grafana.com/grafana/dashboards/11784](https://grafana.com/api/dashboards/11784/images/7618/image)
+> NOTE: here you can see the `HELP` fields for each metric that is exposed for monitoring via grafana.
 
-You can use [the above dashboard](https://grafana.com/grafana/dashboards/11784/) for visualizing metrics in Grafana or you can create your own. The [prometheus docs](https://prometheus.io/docs/visualization/grafana/) may be helpful here.
+## Visualizing Prometheus Metrics with Grafana
+
+Once you have Grafana running, navigate to it in a browser (**the default is https://localhost:3000/**).
+Log in (default user `admin` and password `admin`) and navigate to the [data sources](http://localhost:3000/datasources) page.
+
+You then need to select a `Prometheus` data source type and specify where Grafana needs to look for it. With your substrate node
+and Prometheus are running, the **Prometheus instance will be available on a different port than your node exposes to Prometheus**
+(This is NOT the one you set in the `prometheus.yml` file (https://localhost:9615) !)
+
+Configure Grafana to look for Prometheus on it's default port: https://localhost:9090 (unless you customized it).
+Hit `Save & Test` to ensure that you have the data source set correctly. Now you can configure a new dashboard!
+
+### Template Grafana Dashboard
+
+If you would like a basic dashboard to start [here is a template example](assets/tutorials/visualize-node-metrics/Substrate-Node-Template-Metrics.json) that you can `Import` in Grafana to get basic information about your node:
+
+<br>
+<center><img src="/docs/assets/tutorials/visualize-node-metrics/grafana.png" alt="grafana dashboard" width="50%"/></center>
+</br>
+
+If you create your own, the
+[prometheus docs for grafana use](https://prometheus.io/docs/visualization/grafana/)
+may be helpful.
+
+<b>If you do create one, consider uploading it to the
+[community list of dashboards](https://grafana.com/grafana/dashboards) and letting
+the substrate builder community know it exists by listing in on
+[Awesome Substrate](https://github.com/substrate-developer-hub/awesome-substrate)!
+Here is ours on [the grafana public dashboards](https://grafana.com/grafana/dashboards/13759/).</b>
 
 ## Next Steps
 
 ### Learn More
 
 - Learn how to [set up a private Substrate network](../../tutorials/start-a-private-network/).
+- Further configuration, notification services, and permanent installation of
+  [Substrate/Polkadot monitoring tools](https://wiki.polkadot.network/docs/en/maintain-guides-how-to-monitor-your-node).
 
 ### Examples
 
-- Take a look at the Grafana dashboard configuration for the [Polkadot
+- The Grafana dashboard configuration for the [Polkadot
   network](https://github.com/w3f/polkadot-dashboard).
+- [Grafana Template](https://grafana.com/grafana/dashboards/13759/) for a Substrate Node Template.
 
 ### References
 
@@ -157,3 +213,4 @@ You can use [the above dashboard](https://grafana.com/grafana/dashboards/11784/)
 
 - Visit the source code for
   [Substrate Prometheus Exporter](https://github.com/paritytech/substrate/tree/master/utils/prometheus).
+- See the [docs for prometheus in substrate](https://substrate.dev/rustdocs/v3.0.0/prometheus/).

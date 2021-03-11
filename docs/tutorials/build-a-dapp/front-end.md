@@ -12,7 +12,7 @@ We will give you a custom React component that you can use to interact with your
 To start the Front-End Template, navigate to its directory and run:
 
 ```bash
-# Install dependencies if this is the first time you run front-end template 
+# Install dependencies if this is the first time you run front-end template
 yarn install
 # Start the template
 yarn start
@@ -235,7 +235,7 @@ This tutorial chose to omit some of the specific details around development in o
 experience short and satisfying. However, we want you to keep learning!
 
 To learn more about building your own pallets, explore the
-[Substrate Recipes](https://substrate.dev/recipes).
+[Substrate Recipes](https://substrate.dev/recipes/).
 
 Complete the [Add a Pallet](../add-a-pallet/) tutorial to learn how to extend the Node Template with
 additional capabilities from Substrate's set of

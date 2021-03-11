@@ -15,10 +15,21 @@
  */
 
 const languages = [
+  // note: Please move the enabled languages to the top.
   {
     enabled: true,
     name: 'English',
     tag: 'en',
+  },
+  {
+    enabled: true,
+    name: '简体中文',
+    tag: 'zh-CN',
+  },
+  {
+    enabled: false,
+    name: '繁體中文',
+    tag: 'zh-HK'
   },
   {
     enabled: false,
@@ -146,7 +157,7 @@ const languages = [
     tag: 'ro',
   },
   {
-    enabled: true,
+    enabled: false,
     name: 'Русский',
     tag: 'ru',
   },
@@ -179,16 +190,6 @@ const languages = [
     enabled: false,
     name: 'Tiếng Việt',
     tag: 'vi',
-  },
-  {
-    enabled: true,
-    name: '中文',
-    tag: 'zh-CN',
-  },
-  {
-    enabled: false,
-    name: '繁體中文',
-    tag: 'zh-TW'
   },
 ];
 module.exports = languages;

@@ -14,7 +14,7 @@ Runtime events are created with the `decl_event!` macro.
 
 ```rust
 decl_event!(
-	pub enum Event<T> where AccountId = <T as Trait>::AccountId {
+	pub enum Event<T> where AccountId = <T as Config>::AccountId {
 		/// Set a value.
 		ValueSet(u32, AccountId),
 	}
@@ -24,8 +24,8 @@ decl_event!(
 The `Event` enum needs to be declared in your runtime's configuration trait.
 
 ```rust
-pub trait Trait: system::Trait {
-	type Event: From<Event<Self>> + Into<<Self as system::Trait>::Event>;
+pub trait Config: system::Config {
+	type Event: From<Event<Self>> + Into<<Self as system::Config>::Event>;
 }
 ```
 
@@ -37,7 +37,7 @@ First you need to implement the Event type in your module's configuration trait:
 
 ```rust
 // runtime/src/lib.rs
-impl template::Trait for Runtime {
+impl template::Config for Runtime {
 	type Event = Event;
 }
 ```
@@ -69,7 +69,7 @@ Substrate provides a default implementation of how to deposit an event that is d
 
 ```rust
 decl_module! {
-	pub struct Module<T: Trait> for enum Call where origin: T::Origin {
+	pub struct Module<T: Config> for enum Call where origin: T::Origin {
 		// Default implementation of `deposit_event`
 		fn deposit_event() = default;
 
@@ -83,7 +83,7 @@ decl_module! {
 ```
 
 The default behavior of this function is to call
-[`deposit_event`](https://substrate.dev/rustdocs/v2.0.0/frame_system/struct.Module.html#method.deposit_event)
+[`deposit_event`](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/struct.Pallet.html#method.deposit_event)
 from the FRAME system, which writes the event to storage.
 
 This function places the event in the System module's runtime storage for that block. At the
@@ -122,10 +122,9 @@ These [Substrate Recipes](https://github.com/substrate-developer-hub/recipes) of
 runtime events are used:
 
 - [A pallet that implements standard events](https://github.com/substrate-developer-hub/recipes/blob/master/pallets/last-caller/src/lib.rs)
-- [A pallet that does not emit events with generic types](https://github.com/substrate-developer-hub/recipes/blob/master/pallets/adding-machine/src/lib.rs)
 
 ### References
 
-- [`decl_event!` macro](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_event.html)
-- [`decl_module!` macro](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.decl_module.html)
-- [`construct_runtime!` macro](https://substrate.dev/rustdocs/v2.0.0/frame_support/macro.construct_runtime.html)
+- [`decl_event!` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_event.html)
+- [`decl_module!` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_module.html)
+- [`construct_runtime!` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.construct_runtime.html)

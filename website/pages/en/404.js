@@ -18,27 +18,33 @@ const React = require("react");
 
 const Container = require("../../../../react-bootstrap/Container");
 const Button = require("../../../../react-bootstrap/Button");
+const translate = require('../../server/translate').translate;
 
 class ErrorPage extends React.Component {
   render() {
     return (
       <Container className="text-center">
         <h2 style={{ "fontSize": "400%" }}>404</h2>
-        <p>It seems we couldn't come to consensus...</p>
+        <p><translate>It seems we couldn't come to consensus...</translate></p>
         <hr />
         <p>
-          If you think this is an error, please{" "}
+          <translate>If you think this is an error, please</translate>&nbsp;
           <a href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues">
-            open an issue
+            <translate>open an issue</translate>
           </a>
           !
         </p>
-         <p>
-       Alternatively, if you arrive here via a dead link, return to the <a href="https://substrate.dev/docs/">documentation homepage</a>.
-      </p>
+        <p>
+          <translate>Alternatively, if you arrive here via a dead link, return to the</translate>
+          &nbsp;
+          <a href="https://substrate.dev/docs/">
+            <translate>documentation homepage</translate>
+          </a>
+          .
+        </p>
         <p>
           <Button href="/" variant="secondary" className="primary-color">
-            Back to Home
+            <translate>Back to Home</translate>
           </Button>
         </p>
       </Container>

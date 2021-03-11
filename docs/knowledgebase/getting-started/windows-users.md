@@ -37,7 +37,7 @@ If you are trying to set up a Windows computer to build Substrate, do the follow
 
 4. Install LLVM: https://releases.llvm.org/download.html
 
-5. Install OpenSSL with `vcpkg`:
+5. Install OpenSSL with `vcpkg` using PowerShell:
 
    ```bash
    mkdir C:\Tools
@@ -57,4 +57,12 @@ If you are trying to set up a Windows computer to build Substrate, do the follow
    [System.Environment]::SetEnvironmentVariable('OPENSSL_STATIC', $env:OPENSSL_STATIC, [System.EnvironmentVariableTarget]::User)
    ```
 
-7. Finally, install `cmake`: https://cmake.org/download/
+7. Install `cmake`: https://cmake.org/download/
+
+8. Install `make`
+    - This can be done using Chocolatey. First you need to install the Chocolatey package manager: https://chocolatey.org/install
+    - Once Chocolatey installed you can install make:
+
+   ```
+   choco install make
+   ```

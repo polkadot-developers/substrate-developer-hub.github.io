@@ -3,7 +3,7 @@ title: Schedule an Upgrade
 ---
 
 Now that the Node Template has been upgraded to include the Scheduler pallet,
-[the `schedule` function](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_scheduler/enum.Call.html#variant.schedule)
+[the `schedule` function](https://substrate.dev/rustdocs/v3.0.0/pallet_scheduler/enum.Call.html#variant.schedule)
 can be used to perform the next runtime upgrade. In the previous section, the
 `sudo_unchecked_weight` function was used to override the weight associated with the `set_code`
 function; in this section, the runtime upgrade will be _scheduled_ so that it can be processed as
@@ -54,13 +54,13 @@ dropped - that would require a storage migration, which is out of the scope of t
 Build the upgraded runtime.
 
 ```shell
-WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release -p node-template-runtime
+cargo build --release -p node-template-runtime
 ```
 
 ## Upgrade the Runtime
 
 In the previous section, the Scheduler pallet was configured with the `Root` origin as its
-[`ScheduleOrigin`](https://substrate.dev/rustdocs/v2.0.0-rc6/pallet_scheduler/trait.Trait.html#associatedtype.ScheduleOrigin),
+[`ScheduleOrigin`](https://substrate.dev/rustdocs/v3.0.0/pallet_scheduler/trait.Config.html#associatedtype.ScheduleOrigin),
 which means that the `sudo` function (_not_ `sudo_unchecked_weight`) can be used to invoke the
 `schedule` function. Use this link to open the Polkadot JS Apps UI's Sudo tab:
 https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944. Wait until all the other fields have

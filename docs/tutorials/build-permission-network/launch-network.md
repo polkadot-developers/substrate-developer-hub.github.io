@@ -23,7 +23,7 @@ c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a
 0024080112201ce5f00ef6e89374afb625f1ae4c1546d31234e87e3c3f51a62b91dd6bfa57df
 ```
 
-> Notes: You can get the above bs59 decoded peer id by using `bs58::decode` similar to how it was used in our genese storage configuration. Otherwise, there is a small [tool](https://whisperd.tech/bs58-codec/) to ease your life.
+> Notes: You can get the above bs58 decoded peer id by using `bs58::decode` similar to how it was used in our genese storage configuration. Otherwise, there is a [small tool](https://whisperd.tech/bs58-codec/) to ease your life.
 
 For Bob's node,
 
@@ -54,7 +54,7 @@ For Charlie's node,
 For Dave's node,
 
 ```shell
-# node key 
+# node key
 a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a
 
 # peer id
@@ -71,7 +71,7 @@ The nodes of Alice and Bob are already configured in genesis storage and serve a
 Let's start Alice's node first:
 
 ```shell
-./target/release/node-template --chain=local --base-path ~/tmp/validator1 --alice --node-key=c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a --port 30333 --ws-port 9944
+./target/release/node-template --chain=local --base-path /tmp/validator1 --alice --node-key=c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a --port 30333 --ws-port 9944
 ```
 
 Here we are using `--node-key` to specify the key that are used for the security connection of the network. This key is also used to generate the human readable PeerId as shown in above section.
@@ -88,7 +88,7 @@ Other used CLI flags are,
 Start Bob's node:
 
 ```shell
-./target/release/node-template --chain=local --base-path ~/tmp/validator2 --bob --node-key=6ce3be907dbcabf20a9a5a60a712b4256a54196000a8ed4050d352bc113f8c58 --port 30334 --ws-port 9945
+./target/release/node-template --chain=local --base-path /tmp/validator2 --bob --node-key=6ce3be907dbcabf20a9a5a60a712b4256a54196000a8ed4050d352bc113f8c58 --port 30334 --ws-port 9945
 ```
 
 After both nodes are started, you should be able to see new blocks authored and finalized. Now let's use the [polkadot.js apps](https://polkadot.js.org/apps/) and check the well known nodes of our blockchain. Don't forget to use our local node `127.0.0.1:9944`.
@@ -112,10 +112,10 @@ We can also check the owner of one node by querying the storage `owners` with th
 Let's start Charlie's node,
 
 ```shell
-./target/release/node-template --chain=local --base-path ~/tmp/validator3 --name charlie  --node-key=3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e --port 30335 --ws-port=9946 --offchain-worker always
+./target/release/node-template --chain=local --base-path /tmp/validator3 --name charlie  --node-key=3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e --port 30335 --ws-port=9946 --offchain-worker always
 ```
 
-After it was started, you should see there is no connected peers for this node. This is because we are already in a permissioned network, you need to get authorization to to be connectable! 
+After it was started, you should see there is no connected peers for this node. This is because we are already in a permissioned network, you need to get authorization to to be connectable!
 
 Remember that we are using `sudo` pallet for our governance, we can make a sudo call on `add_well_known_node` dispatch call provided by node-authorization pallet to add our node. You can find more avaliable calls in this [reference doc](https://docs.rs/pallet-node-authorization/2.0.0/pallet_node_authorization/enum.Call.html).
 
@@ -129,12 +129,12 @@ Now we have 3 well known nodes.
 
 ## Add an extra connection
 
-Let's add another node, but not well known, only a "sub-node" of Charlie, which can only conneted to Charlie's well known node.
+Let's add another node, not a well-known node but a "sub-node" of Charlie, which can only connect to Charlie's well-known node.
 
 Start the node with following command.
 
 ```shell
-./target/release/node-template --chain=local --base-path ~/tmp/validator4 --name dave --node-key=a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a --port 30336 --ws-port 9947 --offchain-worker always
+./target/release/node-template --chain=local --base-path /tmp/validator4 --name dave --node-key=a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a --port 30336 --ws-port 9947 --offchain-worker always
 ```
 
 After it was started, there is no avaliable connections. Firstly, Charlie need to configure his well known node to allow the connection from Dave's node.
@@ -153,6 +153,6 @@ Similarly, Dave can add connection from Charlie's node.
 
 Restarting Dave's node in case it's not connecting with other node. You should now see Dave is catching up blocks and only have one peer which belong to Charlie.
 
-**Congratulations!** 
+**Congratulations!**
 
 You are at the end of this tutorial and are already learned about how to build a fresh permissioned network. You can also play with other dispatchable calls like `remove_well_known_node`, `remove_connections`. Feel free to reach out and share your experience on the journey of building permissioned blockchains.

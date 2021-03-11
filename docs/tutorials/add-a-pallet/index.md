@@ -12,7 +12,7 @@ remain minimal, it does not include most of the modules (called "pallets") from 
 core FRAME pallets.
 
 This guide will show you how you can add the
-[Nicks pallet](https://substrate.dev/rustdocs/v2.0.0/pallet_nicks/index.html). You can follow
+[Nicks pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_nicks/index.html). You can follow
 similar patterns to add additional FRAME pallets to your runtime, however you should note that each
 pallet is a little different in terms of the specific configuration settings needed to use it
 correctly. This tutorial will help you understand what you'll need to consider when adding a new
@@ -25,11 +25,11 @@ If you run into an issue on this tutorial, **we are here to help!** You can
 
 ## Install the Node Template
 
-You should already have version `v2.0.0` of the Node Template compiled on your computer from when
+You should already have version `v2.0.1` of the Node Template compiled on your computer from when
 you completed the
 [Create Your First Substrate Chain](../../tutorials/create-your-first-substrate-chain/) tutorial. If
 you do not, please complete it.
 
 > Experienced developers who truly prefer to skip those tutorials may install the Node Template
 > according to
-> [the instructions in its readme](https://github.com/substrate-developer-hub/substrate-node-template#local-development).
+> [the instructions in its readme](https://github.com/substrate-developer-hub/substrate-node-template#getting-started).

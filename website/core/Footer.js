@@ -16,10 +16,16 @@
 
 const React = require("react");
 
+const translate = require('docusaurus/lib/server/translate').translate;
+
+// note: The <translate>{string}</translate> in this file need to be manually added in
+//   `website/data/custom-translation-strings.json`. `yarn write-translations` doesn't cover
+//   them. Ref: https://docusaurus.io/docs/en/translation#custom-translation-strings
+
 class Blast extends React.Component {
   render() {
-    // FIXME: Doccusaurus v1 doesn't allow  for themes or customisation yet
-    // so we have to inline some styles to move our element to top
+    // note: Doccusaurus v1 doesn't allow for themes or customisation yet
+    //   so we have to inline some styles to move our element to top
     let cfg = this.props.config;
     return (
       <div>
@@ -112,67 +118,84 @@ class Footer extends React.Component {
             )}
           </a>
           <div>
-            <h5>Developer Hub</h5>
+            <h5><translate>Developer Hub</translate></h5>
             <a href={this.pageUrl("tutorials", this.props.language)}>
-              Tutorials
+              <translate>Tutorials</translate>
             </a>
             <a href={'/docs/' + this.props.language + '/'}>
-              Knowledge Base
+              <translate>Knowledge Base</translate>
             </a>
-            <a href="https://substrate.dev/recipes/">Recipes</a>
-            <a href="https://substrate.dev/rustdocs">API Reference</a>
+            <a href="https://substrate.dev/recipes/">
+              <translate>Recipes</translate>
+            </a>
+            <a href="https://substrate.dev/rustdocs">
+              <translate>API Reference</translate>
+            </a>
           </div>
           <div>
-            <h5>Community</h5>
-            <a href={this.pageUrl("community", this.props.language)}>Community Home</a>
-            <a href={this.pageUrl("newsletter", this.props.language)}>Newsletter</a>
-            <a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">
-              Substrate Technical Chat
+            <h5><translate>Community</translate></h5>
+            <a href={this.pageUrl("community", this.props.language)}>
+              <translate>Community Home</translate></a>
+            <a href={this.pageUrl("newsletter", this.props.language)}>
+              <translate>Newsletter</translate>
             </a>
-            <a href={this.pageUrl("seminar", this.props.language)}>Substrate Seminar</a>
+            <a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">
+              <translate>Substrate Technical Chat</translate>
+            </a>
+            <a href={this.pageUrl("seminar", this.props.language)}>
+              <translate>Substrate Seminar</translate>
+            </a>
             <a
               href="http://stackoverflow.com/questions/tagged/substrate"
               target="_blank"
               rel="noreferrer noopener"
             >
-              Stack Overflow
+              <translate>Stack Overflow</translate>
             </a>
             <a
-              href="https://twitter.com/ParityTech"
+              href="https://twitter.com/substrate_io"
               target="_blank"
               rel="noreferrer noopener"
             >
-              Twitter
+              <translate>Twitter</translate>
             </a>
             <a
               href="https://www.meetup.com/parity/"
               target="_blank"
               rel="noreferrer noopener"
             >
-              Events
+              <translate>Events</translate>
             </a>
           </div>
           <div>
-            <h5>More</h5>
-            <a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a>
+            <h5><translate>More</translate></h5>
+            <a href="https://www.substrate.io/builders-program/">
+              <translate>Substrate Builders Program</translate>
+            </a>
             <a href="https://www.parity.io/blog/">Blog</a>
             <a href="https://github.com/paritytech/substrate">
-              Substrate GitHub
+              <translate>Substrate GitHub</translate>
             </a>
             <a href="https://github.com/substrate-developer-hub/">
-              Developer Hub GitHub
+              <translate>Developer Hub GitHub</translate>
             </a>
-            <a href="https://www.parity.io/privacy/">Privacy Policy</a>
-            <a href="/terms">Terms of Use</a>
+            <a href="https://www.parity.io/privacy/">
+              <translate>Privacy Policy</translate>
+            </a>
+            <a href="/terms">
+              <translate>Terms of Use</translate>
+            </a>
             <a href="#" id="cookie-settings">
-              Cookie Settings
+              <translate>Cookie Settings</translate>
+
               {/* Script for cookie settings pop-up. */}
               <script dangerouslySetInnerHTML={{ __html: `
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();
                 };
-              ` }}></script>
+              ` }}>
+              </script>
             </a>
           </div>
         </section>

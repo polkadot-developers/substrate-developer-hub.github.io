@@ -181,7 +181,9 @@ Every pallet has a configuration trait called `Config` that the runtime must imp
 
 To figure out what we need to implement for this pallet specifically, you can take a look at the
 FRAME
-[`pallet_contracts::Trait` documentation](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/trait.Config.html).
+
+[`pallet_contracts::Config` documentation](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/trait.Config.html).
+
 For our runtime, the implementation will look like this:
 
 **`runtime/src/lib.rs`**
@@ -249,11 +251,6 @@ impl pallet_contracts::Config for Runtime {
 /*** End Added Block ***/
 ```
 
-Let's take `type WeightPrice` as an example to go into a bit more detail. You can see
-from
-[the `WeightPrice` documentation](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/trait.Config.html#associatedtype.WeightPrice)
-that it requires the `Convert` trait, which is required in order to satisfy the `WeightPrice` type and must come from its implementation in the [`pallet_transaction_payment` pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_transaction_payment/struct.Module.html#impl-Convert). Thus we can use that implementation, written as `pallet_transaction_payment::Module<Self>` to satisfy
-our `pallet_contracts::Config` for the type `WeightPrice` it implements. At this point, it is recommended to explore the
 [Contracts pallet source code](https://github.com/paritytech/substrate/blob/v3.0.0/frame/contracts/src/lib.rs)
 if things don't make sense or you want to gain a deeper understanding.
 
@@ -392,7 +389,7 @@ will add the custom RPC endpoint and a genesis configuration.
 
 ### Adding the RPC API extension
 
-With the proper runtime API exposed. We now add the RPC to the node's service to call into that
+With the proper runtime API exposed, now we can add the RPC to the node's service to call into that
 runtime API. Because we are now working in the outer node, we are not building to `no_std` and we
 don't have to maintain a dedicated `std` feature.
 
@@ -416,7 +413,7 @@ add the Contracts pallet along with its API.
 **`node/src/rpc.rs`**
 
 ```rust
-use node_template_runtime::{opaque::Block, AccountId, Balance, Index, BlockNumber};
+use node_template_runtime::{opaque::Block, AccountId, Balance, Index, BlockNumber}; // NOTE THIS IS AN ADJUSTMENT TO AN EXISTING LINE
 use pallet_contracts_rpc::{Contracts, ContractsApi};
 ```
 
@@ -514,7 +511,9 @@ Now launch the executable you just built by running this command
 In this guide, we walked through specifically how to import the Contracts pallet, but as mentioned
 in the beginning of this guide, each pallet will be a little different. Have no fear, you can always
 refer to the
-[demonstration Substrate node runtime](https://github.com/paritytech/substrate/blob/v3.0.0/bin/node/runtime/)
+
+[demonstration Substrate node runtime](https://github.com/paritytech/substrate/tree/v3.0.0/bin/node/runtime)
+
 which includes nearly every pallet in the FRAME.
 
 In the `Cargo.toml` file of the Substrate node runtime, you will see an example of how to import
@@ -527,8 +526,8 @@ runtime. You can basically copy what was done there to your own runtime.
 - With your node now capable of running smart contracts, go learn about
   [Substrate ink! smart contracts](../../knowledgebase/smart-contracts/).
 - [Substrate Recipes](https://substrate.dev/recipes/) offers detailed tutorials about writing
-  [Runtime APIs](https://substrate.dev/recipes/3-entrees/runtime-api.html) and
-  [Custom RPCs](https://substrate.dev/recipes/3-entrees/custom-rpc.html) like the ones explored in
+  [Runtime APIs](https://substrate.dev/recipes/runtime-api.html) and
+  [Custom RPCs](https://substrate.dev/recipes/custom-rpc.html) like the ones explored in
   this tutorial.
 - Understand the [Chain Spec](../../knowledgebase/integrate/chain-spec) file to customize your Genesis
   Configuration.

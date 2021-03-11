@@ -10,7 +10,7 @@ FRAME provides two smart contract virtual machines which can be added to your Su
 
 ### Contracts Module
 
-The **FRAME Contracts pallet** (SEAL) provides functionality for the runtime to deploy and execute
+The [**FRAME Contracts pallet**](contracts-pallet) provides functionality for the runtime to deploy and execute
 WebAssembly smart-contracts. It is designed to iterate on the design of modern smart contract
 platforms.
 
@@ -184,7 +184,7 @@ influence your decision on the kinds of situations you may want to use these dif
 ### References
 
 - Visit the reference docs for the
-  [Contracts pallet](https://substrate.dev/rustdocs/v2.0.0/pallet_contracts/index.html).
-- Visit the reference docs for the
-  [EVM pallet](https://substrate.dev/rustdocs/v2.0.0/pallet_evm/index.html).
+  [Contracts pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/index.html).
+- View source code and documentation of the
+  [EVM module](https://github.com/paritytech/frontier/tree/master/frame/evm).
 - Take a look at the [repository for ink!](https://github.com/paritytech/ink).

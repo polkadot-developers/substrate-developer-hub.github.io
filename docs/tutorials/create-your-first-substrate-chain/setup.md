@@ -25,23 +25,24 @@ the latest stable version you can return to these steps.
 Once the prerequisites are installed, you can use Git to clone the Substrate Developer Hub Node
 Template, which serves as a good starting point for building on Substrate.
 
-1. Clone the Node Template (version `v2.0.0`).
+1. Clone the Node Template (version `v2.0.1`).
 
-   ```bash
-   	git clone -b v2.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
-   ```
+    ```bash
+    git clone -b v2.0.1 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+    ```
 
 2. Initialize your WebAssembly build environment
 
-   ```bash
-   make init
-   ```
+    ```bash
+    cd substrate-node-template
+    make init
+    ```
 
 3. Compile the Node Template
 
-   ```bash
-   make build
-   ```
+    ```bash
+    make build
+    ```
 
 The time required for the compilation step depends on the hardware you're using. Don't wait before
 moving on.
@@ -63,7 +64,7 @@ Now you can proceed to set up the front-end template with these commands.
 
 ```bash
 # Clone the code from github
-git clone -b v2.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
+git clone -b v2.0.1 --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
 
 # Install the dependencies
 cd substrate-front-end-template

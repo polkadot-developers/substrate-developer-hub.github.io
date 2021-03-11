@@ -39,7 +39,7 @@ runtime's `Cargo.toml` file. If you want a proper primer into Cargo References, 
 
 Open `substrate-node-template/runtime/Cargo.toml` and you will see a list of all the dependencies
 your runtime has. For example, it depends on the
-[Balances pallet](https://substrate.dev/rustdocs/v2.0.0):
+[Balances pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/index.html):
 
 **`runtime/Cargo.toml`**
 
@@ -170,5 +170,5 @@ error[E0425]: cannot find function `memory_new` in module `sandbox`
 Before moving on, check that the new dependencies resolve correctly by running:
 
 ```bash
-SKIP_WASM_BUILD=1 cargo check -p node-template-runtime
+cargo check -p node-template-runtime
 ```

@@ -54,10 +54,10 @@ It is encoded with the two least significant bits denoting the mode:
 - `0b01`: two-byte mode: upper six bits and the following byte is the LE encoding of the value
   (valid only for values `64-(2**14-1)`).
 - `0b10`: four-byte mode: upper six bits and the following three bytes are the LE encoding of the
-  value (valid only for values `(2**14-1)-(2**30-1)`).
+  value (valid only for values `(2**14)-(2**30-1)`).
 - `0b11`: Big-integer mode: The upper six bits are the number of bytes following, less four. The
   value is contained, LE encoded, in the bytes following. The final (most significant) byte must be
-  non-zero. Valid only for values `(2**30-1)-(2**536-1)`.
+  non-zero. Valid only for values `(2**30)-(2**536-1)`.
 
 #### Example
 
@@ -194,14 +194,14 @@ that is written in Rust and maintained by Parity Technologies.
 - C++: [`soramitsu/scale`](https://github.com/soramitsu/kagome/tree/master/core/scale)
 - JavaScript: [`polkadot-js/api`](https://github.com/polkadot-js/api)
 - AssemblyScript: [`LimeChain/as-scale-codec`](https://github.com/LimeChain/as-scale-codec)
-- Haskell: [`airalab/hs-web3`](https://github.com/airalab/hs-web3/tree/master/src/Codec)
+- Haskell: [`airalab/hs-web3`](https://github.com/airalab/hs-web3/tree/master/packages/scale)
 - Java: [`emeraldpay/polkaj`](https://github.com/emeraldpay/polkaj)
 - Ruby: [`itering/scale.rb`](https://github.com/itering/scale.rb)
 
 ## References
 
 - Visit the reference docs for the
-  [`parity-scale-codec`](https://substrate.dev/rustdocs/v2.0.0/parity_scale_codec/index.html).
+  [`parity-scale-codec`](https://substrate.dev/rustdocs/v3.0.0/parity_scale_codec/index.html).
 
 - Visit the auxiliary encoding section of the
   [Polkadot runtime environment specification](https://github.com/w3f/polkadot-spec/).

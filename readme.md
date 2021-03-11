@@ -59,20 +59,6 @@ you did not introduce, please
 
 Once you are done with your changes, feel free to submit a PR.
 
-### Staging Deployment
-
-There are two ways to deploy to *staging* environment, which you can access at
-[staging.substrate.dev](https://staging.substrate.dev), which is hosted on Heroku. Please check with the team members
-for the HTTP basic authentication username and password.
-
-1. Commit to your local repository. Run [`scripts/deploy-staging`](./scripts/deploy-staging). This builds the project
-into the docusaurus static site, and force push the static site to `staging` branch. The result is then picked up by
-Heroku. Note that multilingual translations are NOT pulled in.
-
-2. Commit to your local repository, and then push to `staging-source` branch. This triggers the CI to build the website
-AND also pull in multilingual translations from our Crowdin project. The final built static site is then pushed to the
-`staging` branch and deployed to Heroku.
-
 ### Updates
 
 There is a helper script that can be used to update `substrate.dev/rustdocs` links in the `docs/knowledgebase`
@@ -88,6 +74,12 @@ OLD_VERSION=v2.0.0-rc3 NEW_VERSION=v2.0.0-rc4 ./scripts/update-kb-rustdocs
 Our production site is at [substrate.dev](https://substrate.dev). To deploy to production, merge your update into the `source`
 branch. This triggers the CI to build the website AND also pull in multilingual translation from our Crowdin project.
 The final built static site is then pushed to the `master` branch and hosted on GitHub Pages.
+
+### Staging Deployment
+
+We have a *staging* deployment at [devhub-maindocs.herokuapp.com](https://devhub-maindocs.herokuapp.com), which is hosted on Heroku. Please check with the devhub team for the username and password to access the staging site.
+
+To deploy to staging, you could push to the `staging-source` branch in the repository. This will trigger the CI to build the website, pull in multilingual translations from crowdin, and have the final built static site being pushed to `staging` branch. This in turns trigger Heroku to picked up the latest commit from `staging` branch and deploy to the staging site.
 
 ## License
 

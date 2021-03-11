@@ -15,7 +15,7 @@ Run the following commands to start your node:
 
 You should see something like this if your node is running successfully:
 
-```
+```bash
 Sep 23 15:23:21.759  WARN Running in --dev mode, RPC CORS has been disabled.
 Sep 23 15:23:21.759  INFO Substrate Node
 Sep 23 15:23:21.759  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu
@@ -115,7 +115,7 @@ The Pallet Interactor allows you to submit
 [unsigned](../../knowledgebase/learn-substrate/extrinsics#unsigned-transactions) or
 [signed](../../knowledgebase/learn-substrate/extrinsics#signed-transactions) extrinsics and also
 provides a button that makes it easy to invoke an extrinsic by way of
-[the `sudo` function from the Sudo pallet](https://substrate.dev/rustdocs/v2.0.0/pallet_sudo/enum.Call.html#variant.sudo).
+[the `sudo` function from the Sudo pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_sudo/enum.Call.html#variant.sudo).
 You will learn more about using the "SUDO" button to invoke privileged extrinsics in the third
 tutorial, the [Add a Pallet](../add-a-pallet) tutorial.
 
