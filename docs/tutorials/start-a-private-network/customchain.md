@@ -16,11 +16,16 @@ all contents from that directory.
 The first participant can launch her node with:
 
 ```bash
+# purge chain (only required for new/modified dev chainspec)
+./target/release/node-template purge-chain --base-path /tmp/node01 --chain local
+```
+```bash
+# start node01
 ./target/release/node-template \
   --base-path /tmp/node01 \
   --chain ./customSpecRaw.json \
   --port 30333 \
-  --ws-port 9944 \
+  --ws-port 9945 \
   --rpc-port 9933 \
   --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
   --validator \
@@ -42,24 +47,24 @@ Here are some differences from when we launched as Alice.
 You should see the console outputs something as follows:
 
 ```bash
-Sep 24 13:28:56.804  INFO Substrate Node
-Sep 24 13:28:56.804  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu
-Sep 24 13:28:56.804  INFO ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
-Sep 24 13:28:56.804  INFO 📋 Chain specification: Local Testnet
-Sep 24 13:28:56.804  INFO 🏷  Node name: MyNode01
-Sep 24 13:28:56.804  INFO 👤 Role: AUTHORITY
-Sep 24 13:28:56.804  INFO 💾 Database: RocksDb at /tmp/node01/chains/local_testnet/db
-Sep 24 13:28:56.804  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
-Sep 24 13:28:57.188  INFO 🔨 Initializing Genesis block/state (state: 0xe3cb…c5ca, header-hash: 0x0ded…9b9d)
-Sep 24 13:28:57.191  INFO 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
-Sep 24 13:28:57.380  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
-Sep 24 13:28:57.381  WARN Using default protocol ID "sup" because none is configured in the chain specs
-Sep 24 13:28:57.382  INFO 🏷  Local node identity is: 12D3KooWQa2M77x2hFviVAFLHt9pMUYQVC93fdiVMKDbL3XvYSzj (legacy representation: 12D3KooWQa2M77x2hFviVAFLHt9pMUYQVC93fdiVMKDbL3XvYSzj)
-Sep 24 13:28:57.402  INFO 📦 Highest known block at #0
-Sep 24 13:28:57.403  INFO 〽️ Prometheus server started at 127.0.0.1:9615
-Sep 24 13:28:57.434  INFO Listening for new connections on 127.0.0.1:9944.
-Sep 24 13:29:02.436  INFO 💤 Idle (0 peers), best: #0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 0 ⬆ 0
-Sep 24 13:29:07.437  INFO 💤 Idle (0 peers), best: #0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 0 ⬆ 0
+2021-03-10 18:32:15  Substrate Node    
+2021-03-10 18:32:15  ✌️  version 3.0.0-1c5b984-x86_64-linux-gnu    
+2021-03-10 18:32:15  ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2021    
+2021-03-10 18:32:15  📋 Chain specification: Local Testnet    
+2021-03-10 18:32:15  🏷 Node name: MyNode01    
+2021-03-10 18:32:15  👤 Role: AUTHORITY    
+2021-03-10 18:32:15  💾 Database: RocksDb at /tmp/node01/chains/local_testnet/db    
+2021-03-10 18:32:15  ⛓  Native runtime: node-template-100 (node-template-1.tx1.au1)    
+2021-03-10 18:32:16  🔨 Initializing Genesis block/state (state: 0xea47…9ba8, header-hash: 0x9d07…7cce)    
+2021-03-10 18:32:16  👴 Loading GRANDPA authority set from genesis on what appears to be first startup.    
+2021-03-10 18:32:16  ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch    
+2021-03-10 18:32:16  Using default protocol ID "sup" because none is configured in the chain specs    
+2021-03-10 18:32:16  🏷 Local node identity is: 12D3KooWJvVUoAa7R8gjCSQ45x69Ahh3HcdVSH1dvpcA52vKawHL    
+2021-03-10 18:32:16  📦 Highest known block at #0    
+2021-03-10 18:32:16  〽️ Prometheus server started at 127.0.0.1:9615    
+2021-03-10 18:32:16  Listening for new connections on 127.0.0.1:9944.    
+2021-03-10 18:32:21  💤 Idle (0 peers), best: #0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 0 ⬆ 0    
+2021-03-10 18:32:26  💤 Idle (0 peers), best: #0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 0 ⬆ 0  
 ```
 
 ## Add Keys to Keystore
@@ -94,7 +99,7 @@ key. You can repeat those steps to insert your
 [**GRANDPA**](https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#grandpa) key (the
 **ed25519** key)
 
-![Inserting a GRANDPA key using Apps](assets/tutorials/private-network/private-network-apps-insert-key.png)
+![Inserting a GRANDPA key using Apps](assets/tutorials/private-network/private-network-apps-insert-key-gran.png)
 
 ```
 keytype: gran
@@ -134,7 +139,7 @@ for your `curl` request:
 
 ```bash
 # Submit a new key via RPC, connect to where your `rpc-port` is listening
-$ curl http://localhost:9933 -H "Content-Type:application/json;charset=utf-8" -d "@/path/to/file"
+curl http://localhost:9933 -H "Content-Type:application/json;charset=utf-8" -d "@/path/to/file"
 ```
 
 If you enter the command and parameters correctly, the node will return a JSON response as follows.
@@ -151,55 +156,32 @@ Subsequent validators can now join the network. This can be done by specifying t
 parameter as Bob did previously.
 
 ```bash
+# purge chain (only required for new/modified dev chainspec)
+./target/release/node-template purge-chain --base-path /tmp/node02 --chain local
+```
+```bash
+# start node02
 ./target/release/node-template \
   --base-path /tmp/node02 \
   --chain ./customSpecRaw.json \
   --port 30334 \
-  --ws-port 9945 \
+  --ws-port 9946 \
   --rpc-port 9934 \
   --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
   --validator \
   --rpc-methods Unsafe \
   --name MyNode02 \
-  --bootnodes /ip4/<IP Address>/tcp/<Port>/p2p/<Peer ID>
+  --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWAvdwXzjmRpkHpz8PzUTaX1o23SdpgAWVyTGMSQ68QXK6
+  # you must fill the correct info in the line above:
+  # --bootnodes /ip4/<IP Address>/tcp/<Port>/p2p/<Peer ID>
 ```
 
 As before, we specify another `base-path`, give it another `name`, and also specify this node as a
 `validator`.
 
-Once the second node is up, you should see them authoring:
-
-```bash
-Sep 24 13:32:29.909  INFO Substrate Node
-Sep 24 13:32:29.909  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu
-Sep 24 13:32:29.909  INFO ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
-Sep 24 13:32:29.909  INFO 📋 Chain specification: Local Testnet
-Sep 24 13:32:29.909  INFO 🏷  Node name: MyNode02
-Sep 24 13:32:29.909  INFO 👤 Role: AUTHORITY
-Sep 24 13:32:29.909  INFO 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db
-Sep 24 13:32:29.909  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
-Sep 24 13:32:30.342  INFO 🔨 Initializing Genesis block/state (state: 0xe3cb…c5ca, header-hash: 0x0ded…9b9d)
-Sep 24 13:32:30.346  INFO 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
-Sep 24 13:32:30.552  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
-Sep 24 13:32:30.553  WARN Using default protocol ID "sup" because none is configured in the chain specs
-Sep 24 13:32:30.554  INFO 🏷  Local node identity is: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn (legacy representation: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn)
-Sep 24 13:32:30.577  INFO 📦 Highest known block at #0
-Sep 24 13:32:30.611  INFO Listening for new connections on 127.0.0.1:9945.
-Sep 24 13:32:31.126  INFO 🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn
-Sep 24 13:32:31.175  INFO 🔍 Discovered new external address for our node: /ip4/192.168.0.117/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn
-Sep 24 13:32:35.614  INFO 💤 Idle (1 peers), best: #0 (0x0ded…9b9d), finalized #0 (0x0ded…9b9d), ⬇ 1.1kiB/s ⬆ 1.1kiB/s
-Sep 24 13:32:36.844  INFO ✨ Imported #1 (0xad75…d784)
-Sep 24 13:32:40.615  INFO 💤 Idle (1 peers), best: #1 (0xad75…d784), finalized #0 (0x0ded…9b9d), ⬇ 0.2kiB/s ⬆ 0.1kiB/s
-```
-
-The final lines shows that your node has peered with another (**`1 peers`**), and they have produced
-a block (**`best: #1 (0xad75…d784)`**).
-
-Now you're ready to add keys to its keystore by following the process (in the previous section) just
-like you did for the first node.
-
-> If you're inserting keys with the UI, you must connect the UI to the second node's WebSocket
-> endpoint before inserting the second node's keys.
+> Now you must also set the authoring keys in this node, just as we did 
+> [for the first node](#add-keys-to-keystore). Note that you will need to communicate with your node
+> on the correct `ws-port` (so setting the app UI and submitting `curl` to the right port is critical)
 
 > A node will not be able to produce blocks if it has not added its Aura key.
 
@@ -211,8 +193,41 @@ like you did for the first node.
 > Reminder: All validators must be using identical chain specifications in order to peer. You should
 > see the same genesis block and state root hashes.
 
+Once the second node is up *and* it has it's authoring keys, you should see both nodes reporting block authoring:
+
+```bash
+2021-03-10 19:02:43  Substrate Node    
+2021-03-10 19:02:43  ✌️  version 3.0.0-1c5b984-x86_64-linux-gnu    
+2021-03-10 19:02:43  ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2021    
+2021-03-10 19:02:43  📋 Chain specification: Local Testnet    
+2021-03-10 19:02:43  🏷 Node name: MyNode02    
+2021-03-10 19:02:43  👤 Role: AUTHORITY    
+2021-03-10 19:02:43  💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db    
+2021-03-10 19:02:43  ⛓  Native runtime: node-template-100 (node-template-1.tx1.au1)    
+2021-03-10 19:02:43  Using default protocol ID "sup" because none is configured in the chain specs    
+2021-03-10 19:02:43  🏷 Local node identity is: 12D3KooWAvdwXzjmRpkHpz8PzUTaX1o23SdpgAWVyTGMSQ68QXK6    
+2021-03-10 19:02:43  📦 Highest known block at #0    
+2021-03-10 19:02:44  Listening for new connections on 127.0.0.1:9946.    
+2021-03-10 19:02:44  🔍 Discovered new external address for our node: /ip4/192.168.42.203/tcp/30334/p2p/12D3KooWAvdwXzjmRpkHpz8PzUTaX1o23SdpgAWVyTGMSQ68QXK6    
+2021-03-10 19:02:48  🙌 Starting consensus session on top of parent 0x9d07d1757a9ca248e58141ce52a11fca37f71007dec16650b87a853f0d4c7cce    
+2021-03-10 19:02:48  🎁 Prepared block for proposing at 1 [hash: 0x33484d425b9cb0708d854e8c331cb012ffb1faf86fd79637a92f4329cdc083cf; parent_hash: 0x9d07…7cce; extrinsics (1): [0x9f5f…99fe]]    
+2021-03-10 19:02:48  🔖 Pre-sealed block for proposal at 1. Hash now 0x771ebaa4ec3cf588ce0f5c72c9afc1c7dd2c8c7b88b221e317b5b270ff26ad9b, previously 0x33484d425b9cb0708d854e8c331cb012ffb1faf86fd79637a92f4329cdc083cf.    
+2021-03-10 19:02:48  ✨ Imported #1 (0x771e…ad9b)    
+2021-03-10 19:02:49  💤 Idle (1 peers), best: #1 (0x771e…ad9b), finalized #0 (0x9d07…7cce), ⬇ 0.6kiB/s ⬆ 0.7kiB/s    
+2021-03-10 19:02:54  🙌 Starting consensus session on top of parent 0x771ebaa4ec3cf588ce0f5c72c9afc1c7dd2c8c7b88b221e317b5b270ff26ad9b    
+2021-03-10 19:02:54  💤 Idle (1 peers), best: #1 (0x771e…ad9b), finalized #0 (0x9d07…7cce), ⬇ 25 B/s ⬆ 32 B/s    
+2021-03-10 19:02:54  🎁 Prepared block for proposing at 2 [hash: 0x9941f9691b205476ea57743e2d04430670afa661af925be623be3eb2e36fc861; parent_hash: 0x771e…ad9b; extrinsics (1): [0xc720…a736]]    
+2021-03-10 19:02:54  🔖 Pre-sealed block for proposal at 2. Hash now 0xb2cadabf4ef2c713677da97db0d102c5b95939692e575fac33c349ea3a7884c6, previously 0x9941f9691b205476ea57743e2d04430670afa661af925be623be3eb2e36fc861.    
+2021-03-10 19:02:54  ✨ Imported #2 (0xb2ca…84c6)    
+2021-03-10 19:02:59  💤 Idle (1 peers), best: #2 (0xb2ca…84c6), finalized #0 (0x9d07…7cce), ⬇ 45 B/s ⬆ 0.1kiB/s    
+2021-03-10 19:03:04  💤 Idle (1 peers), best: #2 (0xb2ca…84c6), finalized #0 (0x9d07…7cce), ⬇ 52 B/s ⬆ 57 B/s    
+```
+
+The final lines shows that your node has peered with another (**`1 peers`**), and they have produced
+a block (**`best: #2 (0xb2ca…84c6)`**).
+
 You will notice that even after you add the keys for the second node no block finalization has
-happened (**`finalized #0 (0x0ded…9b9d)`**). Substrate nodes require a restart after inserting a
+happened (**`finalized #0 (0x9d07…7cce)`**). Substrate nodes require a restart after inserting a
 GRANDPA key. Kill your nodes and restart them with the same commands you used previously. Now blocks
 should be finalized.
 

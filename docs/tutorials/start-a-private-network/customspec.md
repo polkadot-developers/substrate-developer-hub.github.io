@@ -21,8 +21,7 @@ the one we used before. To start, we need to export the chain spec to a file nam
 
 ```bash
 # Export the local chainspec to json
-$ ./target/release/node-template build-spec --disable-default-bootnode --chain local > customSpec.json
-2020-05-28 13:29:05 Building chain spec
+./target/release/node-template build-spec --disable-default-bootnode --chain local > customSpec.json
 ```
 
 The file we just created contains several fields, and you can learn a lot by exploring them. By far
@@ -35,23 +34,22 @@ by **"grandpa"** field. That section looks like this
 
 ```json
 {
-  //-- snip --
-  "genesis": {
+ //-- snip --
+ "genesis": {
     "runtime": {
-      "system": {
-        "changesTrieConfig": null
-        //-- snip --
+      "frameSystem": {
+        "changesTrieConfig": null,
       },
       "palletAura": {
         "authorities": [
-          "5FfBQ3kwXrbdyoqLPvcXRp7ikWydXawpNs2Ceu3WwFdhZ8W4",
+          "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY",
           "5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty"
         ]
       },
       "palletGrandpa": {
         "authorities": [
           [
-            "5G9NWJ5P9uk7am24yCKeLZJqXWW6hjuMyRJDmw4ofqxG8Js2",
+            "5FA9nQDVg267DEd8m1ZypXLBnvN7SFxYwV7ndqSYGiN9TTpu",
             1
           ],
           [
@@ -60,9 +58,9 @@ by **"grandpa"** field. That section looks like this
           ]
         ]
       },
-      //-- snip --
+    //-- snip --
     }
-  }
+ }
 }
 ```
 
@@ -91,8 +89,7 @@ the data in its local storage. Distributing a raw spec ensures that each node wi
 the proper storage keys.
 
 ```bash
-$ ./target/release/node-template build-spec --chain=customSpec.json --raw --disable-default-bootnode > customSpecRaw.json
-2020-05-28 13:31:37 Building chain spec
+./target/release/node-template build-spec --chain=customSpec.json --raw --disable-default-bootnode > customSpecRaw.json
 ```
 
 Finally share the `customSpecRaw.json` with your all the other validators in the network.
