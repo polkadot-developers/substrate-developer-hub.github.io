@@ -51,12 +51,15 @@ event is emitted, the event will not be reverted.
 ### Finalizing a Block
 
 After all queued extrinsics have been executed, the Executive module calls into each module's
-`on_finalize` function to perform any final business logic which should take place at the end of the
+`on_idle` and `on_finalize` function to perform any final business logic which should take place at the end of the
 block. The modules are again executed in the order which they are defined in the
 `construct_runtime!` macro, but in this case, the System module finalizes last.
 
 Then, final checks take place where the digest and storage root in the block header match what was
 calculated.
+
+`on_idle` will also pass through the remaining weight of the block to allow for execution based on the 
+usage of the blockchain. 
 
 ## Next Steps
 
