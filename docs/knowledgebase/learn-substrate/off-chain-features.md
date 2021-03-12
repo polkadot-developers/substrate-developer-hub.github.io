@@ -61,8 +61,6 @@ Note that the results from off-chain workers are not subject to regular transact
 verification mechanism (e.g. voting, averaging, checking sender signatures, or simply "trusting")
 should be implemented to determine what information gets into the chain.
 
-For more information on how to use off-chain workers in your next runtime development project,
-please refer to our [Development Guide](../runtime/off-chain-workers).
 
 ## Off-Chain Storage
 
@@ -98,5 +96,3 @@ populating the storage every time a block is processed, so the data is always co
 exactly the same for every node with indexing enabled.
 
 ## Learn More
-
-- [Off-Chain Workers Development Guide](../runtime/off-chain-workers)
