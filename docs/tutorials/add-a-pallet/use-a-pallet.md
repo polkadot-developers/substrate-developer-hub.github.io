@@ -72,7 +72,7 @@ invoked the `setName` dispatchable and deposited the funds needed to reserve a n
 Use the "Signed" button to invoke
 [the `killName` dispatchable](https://substrate.dev/rustdocs/v3.0.0/pallet_nicks/enum.Call.html#variant.kill_name)
 function and use Bob's account ID as the function's argument. The `killName` function must be called
-by the `ForceOrigin` that was configured with the Nicks pallet's `Trait` interface in the previous
+by the `ForceOrigin` that was configured with the Nicks pallet's `Config` interface in the previous
 section. You may recall that we configured this to be the FRAME system's `Root` origin. The Node
 Template's
 [chain specification](https://github.com/substrate-developer-hub/substrate-node-template/blob/v3.0.0/node/src/chain_spec.rs)
@@ -121,7 +121,7 @@ forcibly clear the nickname associated with any account (including her own) that
 nickname associated with it. Here are some other things you may want to try:
 
 - Add a nickname that is shorter than the `MinNickLength` or longer than the `MaxNickLength` that
-  you configured with the Nick's pallet's `Trait` configuration trait.
+  you configured with the Nick's pallet's `Config` configuration trait.
 - Add a nickname for Bob then use Alice's account and the "SUDO" button to forcibly kill Bob's
   nickname. Switch back to Bob's account and dispatch the `clearName` function.
 
