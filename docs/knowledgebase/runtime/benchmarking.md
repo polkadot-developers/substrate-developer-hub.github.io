@@ -4,17 +4,15 @@ title: Runtime Benchmarking
 
 ## What Is Runtime Benchmarking?
 
-In Substrate, each block must be produced within a certain time limit to keep the blockchain healthy
-and functional. This is the target blocktime. So in each block production phase, Substrate can only
-take so many extrinsic calls and compute for their results. We use weight to represent how much
-computations are needed for a runtime extrinsic.
-
-Some extrinsics have more computation and therefore have a larger weight. If this extrinsic is included, then
-there is less capacity left to include other extrinsics in the block. This is further explained in
-the [Transaction Weight chapter](../learn-substrate/weight).
+The default Substrate block production systems produce blocks at consistent intervals. This is the
+known as the target block time. Given this requirement, Substrate based blockchains are only be able
+to execute a limited number of extrinsics per block. The time it takes to execute an extrinsic may
+vary based on the computational complexity, storage complexity, hardware used, and many other
+factors. We use generic measurement called **weight** to represent how many extrinsics can fit into
+one block. This is further explained in the [transaction weight section](../learn-substrate/weight).
 
 In Substrate, **10^12 Weight = 1 Second**, and i.e 1,000 weight = 1 nanosecond, measured on a
-referenced hardware<sup>[#1](#footnote-ref-hardware)</sup>.
+specific reference hardware<sup>[[1]](#footnote-ref-hardware)</sup>.
 
 So we want to have an estimate of how much computation it takes before actually running the
 extrinsics, and this will also affect how much transaction fee we charge beforehand. If the
@@ -82,7 +80,8 @@ security safeguard in Substrate.
     }
     ```
 
-  The full syntax and functionality can be seen in the [`benchmarks!` macro API documentation](https://substrate.dev/rustdocs/v3.0.0/frame_benchmarking/macro.benchmarks.html).
+  The full syntax and functionality can be seen in the [`benchmarks!` macro API
+  documentation](https://substrate.dev/rustdocs/v3.0.0/frame_benchmarking/macro.benchmarks.html).
 
 - At the end, it deduces a multi-variable linear equation for the weight function on how the
   execution time changes with respect to the change of your specified variables.
@@ -165,8 +164,8 @@ Benchmarking](../../tutorials/runtime-benchmarking).
     }
     ```
 
-    The name of the benchmark case is `set_dummy`. Here `b` is the input that passed into
-    the extrinsic `set_dummy` that we believe will affect the extrinsic execution time. `b` will be
+    The name of the benchmark case is `set_dummy`. Here `b` is the input that passed into the
+    extrinsic `set_dummy` that we believe will affect the extrinsic execution time. `b` will be
     varied from 1 to 1,000 and run repeatedly for each value of `b` according to the arguments we
     passed when running the benchmark command. We will get back to this in the following.
 
@@ -195,8 +194,9 @@ Benchmarking](../../tutorials/runtime-benchmarking).
     ```
 
     At the last line in the `benchmarks!` macro, `impl_benchmark_test_suite!` takes three input: the
-    module name, the function that generates a test genesis storage (i.e. `new_text_ext()`), and a test
-    runtime, and expand them into testing code. The test runtime can often be the same one used for testing.
+    module name, the function that generates a test genesis storage (i.e. `new_text_ext()`), and a
+    test runtime, and expand them into testing code. The test runtime can often be the same one used
+    for testing.
 
     Ultimately benchmarking code is expanded as testing code, so it takes the code you write in
     testing (you do, right?) to build up [the mock
@@ -258,9 +258,9 @@ Benchmarking](../../tutorials/runtime-benchmarking).
     ```
 
     There seems to be a lot of code, but we are mainly setting up an environment that all
-    benchmarking code will run. For example, we pass in a set of storage keys that should not be counted
-    as pallet-specific database read-write, because these read-write are issued from the Substrate
-    system (`frame-system`).
+    benchmarking code will run. For example, we pass in a set of storage keys that should not be
+    counted as pallet-specific database read-write, because these read-write are issued from the
+    Substrate system (`frame-system`).
 
     We add the benchmark code with the `add_benchmark!` macro, passing the parameters we made at the
     beginning, and batching them up together in the `batches` variable.
@@ -461,9 +461,9 @@ pub trait WeightInfo {
 }
 ```
 
-Here, associated function `set_dummy` take a parameter. This is because we have the line
-`let b in 1 .. 1000;` in our `set_dummy` benchmarking function, indicating the execution time
-likely be affected by this parameter.
+Here, associated function `set_dummy` take a parameter. This is because we have the line `let b in 1
+.. 1000;` in our `set_dummy` benchmarking function, indicating the execution time likely be affected
+by this parameter.
 
 The generated file implements these associated functions. To integrate them, we can copy the
 generated file into the directory where `lib.rs` is located and named it as `weights.rs`.
@@ -563,5 +563,5 @@ up, but not doing fancy computation.
 
 ## Footnotes
 
-  1. <span id="footnote-ref-hardware">The</span> reference hardware has a spec of Intel Core
-  i7-7700K CPU with 64GB of RAM and an NVMe SSD.
+  1. <span id="footnote-ref-hardware">The</span> reference hardware use for benchmarking Substrate
+     is an Intel Core i7-7700K CPU with 64GB of RAM and an NVMe SSD.
