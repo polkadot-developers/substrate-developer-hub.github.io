@@ -294,7 +294,7 @@ command to execute benchmarks for a pallet will look like this:
 - `steps` and `repeat` means how many steps will be taken to walk through each variable range, and
   how many time the execution state will be repeated.
 
-![multi-variables-regression](../../assets/runtime/benchmarking/multi-variables-regression.png)
+![multi-variables-regression](assets/runtime/benchmarking/multi-variables-regression.png)
 
 Let's take `accumulate_dummy` benchmark case as an example.
 
