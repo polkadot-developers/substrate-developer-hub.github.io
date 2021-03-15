@@ -132,7 +132,7 @@ class Tutorials extends React.Component {
       difficulty: <translate>Medium</translate>,
       length: <translate>2 Hours</translate>,
       prerequisite: true,
-      version: "2.0.0",
+      version: "3.0.0",
       href: 'tutorials/add-contracts-pallet/',
     }, {
       title: <translate>Build a Permissioned Network</translate>,
@@ -158,7 +158,7 @@ class Tutorials extends React.Component {
       difficulty: <translate>Easy</translate>,
       length: <translate>4 Hours</translate>,
       prerequisite: false,
-      version: "2.0.0",
+      version: "3.0.0",
       hrefFrom: 'baseUrl',
       href: 'tutorials/ink-smart-contracts-tutorial/',
     },

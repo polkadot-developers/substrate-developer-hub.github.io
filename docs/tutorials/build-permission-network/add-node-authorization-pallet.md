@@ -28,11 +28,11 @@ they are always allowed to connect with each other.
 Instead, you can manipulate the connection between a well know node
 and a normal node or between two normal nodes.
 
-It uses [offchain worker](../../knowledgebase/runtime/off-chain-workers.md)
-to set authorized nodes in node-authorization pallet. Make sure to enable offchain worker with
-the right CLI flag as offchain worker is diabled by default for non-authority nodes.
-Your node can be lagged with the latest block, in this case you need to disable offchain worker
-and manually set reachable reserved nodes to sync up with the network.
+It uses offchain worker to set authorized nodes in node-authorization pallet. 
+Make sure to enable offchain worker with the right CLI flag as offchain worker
+is diabled by default for non-authority nodes. Your node can be lagged with the
+latest block, in this case you need to disable offchain worker and manually set
+reachable reserved nodes to sync up with the network.
 
 ## Add the `node-authorization` pallet
 
