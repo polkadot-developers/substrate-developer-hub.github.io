@@ -55,7 +55,8 @@
       "knowledgebase/advanced/executor",
       "knowledgebase/advanced/cryptography",
       "knowledgebase/advanced/storage",
-      "knowledgebase/advanced/ss58-address-format"
+      "knowledgebase/advanced/ss58-address-format",
+      "knowledgebase/advanced/no-hash-collections"
     ],
     "Contribute": [
       "contribute/help-translate"
