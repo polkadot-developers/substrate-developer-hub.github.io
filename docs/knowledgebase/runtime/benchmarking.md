@@ -14,62 +14,116 @@ one block. This is further explained in the [transaction weight section](../lear
 In Substrate, **10^12 Weight = 1 Second**, and i.e 1,000 weight = 1 nanosecond, measured on a
 specific reference hardware<sup>[[1]](#footnote-ref-hardware)</sup>.
 
-So we want to have an estimate of how much computation it takes before actually running the
-extrinsics, and this will also affect how much transaction fee we charge beforehand. If the
-extrinsic turns out to run with less computation, some of the estimated weight can be returned, and
-eventually causing the transaction fee returned back to user. This is further explained in the
+Substrate does not use a mechanism similar to "gas metering" for extrinsic measurement due to the
+large overhead such a process would introduce. Instead, Substrate expects benchmarking to provide an
+approximate maximum for the worst case scenario of executing an extrinsic. Substrate will charge the
+user assuming this worst case scenario path was taken, and if the extrinsic turns out needing less
+resources, some of the estimated weight and fees can be returned. This is further explained in the
 [Transaction Fees chapter](./fees).
 
-Now the question is how do we determine the computation time and weight of our extrinsics? There
-might also be a relationship between the time and the input or the existing state (the current
-database storage) when running the extrinsic. As any computer scientist can tell, we are getting
-into a time complexity analysis of the function.
+So how do we determine the worst case scenario computation time and weight of our extrinsics?
 
-This is where Substrate Runtime Benchmarking comes in. It has a set of toolchains to help determine
-the computation time and thus the transaction weight of a runtime extrinsic. It runs the benchmarked
-extrinsic over and over with varying inputs and the computation time is measured. At the end, it:
+This is where Substrate Runtime Benchmarking comes in. It has a set of tools to help determine the
+weight of a runtime extrinsic. It execute the extrinsics in a pallet multiple times within the
+runtime environment, and keeps track of the execution time.
 
-- returns the raw data of these measured time with these varying input and how many database read
-  write has been performed.
+In total, it:
 
-- deduces the coefficient on how the computation time changes with respect to the input using linear
-  regression, assuming a linear relationship. It is up to the runtime developer to review the raw
-  data and check if it is indeed a linear relationship. If not, either optimize the extrinsic for
-  its time complexity or adjust the weight function accordingly.
+- Sets up and executes extrinsics from your pallets.
 
-- outputs a rust file with these weight functions that can be easily integrated in our runtime.
+- Captures the raw data of these benchmarks over with these varying inputs, including how many
+  database reads and writes have been performed.
+
+- Uses linear regression analysis to determine the relationship between computation time and the
+  extrinsic input.
+
+- Outputs a rust file with ready to use weight functions that can be easily integrated in your
+  runtime.
 
 ## Why Benchmark a Runtime Pallet?
 
 Denial-of-service (DoS) is a common attack vector for distributed systems, including blockchain
-networks. A simple example would be for any user repeatedly requesting a function that involve
-intensive computation. An effective counter-measure is that such a request would bear a certain cost
-to the user. For a fair system, the user cost should reflect the computation and storage cost
-incurred to the system. To encourage users to use such system, we want to estimate this cost
-relatively accurately and not overcharging users.
+networks. A simple example of such an attack would be for a user to repeatedly execute an extrinsic
+that involve intensive computation. To prevent users from spamming the network, we charge fee to the
+user for making that call. The cost of the call should reflect the computation and storage cost
+incurred to the system, to the more complex the call, the more we charge. However, we still want to
+encourage users to use our blockchain system, so we also want this estimate cost to be relatively
+accurate so we don't charge users more than necessary.
 
-Now with Substrate benchmarking toolchain, runtime developers can estimate the weight of their
-runtime extrinsics which translate to the transaction fee charged to the runtime users. So it is
-critical to benchmark our runtime extrinsics to measure how the extrinsic computation changes with
-repect to its input and set the proper weight functions for these extrinsics. Setting a proper
-weight function that reflects accurately on the underlying computation and storage is an important
-security safeguard in Substrate.
+With the Substrate benchmarking framework, runtime developers can estimate the weight of their
+extrinsics and charge an appropriate transaction fee to the end users. So it is critical to
+benchmark our runtime extrinsics to measure how the extrinsic computation changes with respect to
+its input and set the proper weight functions for these extrinsics. Setting a proper weight function
+that reflects accurately on the underlying computation and storage is an important security
+safeguard in Substrate.
 
-## Features of Substrate Benchamrking Toolchain
+## How to Benchmark?
 
-- You can configure multiple input variables to be used when benchmarking an extrinsic. For each
-  input, you can configure the varying range and the number of times to repeat to avoid outlier
-  effect.
+The benchmarking framework uses Rust macros to help users easily integrate them into their runtime.
+A Substrate benchmark will look something like this:
 
-- The toolchain leverages on rust macro and have a flexible structure of:
+```rust
+benchmarks! {
+  benchmark_name {
+    /* setup initial state */
+  }: {
+    /* the code to be benchmarked */
+  } verify {
+    /* verifying final state */
+  }
+}
+```
 
-  1. Setting up the initial state before running the benchmark
-  2. Measuring the execution time and database storage read write
-  3. Finally verifying the result
+You can see that the benchmark macro:
+
+  1. Sets up the initial state before running the benchmark.
+  2. Measures the execution time, along with the number of and database reads and writes.
+  3. Verifies the final state of the runtime, ensuring that the benchmark executed as expected.
+
+You can configure your benchmark to run over different varying inputs. For each input, you can
+configure the range of those variables, and use them within the benchmark setup or execution logic.
+
+The full syntax and functionality can be seen in the [`benchmarks!` macro API
+documentation](https://substrate.dev/rustdocs/v3.0.0/frame_benchmarking/macro.benchmarks.html).
+
+### Adding Benchmarking to Your Pallet
+
+1. In [the pallet's
+   `Cargo.toml`](https://github.com/paritytech/substrate/blob/master/frame/example/Cargo.toml), add
+   the `frame-benchmarking` crate and the `runtime-benchmarks` feature.
+
+    ```toml
+    [dependencies]
+    # -- snip --
+    frame-benchmarking = { version = "3.1.0", default-features = false, path = "../benchmarking", optional = true }
+
+    [features]
+    # -- snip --
+    runtime-benchmarks = ["frame-benchmarking"]
+    ```
+
+2. Create a new sub-module for your benchmarks within your pallet, and create a basic structure
+   similar to this:
 
     ```rust
-    benchmarks! {
-      extrinsic1_name {
+    #[cfg(feature = "runtime-benchmarks")]
+    mod benchmarking {
+      use crate::{*, Module as PalletModule};
+      use frame_benchmarking::{benchmarks, account, impl_benchmark_test_suite};
+      use frame_system::RawOrigin;
+
+      benchmarks!{
+        // Individual benchmarks are placed here
+      }
+    }
+    ```
+
+3. Each benchmark case has up to three sections: a setup section, an execution section, and
+   optionally a verification section at the end.
+
+    ```rust
+    benchmarks!{
+      benchmark_name {
         /* setup initial state */
       }: {
         /* the code to be benchmarked */
@@ -80,96 +134,21 @@ security safeguard in Substrate.
     }
     ```
 
-  The full syntax and functionality can be seen in the [`benchmarks!` macro API
-  documentation](https://substrate.dev/rustdocs/v3.0.0/frame_benchmarking/macro.benchmarks.html).
-
-- At the end, it deduces a multi-variable linear equation for the weight function on how the
-  execution time changes with respect to the change of your specified variables.
-
-- It generates a `WeightInfo` structure in Rust that can either be further tweaked, or easily
-  integrated into your runtime.
-
-## How to Benchmark?
-
-We will outline the the benchmarking procedure here, listing key commands and paramters used, or
-section of code to be written using [Substrate
-`pallet-example`](https://github.com/paritytech/substrate/tree/master/frame/example) as an example.
-To see a step-by-step detail procedure, please refer to our [Tutorial on Runtime
-Benchmarking](../../tutorials/runtime-benchmarking).
-
-1. In [the pallet
-   `Cargo.toml`](https://github.com/paritytech/substrate/blob/master/frame/example/Cargo.toml), add
-   the dependent benchmarking crates.
-
-    ```toml
-    # ...
-
-    [dependencies]
-    # -- snip --
-    frame-benchmarking = { version = "3.1.0", default-features = false, path = "../benchmarking", optional = true }
-
-    [features]
-    # -- snip --
-    runtime-benchmarks = ["frame-benchmarking"]
-    ```
-
-2. Start writing our benchmarking code. The code can be placed either in a `mod` module inside the
-   `src/lib.rs`, or be put in a separate file and include the module back in `src/lib.rs`. We will
-   use the first approach in the following to create the basic structure.
-
-    ```rust
-    #[cfg(feature = "runtime-benchmarks")]
-    mod benchmarking {
-      use super::*;
-      use frame_benchmarking::{benchmarks, account, impl_benchmark_test_suite};
-      use frame_system::RawOrigin;
-
-      benchmarks!{
-        // Individual benchmark cases here
-      }
-
-      impl_benchmark_test_suite!(
-        Pallet,
-        crate::tests::new_test_ext(),
-        crate::tests::Test,
-      );
-    }
-    ```
-
-3. Each benchmark case has three sections, setup section, execution section, and optionally a
-   verification section at the end.
-
-    ```rust
-    benchmarks!{
-      extrinsic_name {
-        // setup initial state
-      }: {
-        // running the benchmark
-      }
-      verify {
-        // Using assert statements to verify the result, or check certain on-chain event has been emitted.
-      }
-    }
-    ```
-
-    An example in
+    An extremely basic example of a benchmark can be found in the Example pallet:
     [`example/src/lib.rs`](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs):
 
     ```rust
     // This will measure the execution time of `set_dummy` for b in [1..1000] range.
     set_dummy {
       let b in 1 .. 1000;
-    }: {
-      set_dummy(RawOrigin::Root, b.into());
-    }
+    }: set_dummy(RawOrigin::Root, b.into());
     ```
 
-    The name of the benchmark case is `set_dummy`. Here `b` is the input that passed into the
-    extrinsic `set_dummy` that we believe will affect the extrinsic execution time. `b` will be
-    varied from 1 to 1,000 and run repeatedly for each value of `b` according to the arguments we
-    passed when running the benchmark command. We will get back to this in the following.
+    The name of the benchmark is `set_dummy`. Here `b` is a variable input that passed into the
+    extrinsic `set_dummy` which may affect the extrinsic execution time. `b` will be varied between
+    1 to 1,000, where we will repeat and measure the benchmark at the different values.
 
-    The function `set_dummy` is called in the execution section, and we do not verify the result at
+    The extrinsic `set_dummy` is called in the execution section, and we do not verify the result at
     the end.
 
     You will also see code like this:
@@ -181,55 +160,56 @@ Benchmarking](../../tutorials/runtime-benchmarking).
     }: _(RawOrigin::Signed(caller), b.into())
     ```
 
-    This is when the execution section is just a one-line code that call the extrinsic with the same
-    name as the benchmarking case name. Our `benchmark!` macro is smart enough to know that!
+    Here you can see we can replace the extrinsic name with `_` when it matches the name of the
+    benchmark.
 
-4.
+4. Once you have written your benchmarks, you should make sure they execute properly by testing
+   them. You can add this macro at the bottom of your module:
+
     ```rust
-    benchmarks! {
-      // -- snip
-      impl_benchmark_test_suite!(Pallet, crate::tests::new_test_ext(),
-        crate::tests::Test);
-    }
+    impl_benchmark_test_suite!(
+      PalletModule,
+      crate::tests::new_test_ext(),
+      crate::tests::Test,
+    );
     ```
 
-    At the last line in the `benchmarks!` macro, `impl_benchmark_test_suite!` takes three input: the
-    module name, the function that generates a test genesis storage (i.e. `new_text_ext()`), and a
-    test runtime, and expand them into testing code. The test runtime can often be the same one used
-    for testing.
+    The `impl_benchmark_test_suite!` takes three input: the Module struct generated by your pallet,
+    a function that generates a test genesis storage (i.e. `new_text_ext()`), and a full runtime
+    struct. These things you should get from your normal pallet unit tests.
 
-    Ultimately benchmarking code is expanded as testing code, so it takes the code you write in
-    testing (you do, right?) to build up [the mock
-    runtime](https://substrate.dev/docs/en/knowledgebase/runtime/tests#mock-runtime-environment). If
-    you are not familiar with how to write pallet test cases, please refer to our [Runtime Tests
-    chapter](tests).
+    We will use your test environment and execute the benchmarks similar to how they would execute
+    when actually running the benchmarks. If everything passes, then it is likely that things will
+    work when you actually run your benchmarks!
 
-5. With all the code completed on the pallet side, you need to add code in the node runtime. First
-   add the necessary dependencies in [the runtime
-   `Cargo.toml`](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/Cargo.toml).
+### Add Benchmarking to Your Runtime
+
+With all the code completed on the pallet side, you need to also enable your full runtime to allow
+benchmarking.
+
+1. Update your runtime `Cargo.toml` file to include the `runtime-benchmarking` features:
 
     ```toml
     [dependencies]
     # -- snip --
-    pallet-you-named = { version = ..., default-features = false, path = ... }
+    pallet-you-created = { version = ..., default-features = false, path = ... }
 
     [features]
     std = [
       # -- snip --
-      "pallet-you-named/std"
+      "pallet-you-created/std"
     ]
     runtime-benchmarks = [
       # -- snip --
-      "pallet-you-named/runtime-benchmarks"
+      "pallet-you-created/runtime-benchmarks"
     ]
     ```
 
-    Then in the node runtime, as usual, have your runtime implemements the pallet configurable trait
-    and add the pallet in `construct_runtime!`. For details, refer to [Add a Pallet to Your Runtime
-    Tutorial](../../tutorials/add-a-pallet). Then our runtime also implements
-    `frame_benchmarking::Benchmark` trait under a feature flag and implement the
-    `dispatch_benchmark` method, as [shown in the
-    file](https://github.com/paritytech/substrate/blob/v3.0.0/bin/node/runtime/src/lib.rs#L1328).
+2. Add your new pallet to your runtime just as you would any other pallet. If you need more details
+   check out our tutorial to [Add a Pallet to Your Runtime Tutorial](../../tutorials/add-a-pallet).
+
+3. Then, in addition to your normal runtime configuration, you also need to update the benchmarking
+   section of your runtime:
 
     ```rust
     #[cfg(feature = "runtime-benchmarks")]
@@ -237,17 +217,15 @@ Benchmarking](../../tutorials/runtime-benchmarking).
       fn dispatch_benchmark(
         config: frame_benchmarking::BenchmarkConfig
       ) -> Result<Vec<frame_benchmarking::BenchmarkBatch>, sp_runtime::RuntimeString> {
-        // -- snip --
-
         let whitelist: Vec<TrackedStorageKey> = vec![
-          // whitelisting a set of storage keys here
+          // you can whitelist any storage keys you do not want to track here
         ];
 
         let mut batches = Vec::<BenchmarkBatch>::new();
         let params = (&config, &whitelist);
 
         // Adding the pallet you will perform thee benchmarking
-        add_benchmark!(params, batches, pallet_you_named, YourPallet);
+        add_benchmark!(params, batches, pallet_you_crated, YourPallet);
 
         // -- snip --
 
@@ -257,96 +235,108 @@ Benchmarking](../../tutorials/runtime-benchmarking).
     }
     ```
 
-    There seems to be a lot of code, but we are mainly setting up an environment that all
-    benchmarking code will run. For example, we pass in a set of storage keys that should not be
-    counted as pallet-specific database read-write, because these read-write are issued from the
-    Substrate system (`frame-system`).
+    This code should already exist within your runtime assuming you use any of our starting
+    templates. There seems to be a lot of code, but we are mainly just setting up the environment
+    where your benchmarking code will run.
 
-    We add the benchmark code with the `add_benchmark!` macro, passing the parameters we made at the
-    beginning, and batching them up together in the `batches` variable.
+4. To add our new benchmarks, we simply add a new line with the `add_benchmark!` macro.
 
-    Once this is done, we also need to configure the node side to include our runtime to have a
-    feature section for `runtime-benchmarks`. We are not going into the detail steps here. For those
-    interested, please refer to the [Tutorial on Runtime
-    Benchmarking](../../tutorials/runtime-benchmarking).
+Now we are ready to compile the project and run the benchmark!
 
-    Now we are ready to compile the project and run the benchmark.
+### Running Your Benchmarks
 
-6. We need to compile our Substrate node that includes the runtime with benchmarking code. We cannot
-   run `cargo` with `--features` flag in the root directory so we need to go into [the directory of
-   the node](https://github.com/paritytech/substrate/tree/master/bin/node/cli) and run the `cargo`
-   command.
+Benchmarking code is not included with your runtime by default since it would bloat the size of your
+Wasm. Instead, we need to compile our Substrate node with a feature flag that includes the runtime
+benchmarking code.
 
-    ```
-    cd substrate/bin/node/cli
-    # We build the release version so the benchmarking result is comparable to how it is run in production.
+Depending on your project, you may need to navigate to your node's crate to be able to compile for
+benchmarks, since virtual workspaces in Rust do not support the `--features` flag. For example, when
+using the main Substrate repository, you need to navigate to the `/node/cli/` folder:
 
-    cargo build --release --features runtime-benchmarks
-    ```
+```bash
+cd substrate/bin/node/cli
+```
 
-    Once this is done, we can run the `benchmark` subcommand.
+Then you can build your project with the benchmarks enabled:
 
-    ```
-    cd ../../../
-    target/release/substrate benchmark --help
-    ```
+```bash
+cargo build --release --features runtime-benchmarks
+```
 
-    This will output the help instructions for the subcommand.
+Once this is done, you should be able to run the `benchmark` subcommand.
 
-    Now to run benchmarking for all extrinsics in `pallet-example` we will run the following
-    command.
+```bash
+cd ../../../
+target/release/substrate benchmark --help
+```
 
-    ```bash
-    ./target/release/substrate benchmark \
-        --chain dev \               # Configurable Chain Spec
-        --execution wasm \          # Always test with Wasm
-        --wasm-execution compiled \ # Always used `wasm-time`
-        --pallet pallet_example \   # Select the pallet
-        --extrinsic '\*' \          # Select the benchmark case name, using '*' for all
-        --steps 20 \                # Number of steps across component ranges
-        --repeat 10 \               # Number of times we repeat a benchmark
-        --raw \                     # Optionally output raw benchmark data to stdout
-        --output ./                 # Output results into a Rust file
-    ```
+The Benchmarking CLI has a lot of options which can help you automate your benchmarking. A minimal
+command to execute benchmarks for a pallet will look like this:
 
-    - `chain` specifies the chain-spec we will use
-    - `execution` and `wasm-execution` specify we are benchmarking the compiled wasm code (vs the
-      native code as an alternative)
-    - `pallet` and `extrinsic` specify which pallet and extrinsics we are benchmarking. With the
-      above arguments we are benchmarking all extrinsics of `pallet_example`.
-    - `steps` and `repeat` means how many steps will be taken to walk through each variable range,
-      and how many time the execution state will be repeated.
+```bash
+./target/release/substrate benchmark \
+    --chain dev \               # Configurable Chain Spec
+    --execution wasm \          # Always test with Wasm
+    --wasm-execution compiled \ # Always used `wasm-time`
+    --pallet pallet_example \   # Select the pallet
+    --extrinsic '\*' \          # Select the benchmark case name, using '*' for all
+    --steps 20 \                # Number of steps across component ranges
+    --repeat 10 \               # Number of times we repeat a benchmark
+    --raw \                     # Optionally output raw benchmark data to stdout
+    --output ./                 # Output results into a Rust file
+```
 
-        ![multi-variables-regression](assets/runtime/benchmarking/multi-variables-regression.png)
+- `chain` specifies the chain-spec we will use
+- `execution` and `wasm-execution` specify we are benchmarking the compiled wasm code (vs the native
+  code as an alternative)
+- `pallet` and `extrinsic` specify which pallet and extrinsics we are benchmarking. With the above
+  arguments we are benchmarking all extrinsics of `pallet_example`.
+- `steps` and `repeat` means how many steps will be taken to walk through each variable range, and
+  how many time the execution state will be repeated.
 
-        Let's take `accumulate_dummy` benchmark case as an example.
+![multi-variables-regression](../../assets/runtime/benchmarking/multi-variables-regression.png)
 
-        ```rust
-        accumulate_dummy {
-          let b in 1 .. 1000;
-          let caller = account("caller", 0, 0);
-        }: _ (RawOrigin::Signed(caller), b.into())
-        ```
+Let's take `accumulate_dummy` benchmark case as an example.
 
-        With `--steps 20 --repeat 10` in the benchmark input arguments, `b` will walk 20 steps to
-        reach 1,000, so `b` will start from 1 and increment by about 50. For each value of `b`, it
-        will be repeated 10 times and the extrinsic execution time be recorded.
+```rust
+accumulate_dummy {
+  let b in 1 .. 1000;
+  let caller = account("caller", 0, 0);
+}: _ (RawOrigin::Signed(caller), b.into())
+```
 
-    - `raw` indicates whether to output all the runs with different input values and their
-      respective execution time. You will want to set this flag during development to check if the
-      execution time match your expectation as inputs vary.
+With `--steps 20 --repeat 10` in the benchmark input arguments, `b` will walk 20 steps to reach
+1,000, so `b` will start from 1 and increment by about 50. For each value of `b`, we will execute
+the benchmark 10 times and record the benchmark information.
 
-    - `output` indicates where to save the `WeightInfo` implementation Rust file.
+A more complete command that we use for the Substrate benchmarking output looks like this:
 
-    Here we explain enough so you know what is going on. The details and all possible values of each
-    parmeter can be seen with `benchmark --help`.
+```bash
+cargo run --release
+  --features=runtime-benchmarks
+  --manifest-path=bin/node/cli/Cargo.toml
+  --
+  benchmark
+  --chain=dev
+  --steps=50
+  --repeat=20
+  --pallet=frame_system
+  --extrinsic="*"
+  --execution=wasm
+  --wasm-execution=compiled
+  --heap-pages=4096
+  --output=./frame/system/src/weights.rs
+  --template=./.maintain/frame-weight-template.hbs
+```
 
-## Benchmarking Output
+However, the exact command you run will depend on your needs.
+
+### Analyzing and Outputting Your Benchmarks
 
 After running the `benchmark` command above, we have two outputs. The raw data with benchmarked time
 and the auto-generated Rust file of `WeightInfo` implementation.
 
-### Raw Data
+#### Raw Data
 
 The first output is the raw data recording how much time is spent on running the execution state
 when varying the input variables. At the end for each variable, the coefficient, assuming linear
@@ -414,8 +404,6 @@ Time ~=     1230
 
 Reads = 1 + (0 * b)
 Writes = 1 + (0 * b)
-
-// -- snipped on the second benchmark case
 ```
 
 With the median slopes analysis, this is the weight function:
@@ -444,18 +432,18 @@ variable. So you need to determine the coefficient differently.
 
 ### Auto-generated `WeightInfo` Implementation
 
-The second output is an autogenerated `WeightInfo` implementation. This file defines weight
+The second output is an auto-generated `WeightInfo` implementation. This file defines weight
 functions of benchmarked extrinsics with the computed coefficient above. We can directly integrated
-this file in your extrinsics weight function or further customize them if so desired. The
-auto-generated implementation is designed to make end-to-end benchmark automation easy.
+this file in your pallet or further customize them if so desired. The auto-generated implementation
+is designed to make end-to-end weight updates easy.
 
 To use this file, we first define a `WeightInfo` trait in
 [`frame/example/src/lib.rs`](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs):
 
 ```rust
 pub trait WeightInfo {
-  fn accumulate_dummy(_b: u32, ) -> Weight;
-  fn set_dummy(_b: u32, ) -> Weight;
+  fn accumulate_dummy(b: u32, ) -> Weight;
+  fn set_dummy(b: u32, ) -> Weight;
   fn another_set_dummy(b: u32, ) -> Weight;
   fn sort_vector(x: u32, ) -> Weight;
 }
@@ -484,11 +472,9 @@ pub mod pallet {
     pub(super) fn set_dummy(
       origin: OriginFor<T>,
       #[pallet::compact] new_value: T::Balance,
-    ) -> DispatchResultWithPostInfo {
+    ) -> DispatchResult {
       // -- snip
-
-      // All good, no refund.
-      Ok(().into())
+      Ok(())
     }
   }
 }
