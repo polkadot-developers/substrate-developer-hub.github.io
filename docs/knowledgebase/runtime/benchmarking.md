@@ -337,6 +337,8 @@ However, the exact command you run will depend on your needs.
 > template file and the benchmarking toolchain will fill in the exact numbers from the measured
 > result. This enables automating weight generation in your desired code format and integrates this
 > in your CI process.
+>
+> The template is in [rust handlebars](https://docs.rs/handlebars/) format.
 
 ### Analyzing and Outputting Your Benchmarks
 
