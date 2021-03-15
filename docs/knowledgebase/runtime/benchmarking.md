@@ -294,8 +294,6 @@ command to execute benchmarks for a pallet will look like this:
 - `steps` and `repeat` means how many steps will be taken to walk through each variable range, and
   how many time the execution state will be repeated.
 
-![multi-variables-regression](../../assets/runtime/benchmarking/multi-variables-regression.png)
-
 Let's take `accumulate_dummy` benchmark case as an example.
 
 ```rust
@@ -308,6 +306,8 @@ accumulate_dummy {
 With `--steps 20 --repeat 10` in the benchmark input arguments, `b` will walk 20 steps to reach
 1,000, so `b` will start from 1 and increment by about 50. For each value of `b`, we will execute
 the benchmark 10 times and record the benchmark information.
+
+![multi-variables-regression](assets/runtime/benchmarking/multi-variables-regression.png)
 
 A more complete command that we use for the Substrate benchmarking output looks like this:
 
@@ -330,6 +330,13 @@ cargo run --release
 ```
 
 However, the exact command you run will depend on your needs.
+
+> **Notes**
+>
+> Another argument introduced above is `--template`. We allow you to specify your own weight
+> template file and the benchmarking toolchain will fill in the exact numbers from the measured
+> result. This enables automating weight generation in your desired code format and integrates this
+> in your CI process.
 
 ### Analyzing and Outputting Your Benchmarks
 
@@ -444,7 +451,6 @@ To use this file, we first define a `WeightInfo` trait in
 pub trait WeightInfo {
   fn accumulate_dummy(b: u32, ) -> Weight;
   fn set_dummy(b: u32, ) -> Weight;
-  fn another_set_dummy(b: u32, ) -> Weight;
   fn sort_vector(x: u32, ) -> Weight;
 }
 ```
