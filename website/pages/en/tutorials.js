@@ -184,6 +184,14 @@ class Tutorials extends React.Component {
       hrefFrom: 'baseUrl',
       href: 'tutorials/substrate-frontier-workshop/',
     }, {
+      title: <translate>Runtime Benchmarking</translate>,
+      text: <translate>Benchmark Node Template step-by-step.</translate>,
+      difficulty: <translate>Medium</translate>,
+      length: <translate>1 Hour</translate>,
+      prerequisite: true,
+      version: "2.0.0",
+      href: 'tutorials/runtime-benchmarking/',
+    }, {
       img: 'img/tutorials/grafana.png',
       title: <translate>Visualizing Node Metrics</translate>,
       text: <translate>Learn how to visualize the metrics that Substrate records using Prometheus.</translate>,

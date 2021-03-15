@@ -29,6 +29,7 @@
       "knowledgebase/runtime/fees",
       "knowledgebase/runtime/debugging",
       "knowledgebase/runtime/tests",
+      "knowledgebase/runtime/benchmarking",
       "knowledgebase/runtime/randomness",
       "knowledgebase/runtime/upgrades"
     ],
