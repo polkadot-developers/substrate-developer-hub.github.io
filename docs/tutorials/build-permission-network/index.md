@@ -12,7 +12,7 @@ Before play with this tutorial, we expect that:
 * You are familiar with the [P2P Networking](https://wiki.polkadot.network/docs/en/maintain-guides-how-to-setup-sentry-node#p2p-networking) in Substrate.
 
 If you run into an issue on this tutorial, **we are here to help!** You can [ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the `substrate` tag or contact us on
-[Element](https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org).
+[Element](https://matrix.to/#/#substrate-technical:matrix.org).
 
 ## What you will be doing
 
