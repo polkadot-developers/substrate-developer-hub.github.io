@@ -45,11 +45,11 @@ Node Template. Finally, you will learn how to interpret the different types of e
 that FRAME pallets may emit.
 
 To get started, use the account selector from the Front-End Template to
-select Alice's account and then use the Pallet Interactor component to call
+select `Alice`'s account and then use the Pallet Interactor component to call
 [the `setName` dispatchable](https://substrate.dev/rustdocs/v3.0.0/pallet_nicks/enum.Call.html#variant.set_name)
 function from the `nicks` pallet. You can select any name you'd like as long as it is no shorter
 than the `MinNickLength` and no longer than the `MaxNickLength` you configured in the previous step.
-Use the "Signed" button to execute the function.
+Use the `Signed` button to execute the function.
 
 ![Set a Name](assets/tutorials/add-a-pallet/set-name.png)
 
@@ -69,7 +69,7 @@ invoked the `setName` dispatchable and deposited the funds needed to reserve a n
 
 ![Read an Empty Name](assets/tutorials/add-a-pallet/name-of-bob.png)
 
-Use the "Signed" button to invoke
+Use the `Signed` button to invoke
 [the `killName` dispatchable](https://substrate.dev/rustdocs/v3.0.0/pallet_nicks/enum.Call.html#variant.kill_name)
 function and use Bob's account ID as the function's argument. The `killName` function must be called
 by the `ForceOrigin` that was configured with the Nicks pallet's `Config` interface in the previous
@@ -78,20 +78,22 @@ Template's
 [chain specification](https://github.com/substrate-developer-hub/substrate-node-template/blob/v3.0.0/node/src/chain_spec.rs)
 file is used to configure the
 [Sudo pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_sudo/index.html) to give Alice access to
-this origin. The front-end template makes it easy to use the Sudo pallet to dispatch a call from the
-`Root` origin - just use the "SUDO" button to invoke the dispatchable. Since we just used the
-"Signed" button as opposed to the "SUDO" button, the function was _dispatched_ by
+this origin. 
+
+The front-end template makes it easy to use the Sudo pallet to dispatch a call from the
+`Root` origin - just use the `SUDO` button to invoke the dispatchable. Since we just used the
+`Signed` button as opposed to the `SUDO` button, the function was _dispatched_ by
 [the `Signed` origin](https://substrate.dev/rustdocs/v3.0.0/frame_system/enum.RawOrigin.html#variant.Signed)
 associated with Alice's account as opposed to the `Root` origin.
 
-![`BadOrigin` Error](assets/tutorials/add-a-pallet/clear-name-bad-origin.png)
+![`BadOrigin` Error](assets/tutorials/add-a-pallet/kill-name-bad-origin.png)
 
 You will notice that even though the function call was successfully dispatched, a `BadOrigin` error
 was emitted and is visible in the Events pane. This means that Alice's account was still charged
 [fees](../../knowledgebase/runtime/fees) for the dispatch, but there weren't any state changes
 executed because the Nicks pallet follows the important
 [verify-first-write-last](../../knowledgebase/runtime/storage#verify-first-write-last) pattern. Now
-use the "SUDO" button to dispatch the same call with the same parameter.
+use the `SUDO` button to dispatch the same call with the same parameter.
 
 ![Nicks Pallet Error](assets/tutorials/add-a-pallet/clear-name-error.png)
 
@@ -114,15 +116,15 @@ position of the Nicks pallet in your `construct_runtime!` macro, you may see a d
 `index`. Regardless of the value of `index`, you should see that the `error` value is `2`, which
 corresponds to the _third_ variant of the Nick's pallet's `Error` enum,
 [the `Unnamed` variant](https://substrate.dev/rustdocs/v3.0.0/pallet_nicks/enum.Error.html#variant.Unnamed).
-This shouldn't be a surprise since Bob has not yet reserved a nickname.
+This shouldn't be a surprise since Bob has not yet reserved a nickname, thus it cannot be cleared!
 
-You should confirm that Alice can use the "SUDO" button to invoke the `killName` dispatchable and
+You should confirm that Alice can use the `SUDO` button to invoke the `killName` dispatchable and
 forcibly clear the nickname associated with any account (including her own) that actually has a
 nickname associated with it. Here are some other things you may want to try:
 
 - Add a nickname that is shorter than the `MinNickLength` or longer than the `MaxNickLength` that
   you configured with the Nick's pallet's `Config` configuration trait.
-- Add a nickname for Bob then use Alice's account and the "SUDO" button to forcibly kill Bob's
+- Add a nickname for Bob then use Alice's account and the `SUDO` button to forcibly kill Bob's
   nickname. Switch back to Bob's account and dispatch the `clearName` function.
 
 ## Adding Other FRAME Pallets
