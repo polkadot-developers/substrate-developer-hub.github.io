@@ -8,10 +8,10 @@ and interact with it using the Substrate Developer Hub Front-End Template.
 This tutorial is aimed at someone who has never touched Substrate before and wants to get a
 **basic** and **quick** understanding of what Substrate is all about. We will not be going into
 depth about the intricacies of developing on Substrate, but will hopefully satisfy your curiosity so
-that you will continue this journey.
+that you will continue your journey!
 
 This tutorial should take you about **1 hour** to complete. We will be compiling
-[Rust](https://www.rust-lang.org/) code, but you do not need to be a Rust programmer to complete
+[Rust](https://www.rust-lang.org/) code, but you do _not_ need to have any Rust experience to complete
 this guide. We provide you with working code and explain how to use it.
 
 We only expect that:
