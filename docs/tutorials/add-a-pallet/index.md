@@ -21,7 +21,7 @@ pallet to your FRAME runtime.
 If you run into an issue on this tutorial, **we are here to help!** You can
 [ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the
 `substrate` tag or contact us on
-[Element](https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org).
+[Element](https://app.element.io/#/room/#substrate-technical:matrix.org).
 
 ## Install the Node Template
 

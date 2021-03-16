@@ -2,31 +2,26 @@
 title: Installation
 ---
 
-This page will guide you through the steps needed to prepare a computer for Substrate development.
+This page will guide you through the **3 steps** needed to prepare a computer for Substrate development.
 Since Substrate is built with [the Rust programming language](https://www.rust-lang.org/), the first
 thing you will need to do is prepare the computer for Rust development - these steps will vary based
 on the computer's operating system. Once Rust is configured, you will use its toolchains to interact
 with Rust projects; the commands for Rust's toolchains will be the same for all supported,
 Unix-based operating systems.
 
-## Unix-Based Operating Systems
+## 1.a Windows
+
+> NOTE: Native development of substrate is _not_ very well supported! It is _highly_ recommend to
+> use [Windows Subsystem Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (WSL)
+> and follow the instructions for [Ubuntu/Debian](#ubuntudebian).
+
+Please refer to the separate [guide for native Windows development](windows-users).
+
+## 1.b Unix-Based Operating Systems
 
 Substrate development is easiest on Unix-based operating systems like macOS or Linux. The examples
 in the Substrate [Tutorials](../../../../tutorials) and [Recipes](https://substrate.dev/recipes/)
 use Unix-style terminals to demonstrate how to interact with Substrate from the command line.
-
-### macOS
-
-Open the Terminal application and execute the following commands:
-
-```bash
-# Install Homebrew if necessary https://brew.sh/
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-
-# Make sure Homebrew is up-to-date, install openssl and cmake
-brew update
-brew install openssl cmake
-```
 
 ### Ubuntu/Debian
 
@@ -48,11 +43,27 @@ export OPENSSL_LIB_DIR="/usr/lib/openssl-1.0"
 export OPENSSL_INCLUDE_DIR="/usr/include/openssl-1.0"
 ```
 
-## Windows
+### macOS
 
-Please refer to the separate [guide for Windows users](windows-users.md).
+> NOTE: The Apple M1 ARM system on a chip is not very well supported yet by rust, 
+> and thus you very likely will run into build errors steming from this. It is best, 
+> for the near term, to avoid using M1s for substrate development. If you do decide to 
+> give it a try despite this, see
+> [this community guide](https://vikiival.medium.com/run-substrate-on-apple-m1-a2699743fae8)
+> for details on extra configuration steps to get things working.
 
-## Rust Developer Environment
+Open the Terminal application and execute the following commands:
+
+```bash
+# Install Homebrew if necessary https://brew.sh/
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+# Make sure Homebrew is up-to-date, install openssl and cmake
+brew update
+brew install openssl cmake
+```
+
+## 2. Rust Developer Environment
 
 This guide uses [`rustup`](https://rustup.rs/) to help manage the Rust toolchain. First install and
 configure `rustup`:
@@ -77,21 +88,22 @@ runtimes. You will need to configure your Rust compiler to use
 [`nightly` builds](https://doc.rust-lang.org/book/appendix-07-nightly-rust.html) to allow you to
 compile Substrate runtime code to the Wasm target.
 
+> There are upstream issues in Rust that need to be resolved before all of substrate can use
+> the stable Rust toolchain -
+> [this is our tracking issue](https://github.com/paritytech/substrate/issues/1252)
+> if you are curious as to why and how this may be resolved. 
+
 #### Rust Nightly Toolchain
 
-Developers building with Substrate should use a specific Rust nightly version that is known to be
+If you want to grantee that if your build works on your computre as you update Rust and other
+dependencies, you should use a specific Rust nightly version that is known to be
 compatible with the version of Substrate they are using; this version will vary from project to
 project and different projects may use different mechanisms to communicate this version to
 developers. For instance, the Polkadot client specifies this information in its
-[release notes](https://github.com/paritytech/polkadot/releases). The Substrate Node Template uses
-an
-[init script](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/scripts/init.sh)
-and
-[Makefile](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/Makefile)
-to specify the Rust nightly version and encapsulate the following steps. Use Rustup to install the
-correct nightly:
+[release notes](https://github.com/paritytech/polkadot/releases).
 
 ```bash
+# Specify the specify nightly toolchain in the date below: 
 rustup install nightly-<yyyy-MM-dd>
 ```
 
@@ -112,8 +124,8 @@ project should use for Wasm compilation:
 WASM_BUILD_TOOLCHAIN=nightly-<yyyy-MM-dd> cargo build --release
 ```
 
-Note that this only builds _the runtime_ with the specified nightly. The rest of project will be
-compiled with the default toolchain, i.e. the latest installed stable toolchain.
+> Note that this only builds _the runtime_ with the specified nightly. The rest of project will be
+> compiled with **your default toolchain**, i.e. the latest installed stable toolchain.
 
 #### Latest Nightly for Substrate `master`
 
@@ -128,8 +140,12 @@ rustup update nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
 ```
 
-**It may be necessary to occasionally rerun `rustup update`** if a change in the upstream Substrate
-codebase depends on a new feature of the Rust compiler.
+> **It may be necessary to occasionally rerun `rustup update`** if a change in the upstream Substrate
+> codebase depends on a new feature of the Rust compiler. When you do this, both your nightly 
+> and stable toolchains will be pulled to the most recent release, and for nightly, it is 
+> generally _not_ expected to compile WASM without error (although it very often does).
+> be sure to [specify your nightly version](#specifying-nightly-version) if you get WASM build errors
+> from `rustup` and [downgrade nightly as needed](#downgrading-rust-nightly).
 
 #### Downgrading Rust Nightly
 
@@ -142,8 +158,45 @@ rustup install nightly-<yyyy-MM-dd>
 rustup target add wasm32-unknown-unknown --toolchain nightly-<yyyy-MM-dd>
 ```
 
-## Test Your Set-Up
+### Rust Configuration Check
 
-The best way to ensure that you have successfully prepared a computer for Substrate development is
-to follow the steps in our first tutorial,
-[Create Your First Substrate Chain](../../tutorials/create-your-first-substrate-chain/).
+To see what Rust toolchain you are presently using, run:
+
+```bash
+rustup show
+```
+
+```bash
+Default host: x86_64-unknown-linux-gnu
+rustup home:  /home/user/.rustup
+
+installed toolchains
+--------------------
+
+stable-x86_64-unknown-linux-gnu (default)
+nightly-2020-10-06-x86_64-unknown-linux-gnu
+nightly-x86_64-unknown-linux-gnu
+
+installed targets for active toolchain
+--------------------------------------
+
+wasm32-unknown-unknown
+x86_64-unknown-linux-gnu
+
+active toolchain
+----------------
+
+stable-x86_64-unknown-linux-gnu (default)
+rustc 1.50.0 (cb75ad5db 2021-02-10)
+```
+
+As you can see in the Ubuntu based example above, the default toolchain is stable, and the
+`nightly-x86_64-unknown-linux-gnu` toolchain as well as `wasm32-unknown-unknown` target is installed.
+You also see that `nightly-2020-10-06-x86_64-unknown-linux-gnu` is installed, but is not used unless explicitly defined as illustrated in the [specify your nightly version](#specifying-nightly-version)
+section.
+
+## 3. Test Your Set-Up
+
+Now The best way to ensure that you have successfully prepared a computer for Substrate
+development is to follow the steps in our first tutorial:
+### \> [Create Your First Substrate Chain](../../tutorials/create-your-first-substrate-chain/) <
