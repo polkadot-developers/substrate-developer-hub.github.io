@@ -143,4 +143,4 @@ Your next step may be:
 If you experienced any issues with this tutorial or want to provide feedback, You can
 [ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the
 `substrate` tag or contact us on
-[Element](https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org).
+[Element](https://matrix.to/#/#substrate-technical:matrix.org).

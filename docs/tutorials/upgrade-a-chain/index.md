@@ -30,7 +30,7 @@ for network accounts.
 
 If you have problems with this tutorial, the Substrate community is full of helpful resources. We
 maintain an active
-[#SubstrateTechnical chat room](https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org) and
+[#SubstrateTechnical chat room](https://matrix.to/#/#substrate-technical:matrix.org) and
 monitor the
 [`substrate` tag on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate). You can
 also use the [`subport` GitHub repository](https://github.com/paritytech/subport/issues/new) to
