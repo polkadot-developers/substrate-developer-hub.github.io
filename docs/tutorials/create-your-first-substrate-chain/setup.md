@@ -14,7 +14,7 @@ You will probably need to do some set-up to prepare your computer for Substrate 
 
 ### Substrate Development
 
-> Before you coninue, complete the [official Installation guide](../../knowledgebase/getting-started/).
+> Before you coninue, complete the [official Installation guide](../../knowledgebase/getting-started/index).
 > After `rustup` has been installed and configured, and you've configured the Rust toolchain to default
 > to the latest stable version you can return to these steps.
 

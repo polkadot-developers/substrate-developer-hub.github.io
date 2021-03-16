@@ -17,9 +17,9 @@ To function, a blockchain node needs:
 - [Storage](../../knowledgebase/advanced/storage)
 - [Peer-to-peer networking](https://libp2p.io)
 - [Consensus capabilities](../../knowledgebase/advanced/consensus)
-- [Extrinsic handling](../../learn-substrate/extrinsics) (more than just transactions)
-- A [Runtime](../../knowledgebase/runtime)
-- and [more](../../index)...
+- [Extrinsic handling](../../knowledgebase/learn-substrate/extrinsics) (more than just transactions)
+- A [Runtime](../../knowledgebase/runtime/index)
+- and [more...](../../index)
 
 These technologies span a wide breadth of computer science, and so blockchains usually require teams
 of experts to develop. As a result, most blockchain projects are _not_ developed from the ground up.
