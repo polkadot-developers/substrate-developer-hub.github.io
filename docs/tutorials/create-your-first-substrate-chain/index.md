@@ -23,7 +23,7 @@ We only expect that:
 If you run into an issue on this tutorial, **we are here to help!** You can
 [ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the
 `substrate` tag or contact us on
-[Element](https://app.element.io/#/room/#substrate-technical:matrix.org).
+[Element](https://matrix.to/#/#substrate-technical:matrix.org).
 
 ## What you will be doing
 
