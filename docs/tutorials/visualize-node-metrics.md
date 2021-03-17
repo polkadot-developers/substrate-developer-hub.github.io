@@ -69,7 +69,14 @@ Prometheus->Grafana: `substrate_peers_count (1582023828, 5), (1582023847, 4) [..
 > architecture, and run it from the `working directory` that is convenient for you.
 > The links above provide instruction on this, and this guide assume you do it this way.
 
-## Start a Substrate Node
+## Start a Substrate Template Node
+
+> Before you continue here, you should complete the
+[create your first substrate chain](create-your-first-substrate-chain/index.md)
+tutorial. The same substrate version, conventions for
+directory structure, and bin names are used here.
+You can of course use your own custom substrate node instead of the template,
+just edit the commands shown as needed.
 
 Substrate exposes an endpoint which serves metrics in the [Prometheus exposition
 format](https://prometheus.io/docs/concepts/data_model/) available on port
@@ -80,10 +87,10 @@ be accessed over an interface other than local host with
 ```bash
 # clear the dev database
 ./target/release/node-template purge-chain --dev -y
-# start the template node with
-# optional --prometheus-port <PORT>
-# or --prometheus-external flags added
-./target/release/node-template --dev
+# start the template node  in dev & tmp mode to experiment
+# optionally add the `--prometheus-port <PORT>`
+# or `--prometheus-external` flags
+./target/release/node-template --dev --tmp
 ```
 
 ## Configure Prometheus to scrape your Substrate node
@@ -168,11 +175,13 @@ all available metric data.
 Once you have Grafana running, navigate to it in a browser (**the default is https://localhost:3000/**).
 Log in (default user `admin` and password `admin`) and navigate to the [data sources](http://localhost:3000/datasources) page.
 
-You then need to select a `Prometheus` data source type and specify where Grafana needs to look for it. With your substrate node
-and Prometheus are running, the **Prometheus instance will be available on a different port than your node exposes to Prometheus**
-(This is NOT the one you set in the `prometheus.yml` file (https://localhost:9615) !)
+You then need to select a `Prometheus` data source type and specify where Grafana needs to look for it.
 
-Configure Grafana to look for Prometheus on it's default port: https://localhost:9090 (unless you customized it).
+> Note: The Prometheus port Grafana needs is NOT the one you set in the `prometheus.yml` file (https://localhost:9615) for where your node is publishing it's data.
+
+With your substrate node and Prometheus are running, configure Grafana to look for Prometheus
+on it's default port: https://localhost:9090 (unless you customized it).
+
 Hit `Save & Test` to ensure that you have the data source set correctly. Now you can configure a new dashboard!
 
 ### Template Grafana Dashboard
@@ -181,17 +190,16 @@ If you would like a basic dashboard to start [here is a template example](assets
 
 <br>
 <center><img src="/docs/assets/tutorials/visualize-node-metrics/grafana.png" alt="grafana dashboard" width="50%"/></center>
-</br>
+<br>
 
-If you create your own, the
-[prometheus docs for grafana use](https://prometheus.io/docs/visualization/grafana/)
+If you create your own, the [prometheus docs for grafana](https://prometheus.io/docs/visualization/grafana/)
 may be helpful.
 
 <b>If you do create one, consider uploading it to the
 [community list of dashboards](https://grafana.com/grafana/dashboards) and letting
 the substrate builder community know it exists by listing in on
 [Awesome Substrate](https://github.com/substrate-developer-hub/awesome-substrate)!
-Here is ours on [the grafana public dashboards](https://grafana.com/grafana/dashboards/13759/).</b>
+Here is ours on [the grafana public dashboards](https://grafana.com/grafana/dashboards/13759/)</b>
 
 ## Next Steps
 
@@ -199,13 +207,13 @@ Here is ours on [the grafana public dashboards](https://grafana.com/grafana/dash
 
 - Learn how to [set up a private Substrate network](../../tutorials/start-a-private-network/).
 - Further configuration, notification services, and permanent installation of
-  [Substrate/Polkadot monitoring tools](https://wiki.polkadot.network/docs/en/maintain-guides-how-to-monitor-your-node).
+  [Substrate/Polkadot monitoring tools](https://wiki.polkadot.network/docs/en/maintain-guides-how-to-monitor-your-node)
 
 ### Examples
 
 - The Grafana dashboard configuration for the [Polkadot
   network](https://github.com/w3f/polkadot-dashboard).
-- [Grafana Template](https://grafana.com/grafana/dashboards/13759/) for a Substrate Node Template.
+- [Grafana Template](https://grafana.com/grafana/dashboards/13759/) for a Substrate Node Template
 
 ### References
 
@@ -213,4 +221,4 @@ Here is ours on [the grafana public dashboards](https://grafana.com/grafana/dash
 
 - Visit the source code for
   [Substrate Prometheus Exporter](https://github.com/paritytech/substrate/tree/master/utils/prometheus).
-- See the [docs for prometheus in substrate](https://substrate.dev/rustdocs/v3.0.0/prometheus/).
+- See the [docs for prometheus in substrate](https://substrate.dev/rustdocs/v3.0.0/prometheus/index.html).
