@@ -116,7 +116,7 @@ $ ./target/release/node-template build-spec --<span class="hljs-built_in">disabl
 </code></pre>
 <!-- TODO remove this long note once https://github.com/substrate-developer-hub/tutorials/issues/16 is closed -->
 <blockquote>
-<p>这部分说明是为 node template 而写的。 它们只需进行少量修改，就能与其他基于 Substrate 开发的节点一起交互。 在包含 session 模块的 Substrate 节点中。 此处的 Aura 和 Grandpa 的配置应留空，而在 session 配置里加入这些信息。 这些都将从你选择的节点中导出的 chain spec 里演示到。</p>
+<p>这部分说明是为 node template 而写的。 它们只需进行少量修改，就能与其他基于 Substrate 开发的节点一起交互。 In Substrate, nodes that include the session pallet should leave the Aura and Grandpa configs empty and instead insert this information in the session config. All of this is demonstrated in the chain spec you export from your desired node.</p>
 </blockquote>
 <p>由于 grandpa 协议支持加权投票，所以 grandpa 的数据格式更为复杂。 在这种情况下，我们给每个验证节点的权重为 <strong>1</strong>。</p>
 <p>我们需要做的就是将列出的权限地址 (目前是 Alice 和 Bob) 改为我们自己在上一步中生成的地址。 <strong>sr25519</strong> 地址放在 <strong>aura</strong> 部分，<strong>ed25519</strong> 地址放在 <strong>grandpa</strong> 部分。 你可以根据自己的需求添加任意数量的验证节点。 想了解更多，可查看 <a href="/docs/zh-CN/knowledgebase/advanced/cryptography#public-key-cryptography">Substrate 里的密鈅</a>。</p>
