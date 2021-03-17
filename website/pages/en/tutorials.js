@@ -245,7 +245,7 @@ class Tutorials extends React.Component {
         hrefFrom: "baseUrl",
         href: "tutorials/substrate-frontier-workshop/",
       },
-      {
+      /* {
         img: "img/tutorials/first-substrate-chain.png",
         title: <translate>Runtime Benchmarking</translate>,
         text: <translate>Benchmark Node Template step-by-step.</translate>,
@@ -254,8 +254,8 @@ class Tutorials extends React.Component {
         prerequisite: true,
         version: "3.0.0",
         href: "tutorials/runtime-benchmarking/",
-      },
-      /* { // TODO: add the cumulus workshop 
+      }, */
+      /* { // TODO: add the cumulus workshop
       img: 'img/tutorials/relaychain-parachains.png',
       title: <translate>Substrate Cumulus Workshop</translate>,
       text: <translate>A workshop on how to launch a relay chain and parachains and interact with them.</translate>,

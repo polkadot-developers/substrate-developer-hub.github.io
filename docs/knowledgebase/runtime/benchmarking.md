@@ -553,8 +553,6 @@ up, but not doing fancy computation.
   - [Substrate Seminar: Benchmarking Your Substrate
     Pallet](https://www.youtube.com/watch?v=Qa6sTyUqgek)
 
-  - [Tutorial: Runtime Benchmarking](../../tutorials/runtime-benchmarking)
-
   - [Benchmarking and Weights for a New Pallet](https://hackmd.io/041uMXYXR8y6nBWUnQ6uCQ)
 
 ## Footnotes
