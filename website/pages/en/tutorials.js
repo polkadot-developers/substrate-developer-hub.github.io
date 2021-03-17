@@ -83,124 +83,190 @@ class Tutorials extends React.Component {
     // self-note: This part need to be added in render() function, and cannot be put at the top
     //   of the file, as `<translate>` tag need to be called everytime it is rendered based on
     //   currently selected translation.
-    const tutorialCardData = [{
-      img: 'img/tutorials/crates.png',
-      title: <translate>Create Your First Substrate Chain</translate>,
-      text: <translate>Launch and interact with your first Substrate chain in this minimal end-to-end guide.</translate>,
-      difficulty: <translate>Easy</translate>,
-      length: <translate>&lt; 1 Hour</translate>,
-      prerequisite: false,
-      version: "2.0.0",
-      href: 'tutorials/create-your-first-substrate-chain/',
-    }, {
-      title: <translate>Add a Pallet to Your Runtime</translate>,
-      text: <translate>Add the Nicks pallet to your Substrate node template.</translate>,
-      difficulty: <translate>Easy</translate>,
-      length: <translate>2 Hours</translate>,
-      prerequisite: true,
-      version: "2.0.0",
-      href: 'tutorials/add-a-pallet/',
-    }, {
-      img: 'img/tutorials/first-substrate-chain.png',
-      title: <translate>Build a PoE Decentralized Application</translate>,
-      text: <translate>Build a customized Substrate chain with its own user interface.</translate>,
-      difficulty: <translate>Easy</translate>,
-      length: <translate>1 Hour</translate>,
-      prerequisite: true,
-      version: "2.0.0",
-      href: 'tutorials/build-a-dapp/',
-    }, {
-      title: <translate>Upgrade a Chain</translate>,
-      text: <translate>Perform a forkless runtime upgrade on a running Substrate network.</translate>,
-      difficulty: <translate>Medium</translate>,
-      length: <translate>2 Hours</translate>,
-      prerequisite: true,
-      version: "2.0.0",
-      href: 'tutorials/upgrade-a-chain/',
-    }, {
-      img: 'img/tutorials/substrate-network.png',
-      title: <translate>Start a Private Network with Substrate</translate>,
-      text: <translate>Learn to start a blockchain network using an out-of-the-box Substrate node.</translate>,
-      difficulty: <translate>Easy</translate>,
-      length: <translate>2 Hours</translate>,
-      prerequisite: false,
-      version: "2.0.0",
-      href: 'tutorials/start-a-private-network/',
-    }, {
-      title: <translate>Add the Contracts Pallet to a Runtime</translate>,
-      text: <translate>Add the Contracts pallet to your Substrate node template.</translate>,
-      difficulty: <translate>Medium</translate>,
-      length: <translate>2 Hours</translate>,
-      prerequisite: true,
-      version: "3.0.0",
-      href: 'tutorials/add-contracts-pallet/',
-    }, {
-      title: <translate>Build a Permissioned Network</translate>,
-      text: <translate>A comprehensive, end-to-end tutorial for building a permissioned network using node-authorization pallet.</translate>,
-      difficulty: <translate>Easy</translate>,
-      length: <translate>2 Hours</translate>,
-      prerequisite: true,
-      version: "2.0.0",
-      href: 'tutorials/build-permission-network/',
-    }, {
-      img: 'img/tutorials/crates.png',
-      title: <translate>Write a Pallet in its Own Crate</translate>,
-      text: <translate>Make your pallets re-usable by packaging them in their own rust crate.</translate>,
-      difficulty: <translate>Medium</translate>,
-      length: <translate>2 Hours</translate>,
-      prerequisite: true,
-      version: "2.0.0",
-      href: 'tutorials/create-a-pallet/',
-    }, {
-      img: 'img/tutorials/ink-smart-contracts-tutorial.png',
-      title: <translate>ink! Smart Contracts Tutorial</translate>,
-      text: <translate>A comprehensive, end-to-end tutorial for building an ERC20 token contract using ink!.</translate>,
-      difficulty: <translate>Easy</translate>,
-      length: <translate>4 Hours</translate>,
-      prerequisite: false,
-      version: "3.0.0",
-      hrefFrom: 'baseUrl',
-      href: 'tutorials/ink-smart-contracts-tutorial/',
-    },
-    /* {
+    const tutorialCardData = [
+      {
+        title: <translate>Create Your First Substrate Chain</translate>,
+        text: (
+          <translate>
+            Launch and interact with your first Substrate chain in this minimal
+            end-to-end guide.
+          </translate>
+        ),
+        difficulty: <translate>Easy</translate>,
+        length: <translate>&lt; 1 Hour</translate>,
+        prerequisite: false,
+        version: "3.0.0",
+        href: "tutorials/create-your-first-substrate-chain/",
+      },
+      {
+        img: "img/tutorials/crates.png",
+        title: <translate>Add a Pallet to Your Runtime</translate>,
+        text: (
+          <translate>
+            Add the Nicks pallet to your Substrate node template.
+          </translate>
+        ),
+        difficulty: <translate>Easy</translate>,
+        length: <translate>2 Hours</translate>,
+        prerequisite: true,
+        version: "3.0.0",
+        href: "tutorials/add-a-pallet/",
+      },
+      {
+        img: "img/tutorials/grafana.png",
+        title: <translate>Visualizing Node Metrics</translate>,
+        text: (
+          <translate>
+            Learn how to visualize the metrics that Substrate records using
+            Prometheus.
+          </translate>
+        ),
+        difficulty: <translate>Easy</translate>,
+        length: <translate>&lt; 1 Hour</translate>,
+        prerequisite: false,
+        version: "3.0.0",
+        href: "tutorials/visualize-node-metrics/",
+      },
+      {
+        img: "img/tutorials/first-substrate-chain.png",
+        title: <translate>Build a PoE Decentralized Application</translate>,
+        text: (
+          <translate>
+            Build a customized Substrate chain with its own user interface.
+          </translate>
+        ),
+        difficulty: <translate>Easy</translate>,
+        length: <translate>1 Hour</translate>,
+        prerequisite: true,
+        version: "3.0.0",
+        href: "tutorials/build-a-dapp/",
+      },
+      {
+        img: "img/tutorials/substrate-network.png",
+        title: <translate>Start a Private Network with Substrate</translate>,
+        text: (
+          <translate>
+            Learn to start a blockchain network using an out-of-the-box
+            Substrate node.
+          </translate>
+        ),
+        difficulty: <translate>Easy</translate>,
+        length: <translate>2 Hours</translate>,
+        prerequisite: false,
+        version: "3.0.0",
+        href: "tutorials/start-a-private-network/",
+      },
+      {
+        img: "img/tutorials/crates.png",
+        title: <translate>Write a Pallet in its Own Crate</translate>,
+        text: (
+          <translate>
+            Make your pallets re-usable by packaging them in their own rust
+            crate.
+          </translate>
+        ),
+        difficulty: <translate>Medium</translate>,
+        length: <translate>2 Hours</translate>,
+        prerequisite: true,
+        version: "3.0.0",
+        href: "tutorials/create-a-pallet/",
+      },
+      {
+        title: <translate>Upgrade a Chain</translate>,
+        text: (
+          <translate>
+            Perform a forkless runtime upgrade on a running Substrate network.
+          </translate>
+        ),
+        difficulty: <translate>Medium</translate>,
+        length: <translate>2 Hours</translate>,
+        prerequisite: true,
+        version: "3.0.0",
+        href: "tutorials/upgrade-a-chain/",
+      },
+      {
+        img: "img/tutorials/substrate-network.png",
+        title: <translate>Build a Permissioned Network</translate>,
+        text: (
+          <translate>
+            A comprehensive, end-to-end tutorial for building a permissioned
+            network using node-authorization pallet.
+          </translate>
+        ),
+        difficulty: <translate>Easy</translate>,
+        length: <translate>2 Hours</translate>,
+        prerequisite: true,
+        version: "3.0.0",
+        href: "tutorials/build-permission-network/",
+      },
+      {
+        img: "img/tutorials/crates.png",
+        title: <translate>Add the Contracts Pallet to a Runtime</translate>,
+        text: (
+          <translate>
+            Add the Contracts pallet to your Substrate node template.
+          </translate>
+        ),
+        difficulty: <translate>Medium</translate>,
+        length: <translate>2 Hours</translate>,
+        prerequisite: true,
+        version: "3.0.0",
+        href: "tutorials/add-contracts-pallet/",
+      },
+      {
+        img: "img/tutorials/ink-smart-contracts-tutorial.png",
+        title: <translate>ink! Smart Contracts Tutorial</translate>,
+        text: (
+          <translate>
+            A comprehensive, end-to-end tutorial for building an ERC20 token
+            contract using ink!.
+          </translate>
+        ),
+        difficulty: <translate>Easy</translate>,
+        length: <translate>4 Hours</translate>,
+        prerequisite: false,
+        version: "3.0.0",
+        hrefFrom: "baseUrl",
+        href: "tutorials/ink-smart-contracts-tutorial/",
+      },
+      {
+        img: "img/tutorials/substrate-evm.png",
+        title: <translate>Substrate Frontier Workshop</translate>,
+        text: (
+          <translate>
+            A workshop to configure Substrate node to run Substrate EVM and
+            Solidity contracts.
+          </translate>
+        ),
+        difficulty: <translate>Medium</translate>,
+        length: <translate>1 Hour</translate>,
+        prerequisite: false,
+        version: "3.0.0",
+        hrefFrom: "baseUrl",
+        href: "tutorials/substrate-frontier-workshop/",
+      },
+      {
+        img: "img/tutorials/first-substrate-chain.png",
+        title: <translate>Runtime Benchmarking</translate>,
+        text: <translate>Benchmark Node Template step-by-step.</translate>,
+        difficulty: <translate>Medium</translate>,
+        length: <translate>1 Hour</translate>,
+        prerequisite: true,
+        version: "3.0.0",
+        href: "tutorials/runtime-benchmarking/",
+      },
+      /* { // TODO: add the cumulus workshop 
       img: 'img/tutorials/relaychain-parachains.png',
       title: <translate>Substrate Cumulus Workshop</translate>,
       text: <translate>A workshop on how to launch a relay chain and parachains and interact with them.</translate>,
       difficulty: <translate>Medium</translate>,
       length: <translate>2 Hours</translate>,
       prerequisite: true,
-      version: "2.0.0",
+      version: "3.0.0",
       hrefFrom: 'baseUrl',
       href: 'tutorials/substrate-cumulus-workshop/',
     }, */
-    {
-      img: 'img/tutorials/substrate-evm.png',
-      title: <translate>Substrate Frontier Workshop</translate>,
-      text: <translate>A workshop to configure Substrate node to run Substrate EVM and Solidity contracts.</translate>,
-      difficulty: <translate>Medium</translate>,
-      length: <translate>1 Hour</translate>,
-      prerequisite: false,
-      version: "2.0.0",
-      hrefFrom: 'baseUrl',
-      href: 'tutorials/substrate-frontier-workshop/',
-    }, {
-      title: <translate>Runtime Benchmarking</translate>,
-      text: <translate>Benchmark Node Template step-by-step.</translate>,
-      difficulty: <translate>Medium</translate>,
-      length: <translate>1 Hour</translate>,
-      prerequisite: true,
-      version: "2.0.0",
-      href: 'tutorials/runtime-benchmarking/',
-    }, {
-      img: 'img/tutorials/grafana.png',
-      title: <translate>Visualizing Node Metrics</translate>,
-      text: <translate>Learn how to visualize the metrics that Substrate records using Prometheus.</translate>,
-      difficulty: <translate>Easy</translate>,
-      length: <translate>&lt; 1 Hour</translate>,
-      prerequisite: false,
-      version: "2.0.0",
-      href: 'tutorials/visualize-node-metrics/',
-    }];
+    ];
 
     const { config: siteConfig, language = "" } = this.props;
     const { baseUrl, docsUrl } = siteConfig;
