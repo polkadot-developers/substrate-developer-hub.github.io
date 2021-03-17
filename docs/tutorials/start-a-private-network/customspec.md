@@ -69,7 +69,7 @@ by **"grandpa"** field. That section looks like this
 <!-- TODO remove this long note once https://github.com/substrate-developer-hub/tutorials/issues/16 is closed -->
 
 > These instructions are written for the node template. They will work with other Substrate-based
-> nodes with few modifications. In Substrate nodes that include the session pallet you should leave
+> nodes with few modifications. In Substrate, nodes that include the session pallet should leave
 > the Aura and Grandpa configs empty and instead insert this information in the session config. All
 > of this is demonstrated in the chain spec you export from your desired node.
 
