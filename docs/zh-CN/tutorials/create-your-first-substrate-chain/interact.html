@@ -78,74 +78,89 @@
 <pre><code class="hljs css language-bash"><span class="hljs-comment"># 在开发模式运行一个临时节点</span>
 ./target/release/node-template --dev --tmp
 </code></pre>
-<p>如果您的节点运行成功，将会看到下述内容：</p>
-<pre><code class="hljs css language-bash">Sep 23 15:23:21.759  WARN Running <span class="hljs-keyword">in</span> --dev mode, RPC CORS has been disabled.
-Sep 23 15:23:21.759  INFO Substrate Node
-Sep 23 15:23:21.759  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu
-Sep 23 15:23:21.759  INFO ❤️  by Substrate DevHub &lt;https://github.com/substrate-developer-hub&gt;, 2017-2020
-Sep 23 15:23:21.759  INFO 📋 Chain specification: Development
-Sep 23 15:23:21.759  INFO 🏷  Node name: unbiased-dress-7993
-Sep 23 15:23:21.759  INFO 👤 Role: AUTHORITY
-Sep 23 15:23:21.759  INFO 💾 Database: RocksDb at /tmp/substrate9CaTUC/chains/dev/db
-Sep 23 15:23:21.759  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
-Sep 23 15:23:22.549  INFO 🔨 Initializing Genesis block/state (state: 0x0971…6ec2, header-hash: 0x22e7…7290)
-Sep 23 15:23:22.552  INFO 👴 Loading GRANDPA authority <span class="hljs-built_in">set</span> from genesis on what appears to be first startup.
-Sep 23 15:23:22.708  INFO ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
-Sep 23 15:23:22.709  WARN Using default protocol ID <span class="hljs-string">"sup"</span> because none is configured <span class="hljs-keyword">in</span> the chain specs
-Sep 23 15:23:22.709  INFO 🏷  Local node identity is: 12D3KooWB4SfTtXEEYbPHEdZPndkq1oTxExwx6ku1esPq3Pq9nwF (legacy representation: 12D3KooWB4SfTtXEEYbPHEdZPndkq1oTxExwx6ku1esPq3Pq9nwF)
-Sep 23 15:23:22.935  INFO 📦 Highest known block at <span class="hljs-comment">#0</span>
-Sep 23 15:23:22.937  INFO 〽️ Prometheus server started at 127.0.0.1:9615
-Sep 23 15:23:22.940  INFO Listening <span class="hljs-keyword">for</span> new connections on 127.0.0.1:9944.
-Sep 23 15:23:24.178  INFO 🙌 Starting consensus session on top of parent 0x22e7a22d9745b5af63c11626498c08726e45b40b95abcd2092117b3337ff7290
-Sep 23 15:23:24.281  INFO 🎁 Prepared block <span class="hljs-keyword">for</span> proposing at 1 [<span class="hljs-built_in">hash</span>: 0x515b6280f0d4536ee225a93f4ea56071b86d3bca8020487b2666060b0b739c41; parent_hash: 0x22e7…7290; extrinsics (1): [0x1783…fefe]]
-Sep 23 15:23:24.384  INFO 🔖 Pre-sealed block <span class="hljs-keyword">for</span> proposal at 1. Hash now 0x2aa4fb6eeba88eead4f2ea975d6827f3bbf5973e6be01077bd9c920a006d0098, previously 0x515b6280f0d4536ee225a93f4ea56071b86d3bca8020487b2666060b0b739c41.
-Sep 23 15:23:24.386  INFO ✨ Imported <span class="hljs-comment">#1 (0x2aa4…0098)</span>
-Sep 23 15:23:27.942  INFO 💤 Idle (0 peers), best: <span class="hljs-comment">#1 (0x2aa4…0098), finalized #0 (0x22e7…7290), ⬇ 0 ⬆ 0</span>
-Sep 23 15:23:30.115  INFO 🙌 Starting consensus session on top of parent 0x2aa4fb6eeba88eead4f2ea975d6827f3bbf5973e6be01077bd9c920a006d0098
-Sep 23 15:23:30.122  INFO 🎁 Prepared block <span class="hljs-keyword">for</span> proposing at 2 [<span class="hljs-built_in">hash</span>: 0x1692ea3bed6539b7268b14b35d4be319a32aac79aa709cc71d304722ca7766f4; parent_hash: 0x2aa4…0098; extrinsics (1): [0x0d1a…78da]]
-Sep 23 15:23:30.203  INFO 🔖 Pre-sealed block <span class="hljs-keyword">for</span> proposal at 2. Hash now 0x919fab4399075fb75e24005a4a63448e09174199fc073b4f3cd9d72782c46b8c, previously 0x1692ea3bed6539b7268b14b35d4be319a32aac79aa709cc71d304722ca7766f4.
-Sep 23 15:23:30.205  INFO ✨ Imported <span class="hljs-comment">#2 (0x919f…6b8c)</span>
-Sep 23 15:23:32.942  INFO 💤 Idle (0 peers), best: <span class="hljs-comment">#2 (0x919f…6b8c), finalized #0 (0x22e7…7290), ⬇ 0 ⬆ 0</span>
-Sep 23 15:23:36.087  INFO 🙌 Starting consensus session on top of parent 0x919fab4399075fb75e24005a4a63448e09174199fc073b4f3cd9d72782c46b8c
-Sep 23 15:23:36.094  INFO 🎁 Prepared block <span class="hljs-keyword">for</span> proposing at 3 [<span class="hljs-built_in">hash</span>: 0x0df26c2b2559bfb11c6d1be63005b0f4408468de3dfef7957df86b95cfb68473; parent_hash: 0x919f…6b8c; extrinsics (1): [0x1079…1874]]
-Sep 23 15:23:36.178  INFO 🔖 Pre-sealed block <span class="hljs-keyword">for</span> proposal at 3. Hash now 0xb6dca495b5530ca8c97d1d3de8eb71fc945e5b367e219c26164d94e77954b583, previously 0x0df26c2b2559bfb11c6d1be63005b0f4408468de3dfef7957df86b95cfb68473.
-Sep 23 15:23:36.180  INFO ✨ Imported <span class="hljs-comment">#3 (0xb6dc…b583)</span>
-Sep 23 15:23:37.942  INFO 💤 Idle (0 peers), best: <span class="hljs-comment">#3 (0xb6dc…b583), finalized #1 (0x2aa4…0098), ⬇ 0 ⬆ 0</span>
+<p>Note the flags:</p>
+<ul>
+<li><code>--dev</code> this setup a developer node <a href="../../knowledgebase/integrate/chain-spec">chain specification</a></li>
+<li><code>--tmp</code> this saves all active data for the node (keys, blockchain database, networking info, ...) and is deleted as soon as you properly terminate your node. So every time you start a with this command, you will have a clean state to work from. If the node is killed, <code>/tmp</code> is cleaned automatically on the restart of your computer for linux based OSs, and these files can manually be removed if needed.</li>
+</ul>
+<p>With this command, you should see something like this if your node is running successfully:</p>
+<pre><code class="hljs css language-bash">2021-03-16 10:56:51  Running <span class="hljs-keyword">in</span> --dev mode, RPC CORS has been disabled.    
+2021-03-16 10:56:51  Substrate Node    
+2021-03-16 10:56:51  ✌️  version 3.0.0-8370ddd-x86_64-linux-gnu    
+2021-03-16 10:56:51  ❤️  by Substrate DevHub &lt;https://github.com/substrate-developer-hub&gt;, 2017-2021    
+2021-03-16 10:56:51  📋 Chain specification: Development    
+2021-03-16 10:56:51  🏷 Node name: few-size-5380    
+2021-03-16 10:56:51  👤 Role: AUTHORITY    
+2021-03-16 10:56:51  💾 Database: RocksDb at /tmp/substrateP1jD7H/chains/dev/db    
+2021-03-16 10:56:51  ⛓  Native runtime: node-template-100 (node-template-1.tx1.au1)    
+2021-03-16 10:56:51  🔨 Initializing Genesis block/state (state: 0x17df…04a0, header-hash: 0xc43b…ed16)    
+2021-03-16 10:56:51  👴 Loading GRANDPA authority <span class="hljs-built_in">set</span> from genesis on what appears to be first startup.    
+2021-03-16 10:56:51  ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch    
+2021-03-16 10:56:51  Using default protocol ID <span class="hljs-string">"sup"</span> because none is configured <span class="hljs-keyword">in</span> the chain specs    
+2021-03-16 10:56:51  🏷 Local node identity is: 12D3KooWQdU84EJCqDr4aqfhb7dxXU2fzd6i2Rn1XdNtsiM5jvEC    
+2021-03-16 10:56:51  📦 Highest known block at <span class="hljs-comment">#0    </span>
+2021-03-16 10:56:51  〽️ Prometheus server started at 127.0.0.1:9615    
+2021-03-16 10:56:51  Listening <span class="hljs-keyword">for</span> new connections on 127.0.0.1:9944.    
+2021-03-16 10:56:54  🙌 Starting consensus session on top of parent 0xc43b4514877d7dcfff2459cdfe609a96cf8e9b9723589635d7215de6bf00ed16    
+2021-03-16 10:56:54  🎁 Prepared block <span class="hljs-keyword">for</span> proposing at 1 [<span class="hljs-built_in">hash</span>: 0x255bcf44df92dd4ccaca15d92d4a3db9d276e42843e21ab0cc840e207b2649d6; parent_hash: 0xc43b…ed16; extrinsics (1): [0x02bf…2cbd]]    
+2021-03-16 10:56:54  🔖 Pre-sealed block <span class="hljs-keyword">for</span> proposal at 1. Hash now 0x9c14d9caccc37f8142fc348d184fb4bd8a8bc217a8979493d7f46d4220775616, previously 0x255bcf44df92dd4ccaca15d92d4a3db9d276e42843e21ab0cc840e207b2649d6.    
+2021-03-16 10:56:54  ✨ Imported <span class="hljs-comment">#1 (0x9c14…5616)    </span>
+2021-03-16 10:56:54  🙌 Starting consensus session on top of parent 0x9c14d9caccc37f8142fc348d184fb4bd8a8bc217a8979493d7f46d4220775616    
+2021-03-16 10:56:54  🎁 Prepared block <span class="hljs-keyword">for</span> proposing at 2 [<span class="hljs-built_in">hash</span>: 0x6cd4bd9d2a531750c10610bdaa5af0075745b6612ffa3623c14d699250b4e732; parent_hash: 0x9c14…5616; extrinsics (1): [0x3cc8…b8d9]]    
+2021-03-16 10:56:54  🔖 Pre-sealed block <span class="hljs-keyword">for</span> proposal at 2. Hash now 0x05bd3317b51d717163dfa8847369d7f697c6180868c29f02d0b7ff79c5bbde3f, previously 0x6cd4bd9d2a531750c10610bdaa5af0075745b6612ffa3623c14d699250b4e732.    
+2021-03-16 10:56:54  ✨ Imported <span class="hljs-comment">#2 (0x05bd…de3f)    </span>
+2021-03-16 10:56:56  💤 Idle (0 peers), best: <span class="hljs-comment">#2 (0x05bd…de3f), finalized #0 (0xc43b…ed16), ⬇ 0 ⬆ 0    </span>
+2021-03-16 10:57:00  🙌 Starting consensus session on top of parent 0x05bd3317b51d717163dfa8847369d7f697c6180868c29f02d0b7ff79c5bbde3f    
+2021-03-16 10:57:00  🎁 Prepared block <span class="hljs-keyword">for</span> proposing at 3 [<span class="hljs-built_in">hash</span>: 0xa6990964cf4f184edc08acd61c3c01ac8975abbba6d42f4eec3f9658097aec04; parent_hash: 0x05bd…de3f; extrinsics (1): [0xd6ed…86a5]]    
+2021-03-16 10:57:00  🔖 Pre-sealed block <span class="hljs-keyword">for</span> proposal at 3. Hash now 0xbe07e322ca525e580a3703637db191c6df091b0242a411b88fa0c43ef0ac31f8, previously 0xa6990964cf4f184edc08acd61c3c01ac8975abbba6d42f4eec3f9658097aec04.    
+2021-03-16 10:57:00  ✨ Imported <span class="hljs-comment">#3 (0xbe07…31f8)    </span>
+2021-03-16 10:57:01  💤 Idle (0 peers), best: <span class="hljs-comment">#3 (0xbe07…31f8), finalized #1 (0x9c14…5616), ⬇ 0 ⬆ 0    </span>
 </code></pre>
-<p>如果上面 <code>finalized:</code> 后的数值在增加，这表示你的区块链正在生成新的区块，并就他们描述的状态达成了共识！</p>
-<h2><a class="anchor" aria-hidden="true" id="启动前端"></a><a href="#启动前端" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>启动前端</h2>
-<p>要与您的本地节点交互，我们将使用 <a href="https://github.com/substrate-developer-hub/substrate-front-end-template">Substrate 开发者 Front-end Template</a>，它集合了常规情况下需要的各种前端交互组件。</p>
-<p>如果您已经安装了 Front-end Template，请在 Front-end Template 所在的根目录中执行以下命令：</p>
+<p>If the number after <code>finalized:</code> is increasing, your blockchain is producing new blocks and reaching consensus about the state they describe!</p>
+<p>A few notes on the example output above:</p>
+<ul>
+<li><code>💾 Database: RocksDb at /tmp/substrateP1jD7H/chains/dev/db</code> : where chain data is being written</li>
+<li><code>🏷 Local node identity is: 12D3KooWQdU84EJCqDr4aqfhb7dxXU2fzd6i2Rn1XdNtsiM5jvEC</code>: the node ID needed if you intend to connect to other nodes directly (more in the <a href="../start-a-private-network/index">private network tutorial</a>)</li>
+</ul>
+<blockquote>
+<p>While not critical now, please do read all the startup logs for your node, as they help inform you of key configuration information as you continue to learn and move past these first basic tutorials.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="start-the-front-end-template"></a><a href="#start-the-front-end-template" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Start the Front-End Template</h2>
+<p>To interact with your local node, we will use <a href="https://github.com/substrate-developer-hub/substrate-front-end-template">the Substrate Developer Hub Front-End Template</a>, which is a collection of UI components that have been designed with common use cases in mind.</p>
+<blockquote>
+<p>Be sure to use the correct version of the template for the version of substrate you are using as <a href="https://semver.org/">major versions</a> are <em>not</em> expected to be interoperable!</p>
+</blockquote>
+<p>You already installed the Front-End Template; let's launch it by executing the following command in the root directory of the Front-End Template:</p>
 <pre><code class="hljs css language-bash"><span class="hljs-comment"># 确保在 Front-end Template 根目录中运行此命令</span>
 yarn start
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="交互"></a><a href="#交互" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>交互</h2>
-<p>当 Front-end Template 成功运行后，浏览器会载入 <a href="http://localhost:8000/">http://localhost:8000/</a> 这地址，请花点时间来探索它的组件吧。 在顶部， 您会看到关于您连接着的区块链的有用信息，以及 一个帐户选择器，来选择您在链上执行操作时使用的帐户。</p>
-<p><img src="/docs/assets/tutorials/first-chain/chain-data.png" alt="链数据 &amp; 帐户选择组件"></p>
-<p>这里也有一个表格，列出了您可调动的 <a href="../../knowledgebase/integrate/subkey#well-known-keys">常用的测试账户</a>。 一些像 Alice、Bob 等的账户已经都有资金了！</p>
-<p><img src="/docs/assets/tutorials/first-chain/accts-prefunded.png" alt="账户表"></p>
-<p>在账户列表下面，您可以使用转账组件从一个账户转账到另一个账户。 注意 Front-End Template 使用精度的信息提示； 您应该传输至少 <code>10000000000</code> 个代币来方便观察您正在做的更改。</p>
+<p>Once the Front-End Template is running and loaded in your browser at <a href="http://localhost:8000/">http://localhost:8000/</a>, take a moment to explore its components. At the top, you will find lots of helpful information about the chain to which you're connected as well as an account selector that will let you control the account you use to perform on-chain operations.</p>
+<p><img src="/docs/assets/tutorials/first-chain/chain-data.png" alt="Chain Data &amp; Account Selector"></p>
+<p>There is also a table that lists <a href="../../knowledgebase/integrate/subkey#well-known-keys">the well-known test accounts</a> that you have access to. Some, like Alice and Bob, already have funds!</p>
+<p><img src="/docs/assets/tutorials/first-chain/accts-prefunded.png" alt="Account Table"></p>
+<p>Beneath the account table there is a Transfer component that you can use to transfer funds from one account to another. Take note of the info box that describes the precision used by the Front-End Template; you should transfer at least <code>1000000000000</code> to make it easy for you to observe the changes you're making. Here we give the <code>dave</code> development account these funds:</p>
 <p><img src="/docs/assets/tutorials/first-chain/apps-transfer.png" alt="余额转账"></p>
-<p>请注意，账户列表里的数据是动态获取的，在处理转账后账户余额会立即更新。</p>
+<p>Notice that the table of accounts is dynamic and that the account balances are updated as soon as the transfer is processed.</p>
 <h3><a class="anchor" aria-hidden="true" id="runtime-元数据"></a><a href="#runtime-元数据" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Runtime 元数据</h3>
-<p>Front-End Template 显示着许多有用的功能，当您在连着本地开发节点时，您应该好好探索所有这些功能。 一个很好的开始方式是点击模板页面顶部的 “显示元数据” 按钮查看 <a href="../../knowledgebase/runtime/metadata">Runtime 的元数据</a>。</p>
-<p><img src="/docs/assets/tutorials/first-chain/metadata.png" alt="元数据 JSON"></p>
+<p>The Front-End Template exposes many helpful features and you should explore all of them while you're connected to a local development node. One good way to get started is by clicking the &quot;Show Metadata&quot; button at the top of the template page and reviewing <a href="../../knowledgebase/runtime/metadata">the metadata that your runtime exposes</a>.</p>
+<p><img src="/docs/assets/tutorials/first-chain/metadata.png" alt="Metadata JSON"></p>
 <h3><a class="anchor" aria-hidden="true" id="模块交互组件--事件"></a><a href="#模块交互组件--事件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>模块交互组件 &amp; 事件</h3>
-<p>您可以使用 runtime 元数据来发现 runtime 的功能。 Front-End Template 提供了一个模块交互组件，它提供了几种与 Substrate 进程进行交互的方式。</p>
+<p>You can use the runtime metadata to discover a runtime's capabilities. The Front-End Template provides a helpful Pallet Interactor component that provides several mechanisms for interacting with a Substrate runtime.</p>
 <p><img src="/docs/assets/tutorials/first-chain/interactor-events.png" alt="模块交互组件 &amp; 事件"></p>
-<p><a href="../../knowledgebase/learn-substrate/extrinsics">Extrinsics</a> 是 runtime 里可调用的函数。 如果你熟悉区块链概念，你可把它们看作是链上交易。 The Pallet Interactor allows you to submit <a href="../../knowledgebase/learn-substrate/extrinsics#unsigned-transactions">unsigned</a> or <a href="../../knowledgebase/learn-substrate/extrinsics#signed-transactions">signed</a> extrinsics and also provides a button that makes it easy to invoke an extrinsic by way of <a href="https://substrate.dev/rustdocs/v3.0.0/pallet_sudo/enum.Call.html#variant.sudo">使用 Sudo 模块里的 <code>sudo</code> 函数</a>。 在第三個教程 <a href="../add-a-pallet">添加一个Pallet</a> 教程裡，您将了解更多关于使用 “Sudo” 按钮来调用需要特权的交易。</p>
-<p>您可以选择查询交互来读取 <a href="../../knowledgebase/runtime/storage"> Runtime 存储中的值</a> 。 RPC 和常备选项为 runtime 的提供了额外的交互机制。</p>
-<p>正如许多区块链一样, 基于 Substrate 的链使用 <a href="../../knowledgebase/runtime/events">事件（Event）</a> 来报告异步操作的结果. 如果您已经使用了 Front-End Template 来执行上述的余额转账， 您可以在 “Pallet 交互組件” 旁边的 “事件组件” 中看到一个转账事件。</p>
+<p><a href="../../knowledgebase/learn-substrate/extrinsics">Extrinsics</a> are the runtime's callable functions; if you are already familiar with blockchain concepts, you can think of them as transactions for now. The Pallet Interactor allows you to submit <a href="../../knowledgebase/learn-substrate/extrinsics#unsigned-transactions">unsigned</a> or <a href="../../knowledgebase/learn-substrate/extrinsics#signed-transactions">signed</a> extrinsics and also provides a button that makes it easy to invoke an extrinsic by way of <a href="https://substrate.dev/rustdocs/v3.0.0/pallet_sudo/enum.Call.html#variant.sudo">the <code>sudo</code> function from the Sudo pallet</a>. You can learn more about using the &quot;SUDO&quot; button to invoke privileged extrinsics in the <a href="../add-a-pallet">Add a Pallet</a> tutorial.</p>
+<p>You can select Query interactions to read <a href="../../knowledgebase/runtime/storage">the values present in your runtime's storage</a>. The RPC and Constant options provide additional mechanisms for runtime interaction.</p>
+<p>Like many blockchains, Substrate chains use <a href="../../knowledgebase/runtime/events">events</a> to report the results of asynchronous operations. If you have already used the Front-End Template to perform a balance transfer as described above, you should see an event for the transfer in the Event component next to the Pallet Interactor.</p>
 <h2><a class="anchor" aria-hidden="true" id="后续步骤"></a><a href="#后续步骤" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>后续步骤</h2>
-<p>到这里，使用 Substrate 启动第一个区块链的教程就结束啦。</p>
-<p>您已经启动并运行了一个基于 Substrate 的区块链，为该链添加一个用户界面，使代币能够在用户间转账。 我们希望您可以继续学习 Substrate。</p>
-<p>您的下一步可以是：</p>
+<p>🎉 Congratulations!!! 🎉</p>
+<p>You have launched a working Substrate-based blockchain, attached a user interface to that chain, and made token transfers among users. We hope you'll continue learning about Substrate!</p>
+<p>Your next step may be:</p>
 <ul>
-<li>参与 <a href="../add-a-pallet">添加 Pallet</a> 的教程来扩展 Template Node 的功能。</li>
-<li>在 <a href="../upgrade-a-chain">链升级</a> 教程中学习如何无需分叉就能对 Runtime 进行升级。</li>
+<li>Extend the features of the template node in the <a href="../add-a-pallet">Add a Pallet</a> tutorial.</li>
+<li>Learn about forkless runtime upgrades in the <a href="../upgrade-a-chain">Upgrade a Chain</a> tutorial.</li>
 </ul>
 <p>If you experienced any issues with this tutorial or want to provide feedback, You can <a href="https://stackoverflow.com/questions/tagged/substrate">ask a question on Stack Overflow</a> and use the <code>substrate</code> tag or contact us on <a href="https://matrix.to/#/#substrate-technical:matrix.org">Element</a>.</p>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/tutorials/create-your-first-substrate-chain/background"><span class="arrow-prev">← </span><span>背景资料</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#启动节点">启动节点</a></li><li><a href="#启动前端">启动前端</a></li><li><a href="#交互">交互</a><ul class="toc-headings"><li><a href="#runtime-元数据">Runtime 元数据</a></li><li><a href="#模块交互组件--事件">模块交互组件 &amp; 事件</a></li></ul></li><li><a href="#后续步骤">后续步骤</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/rustdocs">API 文档</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/tutorials/create-your-first-substrate-chain/background"><span class="arrow-prev">← </span><span>背景资料</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#启动节点">启动节点</a></li><li><a href="#start-the-front-end-template">Start the Front-End Template</a></li><li><a href="#交互">交互</a><ul class="toc-headings"><li><a href="#runtime-元数据">Runtime 元数据</a></li><li><a href="#模块交互组件--事件">模块交互组件 &amp; 事件</a></li></ul></li><li><a href="#后续步骤">后续步骤</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/rustdocs">API 文档</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();
