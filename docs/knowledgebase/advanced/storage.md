@@ -2,7 +2,7 @@
 title: Storage
 ---
 
-Substrate uses a simple key-value data store implemented as a database-backed, modified Merkle tree.
+Substrate uses a simple key-value data store implemented as a database-backend, modified Merkle tree.
 All of Substrate's [higher-lever storage abstractions](../runtime/storage) are built on top of this
 simple key-value store.
 
