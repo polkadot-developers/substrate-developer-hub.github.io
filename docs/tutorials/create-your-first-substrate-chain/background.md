@@ -2,8 +2,9 @@
 title: Background Information
 ---
 
-In this section, you will learn a little bit about blockchains and the Substrate blockchain
-development framework. The Node Template that you are compiling was built with this framework.
+While we wait for the [node template to build](setup/#compiling-substrate), let's learn a little 
+bit about blockchains and the Substrate blockchain development framework. The Node Template 
+that you are compiling was built with this framework.
 
 ## Background on Blockchains
 
@@ -13,12 +14,12 @@ everything work.
 
 To function, a blockchain node needs:
 
-- Storage
-- Peer-to-peer networking
-- Consensus capabilities
-- Transaction handling
-- A runtime
-- and more...
+- [Storage](../../knowledgebase/advanced/storage)
+- [Peer-to-peer networking](https://libp2p.io)
+- [Consensus capabilities](../../knowledgebase/advanced/consensus)
+- [Extrinsic handling](../../knowledgebase/learn-substrate/extrinsics) (more than just transactions)
+- A [Runtime](../../knowledgebase/runtime/index)
+- and [more...](../../index)
 
 These technologies span a wide breadth of computer science, and so blockchains usually require teams
 of experts to develop. As a result, most blockchain projects are _not_ developed from the ground up.

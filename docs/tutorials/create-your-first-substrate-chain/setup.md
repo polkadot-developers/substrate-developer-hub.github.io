@@ -14,47 +14,41 @@ You will probably need to do some set-up to prepare your computer for Substrate 
 
 ### Substrate Development
 
-Refer to the [official Installation guide](../../knowledgebase/getting-started/). Since this
-tutorial uses the Node Template, which includes configuration files and scripts for initializing and
-interacting with it, it's not necessary to complete all the steps from the Installation guide. After
-`rustup` has been installed and configured, and you've configured the Rust toolchain to default to
-the latest stable version you can return to these steps.
+> Before you coninue, complete the [official Installation guide](../../knowledgebase/getting-started/index.md).
+> After `rustup` has been installed and configured, and you've configured the Rust toolchain to default
+> to the latest stable version you can return to these steps.
 
 ## Compiling Substrate
 
 Once the prerequisites are installed, you can use Git to clone the Substrate Developer Hub Node
 Template, which serves as a good starting point for building on Substrate.
 
-1. Clone the Node Template (version `v2.0.1`).
+1. Clone the Node Template (version `v3.0.0`).
 
     ```bash
-    git clone -b v2.0.1 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+    git clone -b v3.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
     ```
-
-2. Initialize your WebAssembly build environment
+2. Compile the Node Template
 
     ```bash
     cd substrate-node-template
-    make init
+    # NOTE: you should always use the `--release` flag
+    cargo build --release
+    # ^^ this will take a while!
     ```
 
-3. Compile the Node Template
-
-    ```bash
-    make build
-    ```
-
-The time required for the compilation step depends on the hardware you're using. Don't wait before
-moving on.
+> The time required for the compilation step depends on the hardware you're using. 
+>
+> **You should start building the node template _before_ moving on!**
 
 ## Install the Front-End Template
 
-This tutorial uses a ReactJS front-end template to allow you to interact with the Substrate-based
-blockchain node that you should have started compiling in the previous step. You can use this same
-front-end template to create UIs for your own projects in the future.
+This tutorial uses a [ReactJS](https://reactjs.org/) front-end template to allow you to interact 
+with the Substrate-based blockchain node that you should have started compiling in the previous 
+step. You can use this same front-end template to create UIs for your own projects in the future.
 
 To use the front-end template, you need [Yarn](https://yarnpkg.com), which itself requires
-[Node.js](https://nodejs.org/). If you don't have these tools, you may install them from these
+[Node.js](https://nodejs.org/). If you don't have these tools, you _must_ install them from these
 instructions:
 
 - [Install Node.js](https://nodejs.org/en/download/)
@@ -63,8 +57,8 @@ instructions:
 Now you can proceed to set up the front-end template with these commands.
 
 ```bash
-# Clone the code from github
-git clone -b v2.0.1 --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
+# Clone the frontend template from github
+git clone -b v3.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
 
 # Install the dependencies
 cd substrate-front-end-template
