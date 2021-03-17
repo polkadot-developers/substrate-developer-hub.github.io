@@ -72,9 +72,9 @@ Prometheus->Grafana: `substrate_peers_count (1582023828, 5), (1582023847, 4) [..
 ## Start a Substrate Template Node
 
 > Before you continue here, you should complete the
-[create your first substrate chain](create-your-first-substrate-chain/index.md) 
-tutorial. The same substrate version, conventions for 
-directory structure, and bin names are used here. 
+[create your first substrate chain](create-your-first-substrate-chain/index.md)
+tutorial. The same substrate version, conventions for
+directory structure, and bin names are used here.
 You can of course use your own custom substrate node instead of the template,
 just edit the commands shown as needed.
 
@@ -177,9 +177,9 @@ Log in (default user `admin` and password `admin`) and navigate to the [data sou
 
 You then need to select a `Prometheus` data source type and specify where Grafana needs to look for it.
 
-> Note: The Prometheus port Grafana needs is NOT the one you set in the `prometheus.yml` file (https://localhost:9615) for where your node is publishing it's data. 
+> Note: The Prometheus port Grafana needs is NOT the one you set in the `prometheus.yml` file (https://localhost:9615) for where your node is publishing it's data.
 
-With your substrate node and Prometheus are running, configure Grafana to look for Prometheus 
+With your substrate node and Prometheus are running, configure Grafana to look for Prometheus
 on it's default port: https://localhost:9090 (unless you customized it).
 
 Hit `Save & Test` to ensure that you have the data source set correctly. Now you can configure a new dashboard!
@@ -221,4 +221,4 @@ Here is ours on [the grafana public dashboards](https://grafana.com/grafana/dash
 
 - Visit the source code for
   [Substrate Prometheus Exporter](https://github.com/paritytech/substrate/tree/master/utils/prometheus).
-- See the [docs for prometheus in substrate](https://substrate.dev/rustdocs/v2.0.0/prometheus/index.html)
+- See the [docs for prometheus in substrate](https://substrate.dev/rustdocs/v3.0.0/prometheus/index.html).
