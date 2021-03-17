@@ -28,11 +28,11 @@ they are always allowed to connect with each other.
 Instead, you can manipulate the connection between a well know node
 and a normal node or between two normal nodes.
 
-It uses offchain worker to set authorized nodes in node-authorization pallet. 
-Make sure to enable offchain worker with the right CLI flag as offchain worker
-is diabled by default for non-authority nodes. Your node can be lagged with the
-latest block, in this case you need to disable offchain worker and manually set
-reachable reserved nodes to sync up with the network.
+It uses an [offchain worker](../../knowledgebase/learn-substrate/off-chain-features#off-chain-workers)
+to set authorized nodes in node-authorization pallet. Make sure to enable offchain worker with
+the right CLI flag as offchain worker is diabled by default for non-authority nodes.
+Your node can be lagged with the latest block, in this case you need to disable offchain worker
+and manually set reachable reserved nodes to sync up with the network.
 
 ## Add the `node-authorization` pallet
 
@@ -58,7 +58,7 @@ make check
 ```
 
 > If you do run into issues building, checkout
-> [these helpful tips](https://substrate.dev/docs/en/knowledgebase/getting-started/#rust-developer-environment)
+> [these helpful tips](../../knowledgebase/getting-started/#2-rust-developer-environment)
 
 Now open the code with your favorite editor, can't wait to make some changes right?
 
@@ -201,14 +201,14 @@ and represents the owner of this node, here we are using one of the provided end
 for demonstration. To make it clear, the owner of the first node is Alice, and Bob owns the second node.
 
 You may wondering where the `12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2` comes from.
-We can use [subkey](https://substrate.dev/docs/en/knowledgebase/integrate/subkey#generating-node-keys) to generate the above human readable `PeerId`.
+We can use [subkey](../../knowledgebase/integrate/subkey#generating-node-keys) to generate the above human readable `PeerId`.
 
 ```shell
 subkey generate-node-key
 ```
 
 > Note: `subkey` is a CLI tool that comes bundled with substrate, and you can install it natively too!
->  - [Install Intructions](https://substrate.dev/docs/en/knowledgebase/integrate/subkey#installation)
+>  - [Install Intructions](../../knowledgebase/integrate/subkey#installation)
 
 The output of the command is like:
 
