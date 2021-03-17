@@ -80,7 +80,7 @@
 </ol>
 <p>通过 <code>PeerId</code> 关联的某个节点 <strong>有且仅有一个拥有者</strong>。 Well known 节点的拥有者是在添加它们时指定的。 如果是普通节点，<em>任何</em> 用户都可以 claim 认领这一 <code>PeerId</code> 作为对应节点的拥有者。 为了防止被其他人认领，节点的维护人员应当在<em>启动该节点之前</em>就去认领（当然，需要你已经拿到了对应的 <code>PeerId</code>）。</p>
 <p>之后，拥有者可以为自己的节点修改额外的连接。 需要指出的是，拥有者不能修改 well known 节点之间的连接，因为它们之间始终是允许连接的。 Instead, you can manipulate the connection between a well know node and a normal node or between two normal nodes.</p>
-<p>It uses offchain worker to set authorized nodes in node-authorization pallet. Make sure to enable offchain worker with the right CLI flag as offchain worker is diabled by default for non-authority nodes. Your node can be lagged with the latest block, in this case you need to disable offchain worker and manually set reachable reserved nodes to sync up with the network.</p>
+<p>It uses an <a href="../../knowledgebase/learn-substrate/off-chain-features#off-chain-workers">offchain worker</a> to set authorized nodes in node-authorization pallet. Make sure to enable offchain worker with the right CLI flag as offchain worker is diabled by default for non-authority nodes. Your node can be lagged with the latest block, in this case you need to disable offchain worker and manually set reachable reserved nodes to sync up with the network.</p>
 <h2><a class="anchor" aria-hidden="true" id="添加-node-authorization-pallet"></a><a href="#添加-node-authorization-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加 <code>node-authorization</code> pallet</h2>
 <p>If you already hace Node Template cloned, you can just create a <strong>new branch and check it out</strong> from the base template, otherwise, clone <code>v3.0.0</code> of the project:</p>
 <pre><code class="hljs css language-shell"><span class="hljs-meta">#</span><span class="bash"> Fresh <span class="hljs-built_in">clone</span>, <span class="hljs-keyword">if</span> needed:</span>
@@ -96,7 +96,7 @@ make init
 make check
 </code></pre>
 <blockquote>
-<p>如果在编译时遇到了问题，参考<a href="https://substrate.dev/docs/en/knowledgebase/getting-started/#rust-developer-environment">这些帮助信息</a></p>
+<p>If you do run into issues building, checkout <a href="../../knowledgebase/getting-started/#2-rust-developer-environment">these helpful tips</a></p>
 </blockquote>
 <p>现在可以用你最喜欢的编译器打开代码，等不及了是不是？</p>
 <p>在 <strong>runtime/Cargo.toml</strong> 中，添加我们模块的依赖：</p>
@@ -205,11 +205,11 @@ make check
 <span class="token punctuation">}</span>
 </code></pre>
 <p><code>NodeAuthorizationConfig</code> 包含了一个属性叫做 <code>nodes</code>，类型是元组的集合。 元组的第一个元素是 <code>OpaquePeerId</code>，我们使用了 <code>bs58::decode</code> 把可读性友好的 <code>PeerId</code> 格式转换成字节集合。 元组的第二个元素是 <code>AccountId</code>，代表了节点的拥有者，这里我们使用的是预置的账户。 也就是说，第一个节点的拥有者是 Alice，而 Bob 拥有第二个节点。</p>
-<p>你可能好奇 <code>12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2</code> 是从哪来的。 我们可以使用 <a href="https://substrate.dev/docs/en/knowledgebase/integrate/subkey#generating-node-keys">subkey</a> 工具来生成这个可读性强的 <code>PeerId</code>。</p>
+<p>你可能好奇 <code>12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2</code> 是从哪来的。 We can use <a href="../../knowledgebase/integrate/subkey#generating-node-keys">subkey</a> to generate the above human readable <code>PeerId</code>.</p>
 <pre><code class="hljs css language-shell">subkey generate-node-key
 </code></pre>
 <blockquote>
-<p>说明：<code>subkey</code> 是 Substrate 提供的一个命令行工具，也可以在本机直接安装！ - <a href="https://substrate.dev/docs/en/knowledgebase/integrate/subkey#installation">Install Intructions</a></p>
+<p>说明：<code>subkey</code> 是 Substrate 提供的一个命令行工具，也可以在本机直接安装！ - <a href="../../knowledgebase/integrate/subkey#installation">Install Intructions</a></p>
 </blockquote>
 <p>这一命令的输出为：</p>
 <pre><code class="hljs css language-shell">12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2 // this is PeerId.
