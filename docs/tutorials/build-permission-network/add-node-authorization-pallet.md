@@ -4,31 +4,31 @@ title: Add node-authorization pallet
 
 ## About `node-authorization` pallet
 
-The `node-authorization` pallet is a build-in pallet in Substrate FRAME, which manages 
-a configurable set of nodes for a permissioned network. 
+The `node-authorization` pallet is a build-in pallet in Substrate FRAME, which manages
+a configurable set of nodes for a permissioned network.
 Each node is identified by a `PeerId` which is simply a wrapper on `Vec<u8>`.
 Each `PeerId` is owned by an `AccountId` that claims it
-(these are [associated in a map](https://substrate.dev/rustdocs/v2.0.0/pallet_node_authorization/struct.Owners.html)).
+(these are [associated in a map](https://substrate.dev/rustdocs/v3.0.0/pallet_node_authorization/struct.Owners.html)).
 With this pallet, you have two ways to authorize a node which wants to join the network:
 
 1. Join the set of well known nodes between which the connections are allowed.
     Such effort usually needs to be approved by the governance in the system.
 2. Ask for the connection from a node which is already a member of the network.
-    Such node can either be a well known node or a normal one. 
+    Such node can either be a well known node or a normal one.
 
 A node associated with a `PeerId` must have **one and only one owner**.
 The owner of a well known node is specified when adding it.
 If it's a normal node, *any* user can claim a `PeerId` as its owner.
 To protect against false claims, the maintainer of the node should claim it *before even starting the node*
-(after getting the `PeerId` of course). 
+(after getting the `PeerId` of course).
 
 The owner can then change the additional connections for his (or her) node.
 To make it clear, you can't change the connections between well known nodes,
-they are always allowed to connect with each other. 
-Instead, you can manipulate the connection between a well know node 
+they are always allowed to connect with each other.
+Instead, you can manipulate the connection between a well know node
 and a normal node or between two normal nodes.
 
-It uses [offchain worker](https://substrate.dev/docs/en/knowledgebase/runtime/off-chain-workers)
+It uses an [offchain worker](../../knowledgebase/learn-substrate/off-chain-features#off-chain-workers)
 to set authorized nodes in node-authorization pallet. Make sure to enable offchain worker with
 the right CLI flag as offchain worker is diabled by default for non-authority nodes.
 Your node can be lagged with the latest block, in this case you need to disable offchain worker
@@ -36,20 +36,20 @@ and manually set reachable reserved nodes to sync up with the network.
 
 ## Add the `node-authorization` pallet
 
-If you already hace Node Template cloned, you can just create a 
-**new branch and check it out** from the base template, 
-otherwise, clone `v2.0.0` of the project:
+If you already hace Node Template cloned, you can just create a
+**new branch and check it out** from the base template,
+otherwise, clone `v3.0.0` of the project:
 
 ```shell
 # Fresh clone, if needed:
-git clone -b v2.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+git clone -b v3.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
 # From the working directory, create a new branch and check it out
 cd substrate-node-template
 git branch perm-network
 git checkout perm-network
 ```
 
-You should be able to `check` the project (or `build`) without any error: 
+You should be able to `check` the project (or `build`) without any error:
 
 ```shell
 cd substrate-node-template/
@@ -58,7 +58,7 @@ make check
 ```
 
 > If you do run into issues building, checkout
-> [these helpful tips](https://substrate.dev/docs/en/knowledgebase/getting-started/#rust-developer-environment)
+> [these helpful tips](../../knowledgebase/getting-started/#2-rust-developer-environment)
 
 Now open the code with your favorite editor, can't wait to make some changes right?
 
@@ -82,7 +82,7 @@ std = [
 ```
 Let's import and use our pallet in **runtime/src/lib.rs**. Firstly Import the dependency
 with `use frame_system::EnsureRoot`, we need it to simulate the governance in our simple blockchain.
-Then implement the configure trait of our pallet. More description on the trait can be found in 
+Then implement the configure trait of our pallet. More description on the trait can be found in
 its [reference doc](https://docs.rs/pallet-node-authorization/2.0.0/pallet_node_authorization/trait.Trait.html).
 
 **`runtime/src/lib.rs`**
@@ -138,7 +138,7 @@ construct_runtime!(
 
 ## Add genesis storage for our pallet
 
-`PeerId` is encoded in bs58 format, so we need a new library 
+`PeerId` is encoded in bs58 format, so we need a new library
 [bs58](https://docs.rs/bs58/0.3.1/bs58/) in **node/cargo.toml** to decode it to get its bytes.
 
 **`node/cargo.toml`**
@@ -188,7 +188,7 @@ fn testnet_genesis(
 	    	),
     	],
     }),
-    
+
     /* --snip-- */
 
 }
@@ -201,14 +201,14 @@ and represents the owner of this node, here we are using one of the provided end
 for demonstration. To make it clear, the owner of the first node is Alice, and Bob owns the second node.
 
 You may wondering where the `12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2` comes from.
-We can use [subkey](https://substrate.dev/docs/en/knowledgebase/integrate/subkey#generating-node-keys) to generate the above human readable `PeerId`.
+We can use [subkey](../../knowledgebase/integrate/subkey#generating-node-keys) to generate the above human readable `PeerId`.
 
 ```shell
 subkey generate-node-key
 ```
 
-> Note: `subkey` is a CLI tool that comes bundled with substrate, and you can install it natively too! 
->  - [Install Intructions](https://substrate.dev/docs/en/knowledgebase/integrate/subkey#installation)
+> Note: `subkey` is a CLI tool that comes bundled with substrate, and you can install it natively too!
+>  - [Install Intructions](../../knowledgebase/integrate/subkey#installation)
 
 The output of the command is like:
 

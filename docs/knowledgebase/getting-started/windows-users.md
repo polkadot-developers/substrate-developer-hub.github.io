@@ -2,7 +2,15 @@
 title: Getting Started on Windows
 ---
 
-If you are trying to set up a Windows computer to build Substrate, do the following:
+> NOTE: Native development of substrate is _not_ very well supported! It is _highly_ recommend to
+> use [Windows Subsystem Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (WSL)
+> and follow the instructions for [Ubuntu/Debian](index#ubuntudebian). 
+
+> Substrate development is easiest on Unix-based operating systems like macOS or Linux. The examples
+in the Substrate [Tutorials](../../../../tutorials) and [Recipes](https://substrate.dev/recipes/)
+use Unix-style terminals to demonstrate how to interact with Substrate from the command line.
+
+If you do decide to try and use a Windows computer to _natively_ build Substrate, do the following:
 
 1. Download and install "Build Tools for Visual Studio:"
 
@@ -37,7 +45,7 @@ If you are trying to set up a Windows computer to build Substrate, do the follow
 
 4. Install LLVM: https://releases.llvm.org/download.html
 
-5. Install OpenSSL with `vcpkg`:
+5. Install OpenSSL with `vcpkg` using PowerShell:
 
    ```bash
    mkdir C:\Tools
@@ -57,4 +65,12 @@ If you are trying to set up a Windows computer to build Substrate, do the follow
    [System.Environment]::SetEnvironmentVariable('OPENSSL_STATIC', $env:OPENSSL_STATIC, [System.EnvironmentVariableTarget]::User)
    ```
 
-7. Finally, install `cmake`: https://cmake.org/download/
+7. Install `cmake`: https://cmake.org/download/
+
+8. Install `make`
+    - This can be done using Chocolatey. First you need to install the Chocolatey package manager: https://chocolatey.org/install
+    - Once Chocolatey installed you can install make:
+
+   ```
+   choco install make
+   ```

@@ -33,8 +33,8 @@ allows the two pieces of logic to be written independently of each other.
 ### Consuming Randomness
 
 A developer who is writing a pallet that needs randomness, does not need to worry about providing
-that randomness. Rather, the pallet can imply require a randomness source that implements the trait
-be provided. The `Randomness` Trait provides two methods for gaining randomness.
+that randomness. Rather, the pallet can simply require a randomness source that implements the trait. 
+The `Randomness` Trait provides two methods for gaining randomness.
 
 The first method is called `random_seed`. It takes no parameters and gives back a raw piece of
 randomness. Calling this method multiple times in a block will return the same value each time.

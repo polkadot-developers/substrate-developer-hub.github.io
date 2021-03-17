@@ -46,7 +46,7 @@ each block header. This is used to easily verify the state of the blockchain and
 light clients to verify proofs.
 
 This trie only stores content for the canonical chain, not forks. There is a separate
-[`state_db` layer](https://substrate.dev/rustdocs/v2.0.0/sc_state_db/index.html) that maintains the
+[`state_db` layer](https://substrate.dev/rustdocs/v3.0.0/sc_state_db/index.html) that maintains the
 trie state with references counted in memory for all that is non-canonical.
 
 ### Child Trie
@@ -74,16 +74,16 @@ reading to learn how to calculate storage keys for the different types of storag
 
 ### Storage Value Keys
 
-To calculate the key for a simple [Storage Value](../runtime/storage#Storage-Value), take the
+To calculate the key for a simple [Storage Value](../runtime/storage#storage-value), take the
 [TwoX 128 hash](https://github.com/Cyan4973/xxHash) of the name of the module that contains the
 Storage Value and append to it the TwoX 128 hash of the name of the Storage Value itself. For
-example, the [Sudo](https://substrate.dev/rustdocs/v2.0.0/pallet_sudo/index.html) pallet exposes a
+example, the [Sudo](https://substrate.dev/rustdocs/v3.0.0/pallet_sudo/index.html) pallet exposes a
 Storage Value item named
-[`Key`](https://substrate.dev/rustdocs/v2.0.0/pallet_sudo/struct.Module.html#method.key):
+[`Key`](https://substrate.dev/rustdocs/v3.0.0/pallet_sudo/struct.Module.html#method.key):
 
 ```
 twox_128("Sudo")                   = "0x5c0d1176a568c1f92944340dbfed9e9c"
-twox_128("Key)                     = "0x530ebca703c85910e7164cb7d1c9e47b"
+twox_128("Key")                    = "0x530ebca703c85910e7164cb7d1c9e47b"
 twox_128("Sudo") + twox_128("Key") = "0x5c0d1176a568c1f92944340dbfed9e9c530ebca703c85910e7164cb7d1c9e47b"
 ```
 
@@ -99,7 +99,7 @@ In this case, the value that is returned
 [SCALE](./codec)-encoded account ID (`5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY`).
 
 You may have noticed that the
-[non-cryptographic](../runtime/storage#Cryptographic-Hashing-Algorithms) TwoX 128 hash algorithm is
+[non-cryptographic](../runtime/storage#cryptographic-hashing-algorithms) TwoX 128 hash algorithm is
 used to generate Storage Value keys. This is because it is not necessary to pay the performance
 costs associated with a cryptographic hash function since the input to the hash function (the names
 of the module and storage item) are determined by the runtime developer and not by potentially
@@ -107,24 +107,24 @@ malicious users of your blockchain.
 
 ### Storage Map Keys
 
-Like Storage Values, the keys for [Storage Maps](../runtime/storage#StorageMaps) are equal to the
+Like Storage Values, the keys for [Storage Maps](../runtime/storage#storage-maps) are equal to the
 TwoX 128 hash of the name of the module that contains the map prepended to the TwoX 128 hash of the
 name of the Storage Map itself. To retrieve an element from a map, simply append the hash of the
 desired map key to the storage key of the Storage Map. For maps with two keys (Storage Double Maps),
 append the hash of the first map key followed by the hash of the second map key to the Storage
 Double Map's storage key. Like Storage Values, Substrate will use the TwoX 128 hashing algorithm for
 the module and Storage Map names, but you will need to make sure to use the correct
-[hashing algorithm](../runtime/storage#Hashing-Algorithms) (the one that was declared in
-[the `decl_storage` macro](../runtime/storage#Declaring-Storage-Items)) when determining the hashed
+[hashing algorithm](../runtime/storage#hashing-algorithms) (the one that was declared in
+[the `decl_storage` macro](../runtime/storage#declaring-storage-items)) when determining the hashed
 keys for the elements in a map.
 
 Here is an example that illustrates querying a Storage Map named `FreeBalance` from a module named
 "Balances" for the balance of the familiar `Alice` account. In this example, the `FreeBalance` map
 is using
-[the transparent Blake2 128 Concat hashing algorithm](../runtime/storage#Transparent-Hashing-Algorithms):
+[the transparent Blake2 128 Concat hashing algorithm](../runtime/storage#transparent-hashing-algorithms):
 
 ```
-twox_128("Balances)                                              = "0xc2261276cc9d1f8598ea4b6a74b15c2f"
+twox_128("Balances")                                             = "0xc2261276cc9d1f8598ea4b6a74b15c2f"
 twox_128("FreeBalance")                                          = "0x6482b9ade7bc6657aaca787ba1add3b4"
 scale_encode("5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY") = "0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d"
 
@@ -138,7 +138,7 @@ example above) is the [SCALE](./codec)-encoded value of Alice's account balance
 (`"1000000000000000000000"` in this example). Notice that before hashing Alice's account ID it has
 to be SCALE-encoded. Also notice that the output of the `blake2_128_concat` function consists of 32
 hexadecimal characters followed by the function's input. This is because the Blake2 128 Concat is
-[a transparent hashing algorithm](../runtime/storage#Transparent-Hashing-Algorithms). Although the
+[a transparent hashing algorithm](../runtime/storage#transparent-hashing-algorithms). Although the
 above example may make this characteristic seem superfluous, its utility becomes more apparent when
 the goal is to iterate over the keys in a map (as opposed to retrieving the value associated with a
 single key). The ability to iterate over the keys in a map is a common requirement in order to allow
@@ -150,7 +150,7 @@ in a module named "Balances") that will demonstrate using the Substrate RPC to q
 for its list of keys via the `state_getKeys` RPC endpoint:
 
 ```
-twox_128("Balances)                                       = "0xc2261276cc9d1f8598ea4b6a74b15c2f"
+twox_128("Balances")                                      = "0xc2261276cc9d1f8598ea4b6a74b15c2f"
 twox_128("FreeBalance")                                   = "0x6482b9ade7bc6657aaca787ba1add3b4"
 
 state_getKeys("0xc2261276cc9d1f8598ea4b6a74b15c2f6482b9ade7bc6657aaca787ba1add3b4") = [
@@ -186,10 +186,10 @@ example, after you remove the first 32 hexadecimal characters that represent the
 
 ## Runtime Storage API
 
-Substrate's [FRAME Support crate](https://substrate.dev/rustdocs/v2.0.0/frame_support/index.html)
+Substrate's [FRAME Support crate](https://substrate.dev/rustdocs/v3.0.0/frame_support/index.html)
 provides utilities for generating unique, deterministic keys for your runtime's storage items. These
-storage items are placed in the [state trie](#Trie-Abstraction) and are accessible by
-[querying the trie by key](#Querying-Storage).
+storage items are placed in the [state trie](#trie-abstraction) and are accessible by
+[querying the trie by key](#querying-storage).
 
 ## Next Steps
 
@@ -200,4 +200,4 @@ storage items are placed in the [state trie](#Trie-Abstraction) and are accessib
 ### References
 
 - Visit the reference docs for
-  [`paritytech/trie`](https://substrate.dev/rustdocs/v2.0.0/trie_db/trait.Trie.html).
+  [`paritytech/trie`](https://substrate.dev/rustdocs/v3.0.0/trie_db/trait.Trie.html).

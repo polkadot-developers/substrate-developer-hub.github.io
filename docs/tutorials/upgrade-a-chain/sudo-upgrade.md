@@ -7,13 +7,13 @@ capabilities related to the management of a single
 [`sudo` ("superuser do")](https://en.wikipedia.org/wiki/Sudo) administrator. In FRAME, the `Root`
 Origin is used to identify the runtime administrator; some of FRAME's features, including the
 ability to update the runtime by way of
-[the `set_code` function](https://substrate.dev/rustdocs/v2.0.0/frame_system/enum.Call.html#variant.set_code),
+[the `set_code` function](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Call.html#variant.set_code),
 are only accessible to this administrator. The Sudo pallet maintains a single
 [storage item](../../knowledgebase/runtime/storage): the ID of the account that has access to the
 pallet's [dispatchable functions](../../knowledgebase/getting-started/glossary#dispatch). The Sudo
 pallet's `sudo` function allows the holder of this account to invoke a dispatchable as the `Root`
 origin. The following pseudo-code demonstrates how this is achieved, refer to the
-[Sudo pallet's source code](https://github.com/paritytech/substrate/blob/v2.0.0/frame/sudo/src/lib.rs)
+[Sudo pallet's source code](https://github.com/paritytech/substrate/blob/v3.0.0/frame/sudo/src/lib.rs)
 to learn more.
 
 ```rust
@@ -51,20 +51,19 @@ that Alice's account will be the one used to perform runtime upgrades throughout
 
 Dispatchable calls in Substrate are always associated with a
 [weight](../../knowledgebase/learn-substrate/weight), which is used for resource accounting. FRAME's
-System module enforces a
-[`MaximumExtrinsicWeight`](https://substrate.dev/rustdocs/v2.0.0/frame_system/trait.Trait.html#associatedtype.MaximumExtrinsicWeight)
-and a
-[`MaximumBlockWeight`](https://substrate.dev/rustdocs/v2.0.0/frame_system/trait.Trait.html#associatedtype.MaximumBlockWeight).
+System module bounds extrinsics to a block
+[length](https://substrate.dev/rustdocs/v3.0.0/frame_system/limits/struct.BlockLength.html) and
+[weight](https://substrate.dev/rustdocs/v3.0.0/frame_system/limits/struct.BlockWeights.html) limit.
 The `set_code` function in
-[the System module](https://github.com/paritytech/substrate/blob/v2.0.0/frame/system/src/lib.rs) is
+[the System module](https://github.com/paritytech/substrate/blob/v3.0.0/frame/system/src/lib.rs) is
 intentionally designed to consume the maximum weight that may fit in a block. The `set_code`
 function's weight annotation also specifies that `set_code` is in
 [the `Operational` class](../../knowledgebase/runtime/fees#operational-dispatches) of dispatchable
 functions, which identifies it as relating to network _operations_ and impacts the accounting of its
 resources, such as by exempting it from the
-[`TransactionByteFee`](https://substrate.dev/rustdocs/v2.0.0/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionByteFee).
+[`TransactionByteFee`](https://substrate.dev/rustdocs/v3.0.0/pallet_transaction_payment/trait.Config.html#associatedtype.TransactionByteFee).
 In order to work within FRAME's safeguards around resource accounting, the Sudo pallet provides the
-[`sudo_unchecked_weight`](https://substrate.dev/rustdocs/v2.0.0/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
+[`sudo_unchecked_weight`](https://substrate.dev/rustdocs/v3.0.0/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
 function, which provides the same capability as the `sudo` function, but accepts an additional
 parameter that is used to specify the (possibly zero) weight to use for the call. The
 `sudo_unchecked_weight` function is what will be used to invoke the runtime upgrade in this section
@@ -126,9 +125,9 @@ construct_runtime!(
 ```
 
 The final step to preparing an upgraded FRAME runtime is to increment its
-[`spec_version`](https://substrate.dev/rustdocs/v2.0.0/sp_version/struct.RuntimeVersion.html#structfield.spec_version),
+[`spec_version`](https://substrate.dev/rustdocs/v3.0.0/sp_version/struct.RuntimeVersion.html#structfield.spec_version),
 which is a member of
-[the `RuntimeVersion` struct](https://substrate.dev/rustdocs/v2.0.0/sp_version/struct.RuntimeVersion.html)
+[the `RuntimeVersion` struct](https://substrate.dev/rustdocs/v3.0.0/sp_version/struct.RuntimeVersion.html)
 that is defined in `runtime/src/lib.rs`.
 
 ```rust
@@ -157,14 +156,14 @@ Take a moment to review the components of the `RuntimeVersion` struct:
 
 In order to upgrade the runtime it is _required_ to _increase_ the `spec_version`; refer to the
 implementation of the
-[FRAME System](https://github.com/paritytech/substrate/blob/v2.0.0/frame/system/src/lib.rs) module
+[FRAME System](https://github.com/paritytech/substrate/blob/v3.0.0/frame/system/src/lib.rs) module
 and in particular the `can_set_code` function to to see how this requirement and others are enforced
 by runtime logic.
 
 Build the upgraded runtime.
 
 ```shell
-WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo build --release -p node-template-runtime
+cargo build --release -p node-template-runtime
 ```
 
 Notice that the `--release` flag has been added to the `cargo build` command; although this will
@@ -179,8 +178,15 @@ more about building Rust code with Cargo.
 ## Upgrade the Runtime
 
 Use this link to open the Polkadot JS Apps UI and automatically configure the UI to connect to the
-local node: https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:9944. Use Alice's account
-to invoke the `sudoUncheckedWeight` function and use the `setCode` function from the system
+local node: https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:9944. 
+
+> Some tracking and ad blockers (e.g. the built-in Shield in Brave browser, and https required 
+> settings in Firefox) interfere with connecting to a local node. Make sure to check them and,
+> if needed, turn them off. You may not get connecting from a remote IP (like `polkadot.js.org/apps/`)
+> to a local node working, if you are unable to solve this, we encourage you to
+> host your app locally, like [the apps UI](https://github.com/polkadot-js/apps#development).
+
+Use Alice's account to invoke the `sudoUncheckedWeight` function and use the `setCode` function from the system
 pallet as its parameter. In order to supply the build artifact that was generated by the previous
 build step, toggle the "file upload" switch on the right-hand side of the "code" input field for the
 parameter to the `setCode` function. Click the "code" input field, and select the Wasm binary that

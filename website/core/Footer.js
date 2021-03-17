@@ -153,7 +153,7 @@ class Footer extends React.Component {
               <translate>Stack Overflow</translate>
             </a>
             <a
-              href="https://twitter.com/ParityTech"
+              href="https://twitter.com/substrate_io"
               target="_blank"
               rel="noreferrer noopener"
             >

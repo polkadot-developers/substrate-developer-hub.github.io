@@ -40,20 +40,20 @@ they can easily access on-chain state for their computations.
 Off-chain workers have access to extended APIs for communicating with the external world:
 
 - Ability to
-  [submit transactions](https://substrate.dev/rustdocs/v2.0.0/sp_runtime/offchain/trait.TransactionPool.html)
+  [submit transactions](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/offchain/trait.TransactionPool.html)
   (either signed or unsigned) to the chain to publish computation results.
 - A fully-featured HTTP client allowing the worker to access and fetch data from external services.
 - Access to the local keystore to sign and verify statements or transactions.
 - An additional, local
-  [key-value database](https://substrate.dev/rustdocs/v2.0.0/sp_runtime/offchain/trait.OffchainStorage.html)
+  [key-value database](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/offchain/trait.OffchainStorage.html)
   shared between all off-chain workers.
 - A secure, local entropy source for random number generation.
 - Access to the node's precise
-  [local time](https://substrate.dev/rustdocs/v2.0.0/sp_runtime/offchain/struct.Timestamp.html).
+  [local time](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/offchain/struct.Timestamp.html).
 - The ability to sleep and resume work.
 
 OCWs can be initiated from within a special function in your runtime implementation,
-[`fn offchain_worker(block: T::BlockNumber)`](https://substrate.dev/rustdocs/v2.0.0/frame_support/traits/trait.OffchainWorker.html).
+[`fn offchain_worker(block: T::BlockNumber)`](https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.OffchainWorker.html).
 communicate results back to the chain, off-chain workers can submit signed or unsigned transactions
 to be included in subsequent blocks.
 
@@ -61,8 +61,6 @@ Note that the results from off-chain workers are not subject to regular transact
 verification mechanism (e.g. voting, averaging, checking sender signatures, or simply "trusting")
 should be implemented to determine what information gets into the chain.
 
-For more information on how to use off-chain workers in your next runtime development project,
-please refer to our [Development Guide](../runtime/off-chain-workers).
 
 ## Off-Chain Storage
 
@@ -98,5 +96,3 @@ populating the storage every time a block is processed, so the data is always co
 exactly the same for every node with indexing enabled.
 
 ## Learn More
-
-- [Off-Chain Workers Development Guide](../runtime/off-chain-workers)

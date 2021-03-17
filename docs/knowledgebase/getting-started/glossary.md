@@ -23,7 +23,7 @@ neutral, or negative biases.
 ## AfG
 
 An internal codename for "Al's Finality Gadget", which is named after
-[Alistair Stewart](https://research.web3.foundation/en/latest/research_team_members/alistair.html)
+[Alistair Stewart](https://w3f-research.readthedocs.io/en/latest/team_members/alistair.html)
 who invented it. AfG is synonymous with [GRANDPA](#grandpa).
 
 ## Aggregation
@@ -73,7 +73,7 @@ are determined through a token-weighted nomination/voting system.
 Deterministic [consensus](#consensus) protocol where [block](#block) production is limited to a
 rotating list of [authorities](#authority) that take turns creating blocks; the majority of online
 authorities are assumed to be honest. Learn more by reading
-[the official wiki article](https://openethereum.github.io/wiki/Aura) for the Aura consensus
+[the official wiki article](https://openethereum.github.io/Aura) for the Aura consensus
 algorithm.
 
 ### Aura + GRANDPA
@@ -274,9 +274,9 @@ transactions, which may be
 Within the [Balances pallet](../../knowledgebase/runtime/frame#balances), this is the minimum
 balance an account may have. Accounts cannot be created with a balance less than this amount, and if
 an account's balance ever drops below this amount, the Balances pallet will use
-[a FRAME System API](https://substrate.dev/rustdocs/v2.0.0/frame_system/struct.Module.html#method.dec_ref)
+[a FRAME System API](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/struct.Pallet.html#method.dec_ref)
 to drop its references to that account. If all the references to an account are dropped, it
-[may be reaped](https://substrate.dev/rustdocs/v2.0.0/frame_system/struct.Module.html#method.allow_death).
+[may be reaped](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/struct.Pallet.html#method.allow_death).
 
 ---
 
@@ -455,7 +455,7 @@ A [FRAME](#frame) primitive that identifies the source of a [dispatched](#dispat
 into the [runtime](#runtime). The FRAME System module defines
 [three built-in origins](../../knowledgebase/runtime/origin#raw-origins); [pallet](#pallet)
 developers can easily define custom origins, such as those defined by the
-[Collective pallet](https://substrate.dev/rustdocs/v2.0.0/pallet_collective/enum.RawOrigin.html).
+[Collective pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_collective/enum.RawOrigin.html).
 
 ---
 

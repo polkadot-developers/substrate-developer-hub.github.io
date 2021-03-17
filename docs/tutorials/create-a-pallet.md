@@ -7,7 +7,7 @@ node based on the `substrate-node-template`.
 
 ## Install the Node Template
 
-You should already have version `v2.0.0` of the
+You should already have version `v3.0.0` of the
 [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
 compiled on your computer from when you completed the
 [Create Your First Substrate Chain Tutorial](../create-your-first-substrate-chain/). If you do not,
@@ -16,17 +16,33 @@ please complete that tutorial.
 > Experienced developers who truly prefer to skip that tutorial, you may install the node template
 > according to the instructions in its readme.
 
-### Clone the Pallet Template
+### Starting with the Pallet Template
 
 We're not going to write our pallet directly as part of the node template, but rather as a separate
 Rust crate. This approach allows us to publish our pallet separately from our node and also allows
-others to easily import this pallet into their own Substrate runtime.
+others to easily import this pallet into their own Substrate runtime. There are two ways to go about this:
 
+### Option 1: `Use This Template` from Github
+
+On the [template page](https://github.com/substrate-developer-hub/substrate-pallet-template) you will see
+a big green button that invites you to `Use This Template` - clicking this will open up a dialog similar 
+to a fork, but will start you with a base repository that is close with only the code from the template
+in your new repo. 
+
+Clone this new repo you own locally **inside the node template `/pallets` directory**
+
+```bash
+cd pallets
+git clone <your new pallet repo> <pallet directory name>
+# example:
+# git clone git@github.com:substrate-developer-hub/substrate-pallet-template.git test-pallet
+```
+### Option 2:  Clone a copy of the Template 
 Clone the Substrate pallet template in the `pallets` directory of your node template:
 
 ```bash
 cd pallets
-git clone -b v2.0.0 https://github.com/substrate-developer-hub/substrate-pallet-template test-pallet
+git clone -b v3.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-pallet-template test-pallet
 ```
 
 > In this tutorial we have placed the pallet template _inside_ the node template's directory
@@ -56,25 +72,7 @@ homepage = 'https://substrate.dev'
 license = 'Unlicensed'
 name = 'test-pallet'
 repository = 'https://github.com/substrate-developer-hub/substrate-pallet-template/'
-version = '2.0.0'
-```
-
-Update the `Cargo.toml` file in the root directory of the template node to include a reference to
-the new pallet:
-
-**`Cargo.toml`**
-
-```toml
-[profile.release]
-panic = 'unwind'
-
-[workspace]
-members = [
-    'node',
-    'pallets/template',
-    'pallets/test-pallet',  # <-- add this
-    'runtime',
-]
+version = '3.0.0'
 ```
 
 ### Compile the Template Pallet
@@ -124,12 +122,17 @@ consistent dependencies between your pallet and your runtime.
 ```TOML
 # --snip--
 [dependencies]
-frame-support = { default-features = false, version = '2.0.0' }
+frame-support = { default-features = false, version = '3.0.0' }
 # --snip--
 ```
 
-From the above snippet, we see that this pallet template depends on version `2.0.0` of the low-level
-libraries. Thus it can be used in runtimes that also depend on `2.0.0`.
+From the above snippet, we see that this pallet template depends on version `3.0.0` of the low-level
+libraries. Thus it can be used in runtimes that also depend on `3.0.0`.
+
+> Note that substrate adheres to the [semver](https://semver.org/) standards - thus each release is 
+on the form `major.minor.patch`. In general it is _not_ expected that major releases are compatible!
+Thus if you are developing a pallet, or integrating ones, be sure to match versions to keep things
+all working correctly. 
 
 ### Your Pallet's Dev Dependencies
 
@@ -141,7 +144,7 @@ dependencies that are needed in your pallet's tests, but not the actual pallet i
 ```TOML
 # --snip--
 [dev-dependencies]
-sp-core = { default-features = false, version = '2.0.0' }
+sp-core = { default-features = false, version = '3.0.0' }
 # --snip--
 ```
 
@@ -169,7 +172,7 @@ tell the pallet to only build its `std` feature when the runtime itself does, as
 
 ```TOML
 # --snip--
-test-pallet = { path = '../pallets/test-pallet', default-features = false, version = '2.0.0' }
+test-pallet = { path = '../pallets/test-pallet', default-features = false, version = '3.0.0' }
 
 # toward the bottom
 [features]
@@ -184,13 +187,19 @@ std = [
 > Wasm.
 
 Next we will update `runtime/src/lib.rs` to actually use our new runtime pallet, by adding a trait
-implementation with our `test_pallet` and add it in our `construct_runtime!` macro.
+implementation with our `test_pallet` and add it in our `construct_runtime!` macro. Add the following code blocks: 
 
 **`runtime/src/lib.rs`**
 
 ```rust
-// add the following code block
-impl test_pallet::Trait for Runtime {
+// add this line (or modify all of these to your named pallet 
+// corresponding to `test-pallet` in it's cargo.toml file)
+pub use test_pallet;
+
+// --snip--
+
+// add this block
+impl test_pallet::Config for Runtime {
   type Event = Event;
 }
 
@@ -216,15 +225,18 @@ Make sure you're back in the node template's root directory, then compile the no
 development mode with the following command:
 
 ```bash
-WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo run --release -- --dev --tmp
+cargo build --release
+./target/release/node-template --tmp --dev
 ```
 
 Now, start the
 [Polkadot-JS Apps connecting to your local node](https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:9944)
 to confirm that the pallet is working as expected.
 
-> **Notes:** You can also manually set the node URL in Polkadot-JS Apps by navigating to the
+> **Note:** You can also manually set the node URL in Polkadot-JS Apps by navigating to the
 > **Settings** tab, and have the **remote node/endpoint to connect to** set to **Local Node**.
+
+Congrats! You have created and integrated a new pallet inside it's own create for your node! If you want to see a solution to get to this step [here is one to compare to](https://github.com/substrate-developer-hub/substrate-node-template/commit/eee6f630ad3305caa7d53819aae5db4a31ffe205) using FRAME v1 macros.
 
 ## Publish Your Pallet
 

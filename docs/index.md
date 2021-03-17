@@ -5,7 +5,7 @@ title: Overview
 Welcome to the wonderful world of blockchain development with Substrate! This is the Substrate Knowledge Base, the
 official documentation hub for Substrate developers. The purpose of this resource is to help readers understand the
 multi-disciplinary field of blockchain development with Substrate. This guide is broken down into several sections that
-explain the principles and design decisions that Substrate is built on as well as the specific skills needed to to be an
+explain the principles and design decisions that Substrate is built on as well as the specific skills needed to be an
 effective Substrate blockchain developer.
 
 > **Some Expertise Needed**
@@ -34,12 +34,12 @@ that include, but are not limited to, the following:
 - **Runtime** logic defines how blocks are processed, including state transition logic. In Substrate, runtime code is
   compiled to [Wasm](knowledgebase/getting-started/glossary#webassembly-wasm) and becomes part of the blockchain's
   storage state - this enables one of the defining features of a Substrate-based blockchain:
-  [forkless runtime upgrades](knowledgebase/advanced/executor#forkless-runtime-upgrades). Substrate clients may also
+  [forkless runtime upgrades](knowledgebase/runtime/upgrades#forkless-runtime-upgrades). Substrate clients may also
   include a "native runtime" that is compiled for the same platform as the client itself (as opposed to Wasm). The
   component of the client that dispatches calls to the runtime is known as the
   [executor](knowledgebase/advanced/executor) and it selects between the native code and interpreted Wasm. Although the
   native runtime may offer a performance advantage, the executor will select to interpret the Wasm runtime if it
-  implements a newer [version](knowledgebase/advanced/executor#runtime-versioning).
+  implements a newer [version](knowledgebase/runtime/upgrades#runtime-versioning).
 - **Peer-to-peer network** capabilities allow the client to communicate with other network participants. Substrate uses
   [the `libp2p` network stack](https://libp2p.io/).
 - **Consensus** engines provide logic that allows network participants to agree on the state of the blockchain.
@@ -65,7 +65,7 @@ Substrate is designed to be used in one of three ways:
    [Start a Private Network](tutorials/start-a-private-network/index.md) tutorials.
 
 2. **With Substrate FRAME**: You can easily create your own custom runtime using [FRAME](knowledgebase/runtime/frame.md)
-   (Framework for Runtime Aggregation of Modularized Entities), which is the method used by the Substrate Node. This
+   (Framework for Runtime Aggregation of Modularized Entities), which is what is used to build the Substrate Node. This
    affords you a large amount of freedom over your blockchain's logic, and allows you to configure data types, select
    from a library of modules (called "pallets"), and even add your own custom pallets. The
    [Substrate Developer Hub Node Template](https://github.com/substrate-developer-hub/substrate-node-template) is a
@@ -94,7 +94,7 @@ Substrate is designed to be used in one of three ways:
 ### Examples
 
 - Follow our [tutorials](../../tutorials) to learn about building and running blockchains with Substrate and FRAME.
-- Refer to the [Substrate Recipes](https://substrate.dev/recipes/) to find complete working examples that demonstrate
+- Refer to [Substrate Recipes](https://substrate.dev/recipes/) to find complete working examples that demonstrate
   solutions to common problems.
 
 ### References

@@ -2,7 +2,7 @@
 title: Runtime Origin
 ---
 
-The runtime origin is used by dispatchable functions to check where the call came from.
+The runtime origin is used by dispatchable functions to check where a call has come from.
 
 ## Raw Origins
 
@@ -16,22 +16,14 @@ pub enum RawOrigin<AccountId> {
 }
 ```
 
-- Root: A system level origin. This is the highest privilege level.
+- Root: A system level origin. This is the highest privilege level and can be thought of as the superuser of the runtime origin.
 
-- Signed: A transaction origin. This is signed by some public key and includes the account
-  identifier of the signer.
+- Signed: A transaction origin. This is signed by some on-chain account's private key and includes the account identifier of the signer. This allows the runtime to authenticate the source of a dispatch and subsequently charge transaction fees to the associated account. 
 
 - None: A lack of origin. This needs to be agreed upon by the validators or validated by a module to
-  be included.
-
-## Custom Origins
-
-You are also able to define custom origins that can be used for authorization checks in your runtime
-functions.
-
-More details TODO
-
-## Custom Origin Call
+  be included. This origin type is more complex by nature, in that it is designed to bypasses certain runtime mechanisms. One example use case of this origin type would be to allow validators to insert data directly into a block.
+  
+## Origin Call
 
 You can construct calls within your runtime with any origin. For example:
 
@@ -47,28 +39,32 @@ proposal.dispatch(system::RawOrigin::None.into())
 ```
 
 You can look at the source code of the
-[Sudo module](https://substrate.dev/rustdocs/v2.0.0/pallet_sudo/index.html) for a practical
+[Sudo module](https://substrate.dev/rustdocs/v3.0.0/pallet_sudo/index.html) for a practical
 implementation of this.
+
+## Custom Origins
+
+In addition to the 3 core origin types, runtime developers are also able to define custom origins. These can be used as authorization checks inside functions from specific modules in your runtime, or to define custom access-control logic around the sources of runtime requests.
+
+Customizing origins allows runtime developers to specify valid origins depending on their runtime logic. For example, it may be desirable to restrict access of certain functions to special custom origins and authorize dispatch calls only from members of a [collective](https://github.com/paritytech/substrate/tree/master/frame/collective). The advantage of using custom origins is that it provides runtime developers a way to configure privileged access over dispatch calls to the runtime. 
 
 ## Next Steps
 
 ### Learn More
 
-- Learn origin is used in the `decl_module` macro.
-
-- Learn
+- Learn about how origin is used in the `decl_module` macro.
 
 ### Examples
 
-- View the Sudo module to see how it allows a user to call with `Root` and `Signed` origin.
+- View the [Sudo module](https://github.com/paritytech/substrate/tree/master/frame/sudo) to see how it allows a user to call with `Root` and `Signed` origin.
 
-- View the Timestamp module to see how it validates an a call with `None` origin.
+- View the [Timestamp module](https://github.com/paritytech/substrate/tree/master/frame/timestamp) to see how it validates an a call with `None` origin.
 
-- View the Collective module to see how it constructs a custom `Member` origin.
+- View the [Collective module](https://github.com/paritytech/substrate/tree/master/frame/collective) to see how it constructs a custom `Member` origin.
 
 - View our recipe for creating and using a custom origin.
 
 ### References
 
 - Visit the reference docs for the
-  [`RawOrigin` enum](https://substrate.dev/rustdocs/v2.0.0/frame_system/enum.RawOrigin.html).
+  [`RawOrigin` enum](https://substrate.dev/rustdocs/v3.0.0/frame_system/enum.RawOrigin.html).

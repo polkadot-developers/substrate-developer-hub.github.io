@@ -27,7 +27,7 @@ const languages = [
     tag: 'zh-CN',
   },
   {
-    enabled: true,
+    enabled: false,
     name: '繁體中文',
     tag: 'zh-HK'
   },
