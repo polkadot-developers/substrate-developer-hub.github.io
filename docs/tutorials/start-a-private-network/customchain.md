@@ -16,8 +16,8 @@ all contents from that directory.
 The first participant can launch her node with:
 
 ```bash
-# purge chain (only required for new/modified dev chainspec)
-./target/release/node-template purge-chain --base-path /tmp/node01 --chain local
+# purge chain (only required for new/modified dev chain spec)
+./target/release/node-template purge-chain --base-path /tmp/node01 --chain local -y
 ```
 ```bash
 # start node01
@@ -66,6 +66,11 @@ You should see the console outputs something as follows:
 2021-03-10 18:32:21  💤 Idle (0 peers), best: #0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 0 ⬆ 0    
 2021-03-10 18:32:26  💤 Idle (0 peers), best: #0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 0 ⬆ 0  
 ```
+
+> Here you must take note of the **node identity**: `12D3KooWJvVUoAa7R8gjCSQ45x69Ahh3HcdVSH1dvpcA52vKawHL`
+> and the **IP address** `127.0.0.1` and p2p port `--port = 30333`. These values are for this specific 
+> example, but for your node, they will be different and **required** for other nodes to directly connect
+>  to it (without a bootnode in the chain spec, as we removed in hte flags before)
 
 ## Add Keys to Keystore
 
@@ -150,14 +155,50 @@ If you enter the command and parameters correctly, the node will return a JSON r
 
 Make sure you delete the file that contains the keys when you are done.
 
+<!-- TODO: add option 3: use the embedded `key` CLI tool -->
+
+### Verify Keys in the Keystore
+
+Optionally, If you would like to check that your keys are now loaded, you can view the keystore files that should
+now exists for your `node01`. These are found in the following (default example) location:
+
+```bash
+# The path stems from `--base-path` and ID from `chain_spec.rs` ID field.
+# Keys are then in `chains/<chain ID>/keystore :
+ls /tmp/node01/chains/local_testnet/keystore
+```
+```bash
+## list of keystore files:
+617572619effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e
+6772616eb48004c6e1625282313b07d1c9950935e86894a2e4f21fb1ffee9854d180c781
+
+# read a keystore file (our demo seed 1 was used)
+cat /tmp/node01/chains/local_testnet/keystore/617572619effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e
+"clip organ olive upper oak void inject side suit toilet stick narrow"
+```
+Notice there are two keystores, as expected as we added two keys to our node.
+This example used [pair 1](keygen#pair-1) from the well known seeds here, and 
+will use [pair 2](keygen#pair-2) for our next node, where your keys may differ.
+
+<!-- TODO: update below with example of successful use (not working for me at time of writing) -->
+
+<!-- You can also set a non-standard keystore file for your node with the flags:
+```
+--keystore-path <PATH>                                   
+            Specify custom keystore path
+
+--keystore-uri <keystore-uri>                            
+            Specify custom URIs to connect to for keystore-services 
+``` -->
+
 ## Subsequent Participants Join
 
 Subsequent validators can now join the network. This can be done by specifying the `--bootnodes`
 parameter as Bob did previously.
 
 ```bash
-# purge chain (only required for new/modified dev chainspec)
-./target/release/node-template purge-chain --base-path /tmp/node02 --chain local
+# purge chain (only required for new/modified dev chain spec)
+./target/release/node-template purge-chain --base-path /tmp/node02 --chain local -y
 ```
 ```bash
 # start node02
@@ -172,81 +213,74 @@ parameter as Bob did previously.
   --rpc-methods Unsafe \
   --name MyNode02 \
   --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWAvdwXzjmRpkHpz8PzUTaX1o23SdpgAWVyTGMSQ68QXK6
-  # you must fill the correct info in the line above:
-  # --bootnodes /ip4/<IP Address>/tcp/<Port>/p2p/<Peer ID>
+  # you MUST fill the correct info in the line above:
+  # --bootnodes /ip4/<IP Address>/tcp/<p2p Port>/p2p/<Peer ID>
 ```
+
+> If you didn't set the correct node ID gathered from another running with the same chain spec, 
+> but only the right IP - you will get errors of the form:
+> `💔 The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...`
 
 As before, we specify another `base-path`, give it another `name`, and also specify this node as a
 `validator`.
 
-> Now you must also set the authoring keys in this node, just as we did 
+> **Block production**: Now you *must* also set the authoring keys in this node, just as we did 
 > [for the first node](#add-keys-to-keystore). Note that you will need to communicate with your node
 > on the correct `ws-port` (so setting the app UI and submitting `curl` to the right port is critical)
-
-> A node will not be able to produce blocks if it has not added its Aura key.
-
-> Block finalization can only happen if more than two-thirds of the validators have added their
+> A node will not be able to produce blocks if it has not added its Aura key!
+> 
+> **Block finalization**: This can *only* happen if more than two-thirds of the validators have added their
 > GRANDPA keys to their keystores. Since this network was configured with two validators (in the
 > chain spec), block finalization can occur after the second node has added its keys (i.e. 50% < 66%
 > < 100%).
 
-> Reminder: All validators must be using identical chain specifications in order to peer. You should
+> **Reminder:** All validators must be using *identical chain specifications* in order to peer. You should
 > see the same genesis block and state root hashes.
 
-Once the second node is up *and* it has it's authoring keys, you should see both nodes reporting block authoring:
+Once the second node is running *and* it has it's authoring keys, you should see both nodes reporting block authoring:
+
 
 ```bash
-2021-03-10 19:02:43  Substrate Node    
-2021-03-10 19:02:43  ✌️  version 3.0.0-1c5b984-x86_64-linux-gnu    
-2021-03-10 19:02:43  ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2021    
-2021-03-10 19:02:43  📋 Chain specification: Local Testnet    
-2021-03-10 19:02:43  🏷 Node name: MyNode02    
-2021-03-10 19:02:43  👤 Role: AUTHORITY    
-2021-03-10 19:02:43  💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db    
-2021-03-10 19:02:43  ⛓  Native runtime: node-template-100 (node-template-1.tx1.au1)    
-2021-03-10 19:02:43  Using default protocol ID "sup" because none is configured in the chain specs    
-2021-03-10 19:02:43  🏷 Local node identity is: 12D3KooWAvdwXzjmRpkHpz8PzUTaX1o23SdpgAWVyTGMSQ68QXK6    
-2021-03-10 19:02:43  📦 Highest known block at #0    
-2021-03-10 19:02:44  Listening for new connections on 127.0.0.1:9946.    
-2021-03-10 19:02:44  🔍 Discovered new external address for our node: /ip4/192.168.42.203/tcp/30334/p2p/12D3KooWAvdwXzjmRpkHpz8PzUTaX1o23SdpgAWVyTGMSQ68QXK6    
-2021-03-10 19:02:48  🙌 Starting consensus session on top of parent 0x9d07d1757a9ca248e58141ce52a11fca37f71007dec16650b87a853f0d4c7cce    
-2021-03-10 19:02:48  🎁 Prepared block for proposing at 1 [hash: 0x33484d425b9cb0708d854e8c331cb012ffb1faf86fd79637a92f4329cdc083cf; parent_hash: 0x9d07…7cce; extrinsics (1): [0x9f5f…99fe]]    
-2021-03-10 19:02:48  🔖 Pre-sealed block for proposal at 1. Hash now 0x771ebaa4ec3cf588ce0f5c72c9afc1c7dd2c8c7b88b221e317b5b270ff26ad9b, previously 0x33484d425b9cb0708d854e8c331cb012ffb1faf86fd79637a92f4329cdc083cf.    
-2021-03-10 19:02:48  ✨ Imported #1 (0x771e…ad9b)    
-2021-03-10 19:02:49  💤 Idle (1 peers), best: #1 (0x771e…ad9b), finalized #0 (0x9d07…7cce), ⬇ 0.6kiB/s ⬆ 0.7kiB/s    
-2021-03-10 19:02:54  🙌 Starting consensus session on top of parent 0x771ebaa4ec3cf588ce0f5c72c9afc1c7dd2c8c7b88b221e317b5b270ff26ad9b    
-2021-03-10 19:02:54  💤 Idle (1 peers), best: #1 (0x771e…ad9b), finalized #0 (0x9d07…7cce), ⬇ 25 B/s ⬆ 32 B/s    
-2021-03-10 19:02:54  🎁 Prepared block for proposing at 2 [hash: 0x9941f9691b205476ea57743e2d04430670afa661af925be623be3eb2e36fc861; parent_hash: 0x771e…ad9b; extrinsics (1): [0xc720…a736]]    
-2021-03-10 19:02:54  🔖 Pre-sealed block for proposal at 2. Hash now 0xb2cadabf4ef2c713677da97db0d102c5b95939692e575fac33c349ea3a7884c6, previously 0x9941f9691b205476ea57743e2d04430670afa661af925be623be3eb2e36fc861.    
-2021-03-10 19:02:54  ✨ Imported #2 (0xb2ca…84c6)    
-2021-03-10 19:02:59  💤 Idle (1 peers), best: #2 (0xb2ca…84c6), finalized #0 (0x9d07…7cce), ⬇ 45 B/s ⬆ 0.1kiB/s    
-2021-03-10 19:03:04  💤 Idle (1 peers), best: #2 (0xb2ca…84c6), finalized #0 (0x9d07…7cce), ⬇ 52 B/s ⬆ 57 B/s    
+2021-03-18 16:43:10  Substrate Node    
+2021-03-18 16:43:10  ✌️  version 3.0.0-c528fd2-x86_64-linux-gnu    
+2021-03-18 16:43:10  ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2021    
+2021-03-18 16:43:10  📋 Chain specification: Local Testnet    
+2021-03-18 16:43:10  🏷 Node name: MyNode02    
+2021-03-18 16:43:10  👤 Role: AUTHORITY    
+2021-03-18 16:43:10  💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db    
+2021-03-18 16:43:10  ⛓  Native runtime: node-template-100 (node-template-1.tx1.au1)    
+2021-03-18 16:43:10  Using default protocol ID "sup" because none is configured in the chain specs    
+2021-03-18 16:43:10  🏷 Local node identity is: 12D3KooWDfpXmPtsvLCFTh4mKybYi6MvDMDiUrnRDcGZiSTR2GHp    
+2021-03-18 16:43:10  📦 Highest known block at #1    
+2021-03-18 16:43:10  Listening for new connections on 127.0.0.1:9946.    
+2021-03-18 16:43:11  🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWDfpXmPtsvLCFTh4mKybYi6MvDMDiUrnRDcGZiSTR2GHp    
+2021-03-18 16:43:12  🙌 Starting consensus session on top of parent 0x700fda8b9c7574553eccc8acc72e2dec59e40711e743223d67c3e5b57e1f76ef    
+2021-03-18 16:43:12  ♻️  Reorg on #1,0x700f…76ef to #2,0xe111…c084, common ancestor #0,0x2776…8ba7    
+2021-03-18 16:43:12  ✨ Imported #2 (0xe111…c084)    
+2021-03-18 16:43:12  Timeout fired waiting for transaction pool at block #1. Proceeding with production.    
+2021-03-18 16:43:12  🎁 Prepared block for proposing at 2 [hash: 0xc590a846ff17871ffdcdd670914321f667cd6ad0b898bfb6d25f7dd68fff478b; parent_hash: 0x700f…76ef; extrinsics (1): [0x34d6…ed56]]    
+2021-03-18 16:43:12  🔖 Pre-sealed block for proposal at 2. Hash now 0x38b29b343d8f6ef56286a2f3aad20c82ae75d5bb0698569dd06fca654dae6fa6, previously 0xc590a846ff17871ffdcdd670914321f667cd6ad0b898bfb6d25f7dd68fff478b.    
+2021-03-18 16:43:12  ✨ Imported #2 (0x38b2…6fa6)    
+2021-03-18 16:43:15  💤 Idle (1 peers), best: #2 (0xe111…c084), finalized #0 (0x2776…8ba7), ⬇ 1.4kiB/s ⬆ 1.4kiB/s
 ```
 
 The final lines shows that your node has peered with another (**`1 peers`**), and they have produced
-a block (**`best: #2 (0xb2ca…84c6)`**).
+a block (**`best: #2 (0xe111…c084)`**)!
 
-You will notice that even after you add the keys for the second node no block finalization has
-happened (**`finalized #0 (0x9d07…7cce)`**). Substrate nodes require a restart after inserting a
-GRANDPA key. Kill your nodes and restart them with the same commands you used previously. Now blocks
-should be finalized.
+> But do notice that even after you add the GRANDPA keys for the second node no block finalization has
+> happened (**`finalized #0 (0x2776…8ba7)`**).
+> **Substrate nodes require a restart after inserting a GRANDPA key.**
+> Kill your nodes and restart them with the same commands you used previously. 
+> Now blocks should be finalized!
 
 ```bash
-Sep 24 13:37:33.863  INFO Substrate Node
-Sep 24 13:37:33.864  INFO ✌️  version 2.0.0-24da767-x86_64-linux-gnu
-Sep 24 13:37:33.864  INFO ❤️  by Substrate DevHub <https://github.com/substrate-developer-hub>, 2017-2020
-Sep 24 13:37:33.864  INFO 📋 Chain specification: Local Testnet
-Sep 24 13:37:33.864  INFO 🏷  Node name: MyNode02
-Sep 24 13:37:33.864  INFO 👤 Role: AUTHORITY
-Sep 24 13:37:33.864  INFO 💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db
-Sep 24 13:37:33.864  INFO ⛓  Native runtime: node-template-1 (node-template-1.tx1.au1)
-Sep 24 13:37:33.918  WARN Using default protocol ID "sup" because none is configured in the chain specs
-Sep 24 13:37:33.918  INFO 🏷  Local node identity is: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn (legacy representation: 12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn)
-Sep 24 13:37:33.942  INFO 📦 Highest known block at #23
-Sep 24 13:37:33.973  INFO Listening for new connections on 127.0.0.1:9945.
-Sep 24 13:37:34.486  INFO 🔍 Discovered new external address for our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWBHwymjRsTipVZbGqiZV2rtxJiwTjLzPKZ7rYMsa9poUn
-Sep 24 13:37:36.593  INFO ✨ Imported #24 (0xa7e8…7596)
-Sep 24 13:37:38.976  INFO 💤 Idle (1 peers), best: #24 (0xa7e8…7596), finalized #22 (0x753e…ddb0), ⬇ 1.5kiB/s ⬆ 1.5kiB/s
+...
+2021-03-18 16:47:47  💤 Idle (1 peers), best: #46 (0xfaf1…02f8), finalized #44 (0x9b08…09ea), ⬇ 1.3kiB/s ⬆ 1.3kiB/s    
+2021-03-18 16:47:48  ✨ Imported #47 (0x7375…aa51)    
+2021-03-18 16:47:52  💤 Idle (1 peers), best: #47 (0x7375…aa51), finalized #45 (0x7c13…7575), ⬇ 0.8kiB/s ⬆ 0.6kiB/s    
+2021-03-18 16:47:54  🙌 Starting consensus session on top of parent 0x73757e1773e6d86a9ef4a3ec9c3a55eef04345705c0a51f04445af657184aa51    
+2021-03-18 16:47:54  🎁 Prepared block for proposing at 48 [hash: 0xd9ef428ccd38426a47a9eca181b508630e327b35ef4c468103ce59fa861e60f6; parent_hash: 0x7375…aa51; extrinsics (1): [0x16f0…dbe6]]    
+2021-03-18 16:47:54  🔖 Pre-sealed block for proposal at 48. Hash now 0x23a93d8e6bbbcf9f36e61264cc3a48a426a7f1112ff48df76f0d55b52c181156, previously 0xd9ef428ccd38426a47a9eca181b508630e327b35ef4c468103ce59fa861e60f6.
 ```
 
 ## You're Finished

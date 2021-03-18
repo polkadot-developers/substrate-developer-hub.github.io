@@ -196,8 +196,9 @@ These lines shows that Bob has peered with Alice (**`1 peers`**), they have prod
 
 Looking at the console that started Bob's node, you should see something similar.
 
-Once you've verified that both nodes are running as expected, you can shut them down. The next
-section of this tutorial will include commands to restart the nodes when necessary.
+> Once you've verified that both nodes are running as expected, you should shut them down. Although 
+> this is not strictly required, so long as you don't have conflicting ports and the same chainspec.
+> The next section of this tutorial will include commands to restart new nodes when necessary.
 
 ## References
 

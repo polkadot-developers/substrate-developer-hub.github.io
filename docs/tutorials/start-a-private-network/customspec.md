@@ -20,7 +20,7 @@ the one we used before. To start, we need to export the chain spec to a file nam
 `node-template --help`.
 
 ```bash
-# Export the local chainspec to json
+# Export the local chain spec to json
 ./target/release/node-template build-spec --disable-default-bootnode --chain local > customSpec.json
 ```
 
@@ -30,7 +30,7 @@ you built earlier when you ran the `cargo build --release` command.
 
 The portion of the file we're interested in is the Aura authorities used for creating blocks,
 indicated by **"aura"** field below, and GRANDPA authorities used for finalizing blocks, indicated
-by **"grandpa"** field. That section looks like this
+by **"grandpa"** field. That section looks like this using the [two provided demo](keygen#option-3-use-pre-generated-keys) keys:
 
 ```json
 {
@@ -38,24 +38,18 @@ by **"grandpa"** field. That section looks like this
  "genesis": {
     "runtime": {
       "frameSystem": {
-        "changesTrieConfig": null,
+        //-- snip --
       },
       "palletAura": {
         "authorities": [
-          "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY",
-          "5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty"
+          "5FfBQ3kwXrbdyoqLPvcXRp7ikWydXawpNs2Ceu3WwFdhZ8W4",
+          "5EhrCtDaQRYjVbLi7BafbGpFqcMhjZJdu8eW8gy6VRXh6HDp"
         ]
       },
       "palletGrandpa": {
         "authorities": [
-          [
-            "5FA9nQDVg267DEd8m1ZypXLBnvN7SFxYwV7ndqSYGiN9TTpu",
-            1
-          ],
-          [
-            "5GoNkf6WdbxCFnPdAnYYQyCjAKPJgLNxXwPjwTh6DGg6gN3E",
-            1
-          ]
+          ["5G9NWJ5P9uk7am24yCKeLZJqXWW6hjuMyRJDmw4ofqxG8Js2", 1],
+          ["5CRZoFgJs4zLzCCAGoCUUs2MRmuD5BKAh17pWtb62LMoCi9h", 1]
         ]
       },
     //-- snip --
@@ -94,8 +88,10 @@ the proper storage keys.
 
 Finally share the `customSpecRaw.json` with your all the other validators in the network.
 
-> A single person should create the chain spec and share the resulting **`customSpecRaw.json`** file
-> with their fellow validators.
+> **A critical note:** A single person should create the chain spec and share the resulting
+> **`customSpecRaw.json`** file with their fellow validators.
 >
 > Because Rust -> Wasm optimized builds aren't "reproducible", each person will get a slightly
 > different Wasm blob which will break consensus if each participant generates the file themselves.
+> For the curious, learn more about this issue in 
+> [this blog post](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1).
