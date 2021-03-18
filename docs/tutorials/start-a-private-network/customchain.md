@@ -290,6 +290,12 @@ Congratulations! You've started your own blockchain!
 In this tutorial you've learned to generate your own keypairs, create a custom chain spec that uses
 those keypairs, and start a private network based on your custom chain spec.
 
+### Solutions and Helpers
+
+If you would like examples of correct JSON keystore `curl` files with a known working chainspec, see the 
+[solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/private-chain-v3), you can use the extra files with your already cloned and compiled node, no need to 
+start from scratch.
+
 <!-- TODO link to the followup tutorial about starting a 3 node network using the demo substrate node
 Details in https://github.com/substrate-developer-hub/tutorials/issues/16-->
 
