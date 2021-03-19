@@ -137,7 +137,7 @@ Start the node with following command.
 ./target/release/node-template --chain=local --base-path /tmp/validator4 --name dave --node-key=a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a --port 30336 --ws-port 9947 --offchain-worker always
 ```
 
-After it was started, there is no avaliable connections. Firstly, Charlie need to configure his well known node to allow the connection from Dave's node.
+After it was started, there is no available connections. Firstly, Charlie need to configure his well known node to allow the connection from Dave's node.
 
 In **Developer Extrinsics** page, Charlie submit a `addConnections` transaction. The first PeerId is the peer id in hex of Charlie's node. The connections is a list of allowed peer ids for Charlie's node, here we only add Dave's.
 

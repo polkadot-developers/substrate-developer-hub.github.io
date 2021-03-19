@@ -30,7 +30,7 @@ and a normal node or between two normal nodes.
 
 It uses an [offchain worker](../../knowledgebase/learn-substrate/off-chain-features#off-chain-workers)
 to set authorized nodes in node-authorization pallet. Make sure to enable offchain worker with
-the right CLI flag as offchain worker is diabled by default for non-authority nodes.
+the right CLI flag as offchain worker is disabled by default for non-authority nodes.
 Your node can be lagged with the latest block, in this case you need to disable offchain worker
 and manually set reachable reserved nodes to sync up with the network.
 
@@ -197,7 +197,7 @@ fn testnet_genesis(
 `NodeAuthorizationConfig` contains a property named `nodes`, which is vector of tuple.
 The first element of the tuple is the `OpaquePeerId` and we use `bs58::decode` to convert
 the `PeerId` in human readable format to bytes. The second element of the tuple is `AccountId`
-and represents the owner of this node, here we are using one of the provided endowned accounts
+and represents the owner of this node, here we are using one of the provided endowed accounts
 for demonstration. To make it clear, the owner of the first node is Alice, and Bob owns the second node.
 
 You may wondering where the `12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2` comes from.
@@ -208,7 +208,7 @@ subkey generate-node-key
 ```
 
 > Note: `subkey` is a CLI tool that comes bundled with substrate, and you can install it natively too!
->  - [Install Intructions](../../knowledgebase/integrate/subkey#installation)
+>  - [Install Instructions](../../knowledgebase/integrate/subkey#installation)
 
 The output of the command is like:
 
@@ -217,6 +217,6 @@ The output of the command is like:
 c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a // This is node-key.
 ```
 
-Now all the code changes are finished, we are ready to launch our permissoned network. Go get yourself some water!
+Now all the code changes are finished, we are ready to launch our permissioned network. Go get yourself some water!
 
 > Stuck? The solution with all required changes to the base template can be found [here](https://github.com/kaichaosun/substrate-permission-network/commit/c8b8f610afaab024c16da0917d059dc5050d3807).

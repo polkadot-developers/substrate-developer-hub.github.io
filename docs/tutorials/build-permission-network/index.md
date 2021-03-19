@@ -4,7 +4,7 @@ title: Introduction
 
 In this tutorial, you will learn how to build a permissioned network with Substrate by using [node-authorization pallet](https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_authorization/). This tutorial should take you about **1 hour** to complete. 
 
-> You are probably already familiar with public or permissionless blockchain, where everyone is free to join the network by runing a node. In a permissioned network, only authorized nodes are allowed to perform specific activities, like validate blocks and propagate transactions. I hold the belief that blockchain is still in early adoption, and permissioned blockchain is important to highly regulated market, which can bring transparent rules and execution at certain degree.
+> You are probably already familiar with public or permissionless blockchain, where everyone is free to join the network by running a node. In a permissioned network, only authorized nodes are allowed to perform specific activities, like validate blocks and propagate transactions. I hold the belief that blockchain is still in early adoption, and permissioned blockchain is important to highly regulated market, which can bring transparent rules and execution at certain degree.
 
 Before play with this tutorial, we expect that:
 
