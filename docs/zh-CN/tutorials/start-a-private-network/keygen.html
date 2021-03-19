@@ -75,13 +75,13 @@
         </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">密钥生成</h1></header><article><div><span><p>现在我们知道了基本原理和命令行选项，是时候生成我们自己的密钥，而不是使用众所周知的 Alice 和 Bob 密钥了。 每个想参与区块链的人都应该生成自己的密钥。 本页解释了生成密钥的几个方式，每个参与者只需要选择其中一个即可。 无论你选择哪种方式，请务必记录该部分的所有输出，因为以后你会需要它。</p>
 <h2><a class="anchor" aria-hidden="true" id="选项-1-subkey"></a><a href="#选项-1-subkey" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>选项 1: subkey</h2>
 <p>Subkey 是一个用作生成密钥的工具，专门设计与 Substrate 配合着使用。</p>
-<p>先从编译和安装这工具开始。 这需要约15分钟左右。</p>
-<pre><code class="hljs css language-bash">cargo install --force subkey --git https://github.com/paritytech/substrate --version 2.0.0 --locked
-</code></pre>
+<p>Begin by compiling and installing the utility (<a target="_blank" href="../../knowledgebase/integrate/subkey">instructions and more info here</a>). 这需要约15分钟左右。</p>
 <p>我们将需要从每种类型生成至少 <strong>2</strong> 个密钥。 每个节点都需要有自己的密钥。</p>
 <p>生成一组助记词并查看 <code>sr25519</code> 密钥和与此相关的地址。 该密钥将被 Aura 用于生产区块。</p>
-<pre><code class="hljs css language-bash">$ subkey generate --scheme sr25519
-
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># subkey command</span>
+subkey generate --scheme sr25519
+</code></pre>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># subkey output</span>
 Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song vital leisure` is account:
   Secret seed:      0xa2b0200f9666b743402289ca4f7e79c9a4a52ce129365578521b0b75396bd242
   Public key (hex): 0x0a11c9bcc81f8bd314e80bc51cbfacf30eaeb57e863196a79cccdc8bf4750d21
@@ -89,21 +89,20 @@ Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song v
   SS58 Address:     5CHucvTwrPg8L2tjneVoemApqXcUaEdUDsCEPyE7aDwrtR8D
 </code></pre>
 <p>现在查看 <code>ed25519</code> 密钥和与同一组助记词相关联地址。 此密钥将被 GRANDPA 用于达成区块的最终确定性。</p>
-<pre><code class="hljs css language-bash">$ subkey inspect --scheme ed25519 <span class="hljs-string">"infant salmon buzz patrol maple subject turtle cute legend song vital leisure"</span>
-
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># subkey command</span>
+subkey inspect --scheme ed25519 <span class="hljs-string">"infant salmon buzz patrol maple subject turtle cute legend song vital leisure"</span>
+</code></pre>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># subkey output</span>
 Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song vital leisure` is account:
   Secret seed:      0xa2b0200f9666b743402289ca4f7e79c9a4a52ce129365578521b0b75396bd242
   Public key (hex): 0x1a0e2bf1e0195a1f5396c5fd209a620a48fe90f6f336d89c89405a0183a857a3
   Account ID:       0x1a0e2bf1e0195a1f5396c5fd209a620a48fe90f6f336d89c89405a0183a857a3
   SS58 Address:     5CesK3uTmn4NGfD3oyGBd1jrp4EfRyYdtqL3ERe9SXv8jUHb
 </code></pre>
-<blockquote>
-<p>在下面集成部分 <a href="../../knowledgebase/integrate/subkey">学习更多关于 Subkey</a> 的内容。</p>
-</blockquote>
 <h2><a class="anchor" aria-hidden="true" id="选项-2：使用-polkadot-js-apps"></a><a href="#选项-2：使用-polkadot-js-apps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>选项 2：使用 Polkadot-JS Apps</h2>
 <p>我们用来查看区块生成的 UI 也可以用来生成密钥。 若你不想安装Subkey，这个选项会更加方便。 它可以用于生成密钥，但在生成此类密钥时，系统不应联网。</p>
 <blockquote>
-<p>一个用于生成生产环境用的密钥的系统，无论你选择什么方法生成，都不应该连接到互联网。 在此特别提及，是因为在使用像Polkadot JS Apps这样的网络应用时，一般都需要有网络连接。</p>
+<p>A system that generates production keys should not be connected to the internet regardless of what method you choose. It is mentioned here specifically because having an internet connection is generally desired when using a webapp like Polkadot JS Apps.</p>
 </blockquote>
 <p>在“ Accounts”选项栏上，点击&quot;Add account&quot;。 你不需要提供账号名称，除非在验证以外，你还想保存这个账户并用于发布交易。</p>
 <p>生成 <code>sr25519</code> 密鈅用于生产区块的 Aura 里。 请注意保存助记词和SS58地址，你可以通过点击左上角的图标进行复制。</p>
