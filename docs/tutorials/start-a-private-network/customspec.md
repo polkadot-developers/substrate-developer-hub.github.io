@@ -20,9 +20,8 @@ the one we used before. To start, we need to export the chain spec to a file nam
 `node-template --help`.
 
 ```bash
-# Export the local chainspec to json
-$ ./target/release/node-template build-spec --disable-default-bootnode --chain local > customSpec.json
-2020-05-28 13:29:05 Building chain spec
+# Export the local chain spec to json
+./target/release/node-template build-spec --disable-default-bootnode --chain local > customSpec.json
 ```
 
 The file we just created contains several fields, and you can learn a lot by exploring them. By far
@@ -31,38 +30,31 @@ you built earlier when you ran the `cargo build --release` command.
 
 The portion of the file we're interested in is the Aura authorities used for creating blocks,
 indicated by **"aura"** field below, and GRANDPA authorities used for finalizing blocks, indicated
-by **"grandpa"** field. That section looks like this
+by **"grandpa"** field. That section looks like this using the [two provided demo](keygen#option-3-use-pre-generated-keys) keys:
 
 ```json
 {
-  //-- snip --
-  "genesis": {
+ //-- snip --
+ "genesis": {
     "runtime": {
-      "system": {
-        "changesTrieConfig": null
+      "frameSystem": {
         //-- snip --
       },
       "palletAura": {
         "authorities": [
           "5FfBQ3kwXrbdyoqLPvcXRp7ikWydXawpNs2Ceu3WwFdhZ8W4",
-          "5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty"
+          "5EhrCtDaQRYjVbLi7BafbGpFqcMhjZJdu8eW8gy6VRXh6HDp"
         ]
       },
       "palletGrandpa": {
         "authorities": [
-          [
-            "5G9NWJ5P9uk7am24yCKeLZJqXWW6hjuMyRJDmw4ofqxG8Js2",
-            1
-          ],
-          [
-            "5GoNkf6WdbxCFnPdAnYYQyCjAKPJgLNxXwPjwTh6DGg6gN3E",
-            1
-          ]
+          ["5G9NWJ5P9uk7am24yCKeLZJqXWW6hjuMyRJDmw4ofqxG8Js2", 1],
+          ["5CRZoFgJs4zLzCCAGoCUUs2MRmuD5BKAh17pWtb62LMoCi9h", 1]
         ]
       },
-      //-- snip --
+    //-- snip --
     }
-  }
+ }
 }
 ```
 
@@ -91,14 +83,15 @@ the data in its local storage. Distributing a raw spec ensures that each node wi
 the proper storage keys.
 
 ```bash
-$ ./target/release/node-template build-spec --chain=customSpec.json --raw --disable-default-bootnode > customSpecRaw.json
-2020-05-28 13:31:37 Building chain spec
+./target/release/node-template build-spec --chain=customSpec.json --raw --disable-default-bootnode > customSpecRaw.json
 ```
 
 Finally share the `customSpecRaw.json` with your all the other validators in the network.
 
-> A single person should create the chain spec and share the resulting **`customSpecRaw.json`** file
-> with their fellow validators.
+> **A critical note:** A single person should create the chain spec and share the resulting
+> **`customSpecRaw.json`** file with their fellow validators.
 >
 > Because Rust -> Wasm optimized builds aren't "reproducible", each person will get a slightly
 > different Wasm blob which will break consensus if each participant generates the file themselves.
+> For the curious, learn more about this issue in 
+> [this blog post](https://dev.to/gnunicorn/hunting-down-a-non-determinism-bug-in-our-rust-wasm-build-4fk1).
