@@ -117,7 +117,7 @@ Let's start Charlie's node,
 
 After it was started, you should see there is no connected peers for this node. This is because we are already in a permissioned network, you need to get authorization to to be connectable!
 
-Remember that we are using `sudo` pallet for our governance, we can make a sudo call on `add_well_known_node` dispatch call provided by node-authorization pallet to add our node. You can find more avaliable calls in this [reference doc](https://docs.rs/pallet-node-authorization/2.0.0/pallet_node_authorization/enum.Call.html).
+Remember that we are using `sudo` pallet for our governance, we can make a sudo call on `add_well_known_node` dispatch call provided by node-authorization pallet to add our node. You can find more avaliable calls in this [reference doc](https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_authorization/enum.Call.html).
 
 Go to **Developer Sudo** page in apps, submit the `nodeAuthorization` -  `add_well_known_node` call with the peer id in hex of Charlie's node and the owner is Charlie of course.
 
@@ -137,7 +137,7 @@ Start the node with following command.
 ./target/release/node-template --chain=local --base-path /tmp/validator4 --name dave --node-key=a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a --port 30336 --ws-port 9947 --offchain-worker always
 ```
 
-After it was started, there is no avaliable connections. Firstly, Charlie need to configure his well known node to allow the connection from Dave's node.
+After it was started, there is no available connections. Firstly, Charlie need to configure his well known node to allow the connection from Dave's node.
 
 In **Developer Extrinsics** page, Charlie submit a `addConnections` transaction. The first PeerId is the peer id in hex of Charlie's node. The connections is a list of allowed peer ids for Charlie's node, here we only add Dave's.
 
