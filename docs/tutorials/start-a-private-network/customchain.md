@@ -157,7 +157,7 @@ Make sure you delete the file that contains the keys when you are done.
 
 <!-- TODO: add option 3: use the embedded `key` CLI tool -->
 
-### Verify Keys in the Keystore
+### Verify Keys in the Keystore (Optional)
 
 Optionally, If you would like to check that your keys are now loaded, you can view the keystore files that should
 now exists for your `node01`. These are found in the following (default example) location:
