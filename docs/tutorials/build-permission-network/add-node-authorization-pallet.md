@@ -69,7 +69,7 @@ In **runtime/Cargo.toml**, add the dependency of our pallet:
 ```TOML
 [dependencies]
 #--snip--
-pallet-node-authorization = { default-features = false, version = '2.0.0' }
+pallet-node-authorization = { default-features = false, version = '3.0.0' }
 
 #--snip--
 [features]
@@ -83,7 +83,7 @@ std = [
 Let's import and use our pallet in **runtime/src/lib.rs**. Firstly Import the dependency
 with `use frame_system::EnsureRoot`, we need it to simulate the governance in our simple blockchain.
 Then implement the configure trait of our pallet. More description on the trait can be found in
-its [reference doc](https://docs.rs/pallet-node-authorization/2.0.0/pallet_node_authorization/trait.Trait.html).
+its [reference doc](https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_authorization/trait.Config.html).
 
 **`runtime/src/lib.rs`**
 
@@ -100,7 +100,7 @@ parameter_types! {
 	pub const MaxPeerIdLength: u32 = 128;
 }
 
-impl pallet_node_authorization::Trait for Runtime {
+impl pallet_node_authorization::Config for Runtime {
 	type Event = Event;
 	type MaxWellKnownNodes = MaxWellKnownNodes;
 	type MaxPeerIdLength = MaxPeerIdLength;

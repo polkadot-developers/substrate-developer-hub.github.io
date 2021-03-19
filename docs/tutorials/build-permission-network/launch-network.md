@@ -117,7 +117,7 @@ Let's start Charlie's node,
 
 After it was started, you should see there is no connected peers for this node. This is because we are already in a permissioned network, you need to get authorization to to be connectable!
 
-Remember that we are using `sudo` pallet for our governance, we can make a sudo call on `add_well_known_node` dispatch call provided by node-authorization pallet to add our node. You can find more avaliable calls in this [reference doc](https://docs.rs/pallet-node-authorization/2.0.0/pallet_node_authorization/enum.Call.html).
+Remember that we are using `sudo` pallet for our governance, we can make a sudo call on `add_well_known_node` dispatch call provided by node-authorization pallet to add our node. You can find more avaliable calls in this [reference doc](https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_authorization/enum.Call.html).
 
 Go to **Developer Sudo** page in apps, submit the `nodeAuthorization` -  `add_well_known_node` call with the peer id in hex of Charlie's node and the owner is Charlie of course.
 
