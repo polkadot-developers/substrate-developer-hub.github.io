@@ -152,7 +152,7 @@ a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a
 <pre><code class="hljs css language-shell">./target/release/node-template --chain=local --base-path /tmp/validator3 --name charlie  --node-key=3a9d5b35b9fb4c42aafadeca046f6bf56107bd2579687f069b42646684b94d9e --port 30335 --ws-port=9946 --offchain-worker always
 </code></pre>
 <p>启动后，您应该看到此节点没有相连的节点。 这是因为我们已经在一个许可网络中，您需要获得授权才能连接！</p>
-<p>刚提到过，我们使用 <code>sudo</code> 模块进行治理，我们可以使用 sudo 权限调用 node authorization pallet 提供的 <code>add_well_known_node</code>，来添加我们的节点。 您可以在这个 <a href="https://docs.rs/pallet-node-authorization/2.0.0/pallet_node_authorization/enum.Call.html">API 文档</a> 中找到更多的调用命令。</p>
+<p>刚提到过，我们使用 <code>sudo</code> 模块进行治理，我们可以使用 sudo 权限调用 node authorization pallet 提供的 <code>add_well_known_node</code>，来添加我们的节点。 You can find more avaliable calls in this <a href="https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_authorization/enum.Call.html">reference doc</a>.</p>
 <p>在 apps 应用中跳转到 <strong>Developer Sudo</strong> 页面，提交 <code>nodeAuthorization</code> - <code>add_well_known_node</code> 交易，参数为用十六进制表示的 Charlie 节点的 peer id 和所有者也就是 Charlie。</p>
 <p><img src="/docs/assets/tutorials/permission-network/add_well_known_node.png" alt="add_well_known_node"></p>
 <p>当交易打包入区块中后， 你应该能看到 Charlie 的节点已连接到 Alice 和 Bob 的节点，并逐渐进行区块同步。 在本地网络中默认启用了 <a href="https://docs.rs/sc-network/0.8.0/sc_network/">mdns</a> 发现机制，因此三个节点可以互相找到。 如果在公共互联网中运行节点，您需要在启动 Charlie 的节点时使用 <code>--reserved-nodes</code> flag 来指定可访问的节点。 或将可访问的节点作为 Chain Spec 中的启动节点。</p>
@@ -162,7 +162,7 @@ a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a
 <p>使用以下命令启动节点。</p>
 <pre><code class="hljs css language-shell">./target/release/node-template --chain=local --base-path /tmp/validator4 --name dave --node-key=a99331ff4f0e0a0434a6263da0a5823ea3afcfffe590c9f3014e6cf620f2b19a --port 30336 --ws-port 9947 --offchain-worker always
 </code></pre>
-<p>在启动后，没有任何节点间的可用连接。 首先，Charlie 需要配置他的 well known 节点，允许 Dave 的节点与其连接。</p>
+<p>After it was started, there is no available connections. 首先，Charlie 需要配置他的 well known 节点，允许 Dave 的节点与其连接。</p>
 <p>在 <strong>Developer Extrinsics</strong> 页面中，Charlie 提交了一个 <code>addConnections</code> 交易。 第一个 PeerId 是 Charlie 节点中的 peer id。 connections 这一参数是允许连接到 Charlie 节点的节点集合，在此我们只添加 Dave 的节点。</p>
 <p><img src="/docs/assets/tutorials/permission-network/charlie_add_connections.png" alt="charlie_add_connections"></p>
 <p>然后，Dave 需要配置他的节点来允许来自 Charlie 节点的连接。 但在添加连接之前，Dave 需要先认领他的节点。希望这不会太晚！</p>

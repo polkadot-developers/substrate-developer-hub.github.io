@@ -97,7 +97,7 @@ Instead, you can manipulate the connection between a well know node
 and a normal node or between two normal nodes.</p>
 <p>It uses an <a href="../../knowledgebase/learn-substrate/off-chain-features#off-chain-workers">offchain worker</a>
 to set authorized nodes in node-authorization pallet. Make sure to enable offchain worker with
-the right CLI flag as offchain worker is diabled by default for non-authority nodes.
+the right CLI flag as offchain worker is disabled by default for non-authority nodes.
 Your node can be lagged with the latest block, in this case you need to disable offchain worker
 and manually set reachable reserved nodes to sync up with the network.</p>
 <h2><a class="anchor" aria-hidden="true" id="add-the-node-authorization-pallet"></a><a href="#add-the-node-authorization-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add the <code>node-authorization</code> pallet</h2>
@@ -125,7 +125,7 @@ make check
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies]</span>
 <span class="hljs-comment">#--snip--</span>
-<span class="hljs-attr">pallet-node-authorization</span> = { default-features = <span class="hljs-literal">false</span>, version = <span class="hljs-string">'2.0.0'</span> }
+<span class="hljs-attr">pallet-node-authorization</span> = { default-features = <span class="hljs-literal">false</span>, version = <span class="hljs-string">'3.0.0'</span> }
 
 <span class="hljs-comment">#--snip--</span>
 <span class="hljs-section">[features]</span>
@@ -139,7 +139,7 @@ make check
 <p>Let's import and use our pallet in <strong>runtime/src/lib.rs</strong>. Firstly Import the dependency
 with <code>use frame_system::EnsureRoot</code>, we need it to simulate the governance in our simple blockchain.
 Then implement the configure trait of our pallet. More description on the trait can be found in
-its <a href="https://docs.rs/pallet-node-authorization/2.0.0/pallet_node_authorization/trait.Trait.html">reference doc</a>.</p>
+its <a href="https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_authorization/trait.Config.html">reference doc</a>.</p>
 <p><strong><code>runtime/src/lib.rs</code></strong></p>
 <pre><code class="hljs css language-rust">
 <span class="token comment">/* --snip-- */</span>
@@ -153,7 +153,7 @@ its <a href="https://docs.rs/pallet-node-authorization/2.0.0/pallet_node_authori
     <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">MaxPeerIdLength</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">128</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">impl</span> <span class="token namespace">pallet_node_authorization<span class="token punctuation">::</span></span><span class="token class-name">Trait</span> <span class="token keyword">for</span> <span class="token class-name">Runtime</span> <span class="token punctuation">{</span>
+<span class="token keyword">impl</span> <span class="token namespace">pallet_node_authorization<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token keyword">for</span> <span class="token class-name">Runtime</span> <span class="token punctuation">{</span>
     <span class="token keyword">type</span> <span class="token class-name">Event</span> <span class="token operator">=</span> <span class="token class-name">Event</span><span class="token punctuation">;</span>
     <span class="token keyword">type</span> <span class="token class-name">MaxWellKnownNodes</span> <span class="token operator">=</span> <span class="token class-name">MaxWellKnownNodes</span><span class="token punctuation">;</span>
     <span class="token keyword">type</span> <span class="token class-name">MaxPeerIdLength</span> <span class="token operator">=</span> <span class="token class-name">MaxPeerIdLength</span><span class="token punctuation">;</span>
@@ -233,7 +233,7 @@ its <a href="https://docs.rs/pallet-node-authorization/2.0.0/pallet_node_authori
 <p><code>NodeAuthorizationConfig</code> contains a property named <code>nodes</code>, which is vector of tuple.
 The first element of the tuple is the <code>OpaquePeerId</code> and we use <code>bs58::decode</code> to convert
 the <code>PeerId</code> in human readable format to bytes. The second element of the tuple is <code>AccountId</code>
-and represents the owner of this node, here we are using one of the provided endowned accounts
+and represents the owner of this node, here we are using one of the provided endowed accounts
 for demonstration. To make it clear, the owner of the first node is Alice, and Bob owns the second node.</p>
 <p>You may wondering where the <code>12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2</code> comes from.
 We can use <a href="../../knowledgebase/integrate/subkey#generating-node-keys">subkey</a> to generate the above human readable <code>PeerId</code>.</p>
@@ -242,18 +242,18 @@ We can use <a href="../../knowledgebase/integrate/subkey#generating-node-keys">s
 <blockquote>
 <p>Note: <code>subkey</code> is a CLI tool that comes bundled with substrate, and you can install it natively too!</p>
 <ul>
-<li><a href="../../knowledgebase/integrate/subkey#installation">Install Intructions</a></li>
+<li><a href="../../knowledgebase/integrate/subkey#installation">Install Instructions</a></li>
 </ul>
 </blockquote>
 <p>The output of the command is like:</p>
 <pre><code class="hljs css language-shell">12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2 // this is PeerId.
 c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a // This is node-key.
 </code></pre>
-<p>Now all the code changes are finished, we are ready to launch our permissoned network. Go get yourself some water!</p>
+<p>Now all the code changes are finished, we are ready to launch our permissioned network. Go get yourself some water!</p>
 <blockquote>
 <p>Stuck? The solution with all required changes to the base template can be found <a href="https://github.com/kaichaosun/substrate-permission-network/commit/c8b8f610afaab024c16da0917d059dc5050d3807">here</a>.</p>
 </blockquote>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/17/2021 by hamidra</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/tutorials/build-permission-network/index"><span class="arrow-prev">← </span><span>Introduction</span></a><a class="docs-next button" href="/docs/en/tutorials/build-permission-network/launch-network"><span>Launch our permissioned network</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#about-node-authorization-pallet">About <code>node-authorization</code> pallet</a></li><li><a href="#add-the-node-authorization-pallet">Add the <code>node-authorization</code> pallet</a></li><li><a href="#add-genesis-storage-for-our-pallet">Add genesis storage for our pallet</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/19/2021 by Dan Shields</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/tutorials/build-permission-network/index"><span class="arrow-prev">← </span><span>Introduction</span></a><a class="docs-next button" href="/docs/en/tutorials/build-permission-network/launch-network"><span>Launch our permissioned network</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#about-node-authorization-pallet">About <code>node-authorization</code> pallet</a></li><li><a href="#add-the-node-authorization-pallet">Add the <code>node-authorization</code> pallet</a></li><li><a href="#add-genesis-storage-for-our-pallet">Add genesis storage for our pallet</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();
