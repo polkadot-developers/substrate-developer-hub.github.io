@@ -156,7 +156,7 @@ provides a deep dive into the consensus strategies of [the Polkadot Network](#po
 
 A blockchain consensus protocol that consists of independent or loosely coupled mechanisms for
 [block production](#author) and [finality](#finality). This allows the chain to grow as fast as
-probabilistic consensus protocols, such as [Aura](#aura), while still maintaining the same level of
+probabilistic consensus protocols, such as [Aura](#aura-aka-authority-round), while still maintaining the same level of
 security as [deterministic finality](#deterministic-finality) consensus protocols, such as
 [GRANDPA](#grandpa). In general, block production algorithms tend to be faster than finality
 mechanisms; separating these concerns gives Substrate developers greater control of their chain's
@@ -523,7 +523,7 @@ heterogeneous blockchain networks.
 ## Runtime
 
 The block execution logic of a blockchain, i.e. the
-[state transition function](#stf-state-transition-function). In Substrate, this is stored as a
+[state transition function](#state-transition-function-stf). In Substrate, this is stored as a
 [WebAssembly](#webassembly-wasm) binary in the [chain state](#state).
 
 ---
@@ -543,7 +543,7 @@ Democratic voting system that uses one-vote-per-token, rather than one-vote-per-
 
 In a [blockchain](#blockchain), the state refers to the cryptographically secure data that persists
 between blocks and can be used to create new blocks as part of the state transition function. In
-Substrate-based blockchains, state is stored in a [trie](#trie), a data structure that supports the
+Substrate-based blockchains, state is stored in a [trie](#trie-patricia-merkle-tree), a data structure that supports the
 efficient creation of incremental digests. This trie is exposed to the [runtime](#runtime) as
 [a simple key/value map](../../knowledgebase/advanced/storage) where both keys and values can be
 arbitrary byte arrays.
