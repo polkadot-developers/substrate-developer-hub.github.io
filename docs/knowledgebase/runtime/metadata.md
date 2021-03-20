@@ -47,13 +47,13 @@ to interact with a Substrate blockchain, including the
 [`getMetadata`](https://polkadot.js.org/docs/substrate/rpc#getmetadataat-blockhash-metadata) function.
 
 You can try the following code snippets to fetch the metadata in this
-[Substrate UI](https://polkadot.js.org/apps/#/js) page:
+[Polkadot-JS App - Javascript page](https://polkadot.js.org/apps/#/js):
 
 ```javascript
-const { magicNumber, metadata } = await api.rpc.state.getMetadata();
+const { magicNumber, _metadata } = await api.rpc.state.getMetadata();
 
 console.log("Magic number: " + magicNumber);
-console.log("Metadata: " + metadata.raw);
+console.log("Metadata: " + _metadata);
 ```
 
 ### HTTP & WebSocket APIs
