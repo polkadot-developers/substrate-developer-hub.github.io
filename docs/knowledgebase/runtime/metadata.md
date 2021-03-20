@@ -50,10 +50,10 @@ You can try the following code snippets to fetch the metadata in this
 [Polkadot-JS App - Javascript page](https://polkadot.js.org/apps/#/js):
 
 ```javascript
-const { magicNumber, _metadata } = await api.rpc.state.getMetadata();
-
-console.log("Magic number: " + magicNumber);
-console.log("Metadata: " + _metadata);
+const metadata = await api.rpc.state.getMetadata();
+console.log('version: ' + metadata.version);
+console.log("Magic number: " + metadata.magicNumber);
+console.log("Metadata: " + JSON.stringify(metadata.asLatest.toHuman(), null, 2));
 ```
 
 ### HTTP & WebSocket APIs
