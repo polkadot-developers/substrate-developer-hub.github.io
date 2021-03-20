@@ -63,10 +63,6 @@ where the native executable should not be run, the canonical Wasm runtime is exe
 
 - Read more about runtime upgrades in the [Runtime documentation](../runtime/upgrades).
 
-### Examples
-
-TODO
-
 ### References
 
 - Check out the different
