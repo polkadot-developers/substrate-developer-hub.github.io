@@ -73,7 +73,7 @@
               }
             });
         </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">会话密钥</h1></header><article><div><span><p>验证人使用会话密钥对共识相关的信息签名。 <code>会议密钥</code> 是一种通用、可索引的类型，它是在 runtime 里被指定的。</p>
-<p>你可以声明任何数量的会话密钥。 例如，默认的 Substrate 节点使用 4个。 其他链可能更多或更少，这取决于链需要验证者执行哪些操作。</p>
+<p>你可以声明任意数量的会话密钥。 例如，默认的 Substrate 节点使用 4个。 其他链可能更多或更少，这取决于链需要验证者执行哪些操作。</p>
 <p>实际上，验证人会将所有会话公钥合并在单一对象中，使用 &quot;Controller&quot; 账户签署公钥集合并提交一份交易来注册链上的密钥。 这个链上注册过程就把验证人 <em>节点</em> 和带有资金的 <em>账户</em> 联系起来。 因此该帐户的资金会根据节点的行为被奖励或惩罚。</p>
 <p>Runtime 声明了會包含哪些会话密钥（在 <code>runtime/src/lib.rs</code>）：</p>
 <pre><code class="hljs css language-rust"><span class="token macro property">impl_opaque_keys!</span> <span class="token punctuation">{</span>
