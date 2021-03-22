@@ -9,7 +9,7 @@ The [docs are written in markdown](docs), processed by [Docusaurus](https://docu
 
 Thank you for your interest in contributing to the Developer Hub and to the larger Substrate community! Please review
 our contributor guidelines prior to any contribution. If you have any further questions, don't hesitate to
-[reach out](https://matrix.to/#/!NdxrIlxGUHXYwtRGrF:matrix.parity.io?via=matrix.parity.io) on our community channels.
+reach out on our [substrate technical community channel](https://matrix.to/#/#substrate-technical:matrix.org).
 
 ### Directory Structure
 
