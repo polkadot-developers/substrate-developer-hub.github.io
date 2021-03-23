@@ -14,7 +14,7 @@ You will probably need to do some set-up to prepare your computer for Substrate 
 
 ### Substrate Development
 
-> Before you coninue, complete the [official Installation guide](../../knowledgebase/getting-started/index.md).
+> Before you continue, complete the [official Installation guide](../../knowledgebase/getting-started/index.md).
 > After `rustup` has been installed and configured, and you've configured the Rust toolchain to default
 > to the latest stable version you can return to these steps.
 
@@ -37,14 +37,14 @@ Template, which serves as a good starting point for building on Substrate.
     # ^^ this will take a while!
     ```
 
-> The time required for the compilation step depends on the hardware you're using. 
+> The time required for the compilation step depends on the hardware you're using.
 >
 > **You should start building the node template _before_ moving on!**
 
 ## Install the Front-End Template
 
-This tutorial uses a [ReactJS](https://reactjs.org/) front-end template to allow you to interact 
-with the Substrate-based blockchain node that you should have started compiling in the previous 
+This tutorial uses a [ReactJS](https://reactjs.org/) front-end template to allow you to interact
+with the Substrate-based blockchain node that you should have started compiling in the previous
 step. You can use this same front-end template to create UIs for your own projects in the future.
 
 To use the front-end template, you need [Yarn](https://yarnpkg.com), which itself requires
