@@ -166,6 +166,11 @@ Let's start Charlie's node,
 --offchain-worker always
 ```
 
+> Remember: The `node-authorization` pallet integrates an
+[offchain worker](../../knowledgebase/learn-substrate/off-chain-features#off-chain-workers)
+> to configure node connections. As Charlie is not _yet_ a wellknown node, and we 
+> intend to attach Dave's node, we require the offchain worker to be enabled.
+
 After it was started, you should see there are **no connected peers** for this node.
 This is because we are trying to connect to a permissioned network, you need to
 get authorization to to be connectable! Alice and Bob were configured already in
