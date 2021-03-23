@@ -21,11 +21,11 @@ pallet to your FRAME runtime.
 If you run into an issue on this tutorial, **we are here to help!** You can
 [ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the
 `substrate` tag or contact us on
-[Element](https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org).
+[Element](https://matrix.to/#/#substrate-technical:matrix.org).
 
 ## Install the Node Template
 
-You should already have version `v2.0.1` of the Node Template compiled on your computer from when
+You should already have version `v3.0.0` of the Node Template compiled on your computer from when
 you completed the
 [Create Your First Substrate Chain](../../tutorials/create-your-first-substrate-chain/) tutorial. If
 you do not, please complete it.

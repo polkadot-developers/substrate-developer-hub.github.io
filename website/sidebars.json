@@ -27,9 +27,9 @@
       "knowledgebase/runtime/events",
       "knowledgebase/runtime/errors",
       "knowledgebase/runtime/fees",
-      "knowledgebase/runtime/off-chain-workers",
       "knowledgebase/runtime/debugging",
       "knowledgebase/runtime/tests",
+      "knowledgebase/runtime/benchmarking",
       "knowledgebase/runtime/randomness",
       "knowledgebase/runtime/upgrades"
     ],
@@ -38,6 +38,7 @@
       "knowledgebase/smart-contracts/index",
       "knowledgebase/smart-contracts/ink-fundamentals",
       "knowledgebase/smart-contracts/ink-development",
+      "knowledgebase/smart-contracts/contracts-pallet",
       "knowledgebase/smart-contracts/evm-pallet",
       "knowledgebase/smart-contracts/faq"
     ],
@@ -55,7 +56,8 @@
       "knowledgebase/advanced/executor",
       "knowledgebase/advanced/cryptography",
       "knowledgebase/advanced/storage",
-      "knowledgebase/advanced/ss58-address-format"
+      "knowledgebase/advanced/ss58-address-format",
+      "knowledgebase/advanced/no-hash-collections"
     ],
     "Contribute": [
       "contribute/help-translate"

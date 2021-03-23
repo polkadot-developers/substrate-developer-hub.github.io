@@ -5,7 +5,7 @@ title: Session Keys
 Session keys are used by validators to sign consensus-related messages. `SessionKeys` is a generic,
 indexable type that is made concrete in the runtime.
 
-You can declare any number Session keys. For example, the default Substrate node uses four. Other
+You can declare any number of Session keys. For example, the default Substrate node uses four. Other
 chains could have more or fewer depending on what operations the chain expects its validators to
 perform.
 

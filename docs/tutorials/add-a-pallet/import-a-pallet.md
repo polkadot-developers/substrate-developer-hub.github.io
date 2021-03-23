@@ -46,7 +46,7 @@ your runtime has. For example, it depends on the
 ```TOML
 [dependencies]
 #--snip--
-pallet-balances = { default-features = false, version = '2.0.0' }
+pallet-balances = { default-features = false, version = '3.0.0' }
 ```
 
 ### Crate Features
@@ -130,7 +130,7 @@ So based on the `balances` import shown above, the `nicks` import will look like
 ```TOML
 [dependencies]
 #--snip--
-pallet-nicks = { default-features = false, version = '2.0.0' }
+pallet-nicks = { default-features = false, version = '3.0.0' }
 ```
 
 As with other pallets, the Nicks pallet has an `std` feature. We should build its `std` feature

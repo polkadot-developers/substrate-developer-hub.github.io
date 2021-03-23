@@ -12,11 +12,7 @@ sure to record all of the output from this section as you will need it later.
 
 Subkey is a tool that generates keys specifically designed to be used with Substrate.
 
-Begin by compiling and installing the utility. This may take up to 15 minutes or so.
-
-```bash
-cargo install --force subkey --git https://github.com/paritytech/substrate --version 2.0.0 --locked
-```
+Begin by compiling and installing the utility (<a target="_blank" href="../../knowledgebase/integrate/subkey">instructions and more info here</a>). This may take up to 15 minutes or so.
 
 We will need to generate at least **2** keys from each type. Every node will need to have its own
 keys.
@@ -25,8 +21,11 @@ Generate a mnemonic and see the `sr25519` key and address associated with it. Th
 by Aura for block production.
 
 ```bash
-$ subkey generate --scheme sr25519
-
+# subkey command
+subkey generate --scheme sr25519
+```
+```bash
+# subkey output
 Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song vital leisure` is account:
   Secret seed:      0xa2b0200f9666b743402289ca4f7e79c9a4a52ce129365578521b0b75396bd242
   Public key (hex): 0x0a11c9bcc81f8bd314e80bc51cbfacf30eaeb57e863196a79cccdc8bf4750d21
@@ -38,17 +37,17 @@ Now see the `ed25519` key and address associated with the same mnemonic. This ke
 GRANDPA for block finalization.
 
 ```bash
-$ subkey inspect --scheme ed25519 "infant salmon buzz patrol maple subject turtle cute legend song vital leisure"
-
+# subkey command
+subkey inspect --scheme ed25519 "infant salmon buzz patrol maple subject turtle cute legend song vital leisure"
+```
+```bash
+# subkey output
 Secret phrase `infant salmon buzz patrol maple subject turtle cute legend song vital leisure` is account:
   Secret seed:      0xa2b0200f9666b743402289ca4f7e79c9a4a52ce129365578521b0b75396bd242
   Public key (hex): 0x1a0e2bf1e0195a1f5396c5fd209a620a48fe90f6f336d89c89405a0183a857a3
   Account ID:       0x1a0e2bf1e0195a1f5396c5fd209a620a48fe90f6f336d89c89405a0183a857a3
   SS58 Address:     5CesK3uTmn4NGfD3oyGBd1jrp4EfRyYdtqL3ERe9SXv8jUHb
 ```
-
-> [Learn more about Subkey](../../knowledgebase/integrate/subkey) in the Integrate section.
-
 ## Option 2: Polkadot-JS Apps
 
 The same UI that we used to see blocks being produced can also be used to generate keys. This option
