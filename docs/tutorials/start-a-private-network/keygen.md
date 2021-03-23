@@ -62,11 +62,11 @@ On the "Accounts" tab, click "Add account". You do not need to provide a name, a
 you would like to save this account for submitting transaction in addition to validating.
 
 Generate an `sr25519` key which will be used by Aura for block production. Take careful note of the
-menmonic phrase, and the SS58 address which can be copied by clicking on the identicon in the top
+mnemonic phrase, and the SS58 address which can be copied by clicking on the identicon in the top
 left.
 
 Then generate an `ed25519` key which will be used by GRANDPA for block finalization. Again, note
-the menmonic phrase and ss58 address.
+the mnemonic phrase and ss58 address.
 
 ## Option 3: Use Pre-Generated Keys
 
