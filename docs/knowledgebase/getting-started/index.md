@@ -95,7 +95,7 @@ compile Substrate runtime code to the Wasm target.
 
 #### Rust Nightly Toolchain
 
-If you want to grantee that if your build works on your computre as you update Rust and other
+If you want to grantee that if your build works on your computer as you update Rust and other
 dependencies, you should use a specific Rust nightly version that is known to be
 compatible with the version of Substrate they are using; this version will vary from project to
 project and different projects may use different mechanisms to communicate this version to
