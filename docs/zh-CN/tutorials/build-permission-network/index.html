@@ -73,22 +73,27 @@
               }
             });
         </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">介绍</h1></header><article><div><span><p>In this tutorial, you will learn how to build a permissioned network with Substrate by using <a href="https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_authorization/">node-authorization pallet</a>. 完成本教程大概需要花费你 <strong>1 个小时</strong>的时间。</p>
-<blockquote>
-<p>You are probably already familiar with public or permissionless blockchain, where everyone is free to join the network by running a node. 在许可链中，只有被授权的节点才能执行特定的操作，比如验证区块和传播交易。 我相信区块链应用仍在早期阶段，许可链对于高度监管的市场是非常重要的，因为在一定程度上它可以带来透明的规则和执行逻辑。</p>
-</blockquote>
-<p>在学习这个教程之前，我们希望：</p>
+<p>You are probably already familiar with public or <em>permissionless</em> blockchain, where everyone is free to join the network by running a node. In a permissioned network, only authorized nodes are allowed to perform specific activities, like validate blocks and propagate transactions. Some examples of where permissioned blockchains may be desired:</p>
 <ul>
-<li>你已经完成了<a href="https://substrate.dev/docs/en/tutorials/build-a-dapp/">Build a PoE Decentralized Application Tutorial</a>。</li>
-<li>你已经熟悉了Substrate的 <a href="https://wiki.polkadot.network/docs/en/maintain-guides-how-to-setup-sentry-node#p2p-networking">P2P Networking</a>。</li>
+<li>Private (or consortium) networks</li>
+<li>Highly regulated data environments (healthcare, B2B ledgers, etc.)</li>
+<li>Testing pre-public networks at scale</li>
+</ul>
+<p>Before you start, we expect that:</p>
+<ul>
+<li>You have completed the <a href="https://substrate.dev/docs/en/tutorials/build-a-dapp/">Build a PoE Decentralized Application Tutorial</a>.</li>
+<li>You are conceptually familiar with <a href="https://wiki.polkadot.network/docs/en/maintain-guides-how-to-setup-sentry-node#p2p-networking">P2P Networking</a> in Substrate.
+<ul>
+<li>We suggest to complete the <a href="../start-a-private-network/index">Private Network Tutorial</a> to get experince with this first (not required).</li>
+</ul></li>
 </ul>
 <p>If you run into an issue on this tutorial, <strong>we are here to help!</strong> You can <a href="https://stackoverflow.com/questions/tagged/substrate">ask a question on Stack Overflow</a> and use the <code>substrate</code> tag or contact us on <a href="https://matrix.to/#/#substrate-technical:matrix.org">Element</a>.</p>
 <h2><a class="anchor" aria-hidden="true" id="你接下来会做的事"></a><a href="#你接下来会做的事" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>你接下来会做的事</h2>
-<p>在我们开始之前，让我们解释下我们将要在本教程中做些什么。 我们将：</p>
-<ol start="2">
+<ol>
 <li>Modify the Node Template project to add <a href="https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_authorization/">node-authorization pallet</a>.</li>
-<li>启动多个节点，并通过调用 node-authorization pallet 提供的可调用函数来授权新的节点加入网络。</li>
+<li>Launch multiple nodes and authorize new nodes to join the network by calling the dispatchable calls provided by node-authorization pallet.</li>
 </ol>
-<p>听起来还不错吧？ 那么，让我们开始吧！</p>
+<p>Sound fun? Great! Let's begin!</p>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/zh-CN/tutorials/build-permission-network/add-node-authorization-pallet"><span>添加节点授权模块</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#你接下来会做的事">你接下来会做的事</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/rustdocs">API 文档</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
