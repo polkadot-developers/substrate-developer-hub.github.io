@@ -11,7 +11,7 @@ Unix-based operating systems.
 
 ## 1.a Windows
 
-> NOTE: Native development of substrate is _not_ very well supported! It is _highly_ recommend to
+> NOTE: Native development of Substrate is _not_ very well supported! It is _highly_ recommend to
 > use [Windows Subsystem Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (WSL)
 > and follow the instructions for [Ubuntu/Debian](#ubuntudebian).
 
@@ -47,7 +47,7 @@ export OPENSSL_INCLUDE_DIR="/usr/include/openssl-1.0"
 
 > NOTE: The Apple M1 ARM system on a chip is not very well supported yet by rust, 
 > and thus you very likely will run into build errors steming from this. It is best, 
-> for the near term, to avoid using M1s for substrate development. If you do decide to 
+> for the near term, to avoid using M1s for Substrate development. If you do decide to 
 > give it a try despite this, see
 > [this community guide](https://vikiival.medium.com/run-substrate-on-apple-m1-a2699743fae8)
 > for details on extra configuration steps to get things working.
@@ -88,14 +88,14 @@ runtimes. You will need to configure your Rust compiler to use
 [`nightly` builds](https://doc.rust-lang.org/book/appendix-07-nightly-rust.html) to allow you to
 compile Substrate runtime code to the Wasm target.
 
-> There are upstream issues in Rust that need to be resolved before all of substrate can use
+> There are upstream issues in Rust that need to be resolved before all of Substrate can use
 > the stable Rust toolchain -
 > [this is our tracking issue](https://github.com/paritytech/substrate/issues/1252)
 > if you are curious as to why and how this may be resolved. 
 
 #### Rust Nightly Toolchain
 
-If you want to guarantee that if your build works on your computer as you update Rust and other
+If you want to guarantee that your build works on your computer as you update Rust and other
 dependencies, you should use a specific Rust nightly version that is known to be
 compatible with the version of Substrate they are using; this version will vary from project to
 project and different projects may use different mechanisms to communicate this version to

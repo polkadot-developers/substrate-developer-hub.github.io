@@ -79,7 +79,7 @@ The final built static site is then pushed to the `master` branch and hosted on 
 
 We have a *staging* deployment at [devhub-maindocs.herokuapp.com](https://devhub-maindocs.herokuapp.com), which is hosted on Heroku. Please check with the devhub team for the username and password to access the staging site.
 
-To deploy to staging, you could push to the `staging-source` branch in the repository. This will trigger the CI to build the website, pull in multilingual translations from crowdin, and have the final built static site being pushed to `staging` branch. This in turns triggers Heroku to pick up the latest commit from `staging` branch and deploy to the staging site.
+To deploy to staging, you could push to the `staging-source` branch in the repository. This will trigger the CI to build the website, pull in multilingual translations from crowdin, and have the final built static site being pushed to `staging` branch. This in turn triggers Heroku to pick up the latest commit from `staging` branch and deploy to the staging site.
 
 ## License
 
