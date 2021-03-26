@@ -1,5 +1,5 @@
 ---
-title: Force an Upgrade
+title: Sudo Upgrade
 ---
 
 ## Start the Template Node
@@ -12,17 +12,17 @@ unmodified [Node Template](https://github.com/substrate-developer-hub/substrate-
 cargo run --release -- --dev --tmp
 ```
 
-> **Leave this node running!** Notice that the node will not be restarted as part of this tutorial 
+> **Leave this node running!** Notice that the node will not be restarted as part of this tutorial
 > despite the fact that two runtime upgrades are performed.
 > You will be editing and re-compiling the node's runtime code, but _do not_ stop and restart the
-> node to prove to yourself that the runtime upgrade is in fact done on an _active_ (dev) network, 
-> not a rebuilt and restarted one.
+> node to prove to yourself that the runtime upgrade is in fact done on an _active_ (dev) network,
+> not a rebuilt or restarted one.
 
 By default, the [well-known Alice account](../../knowledgebase/integrate/subkey#well-known-keys) is
 configured as the holder of the Sudo pallet's key in the `development_config` function of the
 template node's
 [chain specification file](https://github.com/substrate-developer-hub/substrate-node-template/blob/v3.0.0/node/src/chain_spec.rs) -
-this is the configuration that is used when the node is launched with the `--dev` flag. That means
+this is the configuration that is used when the node is launched with the `--dev` flag. This means
 that Alice's account will be the one used to perform runtime upgrades throughout this tutorial.
 
 ## Runtime Upgrade Resource Accounting
@@ -38,15 +38,16 @@ intentionally designed to consume the maximum weight that may fit in a block.
 
 > The runtime upgrade should consume the entire block to avoid extrinsics trying to execute
 > on a different version of a runtime when called. Although theoretically one may be able to
-> use [transaction priority](../../knowledgebase/learn-substrate/tx-pool#transaction-priority) 
-> and carefully study the FRAME logic involved to allow fro  other extrinsics to be dispatched
-> in the same block as the upgrade, it is a very poor idea to try and do this for almost
-> any blockchain: it's worth it to spend one block to keep this operation clean and reduce
+> use [transaction priority](../../knowledgebase/learn-substrate/tx-pool#transaction-priority)
+> and carefully study the FRAME logic involved to allow for other extrinsics to be dispatched
+> in the same block as the upgrade, it is a very poor idea to try to do this for almost
+> any blockchain: it is worth to spend one block to keep this operation clean and reduce
 > chance of error. This study is outside the scope of this tutorial.
 
-The `set_code` function's weight annotation also specifies that `set_code` is in
+The [`set_code` function](https://substrate.dev/rustdocs/v3.0.0/src/frame_system/lib.rs.html#329-337)'s
+weight annotation also specifies that the extrinsic call is in
 [the `Operational` class](../../knowledgebase/runtime/fees#operational-dispatches) of dispatchable
-functions, which identifies it as relating to network _operations_ and impacts the accounting of its
+function, which identifies it as relating to network _operations_ and impacts the accounting of its
 resources, such as by exempting it from the
 [`TransactionByteFee`](https://substrate.dev/rustdocs/v3.0.0/pallet_transaction_payment/trait.Config.html#associatedtype.TransactionByteFee).
 
@@ -62,7 +63,7 @@ are only accessible to this administrator. The Sudo pallet maintains a single
 [storage item](../../knowledgebase/runtime/storage): the ID of the account that has access to the
 pallet's [dispatchable functions](../../knowledgebase/getting-started/glossary#dispatch). The Sudo
 pallet's `sudo` function allows the holder of this account to invoke a dispatchable as the `Root`
-origin. 
+origin.
 
 The following pseudo-code demonstrates how this is achieved, refer to the
 [Sudo pallet's source code](https://github.com/paritytech/substrate/blob/v3.0.0/frame/sudo/src/lib.rs)
@@ -82,7 +83,7 @@ fn sudo(origin, call) -> Result {
 
 ### `sudo` to Override Resource Accounting
 
-In order to work within FRAME's safeguards around resource accounting, the Sudo pallet provides the
+In order to work around resource accounting within FRAME's safeguards, the Sudo pallet provides the
 [`sudo_unchecked_weight`](https://substrate.dev/rustdocs/v3.0.0/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
 function, which provides the same capability as the `sudo` function, but accepts an additional
 parameter that is used to specify the (possibly zero) weight to use for the call. The
@@ -90,8 +91,8 @@ parameter that is used to specify the (possibly zero) weight to use for the call
 of this tutorial; in the next section, the Scheduler pallet will be used to manage the resources
 consumed by the `set_code` function.
 
-> Here we allow for a block that may take _an indefinite time to compute_ intentionally: to endure
-> that our runtime upgrade does not fail, no matter how complex the operation is, and may take all
+> Here we allow for a block that may take _an indefinite time to compute_ intentionally: to ensure
+> that our runtime upgrade does not fail, no matter how complex the operation is. It could take all
 > the time it needs to succeed or fail.
 
 ## Prepare an Upgraded Runtime
@@ -100,7 +101,7 @@ consumed by the `set_code` function.
 
 Because the template node doesn't come with the
 [Scheduler pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_scheduler/index.html) included in
-its runtime, the first runtime upgrade performed in this tutorial will add that pallet. 
+its runtime, the first runtime upgrade performed in this tutorial will add that pallet.
 First, add the Scheduler pallet as a dependency in the template node's runtime Cargo file.
 
 **`runtime/Cargo.toml`**
@@ -167,7 +168,7 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 	spec_name: create_runtime_str!("node-template"),
 	impl_name: create_runtime_str!("node-template"),
 	authoring_version: 1,
-	spec_version: 101,  // <<<< *Increment* this value, the template uses 100 as a base <<<<
+	spec_version: 101,  // *Increment* this value, the template uses 100 as a base
 	impl_version: 1,
 	apis: RUNTIME_API_VERSIONS,
 	transaction_version: 1,
@@ -201,18 +202,18 @@ Note: keep your node running! You should use a new terminal to compile the runti
 cargo build --release -p node-template-runtime
 ```
 
-> Get stuck? Here is a 
+> Get stuck? Here is a
 > [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/runtime-upgrade-v3)
 > to check against. See the `diff` in the commit history for details.
 
 Here the `--release` flag will result in a longer compile time, but also generate a smaller build
-artifact that is better suited for submitting to the blockchain network: storage minimization 
-and optimizations are _critical_ for any blockchain. 
+artifact that is better suited for submitting to the blockchain network: storage minimization
+and optimizations are _critical_ for any blockchain.
 
-As we are _only_ building the runtime, cargo looks in runtime 
-`cargo.toml` file for requirements and only executes these. Notice the `runtime/build.rs` file that
-[cargo looks for](https://doc.rust-lang.org/cargo/reference/build-scripts.html) that goes on to build
-the WASM of yout runtime that is specified in `runtime/lib.rs`.  
+As we are _only_ building the runtime, Cargo looks in runtime
+`cargo.toml` file for requirements and only executes these. Notice the
+[`runtime/build.rs` file](https://doc.rust-lang.org/cargo/reference/build-scripts.html) that
+cargo looks for build the WASM of your runtime that is specified in `runtime/lib.rs`.
 
 When the `--release` flag is specified, build artifacts are output to the
 `target/release` directory; when the flag is omitted they will be sent to `target/debug`. Refer to
@@ -222,12 +223,12 @@ more about building Rust code with Cargo.
 ## Upgrade the Runtime
 
 Use this link to open the Polkadot JS Apps UI and automatically configure the UI to connect to the
-local node: https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:9944. 
+local node: https://polkadot.js.org/apps/#/extrinsics?rpc=ws://127.0.0.1:9944.
 
-> Some tracking and ad blockers (e.g. the built-in Shield in Brave browser, and https required 
-> settings in Firefox) interfere with connecting to a local node. Make sure to check them and,
-> if needed, turn them off. You may not get connecting from a remote IP (like `polkadot.js.org/apps/`)
-> to a local node working, if you are unable to solve this, we encourage you to
+> Some ad blockers and browser restrictions (e.g. the built-in Shield in Brave browser, and https
+> requirement for socket connection in Firefox) interfere with connecting to a local node. Make sure
+> to check them and, if needed, turn them off. You may not get connecting from a remote IP (like `polkadot.js.org/apps/`)
+> to a local node working. If you are unable to solve this, we encourage you to
 > host your app locally, like [the apps UI](https://github.com/polkadot-js/apps#development).
 
 Use Alice's account to invoke the `sudoUncheckedWeight` function and use the `setCode` function from the system
@@ -246,13 +247,13 @@ of Polkadot JS Apps UI should reflect that the runtime version is now `101`.
 
 ![Runtime Version 101](assets/tutorials/upgrade-a-chain/version-101.png)
 
-If you still see your node producing blocks in the terminal it's running and reported 
-on the UI, you have performed a successful _forkless_ runtime upgrade! Congrats!!! 
+If you still see your node producing blocks in the terminal it's running and reported
+on the UI, you have performed a successful _forkless_ runtime upgrade! Congrats!!!
 
 ## Next Steps
 
 <!--
-TODO: add reference to tutorial or recipe on storage migrations when avalible 
+TODO: add reference to tutorial or recipe on storage migrations when avalible
 https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/766
 -->
 

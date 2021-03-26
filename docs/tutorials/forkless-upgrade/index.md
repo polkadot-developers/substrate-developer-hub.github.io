@@ -6,7 +6,7 @@ One of the defining features of the Substrate blockchain development framework i
 **forkless runtime upgrades**. Forkless upgrades are a means of enhancing a blockchain runtime in a
 way that is supported and protected by the capabilities of the blockchain itself. A blockchain's
 [runtime](../../knowledgebase/runtime) defines the [state](../../knowledgebase/runtime/storage) the
-blockchain can hold and also defines the logic for effecting changes to that state. 
+blockchain can hold and also defines the logic for effecting changes to that state.
 
 ![node-diagram.png](assets/tutorials/upgrade-a-chain/node-diagram.png)
 
@@ -45,15 +45,15 @@ create an Issue.
 
 ## Before You Begin
 
-1. To get a sense of what they are more concretely, read the 
+1. To get a sense of what they are more concretely, read the
 [runtime upgrade documentation](../../knowledgebase/runtime/upgrades) first, or at least have
 it open as a reference as you progress.
 
 2. If you haven't already, you should complete these tutorials before this one:
-    - [Create Your First Substrate Chain](../../tutorials/create-your-first-substrate-chain/) - 
-    that will guide you through the process of setting up your development environment. 
-    - [Add a Pallet to Your Runtime](../../tutorials/add-a-pallet) - that will introduce the 
-    FRAME system for runtime development and guide you through the process of extending the 
+    - [Create Your First Substrate Chain](../../tutorials/create-your-first-substrate-chain/) -
+    that will guide you through the process of setting up your development environment.
+    - [Add a Pallet to Your Runtime](../../tutorials/add-a-pallet) - that will introduce the
+    FRAME system for runtime development and guide you through the process of extending the
     capabilities of a FRAME runtime by adding a pallet.
 
 > If you're an experienced developer and wish to skip those
