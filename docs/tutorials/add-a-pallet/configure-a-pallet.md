@@ -111,7 +111,7 @@ impl pallet_balances::Config for Runtime {
 }
 ```
 
-The `impl balances::Config` block allows runtime developers that are including the Balances pallet in
+The `impl pallet_balances::Config` block allows runtime developers that are including the Balances pallet in
 their runtime to configure the types and parameters that are specified by the Balances pallet
 `Config` configuration trait. For example, the `impl` block above configures the Balances pallet to
 use the `u128` type to track balances. If you were developing a chain where it was important to
