@@ -19,7 +19,7 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 	spec_name: create_runtime_str!("node-template"),
 	impl_name: create_runtime_str!("node-template"),
 	authoring_version: 1,
-	spec_version: 102,  // <<<< *Increment* this value. <<<<
+	spec_version: 102,  // *Increment* this value.
 	impl_version: 1,
 	apis: RUNTIME_API_VERSIONS,
 	transaction_version: 1,
@@ -38,10 +38,10 @@ parameter_types! {
 
 This change increases the value of the Balances pallet's
 [`ExistentialDeposit`](../../knowledgebase/getting-started/glossary#existential-deposit) - the
-minimum balance needed to keep an account alive from the point-of-view of the Balances pallet. 
+minimum balance needed to keep an account alive from the point-of-view of the Balances pallet.
 
 > Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000
-> to be reaped - that would require a 
+> to be reaped - that would require a
 > [storage migration](../../knowledgebase/runtime/upgrades#storage-migrations), which is out of
 > scope for this tutorial.
 
@@ -51,8 +51,8 @@ minimum balance needed to keep an account alive from the point-of-view of the Ba
 cargo build --release -p node-template-runtime
 ```
 
-> This will _override_ any privous build artifacts! So if you want to have a copy on hand of 
-> your last runtime WASM build files, be sure to move them somewhere else for safe keeping. 
+> This will _override_ any privous build artifacts! So if you want to have a copy on hand of
+> your last runtime WASM build files, be sure to copy them somewhere else.
 
 ## Upgrade the Runtime
 
