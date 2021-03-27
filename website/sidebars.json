@@ -79,11 +79,11 @@
       "tutorials/add-a-pallet/use-a-pallet"
     ]
   },
-  "upgrade-a-chain": {
-    "Perform a Forkless Upgrade": [
-      "tutorials/upgrade-a-chain/index",
-      "tutorials/upgrade-a-chain/sudo-upgrade",
-      "tutorials/upgrade-a-chain/scheduled-upgrade"
+  "forkless-upgrade": {
+    "Forkless Upgrade a Chain": [
+      "tutorials/forkless-upgrade/index",
+      "tutorials/forkless-upgrade/sudo-upgrade",
+      "tutorials/forkless-upgrade/scheduled-upgrade"
     ]
   },
   "build-a-dapp": {

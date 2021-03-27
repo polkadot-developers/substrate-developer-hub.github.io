@@ -154,7 +154,7 @@ made token transfers among users. We hope you'll continue learning about Substra
 Your next step may be:
 
 - Extend the features of the template node in the [Add a Pallet](../add-a-pallet) tutorial.
-- Learn about forkless runtime upgrades in the [Upgrade a Chain](../upgrade-a-chain) tutorial.
+- Learn about forkless runtime upgrades in the [Forkless Upgrade a Chain](../forkless-upgrade) tutorial.
 
 If you experienced any issues with this tutorial or want to provide feedback, You can
 [ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the

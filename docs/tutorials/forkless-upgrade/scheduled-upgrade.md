@@ -19,7 +19,7 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 	spec_name: create_runtime_str!("node-template"),
 	impl_name: create_runtime_str!("node-template"),
 	authoring_version: 1,
-	spec_version: 3,  // Update this value.
+	spec_version: 102,  // *Increment* this value.
 	impl_version: 1,
 	apis: RUNTIME_API_VERSIONS,
 	transaction_version: 1,
@@ -32,30 +32,27 @@ parameter_types! {
 	pub const MaxLocks: u32 = 50;
 }
 
-impl pallet_balances::Trait for Runtime {
-	type MaxLocks = MaxLocks;
-	/// The type for recording an account's balance.
-	type Balance = Balance;
-	/// The ubiquitous event type.
-	type Event = Event;
-	type DustRemoval = ();
-	type ExistentialDeposit = ExistentialDeposit;
-	type AccountStore = System;
-	type WeightInfo = ();
-}
+/*** snip ***/
+
 ```
 
 This change increases the value of the Balances pallet's
 [`ExistentialDeposit`](../../knowledgebase/getting-started/glossary#existential-deposit) - the
-minimum balance needed to keep an account alive from the point-of-view of the Balances pallet. Keep
-in mind that this change will _not_ cause all accounts with balances between 500 and 1000 to be
-dropped - that would require a storage migration, which is out of the scope of this tutorial.
+minimum balance needed to keep an account alive from the point-of-view of the Balances pallet.
 
-Build the upgraded runtime.
+> Keep in mind that this change will _not_ cause all accounts with balances between 500 and 1000
+> to be reaped - that would require a
+> [storage migration](../../knowledgebase/runtime/upgrades#storage-migrations), which is out of
+> scope for this tutorial.
 
-```shell
+### Build the Upgraded Runtime
+
+```bash
 cargo build --release -p node-template-runtime
 ```
+
+> This will _override_ any privous build artifacts! So if you want to have a copy on hand of
+> your last runtime WASM build files, be sure to copy them somewhere else.
 
 ## Upgrade the Runtime
 
@@ -69,17 +66,19 @@ the `priority` parameter at its default value of `0`. Select the System pallet's
 as the `call` parameter and provide the Wasm binary as before. Leave the "with weight override"
 option deactivated. Once all the other fields have been filled in, use a block number about 10
 blocks (1 minute) in the future to fill in the `when` parameter and quickly submit the transaction.
+
+![Scheduled Upgrade Panel](assets/tutorials/forkless-upgrade/scheduled-upgrade.png)
+
+
 You can use the template node's command line output or the
 [Polkadot JS Apps UI block explorer](https://polkadot.js.org/apps/#/explorer?rpc=ws://127.0.0.1:9944)
-to select a block number.
+to watch as this scheuled call takes place.
 
-![Scheduled Upgrade](assets/tutorials/upgrade-a-chain/scheduled-upgrade.png)
+![Scheduled Success Runtime Upgrade Version 102](assets/tutorials/forkless-upgrade/scheduled-upgrade-success.png)
 
 After the target block has been included in the chain, the version number in the upper-left-hand
-corner of Polkadot JS Apps UI should reflect that the runtime version is now `3`.
+corner of Polkadot JS Apps UI should reflect that the runtime version is now `102`.
 
-![Version 3](assets/tutorials/upgrade-a-chain/version-3.png)
-
-You can observe the changes that were made in the upgrade by using the
+You can then observe the specific changes that were made in the upgrade by using the
 [Polkadot JS Apps UI Chain State](https://polkadot.js.org/apps/#/chainstate/constants?rpc=ws://127.0.0.1:9944)
 app to query the `existentialDeposit` constant value from the Balances pallet.

@@ -78,7 +78,7 @@ Template's
 [chain specification](https://github.com/substrate-developer-hub/substrate-node-template/blob/v3.0.0/node/src/chain_spec.rs)
 file is used to configure the
 [Sudo pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_sudo/index.html) to give Alice access to
-this origin. 
+this origin.
 
 The front-end template makes it easy to use the Sudo pallet to dispatch a call from the
 `Root` origin - just use the `SUDO` button to invoke the dispatchable. Since we just used the
@@ -144,7 +144,7 @@ own runtime.
 
 - Learn how to add a more complex pallet to the Node Template by completing the
   [Add the Contracts Pallet](../add-contracts-pallet) tutorial.
-- Complete the [Upgrade a Chain](../upgrade-a-chain) tutorial to learn how Substrate enables
+- Complete the [Forkless Upgrade a Chain](../forkless-upgrade) tutorial to learn how Substrate enables
   forkless runtime upgrades and follow steps to perform two upgrades, each of which is performed by
   way of a distinct upgrade mechanism.
 
