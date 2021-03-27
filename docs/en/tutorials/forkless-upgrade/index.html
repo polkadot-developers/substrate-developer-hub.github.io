@@ -4,7 +4,7 @@
             {"zIndex":100}
           )
         });
-        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/docs/en/" target="_self">Knowledge Base</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">Recipes</a></li><li class=""><a href="https://substrate.dev/rustdocs/" target="_self">API Reference</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/zh-CN/tutorials/upgrade-a-chain/">简体中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/docs/en/" target="_self">Knowledge Base</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">Recipes</a></li><li class=""><a href="https://substrate.dev/rustdocs/" target="_self">API Reference</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/zh-CN/tutorials/forkless-upgrade/">简体中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
         const languagesMenuItem = document.getElementById("languages-menu");
         const languagesDropDown = document.getElementById("languages-dropdown");
         languagesMenuItem.addEventListener("click", function(event) {
@@ -16,7 +16,7 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Perform a Forkless Upgrade</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Perform a Forkless Upgrade<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/tutorials/upgrade-a-chain/">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/upgrade-a-chain/sudo-upgrade">Use the Sudo Pallet</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/upgrade-a-chain/scheduled-upgrade">Schedule an Upgrade</a></li></ul></div></div></section></div><script>
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Forkless Upgrade a Chain</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Forkless Upgrade a Chain<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/tutorials/forkless-upgrade/">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/forkless-upgrade/sudo-upgrade">Sudo Upgrade</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/forkless-upgrade/scheduled-upgrade">Schedule an Upgrade</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -72,15 +72,16 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/tutorials/upgrade-a-chain/index.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Introduction</h1></header><article><div><span><p>One of the defining features of the Substrate blockchain development framework is its support for
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/tutorials/forkless-upgrade/index.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Introduction</h1></header><article><div><span><p>One of the defining features of the Substrate blockchain development framework is its support for
 <strong>forkless runtime upgrades</strong>. Forkless upgrades are a means of enhancing a blockchain runtime in a
 way that is supported and protected by the capabilities of the blockchain itself. A blockchain's
 <a href="../../knowledgebase/runtime">runtime</a> defines the <a href="../../knowledgebase/runtime/storage">state</a> the
-blockchain can hold and also defines the logic for effecting changes to that state. Substrate makes
-it possible to deploy enhanced runtime capabilities (including <em>breaking</em> changes) without a
-<a href="../../knowledgebase/getting-started/glossary#fork">hard fork</a>. Because the definition of the
+blockchain can hold and also defines the logic for effecting changes to that state.</p>
+<p><img src="/docs/assets/tutorials/forkless-upgrade/node-diagram.png" alt="node-diagram.png"></p>
+<p>Substrate makes it possible to deploy enhanced runtime capabilities (<strong>including <em>breaking</em> changes(!)</strong>)
+without a <a href="../../knowledgebase/getting-started/glossary#fork">hard fork</a>. Because the definition of the
 runtime is itself an element in a Substrate chain's state, network participants may update this
-value by way of an <a href="../../knowledgebase/learn-substrate/extrinsics">extrinsic</a>,
+value by way of an <a href="../../knowledgebase/learn-substrate/extrinsics">extrinsic</a>, specifically
 <a href="https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Call.html#variant.set_code">the <code>set_code</code> function</a>.
 Since updates to runtime state are bound by the blockchain's consensus mechanisms and cryptographic
 guarantees, network participants can use the blockchain itself to trustlessly distribute updated or
@@ -96,25 +97,40 @@ upgrade that adds the <a href="../../knowledgebase/runtime/frame#scheduler">Sche
 function from the Scheduler pallet will be used to perform an upgrade that increases the
 <a href="../../knowledgebase/getting-started/glossary#existential-deposit">existential (minimum) balance</a>
 for network accounts.</p>
-<p>If you have problems with this tutorial, the Substrate community is full of helpful resources. We
+<p>If you have problems with this tutorial, the Substrate community is full of helpful resources! We
 maintain an active
-<a href="https://matrix.to/#/#substrate-technical:matrix.org">#SubstrateTechnical chat room</a> and
+<a href="https://matrix.to/#/#substrate-technical:matrix.org">Substrate Technical chat room</a> and
 monitor the
 <a href="https://stackoverflow.com/questions/tagged/substrate"><code>substrate</code> tag on Stack Overflow</a>. You can
 also use the <a href="https://github.com/paritytech/subport/issues/new"><code>subport</code> GitHub repository</a> to
 create an Issue.</p>
-<h2><a class="anchor" aria-hidden="true" id="the-node-template"></a><a href="#the-node-template" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Node Template</h2>
-<p>If you haven't already, you should complete the first two tutorials. The
-<a href="../../tutorials/create-your-first-substrate-chain/">Create Your First Substrate Chain</a> tutorial
-will guide you through the process of setting up your development environment. The
-<a href="../../tutorials/add-a-pallet">Add a Pallet to Your Runtime</a> tutorial will introduce the FRAME
-system for runtime development and guide you through the process of extending the capabilities of a
-FRAME runtime by adding a pallet. If you're an experienced developer and wish to skip those
+<blockquote>
+<p>Please do note that your problem may already solved on stackoverflow or subport,**
+do a search first for keywords in your error messages and concepts, and if you found them useful
+as well, comment to let us know that it's a common issue to escalate for a fix.**</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="before-you-begin"></a><a href="#before-you-begin" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Before You Begin</h2>
+<ol>
+<li><p>To get a sense of what they are more concretely, read the
+<a href="../../knowledgebase/runtime/upgrades">runtime upgrade documentation</a> first, or at least have
+it open as a reference as you progress.</p></li>
+<li><p>If you haven't already, you should complete these tutorials before this one:</p>
+<ul>
+<li><a href="../../tutorials/create-your-first-substrate-chain/">Create Your First Substrate Chain</a> -
+that will guide you through the process of setting up your development environment.</li>
+<li><a href="../../tutorials/add-a-pallet">Add a Pallet to Your Runtime</a> - that will introduce the
+FRAME system for runtime development and guide you through the process of extending the
+capabilities of a FRAME runtime by adding a pallet.</li>
+</ul></li>
+</ol>
+<blockquote>
+<p>If you're an experienced developer and wish to skip those
 tutorials, you can clone the
 <a href="https://github.com/substrate-developer-hub/substrate-node-template">Node Template repository</a> and
 refer to the
 <a href="https://github.com/substrate-developer-hub/substrate-node-template#getting-started">documentation for local development</a>.</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/16/2021 by Dan Shields</em></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/en/tutorials/upgrade-a-chain/sudo-upgrade"><span>Use the Sudo Pallet</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#the-node-template">The Node Template</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</blockquote>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 3/16/2021 by Dan Shields</em></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/en/tutorials/forkless-upgrade/sudo-upgrade"><span>Sudo Upgrade</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#before-you-begin">Before You Begin</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();
