@@ -118,8 +118,8 @@ we just deleted. However, `sp_std` is not available and we need to list it as a 
 sp-std = { default-features = false, version = '3.0.0' }
 ```
 
-Then, **Update** the existing `[features]` block to look like this. The last line is new. You will
-learn more about why this is necessary in the next tutorial, the [Add a Pallet](../add-a-pallet)
+Then, **Update** the existing `[features]` block to look like this. The last line is new. You can
+learn more about why this is necessary in the [Add a Pallet](../add-a-pallet)
 tutorial.
 
 ```toml
