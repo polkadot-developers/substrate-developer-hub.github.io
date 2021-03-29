@@ -113,21 +113,6 @@ class Tutorials extends React.Component {
         href: "tutorials/add-a-pallet/",
       },
       {
-        img: "img/tutorials/grafana.png",
-        title: <translate>Visualizing Node Metrics</translate>,
-        text: (
-          <translate>
-            Learn how to visualize the metrics that Substrate records using
-            Prometheus.
-          </translate>
-        ),
-        difficulty: <translate>Easy</translate>,
-        length: <translate>&lt; 1 Hour</translate>,
-        prerequisite: false,
-        version: "3.0.0",
-        href: "tutorials/visualize-node-metrics/",
-      },
-      {
         img: "img/tutorials/first-substrate-chain.png",
         title: <translate>Build a PoE Decentralized Application</translate>,
         text: (
@@ -172,7 +157,7 @@ class Tutorials extends React.Component {
         href: "tutorials/create-a-pallet/",
       },
       {
-        title: <translate>Upgrade a Chain</translate>,
+        title: <translate>Forkless Upgrade a Chain</translate>,
         text: (
           <translate>
             Perform a forkless runtime upgrade on a running Substrate network.
@@ -182,7 +167,7 @@ class Tutorials extends React.Component {
         length: <translate>2 Hours</translate>,
         prerequisite: true,
         version: "3.0.0",
-        href: "tutorials/upgrade-a-chain/",
+        href: "tutorials/forkless-upgrade/",
       },
       {
         img: "img/tutorials/substrate-network.png",
@@ -244,6 +229,21 @@ class Tutorials extends React.Component {
         version: "3.0.0",
         hrefFrom: "baseUrl",
         href: "tutorials/substrate-frontier-workshop/",
+      },
+      {
+        img: "img/tutorials/grafana.png",
+        title: <translate>Visualizing Node Metrics</translate>,
+        text: (
+          <translate>
+            Learn how to visualize the metrics that Substrate records using
+            Prometheus.
+          </translate>
+        ),
+        difficulty: <translate>Easy</translate>,
+        length: <translate>&lt; 1 Hour</translate>,
+        prerequisite: false,
+        version: "3.0.0",
+        href: "tutorials/visualize-node-metrics/",
       },
       /* {
         img: "img/tutorials/first-substrate-chain.png",

@@ -8,39 +8,44 @@ The `node-authorization` pallet is a build-in pallet in Substrate FRAME, which m
 a configurable set of nodes for a permissioned network.
 Each node is identified by a `PeerId` which is simply a wrapper on `Vec<u8>`.
 Each `PeerId` is owned by an `AccountId` that claims it
-(these are [associated in a map](https://substrate.dev/rustdocs/v3.0.0/pallet_node_authorization/struct.Owners.html)).
-With this pallet, you have two ways to authorize a node which wants to join the network:
+(these are 
+[associated in a map](https://substrate.dev/rustdocs/v3.0.0/pallet_node_authorization/struct.Owners.html)
+). With this pallet, you have two ways to authorize a node which wants to join the network:
 
 1. Join the set of well known nodes between which the connections are allowed.
-    Such effort usually needs to be approved by the governance in the system.
-2. Ask for the connection from a node which is already a member of the network.
-    Such node can either be a well known node or a normal one.
+    You need to be approved by the governance (or sudo) in the system for this.
+2. Ask for a *paired peer* connection from a specific node.
+    This node can either be a well known node or a normal one.
 
 A node associated with a `PeerId` must have **one and only one owner**.
 The owner of a well known node is specified when adding it.
 If it's a normal node, *any* user can claim a `PeerId` as its owner.
-To protect against false claims, the maintainer of the node should claim it *before even starting the node*
-(after getting the `PeerId` of course).
+To protect against false claims, the maintainer of the node should claim it 
+*before even starting the node* and therefor revealing their `PeerID` to the network that
+*anyone* could subsequently claim.
 
-The owner can then change the additional connections for his (or her) node.
-To make it clear, you can't change the connections between well known nodes,
+The owner of a node can then add and remove connections for their node.
+To be clear, you can't change the connections between well known nodes,
 they are always allowed to connect with each other.
 Instead, you can manipulate the connection between a well know node
-and a normal node or between two normal nodes.
+and a normal node or between two normal nodes and sub-nodes.
 
-It uses an [offchain worker](../../knowledgebase/learn-substrate/off-chain-features#off-chain-workers)
-to set authorized nodes in node-authorization pallet. Make sure to enable offchain worker with
+The `node-authorization` pallet integrates an
+[offchain worker](../../knowledgebase/learn-substrate/off-chain-features#off-chain-workers)
+to configure it's node connections. Make sure to enable offchain worker with
 the right CLI flag as offchain worker is disabled by default for non-authority nodes.
-Your node can be lagged with the latest block, in this case you need to disable offchain worker
-and manually set reachable reserved nodes to sync up with the network.
 
-## Add the `node-authorization` pallet
+> Your node may not be synced with the latest block, and thus not be aware of and published updates
+> that are reflected in the `node-authorization` chain storage. You may need to disable offchain worker
+> and manually set reachable reserved nodes for your node to sync up with the network if this is the case.
 
-If you already hace Node Template cloned, you can just create a
-**new branch and check it out** from the base template,
-otherwise, clone `v3.0.0` of the project:
+## Start with the Template
 
-```shell
+If you already have Node Template cloned, you can just create a
+**check out the v3.0.0 branch** from the base template,
+otherwise, clone this branch of the project:
+
+```bash
 # Fresh clone, if needed:
 git clone -b v3.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
 # From the working directory, create a new branch and check it out
@@ -49,12 +54,11 @@ git branch perm-network
 git checkout perm-network
 ```
 
-You should be able to `check` the project (or `build`) without any error:
+You should be able to `build` the project (or `check`) without any error:
 
-```shell
+```bash
 cd substrate-node-template/
-make init
-make check
+cargo build --release
 ```
 
 > If you do run into issues building, checkout
@@ -62,7 +66,9 @@ make check
 
 Now open the code with your favorite editor, can't wait to make some changes right?
 
-In **runtime/Cargo.toml**, add the dependency of our pallet:
+## Add the `node-authorization` pallet
+
+First we must add the pallet to our runtime dependencies:
 
 **`runtime/Cargo.toml`**
 
@@ -80,10 +86,11 @@ std = [
     #--snip--
 ]
 ```
-Let's import and use our pallet in **runtime/src/lib.rs**. Firstly Import the dependency
-with `use frame_system::EnsureRoot`, we need it to simulate the governance in our simple blockchain.
-Then implement the configure trait of our pallet. More description on the trait can be found in
-its [reference doc](https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_authorization/trait.Config.html).
+We need to simulate the governance in our simple blockchain, so we just let a `sudo` admin rule, 
+configuring the pallet's interface to `EnsureRoot`. In a production environment we sould want to have 
+difference, governance based checking implimented here. More details of this `Config` can be found in
+the pallet's 
+[reference docs](https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_authorization/trait.Config.html).
 
 **`runtime/src/lib.rs`**
 
@@ -91,7 +98,7 @@ its [reference doc](https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_
 
 /* --snip-- */
 
-use frame_system::EnsureRoot
+use frame_system::EnsureRoot;
 
 /* --snip-- */
 
@@ -146,7 +153,7 @@ construct_runtime!(
 ```TOML
 [dependencies]
 #--snip--
-bs58 = "0.3.1"
+bs58 = "0.4.0"
 #--snip--
 ```
 
@@ -163,6 +170,8 @@ use node_template_runtime::NodeAuthorizationConfig; // The genesis config that s
 
 Adding our genesis config in the helper function `testnet_genesis`,
 
+**node/src/chain_spec.rs**
+
 ```rust
 /// Configure initial storage state for FRAME modules.
 fn testnet_genesis(
@@ -176,18 +185,18 @@ fn testnet_genesis(
     /* --snip-- */
 
     /*** Add This Block Item ***/
-    pallet_node_authorization: Some(NodeAuthorizationConfig {
-    	nodes: vec![
-    		(
-    			OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
-		    	endowed_accounts[0].clone()
-    		),
-    		(
-	    		OpaquePeerId(bs58::decode("12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust").into_vec().unwrap()),
-	    		endowed_accounts[1].clone()
-	    	),
-    	],
-    }),
+		pallet_node_authorization: Some(NodeAuthorizationConfig {
+    		nodes: vec![
+				(
+					OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
+					endowed_accounts[0].clone()
+				),
+				(
+					OpaquePeerId(bs58::decode("12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust").into_vec().unwrap()),
+					endowed_accounts[1].clone()
+				),
+    		],
+   		}),
 
     /* --snip-- */
 
@@ -198,12 +207,15 @@ fn testnet_genesis(
 The first element of the tuple is the `OpaquePeerId` and we use `bs58::decode` to convert
 the `PeerId` in human readable format to bytes. The second element of the tuple is `AccountId`
 and represents the owner of this node, here we are using one of the provided endowed accounts
-for demonstration. To make it clear, the owner of the first node is Alice, and Bob owns the second node.
+for demonstration: [Alice and Bob](../../knowledgebase/integrate/subkey#well-known-keys).
+
+<!-- TODO: update to use the `key` embedded CLI tool with the node, reference subkey as option -->
 
 You may wondering where the `12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2` comes from.
-We can use [subkey](../../knowledgebase/integrate/subkey#generating-node-keys) to generate the above human readable `PeerId`.
+We can use [subkey](../../knowledgebase/integrate/subkey#generating-node-keys) to generate 
+the above human readable `PeerId`.
 
-```shell
+```bash
 subkey generate-node-key
 ```
 
@@ -212,11 +224,11 @@ subkey generate-node-key
 
 The output of the command is like:
 
-```shell
+```bash
 12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2 // this is PeerId.
 c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a // This is node-key.
 ```
 
-Now all the code changes are finished, we are ready to launch our permissioned network. Go get yourself some water!
+Now all the code changes are finished, we are ready to launch our permissioned network!
 
-> Stuck? The solution with all required changes to the base template can be found [here](https://github.com/kaichaosun/substrate-permission-network/commit/c8b8f610afaab024c16da0917d059dc5050d3807).
+> Stuck? The solution with all required changes to the base template can be found [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/permissioned-network-v3).

@@ -9,7 +9,7 @@ The [docs are written in markdown](docs), processed by [Docusaurus](https://docu
 
 Thank you for your interest in contributing to the Developer Hub and to the larger Substrate community! Please review
 our contributor guidelines prior to any contribution. If you have any further questions, don't hesitate to
-[reach out](https://matrix.to/#/!NdxrIlxGUHXYwtRGrF:matrix.parity.io?via=matrix.parity.io) on our community channels. 
+reach out on our [substrate technical community channel](https://matrix.to/#/#substrate-technical:matrix.org).
 
 ### Directory Structure
 
@@ -79,7 +79,7 @@ The final built static site is then pushed to the `master` branch and hosted on 
 
 We have a *staging* deployment at [devhub-maindocs.herokuapp.com](https://devhub-maindocs.herokuapp.com), which is hosted on Heroku. Please check with the devhub team for the username and password to access the staging site.
 
-To deploy to staging, you could push to the `staging-source` branch in the repository. This will trigger the CI to build the website, pull in multilingual translations from crowdin, and have the final built static site being pushed to `staging` branch. This in turns trigger Heroku to picked up the latest commit from `staging` branch and deploy to the staging site.
+To deploy to staging, you could push to the `staging-source` branch in the repository. This will trigger the CI to build the website, pull in multilingual translations from crowdin, and have the final built static site being pushed to `staging` branch. This in turn triggers Heroku to pick up the latest commit from `staging` branch and deploy to the staging site.
 
 ## License
 

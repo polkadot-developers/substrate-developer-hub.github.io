@@ -70,7 +70,7 @@ You should see the console outputs something as follows:
 > Here you must take note of the **node identity**: `12D3KooWJvVUoAa7R8gjCSQ45x69Ahh3HcdVSH1dvpcA52vKawHL`
 > and the **IP address** `127.0.0.1` and p2p port `--port = 30333`. These values are for this specific 
 > example, but for your node, they will be different and **required** for other nodes to directly connect
->  to it (without a bootnode in the chain spec, as we removed in hte flags before)
+>  to it (without a bootnode in the chain spec, as we removed in the flags before)
 
 ## Add Keys to Keystore
 
