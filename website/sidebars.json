@@ -55,6 +55,7 @@
       "knowledgebase/advanced/block-import",
       "knowledgebase/advanced/cryptography",
       "knowledgebase/advanced/storage",
+      "knowledgebase/advanced/executor",
       "knowledgebase/advanced/ss58-address-format",
       "knowledgebase/advanced/no-hash-collections"
     ],
