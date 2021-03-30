@@ -84,6 +84,3 @@ by the Controller can result in slashing, so it should still be well secured.
 - Take a look at the default
   [session keys in the Substrate node runtime](https://substrate.dev/rustdocs/v3.0.0/node_runtime/struct.SessionKeys.html).
 
-- Take a look at
-  [`substrate_application_crypto`](https://substrate.dev/rustdocs/v3.0.0/sp_application_crypto/index.html),
-  used for constructing application specific strongly typed crypto wrappers.
