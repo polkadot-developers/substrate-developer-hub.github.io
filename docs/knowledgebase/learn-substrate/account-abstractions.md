@@ -10,28 +10,28 @@ Blockchain systems have participants in varying roles, for example from validato
 
 As an example, the Substrate node uses a Nominated Proof-of-Stake (NPoS) algorithm to select
 validators. Validators and nominators may hold significant amounts of funds, so Substrate's Staking
-module introduces account abstractions that help keep funds as secure as possible.
+pallet introduces account abstractions that help keep funds as secure as possible.
 
 These abstractions are:
 
-- Accounts
-  - Stash Key: The Stash account is meant to hold large amounts of funds. Its private key should be
+
+- **Stash Key**: a Stash account is meant to hold large amounts of funds. Its private key should be
     as secure as possible in a cold wallet.
-  - Controller Key: The Controller account signals choices on behalf of the Stash account, like
+- **Controller Key**: a Controller account signals choices on behalf of the Stash account, like
     payout preferences, but should only hold a minimal amount of funds to pay transaction fees. Its
     private key should be secure as it can affect validator settings, but will be used somewhat
     regularly for validator maintenance.
-- Session Keys: Session keys are "hot" keys kept in the validator client and used for signing
+- **Session Keys**: these are "hot" keys kept in the validator client and used for signing
   certain validator operations. They should never hold funds.
 
 > **Note:** Learn more about validators and nominators in the context of the Substrate's NPoS
-> [Staking module](https://substrate.dev/rustdocs/v3.0.0/pallet_staking/index.html).
+> [Staking pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_staking/index.html).
 
 ## Account Keys
 
 A key pair can represent an account and control funds, like normal accounts that you would expect
 from other blockchains. In the context of Substrate's
-[Balances module](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/index.html), these accounts
+[Balances pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/index.html), these accounts
 must have a minimum amount (an "existential deposit") to exist in storage.
 
 Account keys are defined generically and made concrete in the runtime.
@@ -64,45 +64,11 @@ it only needs a minimal amount of funds.
 The Controller key can never be used to spend funds from its Stash account. However, actions taken
 by the Controller can result in slashing, so it should still be well secured.
 
-## Session Keys
-
-Session keys are "hot keys" that are used by validators to sign consensus-related messages. They are
-not meant to be used as account keys that control funds and should only be used for their intended
-purpose. They can be changed regularly; your Controller only needs to create a certificate by
-signing a session public key and broadcast this certificate via an extrinsic. Session keys are also
-defined generically and made concrete in the runtime.
-
-To create a Session key, validator operators must attest that a key acts on behalf of their Stash
-account (stake) and nominators. To do so, they create a certificate by signing the key with their
-Controller key. Then, they inform the chain that this key represents their Controller key by
-publishing the Session certificate in a transaction on the chain.
-
-Substrate provides the
-[Session module](https://substrate.dev/rustdocs/v3.0.0/pallet_session/index.html), which allows
-validators to manage their session keys.
-
-### Strongly Typed Wrappers
-
-You can declare any number of Session keys. For example, the default Substrate node uses three for
-BABE, GRANDPA, and "I'm Online". Other chains could have more or fewer depending on what operations
-the chain expects its validators to perform.
-
-These different Session keys could use the same cryptography, but serve very different purposes
-throughout your runtime logic. To prevent the wrong key being used for the wrong operation, strong
-Rust types wrap these keys, keeping them incompatible with one another and ensuring they are only
-used for their intended purpose.
-
-### Generation
-
-If a Session key is compromised, attackers could commit slashable behavior. Session keys should be
-changed regularly (e.g. every session) via
-[the `rotate_keys` RPC](https://substrate.dev/rustdocs/v3.0.0/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys)
-for increased security.
-
 ## Next Steps
 
 ### Learn More
 
+- Learn more about Session Keys in the [next section](./session-keys).
 - Learn about the [cryptography used within Substrate](../advanced/cryptography).
 
 ### Examples
