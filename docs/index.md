@@ -3,8 +3,7 @@ title: Overview
 ---
 
 Welcome to the wonderful world of blockchain development with Substrate! This is the Substrate Knowledge Base, the
-official documentation hub for Substrate developers. The purpose of this resource is to help readers understand the
-multi-disciplinary field of blockchain development with Substrate. This guide is broken down into several sections that
+official documentation hub for Substrate developers. The purpose of this resource is to help readers understand the intricacies of blockchain development with Substrate. This guide is broken down into several sections that
 explain the principles and design decisions that Substrate is built on as well as the specific skills needed to be an
 effective Substrate blockchain developer.
 
@@ -14,44 +13,13 @@ effective Substrate blockchain developer.
 > concepts. Terminology like header, block, client, hash, transaction and signature should be familiar. Substrate is
 > built on the Rust programming language, which makes use of novel design patterns to enable development of code that is
 > safe and fast. Although you don't need to know Rust to get started with Substrate, a good understanding of Rust will
-> allow you to be a better Substrate developer. Check out [the excellent resources](https://www.rust-lang.org/learn)
+> allow you to become a better Substrate developer. Check out [the excellent resources](https://www.rust-lang.org/learn)
 > provided by the Rust community to build your Rust development skills.
 
 Substrate takes a modular approach to blockchain development and defines a rich set of primitives that allows developers
 to make use of powerful, familiar programming idioms.
 
-## Architecture
-
-![Substrate Client Architecture](assets/substrate-arch.png)
-
-The Substrate client is an application that runs a Substrate-based blockchain node - it consists of several components
-that include, but are not limited to, the following:
-
-- **Storage** is used to persist the evolving state of the decentralized system represented by a blockchain. The
-  blockchain network allows participants to reach trustless [consensus](knowledgebase/advanced/consensus) about the
-  state of storage. Substrate ships with a simple and highly efficient
-  [key-value storage mechanism](knowledgebase/advanced/storage).
-- **Runtime** logic defines how blocks are processed, including state transition logic. In Substrate, runtime code is
-  compiled to [Wasm](knowledgebase/getting-started/glossary#webassembly-wasm) and becomes part of the blockchain's
-  storage state - this enables one of the defining features of a Substrate-based blockchain:
-  [forkless runtime upgrades](knowledgebase/runtime/upgrades#forkless-runtime-upgrades). Substrate clients may also
-  include a "native runtime" that is compiled for the same platform as the client itself (as opposed to Wasm). The
-  component of the client that dispatches calls to the runtime is known as the
-  [executor](knowledgebase/advanced/executor) and it selects between the native code and interpreted Wasm. Although the
-  native runtime may offer a performance advantage, the executor will select to interpret the Wasm runtime if it
-  implements a newer [version](knowledgebase/runtime/upgrades#runtime-versioning).
-- **Peer-to-peer network** capabilities allow the client to communicate with other network participants. Substrate uses
-  [the `libp2p` network stack](https://libp2p.io/).
-- **Consensus** engines provide logic that allows network participants to agree on the state of the blockchain.
-  Substrate makes it possible to supply custom consensus engines and also ships with several consensus mechanisms that
-  have been built on top of [Web3 Foundation research](https://w3f-research.readthedocs.io/en/latest/index.html).
-- **RPC** (remote procedure call) capabilities allow blockchain users to interact with the network. Substrate provides
-  HTTP and WebSocket RPC servers.
-- **Telemetry** metrics are exposed by way of an embedded [Prometheus](https://prometheus.io/) server.
-
 ## Usage
-
-![Technical Freedom vs Development Ease](assets/technical-freedom.png)
 
 Substrate is designed to be used in one of three ways:
 
@@ -79,6 +47,10 @@ Substrate is designed to be used in one of three ways:
    client. If not, then you will need to alter the client's block authoring logic, and potentially even alter the header
    and block serialization formats. In terms of development effort, this is by far the most difficult way to use
    Substrate, but also gives you the most freedom to innovate.
+
+Substrate allows developers to make choices between technical freedom and ease of development in every step of their design decisions. The diagram below illustrates the nature of this flexibility.
+
+![Technical Freedom vs Development Ease](assets/technical-freedom.png)
 
 ## Next Steps
 
