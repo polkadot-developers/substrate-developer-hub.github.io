@@ -53,9 +53,9 @@
       "knowledgebase/advanced/codec",
       "knowledgebase/advanced/consensus",
       "knowledgebase/advanced/block-import",
+      "knowledgebase/advanced/executor",
       "knowledgebase/advanced/cryptography",
       "knowledgebase/advanced/storage",
-      "knowledgebase/advanced/executor",
       "knowledgebase/advanced/ss58-address-format",
       "knowledgebase/advanced/no-hash-collections"
     ],
