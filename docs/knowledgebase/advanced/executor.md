@@ -1,5 +1,5 @@
 ---
-title: Executor
+title: Runtime Executor
 ---
 
 The executor is responsible for dispatching and executing calls into the Substrate runtime.
