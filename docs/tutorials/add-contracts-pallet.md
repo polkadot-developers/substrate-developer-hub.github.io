@@ -443,7 +443,11 @@ pub fn create_full<C, P>(
 	/*** Add This Line ***/
 	C::Api: pallet_contracts_rpc::ContractsRuntimeApi<Block, AccountId, Balance, BlockNumber>,
 	/* --snip-- */
-
+{
+	/* --snip-- */
+	io.extend_with(
+		TransactionPaymentApi::to_delegate(TransactionPayment::new(client.clone()))
+	);
 	/*** Add This Block ***/
 	// Contracts RPC API extension
 	io.extend_with(
@@ -453,6 +457,15 @@ pub fn create_full<C, P>(
 	io
 }
 ```
+
+> Note that rpc additions must appear in this section in the expected syntax: 
+> ```rust
+> // Extend this RPC with a custom API by using the following syntax.
+> 	// `YourRpcStruct` should have a reference to a client, which is needed
+> 	// to call into the runtime.
+> 	// `io.extend_with(YourRpcTrait::to_delegate(YourRpcStruct::new(ReferenceToClient, ...)));`
+> ```
+
 ### Genesis Configuration
 
 Not all pallets will have a genesis configuration, but if yours does, you can use its documentation
