@@ -84,8 +84,8 @@ GRANDPA keys are necessary for
 
 ### Option 1: Use the Polkadot-JS Apps UI
 
-You can use the Apps UI to insert your keys into the keystore. Navigate to the "Toolbox" tab and the
-"RPC Call" sub-tab. Choose "author" and "insertKey". The fields can be filled like this:
+You can use the Apps UI to insert your keys into the keystore. Navigate to "Developer --> RPC Call". Choose 
+"author" and "insertKey". The fields can be filled like this:
 
 ![Inserting a Aura key using Apps](assets/tutorials/private-network/private-network-apps-insert-key-aura.png)
 
