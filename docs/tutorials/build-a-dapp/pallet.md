@@ -11,21 +11,18 @@ you with a number of pre-built pallets for use in FRAME-based runtimes.
 
 ![Runtime Composition](assets/tutorials/build-a-dapp/frame-runtime.png)
 
-For example, FRAME includes a [Balances](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/)
-pallet that controls the underlying currency of your blockchain by managing the _balance_ of all the
+To give some examples, FRAME includes:
+- a [Balances](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/)
+pallet that controls the underlying currency of your blockchain by managing the _balances_ of all the
 accounts in your system.
-
-If you want to add smart contract functionality to your blockchain, you simply need to include the
-[Contracts](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/) pallet.
-
-Even things like on-chain governance can be added to your blockchain by including pallets like
-[Democracy](https://substrate.dev/rustdocs/v3.0.0/pallet_democracy/),
+- a [Contracts](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/) pallet, designed to add smart contract functionality to your blockchain.
+- pallets for on-chain governance capabilities such as [Democracy](https://substrate.dev/rustdocs/v3.0.0/pallet_democracy/),
 [Elections](https://substrate.dev/rustdocs/v3.0.0/pallet_elections/), and
 [Collective](https://substrate.dev/rustdocs/v3.0.0/pallet_collective/).
 
 The goal of this tutorial is to teach you how to create your own FRAME pallet to include in your
-custom blockchain! The Substrate Developer Hub Node Template comes with a template pallet that you
-will use as a starting point to build custom runtime logic on top of.
+custom blockchain. The Substrate Developer Hub Node Template comes with a template pallet that we
+will use as a starting point to build our own custom runtime logic.
 
 ## File Structure
 
@@ -139,7 +136,7 @@ Every pallet has a component called `Config` that is used for configuration. Thi
 [Rust "trait"](https://doc.rust-lang.org/book/ch10-02-traits.html); traits in Rust are similar to
 interfaces in languages such as C++, Java and Go. For now, the only thing we will configure about
 our pallet is that it will emit some Events. The `Config` interface is another topic that will be
-covered in greater depth in the next tutorial, the [Add a Pallet](../add-a-pallet) tutorial.  The 
+covered in greater depth in the [Add a Pallet](../add-a-pallet) tutorial.  The 
 following code will need to be added to your `pallets/template/src/lib.rs` file:
 
 ```rust
@@ -152,7 +149,7 @@ pub trait Config: frame_system::Config {
 
 ### Events
 
-After we've configured our pallet to emit events, let's go ahead and define which events:
+Now that we've configured our pallet to emit events, let's go ahead and define those events:
 
 ```rust
 // Pallets use events to inform users when important changes are made.
@@ -290,9 +287,9 @@ decl_module! {
 }
 ```
 
-> The functions you see here do not have return types explicitly stated. In reality they all return
-> [`DispatchResult`](https://substrate.dev/rustdocs/v3.0.0/frame_support/dispatch/type.DispatchResult.html)s.
-> This return type is added on your behalf by the `decl_module!` macro.
+> The functions you see here do not have return types explicitly stated. In reality, they all return
+> [`DispatchResult`](https://substrate.dev/rustdocs/v3.0.0/frame_support/dispatch/type.DispatchResult.html),
+> which is added on your behalf by the `decl_module!` macro.
 
 ## Compile Your New Pallet
 
@@ -301,7 +298,10 @@ file, you should be able to recompile your node without warning or error. Run th
 root directory of the `substrate-node-template` repository to build and run the node:
 
 ```bash
-WASM_BUILD_TOOLCHAIN=nightly-2020-10-05 cargo run --release -- --dev --tmp
+# Compile your node
+cargo +nightly-2020-10-05 build --release
+# Launch your chain in dev mode
+./target/release/node-template --dev --tmp
 ```
 
-Now it is time to interact with our new Proof of Existence pallet!
+If everything worked out properly, your node should be producing blocks. And now it is time to interact with our new Proof of Existence pallet!

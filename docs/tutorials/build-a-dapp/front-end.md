@@ -5,7 +5,7 @@ title: Building a Custom Front End
 If you have made it this far, that means you _should_ have a brand new blockchain with custom
 functionality up and running.
 
-We will give you a custom React component that you can use to interact with your node.
+In this section, we will get the front-end up and running and add a custom React component designed to make use of our PoE pallet's capabilities.
 
 ## Explore the Front-End Template
 
@@ -247,9 +247,8 @@ resources. If you would like to learn more about this powerful and
 language, check out the information-packed [Rust Book](https://doc.rust-lang.org/book/) and the fun
 [Rustlings](https://github.com/rust-lang/rustlings) course.
 
-If you experienced any issues with this tutorial or want to provide feedback, You can
-[ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the
-`substrate` tag or contact us on
-[Element](https://matrix.to/#/#substrate-technical:matrix.org).
+If you experienced any issues with this tutorial or want to provide feedback, you can
+[ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) (using the
+`substrate` tag) or ask any questions in the [Substrate Technical Channel on Element](https://matrix.to/#/#substrate-technical:matrix.org). We're here to help!
 
-We can't wait to see what you build next!
+We can't wait to see what you build next.

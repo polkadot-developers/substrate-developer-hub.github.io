@@ -10,13 +10,13 @@ compiled on your computer from when you completed the
 [Create Your First Substrate Chain Tutorial](../create-your-first-substrate-chain). If you do not,
 please complete that tutorial.
 
-> Experienced developers who truly prefer to skip that tutorial may install the Node Template
+> Experienced developers may prefer to skip that tutorial and install the Node Template
 > according to
 > [the instructions in its readme](https://github.com/substrate-developer-hub/substrate-node-template#getting-started).
 
 ## Install the Front-End Template
 
-The Create Your First Substrate Chain Tutorial used the front-end template, so there is no
+The [Create Your First Substrate Chain](https://substrate.dev/docs/en/tutorials/create-your-first-substrate-chain/) Tutorial used the front-end template, so there is no
 additional set-up required if you have already completed that tutorial.
 
 > Refer directly to the
@@ -48,10 +48,10 @@ later prove that they were the original person to claim the file.
 
 Our PoE API will expose two callable functions:
 
-- `create_claim` - allows a user to claim the existence of a file by uploading a file digest.
-- `revoke_claim` - allows the current owner of a claim to revoke their ownership.
+- `create_claim()` - allows a user to claim the existence of a file by uploading a file digest.
+- `revoke_claim()` - allows the current owner of a claim to revoke their ownership.
 
 In order to implement this, we will only need to store information about the proofs that have been
 claimed, and who made those claims.
 
-Sounds simple enough? Great, let's get coding.
+Sounds simple enough, right? Let's get coding!

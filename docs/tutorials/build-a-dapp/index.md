@@ -4,7 +4,7 @@ title: Introduction
 
 In this tutorial, you will learn to create a custom
 ["Proof of Existence"](https://en.wikipedia.org/wiki/Proof_of_Existence) dApp using the Substrate
-blockchain development framework and [FRAME](../../knowledgebase/runtime/frame) runtime libraries.
+blockchain development framework and the [FRAME](../../knowledgebase/runtime/frame) library.
 
 This tutorial should take you about **1 hour** to complete. We will be using the
 [Rust programming language](https://www.rust-lang.org/) and [ReactJS](https://reactjs.org/), but you
@@ -13,23 +13,21 @@ snippets and explain what all the code does at a high level.
 
 We only expect that:
 
-- You are generally familiar with software development, writing code, and running your code.
 - You have completed the
   [Create Your First Substrate Chain Tutorial](../../tutorials/create-your-first-substrate-chain).
+- You are generally familiar with software development, writing code, and running your code.
 - You are open to learning about the bleeding edge of blockchain development.
 
 If you run into an issue on this tutorial, **we are here to help!** You can
 [ask a question on Stack Overflow](https://stackoverflow.com/questions/tagged/substrate) and use the
-`substrate` tag or contact us on
-[Element](https://matrix.to/#/#substrate-technical:matrix.org).
+`substrate` tag or ask your questions directly in the [Substrate Technical Channel](https://matrix.to/#/#substrate-technical:matrix.org).
 
 ## What you will be doing
 
-Before we even get started, let's lay out what we are going to do over the course of this tutorial.
-We will:
+Before we even get started, let's lay out what we'll be doing in this tutorial. Step by step, we will:
 
-1. Launch a Substrate blockchain based on a template project.
-2. Modify this template project to add our own custom logic.
-3. Modify a front-end template to interact with your brand new blockchain.
+1. Launch a Substrate blockchain based on a node template.
+2. Modify this template to add our own custom logic and implement our PoE API.
+3. Interact with our brand new blockchain by using a Substrate front-end template, modified to meet our needs.
 
 Sound reasonable? Good, then let's begin!
