@@ -82,7 +82,7 @@ pallet-node-authorization = { default-features = false, version = '3.0.0' }
 default = ['std']
 std = [
     #--snip--
-    pallet-node-authorization/std,
+    'pallet-node-authorization/std',
     #--snip--
 ]
 ```
