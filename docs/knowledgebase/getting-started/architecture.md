@@ -1,4 +1,6 @@
-## Architecture
+---
+title: Architecture
+---
 
 ![Substrate Client Architecture](/docs/assets/substrate-arch.png)
 
