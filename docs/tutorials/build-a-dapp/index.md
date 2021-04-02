@@ -6,7 +6,14 @@ In this tutorial, you will learn to create a custom
 ["Proof of Existence"](https://en.wikipedia.org/wiki/Proof_of_Existence) dApp using the Substrate
 blockchain development framework and the [FRAME](../../knowledgebase/runtime/frame) library.
 
-This tutorial should take you about **1 hour** to complete. We will be using the
+What is a substrate dApp? The goal, for our purposes, here is a **user facing application**
+that interacts **custom substrate implementation**. The very bare bones required here are:
+
+1. A complete substrate blockchain with an API for your custom functionality
+2. A complete GUI with custom elements that reads and writes to this API
+
+This tutorial should take you about **1 hour** to complete (can you believe that substrate
+enables you to do this in such a tiny amount fo time?!). We will be using the
 [Rust programming language](https://www.rust-lang.org/) and [ReactJS](https://reactjs.org/), but you
 do not need to know these to be able to complete this guide. We will provide you with working code
 snippets and explain what all the code does at a high level.
@@ -27,7 +34,7 @@ If you run into an issue on this tutorial, **we are here to help!** You can
 Before we even get started, let's lay out what we'll be doing in this tutorial. Step by step, we will:
 
 1. Launch a Substrate blockchain based on a node template.
-2. Modify this template to add our own custom logic and implement our PoE API.
-3. Interact with our brand new blockchain by using a Substrate front-end template, modified to meet our needs.
+2. Modify the node template to add our own **custom PoE pallet from scratch** and implement our PoE API.
+3. Modify the front-end template to add a **custom user interface** to interact with our custom API.
 
 Sound reasonable? Good, then let's begin!

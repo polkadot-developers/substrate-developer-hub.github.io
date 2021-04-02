@@ -30,6 +30,8 @@ You'll see a list of pre-funded accounts, and you can make token transfers betwe
 
 In the Front-End Template project, edit the `TemplateModule.js` file in the `/src/` folder:
 
+**`src/TemplateModule.js`**
+
 ```
 substrate-front-end-template
 |
@@ -45,7 +47,7 @@ substrate-front-end-template
 +-- ...
 ```
 
-Delete the entire contents of that file, and replace it with the following:
+**Delete the entire contents of that file, and replace it with the following:**
 
 <div class="overflow-code">
   <style>

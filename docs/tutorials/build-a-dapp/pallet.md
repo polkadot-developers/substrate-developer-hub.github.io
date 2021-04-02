@@ -24,7 +24,7 @@ The goal of this tutorial is to teach you how to create your own FRAME pallet to
 custom blockchain. The Substrate Developer Hub Node Template comes with a template pallet that we
 will use as a starting point to build our own custom runtime logic.
 
-## File Structure
+## Substrate Blockchain File Structure
 
 Open the Node Template in your favorite code editor, then open the file
 `pallets/template/src/lib.rs`
@@ -38,15 +38,15 @@ substrate-node-template
 |   |
 |   +-- template
 |       |
-|       +-- Cargo.toml    <-- One change in this file
+|       +-- Cargo.toml     <-- *Modify* this file
 |       |
 |       +-- src
 |           |
-|           +-- lib.rs     <-- Most changes in this file
+|           +-- lib.rs     <-- *Remove* and make a new file
 |           |
-|           +-- mock.rs
+|           +-- mock.rs    <-- *Remove* (optionally modify)
 |           |
-|           +-- tests.rs
+|           +-- tests.rs   <-- *Remove* (optionally modify)
 |
 +-- runtime
 |
@@ -55,12 +55,18 @@ substrate-node-template
 +-- ...
 ```
 
-You will see some pre-written code that acts as a template for a new pallet. You can read over this
-file if you'd like, and then delete the contents since we will start from scratch for full
-transparency. When writing your own pallets in the future, you will likely find the scaffolding in
-this template pallet useful.
+You will see some pre-written code that acts as a template for a new pallet.
+When writing your own pallets in the future, you will likely find the scaffolding
+in this template pallet useful. But for the purposes of really learning how a pallet
+is constructed, **delete all contents of this file**.
 
-## Build Your New Pallet
+> The following sections will start _from scratch_ - assuming that you have cleared the
+> existing `pallet/template/src/lib.rs` file. We will start from scratch for full showing
+> how to build a pallet from ground zero.
+
+## Write a Pallet from Scratch
+
+### FRAME Pallet Structure
 
 At a high level, a FRAME pallet can be broken down into six sections:
 
@@ -89,10 +95,15 @@ Things like events, storage, and callable functions may look familiar to you if 
 blockchain development. We will show you what each of these components looks like for a basic Proof
 Of Existence pallet.
 
-### Imports and Dependencies
+In the following sections, we have the required code blocks you can **copy and paste** into your
+now empty `pallet/template/src/lib.rs` file _in order_ to create this PoE pallet.
 
-Since imports are pretty boring, you can start by pasting this at the top of your empty `lib.rs`
-file:
+### Pallet Imports and Dependencies
+
+All FRAME pallets have some required dependencies. Pasting this at the top of your empty `lib.rs`
+file will get you these:
+
+**`pallet/template/src/lib.rs`**
 
 ```rust
 #![cfg_attr(not(feature = "std"), no_std)]
@@ -104,40 +115,53 @@ use frame_system::ensure_signed;
 use sp_std::vec::Vec;
 ```
 
+> Critical: the `no_std` feature is **required** for all pallets! This is because we are building a
+> _runtime_ module that _must_ compile to WASM, and therefore cannot depend on rust's `std` 
+> dependencies.
+
 Most of these imports are already available because they were used in the template pallet whose code
 we just deleted. However, `sp_std` is not available and we need to list it as a dependency.
 
-**Add** this block to your `pallets/template/Cargo.toml` file under `[dependencies]` section.
+**Add** these lines to your `pallets/template/Cargo.toml` file under `[dependencies]` and 
+`[features]` sections, as shown below:
+
+**`pallets/template/Cargo.toml`**
 
 ```toml
 [dependencies]
+
 #--snip--
-sp-std = { default-features = false, version = '3.0.0' }
-```
 
-Then, **Update** the existing `[features]` block to look like this. The last line is new. You will
-learn more about why this is necessary in the next tutorial, the [Add a Pallet](../add-a-pallet)
-tutorial.
+sp-std = { default-features = false, version = '3.0.0' }  <-- Add this line
 
-```toml
+#--snip--
+
 [features]
 default = ['std']
 std = [
-    'codec/std',
-    'frame-support/std',
-    'frame-system/std',
-    'sp-std/std',          <-- This line is new
+    #--snip--
+    'sp-std/std',                                         <-- Add this line
 ]
 ```
 
-### Configuration
+> Notice here that all _runtime specific_ dependencies _must_ have default feature (meaning `std`)
+> disabled so we can compile the runtime to WASM.You can also learn more about why this is 
+> necessary in the [Add a Pallet](../add-a-pallet) tutorial.
+>
+> You _can_ use `std` features in non-runtime components like `mock.rs` and `tests.rs` using 
+> `[dev-dependencies]` _ONLY_. Specifics and examples of this are is outside the scope of this
+> tutorial. Learn more about [substrate testing here](../../knowledgebase/runtime/tests).
+
+### Pallet Configuration Trait
 
 Every pallet has a component called `Config` that is used for configuration. This component is a
 [Rust "trait"](https://doc.rust-lang.org/book/ch10-02-traits.html); traits in Rust are similar to
 interfaces in languages such as C++, Java and Go. For now, the only thing we will configure about
 our pallet is that it will emit some Events. The `Config` interface is another topic that will be
-covered in greater depth in the [Add a Pallet](../add-a-pallet) tutorial.  The 
-following code will need to be added to your `pallets/template/src/lib.rs` file:
+covered in greater depth in the [Add a Pallet](../add-a-pallet) tutorial. To _define_ the pallet's
+`Config` trait, add this block:
+
+**`pallet/template/src/lib.rs`**
 
 ```rust
 /// Configure the pallet by specifying the parameters and types on which it depends.
@@ -147,9 +171,11 @@ pub trait Config: frame_system::Config {
 }
 ```
 
-### Events
+### Pallet Events
 
 Now that we've configured our pallet to emit events, let's go ahead and define those events:
+
+**`pallet/template/src/lib.rs`**
 
 ```rust
 // Pallets use events to inform users when important changes are made.
@@ -175,10 +201,12 @@ triggered the event (`AccountId`), and the proof data (as `Vec<u8>`) that is bei
 removed. Note that convention is to include an array with descriptive names for these parameters at
 the end of event documentation.
 
-## Errors
+## Pallet Errors
 
 The events we defined previously indicate when calls to the pallet have completed successfully.
 Similarly, errors indicate when a call has failed, and why it has failed.
+
+**`pallet/template/src/lib.rs`**
 
 ```rust
 // Errors inform users that something went wrong.
@@ -198,11 +226,13 @@ The first of these errors can occur when attempting to claim a new proof. Of cou
 claim a proof that has already been claimed. The latter two can occur when attempting to revoke a
 proof.
 
-### Storage
+### Pallet Storage
 
 To add a new proof to the blockchain, we will simply store that proof in our pallet's storage. To
 store that value, we will create a [hash map](https://en.wikipedia.org/wiki/Hash_table) from the
 proof to the owner of that proof and the block number the proof was made.
+
+**`pallet/template/src/lib.rs`**
 
 ```rust
 // The pallet's runtime storage items.
@@ -219,13 +249,15 @@ decl_storage! {
 If a proof has an owner and a block number, then we know that it has been claimed! Otherwise, the
 proof is available to be claimed.
 
-### Callable Functions
+### Pallet Callable Functions
 
 As implied by our pallet's events and errors, we will have two "dispatchable functions" the user can
 call in this FRAME pallet:
 
 1. `create_claim()`: Allow a user to claim the existence of a file with a proof.
 2. `revoke_claim()`: Allow the owner of a claim to revoke their claim.
+
+**`pallet/template/src/lib.rs`**
 
 ```rust
 // Dispatchable functions allows users to interact with the pallet and invoke state changes.
@@ -291,7 +323,7 @@ decl_module! {
 > [`DispatchResult`](https://substrate.dev/rustdocs/v3.0.0/frame_support/dispatch/type.DispatchResult.html),
 > which is added on your behalf by the `decl_module!` macro.
 
-## Compile Your New Pallet
+## Build Your New Pallet
 
 After you've copied all of the parts of this pallet correctly into your `pallets/template/lib.rs`
 file, you should be able to recompile your node without warning or error. Run this command in the
@@ -299,7 +331,7 @@ root directory of the `substrate-node-template` repository to build and run the 
 
 ```bash
 # Compile your node
-cargo +nightly-2020-10-05 build --release
+cargo build --release
 # Launch your chain in dev mode
 ./target/release/node-template --dev --tmp
 ```
