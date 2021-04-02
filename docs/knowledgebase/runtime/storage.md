@@ -59,10 +59,9 @@ Refer to the documentation on
 #### Iterating Over Storage Maps
 
 Substrate Storage Maps are iterable with respect to their keys and values. Because maps are often
-used to track unbounded sets of data (such as account balances, for example), iterating over them within the runtime makes it especially likely to
-exceed block production time.
+used to track unbounded sets of data (such as account balances), iterating over them without caution in the runtime may cause blocks not being able to produced in time.
 Furthermore, because accessing the elements of a map requires more database reads than accessing the
-elements of a native list, map iterations are significantly _more_ costly than list iterations in terms of time. 
+elements of a native list, map iterations are significantly _more_ costly than list iterations in terms of execution time. 
 
 >**A note on best practices**: in general, Substrate focuses on "[first principles](#best-practices)" as opposed to hard and fast rules
 >of right and wrong. The information here aims to help you understand _all_ of Substrate's
