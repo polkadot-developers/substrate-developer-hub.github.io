@@ -204,6 +204,10 @@ export default function TemplateModule (props) {
 We won't walk you step by step through the creation of this component, but do look over the code
 comments to learn what each part is doing.
 
+> Stuck? There is a full front-end template
+> [solution](https://github.com/substrate-developer-hub/substrate-front-end-template/tree/tutorials/solutions/build-a-dapp)
+> to use as a reference. Check the commit diff from the base `v3.0.0` version for the exact changes.
+
 ## Submit a Proof
 
 Your Front-End Template should reload when you save your changes, and you'll notice our new

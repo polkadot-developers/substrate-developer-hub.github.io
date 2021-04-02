@@ -337,3 +337,7 @@ cargo build --release
 ```
 
 If everything worked out properly, your node should be producing blocks. And now it is time to interact with our new Proof of Existence pallet!
+
+> Stuck? There is a full node template
+> [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/build-a-dapp-v3)
+> to use as a reference. Check the commit diff from the base `v3.0.0` template for the exact changes.
