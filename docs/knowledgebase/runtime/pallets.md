@@ -3,14 +3,12 @@ title: Pallets
 ---
 
 This document is a top-level entry point to documentation related to developing runtime modules for
-Substrate.
-
-These documents are written for a technical audience, who is familiar with the Rust programming
+Substrate. The documentation that follows is written for technical audiences, who are familiar with the Rust programming
 language.
 
-If you are getting started with Substrate runtime development for the first time, we suggest you try
-our introductory tutorial for
-[creating your first Substrate chain](../../tutorials/create-your-first-substrate-chain).
+> If you are getting started with Substrate runtime development for the first time, we suggest you try
+> our introductory tutorial for
+> [creating your first Substrate chain](../../tutorials/create-your-first-substrate-chain).
 
 ## What is a Pallet?
 
@@ -18,17 +16,21 @@ Pallets are a special kind of Rust module from which Substrate runtimes can be c
 has its own discrete logic which can modify the features and functionality of your blockchain's
 state transition function.
 
-For example, the Balances pallet, which is included in the Framework for Runtime Aggregation of
-Modularised Entities (FRAME), defines a cryptocurrency for your blockchain. More specifically, it
-defines storage items which tracks the tokens a user has, functions that users can call to transfer
-and manage those tokens, APIs which allow other modules to burn or mint those tokens, and hooks
-which allow other modules to trigger functions when a user's balance changes.
+For example, the [Balances pallet](https://github.com/paritytech/substrate/tree/master/frame/balances), which is included in [FRAME](/knowledgebase/runtime/frame), defines cryptocurrency capabilities for your blockchain. More specifically, it
+defines: 
+- **storage items** that keep track of the tokens a user owns;
+- **functions** that users can call to transfer
+and manage those tokens;
+- **APIs** which allow other pallets to make use of those tokens and their capabilities; and
+- **hooks**
+which allow other pallets to trigger function calls when a user's balance changes.
 
-You are able to write your own pallets which define logic and functionality you want to introduce to
-your blockchain, and the following documentation will show you how.
+Substrate runtime engineers can define custom logic for their blockchain by writing their own pallets and encapsulating their blockchains desired functionality by combining custom pallets with existing FRAME pallets or [Substrate modules alike](link_to_other_pallet_libs). The following documentation will show you how.
+
+> **Note:** At the time of writing, FRAME pallets exist in two different forms &mdash; Version 1 and Version 2. This article first covers the structure of a "V1" pallet. Skip to "FRAME V2" for the latest structure of a Substrate pallet. Read [here](to_do) for more information on these changes.
 
 ## Skeleton of a Pallet
-
+### FRAME V1
 A Substrate pallet is composed of 5 sections:
 
 ```rust
@@ -116,4 +118,45 @@ decl_module! {
 		}
 	}
 }
+```
+
+### FRAME V2
+A Substrate pallet is composed of 5 sections:
+
+```rust
+// 1. Imports and Dependencies
+pub use pallet::*;
+#[frame_support::pallet]
+pub mod pallet {
+	use frame_support::{dispatch::DispatchResultWithPostInfo, pallet_prelude::*};
+	use frame_system::pallet_prelude::*;
+}
+// 2. Runtime Configuration Trait
+// All of the runtime types and consts go in here. If the pallet
+// is dependent on specific other pallets, then their configuration traits
+// should be added to the inherited traits list.
+#[pallet::config]
+	pub trait Config: frame_system::Config { ... }
+
+// 3. Runtime Events
+// Events are a simple means of reporting specific conditions and circumstances
+// that have happened that users, Dapps and/or chain explorers would find
+// interesting and otherwise difficult to detect.
+#[pallet::event]
+	#[pallet::metadata(T::AccountId = "AccountId")]
+	#[pallet::generate_deposit(pub(super) fn deposit_event)]
+	pub enum Event<T: Config> { ... }
+
+// 4. Runtime Storage
+// This allows for type-safe usage of the Substrate storage database, so you can
+// keep things around between blocks.
+#[pallet::storage]
+	#[pallet::getter(fn something)]
+
+// 5. The Pallet Declaration
+// This defines the `Module` struct that is ultimately exported from this pallet.
+// It defines the callable functions that this pallet exposes and orchestrates
+// actions this pallet takes throughout block execution.
+#[pallet::call]
+	impl<T:Config> Pallet<T> { ... }
 ```
