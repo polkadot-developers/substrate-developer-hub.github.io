@@ -1,5 +1,5 @@
 ---
-title: Runtime Origin
+title: Origin
 ---
 
 The runtime origin is used by dispatchable functions to check where a call has come from.
