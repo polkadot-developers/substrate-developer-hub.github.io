@@ -82,10 +82,6 @@ control funds. All the logic for handling session keys is in the Substrate clien
 Session pallet. If one of the Session keys is compromised, the attacker could commit slashable
 behavior.
 
-## Next Steps
-
-### Learn More
-
 ### Examples
 
 - Follow our
