@@ -4,46 +4,39 @@ title: Macros
 
 ## Introduction
 
-Substrate's runtime macros allow developers to focus on runtime logic rather than how the on-chain
-variables need to be encoded and decoded. As a result, developers frequently leverage these macros
-to optimize runtime development with their intention declared utilizing the succinct statements in
-macros. As a result, sometimes developers may encounter error messages of new structs or
-types, however these errors are a result of how the macros create new types interacting with
-contents inside.
+Substrate's runtime macros allow developers to focus on runtime logic rather than encoding and decoding on-chain
+variables or writing extensive blocks of code to achieve [basic blockchain fundementals](https://substrate.dev/docs/en/knowledgebase/runtime/primitives#core-primitives). This takes a lot of the heavy lifting off development efforts. As a result, runtime developers frequently leverage these macros
+by structuring their logic around them, improving the readability and power of their pallets. 
 
 The purpose of this article is to give a basic overview of Rust macros and explain the Substrate macros
-that runtime engineers most frequently encounter.
+that runtime engineers most frequently encounter. After this article, a developer will have
+a better understanding of how they are used, what they do and how the expanded code is within
+[Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template).
 
 ## Macro Basics
 
+Put simply, macros are lines of code that write code. They provide the ability to abstract things out without needing to declare things explicitly.
 There are four kinds of macro in Rust:
 
-- declarative macros defined with
-  [`macro_rules!`](https://doc.rust-lang.org/book/ch19-06-macros.html#declarative-macros-with-macro_rules-for-general-metaprogramming)
-- procedural macros as
-  [custom derive](https://doc.rust-lang.org/book/ch19-06-macros.html#how-to-write-a-custom-derive-macro)
-- procedural macros as
-  [attribute-like macros](https://doc.rust-lang.org/book/ch19-06-macros.html#attribute-like-macros)
-- procedural macros as
-  [function-like macros](https://doc.rust-lang.org/book/ch19-06-macros.html#function-like-macros)
+- [declarative macros](https://doc.rust-lang.org/book/ch19-06-macros.html#declarative-macros-with-macro_rules-for-general-metaprogramming) (most widely used)
+- [custom derive](https://doc.rust-lang.org/book/ch19-06-macros.html#how-to-write-a-custom-derive-macro) (a type of procedural macro)
+- [attribute-like macros](https://doc.rust-lang.org/book/ch19-06-macros.html#attribute-like-macros) (a type of procedural macro)
+- [function-like macros](https://doc.rust-lang.org/book/ch19-06-macros.html#function-like-macros) (a type of procedural macro)
 
 Most Substrate runtime macros are defined using either declarative macros or function-like macros.
 
-There are additional way to learn about Substrate runtime macros:
+Here are some ways to learn more about Substrate runtime macros:
 
-- read documentation of a particular macro
-- run [`cargo expand`](https://github.com/dtolnay/cargo-expand) to review the macros-expanded code
-- read the macro definition. It is helpful to have a good understanding of
-  [macro rules of expression pattern matching](https://danielkeep.github.io/tlborm/book/pim-README.html).
+- read the [documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/index.html#macros) of the macros used in FRAME
+- use [`cargo expand`](https://github.com/dtolnay/cargo-expand) to review the macro's expanded code and understand what's happening under the hood
+- read more on [macro rules of expression pattern matching](https://danielkeep.github.io/tlborm/book/pim-README.html)
 
 ## Substrate Runtime Macros
 
-When developing Substrate runtime, there are key macros the majority of developers utilize. The
-following is a comprehensive explanation of these macros. After this article, a developer will have
-a better understanding of how they are used, what they do and how the expanded code is within
-[Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template).
+When developing Substrate runtimes, certain "key" macros are used. The
+following section is a comprehensive explanation of these macros. 
 Developers who want to know about the implementation details are encouraged to follow the links in
-_Doc. and Example_ to see how macro code is expanded.
+_Docs and Notes_ sub-sections to see how macro code is expanded.
 
 ### decl_storage!
 
