@@ -45,9 +45,9 @@ export OPENSSL_INCLUDE_DIR="/usr/include/openssl-1.0"
 
 ### macOS
 
-> NOTE: The Apple M1 ARM system on a chip is not very well supported yet by rust, 
-> and thus you very likely will run into build errors steming from this. It is best, 
-> for the near term, to avoid using M1s for Substrate development. If you do decide to 
+> NOTE: The Apple M1 ARM system on a chip is not very well supported yet by rust,
+> and thus you very likely will run into build errors steming from this. It is best,
+> for the near term, to avoid using M1s for Substrate development. If you do decide to
 > give it a try despite this, see
 > [this community guide](https://vikiival.medium.com/run-substrate-on-apple-m1-a2699743fae8)
 > for details on extra configuration steps to get things working.
@@ -91,7 +91,27 @@ compile Substrate runtime code to the Wasm target.
 > There are upstream issues in Rust that need to be resolved before all of Substrate can use
 > the stable Rust toolchain -
 > [this is our tracking issue](https://github.com/paritytech/substrate/issues/1252)
-> if you are curious as to why and how this may be resolved. 
+> if you are curious as to why and how this may be resolved.
+
+#### Latest Nightly for Substrate `master`
+
+Developers who are building Substrate _itself_ should always use the latest bug-free versions of
+Rust stable and nightly. This is because the Substrate codebase follows the tip of Rust nightly,
+which means that changes in Substrate often depend on upstream changes in the Rust nightly compiler.
+To ensure your Rust compiler is always up to date, you should run:
+
+```bash
+rustup update
+rustup update nightly
+rustup target add wasm32-unknown-unknown --toolchain nightly
+```
+
+> **It may be necessary to occasionally rerun `rustup update`** if a change in the upstream Substrate
+> codebase depends on a new feature of the Rust compiler. When you do this, both your nightly
+> and stable toolchains will be pulled to the most recent release, and for nightly, it is
+> generally _not_ expected to compile WASM without error (although it very often does).
+> be sure to [specify your nightly version](#specifying-nightly-version) if you get WASM build errors
+> from `rustup` and [downgrade nightly as needed](#downgrading-rust-nightly).
 
 #### Rust Nightly Toolchain
 
@@ -103,7 +123,7 @@ developers. For instance, the Polkadot client specifies this information in its
 [release notes](https://github.com/paritytech/polkadot/releases).
 
 ```bash
-# Specify the specific nightly toolchain in the date below: 
+# Specify the specific nightly toolchain in the date below:
 rustup install nightly-<yyyy-MM-dd>
 ```
 
@@ -126,26 +146,6 @@ WASM_BUILD_TOOLCHAIN=nightly-<yyyy-MM-dd> cargo build --release
 
 > Note that this only builds _the runtime_ with the specified nightly. The rest of project will be
 > compiled with **your default toolchain**, i.e. the latest installed stable toolchain.
-
-#### Latest Nightly for Substrate `master`
-
-Developers that are building Substrate _itself_ should always use the latest bug-free versions of
-Rust stable and nightly. This is because the Substrate codebase follows the tip of Rust nightly,
-which means that changes in Substrate often depend on upstream changes in the Rust nightly compiler.
-To ensure your Rust compiler is always up to date, you should run:
-
-```bash
-rustup update
-rustup update nightly
-rustup target add wasm32-unknown-unknown --toolchain nightly
-```
-
-> **It may be necessary to occasionally rerun `rustup update`** if a change in the upstream Substrate
-> codebase depends on a new feature of the Rust compiler. When you do this, both your nightly 
-> and stable toolchains will be pulled to the most recent release, and for nightly, it is 
-> generally _not_ expected to compile WASM without error (although it very often does).
-> be sure to [specify your nightly version](#specifying-nightly-version) if you get WASM build errors
-> from `rustup` and [downgrade nightly as needed](#downgrading-rust-nightly).
 
 #### Downgrading Rust Nightly
 
