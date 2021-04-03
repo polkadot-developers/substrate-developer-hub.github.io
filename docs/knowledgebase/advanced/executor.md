@@ -25,6 +25,9 @@ different parts of the blockchain execution process. The strategies are:
 - `Both`: Execute with both native (where available) and WebAssembly builds.
 - `NativeElseWasm`: Execute with the native build if possible; if it fails, then execute with WebAssembly.
 
+All strategies respect the runtime version, meaning if the native and wasm runtime versions differ
+(which the wasm runtime is more updated then the native one), the wasm runtime is chosen to run.
+
 The default execution strategies for the different parts of the blockchain execution process are:
 
 - Syncing: `NativeElseWasm`
@@ -40,7 +43,7 @@ Source: [[1]](#footnote-execution-strategies-src01), [[2]](#footnote-execution-s
 
 The Wasm representation of the Substrate runtime is considered the canonical runtime. Because this
 Wasm runtime is placed in the blockchain storage, the network must come to consensus about this
-binary. Thus it can be verified to be consistent across all sync'ing nodes.
+binary. Thus it can be verified to be consistent across all syncing nodes.
 
 The Wasm execution environment can be more restrictive than the native execution environment. For
 example, the Wasm runtime always executes in a 32-bit environment with a configurable memory limit
