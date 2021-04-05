@@ -141,7 +141,7 @@ function Seminar(props) {
 
             <div className='col-md-6 second'>
               <h2 style={{ fontSize: '32px' }}>Upcoming topics</h2>
-              <p>On <strong>6 April</strong>, Parity Runtime Engineer Ricardo Rius will discuss parachains, Cumulus, and Rococo v1, touching on emerging capabilities and best practices for builders out there looking to learn more about crafting their own parachains.</p>
+              <p>On <strong>6 April</strong>, Parity Runtime Engineer Ricardo Rius will discuss parachains, Cumulus, and Rococo v1, going over the basics of parachain development.</p>
 
               <p> Have a topic you'd like to hear more about? Let us know in the<a href="https://riot.im/app/#/room/#substrate-seminar:matrix.parity.io"> dedicated Substrate Seminar channel!</a></p>
             </div>
