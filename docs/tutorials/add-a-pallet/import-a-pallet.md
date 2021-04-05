@@ -9,7 +9,7 @@ account they control.
 Open the Node Template in your favorite code editor. We will be editing two files:
 `runtime/src/lib.rs`, and `runtime/Cargo.toml`.
 
-```
+```text
 substrate-node-template
 |
 +-- runtime
