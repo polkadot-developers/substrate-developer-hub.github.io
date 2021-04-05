@@ -73,7 +73,7 @@ function Seminar(props) {
               <h2><translate>An open collaborative learning call</translate></h2>
               <p className='lead'><translate>
                 Substrate Seminar is an open Collaborative Learning call where we learn about Substrate
-                together. Run by DevHub, we meet every Tuesday at 14:00UTC. Learn, show off a Substrate
+                together. Run by DevHub, we meet every other Tuesday at 14:00UTC. Learn, show off a Substrate
                 project, and make friends!
               </translate></p>
               <a href='https://calendar.google.com/calendar/b/1?cid=cGFyaXR5LmlvXzJmc2tqN245cm1qcHE1Y2xiOWc3ZWUzZGhvQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20'>
@@ -91,21 +91,13 @@ function Seminar(props) {
 
           <div className='row justify-content-between pt-0 faqs'>
             <div className='col-md-6 first'>
-              <h4 className='mb-2'><translate>What topics are coming up?</translate></h4>
-              <p>On <strong>19 Jan</strong> Substrate Core Developer Guillaume Tholliere will discuss FRAME v2.</p>
-              <p>On <strong>26 Jan</strong> Dastan Samatov from <a href='https://limechain.tech/'>LimeChain</a> will discuss the design and&nbsp;
-              use of their AssemblyScript libraries for developing on the Polkadot stack.</p>
-              <p>On <strong>2 Feb</strong> Parity Runtime Engineer Ricardo Rius will discuss parachains, Cumulus, and Rococo v1.</p>
-            </div>
-
-            <div className='col-md-6 second'>
               <h4 className='mb-2'><translate>Can I ask my own questions?</translate></h4>
               <p>
                 <translate>
                 Yes! The second half of every Seminar is for open Q & A like office hours. You can ask questions or even bring your code that doesn't compile. Participants will be invited on-screen to share their work and their questions. You may also join us between Seminars on
                 </translate>
                 &nbsp;
-                <a href='https://matrix.to/#/!oClBfIbtucPfGKlNpk:matrix.parity.io'>Element</a>.
+                <a href="https://riot.im/app/#/room/#substrate-seminar:matrix.parity.io">Element</a>.
               </p>
               <h4 className='mb-2'><translate>
                 I am not a [Substrate] developer, can I still participate?
@@ -146,6 +138,14 @@ function Seminar(props) {
                 </ul>
               </p>
             </div>
+
+            <div className='col-md-6 second'>
+              <h2 style={{ fontSize: '32px' }}>Upcoming topics</h2>
+              <p>On <strong>6 April</strong>, Parity Runtime Engineer Ricardo Rius will discuss parachains, Cumulus, and Rococo v1, touching on emerging capabilities and best practices for builders out there looking to learn more about crafting their own parachains.</p>
+
+              <p> Have a topic you'd like to hear more about? Let us know in the<a href="https://riot.im/app/#/room/#substrate-seminar:matrix.parity.io"> dedicated Substrate Seminar channel!</a></p>
+            </div>
+
           </div>
         </div>
       </section>
