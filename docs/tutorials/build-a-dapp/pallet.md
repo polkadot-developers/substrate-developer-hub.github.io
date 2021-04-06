@@ -145,7 +145,7 @@ std = [
 ```
 
 > Notice here that all _runtime specific_ dependencies _must_ have default feature (meaning `std`)
-> disabled so we can compile the runtime to WASM.You can also learn more about why this is 
+> disabled so we can compile the runtime to WASM. You can also learn more about why this is 
 > necessary in the [Add a Pallet](../add-a-pallet) tutorial.
 >
 > You _can_ use `std` features in non-runtime components like `mock.rs` and `tests.rs` using 
