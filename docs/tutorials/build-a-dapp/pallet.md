@@ -115,7 +115,7 @@ use frame_system::ensure_signed;
 use sp_std::vec::Vec;
 ```
 
-> Critical: the `no_std` feature is **required** for all pallets! This is because we are building a
+> **Critical**: the `no_std` feature is **required** for all pallets! This is because we are building a
 > _runtime_ module that _must_ compile to WASM, and therefore cannot depend on rust's `std` 
 > dependencies.
 
