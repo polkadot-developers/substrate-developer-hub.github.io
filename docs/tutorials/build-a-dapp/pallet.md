@@ -201,7 +201,7 @@ triggered the event (`AccountId`), and the proof data (as `Vec<u8>`) that is bei
 removed. Note that convention is to include an array with descriptive names for these parameters at
 the end of event documentation.
 
-## Pallet Errors
+### Pallet Errors
 
 The events we defined previously indicate when calls to the pallet have completed successfully.
 Similarly, errors indicate when a call has failed, and why it has failed.
