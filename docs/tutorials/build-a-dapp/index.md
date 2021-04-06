@@ -10,7 +10,6 @@ What is a substrate dApp? The goal, for our purposes, here is a **user facing ap
 that interacts **custom substrate implementation**. The very bare bones required here are:
 
 1. A complete substrate blockchain with an API for your custom functionality
-2. A complete GUI with custom elements that reads and writes to this API
 
 This tutorial should take you about **1 hour** to complete (can you believe that Substrate
 enables you to do this in such a tiny amount fo time?!). We will be using the
