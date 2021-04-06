@@ -62,7 +62,6 @@ is constructed, **delete all contents of this file**.
 
 > The following sections will start _from scratch_ - assuming that you have cleared the
 > existing `pallet/template/src/lib.rs` file. 
-> how to build a pallet from ground zero.
 
 ## Write a Pallet from Scratch
 
