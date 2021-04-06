@@ -40,7 +40,7 @@ comparing it with the hash stored on chain.
 
 ![File Hash](assets/tutorials/build-a-dapp/file-hash.png)
 
-To add to this, blockchains also provide a robust identity systems though accounts that map to 
+To add to this, blockchains also provide a robust identity system through accounts that map to 
 [public keys](https://en.wikipedia.org/wiki/Public-key_cryptography), and associations built on
 top of those keys (see the identity pallet](https://github.com/paritytech/substrate/tree/v3.0.0/frame/identity).
 So when a file digest is stored on the blockchain, we can also record which account uploaded that digest.
