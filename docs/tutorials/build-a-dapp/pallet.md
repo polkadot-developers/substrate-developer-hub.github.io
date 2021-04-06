@@ -95,7 +95,7 @@ Things like events, storage, and callable functions may look familiar to you if 
 blockchain development. We will show you what each of these components looks like for a basic Proof
 Of Existence pallet.
 
-In the following sections, we have the required code blocks you can **copy and paste** into your
+In the following sections, the code blocks required for the PoE pallet are provided for you to simply copy and paste into the empty pallet/template/src/lib.rs file.
 
 ### Pallet Imports and Dependencies
 
