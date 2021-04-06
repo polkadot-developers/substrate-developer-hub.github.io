@@ -31,6 +31,6 @@ Before we even get started, let's lay out what we'll be doing in this tutorial. 
 
 1. Launch a Substrate blockchain based on a node template.
 2. Modify the node template to add our own **custom PoE pallet from scratch** and implement our PoE API.
-3. Modify the front-end template to add a **custom user interface** to interact with our custom API.
+3. Modify the front-end template to add a **custom user interface** that interacts with our PoE API.
 
 Sound reasonable? Good, then let's begin!
