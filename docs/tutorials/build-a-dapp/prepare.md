@@ -10,13 +10,13 @@ compiled on your computer from when you completed the
 [Create Your First Substrate Chain Tutorial](../create-your-first-substrate-chain). If you do not,
 please complete that tutorial.
 
-> Experienced developers who truly prefer to skip that tutorial may install the Node Template
+> Experienced developers may prefer to skip that tutorial and install the Node Template
 > according to
 > [the instructions in its readme](https://github.com/substrate-developer-hub/substrate-node-template#getting-started).
 
 ## Install the Front-End Template
 
-The Create Your First Substrate Chain Tutorial used the front-end template, so there is no
+The [Create Your First Substrate Chain](https://substrate.dev/docs/en/tutorials/create-your-first-substrate-chain/) Tutorial used the front-end template, so there is no
 additional set-up required if you have already completed that tutorial.
 
 > Refer directly to the
@@ -40,18 +40,20 @@ comparing it with the hash stored on chain.
 
 ![File Hash](assets/tutorials/build-a-dapp/file-hash.png)
 
-To add to this, blockchains also provide a robust identity system. So when a file digest is stored
-on the blockchain, we can also record which user uploaded that digest. This allows that user to
-later prove that they were the original person to claim the file.
+To add to this, blockchains also provide a robust identity system through accounts that map to 
+[public keys](https://en.wikipedia.org/wiki/Public-key_cryptography), and associations built on
+top of those keys [see the identity pallet](https://github.com/paritytech/substrate/tree/v3.0.0/frame/identity).
+So when a file digest is stored on the blockchain, we can also record which account uploaded that digest.
+This allows that controler of that account to later prove that they were the original person to claim the file.
 
 ## Interface and Design
 
 Our PoE API will expose two callable functions:
 
-- `create_claim` - allows a user to claim the existence of a file by uploading a file digest.
-- `revoke_claim` - allows the current owner of a claim to revoke their ownership.
+- `create_claim()` - allows a user to claim the existence of a file by uploading a file digest.
+- `revoke_claim()` - allows the current owner of a claim to revoke their ownership.
 
 In order to implement this, we will only need to store information about the proofs that have been
 claimed, and who made those claims.
 
-Sounds simple enough? Great, let's get coding.
+Sounds simple enough, right? Let's get coding!
