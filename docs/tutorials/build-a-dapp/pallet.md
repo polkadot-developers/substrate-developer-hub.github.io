@@ -96,7 +96,6 @@ blockchain development. We will show you what each of these components looks lik
 Of Existence pallet.
 
 In the following sections, we have the required code blocks you can **copy and paste** into your
-now empty `pallet/template/src/lib.rs` file _in order_ to create this PoE pallet.
 
 ### Pallet Imports and Dependencies
 
