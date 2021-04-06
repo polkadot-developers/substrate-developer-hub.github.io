@@ -6,7 +6,6 @@ In this tutorial, you will learn to create a custom
 ["Proof of Existence"](https://en.wikipedia.org/wiki/Proof_of_Existence) dApp using the Substrate
 blockchain development framework and the [FRAME](../../knowledgebase/runtime/frame) library.
 
-1. A complete substrate blockchain with an API for your custom functionality
 
 This tutorial should take you about **1 hour** to complete (can you believe that Substrate
 enables you to do this in such a tiny amount fo time?!). We will be using the
