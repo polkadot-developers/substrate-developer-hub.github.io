@@ -7,7 +7,6 @@ In this tutorial, you will learn to create a custom
 blockchain development framework and the [FRAME](../../knowledgebase/runtime/frame) library.
 
 What is a substrate dApp? The goal, for our purposes, here is a **user facing application**
-that interacts **custom substrate implementation**. The very bare bones required here are:
 1. A complete substrate blockchain with an API for your custom functionality
 
 This tutorial should take you about **1 hour** to complete (can you believe that Substrate
