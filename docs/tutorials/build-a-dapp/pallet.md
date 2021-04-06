@@ -61,7 +61,7 @@ in this template pallet useful. But for the purposes of really learning how a pa
 is constructed, **delete all contents of this file**.
 
 > The following sections will start _from scratch_ - assuming that you have cleared the
-> existing `pallet/template/src/lib.rs` file. We will start from scratch for full showing
+> existing `pallet/template/src/lib.rs` file. 
 > how to build a pallet from ground zero.
 
 ## Write a Pallet from Scratch
