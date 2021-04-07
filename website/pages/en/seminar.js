@@ -54,11 +54,10 @@ function Seminar(props) {
                 Substrate together.
               </translate></p>
               <section>
-                <span className='block type--fine-print'>
-                  <a href='https://www.crowdcast.io/e/substrate-seminar'><translate>
-                    join live call »
-                  </translate></a>
-                </span>
+                <a className='btn btn-lg primary-color'
+                  href='https://www.crowdcast.io/e/substrate-seminar'>
+                  <translate>Join Live Call »</translate>
+                </a>
               </section>
             </div>
           </div>
@@ -90,29 +89,36 @@ function Seminar(props) {
           </div>
 
           <div className='row justify-content-between pt-0 faqs'>
-            <div className='col-md-6 first'>
-              <h4 className='mb-2'><translate>Can I ask my own questions?</translate></h4>
-              <p>
-                <translate>
-                Yes! The second half of every Seminar is for open Q & A like office hours. You can ask questions or even bring your code that doesn't compile. Participants will be invited on-screen to share their work and their questions. You may also join us between Seminars on
-                </translate>
-                &nbsp;
-                <a href="https://riot.im/app/#/room/#substrate-seminar:matrix.parity.io">Element</a>.
-              </p>
-              <h4 className='mb-2'><translate>
-                I am not a [Substrate] developer, can I still participate?
-              </translate></h4>
-              <p><translate>
-                Yes! The seminar is open to everyone. The content is generally more developer-oriented,
-                but less technical participants and questions are also welcome. If your questions turn
-                out to be off-topic, we'll point you to a better resource.
-              </translate></p>
+            <div className='col-md-6'>
+              <section>
+                <h4 className='mb-2'><translate>Can I ask my own questions?</translate></h4>
+                <p>
+                  <translate>
+                  Yes! The second half of every Seminar is for open Q & A like office hours. You can ask questions or even bring your code that doesn't compile. Participants will be invited on-screen to share their work and their questions. You may also join us between Seminars on
+                  </translate>
+                  &nbsp;
+                  <a href="https://matrix.to/#/!oClBfIbtucPfGKlNpk:matrix.parity.io">Element</a>.
+                </p>
+              </section>
 
-              <h4 className='mb-2'><translate>Where are the recordings?</translate></h4>
-              <p>
-                <translate>
-                  Seminar has changed formats a few times so the recordings are in a few places.
-                </translate>
+              <section>
+                <h4 className='mb-2'><translate>
+                  I am not a [Substrate] developer, can I still participate?
+                </translate></h4>
+                <p><translate>
+                  Yes! The seminar is open to everyone. The content is generally more developer-oriented,
+                  but less technical participants and questions are also welcome. If your questions turn
+                  out to be off-topic, we'll point you to a better resource.
+                </translate></p>
+              </section>
+
+              <section>
+                <h4 className='mb-2'><translate>Where are the recordings?</translate></h4>
+                <p className='mb-2'><translate>
+                  Seminar has changed formats a few times so the recordings are in a few places:
+                </translate></p>
+              </section>
+              <section>
                 <ul>
                   <li>
                     <a href='https://www.crowdcast.io/e/substrate-seminar/'>
@@ -136,7 +142,7 @@ function Seminar(props) {
                     <translate>are on the Substrate Collaborative Learning YouTube playlist.</translate>
                   </li>
                 </ul>
-              </p>
+              </section>
             </div>
           </div>
         </div>
