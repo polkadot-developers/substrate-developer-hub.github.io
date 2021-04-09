@@ -18,7 +18,8 @@ upgraded. The executor determines which version of the runtime to use when dispa
 
 Before runtime execution begins, the Substrate client proposes which runtime execution environment
 should be used. This is controlled by the execution strategy, which can be configured for the
-different parts of the blockchain execution process. The strategies are:
+different parts of the blockchain execution process. The strategies are listed in the
+[`ExecutionStrategy` enum](https://substrate.dev/rustdocs/v3.0.0/sp_state_machine/enum.ExecutionStrategy.html):
 
 - `NativeWhenPossible`: Execute with native build (if available, WebAssembly otherwise).
 - `AlwaysWasm`: Only execute with the WebAssembly build.
@@ -38,6 +39,13 @@ The default execution strategies for the different parts of the blockchain execu
 - Other: `NativeWhenPossible`
 
 Source: [[1]](#footnote-execution-strategies-src01), [[2]](#footnote-execution-strategies-src02)
+
+They can be overridden via the command line argument `--execution-{block-construction, import-block, offchain-worker, other, syncing} <strategy>`, or `--execution <strategy>` to apply the specified strategy to all five aspects. Details can be seen at `substrate --help`. When specifying on cli, the following shorthand strategy names are used:
+
+- `Native` mapping to the `NativeWhenPossible` strategy
+- `Wasm` mapping to the `AlwaysWasm` strategy
+- `Both` mapping to the `Both` strategy
+- `NativeElseWasm` mapping to `NativeElsmWasm` strategy
 
 ### Wasm Execution
 
