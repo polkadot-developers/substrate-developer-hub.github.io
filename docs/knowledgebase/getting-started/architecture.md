@@ -12,7 +12,7 @@ that include, but are not limited to, the following:
   state of storage. Substrate ships with a simple and highly efficient
   [key-value storage mechanism](knowledgebase/advanced/storage).
 - **Runtime**: the logic that defines how blocks are processed, including state transition logic. In Substrate, runtime code is
-  compiled to [Wasm](knowledgebase/getting-started/glossary#webassembly-wasm) and becomes part of the blockchain's
+  compiled to [WASM](knowledgebase/getting-started/glossary#webassembly-wasm) and becomes part of the blockchain's
   storage state. This enables one of the defining features of a Substrate-based blockchain:
   [forkless runtime upgrades](knowledgebase/runtime/upgrades#forkless-runtime-upgrades). Substrate clients may also
   include a "native runtime" that is compiled for the same platform as the client itself (as opposed to Wasm). The
