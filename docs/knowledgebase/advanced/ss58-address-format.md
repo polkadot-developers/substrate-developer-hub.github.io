@@ -82,7 +82,7 @@ you will find a list of projects by our community below to use as a starting poi
 - [Python Substrate Interface](https://github.com/polkascan/py-substrate-interface) - developed by Polkascan.
   [Documentation](https://polkascan.github.io/py-substrate-interface/#substrateinterface.Keypair).
 
-- [Go Substrate RPC client](https://github.com/centrifuge/go-substrate-rpc-client/tree/3e974433f8417e386b033fb64a6ac4971f02c737) - developed by Centrifuge.
+- [Go Substrate RPC client](https://github.com/centrifuge/go-substrate-rpc-client) - developed by Centrifuge.
 
 - [C++ Polkadot Substrate API](https://github.com/usetech-llc/polkadot_api_cpp) - developed by Usetech.
 
