@@ -1,7 +1,7 @@
 ---
 title: Runtime Macros
 ---
-> **Update:** As of January 2021, FRAME based pallets has upgraded its use of macros. Refer to [this guide](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#upgrade-guidelines) to learn about migrating a V1 pallet to V2. 
+> **Update:** As of January 2021, FRAME based pallets has upgraded its use of macros. Refer to [this guide](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#upgrade-guidelines) to learn about migrating a v1 pallet to v2. 
 
 Substrate uses [Rust macros](https://doc.rust-lang.org/book/ch19-06-macros.html) to aggregate the logic derived from pallets that are implemented for a runtime. 
 These runtime macros allow developers to focus on runtime logic rather than encoding and decoding on-chain
@@ -56,7 +56,7 @@ Substrate Primitives and FRAME both rely on a collection of various types of mac
 
 > **Note**: Refer to `#Substrate dependencies` in the `Cargo.toml` file of the [node template runtime](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/runtime/Cargo.toml#L21) to see where these are put to use. 
 
-## FRAME V1 Declarative Macros
+## FRAME v1 Declarative Macros
 ### decl_storage!
 
 **When to Use**
@@ -280,7 +280,7 @@ Required.
 
 **What it Does**
 
-This is the equivalent of `decl_module!` in FRAME V1. Instead, it takes the form of a more explicit Rust struct module, using  `PhantomData` to make it generic. It generates the `Store` trait if the attribute is provided, which contains an associated type for each storage.
+This is the equivalent of `decl_module!` in FRAME v1. Instead, it takes the form of a more explicit Rust struct module, using  `PhantomData` to make it generic. It generates the `Store` trait if the attribute is provided, which contains an associated type for each storage.
 
 This is an example of its definition:
 
@@ -345,7 +345,6 @@ Puts error types into metadata.
 
 **Docs**
 - See [documentation](https://crates.parity.io/frame_support/attr.pallet.html#error-palleterror-optional)
-...
 
 ### #[pallet::events]
 
@@ -383,53 +382,35 @@ To define some abstract storage inside runtime storage.
 
 **Docs**
 - See [documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#storage-palletstorage-optional)
-- See docs for storageMap and HashMap syntax
+- See Rust docs for [StorageMap](https://docs.rs/storage-map/0.1.2/storage_map/struct.StorageMap.html) and [HashMap syntax](https://doc.rust-lang.org/book/ch08-03-hash-maps.html)
 
+### Others
 
-
-- pallet genesis config. BEfore is was in decl_storage. Now you can define it yourself. 
-- #[PALLET::GENESIS_CONFIG[]
-- adds attributes for config in std
-
-- provide inherent (optional) and validate_unsigned (optional)
-
-- 
-
-### Notes
-
-Other macro attributes include:
-- [#[pallet::genesis_config]](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional) which used to be in `decl_storage` in V1. This gives runtime engineers more flexibility to define `genesis_config`.
+Other FRAME v2 macro attributes include:
+- [#[pallet::genesis_config]](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional) which used to be in `decl_storage` in v1. This gives runtime engineers more flexibility to define `genesis_config`.
 - [#[pallet::type_value]](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#type-value-pallettype_value-optional)
 - [#[pallet::genesis_build]](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#genesis-build-palletgenesis_build-optional)
 - [#[pallet::inherent]](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#inherent-palletinherent-optional)
 - [#[pallet::validate_unsigned]](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#validate-unsigned-palletvalidate_unsigned-optional)
 - [#[pallet::origin]](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#origin-palletorigin-optional)
 
+#### FRAME v1 vs. v2
 Things to note:
 - Using instantiable pallets with v2 requires a different approach than for v1. See the guide [here](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#example-for-pallet-without-instance) for more information on how that works.
 
-- In v2, `pub(super)` is used to make things private to pallet but accessible to the associated namespace.
+- In v2, `pub(super)` is used to make things private to the pallet but accessible to the associated namespace. 
 
-- V2 is backward compatible with v1, yet v1 will cease getting improvement feautures. Storage will remain the same.
+- v2 is backwards compatible with v1, however v1 will cease getting improvement features. Storage will remain the same.
 
-- Use subsee as a tool to query metadata. 
+- Use [subsee](https://github.com/ascjones/subsee) as a tool to query metadata. 
 
- or:
-```rust
-#[test]
-fn print_metadata() {
-    println!("{:#}", Runtime::get_metadata());
-}
-```
 - `RawEvent` is no longer used in v2, all instances of events are declred as `Event`. 
 
-#### FRAME V1 vs. V2
 Here's a brief comparative overview:
-- V2 uses procedural macros inside pallets, whereas V1 uses declarative macros 
-- V2 leans more heavily on Rust to define types and use crates by writing code within the constaints of the macro being used, whereas FRAME V1 relies on runtime engineers to write more code to declare traits and types
-- V2 macros removes the need to write attributes 
+- v2 leans more heavily on Rust to define types and uses crates by writing code within the constaints of the macro being used, whereas v1 relies on runtime engineers to write more code to declare traits and types
+- v2 macros removes the need to write attributes 
 
-The main difference is how concepts are declared to use the crates that make up FRAME. In other words, either approach is just a different way to express the logic and types declared in a pallet. Both serve the same purpose, which is to aggregate logic together that defines how the runtime is implemented. The biggest improvements for developer experienece are: better error messages and less duplicate code.
+The main difference is how concepts are declared to use the crates that make up FRAME. Both approaches are just a different way to express the logic and types declared inside a pallet, yet both serve the same purpose, which is to aggregate logic together that defines how the runtime is implemented. The big improvements that v2 brings is better developer experienece.
 
 ## Additional FRAME Macros
 ### construct_runtime!
