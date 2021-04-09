@@ -78,7 +78,7 @@
 <p>本机 Runtime 作为节点可执行文件的一部分，而 Wasm 二进制文件则存储在区块链上的一个已知的存储键值下。</p>
 <p>Runtime 的这两种表示方式可能不一样。 For example, after the runtime is upgraded. 执行器决定在调度调用时使用哪个版本的 Runtime。</p>
 <h3><a class="anchor" aria-hidden="true" id="执行策略"></a><a href="#执行策略" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>执行策略</h3>
-<p>在 Runtime 开始执行之前，Substrate 客户端会建议使用哪个 Runtime 执行环境。 这是由执行策略控制的，可以针对区块链执行过程的不同部分进行配置。 这些策略是：</p>
+<p>在 Runtime 开始执行之前，Substrate 客户端会建议使用哪个 Runtime 执行环境。 这是由执行策略控制的，可以针对区块链执行过程的不同部分进行配置。 The strategies are listed in the <a href="https://substrate.dev/rustdocs/v3.0.0/sp_state_machine/enum.ExecutionStrategy.html"><code>ExecutionStrategy</code> enum</a>:</p>
 <ul>
 <li><code>NativeWhenPossible</code>: Execute with native build (if available, WebAssembly otherwise).</li>
 <li><code>AlwaysWasm</code>: Only execute with the WebAssembly build.</li>
@@ -96,6 +96,13 @@
 <li>Other: <code>NativeWhenPossible</code></li>
 </ul>
 <p>Source: <a href="#footnote-execution-strategies-src01">[1]</a>, <a href="#footnote-execution-strategies-src02">[2]</a></p>
+<p>They can be overridden via the command line argument <code>--execution-{block-construction, import-block, offchain-worker, other, syncing} &lt;strategy&gt;</code>, or <code>--execution &lt;strategy&gt;</code> to apply the specified strategy to all five aspects. Details can be seen at <code>substrate --help</code>. When specifying on cli, the following shorthand strategy names are used:</p>
+<ul>
+<li><code>Native</code> mapping to the <code>NativeWhenPossible</code> strategy</li>
+<li><code>Wasm</code> mapping to the <code>AlwaysWasm</code> strategy</li>
+<li><code>Both</code> mapping to the <code>Both</code> strategy</li>
+<li><code>NativeElseWasm</code> mapping to <code>NativeElsmWasm</code> strategy</li>
+</ul>
 <h3><a class="anchor" aria-hidden="true" id="wasm-执行"></a><a href="#wasm-执行" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Wasm 执行</h3>
 <p>The Wasm representation of the Substrate runtime is considered the canonical runtime. Because this Wasm runtime is placed in the blockchain storage, the network must come to consensus about this binary. Thus it can be verified to be consistent across all syncing nodes.</p>
 <p>The Wasm execution environment can be more restrictive than the native execution environment. For example, the Wasm runtime always executes in a 32-bit environment with a configurable memory limit (up to 4 GB).</p>
@@ -105,13 +112,13 @@
 <h2><a class="anchor" aria-hidden="true" id="后续步骤"></a><a href="#后续步骤" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>后续步骤</h2>
 <h3><a class="anchor" aria-hidden="true" id="进一步学习"></a><a href="#进一步学习" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>进一步学习</h3>
 <ul>
-<li>查看 <a href="../runtime/upgrades">Runtime 文档</a> 阅读更多关于 runtime 升级。</li>
+<li>Read more about runtime upgrades in the <a href="../runtime/upgrades">Runtime documentation</a>.</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="参考文档"></a><a href="#参考文档" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文档</h3>
 <ul>
-<li><p>Check out the different <a href="https://substrate.dev/rustdocs/v3.0.0/sc_client_api/execution_extensions/struct.ExecutionStrategies.html">执行策略</a>。</p></li>
-<li><p>Take a look at the different <a href="https://substrate.dev/rustdocs/v3.0.0/sp_state_machine/enum.ExecutionStrategy.html">执行策略选项</a>。</p></li>
-<li><p>Review the <a href="https://substrate.dev/rustdocs/v3.0.0/sp_version/struct.RuntimeVersion.html">Runtime 版本的定义</a>。</p></li>
+<li><p>Check out the different <a href="https://substrate.dev/rustdocs/v3.0.0/sc_client_api/execution_extensions/struct.ExecutionStrategies.html">Execution Strategies</a>.</p></li>
+<li><p>Take a look at the different <a href="https://substrate.dev/rustdocs/v3.0.0/sp_state_machine/enum.ExecutionStrategy.html">Execution Strategy Options</a></p></li>
+<li><p>Review the <a href="https://substrate.dev/rustdocs/v3.0.0/sp_version/struct.RuntimeVersion.html">Runtime Version definition</a>.</p></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="footnotes"></a><a href="#footnotes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Footnotes</h2>
 <ol>
