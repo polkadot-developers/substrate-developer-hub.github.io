@@ -90,4 +90,4 @@ you will find a list of projects by our community below to use as a starting poi
 
 - [Go implemented utilities](https://github.com/itering/subscan-essentials/tree/78de8d163a3543a217f0cb3d48c6b9816bb5a231/util) - developed by Subscan.
 
-- [SS58 Transform](https://polkadot.subscan.io/tools/ss58_transform) - to manually verify an address.
+- [SS58 Transform](https://polkadot.subscan.io/tools/ss58_transform) - to manually verify an address and convert between registered prefix values.
