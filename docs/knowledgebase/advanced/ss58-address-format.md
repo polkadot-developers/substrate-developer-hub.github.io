@@ -30,7 +30,7 @@ address, it will return the 32 byte account ID. Not all addresses in Substrate-b
 based on keys.
 
 > **NOTE:** If you input a valid SS58 value, Subkey will also return a network ID/version value
-> that indicates which network the address has been encoded for.
+> that indicates for which network the address has been encoded.
 
 ```bash
 $ subkey inspect "12bzRJfh7arnnfPPUZHeJUaE62QLEwhK48QnH9LXeK2m1iZU"
