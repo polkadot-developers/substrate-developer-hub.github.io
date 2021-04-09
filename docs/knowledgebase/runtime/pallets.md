@@ -2,9 +2,8 @@
 title: Pallets
 ---
 
-This document is a top-level entry point to documentation related to developing runtime modules for
-Substrate. The documentation that follows is written for technical audiences, who are familiar with the Rust programming
-language.
+The following documentation is written for technical audiences, who are familiar with the Rust programming
+language. It is a top-level entry point for FRAME runtime developement in Substrate. 
 
 > If you are just getting started with Substrate runtime development, we suggest you try
 > our introductory tutorial for
@@ -12,17 +11,16 @@ language.
 
 ## What is a Pallet?
 
-Pallets are a special kind of Rust module from which Substrate runtimes can be composed. Each pallet
-has its own discrete logic which can modify the features and functionality of your blockchain's
-state transition function.
+Pallets are a special kind of Rust module from which Substrate runtimes can be composed. FRAME not only provides a library of commonly used Substrate pallets but also a framework to build custom domain-specific pallets, giving runtime engineers the flexibility to define their runtime's behaviour according to their target use case. The result: each pallet has its own discrete logic which can modify the features and functionality of your blockchain's state transition functions.
+
 
 For example, the [Balances pallet](https://github.com/paritytech/substrate/tree/master/frame/balances), which is included in [FRAME](/knowledgebase/runtime/frame), defines cryptocurrency capabilities for your blockchain. More specifically, it
 defines: 
-- **storage items** that keep track of the tokens a user owns;
-- **functions** that users can call to transfer
-and manage those tokens;
-- **APIs** which allow other pallets to make use of those tokens and their capabilities; and
-- **hooks**
+- **Storage items** that keep track of the tokens a user owns.
+- **Functions** that users can call to transfer
+and manage those tokens.
+- **APIs** which allow other pallets to make use of those tokens and their capabilities.
+- **Hooks**
 which allow other pallets to trigger function calls when a user's balance changes.
 
 Substrate runtime engineers can define custom logic for their blockchain by writing their own pallets and encapsulating their blockchains desired functionality by combining custom pallets with existing FRAME pallets or Substrate modules alike. The following documentation will show you how.
@@ -43,13 +41,13 @@ use support::{decl_module, decl_event, decl_storage, ...}
 // All of the runtime types and consts go in here. If the pallet
 // is dependent on specific other pallets, then their configuration traits
 // should be added to the inherited traits list.
-pub trait Config: system::Config { ... }
+pub trait Config: frame_system::Config { ... }
 
 // 3. Runtime Events
 // Events are a simple means of reporting specific conditions and circumstances
 // that have happened that users, Dapps and/or chain explorers would find
 // interesting and otherwise difficult to detect.
-decl_event!{ ... }
+decl_event! { ... }
 
 // 4. Runtime Storage
 // This allows for type-safe usage of the Substrate storage database, so you can
@@ -62,7 +60,14 @@ decl_storage! { ... }
 // actions this pallet takes throughout block execution.
 decl_module! { ... }
 ```
+> **Note**: Additional sections such as [`decl_error!`](./macros#decl_error) are commonly used however are not a requirement for a minimally working pallet.
+#### Example
 
+The [Basic Token recipe](https://substrate.dev/recipes/basic-token.html) provides a good example of a simple FRAME V1 pallet that allows a user to create a `u64` supply of tokens in storage and a `StorageMap` of account IDs and `u64` balances. The primary parts include:
+- `decl_storage!` defines `TotalSupply` and `Balances` the pallet's storage items;
+- `decl_event!` defines `Initialized` and `Transfer` events;
+- `decl_module!` defines the pallet's functions, `init()` and `transfer()`; and
+- `decl_module!` also has a `deposit_event()` function, common to all pallets that define behavior that emits an event.
 ### FRAME v2
 A FRAME v2 pallet is commonly composed of 7 sections:
 
