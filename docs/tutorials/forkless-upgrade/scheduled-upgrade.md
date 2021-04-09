@@ -52,7 +52,7 @@ cargo build --release -p node-template-runtime
 ```
 
 > This will _override_ any privous build artifacts! So if you want to have a copy on hand of
-> your last runtime WASM build files, be sure to copy them somewhere else.
+> your last runtime Wasm build files, be sure to copy them somewhere else.
 
 ## Upgrade the Runtime
 

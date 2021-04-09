@@ -143,8 +143,8 @@ rustup target add wasm32-unknown-unknown --toolchain nightly
 > **It may be necessary to occasionally rerun `rustup update`** if a change in the upstream Substrate
 > codebase depends on a new feature of the Rust compiler. When you do this, both your nightly 
 > and stable toolchains will be pulled to the most recent release, and for nightly, it is 
-> generally _not_ expected to compile WASM without error (although it very often does).
-> be sure to [specify your nightly version](#specifying-nightly-version) if you get WASM build errors
+> generally _not_ expected to compile Wasm without error (although it very often does).
+> be sure to [specify your nightly version](#specifying-nightly-version) if you get Wasm build errors
 > from `rustup` and [downgrade nightly as needed](#downgrading-rust-nightly).
 
 #### Downgrading Rust Nightly
