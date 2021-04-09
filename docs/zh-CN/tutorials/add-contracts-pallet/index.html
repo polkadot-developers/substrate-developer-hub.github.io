@@ -82,13 +82,13 @@
 <span class="token comment">// `construct_runtime!` does a lot of recursion and requires us to increase the limit to 256.</span>
 <span class="token attribute attr-name">#![recursion_limit=<span class="token string">"256"</span>]</span>
 
-<span class="token comment">// Make the WASM binary available.</span>
+<span class="token comment">// Make the Wasm binary available.</span>
 <span class="token attribute attr-name">#[cfg(feature = <span class="token string">"std"</span>)]</span>
 <span class="token macro property">include!</span><span class="token punctuation">(</span><span class="token macro property">concat!</span><span class="token punctuation">(</span><span class="token macro property">env!</span><span class="token punctuation">(</span><span class="token string">"OUT_DIR"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"/wasm_binary.rs"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment">// --snip--</span>
 </code></pre>
-<p>文件头部定义了当我们 <em>不</em> 使用 <code>std</code> 特性的时候，<code>no_std</code> 特性将会被启用。 再往下走几行代码，可以看见在 <code>wasm_binary.rs</code> 导入代码行上面的 <code>#[cfg(feature = &quot;std&quot;)]</code> 标志，它表示仅在启用了 <code>std</code> 特性后我们才能导入 WASM 二进制文件。</p>
+<p>文件头部定义了当我们 <em>不</em> 使用 <code>std</code> 特性的时候，<code>no_std</code> 特性将会被启用。 再往下走几行代码，可以看见在 <code>wasm_binary.rs</code> 导入代码行上面的 <code>#[cfg(feature = &quot;std&quot;)]</code> 标志，它表示仅在启用了 <code>std</code> 特性后我们才能导入 Wasm 二进制文件。</p>
 <h3><a class="anchor" aria-hidden="true" id="导入合约模块"></a><a href="#导入合约模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>导入合约模块</h3>
 <p>既然我们已经对模块的特性有基本认识了，现在就可以开始动手导入合约模块啦。 合约模块可能是 FRAME 中最复杂的模块，所以它是一个很好的例子来说明在添加额外的模块时可能涉及的一些棘手问题。</p>
 <p>首先，我们将通过简单地复制现有模块并更改里面的值来添加新的依赖关系。 因此，根据上面 <code>balances</code> 导入样式， <code>contracts</code>导入将看起来像:</p>
