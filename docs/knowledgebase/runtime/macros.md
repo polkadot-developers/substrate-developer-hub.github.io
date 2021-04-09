@@ -11,8 +11,8 @@ macros. As a result, sometimes developers may encounter error messages of new st
 types, however these errors are a result of how the macros create new types interacting with
 contents inside.
 
-The purpose of this article is to give a basic overview of macros and explain the Substrate macros
-that runtime engineers frequently encounter.
+The purpose of this article is to give a basic overview of Rust macros and explain the Substrate macros
+that runtime engineers most frequently encounter.
 
 ## Macro Basics
 
@@ -348,11 +348,6 @@ This macro creates a `Call` enum type, implements various helper traits on `Even
 **Docs**
 
 - [API Documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.impl_outer_dispatch.html)
-
-## Conclusion
-
-Through this article, developers will have a good understanding of how Substrate runtime leverage on
-Rust macros and a basic understanding of some of the frequently used macros in runtime development.
 
 ## References
 

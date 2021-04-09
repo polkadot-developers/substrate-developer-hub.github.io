@@ -103,7 +103,7 @@ hexadecimal string. The example above represents the actual value that is return
 to learn more about the format of this encoded blob as well as
 [its decoded format](https://gist.githubusercontent.com/insipx/db5e49c0160b1f1bd421a3c34fefdf48/raw/2c33ff080bec84f0627610124c732deb30a0adc7/meta_block_1768321.json).
 
-## Metadata Format
+## Metadata Formats
 
 This section will briefly review the SCALE-encoded metadata that is represented as a hexadecimal
 string before taking a more detailed look at the metadata's decoded format.
@@ -127,7 +127,7 @@ which will be reviewed below as well as some
 [extrinsic metadata](https://substrate.dev/rustdocs/v3.0.0/frame_metadata/struct.ExtrinsicMetadata.html), which
 is mostly out of the scope of this document.
 
-## Decoded Metadata Format
+### Decoded Metadata Format
 
 Here is a condensed version of decoded metadata:
 
