@@ -202,9 +202,9 @@ also inserts lifecycle trait implementations for `Module`, e.g.
   activities. Developers can set whether to trace for a dispatchable function by specifying its
   interest level.
 
-## FRAME V2 Attribute Macros
+## FRAME v2 Attribute Macros
 
-This sections covers the updates brought by FRAME V2. Refer to the [structure of a pallet](./pallets.md) for more context.
+This sections covers the updates brought by FRAME v2. Refer to the [structure of a pallet](./pallets.md) for more context.
 
 ### #[frame_support::pallet]
 
