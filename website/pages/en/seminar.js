@@ -54,9 +54,9 @@ function Seminar(props) {
                 Substrate together.
               </translate></p>
               <section>
-                <a className='btn btn-lg primary-color'
+                <a target='_blank' className='btn btn-lg primary-color'
                   href='https://www.crowdcast.io/e/substrate-seminar'>
-                  <translate>Join Live Call »</translate>
+                  <translate>Live Call / Past Seminars</translate>
                 </a>
               </section>
             </div>
