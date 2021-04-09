@@ -40,7 +40,7 @@ The default execution strategies for the different parts of the blockchain execu
 
 Source: [[1]](#footnote-execution-strategies-src01), [[2]](#footnote-execution-strategies-src02)
 
-They can be overridden via the command line argument `--execution-{block-construction, import-block, offchain-worker, other, syncing} <strategy>`, or `--execution <strategy>` to apply the specified strategy to all five aspects. Details can be seen at `substrate --help`. When specifying on cli, the following shorthand `strategy` names are used:
+They can be overridden via the command line argument `--execution-{block-construction, import-block, offchain-worker, other, syncing} <strategy>`, or `--execution <strategy>` to apply the specified strategy to all five aspects. Details can be seen at `substrate --help`. When specifying on cli, the following shorthand strategy names are used:
 
 - `Native` mapping to the `NativeWhenPossible` strategy
 - `Wasm` mapping to the `AlwaysWasm` strategy
