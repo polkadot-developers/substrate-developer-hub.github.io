@@ -17,7 +17,7 @@ You should have completed _at least_ the following three Substrate tutorials bef
 Before attempting this workshop, you should be familiar with most of the concepts listed below:
 
 * Launching a Substrate chain
-* Submitting transactions
+* Submitting extrinsics
 * Adding, Removing, and configuring pallets in a runtime
 * Ethereum and EVM basics
 * Pallet design
@@ -26,9 +26,9 @@ Additional supplemental learning resources are recommended throughout the worksh
 
 ## Maintenance
 
-This tutorial is donated to Substrate Developer Hub by the [Moonbeam](https://moonbeam.network/) team, and made public in hopes that it will be useful.
+This tutorial was donated to Substrate Developer Hub by the [Moonbeam](https://moonbeam.network/) team, and made public in hopes that it will be useful.
 
-If you do encounter issues when following this tutorial, please [file a bug](https://github.com/substrate-developer-hub/frontier-workshop/issues/new) on github.
+If you do encounter issues when following this tutorial, please [file a bug](https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/issues/new) on github.
 
 ## Contact
 
@@ -36,5 +36,5 @@ Reach out to Substrate Developer Hub team at:
 
 * [Substrate Developer Hub](https://substrate.dev/)
 * [Subport - Substrate Support](https://github.com/paritytech/subport)
-* [Element (Substrate Technical channel)](https://app.element.io/#/room/#substrate-technical:matrix.org)
-* [Element (Moonbeam channel)](https://app.element.io/#/room/#moonbeam:matrix.org) - channel to contact the original author of this repository
+* [Element (Substrate Technical channel)](https://matrix.to/#/#substrate-technical:matrix.org)
+* [Element (Moonbeam channel)](https://matrix.to/#/#moonbeam:matrix.org) - channel to contact the original author of this repository
