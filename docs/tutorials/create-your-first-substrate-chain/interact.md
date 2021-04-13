@@ -14,7 +14,7 @@ Run the following command to start your node:
 ```
 
 Note the flags:
-- `--dev` this set ups a developer node [chain specification](../../knowledgebase/integrate/chain-spec)
+- `--dev` this sets up a developer node [chain specification](../../knowledgebase/integrate/chain-spec)
 - `--tmp` this saves all active data for the node (keys, blockchain database, networking info, ...)
 and is deleted as soon as you properly terminate your node. So every time you start with this command, you will have a clean state to work from. If the node is killed, `/tmp` is cleaned automatically on the restart of your
 computer for linux based OSs, and these files can manually be removed if needed.
