@@ -46,7 +46,7 @@ export OPENSSL_INCLUDE_DIR="/usr/include/openssl-1.0"
 ### macOS
 
 > NOTE: The Apple M1 ARM system on a chip is not very well supported yet by rust,
-> and thus you very likely will run into build errors steming from this. It is best,
+> and thus you very likely will run into build errors stemming from this. It is best,
 > for the near term, to avoid using M1s for Substrate development. If you do decide to
 > give it a try despite this, see
 > [this community guide](https://vikiival.medium.com/run-substrate-on-apple-m1-a2699743fae8)
