@@ -30,7 +30,7 @@ Use a terminal shell to execute the following commands:
 ```bash
 sudo apt update
 # May prompt for location information
-sudo apt install -y pkg-config libssl-dev git build-essential clang libclang-dev curl libz-dev
+sudo apt install -y git clang curl libssl-dev
 ```
 
 ### Arch Linux
@@ -49,7 +49,7 @@ Run these commands from a terminal:
 
 ```bash
 sudo dnf update
-sudo dnf install clang curl git
+sudo dnf install clang curl git openssl-devel
 ```
 
 ### macOS
@@ -67,7 +67,7 @@ Open the Terminal application and execute the following commands:
 # Install Homebrew if necessary https://brew.sh/
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-# Make sure Homebrew is up-to-date, install openssl and cmake
+# Make sure Homebrew is up-to-date, install openssl
 brew update
 brew install openssl
 ```
