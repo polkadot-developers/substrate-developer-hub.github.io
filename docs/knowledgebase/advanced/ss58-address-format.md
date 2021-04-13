@@ -2,21 +2,26 @@
 title: SS58 Address Format
 ---
 
-SS58 is a simple address format designed for Substrate based chains, primarily 
-inspired by the [Bitcoin Base58Check](https://en.bitcoin.it/wiki/Base58Check_encoding) format with a few alterations.
-Substrate developers are free to use the address format of their choice, but this serves as a robust default. 
-The purpose of this article is to outline existing solutions to validating a SS58 address.
+SS58 is a simple address format designed for Substrate based chains. There's no problem with using
+other address formats for a chain, but this serves as a robust default. It is heavily based on
+Bitcoin's Base-58-check format with a few alterations.
 
-## Solutions
-
-The basic idea of SS58 is that it is a base-58 encoded value that can identify a specific account on a Substrate
+The basic idea is a base-58 encoded value that can identify a specific account on the Substrate
 chain. Different chains have different means of identifying accounts. SS58 is designed to be
-extensible for this reason. For the living specification of the SS58 address, refer to the 
-[Substrate GitHub wiki](https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58)).
+extensible for this reason.
+
+The living specification for the SS58 address format can be found on the Substrate GitHub wiki:
+
+https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58)
+
+## Validating Addresses
+
+There are several ways to verify that a value is a valid SS58 address.
+
 ### Subkey
 
-One approach is to use the [Subkey `inspect`](https://github.com/paritytech/substrate/tree/master/bin/utils/subkey#inspecting-a-key) subcommand, 
-which accepts the seed phrase, a hex-encoded private key, or an SS58 address as the input
+You can use the [Subkey](https://substrate.dev/docs/en/knowledgebase/integrate/subkey) `inspect`
+subcommand, which accepts the seed phrase, a hex-encoded private key, or an SS58 address as the input
 URI. If the input is a valid address, it will return a list containing the corresponding public
 key (hex), account ID, and SS58 values.
 
@@ -24,61 +29,58 @@ Subkey assumes that an address is based on a public/private keypair. In the case
 address, it will return the 32 byte account ID. Not all addresses in Substrate-based networks are
 based on keys.
 
-> **Note:** If you input a valid SS58 value, Subkey will also return a network ID/version value
+> **NOTE:** If you input a valid SS58 value, Subkey will also return a network ID/version value
 > that indicates for which network the address has been encoded.
 
-Here's an example using `subkey inspect`:
-
 ```bash
-# A valid address.
 $ subkey inspect "12bzRJfh7arnnfPPUZHeJUaE62QLEwhK48QnH9LXeK2m1iZU"
 Public Key URI `12bzRJfh7arnnfPPUZHeJUaE62QLEwhK48QnH9LXeK2m1iZU` is account:
   Network ID/version: polkadot
   Public key (hex):   0x46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a
   Account ID:         0x46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a
   SS58 Address:       12bzRJfh7arnnfPPUZHeJUaE62QLEwhK48QnH9LXeK2m1iZU
+```
 
-# An invalid address.
+If you input an invalid address you will get:
+
+```bash
 $ subkey inspect "12bzRJfh7arnnfPPUZHeJUaE62QLEwhK48QnH9LXeK2m1iZUInvalidAddress"
 Invalid phrase/URI given
 ```
 
-
 ### Polkadot.js
 
-For JavaScript projects, the best solution is to use the functions for verifying an address 
-provided by the [Polkadot.js API](https://polkadot.js.org/docs/api/). 
-Here's what that would look like:
+For verifying an address in your JavaScript projects, you can utilize the functions built
+into the [Polkadot.js API](https://github.com/polkadot-js/api/).
 
 ```javascript
-// Import Polkadot.js API dependencies.
 const { decodeAddress, encodeAddress } = require("@polkadot/keyring");
 const { hexToU8a, isHex } = require("@polkadot/util");
 
-// Specify an address to test.
 const address = "<addressToTest>";
 
-// Check address.
-const isValidSubstrateAddress = () => {
+const isValidAddressPolkadotAddress = () => {
   try {
     encodeAddress(isHex(address) ? hexToU8a(address) : decodeAddress(address));
+
     return true;
   } catch (error) {
     return false;
   }
 };
 
-// Query result.
-const isValid = isValidSubstrateAddress();
+const isValid = isValidAddressPolkadotAddress();
+
 console.log(isValid);
 ```
 
-### Community Built
+### Solutions from the Community
 
-As for other solutions, here is a list of community maintained projects for developers 
-looking for address verification tools in different languages: 
+If you are looking to build custom solutions for validating addresses in the language of your choice,
+you will find a list of projects by our community below to use as a starting point:
 
-- [Python Substrate Interface](https://polkascan.github.io/py-substrate-interface/#substrateinterface.Keypair) - developed by Polkascan.
+- [Python Substrate Interface](https://github.com/polkascan/py-substrate-interface) - developed by Polkascan.
+  [Documentation](https://polkascan.github.io/py-substrate-interface/#substrateinterface.Keypair).
 
 - [Go Substrate RPC client](https://github.com/centrifuge/go-substrate-rpc-client) - developed by Centrifuge.
 
@@ -86,11 +88,6 @@ looking for address verification tools in different languages:
 
 - [.Net API](https://github.com/usetech-llc/polkadot_api_dotnet) - developed by Usetech.
 
-- [Go implemented utilities](https://github.com/itering/subscan-essentials/tree/master/util) - developed by Subscan.
+- [Go implemented utilities](https://github.com/itering/subscan-essentials) - developed by Subscan.
 
-
-## Learn more
-
-- [SS58 Transform tool](https://polkadot.subscan.io/tools/ss58_transform)
-- [Polkadot-js API on GitHub](https://github.com/polkadot-js/api)
-- [Subkey guide](docs/en/knowledgebase/integrate/subkey)
+- [SS58 Transform](https://polkadot.subscan.io/tools/ss58_transform) - to manually verify an address and convert between registered prefix values.
