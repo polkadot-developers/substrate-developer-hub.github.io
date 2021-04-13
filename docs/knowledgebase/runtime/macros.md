@@ -396,7 +396,7 @@ Other FRAME v2 macro attributes include:
 
 #### FRAME v1 vs. v2
 Things to note:
-- Using instantiable pallets with v2 requires a different approach than for v1. See the guide [here](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#example-for-pallet-without-instance) for more information on how that works.
+- Using instantiable pallets with v2 requires a different approach than for v1. See the guide [here](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#example-for-pallet-with-instance) for more information on how that works.
 
 - In v2, `pub(super)` is used to make things private to the pallet but accessible to the associated namespace. 
 
