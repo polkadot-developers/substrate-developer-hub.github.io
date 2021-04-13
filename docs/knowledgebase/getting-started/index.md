@@ -43,6 +43,15 @@ export OPENSSL_LIB_DIR="/usr/lib/openssl-1.0"
 export OPENSSL_INCLUDE_DIR="/usr/include/openssl-1.0"
 ```
 
+### Fedora
+
+Run these commands from a terminal:
+
+```bash
+sudo dnf update
+sudo dnf install automake clang clang-devel cmake curl gcc gcc-c++ git kernel-devel make openssl-devel pkgconf-pkg-config zlib-devel
+```
+
 ### macOS
 
 > NOTE: The Apple M1 ARM system on a chip is not very well supported yet by rust,
