@@ -49,7 +49,7 @@ Run these commands from a terminal:
 
 ```bash
 sudo dnf update
-sudo dnf install automake clang clang-devel cmake curl gcc gcc-c++ git kernel-devel make openssl-devel pkgconf-pkg-config zlib-devel
+sudo dnf install clang curl git
 ```
 
 ### macOS
