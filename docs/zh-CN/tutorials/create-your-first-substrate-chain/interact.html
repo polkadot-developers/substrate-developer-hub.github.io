@@ -81,7 +81,7 @@
 <p>Note the flags:</p>
 <ul>
 <li><code>--dev</code> this sets up a developer node <a href="../../knowledgebase/integrate/chain-spec">chain specification</a></li>
-<li><code>--tmp</code> this saves all active data for the node (keys, blockchain database, networking info, ...) and is deleted as soon as you properly terminate your node. So every time you start with this command, you will have a clean state to work from. If the node is killed, <code>/tmp</code> is cleaned automatically on the restart of your computer for linux based OSs, and these files can manually be removed if needed.</li>
+<li><code>--tmp</code> this saves all active data for the node (keys, blockchain database, networking info, ...) and is deleted as soon as you properly terminate your node (using <kbd>ctrl</kbd>+<kbd>c</kbd>). So every time you start with this command, you will have a clean state to work from. If the node is killed, <code>/tmp</code> is cleaned automatically on the restart of your computer for linux based OSs, and these files can manually be removed if needed.</li>
 </ul>
 <p>With this command, you should see something like this if your node is running successfully:</p>
 <pre><code class="hljs css language-bash">2021-03-16 10:56:51  Running <span class="hljs-keyword">in</span> --dev mode, RPC CORS has been disabled.
