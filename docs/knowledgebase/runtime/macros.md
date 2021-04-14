@@ -228,7 +228,7 @@ modifies its input (contrary to a derive macro) is:
 - **when a generic is replaced with a type**. For example, in `pallet::pallet` the inner types of the item in `pub struct Pallet<..>(_)` is replaced by `PhantomData`
 and in `pallet::storage`, the first generic `_` is replaced with a type that implements the `StorageInstance` trait.
 - **some item is changed**. For example, when `pallet::type_value` changes the function item into a struct and trait implementation.
-- **some docs are added when none are provided by the user.**
+- **some docs are added when none are provided by the user.** For example, if no documentation is provided the macro `pallet::pallet` will modify the input to add documentation above the item `struct Pallet<T>(_);`.
 
 ### #[pallet::config]
 
@@ -426,12 +426,12 @@ Things to note:
 - `RawEvent` is no longer used in v2, all instances of events are declared as `Event`. 
 
 Here's a brief comparative overview:
-- v2 leans more heavily on Rust to define types and uses crates by writing code within the constaints of the macro being used.
-- v1 relies on runtime engineers to write more code to declare traits and types.
+- v1 relies on runtime engineers to write more code to declare traits and types in a way that is closer to learning a DSL (Domain-specific Language). The way macro inputs are structured makes it more difficult to understand what the macro is doing and how to use it. 
+- v2 is more heavily based on Rust idioms to define types and uses FRAME crates by writing code within the constaints of the macro being used. If all macros were removed, the pallet would still compile as all macro inputs are correct Rust syntax, making it easier to understand where errors are coming from.
 
-The main difference is how concepts are declared to use the crates that make up FRAME. Both versions are just different ways to express 
-the logic and types declared inside a pallet, yet both serve the same purpose &mdash; which is to aggregate the logic that defines how the 
-runtime is implemented. Overall, the big improvements that v2 brings is better developer experience by removing the need to write extra code.
+> Overall, the big improvements that v2 brings is better developer experience by removing the need to write extra code. The main difference is how concepts are declared to use the [crates that make up FRAME](https://substrate.dev/docs/en/knowledgebase/runtime/frame). Both versions are just different ways to express 
+the logic and types declared inside a pallet. Yet, both serve the same purpose &mdash; which is to aggregate the logic that defines how the 
+runtime is implemented.
 
 ## Additional FRAME Macros
 ### construct_runtime!
