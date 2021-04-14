@@ -9,7 +9,7 @@ you to build a Substrate runtime by composing modules called "pallets". You can 
 pallets as individual pieces of logic that define what your blockchain can do! Substrate provides
 you with a number of pre-built pallets for use in FRAME-based runtimes.
 
-![Runtime Composition](assets/tutorials/build-a-dapp/frame-runtime.png)
+![Runtime Composition](assets/frame-runtime.png)
 
 To give some examples, FRAME includes:
 - a [Balances](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/)
@@ -61,7 +61,7 @@ in this template pallet useful. But for the purposes of really learning how a pa
 is constructed, **delete all contents of this file**.
 
 > The following sections will start _from scratch_ - assuming that you have cleared the
-> existing `pallet/template/src/lib.rs` file. 
+> existing `pallet/template/src/lib.rs` file.
 
 ## Write a Pallet from Scratch
 
@@ -114,13 +114,13 @@ use sp_std::vec::Vec;
 ```
 
 > **Critical**: the `no_std` feature is **required** for all pallets! This is because we are building a
-> _runtime_ module that _must_ compile to WASM, and therefore cannot depend on rust's `std` 
+> _runtime_ module that _must_ compile to WASM, and therefore cannot depend on rust's `std`
 > dependencies.
 
 Most of these imports are already available because they were used in the template pallet whose code
 we just deleted. However, `sp_std` is not available and we need to list it as a dependency.
 
-**Add** these lines to your `pallets/template/Cargo.toml` file under `[dependencies]` and 
+**Add** these lines to your `pallets/template/Cargo.toml` file under `[dependencies]` and
 `[features]` sections, as shown below:
 
 **`pallets/template/Cargo.toml`**
@@ -143,10 +143,10 @@ std = [
 ```
 
 > Notice here that all _runtime specific_ dependencies _must_ have default feature (meaning `std`)
-> disabled so we can compile the runtime to WASM. You can also learn more about why this is 
+> disabled so we can compile the runtime to WASM. You can also learn more about why this is
 > necessary in the [Add a Pallet](../add-a-pallet) tutorial.
 >
-> You _can_ use `std` features in non-runtime components like `mock.rs` and `tests.rs` using 
+> You _can_ use `std` features in non-runtime components like `mock.rs` and `tests.rs` using
 > `[dev-dependencies]` _ONLY_. Specifics and examples of this are is outside the scope of this
 > tutorial. Learn more about [substrate testing here](../../knowledgebase/runtime/tests).
 
