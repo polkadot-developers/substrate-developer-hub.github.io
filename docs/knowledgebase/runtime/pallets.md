@@ -115,7 +115,7 @@ pub mod pallet {
 // Define some logic that hould be executed
 // regularly in some context, for e.g. on_initialize.
 #[pallet::hooks]
-	impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
+	impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> { ... }
 
 // 7. Extrinsics
 // Functions that are callable from outside the runtime.
