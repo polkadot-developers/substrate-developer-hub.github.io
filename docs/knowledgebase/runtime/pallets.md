@@ -2,7 +2,7 @@
 title: Pallets
 ---
 
-The following documentation is written for technical audiences, who are familiar with the Rust programming
+The following documentation is written for technical audiences, familiar with the Rust programming
 language. It is a top-level entry point for FRAME runtime developement in Substrate. 
 
 > If you are just getting started with Substrate runtime development, we suggest you try
@@ -11,7 +11,12 @@ language. It is a top-level entry point for FRAME runtime developement in Substr
 
 ## What is a Pallet?
 
-Pallets are a special kind of Rust module from which Substrate runtimes can be composed. FRAME not only provides a library of commonly used Substrate pallets but also a framework to build custom domain-specific pallets, giving runtime engineers the flexibility to define their runtime's behaviour according to their target use case. The result: each pallet has its own discrete logic which can modify the features and functionality of your blockchain's state transition functions.
+Pallets are a special kind of Rust module made up of a set of types, trait implementations and functions 
+from which Substrate runtimes can be composed. FRAME not only 
+provides a library of commonly used Substrate pallets but also a framework to build custom domain-specific 
+pallets, giving runtime engineers the flexibility to define their runtime's behaviour according to their 
+target use case. The result: each pallet has its own discrete logic which can modify the features and 
+functionality of your blockchain's state transition functions.
 
 
 For example, the [Balances pallet](https://github.com/paritytech/substrate/tree/master/frame/balances), which is included in [FRAME](/knowledgebase/runtime/frame), defines cryptocurrency capabilities for your blockchain. More specifically, it

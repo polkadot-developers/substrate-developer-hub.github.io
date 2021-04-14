@@ -2,7 +2,9 @@
 title: FRAME
 ---
 
-The **Framework for Runtime Aggregation of Modularized Entities (FRAME)** is a set of modules and support libraries that simplify runtime development. In Substrate, these modules are called Pallets, each hosting domain-specific logic to include in a chain's runtime.
+The **Framework for Runtime Aggregation of Modularized Entities (FRAME)** is a set of modules and support libraries that 
+simplify runtime development. In Substrate, these modules are called Pallets, each hosting domain-specific logic to include 
+in a chain's runtime.
 
 FRAME also provides some helper modules to interact with important [Substrate Primitives](https://substrate.dev/rustdocs/v3.0.0/sc_service/index.html) that provide the
 interface to the core client.
