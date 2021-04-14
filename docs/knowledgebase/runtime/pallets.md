@@ -112,7 +112,7 @@ pub mod pallet {
 	pub enum Event<T: Config> { ... }
 
 // 6. Hooks
-// Define some logic that hould be executed
+// Define some logic that should be executed
 // regularly in some context, for e.g. on_initialize.
 #[pallet::hooks]
 	impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> { ... }
