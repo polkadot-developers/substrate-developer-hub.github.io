@@ -10,9 +10,7 @@ The basic idea is a base-58 encoded value that can identify a specific account o
 chain. Different chains have different means of identifying accounts. SS58 is designed to be
 extensible for this reason.
 
-The living specification for the SS58 address format can be found on the Substrate GitHub wiki:
-
-https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58)
+The living specification for the SS58 address format can be found on the [Substrate GitHub wiki](https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58)).
 
 ## Validating Addresses
 
@@ -29,37 +27,36 @@ Subkey assumes that an address is based on a public/private keypair. In the case
 address, it will return the 32 byte account ID. Not all addresses in Substrate-based networks are
 based on keys.
 
-> **NOTE:** If you input a valid SS58 value, Subkey will also return a network ID/version value
+> **Note:** If you input a valid SS58 value, Subkey will also return a network ID/version value
 > that indicates for which network the address has been encoded.
 
 ```bash
+# A valid address.
 $ subkey inspect "12bzRJfh7arnnfPPUZHeJUaE62QLEwhK48QnH9LXeK2m1iZU"
 Public Key URI `12bzRJfh7arnnfPPUZHeJUaE62QLEwhK48QnH9LXeK2m1iZU` is account:
   Network ID/version: polkadot
   Public key (hex):   0x46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a
   Account ID:         0x46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a
   SS58 Address:       12bzRJfh7arnnfPPUZHeJUaE62QLEwhK48QnH9LXeK2m1iZU
-```
 
-If you input an invalid address you will get:
-
-```bash
+# An invalid address.
 $ subkey inspect "12bzRJfh7arnnfPPUZHeJUaE62QLEwhK48QnH9LXeK2m1iZUInvalidAddress"
 Invalid phrase/URI given
-```
-
 ### Polkadot.js
 
 For verifying an address in your JavaScript projects, you can utilize the functions built
-into the [Polkadot.js API](https://github.com/polkadot-js/api/).
+into the [Polkadot.js API](https://polkadot.js.org/docs/api/).
 
 ```javascript
+// Import Polkadot.js API dependencies.
 const { decodeAddress, encodeAddress } = require("@polkadot/keyring");
 const { hexToU8a, isHex } = require("@polkadot/util");
 
+// Specify an address to test.
 const address = "<addressToTest>";
 
-const isValidAddressPolkadotAddress = () => {
+// Check address.
+const isValidSubstrateAddress = () => {
   try {
     encodeAddress(isHex(address) ? hexToU8a(address) : decodeAddress(address));
 
@@ -69,7 +66,8 @@ const isValidAddressPolkadotAddress = () => {
   }
 };
 
-const isValid = isValidAddressPolkadotAddress();
+// Query result.
+const isValid = isValidSubstrateAddress();
 
 console.log(isValid);
 ```
@@ -79,8 +77,7 @@ console.log(isValid);
 If you are looking to build custom solutions for validating addresses in the language of your choice,
 you will find a list of projects by our community below to use as a starting point:
 
-- [Python Substrate Interface](https://github.com/polkascan/py-substrate-interface) - developed by Polkascan.
-  [Documentation](https://polkascan.github.io/py-substrate-interface/#substrateinterface.Keypair).
+- [Python Substrate Interface](https://polkascan.github.io/py-substrate-interface/#substrateinterface.Keypair) - developed by Polkascan.
 
 - [Go Substrate RPC client](https://github.com/centrifuge/go-substrate-rpc-client) - developed by Centrifuge.
 
