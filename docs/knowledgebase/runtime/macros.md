@@ -23,7 +23,7 @@ There are four kinds of macro in Rust:
 Most Substrate runtime macros are defined using either **declarative macros** or **function-like macros**, with a recent adoption of 
 **attribute-like macros** in FRAME v2 pallets.
 
-> **Tips** to learn more about Substrate runtime macros:
+> **Tips to learn more about Substrate runtime macros**:
 > - read the [documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/index.html#macros) on commonly used macros in FRAME
 > - use [`cargo expand`](https://github.com/dtolnay/cargo-expand) to review a macro's expanded code and understand what's happening under the hood
 > - read more on [macro rules of expression pattern matching](https://danielkeep.github.io/tlborm/book/pim-README.html)
@@ -59,6 +59,28 @@ Here's a general overview of Substrate macros:
 > **Note**: Refer to `#Substrate dependencies` in the `Cargo.toml` file of the 
 [node template runtime](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/runtime/Cargo.toml#L21) 
 to see where these are put to use. 
+
+## Overview of FRAME Versioning
+Here's a comparative overview of FRAME v1 and v2:
+- v1 relies on runtime engineers to write more code to declare traits and types in a way that is closer to learning a DSL (Domain-specific Language). The way macro inputs are structured makes it more difficult to understand what the macro is doing and how to use it. 
+- v2 is more heavily based on Rust idioms to define types and uses FRAME crates by writing code within the constaints of the macro being used. If all macros were removed, the pallet would still compile as all macro inputs are correct Rust syntax, making it easier to understand where errors are coming from.
+
+> Overall, the big improvements that v2 brings is better developer experience by removing the need to write extra code. The main difference is how concepts are declared to use the [crates that make up FRAME](https://substrate.dev/docs/en/knowledgebase/runtime/frame). Both versions are just different ways to express 
+the logic and types declared inside a pallet. Yet, both serve the same purpose &mdash; which is to aggregate the logic that defines how the 
+runtime is implemented.
+
+**Things to note:**
+
+- v2 is backwards compatible with v1, meaning that any pallet declared using v1 can be declared using v2 without too much difficulty (see [upgrade guidelines](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#upgrade-guidelines) for more details). However, v1 will cease getting improvement features.
+
+- Using instantiable pallets with v2 requires a different approach than for v1. See the guide [here](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#example-for-pallet-with-instance) for more information on how that works.
+
+- In v2, items are defined inside a module, therefore `pub(super)` is used to make those items private but accessible to the `super` namespace (i.e. the crate root namespace). 
+
+- `RawEvent` is no longer used in v2, all instances of events are declared as `Event`. 
+
+- Use [subsee](https://github.com/ascjones/subsee) as a tool to query metadata. 
+
 
 ## FRAME v1 Declarative Macros
 ### decl_storage!
@@ -335,7 +357,7 @@ imple<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
 **When to Use**
 
 Required, to implement a pallet's dispatchables. Each dispatchable must:
-- define a weight with the #[pallet::weight($expr)] attribute
+- define a weight with the `#[pallet::weight($expr)]` attribute
 - have its first argument as `origin: OriginFor<T>`, 
 - use compact encoding for argument using #[pallet::compact]
 - return `DispatchResultWithPostInfo` or `DispatchResult`
@@ -398,7 +420,7 @@ To define some abstract storage inside runtime storage.
 - See [documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#storage-palletstorage-optional)
 - See Rust docs for [StorageMap](https://docs.rs/storage-map/0.1.2/storage_map/struct.StorageMap.html) and [HashMap syntax](https://doc.rust-lang.org/book/ch08-03-hash-maps.html)
 
-### Other
+### Other Attributes
 
 Other FRAME v2 macro attributes include:
 - [#[pallet::genesis_config]](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional)
@@ -407,31 +429,6 @@ Other FRAME v2 macro attributes include:
 - [#[pallet::inherent]](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#inherent-palletinherent-optional)
 - [#[pallet::validate_unsigned]](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#validate-unsigned-palletvalidate_unsigned-optional)
 - [#[pallet::origin]](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#origin-palletorigin-optional)
-
-#### FRAME v1 vs. v2
-Things to note:
-<<<<<<< HEAD
-- Using instantiable pallets with v2 requires a different approach than for v1. See the guide [here](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#example-for-pallet-with-instance) for more information on how that works.
-=======
->>>>>>> 3cd7b7e... Update based on feedback :tophat:
-
-- Using instantiable pallets with v2 requires a different approach than for v1. See the guide [here](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#example-for-pallet-with-instance) for more information on how that works.
-
-- In v2, items are defined inside a module, therefore `pub(super)` is used to make those items private but accessible to the `super` namespace (i.e. the crate root namespace). 
-
-- v2 is backwards compatible with v1, meaning that any pallet declared using v1 can be declared using v2 without too much difficulty (see [upgrade guidelines](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#upgrade-guidelines) for more details). However, v1 will cease getting improvement features.
-
-- Use [subsee](https://github.com/ascjones/subsee) as a tool to query metadata. 
-
-- `RawEvent` is no longer used in v2, all instances of events are declared as `Event`. 
-
-Here's a brief comparative overview:
-- v1 relies on runtime engineers to write more code to declare traits and types in a way that is closer to learning a DSL (Domain-specific Language). The way macro inputs are structured makes it more difficult to understand what the macro is doing and how to use it. 
-- v2 is more heavily based on Rust idioms to define types and uses FRAME crates by writing code within the constaints of the macro being used. If all macros were removed, the pallet would still compile as all macro inputs are correct Rust syntax, making it easier to understand where errors are coming from.
-
-> Overall, the big improvements that v2 brings is better developer experience by removing the need to write extra code. The main difference is how concepts are declared to use the [crates that make up FRAME](https://substrate.dev/docs/en/knowledgebase/runtime/frame). Both versions are just different ways to express 
-the logic and types declared inside a pallet. Yet, both serve the same purpose &mdash; which is to aggregate the logic that defines how the 
-runtime is implemented.
 
 ## Additional FRAME Macros
 ### construct_runtime!
@@ -542,7 +539,7 @@ This macro creates a `Call` enum type, implements various helper traits on `Even
 
 - [API Documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.impl_outer_dispatch.html)
 
-## Substrate Core Macros
+## Substrate System Library Macros
 ### impl_runtime_apis!
 
 **When to Use**
