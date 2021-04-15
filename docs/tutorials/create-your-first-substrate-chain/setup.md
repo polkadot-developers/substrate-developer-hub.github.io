@@ -37,9 +37,11 @@ Template, which serves as a good starting point for building on Substrate.
     # ^^ this will take a while!
     ```
 
+> **You should start building the node template _before_ moving on!**
+>
 > The time required for the compilation step depends on the hardware you're using.
 >
-> **You should start building the node template _before_ moving on!**
+> **Run into issues? Try the [troubleshooting tips](../../knowledgebase/getting-started/index#troubleshooting-substrate-builds)**
 
 ## Install the Front-End Template
 
@@ -64,3 +66,4 @@ git clone -b v3.0.0 --depth 1 https://github.com/substrate-developer-hub/substra
 cd substrate-front-end-template
 yarn install
 ```
+> **Run into issues? Try the [troubleshooting tips](../../knowledgebase/getting-started/index#troubleshooting-substrate-builds)**
