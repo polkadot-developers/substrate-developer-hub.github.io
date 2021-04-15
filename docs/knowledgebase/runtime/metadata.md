@@ -244,10 +244,10 @@ about the module's storage:
 }
 ```
 
-Every storage item that is defined in a pallet will have a corresponding metadata entry. For
-example, the `Account` item is generated from this in `frame-system`:
+Every storage item that is defined in a pallet will have a corresponding metadata entry. Metadata entries like these are generated from [macros](/docs/en/knowledgebase/runtime/macros) using associated types from the [`frame-system`](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/trait.Config.html) crate. For example:
 
 ```rust
+// In FRAME v1.
 decl_storage! {
     trait Store for Module<T: Config> as System {
         /// The full account information for a particlar account ID.
@@ -255,70 +255,80 @@ decl_storage! {
             map hasher(blake2_128_concat) T::AccountId => AccountInfo<T::Index, T::AccountData>;
     }
 }
+
+// In FRAME v2.
+#[pallet::config]
+pub trait Config: frame_system::Config {
+	#[pallet::constant] 
+	type Foo: Get<u32>;
+}
 ```
 
-Storage metadata provides blockchain clients with the information that is required to query
+[Storage metadata](https://substrate.dev/rustdocs/v3.0.0/frame_metadata/struct.StorageMetadata.html) provides blockchain clients with the information that is required to query
 [the JSON-RPC's storage function](https://substrate.dev/rustdocs/v3.0.0/sc_rpc/state/struct.StateClient.html#method.storage)
 to get information for a specific storage item.
 
-##### Calls
+##### Dispatchable Calls
 
-Module metadata includes information about the runtime calls that are defined with the
-`decl_module!` macro. For each call, the metadata will include:
+Metadata for dispatchable calls includes information about the runtime calls and are defined by the
+`decl_module!` (FRAME v1) or `#[pallet]` (FRAME v2) macros. For each call, the metadata includes:
 
 - `name`: Name of the function in the module.
 - `args`: Arguments in function definition. Includes the name and type of each argument.
-- `Documentation`: Documentation of the function.
+- `documentation`: Documentation of the function.
 
-For example, this comes from the Timestamp pallet:
+For example:
 
 ```rust
+// In FRAME v1.
 decl_module! {
     pub struct Module<T: Config> for enum Call where origin: T::Origin {
-        // ... snip
-
-        /// Set the current time.
+  
+        /// This function does some thing.      
         ///
-        /// This call should be invoked exactly once per block. It will panic at the finalization
-        /// phase, if this call hasn't been invoked by that time.
-        ///
-        /// The timestamp should be greater than the previous one by the amount specified by
-        /// `MinimumPeriod`.
-        ///
-        /// The dispatch origin for this call must be `Inherent`.
-        #[weight = (
-            T::DbWeight::get().reads_writes(2, 1) + 9_000_000,
-            DispatchClass::Mandatory
-        )]
-        fn set(origin, #[compact] now: T::Moment) {
+        /// All documentation details go here.
+        fn do_something(origin, #[compact] thing: T::Something) {
             // ... snip
         }
     }
 }
+
+// In FRAME v2.
+#[pallet::call]
+	impl<T: Config> Pallet<T> {
+
+		/// This function does some thing.      
+    ///
+    /// All documentation details go here.
+		pub(super) fn do_something(
+            origin: OriginFor<T>, 
+            #[pallet::compact] thing: T::Something
+            ) -> DispatchResultWithPostInfo {
+      // ... snip
+    }
+  }
 ```
 
+```rust
+
+
+```
 This materializes in the metadata as follows:
 
 ```json
 "calls": [
   {
-    "name": "set",
+    "name": "do_something",
     "args": [
       {
-        "name": "now",
-        "ty": "Compact<T::Moment>"
+        "name": "thing",
+        "ty": "Compact<T::Something>"
       }
     ],
     "documentation": [
-      " Set the current time.",
+      " This function does some thing.",
       "",
-      " This call should be invoked exactly once per block. It will panic at the finalization",
-      " phase, if this call hasn't been invoked by that time.",
-      "",
-      " The timestamp should be greater than the previous one by the amount specified by",
-      " `MinimumPeriod`.",
-      "",
-      " The dispatch origin for this call must be `Inherent`."
+      " All documentation details go here."
     ]
   }
 ],
@@ -329,16 +339,29 @@ This materializes in the metadata as follows:
 This metadata snippet is generated from this declaration in `frame-system`:
 
 ```rust
+//In FRAME v1.
 decl_event!(
     /// Event for the System module
     pub enum Event<T> where AccountId = <T as Config>::AccountId {
         /// An extrinsic completed successfully.
-        ExtrinsicSuccess(DispatchInfo),
+        ExtrinsicSuccess(DispatchInfo, T::AccountId),
         /// An extrinsic failed.
         ExtrinsicFailed(DispatchError, DispatchInfo),
         // ... snip
     }
 )
+
+// In FRAME v2.
+#[pallet::event]
+	#[pallet::metadata(T::AccountId = "AccountId")]
+	pub enum Event<T: Config> {
+    /// An extrinsic completed successfully.
+		ExtrinsicSuccess(DispatchInfo, T::AccountId),
+    /// An extrinsic failed.
+		ExtrinsicFailed(DispatchError, DispatchInfo),
+    // ... snip
+	}
+
 ```
 
 Substrate's metadata would describe these events as follows:
@@ -348,7 +371,8 @@ Substrate's metadata would describe these events as follows:
   {
     "name": "ExtrinsicSuccess",
     "args": [
-      "DispatchInfo"
+      "DispatchInfo",
+      "AccountId"
     ],
     "documentation": [
       " An extrinsic completed successfully."
@@ -369,19 +393,30 @@ Substrate's metadata would describe these events as follows:
 
 ##### Constants
 
-The metadata will include any module constants. From `pallet-babe`:
+The metadata will include any module constants. For example in [`pallet-babe`](https://github.com/paritytech/substrate/blob/master/frame/babe/):
 
 ```rust
+// In FRAME v1.
 decl_module! {
-    /// The BABE Pallet
     pub struct Module<T: Config> for enum Call where origin: T::Origin {
-        /// The number of **slots** that an epoch takes. We couple sessions to
-        /// epochs, i.e. we start a new session once the new epoch begins.
+        /// The amount of time, in slots, that each epoch should last.
+        /// NOTE: Currently it is not possible to change the epoch duration after
+        /// the chain has started. Attempting to do so will brick block production.
         const EpochDuration: u64 = T::EpochDuration::get();
 
         // ... snip
     }
 }
+
+// In FRAME v2.
+#[pallet::config]
+	#[pallet::disable_frame_system_supertrait_check]
+	pub trait Config: pallet_timestamp::Config {
+		/// The amount of time, in slots, that each epoch should last.
+		/// NOTE: Currently it is not possible to change the epoch duration after
+		/// the chain has started. Attempting to do so will brick block production.
+		#[pallet::constant]
+		type EpochDuration: Get<u64>;
 ```
 
 The metadata for this constant looks like this:
@@ -393,11 +428,11 @@ The metadata for this constant looks like this:
     "type": "u64",
     "value": "0x6009000000000000",
     "documentation": [
-      " The number of **slots** that an epoch takes. We couple sessions to",
-      " epochs, i.e. we start a new session once the new epoch begins."
+      " The amount of time, in slots, that each epoch should last.",
+      " NOTE: Currently it is not possible to change the epoch duration after",
+      "the chain has started. Attempting to do so will brick block production."
     ]
   },
-  // ...
 ]
 ```
 
@@ -413,10 +448,11 @@ Where `EPOCH_DURATION_IN_BLOCKS` is a constant defined in `runtime/src/constants
 
 ##### Errors
 
-Metadata will pull all the possible runtime errors from `decl_error!`. For example, from
+Metadata will pull all the possible runtime errors from `decl_error!` (FRAME v1) or `#[pallet::error]` (FRAME v2). For example, from
 `frame-system`:
 
 ```rust
+//In FRAME v1.
 decl_error! {
     /// Error for the system module
     pub enum Error for Module<T: Config> {
@@ -426,9 +462,18 @@ decl_error! {
         // ... snip
     }
 }
+
+//In FRAME v2.
+#[pallet::error]
+pub enum Error<T> {
+        /// The name of specification does not match between the current runtime
+        /// and the new runtime.
+        InvalidSpecName,
+        // ... snip
+    }
 ```
 
-This will expose the following metadata:
+Both code snips will expose the following metadata:
 
 ```json
 "errors": [
@@ -445,7 +490,7 @@ This will expose the following metadata:
 
 These are errors that could occur during the submission or execution of an extrinsic. In this case,
 the FRAME System pallet is declaring that it may raise the
-[the `InvalidSpecName` error](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Error.html#variant.InvalidSpecName).
+the [`InvalidSpecName` error](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Error.html#variant.InvalidSpecName).
 
 ## Next Steps
 
@@ -464,3 +509,4 @@ the FRAME System pallet is declaring that it may raise the
 ### References
 
 - [Metadata](https://substrate.dev/rustdocs/v3.0.0/frame_metadata/index.html)
+- [FRAME v2 macro documentation](https://crates.parity.io/frame_support/attr.pallet.html)
