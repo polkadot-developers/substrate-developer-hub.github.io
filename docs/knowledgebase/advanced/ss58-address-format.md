@@ -42,6 +42,8 @@ Public Key URI `12bzRJfh7arnnfPPUZHeJUaE62QLEwhK48QnH9LXeK2m1iZU` is account:
 # An invalid address.
 $ subkey inspect "12bzRJfh7arnnfPPUZHeJUaE62QLEwhK48QnH9LXeK2m1iZUInvalidAddress"
 Invalid phrase/URI given
+```
+
 ### Polkadot.js
 
 For verifying an address in your JavaScript projects, you can utilize the functions built
