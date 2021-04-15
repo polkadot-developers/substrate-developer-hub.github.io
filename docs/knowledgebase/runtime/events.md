@@ -10,30 +10,48 @@ when those events are emitted.
 
 ## Declaring an Event
 
-Runtime events are created with the `decl_event!` macro.
+Runtime events are created with the `decl_event!` macro (FRAME v1) or the `#[pallet::event]` macro (in FRAME v2).
 
 ```rust
+// In FRAME v1.
 decl_event!(
-	pub enum Event<T> where AccountId = <T as Config>::AccountId {
+	pub enum Event<T: Config> {
 		/// Set a value.
-		ValueSet(u32, AccountId),
+		ValueSet(u32, T::AccountId),
 	}
 );
+
+// In FRAME v2.
+#[pallet::event]
+#[pallet::metadata(u32 = "Metadata")]
+pub enum Event<T: Config> {
+	/// Set a value.
+	ValueSet(u32, T::AccountId),
+}
 ```
 
 The `Event` enum needs to be declared in your runtime's configuration trait.
 
 ```rust
+// In FRAME v1.
 pub trait Config: system::Config {
+	/// The overarching event type.
 	type Event: From<Event<Self>> + Into<<Self as system::Config>::Event>;
 }
+
+// In FRAME v2.
+#[pallet::config]
+	pub trait Config: frame_system::Config {
+		/// The overarching event type.
+		type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+	}
 ```
 
 ## Exposing Events to Your Runtime
 
-The events for your module need to be exposed to your Substrate's runtime (`/runtime/src/lib.rs`).
+You pallet's events need to be exposed to your node's runtime (`/runtime/src/lib.rs`).
 
-First you need to implement the Event type in your module's configuration trait:
+First, you need to implement the `Event` type in your module's configuration trait:
 
 ```rust
 // runtime/src/lib.rs
@@ -64,8 +82,7 @@ construct_runtime!(
 
 ## Depositing an Event
 
-Substrate provides a default implementation of how to deposit an event that is defined in the
-`decl_module!` macro.
+Substrate provides a default implementation of how to deposit an event using macros, which varies slightly depending on [FRAME version adopted](/docs/en/knowledgebase/runtime/macros#overview-of-frame-versioning). In FRAME v1:
 
 ```rust
 decl_module! {
@@ -81,6 +98,31 @@ decl_module! {
 	}
 }
 ```
+In FRAME v2, depositing an event adopts a slightly different structure:
+
+```rust
+// 1. Use the `generate_deposit` attribute when declaring the Events enum.
+#[pallet::event]
+	#[pallet::generate_deposit(pub(super) fn deposit_event)] // <------ here ----
+	#[pallet::metadata(...)]
+	pub enum Event<T: Config> {
+		// --snip--
+	}
+
+// 2. Use `deposit_event` inside the dispatchable function
+#[pallet::call]
+	impl<T: Config> Pallet<T> {
+		#[pallet::weight(1_000)]
+		pub(super) fn set_value(
+			origin: OriginFor<T>,
+			value: u64,
+		) -> DispatchResultWithPostInfo {
+			let sender = ensure_signed(origin)?;
+			// --snip--
+			Self::deposit_event(RawEvent::ValueSet(value, sender));
+		}
+	}
+```
 
 The default behavior of this function is to call
 [`deposit_event`](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/struct.Pallet.html#method.deposit_event)
@@ -91,7 +133,7 @@ beginning of a new block, the System module automatically removes all events tha
 the previous block.
 
 Events deposited using the default implementation will be directly supported by downstream libraries
-like the [Polkadot-JS api](../integrate/polkadot-js), however you can implement your own
+like the [Polkadot-JS API](../integrate/polkadot-js), however you can implement your own
 `deposit_event` function if you want to handle events differently.
 
 ## Supported Types
@@ -106,7 +148,7 @@ those types as shown in the example above.
 
 The Substrate RPC does not directly expose an endpoint for querying events. If you used the default
 implementation, you can see the list of events for the current block by querying the storage of the
-System module. Otherwise, the [Polkadot-JS api](../integrate/polkadot-js) supports a WebSocket
+System module. Otherwise, the [Polkadot-JS API](../integrate/polkadot-js) supports a WebSocket
 subscription on runtime events.
 
 ## Next Steps
@@ -114,7 +156,7 @@ subscription on runtime events.
 ### Learn More
 
 - Learn more about the [macros](macros) used in Substrate runtime development.
-- Learn more about using the [Polkadot JS api](../integrate/polkadot-js).
+- Learn more about using the [Polkadot-JS API](../integrate/polkadot-js).
 
 ### Examples
 
@@ -128,3 +170,4 @@ runtime events are used:
 - [`decl_event!` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_event.html)
 - [`decl_module!` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_module.html)
 - [`construct_runtime!` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.construct_runtime.html)
+- [`#[frame_support::pallet]` macro](https://crates.parity.io/frame_support/attr.pallet.html)
