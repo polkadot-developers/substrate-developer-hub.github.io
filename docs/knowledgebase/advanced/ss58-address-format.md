@@ -70,7 +70,6 @@ const isValidSubstrateAddress = () => {
 
 // Query result.
 const isValid = isValidSubstrateAddress();
-
 console.log(isValid);
 ```
 
