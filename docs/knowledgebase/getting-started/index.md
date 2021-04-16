@@ -106,7 +106,7 @@ development is to follow the steps in our first tutorial:
 
 ## Troubleshooting Substrate Builds
 
-Sometimes you con't get the [substrate developer hub](https://github.com/substrate-developer-hub/) templates to compile out of
+Sometimes you can't get the [substrate developer hub](https://github.com/substrate-developer-hub/) templates to compile out of
 the box. Here is some tips to help you work through that.
 
 ### Rust Configuration Check
