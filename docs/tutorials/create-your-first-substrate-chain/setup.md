@@ -66,4 +66,3 @@ git clone -b v3.0.0 --depth 1 https://github.com/substrate-developer-hub/substra
 cd substrate-front-end-template
 yarn install
 ```
-> **Run into issues? Try the [troubleshooting tips](../../knowledgebase/getting-started/index#troubleshooting-substrate-builds)**
