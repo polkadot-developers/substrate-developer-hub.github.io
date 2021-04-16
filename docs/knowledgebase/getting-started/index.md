@@ -117,7 +117,9 @@ To see what Rust toolchain you are presently using, run:
 rustup show
 ```
 
-```bash
+This will show something like this (Ubuntu example) output:
+
+```text
 Default host: x86_64-unknown-linux-gnu
 rustup home:  /home/user/.rustup
 
@@ -141,7 +143,7 @@ stable-x86_64-unknown-linux-gnu (default)
 rustc 1.50.0 (cb75ad5db 2021-02-10)
 ```
 
-As you can see in the Ubuntu based example above, the default toolchain is stable, and the
+As you can see above, the default toolchain is stable, and the
 `nightly-x86_64-unknown-linux-gnu` toolchain as well as its `wasm32-unknown-unknown` target is installed.
 You also see that `nightly-2020-10-06-x86_64-unknown-linux-gnu` is installed, but is not used unless explicitly defined as illustrated in the [specify your nightly version](#specifying-nightly-version)
 section.
