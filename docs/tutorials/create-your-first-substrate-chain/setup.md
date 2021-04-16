@@ -41,7 +41,7 @@ Template, which serves as a good starting point for building on Substrate.
 >
 > The time required for the compilation step depends on the hardware you're using.
 >
-> **Run into issues? Try the [troubleshooting tips](../../knowledgebase/getting-started/index#troubleshooting-substrate-builds)**
+> **Run into issues? Try the [troubleshooting tips](../../knowledgebase/getting-started/index#troubleshooting-substrate-builds).**
 
 ## Install the Front-End Template
 
