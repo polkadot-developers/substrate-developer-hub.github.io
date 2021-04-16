@@ -142,7 +142,7 @@ rustc 1.50.0 (cb75ad5db 2021-02-10)
 ```
 
 As you can see in the Ubuntu based example above, the default toolchain is stable, and the
-`nightly-x86_64-unknown-linux-gnu` toolchain as well as `wasm32-unknown-unknown` target is installed.
+`nightly-x86_64-unknown-linux-gnu` toolchain as well as its `wasm32-unknown-unknown` target is installed.
 You also see that `nightly-2020-10-06-x86_64-unknown-linux-gnu` is installed, but is not used unless explicitly defined as illustrated in the [specify your nightly version](#specifying-nightly-version)
 section.
 
