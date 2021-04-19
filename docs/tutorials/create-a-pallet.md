@@ -159,7 +159,7 @@ own to this `Cargo.toml` file.
 
 ## Add Your Pallet to Your Node
 
-With our pallet now compiling and passing it's tests, we're ready to add it to our node.
+With our pallet now compiling and passing its tests, we're ready to add it to our node.
 
 > If you aren't familiar with including and using other crates, refer to
 > [the Cargo book](https://doc.rust-lang.org/cargo/guide/creating-a-new-project.html) for an
@@ -193,7 +193,7 @@ implementation with our `test_pallet` and add it in our `construct_runtime!` mac
 
 ```rust
 // add this line (or modify all of these to your named pallet 
-// corresponding to `test-pallet` in it's cargo.toml file)
+// corresponding to `test-pallet` in its cargo.toml file)
 pub use test_pallet;
 
 // --snip--
@@ -219,7 +219,7 @@ construct_runtime!(
 
 ## Run Your Node
 
-At this point you have the pallet packaged up as it's own crate and included in your node's runtime.
+At this point you have the pallet packaged up in its own crate and included in your node's runtime.
 
 Make sure you're back in the node template's root directory, then compile the node and start in
 development mode with the following command:
@@ -236,7 +236,7 @@ to confirm that the pallet is working as expected.
 > **Note:** You can also manually set the node URL in Polkadot-JS Apps by navigating to the
 > **Settings** tab, and have the **remote node/endpoint to connect to** set to **Local Node**.
 
-Congrats! You have created and integrated a new pallet inside it's own create for your node! If you want to see a solution to get to this step [here is one to compare to](https://github.com/substrate-developer-hub/substrate-node-template/commit/eee6f630ad3305caa7d53819aae5db4a31ffe205) using FRAME v1 macros.
+Congrats! You have created and integrated a new pallet inside its own crate for your node! If you want to see a solution to get to this step [here is one to compare to](https://github.com/substrate-developer-hub/substrate-node-template/commit/eee6f630ad3305caa7d53819aae5db4a31ffe205) using FRAME v1 macros.
 
 ## Publish Your Pallet
 
