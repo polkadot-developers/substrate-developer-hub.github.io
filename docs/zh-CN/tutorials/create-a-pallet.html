@@ -98,7 +98,7 @@ SKIP_WASM_BUILD=1 cargo check
 </code></pre>
 <p>当您在此模块中自定义逻辑时，您可能会在 <code>Cargo.toml</code> 文件中添加依赖。</p>
 <h2><a class="anchor" aria-hidden="true" id="将模块添加到节点中"></a><a href="#将模块添加到节点中" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>将模块添加到节点中</h2>
-<p>编译模块并测试通过后，下一步我们会将它添加到我们的节点中。</p>
+<p>With our pallet now compiling and passing its tests, we're ready to add it to our node.</p>
 <blockquote>
 <p>If you aren't familiar with including and using other crates, refer to <a href="https://doc.rust-lang.org/cargo/guide/creating-a-new-project.html">the Cargo book</a> for an in-depth explanation.</p>
 </blockquote>
@@ -121,7 +121,7 @@ SKIP_WASM_BUILD=1 cargo check
 <p>Next we will update <code>runtime/src/lib.rs</code> to actually use our new runtime pallet, by adding a trait implementation with our <code>test_pallet</code> and add it in our <code>construct_runtime!</code> macro. Add the following code blocks:</p>
 <p><strong><code>runtime/src/lib.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token comment">// add this line (or modify all of these to your named pallet </span>
-<span class="token comment">// corresponding to `test-pallet` in it's cargo.toml file)</span>
+<span class="token comment">// corresponding to `test-pallet` in its cargo.toml file)</span>
 <span class="token keyword">pub</span> <span class="token keyword">use</span> test_pallet<span class="token punctuation">;</span>
 
 <span class="token comment">// --snip--</span>
@@ -145,7 +145,7 @@ SKIP_WASM_BUILD=1 cargo check
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="运行您的节点"></a><a href="#运行您的节点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>运行您的节点</h2>
-<p>此时您已经将模块打包到自己的 crate 中，并在节点的 Runtime 中引入。</p>
+<p>At this point you have the pallet packaged up in its own crate and included in your node's runtime.</p>
 <p>请确保您回到节点模板的根目录，然后编译节点，然后在开发模式中使用以下命令启动：</p>
 <pre><code class="hljs css language-bash">cargo build --release
 ./target/release/node-template --tmp --dev
@@ -154,7 +154,7 @@ SKIP_WASM_BUILD=1 cargo check
 <blockquote>
 <p><strong>Note:</strong> You can also manually set the node URL in Polkadot-JS Apps by navigating to the <strong>Settings</strong> tab, and have the <strong>remote node/endpoint to connect to</strong> set to <strong>Local Node</strong>.</p>
 </blockquote>
-<p>Congrats! You have created and integrated a new pallet inside it's own create for your node! If you want to see a solution to get to this step <a href="https://github.com/substrate-developer-hub/substrate-node-template/commit/eee6f630ad3305caa7d53819aae5db4a31ffe205">here is one to compare to</a> using FRAME v1 macros.</p>
+<p>Congrats! You have created and integrated a new pallet inside its own crate for your node! If you want to see a solution to get to this step <a href="https://github.com/substrate-developer-hub/substrate-node-template/commit/eee6f630ad3305caa7d53819aae5db4a31ffe205">here is one to compare to</a> using FRAME v1 macros.</p>
 <h2><a class="anchor" aria-hidden="true" id="发布您的模块"></a><a href="#发布您的模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>发布您的模块</h2>
 <p>Once your pallet is no longer in test phase, you should consider publishing it to GitHub or crates.io.</p>
 <h3><a class="anchor" aria-hidden="true" id="publishing-on-github"></a><a href="#publishing-on-github" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Publishing on GitHub</h3>
