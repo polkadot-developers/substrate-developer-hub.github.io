@@ -49,7 +49,7 @@ pub trait Config: system::Config {
 
 ## Exposing Events to Your Runtime
 
-You pallet's events need to be exposed to your node's runtime (`/runtime/src/lib.rs`).
+Your pallet's events need to be exposed to your node's runtime (`/runtime/src/lib.rs`).
 
 First, you need to implement the `Event` type in your module's configuration trait:
 
