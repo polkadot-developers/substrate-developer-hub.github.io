@@ -2,26 +2,19 @@
 title: Installation
 ---
 
-This page will guide you through the **3 steps** needed to prepare a computer for Substrate development.
+This page will guide you through the **2 steps** needed to prepare a computer for **Substrate** development.
 Since Substrate is built with [the Rust programming language](https://www.rust-lang.org/), the first
 thing you will need to do is prepare the computer for Rust development - these steps will vary based
 on the computer's operating system. Once Rust is configured, you will use its toolchains to interact
 with Rust projects; the commands for Rust's toolchains will be the same for all supported,
 Unix-based operating systems.
 
-## 1.a Windows
-
-> NOTE: Native development of Substrate is _not_ very well supported! It is _highly_ recommend to
-> use [Windows Subsystem Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (WSL)
-> and follow the instructions for [Ubuntu/Debian](#ubuntudebian).
-
-Please refer to the separate [guide for native Windows development](windows-users).
-
-## 1.b Unix-Based Operating Systems
+## 1. Build Dependencies 
 
 Substrate development is easiest on Unix-based operating systems like macOS or Linux. The examples
 in the Substrate [Tutorials](../../../../tutorials) and [Recipes](https://substrate.dev/recipes/)
 use Unix-style terminals to demonstrate how to interact with Substrate from the command line.
+
 
 ### Ubuntu/Debian
 
@@ -38,9 +31,7 @@ sudo apt install -y git clang curl libssl-dev
 Run these commands from a terminal:
 
 ```bash
-pacman -Syu --needed --noconfirm gcc openssl-1.0 pkgconf git clang
-export OPENSSL_LIB_DIR="/usr/lib/openssl-1.0"
-export OPENSSL_INCLUDE_DIR="/usr/include/openssl-1.0"
+pacman -Syu --needed --noconfirm curl git clang
 ```
 
 ### Fedora
@@ -71,6 +62,13 @@ Open the Terminal application and execute the following commands:
 brew update
 brew install openssl
 ```
+### Windows 
+
+> **Note:** Native development of Substrate is _not_ very well supported! It is _highly_ recommend to
+> use [Windows Subsystem Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (WSL)
+> and follow the instructions for [Ubuntu/Debian](#ubuntudebian).
+
+Please refer to the separate [guide for native Windows development](windows-users).
 
 ## 2. Rust Developer Environment
 
@@ -84,11 +82,71 @@ curl https://sh.rustup.rs -sSf | sh
 source ~/.cargo/env
 ```
 
-Configure the Rust toolchain to default to the latest stable version:
+Configure the Rust toolchain to default to the latest stable version, add nightly and the nightly wasm target:
 
 ```bash
 rustup default stable
+rustup update
+rustup update nightly
+rustup target add wasm32-unknown-unknown --toolchain nightly
 ```
+
+## Test Your Set-Up!
+
+Now the best way to ensure that you have successfully prepared a computer for Substrate
+development is to follow the steps in our first tutorial:
+
+**\> [Create Your First Substrate Chain](../../tutorials/create-your-first-substrate-chain/) <**
+
+--- 
+
+> **For more details on _why_ these dependancies are used, and for *troubleshooting* errors building the template, read on.**
+
+---
+
+## Troubleshooting Substrate Builds
+
+Sometimes you can't get the [substrate developer hub](https://github.com/substrate-developer-hub/) templates to compile out of
+the box. Here are some tips to help you work through that.
+
+### Rust Configuration Check
+
+To see what Rust toolchain you are presently using, run:
+
+```bash
+rustup show
+```
+
+This will show something like this (Ubuntu example) output:
+
+```text
+Default host: x86_64-unknown-linux-gnu
+rustup home:  /home/user/.rustup
+
+installed toolchains
+--------------------
+
+stable-x86_64-unknown-linux-gnu (default)
+nightly-2020-10-06-x86_64-unknown-linux-gnu
+nightly-x86_64-unknown-linux-gnu
+
+installed targets for active toolchain
+--------------------------------------
+
+wasm32-unknown-unknown
+x86_64-unknown-linux-gnu
+
+active toolchain
+----------------
+
+stable-x86_64-unknown-linux-gnu (default)
+rustc 1.50.0 (cb75ad5db 2021-02-10)
+```
+
+As you can see above, the default toolchain is stable, and the
+`nightly-x86_64-unknown-linux-gnu` toolchain as well as its `wasm32-unknown-unknown` target is installed.
+You also see that `nightly-2020-10-06-x86_64-unknown-linux-gnu` is installed, but is not used unless explicitly defined as illustrated in the [specify your nightly version](#specifying-nightly-version)
+section.
 
 ### WebAssembly Compilation
 
@@ -166,46 +224,3 @@ rustup uninstall nightly
 rustup install nightly-<yyyy-MM-dd>
 rustup target add wasm32-unknown-unknown --toolchain nightly-<yyyy-MM-dd>
 ```
-
-### Rust Configuration Check
-
-To see what Rust toolchain you are presently using, run:
-
-```bash
-rustup show
-```
-
-```bash
-Default host: x86_64-unknown-linux-gnu
-rustup home:  /home/user/.rustup
-
-installed toolchains
---------------------
-
-stable-x86_64-unknown-linux-gnu (default)
-nightly-2020-10-06-x86_64-unknown-linux-gnu
-nightly-x86_64-unknown-linux-gnu
-
-installed targets for active toolchain
---------------------------------------
-
-wasm32-unknown-unknown
-x86_64-unknown-linux-gnu
-
-active toolchain
-----------------
-
-stable-x86_64-unknown-linux-gnu (default)
-rustc 1.50.0 (cb75ad5db 2021-02-10)
-```
-
-As you can see in the Ubuntu based example above, the default toolchain is stable, and the
-`nightly-x86_64-unknown-linux-gnu` toolchain as well as `wasm32-unknown-unknown` target is installed.
-You also see that `nightly-2020-10-06-x86_64-unknown-linux-gnu` is installed, but is not used unless explicitly defined as illustrated in the [specify your nightly version](#specifying-nightly-version)
-section.
-
-## 3. Test Your Set-Up
-
-Now The best way to ensure that you have successfully prepared a computer for Substrate
-development is to follow the steps in our first tutorial:
-### \> [Create Your First Substrate Chain](../../tutorials/create-your-first-substrate-chain/) <
