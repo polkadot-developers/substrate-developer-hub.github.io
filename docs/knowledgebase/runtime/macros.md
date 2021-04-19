@@ -367,7 +367,7 @@ Required, to implement a pallet's dispatchables. Each dispatchable must:
 Similar to `decl_module`, it allows to create dispatchable functions which will generate associated items from the `impl` code blocks. In other words, it aggregates all dispatchable logic using the [`Call` enum](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Call.html) which will aggregate all dispatchable calls into a single runtime call.
 
 **Docs**
-- See the [documentation](https://crates.parity.io/frame_support/attr.pallet.html#call-palletcall-mandatory)
+- See the [documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#call-palletcall-mandatory)
 
 ### #[pallet::error]
 
