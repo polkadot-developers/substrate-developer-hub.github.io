@@ -312,7 +312,7 @@ impl<T: Config> Pallet<T> {
 
 **When to Use**
 
-Required.
+Required to declare the pallet struct place holder, to be later used by `construct_runtime`.
 
 **What it Does**
 
@@ -333,7 +333,7 @@ pub struct Pallet<T>(PhantomData<T>);
 
 **When to Use**
 
-Required for runtime hooks.
+Required for declaring pallet hooks.
 
 **What it Does**
 
@@ -377,7 +377,7 @@ Optionally, to define errors types from the pallet's dispatchables.
 
 **What it Does**
 
-Puts error types into metadata.
+Puts error variants documentation into metadata.
 
 **Docs**
 - See [documentation](https://crates.parity.io/frame_support/attr.pallet.html#error-palleterror-optional)
@@ -391,7 +391,7 @@ Optionally, to define a pallet's event types.
 
 **What it Does**
 
-It is similar to errors but it holds more types. They generate the metadata of the event and add_derive. It uses the `#[pallet::metadata(..)]` attribute to define what metadata to put from the events.
+It is similar to errors but it can holds more information. They generate the metadata of the event and add_derive. It uses the `#[pallet::metadata(..)]` attribute to define what metadata to put from the events.
 
 For example: 
 ```rust
