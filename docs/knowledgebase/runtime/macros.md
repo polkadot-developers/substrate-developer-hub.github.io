@@ -37,14 +37,14 @@ Developers who want to know about the implementation details are encouraged to f
 Substrate Primitives and FRAME both rely on a collection of various types of macros. The following sections will go over each in more detail. 
 Here's a general overview of Substrate macros:
 
-**Macros in the FRAME [Support Library](./docs/en/knowledgebase/runtime/frame#support-library):**
+**Macros in the FRAME [Support Library](./frame#support-library):**
 - in `frame_support`: 
   - [function-like](https://substrate.dev/rustdocs/v3.0.0/frame_support/index.html#macros) macros 
   - [derive](https://substrate.dev/rustdocs/v3.0.0/frame_support/index.html#derives) macros 
   - [attribute](https://substrate.dev/rustdocs/v3.0.0/frame_support/index.html#attributes) macros
 
 
-**Macros in the Substrate [System Library](./knowledgebase/runtime/frame#system-library):**
+**Macros in the Substrate [System Library](./frame#system-library):**
 - in `sp_core`: 
   - [function-like macros](https://substrate.dev/rustdocs/v3.0.0/sp_core/index.html#macros) macros 
   - [derive `RuntimeDebug`](https://substrate.dev/rustdocs/v3.0.0/sp_core/index.html#derives) macro
