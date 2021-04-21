@@ -228,7 +228,7 @@ also inserts lifecycle trait implementations for `Module`, e.g.
   activities. Developers can set whether to trace for a dispatchable function by specifying its
   interest level.
 
-## FRAME v2 Attribute Macros
+## FRAME v2 Macros and Attributes
 
 This sections covers the updates brought by FRAME v2. Refer to the [structure of a pallet](./pallets.md) for more context.
 
@@ -269,19 +269,22 @@ Provides constants that are part of the [`Config` trait](https://substrate.dev/r
 
 **When to Use** 
 
-To pass values of associated types to metadata, which allows the value of the type to be used by external tools and third parties.
+To pass values of associated types to metadata, which allows the value of the type to be used by external tools and third parties. Note that this attribute is only usable from inside a `#[pallet::config]` item.
 
 **What it Does**
 
-This is a constraint trait that provides the `Config` trait with the types and attributes it needs for the runtime and generates associated metadata.
+Provides the `Config` trait with the types and attributes it needs for the runtime and generates associated metadata.
 
-For example, we can use `Get<u32>` without needing to add any imports and #[pallet::constant] will put it in metadata:
+Adding the `#[pallet::constant]` attribute will result in the macro adding to the constant metadata, including: the constant's name; the name of the associated type; the constant's value; and the value returned by `Get::get()`.
+
+For example, we can use `#[pallet::constant]` to put `type MyGetParam` in metadata:
 
 ```rust
 #[pallet::config]
-	pub trait Config: frame_system::Config { 
-		#[pallet::constant] // puts attributes in metadata
-		type MyGetParam: Get<u32>;
+pub trait Config: frame_system::Config { 
+	#[pallet::constant] // puts attributes in metadata
+	type MyGetParam: Get<u32>;
+}
 ```
 
 **Docs**
@@ -316,7 +319,7 @@ Required to declare the pallet struct place holder, to be later used by `constru
 
 **What it Does**
 
-This is the equivalent of `decl_module!` in FRAME v1. Instead, it takes the form of a more explicit Rust struct module, using  `PhantomData` to make it generic. It generates the `Store` trait if the attribute is provided, which contains an associated type for each storage.
+Generates the `Store` trait if the attribute is provided, which contains an associated type for each storage item. It takes the form of a more explicit Rust struct module and can be written as `pub struct Pallet<T>(_);`, with the appropriate `PhantomData` replacing `_` to make it generic. 
 
 This is an example of its definition:
 
@@ -337,7 +340,7 @@ Required for declaring pallet hooks.
 
 **What it Does**
 
-In `decl_module` we used to declare hooks logic by implementing [each method](https://crates.parity.io/frame_support/traits/trait.Hooks.html#provided-methods). In FRAME V2, `Hooks` are made available by using the `Hooks` trait allowing developers to implement each individual trait.
+[`Hooks`](https://crates.parity.io/frame_support/traits/trait.Hooks.html#provided-methods) are made available by using the `Hooks` trait.
 
 For example: 
 
@@ -364,7 +367,13 @@ Required, to implement a pallet's dispatchables. Each dispatchable must:
 
 **What it Does**
 
-Similar to `decl_module`, it allows to create dispatchable functions which will generate associated items from the `impl` code blocks. In other words, it aggregates all dispatchable logic using the [`Call` enum](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Call.html) which will aggregate all dispatchable calls into a single runtime call.
+[Extrinsics](https://substrate.dev/docs/en/knowledgebase/learn-substrate/extrinsics) can use calls to
+trigger specific logic. Calls can also be used in on-chain governance, demonstrated by the democracy
+pallet where calls can be voted on.
+`#[pallet::call]` allows to create dispatchable functions which will generate associated items
+from the `impl` code blocks. In other words, it aggregates all dispatchable logic using the [`Call` enum
+(https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Call.html) which will aggregate all
+dispatchable calls into a single runtime call.  
 
 **Docs**
 - See the [documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#call-palletcall-mandatory)
@@ -373,7 +382,7 @@ Similar to `decl_module`, it allows to create dispatchable functions which will 
 
 **When to Use**
 
-Optionally, to define errors types from the pallet's dispatchables.
+Optionally, to define error types to be used in dispatchables.
 
 **What it Does**
 
