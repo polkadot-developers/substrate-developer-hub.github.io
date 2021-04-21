@@ -62,7 +62,7 @@ to see where these are put to use.
 
 ## Overview of FRAME Versioning
 Here's a comparative overview of FRAME v1 and v2:
-- v1 relies on runtime engineers to write more code to declare traits and types in a way that is closer to learning a DSL (Domain-specific Language). The way macro inputs are structured makes it more difficult to understand what the macro is doing and how to use it. 
+- v1 relies on runtime engineers to write more code to declare traits and types in a way that is closer to learning a DSL (Domain-specific Language). The way macro inputs are structured can make it more difficult to understand what the macro is doing and how to use it. 
 - v2 is more heavily based on Rust idioms to define types and uses FRAME crates by writing code within the constaints of the macro being used. If all macros were removed, the pallet would still compile as all macro inputs are correct Rust syntax, making it easier to understand where errors are coming from.
 
 > Overall, the big improvements that v2 brings is better developer experience by removing the need to write extra code. The main difference is how concepts are declared to use the [crates that make up FRAME](https://substrate.dev/docs/en/knowledgebase/runtime/frame). Both versions are just different ways to express 
