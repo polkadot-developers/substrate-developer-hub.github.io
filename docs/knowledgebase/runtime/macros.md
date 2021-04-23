@@ -56,7 +56,7 @@ Here's a general overview of Substrate macros:
 - in `sp_std`: [function-like](https://substrate.dev/rustdocs/v3.0.0/sp_std/index.html#macros) macros
 - in `sp_version`: [function-like](https://substrate.dev/rustdocs/v3.0.0/sp_version/index.html#macros) macros
 
-> **Note**: Refer to `#Substrate dependencies` in the `Cargo.toml` file of the 
+> **Note**: refer to `#Substrate dependencies` in the `Cargo.toml` file of the 
 [node template runtime](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/runtime/Cargo.toml#L21) 
 to see where these are put to use. 
 
@@ -243,9 +243,7 @@ Required to declare a pallet consisting of a set of types, functions, and trait 
 This is the [attribute macro](https://crates.parity.io/frame_support/attr.pallet.html) that allows the pallet to be used in `construct_runtime!`. This macro
 is made up of the various attributes that will be used to identify the specific items the pallet requires.
 
-**Notes**
-
-Similar to a derive macro, this macro only expands types and trait implementations from reading the input and its input is _almost_ never touched. The only exception where this macro
+**Note:** similar to a derive macro, this macro only expands types and trait implementations by reading the input and its input is _almost_ never touched. The only exception where this macro
 modifies its input (contrary to a derive macro) is:
 - **when a generic is replaced with a type**. For example, in `pallet::pallet` the inner types of the item in `pub struct Pallet<..>(_)` is replaced by `PhantomData`
 and in `pallet::storage`, the first generic `_` is replaced with a type that implements the `StorageInstance` trait.
@@ -423,11 +421,16 @@ Optionally, as it can be used multiple times.
 
 To define some abstract storage inside runtime storage.
 
-**Note:** this changes how storage is declared compared to v1. Here, `[pallet::storage]` is using Rust like storage maps to do storage, such that it can be generic over the pallet. 
+**Note:** this changes how storage is declared compared to v1. Here, `[pallet::storage]` is using a Rust-like HashMap to do storage, except it takes a Key, Value, 
+Hasher, Prefix, QueryKind and an OnEmpty
+parameter. The prefix generic defines the place where the 
+storage will store its `(key, value)` pairs (i.e. the trie) and defines the pallet and storage Prefix like such: 
+`concat(twox_128(pallet_prefix), towx_128(storage_prefix))`, replacing `_` with the generated prefix implementations of the pallet and storage names.
 
 **Docs**
-- See [documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#storage-palletstorage-optional)
-- See Rust docs for [StorageMap](https://docs.rs/storage-map/0.1.2/storage_map/struct.StorageMap.html) and [HashMap syntax](https://doc.rust-lang.org/book/ch08-03-hash-maps.html)
+- See [macro documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#storage-palletstorage-optional)
+- [`StorageMap` implementation](https://crates.parity.io/frame_support/pallet_prelude/struct.StorageMap.html#implementations)
+- [Rust HashMap syntax](https://doc.rust-lang.org/book/ch08-03-hash-maps.html)
 
 ### Other Attributes
 
@@ -562,7 +565,7 @@ The macro defines the `RuntimeApi` and `RuntimeApiImpl` exposed to the Substrate
 provides implementation details of the RuntimeApiImpl based on the setup and appended user specified
 implementation in the `RuntimeApiImpl`.
 
-**Docs Notes**
+**Docs and Notes**
 
 - [API Documentation](https://substrate.dev/rustdocs/v3.0.0/sp_api/macro.impl_runtime_apis.html)
 - `RuntimeApi` and `RuntimeApiImpl` structs are declared. The macro also implements various helper
