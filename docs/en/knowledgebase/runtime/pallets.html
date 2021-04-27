@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Pallets · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="This document is a top-level entry point to documentation related to developing runtime modules for"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Pallets · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="This document is a top-level entry point to documentation related to developing runtime modules for"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/redirect-next.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Pallets · Substrate Developer Hub</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="The following documentation is written for technical audiences, familiar with the Rust programming"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Pallets · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="The following documentation is written for technical audiences, familiar with the Rust programming"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/redirect-next.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
             {"zIndex":100}
@@ -72,25 +72,36 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/knowledgebase/runtime/pallets.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Pallets</h1></header><article><div><span><p>This document is a top-level entry point to documentation related to developing runtime modules for
-Substrate.</p>
-<p>These documents are written for a technical audience, who is familiar with the Rust programming
-language.</p>
-<p>If you are getting started with Substrate runtime development for the first time, we suggest you try
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/knowledgebase/runtime/pallets.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Pallets</h1></header><article><div><span><p>The following documentation is written for technical audiences, familiar with the Rust programming
+language. It is a top-level entry point for FRAME runtime developement in Substrate.</p>
+<blockquote>
+<p>If you are just getting started with Substrate runtime development, we suggest you try
 our introductory tutorial for
 <a href="../../tutorials/create-your-first-substrate-chain">creating your first Substrate chain</a>.</p>
+</blockquote>
 <h2><a class="anchor" aria-hidden="true" id="what-is-a-pallet"></a><a href="#what-is-a-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is a Pallet?</h2>
-<p>Pallets are a special kind of Rust module from which Substrate runtimes can be composed. Each pallet
-has its own discrete logic which can modify the features and functionality of your blockchain's
-state transition function.</p>
-<p>For example, the Balances pallet, which is included in the Framework for Runtime Aggregation of
-Modularised Entities (FRAME), defines a cryptocurrency for your blockchain. More specifically, it
-defines storage items which tracks the tokens a user has, functions that users can call to transfer
-and manage those tokens, APIs which allow other modules to burn or mint those tokens, and hooks
-which allow other modules to trigger functions when a user's balance changes.</p>
-<p>You are able to write your own pallets which define logic and functionality you want to introduce to
-your blockchain, and the following documentation will show you how.</p>
+<p>Pallets are a special kind of Rust module made up of a set of types, trait implementations and functions
+from which Substrate runtimes can be composed. FRAME not only
+provides a library of commonly used Substrate pallets but also a framework to build custom domain-specific
+pallets, giving runtime engineers the flexibility to define their runtime's behaviour according to their
+target use case. The result: each pallet has its own discrete logic which can modify the features and
+functionality of your blockchain's state transition functions.</p>
+<p>For example, the <a href="https://github.com/paritytech/substrate/tree/master/frame/balances">Balances pallet</a>, which is included in <a href="/knowledgebase/runtime/frame">FRAME</a>, defines cryptocurrency capabilities for your blockchain. More specifically, it
+defines:</p>
+<ul>
+<li><strong>Storage items</strong> that keep track of the tokens a user owns.</li>
+<li><strong>Functions</strong> that users can call to transfer
+and manage those tokens.</li>
+<li><strong>APIs</strong> which allow other pallets to make use of those tokens and their capabilities.</li>
+<li><strong>Hooks</strong>
+which allow other pallets to trigger function calls when a user's balance changes.</li>
+</ul>
+<p>Substrate runtime engineers can define custom logic for their blockchain by writing their own pallets and encapsulating their blockchains desired functionality by combining custom pallets with existing FRAME pallets or Substrate modules alike. The following documentation will show you how.</p>
+<blockquote>
+<p><strong>Note:</strong> At the time of writing, FRAME pallets exist in two different flavors — Version 1 and Version 2. This article first covers the structure of a v1 pallet. Skip to <a href="./pallets#frame-v2">FRAME v2</a> for the latest structure of a Substrate pallet. Read <a href="./macros#frame-v1-vs-v2">here</a> for more information on these changes.</p>
+</blockquote>
 <h2><a class="anchor" aria-hidden="true" id="skeleton-of-a-pallet"></a><a href="#skeleton-of-a-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Skeleton of a Pallet</h2>
+<h3><a class="anchor" aria-hidden="true" id="frame-v1"></a><a href="#frame-v1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>FRAME v1</h3>
 <p>A Substrate pallet is composed of 5 sections:</p>
 <pre><code class="hljs css language-rust"><span class="token comment">// 1. Imports and Dependencies</span>
 <span class="token comment">// The pallet supports the use of any Rust library which compiles</span>
@@ -101,13 +112,13 @@ your blockchain, and the following documentation will show you how.</p>
 <span class="token comment">// All of the runtime types and consts go in here. If the pallet</span>
 <span class="token comment">// is dependent on specific other pallets, then their configuration traits</span>
 <span class="token comment">// should be added to the inherited traits list.</span>
-<span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token class-name">Config</span><span class="token punctuation">:</span> <span class="token namespace">system<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
+<span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token class-name">Config</span><span class="token punctuation">:</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
 
 <span class="token comment">// 3. Runtime Events</span>
 <span class="token comment">// Events are a simple means of reporting specific conditions and circumstances</span>
 <span class="token comment">// that have happened that users, Dapps and/or chain explorers would find</span>
 <span class="token comment">// interesting and otherwise difficult to detect.</span>
-<span class="token macro property">decl_event!</span><span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
+<span class="token macro property">decl_event!</span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
 
 <span class="token comment">// 4. Runtime Storage</span>
 <span class="token comment">// This allows for type-safe usage of the Substrate storage database, so you can</span>
@@ -120,11 +131,70 @@ your blockchain, and the following documentation will show you how.</p>
 <span class="token comment">// actions this pallet takes throughout block execution.</span>
 <span class="token macro property">decl_module!</span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
 </code></pre>
-<h2><a class="anchor" aria-hidden="true" id="example-module"></a><a href="#example-module" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example Module</h2>
-<p>Here is a minimal, working pallet which simply allows a user to put a <code>u64</code> value into storage.</p>
-<p>Parts of this example will be used to help teach concepts throughout the rest of the pallet
-documentation.</p>
-<p>It is written in full here for clarity:</p>
+<blockquote>
+<p><strong>Note</strong>: Additional sections such as <a href="./macros#decl_error"><code>decl_error!</code></a> are commonly used however are not a requirement for a minimally working pallet.</p>
+</blockquote>
+<h4><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h4>
+<p>The <a href="https://substrate.dev/recipes/basic-token.html">Basic Token recipe</a> provides a good example of a simple FRAME V1 pallet that allows a user to create a <code>u64</code> supply of tokens in storage and a <code>StorageMap</code> of account IDs and <code>u64</code> balances. The primary parts include:</p>
+<ul>
+<li><code>decl_storage!</code> defines <code>TotalSupply</code> and <code>Balances</code> the pallet's storage items;</li>
+<li><code>decl_event!</code> defines <code>Initialized</code> and <code>Transfer</code> events;</li>
+<li><code>decl_module!</code> defines the pallet's functions, <code>init()</code> and <code>transfer()</code>; and</li>
+<li><code>decl_module!</code> also has a <code>deposit_event()</code> function, common to all pallets that define behavior that emits an event.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="frame-v2"></a><a href="#frame-v2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>FRAME v2</h3>
+<p>A FRAME v2 pallet is commonly composed of 7 sections:</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// 1. Imports and Dependencies</span>
+<span class="token keyword">pub</span> <span class="token keyword">use</span> <span class="token namespace">pallet<span class="token punctuation">::</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
+<span class="token attribute attr-name">#[frame_support::pallet]</span>
+<span class="token keyword">pub</span> <span class="token keyword">mod</span> <span class="token module-declaration namespace">pallet</span> <span class="token punctuation">{</span>
+    <span class="token keyword">use</span> <span class="token namespace">frame_support<span class="token punctuation">::</span>pallet_prelude<span class="token punctuation">::</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
+    <span class="token keyword">use</span> <span class="token namespace">frame_system<span class="token punctuation">::</span>pallet_prelude<span class="token punctuation">::</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 2. Declaration of the Pallet type </span>
+<span class="token comment">// This is a placeholder to implement traits and methods.</span>
+<span class="token attribute attr-name">#[pallet::pallet]</span>
+<span class="token attribute attr-name">#[pallet::generate_store(pub(super) trait Store)]</span>
+    <span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token class-name">PhantomData</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 3. Runtime Configuration Trait</span>
+<span class="token comment">// All types and constants go here. </span>
+<span class="token comment">// Use #[pallet::constant] and #[pallet::extra_constants] </span>
+<span class="token comment">// to pass in values to metadata.</span>
+<span class="token attribute attr-name">#[pallet::config]</span>
+    <span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token class-name">Config</span><span class="token punctuation">:</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
+
+<span class="token comment">// 4. Runtime Storage</span>
+<span class="token comment">// Use to declare storage items.</span>
+<span class="token attribute attr-name">#[pallet::storage]</span>
+    <span class="token attribute attr-name">#[pallet::getter(fn something)]</span>
+    <span class="token keyword">pub</span> <span class="token class-name">MyStorage</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token class-name">StorageValue</span><span class="token operator">&lt;</span>_<span class="token punctuation">,</span> <span class="token keyword">u32</span><span class="token operator">></span><span class="token punctuation">;</span>
+
+<span class="token comment">// 5. Runtime Events</span>
+<span class="token comment">// Can stringify event types to metadata.</span>
+<span class="token attribute attr-name">#[pallet::event]</span>
+    <span class="token attribute attr-name">#[pallet::metadata(T::AccountId = <span class="token string">"AccountId"</span>)]</span>
+    <span class="token attribute attr-name">#[pallet::generate_deposit(pub(super) fn deposit_event)]</span>
+    <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Event</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
+
+<span class="token comment">// 6. Hooks</span>
+<span class="token comment">// Define some logic that should be executed</span>
+<span class="token comment">// regularly in some context, for e.g. on_initialize.</span>
+<span class="token attribute attr-name">#[pallet::hooks]</span>
+    <span class="token keyword">impl</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token class-name">Hooks</span><span class="token operator">&lt;</span><span class="token class-name">BlockNumberFor</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">>></span> <span class="token keyword">for</span> <span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
+
+<span class="token comment">// 7. Extrinsics</span>
+<span class="token comment">// Functions that are callable from outside the runtime.</span>
+<span class="token attribute attr-name">#[pallet::call]</span>
+    <span class="token keyword">impl</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span><span class="token class-name">Config</span><span class="token operator">></span> <span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
+
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> Pallets can be composed of as many sections as needed, giving runtime engineers a lot of flexibility ontop of the basic skeletons depicted above. Refer to the <a href="./macros#substrate-runtime-macros">Substrate Runtime Macros</a> to learn more about adding functionality to a FRAME pallet.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="examples"></a><a href="#examples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h2>
+<p>Here is a minimal, working pallet which simply allows a user to put a <code>u64</code> value into storage:</p>
 <pre><code class="hljs css language-rust"><span class="token keyword">use</span> <span class="token namespace">support<span class="token punctuation">::</span></span><span class="token punctuation">{</span>decl_module<span class="token punctuation">,</span> decl_event<span class="token punctuation">,</span> decl_storage<span class="token punctuation">,</span> <span class="token class-name">StorageValue</span><span class="token punctuation">,</span> <span class="token class-name">StorageMap</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token keyword">use</span> <span class="token namespace">system<span class="token punctuation">::</span></span>ensure_signed<span class="token punctuation">;</span>
 
@@ -171,7 +241,12 @@ documentation.</p>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2/24/2021 by Dan Forbes</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/knowledgebase/runtime/frame"><span class="arrow-prev">← </span><span>FRAME</span></a><a class="docs-next button" href="/docs/en/knowledgebase/runtime/macros"><span>Runtime Macros</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#what-is-a-pallet">What is a Pallet?</a></li><li><a href="#skeleton-of-a-pallet">Skeleton of a Pallet</a></li><li><a href="#example-module">Example Module</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+<p>The above example is similar to FRAME's Nicks pallet. For context, see:</p>
+<ul>
+<li>the <a href="https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs">FRAME v1 of the Nicks Pallet</a></li>
+<li>the <a href="https://github.com/paritytech/substrate/blob/gui-seminar-pallet-migration-nicks-after/frame/nicks/src/lib.rs">FRAME v2 of the Nicks Pallet</a></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 4/14/2021 by Sacha</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/knowledgebase/runtime/frame"><span class="arrow-prev">← </span><span>FRAME</span></a><a class="docs-next button" href="/docs/en/knowledgebase/runtime/macros"><span>Runtime Macros</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#what-is-a-pallet">What is a Pallet?</a></li><li><a href="#skeleton-of-a-pallet">Skeleton of a Pallet</a><ul class="toc-headings"><li><a href="#frame-v1">FRAME v1</a></li><li><a href="#frame-v2">FRAME v2</a></li></ul></li><li><a href="#examples">Examples</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();

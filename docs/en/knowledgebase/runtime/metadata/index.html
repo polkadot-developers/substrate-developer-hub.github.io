@@ -271,94 +271,117 @@ about the module's storage:</p>
   <span class="hljs-attr">"index"</span>: <span class="hljs-number">0</span>
 }
 </code></pre>
-<p>Every storage item that is defined in a pallet will have a corresponding metadata entry. For
-example, the <code>Account</code> item is generated from this in <code>frame-system</code>:</p>
-<pre><code class="hljs css language-rust"><span class="token macro property">decl_storage!</span> <span class="token punctuation">{</span>
+<p>Every storage item that is defined in a pallet will have a corresponding metadata entry. Metadata entries like these are generated from <a href="/docs/en/knowledgebase/runtime/macros">macros</a> using associated types from the <a href="https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/trait.Config.html"><code>frame-system</code></a> crate. For example:</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// In FRAME v1.</span>
+<span class="token macro property">decl_storage!</span> <span class="token punctuation">{</span>
     <span class="token keyword">trait</span> <span class="token class-name">Store</span> <span class="token keyword">for</span> <span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token keyword">as</span> <span class="token class-name">System</span> <span class="token punctuation">{</span>
         <span class="token comment">/// The full account information for a particlar account ID.</span>
         <span class="token keyword">pub</span> <span class="token class-name">Account</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">fn</span> <span class="token function-definition function">account</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
             map <span class="token function">hasher</span><span class="token punctuation">(</span>blake2_128_concat<span class="token punctuation">)</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountId</span> <span class="token operator">=></span> <span class="token class-name">AccountInfo</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">Index</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountData</span><span class="token operator">></span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
+
+<span class="token comment">// In FRAME v2.</span>
+<span class="token attribute attr-name">#[pallet::config]</span>
+<span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token class-name">Config</span><span class="token punctuation">:</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token punctuation">{</span>
+    <span class="token attribute attr-name">#[pallet::constant]</span> 
+    <span class="token keyword">type</span> <span class="token class-name">Foo</span><span class="token punctuation">:</span> <span class="token class-name">Get</span><span class="token operator">&lt;</span><span class="token keyword">u32</span><span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<p>Storage metadata provides blockchain clients with the information that is required to query
+<p><a href="https://substrate.dev/rustdocs/v3.0.0/frame_metadata/struct.StorageMetadata.html">Storage metadata</a> provides blockchain clients with the information that is required to query
 <a href="https://substrate.dev/rustdocs/v3.0.0/sc_rpc/state/struct.StateClient.html#method.storage">the JSON-RPC's storage function</a>
 to get information for a specific storage item.</p>
-<h5><a class="anchor" aria-hidden="true" id="calls"></a><a href="#calls" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Calls</h5>
-<p>Module metadata includes information about the runtime calls that are defined with the
-<code>decl_module!</code> macro. For each call, the metadata will include:</p>
+<h5><a class="anchor" aria-hidden="true" id="dispatchable-calls"></a><a href="#dispatchable-calls" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dispatchable Calls</h5>
+<p>Metadata for dispatchable calls includes information about the runtime calls and are defined by the
+<code>decl_module!</code> (FRAME v1) or <code>#[pallet]</code> (FRAME v2) macros. For each call, the metadata includes:</p>
 <ul>
 <li><code>name</code>: Name of the function in the module.</li>
 <li><code>args</code>: Arguments in function definition. Includes the name and type of each argument.</li>
-<li><code>Documentation</code>: Documentation of the function.</li>
+<li><code>documentation</code>: Documentation of the function.</li>
 </ul>
-<p>For example, this comes from the Timestamp pallet:</p>
-<pre><code class="hljs css language-rust"><span class="token macro property">decl_module!</span> <span class="token punctuation">{</span>
+<p>For example:</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// In FRAME v1.</span>
+<span class="token macro property">decl_module!</span> <span class="token punctuation">{</span>
     <span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Call</span> <span class="token keyword">where</span> origin<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">Origin</span> <span class="token punctuation">{</span>
-        <span class="token comment">// ... snip</span>
-
-        <span class="token comment">/// Set the current time.</span>
+  
+        <span class="token comment">/// This function does some thing.      </span>
         <span class="token comment">///</span>
-        <span class="token comment">/// This call should be invoked exactly once per block. It will panic at the finalization</span>
-        <span class="token comment">/// phase, if this call hasn't been invoked by that time.</span>
-        <span class="token comment">///</span>
-        <span class="token comment">/// The timestamp should be greater than the previous one by the amount specified by</span>
-        <span class="token comment">/// `MinimumPeriod`.</span>
-        <span class="token comment">///</span>
-        <span class="token comment">/// The dispatch origin for this call must be `Inherent`.</span>
-        <span class="token attribute attr-name">#[weight = (
-            T::DbWeight::get().reads_writes(2, 1) + 9_000_000,
-            DispatchClass::Mandatory
-        )]</span>
-        <span class="token keyword">fn</span> <span class="token function-definition function">set</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> <span class="token attribute attr-name">#[compact]</span> now<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">Moment</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">/// All documentation details go here.</span>
+        <span class="token keyword">fn</span> <span class="token function-definition function">do_something</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> <span class="token attribute attr-name">#[compact]</span> thing<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">Something</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token comment">// ... snip</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
+
+<span class="token comment">// In FRAME v2.</span>
+<span class="token attribute attr-name">#[pallet::call]</span>
+    <span class="token keyword">impl</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+
+        <span class="token comment">/// This function does some thing.      </span>
+    <span class="token comment">///</span>
+    <span class="token comment">/// All documentation details go here.</span>
+        <span class="token keyword">pub</span><span class="token punctuation">(</span><span class="token keyword">super</span><span class="token punctuation">)</span> <span class="token keyword">fn</span> <span class="token function-definition function">do_something</span><span class="token punctuation">(</span>
+            origin<span class="token punctuation">:</span> <span class="token class-name">OriginFor</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span> 
+            <span class="token attribute attr-name">#[pallet::compact]</span> thing<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">Something</span>
+            <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">DispatchResultWithPostInfo</span> <span class="token punctuation">{</span>
+      <span class="token comment">// ... snip</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</code></pre>
+<pre><code class="hljs css language-rust">
+
 </code></pre>
 <p>This materializes in the metadata as follows:</p>
 <pre><code class="hljs css language-json">"calls": [
   {
-    "name": "set",
+    "name": "do_something",
     "args": [
       {
-        "name": "now",
-        "ty": "Compact&lt;T::Moment&gt;"
+        "name": "thing",
+        "ty": "Compact&lt;T::Something&gt;"
       }
     ],
     "documentation": [
-      " Set the current time.",
+      " This function does some thing.",
       "",
-      " This call should be invoked exactly once per block. It will panic at the finalization",
-      " phase, if this call hasn't been invoked by that time.",
-      "",
-      " The timestamp should be greater than the previous one by the amount specified by",
-      " `MinimumPeriod`.",
-      "",
-      " The dispatch origin for this call must be `Inherent`."
+      " All documentation details go here."
     ]
   }
 ],
 </code></pre>
 <h5><a class="anchor" aria-hidden="true" id="events"></a><a href="#events" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Events</h5>
 <p>This metadata snippet is generated from this declaration in <code>frame-system</code>:</p>
-<pre><code class="hljs css language-rust"><span class="token macro property">decl_event!</span><span class="token punctuation">(</span>
+<pre><code class="hljs css language-rust"><span class="token comment">//In FRAME v1.</span>
+<span class="token macro property">decl_event!</span><span class="token punctuation">(</span>
     <span class="token comment">/// Event for the System module</span>
     <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Event</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token keyword">where</span> <span class="token class-name">AccountId</span> <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token class-name">T</span> <span class="token keyword">as</span> <span class="token class-name">Config</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">AccountId</span> <span class="token punctuation">{</span>
         <span class="token comment">/// An extrinsic completed successfully.</span>
-        <span class="token class-name">ExtrinsicSuccess</span><span class="token punctuation">(</span><span class="token class-name">DispatchInfo</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token class-name">ExtrinsicSuccess</span><span class="token punctuation">(</span><span class="token class-name">DispatchInfo</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountId</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
         <span class="token comment">/// An extrinsic failed.</span>
         <span class="token class-name">ExtrinsicFailed</span><span class="token punctuation">(</span><span class="token class-name">DispatchError</span><span class="token punctuation">,</span> <span class="token class-name">DispatchInfo</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
         <span class="token comment">// ... snip</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">)</span>
+
+<span class="token comment">// In FRAME v2.</span>
+<span class="token attribute attr-name">#[pallet::event]</span>
+    <span class="token attribute attr-name">#[pallet::metadata(T::AccountId = <span class="token string">"AccountId"</span>)]</span>
+    <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Event</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token comment">/// An extrinsic completed successfully.</span>
+        <span class="token class-name">ExtrinsicSuccess</span><span class="token punctuation">(</span><span class="token class-name">DispatchInfo</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountId</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment">/// An extrinsic failed.</span>
+        <span class="token class-name">ExtrinsicFailed</span><span class="token punctuation">(</span><span class="token class-name">DispatchError</span><span class="token punctuation">,</span> <span class="token class-name">DispatchInfo</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment">// ... snip</span>
+    <span class="token punctuation">}</span>
+
 </code></pre>
 <p>Substrate's metadata would describe these events as follows:</p>
 <pre><code class="hljs css language-json">"events": [
   {
     "name": "ExtrinsicSuccess",
     "args": [
-      "DispatchInfo"
+      "DispatchInfo",
+      "AccountId"
     ],
     "documentation": [
       " An extrinsic completed successfully."
@@ -377,17 +400,28 @@ to get information for a specific storage item.</p>
 ],
 </code></pre>
 <h5><a class="anchor" aria-hidden="true" id="constants"></a><a href="#constants" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Constants</h5>
-<p>The metadata will include any module constants. From <code>pallet-babe</code>:</p>
-<pre><code class="hljs css language-rust"><span class="token macro property">decl_module!</span> <span class="token punctuation">{</span>
-    <span class="token comment">/// The BABE Pallet</span>
+<p>The metadata will include any module constants. For example in <a href="https://github.com/paritytech/substrate/blob/master/frame/babe/"><code>pallet-babe</code></a>:</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// In FRAME v1.</span>
+<span class="token macro property">decl_module!</span> <span class="token punctuation">{</span>
     <span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Call</span> <span class="token keyword">where</span> origin<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">Origin</span> <span class="token punctuation">{</span>
-        <span class="token comment">/// The number of **slots** that an epoch takes. We couple sessions to</span>
-        <span class="token comment">/// epochs, i.e. we start a new session once the new epoch begins.</span>
+        <span class="token comment">/// The amount of time, in slots, that each epoch should last.</span>
+        <span class="token comment">/// NOTE: Currently it is not possible to change the epoch duration after</span>
+        <span class="token comment">/// the chain has started. Attempting to do so will brick block production.</span>
         <span class="token keyword">const</span> <span class="token class-name">EpochDuration</span><span class="token punctuation">:</span> <span class="token keyword">u64</span> <span class="token operator">=</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">EpochDuration</span><span class="token punctuation">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
         <span class="token comment">// ... snip</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
+
+<span class="token comment">// In FRAME v2.</span>
+<span class="token attribute attr-name">#[pallet::config]</span>
+    <span class="token attribute attr-name">#[pallet::disable_frame_system_supertrait_check]</span>
+    <span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token class-name">Config</span><span class="token punctuation">:</span> <span class="token namespace">pallet_timestamp<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token punctuation">{</span>
+        <span class="token comment">/// The amount of time, in slots, that each epoch should last.</span>
+        <span class="token comment">/// NOTE: Currently it is not possible to change the epoch duration after</span>
+        <span class="token comment">/// the chain has started. Attempting to do so will brick block production.</span>
+        <span class="token attribute attr-name">#[pallet::constant]</span>
+        <span class="token keyword">type</span> <span class="token class-name">EpochDuration</span><span class="token punctuation">:</span> <span class="token class-name">Get</span><span class="token operator">&lt;</span><span class="token keyword">u64</span><span class="token operator">></span><span class="token punctuation">;</span>
 </code></pre>
 <p>The metadata for this constant looks like this:</p>
 <pre><code class="hljs css language-json">"constants": [
@@ -396,11 +430,11 @@ to get information for a specific storage item.</p>
     "type": "u64",
     "value": "0x6009000000000000",
     "documentation": [
-      " The number of **slots** that an epoch takes. We couple sessions to",
-      " epochs, i.e. we start a new session once the new epoch begins."
+      " The amount of time, in slots, that each epoch should last.",
+      " NOTE: Currently it is not possible to change the epoch duration after",
+      "the chain has started. Attempting to do so will brick block production."
     ]
   },
-  // ...
 ]
 </code></pre>
 <p>The metadata also includes constants defined in the runtime's <code>lib.rs</code>. For example, from Kusama:</p>
@@ -410,9 +444,10 @@ to get information for a specific storage item.</p>
 </code></pre>
 <p>Where <code>EPOCH_DURATION_IN_BLOCKS</code> is a constant defined in <code>runtime/src/constants.rs</code>.</p>
 <h5><a class="anchor" aria-hidden="true" id="errors"></a><a href="#errors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Errors</h5>
-<p>Metadata will pull all the possible runtime errors from <code>decl_error!</code>. For example, from
+<p>Metadata will pull all the possible runtime errors from <code>decl_error!</code> (FRAME v1) or <code>#[pallet::error]</code> (FRAME v2). For example, from
 <code>frame-system</code>:</p>
-<pre><code class="hljs css language-rust"><span class="token macro property">decl_error!</span> <span class="token punctuation">{</span>
+<pre><code class="hljs css language-rust"><span class="token comment">//In FRAME v1.</span>
+<span class="token macro property">decl_error!</span> <span class="token punctuation">{</span>
     <span class="token comment">/// Error for the system module</span>
     <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Error</span> <span class="token keyword">for</span> <span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token punctuation">{</span>
         <span class="token comment">/// The name of specification does not match between the current runtime</span>
@@ -421,8 +456,17 @@ to get information for a specific storage item.</p>
         <span class="token comment">// ... snip</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
+
+<span class="token comment">//In FRAME v2.</span>
+<span class="token attribute attr-name">#[pallet::error]</span>
+<span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Error</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token comment">/// The name of specification does not match between the current runtime</span>
+        <span class="token comment">/// and the new runtime.</span>
+        <span class="token class-name">InvalidSpecName</span><span class="token punctuation">,</span>
+        <span class="token comment">// ... snip</span>
+    <span class="token punctuation">}</span>
 </code></pre>
-<p>This will expose the following metadata:</p>
+<p>Both code snips will expose the following metadata:</p>
 <pre><code class="hljs css language-json">"errors": [
   {
     "name": "InvalidSpecName",
@@ -436,7 +480,7 @@ to get information for a specific storage item.</p>
 </code></pre>
 <p>These are errors that could occur during the submission or execution of an extrinsic. In this case,
 the FRAME System pallet is declaring that it may raise the
-<a href="https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Error.html#variant.InvalidSpecName">the <code>InvalidSpecName</code> error</a>.</p>
+the <a href="https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Error.html#variant.InvalidSpecName"><code>InvalidSpecName</code> error</a>.</p>
 <h2><a class="anchor" aria-hidden="true" id="next-steps"></a><a href="#next-steps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Next Steps</h2>
 <h3><a class="anchor" aria-hidden="true" id="learn-more"></a><a href="#learn-more" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Learn More</h3>
 <ul>
@@ -452,8 +496,9 @@ the FRAME System pallet is declaring that it may raise the
 <h3><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h3>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_metadata/index.html">Metadata</a></li>
+<li><a href="https://crates.parity.io/frame_support/attr.pallet.html">FRAME v2 macro documentation</a></li>
 </ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 4/9/2021 by sacha-l</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/knowledgebase/runtime/macros"><span class="arrow-prev">← </span><span>Runtime Macros</span></a><a class="docs-next button" href="/docs/en/knowledgebase/runtime/storage"><span>Runtime Storage</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#how-to-get-the-metadata">How to Get the Metadata</a><ul class="toc-headings"><li><a href="#rust">Rust</a></li><li><a href="#javascript">Javascript</a></li><li><a href="#http--websocket-apis">HTTP &amp; WebSocket APIs</a></li></ul></li><li><a href="#metadata-formats">Metadata Formats</a><ul class="toc-headings"><li><a href="#encoded-metadata-format">Encoded Metadata Format</a></li><li><a href="#decoded-metadata-format">Decoded Metadata Format</a></li></ul></li><li><a href="#next-steps">Next Steps</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li><li><a href="#examples">Examples</a></li><li><a href="#references">References</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 4/15/2021 by Sacha</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/knowledgebase/runtime/macros"><span class="arrow-prev">← </span><span>Runtime Macros</span></a><a class="docs-next button" href="/docs/en/knowledgebase/runtime/storage"><span>Runtime Storage</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#how-to-get-the-metadata">How to Get the Metadata</a><ul class="toc-headings"><li><a href="#rust">Rust</a></li><li><a href="#javascript">Javascript</a></li><li><a href="#http--websocket-apis">HTTP &amp; WebSocket APIs</a></li></ul></li><li><a href="#metadata-formats">Metadata Formats</a><ul class="toc-headings"><li><a href="#encoded-metadata-format">Encoded Metadata Format</a></li><li><a href="#decoded-metadata-format">Decoded Metadata Format</a></li></ul></li><li><a href="#next-steps">Next Steps</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li><li><a href="#examples">Examples</a></li><li><a href="#references">References</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();

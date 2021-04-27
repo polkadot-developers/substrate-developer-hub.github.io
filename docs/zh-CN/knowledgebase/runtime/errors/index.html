@@ -73,8 +73,13 @@
               }
             });
         </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Runtime 错误</h1></header><article><div><span><p>Runtime代码应该显式且优雅地处理所有错误情况，也就是说runtime代码 <strong>必须是</strong>“不抛出”的，用Rust术语来讲，就是决不能&quot;<a href="https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html">panic</a>&quot; 。 A common idiom for writing non-throwing Rust code is to write functions that return <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/dispatch/result/enum.Result.html"><code>Result</code> types</a>. <code>Result</code>枚举类型具有一个名为 <code>Err</code>的变量，该变量可让函数传达执行失败的信息，以避免程序“panic”。 Dispatchable calls in the FRAME system for runtime development <em>must</em> return a <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/dispatch/type.DispatchResult.html"><code>DispatchResult</code> type</a> that <em>should</em> be a <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/dispatch/enum.DispatchError.html"><code>DispatchError</code></a> if the dispatchable function encountered an error.</p>
-<p>每个FRAME pallet都可以使用<a href="macros#decl_error"><code>decl_error!</code> 宏</a>来自定义 <strong>DispatchError</strong>的内容。</p>
-<pre><code class="hljs css language-rust"><span class="token comment">// Errors inform users that something went wrong.</span>
+<p>Each FRAME pallet may define custom a <code>DispatchError</code> by:</p>
+<ul>
+<li>using the <a href="macros#decl_error"><code>decl_error!</code> macro</a> (FRAME v1) or;</li>
+<li>the <a href="/docs/en/knowledgebase/runtime/macros#palleterror"><code>#[pallet::error]</code> macro</a>  (FRAME v2).</li>
+</ul>
+<pre><code class="hljs css language-rust"><span class="token comment">// FRAME v1.</span>
+<span class="token comment">// Errors inform users that something went wrong.</span>
 <span class="token macro property">decl_error!</span> <span class="token punctuation">{</span>
     <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Error</span> <span class="token keyword">for</span> <span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token punctuation">{</span>
         <span class="token comment">/// Error names should be descriptive.</span>
@@ -83,18 +88,21 @@
         <span class="token class-name">OutOfSpace</span><span class="token punctuation">,</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<p>为了能在pallet中触发自定义错误，pallet的module部分必须要配置<code>Error</code> 类型。</p>
-<pre><code class="hljs css language-rust"><span class="token macro property">decl_module!</span> <span class="token punctuation">{</span>
-    <span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Call</span> <span class="token keyword">where</span> origin<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">Origin</span> <span class="token punctuation">{</span>
-        <span class="token comment">// Errors must be initialized if they are used by the pallet.</span>
-        <span class="token keyword">type</span> <span class="token class-name">Error</span> <span class="token operator">=</span> <span class="token class-name">Error</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">;</span>
 
-        <span class="token comment">/* --snip-- */</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="token comment">// FRAME v2.</span>
+<span class="token attribute attr-name">#[pallet::error]</span>
+<span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Error</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token comment">/// Error names should be descriptive.</span>
+        <span class="token class-name">InvalidParameter</span><span class="token punctuation">,</span>
+        <span class="token comment">/// Errors should have helpful documentation associated with them.</span>
+        <span class="token class-name">OutOfSpace</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+
 </code></pre>
-<p><a href="https://github.com/substrate-developer-hub/substrate-pallet-template/blob/master/src/lib.rs">Pallet 模版</a>演示了如何正确处理可调用函数内错误的一些方法。 The FRAME Support module also includes a helpful <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.ensure.html"><code>ensure!</code> macro</a> that can be used to check pre-conditions and emit an errors if they are not met.</p>
+<blockquote>
+<p><strong>Note:</strong> In FRAME v1, in order to emit custom errors from a pallet, the pallet must configure the <code>Error</code> type in <code>decl_module!</code>. See the <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_error.html#usage">Rust docs</a> for more details.</p>
+</blockquote>
+<p>The <a href="https://github.com/substrate-developer-hub/substrate-pallet-template/blob/master/src/lib.rs">Pallet Template</a> demonstrates some ways to correctly handle errors in dispatchable functions. The FRAME Support module also includes a helpful <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.ensure.html"><code>ensure!</code> macro</a> that can be used to check pre-conditions and emit an errors if they are not met.</p>
 <pre><code class="hljs css language-rust"><span class="token namespace">frame_support<span class="token punctuation">::</span></span><span class="token macro property">ensure!</span><span class="token punctuation">(</span>param <span class="token operator">&lt;</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">MaxVal</span><span class="token punctuation">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Error</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">InvalidParameter</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="后续步骤"></a><a href="#后续步骤" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>后续步骤</h2>
@@ -104,8 +112,9 @@
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="参考文档"></a><a href="#参考文档" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文档</h3>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_error.html"><code>decl_error!</code> 宏</a></li>
+<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_error.html"><code>decl_error!</code> macro</a></li>
 <li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_module.html"><code>decl_module!</code> 宏</a></li>
+<li><a href="https://crates.parity.io/frame_support/attr.pallet.html#error-palleterror-optional"><code>[pallet::error]</code> macro</a></li>
 </ul>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/knowledgebase/runtime/events"><span class="arrow-prev">← </span><span>Runtime事件</span></a><a class="docs-next button" href="/docs/zh-CN/knowledgebase/runtime/fees"><span>交易费用</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#后续步骤">后续步骤</a><ul class="toc-headings"><li><a href="#进一步学习">进一步学习</a></li><li><a href="#参考文档">参考文档</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/rustdocs">API 文档</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
                 var cookieSettings = document.getElementById('cookie-settings');

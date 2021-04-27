@@ -105,7 +105,7 @@ final_fee <span class="token operator">=</span> fee <span class="token operator"
 <blockquote>
 <p>“它接收前一个乘数并返回下一个乘数”。</p>
 </blockquote>
-<p>默认更新函数受Polkadot网络的启发，并实现了目标调整，其中定义了区块权重的目标饱和度。 如果前一个区块更加饱和，则费用会略有增加。 同样，如果前一个区块的交易量少于目标交易量，则费用将会减少一小部分。 更多相关资讯可查看 <a href="https://w3f-research.readthedocs.io/en/latest/polkadot/economics/1-token-economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits">Web3 基金会的研究</a>。</p>
+<p>默认更新函数受Polkadot网络的启发，并实现了目标调整，其中定义了区块权重的目标饱和度。 如果前一个区块更加饱和，则费用会略有增加。 同样，如果前一个区块的交易量少于目标交易量，则费用将会减少一小部分。 More information about this can be found in the <a href="https://w3f-research.readthedocs.io/en/latest/polkadot/overview/2-token-economics.html?highlight=token%20economics#relay-chain-transaction-fees-and-per-block-transaction-limits">Web3 research page</a>.</p>
 <h2><a class="anchor" aria-hidden="true" id="附加费用："></a><a href="#附加费用：" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>附加费用：</h2>
 <p>打包费必须在extrinsic执行之前是可计算的，因此只能代表固定的逻辑。 有些交易则需要使用其他策略来限制资源的使用。 例如：</p>
 <ul>

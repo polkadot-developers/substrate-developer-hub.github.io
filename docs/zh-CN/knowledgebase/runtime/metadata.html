@@ -216,90 +216,114 @@
   <span class="hljs-attr">"index"</span>: <span class="hljs-number">0</span>
 }
 </code></pre>
-<p>Pallet中定义的每个存储项都会有一个对应的元数据条目。 例如，<code>Account</code>存储项是在 <code>frame-system</code>中由下面这段代码生成的：</p>
-<pre><code class="hljs css language-rust"><span class="token macro property">decl_storage!</span> <span class="token punctuation">{</span>
+<p>Pallet中定义的每个存储项都会有一个对应的元数据条目。 Metadata entries like these are generated from <a href="/docs/en/knowledgebase/runtime/macros">macros</a> using associated types from the <a href="https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/trait.Config.html"><code>frame-system</code></a> crate. 例如：</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// In FRAME v1.</span>
+<span class="token macro property">decl_storage!</span> <span class="token punctuation">{</span>
     <span class="token keyword">trait</span> <span class="token class-name">Store</span> <span class="token keyword">for</span> <span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token keyword">as</span> <span class="token class-name">System</span> <span class="token punctuation">{</span>
         <span class="token comment">/// The full account information for a particlar account ID.</span>
         <span class="token keyword">pub</span> <span class="token class-name">Account</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">fn</span> <span class="token function-definition function">account</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
             map <span class="token function">hasher</span><span class="token punctuation">(</span>blake2_128_concat<span class="token punctuation">)</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountId</span> <span class="token operator">=></span> <span class="token class-name">AccountInfo</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">Index</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountData</span><span class="token operator">></span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
+
+<span class="token comment">// In FRAME v2.</span>
+<span class="token attribute attr-name">#[pallet::config]</span>
+<span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token class-name">Config</span><span class="token punctuation">:</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token punctuation">{</span>
+    <span class="token attribute attr-name">#[pallet::constant]</span> 
+    <span class="token keyword">type</span> <span class="token class-name">Foo</span><span class="token punctuation">:</span> <span class="token class-name">Get</span><span class="token operator">&lt;</span><span class="token keyword">u32</span><span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<p>Storage metadata provides blockchain clients with the information that is required to query &lt;a href=&quot;<a href="https://substrate.dev/rustdocs/v3.0.0/sc_rpc/state/struct.以获取特定存储项内容">https://substrate.dev/rustdocs/v3.0.0/sc_rpc/state/struct.以获取特定存储项内容</a>。</p>
-<h5><a class="anchor" aria-hidden="true" id="calls"></a><a href="#calls" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Calls</h5>
-<p>模块元数据包含了在<code>decl_module!</code>的宏中定义的runtime可调用函数的信息。 对于每个可调用函数，元数据包括：</p>
+<p><a href="https://substrate.dev/rustdocs/v3.0.0/frame_metadata/struct.StorageMetadata.html">Storage metadata</a> provides blockchain clients with the information that is required to query <a href="https://substrate.dev/rustdocs/v3.0.0/sc_rpc/state/struct.StateClient.html#method.storage">the JSON-RPC's storage function</a> to get information for a specific storage item.</p>
+<h5><a class="anchor" aria-hidden="true" id="dispatchable-calls"></a><a href="#dispatchable-calls" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dispatchable Calls</h5>
+<p>Metadata for dispatchable calls includes information about the runtime calls and are defined by the <code>decl_module!</code> (FRAME v1) or <code>#[pallet]</code> (FRAME v2) macros. For each call, the metadata includes:</p>
 <ul>
 <li><code>name</code>: 模块中函数的名称。</li>
 <li><code>args</code>: 函数定义里的参数， 包括每个参数的名称和类型。</li>
-<li><code>Documentation</code>: 函数的文档说明。</li>
+<li><code>documentation</code>: Documentation of the function.</li>
 </ul>
-<p>举个例子，以下来自于Timestamp pallet：</p>
-<pre><code class="hljs css language-rust"><span class="token macro property">decl_module!</span> <span class="token punctuation">{</span>
+<p>例如：</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// In FRAME v1.</span>
+<span class="token macro property">decl_module!</span> <span class="token punctuation">{</span>
     <span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Call</span> <span class="token keyword">where</span> origin<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">Origin</span> <span class="token punctuation">{</span>
-        <span class="token comment">// ... snip</span>
 
-        <span class="token comment">/// Set the current time.</span>
+        <span class="token comment">/// This function does some thing.      </span>
         <span class="token comment">///</span>
-        <span class="token comment">/// This call should be invoked exactly once per block. It will panic at the finalization</span>
-        <span class="token comment">/// phase, if this call hasn't been invoked by that time.</span>
-        <span class="token comment">///</span>
-        <span class="token comment">/// The timestamp should be greater than the previous one by the amount specified by</span>
-        <span class="token comment">/// `MinimumPeriod`.</span>
-        <span class="token comment">///</span>
-        <span class="token comment">/// The dispatch origin for this call must be `Inherent`.</span>
-        <span class="token attribute attr-name">#[weight = (
-            T::DbWeight::get().reads_writes(2, 1) + 9_000_000,
-            DispatchClass::Mandatory
-        )]</span>
-        <span class="token keyword">fn</span> <span class="token function-definition function">set</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> <span class="token attribute attr-name">#[compact]</span> now<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">Moment</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">/// All documentation details go here.</span>
+        <span class="token keyword">fn</span> <span class="token function-definition function">do_something</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> <span class="token attribute attr-name">#[compact]</span> thing<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">Something</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token comment">// ... snip</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
+
+<span class="token comment">// In FRAME v2.</span>
+<span class="token attribute attr-name">#[pallet::call]</span>
+    <span class="token keyword">impl</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+
+        <span class="token comment">/// This function does some thing.      </span>
+    <span class="token comment">///</span>
+    <span class="token comment">/// All documentation details go here.</span>
+        <span class="token keyword">pub</span><span class="token punctuation">(</span><span class="token keyword">super</span><span class="token punctuation">)</span> <span class="token keyword">fn</span> <span class="token function-definition function">do_something</span><span class="token punctuation">(</span>
+            origin<span class="token punctuation">:</span> <span class="token class-name">OriginFor</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span> 
+            <span class="token attribute attr-name">#[pallet::compact]</span> thing<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">Something</span>
+            <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">DispatchResultWithPostInfo</span> <span class="token punctuation">{</span>
+      <span class="token comment">// ... snip</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</code></pre>
+<pre><code class="hljs css language-rust">
+
 </code></pre>
 <p>在元数据中表示如下：</p>
 <pre><code class="hljs css language-json">"calls": [
   {
-    "name": "set",
+    "name": "do_something",
     "args": [
       {
-        "name": "now",
-        "ty": "Compact&lt;T::Moment&gt;"
+        "name": "thing",
+        "ty": "Compact&lt;T::Something&gt;"
       }
     ],
     "documentation": [
-      " Set the current time.",
+      " This function does some thing.",
       "",
-      " This call should be invoked exactly once per block. It will panic at the finalization",
-      " phase, if this call hasn't been invoked by that time.",
-      "",
-      " The timestamp should be greater than the previous one by the amount specified by",
-      " `MinimumPeriod`.",
-      "",
-      " The dispatch origin for this call must be `Inherent`."
+      " All documentation details go here."
     ]
   }
 ],
 </code></pre>
 <h5><a class="anchor" aria-hidden="true" id="events"></a><a href="#events" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Events</h5>
 <p>下面要讲述的元数据代码片段是从<code>frame-system</code>中的以下列代码生成的：</p>
-<pre><code class="hljs css language-rust"><span class="token macro property">decl_event!</span><span class="token punctuation">(</span>
+<pre><code class="hljs css language-rust"><span class="token comment">//In FRAME v1.</span>
+<span class="token macro property">decl_event!</span><span class="token punctuation">(</span>
     <span class="token comment">/// Event for the System module</span>
     <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Event</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token keyword">where</span> <span class="token class-name">AccountId</span> <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token class-name">T</span> <span class="token keyword">as</span> <span class="token class-name">Config</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">AccountId</span> <span class="token punctuation">{</span>
         <span class="token comment">/// An extrinsic completed successfully.</span>
-        <span class="token class-name">ExtrinsicSuccess</span><span class="token punctuation">(</span><span class="token class-name">DispatchInfo</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token class-name">ExtrinsicSuccess</span><span class="token punctuation">(</span><span class="token class-name">DispatchInfo</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountId</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
         <span class="token comment">/// An extrinsic failed.</span>
         <span class="token class-name">ExtrinsicFailed</span><span class="token punctuation">(</span><span class="token class-name">DispatchError</span><span class="token punctuation">,</span> <span class="token class-name">DispatchInfo</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
         <span class="token comment">// ... snip</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">)</span>
+
+<span class="token comment">// In FRAME v2.</span>
+<span class="token attribute attr-name">#[pallet::event]</span>
+    <span class="token attribute attr-name">#[pallet::metadata(T::AccountId = <span class="token string">"AccountId"</span>)]</span>
+    <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Event</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token comment">/// An extrinsic completed successfully.</span>
+        <span class="token class-name">ExtrinsicSuccess</span><span class="token punctuation">(</span><span class="token class-name">DispatchInfo</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountId</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment">/// An extrinsic failed.</span>
+        <span class="token class-name">ExtrinsicFailed</span><span class="token punctuation">(</span><span class="token class-name">DispatchError</span><span class="token punctuation">,</span> <span class="token class-name">DispatchInfo</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment">// ... snip</span>
+    <span class="token punctuation">}</span>
+
 </code></pre>
 <p>Substrate的元数据将会把这些事件描述如下：</p>
 <pre><code class="hljs css language-json">"events": [
   {
     "name": "ExtrinsicSuccess",
     "args": [
-      "DispatchInfo"
+      "DispatchInfo",
+      "AccountId"
     ],
     "documentation": [
       " An extrinsic completed successfully."
@@ -318,17 +342,28 @@
 ],
 </code></pre>
 <h5><a class="anchor" aria-hidden="true" id="constants"></a><a href="#constants" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Constants</h5>
-<p>元数据包含任何的模块常量。 下述代码是从 <code>pallet-babe</code>中获取：</p>
-<pre><code class="hljs css language-rust"><span class="token macro property">decl_module!</span> <span class="token punctuation">{</span>
-    <span class="token comment">/// The BABE Pallet</span>
+<p>元数据包含任何的模块常量。 For example in <a href="https://github.com/paritytech/substrate/blob/master/frame/babe/"><code>pallet-babe</code></a>:</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// In FRAME v1.</span>
+<span class="token macro property">decl_module!</span> <span class="token punctuation">{</span>
     <span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Call</span> <span class="token keyword">where</span> origin<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">Origin</span> <span class="token punctuation">{</span>
-        <span class="token comment">/// The number of **slots** that an epoch takes. We couple sessions to</span>
-        <span class="token comment">/// epochs, i.e. we start a new session once the new epoch begins.</span>
+        <span class="token comment">/// The amount of time, in slots, that each epoch should last.</span>
+        <span class="token comment">/// NOTE: Currently it is not possible to change the epoch duration after</span>
+        <span class="token comment">/// the chain has started. Attempting to do so will brick block production.</span>
         <span class="token keyword">const</span> <span class="token class-name">EpochDuration</span><span class="token punctuation">:</span> <span class="token keyword">u64</span> <span class="token operator">=</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">EpochDuration</span><span class="token punctuation">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
         <span class="token comment">// ... snip</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
+
+<span class="token comment">// In FRAME v2.</span>
+<span class="token attribute attr-name">#[pallet::config]</span>
+    <span class="token attribute attr-name">#[pallet::disable_frame_system_supertrait_check]</span>
+    <span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token class-name">Config</span><span class="token punctuation">:</span> <span class="token namespace">pallet_timestamp<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token punctuation">{</span>
+        <span class="token comment">/// The amount of time, in slots, that each epoch should last.</span>
+        <span class="token comment">/// NOTE: Currently it is not possible to change the epoch duration after</span>
+        <span class="token comment">/// the chain has started. Attempting to do so will brick block production.</span>
+        <span class="token attribute attr-name">#[pallet::constant]</span>
+        <span class="token keyword">type</span> <span class="token class-name">EpochDuration</span><span class="token punctuation">:</span> <span class="token class-name">Get</span><span class="token operator">&lt;</span><span class="token keyword">u64</span><span class="token operator">></span><span class="token punctuation">;</span>
 </code></pre>
 <p>该常量的元数据如下所示：</p>
 <pre><code class="hljs css language-json">"constants": [
@@ -337,11 +372,11 @@
     "type": "u64",
     "value": "0x6009000000000000",
     "documentation": [
-      " The number of **slots** that an epoch takes. We couple sessions to",
-      " epochs, i.e. we start a new session once the new epoch begins."
+      " The amount of time, in slots, that each epoch should last.",
+      " NOTE: Currently it is not possible to change the epoch duration after",
+      "the chain has started. Attempting to do so will brick block production."
     ]
   },
-  // ...
 ]
 </code></pre>
 <p>元数据还包括在runtime的<code>lib.rs</code>文件中定义的常量。 举个例子，以下代码从Kusama获取：</p>
@@ -351,8 +386,9 @@
 </code></pre>
 <p>其中 <code>EPOCH_DURATION_IN_BLOCKS</code> 是在<code>runtime/src/constants.rs</code>中定义的常数。</p>
 <h5><a class="anchor" aria-hidden="true" id="errors"></a><a href="#errors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Errors</h5>
-<p>元数据会从 <code>decl_error!</code>宏中获取所有可能的runtime错误。 举个例子，以下代码从<code>frame-system</code>中获取：</p>
-<pre><code class="hljs css language-rust"><span class="token macro property">decl_error!</span> <span class="token punctuation">{</span>
+<p>Metadata will pull all the possible runtime errors from <code>decl_error!</code> (FRAME v1) or <code>#[pallet::error]</code> (FRAME v2). 举个例子，以下代码从<code>frame-system</code>中获取：</p>
+<pre><code class="hljs css language-rust"><span class="token comment">//In FRAME v1.</span>
+<span class="token macro property">decl_error!</span> <span class="token punctuation">{</span>
     <span class="token comment">/// Error for the system module</span>
     <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Error</span> <span class="token keyword">for</span> <span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token punctuation">{</span>
         <span class="token comment">/// The name of specification does not match between the current runtime</span>
@@ -361,8 +397,17 @@
         <span class="token comment">// ... snip</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
+
+<span class="token comment">//In FRAME v2.</span>
+<span class="token attribute attr-name">#[pallet::error]</span>
+<span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Error</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token comment">/// The name of specification does not match between the current runtime</span>
+        <span class="token comment">/// and the new runtime.</span>
+        <span class="token class-name">InvalidSpecName</span><span class="token punctuation">,</span>
+        <span class="token comment">// ... snip</span>
+    <span class="token punctuation">}</span>
 </code></pre>
-<p>这将会对外暴露以下元数据：</p>
+<p>Both code snips will expose the following metadata:</p>
 <pre><code class="hljs css language-json">"errors": [
   {
     "name": "InvalidSpecName",
@@ -374,7 +419,7 @@
   // ...
 ]
 </code></pre>
-<p>这些都是在 extrinsic 提交或执行过程中可能发生的错误。 In this case, the FRAME System pallet is declaring that it may raise the <a href="https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Error.html#variant.InvalidSpecName"><code>InvalidSpecName</code> 的错误</a>。</p>
+<p>这些都是在 extrinsic 提交或执行过程中可能发生的错误。 In this case, the FRAME System pallet is declaring that it may raise the the <a href="https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Error.html#variant.InvalidSpecName"><code>InvalidSpecName</code> error</a>.</p>
 <h2><a class="anchor" aria-hidden="true" id="后续步骤"></a><a href="#后续步骤" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>后续步骤</h2>
 <h3><a class="anchor" aria-hidden="true" id="进一步学习"></a><a href="#进一步学习" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>进一步学习</h3>
 <ul>
@@ -390,6 +435,7 @@
 <h3><a class="anchor" aria-hidden="true" id="参考文档"></a><a href="#参考文档" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文档</h3>
 <ul>
 <li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_metadata/index.html">元数据</a></li>
+<li><a href="https://crates.parity.io/frame_support/attr.pallet.html">FRAME v2 macro documentation</a></li>
 </ul>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/knowledgebase/runtime/macros"><span class="arrow-prev">← </span><span>Runtime宏</span></a><a class="docs-next button" href="/docs/zh-CN/knowledgebase/runtime/storage"><span>Runtime 存储</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#如何获取元数据">如何获取元数据</a><ul class="toc-headings"><li><a href="#rust">Rust</a></li><li><a href="#javascript">Javascript</a></li><li><a href="#http-和-websocket-apis">HTTP 和 WebSocket APIs</a></li></ul></li><li><a href="#metadata-formats">Metadata Formats</a><ul class="toc-headings"><li><a href="#编码后的元数据格式">编码后的元数据格式</a></li><li><a href="#decoded-metadata-format">Decoded Metadata Format</a></li></ul></li><li><a href="#后续步骤">后续步骤</a><ul class="toc-headings"><li><a href="#进一步学习">进一步学习</a></li><li><a href="#examples">Examples</a></li><li><a href="#参考文档">参考文档</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/rustdocs">API 文档</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
                 var cookieSettings = document.getElementById('cookie-settings');
