@@ -196,7 +196,7 @@ Here is a condensed example of a single element in the `modules` array:
 Every element contains the name of the pallet that it represents, as well as a `storage` object,
 `calls` array, `event` array, and `errors` array.
 
-> Note: If `calls` or `event` are empty, they will be represented as `null`; if `constants` or
+> Note: If `calls` or `events` are empty, they will be represented as `null`; if `constants` or
 > `errors` are empty, they will be represented as an empty array.
 
 ##### Storage
