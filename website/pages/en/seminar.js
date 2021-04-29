@@ -144,6 +144,18 @@ function Seminar(props) {
                 </ul>
               </section>
             </div>
+            <div className='col-md-6 second'>
+              <h2 style={{ fontSize: '32px' }}><translate>Upcoming topics</translate></h2>
+              <p><strong>4 May. </strong><translate> In this Seminar, Parity Software Developers Tomek and Hernando will show off the 
+              work that’s been happening to bridge standalone Substrate-based chains. They will show you how to integrate bridge 
+              pallets into your runtime so that your chain can support trustless cross-chain messaging, while touching on 
+              general bridge architecture styles and how bridges differ from parachains and XCMP.</translate></p>
+              
+              <p><strong>18 May. </strong><translate> Aten, CTO at Patract Labs, will introduce the full-stack tools being built 
+              to power Wasm Smart Contract development for Substrate based chains.</translate></p>
+
+              <p><strong>1 June.</strong> TBD. </p>
+            </div>
           </div>
         </div>
       </section>
