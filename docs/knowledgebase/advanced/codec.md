@@ -86,12 +86,6 @@ One or zero values of a particular type. Encoded as:
 - `0x00` if it is `None` ("empty" or "null").
 - `0x01` followed by the encoded value if it is `Some`.
 
-As an exception, in the case that the type is a boolean, then it is always one byte:
-
-- `0x00` if it is `None` ("empty" or "null").
-- `0x01` if it is the `true` value.
-- `0x02` if it is the `false` value.
-
 ### Results
 
 Results are commonly used enumerations which indicate whether certain operations were successful or
