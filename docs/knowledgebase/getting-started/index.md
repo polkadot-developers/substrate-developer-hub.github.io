@@ -72,6 +72,18 @@ Please refer to the separate [guide for native Windows development](windows-user
 
 ## 2. Rust Developer Environment
 
+### Automated `getsubstrate.io` Script
+
+For most users you can run our script to automate the steps listed below:
+
+```bash
+curl https://getsubstrate.io -sSf | bash -s -- --fast
+```
+
+If this gives any errors, please follow the steps below to manually configure rust on your machine.
+
+### Manual Rust Configuration
+
 This guide uses [`rustup`](https://rustup.rs/) to help manage the Rust toolchain. First install and
 configure `rustup`:
 
