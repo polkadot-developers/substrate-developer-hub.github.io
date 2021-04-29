@@ -54,8 +54,8 @@ with the version of Subkey specified by the `cargo install` command in the
 > If you follow the steps in this section to compile Subkey with Cargo, the version of Subkey will
 > depend on the branch or commit of Substrate that you have checked out.
 
-Once installed, use the `subkey -h` command to see all the subcommands and flags available.
-Use `subkey <subcommand> -h` to see help items for ech subcommand.
+Once installed, use the `subkey -h` command to see all the sub-commands and flags available.
+Use `subkey <sub-command> -h` to see help items for ech sub-command.
 
 ## Inspecting Keys
 
@@ -496,7 +496,7 @@ _Output:_
 
 The peer ID is displayed on screen and the actual key is saved in the `<output-file>`.
 
-<!-- FIXME! The `insert` command is _only_ for the key subcommand embedded in nodes. Not for subkey - we need to point this out... -->
+<!-- FIXME! The `insert` command is _only_ for the key sub-command embedded in nodes. Not for subkey - we need to point this out... -->
 <!-- 
 ## Inserting Keys to a Node's Keystore
 
@@ -551,7 +551,7 @@ Secret phrase `caution juice atom organ advance problem want pledge someone seni
 
 ---
 
-Now you can use the `insert` subcommand to save these keys approriately for use by your node, all
+Now you can use the `insert` sub-command to save these keys appropriately for use by your node, all
 we require is the base path, key type, and correct scheme used to do so with a given secret URI:
 
 _Command:_
