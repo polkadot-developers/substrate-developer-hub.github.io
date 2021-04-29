@@ -7,7 +7,7 @@ utility that is developed
 [within Substrate itself](https://github.com/paritytech/substrate/tree/master/bin/utils/subkey). 
 Its main feature is generating and inspecting key pairs, currently supporting these scheme:
 
-- [sr25519](https://wiki.polkadot.network/docs/en/learn-cryptography_)
+- [sr25519](https://wiki.polkadot.network/docs/en/learn-cryptography)
 - [ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519)
 - [secp256k1](https://en.bitcoin.it/wiki/Secp256k1)
 
@@ -195,7 +195,7 @@ Notice the SS58 Address`5GdandXEVW1ER8cxW6uQgpjpyuEbZ3s2ED3ZU15LfrGdQhhz` contai
 ### Example Seed
 
 > We will use the seed generated above to illustrate different
-> [HD key derivation paths](derivation-paths-from-a-seed) and
+> [HD key derivation paths](#hd-key-derivation) and
 > [passwords](#password-protected-keys):
 > ```text
 > caution juice atom organ advance problem want pledge someone senior holiday very
