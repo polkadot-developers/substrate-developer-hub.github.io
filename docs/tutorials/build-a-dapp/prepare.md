@@ -44,7 +44,7 @@ To add to this, blockchains also provide a robust identity system through accoun
 [public keys](https://en.wikipedia.org/wiki/Public-key_cryptography), and associations built on
 top of those keys [see the identity pallet](https://github.com/paritytech/substrate/tree/v3.0.0/frame/identity).
 So when a file digest is stored on the blockchain, we can also record which account uploaded that digest.
-This allows that controler of that account to later prove that they were the original person to claim the file.
+This allows that controller of that account to later prove that they were the original person to claim the file.
 
 ## Interface and Design
 
