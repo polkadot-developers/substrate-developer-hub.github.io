@@ -31,7 +31,7 @@ _Command:_
 ```bash
 # Use the `--fast` flag to get the dependencies without needing to install the Substrate and Subkey binary
 curl https://getsubstrate.io -sSf | bash -s -- --fast 
-# Install only `subkey`, at specific version (tmp pulls files, builds, installs bin)
+# Install only `subkey`, at a specific version
 cargo install --force subkey --git https://github.com/paritytech/substrate --version 2.0.1 --locked
 ```
 
