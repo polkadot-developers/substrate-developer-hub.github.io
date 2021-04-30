@@ -11,25 +11,25 @@ Its main feature is generating and inspecting key pairs, currently supporting th
 - [ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519)
 - [secp256k1](https://en.bitcoin.it/wiki/Secp256k1)
 
-All keys in substrate based networks
+All keys in Substrate based networks
 ([like polkadot](https://wiki.polkadot.network/docs/en/learn-accounts#address-format))
 use the 
 [SS58 address encoding format](https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58))
-that is the primary user-facing way to address and interact with keys.
+that is the primary user-facing way to interact with keys.
 
-Subkey also allows restoring keys from mnemonics and raw seeds, signing and verifying signatures
-on a message, even for encoded transactions.
+Subkey also allows restoring keys from mnemonics and raw seeds; signing and verifying signatures
+on a message; and signing and verifying signatures for encoded transactions.
 
 ## Installation
 
 ### Install with Cargo
 
-You will need to have the Substrate build dependencies to install subkey.
+You will need to have the Substrate build dependencies to install Subkey.
 Use the following two commands to install the dependencies and Subkey, respectively:
 
 _Command:_
 ```bash
-# Don't install substrate and subkey binary, just get deps needed with `--fast` flag
+# Use the `--fast` flag to get the dependencies without needing to install the Substrate and Subkey binary
 curl https://getsubstrate.io -sSf | bash -s -- --fast 
 # Install only `subkey`, at specific version (tmp pulls files, builds, installs bin)
 cargo install --force subkey --git https://github.com/paritytech/substrate --version 2.0.1 --locked
@@ -42,7 +42,7 @@ build Subkey with:
 
 _Command:_
 ```bash
-# Run this in the substrate working directory
+# Run this in the Substrate working directory
 cargo build -p subkey --release
 ```
 
@@ -240,7 +240,7 @@ Secret phrase `caution juice atom organ advance problem want pledge someone seni
 
 ## HD Key Derivation
 
-> REMEMBER: **Passwords and derivation paths are just as important to backup as your seed itself!**
+> **Remember that passwords and derivation paths are just as important to backup as the seed itself!**
 > See the [password note](#important-password-and-derivation-note) for more information.
 
 Subkey supports hard and soft hierarchical deterministic (HD) key derivation compliant with
@@ -315,7 +315,7 @@ Note that the two addresses here match. This is not the case in hard key derivat
 
 ## Password Protected Keys
 
-> REMEMBER: **Passwords and derivation paths are just as important to backup as your seed itself!**
+> **Remember that passwords and derivation paths are just as important to backup as the seed itself!**
 > See the [password note](#important-password-and-derivation-note) for more information.
 
 To generate a key that is password protected, use the `--password <password>` flag:
@@ -370,9 +370,9 @@ The output is identical otherwise.
 
 ### IMPORTANT PASSWORD AND DERIVATION NOTE
 
-> Note that the "Secret seed" is the same and _not_ password protected, it can still recover _an_
-> account - but the key pair derived _is not the same_ account as recovered with _any_ password!
-> You can see this in the next section demonstrated.
+> Note that the "secret seed" is the same and _is not_ password protected. Although it can still recover _an_
+> account, the key pair that's derived _is not the same_ account as recovered with _any_ password!
+> This is demonstrated in the next section.
 > 
 > **The "Secret phrase" is not sufficient to recover the account without the password!**
 > Keep this password secure, as without it your key pair cannot be recovered!
@@ -400,7 +400,7 @@ To use key derivation with a password-protected key, add your password to the en
 
 _Command:_
 ```bash
-# mnemonic phrase plus derivation path plus password
+# Mnemonic phrase + derivation path + password
 subkey inspect "caution juice atom organ advance problem want pledge someone senior holiday very//polkadot/0///pencil laptop kitchen cutter"
 ```
 _Output:_
@@ -431,8 +431,8 @@ Public Key URI `5GsbzysSK8TKahXBC7FpS2myx3nWehMyYU7q8CLrzZCjpKbM/0` is account:
   SS58 Address:       5GeoQa3nkeNmzZSfgBFuK3BkAggnTHcX3S1j94sffJYYphrP
 ```
 
-Notice that the "SS58-address plus derivation path" produces the same address as the "mnemonic
-phrase plus derivation path plus password." As such, you can reveal your parent public address
+Notice that the "SS58-address + derivation path" produces the same address as the "mnemonic
+phrase + derivation path + password." As such, you can reveal your parent public address
 and soft derivation paths without revealing your mnemonic phrase or password, retaining control
 of all derived addresses.
 
