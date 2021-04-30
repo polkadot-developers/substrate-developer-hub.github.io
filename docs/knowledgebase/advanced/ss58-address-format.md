@@ -10,7 +10,7 @@ The basic idea is a base-58 encoded value that can identify a specific account o
 chain. Different chains have different means of identifying accounts. SS58 is designed to be
 extensible for this reason.
 
-The living specification for the SS58 address format can be found on the [Substrate GitHub wiki](https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58)).
+The living specification for the SS58 address format can be found on the [Substrate GitHub wiki](<https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58)>).
 
 ## Validating Addresses
 
@@ -73,10 +73,10 @@ const isValid = isValidSubstrateAddress();
 console.log(isValid);
 ```
 
-### Solutions from the Community
+### Community Built
 
-If you are looking to build custom solutions for validating addresses in the language of your choice,
-you will find a list of projects by our community below to use as a starting point:
+Below you will find a list of other Substrate API tools built in various languages by our community.
+They each validate addresses in their own way, and can act as a starting point.
 
 - [Python Substrate Interface](https://polkascan.github.io/py-substrate-interface/#substrateinterface.Keypair) - developed by Polkascan.
 
@@ -88,4 +88,10 @@ you will find a list of projects by our community below to use as a starting poi
 
 - [Go implemented utilities](https://github.com/itering/subscan-essentials) - developed by Subscan.
 
-- [SS58 Transform](https://polkadot.subscan.io/tools/ss58_transform) - to manually verify an address and convert between registered prefix values.
+- [SS58 Transform](https://polkadot.subscan.io/tools/ss58_transform) - to manually verify an address (sanity check).
+
+### Learn More
+
+- [Polkadot-js API on GitHub](https://github.com/polkadot-js/api)
+
+- [Subkey guide](docs/en/knowledgebase/integrate/subkey)
