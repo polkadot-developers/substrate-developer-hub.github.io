@@ -161,15 +161,6 @@ The output gives us the following information about our key:
 - **Account ID** - Alias for the Public Key in hexadecimal. 
 - **SS58 Address** (aka "Public Address") - An SS58-encoded address based on the public key.
 
-Currently Subkey supports the following cryptographic key pairs and signing algorithms:
-
-- `sr25519`: Schorr signatures on the Ristretto group
-- `ed25519`: ed25519
-- `secp256k1`: ECDSA signatures on secp256k1
-
-Note that the address for a secp256k1 key is the SS58 encoding of the hash of the public key in
-order to reduce the public key from 33 bytes to 32 bytes.
-
 You can also create a vanity address, meaning an address that contains a specified sub-string. But
 you will not receive a mnemonic phrase for this address.
 
