@@ -362,12 +362,12 @@ The output is identical otherwise.
 
 ### IMPORTANT PASSWORD AND DERIVATION NOTE
 
-> Note that the "secret seed" is the same and _is not_ password protected. Although it can still recover _an_
+> Note that the "secret seed" _is not_ password protected. Although it can still recover _an_
 > account, the key pair that's derived _is not the same_ account as recovered with _any_ password!
-> This is demonstrated in the next section.
-> 
-> **The "Secret phrase" is not sufficient to recover the account without the password!**
-> Keep this password secure, as without it your key pair cannot be recovered!
+> The same seed with different derivation paths passwords will derive **different keys**!
+>
+> **The "Secret phrase" is not sufficient to recover a key pair!**
+> Keep your paths and passwords secure, as without it your key pair cannot be recovered!
 
 You can mix and match hard and soft key paths (although it doesn't make much sense to have hard
 paths as children of soft paths). For example:
