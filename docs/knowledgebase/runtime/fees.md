@@ -84,7 +84,7 @@ in which a target saturation level of block weight is defined. If the previous b
 saturated, then the fees are slightly increased. Similarly, if the previous block has fewer
 transactions than the target, fees are decreased by a small amount. More information about this can
 be found in the
-[Web3 research page](https://w3f-research.readthedocs.io/en/latest/polkadot/overview/2-token-economics.html?highlight=token%20economics#relay-chain-transaction-fees-and-per-block-transaction-limits).
+[Web3 research page](https://w3f-research.readthedocs.io/en/latest/polkadot/overview/2-token-economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits).
 
 ## Additional Fees
 
@@ -396,4 +396,4 @@ custom
 
 ### References
 
-- [Web3 Foundation Research](https://w3f-research.readthedocs.io/en/latest/polkadot/economics/1-token-economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits)
+- [Web3 Foundation Research](https://w3f-research.readthedocs.io/en/latest/polkadot/overview/2-token-economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits)
