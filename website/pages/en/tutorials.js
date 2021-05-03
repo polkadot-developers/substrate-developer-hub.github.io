@@ -80,16 +80,15 @@ const TutorialCards = props => {
 
 class Tutorials extends React.Component {
   render() {
-    // self-note: This part need to be added in render() function, and cannot be put at the top
-    //   of the file, as `<translate>` tag need to be called everytime it is rendered based on
-    //   currently selected translation.
+    // dev-note: This part need to be added in render() function, and cannot be put at the top
+    // of the file, as `<translate>` tag need to be called every time it is rendered based on
+    // currently selected translation.
     const tutorialCardData = [
       {
         title: <translate>Create Your First Substrate Chain</translate>,
         text: (
           <translate>
-            Launch and interact with your first Substrate chain in this minimal
-            end-to-end guide.
+            Launch and interact with your first Substrate chain in this minimal end-to-end guide.
           </translate>
         ),
         difficulty: <translate>Easy</translate>,
@@ -101,11 +100,7 @@ class Tutorials extends React.Component {
       {
         img: "img/tutorials/crates.png",
         title: <translate>Add a Pallet to Your Runtime</translate>,
-        text: (
-          <translate>
-            Add the Nicks pallet to your Substrate node template.
-          </translate>
-        ),
+        text: <translate>Add the Nicks pallet to your Substrate node template.</translate>,
         difficulty: <translate>Easy</translate>,
         length: <translate>2 Hours</translate>,
         prerequisite: true,
@@ -116,9 +111,7 @@ class Tutorials extends React.Component {
         img: "img/tutorials/first-substrate-chain.png",
         title: <translate>Build a PoE Decentralized Application</translate>,
         text: (
-          <translate>
-            Build a customized Substrate chain with its own user interface.
-          </translate>
+          <translate>Build a customized Substrate chain with its own user interface.</translate>
         ),
         difficulty: <translate>Easy</translate>,
         length: <translate>1 Hour</translate>,
@@ -131,8 +124,7 @@ class Tutorials extends React.Component {
         title: <translate>Start a Private Network with Substrate</translate>,
         text: (
           <translate>
-            Learn to start a blockchain network using an out-of-the-box
-            Substrate node.
+            Learn to start a blockchain network using an out-of-the-box Substrate node.
           </translate>
         ),
         difficulty: <translate>Easy</translate>,
@@ -146,8 +138,7 @@ class Tutorials extends React.Component {
         title: <translate>Write a Pallet in its Own Crate</translate>,
         text: (
           <translate>
-            Make your pallets re-usable by packaging them in their own rust
-            crate.
+            Make your pallets re-usable by packaging them in their own rust crate.
           </translate>
         ),
         difficulty: <translate>Medium</translate>,
@@ -159,9 +150,7 @@ class Tutorials extends React.Component {
       {
         title: <translate>Forkless Upgrade a Chain</translate>,
         text: (
-          <translate>
-            Perform a forkless runtime upgrade on a running Substrate network.
-          </translate>
+          <translate>Perform a forkless runtime upgrade on a running Substrate network.</translate>
         ),
         difficulty: <translate>Medium</translate>,
         length: <translate>2 Hours</translate>,
@@ -174,8 +163,8 @@ class Tutorials extends React.Component {
         title: <translate>Build a Permissioned Network</translate>,
         text: (
           <translate>
-            A comprehensive, end-to-end tutorial for building a permissioned
-            network using node-authorization pallet.
+            A comprehensive, end-to-end tutorial for building a permissioned network using
+            node-authorization pallet.
           </translate>
         ),
         difficulty: <translate>Easy</translate>,
@@ -187,11 +176,7 @@ class Tutorials extends React.Component {
       {
         img: "img/tutorials/crates.png",
         title: <translate>Add the Contracts Pallet to a Runtime</translate>,
-        text: (
-          <translate>
-            Add the Contracts pallet to your Substrate node template.
-          </translate>
-        ),
+        text: <translate>Add the Contracts pallet to your Substrate node template.</translate>,
         difficulty: <translate>Medium</translate>,
         length: <translate>2 Hours</translate>,
         prerequisite: true,
@@ -203,8 +188,7 @@ class Tutorials extends React.Component {
         title: <translate>ink! Smart Contracts Tutorial</translate>,
         text: (
           <translate>
-            A comprehensive, end-to-end tutorial for building an ERC20 token
-            contract using ink!.
+            A comprehensive, end-to-end tutorial for building an ERC20 token contract using ink!.
           </translate>
         ),
         difficulty: <translate>Easy</translate>,
@@ -219,8 +203,7 @@ class Tutorials extends React.Component {
         title: <translate>Substrate Frontier Workshop</translate>,
         text: (
           <translate>
-            A workshop to configure Substrate node to run Substrate EVM and
-            Solidity contracts.
+            A workshop to configure Substrate node to run Substrate EVM and Solidity contracts.
           </translate>
         ),
         difficulty: <translate>Medium</translate>,
@@ -235,8 +218,7 @@ class Tutorials extends React.Component {
         title: <translate>Visualizing Node Metrics</translate>,
         text: (
           <translate>
-            Learn how to visualize the metrics that Substrate records using
-            Prometheus.
+            Learn how to visualize the metrics that Substrate records using Prometheus.
           </translate>
         ),
         difficulty: <translate>Easy</translate>,
@@ -272,26 +254,36 @@ class Tutorials extends React.Component {
     const { baseUrl, docsUrl } = siteConfig;
     const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
     const langPart = `${language ? `${language}/` : ""}`;
-    const docUrlHandler = url => (url.startsWith('http://') || url.startsWith('https://'))
-      ? url
-      : `${baseUrl}${docsPart}${langPart}${url}`;
+    const docUrlHandler = (url) =>
+      url.startsWith("http://") || url.startsWith("https://")
+        ? url
+        : `${baseUrl}${docsPart}${langPart}${url}`;
 
-    const baseUrlHandler = url => (url.startsWith('http://') || url.startsWith('https://'))
-      ? url
-      : `${baseUrl}${url}`;
+    const baseUrlHandler = (url) =>
+      url.startsWith("http://") || url.startsWith("https://") ? url : `${baseUrl}${url}`;
 
-    return <div>
-      <HomeSplash
-        siteConfig={siteConfig}
-        language={language}
-        title={<translate>Tutorial Catalog</translate>}
-        tagline={<translate>Let's learn together!</translate>}
-        padding={0}
-      />
-      <div className="mainContainer"><Container><Row>
-        <TutorialCards baseUrl={baseUrlHandler} docUrl={docUrlHandler} data={ tutorialCardData } />
-      </Row></Container></div>
-    </div>;
+    return (
+      <div>
+        <HomeSplash
+          siteConfig={siteConfig}
+          language={language}
+          title={<translate>Tutorial Catalog</translate>}
+          tagline={<translate>Let's learn together!</translate>}
+          padding={0}
+        />
+        <div className="mainContainer">
+          <Container>
+            <Row>
+              <TutorialCards
+                baseUrl={baseUrlHandler}
+                docUrl={docUrlHandler}
+                data={tutorialCardData}
+              />
+            </Row>
+          </Container>
+        </div>
+      </div>
+    );
   }
 }
 
