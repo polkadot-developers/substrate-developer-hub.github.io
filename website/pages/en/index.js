@@ -37,7 +37,7 @@ class Index extends React.Component {
     return (
       <section>
         <div className="announcement">
-          Polkadot Decoded, the biggest Polkadot event of the year. May19th &#38; 20th{` `}&#128073;
+          Polkadot Decoded: talks, tech and all things Polkadot. May 19th & 20th{` `}&#128073;
           {` `}
           <a href="https://decoded.polkadot.network/?utm_source=substrate.dev&utm_medium=referral&utm_campaign=decoded+2&utm_content=register">
             Register now
