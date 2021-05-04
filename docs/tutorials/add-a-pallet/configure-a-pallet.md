@@ -104,7 +104,8 @@ impl pallet_balances::Config for Runtime {
     type AccountStore = System;
 
     // No weight information is supplied to the Balances pallet by the Node Template's runtime.
-    type WeightInfo = ();
+    // type WeightInfo = (); // old way
+    type WeightInfo = pallet_balances::weights::SubstrateWeight<Runtime>;
 
     // The ubiquitous event type.
     type Event = Event;
