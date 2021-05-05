@@ -96,6 +96,8 @@ Unlike OCWs, which are not executed during initial blockchain synchronization, o
 populating the storage every time a block is processed, so the data is always consistent and will be
 exactly the same for every node with indexing enabled.
 
+[Check here for a concrete example of using off-chain indexing](#example-off-chain-indexing).
+
 ## Learn More
 
 To look at concrete examples of off-chain workers and how to use them in runtime development,
@@ -104,3 +106,4 @@ refer to the following sections in Substrate Recipes:
 - <span id="example-txs">[Submit signed and unsigned transactions from off-chain workers back on-chain](https://substrate.dev/recipes/off-chain-workers/transactions.html)</span>
 - <span id="example-http">[Fetch external data using HTTP requests and parse JSON responses](https://substrate.dev/recipes/off-chain-workers/http-json.html)</span>
 - <span id="example-off-chain-storage">[Store result in off-chain worker local storage](https://substrate.dev/recipes/off-chain-workers/storage.html)</span>
+- <span id="example-off-chain-indexing">[Example of off-chain indexing](https://substrate.dev/recipes/off-chain-workers/indexing.html)
