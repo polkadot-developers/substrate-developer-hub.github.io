@@ -162,15 +162,15 @@ FRAME storage migrations will run in this order:
 
 > **Note**
 >
-> If you are running on Substrate version after [commit `#bd8c1cae`](https://github.com/paritytech/substrate/commit/bd8c1cae434dd6050833555e14967e3cd936e004), the storage migration order has been updated
+> If you are running on a Substrate version after [commit `#bd8c1cae`](https://github.com/paritytech/substrate/commit/bd8c1cae434dd6050833555e14967e3cd936e004), the storage migration order has been updated
 > to:
 >
 > 1. Custom `on_runtime_upgrade`
 > 2. `frame_system::on_runtime_upgrade`
 > 3. All `on_runtime_upgrade` functions defined in all included pallets.
 >
-> The reason is to cater for scenarios where one need to write custom code to make the
-> `frame_system::on_runtime_upgrade` runs and returns successfully. Refer to the detail [here](https://github.com/paritytech/substrate/issues/8683).
+> The reason is to cater for scenarios where one needs to write custom code to make
+> `frame_system::on_runtime_upgrade` run and return successfully. Refer to the details [here](https://github.com/paritytech/substrate/issues/8683).
 
 ### Testing Migrations
 
