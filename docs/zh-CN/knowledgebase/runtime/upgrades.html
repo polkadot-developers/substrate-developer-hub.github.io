@@ -128,6 +128,16 @@
 <li>自定义的 <code>on_runtime_upgrade</code> 顺序，如上所述</li>
 <li>按照 runtime 载入模块的顺序，如上所述，来运行所有 <code>on_runtime_upgrade</code> 函数</li>
 </ol>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>If you are running on a Substrate version after <a href="https://github.com/paritytech/substrate/commit/bd8c1cae434dd6050833555e14967e3cd936e004">commit <code>#bd8c1cae</code></a>, the storage migration order has been updated to:</p>
+<ol>
+<li>Custom <code>on_runtime_upgrade</code></li>
+<li><code>frame_system::on_runtime_upgrade</code></li>
+<li>All <code>on_runtime_upgrade</code> functions defined in all included pallets.</li>
+</ol>
+<p>The reason is to cater for scenarios where one needs to write custom code to make <code>frame_system::on_runtime_upgrade</code> run and return successfully. Refer to the details <a href="https://github.com/paritytech/substrate/issues/8683">here</a>.</p>
+</blockquote>
 <h3><a class="anchor" aria-hidden="true" id="迁移测试"></a><a href="#迁移测试" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>迁移测试</h3>
 <p>测试存储迁移非常重要，因此 Substrate 提供了许多实用工具来协助完成此过程。 <a href="https://github.com/paritytech/substrate-debug-kit">Substrate Debug Kit</a> 包含一个 <a href="https://github.com/paritytech/substrate-debug-kit/tree/master/remote-externalities">Remote Externalities</a> 工具，该工具允许在真实的链数据上运行存储迁移单元测试。 使用 <a href="https://github.com/maxsam4/fork-off-substrate">Fork Off Substrate</a> 脚本可以轻松创建用于启动本地测试链，测试 runtime 升级和存储迁移的链规范文档。</p>
 <h2><a class="anchor" aria-hidden="true" id="进一步学习"></a><a href="#进一步学习" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>进一步学习</h2>
