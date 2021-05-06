@@ -25,3 +25,18 @@ gtag('config', 'UA-145158313-2');
 dataLayerScript.setAttribute("data-type", "application/javascript");
 dataLayerScript.setAttribute("data-name", "googleAnalytics");
 head.appendChild(dataLayerScript);
+
+// Simple Analytics Script and NoScript with Image Pixels
+var saScript = document.createElement('script');
+saScript.async = true;
+saScript.defer = true;
+saScript.setAttribute('src', 'https://api-sa.parity.io/latest.js')
+head.appendChild(saScript);
+
+var saNoScript = document.createElement('noscript');
+var saImg = document.createElement('img');
+saImg.setAttribute('src', 'https://api-sa.parity.io/noscript.gif');
+saImg.setAttribute('alt', ' ');
+saImg.setAttribute('referrerpolicy', 'referrer-when-downgrade');
+saNoScript.appendChild(saImg);
+head.appendChild(saNoScript);
