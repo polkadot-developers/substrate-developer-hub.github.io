@@ -79,7 +79,7 @@ comments that you should be sure to read:
 **`runtime/src/lib.rs`**
 
 ```rust
-/// Already in your template for Ballances:
+/// Already in your template for Balances:
 parameter_types! {
     // The u128 constant value 500 is aliased to a type named ExistentialDeposit.
     pub const ExistentialDeposit: u128 = 500;
