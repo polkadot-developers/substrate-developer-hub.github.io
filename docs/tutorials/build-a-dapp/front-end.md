@@ -5,8 +5,9 @@ title: Building a Custom Front End
 If you have made it this far, that means you _should_ have a brand new blockchain with custom
 functionality up and running.
 
-In this section, we will get the front-end up and running and add a custom React component designed to make use of our PoE pallet's capabilities.
-
+In this section, we will get the front-end up and running and add a custom React component designed to make use of our PoE pallet's capabilities. 
+The first thing you'll need to do is to clone a copy of the [Front-End Template](https://github.com/substrate-developer-hub/substrate-front-end-template)
+if you haven't already.
 ## Explore the Front-End Template
 
 To start the Front-End Template, navigate to its directory and run:
