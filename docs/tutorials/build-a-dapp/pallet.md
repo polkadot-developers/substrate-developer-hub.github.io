@@ -75,6 +75,9 @@ This tutorial is using the latest version of FRAME so be sure to refer to that. 
 ```rust
 #![cfg_attr(not(feature = "std"), no_std)]
 
+// Re-export pallet items so that they can be accessed from the crate namespace.
+pub use pallet::*;
+
 #[frame_support::pallet]
 pub mod pallet {
 	use frame_support::{dispatch::DispatchResultWithPostInfo, pallet_prelude::*};
