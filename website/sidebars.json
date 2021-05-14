@@ -58,6 +58,7 @@
       "knowledgebase/advanced/cryptography",
       "knowledgebase/advanced/storage",
       "knowledgebase/advanced/ss58-address-format",
+      "knowledgebase/advanced/account-info",
       "knowledgebase/advanced/no-hash-collections"
     ],
     "Contribute": [
