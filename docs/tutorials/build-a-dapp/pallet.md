@@ -120,7 +120,7 @@ Of Existence pallet by providing you with the code blocks that go under each sec
 > necessary in the [Add a Pallet](../add-a-pallet) tutorial.
 >
 > You _can_ use `std` features in non-runtime components like `mock.rs` and `tests.rs` using
-> `[dev-dependencies]` _ONLY_. Specifics and examples of this are is outside the scope of this
+> `[dev-dependencies]` _ONLY_. Specifics and examples of this are outside the scope of this
 > tutorial. Learn more about [substrate testing here](../../knowledgebase/runtime/tests).
 
 ### 2. Pallet Configuration Trait
