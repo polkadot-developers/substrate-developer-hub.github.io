@@ -181,13 +181,13 @@ Similarly, errors indicate when a call has failed, and why it has failed. Add th
 
 ```rust
 pub enum Error<T> {
-        /// The proof has already been claimed.
-        ProofAlreadyClaimed,
-        /// The proof does not exist, so it cannot be revoked.
-        NoSuchProof,
-        /// The proof is claimed by another account, so caller can't revoke it.
-        NotProofOwner,
-    }
+	/// The proof has already been claimed.
+	ProofAlreadyClaimed,
+	/// The proof does not exist, so it cannot be revoked.
+	NoSuchProof,
+	/// The proof is claimed by another account, so caller can't revoke it.
+	NotProofOwner,
+}
 ```
 
 The first of these errors can occur when attempting to claim a new proof. Of course a user cannot
