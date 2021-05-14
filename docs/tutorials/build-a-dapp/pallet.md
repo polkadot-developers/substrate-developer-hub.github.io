@@ -159,15 +159,15 @@ To implement this, replace `#[pallet::event]` with:
 	// Pallets use events to inform users when important changes are made.
 	// Event documentation should end with an array that provides descriptive names for parameters.
 	// https://substrate.dev/docs/en/knowledgebase/runtime/events
-    #[pallet::event]
-	#[pallet::generate_deposit(pub(super) fn deposit_event)]
+	#[pallet::event]
 	#[pallet::metadata(T::AccountId = "AccountId")]
+	#[pallet::generate_deposit(pub(super) fn deposit_event)]
 	pub enum Event<T: Config> {
-	/// Event emitted when a proof has been claimed. [who, claim]
-        ClaimCreated(T::AccountId, Vec<u8>),
-        /// Event emitted when a claim is revoked by the owner. [who, claim]
-        ClaimRevoked(T::AccountId, Vec<u8>),
-    }
+		/// Event emitted when a proof has been claimed. [who, claim]
+		ClaimCreated(T::AccountId, Vec<u8>),
+    /// Event emitted when a claim is revoked by the owner. [who, claim]
+		ClaimRevoked(T::AccountId, Vec<u8>),
+	}
 ```
 
 #### 3.1 Include `sp-std` Library
