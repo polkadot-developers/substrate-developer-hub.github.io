@@ -125,7 +125,7 @@ Every pallet has a component called `Config` that is used for configuration. Thi
 interfaces in languages such as C++, Java and Go. For now, the only thing we will configure about
 our pallet is that it will emit some Events. The `Config` interface is another topic that will be
 covered in greater depth in the [Add a Pallet](../add-a-pallet) tutorial. To define the pallet's
-`Config` trait, add this block in place of the `#[pallet::config]` line:
+`Config` trait, replace the `#[pallet::config]` line with this block:
 
 **`pallet/template/src/lib.rs`**
 
@@ -172,12 +172,11 @@ To implement this, replace `#[pallet::event]` with:
 
 #### 3.1 Include `sp-std` Library
 
-Notice here that we are using the `Vec<u8>` type, and most Rust developers are familiar
-with this that is _normally_ included in the `std` library. We _cannot_ use `std`!
+Notice here that we are using the `Vec<u8>` type, which is _normally_ included in the `std` Rust library. We _cannot_ use `std`!
 So instead, we have included `use sp_std::vec::Vec;` in our `mod pallet`.
 The [sp-std crate](https://substrate.dev/rustdocs/v3.0.0/sp_std/index.html) includes many common
 things that we desire from `std`, but are `no_std` compatible. To use this though, we _must_
-update our pallet's dependencies to include this:
+update our pallet's dependencies:
 
 **`pallet/template/Cargo.toml`**
 
