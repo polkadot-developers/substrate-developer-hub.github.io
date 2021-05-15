@@ -107,7 +107,7 @@ will use as a starting point to build our own custom runtime logic.</p>
 <span class="token operator">|</span>       <span class="token operator">|</span>
 <span class="token operator">|</span>       <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> src
 <span class="token operator">|</span>           <span class="token operator">|</span>
-<span class="token operator">|</span>           <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> lib<span class="token punctuation">.</span>rs     <span class="token operator">&lt;</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token operator">*</span><span class="token class-name">Remove</span><span class="token operator">*</span> and make a new file
+<span class="token operator">|</span>           <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> lib<span class="token punctuation">.</span>rs     <span class="token operator">&lt;</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token operator">*</span><span class="token class-name">Remove</span><span class="token operator">*</span> contents
 <span class="token operator">|</span>           <span class="token operator">|</span>
 <span class="token operator">|</span>           <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> mock<span class="token punctuation">.</span>rs    <span class="token operator">&lt;</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token operator">*</span><span class="token class-name">Remove</span><span class="token operator">*</span> <span class="token punctuation">(</span>optionally modify<span class="token punctuation">)</span>
 <span class="token operator">|</span>           <span class="token operator">|</span>
@@ -124,110 +124,75 @@ When writing your own pallets in the future, you will likely find the scaffoldin
 in this template pallet useful. But for the purposes of really learning how a pallet
 is constructed, <strong>delete all contents of this file</strong>.</p>
 <blockquote>
-<p>The following sections will start <em>from scratch</em> - assuming that you have cleared the
+<p>The following sections will start <em>from scratch</em> and assumes that you have cleared the
 existing <code>pallet/template/src/lib.rs</code> file.</p>
 </blockquote>
 <h2><a class="anchor" aria-hidden="true" id="write-a-pallet-from-scratch"></a><a href="#write-a-pallet-from-scratch" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Write a Pallet from Scratch</h2>
-<h3><a class="anchor" aria-hidden="true" id="frame-pallet-structure"></a><a href="#frame-pallet-structure" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>FRAME Pallet Structure</h3>
-<p>At a high level, a FRAME pallet can be broken down into six sections:</p>
-<pre><code class="hljs css language-rust"><span class="token comment">// 1. Imports</span>
-<span class="token keyword">use</span> <span class="token namespace">frame_support<span class="token punctuation">::</span></span><span class="token punctuation">{</span>decl_module<span class="token punctuation">,</span> decl_storage<span class="token punctuation">,</span> decl_event<span class="token punctuation">,</span> decl_error<span class="token punctuation">,</span> dispatch<span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword">use</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span>ensure_signed<span class="token punctuation">;</span>
-
-<span class="token comment">// 2. Configuration</span>
-<span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token class-name">Config</span><span class="token punctuation">:</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token punctuation">{</span> <span class="token comment">/* --snip-- */</span> <span class="token punctuation">}</span>
-
-<span class="token comment">// 3. Storage</span>
-<span class="token macro property">decl_storage!</span> <span class="token punctuation">{</span> <span class="token comment">/* --snip-- */</span> <span class="token punctuation">}</span>
-
-<span class="token comment">// 4. Events</span>
-<span class="token macro property">decl_event!</span> <span class="token punctuation">{</span> <span class="token comment">/* --snip-- */</span> <span class="token punctuation">}</span>
-
-<span class="token comment">// 5. Errors</span>
-<span class="token macro property">decl_error!</span> <span class="token punctuation">{</span> <span class="token comment">/* --snip-- */</span> <span class="token punctuation">}</span>
-
-<span class="token comment">// 6. Callable Functions</span>
-<span class="token macro property">decl_module!</span> <span class="token punctuation">{</span> <span class="token comment">/* --snip-- */</span> <span class="token punctuation">}</span>
-</code></pre>
-<p>Things like events, storage, and callable functions may look familiar to you if you have done other
-blockchain development. We will show you what each of these components looks like for a basic Proof
-Of Existence pallet.</p>
-<p>In the following sections, the code blocks required for the PoE pallet are provided for you to simply copy and paste into the empty pallet/template/src/lib.rs file.</p>
-<h3><a class="anchor" aria-hidden="true" id="pallet-imports-and-dependencies"></a><a href="#pallet-imports-and-dependencies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pallet Imports and Dependencies</h3>
-<p>All FRAME pallets have some required dependencies. Pasting this at the top of your empty <code>lib.rs</code>
-file will get you these:</p>
+<h3><a class="anchor" aria-hidden="true" id="1-pallet-scaffolding"></a><a href="#1-pallet-scaffolding" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. Pallet Scaffolding</h3>
+<p>Have a look at <a href="/docs/en/knowledgebase/runtime/pallets#frame-v2">the skeleton of a FRAME pallet</a> from the knowledgebase to learn more about the basic structure of a FRAME pallet.
+This tutorial is using the latest version of FRAME so be sure to refer to that. We can start by scaffolding our pallet using the following code:</p>
 <p><strong><code>pallet/template/src/lib.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token attribute attr-name">#![cfg_attr(not(feature = <span class="token string">"std"</span>), no_std)]</span>
 
-<span class="token keyword">use</span> <span class="token namespace">frame_support<span class="token punctuation">::</span></span><span class="token punctuation">{</span>
-    decl_module<span class="token punctuation">,</span> decl_storage<span class="token punctuation">,</span> decl_event<span class="token punctuation">,</span> decl_error<span class="token punctuation">,</span> ensure<span class="token punctuation">,</span> <span class="token class-name">StorageMap</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword">use</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span>ensure_signed<span class="token punctuation">;</span>
-<span class="token keyword">use</span> <span class="token namespace">sp_std<span class="token punctuation">::</span>vec<span class="token punctuation">::</span></span><span class="token class-name">Vec</span><span class="token punctuation">;</span>
+<span class="token comment">// Re-export pallet items so that they can be accessed from the crate namespace.</span>
+<span class="token keyword">pub</span> <span class="token keyword">use</span> <span class="token namespace">pallet<span class="token punctuation">::</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
+
+<span class="token attribute attr-name">#[frame_support::pallet]</span>
+<span class="token keyword">pub</span> <span class="token keyword">mod</span> <span class="token module-declaration namespace">pallet</span> <span class="token punctuation">{</span>
+    <span class="token keyword">use</span> <span class="token namespace">frame_support<span class="token punctuation">::</span></span><span class="token punctuation">{</span><span class="token namespace">dispatch<span class="token punctuation">::</span></span><span class="token class-name">DispatchResultWithPostInfo</span><span class="token punctuation">,</span> <span class="token namespace">pallet_prelude<span class="token punctuation">::</span></span><span class="token operator">*</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">use</span> <span class="token namespace">frame_system<span class="token punctuation">::</span>pallet_prelude<span class="token punctuation">::</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
+    <span class="token keyword">use</span> <span class="token namespace">sp_std<span class="token punctuation">::</span>vec<span class="token punctuation">::</span></span><span class="token class-name">Vec</span><span class="token punctuation">;</span> <span class="token comment">// Step 3.1 will include this in `Cargo.toml`</span>
+
+    <span class="token attribute attr-name">#[pallet::config]</span>  <span class="token comment">// &lt;-- Step 2. code block will replace this.</span>
+
+    <span class="token attribute attr-name">#[pallet::event]</span>   <span class="token comment">// &lt;-- Step 3. code block will replace this.</span>
+    
+    <span class="token attribute attr-name">#[pallet::error]</span>   <span class="token comment">// &lt;-- Step 4. code block will replace this.</span>
+    
+    <span class="token attribute attr-name">#[pallet::pallet]</span>
+    <span class="token attribute attr-name">#[pallet::generate_store(pub(super) trait Store)]</span>
+    <span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">(</span>_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token attribute attr-name">#[pallet::storage]</span> <span class="token comment">// &lt;-- Step 5. code block will replace this.</span>
+    
+    <span class="token attribute attr-name">#[pallet::hooks]</span>
+    <span class="token keyword">impl</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token class-name">Hooks</span><span class="token operator">&lt;</span><span class="token class-name">BlockNumberFor</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">>></span> <span class="token keyword">for</span> <span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    
+    <span class="token attribute attr-name">#[pallet::call]</span>   <span class="token comment">// &lt;-- Step 6. code block will replace this.</span>
+<span class="token punctuation">}</span>
 </code></pre>
+<p>By doing this, we've declared the dependencies and <a href="/docs/en/knowledgebase/runtime/macros">macros</a> our pallet will require to function.</p>
+<p>Things like <em>events</em>, <em>storage</em>, and <em>callable functions</em> may look familiar to you if you have done other
+blockchain development. We will show you what each of these components looks like for a basic Proof
+Of Existence pallet by providing you with the code blocks that go under each section.</p>
 <blockquote>
 <p><strong>Critical</strong>: the <code>no_std</code> feature is <strong>required</strong> for all pallets! This is because we are building a
 <em>runtime</em> module that <em>must</em> compile to WASM, and therefore cannot depend on rust's <code>std</code>
-dependencies.</p>
-</blockquote>
-<p>Most of these imports are already available because they were used in the template pallet whose code
-we just deleted. However, <code>sp_std</code> is not available and we need to list it as a dependency.</p>
-<p><strong>Add</strong> these lines to your <code>pallets/template/Cargo.toml</code> file under <code>[dependencies]</code> and
-<code>[features]</code> sections, as shown below:</p>
-<p><strong><code>pallets/template/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">dependencies</span><span class="token punctuation">]</span>
-
-<span class="token comment">#--snip--</span>
-
-<span class="token key property">sp-std</span> <span class="token punctuation">=</span> <span class="token punctuation">{</span> <span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">'3.0.0'</span> <span class="token punctuation">}</span>  &lt;-- Add this line
-
-<span class="token comment">#--snip--</span>
-
-<span class="token punctuation">[</span><span class="token table class-name">features</span><span class="token punctuation">]</span>
-<span class="token key property">default</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">'std'</span><span class="token punctuation">]</span>
-<span class="token key property">std</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span>
-    <span class="token comment">#--snip--</span>
-    <span class="token string">'sp-std/std'</span><span class="token punctuation">,</span>                                         &lt;-- Add this line
-<span class="token punctuation">]</span>
-</code></pre>
-<blockquote>
-<p>Notice here that all <em>runtime specific</em> dependencies <em>must</em> have default feature (meaning <code>std</code>)
-disabled so we can compile the runtime to WASM. You can also learn more about why this is
+dependencies.
+If you take a look at the <code>pallets/template/Cargo.toml</code> file, you will see that the template already has <code>std</code> default feature disabled which is necessary in order to compile the runtime to WASM. Learn more about why this is
 necessary in the <a href="../add-a-pallet">Add a Pallet</a> tutorial.</p>
 <p>You <em>can</em> use <code>std</code> features in non-runtime components like <code>mock.rs</code> and <code>tests.rs</code> using
-<code>[dev-dependencies]</code> <em>ONLY</em>. Specifics and examples of this are is outside the scope of this
-tutorial. Learn more about <a href="../../knowledgebase/runtime/tests">substrate testing here</a>.</p>
+<code>[dev-dependencies]</code> <em>ONLY</em>. Specifics and examples of this are outside the scope of this
+tutorial. Learn more about <a href="../../knowledgebase/runtime/tests">testing in Substrate here</a>.</p>
 </blockquote>
-<h3><a class="anchor" aria-hidden="true" id="pallet-configuration-trait"></a><a href="#pallet-configuration-trait" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pallet Configuration Trait</h3>
+<h3><a class="anchor" aria-hidden="true" id="2-pallet-configuration-trait"></a><a href="#2-pallet-configuration-trait" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Pallet Configuration Trait</h3>
 <p>Every pallet has a component called <code>Config</code> that is used for configuration. This component is a
-<a href="https://doc.rust-lang.org/book/ch10-02-traits.html">Rust &quot;trait&quot;</a>; traits in Rust are similar to
+<a href="https://doc.rust-lang.org/book/ch10-02-traits.html">Rust &quot;trait&quot;</a>: traits in Rust are similar to
 interfaces in languages such as C++, Java and Go. For now, the only thing we will configure about
 our pallet is that it will emit some Events. The <code>Config</code> interface is another topic that will be
-covered in greater depth in the <a href="../add-a-pallet">Add a Pallet</a> tutorial. To <em>define</em> the pallet's
-<code>Config</code> trait, add this block:</p>
+covered in greater depth in the <a href="../add-a-pallet">Add a Pallet</a> tutorial. To define the pallet's
+<code>Config</code> trait, replace the <code>#[pallet::config]</code> line with this block:</p>
 <p><strong><code>pallet/template/src/lib.rs</code></strong></p>
-<pre><code class="hljs css language-rust"><span class="token comment">/// Configure the pallet by specifying the parameters and types on which it depends.</span>
-<span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token class-name">Config</span><span class="token punctuation">:</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token punctuation">{</span>
-    <span class="token comment">/// Because this pallet emits events, it depends on the runtime's definition of an event.</span>
-    <span class="token keyword">type</span> <span class="token class-name">Event</span><span class="token punctuation">:</span> <span class="token class-name">From</span><span class="token operator">&lt;</span><span class="token class-name">Event</span><span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token operator">>></span> <span class="token operator">+</span> <span class="token class-name">Into</span><span class="token operator">&lt;&lt;</span><span class="token keyword">Self</span> <span class="token keyword">as</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Config</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">Event</span><span class="token operator">></span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h3><a class="anchor" aria-hidden="true" id="pallet-events"></a><a href="#pallet-events" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pallet Events</h3>
-<p>Now that we've configured our pallet to emit events, let's go ahead and define those events:</p>
-<p><strong><code>pallet/template/src/lib.rs</code></strong></p>
-<pre><code class="hljs css language-rust"><span class="token comment">// Pallets use events to inform users when important changes are made.</span>
-<span class="token comment">// Event documentation should end with an array that provides descriptive names for parameters.</span>
-<span class="token comment">// https://substrate.dev/docs/en/knowledgebase/runtime/events</span>
-<span class="token macro property">decl_event!</span> <span class="token punctuation">{</span>
-    <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Event</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token keyword">where</span> <span class="token class-name">AccountId</span> <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token class-name">T</span> <span class="token keyword">as</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Config</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">AccountId</span> <span class="token punctuation">{</span>
-        <span class="token comment">/// Event emitted when a proof has been claimed. [who, claim]</span>
-        <span class="token class-name">ClaimCreated</span><span class="token punctuation">(</span><span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token comment">/// Event emitted when a claim is revoked by the owner. [who, claim]</span>
-        <span class="token class-name">ClaimRevoked</span><span class="token punctuation">(</span><span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<pre><code class="hljs css language-rust">    <span class="token comment">/// Configure the pallet by specifying the parameters and types on which it depends.</span>
+    <span class="token attribute attr-name">#[pallet::config]</span>
+    <span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token class-name">Config</span><span class="token punctuation">:</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token punctuation">{</span>
+        <span class="token comment">/// Because this pallet emits events, it depends on the runtime's definition of an event.</span>
+        <span class="token keyword">type</span> <span class="token class-name">Event</span><span class="token punctuation">:</span> <span class="token class-name">From</span><span class="token operator">&lt;</span><span class="token class-name">Event</span><span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token operator">>></span> <span class="token operator">+</span> <span class="token class-name">IsType</span><span class="token operator">&lt;&lt;</span><span class="token keyword">Self</span> <span class="token keyword">as</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Config</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">Event</span><span class="token operator">></span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
 </code></pre>
-<p>Our pallet will only emit an event in two circumstances:</p>
+<h3><a class="anchor" aria-hidden="true" id="3-pallet-events"></a><a href="#3-pallet-events" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3. Pallet Events</h3>
+<p>Now that we've configured our pallet to emit events, let's go ahead and define those events.
+Our pallet will only emit an event in two circumstances:</p>
 <ol>
 <li>When a new proof is added to the blockchain.</li>
 <li>When a proof is removed.</li>
@@ -236,113 +201,133 @@ covered in greater depth in the <a href="../add-a-pallet">Add a Pallet</a> tutor
 triggered the event (<code>AccountId</code>), and the proof data (as <code>Vec&lt;u8&gt;</code>) that is being stored or
 removed. Note that convention is to include an array with descriptive names for these parameters at
 the end of event documentation.</p>
-<h3><a class="anchor" aria-hidden="true" id="pallet-errors"></a><a href="#pallet-errors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pallet Errors</h3>
+<p>To implement this, replace <code>#[pallet::event]</code> with:</p>
+<p><strong><code>pallet/template/src/lib.rs</code></strong></p>
+<pre><code class="hljs css language-rust">    <span class="token comment">// Pallets use events to inform users when important changes are made.</span>
+    <span class="token comment">// Event documentation should end with an array that provides descriptive names for parameters.</span>
+    <span class="token comment">// https://substrate.dev/docs/en/knowledgebase/runtime/events</span>
+    <span class="token attribute attr-name">#[pallet::event]</span>
+    <span class="token attribute attr-name">#[pallet::metadata(T::AccountId = <span class="token string">"AccountId"</span>)]</span>
+    <span class="token attribute attr-name">#[pallet::generate_deposit(pub(super) fn deposit_event)]</span>
+    <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Event</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token comment">/// Event emitted when a proof has been claimed. [who, claim]</span>
+        <span class="token class-name">ClaimCreated</span><span class="token punctuation">(</span><span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment">/// Event emitted when a claim is revoked by the owner. [who, claim]</span>
+        <span class="token class-name">ClaimRevoked</span><span class="token punctuation">(</span><span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="31-include-sp-std-library"></a><a href="#31-include-sp-std-library" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.1 Include <code>sp-std</code> Library</h4>
+<p>Notice here that we are using the <code>Vec&lt;u8&gt;</code> type, which is <em>normally</em> included in the <code>std</code> Rust library. We <em>cannot</em> use <code>std</code>!
+So instead, we have included <code>use sp_std::vec::Vec;</code> in our <code>mod pallet</code>.
+The <a href="https://substrate.dev/rustdocs/v3.0.0/sp_std/index.html">sp-std crate</a> includes many common
+things that we desire from <code>std</code>, but are <code>no_std</code> compatible. To use this though, we <em>must</em>
+update our pallet's dependencies:</p>
+<p><strong><code>pallet/template/Cargo.toml</code></strong></p>
+<pre><code class="hljs css language-toml"><span class="token comment"># add `sp-std` in the dependencies section of the toml file</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">dependencies</span><span class="token punctuation">]</span>
+<span class="token comment"># -- snip -- </span>
+<span class="token key property">sp-std</span> <span class="token punctuation">=</span> <span class="token punctuation">{</span> <span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">'3.0.0'</span> <span class="token punctuation">}</span>
+<span class="token comment"># -- snip --</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="4-pallet-errors"></a><a href="#4-pallet-errors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4. Pallet Errors</h3>
 <p>The events we defined previously indicate when calls to the pallet have completed successfully.
 Similarly, errors indicate when a call has failed, and why it has failed.</p>
-<p><strong><code>pallet/template/src/lib.rs</code></strong></p>
-<pre><code class="hljs css language-rust"><span class="token comment">// Errors inform users that something went wrong.</span>
-<span class="token macro property">decl_error!</span> <span class="token punctuation">{</span>
-    <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Error</span> <span class="token keyword">for</span> <span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token punctuation">{</span>
-        <span class="token comment">/// The proof has already been claimed.</span>
-        <span class="token class-name">ProofAlreadyClaimed</span><span class="token punctuation">,</span>
-        <span class="token comment">/// The proof does not exist, so it cannot be revoked.</span>
-        <span class="token class-name">NoSuchProof</span><span class="token punctuation">,</span>
-        <span class="token comment">/// The proof is claimed by another account, so caller can't revoke it.</span>
-        <span class="token class-name">NotProofOwner</span><span class="token punctuation">,</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
 <p>The first of these errors can occur when attempting to claim a new proof. Of course a user cannot
 claim a proof that has already been claimed. The latter two can occur when attempting to revoke a
 proof.</p>
-<h3><a class="anchor" aria-hidden="true" id="pallet-storage"></a><a href="#pallet-storage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pallet Storage</h3>
+<p>To implement this, replace the <code>#[pallet::error]</code> line with:</p>
+<p><strong><code>pallet/template/src/lib.rs</code></strong></p>
+<pre><code class="hljs css language-rust">    <span class="token attribute attr-name">#[pallet::error]</span>
+    <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Error</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            <span class="token comment">/// The proof has already been claimed.</span>
+            <span class="token class-name">ProofAlreadyClaimed</span><span class="token punctuation">,</span>
+            <span class="token comment">/// The proof does not exist, so it cannot be revoked.</span>
+            <span class="token class-name">NoSuchProof</span><span class="token punctuation">,</span>
+            <span class="token comment">/// The proof is claimed by another account, so caller can't revoke it.</span>
+            <span class="token class-name">NotProofOwner</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="5-pallet-storage"></a><a href="#5-pallet-storage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5. Pallet Storage</h3>
 <p>To add a new proof to the blockchain, we will simply store that proof in our pallet's storage. To
 store that value, we will create a <a href="https://en.wikipedia.org/wiki/Hash_table">hash map</a> from the
-proof to the owner of that proof and the block number the proof was made.</p>
+proof to the owner of that proof and the block number the proof was made. We'll be using FRAME's <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/types/struct.StorageMap.html"><code>StorageMap</code></a> to keep track of this information.</p>
+<p>To implement this, replace the <code>#[pallet::storage]</code> line with:</p>
 <p><strong><code>pallet/template/src/lib.rs</code></strong></p>
-<pre><code class="hljs css language-rust"><span class="token comment">// The pallet's runtime storage items.</span>
-<span class="token comment">// https://substrate.dev/docs/en/knowledgebase/runtime/storage</span>
-<span class="token macro property">decl_storage!</span> <span class="token punctuation">{</span>
-    <span class="token keyword">trait</span> <span class="token class-name">Store</span> <span class="token keyword">for</span> <span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token keyword">as</span> <span class="token class-name">TemplateModule</span> <span class="token punctuation">{</span>
-        <span class="token comment">/// The storage item for our proofs.</span>
-        <span class="token comment">/// It maps a proof to the user who made the claim and when they made it.</span>
-        <span class="token class-name">Proofs</span><span class="token punctuation">:</span> map <span class="token function">hasher</span><span class="token punctuation">(</span>blake2_128_concat<span class="token punctuation">)</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">BlockNumber</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<pre><code class="hljs css language-rust">    <span class="token attribute attr-name">#[pallet::storage]</span> 
+    <span class="token keyword">pub</span><span class="token punctuation">(</span><span class="token keyword">super</span><span class="token punctuation">)</span> <span class="token keyword">type</span> <span class="token class-name">Proofs</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token class-name">StorageMap</span><span class="token operator">&lt;</span>_<span class="token punctuation">,</span> <span class="token class-name">Blake2_128Concat</span><span class="token punctuation">,</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">BlockNumber</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">ValueQuery</span><span class="token operator">></span><span class="token punctuation">;</span>   
 </code></pre>
-<p>If a proof has an owner and a block number, then we know that it has been claimed! Otherwise, the
-proof is available to be claimed.</p>
-<h3><a class="anchor" aria-hidden="true" id="pallet-callable-functions"></a><a href="#pallet-callable-functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Pallet Callable Functions</h3>
+<h3><a class="anchor" aria-hidden="true" id="6-pallet-callable-functions"></a><a href="#6-pallet-callable-functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6. Pallet Callable Functions</h3>
 <p>As implied by our pallet's events and errors, we will have two &quot;dispatchable functions&quot; the user can
 call in this FRAME pallet:</p>
 <ol>
 <li><code>create_claim()</code>: Allow a user to claim the existence of a file with a proof.</li>
 <li><code>revoke_claim()</code>: Allow the owner of a claim to revoke their claim.</li>
 </ol>
+<p>These functions will be based on using the <code>StorageMap</code> based on the following logic: if a proof has an owner and a block number, then we know that it has been claimed. Otherwise, the
+proof is available to be claimed (and written to storage).</p>
+<p>To implement this, replace the <code>#[pallet::call]</code> line with:</p>
 <p><strong><code>pallet/template/src/lib.rs</code></strong></p>
-<pre><code class="hljs css language-rust"><span class="token comment">// Dispatchable functions allows users to interact with the pallet and invoke state changes.</span>
-<span class="token comment">// These functions materialize as "extrinsics", which are often compared to transactions.</span>
-<span class="token comment">// Dispatchable functions must be annotated with a weight and must return a DispatchResult.</span>
-<span class="token macro property">decl_module!</span> <span class="token punctuation">{</span>
-    <span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token keyword">for</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Call</span> <span class="token keyword">where</span> origin<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">Origin</span> <span class="token punctuation">{</span>
-        <span class="token comment">// Errors must be initialized if they are used by the pallet.</span>
-        <span class="token keyword">type</span> <span class="token class-name">Error</span> <span class="token operator">=</span> <span class="token class-name">Error</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">;</span>
+<pre><code class="hljs css language-rust">    <span class="token comment">// Dispatchable functions allows users to interact with the pallet and invoke state changes.</span>
+    <span class="token comment">// These functions materialize as "extrinsics", which are often compared to transactions.</span>
+    <span class="token comment">// Dispatchable functions must be annotated with a weight and must return a DispatchResult.</span>
+        <span class="token attribute attr-name">#[pallet::call]</span>
+        <span class="token keyword">impl</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            <span class="token attribute attr-name">#[pallet::weight(1_000)]</span>
+            <span class="token keyword">pub</span><span class="token punctuation">(</span><span class="token keyword">super</span><span class="token punctuation">)</span> <span class="token keyword">fn</span> <span class="token function-definition function">create_claim</span><span class="token punctuation">(</span>
+                origin<span class="token punctuation">:</span> <span class="token class-name">OriginFor</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span>
+                proof<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">,</span>
+            <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">DispatchResultWithPostInfo</span> <span class="token punctuation">{</span>
 
-        <span class="token comment">// Events must be initialized if they are used by the pallet.</span>
-        <span class="token keyword">fn</span> <span class="token function-definition function">deposit_event</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> default<span class="token punctuation">;</span>
+                <span class="token comment">// Check that the extrinsic was signed and get the signer.</span>
+                <span class="token comment">// This function will return an error if the extrinsic is not signed.</span>
+                <span class="token comment">// https://substrate.dev/docs/en/knowledgebase/runtime/origin</span>
+                <span class="token keyword">let</span> sender <span class="token operator">=</span> <span class="token function">ensure_signed</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">;</span>
+            
+                <span class="token comment">// Verify that the specified proof has not already been claimed.         </span>
+                <span class="token macro property">ensure!</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">Proofs</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token function">contains_key</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>proof<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Error</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">ProofAlreadyClaimed</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="token comment">/// Allow a user to claim ownership of an unclaimed proof.</span>
-        <span class="token attribute attr-name">#[weight = 10_000]</span>
-        <span class="token keyword">fn</span> <span class="token function-definition function">create_claim</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> proof<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment">// Check that the extrinsic was signed and get the signer.</span>
-            <span class="token comment">// This function will return an error if the extrinsic is not signed.</span>
-            <span class="token comment">// https://substrate.dev/docs/en/knowledgebase/runtime/origin</span>
-            <span class="token keyword">let</span> sender <span class="token operator">=</span> <span class="token function">ensure_signed</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">;</span>
+                <span class="token comment">// Get the block number from the FRAME System module.</span>
+                <span class="token keyword">let</span> current_block <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token punctuation">::</span><span class="token function">block_number</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-            <span class="token comment">// Verify that the specified proof has not already been claimed.</span>
-            <span class="token macro property">ensure!</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">Proofs</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token function">contains_key</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>proof<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Error</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">ProofAlreadyClaimed</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment">// Store the proof with the sender and block number.</span>
+                <span class="token class-name">Proofs</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>proof<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token operator">&amp;</span>sender<span class="token punctuation">,</span> current_block<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-            <span class="token comment">// Get the block number from the FRAME System module.</span>
-            <span class="token keyword">let</span> current_block <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token punctuation">::</span><span class="token function">block_number</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment">// Emit an event that the claim was created.</span>
+                <span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token function">deposit_event</span><span class="token punctuation">(</span><span class="token class-name">Event</span><span class="token punctuation">::</span><span class="token class-name">ClaimCreated</span><span class="token punctuation">(</span>sender<span class="token punctuation">,</span> proof<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-            <span class="token comment">// Store the proof with the sender and block number.</span>
-            <span class="token class-name">Proofs</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>proof<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token operator">&amp;</span>sender<span class="token punctuation">,</span> current_block<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
 
-            <span class="token comment">// Emit an event that the claim was created.</span>
-            <span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token function">deposit_event</span><span class="token punctuation">(</span><span class="token class-name">RawEvent</span><span class="token punctuation">::</span><span class="token class-name">ClaimCreated</span><span class="token punctuation">(</span>sender<span class="token punctuation">,</span> proof<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token attribute attr-name">#[pallet::weight(10_000)]</span>
+            <span class="token keyword">fn</span> <span class="token function-definition function">revoke_claim</span><span class="token punctuation">(</span>
+                origin<span class="token punctuation">:</span> <span class="token class-name">OriginFor</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span>
+                proof<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">,</span>
+            <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">DispatchResultWithPostInfo</span> <span class="token punctuation">{</span>
+                <span class="token comment">// Check that the extrinsic was signed and get the signer.</span>
+                <span class="token comment">// This function will return an error if the extrinsic is not signed.</span>
+                <span class="token comment">// https://substrate.dev/docs/en/knowledgebase/runtime/origin</span>
+                <span class="token keyword">let</span> sender <span class="token operator">=</span> <span class="token function">ensure_signed</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">;</span>
+
+                <span class="token comment">// Verify that the specified proof has been claimed.</span>
+                <span class="token macro property">ensure!</span><span class="token punctuation">(</span><span class="token class-name">Proofs</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token function">contains_key</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>proof<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Error</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">NoSuchProof</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token comment">// Get owner of the claim.</span>
+                <span class="token keyword">let</span> <span class="token punctuation">(</span>owner<span class="token punctuation">,</span> _<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token class-name">Proofs</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>proof<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token comment">// Verify that sender of the current call is the claim owner.</span>
+                <span class="token macro property">ensure!</span><span class="token punctuation">(</span>sender <span class="token operator">==</span> owner<span class="token punctuation">,</span> <span class="token class-name">Error</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">NotProofOwner</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token comment">// Remove claim from storage.</span>
+                <span class="token class-name">Proofs</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>proof<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token comment">// Emit an event that the claim was erased.</span>
+                <span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token function">deposit_event</span><span class="token punctuation">(</span><span class="token class-name">Event</span><span class="token punctuation">::</span><span class="token class-name">ClaimRevoked</span><span class="token punctuation">(</span>sender<span class="token punctuation">,</span> proof<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
-
-        <span class="token comment">/// Allow the owner to revoke their claim.</span>
-        <span class="token attribute attr-name">#[weight = 10_000]</span>
-        <span class="token keyword">fn</span> <span class="token function-definition function">revoke_claim</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> proof<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment">// Check that the extrinsic was signed and get the signer.</span>
-            <span class="token comment">// This function will return an error if the extrinsic is not signed.</span>
-            <span class="token comment">// https://substrate.dev/docs/en/knowledgebase/runtime/origin</span>
-            <span class="token keyword">let</span> sender <span class="token operator">=</span> <span class="token function">ensure_signed</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">;</span>
-
-            <span class="token comment">// Verify that the specified proof has been claimed.</span>
-            <span class="token macro property">ensure!</span><span class="token punctuation">(</span><span class="token class-name">Proofs</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token function">contains_key</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>proof<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Error</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">NoSuchProof</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-            <span class="token comment">// Get owner of the claim.</span>
-            <span class="token keyword">let</span> <span class="token punctuation">(</span>owner<span class="token punctuation">,</span> _<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token class-name">Proofs</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>proof<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-            <span class="token comment">// Verify that sender of the current call is the claim owner.</span>
-            <span class="token macro property">ensure!</span><span class="token punctuation">(</span>sender <span class="token operator">==</span> owner<span class="token punctuation">,</span> <span class="token class-name">Error</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">NotProofOwner</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-            <span class="token comment">// Remove claim from storage.</span>
-            <span class="token class-name">Proofs</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>proof<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-            <span class="token comment">// Emit an event that the claim was erased.</span>
-            <span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token function">deposit_event</span><span class="token punctuation">(</span><span class="token class-name">RawEvent</span><span class="token punctuation">::</span><span class="token class-name">ClaimRevoked</span><span class="token punctuation">(</span>sender<span class="token punctuation">,</span> proof<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
 </code></pre>
-<blockquote>
-<p>The functions you see here do not have return types explicitly stated. In reality, they all return
-<a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/dispatch/type.DispatchResult.html"><code>DispatchResult</code></a>,
-which is added on your behalf by the <code>decl_module!</code> macro.</p>
-</blockquote>
 <h2><a class="anchor" aria-hidden="true" id="build-your-new-pallet"></a><a href="#build-your-new-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Build Your New Pallet</h2>
 <p>After you've copied all of the parts of this pallet correctly into your <code>pallets/template/lib.rs</code>
 file, you should be able to recompile your node without warning or error. Run this command in the
@@ -352,13 +337,14 @@ cargo build --release
 <span class="hljs-comment"># Launch your chain in dev mode</span>
 ./target/release/node-template --dev --tmp
 </code></pre>
-<p>If everything worked out properly, your node should be producing blocks. And now it is time to interact with our new Proof of Existence pallet!</p>
+<p>If everything worked out properly, your node should be producing blocks.
+And now it is time to interact with our new Proof of Existence pallet!</p>
 <blockquote>
 <p>Stuck? There is a full node template
-<a href="https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/build-a-dapp-v3">solution</a>
-to use as a reference. Check the commit diff from the base <code>v3.0.0</code> template for the exact changes.</p>
+<a href="https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/build-a-dapp-v3+1">solution</a>
+to use as a reference. Check the commit diff from the base <code>v3.0.0+1</code> template for the exact changes.</p>
 </blockquote>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 4/14/2021 by Jimmy Chu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/tutorials/build-a-dapp/prepare"><span class="arrow-prev">← </span><span class="function-name-prevnext">Prepare to build a dApp</span></a><a class="docs-next button" href="/docs/en/tutorials/build-a-dapp/front-end"><span>Building a Custom Front End</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#substrate-blockchain-file-structure">Substrate Blockchain File Structure</a></li><li><a href="#write-a-pallet-from-scratch">Write a Pallet from Scratch</a><ul class="toc-headings"><li><a href="#frame-pallet-structure">FRAME Pallet Structure</a></li><li><a href="#pallet-imports-and-dependencies">Pallet Imports and Dependencies</a></li><li><a href="#pallet-configuration-trait">Pallet Configuration Trait</a></li><li><a href="#pallet-events">Pallet Events</a></li><li><a href="#pallet-errors">Pallet Errors</a></li><li><a href="#pallet-storage">Pallet Storage</a></li><li><a href="#pallet-callable-functions">Pallet Callable Functions</a></li></ul></li><li><a href="#build-your-new-pallet">Build Your New Pallet</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 5/14/2021 by sacha-l</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/tutorials/build-a-dapp/prepare"><span class="arrow-prev">← </span><span class="function-name-prevnext">Prepare to build a dApp</span></a><a class="docs-next button" href="/docs/en/tutorials/build-a-dapp/front-end"><span>Building a Custom Front End</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#substrate-blockchain-file-structure">Substrate Blockchain File Structure</a></li><li><a href="#write-a-pallet-from-scratch">Write a Pallet from Scratch</a><ul class="toc-headings"><li><a href="#1-pallet-scaffolding">1. Pallet Scaffolding</a></li><li><a href="#2-pallet-configuration-trait">2. Pallet Configuration Trait</a></li><li><a href="#3-pallet-events">3. Pallet Events</a></li><li><a href="#4-pallet-errors">4. Pallet Errors</a></li><li><a href="#5-pallet-storage">5. Pallet Storage</a></li><li><a href="#6-pallet-callable-functions">6. Pallet Callable Functions</a></li></ul></li><li><a href="#build-your-new-pallet">Build Your New Pallet</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();

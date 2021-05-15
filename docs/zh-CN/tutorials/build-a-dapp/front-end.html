@@ -74,6 +74,16 @@
             });
         </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">构建自定义前端</h1></header><article><div><span><p>如果你一路走来，这意味着你<em>应该</em>已经启动并运行了一个包含自定义功能的全新区块链。</p>
 <p>In this section, we will get the front-end up and running and add a custom React component designed to make use of our PoE pallet's capabilities.</p>
+<p>The first thing you'll need to do is to clone a copy of the <a href="https://github.com/substrate-developer-hub/substrate-front-end-template">Front-End Template</a> <strong>specifically with the <code>v3.0.0</code> tag</strong> as a base, if you haven't already.</p>
+<pre><code class="hljs css language-bash">git <span class="hljs-built_in">clone</span> -b v3.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="yarn-v2"></a><a href="#yarn-v2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Yarn V2</h3>
+<p>The Frontend Template is expected to work with <code>yarn 2.4.1</code>. To ensure you have the right version, use:</p>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># use yarn 2+</span>
+yarn <span class="hljs-built_in">set</span> version berry
+<span class="hljs-comment"># update to latest yarn 2</span>
+yarn <span class="hljs-built_in">set</span> version latest
+</code></pre>
 <h2><a class="anchor" aria-hidden="true" id="探索-front-end-template："></a><a href="#探索-front-end-template：" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>探索 Front-End Template：</h2>
 <p>要启动 Front-End Template，导航到相关目录下，并运行：</p>
 <pre><code class="hljs css language-bash"><span class="hljs-comment"># Install dependencies if this is the first time you run front-end template</span>
@@ -81,12 +91,12 @@ yarn install
 <span class="hljs-comment"># Start the template</span>
 yarn start
 </code></pre>
-<p>你的网页浏览器将打开一个新的标签页，并且你将看到以下界面：</p>
+<p>A new tab should open in your web browser and you'll see the following interface.</p>
 <p><img src="/docs/assets/tutorials/build-a-dapp/front-end-template.png" alt="Front End Template"></p>
-<p>你将看到一系列预先设置好的帐户，并且你可以在这些帐户之间进行转帐交易。</p>
+<p>You'll see a list of pre-funded accounts, and you can make token transfers between those accounts.</p>
 <p><img src="/docs/assets/tutorials/build-a-dapp/front-end-template-balance-transfer.png" alt="余额转账"></p>
 <h2><a class="anchor" aria-hidden="true" id="添加自定义-react-组件"></a><a href="#添加自定义-react-组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加自定义 React 组件</h2>
-<p>在前端模板项目中，修改 <code>/src/</code> 目录下的 <code>TemplateModule.js</code> 文件：</p>
+<p>In the Front-End Template project, edit the <code>TemplateModule.js</code> file in the <code>/src/</code> folder:</p>
 <p><strong><code>src/TemplateModule.js</code></strong></p>
 <pre><code class="hljs">substrate<span class="token operator">-</span>front<span class="token operator">-</span>end<span class="token operator">-</span>template
 <span class="token operator">|</span>
@@ -96,7 +106,7 @@ yarn start
 <span class="token operator">|</span>   <span class="token operator">|</span>
 <span class="token operator">|</span>   <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token class-name">App</span><span class="token punctuation">.</span>js
 <span class="token operator">|</span>   <span class="token operator">|</span>
-<span class="token operator">|</span>   <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token class-name">TemplateModule</span><span class="token punctuation">.</span>js  <span class="token operator">&lt;</span><span class="token operator">-</span><span class="token operator">-</span> 修改此文件
+<span class="token operator">|</span>   <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token class-name">TemplateModule</span><span class="token punctuation">.</span>js  <span class="token operator">&lt;</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token class-name">Edit</span> this file
 <span class="token operator">|</span>   <span class="token operator">|</span>
 <span class="token operator">|</span>   <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token punctuation">...</span>
 <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token punctuation">...</span>
@@ -110,35 +120,35 @@ yarn start
     }
   </style>
 </div>
-<pre><code class="hljs css language-javascript"><span class="hljs-comment">// React and Semantic UI 元素。</span>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">// React and Semantic UI elements.</span>
 <span class="hljs-keyword">import</span> React, { useState, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 <span class="hljs-keyword">import</span> { Form, Input, Grid, Message } <span class="hljs-keyword">from</span> <span class="hljs-string">'semantic-ui-react'</span>;
-<span class="hljs-comment">// 预设的 Substrate front-end 工具，用于连接节点</span>
-<span class="hljs-comment">// 和执行交易。</span>
+<span class="hljs-comment">// Pre-built Substrate front-end utilities for connecting to a node</span>
+<span class="hljs-comment">// and making a transaction.</span>
 <span class="hljs-keyword">import</span> { useSubstrate } <span class="hljs-keyword">from</span> <span class="hljs-string">'./substrate-lib'</span>;
 <span class="hljs-keyword">import</span> { TxButton } <span class="hljs-keyword">from</span> <span class="hljs-string">'./substrate-lib/components'</span>;
-<span class="hljs-comment">// Polkadot-JS 工具，用作对数据进行 hash 计算 。</span>
+<span class="hljs-comment">// Polkadot-JS utilities for hashing data.</span>
 <span class="hljs-keyword">import</span> { blake2AsHex } <span class="hljs-keyword">from</span> <span class="hljs-string">'@polkadot/util-crypto'</span>;
 
-<span class="hljs-comment">// 导出存证的主要组件。</span>
+<span class="hljs-comment">// Our main Proof Of Existence Component which is exported.</span>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Main</span> (<span class="hljs-params">props</span>) </span>{
-  <span class="hljs-comment">// 建立一个与 Substrate 节点通讯的 API。</span>
+  <span class="hljs-comment">// Establish an API to talk to our Substrate node.</span>
   <span class="hljs-keyword">const</span> { api } = useSubstrate();
-  <span class="hljs-comment">// 从 `AccountSelector` 组件中获取选定的用户。</span>
+  <span class="hljs-comment">// Get the selected user from the `AccountSelector` component.</span>
   <span class="hljs-keyword">const</span> { accountPair } = props;
-  <span class="hljs-comment">// React hooks 用于追踪所有变量的状态。</span>
-  <span class="hljs-comment">// 更多内容参见：https://reactjs.org/docs/hooks-intro.html</span>
+  <span class="hljs-comment">// React hooks for all the state variables we track.</span>
+  <span class="hljs-comment">// Learn more at: https://reactjs.org/docs/hooks-intro.html</span>
   <span class="hljs-keyword">const</span> [status, setStatus] = useState(<span class="hljs-string">''</span>);
   <span class="hljs-keyword">const</span> [digest, setDigest] = useState(<span class="hljs-string">''</span>);
   <span class="hljs-keyword">const</span> [owner, setOwner] = useState(<span class="hljs-string">''</span>);
   <span class="hljs-keyword">const</span> [block, setBlock] = useState(<span class="hljs-number">0</span>);
 
-  <span class="hljs-comment">// 被后续代码中的函数所访问的 `FileReader()` 实例。</span>
+  <span class="hljs-comment">// Our `FileReader()` which is accessible from our functions below.</span>
   <span class="hljs-keyword">let</span> fileReader;
 
-  <span class="hljs-comment">// 使用 Blake2 256 散列函数生成文件的摘要。</span>
+  <span class="hljs-comment">// Takes our file, and creates a digest using the Blake2 256 hash function.</span>
   <span class="hljs-keyword">const</span> bufferToDigest = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-    <span class="hljs-comment">// 将文件内容转换成 Hex 格式。</span>
+    <span class="hljs-comment">// Turns the file content to a hexadecimal representation.</span>
     <span class="hljs-keyword">const</span> content = <span class="hljs-built_in">Array</span>.from(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(fileReader.result))
       .map(<span class="hljs-function">(<span class="hljs-params">b</span>) =&gt;</span> b.toString(<span class="hljs-number">16</span>).padStart(<span class="hljs-number">2</span>, <span class="hljs-string">'0'</span>))
       .join(<span class="hljs-string">''</span>);
@@ -147,23 +157,23 @@ yarn start
     setDigest(hash);
   };
 
-  <span class="hljs-comment">// 当一个新文件被选取时需调用的回调函数。</span>
+  <span class="hljs-comment">// Callback function for when a new file is selected.</span>
   <span class="hljs-keyword">const</span> handleFileChosen = <span class="hljs-function">(<span class="hljs-params">file</span>) =&gt;</span> {
     fileReader = <span class="hljs-keyword">new</span> FileReader();
     fileReader.onloadend = bufferToDigest;
     fileReader.readAsArrayBuffer(file);
   };
 
-  <span class="hljs-comment">// 使用 React hook 来更新文件中的 owner 和  block number 信息。</span>
+  <span class="hljs-comment">// React hook to update the owner and block number information for a file.</span>
   useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
     <span class="hljs-keyword">let</span> unsubscribe;
 
-    <span class="hljs-comment">// 使用 Polkadot-JS API 来查询 pallet 中  `proofs` 的存储信息。</span>
-    <span class="hljs-comment">// 这是一个订阅，它将总是获得最新的值，</span>
-    <span class="hljs-comment">// 即便它发生了改变。</span>
+    <span class="hljs-comment">// Polkadot-JS API query to the `proofs` storage item in our pallet.</span>
+    <span class="hljs-comment">// This is a subscription, so it will always get the latest value,</span>
+    <span class="hljs-comment">// even if it changes.</span>
     api.query.templateModule
       .proofs(digest, (result) =&gt; {
-        <span class="hljs-comment">// 我们的存储项将返回一个元组，以一个数组来代表。</span>
+        <span class="hljs-comment">// Our storage item returns a tuple, which is represented as an array.</span>
         setOwner(result[<span class="hljs-number">0</span>].toString());
         setBlock(result[<span class="hljs-number">1</span>].toNumber());
       })
@@ -172,43 +182,43 @@ yarn start
       });
 
     <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> unsubscribe &amp;&amp; unsubscribe();
-    <span class="hljs-comment">// 用来告诉 React hook 在文件的摘要发生更改</span>
-    <span class="hljs-comment">// (当新文件被选择时)，或当存储订阅表示存储项的值已更新时，</span>
-    <span class="hljs-comment">// 执行页面更新操作。</span>
+    <span class="hljs-comment">// This tells the React hook to update whenever the file digest changes</span>
+    <span class="hljs-comment">// (when a new file is chosen), or when the storage subscription says the</span>
+    <span class="hljs-comment">// value of the storage item has updated.</span>
   }, [digest, api.query.templateModule]);
 
-  <span class="hljs-comment">// 若储存文件摘要的区块值不为零，我们则称该文件摘要已被声明。</span>
+  <span class="hljs-comment">// We can say a file digest is claimed if the stored block number is not 0.</span>
   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isClaimed</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">return</span> block !== <span class="hljs-number">0</span>;
   }
 
-  <span class="hljs-comment">// 从组件中返回实际的 UI 元素。</span>
+  <span class="hljs-comment">// The actual UI elements which are returned from our component.</span>
   <span class="hljs-keyword">return</span> (
     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Grid.Column</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Proof Of Existence<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-      {/* 当文件被声明或失败时，显示警告或成功的消息。 */}
+      {/* Show warning or success message if the file is or is not claimed. */}
       <span class="hljs-tag">&lt;<span class="hljs-name">Form</span> <span class="hljs-attr">success</span>=<span class="hljs-string">{!!digest</span> &amp;&amp; !<span class="hljs-attr">isClaimed</span>()} <span class="hljs-attr">warning</span>=<span class="hljs-string">{isClaimed()}</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">Form.Field</span>&gt;</span>
-          {/* 回调函数为 `handleFileChosen` 的文件选择器。 */}
+          {/* File selector with a callback to `handleFileChosen`. */}
           <span class="hljs-tag">&lt;<span class="hljs-name">Input</span>
             <span class="hljs-attr">type</span>=<span class="hljs-string">'file'</span>
             <span class="hljs-attr">id</span>=<span class="hljs-string">'file'</span>
             <span class="hljs-attr">label</span>=<span class="hljs-string">'Your File'</span>
             <span class="hljs-attr">onChange</span>=<span class="hljs-string">{</span> <span class="hljs-attr">e</span> =&gt;</span> handleFileChosen(e.target.files[0]) }
           /&gt;
-          {/* 如果要声明的文件可用，则显示此消息 */}
+          {/* Show this message if the file is available to be claimed */}
           <span class="hljs-tag">&lt;<span class="hljs-name">Message</span> <span class="hljs-attr">success</span> <span class="hljs-attr">header</span>=<span class="hljs-string">'File Digest Unclaimed'</span> <span class="hljs-attr">content</span>=<span class="hljs-string">{digest}</span> /&gt;</span>
-          {/* 如果文件已被声明，则显示此消息。 */}
+          {/* Show this message if the file is already claimed. */}
           <span class="hljs-tag">&lt;<span class="hljs-name">Message</span>
             <span class="hljs-attr">warning</span>
             <span class="hljs-attr">header</span>=<span class="hljs-string">'File Digest Claimed'</span>
             <span class="hljs-attr">list</span>=<span class="hljs-string">{[digest,</span> `<span class="hljs-attr">Owner:</span> ${<span class="hljs-attr">owner</span>}`, `<span class="hljs-attr">Block:</span> ${<span class="hljs-attr">block</span>}`]}
           /&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">Form.Field</span>&gt;</span>
-        {/* 与组件交互的 Buttons。 */}
+        {/* Buttons for interacting with the component. */}
         <span class="hljs-tag">&lt;<span class="hljs-name">Form.Field</span>&gt;</span>
-          {/* 用于创建声明的 Button。 只有在文件被选择且所选文件未被声明时，
-          可用。 更新 `status`。 */}
+          {/* Button to create a claim. Only active if a file is selected,
+          and not already claimed. Updates the `status`. */}
           <span class="hljs-tag">&lt;<span class="hljs-name">TxButton</span>
             <span class="hljs-attr">accountPair</span>=<span class="hljs-string">{accountPair}</span>
             <span class="hljs-attr">label</span>=<span class="hljs-string">{</span>'<span class="hljs-attr">Create</span> <span class="hljs-attr">Claim</span>'}
@@ -222,8 +232,8 @@ yarn start
               <span class="hljs-attr">paramFields:</span> [<span class="hljs-attr">true</span>]
             }}
           /&gt;</span>
-          {/* 用于撤销声明的 Button。 只有在文件被选择且所选文件已被声明时，
-          可用。 更新 `status`。 */}
+          {/* Button to revoke a claim. Only active if a file is selected,
+          and is already claimed. Updates the `status`. */}
           <span class="hljs-tag">&lt;<span class="hljs-name">TxButton</span>
             <span class="hljs-attr">accountPair</span>=<span class="hljs-string">{accountPair}</span>
             <span class="hljs-attr">label</span>=<span class="hljs-string">'Revoke Claim'</span>
@@ -238,7 +248,7 @@ yarn start
             }}
           /&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">Form.Field</span>&gt;</span>
-        {/* 交易的状态信息。 */}
+        {/* Status message about the transaction. */}
         <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">overflowWrap:</span> '<span class="hljs-attr">break-word</span>' }}&gt;</span>{status}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">Form</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">Grid.Column</span>&gt;</span></span>
@@ -253,7 +263,7 @@ yarn start
 </code></pre>
 <p>We won't walk you step by step through the creation of this component, but do look over the code comments to learn what each part is doing.</p>
 <blockquote>
-<p>Stuck? There is a full front-end template <a href="https://github.com/substrate-developer-hub/substrate-front-end-template/tree/tutorials/solutions/build-a-dapp">solution</a> to use as a reference. Check the commit diff from the base <code>v3.0.0</code> version for the exact changes.</p>
+<p>Stuck? There is a full front-end template <a href="https://github.com/substrate-developer-hub/substrate-front-end-template/tree/tutorials/solutions/build-a-dapp-v3+1">solution</a> to use as a reference. Check the commit diff from the base <code>v3.0.0</code> version for the exact changes.</p>
 </blockquote>
 <h2><a class="anchor" aria-hidden="true" id="提交证明"></a><a href="#提交证明" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>提交证明</h2>
 <p>Your Front-End Template should reload when you save your changes, and you'll notice our new component. Now we're ready to try out our new dApp. Select any file on your computer, and you will see that you can create a claim with its file digest:</p>
