@@ -5,7 +5,28 @@ title: Building a Custom Front End
 If you have made it this far, that means you _should_ have a brand new blockchain with custom
 functionality up and running.
 
-In this section, we will get the front-end up and running and add a custom React component designed to make use of our PoE pallet's capabilities.
+In this section, we will get the front-end up and running and add a custom React component
+designed to make use of our PoE pallet's capabilities.
+
+The first thing you'll need to do is to clone a copy of the
+[Front-End Template](https://github.com/substrate-developer-hub/substrate-front-end-template)
+ **specifically with the `v3.0.0` tag** as a base, if you haven't already.
+
+```bash
+git clone -b v3.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
+```
+
+### Yarn V2
+
+The Frontend Template is expected to work with `yarn 2.4.1`.
+To ensure you have the right version, use:
+
+```bash
+# use yarn 2+
+yarn set version berry
+# update to latest yarn 2
+yarn set version latest
+```
 
 ## Explore the Front-End Template
 
@@ -205,7 +226,7 @@ We won't walk you step by step through the creation of this component, but do lo
 comments to learn what each part is doing.
 
 > Stuck? There is a full front-end template
-> [solution](https://github.com/substrate-developer-hub/substrate-front-end-template/tree/tutorials/solutions/build-a-dapp)
+> [solution](https://github.com/substrate-developer-hub/substrate-front-end-template/tree/tutorials/solutions/build-a-dapp-v3+1)
 > to use as a reference. Check the commit diff from the base `v3.0.0` version for the exact changes.
 
 ## Submit a Proof
