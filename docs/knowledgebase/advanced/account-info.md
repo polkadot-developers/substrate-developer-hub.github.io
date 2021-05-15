@@ -4,7 +4,9 @@ title: Account Information
 
 ## `Account` StorageMap
 
-In Substrate, account information is stored in a [**Storage Map**](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/types/struct.StorageMap.html#impl), extracted and shown below:
+In Substrate, account information is stored in a
+[**Storage Map**](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/types/struct.StorageMap.html#impl),
+extracted and shown below:
 
 [`frame/system/src/lib.rs`](https://github.com/paritytech/substrate/blob/bcd649ffca9efc93f8b4ac1506ec8117b71e1aac/frame/system/src/lib.rs#L530-L538):
 
@@ -21,7 +23,9 @@ pub type Account<T: Config> = StorageMap<
 >;
 ```
 
-`Account` storage map takes in five type parameters, so it has no prefix, use `Blake2_128Concat` as the hash algorithm, use `T::AccountId`, the account public key as the map key, with `AccountInfo<T::Index, T::AccountData>` as the map value.
+`Account` storage map takes in five type parameters, so it has no prefix, use `Blake2_128Concat` as
+the hash algorithm, use `T::AccountId`, the account public key as the map key, with
+`AccountInfo<T::Index, T::AccountData>` as the map value.
 
 ## `AccountInfo` Structure
 
@@ -49,25 +53,48 @@ pub struct AccountInfo<Index, AccountData> {
 }
 ```
 
-Every account is an `AccountInfo` consisting of an `nonce` indicating number of transactions the account has sent, three reference counters, and an `AccountData` structure which contains some balances ([further explained below](#accountdata-structure)).
+Every account is an `AccountInfo` consisting of an `nonce` indicating number of transactions the
+account has sent, three reference counters, and an `AccountData` structure which contains some
+balances ([further explained below](#accountdata-structure)).
 
-Let's look deeper into the three reference counters, `consumers`, `providers`, and `sufficients`. The reasons these counters exist because Substrate has a mechanism of slashing accounts (e.g. one reason could be an account balance is below the existential deposit). If any of these reference counters are greater than zero, it is telling Substrate to not slash the account. For:
+Let's look deeper into the three reference counters, `consumers`, `providers`, and `sufficients`.
+The reasons these counters exist because Substrate has a mechanism of slashing accounts (e.g. one
+reason could be an account balance is below the existential deposit). If any of these reference
+counters are greater than zero, it is telling Substrate to not slash the account. For:
 
-- **`consumers` reference counter** indicates if there are any other modules depend on this account. An example of using this counter is in `Session` pallet when an account setting its session key(s) prior of becoming a validator [[1]](#ref-session-set-keys). It is also related to the `provider` counter, see below.
+- **`consumers` reference counter** indicates if there are any other modules depend on this account.
+An example of using this counter is in `Session` pallet when an account setting its session key(s)
+prior of becoming a validator [[1]](#ref-session-set-keys). It is also related to the `provider`
+counter, see below.
 
-- **`providers` reference counter** indicates if there are any other modules allowing this account to exist. Currently this counter  is incremented when a new account is created with more than the existential deposit to indicate this account could be used to receive consumer reference counters [[2]](#ref-system-created). `providers` counter is always greater than or equal to `consumers` counter.
+- **`providers` reference counter** indicates if there are any other modules allowing this account
+to exist. Currently this counter  is incremented when a new account is created with more than the
+existential deposit to indicate this account could be used to receive consumer reference counters
+[[2]](#ref-system-created). `providers` counter is always greater than or equal to `consumers`
+counter.
 
-  Both `providers` and `consumers` tell Substrate pallets not to store data about that account until it is active (i.e. `providers` > 0), and not to remove an account until data about the account are removed in all pallets (i.e. `consumers` == 0). This is to keep users accountable for their data stored on chain. If users want to remove their accounts and get back the exisitential deposit, they need to remove the dependencies from those on-chain pallets, e.g. clearing data stored on-chain for those pallets, which decrement `consumers` counter.
+  Both `providers` and `consumers` tell Substrate pallets not to store data about that account until
+  it is active (i.e. `providers` > 0), and not to remove an account until data about the account are
+  removed in all pallets (i.e. `consumers` == 0). This is to keep users accountable for their data
+  stored on chain. If users want to remove their accounts and get back the exisitential deposit,
+  they need to remove the dependencies from those on-chain pallets, e.g. clearing data stored
+  on-chain for those pallets, which decrement `consumers` counter.
 
-- **`sufficients` reference counter** indicates if there are any reasons this account is self-sufficient to exist by itself. An example of using this counter is in `Assets` pallet when an account has sufficient amount of certain assets but not owning any native account balance [[3]](#ref-assets-new-account).
+- **`sufficients` reference counter** indicates if there are any reasons this account is
+self-sufficient to exist by itself. An example of using this counter is in `Assets` pallet when an
+account has sufficient amount of certain assets but not owning any native account balance
+[[3]](#ref-assets-new-account).
 
-Runtime developers can update these counters via `inc_consumers()`, `dec_consumers()`, `inc_providers()`, `dec_providers()`, `inc_sufficients()`, `dec_sufficients()` exposed by `frame-system`. Each increment call of a certain counter should accompanied by a corresponding decrement call of the counter in an account life cycle, else it is a design bug.
+Runtime developers can update these counters via `inc_consumers()`, `dec_consumers()`,
+`inc_providers()`, `dec_providers()`, `inc_sufficients()`, `dec_sufficients()` exposed by
+`frame-system`. Each increment call of a certain counter should accompanied by a corresponding
+decrement call of the counter in an account life cycle, else it is a design bug.
 
 ## `AccountData` Structure
 
-The last piece of data in `AccountInfo` is `AccountData`. It is defined in `frame-system` to be bound by
-`Member + FullCodec + Clone + Default` traits. Its actual implementation is defined in `pallet-balances`,
-as followed.
+The last piece of data in `AccountInfo` is `AccountData`. It is defined in `frame-system` to be
+bound by `Member + FullCodec + Clone + Default` traits. Its actual implementation is defined in
+`pallet-balances`, as followed.
 
 [`frame/balances/src/lib.rs`](https://github.com/paritytech/substrate/blob/8d02bb0bfc6136f6a3c805db19f51e43090a7cd4/frame/balances/src/lib.rs#L564-L584)
 
@@ -97,15 +124,22 @@ pub struct AccountData<Balance> {
 
 It contains:
 
-- **Free balance** `free`. The portion of a balance that is not reserved. The free balance is usually what matters for most operations.
+- **Free balance** `free`. The portion of a balance that is not reserved. The free balance is
+usually what matters for most operations.
 
-- **Reserved balance** `reserved`. Reserved balance still belongs to the account holder, but is suspended. Reserved balance can be slashed, but only after all the free balance has been slashed. The total balance of an account is the sum of its free balance and reserved balance.
+- **Reserved balance** `reserved`. Reserved balance still belongs to the account holder, but is
+suspended. Reserved balance can be slashed, but only after all the free balance has been slashed.
+The total balance of an account is the sum of its free balance and reserved balance.
 
-- **Frozen balance**, splitted into `misc_frozen` and `fee_frozen`, represent balances that free balance cannot drop below. `fee_frozen` are specifically for transaction fee payment, and `misc_frozen` for everything else. These values are set when accounts are locked for transactions.
+- **Frozen balance**, splitted into `misc_frozen` and `fee_frozen`, represent balances that free
+balance cannot drop below. `fee_frozen` are specifically for transaction fee payment, and
+`misc_frozen` for everything else. These values are set when accounts are locked for transactions.
 
 ## Conclusion
 
-By now, you have a clear picture how account data is stored in Substrate. You can dig deeper by looking into the [`frame_system::AccountInfo` API doc](https://substrate.dev/rustdocs/v3.0.0/frame_system/struct.AccountInfo.html) and [`pallet_balances::AccountData` API doc](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/struct.AccountData.html).
+By now, you have a clear picture how account data is stored in Substrate. You can dig deeper by
+looking into the [`frame_system::AccountInfo` API doc](https://substrate.dev/rustdocs/v3.0.0/frame_system/struct.AccountInfo.html)
+and [`pallet_balances::AccountData` API doc](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/struct.AccountData.html).
 
 ## Reference
 
