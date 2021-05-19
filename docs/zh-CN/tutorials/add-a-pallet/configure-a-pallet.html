@@ -138,8 +138,9 @@
     <span class="token comment">// The FRAME runtime system is used to track the accounts that hold balances.</span>
     <span class="token keyword">type</span> <span class="token class-name">AccountStore</span> <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">;</span>
 
-    <span class="token comment">// No weight information is supplied to the Balances pallet by the Node Template's runtime.</span>
-    <span class="token keyword">type</span> <span class="token class-name">WeightInfo</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Weight information is supplied to the Balances pallet by the Node Template's runtime.</span>
+    <span class="token comment">// type WeightInfo = (); // old way</span>
+    <span class="token keyword">type</span> <span class="token class-name">WeightInfo</span> <span class="token operator">=</span> <span class="token namespace">pallet_balances<span class="token punctuation">::</span>weights<span class="token punctuation">::</span></span><span class="token class-name">SubstrateWeight</span><span class="token operator">&lt;</span><span class="token class-name">Runtime</span><span class="token operator">></span><span class="token punctuation">;</span>
 
     <span class="token comment">// The ubiquitous event type.</span>
     <span class="token keyword">type</span> <span class="token class-name">Event</span> <span class="token operator">=</span> <span class="token class-name">Event</span><span class="token punctuation">;</span>
