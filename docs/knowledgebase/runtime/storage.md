@@ -23,6 +23,7 @@ by [Parity's SCALE codec](../advanced/codec). These include:
 - [Storage Map](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageMap.html) - used to store a key-value hash map, such as a balance-to-account mapping.
 - [Storage Double Map](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageDoubleMap.html) - used as an implementation of a storage map with two keys to provide the ability to efficiently removing
   all entries that have a common first key.
+- [Storage N Map](https://substrate.dev/rusdocs/v3.0.0/frame_support/storage/trait.StorageNMap.html) - used to store a hash map with any arbitrary number of keys, it can be used as a basis to build a Triple Storage Map, a Quadruple Storage Map and so on.
 
 ### Storage Value
 
@@ -51,10 +52,19 @@ Refer to the Storage Map documentation for
 
 ### Double Storage Map
 
-Double storage maps are very similar to single storage maps except they contain two keys, which is useful for querying values with common keys.
+Double Storage Maps are very similar to single Storage Maps except they contain two keys, which is useful for querying values with common keys.
 
 Refer to the documentation on
 [advanced storage](../advanced/storage) to learn more about how different Storage Maps, including Double Storage Maps, are implemented.
+
+
+### N Storage Map
+
+N Storage Maps are also very similar to its siblings, namely Storage Maps and Double Storage Maps, but with the ability to hold any arbitrary number of keys.
+
+To specify the keys in an N Storage Map in FRAMEv2, a tuple containing the special `NMapKey` struct must be provided as a type to the Key (i.e. second) type parameter while declaring the `StorageNMap`.
+
+Refer to the N Storage Map documentation for [more details about the syntaxes in using a N Storage Map](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageNMap.html).
 
 #### Iterating Over Storage Maps
 
@@ -73,16 +83,19 @@ Storage Double Maps, the `iter()` and `drain()` methods require the first key as
 
 - `iter()` - enumerate all elements in the map in no particular order. If you alter the map while
   doing this, you'll get undefined results. See the docs:
-  [`IterableStorageMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter) and
-  [`IterableStorageDoubleMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter).
+  [`IterableStorageMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageMap.html#tymethod.iter),
+  [`IterableStorageDoubleMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.iter) and
+  [`IterableStorageNMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageNMap.html#tymethod.iter).
 - `drain()` - remove all elements from the map and iterate through them in no particular order. If you
   add elements to the map while doing this, you'll get undefined results. See the docs:
-  [`IterableStorageMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain) and
-  [`IterableStorageDoubleMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain).
+  [`IterableStorageMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageMap.html#tymethod.drain),
+  [`IterableStorageDoubleMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.drain) and
+  [`IterableStorageNMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageNMap.html#tymethod.drain).
 - `translate()` - use the provided function to translate all elements of the map, in no particular
   order. To remove an element from the map, return `None` from the translation function. See the docs:
-  [`IterableStorageMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate) and
-  [`IterableStorageDoubleMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate).
+  [`IterableStorageMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageMap.html#tymethod.translate),
+  [`IterableStorageDoubleMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageDoubleMap.html#tymethod.translate) and
+  [`IterableStorageNMap`](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.IterableStorageNMap.html#tymethod.translate).
 
 ## Declaring Storage Items
 
@@ -98,6 +111,8 @@ decl_storage! {
         pub SomeMap get(fn some_map): map hasher(blake2_128_concat) T::AccountId => u32;
         // A StorageDoubleMap item.
         pub SomeDoubleMap: double_map hasher(blake2_128_concat) u32, hasher(blake2_128_concat) T::AccountId => u32;
+        // A StorageNMap item.
+        pub SomeNMap: nmap hasher(blake2_128_concat) u32, hasher(blake2_128_concat) u32, hasher(twox_64_concat) T::AccountId => u32;
     }
 }
 ```
@@ -109,17 +124,30 @@ type SomePrivateValue<T> = StorageValue<_, u32, ValueQuery>;
 
 #[pallet::storage]
 #[pallet::getter(fn some_primitive_value)]
-pub(super) type SomePrimitiveValue = StorageValue<_, u32, ValueQuery>;
+pub(super) type SomePrimitiveValue<T> = StorageValue<_, u32, ValueQuery>;
 
 #[pallet::storage]
-pub(super) type SomeComplexValue = StorageValue<_, T::AccountId, ValueQuery>;
+pub(super) type SomeComplexValue<T> = StorageValue<_, T::AccountId, ValueQuery>;
 
 #[pallet::storage]
 #[pallet::getter(fn some_map)]
-pub(super) type SomeMap = StorageMap<_, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
+pub(super) type SomeMap<T> = StorageMap<_, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
 
 #[pallet::storage]
-pub(super) type SomeDoubleMap = StorageDoubleMap<_, Blake2_128Concat, u32, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
+pub(super) type SomeDoubleMap<T> = StorageDoubleMap<_, Blake2_128Concat, u32, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
+
+#[pallet::storage]
+#[pallet::getter(fn some_nmap)]
+pub(super) type SomeNMap<T> = StorageNMap<
+    _,
+    (
+        NMapKey<Blake2_128Concat, u32>,
+        NMapKey<Blake2_128Concat, T::AccountId)>,
+        NMapKey<Twox64Concat, u32>,
+    ),
+    u32,
+    ValueQuery,
+>;
 ```
 Notice that the map's storage items specify [the hashing algorithm](#hashing-algorithms) that will
 be used.
@@ -536,6 +564,7 @@ Check out the Substrate Recipes covering various topics on storage:
   details about the available storage declarations.
 - Visit the reference docs for
   [StorageValue](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageValue.html),
-  [StorageMap](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageMap.html) and
-  [StorageDoubleMap](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageDoubleMap.html) to
+  [StorageMap](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageMap.html),
+  [StorageDoubleMap](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageDoubleMap.html) and
+  [StorageNMap](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageNMap.html) to
   learn more about their APIs.

@@ -95,9 +95,11 @@ To define storage items in a FRAME pallet. A storage item definition includes:
   - for `StorageMap`: `map hasher($hasher) rust_type => rust_type`
   - for `StorageDoubleMap`:
     `doublemap hasher($hasher) rust_type, hasher($hasher) rust_type => rust_type`
+  - for `StorageNMap`:
+    `nmap hasher($hasher1) rust_type, hasher($hasher2) rust_type, /* ... */ hasher($hasherN) rust_type => rust_type`
 
 - its getter function,
-- its key types and their hashing methods (if a map or double-map),
+- its key types and their hashing methods (if a map, double-map or n-map),
 - the name of the storage,
 - its default value
 
