@@ -1,5 +1,5 @@
 ---
-title: Runtime Benchmarking
+title: Benchmarking
 ---
 
 ## What Is Runtime Benchmarking?

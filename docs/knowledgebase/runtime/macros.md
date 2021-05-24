@@ -1,5 +1,5 @@
 ---
-title: Runtime Macros
+title: Macros
 ---
 
 ## Introduction

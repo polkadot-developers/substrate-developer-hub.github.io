@@ -1,5 +1,5 @@
 ---
-title: Runtime Errors
+title: Errors
 ---
 
 Runtime code should explicitly and gracefully handle all error cases, which is to say that runtime

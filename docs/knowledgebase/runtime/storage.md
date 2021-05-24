@@ -1,5 +1,5 @@
 ---
-title: Runtime Storage
+title: Storage
 ---
 
 Runtime storage allows you to store data in your blockchain that is persisted between blocks and can

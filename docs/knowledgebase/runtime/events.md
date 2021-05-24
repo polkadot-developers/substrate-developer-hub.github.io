@@ -1,5 +1,5 @@
 ---
-title: Runtime Events
+title: Events
 ---
 
 A Substrate runtime module can emit events when it wants to notify external entities about changes

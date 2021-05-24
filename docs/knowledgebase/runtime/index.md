@@ -1,5 +1,5 @@
 ---
-title: Runtime Overview
+title: Runtime
 ---
 
 The runtime of a blockchain is the business logic that defines its behavior. In Substrate-based
