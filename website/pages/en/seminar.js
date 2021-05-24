@@ -54,11 +54,10 @@ function Seminar(props) {
                 Substrate together.
               </translate></p>
               <section>
-                <span className='block type--fine-print'>
-                  <a href='https://www.crowdcast.io/e/substrate-seminar'><translate>
-                    join live call »
-                  </translate></a>
-                </span>
+                <a target='_blank' className='btn btn-lg primary-color'
+                  href='https://www.crowdcast.io/e/substrate-seminar'>
+                  <translate>Live Call / Past Seminars</translate>
+                </a>
               </section>
             </div>
           </div>
@@ -73,7 +72,7 @@ function Seminar(props) {
               <h2><translate>An open collaborative learning call</translate></h2>
               <p className='lead'><translate>
                 Substrate Seminar is an open Collaborative Learning call where we learn about Substrate
-                together. Run by DevHub, we meet every Tuesday at 14:00UTC. Learn, show off a Substrate
+                together. Run by DevHub, we meet every other Tuesday at 14:00UTC. Learn, show off a Substrate
                 project, and make friends!
               </translate></p>
               <a href='https://calendar.google.com/calendar/b/1?cid=cGFyaXR5LmlvXzJmc2tqN245cm1qcHE1Y2xiOWc3ZWUzZGhvQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20'>
@@ -90,37 +89,36 @@ function Seminar(props) {
           </div>
 
           <div className='row justify-content-between pt-0 faqs'>
-            <div className='col-md-6 first'>
-              <h4 className='mb-2'><translate>What topics are coming up?</translate></h4>
-              <p>On <strong>19 Jan</strong> Substrate Core Developer Guillaume Tholliere will discuss FRAME v2.</p>
-              <p>On <strong>26 Jan</strong> Dastan Samatov from <a href='https://limechain.tech/'>LimeChain</a> will discuss the design and&nbsp;
-              use of their AssemblyScript libraries for developing on the Polkadot stack.</p>
-              <p>On <strong>2 Feb</strong> Parity Runtime Engineer Ricardo Rius will discuss parachains, Cumulus, and Rococo v1.</p>
-            </div>
+            <div className='col-md-6'>
+              <section>
+                <h4 className='mb-2'><translate>Can I ask my own questions?</translate></h4>
+                <p>
+                  <translate>
+                  Yes! The second half of every Seminar is for open Q & A like office hours. You can ask questions or even bring your code that doesn't compile. Participants will be invited on-screen to share their work and their questions. You may also join us between Seminars on
+                  </translate>
+                  &nbsp;
+                  <a href="https://matrix.to/#/!oClBfIbtucPfGKlNpk:matrix.parity.io">Element</a>.
+                </p>
+              </section>
 
-            <div className='col-md-6 second'>
-              <h4 className='mb-2'><translate>Can I ask my own questions?</translate></h4>
-              <p>
-                <translate>
-                Yes! The second half of every Seminar is for open Q & A like office hours. You can ask questions or even bring your code that doesn't compile. Participants will be invited on-screen to share their work and their questions. You may also join us between Seminars on
-                </translate>
-                &nbsp;
-                <a href='https://matrix.to/#/!oClBfIbtucPfGKlNpk:matrix.parity.io'>Element</a>.
-              </p>
-              <h4 className='mb-2'><translate>
-                I am not a [Substrate] developer, can I still participate?
-              </translate></h4>
-              <p><translate>
-                Yes! The seminar is open to everyone. The content is generally more developer-oriented,
-                but less technical participants and questions are also welcome. If your questions turn
-                out to be off-topic, we'll point you to a better resource.
-              </translate></p>
+              <section>
+                <h4 className='mb-2'><translate>
+                  I am not a [Substrate] developer, can I still participate?
+                </translate></h4>
+                <p><translate>
+                  Yes! The seminar is open to everyone. The content is generally more developer-oriented,
+                  but less technical participants and questions are also welcome. If your questions turn
+                  out to be off-topic, we'll point you to a better resource.
+                </translate></p>
+              </section>
 
-              <h4 className='mb-2'><translate>Where are the recordings?</translate></h4>
-              <p>
-                <translate>
-                  Seminar has changed formats a few times so the recordings are in a few places.
-                </translate>
+              <section>
+                <h4 className='mb-2'><translate>Where are the recordings?</translate></h4>
+                <p className='mb-2'><translate>
+                  Seminar has changed formats a few times so the recordings are in a few places:
+                </translate></p>
+              </section>
+              <section>
                 <ul>
                   <li>
                     <a href='https://www.crowdcast.io/e/substrate-seminar/'>
@@ -144,7 +142,25 @@ function Seminar(props) {
                     <translate>are on the Substrate Collaborative Learning YouTube playlist.</translate>
                   </li>
                 </ul>
-              </p>
+              </section>
+            </div>
+            <div className='col-md-6 second'>
+              <h2 style={{ fontSize: '32px' }}><translate>Upcoming topics</translate></h2>
+              
+              <p><strong>18 May. </strong><translate> Aten, CTO at Patract Labs, will introduce the full-stack tools being built 
+              to power Wasm Smart Contract development for Substrate based chains.</translate></p>
+
+              <p><strong>1 June. </strong><translate> Antonio from Kilt will showcase the DID management tools 
+              his team has developed using Substrate and give an overview on what DIDs are and their vision for using them.</translate></p>
+
+              <p><strong>15 June. </strong><translate> Parity Software Developer Kian will be demonstrating a recent tool 
+              he built called try-runtime to test storage migrations and runtime upgrades.</translate></p>
+
+              <p><strong>29 June. </strong><translate> RMRK.app: Nested, reactive, useful, upgradeable NFTs that react to emotion and conditionally 
+              display different resources in different formats.</translate></p>
+
+              <p><strong>13 July. </strong> TBD. </p>
+
             </div>
           </div>
         </div>

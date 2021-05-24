@@ -63,7 +63,7 @@ The default Substrate node implements Session keys in the
 
 ### Strongly Typed Wrappers
 
-The Session keys from a Substrate node template could use the same cryptography, but serve very different purposes
+The Session keys from a Substrate node could use the same cryptography, but serve *very* different purposes
 in your runtime logic. To prevent the wrong key being used for the wrong operation, strong
 Rust types wrap these keys, keeping them incompatible with one another and ensuring they are only
 used for their intended purpose.

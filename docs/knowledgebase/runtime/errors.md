@@ -15,10 +15,13 @@ that _should_ be a
 [`DispatchError`](https://substrate.dev/rustdocs/v3.0.0/frame_support/dispatch/enum.DispatchError.html)
 if the dispatchable function encountered an error.
 
-Each FRAME pallet may define custom **DispatchError**s by using
-[the `decl_error!` macro](macros#decl_error).
+Each FRAME pallet may define custom a `DispatchError` by:
+- using
+the [`decl_error!` macro](macros#decl_error) (FRAME v1) or;
+- the [`#[pallet::error]` macro](/docs/en/knowledgebase/runtime/macros#palleterror)  (FRAME v2).
 
 ```rust
+// FRAME v1.
 // Errors inform users that something went wrong.
 decl_error! {
 	pub enum Error for Module<T: Config> {
@@ -28,20 +31,21 @@ decl_error! {
 		OutOfSpace,
 	}
 }
+
+// FRAME v2.
+#[pallet::error]
+pub enum Error<T> {
+		/// Error names should be descriptive.
+		InvalidParameter,
+		/// Errors should have helpful documentation associated with them.
+		OutOfSpace,
+	}
+
 ```
 
-In order to emit custom errors from a pallet, the pallet's module must configure the `Error` type.
+> **Note:** In FRAME v1, in order to emit custom errors from a pallet, the pallet must
+> configure the `Error` type in `decl_module!`. See the [Rust docs](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_error.html#usage) for more details.
 
-```rust
-decl_module! {
-	pub struct Module<T: Config> for enum Call where origin: T::Origin {
-		// Errors must be initialized if they are used by the pallet.
-		type Error = Error<T>;
-
-		/* --snip-- */
-  }
-}
-```
 
 The
 [Pallet Template](https://github.com/substrate-developer-hub/substrate-pallet-template/blob/master/src/lib.rs)
@@ -64,3 +68,4 @@ frame_support::ensure!(param < T::MaxVal::get(), Error::<T>::InvalidParameter);
 
 - [`decl_error!` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_error.html)
 - [`decl_module!` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_module.html)
+- [`[pallet::error]` macro](https://crates.parity.io/frame_support/attr.pallet.html#error-palleterror-optional)

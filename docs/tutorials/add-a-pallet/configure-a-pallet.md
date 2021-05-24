@@ -79,7 +79,7 @@ comments that you should be sure to read:
 **`runtime/src/lib.rs`**
 
 ```rust
-/// Already in your template for Ballances:
+/// Already in your template for Balances:
 parameter_types! {
     // The u128 constant value 500 is aliased to a type named ExistentialDeposit.
     pub const ExistentialDeposit: u128 = 500;
@@ -103,8 +103,9 @@ impl pallet_balances::Config for Runtime {
     // The FRAME runtime system is used to track the accounts that hold balances.
     type AccountStore = System;
 
-    // No weight information is supplied to the Balances pallet by the Node Template's runtime.
-    type WeightInfo = ();
+    // Weight information is supplied to the Balances pallet by the Node Template's runtime.
+    // type WeightInfo = (); // old way
+    type WeightInfo = pallet_balances::weights::SubstrateWeight<Runtime>;
 
     // The ubiquitous event type.
     type Event = Event;

@@ -41,12 +41,12 @@ Off-chain workers have access to extended APIs for communicating with the extern
 
 - Ability to
   [submit transactions](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/offchain/trait.TransactionPool.html)
-  (either signed or unsigned) to the chain to publish computation results.
-- A fully-featured HTTP client allowing the worker to access and fetch data from external services.
+  (either signed or unsigned) to the chain to publish computation results [[1]](#example-txs).
+- A fully-featured HTTP client allowing the worker to access and fetch data from external services [[2]](#example-http).
 - Access to the local keystore to sign and verify statements or transactions.
 - An additional, local
   [key-value database](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/offchain/trait.OffchainStorage.html)
-  shared between all off-chain workers.
+  shared between all off-chain workers [[3]](#example-off-chain-storage).
 - A secure, local entropy source for random number generation.
 - Access to the node's precise
   [local time](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/offchain/struct.Timestamp.html).
@@ -60,7 +60,6 @@ to be included in subsequent blocks.
 Note that the results from off-chain workers are not subject to regular transaction verification. A
 verification mechanism (e.g. voting, averaging, checking sender signatures, or simply "trusting")
 should be implemented to determine what information gets into the chain.
-
 
 ## Off-Chain Storage
 
@@ -80,6 +79,8 @@ others and between off-chain and on-chain logics. It can also be read using remo
 (RPC) so it fits the use case of storing indefinitely growing data without over-consuming the
 on-chain storage.
 
+[Check here for a concrete example of using off-chain storage](#example-off-chain-storage).
+
 ## Off-Chain Indexing
 
 Storage in the context of blockchain is mostly about on-chain state. But it is expensive (as it is
@@ -95,4 +96,14 @@ Unlike OCWs, which are not executed during initial blockchain synchronization, o
 populating the storage every time a block is processed, so the data is always consistent and will be
 exactly the same for every node with indexing enabled.
 
+[Check here for a concrete example of using off-chain indexing](#example-off-chain-indexing).
+
 ## Learn More
+
+To look at concrete examples of off-chain workers and how to use them in runtime development,
+refer to the following sections in Substrate Recipes:
+
+- <span id="example-txs">[Submit signed and unsigned transactions from off-chain workers back on-chain](https://substrate.dev/recipes/off-chain-workers/transactions.html)</span>
+- <span id="example-http">[Fetch external data using HTTP requests and parse JSON responses](https://substrate.dev/recipes/off-chain-workers/http-json.html)</span>
+- <span id="example-off-chain-storage">[Store result in off-chain worker local storage](https://substrate.dev/recipes/off-chain-workers/storage.html)</span>
+- <span id="example-off-chain-indexing">[Example of off-chain indexing](https://substrate.dev/recipes/off-chain-workers/indexing.html)

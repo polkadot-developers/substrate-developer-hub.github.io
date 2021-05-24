@@ -118,7 +118,7 @@ To see how these features actually get used in the runtime code, we can open the
 // `construct_runtime!` does a lot of recursion and requires us to increase the limit to 256.
 #![recursion_limit="256"]
 
-// Make the WASM binary available.
+// Make the Wasm binary available.
 #[cfg(feature = "std")]
 include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
 
@@ -127,7 +127,7 @@ include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
 
 You can see that at the top of the file, we define that we will use `no_std` when we are _not_ using
 the `std` feature. A few lines lower you can see `#[cfg(feature = "std")]` above the
-`wasm_binary.rs` import, which is a flag saying to only import the WASM binary when we have enabled
+`wasm_binary.rs` import, which is a flag saying to only import the Wasm binary when we have enabled
 the `std` feature.
 
 ### Importing the Contracts Pallet Crate
@@ -443,7 +443,11 @@ pub fn create_full<C, P>(
 	/*** Add This Line ***/
 	C::Api: pallet_contracts_rpc::ContractsRuntimeApi<Block, AccountId, Balance, BlockNumber>,
 	/* --snip-- */
-
+{
+	/* --snip-- */
+	io.extend_with(
+		TransactionPaymentApi::to_delegate(TransactionPayment::new(client.clone()))
+	);
 	/*** Add This Block ***/
 	// Contracts RPC API extension
 	io.extend_with(
@@ -453,6 +457,15 @@ pub fn create_full<C, P>(
 	io
 }
 ```
+
+> Note that rpc additions must appear in this section in the expected syntax: 
+> ```rust
+> // Extend this RPC with a custom API by using the following syntax.
+> 	// `YourRpcStruct` should have a reference to a client, which is needed
+> 	// to call into the runtime.
+> 	// `io.extend_with(YourRpcTrait::to_delegate(YourRpcStruct::new(ReferenceToClient, ...)));`
+> ```
+
 ### Genesis Configuration
 
 Not all pallets will have a genesis configuration, but if yours does, you can use its documentation

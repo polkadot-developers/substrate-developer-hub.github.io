@@ -50,7 +50,7 @@ If you do decide to try and use a Windows computer to _natively_ build Substrate
    ```bash
    mkdir C:\Tools
    cd C:\Tools
-   git clone https://github.com/Microsoft/vcpkg.git
+   git clone https://github.com/Microsoft/vcpkg.git --depth=1
    cd vcpkg
    .\bootstrap-vcpkg.bat
    .\vcpkg.exe install openssl:x64-windows-static

@@ -101,26 +101,48 @@ decl_storage! {
     }
 }
 ```
+In FRAME v2 syntax, declaring the above storage items would look like:
 
+```rust
+#[pallet::storage]
+type SomePrivateValue<T> = StorageValue<_, u32, ValueQuery>;
+
+#[pallet::storage]
+#[pallet::getter(fn some_primitive_value)]
+pub(super) type SomePrimitiveValue = StorageValue<_, u32, ValueQuery>;
+
+#[pallet::storage]
+pub(super) type SomeComplexValue = StorageValue<_, T::AccountId, ValueQuery>;
+
+#[pallet::storage]
+#[pallet::getter(fn some_map)]
+pub(super) type SomeMap = StorageMap<_, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
+
+#[pallet::storage]
+pub(super) type SomeDoubleMap = StorageDoubleMap<_, Blake2_128Concat, u32, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
+```
 Notice that the map's storage items specify [the hashing algorithm](#hashing-algorithms) that will
 be used.
 
 ### Visibility
 
-In the example above, all the storage items except `SomePrivateValue` are made public by way of the
-`pub` keyword. Blockchain storage is always publicly
-[visible from _outside_ of the runtime](#accessing-storage-items). However, runtime engineers can make storage items private, to control the access of storage items from pallets  _within_ the runtime.
+In the examples above, all the storage items except `SomePrivateValue` are made public by way of the
+`pub` keyword (`pub(super)` in FRAME v2). Blockchain storage is always publicly
+[visible from _outside_ of the runtime](#accessing-storage-items); the visibility of Substrate
+storage items only impacts whether or not other pallets _within_ the runtime will be able to access
+a storage item.
 
 ### Getter Methods
 
-The [`decl_storage` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_storage.html#example) provides an optional `get` extension that can be used to implement a getter
-method for a storage item on the pallet that contains that storage item. As seen in the above exmple, it takes the
-desired name of the getter function as an argument.
-
-If you omit this optional extension, you will
-still be able to access the storage item's value by using
-the storage item's [`get` method](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/trait.StorageValue.html#tymethod.get). Keep in mind that this only
-impacts the way that the storage item can be accessed from within Substrate code: you will always be
+The `decl_storage` macro provides an optional `get` extension that can be used to implement a getter
+method for a storage item on the module that contains that storage item; the extension takes the
+desired name of the getter function as an argument. If you omit this optional extension, you will
+still be able to access the storage item's value, but you will not be able to do so by way of a
+getter method implemented on the module; instead, you will need to use
+[the storage item's `get` method](#methods). 
+In FRAME v2, the equivalent extension is derived by the `#[pallet::getter(..)]` macro attribute.
+> **Note:** The optional `get` and `getter` extensions only
+impact the way that a storage item can be accessed from _within_ Substrate code &mdash; you will always be
 able to [query the storage of your runtime](../advanced/storage#Querying-Storage) to get the value
 of a storage item.
 
@@ -129,11 +151,17 @@ Here is an example that implements a getter method named `some_value` for a Stor
 `SomeValue::get()` method:
 
 ```rust
+// In FRAME v1.
 decl_storage! {
     trait Store for Module<T: Config> as Example {
         pub SomeValue get(fn some_value): u64;
     }
 }
+
+// In FRAME v2.
+#[pallet::storage]
+#[pallet::getter(fn some_value)]
+pub(super) type SomeValue = StorageValue<_, u64, ValueQuery>;
 ```
 
 ### Default Values
@@ -145,11 +173,18 @@ value during execution.
 Here is an example of specifying the default value for all items in a map:
 
 ```rust
+//In FRAME v1.
 decl_storage! {
     trait Store for Module<T: Config> as Example {
         pub SomeMap: map u64 => u64 = 1337;
     }
 }
+
+//In FRAME v2.
+#[pallet::type_value]
+pub(super) fn MyDefaultMap<T: Config>() -> u64 { 1337u64 }
+#[pallet::storage]
+pub(super) type MyStorage<T> = StorageMap<_, Blake2_128Concat, u64, u64, ValueStorage, MyDefaultMap>;
 ```
 
 ## Accessing Storage Items
@@ -267,11 +302,18 @@ to set the Storage Value's initial value in your chain's genesis block.
 In `my_pallet/src/lib.rs`:
 
 ```rust
+// In FRAME v1.
 decl_storage! {
     trait Store for Module<T: Config> as MyPallet {
         pub MyVal get(fn my_val) config(init_val): u64;
     }
 }
+
+// In FRAME v2.
+#[pallet::genesis_config]
+pub struct GenesisConfig<T: Config> {
+		pub init_val: u64,
+	}	
 ```
 
 In `chain_spec.rs`:
@@ -287,8 +329,8 @@ GenesisConfig {
 ### `build`
 
 Whereas [the `config` extension](#config) to the `decl_storage` macro allows you to configure a
-pallet's genesis storage state within a chain specification, the `build` extension allows you to
-perform this same task within the pallet itself (which gives you access to the pallet's private
+module's genesis storage state within a chain specification, the `build` extension allows you to
+perform this same task within the pallet itself (this gives you access to the pallet's private
 functions). Like `config`, the `build` extension accepts a single parameter, but in this case the
 parameter is always required and must be a closure, which is essentially a function. The `build`
 closure will be invoked with a single parameter whose type will be the pallet's `GenesisConfig` type. This gives you easy access to all the attributes of the `GenesisConfig` type.
@@ -307,14 +349,29 @@ element in the list of members &mdash; is set using the `build` extension.
 In `my_pallet/src/lib.rs`:
 
 ```rust
+// In FRAME v1.
 decl_storage! {
     trait Store for Module<T: Config> as MyPallet {
         pub Members config(orig_ids): Vec<T::AccountId>;
         pub Prime build(|config: &GenesisConfig<T>| config.orig_ids.first().cloned()): T::AccountId;
     }
 }
-```
 
+// In FRAME v2.
+#[pallet::genesis_config]
+struct GenesisConfig {
+    members: Vec<T::AccountId>,
+    prime: T::AccountId,
+}
+
+#[pallet::genesis_build]
+impl<T: Config> GenesisBuild<T> for GenesisConfig {
+    fn build(&self) {
+        Module::<T>::initialize_members(&config.members);
+        SomeStorageItem::<T>::put(self.prime);
+  }
+}
+```
 In `chain_spec.rs`:
 
 ```rust
@@ -338,7 +395,7 @@ storage items, or invoke a function defined in some other pallets included withi
 
 Here is an example that encapsulates the same use case described above in the example for `build`. In this
 case, however, the `add_extra_genesis` extension is used to define a `GenesisConfig` attribute that
-is not bound to particular storage item as well as a `build` closure that will call a private
+is not bound to a particular storage item as well as a `build` closure that will call a private
 function on the pallet to set the values of multiple storage items. For the purposes of this
 example, the implementation of the private helper function (`initialize_members`) is left to your
 imagination.
@@ -346,6 +403,7 @@ imagination.
 In `my_pallet/src/lib.rs`:
 
 ```rust
+// In FRAME v1.
 decl_storage! {
     trait Store for Module<T: Config> as MyPallet {
         pub Members: Vec<T::AccountId>;
@@ -355,6 +413,21 @@ decl_storage! {
         config(orig_ids): Vec<T::AccountId>;
         build(|config| Module::<T>::initialize_members(&config.members))
     }
+}
+
+// In FRAME v2.
+#[pallet::genesis_config]
+struct GenesisConfig {
+    members: Vec<T::AccountId>,
+    prime: T::AccountId,
+}
+
+#[pallet::genesis_build]
+impl<T: Config> GenesisBuild<T> for GenesisConfig {
+    fn build(&self) {
+        Module::<T>::initialize_members(&config.members);
+        SomeStorageItem::<T>::put(self.prime);
+  }
 }
 ```
 

@@ -18,7 +18,7 @@ You will probably need to do some set-up to prepare your computer for Substrate 
 > After `rustup` has been installed and configured, and you've configured the Rust toolchain to default
 > to the latest stable version you can return to these steps.
 
-## Compiling Substrate
+## Compiling the Node Template
 
 Once the prerequisites are installed, you can use Git to clone the Substrate Developer Hub Node
 Template, which serves as a good starting point for building on Substrate.
@@ -37,9 +37,11 @@ Template, which serves as a good starting point for building on Substrate.
     # ^^ this will take a while!
     ```
 
+> **You should start building the node template _before_ moving on!**
+>
 > The time required for the compilation step depends on the hardware you're using.
 >
-> **You should start building the node template _before_ moving on!**
+> **Run into issues? Try the [troubleshooting tips](../../../knowledgebase/getting-started/index#troubleshooting-substrate-builds).**
 
 ## Install the Front-End Template
 
