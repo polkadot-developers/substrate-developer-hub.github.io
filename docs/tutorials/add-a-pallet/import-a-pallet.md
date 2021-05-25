@@ -46,8 +46,11 @@ your runtime has. For example, it depends on the
 ```TOML
 [dependencies]
 #--snip--
-pallet-balances = { default-features = false, version = '3.0.0' }
+pallet-balances = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
 ```
+
+This is telling Cargo to find the crate from git repository `paritytech/substrate` with commit
+that is tagged with `monthly-2021-05` (linked [here](https://github.com/paritytech/substrate/tree/monthly-2021-05)).
 
 ### Crate Features
 
@@ -130,7 +133,7 @@ So based on the `balances` import shown above, the `nicks` import will look like
 ```TOML
 [dependencies]
 #--snip--
-pallet-nicks = { default-features = false, version = '3.0.0' }
+pallet-nicks = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05' }
 ```
 
 As with other pallets, the Nicks pallet has an `std` feature. We should build its `std` feature
@@ -151,7 +154,7 @@ std = [
 
 If you forget to set the feature, when building to your native binaries you will get errors like:
 
-```rust
+```
 error[E0425]: cannot find function `memory_teardown` in module `sandbox`
   --> ~/.cargo/git/checkouts/substrate-7e08433d4c370a21/83a6f1a/primitives/sandbox/src/../without_std.rs:53:12
    |

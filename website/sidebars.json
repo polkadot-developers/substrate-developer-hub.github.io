@@ -77,7 +77,7 @@
       "tutorials/add-a-pallet/index",
       "tutorials/add-a-pallet/import-a-pallet",
       "tutorials/add-a-pallet/configure-a-pallet",
-      "tutorials/add-a-pallet/use-a-pallet"
+      "tutorials/add-a-pallet/interact-with-a-pallet"
     ]
   },
   "forkless-upgrade": {
