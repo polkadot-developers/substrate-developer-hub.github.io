@@ -134,6 +134,7 @@ The total balance of an account is the sum of its free balance and reserved bala
 - **Frozen balance**, splitted into `misc_frozen` and `fee_frozen`, represent balances that free
 balance cannot drop below. `fee_frozen` are specifically for transaction fee payment, and
 `misc_frozen` for everything else. These values are set when accounts are locked for transactions.
+The frozen balance that free balance should not drop below is the max of the two.
 
 ## Conclusion
 
