@@ -36,13 +36,13 @@ class Index extends React.Component {
 
     return (
       <section>
-        <div className="announcement">
+        {/* <div className="announcement">
           Polkadot Decoded: talks, tech and all things Polkadot. May 19th & 20th{` `}&#128073;
           {` `}
           <a href="https://decoded.polkadot.network/?utm_source=substrate.dev&utm_medium=referral&utm_campaign=decoded+2&utm_content=register">
             Register now
           </a>
-        </div>
+        </div> */}
         <HomeSplash
           id='home-hero'
           siteConfig={siteConfig}
