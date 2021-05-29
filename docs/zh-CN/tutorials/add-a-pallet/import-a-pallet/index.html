@@ -16,7 +16,7 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>在 Runtime 添加一个模块</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">在 Runtime 添加一个模块<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/add-a-pallet/">介绍</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/tutorials/add-a-pallet/import-a-pallet">导入 Nicks 模块</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/add-a-pallet/configure-a-pallet">设置 Nicks 模块</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/add-a-pallet/use-a-pallet">与 Nicks 模块互动</a></li></ul></div></div></section></div><script>
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>在 Runtime 添加一个模块</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">在 Runtime 添加一个模块<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/add-a-pallet/">介绍</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/tutorials/add-a-pallet/import-a-pallet">导入 Nicks 模块</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/add-a-pallet/configure-a-pallet">设置 Nicks 模块</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/add-a-pallet/interact-with-a-pallet">与 Nicks 模块交互</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -100,10 +100,11 @@
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies]</span>
 <span class="hljs-comment">#--snip--</span>
-<span class="hljs-attr">pallet-balances</span> = { default-features = <span class="hljs-literal">false</span>, version = <span class="hljs-string">'3.0.0'</span> }
+<span class="hljs-attr">pallet-balances</span> = { default-features = <span class="hljs-literal">false</span>, version = <span class="hljs-string">'3.0.0'</span>, git = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>, tag = <span class="hljs-string">'monthly-2021-05'</span>}
 </code></pre>
+<p>This is telling Cargo to find the crate from git repository <code>paritytech/substrate</code> with commit that is tagged with <code>monthly-2021-05</code> (linked <a href="https://github.com/paritytech/substrate/tree/monthly-2021-05">here</a>).</p>
 <h3><a class="anchor" aria-hidden="true" id="crate-的特性"></a><a href="#crate-的特性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Crate 的特性</h3>
-<p>导入模块时需要注意的一件事是确保正确设置 crate 里的 <code>features</code> 内容。 在上面的代码中，你会注意到我们设置了 <code>default_features = false</code>。 如果您更仔细地浏览 <code>Cargo.toml</code> 文件，则会发现类似以下内容：</p>
+<p>导入pallet crates时需要注意的一件事是确保正确设置crate里的 <code>features</code>内容。 在上面的代码中，你会注意到我们设置了<code>default_features = false</code>。 如果您更仔细地浏览<code>Cargo.toml</code> 文件，则会发现类似以下内容：</p>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-section">[features]</span>
 <span class="hljs-attr">default</span> = [<span class="hljs-string">'std'</span>]
@@ -119,13 +120,13 @@
     <span class="hljs-comment">#--snip--</span>
 ]
 </code></pre>
-<p>第二行代码定义你 runtime 里的 <code>default</code> 特性为 <code>std</code>。 您可以想像，每个模块都有一个相似的配置，定义了该模块的默认特性。 每个模块的特性则决定了其下游依赖项的特性。 例如，上面代码应解读为：</p>
+<p>第二行代码将runtime crate的 <code>default</code> 特性定义为 <code>std</code>。 您可以想象，每个pallet crate都有一个相似的配置定义该crate的默认特性。 每个 crate 的特性则决定了其下游依赖项的特性。 例如，上面代码应解读为：</p>
 <blockquote>
 <p>此 Substrate runtime 的默认特性为 <code>std</code>。 当 runtime 启用 <code>std</code> 特性时，<code>codec</code>， <code>serde</code>，<code>frame-executive</code>，<code>frame-support</code> 和所有其他列出的依赖项也应使用其各自的 <code>std</code> 特性。</p>
 </blockquote>
-<p>这样使 Substrate runtime 既能编译成支持 Rust <a href="https://doc.rust-lang.org/std/"><code>std</code></a> 特性的 native 二进制文件，也能编译成不支持 std (参阅: <a href="https://rust-embedded.github.io/book/intro/no-std.html"><code>no_std</code></a>) 的 <a href="https://webassembly.org/">Wasm</a> 二进制文件。</p>
-<p>能够使用 Wasm runtime 二进制文件是 Substrate 的亮点之一， 它使 runtime 代码变成了区块链状态进的一部分；这也意味着 runtime 本身的定义要服从于确保区块链网络安全的加密共识机制。 Wasm runtime 的使用实现了 Substrate 最具创新性的特性之一：无分叉 runtime 升级，这意味着 Substrate 区块链节点不仅可以保持最新状态，甚至可在无需更新应用程序二进制文件下获取新功能。</p>
-<p>要查看 runtime 代码中实际是如何使用 <code>std</code> 和 <code>no_std</code> 特性的，我们可以打开项目文件：</p>
+<p>This is important to enable the Substrate runtime to compile to both native binaries, which support Rust <a href="https://doc.rust-lang.org/std/"><code>std</code></a>, and <a href="https://webassembly.org/">Wasm</a> binaries, which do not (see: <a href="https://rust-embedded.github.io/book/intro/no-std.html"><code>no_std</code></a>).</p>
+<p>The use of Wasm runtime binaries is one of Substrate's defining features. It allows the runtime code to become a part of a blockchain's evolving state; it also means that the definition of the runtime itself is subject to the cryptographic consensus mechanisms that ensure the security of the blockchain network. The usage of Wasm runtimes enables one of Substrate's most innovative features: forkless runtime upgrades, which means that Substrate blockchain nodes can stay up-to-date and even acquire new features without needing to be replaced with an updated application binary.</p>
+<p>To see how the <code>std</code> and <code>no_std</code> features are actually used in the runtime code, we can open the project file:</p>
 <p><strong><code>runtime/src/lib.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token attribute attr-name">#![cfg_attr(not(feature = <span class="token string">"std"</span>), no_std)]</span>
 <span class="token comment">// `construct_runtime!` does a lot of recursion and requires us to increase the limit to 256.</span>
@@ -137,16 +138,16 @@
 
 <span class="token comment">// --snip--</span>
 </code></pre>
-<p>文件頂部定义了当我们 <em>不</em> 使用 <code>std</code> 特性的时候，<code>no_std</code> 特性将会被启用。 再往下走几行代码，可以看见在 <code>wasm_binary.rs</code> 导入代码行上面的 <code>#[cfg(feature = &quot;std&quot;)]</code> 标志，它表示仅在启用了 <code>std</code> 特性后我们才能导入 Wasm 二进制文件。</p>
+<p>文件头部定义了当我们 <em>不</em> 使用 <code>std</code> 特性的时候，<code>no_std</code> 特性将会被启用。 再往下走几行代码，可以看见在 <code>wasm_binary.rs</code> 导入代码行上面的 <code>#[cfg(feature = &quot;std&quot;)]</code> 标志，它表示仅在启用了 <code>std</code> 特性后我们才能导入 Wasm 二进制文件。</p>
 <h3><a class="anchor" aria-hidden="true" id="导入-nicks-模块"></a><a href="#导入-nicks-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>导入 Nicks 模块</h3>
-<p>既然我们已经对 crate 的特性有基本认识了，现在就可以开始动手导入 Nicks 模块啦。 Nicks 模块是 FRAME 中较为简单的 pallet 之一，因此用它作为例子来考量向 runtime 添加模块时需要注意的通用事项非常合适。</p>
-<p>首先，我们将通过简单地复制现有模块并更改里面的值来添加新的依赖关系。 因此，根据上面的 <code>balances</code> pallet 的导入样式，<code>nicks</code> pallet 导入将类似于：</p>
+<p>Okay, now that we have covered the basics of crate features, we can actually import the Nicks pallet. The Nicks pallet is one of the simpler pallets in FRAME, so it makes for a good example of the common points you need to consider when adding a pallet to your runtime.</p>
+<p>First we will add the new dependency by simply copying an existing pallet and changing the values. So based on the <code>balances</code> import shown above, the <code>nicks</code> import will look like:</p>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies]</span>
 <span class="hljs-comment">#--snip--</span>
-<span class="hljs-attr">pallet-nicks</span> = { default-features = <span class="hljs-literal">false</span>, version = <span class="hljs-string">'3.0.0'</span> }
+<span class="hljs-attr">pallet-nicks</span> = { default-features = <span class="hljs-literal">false</span>, version = <span class="hljs-string">'3.0.0'</span>, git = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>, tag = <span class="hljs-string">'monthly-2021-05'</span> }
 </code></pre>
-<p>与其他 pallet 一样，Nicks pallet 也具有 <code>std</code> 的特性。 当 runtime 是使用其自身的 <code>std</code> 特性构建时，Nicks pallet 也应该使用它的 <code>std</code> 功能来构建。 将以下代码行添加到 runtime 的 <code>std</code> 特性中。</p>
+<p>As with other pallets, the Nicks pallet has an <code>std</code> feature. 当 runtime 是使用其自身的 <code>std</code> 特性构建时，Nicks pallet 也应该使用它的 <code>std</code> 功能来构建。 Add the following line to the runtime's <code>std</code> feature.</p>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-section">[features]</span>
 <span class="hljs-attr">default</span> = [<span class="hljs-string">"std"</span>]
@@ -156,8 +157,8 @@
     <span class="hljs-comment">#--snip--</span>
 ]
 </code></pre>
-<p>如果您忘记了设置该特性，则在构建 native 二进制文件时，会出现以下错误提示：</p>
-<pre><code class="hljs css language-rust">error<span class="token punctuation">[</span><span class="token constant">E0425</span><span class="token punctuation">]</span><span class="token punctuation">:</span> cannot find function `memory_teardown` <span class="token keyword">in</span> module `sandbox`
+<p>If you forget to set the feature, when building to your native binaries you will get errors like:</p>
+<pre><code class="hljs">error<span class="token punctuation">[</span><span class="token constant">E0425</span><span class="token punctuation">]</span><span class="token punctuation">:</span> cannot find function `memory_teardown` <span class="token keyword">in</span> module `sandbox`
   <span class="token operator">-</span><span class="token punctuation">-></span> ~<span class="token operator">/</span><span class="token punctuation">.</span>cargo<span class="token operator">/</span>git<span class="token operator">/</span>checkouts<span class="token operator">/</span>substrate<span class="token operator">-</span>7e08433d4c370a21<span class="token operator">/</span>83a6f1a<span class="token operator">/</span>primitives<span class="token operator">/</span>sandbox<span class="token operator">/</span>src<span class="token operator">/</span><span class="token punctuation">..</span><span class="token operator">/</span>without_std<span class="token punctuation">.</span>rs<span class="token punctuation">:</span><span class="token number">53</span><span class="token punctuation">:</span><span class="token number">12</span>
    <span class="token operator">|</span>
 <span class="token number">53</span> <span class="token operator">|</span>         <span class="token namespace">sandbox<span class="token punctuation">::</span></span><span class="token function">memory_teardown</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">.</span>memory_idx<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -171,7 +172,7 @@ error<span class="token punctuation">[</span><span class="token constant">E0425<
 
 <span class="token punctuation">...</span>
 </code></pre>
-<p>在继续操作之前，请通过运行以下命令行来检查新依赖项是否能正确解析：</p>
+<p>Before moving on, check that the new dependencies resolve correctly by running:</p>
 <pre><code class="hljs css language-bash">cargo check -p node-template-runtime
 </code></pre>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/tutorials/add-a-pallet/index"><span class="arrow-prev">← </span><span>介绍</span></a><a class="docs-next button" href="/docs/zh-CN/tutorials/add-a-pallet/configure-a-pallet"><span>设置 Nicks 模块</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#导入-pallet-crate">导入 Pallet Crate</a><ul class="toc-headings"><li><a href="#crate-的特性">Crate 的特性</a></li><li><a href="#导入-nicks-模块">导入 Nicks 模块</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/rustdocs">API 文档</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
