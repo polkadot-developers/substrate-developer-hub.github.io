@@ -22,7 +22,7 @@ pub trait Config: frame_system::Config {
 ```
 
 As the comment states, we are using the `Event` type of the `Config` configuration trait in order to
-allow the `TemplateModule` pallet to emit a type of event that is compatible with the outer runtime.
+allow the template pallet to emit a type of event that is compatible with the outer runtime.
 The `Config` configuration trait may also be used to tune parameters that control the resources
 required to interact with a pallet or even to limit the resources of the runtime that the pallet may
 consume. You will see examples of both such cases below when you implement the `Config` configuration
@@ -30,13 +30,13 @@ trait for the Nicks pallet.
 
 To figure out what you need to implement for the Nicks pallet specifically, you can take a look at
 the
-[`pallet_nicks::Config` documentation](https://substrate.dev/rustdocs/v3.0.0/pallet_nicks/trait.Config.html)
+[`pallet_nicks::Config` documentation](https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/pallet_nicks/trait.Config.html)
 or the definition of the trait itself in
-[the source code](https://github.com/paritytech/substrate/blob/v3.0.0/frame/nicks/src/lib.rs) of the
+[the source code](https://github.com/paritytech/substrate/blob/monthly-2021-05/frame/nicks/src/lib.rs) of the
 Nicks pallet. We have annotated the source code for `nicks` pallet _from the substrate source_ below with
 enhanced comments that expand on those already included in the documentation, so be sure to read this:
 
-**`substrate/frame/nicks/src/lib.rs`**
+**[`substrate/frame/nicks/src/lib.rs`](https://github.com/paritytech/substrate/blob/monthly-2021-05/frame/nicks/src/lib.rs)**
 
 ```rust
 /// Already in the Nicks pallet included substrate (with enhanced comments):
@@ -119,7 +119,7 @@ use the `u128` type to track balances. If you were developing a chain where it w
 optimize storage, you could use any unsigned integer type that was at least 32-bits in size; this is
 because
 [the `Balance` type](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/pallet/trait.Config.html#associatedtype.Balance)
-for the Balances pallet `Config` configuration trait is "bounded" by
+for the Balances pallet `Config` configuration trait is bound by
 [the `AtLeast32BitUnsigned` trait](https://substrate.dev/rustdocs/v3.0.0/sp_arithmetic/traits/trait.AtLeast32BitUnsigned.html).
 
 Now that you have an idea of the purpose behind the `Config` configuration trait and how you can
@@ -140,8 +140,9 @@ parameter_types! {
 
 impl pallet_nicks::Config for Runtime {
     // The Balances pallet implements the ReservableCurrency trait.
-    // https://substrate.dev/rustdocs/v3.0.0/pallet_balances/index.html#implementations-2
-    type Currency = pallet_balances::Module<Runtime>;
+    // `Balances` is defined in `construct_runtimes!` macro. See below.
+    // https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/pallet_balances/index.html#implementations-2
+    type Currency = Balances;
 
     // Use the NickReservationFee from the parameter_types block.
     type ReservationFee = NickReservationFee;
@@ -150,7 +151,7 @@ impl pallet_nicks::Config for Runtime {
     type Slashed = ();
 
     // Configure the FRAME System Root origin as the Nick pallet admin.
-    // https://substrate.dev/rustdocs/v3.0.0/frame_system/enum.RawOrigin.html#variant.Root
+    // https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/frame_system/enum.RawOrigin.html#variant.Root
     type ForceOrigin = frame_system::EnsureRoot<AccountId>;
 
     // Use the MinNickLength from the parameter_types block.
@@ -169,9 +170,9 @@ impl pallet_nicks::Config for Runtime {
 Next, we need to add the Nicks pallet to the `construct_runtime!` macro. For this, we need to
 determine the types that the pallet exposes so that we can tell the runtime that they exist. The
 complete list of possible types can be found in the
-[`construct_runtime!` macro documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.construct_runtime.html).
+[`construct_runtime!` macro documentation](https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/frame_support/macro.construct_runtime.html).
 
-If we look at the Nicks pallet in detail, we know it has:
+If we look at the [Nicks pallet](https://github.com/paritytech/substrate/blob/monthly-2021-05/frame/nicks/src/lib.rs) in detail, we know it has:
 
 - Module **Storage**: Because it uses the `decl_storage!` macro.
 - Module **Event**s: Because it uses the `decl_event!` macro. You will notice that in the case of
@@ -179,7 +180,7 @@ If we look at the Nicks pallet in detail, we know it has:
   because at least one of the events defined by the Nicks pallet depends on a type that is
   configured with the `Config` configuration trait.
 - **Call**able Functions: Because it has dispatchable functions in the `decl_module!` macro.
-- The **Module** type from the `decl_module!` macro.
+- The **Pallet** type from the `decl_module!` macro.
 
 Thus, when we add the pallet, it will look like this:
 
@@ -193,9 +194,10 @@ construct_runtime!(
         UncheckedExtrinsic = UncheckedExtrinsic
     {
         /* --snip-- */
+        Balances: pallet_balances::{Pallet, Call, Storage, Config<T>, Event<T>},
 
         /*** Add This Line ***/
-        Nicks: pallet_nicks::{Module, Call, Storage, Event<T>},
+        Nicks: pallet_nicks::{Pallet, Call, Storage, Event<T>},
     }
 );
 ```
