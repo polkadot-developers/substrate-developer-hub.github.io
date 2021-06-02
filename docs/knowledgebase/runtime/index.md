@@ -15,6 +15,7 @@ are built as [WebAssembly (Wasm)](../../knowledgebase/getting-started/glossary#w
 bytecode. Substrate also defines the
 core primitives that the runtime must
 implement.
+
 ## Core Primitives
 
 The Substrate framework makes minimal assumptions about what your runtime must provide to the other
