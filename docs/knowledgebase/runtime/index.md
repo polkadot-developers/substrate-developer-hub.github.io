@@ -86,6 +86,7 @@ FRAME. These are:
 Although a lot of core runtime development can be enabled with FRAME and 
 its related primitives, FRAME is not the only system for developing 
 Substrate based blockchains.
+
 ## Next Steps
 
 ### Learn More
