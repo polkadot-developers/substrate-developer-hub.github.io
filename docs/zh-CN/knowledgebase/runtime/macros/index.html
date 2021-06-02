@@ -148,9 +148,10 @@
 <li>for <code>StorageValue</code>: <code>rust-type</code></li>
 <li>for <code>StorageMap</code>: <code>map hasher($hasher) rust_type =&gt; rust_type</code></li>
 <li>for <code>StorageDoubleMap</code>: <code>doublemap hasher($hasher) rust_type, hasher($hasher) rust_type =&gt; rust_type</code></li>
+<li>for <code>StorageNMap</code>: <code>nmap hasher($hasher1) rust_type, hasher($hasher2) rust_type, /* ... */ hasher($hasherN) rust_type =&gt; rust_type</code></li>
 </ul></li>
 <li><p>its getter function,</p></li>
-<li><p>its key types and their hashing methods (if a map or double-map),</p></li>
+<li><p>its key types and their hashing methods (if a map, double-map or n-map),</p></li>
 <li><p>the name of the storage,</p></li>
 <li><p>its default value</p></li>
 </ul>
