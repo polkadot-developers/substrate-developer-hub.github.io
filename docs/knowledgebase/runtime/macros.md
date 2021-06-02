@@ -603,7 +603,6 @@ public-private key pair from a seed.
 - `Pair` struct type is declared to wrap over the crypto pair. This type implements
   `sp_application_crypto::Pair` and `sp_application_crypto::AppKey` traits determining how it
   generates public-private key pairs from a phrase or seed.
-  
 ## References
 
 - [The Rust Programming Language ch 19.5 Macros](https://doc.rust-lang.org/book/ch19-06-macros.html)
