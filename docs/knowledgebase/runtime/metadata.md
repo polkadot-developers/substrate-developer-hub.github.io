@@ -309,10 +309,6 @@ decl_module! {
   }
 ```
 
-```rust
-
-
-```
 This materializes in the metadata as follows:
 
 ```json

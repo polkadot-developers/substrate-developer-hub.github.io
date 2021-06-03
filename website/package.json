@@ -21,6 +21,6 @@
   },
   "devDependencies": {
     "broken-link-checker": "^0.7.8",
-    "docusaurus": "^1.14.6"
+    "docusaurus": "^1.14.7"
   }
 }

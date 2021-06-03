@@ -146,15 +146,21 @@ function Seminar(props) {
             </div>
             <div className='col-md-6 second'>
               <h2 style={{ fontSize: '32px' }}><translate>Upcoming topics</translate></h2>
-              <p><strong>4 May. </strong><translate> In this Seminar, Parity Software Developers Tomek and Hernando will show off the 
-              work that’s been happening to bridge standalone Substrate-based chains. They will show you how to integrate bridge 
-              pallets into your runtime so that your chain can support trustless cross-chain messaging, while touching on 
-              general bridge architecture styles and how bridges differ from parachains and XCMP.</translate></p>
               
               <p><strong>18 May. </strong><translate> Aten, CTO at Patract Labs, will introduce the full-stack tools being built 
               to power Wasm Smart Contract development for Substrate based chains.</translate></p>
 
-              <p><strong>1 June.</strong> TBD. </p>
+              <p><strong>1 June. </strong><translate> Antonio from Kilt will showcase the DID management tools 
+              his team has developed using Substrate and give an overview on what DIDs are and their vision for using them.</translate></p>
+
+              <p><strong>15 June. </strong><translate> Parity Software Developer Kian will be demonstrating a recent tool 
+              he built called try-runtime to test storage migrations and runtime upgrades.</translate></p>
+
+              <p><strong>29 June. </strong><translate> RMRK.app: Nested, reactive, useful, upgradeable NFTs that react to emotion and conditionally 
+              display different resources in different formats.</translate></p>
+
+              <p><strong>13 July. </strong> TBD. </p>
+
             </div>
           </div>
         </div>
