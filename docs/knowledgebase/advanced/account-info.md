@@ -2,13 +2,20 @@
 title: Account Information
 ---
 
+## Overview
+
+In this article we will look into how an account is stored in Substrate and how its underlying data
+structure looks like. We will see that each account is associated with three reference counters, and
+how they are used to manage its lifecycle. If your runtime stores data associated with accounts
+on-chain, it is important to understand how to use these reference counters in your runtime logic.
+
 ## `Account` StorageMap
 
-In Substrate, account information is stored in a
-[**Storage Map**](https://substrate.dev/rustdocs/v3.0.0/frame_support/storage/types/struct.StorageMap.html#impl),
-extracted and shown below:
+In Substrate, the entry point of account information is stored in
+[`frame-system` pallet](https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/frame_system),
+extracted below.
 
-[`frame/system/src/lib.rs`](https://github.com/paritytech/substrate/blob/bcd649ffca9efc93f8b4ac1506ec8117b71e1aac/frame/system/src/lib.rs#L530-L538):
+[`frame/system/src/lib.rs`](https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/src/frame_system/lib.rs.html#530):
 
 ```rust
 /// The full account information for a particular account ID.
@@ -23,15 +30,17 @@ pub type Account<T: Config> = StorageMap<
 >;
 ```
 
-`Account` storage map takes in five type parameters, so it has no prefix, use `Blake2_128Concat` as
-the hash algorithm, use `T::AccountId`, the account public key as the map key, with
-`AccountInfo<T::Index, T::AccountData>` as the map value.
+`Account` storage map takes in five type parameters, of which the first argument is used in macro
+expansion. Then it specifies using `Blake2_128Concat` as the hashing algorithm, and mapping
+`T::AccountId` as key over `AccountInfo<T::Index, T::AccountData>` struct. See
+[`StorageMap` API doc](https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/frame_support/storage/types/struct.StorageMap.html#impl)
+for details.
 
 ## `AccountInfo` Structure
 
-Looking further down in the source code, we will see what `AccountInfo` is actually consisted of.
+Looking further down in the source code, `AccountInfo` struct is defined as:
 
-[`frame/system/src/lib.rs`](https://github.com/paritytech/substrate/blob/bcd649ffca9efc93f8b4ac1506ec8117b71e1aac/frame/system/src/lib.rs#L787-L803):
+[`frame/system/src/lib.rs`](https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/src/frame_system/lib.rs.html#788-803):
 
 ```rust
 #[derive(Clone, Eq, PartialEq, Default, RuntimeDebug, Encode, Decode)]
@@ -53,50 +62,62 @@ pub struct AccountInfo<Index, AccountData> {
 }
 ```
 
-Every account is an `AccountInfo` consisting of an `nonce` indicating number of transactions the
-account has sent, three reference counters, and an `AccountData` structure which contains some
-balances ([further explained below](#accountdata-structure)).
+Every account has an `AccountInfo` consisting of an `nonce` indicating number of transactions the
+account has sent, three reference counters, and an `AccountData` structure which can be configured
+to hold different kinds of data, [further explained below](#accountdata-trait-and-implementation).
+
+## Account Reference Counters
 
 Let's look deeper into the three reference counters, `consumers`, `providers`, and `sufficients`.
-The reasons these counters exist because Substrate has a mechanism of slashing accounts (e.g. one
-reason could be an account balance is below the existential deposit). If any of these reference
-counters are greater than zero, it is telling Substrate to not slash the account. For:
+These counters track references of an account being depended upon within runtime, for example when
+we store data under a map controlled by an account. With these counters we are telling Substrate to
+not destroy these accounts, which is usually triggered when users trying to transfer their
+existential deposit away.
 
-- **`consumers` reference counter** indicates if there are any other modules depend on this account.
-An example of using this counter is in `Session` pallet when an account setting its session key(s)
-prior of becoming a validator [[1]](#ref-session-set-keys). It is also related to the `provider`
-counter, see below.
+- **`consumers`** indicates how many times modules depend on this account. An example of using this
+counter is in `Session` pallet when an account setting its session key(s) prior of becoming a
+validator [[1]](#ref-session-set-keys). `providers` has to be greater than zero before `consumer`
+can be incremented. See below.
 
-- **`providers` reference counter** indicates if there are any other modules allowing this account
-to exist. Currently this counter  is incremented when a new account is created with more than the
-existential deposit to indicate this account could be used to receive consumer reference counters
-[[2]](#ref-system-created). `providers` counter is always greater than or equal to `consumers`
-counter.
+- **`providers`** indicates if an account is active/ready to be depended upon. One usage example
+is that the counter is incremented when a new account is created with more than the existential
+deposit [[2]](#ref-system-created).
 
-  Both `providers` and `consumers` tell Substrate pallets not to store data about that account until
-  it is active (i.e. `providers` > 0), and not to remove an account until data about the account are
-  removed in all pallets (i.e. `consumers` == 0). This is to keep users accountable for their data
-  stored on chain. If users want to remove their accounts and get back the exisitential deposit,
-  they need to remove the dependencies from those on-chain pallets, e.g. clearing data stored
-  on-chain for those pallets, which decrement `consumers` counter.
+  `consumers` and `providers` are designed to be used together. `providers` tells Substrate pallets
+  not to store data about that account until it is active (i.e. `providers` > 0), and `consumers`
+  tells Substrate not to remove an account until data about the account is removed in all pallets
+  (i.e. `consumers` == 0). This is to keep users accountable for their data stored on-chain. If
+  users want to remove their accounts and get back the exisitential deposit, they need to remove
+  the dependencies from those on-chain pallets, such as clearing data stored on-chain for those
+  pallets, which decrement `consumers` counter. Pallets also have cleanup functions to decrement
+  `providers` to mark the account as deactivated within the pallet-managed scope. When the account
+  `providers` reaches 0, with the prerequsite that `consumers` has reached 0 by this point, this
+  account is considered **deactivated** by all on-chain pallets.
 
-- **`sufficients` reference counter** indicates if there are any reasons this account is
-self-sufficient to exist by itself. An example of using this counter is in `Assets` pallet when an
-account has sufficient amount of certain assets but not owning any native account balance
-[[3]](#ref-assets-new-account).
+- **`sufficients`** indicates if there are any reasons this account is self-sufficient to exist by
+itself. An example of using this counter is in `Assets` pallet when an account has sufficient amount
+of certain assets but not owning any native account balance [[3]](#ref-assets-new-account).
 
 Runtime developers can update these counters via `inc_consumers()`, `dec_consumers()`,
-`inc_providers()`, `dec_providers()`, `inc_sufficients()`, `dec_sufficients()` exposed by
-`frame-system`. Each increment call of a certain counter should accompanied by a corresponding
-decrement call of the counter in an account life cycle, else it is a design bug.
+`inc_providers()`, `dec_providers()`, `inc_sufficients()`, and `dec_sufficients()` exposed by
+`frame-system`. Each increment call of a certain counter should accompanied by a corresponding decrement call of the counter in an account life cycle, else it is a design bug.
 
-## `AccountData` Structure
+There are also three query functions to ease usage on these counters:
 
-The last piece of data in `AccountInfo` is `AccountData`. It is defined in `frame-system` to be
-bound by `Member + FullCodec + Clone + Default` traits. Its actual implementation is defined in
-`pallet-balances`, as followed.
+- `can_inc_consumer()` to check if an account is ready to be used (`providers` > 0);
+- `can_dec_provider()` to check if an account is no longer referenced in runtime whatsoever
+(`consumers` == 0) before decrementing `providers` to 0; and
+- `is_provider_required()` to check if an account has outstanding consumer references
+(`consumers` > 0).
 
-[`frame/balances/src/lib.rs`](https://github.com/paritytech/substrate/blob/8d02bb0bfc6136f6a3c805db19f51e43090a7cd4/frame/balances/src/lib.rs#L564-L584)
+Refer to [`frame-system` API doc](https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/frame_system/pallet/struct.Pallet.html#impl-11)
+for details.
+
+## `AccountData` Trait and Implementation
+
+Back to the `AccountInfo` struct. The last piece of data in `AccountInfo` is `AccountData`. It can be any struct as long as it satisfies the associated type `AccountData` trait bound defined in [`frame-system::pallet::Config` trait](https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/frame_system/pallet/trait.Config.html#associatedtype.AccountData). Out of the box Substrate runtime configures it to be [`AccountData` struct](https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/pallet_balances/struct.AccountData.html) defined in `pallet-balances` as shown below.
+
+[`frame/balances/src/lib.rs`](https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/src/pallet_balances/lib.rs.html#566-586)
 
 ```rust
 pub struct AccountData<Balance> {
@@ -131,19 +152,19 @@ usually what matters for most operations.
 suspended. Reserved balance can be slashed, but only after all the free balance has been slashed.
 The total balance of an account is the sum of its free balance and reserved balance.
 
-- **Frozen balance**, splitted into `misc_frozen` and `fee_frozen`, represent balances that free
-balance cannot drop below. `fee_frozen` are specifically for transaction fee payment, and
-`misc_frozen` for everything else. These values are set when accounts are locked for transactions.
-The frozen balance that free balance should not drop below is the max of the two.
+- **Frozen balance**, splitted into `misc_frozen` and `fee_frozen`, represents balance that free
+balance cannot drop below. `fee_frozen` are specifically for transaction fee payment and
+`misc_frozen` for everything else. The actual frozen balance is the max of these two, and they are
+set when accounts are locked for transactions.
 
 ## Conclusion
 
 By now, you have a clear picture how account data is stored in Substrate. You can dig deeper by
-looking into the [`frame_system::AccountInfo` API doc](https://substrate.dev/rustdocs/v3.0.0/frame_system/struct.AccountInfo.html)
-and [`pallet_balances::AccountData` API doc](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/struct.AccountData.html).
+looking into the [`frame_system::AccountInfo` API doc](https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/frame_system/struct.AccountInfo.html)
+and [`pallet_balances::AccountData` API doc](https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/pallet_balances/struct.AccountData.html).
 
 ## Reference
 
-1. <span id="ref-session-set-keys"></span>[`Session` pallet `set_keys` dispatchable call](https://github.com/paritytech/substrate/blob/8d02bb0bfc6136f6a3c805db19f51e43090a7cd4/frame/session/src/lib.rs#L529-L537)
-2. <span id="ref-system-created"></span>[`System` frame `created` function](https://github.com/paritytech/substrate/blob/8d02bb0bfc6136f6a3c805db19f51e43090a7cd4/frame/system/src/lib.rs#L1562-L1573)
-3. <span id="ref-assets-new-account"></span>[`Assets` pallet `new_account` function](https://github.com/paritytech/substrate/blob/8d02bb0bfc6136f6a3c805db19f51e43090a7cd4/frame/assets/src/functions.rs#L46-L61)
+1. <span id="ref-session-set-keys"></span>[`pallet_session::Module::set_keys` dispatchable call](https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/src/pallet_session/lib.rs.html#508-571)
+2. <span id="ref-system-created"></span>[`frame_system::Provider` `HandleLifetime` implementation](https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/src/frame_system/lib.rs.html#1549-1561)
+3. <span id="ref-assets-new-account"></span>[`pallet_assets` `new_account` function](https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/src/pallet_assets/functions.rs.html#46-61)
