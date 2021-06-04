@@ -16,7 +16,7 @@
       "knowledgebase/learn-substrate/weight",
       "knowledgebase/learn-substrate/off-chain-features"
     ],
-    "Runtime Principles": [
+    "Runtime Development": [
       "knowledgebase/runtime/pallets",
       "knowledgebase/runtime/frame",
       "knowledgebase/runtime/macros",

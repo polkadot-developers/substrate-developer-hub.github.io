@@ -92,7 +92,7 @@ Substrate based blockchains.
 
 ### Learn More
 
-- Learn about the [Substrate FRAME](frame).
+- Learn about the [Substrate FRAME](./frame).
 - Follow a
   [tutorial to develop your first Substrate chain](../../tutorials/create-your-first-substrate-chain/).
 - Follow a [tutorial to add a pallet to your Substrate runtime](../../tutorials/add-a-pallet/).
