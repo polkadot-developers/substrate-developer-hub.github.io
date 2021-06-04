@@ -1,5 +1,5 @@
 ---
-title: Runtime Metadata
+title: Metadata
 ---
 
 Blockchains that are built on Substrate expose metadata in order to make it easier to interact with

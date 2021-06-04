@@ -7,19 +7,18 @@
       "knowledgebase/getting-started/windows-users",
       "knowledgebase/getting-started/glossary"
     ],
-    "Learn Substrate": [
+    "Substrate Key Concepts": [
+      "knowledgebase/runtime/index",
       "knowledgebase/learn-substrate/extrinsics",
-      "knowledgebase/learn-substrate/tx-pool",
       "knowledgebase/learn-substrate/account-abstractions",
+      "knowledgebase/learn-substrate/tx-pool",
       "knowledgebase/learn-substrate/session-keys",
       "knowledgebase/learn-substrate/weight",
       "knowledgebase/learn-substrate/off-chain-features"
     ],
-    "Runtime": [
-      "knowledgebase/runtime/index",
-      "knowledgebase/runtime/primitives",
-      "knowledgebase/runtime/frame",
+    "Runtime Development": [
       "knowledgebase/runtime/pallets",
+      "knowledgebase/runtime/frame",
       "knowledgebase/runtime/macros",
       "knowledgebase/runtime/metadata",
       "knowledgebase/runtime/storage",

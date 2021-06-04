@@ -1,5 +1,5 @@
 ---
-title: Runtime Upgrades
+title: Upgrades
 ---
 
 The enablement of forkless runtime upgrades is one of the defining characteristics of the Substrate

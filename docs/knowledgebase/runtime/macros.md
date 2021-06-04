@@ -1,5 +1,5 @@
 ---
-title: Runtime Macros
+title: Macros
 ---
 > **Update:** As of January 2021, FRAME based pallets have upgraded their use of macros. Refer to [this guide](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#upgrade-guidelines) to learn about migrating a v1 pallet to v2. 
 
@@ -605,7 +605,6 @@ public-private key pair from a seed.
 - `Pair` struct type is declared to wrap over the crypto pair. This type implements
   `sp_application_crypto::Pair` and `sp_application_crypto::AppKey` traits determining how it
   generates public-private key pairs from a phrase or seed.
-
 ## References
 
 - [The Rust Programming Language ch 19.5 Macros](https://doc.rust-lang.org/book/ch19-06-macros.html)

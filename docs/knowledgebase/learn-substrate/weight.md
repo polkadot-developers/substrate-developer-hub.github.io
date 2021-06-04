@@ -104,7 +104,7 @@ was executed. This weight must be less than or equal to the pre-dispatch worst c
 user to be allowed to include an extrinsic, they still must be able to pay for the maximum weight,
 even though the final payment will be based on the actual weight.
 
-<!-- ## Block Weight and Length Limit
+## Block Weight and Length Limit
 
 Aside from affecting fees, the main purpose of the weight system is to prevent a block from being
 filled with transactions that would take too long to execute. While processing transactions within a
@@ -124,9 +124,9 @@ can fill the first 800 kilobytes of the block while the last 200 can only be fil
 operational class.
 
 There is also a `Mandatory` dispatch class that can be used to ensure an extrinsic is always
-included in a block regardless of its impact on block weight. Please refer to the
-[Transaction Fees document](../runtime/fees) to learn more about the different dispatch classes and
-when to use them. -->
+included in a block regardless of its impact on block weight. Please refer to the article on 
+[Transaction Fees](../runtime/fees) to learn more about the different dispatch classes and
+when to use them.
 
 ### Learn More
 
