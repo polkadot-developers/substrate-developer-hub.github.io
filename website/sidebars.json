@@ -9,7 +9,7 @@
     ],
     "Substrate Key Concepts": [
       "knowledgebase/runtime/index",
-      "knowledgebase/learn-substrate/extrinsics",      
+      "knowledgebase/learn-substrate/extrinsics",
       "knowledgebase/learn-substrate/account-abstractions",
       "knowledgebase/learn-substrate/tx-pool",
       "knowledgebase/learn-substrate/session-keys",
