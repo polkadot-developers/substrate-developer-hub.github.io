@@ -152,7 +152,7 @@ usually what matters for most operations.
 suspended. Reserved balance can be slashed, but only after all the free balance has been slashed.
 The total balance of an account is the sum of its free balance and reserved balance.
 
-- **Frozen balance**, splitted into `misc_frozen` and `fee_frozen`, represents balance that free
+- **Frozen balance**, split into `misc_frozen` and `fee_frozen`, represents balance that free
 balance cannot drop below. `fee_frozen` are specifically for transaction fee payment and
 `misc_frozen` for everything else. The actual frozen balance is the max of these two, and they are
 set when accounts are locked for transactions.
