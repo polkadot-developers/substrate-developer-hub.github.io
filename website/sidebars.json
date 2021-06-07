@@ -50,6 +50,7 @@
       "knowledgebase/integrate/memory-profiling"
     ],
     "Advanced": [
+      "knowledgebase/advanced/account-info",
       "knowledgebase/advanced/codec",
       "knowledgebase/advanced/consensus",
       "knowledgebase/advanced/block-import",

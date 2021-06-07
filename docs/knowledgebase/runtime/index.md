@@ -56,7 +56,7 @@ for Substrate runtime development that is used for chains like
 [Polkadot](https://github.com/paritytech/polkadot/blob/master/runtime/polkadot/src/lib.rs). FRAME
 defines additional runtime primitives and
 provides a framework that makes it easy to construct a runtime by composing modules, called
-[pallets](./pallets). Each pallet encapsulates domain-specific logic that is expressed as a set of a
+[pallets](../../knowledgebase/runtime/pallets). Each pallet encapsulates domain-specific logic that is expressed as a set of a
 [storage items](../../knowledgebase/runtime/storage), [events](../../knowledgebase/runtime/events),
 [errors](../../knowledgebase/runtime/errors) and
 [dispatchable functions](../../knowledgebase/getting-started/glossary#dispatch). FRAME developers
@@ -92,7 +92,7 @@ Substrate based blockchains.
 
 ### Learn More
 
-- Learn about the [Substrate FRAME](./frame).
+- Learn about the [Substrate FRAME](../../knowledgebase/runtime/frame).
 - Follow a
   [tutorial to develop your first Substrate chain](../../tutorials/create-your-first-substrate-chain/).
 - Follow a [tutorial to add a pallet to your Substrate runtime](../../tutorials/add-a-pallet/).
