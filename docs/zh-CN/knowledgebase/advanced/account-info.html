@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Account Information · Substrate Developer Hub</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 总览"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="Account Information · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="## 总览"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/redirect-next.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class="siteNavGroupActive"><a href="/docs/zh-CN/" target="_self">知识库</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">进阶菜谱</a></li><li class=""><a href="https://substrate.dev/rustdocs/" target="_self">API 文档</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>简体中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/knowledgebase/advanced/account-info">English</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">协助翻译</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>进阶</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">开始<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/">总览</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/architecture">Architecture</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/">安装</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/windows-users">在 Windows 系统开始</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/glossary">词汇表</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Key Concepts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/">Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/extrinsics">Extrinsics</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/account-abstractions">账户摘要</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/tx-pool">交易池</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/session-keys">会话密钥</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/weight">交易权重</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/off-chain-features">链下功能</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Runtime 开发<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/pallets">Pallets</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/frame">FRAME</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/macros">宏</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/metadata">元数据</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/storage">Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/origin">来源 (Origin)</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/execution">Execution</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/events">Events</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/errors">Errors</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/fees">交易费用</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/debugging">调试</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/tests">Tests</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/benchmarking">Benchmarking</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/randomness">链上随机生成</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/upgrades">Upgrades</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">智能合约<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/overview">总览</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/">ink! 智能合约</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/ink-fundamentals">ink! 概念</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/ink-development">ink! 开发</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/contracts-pallet">合约 (Contracts) 模块</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/evm-pallet">EVM 模块</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/faq">ink! 常问问题</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">整合<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/polkadot-js">Polkadot-JS</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/libraries">客户端库</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/chain-spec">链规范</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/subkey">Subkey 工具</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/memory-profiling">内存分析</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">进阶<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/account-info">Account Information</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/codec">SCALE 编解码器</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/consensus">共识机制</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/block-import">区块导入过程</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/executor">Runtime Executor</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/cryptography">密码学</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/storage">存储</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/ss58-address-format">SS58 地址格式</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/no-hash-collections">Why are there no Hash collections in sp_std?</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">贡献<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/contribute/help-translate">协助翻译</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Account Information</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="总览"></a><a href="#总览" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>总览</h2>
+<p>In this article we will look into how an account is stored in Substrate and how its underlying data structure looks like. We will see that each account is associated with three reference counters, and how they are used to manage its lifecycle. If your runtime stores data associated with accounts on-chain, it is important to understand how to use these reference counters in your runtime logic.</p>
+<h2><a class="anchor" aria-hidden="true" id="account-storagemap"></a><a href="#account-storagemap" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>Account</code> StorageMap</h2>
+<p>In Substrate, the entry point of account information is stored in <a href="https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/frame_system"><code>frame-system</code> pallet</a>, extracted below.</p>
+<p><a href="https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/src/frame_system/lib.rs.html#530"><code>frame/system/src/lib.rs</code></a>:</p>
+<pre><code class="hljs css language-rust"><span class="token comment">/// The full account information for a particular account ID.</span>
+<span class="token attribute attr-name">#[pallet::storage]</span>
+<span class="token attribute attr-name">#[pallet::getter(fn account)]</span>
+<span class="token keyword">pub</span> <span class="token keyword">type</span> <span class="token class-name">Account</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token class-name">StorageMap</span><span class="token operator">&lt;</span>
+  _<span class="token punctuation">,</span>
+  <span class="token class-name">Blake2_128Concat</span><span class="token punctuation">,</span>
+  <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountId</span><span class="token punctuation">,</span>
+  <span class="token class-name">AccountInfo</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">Index</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">AccountData</span><span class="token operator">></span><span class="token punctuation">,</span>
+  <span class="token class-name">ValueQuery</span><span class="token punctuation">,</span>
+<span class="token operator">></span><span class="token punctuation">;</span>
+</code></pre>
+<p><code>Account</code> storage map takes in five type parameters, of which the first argument is used in macro expansion. Then it specifies using <code>Blake2_128Concat</code> as the hashing algorithm, and mapping <code>T::AccountId</code> as key over <code>AccountInfo&lt;T::Index, T::AccountData&gt;</code> struct. See <a href="https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/frame_support/storage/types/struct.StorageMap.html#impl"><code>StorageMap</code> API doc</a> for details.</p>
+<h2><a class="anchor" aria-hidden="true" id="accountinfo-structure"></a><a href="#accountinfo-structure" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>AccountInfo</code> Structure</h2>
+<p>Looking further down in the source code, <code>AccountInfo</code> struct is defined as:</p>
+<p><a href="https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/src/frame_system/lib.rs.html#788-803"><code>frame/system/src/lib.rs</code></a>:</p>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[derive(Clone, Eq, PartialEq, Default, RuntimeDebug, Encode, Decode)]</span>
+<span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">AccountInfo</span><span class="token operator">&lt;</span><span class="token class-name">Index</span><span class="token punctuation">,</span> <span class="token class-name">AccountData</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token comment">/// The number of transactions this account has sent.</span>
+  <span class="token keyword">pub</span> nonce<span class="token punctuation">:</span> <span class="token class-name">Index</span><span class="token punctuation">,</span>
+  <span class="token comment">/// The number of other modules that currently depend on this account's existence. The account</span>
+  <span class="token comment">/// cannot be reaped until this is zero.</span>
+  <span class="token keyword">pub</span> consumers<span class="token punctuation">:</span> <span class="token class-name">RefCount</span><span class="token punctuation">,</span>
+  <span class="token comment">/// The number of other modules that allow this account to exist. The account may not be reaped</span>
+  <span class="token comment">/// until this and `sufficients` are both zero.</span>
+  <span class="token keyword">pub</span> providers<span class="token punctuation">:</span> <span class="token class-name">RefCount</span><span class="token punctuation">,</span>
+  <span class="token comment">/// The number of modules that allow this account to exist for their own purposes only. The</span>
+  <span class="token comment">/// account may not be reaped until this and `providers` are both zero.</span>
+  <span class="token keyword">pub</span> sufficients<span class="token punctuation">:</span> <span class="token class-name">RefCount</span><span class="token punctuation">,</span>
+  <span class="token comment">/// The additional data that belongs to this account. Used to store the balance(s) in a lot of</span>
+  <span class="token comment">/// chains.</span>
+  <span class="token keyword">pub</span> data<span class="token punctuation">:</span> <span class="token class-name">AccountData</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Every account has an <code>AccountInfo</code> consisting of an <code>nonce</code> indicating number of transactions the account has sent, three reference counters, and an <code>AccountData</code> structure which can be configured to hold different kinds of data, <a href="#accountdata-trait-and-implementation">further explained below</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="account-reference-counters"></a><a href="#account-reference-counters" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Account Reference Counters</h2>
+<p>Let's look deeper into the three reference counters, <code>consumers</code>, <code>providers</code>, and <code>sufficients</code>. These counters track references of an account being depended upon within runtime, for example when we store data under a map controlled by an account. With these counters we are telling Substrate to not destroy these accounts, which is usually triggered when users trying to transfer their existential deposit away.</p>
+<ul>
+<li><p><strong><code>consumers</code></strong> indicates how many times modules depend on this account. An example of using this counter is in <code>Session</code> pallet when an account setting its session key(s) prior of becoming a validator <a href="#ref-session-set-keys">[1]</a>. <code>providers</code> has to be greater than zero before <code>consumer</code> can be incremented. See below.</p></li>
+<li><p><strong><code>providers</code></strong> indicates if an account is active/ready to be depended upon. One usage example is that the counter is incremented when a new account is created with more than the existential deposit <a href="#ref-system-created">[2]</a>.</p>
+<p><code>consumers</code> and <code>providers</code> are designed to be used together. <code>providers</code> tells Substrate pallets not to store data about that account until it is active (i.e. <code>providers</code> &gt; 0), and <code>consumers</code> tells Substrate not to remove an account until data about the account is removed in all pallets (i.e. <code>consumers</code> == 0). This is to keep users accountable for their data stored on-chain. If users want to remove their accounts and get back the exisitential deposit, they need to remove the dependencies from those on-chain pallets, such as clearing data stored on-chain for those pallets, which decrement <code>consumers</code> counter. Pallets also have cleanup functions to decrement <code>providers</code> to mark the account as deactivated within the pallet-managed scope. When the account <code>providers</code> reaches 0, with the prerequsite that <code>consumers</code> has reached 0 by this point, this account is considered <strong>deactivated</strong> by all on-chain pallets.</p></li>
+<li><p><strong><code>sufficients</code></strong> indicates if there are any reasons this account is self-sufficient to exist by itself. An example of using this counter is in <code>Assets</code> pallet when an account has sufficient amount of certain assets but not owning any native account balance <a href="#ref-assets-new-account">[3]</a>.</p></li>
+</ul>
+<p>Runtime developers can update these counters via <code>inc_consumers()</code>, <code>dec_consumers()</code>, <code>inc_providers()</code>, <code>dec_providers()</code>, <code>inc_sufficients()</code>, and <code>dec_sufficients()</code> exposed by <code>frame-system</code>. Each increment call of a certain counter should accompanied by a corresponding decrement call of the counter in an account life cycle, else it is a design bug.</p>
+<p>There are also three query functions to ease usage on these counters:</p>
+<ul>
+<li><code>can_inc_consumer()</code> to check if an account is ready to be used (<code>providers</code> &gt; 0);</li>
+<li><code>can_dec_provider()</code> to check if an account is no longer referenced in runtime whatsoever (<code>consumers</code> == 0) before decrementing <code>providers</code> to 0; and</li>
+<li><code>is_provider_required()</code> to check if an account has outstanding consumer references (<code>consumers</code> &gt; 0).</li>
+</ul>
+<p>Refer to <a href="https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/frame_system/pallet/struct.Pallet.html#impl-11"><code>frame-system</code> API doc</a> for details.</p>
+<h2><a class="anchor" aria-hidden="true" id="accountdata-trait-and-implementation"></a><a href="#accountdata-trait-and-implementation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>AccountData</code> Trait and Implementation</h2>
+<p>Back to the <code>AccountInfo</code> struct. The last piece of data in <code>AccountInfo</code> is <code>AccountData</code>. It can be any struct as long as it satisfies the associated type <code>AccountData</code> trait bound defined in <a href="https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/frame_system/pallet/trait.Config.html#associatedtype.AccountData"><code>frame-system::pallet::Config</code> trait</a>. Out of the box Substrate runtime configures it to be <a href="https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/pallet_balances/struct.AccountData.html"><code>AccountData</code> struct</a> defined in <code>pallet-balances</code> as shown below.</p>
+<p><a href="https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/src/pallet_balances/lib.rs.html#566-586"><code>frame/balances/src/lib.rs</code></a></p>
+<pre><code class="hljs css language-rust"><span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">AccountData</span><span class="token operator">&lt;</span><span class="token class-name">Balance</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token comment">/// Non-reserved part of the balance. There may still be restrictions on this, but it is the</span>
+  <span class="token comment">/// total pool what may in principle be transferred, reserved and used for tipping.</span>
+  <span class="token comment">///</span>
+  <span class="token comment">/// This is the only balance that matters in terms of most operations on tokens. It</span>
+  <span class="token comment">/// alone is used to determine the balance when in the contract execution environment.</span>
+  <span class="token keyword">pub</span> free<span class="token punctuation">:</span> <span class="token class-name">Balance</span><span class="token punctuation">,</span>
+  <span class="token comment">/// Balance which is reserved and may not be used at all.</span>
+  <span class="token comment">///</span>
+  <span class="token comment">/// This can still get slashed, but gets slashed last of all.</span>
+  <span class="token comment">///</span>
+  <span class="token comment">/// This balance is a 'reserve' balance that other subsystems use in order to set aside tokens</span>
+  <span class="token comment">/// that are still 'owned' by the account holder, but which are suspendable.</span>
+  <span class="token keyword">pub</span> reserved<span class="token punctuation">:</span> <span class="token class-name">Balance</span><span class="token punctuation">,</span>
+  <span class="token comment">/// The amount that `free` may not drop below when withdrawing for *anything except transaction</span>
+  <span class="token comment">/// fee payment*.</span>
+  <span class="token keyword">pub</span> misc_frozen<span class="token punctuation">:</span> <span class="token class-name">Balance</span><span class="token punctuation">,</span>
+  <span class="token comment">/// The amount that `free` may not drop below when withdrawing specifically for transaction</span>
+  <span class="token comment">/// fee payment.</span>
+  <span class="token keyword">pub</span> fee_frozen<span class="token punctuation">:</span> <span class="token class-name">Balance</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>It contains:</p>
+<ul>
+<li><p><strong>Free balance</strong> <code>free</code>. The portion of a balance that is not reserved. The free balance is usually what matters for most operations.</p></li>
+<li><p><strong>Reserved balance</strong> <code>reserved</code>. Reserved balance still belongs to the account holder, but is suspended. Reserved balance can be slashed, but only after all the free balance has been slashed. The total balance of an account is the sum of its free balance and reserved balance.</p></li>
+<li><p><strong>Frozen balance</strong>, split into <code>misc_frozen</code> and <code>fee_frozen</code>, represents balance that free balance cannot drop below. <code>fee_frozen</code> are specifically for transaction fee payment and <code>misc_frozen</code> for everything else. The actual frozen balance is the max of these two, and they are set when accounts are locked for transactions.</p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="conclusion"></a><a href="#conclusion" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Conclusion</h2>
+<p>By now, you have a clear picture how account data is stored in Substrate. You can dig deeper by looking into the <a href="https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/frame_system/struct.AccountInfo.html"><code>frame_system::AccountInfo</code> API doc</a> and <a href="https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/pallet_balances/struct.AccountData.html"><code>pallet_balances::AccountData</code> API doc</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="reference"></a><a href="#reference" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Reference</h2>
+<ol>
+<li><span id="ref-session-set-keys"></span><a href="https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/src/pallet_session/lib.rs.html#508-571"><code>pallet_session::Module::set_keys</code> dispatchable call</a></li>
+<li><span id="ref-system-created"></span><a href="https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/src/frame_system/lib.rs.html#1549-1561"><code>frame_system::Provider</code> <code>HandleLifetime</code> implementation</a></li>
+<li><span id="ref-assets-new-account"></span><a href="https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/src/pallet_assets/functions.rs.html#46-61"><code>pallet_assets</code> <code>new_account</code> function</a></li>
+</ol>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/knowledgebase/integrate/memory-profiling"><span class="arrow-prev">← </span><span>内存分析</span></a><a class="docs-next button" href="/docs/zh-CN/knowledgebase/advanced/codec"><span>SCALE 编解码器</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#总览">总览</a></li><li><a href="#account-storagemap"><code>Account</code> StorageMap</a></li><li><a href="#accountinfo-structure"><code>AccountInfo</code> Structure</a></li><li><a href="#account-reference-counters">Account Reference Counters</a></li><li><a href="#accountdata-trait-and-implementation"><code>AccountData</code> Trait and Implementation</a></li><li><a href="#conclusion">Conclusion</a></li><li><a href="#reference">Reference</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/rustdocs">API 文档</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
+                var cookieSettings = document.getElementById('cookie-settings');
+                cookieSettings.onclick = function() {
+                  return klaro.show();
+                };
+              </script></a></div></section><section class="copyright">Copyright © 2021 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-CN"]}
+              });
+            </script></body></html>
