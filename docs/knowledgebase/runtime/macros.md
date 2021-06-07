@@ -5,7 +5,7 @@ title: Macros
 
 Substrate uses [Rust macros](https://doc.rust-lang.org/book/ch19-06-macros.html) to aggregate the logic derived from pallets that are implemented for a runtime. 
 These runtime macros allow developers to focus on runtime logic rather than encoding and decoding on-chain
-variables or writing extensive blocks of code to achieve [basic blockchain fundamentals](https://substrate.dev/docs/en/knowledgebase/runtime/primitives#core-primitives). This offloads a lot of the heavy lifting from blockchain development efforts and removes the need to duplicate code.
+variables or writing extensive blocks of code to achieve [basic blockchain fundamentals](index#core-primitives). This offloads a lot of the heavy lifting from blockchain development efforts and removes the need to duplicate code.
 
 The purpose of this article is to give a basic overview of Rust macros and explain the Substrate macros
 that runtime engineers most frequently use. 
