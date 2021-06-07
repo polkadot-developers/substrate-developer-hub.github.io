@@ -1,5 +1,5 @@
 ---
-title: Runtime Execution
+title: Execution
 ---
 
 The execution of the Substrate runtime is orchestrated by the Executive module.

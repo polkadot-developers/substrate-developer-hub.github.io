@@ -1,5 +1,5 @@
 ---
-title: Runtime Tests
+title: Tests
 ---
 
 Runtime tests allow you to verify the logic in your runtime module by mocking a Substrate runtime
