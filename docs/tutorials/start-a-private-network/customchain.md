@@ -155,7 +155,14 @@ If you enter the command and parameters correctly, the node will return a JSON r
 
 Make sure you delete the file that contains the keys when you are done.
 
-<!-- TODO: add option 3: use the embedded `key` CLI tool -->
+### Option 3: Use the `key` command
+
+Alternatively, you can insert a key saved to a local file using the `key` command:
+
+```bash
+# Insert the key from /path/to/key/file into the keystore
+./target/release/node-template key insert --base-path /tmp/node01 --chain local --key-type <aura/gran> --suri /path/to/key/file
+```
 
 ### Verify Keys in the Keystore (Optional)
 

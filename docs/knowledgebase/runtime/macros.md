@@ -1,11 +1,11 @@
 ---
-title: Runtime Macros
+title: Macros
 ---
 > **Update:** As of January 2021, FRAME based pallets have upgraded their use of macros. Refer to [this guide](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#upgrade-guidelines) to learn about migrating a v1 pallet to v2. 
 
 Substrate uses [Rust macros](https://doc.rust-lang.org/book/ch19-06-macros.html) to aggregate the logic derived from pallets that are implemented for a runtime. 
 These runtime macros allow developers to focus on runtime logic rather than encoding and decoding on-chain
-variables or writing extensive blocks of code to achieve [basic blockchain fundamentals](https://substrate.dev/docs/en/knowledgebase/runtime/primitives#core-primitives). This offloads a lot of the heavy lifting from blockchain development efforts and removes the need to duplicate code.
+variables or writing extensive blocks of code to achieve [basic blockchain fundamentals](index#core-primitives). This offloads a lot of the heavy lifting from blockchain development efforts and removes the need to duplicate code.
 
 The purpose of this article is to give a basic overview of Rust macros and explain the Substrate macros
 that runtime engineers most frequently use. 
@@ -95,9 +95,11 @@ To define storage items in a FRAME pallet. A storage item definition includes:
   - for `StorageMap`: `map hasher($hasher) rust_type => rust_type`
   - for `StorageDoubleMap`:
     `doublemap hasher($hasher) rust_type, hasher($hasher) rust_type => rust_type`
+  - for `StorageNMap`:
+    `nmap hasher($hasher1) rust_type, hasher($hasher2) rust_type, /* ... */ hasher($hasherN) rust_type => rust_type`
 
 - its getter function,
-- its key types and their hashing methods (if a map or double-map),
+- its key types and their hashing methods (if a map, double-map or n-map),
 - the name of the storage,
 - its default value
 
@@ -603,7 +605,6 @@ public-private key pair from a seed.
 - `Pair` struct type is declared to wrap over the crypto pair. This type implements
   `sp_application_crypto::Pair` and `sp_application_crypto::AppKey` traits determining how it
   generates public-private key pairs from a phrase or seed.
-
 ## References
 
 - [The Rust Programming Language ch 19.5 Macros](https://doc.rust-lang.org/book/ch19-06-macros.html)

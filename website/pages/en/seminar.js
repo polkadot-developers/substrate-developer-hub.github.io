@@ -145,6 +145,7 @@ function Seminar(props) {
               </section>
             </div>
             <div className='col-md-6 second'>
+
               <h2 style={{ fontSize: '32px' }}><translate>Upcoming seminars</translate></h2>
               
               <p><strong>15 June. </strong><translate> Parity Software Developer Kian will be demonstrating a recent tool 
