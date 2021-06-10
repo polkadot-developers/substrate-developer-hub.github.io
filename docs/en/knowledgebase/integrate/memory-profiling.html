@@ -76,73 +76,141 @@
 applications over time in Substrate-based clients. It identifies method calls in the context of how
 memory was allocated, combining this information with the number of allocated objects. In addition,
 profiling can be used to analyze memory leaks, identify where memory consumption is happening,
-define temporary allocations, and investigate excessive memory fragmentation within applications.
-When running Substrate locally, it also accounts for runtime.</p>
-<h2><a class="anchor" aria-hidden="true" id="understanding-modes"></a><a href="#understanding-modes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Understanding Modes</h2>
-<h2><a class="anchor" aria-hidden="true" id="installing-memory-profiler"></a><a href="#installing-memory-profiler" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installing memory-profiler</h2>
-<p>We recommend <a href="https://github.com/koute/memory-profiler">koute's memory profiler</a>. This assumes you
-have installed rust stable, GCC, and yarn globally.</p>
-<p><a href="https://github.com/koute/memory-profiler#building">The following steps will build a memory profiler</a>:</p>
-<ol>
-<li>clone the repository</li>
-<li>compile the library and the cli</li>
-</ol>
-<pre><code class="hljs css language-bash">git <span class="hljs-built_in">clone</span> https://github.com/koute/memory-profiler
-<span class="hljs-built_in">cd</span> memory-profiler
-cargo build --release -p memory-profiler <span class="hljs-comment"># builds the library</span>
-cargo build --release -p memory-profiler-cli <span class="hljs-comment"># builds the cli</span>
+define temporary allocations, and investigate excessive memory fragmentation within applications.</p>
+<p>The profiler we recommend is <a href="https://github.com/koute/memory-profiler">koute's memory profiler</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="installation"></a><a href="#installation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h2>
+<h3><a class="anchor" aria-hidden="true" id="from-a-binary-release"></a><a href="#from-a-binary-release" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>...from a binary release</h3>
+<p>You can download a precompiled binary release of the profiler from <a href="https://github.com/koute/memory-profiler/releases">here</a>.
+The last version we've tested is 0.6.1, but any newer one will also most likely work.</p>
+<p>Here's how you can download and unpack it from the command-line:</p>
+<pre><code class="hljs css language-bash">$ curl -L https://github.com/koute/memory-profiler/releases/download/0.6.1/memory-profiler-x86_64-unknown-linux-gnu.tgz -o memory-profiler-x86_64-unknown-linux-gnu.tgz
+$ tar -xf memory-profiler-x86_64-unknown-linux-gnu.tgz
+</code></pre>
+<p>This will result in three files being unpacked. We're only interested in two of them:</p>
+<ul>
+<li><code>libmemory_profiler.so</code> - this is the memory profiler itself that we will hook into Substrate</li>
+<li><code>memory-profiler-cli</code> - this is the program we will later use to analyze the profiling data</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="from-source"></a><a href="#from-source" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>...from source</h3>
+<p>You can also <a href="https://github.com/koute/memory-profiler#building">compile the profiler from source</a> yourself.</p>
+<p>First you need to make sure to have the following installed:</p>
+<ul>
+<li>GCC toolchain</li>
+<li>Rust nightly (we've tested version <code>nightly-2021-06-08</code>)</li>
+<li><a href="https://yarnpkg.com">Yarn</a> package manager (for building the GUI)</li>
+</ul>
+<p>Then you should be able to build the profiler like this:</p>
+<pre><code class="hljs css language-bash">$ git <span class="hljs-built_in">clone</span> https://github.com/koute/memory-profiler
+$ <span class="hljs-built_in">cd</span> memory-profiler
+$ cargo build --release -p memory-profiler
+$ cargo build --release -p memory-profiler-cli
+</code></pre>
+<p>You'll find the binaries we need in <code>target/release/libmemory_profiler.so</code> and <code>target/release/memory-profiler-cli</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="hooking-up-the-profiler-to-substrate"></a><a href="#hooking-up-the-profiler-to-substrate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hooking up the profiler to Substrate</h2>
+<p>This part heavily depends on how exactly you're launching Substrate.</p>
+<h3><a class="anchor" aria-hidden="true" id="hooking-to-a-manually-launched-substrate"></a><a href="#hooking-to-a-manually-launched-substrate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hooking to a manually launched Substrate</h3>
+<p>If you're manually launching Substrate from the command-line then hooking the profiler up to it
+boils down to just setting up a few extra environment variables and then launching it normally as
+you'd usually do.</p>
+<p>First, we want to enable logging, tell the profiler where it's supposed to output its logs, where it
+should gather its profiling data, and optionally tell it to cull temporary allocations:</p>
+<pre><code class="hljs css language-bash">$ <span class="hljs-built_in">export</span> MEMORY_PROFILER_LOG=info
+$ <span class="hljs-built_in">export</span> MEMORY_PROFILER_LOGFILE=profiling_%e_%t.log
+$ <span class="hljs-built_in">export</span> MEMORY_PROFILER_OUTPUT=profiling_%e_%t.dat
 
+<span class="hljs-comment"># Optional, depending on what exact aspect you'd like to profile</span>
+<span class="hljs-comment"># and how long you're going to be profiling.</span>
+$ <span class="hljs-built_in">export</span> MEMORY_PROFILER_CULL_TEMPORARY_ALLOCATIONS=1
 </code></pre>
-<h2><a class="anchor" aria-hidden="true" id="using-the-profiler-on-substrate"></a><a href="#using-the-profiler-on-substrate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using the Profiler on Substrate</h2>
-<p>Build the client in release mode in your terminal (<code>cargo build --release</code>). After the command is
-completed, run the build binary with the memory profiler preloaded. This step assumes the
-<code>memory-profiler</code> directory is next to the Substrate directory and will only function if the
-directory is correctly called and placed:</p>
-<pre><code class="hljs"><span class="token constant">LD_PRELOAD</span><span class="token operator">=</span><span class="token punctuation">..</span><span class="token operator">/</span>memory<span class="token operator">-</span>profiler<span class="token operator">/</span>target<span class="token operator">/</span>release<span class="token operator">/</span>libmemory_profiler<span class="token punctuation">.</span>so <span class="token punctuation">.</span><span class="token operator">/</span>target<span class="token operator">/</span>release<span class="token operator">/</span>substrate
+<p>Then we can launch Substrate with the profiler attached:</p>
+<pre><code class="hljs css language-bash">$ LD_PRELOAD=/path/to/libmemory_profiler.so ./target/release/substrate
 </code></pre>
-<p>You can pass cli arguments in substrate as usual,
-<a href="https://github.com/koute/memory-profiler#environment-variables-used-by-libmemory_profilerso">configuring the memory profiler via environment variables</a>.</p>
-<p>This will create a <code>.dat</code> file in the directory which you defined and maintain the traces for
-analyzing.  Additionally, you can utilize the memory-profiler server to do the same thing using a
-web ui. To execute this, place the memory-profiler in a directory as follows:</p>
-<pre><code class="hljs"><span class="token punctuation">..</span><span class="token operator">/</span>memory<span class="token operator">-</span>profiler<span class="token operator">/</span>target<span class="token operator">/</span>release<span class="token operator">/</span>memory<span class="token operator">-</span>profiler<span class="token operator">-</span>cli server <span class="token operator">*</span><span class="token punctuation">.</span>dat
-
+<p>Setting the <code>LD_PRELOAD</code> environment variable will instruct Linux's dynamic linker to inject the
+memory profiler into Substrate just before it's launched, which allows the profiler to hook into the
+system's memory allocation routines and track every memory allocation that Substrate's doing.</p>
+<h3><a class="anchor" aria-hidden="true" id="hooking-to-substrate-launched-through-systemd"></a><a href="#hooking-to-substrate-launched-through-systemd" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hooking to Substrate launched through <code>systemd</code></h3>
+<p>If you're running a Substrate-based node remotely you're probably using <code>systemd</code> to manage it.
+Here's how you could go about setting up profiling in such a situation.</p>
+<p>We assume you've already either downloaded a precompiled binary of the profiler or compiled it from
+source, and you have it in your current directory.</p>
+<p>First, we want to copy the memory profiler to a globally accessible location and set up a place
+where it can write its logs and gather the profiling data.</p>
+<pre><code class="hljs css language-bash">$ sudo mkdir -p /opt/memory-profiler/bin
+$ sudo cp libmemory_profiler.so /opt/memory-profiler/bin/
+$ sudo mkdir /opt/memory-profiler/logs
+$ sudo chmod 0777 /opt/memory-profiler/logs
 </code></pre>
-<p>This will run the analyzing. On standard hardware this takes approximately a minute per gigabyte of
-data. Substrate creates about 1.6Gb/hour runtime during normal operation and more during the initial
-compile. Once successfully complied, it will generate a URL. This creates a visual means to inspect
-the data (the deduplication warnings can be ignored):</p>
-<pre><code class="hljs"><span class="token punctuation">[</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span>06T08<span class="token punctuation">:</span><span class="token number">57</span><span class="token punctuation">:</span>09Z <span class="token constant">WARN</span>  <span class="token namespace">cli_core<span class="token punctuation">::</span></span>loader<span class="token punctuation">]</span> <span class="token class-name">Duplicate</span> allocation of <span class="token number">0x00007F58BC20CA90</span><span class="token punctuation">;</span> old backtrace <span class="token operator">=</span> <span class="token class-name">BacktraceId</span><span class="token punctuation">(</span><span class="token number">21363</span><span class="token punctuation">)</span><span class="token punctuation">,</span> new backtrace <span class="token operator">=</span> <span class="token class-name">BacktraceId</span><span class="token punctuation">(</span><span class="token number">19194</span><span class="token punctuation">)</span>
-<span class="token punctuation">[</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span>06T08<span class="token punctuation">:</span><span class="token number">57</span><span class="token punctuation">:</span>09Z <span class="token constant">WARN</span>  <span class="token namespace">cli_core<span class="token punctuation">::</span></span>loader<span class="token punctuation">]</span> <span class="token class-name">Duplicate</span> allocation of <span class="token number">0x00007F5864230040</span><span class="token punctuation">;</span> old backtrace <span class="token operator">=</span> <span class="token class-name">BacktraceId</span><span class="token punctuation">(</span><span class="token number">21321</span><span class="token punctuation">)</span><span class="token punctuation">,</span> new backtrace <span class="token operator">=</span> <span class="token class-name">BacktraceId</span><span class="token punctuation">(</span><span class="token number">21321</span><span class="token punctuation">)</span>
-<span class="token punctuation">[</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span>06T08<span class="token punctuation">:</span><span class="token number">57</span><span class="token punctuation">:</span>09Z <span class="token constant">WARN</span>  <span class="token namespace">cli_core<span class="token punctuation">::</span></span>loader<span class="token punctuation">]</span> <span class="token class-name">Duplicate</span> allocation of <span class="token number">0x00007F5864202D70</span><span class="token punctuation">;</span> old backtrace <span class="token operator">=</span> <span class="token class-name">BacktraceId</span><span class="token punctuation">(</span><span class="token number">21322</span><span class="token punctuation">)</span><span class="token punctuation">,</span> new backtrace <span class="token operator">=</span> <span class="token class-name">BacktraceId</span><span class="token punctuation">(</span><span class="token number">21322</span><span class="token punctuation">)</span>
-<span class="token punctuation">[</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span>06T08<span class="token punctuation">:</span><span class="token number">59</span><span class="token punctuation">:</span>20Z <span class="token constant">INFO</span>  <span class="token namespace">cli_core<span class="token punctuation">::</span></span>loader<span class="token punctuation">]</span> <span class="token class-name">Loaded</span> data <span class="token keyword">in</span> 315s <span class="token number">820</span>
+<p>Then we want to set up a file with all of the environment variables to configure the profiler itself:</p>
+<pre><code class="hljs css language-bash">$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"MEMORY_PROFILER_OUTPUT=/opt/memory-profiler/logs/profiling_%e_%t_%p.dat"</span> | sudo tee /opt/memory-profiler/env
+$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"MEMORY_PROFILER_LOGFILE=/opt/memory-profiler/logs/profiling_%e_%t_%p.txt"</span> | sudo tee -a /opt/memory-profiler/env
+$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"MEMORY_PROFILER_LOG=info"</span> | sudo tee -a /opt/memory-profiler/env
+$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"MEMORY_PROFILER_CULL_TEMPORARY_ALLOCATIONS=1"</span> | sudo tee -a /opt/memory-profiler/env
+$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"LD_PRELOAD=/opt/memory-profiler/bin/libmemory_profiler.so"</span> | sudo tee -a /opt/memory-profiler/env
+</code></pre>
+<p>Now you want to open your <code>systemd</code> unit file for your node and add the following in the <code>[Service]</code> section:</p>
+<pre><code class="hljs"><span class="token punctuation">[</span><span class="token class-name">Service</span><span class="token punctuation">]</span>
+<span class="token class-name">EnvironmentFile</span><span class="token operator">=</span><span class="token operator">/</span>opt<span class="token operator">/</span>memory<span class="token operator">-</span>profiler<span class="token operator">/</span>env
+</code></pre>
+<p>Do not add another <code>[Service]</code> section if one already exists; just add the <code>EnvironmentFile</code> key to it.
+If you already have one <code>EnvironmentFile</code> key do not replace it; just add a second one, <code>systemd</code> will apply both.</p>
+<p>Now you can reload your <code>systemd</code> daemon:</p>
+<pre><code class="hljs css language-bash">$ sudo systemctl daemon-reload
+</code></pre>
+<p>And then restart your service to start the profiling:</p>
+<pre><code class="hljs css language-bash">$ sudo systemctl restart kusama
+</code></pre>
+<p>The profiling data will be gathered at <code>/opt/memory-profiler/logs</code>. If you want to disable the
+memory profiler just delete the <code>EnvironmentFile</code> key you've added to your unit file, and restart
+the service again.</p>
+<h3><a class="anchor" aria-hidden="true" id="configuring-the-profiler"></a><a href="#configuring-the-profiler" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring the profiler</h3>
+<p>There are also <a href="https://github.com/koute/memory-profiler#environment-variables-used-by-libmemory_profilerso">other environment variables you can set to configure the profiler</a>,
+although besides the ones we've already shown changing them shouldn't be necessary in normal circumstances.</p>
+<p>One configuration knob that warrants extra consideration is <code>MEMORY_PROFILER_CULL_TEMPORARY_ALLOCATIONS</code>,
+which controls whenever the profiler will gather short lived allocations.</p>
+<p>By default the profiler will gather <strong>every</strong> allocation that's made by the profiled application.
+That is a <em>lot</em> of data, and can be on the order of <em>megabytes</em> per second. This is great if you
+want to only profile for a short period of time, or if you specifically care about diagnosing
+temporary allocations, but it becomes problematic when you want to leave the profiler running for
+longer.</p>
+<p>This is where the <code>MEMORY_PROFILER_CULL_TEMPORARY_ALLOCATIONS</code> option comes in. When you turn it on
+by setting it to <code>1</code> the profiler will omit all of the really short lived allocations and not write
+them out to disk. This significantly cuts down the amount of data that's generated, usually to the
+range of <em>kilobytes</em> per second, which makes it possible to leave the profiling running for days at
+a time.</p>
+<h2><a class="anchor" aria-hidden="true" id="analysis"></a><a href="#analysis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Analysis</h2>
+<p>Now that you've gathered the profiling data you can now analyze it.</p>
+<p>Assuming you have both the <code>memory-profiler-cli</code> and the <code>.dat</code> file you've gathered
+in the same directory you can load the GUI for it:</p>
+<pre><code class="hljs css language-bash">$ ./memory-profiler-cli server *.dat
+</code></pre>
+<p>This might take a while, depending or your exact hardware and on the amount of data you're trying to load.
+Eventually you should see something like this being printed out:</p>
+<pre><code class="hljs"><span class="token punctuation">[</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span>06T08<span class="token punctuation">:</span><span class="token number">59</span><span class="token punctuation">:</span>20Z <span class="token constant">INFO</span>  <span class="token namespace">cli_core<span class="token punctuation">::</span></span>loader<span class="token punctuation">]</span> <span class="token class-name">Loaded</span> data <span class="token keyword">in</span> 315s <span class="token number">820</span>
 <span class="token punctuation">[</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span>06T08<span class="token punctuation">:</span><span class="token number">59</span><span class="token punctuation">:</span>20Z <span class="token constant">INFO</span>  <span class="token namespace">actix_server<span class="token punctuation">::</span></span>builder<span class="token punctuation">]</span> <span class="token class-name">Starting</span> <span class="token number">8</span> workers
 <span class="token punctuation">[</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span>06T08<span class="token punctuation">:</span><span class="token number">59</span><span class="token punctuation">:</span>20Z <span class="token constant">INFO</span>  <span class="token namespace">actix_server<span class="token punctuation">::</span></span>builder<span class="token punctuation">]</span> <span class="token class-name">Starting</span> server on <span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">8080</span>
 </code></pre>
-<p>Now open your browser and point it to the URL (here <code>http://localhost:8080/</code>) and select the session
-you want to investigate. This will propagate a graph and may need a few minutes to load if a lot of
-data is being parsed. Substrate tracing becomes significantly large quickly, and longer term or
-super-in-depth introspection for specific runtime calls are sometimes hard to source.</p>
+<p>Now you can open your web browser and access the GUI at <code>http://localhost:8080/</code>.</p>
 <p><img src="../../../assets/memory-graph.png" alt="Graphs from the web UI"></p>
-<p>Via the top
-<a href="https://github.com/koute/memory-profiler#rest-api-exposed-by-memory-profiler-cli-server">via the REST API</a>
-you can also download other versions of the data and analyze it with a secondary tool.</p>
-<h3><a class="anchor" aria-hidden="true" id="heaptrack"></a><a href="#heaptrack" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Heaptrack</h3>
-<p>The heaptrack file and heaptrack GUI can be used to investigate specific calls and stack traces
-suspected to leaking memory.</p>
-<h3><a class="anchor" aria-hidden="true" id="tips--tricks"></a><a href="#tips--tricks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tips &amp; Tricks</h3>
-<p>While the profiler generates huge logs, especially if Substrate has been running for a while, the
-analyzer might itself run out of memory during the process and experience a segmentation fault. To
-circumvent this, create smaller logs by toggling the memory profiler with the <code>USR1</code>-Signal.
-Whenever this call is sent, it restarts and creates a new log file. Additionally, a simpler way to
-have the tracing split in thirty minute chunks – around ~800MB each – is to use <code>watch</code>:
-<code>PID=12345 watch -n 1800 'kill -USR1 $PID &amp;&amp; sleep 1 &amp;&amp; kill -USR1 $PID'</code>.</p>
-<h2><a class="anchor" aria-hidden="true" id="known-issues"></a><a href="#known-issues" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Known issues</h2>
+<p>There's also <a href="https://github.com/koute/memory-profiler#rest-api-exposed-by-memory-profiler-cli-server">a REST API</a>
+that you can access you'd like to export the data into another format or inspect it programmatically.</p>
+<h2><a class="anchor" aria-hidden="true" id="miscellaneous-tips"></a><a href="#miscellaneous-tips" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Miscellaneous tips</h2>
 <ul>
-<li>The memory profiler currently core dumps when running substrate with <code>--wasm-execution compiled</code>.</li>
-<li>Clicking on <code>flamegraph</code> makes the server crash.</li>
+<li><p>It's a good idea to always check the logs generated by the profiler and see whenever there are any
+<code>WRN</code> or <code>ERR</code> logs present.</p></li>
+<li><p>You might see the the following error or warning in the profiler's logs depending on which Linux
+distribution you're running:</p>
+<pre><code class="hljs"><span class="token class-name">The</span> perf_event_open syscall failed <span class="token keyword">for</span> <span class="token constant">PID</span> <span class="token number">0</span><span class="token punctuation">:</span> <span class="token class-name">Operation</span> not <span class="token function">permitted</span> <span class="token punctuation">(</span>os error <span class="token number">1</span><span class="token punctuation">)</span>`
+</code></pre>
+<p>This is generally harmless; at most this should only result in higher CPU usage when profiling.
+You can avoid it by doing something like this:</p>
+<pre><code class="hljs css language-bash">$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"-1"</span> | sudo tee /proc/sys/kernel/perf_event_paranoid
+</code></pre>
+<p>Although please note that this might have some security implications. Take a look at
+<code>man perf_event_open</code> for more details.</p></li>
+<li><p>During analysis the whole data file has to be loaded into memory. If you don't have enough RAM
+and you'll try to load up a big file the analyzer might run out of memory and crash.</p></li>
 </ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/23/2020 by Addie Wagenknecht</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/knowledgebase/integrate/subkey"><span class="arrow-prev">← </span><span>The Subkey Tool</span></a><a class="docs-next button" href="/docs/en/knowledgebase/advanced/account-info"><span>Account Information</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#understanding-modes">Understanding Modes</a></li><li><a href="#installing-memory-profiler">Installing memory-profiler</a></li><li><a href="#using-the-profiler-on-substrate">Using the Profiler on Substrate</a><ul class="toc-headings"><li><a href="#heaptrack">Heaptrack</a></li><li><a href="#tips--tricks">Tips &amp; Tricks</a></li></ul></li><li><a href="#known-issues">Known issues</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/10/2021 by Koute</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/knowledgebase/integrate/subkey"><span class="arrow-prev">← </span><span>The Subkey Tool</span></a><a class="docs-next button" href="/docs/en/knowledgebase/advanced/account-info"><span>Account Information</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a><ul class="toc-headings"><li><a href="#from-a-binary-release">...from a binary release</a></li><li><a href="#from-source">...from source</a></li></ul></li><li><a href="#hooking-up-the-profiler-to-substrate">Hooking up the profiler to Substrate</a><ul class="toc-headings"><li><a href="#hooking-to-a-manually-launched-substrate">Hooking to a manually launched Substrate</a></li><li><a href="#hooking-to-substrate-launched-through-systemd">Hooking to Substrate launched through <code>systemd</code></a></li><li><a href="#configuring-the-profiler">Configuring the profiler</a></li></ul></li><li><a href="#analysis">Analysis</a></li><li><a href="#miscellaneous-tips">Miscellaneous tips</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();
