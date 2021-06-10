@@ -198,7 +198,7 @@ that you can access you'd like to export the data into another format or inspect
   You can avoid it by doing something like this:
 
   ```bash
-  $ echo "-1" | sudo tee /proc/sys/kernel/perf_event_paranoid`
+  $ echo "-1" | sudo tee /proc/sys/kernel/perf_event_paranoid
   ```
 
   Although please note that this might have some security implications. Take a look at
