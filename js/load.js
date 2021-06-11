@@ -30,12 +30,12 @@ head.appendChild(dataLayerScript);
 var saScript = document.createElement('script');
 saScript.async = true;
 saScript.defer = true;
-saScript.setAttribute('src', 'https://api-sa.parity.io/latest.js')
+saScript.setAttribute('src', 'https://scripts.simpleanalyticscdn.com/latest.js')
 head.appendChild(saScript);
 
 var saNoScript = document.createElement('noscript');
 var saImg = document.createElement('img');
-saImg.setAttribute('src', 'https://api-sa.parity.io/noscript.gif');
+saImg.setAttribute('src', 'https://queue.simpleanalyticscdn.com/noscript.gif');
 saImg.setAttribute('alt', ' ');
 saImg.setAttribute('referrerpolicy', 'referrer-when-downgrade');
 saNoScript.appendChild(saImg);
