@@ -237,7 +237,7 @@ class Index extends React.Component {
                   </translate></p>
                   <a
                     className='action-link'
-                    href= { docUrl('knowledgebase/smart-contracts/overview') } >
+                    href= { docUrl('knowledgebase/smart-contracts/') } >
                     <span><translate>Learn more about ink!</translate></span>
                   </a>
                 </div>
