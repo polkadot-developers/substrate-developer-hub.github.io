@@ -57,7 +57,7 @@ sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel
 > and thus you very likely will run into build errors stemming from this. It is best,
 > for the near term, to avoid using M1s for Substrate development. If you do decide to
 > give it a try despite this, see
-> [this community guide](https://vikiival.medium.com/run-substrate-on-apple-m1-a2699743fae8)
+> [this community contributed script (and discussion)](https://github.com/substrate-developer-hub/substrate-node-template/issues/179#issuecomment-843522331)
 > for details on extra configuration steps to get things working.
 
 Open the Terminal application and execute the following commands:
