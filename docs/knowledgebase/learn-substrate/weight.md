@@ -2,8 +2,9 @@
 title: Transaction Weight
 ---
 
-Resources available to chains are limited. The resources include memory usage, storage I/O,
-computation, transaction/block size and state database size. There are several mechanisms to manage
+Resources available to chains are limited. These resources include memory usage, storage I/O,
+computation, transaction/block size and state database size. Substrate makes several 
+mechanisms available to manage
 access to resources and to prevent individual components of the chain from consuming too much of any
 resource. Weights are the mechanism used to manage the _time it takes to validate_ a block.
 Generally speaking, this comes from limiting the storage I/O and computation.
