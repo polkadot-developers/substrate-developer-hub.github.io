@@ -194,10 +194,10 @@ construct_runtime!(
         UncheckedExtrinsic = UncheckedExtrinsic
     {
         /* --snip-- */
-        Balances: pallet_balances::{Pallet, Call, Storage, Config<T>, Event<T>},
+        Balances: pallet_balances::{Module, Call, Storage, Config<T>, Event<T>},
 
         /*** Add This Line ***/
-        Nicks: pallet_nicks::{Pallet, Call, Storage, Event<T>},
+        Nicks: pallet_nicks::{Module, Call, Storage, Event<T>},
     }
 );
 ```
