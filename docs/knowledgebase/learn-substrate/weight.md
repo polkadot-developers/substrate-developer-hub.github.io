@@ -8,12 +8,12 @@ access to resources and to prevent individual components of the chain from consu
 resource. Weights are the mechanism used to manage the _time it takes to validate_ a block.
 Generally speaking, this comes from limiting the storage I/O and computation.
 
-NOTE: Weights are not used to restrict access to other resources, such as storage itself or memory
+> **Note:** Weights are not used to restrict access to other resources, such as storage itself or memory
 footprint. Other mechanisms must be used for this.
 
 The amount of weight a block may contain is limited, and optional weight consumption (i.e. weight
 that is not required to be deployed as part of the block's initialization or finalization phases nor
-used in mandatory inherent extrinsics) will generally be limited through economic measures --- or in
+used in mandatory inherent extrinsics) will generally be limited through economic measures &mdash; or in
 simple terms, through transaction fees. The fee implications of the weight system are covered in the
 [Transaction Fees document](../runtime/fees).
 
