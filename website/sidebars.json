@@ -35,8 +35,6 @@
     ],
     "Smart Contracts": [
       "knowledgebase/smart-contracts/index",
-      "knowledgebase/smart-contracts/ink-fundamentals",
-      "knowledgebase/smart-contracts/ink-development",
       "knowledgebase/smart-contracts/contracts-pallet",
       "knowledgebase/smart-contracts/evm-pallet",
       "knowledgebase/smart-contracts/faq"
