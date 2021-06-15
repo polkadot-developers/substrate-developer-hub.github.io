@@ -5,7 +5,7 @@ title: Session Keys
 Session keys are "hot keys" that are used by validators to sign consensus-related messages. They are
 not meant to be used as account keys that control funds and should only be used for their intended
 purpose. They can be changed regularly; your Controller only needs to create a certificate by
-signing a session public key and broadcast this certificate via an extrinsic. Session keys are also
+signing a session public key and broadcasting this certificate via an extrinsic. Session keys are also
 defined generically and made concrete in the runtime.
 
 To create a Session key, validator operators must attest that a key acts on behalf of their Stash
