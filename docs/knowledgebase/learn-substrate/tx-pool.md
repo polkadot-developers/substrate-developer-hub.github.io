@@ -15,7 +15,7 @@ hard-wired to the transaction pool, but is defined by the runtime. Example valid
 - Checking if the signature is valid.
 
 The transaction pool also regularly checks validity of existing transactions within the pool. A
-transaction will be dropped from the pool if an invalid or expired mortal transaction is found.
+transaction will be dropped from the pool if it is found to be invalid or is an expired mortal transaction.
 
 **Sorting**
 
