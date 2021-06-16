@@ -448,63 +448,6 @@ subkey generate-node-key --file node-key
 <pre><code class="hljs css language-text">12D3KooWAhzqC4xstZKkAVYge2Q9tAMcnFhNEabLejRNVoQWLHHC
 </code></pre>
 <p>The peer ID is displayed on screen and the actual key is saved in the <code>&lt;output-file&gt;</code>.</p>
-<!-- FIXME! The `insert` command is _only_ for the key sub-command embedded in nodes. Not for subkey - we need to point this out... -->
-<!-- 
-## Inserting Keys to a Node's Keystore
-<p>You can insert fixed keys into a Substrate-based node's keystore with the <code>insert</code> command. It is common to use the
-same secret, but with different scheme for substrate key use:</p>
-<p><em>Command (Sr25519 - AURA key):</em></p>
-<pre><code class="hljs css language-bash">node key inspect <span class="hljs-string">"caution juice atom organ advance problem want pledge someone senior holiday very"</span> --scheme sr25519
-</code></pre>
-<p><em>Output:</em></p>
-<pre><code class="hljs css language-bash">Secret phrase `caution juice atom organ advance problem want pledge someone senior holiday very` is account:
-  Secret seed:       0xc8fa03532fb22ee1f7f6908b9c02b4e72483f0dbd66e4cd456b8f34c6230b849
-  Public key (hex):  0xbd7436a22571207d018ffe83f5dc77d0750b7777f1eb169053d40201d6c68d53
-  Public key (SS58): 5GM7RtekqU8cGiS4MKQ7tufoH4Q1itzmoFpVcvcPfjksyPrw
-  Account ID:        0xbd7436a22571207d018ffe83f5dc77d0750b7777f1eb169053d40201d6c68d53
-  SS58 Address:      5GM7RtekqU8cGiS4MKQ7tufoH4Q1itzmoFpVcvcPfjksyPrw
-</code></pre>
-<hr>
-<p><em>Command (Ed25519 - GRANDPA key):</em></p>
-<pre><code class="hljs css language-bash">node key inspect <span class="hljs-string">"caution juice atom organ advance problem want pledge someone senior holiday very"</span> --scheme ed25519
-</code></pre>
-<p><em>Output:</em></p>
-<pre><code class="hljs css language-bash">Secret phrase `caution juice atom organ advance problem want pledge someone senior holiday very` is account:
-  Secret seed:       0xc8fa03532fb22ee1f7f6908b9c02b4e72483f0dbd66e4cd456b8f34c6230b849
-  Public key (hex):  0xbd7436a22571207d018ffe83f5dc77d0750b7777f1eb169053d40201d6c68d53
-  Public key (SS58): 5GM7RtekqU8cGiS4MKQ7tufoH4Q1itzmoFpVcvcPfjksyPrw
-  Account ID:        0xbd7436a22571207d018ffe83f5dc77d0750b7777f1eb169053d40201d6c68d53
-  SS58 Address:      5GM7RtekqU8cGiS4MKQ7tufoH4Q1itzmoFpVcvcPfjksyPrw
-</code></pre>
-<hr>
-<p><em>Command (ECDSA - BEEFY key):</em></p>
-<pre><code class="hljs css language-bash">node key inspect <span class="hljs-string">"caution juice atom organ advance problem want pledge someone senior holiday very"</span> --scheme ecdsa
-</code></pre>
-<p><em>Output:</em></p>
-<pre><code class="hljs css language-bash">Secret phrase `caution juice atom organ advance problem want pledge someone senior holiday very` is account:
-  Secret seed:       0xc8fa03532fb22ee1f7f6908b9c02b4e72483f0dbd66e4cd456b8f34c6230b849
-  Public key (hex):  0x03b2217d2c348df72c4789947291e2e63ba7798baebaa937f40fd5d68f022dd4b4
-  Public key (SS58): KWCjsULBCExp8BTVhVjVjWrqMYxSi4a1CRyU2tyzNiAs4mLk8
-  Account ID:        0x9bd03f5c43588e0e8110463dde4122bce1279d683de87e95975f7c717f00d617
-  SS58 Address:      5Fb19AznKQqtHLf82PfMXKwWPqAWPB9g7fW6AhP8BVJ8Soqo
-</code></pre>
-<hr>
-<p>Now you can use the <code>insert</code> sub-command to save these keys appropriately for use by your node, all
-we require is the base path, key type, and correct scheme used to do so with a given secret URI:</p>
-<p><em>Command:</em></p>
-<pre><code class="hljs css language-bash"><span class="hljs-comment"># Usage</span>
-<span class="hljs-comment"># node key insert [FLAGS] [OPTIONS] --key-type &lt;key-type&gt;</span>
-
-<span class="hljs-comment"># Example: Inserting an Aura key (SR25519 Crypto)</span>
-node key insert --suri 0xc8fa03532fb22ee1f7f6908b9c02b4e72483f0dbd66e4cd456b8f34c6230b849 --base-path /tmp/node01 --key-type aura
-
-<span class="hljs-comment"># Example: Inserting a Grandpa key (ED25519 Crypto)</span>
-node key insert --suri 0xc8fa03532fb22ee1f7f6908b9c02b4e72483f0dbd66e4cd456b8f34c6230b849 --scheme ed25519 --base-path /tmp/node01 --key-type gran
-
-<span class="hljs-comment"># Example: Inserting a Beefy key (ECDSA Crypto)</span>
-node key insert --suri 0xc8fa03532fb22ee1f7f6908b9c02b4e72483f0dbd66e4cd456b8f34c6230b849 --scheme ecdsa --base-path /tmp/node01 --key-type beefy
-</code></pre>
-<p>--&gt;</p>
 <h2><a class="anchor" aria-hidden="true" id="well-known-keys"></a><a href="#well-known-keys" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Well-Known Keys</h2>
 <blockquote>
 <p>The common seed used for all development accounts is:</p>
@@ -546,7 +489,7 @@ creating keys with the UI and restoring them with Subkey or vice versa.</li>
 <li>Learn more about
 <a href="https://wiki.polkadot.network/docs/en/learn-cryptography">different cryptographic algorithms and choosing between them</a>.</li>
 </ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 5/3/2021 by Dan Shields</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/knowledgebase/integrate/chain-spec"><span class="arrow-prev">← </span><span>Chain Specification</span></a><a class="docs-next button" href="/docs/en/knowledgebase/integrate/memory-profiling"><span>Memory Profiling</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a><ul class="toc-headings"><li><a href="#install-with-cargo">Install with Cargo</a></li><li><a href="#compiling-with-cargo">Compiling with Cargo</a></li></ul></li><li><a href="#inspecting-keys">Inspecting Keys</a></li><li><a href="#generating-keys">Generating Keys</a><ul class="toc-headings"><li><a href="#example-seed">Example Seed</a></li></ul></li><li><a href="#specify-network-address-format">Specify Network Address Format</a></li><li><a href="#hd-key-derivation">HD Key Derivation</a><ul class="toc-headings"><li><a href="#hard-key-derivation">Hard Key Derivation</a></li><li><a href="#soft-key-derivation">Soft Key Derivation</a></li></ul></li><li><a href="#password-protected-keys">Password Protected Keys</a></li><li><a href="#combine-derivation-paths--passwords">Combine Derivation Paths &amp; Passwords</a><ul class="toc-headings"><li><a href="#important-password-and-derivation-note">IMPORTANT PASSWORD AND DERIVATION NOTE</a></li></ul></li><li><a href="#signing-and-verifying-messages">Signing and Verifying Messages</a><ul class="toc-headings"><li><a href="#signing">Signing</a></li><li><a href="#verifying">Verifying</a></li></ul></li><li><a href="#generating-node-keys">Generating Node Keys</a></li><li><a href="#inserting-keys-to-a-nodes-keystore">Inserting Keys to a Node's Keystore</a></li><li><a href="#well-known-keys">Well-Known Keys</a></li><li><a href="#further-resources">Further Resources</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 6/16/2021 by Dan Shields</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/knowledgebase/integrate/chain-spec"><span class="arrow-prev">← </span><span>Chain Specification</span></a><a class="docs-next button" href="/docs/en/knowledgebase/integrate/memory-profiling"><span>Memory Profiling</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation">Installation</a><ul class="toc-headings"><li><a href="#install-with-cargo">Install with Cargo</a></li><li><a href="#compiling-with-cargo">Compiling with Cargo</a></li></ul></li><li><a href="#inspecting-keys">Inspecting Keys</a></li><li><a href="#generating-keys">Generating Keys</a><ul class="toc-headings"><li><a href="#example-seed">Example Seed</a></li></ul></li><li><a href="#specify-network-address-format">Specify Network Address Format</a></li><li><a href="#hd-key-derivation">HD Key Derivation</a><ul class="toc-headings"><li><a href="#hard-key-derivation">Hard Key Derivation</a></li><li><a href="#soft-key-derivation">Soft Key Derivation</a></li></ul></li><li><a href="#password-protected-keys">Password Protected Keys</a></li><li><a href="#combine-derivation-paths--passwords">Combine Derivation Paths &amp; Passwords</a><ul class="toc-headings"><li><a href="#important-password-and-derivation-note">IMPORTANT PASSWORD AND DERIVATION NOTE</a></li></ul></li><li><a href="#signing-and-verifying-messages">Signing and Verifying Messages</a><ul class="toc-headings"><li><a href="#signing">Signing</a></li><li><a href="#verifying">Verifying</a></li></ul></li><li><a href="#generating-node-keys">Generating Node Keys</a></li><li><a href="#well-known-keys">Well-Known Keys</a></li><li><a href="#further-resources">Further Resources</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();
