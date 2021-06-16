@@ -140,12 +140,14 @@ decisions on which approach to use based on different situations.
   </tr>
   <tr>
     <td>
+      <ul>
       <li> Privacy Layer </li>
       <li> Feeless Token </li>
       <li> Light-Client Bridge </li>
       <li> Decentralized Exchange </li>
       <li> Oracles </li>
       <li> Stable Coin </li>
+      </ul>      
     </td>
     <td>
       <li>Multi-signature Wallet </li>
