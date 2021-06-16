@@ -9,6 +9,7 @@ smart contracts. It uses [ink!](https://paritytech.github.io/ink-docs/), a [Rust
 [WebAssembly](https://webassembly.org/) smart contracts.
 
 Here are some of ink!'s key features:
+
 - Designed for correctness, conciseness and efficiency, ink! carries familiar concepts from other modern smart contract
 languages. Learn more about [how it compares to Solidity](https://paritytech.github.io/ink-docs/ink-vs-solidity).
 - ink! provides a built in test environment that can be used to perform off-chain unit testing with
