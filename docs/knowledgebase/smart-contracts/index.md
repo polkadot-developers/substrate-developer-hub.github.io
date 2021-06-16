@@ -150,9 +150,11 @@ decisions on which approach to use based on different situations.
       </ul>      
     </td>
     <td>
+      <ul>
       <li>Multi-signature Wallet </li>
       <li>Data services </li>
       <li>Simple fundraiser </li>
+      </ul>
     </td>
     <td>
       Gaming dApp
