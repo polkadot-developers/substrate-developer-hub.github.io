@@ -181,7 +181,7 @@ decisions on which approach to use based on different situations.
 - Follow a
   [tutorial to add the Contracts pallet to your FRAME runtime](../../tutorials/add-contracts-pallet/).
 - Learn how to
-  [start developing with the Contracts pallet and ink!](ink-development).
+  [start developing with the Contracts pallet and ink!](ink-https://substrate.dev/substrate-contracts-workshop/).
 
 ### References
 
