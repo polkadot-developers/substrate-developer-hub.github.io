@@ -158,14 +158,14 @@ decisions on which approach to use based on different situations.
     </td>
     <td>
       Gaming dApp
-        <li> Small scale (contract) </li>
-        <li> Large scale (runtime)
+        <ul><li>Small scale (contract)</li>
+        <li> Large scale (runtime)</li></ul>
       Decentralized Autonomous Organizations (DAO)
-        <li>Community driven (contract)</li>
-        <li>Protocol driven (runtime)</li>
+        <ul><li>Community driven (contract)</li>
+        <li>Protocol driven (runtime)</li></ul>
       Treasury
-        <li>Community driven (contract)</li>
-        <li>Protocol driven (runtime)</li>
+        <ul><li>Community driven (contract)</li>
+        <li>Protocol driven (runtime)</li></ul>
     </td>
   </tr>
 </table>
