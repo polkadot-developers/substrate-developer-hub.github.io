@@ -1,5 +1,5 @@
 ---
-title: Transaction Fees
+title: Transaction Fees and Weights
 ---
 
 When a block author constructs a block, it must limit the block's execution time. A block body
@@ -380,6 +380,8 @@ impl<T: Get<Perquintill>> Convert<Fixed128, Fixed128> for TargetedFeeAdjustment<
 The entire logic of fees is encapsulated in `pallet-transaction-payment` via a `SignedExtension`.
 While this module provides a high degree of flexibility, a user can opt to build their custom
 payment module drawing inspiration from Transaction Payment.
+
+Given now you know what Substrate weight system is, how it affect the transaction fee computation, and how to specify them for your dispatchables, the last question is how to find the right weights for your dispatchables. That is what **Substrate Benchmarking** is for. By writing benchmarking functions and running them, the system (`frame-benchmarking`) calls these functions repeatedly with different numerical parameters and empirically determine the weight functions for dispatchables in their worst case scenarios, within a certain limit. [Learn more here](./benchmarking).
 
 ### Learn More
 
