@@ -133,7 +133,9 @@ const siteConfig = {
   scrollToTop: true,
 
   // Style sheets to import
-  stylesheets: [ 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' ],
+  stylesheets: [
+    'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
+   ],
 
   // Translation recruitment link, appears in the language drop down as "Help Translate"
   translationRecruitingLink: 'https://crowdin.com/project/substrate-developer-hub',

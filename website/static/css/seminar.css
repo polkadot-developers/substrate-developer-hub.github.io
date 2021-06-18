@@ -85,6 +85,12 @@
   background-color: black;
 }
 
+#seminar .hero.height-200 {
+  height: 200px;
+  min-height: 200px;
+  max-height: 200px;
+}
+
 #seminar .hero .container {
   margin: auto;
   text-align: center;
@@ -216,6 +222,10 @@
 
 #seminar .video-details p {
   margin-bottom: 40px;
+}
+
+#seminar table .text-sm {
+  font-size: 94%;
 }
 
 @media (min-width: 768px) {

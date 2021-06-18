@@ -1,0 +1,79 @@
+[{
+  "date": "2021 Jun 15",
+  "speakers": ["Kian Paimani, Parity"],
+  "description": "<code>try-runtime</code>: a testing tool for runtime upgrades",
+  "link": "https://www.crowdcast.io/e/substrate-seminar/41",
+  "tags": ["runtime", "runtime upgrade"]
+}, {
+  "date": "2021 Jun 01",
+  "speakers": ["Antonio, Kilt"],
+  "description": "Kilt: Building DID Management Tools with Substrate",
+  "link": "https://www.crowdcast.io/e/substrate-seminar/40",
+  "tags": ["ecosystem", "did"]
+}, {
+  "date": "2021 May 18",
+  "speakers": ["Aten, Patract Labs"],
+  "description": "Patract Labs: WASM Smart Contracts",
+  "link": "https://www.crowdcast.io/e/substrate-seminar/39",
+  "tags": ["wasm", "smart contract"]
+}, {
+  "date": "2021 May 04",
+  "speakers": ["Tomek, Parity", "Hernando, Parity"],
+  "description": "Bridging Substrate Chains",
+  "link": "https://www.crowdcast.io/e/substrate-seminar/38",
+  "tags": ["bridge"]
+}, {
+  "date": "2021 Mar 23",
+  "speakers": ["Raul Romanutti, Parity", "Dan Forbes, Community"],
+  "description": "The Art of Chaos",
+  "link": "https://www.crowdcast.io/e/substrate-seminar/37",
+  "tags": ["kusama"]
+}, {
+  "date": "2021 Mar 09",
+  "speakers": ["Sasha Lansky, Parity"],
+  "description": "Instantiable Pallets",
+  "link": "https://www.crowdcast.io/e/substrate-seminar/36",
+  "tags": ["runtime"]
+}, {
+  "date": "2021 Feb 23",
+  "speakers": ["Chevdor, Community"],
+  "description": "Introduction of <code>srtool</code>",
+  "link": "https://www.crowdcast.io/e/substrate-seminar/35",
+  "tags": ["ecosystem", "tooling"]
+}, {
+  "date": "2021 Feb 16",
+  "speakers": ["Bill Laboon, Web3 Foundation"],
+  "description": "Defensive Development with Bill Laboon",
+  "link": "https://www.crowdcast.io/e/substrate-seminar/34",
+  "tags": ["methodology"]
+}, {
+  "date": "2021 Feb 09",
+  "speakers": ["Joshy Orndorff, Purestake"],
+  "description": "Moonbeam Learnings with Joshy Orndorff",
+  "link": "https://www.crowdcast.io/e/substrate-seminar/33",
+  "tags": ["ecosystem", "methodology"]
+}, {
+  "date": "2021 Feb 02",
+  "speakers": ["Brett Kolodny, Community"],
+  "description": "Substrate Developer Journey with Brett Kolodny",
+  "link": "https://www.crowdcast.io/e/substrate-seminar/32",
+  "tags": ["ecosystem"]
+}, {
+  "date": "2021 Jan 19",
+  "speakers": ["Guillaume Tholliere, Parity"],
+  "description": "FRAME v2",
+  "link": "https://www.crowdcast.io/e/substrate-seminar/31",
+  "tags": ["runtime"]
+}, {
+  "date": "2021 Jan 12",
+  "speakers": ["Will Pankiewicz, Parity"],
+  "description": "Network Security for Substrate",
+  "link": "https://www.crowdcast.io/e/substrate-seminar/30",
+  "tags": ["network"]
+}, {
+  "date": "2021 Jan 05",
+  "speakers": ["Dan Forbes, Parity"],
+  "description": "Rust Syntax for Substrate",
+  "link": "https://www.crowdcast.io/e/substrate-seminar/29",
+  "tags": ["runtime"]
+}]
