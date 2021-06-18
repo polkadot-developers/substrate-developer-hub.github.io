@@ -27,9 +27,9 @@
       "knowledgebase/runtime/events",
       "knowledgebase/runtime/errors",
       "knowledgebase/runtime/fees",
+      "knowledgebase/runtime/benchmarking",
       "knowledgebase/runtime/debugging",
       "knowledgebase/runtime/tests",
-      "knowledgebase/runtime/benchmarking",
       "knowledgebase/runtime/randomness",
       "knowledgebase/runtime/upgrades"
     ],

@@ -1,5 +1,5 @@
 ---
-title: Transaction Weight
+title: Transaction Weights
 ---
 
 Resources available to chains are limited. These resources include memory usage, storage I/O,

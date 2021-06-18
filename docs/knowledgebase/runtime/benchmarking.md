@@ -550,9 +550,9 @@ up, but not doing fancy computation.
 
 ## Reference
 
+  - [`frame-benchmarking` README](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/README.md)
   - [Substrate Seminar: Benchmarking Your Substrate
     Pallet](https://www.youtube.com/watch?v=Qa6sTyUqgek)
-
   - [Benchmarking and Weights for a New Pallet](https://hackmd.io/041uMXYXR8y6nBWUnQ6uCQ)
 
 ## Footnotes
