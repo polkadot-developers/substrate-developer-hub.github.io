@@ -87,7 +87,6 @@ const siteConfig = {
     '/js/clipboard.min.js',
     '/js/code-block-buttons.js',
     '/js/load.js',
-    '/js/redirect-next.js',
     {
       src: '/js/config.js',
       defer: true

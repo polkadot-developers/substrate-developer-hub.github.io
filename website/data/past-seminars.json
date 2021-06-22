@@ -84,7 +84,7 @@
   "tags": ["runtime"]
 }, {
   "date": "2020 Dec 15",
-  "speakers": ["Julien du Bois, Community"],
+  "speakers": ["Julien duBois, Community"],
   "description": "Building PIRL (nominated POS community-based blockchain)",
   "link": "https://www.crowdcast.io/e/substrate-seminar/27",
   "tags": []

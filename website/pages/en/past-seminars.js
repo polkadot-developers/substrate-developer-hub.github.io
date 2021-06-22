@@ -53,35 +53,38 @@ function PastSeminars(props) {
 
       <section className='switchable switchable--switch intro'>
         <div className='container'>
-
-          <div className='row'>
-            <div className='col-12'><div className="table-responsive">
-              <table className="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Speaker(s)</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Tags</th>
-                  </tr>
-                </thead>
-                <tbody>{
-                  seminars.map((seminar, sidx) => <tr key={`seminar-${sidx}`}>
-                    <td className="text-sm">{seminar.date}</td>
-                    <td className="text-sm" dangerouslySetInnerHTML={{__html: seminar.speakers.join('<br/>')}} />
-                    <td>
-                      <a href={seminar.link} dangerouslySetInnerHTML={{__html: seminar.description}} />
-                    </td>
-                    <td>
-                      {seminar.tags.map((tag, tidx) =>
-                        <span key={`tag-${sidx}-${tidx}`} className="badge badge-pill badge-primary mx-1">{tag}</span>
-                      )}
-                    </td>
-                  </tr>)
-                }
-                </tbody>
-              </table>
-            </div></div>
+          <div className="table-responsive" id='past-seminars'>
+            <table className="table table-hover">
+              <colgroup>
+                <col style={{minWidth:"140px"}}/>
+                <col/>
+                <col/>
+                <col style={{minWidth: "200px"}}/>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Speaker(s)</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Tags</th>
+                </tr>
+              </thead>
+              <tbody>{
+                seminars.map((seminar, sidx) => <tr key={`seminar-${sidx}`}>
+                  <td className="text-sm">{seminar.date}</td>
+                  <td className="text-sm" dangerouslySetInnerHTML={{__html: seminar.speakers.join('<br/>')}} />
+                  <td>
+                    <a target="_blank" href={seminar.link} dangerouslySetInnerHTML={{__html: seminar.description}} />
+                  </td>
+                  <td>
+                    {seminar.tags.map((tag, tidx) =>
+                      <span key={`tag-${sidx}-${tidx}`} className="badge badge-pill badge-primary mx-1">{tag}</span>
+                    )}
+                  </td>
+                </tr>)
+              }
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
