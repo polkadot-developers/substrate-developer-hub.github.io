@@ -31,7 +31,7 @@
     "tags": ["kusama"]
   }, {
     "date": "2021 Mar 09",
-    "speakers": ["Sasha Lansky, Parity"],
+    "speakers": ["Sacha Lansky, Parity"],
     "description": "Instantiable Pallets",
     "link": "https://www.crowdcast.io/e/substrate-seminar/36",
     "tags": ["runtime"]
