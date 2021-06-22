@@ -252,3 +252,13 @@
     margin-right: 20px;
   }
 }
+
+/* For past seminars */
+#past-seminars ul li+li {
+  margin-top:  0em;
+}
+
+#past-seminars a.nav-link.active {
+  background-color: #ff1864 !important;
+  border-color:  #ff1864 !important;
+}

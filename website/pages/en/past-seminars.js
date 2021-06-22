@@ -23,6 +23,40 @@ const Button = require('../../../../react-bootstrap/Button')
 const translate = require('../../server/translate').translate
 const seminars = require(`${process.cwd()}` + `/data/past-seminars.json`)
 
+function renderTable(seminars) {
+  return <table className="table table-hover">
+    <colgroup>
+      <col style={{width:"140px"}}/>
+      <col/>
+      <col/>
+      <col style={{minWidth: "200px"}}/>
+    </colgroup>
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Speaker(s)</th>
+        <th scope="col">Description</th>
+        <th scope="col">Tags</th>
+      </tr>
+    </thead>
+    <tbody>{
+      seminars.map((seminar, sidx) => <tr key={`seminar-${sidx}`}>
+        <td className="text-sm">{seminar.date}</td>
+        <td className="text-sm" dangerouslySetInnerHTML={{__html: seminar.speakers.join('<br/>')}} />
+        <td>
+          <a target="_blank" href={seminar.link} dangerouslySetInnerHTML={{__html: seminar.description}} />
+        </td>
+        <td>
+          {seminar.tags.map((tag, tidx) =>
+            <span key={`tag-${sidx}-${tidx}`} className="badge badge-pill badge-primary mx-1">{tag}</span>
+          )}
+        </td>
+      </tr>)
+    }
+    </tbody>
+  </table>;
+}
+
 function PastSeminars(props) {
   const { config: siteConfig, language = '' } = props
   const { baseUrl, docsUrl } = siteConfig
@@ -51,41 +85,27 @@ function PastSeminars(props) {
         </div>
       </section>
 
-      <section className='switchable switchable--switch intro'>
+      <section className='switchable switchable--switch intro' id='past-seminars'>
         <div className='container'>
-          <div className="table-responsive" id='past-seminars'>
-            <table className="table table-hover">
-              <colgroup>
-                <col style={{minWidth:"140px"}}/>
-                <col/>
-                <col/>
-                <col style={{minWidth: "200px"}}/>
-              </colgroup>
-              <thead>
-                <tr>
-                  <th scope="col">Date</th>
-                  <th scope="col">Speaker(s)</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Tags</th>
-                </tr>
-              </thead>
-              <tbody>{
-                seminars.map((seminar, sidx) => <tr key={`seminar-${sidx}`}>
-                  <td className="text-sm">{seminar.date}</td>
-                  <td className="text-sm" dangerouslySetInnerHTML={{__html: seminar.speakers.join('<br/>')}} />
-                  <td>
-                    <a target="_blank" href={seminar.link} dangerouslySetInnerHTML={{__html: seminar.description}} />
-                  </td>
-                  <td>
-                    {seminar.tags.map((tag, tidx) =>
-                      <span key={`tag-${sidx}-${tidx}`} className="badge badge-pill badge-primary mx-1">{tag}</span>
-                    )}
-                  </td>
-                </tr>)
-              }
-              </tbody>
-            </table>
+
+          <ul className='nav nav-pills mb-3' id='pills-seminars-tab' role='tablist'>
+            <li className='nav-item mx-3'>
+              <a className='nav-link active' id='pills-2021-tab' data-toggle='pill' href='#pills-2021' role='tab'>2021</a>
+            </li>
+            <li className='nav-item mx-3'>
+              <a className='nav-link' id='pills-2020-tab' data-toggle='pill' href='#pills-2020' role='tab'>2020</a>
+            </li>
+          </ul>
+
+          <div className="table-responsive tab-content" id='pills-seminars-tabContent'>
+            <div className='tab-pane active' id='pills-2021' role='tabpanel'>
+              { renderTable(seminars["2021"]) }
+            </div>
+            <div className='tab-pane' id='pills-2020' role='tabpanel'>
+              { renderTable(seminars["2020"]) }
+            </div>
           </div>
+
         </div>
       </section>
 
