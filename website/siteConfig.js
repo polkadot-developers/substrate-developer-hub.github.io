@@ -84,10 +84,13 @@ const siteConfig = {
   // Add custom scripts here that would be placed in <script> tags.
   scripts: [
     'https://buttons.github.io/buttons.js',
+    'https://code.jquery.com/jquery-3.3.1.slim.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js',
+    'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
     '/js/clipboard.min.js',
     '/js/code-block-buttons.js',
     '/js/load.js',
-    '/js/redirect-next.js',
+    '/js/past-seminars.js',
     {
       src: '/js/config.js',
       defer: true
@@ -133,7 +136,9 @@ const siteConfig = {
   scrollToTop: true,
 
   // Style sheets to import
-  stylesheets: [ 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' ],
+  stylesheets: [
+    'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
+   ],
 
   // Translation recruitment link, appears in the language drop down as "Help Translate"
   translationRecruitingLink: 'https://crowdin.com/project/substrate-developer-hub',
