@@ -39,6 +39,7 @@
       "knowledgebase/smart-contracts/evm-pallet",
       "knowledgebase/smart-contracts/faq"
     ],
+    "Parachains": ["knowledgebase/parachains/launch"],
     "Integrate": [
       "knowledgebase/integrate/polkadot-js",
       "knowledgebase/integrate/libraries",
@@ -57,9 +58,7 @@
       "knowledgebase/advanced/ss58-address-format",
       "knowledgebase/advanced/no-hash-collections"
     ],
-    "Contribute": [
-      "contribute/help-translate"
-    ]
+    "Contribute": ["contribute/help-translate"]
   },
   "create-your-first-substrate-chain": {
     "Create Your First Substrate Chain": [
