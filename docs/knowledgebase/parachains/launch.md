@@ -2,8 +2,7 @@
 title: Parachains Launch Guide
 ---
 
-> This guide is meant to inform teams who are looking to launch a parachain on Polkadot/Kusama about
-> the process, provide answers to the FAQ and share recommendations/best practices.
+> This guide is meant to inform teams about the process of launching a parachain on Polkadot or Kusama and provide additional information, including recommendations and best practices.
 >
 > NOTE: This page is a _work in progress_! It is _not_ a comprehensive listing of all considerations.
 > Please only use this as a starting point and reference for your parachain launch process.
@@ -16,26 +15,26 @@ Ensure you are familiar with the [Substrate Launch Check-list](https://docs.goog
 
 #### 1. Collator selection
 
-- To prevent censorship, a parachain only needs to ensure that there exist some neutral collators -
+- To prevent censorship, a parachain only needs to ensure that there exists a set of neutral collators &mdash;
 but not necessarily a majority.
 
 - Too many collators may slow down the network.
 
 - You are free to choose your method of collator selection. Common methods include stake voting /
-staking (see Cumulus [implementation](https://github.com/paritytech/cumulus/blob/master/pallets/collator-selection/src/lib.rs)) or directly assigning collators via committee or other origins
+staking (see the Cumulus [implementation](https://github.com/paritytech/cumulus/blob/master/pallets/collator-selection/src/lib.rs)) or directly assigning collators via committee or other origins
 such as democracy.
 
 #### 2. Setup
 
-- Refer to [this instruction](https://substrate.dev/cumulus-workshop/#/en/3-parachains/1-launch?id=start-the-collator-node)
+- Refer to [this command set](https://substrate.dev/cumulus-workshop/#/en/3-parachains/1-launch?id=start-the-collator-node)
 to start and set up a collator node and [here](https://substrate.dev/cumulus-workshop/#/en/3-parachains/4-more-nodes?id=start-the-second-collator)
 to add more collator nodes.
 
 #### 3. Incentives
 
-- The [collator-selection pallet](https://github.com/paritytech/cumulus/blob/master/pallets/collator-selection/src/lib.rs)
-linked above already implements incentives via transaction fees. [This pallet](https://github.com/PureStake/moonbeam/blob/master/pallets/parachain-staking/src/lib.rs)
-implemented by Pure Stake team offers a more sophisticated scheme of parachain staking that supports inflationary monetary policy.
+- The [`collator-selection` pallet](https://github.com/paritytech/cumulus/blob/master/pallets/collator-selection/src/lib.rs)
+already implements incentives via transaction fees. [This pallet](https://github.com/PureStake/moonbeam/blob/master/pallets/parachain-staking/src/lib.rs),
+implemented by engineers at [Pure Stake](https://www.purestake.com/) offers a more sophisticated parachain staking scheme which supports an inflationary monetary policy.
 
 #### 4. DevOps considerations
 
@@ -52,11 +51,11 @@ There have been instances of networks having the same [Protocol ID](https://gith
 #### 2. Proper Weights & Benchmarking
 
 - Benchmark your runtime and use the generated weight functions (see our [benchmarking guide](../runtime/benchmarking)).
-Follow the benchmarking best practices. Don’t use default Substrate weights in production unless
-you know what you are doing.
+Follow the benchmarking best practices. **Don’t use default Substrate weights in production unless
+you know what you are doing.**
 
 - We recommend having a block weight limit (block production time) of 0.5 seconds in the beginning
-due to uncertainties in block execution time. As the execution time of the network stabilizes the
+due to uncertainties in block execution time. As the execution time of the network stabilizes, the
 weights limit can be increased to 2 seconds.
 
 #### 3. Recommended Deployment of a Runtime
@@ -65,24 +64,24 @@ weights limit can be increased to 2 seconds.
 > complications.
 
 - We advise you to launch your parachain being as slim as possible and do runtime upgrades to
-include functionality. The reason behind this is that when performing a runtime upgrade both the
-previous runtime and the new runtime are included in the PoV and therefore if the changes are too
-big it might not go through. **Always use the compressed version of the runtime to lower the amount
+include functionality. The reason behind this is that when performing a runtime upgrade both
+previous and new runtimes are included in the PoV and therefore if the changes are too
+big they might not go through. **Always use the compressed version of the runtime to lower the amount
 of data being transferred.**
 
   Still, in order to avoid storage upgrades, you could do the following:
 
   1. Generate the genesis state of your chain with full runtime functionality (including all the pallets).
 
-  2. Remove all pallets that you will not need upon parachain launch from your runtime.
+  2. Remove all pallets from your runtime that you will not need for your initial parachain launch.
 
   3. Re-build the WASM blob (validation logic) and the runtime of the chain.
 
   4. Register your parachain with the updated genesis and the WASM blob generated in (3).
 
-  5. After your parachain is live you can upgrade your runtime on-chain to include the missing
-  pallets (ensure that pallet indices and names match those used to generate the genesis state in
-  step (1) without having to do storage migrations. For more information on on-chain runtime
+  5. Once your parachain is live, include your missing pallets by performing an on-chain runtime upgrade (ensure that 
+  your pallet's indices and names match those used to generate the genesis state in
+  step 1). For more information on on-chain runtime
   upgrades refer to the next section.
 
 - You could also launch your parachain with a feature-complete runtime but limit the functionality
@@ -92,7 +91,7 @@ of how this was done for Statemine.
 ### Parachain Runtime Upgrades
 
 [Runtime upgrades](../runtime/upgrades) on a parachain are a bit different than on a solo-chain.
-But the following are still required:
+But the following is still required:
 
 - A newly compressed Wasm generated for the runtime and set on-chain (and don't forget to [increment your `spec_version`](../runtime/upgrades#runtime-versioning)).
 
