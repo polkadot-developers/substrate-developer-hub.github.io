@@ -438,7 +438,7 @@ add the Contracts pallet along with its API.
 **`node/src/rpc.rs`**
 
 ```rust
-use node_template_runtime::{opaque::Block, AccountId, Balance, Index, BlockNumber}; // NOTE THIS IS AN ADJUSTMENT TO AN EXISTING LINE
+use node_template_runtime::{opaque::Block, AccountId, Balance, Index, BlockNumber, Hash}; // NOTE THIS IS AN ADJUSTMENT TO AN EXISTING LINE
 use pallet_contracts_rpc::{Contracts, ContractsApi};
 ```
 
@@ -451,7 +451,7 @@ pub fn create_full<C, P>(
 	C: Send + Sync + 'static,
 	C::Api: substrate_frame_rpc_system::AccountNonceApi<Block, AccountId, Index>,
 	/*** Add This Line ***/
-	C::Api: pallet_contracts_rpc::ContractsRuntimeApi<Block, AccountId, Balance, BlockNumber>,
+	C::Api: pallet_contracts_rpc::ContractsRuntimeApi<Block, AccountId, Balance, BlockNumber, Hash>,
 	/* --snip-- */
 {
 	/* --snip-- */
