@@ -380,7 +380,7 @@ impl_runtime_apis! {
 			data: Vec<u8>,
 			salt: Vec<u8>,
 		) -> pallet_contracts_primitives::ContractInstantiateResult<AccountId, BlockNumber> {
-			Contracts::bare_instantiate(origin, endowment, gas_limit, code, data, salt, false)
+			Contracts::bare_instantiate(origin, endowment, gas_limit, code, data, salt, true)
 		}
 
 		fn get_storage(
