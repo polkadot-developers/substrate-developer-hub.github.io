@@ -102,7 +102,7 @@ and [this repository](https://github.com/apopiak/substrate-migrations)).
 
 #### Standard Protocol
 
-> For a demo of solo-chain upgrades, see [this tutorial](../../tutorials/forkless-upgrade/).
+> For a demo of runtime upgrades, see [this tutorial](../../tutorials/forkless-upgrade/).
 
 The Relay chain needs to be informed before the runtime upgrade of a parachain. Cumulus provides
 functionality to notify the Relay Chain about the upcoming upgrade.
