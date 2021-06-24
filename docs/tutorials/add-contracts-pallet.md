@@ -301,7 +301,7 @@ construct_runtime!(
 		/* --snip-- */
 
 		/*** Add This Line ***/
-		Contracts: pallet_contracts::{Module, Call, Config<T>, Storage, Event<T>},
+		Contracts: pallet_contracts::{Pallet, Call, Config<T>, Storage, Event<T>},
 	}
 );
 ```
