@@ -426,8 +426,8 @@ jsonrpc-core = '15.1.0'
 structopt = '0.3.8'
 #--snip--
 # *** Add this 2 lines ***
-pallet-contracts  = '3.0.0'
-pallet-contracts-rpc  = '3.0.0'
+pallet-contracts = { version = '3.0.0',  git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
+pallet-contracts-rpc = { version = '3.0.0',  git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
 ```
 
 
@@ -511,12 +511,11 @@ fn testnet_genesis(
 		/* --snip-- */
 
 		/*** Add This Block ***/
-		pallet_contracts: Some(ContractsConfig {
-			current_schedule: pallet_contracts::Schedule {
-					enable_println,
-					..Default::default()
-			},
-		}),
+		pallet_contracts: ContractsConfig {
+			// println should only be enabled on development chains
+			current_schedule: pallet_contracts::Schedule::default()
+				.enable_println(enable_println),
+		},
 		/*** End Added Block ***/
 	}
 }
