@@ -68,7 +68,7 @@ your runtime has. For example, it depends on the
 ```TOML
 [dependencies]
 #--snip--
-pallet-balances = { default-features = false, version = '3.0.0' }
+pallet-balances = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
 ```
 
 ### Crate Features
@@ -144,8 +144,8 @@ So based on the `balances` import shown above, the `contracts` import will look 
 ```TOML
 [dependencies]
 #--snip--
-pallet-contracts = { default-features = false, version = '3.0.0' }
-pallet-contracts-primitives = { default-features = false, version = '3.0.0' }
+pallet-contracts = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
+pallet-contracts-primitives = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
 ```
 
 As with other pallets, the Contracts pallet has an `std` feature. We should build its `std` feature
@@ -221,7 +221,7 @@ impl pallet_timestamp::Config for Runtime {
 parameter_types! {
 	pub const TombstoneDeposit: Balance = deposit(
 		1,
-		sp_std::mem::size_of::<pallet_contracts::ContractInfo<Runtime>>() as u32
+		<pallet_contracts::Pallet<Runtime>>::contract_info_size()
 	);
 	pub const DepositPerContract: Balance = TombstoneDeposit::get();
 	pub const DepositPerStorageByte: Balance = deposit(0, 1);
@@ -332,7 +332,7 @@ We start by adding the required API dependencies in our `Cargo.toml`.
 ```TOML
 [dependencies]
 #--snip--
-pallet-contracts-rpc-runtime-api = { default-features = false, version = '3.0.0' }
+pallet-contracts-rpc-runtime-api = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
 ```
 
 **`runtime/Cargo.toml`**
@@ -345,7 +345,6 @@ std = [
 	'pallet-contracts-rpc-runtime-api/std',
 ]
 ```
-Now we must add the `ContractsApi` dependency required to implement the Contracts runtime API. Add this with the other `use` statements.
 
 To get the state of a contract variable, we have to call a getter function that will return a
 `ContractExecResult` wrapper with the current state of the execution.
@@ -360,7 +359,7 @@ impl_runtime_apis! {
    /* --snip-- */
 
    /*** Add This Block ***/
-	impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, BlockNumber>
+	impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, BlockNumber, Hash>
 	for Runtime
 	{
 		fn call(
@@ -371,6 +370,17 @@ impl_runtime_apis! {
 			input_data: Vec<u8>,
 		) -> pallet_contracts_primitives::ContractExecResult {
 			Contracts::bare_call(origin, dest, value, gas_limit, input_data)
+		}
+
+		fn instantiate(
+			origin: AccountId,
+			endowment: Balance,
+			gas_limit: u64,
+			code: pallet_contracts_primitives::Code<Hash>,
+			data: Vec<u8>,
+			salt: Vec<u8>,
+		) -> pallet_contracts_primitives::ContractInstantiateResult<AccountId, BlockNumber> {
+			Contracts::bare_instantiate(origin, endowment, gas_limit, code, data, salt, false)
 		}
 
 		fn get_storage(
