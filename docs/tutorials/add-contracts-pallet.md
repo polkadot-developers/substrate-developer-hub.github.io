@@ -68,14 +68,14 @@ your runtime has. For example, it depends on the
 ```TOML
 [dependencies]
 #--snip--
-pallet-balances = { default-features = false, version = '3.0.0' }
+pallet-balances = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
 ```
 
 ### Crate Features
 
 One important thing we need to call out with importing pallet crates is making sure to set up the
 crate `features` correctly. In the code snippet above, you will notice that we set
-`default_features = false`. If you explore the `Cargo.toml` file even closer, you will find
+`default-features = false`. If you explore the `Cargo.toml` file even closer, you will find
 something like:
 
 **`runtime/Cargo.toml`**
@@ -144,8 +144,8 @@ So based on the `balances` import shown above, the `contracts` import will look 
 ```TOML
 [dependencies]
 #--snip--
-pallet-contracts = { default-features = false, version = '3.0.0' }
-pallet-contracts-primitives = { default-features = false, version = '3.0.0' }
+pallet-contracts = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
+pallet-contracts-primitives = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
 ```
 
 As with other pallets, the Contracts pallet has an `std` feature. We should build its `std` feature
@@ -221,12 +221,12 @@ impl pallet_timestamp::Config for Runtime {
 parameter_types! {
 	pub const TombstoneDeposit: Balance = deposit(
 		1,
-		sp_std::mem::size_of::<pallet_contracts::ContractInfo<Runtime>>() as u32
+		<pallet_contracts::Pallet<Runtime>>::contract_info_size()
 	);
 	pub const DepositPerContract: Balance = TombstoneDeposit::get();
 	pub const DepositPerStorageByte: Balance = deposit(0, 1);
 	pub const DepositPerStorageItem: Balance = deposit(1, 0);
-	pub RentFraction: Perbill = Perbill::from_rational_approximation(1u32, 30 * DAYS);
+	pub RentFraction: Perbill = Perbill::from_rational(1u32, 30 * DAYS);
 	pub const SurchargeReward: Balance = 150 * MILLICENTS;
 	pub const SignedClaimHandicap: u32 = 2;
 	pub const MaxDepth: u32 = 32;
@@ -301,7 +301,7 @@ construct_runtime!(
 		/* --snip-- */
 
 		/*** Add This Line ***/
-		Contracts: pallet_contracts::{Module, Call, Config<T>, Storage, Event<T>},
+		Contracts: pallet_contracts::{Pallet, Call, Config<T>, Storage, Event<T>},
 	}
 );
 ```
@@ -332,7 +332,7 @@ We start by adding the required API dependencies in our `Cargo.toml`.
 ```TOML
 [dependencies]
 #--snip--
-pallet-contracts-rpc-runtime-api = { default-features = false, version = '3.0.0' }
+pallet-contracts-rpc-runtime-api = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
 ```
 
 **`runtime/Cargo.toml`**
@@ -345,7 +345,6 @@ std = [
 	'pallet-contracts-rpc-runtime-api/std',
 ]
 ```
-Now we must add the `ContractsApi` dependency required to implement the Contracts runtime API. Add this with the other `use` statements.
 
 To get the state of a contract variable, we have to call a getter function that will return a
 `ContractExecResult` wrapper with the current state of the execution.
@@ -360,7 +359,7 @@ impl_runtime_apis! {
    /* --snip-- */
 
    /*** Add This Block ***/
-	impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, BlockNumber>
+	impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, BlockNumber, Hash>
 	for Runtime
 	{
 		fn call(
@@ -371,6 +370,17 @@ impl_runtime_apis! {
 			input_data: Vec<u8>,
 		) -> pallet_contracts_primitives::ContractExecResult {
 			Contracts::bare_call(origin, dest, value, gas_limit, input_data)
+		}
+
+		fn instantiate(
+			origin: AccountId,
+			endowment: Balance,
+			gas_limit: u64,
+			code: pallet_contracts_primitives::Code<Hash>,
+			data: Vec<u8>,
+			salt: Vec<u8>,
+		) -> pallet_contracts_primitives::ContractInstantiateResult<AccountId, BlockNumber> {
+			Contracts::bare_instantiate(origin, endowment, gas_limit, code, data, salt, true)
 		}
 
 		fn get_storage(
@@ -416,8 +426,8 @@ jsonrpc-core = '15.1.0'
 structopt = '0.3.8'
 #--snip--
 # *** Add this 2 lines ***
-pallet-contracts  = '3.0.0'
-pallet-contracts-rpc  = '3.0.0'
+pallet-contracts = { version = '3.0.0',  git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
+pallet-contracts-rpc = { version = '3.0.0',  git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
 ```
 
 
@@ -428,7 +438,7 @@ add the Contracts pallet along with its API.
 **`node/src/rpc.rs`**
 
 ```rust
-use node_template_runtime::{opaque::Block, AccountId, Balance, Index, BlockNumber}; // NOTE THIS IS AN ADJUSTMENT TO AN EXISTING LINE
+use node_template_runtime::{opaque::Block, AccountId, Balance, Index, BlockNumber, Hash}; // NOTE THIS IS AN ADJUSTMENT TO AN EXISTING LINE
 use pallet_contracts_rpc::{Contracts, ContractsApi};
 ```
 
@@ -441,7 +451,7 @@ pub fn create_full<C, P>(
 	C: Send + Sync + 'static,
 	C::Api: substrate_frame_rpc_system::AccountNonceApi<Block, AccountId, Index>,
 	/*** Add This Line ***/
-	C::Api: pallet_contracts_rpc::ContractsRuntimeApi<Block, AccountId, Balance, BlockNumber>,
+	C::Api: pallet_contracts_rpc::ContractsRuntimeApi<Block, AccountId, Balance, BlockNumber, Hash>,
 	/* --snip-- */
 {
 	/* --snip-- */
@@ -501,12 +511,11 @@ fn testnet_genesis(
 		/* --snip-- */
 
 		/*** Add This Block ***/
-		pallet_contracts: Some(ContractsConfig {
-			current_schedule: pallet_contracts::Schedule {
-					enable_println,
-					..Default::default()
-			},
-		}),
+		pallet_contracts: ContractsConfig {
+			// println should only be enabled on development chains
+			current_schedule: pallet_contracts::Schedule::default()
+				.enable_println(enable_println),
+		},
 		/*** End Added Block ***/
 	}
 }
