@@ -75,7 +75,7 @@ pallet-balances = { default-features = false, version = '3.0.0', git = 'https://
 
 One important thing we need to call out with importing pallet crates is making sure to set up the
 crate `features` correctly. In the code snippet above, you will notice that we set
-`default_features = false`. If you explore the `Cargo.toml` file even closer, you will find
+`default-features = false`. If you explore the `Cargo.toml` file even closer, you will find
 something like:
 
 **`runtime/Cargo.toml`**
