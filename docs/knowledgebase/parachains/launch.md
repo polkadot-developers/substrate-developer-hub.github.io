@@ -17,8 +17,10 @@ Ensure you are familiar with the [Substrate Launch Check-list](https://docs.goog
 #### 1. Collator selection
 
 - To prevent censorship, a parachain only needs to ensure that there exist some neutral collators - but not necessarily a majority.
-- Too many collators may slow down the network
-- You are free to choose your method of collator selection. Common methods include stake voting/staking (see Cumulus [implementation](https://github.com/paritytech/cumulus/blob/master/pallets/collator-selection/src/lib.rs) ) or directly assigning collators via committee or other origins such as democracy.
+
+- Too many collators may slow down the network.
+
+- You are free to choose your method of collator selection. Common methods include stake voting/staking (see Cumulus [implementation](https://github.com/paritytech/cumulus/blob/master/pallets/collator-selection/src/lib.rs)) or directly assigning collators via committee or other origins such as democracy.
 
 #### 2. Setup
 
@@ -30,48 +32,57 @@ Ensure you are familiar with the [Substrate Launch Check-list](https://docs.goog
 
 #### 4. DevOps considerations
 
-- Ensure you follow [parachain DevOps best practices](https://gist.github.com/lovelaced/cddc1c7234b883ee37e71cf4a1d63cac)
+- Ensure you follow [parachain DevOps best practices](https://gist.github.com/lovelaced/cddc1c7234b883ee37e71cf4a1d63cac).
 - We recommend you to watch the [recording](https://drive.google.com/file/d/1-nQ_SI2XK6vxPQvORWuv68Yj0UDz5FrO/view) of a dedicated DevOps for parachains office hour.
 
 ### Runtime & Client Checklist
 
 #### 1. Unique Protocol ID
 
-There have been instances of networks having the same [ProtocolID](https://github.com/paritytech/substrate/blob/49a4103f4bfef55be20a5c6d26e18ff3003c3353/client/network/src/config.rs#L235) and different specs. **Ensure you customize your protocolID to make it universally unique**. Use a unique name & nonce/salt to ensure that this is not going to connect with another network.
+There have been instances of networks having the same [Protocol ID](https://github.com/paritytech/substrate/blob/49a4103f4bfef55be20a5c6d26e18ff3003c3353/client/network/src/config.rs#L235) and different specs. **Ensure you customize your protocolID to make it universally unique**. Use a unique name & nonce/salt to ensure that this is not going to connect with another network.
 
 #### 2. Proper Weights & Benchmarking
 
-- Make sure your runtime weights are correct. ([benchmarking guide](../runtime/benchmarking))
-- Check that the benchmarks for your (custom) pallets follow benchmarking best practices.
-- Execute all the benchmarks for your specific runtime. (Don’t use default Substrate weights in production unless you know what you are doing.)
-- We recommend having a block weight limit (block production time) of 0,5 seconds in the beginning due to uncertainties in block execution time. As the execution time of the network stabilizes the weights limit can be increased to 2 seconds.
+- Benchmark your runtime and use the generated weight functions (see our [benchmarking guide](../runtime/benchmarking)). Follow the benchmarking best practices. Don’t use default Substrate weights in production unless you know what you are doing.
+
+- We recommend having a block weight limit (block production time) of 0.5 seconds in the beginning due to uncertainties in block execution time. As the execution time of the network stabilizes the weights limit can be increased to 2 seconds.
 
 #### 3. Recommended Deployment of a Runtime
 
 > **NOTE**: Make sure to deploy the _compressed_ (not compact) version of your runtime to avoid PoV-size complications.
 
 - We advise you to launch your parachain being as slim as possible and do runtime upgrades to include functionality. The reason behind this is that when performing a runtime upgrade both the previous runtime and the new runtime are included in the PoV and therefore if the changes are too big it might not go through. **Always use the compressed version of the runtime to lower the amount of data being transferred.**
-  Still, in order to avoid storage upgrades, you could do the following: 1. Generate the genesis state of your chain with full runtime functionality (including all the pallets) 2. Remove all pallets that you will not need upon parachain launch from your runtime 3. Re-build the WASM blob (validation logic) and the runtime of the chain 4. Register your parachain with the updated genesis and the WASM blob generated in (3) 5. After your parachain is live you can upgrade your runtime on-chain to include the missing pallets (ensure that pallet indices and names match those used to generate the genesis state in step (1) without having to do storage migrations. For more information on on-chain runtime upgrades refer to the next section.
 
-- You could also launch your parachain with a feature-complete runtime but limit the functionality with filters. This however might cause issues if your runtime is too large. Here is [an example](https://github.com/paritytech/cumulus/pull/476) of how this was done on Statemine.
+  Still, in order to avoid storage upgrades, you could do the following:
+
+  1. Generate the genesis state of your chain with full runtime functionality (including all the pallets).
+
+  2. Remove all pallets that you will not need upon parachain launch from your runtime.
+
+  3. Re-build the WASM blob (validation logic) and the runtime of the chain.
+
+  4. Register your parachain with the updated genesis and the WASM blob generated in (3).
+
+  5. After your parachain is live you can upgrade your runtime on-chain to include the missing pallets (ensure that pallet indices and names match those used to generate the genesis state in step (1) without having to do storage migrations. For more information on on-chain runtime upgrades refer to the next section.
+
+- You could also launch your parachain with a feature-complete runtime but limit the functionality with filters. This however might cause issues if your runtime is too large. Here is [an example](https://github.com/paritytech/cumulus/pull/476) of how this was done for Statemine.
 
 ### Parachain Runtime Upgrades
 
-[Runtime upgrades](../runtime/upgrades) on a parachain are a bit different than on a solo-chain. But the same _general_ things are required:
+[Runtime upgrades](../runtime/upgrades) on a parachain are a bit different than on a solo-chain. But the following are still required:
 
-- A new compressed Wasm generated for the runtime and set on-chain
-  - Don't forget to [increment your `spec_version`](../runtime/upgrades#runtime-versioning)!
-- Migrations of state from the old runtime to the new runtime implemented and executed in this Wasm
-  - Find more information in [Substrate Runtime Migration Guide](https://hackmd.io/BQt-gvEdT66Kbw0j5ySlWw) and [this demo](https://github.com/apopiak/substrate-migrations).
+- A newly compressed Wasm generated for the runtime and set on-chain (and don't forget to [increment your `spec_version`](../runtime/upgrades#runtime-versioning)).
+- State migrations from the old runtime to the new runtime implemented and executed in this Wasm (for more information refer to [Substrate Runtime Migration Guide](https://hackmd.io/BQt-gvEdT66Kbw0j5ySlWw) and [readme here](https://github.com/apopiak/substrate-migrations)).
 
 #### Standard Protocol
 
-> For a demo of solo-chain upgrades, see the [tutorial](../../tutorials/forkless-upgrade/)
+> For a demo of solo-chain upgrades, see [this tutorial](../../tutorials/forkless-upgrade/).
 
-The Relay chain needs to be informed before the runtime upgrade of your chain. Cumulus provides functionality to notify the Relay Chain about the upcoming upgrade.
+The Relay chain needs to be informed before the runtime upgrade of a parachain. Cumulus provides functionality to notify the Relay Chain about the upcoming upgrade.
 
 - You will need to first provide the hash of your upgrade to [authorize your upgrade](https://github.com/paritytech/cumulus/blob/d935b81e7010fcf5c5639e238c78d865c1d6ed67/pallets/parachain-system/src/lib.rs#L359);
-- Then you provide the actual code for the upgrade and therewith [enact your upgrade](https://github.com/paritytech/cumulus/blob/d935b81e7010fcf5c5639e238c78d865c1d6ed67/pallets/parachain-system/src/lib.rs#L369). If both steps are correct the Relay Chain [will be notified](https://github.com/paritytech/cumulus/blob/master/pallets/parachain-system/src/lib.rs#L829) that the new upgrade has been scheduled.
+
+- Then you provide the actual code for the upgrade and therewith to [enact your upgrade](https://github.com/paritytech/cumulus/blob/d935b81e7010fcf5c5639e238c78d865c1d6ed67/pallets/parachain-system/src/lib.rs#L369). If both steps are correct the Relay Chain [will be notified](https://github.com/paritytech/cumulus/blob/master/pallets/parachain-system/src/lib.rs#L829) that the new upgrade has been scheduled.
 
 The update will not be enacted directly; instead it takes X relay blocks (a value that is configured by the relay chain) before the relay chain allows the update to be applied. The first parachain block that will be included after X relay chain blocks needs to apply the upgrade.
 
@@ -79,16 +90,20 @@ If the update is applied before the waiting period is finished, the relay chain 
 
 After updating the parachain runtime, a parachain [needs to wait](https://github.com/paritytech/cumulus/blob/master/pallets/parachain-system/src/lib.rs#L862) a certain amount of time (configured by the relay chain) before another update can be applied.
 
-The WASM blob update not only contains the parachain runtime, but also the validate_block function provided by Cumulus. So, updating a parachain runtime on the relay chain involves a complete update of the validation WASM blob.
+The WASM blob update not only contains the parachain runtime, but also the `validate_block` function provided by Cumulus. So, updating a parachain runtime on the relay chain involves a complete update of the validation WASM blob.
 
 #### Multi-block Upgrades
 
-If your existing substrate chain has a very large state, which you are migrating between storage formats it might not be possible to run all of the runtime migrations within one block. There are a handful of strategies you can use to remedy this problem.
+If your existing substrate chain has a very large state, which you are migrating between storage formats it might not be possible to run all of the runtime migrations within one block. There are a handful of strategies you can use to remedy this problem:
 
-- If the amount of storage items to be migrated can feasibly be processed within two or three blocks you can plausibly run the migrations via the [scheduler pallet](https://github.com/paritytech/substrate/tree/master/frame/scheduler) to ensure they get executed regardless of block producer.
-- Instead of migrating all of the items automatically, use versioned storage and only execute migrations when storage values that are upgraded are accessed. This can cause variance in transaction fees between users and could potentially result in more complex runtime code but if properly metered (weights are properly benchmarked) will ensure minimal downtime for migration.
-  - If you must split your migrations among multiple blocks you can do it either on-chain or off-chain:
+1. If the amount of storage items to be migrated can feasibly be processed within two or three blocks you can plausibly run the migrations via the [scheduler pallet](https://github.com/paritytech/substrate/tree/master/frame/scheduler) to ensure they get executed regardless of block producer.
+
+2. Instead of migrating all of the items automatically, use versioned storage and only execute migrations when storage values that are upgraded are accessed. This can cause variance in transaction fees between users and could potentially result in more complex runtime code but if properly metered (weights are properly benchmarked) will ensure minimal downtime for migration.
+
+3. If you must split your migrations among multiple blocks you can do it either on-chain or off-chain:
+
     - An on-chain multi-block migration will require custom pallet logic to be written which can either queue changes over time or use the scheduler pallet to migrate chunks of storage at a time.
+
     - Instead of adding migration code to your runtime you can generate the migration manually off-chain and use multiple system.setStorage calls to add and remove storage items as necessary via an origin with root permission (for example democracy). If you are limited in the number of transactions you can make, you can batch multiple transactions to occur over time via the scheduler.
 
 **Find more information in [Substrate Runtime Migration Guide](https://hackmd.io/BQt-gvEdT66Kbw0j5ySlWw) and [this demo](https://github.com/apopiak/substrate-migrations).**
