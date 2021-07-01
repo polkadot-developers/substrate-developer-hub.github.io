@@ -5,7 +5,7 @@ title: EVM Pallet
 FRAME provides an EVM execution pallet that allows unmodified EVM code to be executed in a
 Substrate-based blockchain. As a key part to Substrate's Ethereum compatibility layer, also known as [Frontier](https://github.com/paritytech/frontier), it works
 together with the [Ethereum pallet](https://docs.rs/pallet-ethereum/2.0.0/pallet_ethereum/) and the 
-[Dynmaic Fee pallet](https://docs.rs/pallet-dynamic-fee/2.0.0/pallet_dynamic_fee/) to enable the creation of runtimes 
+[Dynamic Fee pallet](https://docs.rs/pallet-dynamic-fee/2.0.0/pallet_dynamic_fee/) to enable the creation of runtimes 
 capable of fully emulating Ethereum block production and transaction processing. 
 
 <a class="btn btn-secondary primary-color text-white"
