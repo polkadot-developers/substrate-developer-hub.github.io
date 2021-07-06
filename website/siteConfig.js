@@ -54,6 +54,7 @@ const siteConfig = {
     { page: 'tutorials', label: 'Tutorials' },
     { doc: 'index', label: 'Knowledge Base' },
     { href: 'https://substrate.dev/recipes/', label: 'Recipes' },
+    { href: 'https://substrate.dev/substrate-how-to-guides/', label: 'How-to Guides' },
     { href: 'https://substrate.dev/rustdocs/', label: 'API Reference' },
     { search: true }
   ],
