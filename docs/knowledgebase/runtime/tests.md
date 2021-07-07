@@ -30,8 +30,8 @@ If `Test` implements `balances::Config`, the assignment might use `u64` for the 
 
 ```rust
 impl balances::Config for TestRuntime {
-	type Balance = u64;
-	//..
+  type Balance = u64;
+  //..
 }
 ```
 
@@ -41,49 +41,49 @@ requires tracking a `(AccountId: u64, Balance: u64)` mapping.
 
 ### Mock Runtime Storage
 
-The [`sp-io`](https://substrate.dev/rustdocs/v3.0.0/sp_io/index.html) crate exposes a
-[`TestExternalities`](https://substrate.dev/rustdocs/v3.0.0/sp_io/type.TestExternalities.html)
+The [`sp-io`](https://substrate.dev/rustdocs/latest/sp_io/index.html) crate exposes a
+[`TestExternalities`](https://substrate.dev/rustdocs/latest/sp_io/type.TestExternalities.html)
 implementation frequently used for mocking storage in tests. It is the type alias for an in-memory,
 hashmap-based externalities implementation in
-[`substrate_state_machine`](https://substrate.dev/rustdocs/v3.0.0/sp_state_machine/index.html)]
+[`substrate_state_machine`](https://substrate.dev/rustdocs/latest/sp_state_machine/index.html)]
 referred to as
-[`TestExternalities`](https://substrate.dev/rustdocs/v3.0.0/sp_state_machine/struct.TestExternalities.html).
+[`TestExternalities`](https://substrate.dev/rustdocs/latest/sp_state_machine/struct.TestExternalities.html).
 
 This examples demonstrates defining a struct called `ExtBuilder` to build an instance of
-[`TestExternalities`](https://substrate.dev/rustdocs/v3.0.0/sp_io/type.TestExternalities.html).
+[`TestExternalities`](https://substrate.dev/rustdocs/latest/sp_io/type.TestExternalities.html).
 
 ```rust
 pub struct ExtBuilder;
 
 impl ExtBuilder {
-	pub fn build() -> sp_io::TestExternalities {
-		let mut storage = system::GenesisConfig::default().build_storage::<TestRuntime>().unwrap();
-		sp_io::TestExternalities::from(storage)
-	}
+  pub fn build() -> sp_io::TestExternalities {
+    let mut storage = system::GenesisConfig::default().build_storage::<TestRuntime>().unwrap();
+    sp_io::TestExternalities::from(storage)
+  }
 }
 ```
 
 To create the test environment in unit tests, the build method is called to generate a
 `TestExternalities` using the default genesis configuration. Then,
-[`with_externalities`](https://substrate.dev/rustdocs/v3.0.0/sp_externalities/fn.with_externalities.html)
+[`with_externalities`](https://substrate.dev/rustdocs/latest/sp_externalities/fn.with_externalities.html)
 provides the runtime environment in which we may call the pallet's methods to test that storage,
 events, and errors behave as expected.
 
 ```rust
 #[test]
 fn fake_test_example() {
-	ExtBuilder::build().execute_with(|| {
-		// ...test conditions...
-	})
+  ExtBuilder::build().execute_with(|| {
+    // ...test conditions...
+  })
 }
 ```
 
 Custom implementations of
-[Externalities](https://substrate.dev/rustdocs/v3.0.0/sp_externalities/index.html) allow developers
+[Externalities](https://substrate.dev/rustdocs/latest/sp_externalities/index.html) allow developers
 to construct runtime environments that provide access to features of the outer node. Another example
 of this can be found in
-[`offchain`](https://substrate.dev/rustdocs/v3.0.0/sp_core/offchain/index.html), which maintains its
-own [Externalities](https://substrate.dev/rustdocs/v3.0.0/sp_core/offchain/trait.Externalities.html)
+[`offchain`](https://substrate.dev/rustdocs/latest/sp_core/offchain/index.html), which maintains its
+own [Externalities](https://substrate.dev/rustdocs/latest/sp_core/offchain/trait.Externalities.html)
 implementation.
 
 #### Genesis Config
@@ -100,19 +100,19 @@ account balances.
 
 ```rust
 pub fn build(self) -> sp_io::TestExternalities {
-	GenesisConfig {
-		balances: Some(balances::GenesisConfig::<TestRuntime>{
-			balances: vec![
-				(1, 10),
-				(2, 20),
-				(3, 30),
-				(4, 40),
-				(5, 50),
-				(6, 60)
-			],
-			vesting: vec![],
-		}),
-	}.build_storage().unwrap().into()
+  GenesisConfig {
+    balances: Some(balances::GenesisConfig::<TestRuntime>{
+      balances: vec![
+        (1, 10),
+        (2, 20),
+        (3, 30),
+        (4, 40),
+        (5, 50),
+        (6, 60)
+      ],
+      vesting: vec![],
+    }),
+  }.build_storage().unwrap().into()
 }
 ```
 
@@ -131,13 +131,13 @@ future maintenance.
 
 ```rust
 fn run_to_block(n: u64) {
-	while System::block_number() < n {
-		ExampleModule::on_finalize(System::block_number());
-		System::on_finalize(System::block_number());
-		System::set_block_number(System::block_number() + 1);
-		System::on_initialize(System::block_number());
-		ExampleModule::on_initialize(System::block_number());
-	}
+  while System::block_number() < n {
+    ExampleModule::on_finalize(System::block_number());
+    System::on_finalize(System::block_number());
+    System::set_block_number(System::block_number() + 1);
+    System::on_initialize(System::block_number());
+    ExampleModule::on_initialize(System::block_number());
+  }
 }
 ```
 
@@ -150,10 +150,10 @@ To use this function in unit tests,
 ```rust
 #[test]
 fn my_runtime_test() {
-	with_externalities(&mut new_test_ext(), || {
-		assert_ok!(ExampleModule::start_auction());
-		run_to_block(10);
-		assert_ok!(ExampleModule::end_auction());
-	});
+  with_externalities(&mut new_test_ext(), || {
+    assert_ok!(ExampleModule::start_auction());
+    run_to_block(10);
+    assert_ok!(ExampleModule::end_auction());
+  });
 }
 ```

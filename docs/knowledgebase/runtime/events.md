@@ -15,18 +15,18 @@ Runtime events are created with the `decl_event!` macro (FRAME v1) or the `#[pal
 ```rust
 // In FRAME v1.
 decl_event!(
-	pub enum Event<T: Config> {
-		/// Set a value.
-		ValueSet(u32, T::AccountId),
-	}
+  pub enum Event<T: Config> {
+    /// Set a value.
+    ValueSet(u32, T::AccountId),
+  }
 );
 
 // In FRAME v2.
 #[pallet::event]
 #[pallet::metadata(u32 = "Metadata")]
 pub enum Event<T: Config> {
-	/// Set a value.
-	ValueSet(u32, T::AccountId),
+  /// Set a value.
+  ValueSet(u32, T::AccountId),
 }
 ```
 
@@ -35,16 +35,16 @@ The `Event` enum needs to be declared in your runtime's configuration trait.
 ```rust
 // In FRAME v1.
 pub trait Config: system::Config {
-	/// The overarching event type.
-	type Event: From<Event<Self>> + Into<<Self as system::Config>::Event>;
+  /// The overarching event type.
+  type Event: From<Event<Self>> + Into<<Self as system::Config>::Event>;
 }
 
 // In FRAME v2.
 #[pallet::config]
-	pub trait Config: frame_system::Config {
-		/// The overarching event type.
-		type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
-	}
+  pub trait Config: frame_system::Config {
+    /// The overarching event type.
+    type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
+  }
 ```
 
 ## Exposing Events to Your Runtime
@@ -56,7 +56,7 @@ First, you need to implement the `Event` type in your module's configuration tra
 ```rust
 // runtime/src/lib.rs
 impl template::Config for Runtime {
-	type Event = Event;
+  type Event = Event;
 }
 ```
 
@@ -65,15 +65,15 @@ Then you need to add the `Event` type to your `construct_runtime!` macro:
 ```rust
 // runtime/src/lib.rs
 construct_runtime!(
-	pub enum Runtime where
-		Block = Block,
-		NodeBlock = opaque::Block,
-		UncheckedExtrinsic = UncheckedExtrinsic
-	{
-		// --snip--
-		TemplateModule: template::{Module, Call, Storage, Event<T>},
-		//--add-this------------------------------------->^^^^^^^^
-	}
+  pub enum Runtime where
+    Block = Block,
+    NodeBlock = opaque::Block,
+    UncheckedExtrinsic = UncheckedExtrinsic
+  {
+    // --snip--
+    TemplateModule: template::{Module, Call, Storage, Event<T>},
+    //--add-this------------------------------------->^^^^^^^^
+  }
 );
 ```
 
@@ -86,16 +86,16 @@ Substrate provides a default implementation of how to deposit an event using mac
 
 ```rust
 decl_module! {
-	pub struct Module<T: Config> for enum Call where origin: T::Origin {
-		// Default implementation of `deposit_event`
-		fn deposit_event() = default;
+  pub struct Module<T: Config> for enum Call where origin: T::Origin {
+    // Default implementation of `deposit_event`
+    fn deposit_event() = default;
 
-		fn set_value(origin, value: u64) {
-			let sender = ensure_signed(origin)?;
-			// --snip--
-			Self::deposit_event(RawEvent::ValueSet(value, sender));
-		}
-	}
+    fn set_value(origin, value: u64) {
+      let sender = ensure_signed(origin)?;
+      // --snip--
+      Self::deposit_event(RawEvent::ValueSet(value, sender));
+    }
+  }
 }
 ```
 In FRAME v2, depositing an event adopts a slightly different structure:
@@ -103,29 +103,29 @@ In FRAME v2, depositing an event adopts a slightly different structure:
 ```rust
 // 1. Use the `generate_deposit` attribute when declaring the Events enum.
 #[pallet::event]
-	#[pallet::generate_deposit(pub(super) fn deposit_event)] // <------ here ----
-	#[pallet::metadata(...)]
-	pub enum Event<T: Config> {
-		// --snip--
-	}
+  #[pallet::generate_deposit(pub(super) fn deposit_event)] // <------ here ----
+  #[pallet::metadata(...)]
+  pub enum Event<T: Config> {
+    // --snip--
+  }
 
 // 2. Use `deposit_event` inside the dispatchable function
 #[pallet::call]
-	impl<T: Config> Pallet<T> {
-		#[pallet::weight(1_000)]
-		pub(super) fn set_value(
-			origin: OriginFor<T>,
-			value: u64,
-		) -> DispatchResultWithPostInfo {
-			let sender = ensure_signed(origin)?;
-			// --snip--
-			Self::deposit_event(RawEvent::ValueSet(value, sender));
-		}
-	}
+  impl<T: Config> Pallet<T> {
+    #[pallet::weight(1_000)]
+    pub(super) fn set_value(
+      origin: OriginFor<T>,
+      value: u64,
+    ) -> DispatchResultWithPostInfo {
+      let sender = ensure_signed(origin)?;
+      // --snip--
+      Self::deposit_event(RawEvent::ValueSet(value, sender));
+    }
+  }
 ```
 
 The default behavior of this function is to call
-[`deposit_event`](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/struct.Pallet.html#method.deposit_event)
+[`deposit_event`](https://substrate.dev/rustdocs/latest/frame_system/pallet/struct.Pallet.html#method.deposit_event)
 from the FRAME system, which writes the event to storage.
 
 This function places the event in the System module's runtime storage for that block. At the
@@ -167,7 +167,7 @@ runtime events are used:
 
 ### References
 
-- [`decl_event!` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_event.html)
-- [`decl_module!` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_module.html)
-- [`construct_runtime!` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.construct_runtime.html)
+- [`decl_event!` macro](https://substrate.dev/rustdocs/latest/frame_support/macro.decl_event.html)
+- [`decl_module!` macro](https://substrate.dev/rustdocs/latest/frame_support/macro.decl_module.html)
+- [`construct_runtime!` macro](https://substrate.dev/rustdocs/latest/frame_support/macro.construct_runtime.html)
 - [`#[frame_support::pallet]` macro](https://crates.parity.io/frame_support/attr.pallet.html)
