@@ -62,7 +62,7 @@ There's two ways of defining an runtime upgrade hook in the runtime:
     fn on_runtime_upgrade() -> Weight { }
     ```
 
-To call into these hooks with `try-runtime`, a `feature` tag is used. This requires specifying a `features` 
+To call into these hooks with `try-runtime`, a cargo `feature` is used. This requires specifying a `features` 
 dependency in your projects' relevant `Cargo.toml` files. 
 
 > Refer to this how-to guide on integrating `try-runtime` to your project. (TODO)
