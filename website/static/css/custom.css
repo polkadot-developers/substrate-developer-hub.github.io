@@ -183,6 +183,15 @@ input#search_input_react {
     border-top: 1px solid #990036;
 }
 
+.navigationSlider .slidingNav ul li a {
+  font-size: 93%;
+  font-weight: 300;
+}
+
+.wrapper {
+  padding: 0 10px;
+}
+
 sup {
   font-size: 70%;
 }
