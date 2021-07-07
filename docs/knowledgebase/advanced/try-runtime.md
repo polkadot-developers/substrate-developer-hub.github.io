@@ -34,8 +34,7 @@ Storage externalities            |  Testing with externalities
 :-------------------------:|:-------------------------:
 ![image](./../assets/advanced/try-runtime-ext-1.png)  |  ![image](./../assets/advanced/try-runtime-ext-2.png)
 
-With `remote_externalities`, developers can capture some chain state and run tests on it. By contrast, `TestExternalities` only allows developers to 
-debug old state and `BasicExternalities` is designed only to be used in genesis. 
+With `remote_externalities`, developers can capture some chain state and run tests on it. Essentially, `RemoteExterrnalities` will populate a `TestExternalities` with a real chain's data. 
 
 In order to query state, `try-runtime` makes use of Substrate Core's [`StateApi`][stateapi-rustdocs]. In particular:
 - [`storage`][stateapi-storage-rustdocs]: A method which returns a storage entry at a specific block’s state.
