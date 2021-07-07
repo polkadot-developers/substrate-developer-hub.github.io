@@ -47,7 +47,7 @@ In order to query state, `try-runtime` makes use of Substrate's RPCs, namely [`S
 The most common use case for `try-runtime` is with storage migrations and runtime upgrades.
 
 ### Calling into hooks from `OnRuntimeUpgrade`
-There's two ways of calling into `OnRuntimeUpgrade` hooks:
+There's two ways of defining an runtime upgrade hook in the runtime:
 - **From inside a runtime**. For example:
     ```rust
     struct Custom;
