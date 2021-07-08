@@ -133,12 +133,11 @@ nickname associated with it. Here are some other things you may want to try:
 
 In this guide, we walked through specifically how to import the Nicks pallet, but as mentioned in
 the beginning of this guide, each pallet will be a little different. Have no fear, you can always
-refer to the
-[demonstration Substrate node runtime](https://github.com/paritytech/substrate/tree/monthly-2021-05/bin/node/runtime)
-which includes nearly every pallet in the library of core FRAME pallets.
+refer to the [Substrate runtime](https://github.com/paritytech/substrate/tree/master/bin/node/runtime)
+which includes nearly every pallets in the library of core FRAME pallets.
 
-In the `Cargo.toml` file of the Substrate node runtime, you will see an example of how to import
-each of the different pallets, and in the `lib.rs` file you will see how to add each pallet to your
+In the Substrate node runtime `bin/node/runtime/Cargo.toml` file, you will see how to import
+different pallets, and in the `bin/node/runtime/lib.rs` file you will see how to add each pallet to your
 runtime. You can generally copy what was done there as a starting point to include a pallet in your
 own runtime.
 

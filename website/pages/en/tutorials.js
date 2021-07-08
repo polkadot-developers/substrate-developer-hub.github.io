@@ -99,8 +99,8 @@ class Tutorials extends React.Component {
       },
       {
         img: "img/tutorials/crates.png",
-        title: <translate>Add a Pallet to Your Runtime</translate>,
-        text: <translate>Add the Nicks pallet to your Substrate node template.</translate>,
+        title: <translate>Add and Publish a Pallet of Your Runtime</translate>,
+        text: <translate>Learn to add the Nicks pallet to your runtime and publish a pallet.</translate>,
         difficulty: <translate>Easy</translate>,
         length: <translate>2 Hours</translate>,
         prerequisite: true,
@@ -132,20 +132,6 @@ class Tutorials extends React.Component {
         prerequisite: false,
         version: "3.0.0",
         href: "tutorials/start-a-private-network/",
-      },
-      {
-        img: "img/tutorials/crates.png",
-        title: <translate>Write a Pallet in its Own Crate</translate>,
-        text: (
-          <translate>
-            Make your pallets re-usable by packaging them in their own rust crate.
-          </translate>
-        ),
-        difficulty: <translate>Medium</translate>,
-        length: <translate>2 Hours</translate>,
-        prerequisite: true,
-        version: "3.0.0",
-        href: "tutorials/create-a-pallet/",
       },
       {
         title: <translate>Forkless Upgrade a Chain</translate>,
