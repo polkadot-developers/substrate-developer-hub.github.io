@@ -17,9 +17,7 @@ In its simplest form, `try-runtime` is a tool that enables:
 
 ## Motivation
 
-The initial motivation for `try-runtime` came from the need to extend the capabilities of [`TestExternalities`][testextern-rustdocs] and [`BasicExternalities`][basicextern-rustdocs] 
-in such a way that it would be possible to use externalities to populate its memory with real chain's data. Since externalities provide the capability of storing an in-memory
-hash-map, extending these capabilities is achieved by simply using the key-value pairs from a node's RPCs.
+The initial motivation for `try-runtime` came from the need to test runtime changes against state from a real chain. Prior [`TestExternalities`][testextern-rustdocs] and [`BasicExternalities`][basicextern-rustdocs] existed for writing unit and integrated tests with mock data, but lacked an avenue to test against a chain's actual state. `try-runtime` extends [`TestExternalities`][testextern-rustdocs] and [`BasicExternalities`][basicextern-rustdocs] by scraping state (which is stored with key value pairs) via a node's RPC endpoints and inserting them into `TestExternalites`.
 
 ## How it works
 The `try-runtime` tool has its own implementation of externalities called [`remote_externalities`][remoteextern-rustdocs], with its hash-map containing:
