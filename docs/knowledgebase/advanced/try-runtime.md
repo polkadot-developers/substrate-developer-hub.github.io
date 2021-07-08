@@ -10,7 +10,7 @@ what block to capture and which pallets to run tests on.
 In its simplest form, `try-runtime` is a tool that enables:
 
 1. Connecting to a remote node and calling into some runtime API.
-2. Taking some or all of the data for that node at a specified block.
+2. Scraping the specified state from a node at a given block.
 3. Writing tests for that data.
 
 > **Note:** This tool is designed to be used for testing _before_ going to production.
