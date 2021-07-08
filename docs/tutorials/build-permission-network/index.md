@@ -19,7 +19,7 @@ Before you start, we expect that:
 * You have completed the 
 [Build a PoE Decentralized Application Tutorial](https://substrate.dev/docs/en/tutorials/build-a-dapp/).
 * You are conceptually familiar with
-[P2P Networking](https://wiki.polkadot.network/docs/en/maintain-guides-how-to-setup-sentry-node#p2p-networking) in Substrate. 
+[P2P Networking](https://wiki.polkadot.network/docs/faq#what-is-libp2p) in Substrate.
     * We suggest to complete the [Private Network Tutorial](../start-a-private-network/index)
       to get experince with this first (not required). 
 
