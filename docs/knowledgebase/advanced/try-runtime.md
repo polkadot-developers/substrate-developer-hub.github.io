@@ -13,7 +13,7 @@ In its simplest form, `try-runtime` is a tool that enables:
 2. Scraping the specified state from a node at a given block.
 3. Writing tests for that data.
 
-> **Note:** This tool is designed to be used for testing _before_ going to production.
+> **Note:** This tool is designed to be used for testing against real chain state _before_ going to production.
 
 ## Motivation
 
