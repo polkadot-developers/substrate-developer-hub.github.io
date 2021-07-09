@@ -83,10 +83,17 @@
 <h3><a class="anchor" aria-hidden="true" id="javascript"></a><a href="#javascript" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Javascript</h3>
 <p>If you are using Javascript, <a href="https://polkadot.js.org/api/"><code>polkadot-js/api</code></a> already provides APIs to interact with a Substrate blockchain, including the <a href="https://polkadot.js.org/docs/substrate/rpc#getmetadataat-blockhash-metadata"><code>getMetadata</code></a> function.</p>
 <p>You can try the following code snippets to fetch the metadata in this <a href="https://polkadot.js.org/apps/#/js">Polkadot-JS App - Javascript page</a>:</p>
-<pre><code class="hljs css language-javascript"><span class="hljs-keyword">const</span> metadata = <span class="hljs-keyword">await</span> api.rpc.state.getMetadata();
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">// To run with node.js, first: $ yarn add $polkadot/api</span>
+<span class="hljs-comment">// then add commented lines:</span>
+<span class="hljs-comment">// const { ApiPromise } = require('@polkadot/api');</span>
+<span class="hljs-comment">// async function main () {</span>
+<span class="hljs-comment">// const api = await ApiPromise.create();</span>
+<span class="hljs-keyword">const</span> metadata = <span class="hljs-keyword">await</span> api.rpc.state.getMetadata();
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'version: '</span> + metadata.version);
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Magic number: "</span> + metadata.magicNumber);
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Metadata: "</span> + <span class="hljs-built_in">JSON</span>.stringify(metadata.asLatest.toHuman(), <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>));
+<span class="hljs-comment">// }</span>
+<span class="hljs-comment">// main().catch(console.error);</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="http-和-websocket-apis"></a><a href="#http-和-websocket-apis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>HTTP 和 WebSocket APIs</h3>
 <p>Substrate nodes expose <a href="https://substrate.dev/rustdocs/v3.0.0/sc_rpc/index.html">a JSON-RPC API</a> that you can access by way of <strong>HTTP</strong> or <strong>WebSocket</strong> requests. The message to &lt;a href=&quot;<a href="https://substrate.dev/rustdocs/v3.0.0/sc_rpc/state/struct.的消息格式如下所示">https://substrate.dev/rustdocs/v3.0.0/sc_rpc/state/struct.的消息格式如下所示</a>：</p>
