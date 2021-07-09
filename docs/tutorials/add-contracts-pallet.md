@@ -219,7 +219,7 @@ impl pallet_timestamp::Config for Runtime {
 
 /*** Add This Block ***/
 parameter_types! {
-	pub TombstoneDeposit: Balance = deposit(
+	pub TombstoneDeposit: Balance = deposit( 
 		1,
 		<pallet_contracts::Pallet<Runtime>>::contract_info_size()
 	);
