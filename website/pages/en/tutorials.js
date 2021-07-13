@@ -100,7 +100,7 @@ class Tutorials extends React.Component {
       {
         img: "img/tutorials/crates.png",
         title: <translate>Add Pallets to Your Runtime and Publish Custom Pallets</translate>,
-        text: <translate>Learn to add the Nicks pallet to your runtime and publish a pallet.</translate>,
+        text: <translate>Learn to add the Nicks pallet to your runtime and publish custom pallets that others can import into their runtimes</translate>,
         difficulty: <translate>Easy</translate>,
         length: <translate>2 Hours</translate>,
         prerequisite: true,
