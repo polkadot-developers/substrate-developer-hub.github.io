@@ -199,6 +199,17 @@ class Tutorials extends React.Component {
         href: "tutorials/ink-smart-contracts-tutorial/",
       },
       {
+        img: 'img/tutorials/relaychain-parachains.png',
+        title: <translate>Substrate Cumulus Workshop</translate>,
+        text: <translate>A workshop on launching, registering, and interacting with parachains.</translate>,
+        difficulty: <translate>Medium</translate>,
+        length: <translate>2 Hours</translate>,
+        prerequisite: true,
+        version: "3.0.0",
+        hrefFrom: 'baseUrl',
+        href: 'tutorials/substrate-cumulus-workshop/',
+      },
+      {
         img: "img/tutorials/substrate-evm.png",
         title: <translate>Substrate Frontier Workshop</translate>,
         text: (
@@ -227,27 +238,6 @@ class Tutorials extends React.Component {
         version: "3.0.0",
         href: "tutorials/visualize-node-metrics/",
       },
-      /* {
-        img: "img/tutorials/first-substrate-chain.png",
-        title: <translate>Runtime Benchmarking</translate>,
-        text: <translate>Benchmark Node Template step-by-step.</translate>,
-        difficulty: <translate>Medium</translate>,
-        length: <translate>1 Hour</translate>,
-        prerequisite: true,
-        version: "3.0.0",
-        href: "tutorials/runtime-benchmarking/",
-      }, */
-      /* { // TODO: add the cumulus workshop
-      img: 'img/tutorials/relaychain-parachains.png',
-      title: <translate>Substrate Cumulus Workshop</translate>,
-      text: <translate>A workshop on how to launch a relay chain and parachains and interact with them.</translate>,
-      difficulty: <translate>Medium</translate>,
-      length: <translate>2 Hours</translate>,
-      prerequisite: true,
-      version: "3.0.0",
-      hrefFrom: 'baseUrl',
-      href: 'tutorials/substrate-cumulus-workshop/',
-    }, */
     ];
 
     const { config: siteConfig, language = "" } = this.props;
