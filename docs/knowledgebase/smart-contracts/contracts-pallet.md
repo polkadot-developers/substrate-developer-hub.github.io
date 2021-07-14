@@ -2,7 +2,7 @@
 title: Contracts Pallet
 ---
 
-The [Contracts pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/index.html) provides
+The [Contracts pallet](https://substrate.dev/rustdocs/latest/pallet_contracts/index.html) provides
 the ability for the runtime to deploy and execute [WebAssembly (Wasm)](https://webassembly.org/)
 smart contracts. It uses [ink!](https://paritytech.github.io/ink-docs/), a [Rust](https://www.rust-lang.org/)-based embedded domain specific language
 ([eDSL](https://wiki.haskell.org/Embedded_domain_specific_language)) for writing
@@ -125,6 +125,6 @@ or upgradeable contracts on a Substrate based blockchain.
 ### References
 
 - Visit the reference docs for the
-  [Contracts pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/index.html).
+  [Contracts pallet](https://substrate.dev/rustdocs/latest/pallet_contracts/index.html).
 - Take a look at the [repository for `wasmi`](https://github.com/paritytech/wasmi).
 - Take a look at the [repository for ink!](https://github.com/paritytech/ink).

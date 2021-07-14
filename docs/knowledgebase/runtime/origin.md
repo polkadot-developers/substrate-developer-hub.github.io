@@ -10,9 +10,9 @@ Substrate defines three raw origins which can be used in your runtime module:
 
 ```rust
 pub enum RawOrigin<AccountId> {
-	Root,
-	Signed(AccountId),
-	None,
+  Root,
+  Signed(AccountId),
+  None,
 }
 ```
 
@@ -39,7 +39,7 @@ proposal.dispatch(system::RawOrigin::None.into())
 ```
 
 You can look at the source code of the
-[Sudo module](https://substrate.dev/rustdocs/v3.0.0/pallet_sudo/index.html) for a practical
+[Sudo module](https://substrate.dev/rustdocs/latest/pallet_sudo/index.html) for a practical
 implementation of this.
 
 ## Custom Origins
@@ -67,4 +67,4 @@ Customizing origins allows runtime developers to specify valid origins depending
 ### References
 
 - Visit the reference docs for the
-  [`RawOrigin` enum](https://substrate.dev/rustdocs/v3.0.0/frame_system/enum.RawOrigin.html).
+  [`RawOrigin` enum](https://substrate.dev/rustdocs/latest/frame_system/enum.RawOrigin.html).
