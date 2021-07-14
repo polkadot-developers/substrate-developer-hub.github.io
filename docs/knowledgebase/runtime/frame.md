@@ -6,7 +6,7 @@ The **Framework for Runtime Aggregation of Modularized Entities (FRAME)** is a s
 simplify runtime development. In Substrate, these modules are called Pallets, each hosting domain-specific logic to include 
 in a chain's runtime.
 
-FRAME also provides some helper modules to interact with important [Substrate Primitives](https://substrate.dev/rustdocs/v3.0.0/sc_service/index.html) that provide the
+FRAME also provides some helper modules to interact with important [Substrate Primitives](https://substrate.dev/rustdocs/latest/sc_service/index.html) that provide the
 interface to the core client.
 
 ## Overview
@@ -25,7 +25,7 @@ features and functionality for a runtime.
 
 ### System Library
 
-The [System library](https://substrate.dev/rustdocs/v3.0.0/frame_system/index.html) provides
+The [System library](https://substrate.dev/rustdocs/latest/frame_system/index.html) provides
 low-level types, storage, and functions for your blockchain. All other pallets depend on the System
 library as the basis of your Substrate runtime.
 
@@ -52,13 +52,13 @@ the origin of an extrinsic, and more.
 
 ### Executive Module
 
-The [FRAME Executive module](https://substrate.dev/rustdocs/v3.0.0/frame_executive/index.html) acts as the
+The [FRAME Executive module](https://substrate.dev/rustdocs/latest/frame_executive/index.html) acts as the
 orchestration layer for the runtime. It dispatches incoming extrinsic calls to the respective
 pallets in the runtime.
 
 ### Support Library
 
-The [FRAME Support library](https://substrate.dev/rustdocs/v3.0.0/frame_support/index.html) is a
+The [FRAME Support library](https://substrate.dev/rustdocs/latest/frame_support/index.html) is a
 collection of Rust macros, types, traits, and functions that simplify the development of Substrate
 pallets.
 
@@ -76,7 +76,7 @@ individual pallets.
 
 Macro for benchmarking a FRAME runtime.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/frame_benchmarking/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/frame_benchmarking/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/benchmarking/src/lib.rs)
 
 ## Prebuilt Pallets
@@ -89,7 +89,7 @@ Let's explore them.
 
 The Assets pallet is a simple, secure module for dealing with fungible assets.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_assets/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_assets/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/assets/src/lib.rs)
 
 ### Atomic Swap
@@ -98,14 +98,14 @@ A module for atomically sending funds from an origin to a target. A proof is use
 target to approve (claim) the swap. If the swap is not claimed within a specified duration of time,
 the sender may cancel it.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_atomic_swap/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_atomic_swap/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/atomic-swap/src/lib.rs)
 
 ### Aura
 
 The Aura pallet extends Aura consensus by managing offline reporting.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_aura/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_aura/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/aura/src/lib.rs)
 
 ### Authority Discovery
@@ -114,14 +114,14 @@ The Authority Discovery pallet is used by `core/authority-discovery` to retrieve
 authorities, learn its own authority ID, as well as to sign and verify messages to and from other
 authorities.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_authority_discovery/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_authority_discovery/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/authority-discovery/src/lib.rs)
 
 ### Authorship
 
 The Authorship pallet tracks the current author of the block and recent uncles.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_authorship/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_authorship/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/authorship/src/lib.rs)
 
 ### BABE
@@ -129,14 +129,14 @@ The Authorship pallet tracks the current author of the block and recent uncles.
 The BABE pallet extends BABE consensus by collecting on-chain randomness from VRF outputs and
 managing epoch transitions.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_babe/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_babe/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/babe/src/lib.rs)
 
 ### Balances
 
 The Balances pallet provides functionality for handling accounts and balances.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_balances/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/balances/src/lib.rs)
 
 ### Benchmark
@@ -144,7 +144,7 @@ The Balances pallet provides functionality for handling accounts and balances.
 A pallet that contains common runtime patterns in an isolated manner. This pallet is not meant to be
 used in a production blockchain, just for benchmarking and testing purposes.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/frame_benchmarking/trait.Benchmark.html)
+- [Docs](https://substrate.dev/rustdocs/latest/frame_benchmarking/trait.Benchmark.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/benchmarking/src/lib.rs)
 
 ### Collective
@@ -152,7 +152,7 @@ used in a production blockchain, just for benchmarking and testing purposes.
 The Collective pallet allows a set of account IDs to make their collective feelings known through
 dispatched calls from specialized origins.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_collective/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_collective/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/collective/src/lib.rs)
 
 ### Contracts
@@ -160,7 +160,7 @@ dispatched calls from specialized origins.
 The Contracts pallet provides functionality for the runtime to deploy and execute WebAssembly
 smart-contracts.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_contracts/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/contracts/src/lib.rs)
 
 ### Democracy
@@ -168,7 +168,7 @@ smart-contracts.
 The Democracy pallet provides a democratic system that handles administration of general stakeholder
 voting.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_democracy/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_democracy/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/democracy/src/lib.rs)
 
 ### Elections Phragmén
@@ -176,14 +176,14 @@ voting.
 The Phragmén Elections pallet is an election module based on
 [sequential Phragmén](https://wiki.polkadot.network/docs/en/learn-phragmen).
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_elections_phragmen/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_elections_phragmen/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/elections-phragmen/src/lib.rs)
 
 ### Elections
 
 The Elections pallet is an election module for stake-weighted membership selection of a collective.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_elections/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_elections/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/elections/src/lib.rs)
 
 ### Example Offchain Worker
@@ -191,7 +191,7 @@ The Elections pallet is an election module for stake-weighted membership selecti
 The Offchain Worker Example: A simple pallet demonstrating concepts, APIs and structures common to
 most offchain workers.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_example_offchain_worker/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_example_offchain_worker/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/example-offchain-worker/src/lib.rs)
 
 ### Example
@@ -199,7 +199,7 @@ most offchain workers.
 The Example pallet is a simple example of a pallet demonstrating concepts, APIs, and structures
 common to most pallets.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_example/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_example/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/example/src/lib.rs)
 
 ### GRANDPA
@@ -207,7 +207,7 @@ common to most pallets.
 The GRANDPA pallet extends GRANDPA consensus by managing the GRANDPA authority set ready for the
 native code.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_grandpa/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_grandpa/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/grandpa/src/lib.rs)
 
 ### Identity
@@ -217,7 +217,7 @@ Registrars can set a fee to provide identity-verification service. Anyone can pu
 identity for a fixed deposit and ask for review by any number of registrars (paying each of their
 fees). Registrar judgements are given as an enum, allowing for sophisticated, multi-tier opinions.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_identity/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_identity/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/identity/src/lib.rs)
 
 ### I'm Online
@@ -225,7 +225,7 @@ fees). Registrar judgements are given as an enum, allowing for sophisticated, mu
 The I'm Online pallet allows validators to gossip a heartbeat transaction with each new session to
 signal that the node is online.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_im_online/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_im_online/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/im-online/src/lib.rs)
 
 ### Indices
@@ -233,7 +233,7 @@ signal that the node is online.
 The Indices pallet allocates indices for newly created accounts. An index is a short form of an
 address.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_indices/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_indices/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/indices/src/lib.rs)
 
 ### Membership
@@ -241,14 +241,14 @@ address.
 The Membership pallet allows control of membership of a set of `AccountId`s, useful for managing
 membership of a collective.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_membership/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_membership/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/membership/src/lib.rs)
 
 ### Multisig
 
 A module for doing multi-signature dispatches.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_multisig/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_multisig/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/multisig/src/lib.rs)
 
 ### Nicks
@@ -256,14 +256,14 @@ A module for doing multi-signature dispatches.
 Nicks is a trivial module for keeping track of account names on-chain. It makes no effort to create
 a name hierarchy, be a DNS replacement or provide reverse lookups.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_nicks/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_nicks/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/nicks/src/lib.rs)
 
 ### Offences
 
 The Offences pallet tracks reported offences.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_offences/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_offences/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/offences/src/lib.rs)
 
 ### Proxy
@@ -271,7 +271,7 @@ The Offences pallet tracks reported offences.
 A module allowing accounts to give permission to other accounts to dispatch types of calls from
 their signed origin.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_proxy/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_proxy/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/proxy/src/lib.rs)
 
 ### Randomness Collective Flip
@@ -280,7 +280,7 @@ The Randomness Collective Flip pallet provides a `random` function that can be u
 generates low-influence random values based on the block hashes from the previous `81` blocks. This
 pallet is not intended for use in production.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_randomness_collective_flip/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_randomness_collective_flip/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/randomness-collective-flip/src/lib.rs)
 
 ### Recovery
@@ -291,7 +291,7 @@ make calls on-behalf-of another account which they have recovered. The recovery 
 by trusted "friends" whom the original account owner chooses. A threshold (M) out of N friends are
 needed to give another account access to the recoverable account.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_recovery/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_recovery/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/recovery/src/lib.rs)
 
 ### Scheduler
@@ -299,7 +299,7 @@ needed to give another account access to the recoverable account.
 This module exposes capabilities for scheduling dispatches to occur at a specified block number or
 at a specified period. These scheduled dispatches may be named or anonymous and may be canceled.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_scheduler/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_scheduler/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/scheduler/src/lib.rs)
 
 ### Scored Pool
@@ -307,7 +307,7 @@ at a specified period. These scheduled dispatches may be named or anonymous and 
 The Scored Pool pallet maintains a scored membership pool where the highest scoring entities are
 made members.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_scored_pool/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_scored_pool/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/scored-pool/src/lib.rs)
 
 ### Session
@@ -315,7 +315,7 @@ made members.
 The Session pallet allows validators to manage their session keys, provides a function for changing
 the session length, and handles session rotation.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_session/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_session/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/session/src/lib.rs)
 
 ### Society
@@ -323,14 +323,14 @@ the session length, and handles session rotation.
 The Society module is an economic game which incentivizes users to participate and maintain a
 membership society.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_society/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_society/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/society/src/lib.rs)
 
 ### Staking
 
 The Staking pallet is used to manage funds at stake by network maintainers.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_staking/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_staking/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/staking/src/lib.rs)
 
 ### Sudo
@@ -338,21 +338,21 @@ The Staking pallet is used to manage funds at stake by network maintainers.
 The Sudo pallet allows for a single account (called the "sudo key") to execute dispatchable
 functions that require a `Root` origin or designate a new account to replace them as the sudo key.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_sudo/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_sudo/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/sudo/src/lib.rs)
 
 ### Timestamp
 
 The Timestamp pallet provides functionality to get and set the on-chain time.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_timestamp/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_timestamp/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/timestamp/src/lib.rs)
 
 ### Transaction Payment
 
 The Transaction Payment pallet provides the basic logic to compute pre-dispatch transaction fees.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_transaction_payment/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/transaction-payment/src/lib.rs)
 
 ### Treasury
@@ -360,14 +360,14 @@ The Transaction Payment pallet provides the basic logic to compute pre-dispatch 
 The Treasury pallet provides a "pot" of funds that can be managed by stakeholders in the system and
 a structure for making spending proposals from this pot.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_treasury/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_treasury/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/treasury/src/lib.rs)
 
 ### Utility
 
 A stateless module with helpers for dispatch management.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_utility/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_utility/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/utility/src/lib.rs)
 
 ### Vesting
@@ -376,7 +376,7 @@ A simple module providing a means of placing a linear curve on an account's lock
 module ensures that there is a lock in place preventing the balance to drop below the unvested
 amount for any reason other than transaction fee payment.
 
-- [Docs](https://substrate.dev/rustdocs/v3.0.0/pallet_vesting/index.html)
+- [Docs](https://substrate.dev/rustdocs/latest/pallet_vesting/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/vesting/src/lib.rs)
 
 ## Next Steps
@@ -393,10 +393,10 @@ amount for any reason other than transaction fee payment.
 ### References
 
 - Visit the reference docs for the
-  [System library](https://substrate.dev/rustdocs/v3.0.0/frame_system/index.html).
+  [System library](https://substrate.dev/rustdocs/latest/frame_system/index.html).
 
 - Visit the reference docs for the
-  [Executive pallet](https://substrate.dev/rustdocs/v3.0.0/frame_executive/index.html).
+  [Executive pallet](https://substrate.dev/rustdocs/latest/frame_executive/index.html).
 
 - Visit the reference docs for the
-  [FRAME support library](https://substrate.dev/rustdocs/v3.0.0/frame_support/index.html).
+  [FRAME support library](https://substrate.dev/rustdocs/latest/frame_support/index.html).

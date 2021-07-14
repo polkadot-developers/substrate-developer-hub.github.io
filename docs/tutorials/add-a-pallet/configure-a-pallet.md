@@ -30,7 +30,7 @@ trait for the Nicks pallet.
 
 To figure out what you need to implement for the Nicks pallet specifically, you can take a look at
 the
-[`pallet_nicks::Config` documentation](https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/pallet_nicks/trait.Config.html)
+[`pallet_nicks::Config` documentation](https://substrate.dev/rustdocs/latest/pallet_nicks/trait.Config.html)
 or the definition of the trait itself in
 [the source code](https://github.com/paritytech/substrate/blob/monthly-2021-05/frame/nicks/src/lib.rs) of the
 Nicks pallet. We have annotated the source code for `nicks` pallet _from the substrate source_ below with
@@ -46,7 +46,7 @@ pub trait Config: frame_system::Config {
 
     // The currency type that will be used to place deposits on nicks.
     // It must implement ReservableCurrency.
-    // https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.ReservableCurrency.html
+    // https://substrate.dev/rustdocs/latest/frame_support/traits/trait.ReservableCurrency.html
     type Currency: ReservableCurrency<Self::AccountId>;
 
     // The amount required to reserve a nick.
@@ -118,9 +118,9 @@ their runtime to configure the types and parameters that are specified by the Ba
 use the `u128` type to track balances. If you were developing a chain where it was important to
 optimize storage, you could use any unsigned integer type that was at least 32-bits in size; this is
 because
-[the `Balance` type](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/pallet/trait.Config.html#associatedtype.Balance)
+[the `Balance` type](https://substrate.dev/rustdocs/latest/pallet_balances/pallet/trait.Config.html#associatedtype.Balance)
 for the Balances pallet `Config` configuration trait is bound by
-[the `AtLeast32BitUnsigned` trait](https://substrate.dev/rustdocs/v3.0.0/sp_arithmetic/traits/trait.AtLeast32BitUnsigned.html).
+[the `AtLeast32BitUnsigned` trait](https://substrate.dev/rustdocs/latest/sp_arithmetic/traits/trait.AtLeast32BitUnsigned.html).
 
 Now that you have an idea of the purpose behind the `Config` configuration trait and how you can
 implement a FRAME pallet's `Config` interface for your runtime, let's implement the `Config`
@@ -141,7 +141,7 @@ parameter_types! {
 impl pallet_nicks::Config for Runtime {
     // The Balances pallet implements the ReservableCurrency trait.
     // `Balances` is defined in `construct_runtimes!` macro. See below.
-    // https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/pallet_balances/index.html#implementations-2
+    // https://substrate.dev/rustdocs/latest/pallet_balances/index.html#implementations-2
     type Currency = Balances;
 
     // Use the NickReservationFee from the parameter_types block.
@@ -151,7 +151,7 @@ impl pallet_nicks::Config for Runtime {
     type Slashed = ();
 
     // Configure the FRAME System Root origin as the Nick pallet admin.
-    // https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/frame_system/enum.RawOrigin.html#variant.Root
+    // https://substrate.dev/rustdocs/latest/frame_system/enum.RawOrigin.html#variant.Root
     type ForceOrigin = frame_system::EnsureRoot<AccountId>;
 
     // Use the MinNickLength from the parameter_types block.
@@ -170,7 +170,7 @@ impl pallet_nicks::Config for Runtime {
 Next, we need to add the Nicks pallet to the `construct_runtime!` macro. For this, we need to
 determine the types that the pallet exposes so that we can tell the runtime that they exist. The
 complete list of possible types can be found in the
-[`construct_runtime!` macro documentation](https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/frame_support/macro.construct_runtime.html).
+[`construct_runtime!` macro documentation](https://substrate.dev/rustdocs/latest/frame_support/macro.construct_runtime.html).
 
 If we look at the [Nicks pallet](https://github.com/paritytech/substrate/blob/monthly-2021-05/frame/nicks/src/lib.rs) in detail, we know it has:
 

@@ -8,7 +8,7 @@ blockchain. However, in the attempts to remain minimal, it does not include most
 [FRAME](../../knowledgebase/runtime/frame).
 
 This guide will show you how you can add the
-[Contracts pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/) to your runtime in order to
+[Contracts pallet](https://substrate.dev/rustdocs/latest/pallet_contracts/) to your runtime in order to
 allow your blockchain to support Wasm smart contracts. You can follow similar patterns to add
 additional FRAME pallets to your runtime, however you should note that each pallet is a little
 different in terms of the specific configuration settings needed to use it correctly.
@@ -41,8 +41,8 @@ substrate-node-template
 |   +-- build.rs
 |   |
 |   +-- src
-|	   |
-|	   +-- lib.rs   <-- Most changes in this file
+|     |
+|     +-- lib.rs   <-- Most changes in this file
 |
 +-- pallets
 |
@@ -61,7 +61,7 @@ check out [their official documentation](https://doc.rust-lang.org/cargo/referen
 
 Open `substrate-node-template/runtime/Cargo.toml` and you will see a list of all the dependencies
 your runtime has. For example, it depends on the
-[Balances pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/):
+[Balances pallet](https://substrate.dev/rustdocs/latest/pallet_balances/):
 
 **`runtime/Cargo.toml`**
 
@@ -84,13 +84,13 @@ something like:
 [features]
 default = ['std']
 std = [
-	'codec/std',
-	'frame-executive/std',
-	'frame-support/std',
-	'frame-system/std',
-	'frame-system-rpc-runtime-api/std',
-	'pallet-balances/std',
-	#--snip--
+   'codec/std',
+   'frame-executive/std',
+   'frame-support/std',
+   'frame-system/std',
+   'frame-system-rpc-runtime-api/std',
+   'pallet-balances/std',
+   #--snip--
 ]
 ```
 
@@ -158,10 +158,10 @@ when the runtime is built with its own `std` feature. Add the following two line
 [features]
 default = ['std']
 std = [
-	#--snip--
-	'pallet-contracts/std',
-	'pallet-contracts-primitives/std',
-	#--snip--
+   #--snip--
+   'pallet-contracts/std',
+   'pallet-contracts-primitives/std',
+   #--snip--
 ]
 ```
 
@@ -176,7 +176,7 @@ Every pallet has a configuration trait called `Config` that the runtime must imp
 To figure out what we need to implement for this pallet specifically, you can take a look at the
 FRAME
 
-[`pallet_contracts::Config` documentation](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/trait.Config.html).
+[`pallet_contracts::Config` documentation](https://substrate.dev/rustdocs/latest/pallet_contracts/trait.Config.html).
 
 For our runtime, the implementation will look like this:
 
@@ -201,7 +201,7 @@ pub const CENTS: Balance = 1_000 * MILLICENTS;
 pub const DOLLARS: Balance = 100 * CENTS;
 
 const fn deposit(items: u32, bytes: u32) -> Balance {
-	items as Balance * 15 * CENTS + (bytes as Balance) * 6 * CENTS
+   items as Balance * 15 * CENTS + (bytes as Balance) * 6 * CENTS
 }
 
 /// We assume that ~10% of the block weight is consumed by `on_initalize` handlers.
@@ -214,56 +214,56 @@ const AVERAGE_ON_INITIALIZE_RATIO: Perbill = Perbill::from_percent(10);
 ```rust
 
 impl pallet_timestamp::Config for Runtime {
-	/* --snip-- */
+   /* --snip-- */
 }
 
 /*** Add This Block ***/
 parameter_types! {
-	pub TombstoneDeposit: Balance = deposit( 
-		1,
-		<pallet_contracts::Pallet<Runtime>>::contract_info_size()
-	);
-	pub DepositPerContract: Balance = TombstoneDeposit::get();
-	pub const DepositPerStorageByte: Balance = deposit(0, 1);
-	pub const DepositPerStorageItem: Balance = deposit(1, 0);
-	pub RentFraction: Perbill = Perbill::from_rational(1u32, 30 * DAYS);
-	pub const SurchargeReward: Balance = 150 * MILLICENTS;
-	pub const SignedClaimHandicap: u32 = 2;
-	pub const MaxDepth: u32 = 32;
-	pub const MaxValueSize: u32 = 16 * 1024;
-	// The lazy deletion runs inside on_initialize.
-	pub DeletionWeightLimit: Weight = AVERAGE_ON_INITIALIZE_RATIO *
-		BlockWeights::get().max_block;
-	// The weight needed for decoding the queue should be less or equal than a fifth
-	// of the overall weight dedicated to the lazy deletion.
-	pub DeletionQueueDepth: u32 = ((DeletionWeightLimit::get() / (
-			<Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(1) -
-			<Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(0)
-		)) / 5) as u32;
-	pub MaxCodeSize: u32 = 128 * 1024;
+   pub const TombstoneDeposit: Balance = deposit(
+      1,
+      <pallet_contracts::Pallet<Runtime>>::contract_info_size()
+   );
+   pub const DepositPerContract: Balance = TombstoneDeposit::get();
+   pub const DepositPerStorageByte: Balance = deposit(0, 1);
+   pub const DepositPerStorageItem: Balance = deposit(1, 0);
+   pub RentFraction: Perbill = Perbill::from_rational(1u32, 30 * DAYS);
+   pub const SurchargeReward: Balance = 150 * MILLICENTS;
+   pub const SignedClaimHandicap: u32 = 2;
+   pub const MaxDepth: u32 = 32;
+   pub const MaxValueSize: u32 = 16 * 1024;
+   // The lazy deletion runs inside on_initialize.
+   pub DeletionWeightLimit: Weight = AVERAGE_ON_INITIALIZE_RATIO *
+      BlockWeights::get().max_block;
+   // The weight needed for decoding the queue should be less or equal than a fifth
+   // of the overall weight dedicated to the lazy deletion.
+   pub DeletionQueueDepth: u32 = ((DeletionWeightLimit::get() / (
+         <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(1) -
+         <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(0)
+      )) / 5) as u32;
+   pub MaxCodeSize: u32 = 128 * 1024;
 }
 
 impl pallet_contracts::Config for Runtime {
-	type Time = Timestamp;
-	type Randomness = RandomnessCollectiveFlip;
-	type Currency = Balances;
-	type Event = Event;
-	type RentPayment = ();
-	type SignedClaimHandicap = SignedClaimHandicap;
-	type TombstoneDeposit = TombstoneDeposit;
-	type DepositPerContract = DepositPerContract;
-	type DepositPerStorageByte = DepositPerStorageByte;
-	type DepositPerStorageItem = DepositPerStorageItem;
-	type RentFraction = RentFraction;
-	type SurchargeReward = SurchargeReward;
-	type MaxDepth = MaxDepth;
-	type MaxValueSize = MaxValueSize;
-	type WeightPrice = pallet_transaction_payment::Module<Self>;
-	type WeightInfo = pallet_contracts::weights::SubstrateWeight<Self>;
-	type ChainExtension = ();
-	type DeletionQueueDepth = DeletionQueueDepth;
-	type DeletionWeightLimit = DeletionWeightLimit;
-	type MaxCodeSize = MaxCodeSize;
+   type Time = Timestamp;
+   type Randomness = RandomnessCollectiveFlip;
+   type Currency = Balances;
+   type Event = Event;
+   type RentPayment = ();
+   type SignedClaimHandicap = SignedClaimHandicap;
+   type TombstoneDeposit = TombstoneDeposit;
+   type DepositPerContract = DepositPerContract;
+   type DepositPerStorageByte = DepositPerStorageByte;
+   type DepositPerStorageItem = DepositPerStorageItem;
+   type RentFraction = RentFraction;
+   type SurchargeReward = SurchargeReward;
+   type MaxDepth = MaxDepth;
+   type MaxValueSize = MaxValueSize;
+   type WeightPrice = pallet_transaction_payment::Module<Self>;
+   type WeightInfo = pallet_contracts::weights::SubstrateWeight<Self>;
+   type ChainExtension = ();
+   type DeletionQueueDepth = DeletionQueueDepth;
+   type DeletionWeightLimit = DeletionWeightLimit;
+   type MaxCodeSize = MaxCodeSize;
 }
 /*** End Added Block ***/
 ```
@@ -277,7 +277,7 @@ if things don't make sense or you want to gain a deeper understanding.
 Next, we need to add the pallet to the `construct_runtime!` macro. For this, we need to determine
 the types that the pallet exposes so that we can tell our runtime that they exist. The complete
 list of possible types can be found in the
-[`construct_runtime!` macro documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.construct_runtime.html).
+[`construct_runtime!` macro documentation](https://substrate.dev/rustdocs/latest/frame_support/macro.construct_runtime.html).
 
 If we look at the Contracts pallet in detail, we know it has:
 
@@ -293,16 +293,16 @@ Thus, when we add the pallet, it will look like this:
 
 ```rust
 construct_runtime!(
-	pub enum Runtime where
-		Block = Block,
-		NodeBlock = opaque::Block,
-		UncheckedExtrinsic = UncheckedExtrinsic
-	{
-		/* --snip-- */
+   pub enum Runtime where
+      Block = Block,
+      NodeBlock = opaque::Block,
+      UncheckedExtrinsic = UncheckedExtrinsic
+   {
+      /* --snip-- */
 
-		/*** Add This Line ***/
-		Contracts: pallet_contracts::{Pallet, Call, Config<T>, Storage, Event<T>},
-	}
+      /*** Add This Line ***/
+      Contracts: pallet_contracts::{Pallet, Call, Config<T>, Storage, Event<T>},
+   }
 );
 ```
 
@@ -341,8 +341,8 @@ pallet-contracts-rpc-runtime-api = { default-features = false, version = '3.0.0'
 [features]
 default = ['std']
 std = [
-	#--snip--
-	'pallet-contracts-rpc-runtime-api/std',
+   #--snip--
+   'pallet-contracts-rpc-runtime-api/std',
 ]
 ```
 
@@ -359,43 +359,43 @@ impl_runtime_apis! {
    /* --snip-- */
 
    /*** Add This Block ***/
-	impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, BlockNumber, Hash>
-	for Runtime
-	{
-		fn call(
-			origin: AccountId,
-			dest: AccountId,
-			value: Balance,
-			gas_limit: u64,
-			input_data: Vec<u8>,
-		) -> pallet_contracts_primitives::ContractExecResult {
-			Contracts::bare_call(origin, dest, value, gas_limit, input_data)
-		}
+   impl pallet_contracts_rpc_runtime_api::ContractsApi<Block, AccountId, Balance, BlockNumber, Hash>
+   for Runtime
+   {
+      fn call(
+         origin: AccountId,
+         dest: AccountId,
+         value: Balance,
+         gas_limit: u64,
+         input_data: Vec<u8>,
+      ) -> pallet_contracts_primitives::ContractExecResult {
+         Contracts::bare_call(origin, dest, value, gas_limit, input_data)
+      }
 
-		fn instantiate(
-			origin: AccountId,
-			endowment: Balance,
-			gas_limit: u64,
-			code: pallet_contracts_primitives::Code<Hash>,
-			data: Vec<u8>,
-			salt: Vec<u8>,
-		) -> pallet_contracts_primitives::ContractInstantiateResult<AccountId, BlockNumber> {
-			Contracts::bare_instantiate(origin, endowment, gas_limit, code, data, salt, true)
-		}
+      fn instantiate(
+         origin: AccountId,
+         endowment: Balance,
+         gas_limit: u64,
+         code: pallet_contracts_primitives::Code<Hash>,
+         data: Vec<u8>,
+         salt: Vec<u8>,
+      ) -> pallet_contracts_primitives::ContractInstantiateResult<AccountId, BlockNumber> {
+         Contracts::bare_instantiate(origin, endowment, gas_limit, code, data, salt, true)
+      }
 
-		fn get_storage(
-			address: AccountId,
-			key: [u8; 32],
-		) -> pallet_contracts_primitives::GetStorageResult {
-			Contracts::get_storage(address, key)
-		}
+      fn get_storage(
+         address: AccountId,
+         key: [u8; 32],
+      ) -> pallet_contracts_primitives::GetStorageResult {
+         Contracts::get_storage(address, key)
+      }
 
-		fn rent_projection(
-			address: AccountId,
-		) -> pallet_contracts_primitives::RentProjectionResult<BlockNumber> {
-			Contracts::rent_projection(address)
-		}
-	}
+      fn rent_projection(
+         address: AccountId,
+      ) -> pallet_contracts_primitives::RentProjectionResult<BlockNumber> {
+         Contracts::rent_projection(address)
+      }
+   }
    /*** End Added Block ***/
 }
 ```
@@ -445,42 +445,42 @@ use pallet_contracts_rpc::{Contracts, ContractsApi};
 ```rust
 /// Instantiate all full RPC extensions.
 pub fn create_full<C, P>(
-	deps: FullDeps<C, P>,
+   deps: FullDeps<C, P>,
 ) -> jsonrpc_core::IoHandler<sc_rpc::Metadata> where
-	/* --snip-- */
-	C: Send + Sync + 'static,
-	C::Api: substrate_frame_rpc_system::AccountNonceApi<Block, AccountId, Index>,
-	/*** Add This Line ***/
-	C::Api: pallet_contracts_rpc::ContractsRuntimeApi<Block, AccountId, Balance, BlockNumber, Hash>,
-	/* --snip-- */
+   /* --snip-- */
+   C: Send + Sync + 'static,
+   C::Api: substrate_frame_rpc_system::AccountNonceApi<Block, AccountId, Index>,
+   /*** Add This Line ***/
+   C::Api: pallet_contracts_rpc::ContractsRuntimeApi<Block, AccountId, Balance, BlockNumber, Hash>,
+   /* --snip-- */
 {
-	/* --snip-- */
-	io.extend_with(
-		TransactionPaymentApi::to_delegate(TransactionPayment::new(client.clone()))
-	);
-	/*** Add This Block ***/
-	// Contracts RPC API extension
-	io.extend_with(
-		ContractsApi::to_delegate(Contracts::new(client.clone()))
-	);
-	/*** End Added Block ***/
-	io
+   /* --snip-- */
+   io.extend_with(
+      TransactionPaymentApi::to_delegate(TransactionPayment::new(client.clone()))
+   );
+   /*** Add This Block ***/
+   // Contracts RPC API extension
+   io.extend_with(
+      ContractsApi::to_delegate(Contracts::new(client.clone()))
+   );
+   /*** End Added Block ***/
+   io
 }
 ```
 
 > Note that rpc additions must appear in this section in the expected syntax: 
 > ```rust
 > // Extend this RPC with a custom API by using the following syntax.
-> 	// `YourRpcStruct` should have a reference to a client, which is needed
-> 	// to call into the runtime.
-> 	// `io.extend_with(YourRpcTrait::to_delegate(YourRpcStruct::new(ReferenceToClient, ...)));`
+>  // `YourRpcStruct` should have a reference to a client, which is needed
+>  // to call into the runtime.
+>  // `io.extend_with(YourRpcTrait::to_delegate(YourRpcStruct::new(ReferenceToClient, ...)));`
 > ```
 
 ### Genesis Configuration
 
 Not all pallets will have a genesis configuration, but if yours does, you can use its documentation
 to learn about it. For example,
-[`pallet_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/struct.GenesisConfig.html)
+[`pallet_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/latest/pallet_contracts/struct.GenesisConfig.html)
 describes all the fields you need to define for the Contracts pallet.
 
 Genesis configurations are controlled in `node/src/chain_spec.rs`. We need to modify this file to
@@ -501,23 +501,23 @@ Then inside the `testnet_genesis` function we need to add our Contract pallet's 
 ```rust
 /// Configure initial storage state for FRAME modules.
 fn testnet_genesis(
-	wasm_binary: &[u8],
-	initial_authorities: Vec<(AuraId, GrandpaId)>,
-	root_key: AccountId,
-	endowed_accounts: Vec<AccountId>,
-	enable_println: bool, // Update this line
+   wasm_binary: &[u8],
+   initial_authorities: Vec<(AuraId, GrandpaId)>,
+   root_key: AccountId,
+   endowed_accounts: Vec<AccountId>,
+   enable_println: bool, // Update this line
 ) -> GenesisConfig {
-	GenesisConfig {
-		/* --snip-- */
+   GenesisConfig {
+      /* --snip-- */
 
-		/*** Add This Block ***/
-		pallet_contracts: ContractsConfig {
-			// println should only be enabled on development chains
-			current_schedule: pallet_contracts::Schedule::default()
-				.enable_println(enable_println),
-		},
-		/*** End Added Block ***/
-	}
+      /*** Add This Block ***/
+      pallet_contracts: ContractsConfig {
+         // println should only be enabled on development chains
+         current_schedule: pallet_contracts::Schedule::default()
+            .enable_println(enable_println),
+      },
+      /*** End Added Block ***/
+   }
 }
 ```
 
@@ -565,4 +565,4 @@ runtime. You can basically copy what was done there to your own runtime.
 
 ### References
 
-- [FRAME `Contracts` Pallet API](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/index.html)
+- [FRAME `Contracts` Pallet API](https://substrate.dev/rustdocs/latest/pallet_contracts/index.html)

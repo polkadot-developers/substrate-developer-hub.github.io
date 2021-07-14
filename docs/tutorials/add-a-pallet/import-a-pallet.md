@@ -39,7 +39,7 @@ runtime's `Cargo.toml` file. If you want a proper primer into Cargo References, 
 
 Open `substrate-node-template/runtime/Cargo.toml` and you will see a list of all the dependencies
 your runtime has. For example, it depends on the
-[Balances pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/index.html):
+[Balances pallet](https://substrate.dev/rustdocs/latest/pallet_balances/index.html):
 
 **`runtime/Cargo.toml`**
 

@@ -36,7 +36,7 @@ including gas cost and balance changes.
 Observable differences include:
 
 - The available length of block hashes may not be 256 depending on the configuration of the 
-[System pallet](https://substrate.dev/rustdocs/v3.0.0/frame_system/index.html#system-pallet) in the Substrate runtime.
+[System pallet](https://substrate.dev/rustdocs/latest/frame_system/index.html#system-pallet) in the Substrate runtime.
 - Difficulty and coinbase, which do not make sense in this pallet and is currently hard coded to
   zero.
 
