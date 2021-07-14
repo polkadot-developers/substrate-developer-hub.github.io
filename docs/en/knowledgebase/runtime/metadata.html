@@ -84,7 +84,7 @@ block (with an archive node, for example) could result in acquiring out-of-date 
 compatible with a blockchain's current state. As described in the
 <a href="upgrades">Upgrades documentation</a>, developers building on top of Substrate chains can
 expect that the metadata for a chain should <em>only</em> change when the chain's
-<a href="https://substrate.dev/rustdocs/v3.0.0/sp_version/struct.RuntimeVersion.html#structfield.spec_version">runtime <code>spec_version</code></a>
+<a href="https://substrate.dev/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version">runtime <code>spec_version</code></a>
 changes.</p>
 <p>All examples in this document were taken from block 1,768,321 on Kusama. You can look at the
 <a href="https://gist.github.com/insipx/db5e49c0160b1f1bd421a3c34fefdf48">full metadata</a> before reading the
@@ -95,8 +95,8 @@ Substrate node, as well as language-agnostic HTTP and WebSocket APIs.</p>
 <h3><a class="anchor" aria-hidden="true" id="rust"></a><a href="#rust" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rust</h3>
 <p>The easiest way to get the metadata is by querying the automatically-generated JSON-RPC function
 <code>state_getMetadata</code>. This will return a vector of SCALE-encoded bytes. You can decode this using the
-<a href="https://substrate.dev/rustdocs/v3.0.0/frame_metadata/index.html"><code>frame-metadata</code></a> and
-<a href="https://substrate.dev/rustdocs/v3.0.0/parity_scale_codec/index.html"><code>parity-scale-codec</code></a> libraries.</p>
+<a href="https://substrate.dev/rustdocs/latest/frame_metadata/index.html"><code>frame-metadata</code></a> and
+<a href="https://substrate.dev/rustdocs/latest/parity_scale_codec/index.html"><code>parity-scale-codec</code></a> libraries.</p>
 <p>Some helpful libraries like <a href="https://github.com/paritytech/substrate-subxt"><code>substrate-subxt</code></a> fetch
 the metadata and decode them for you. Once decoded, the structure may be serialized into JSON with
 <a href="https://serde.rs/"><code>serde</code></a>. If you'd prefer to use the RPC more directly, the
@@ -121,9 +121,9 @@ to interact with a Substrate blockchain, including the
 <span class="hljs-comment">// main().catch(console.error);</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="http--websocket-apis"></a><a href="#http--websocket-apis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>HTTP &amp; WebSocket APIs</h3>
-<p>Substrate nodes expose <a href="https://substrate.dev/rustdocs/v3.0.0/sc_rpc/index.html">a JSON-RPC API</a> that you can
+<p>Substrate nodes expose <a href="https://substrate.dev/rustdocs/latest/sc_rpc/index.html">a JSON-RPC API</a> that you can
 access by way of <strong>HTTP</strong> or <strong>WebSocket</strong> requests. The message to
-<a href="https://substrate.dev/rustdocs/v3.0.0/sc_rpc/state/struct.StateClient.html#method.metadata">request metadata</a>
+<a href="https://substrate.dev/rustdocs/latest/sc_rpc/state/struct.StateClient.html#method.metadata">request metadata</a>
 from a node looks like this:</p>
 <pre><code class="hljs css language-json">{
   <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
@@ -163,16 +163,16 @@ string before taking a more detailed look at the metadata's decoded format.</p>
 magic number, <code>0x6d657461</code>, which represents &quot;meta&quot; in plain text. The next piece of data (<code>0x0b</code> in
 the example above) represents the metadata version; decoding the hexadecimal value <code>0x0b</code> yields the
 decimal value 11, which is
-<a href="https://substrate.dev/rustdocs/v3.0.0/frame_metadata/enum.RuntimeMetadata.html">the version of the Substrate metadata format</a>
+<a href="https://substrate.dev/rustdocs/latest/frame_metadata/enum.RuntimeMetadata.html">the version of the Substrate metadata format</a>
 that the result encodes. After the metadata version, the next piece of information encoded in the
 result field is the number of pallets that inform the blockchain's runtime; in the example above,
 the hexadecimal value <code>0x7c</code> represents the decimal number 31, which is SCALE-encoded by taking its
 binary representation (<code>11111</code> or <code>0x1F</code> in hex), shifting it two bits to the left (<code>1111100</code>) and
 encoding that as hex.</p>
 <p>The remaining blob encodes
-<a href="https://substrate.dev/rustdocs/v3.0.0/frame_metadata/struct.ModuleMetadata.html">the metadata of each pallet</a>,
+<a href="https://substrate.dev/rustdocs/latest/frame_metadata/struct.ModuleMetadata.html">the metadata of each pallet</a>,
 which will be reviewed below as well as some
-<a href="https://substrate.dev/rustdocs/v3.0.0/frame_metadata/struct.ExtrinsicMetadata.html">extrinsic metadata</a>, which
+<a href="https://substrate.dev/rustdocs/latest/frame_metadata/struct.ExtrinsicMetadata.html">extrinsic metadata</a>, which
 is mostly out of the scope of this document.</p>
 <h3><a class="anchor" aria-hidden="true" id="decoded-metadata-format"></a><a href="#decoded-metadata-format" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Decoded Metadata Format</h3>
 <p>Here is a condensed version of decoded metadata:</p>
@@ -278,7 +278,7 @@ about the module's storage:</p>
   <span class="hljs-attr">"index"</span>: <span class="hljs-number">0</span>
 }
 </code></pre>
-<p>Every storage item that is defined in a pallet will have a corresponding metadata entry. Metadata entries like these are generated from <a href="/docs/en/knowledgebase/runtime/macros">macros</a> using associated types from the <a href="https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/trait.Config.html"><code>frame-system</code></a> crate. For example:</p>
+<p>Every storage item that is defined in a pallet will have a corresponding metadata entry. Metadata entries like these are generated from <a href="/docs/en/knowledgebase/runtime/macros">macros</a> using associated types from the <a href="https://substrate.dev/rustdocs/latest/frame_system/pallet/trait.Config.html"><code>frame-system</code></a> crate. For example:</p>
 <pre><code class="hljs css language-rust"><span class="token comment">// In FRAME v1.</span>
 <span class="token macro property">decl_storage!</span> <span class="token punctuation">{</span>
     <span class="token keyword">trait</span> <span class="token class-name">Store</span> <span class="token keyword">for</span> <span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token keyword">as</span> <span class="token class-name">System</span> <span class="token punctuation">{</span>
@@ -295,8 +295,8 @@ about the module's storage:</p>
     <span class="token keyword">type</span> <span class="token class-name">Foo</span><span class="token punctuation">:</span> <span class="token class-name">Get</span><span class="token operator">&lt;</span><span class="token keyword">u32</span><span class="token operator">></span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p><a href="https://substrate.dev/rustdocs/v3.0.0/frame_metadata/struct.StorageMetadata.html">Storage metadata</a> provides blockchain clients with the information that is required to query
-<a href="https://substrate.dev/rustdocs/v3.0.0/sc_rpc/state/struct.StateClient.html#method.storage">the JSON-RPC's storage function</a>
+<p><a href="https://substrate.dev/rustdocs/latest/frame_metadata/struct.StorageMetadata.html">Storage metadata</a> provides blockchain clients with the information that is required to query
+<a href="https://substrate.dev/rustdocs/latest/sc_rpc/state/struct.StateClient.html#method.storage">the JSON-RPC's storage function</a>
 to get information for a specific storage item.</p>
 <h5><a class="anchor" aria-hidden="true" id="dispatchable-calls"></a><a href="#dispatchable-calls" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dispatchable Calls</h5>
 <p>Metadata for dispatchable calls includes information about the runtime calls and are defined by the
@@ -484,7 +484,7 @@ to get information for a specific storage item.</p>
 </code></pre>
 <p>These are errors that could occur during the submission or execution of an extrinsic. In this case,
 the FRAME System pallet is declaring that it may raise the
-the <a href="https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Error.html#variant.InvalidSpecName"><code>InvalidSpecName</code> error</a>.</p>
+the <a href="https://substrate.dev/rustdocs/latest/frame_system/pallet/enum.Error.html#variant.InvalidSpecName"><code>InvalidSpecName</code> error</a>.</p>
 <h2><a class="anchor" aria-hidden="true" id="next-steps"></a><a href="#next-steps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Next Steps</h2>
 <h3><a class="anchor" aria-hidden="true" id="learn-more"></a><a href="#learn-more" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Learn More</h3>
 <ul>
@@ -499,10 +499,10 @@ the <a href="https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Erro
 -->
 <h3><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h3>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_metadata/index.html">Metadata</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_metadata/index.html">Metadata</a></li>
 <li><a href="https://crates.parity.io/frame_support/attr.pallet.html">FRAME v2 macro documentation</a></li>
 </ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/9/2021 by Grzegorz Wierzowiecki (parity)</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/knowledgebase/runtime/macros"><span class="arrow-prev">← </span><span>Macros</span></a><a class="docs-next button" href="/docs/en/knowledgebase/runtime/storage"><span>Storage</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#how-to-get-the-metadata">How to Get the Metadata</a><ul class="toc-headings"><li><a href="#rust">Rust</a></li><li><a href="#javascript">Javascript</a></li><li><a href="#http--websocket-apis">HTTP &amp; WebSocket APIs</a></li></ul></li><li><a href="#metadata-formats">Metadata Formats</a><ul class="toc-headings"><li><a href="#encoded-metadata-format">Encoded Metadata Format</a></li><li><a href="#decoded-metadata-format">Decoded Metadata Format</a></li></ul></li><li><a href="#next-steps">Next Steps</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li><li><a href="#examples">Examples</a></li><li><a href="#references">References</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/14/2021 by Jimmy Chu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/knowledgebase/runtime/macros"><span class="arrow-prev">← </span><span>Macros</span></a><a class="docs-next button" href="/docs/en/knowledgebase/runtime/storage"><span>Storage</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#how-to-get-the-metadata">How to Get the Metadata</a><ul class="toc-headings"><li><a href="#rust">Rust</a></li><li><a href="#javascript">Javascript</a></li><li><a href="#http--websocket-apis">HTTP &amp; WebSocket APIs</a></li></ul></li><li><a href="#metadata-formats">Metadata Formats</a><ul class="toc-headings"><li><a href="#encoded-metadata-format">Encoded Metadata Format</a></li><li><a href="#decoded-metadata-format">Decoded Metadata Format</a></li></ul></li><li><a href="#next-steps">Next Steps</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li><li><a href="#examples">Examples</a></li><li><a href="#references">References</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();

@@ -84,7 +84,7 @@ href="https://substrate.dev/frontier-workshop/">Start the Frontier workshop!</a>
 <p>The EVM pallet should be able to produce nearly identical results compared to the Ethereum mainnet, including gas cost and balance changes.</p>
 <p>可观察到的差异包括：</p>
 <ul>
-<li>The available length of block hashes may not be 256 depending on the configuration of the <a href="https://substrate.dev/rustdocs/v3.0.0/frame_system/index.html#system-pallet">System pallet</a> in the Substrate runtime.</li>
+<li>The available length of block hashes may not be 256 depending on the configuration of the <a href="https://substrate.dev/rustdocs/latest/frame_system/index.html#system-pallet">System pallet</a> in the Substrate runtime.</li>
 <li>Difficulty and coinbase, which do not make sense in this pallet and is currently hard coded to zero.</li>
 </ul>
 <p>我们目前并不打算让state root等不可观测的行为变得相同。 我们也不打算遵循完全相同的交易/收据格式。 However, given one Ethereum transaction and one Substrate account's private key, one should be able to convert any Ethereum transaction into a transaction compatible with this pallet.</p>

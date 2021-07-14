@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>宏 · Substrate Developer Hub</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&gt; **Update:** As of January 2021, FRAME based pallets have upgraded their use of macros. Refer to [this guide](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#upgrade-guidelines) to learn about migrating a v1 pallet to v2."/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="宏 · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&gt; **Update:** As of January 2021, FRAME based pallets have upgraded their use of macros. Refer to [this guide](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#upgrade-guidelines) to learn about migrating a v1 pallet to v2."/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/past-seminars.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>宏 · Substrate Developer Hub</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&gt; **Update:** As of January 2021, FRAME based pallets have upgraded their use of macros. Refer to [this guide](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#upgrade-guidelines) to learn about migrating a v1 pallet to v2."/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="宏 · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="&gt; **Update:** As of January 2021, FRAME based pallets have upgraded their use of macros. Refer to [this guide](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#upgrade-guidelines) to learn about migrating a v1 pallet to v2."/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/past-seminars.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
             {"zIndex":100}
@@ -73,7 +73,7 @@
               }
             });
         </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">宏</h1></header><article><div><span><blockquote>
-<p><strong>Update:</strong> As of January 2021, FRAME based pallets have upgraded their use of macros. Refer to <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#upgrade-guidelines">this guide</a> to learn about migrating a v1 pallet to v2.</p>
+<p><strong>Update:</strong> As of January 2021, FRAME based pallets have upgraded their use of macros. Refer to <a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#upgrade-guidelines">this guide</a> to learn about migrating a v1 pallet to v2.</p>
 </blockquote>
 <p>Substrate uses <a href="https://doc.rust-lang.org/book/ch19-06-macros.html">Rust macros</a> to aggregate the logic derived from pallets that are implemented for a runtime. These runtime macros allow developers to focus on runtime logic rather than encoding and decoding on-chain variables or writing extensive blocks of code to achieve <a href="index#core-primitives">basic blockchain fundamentals</a>. This offloads a lot of the heavy lifting from blockchain development efforts and removes the need to duplicate code.</p>
 <p>The purpose of this article is to give a basic overview of Rust macros and explain the Substrate macros that runtime engineers most frequently use.</p>
@@ -87,7 +87,7 @@
 </ul>
 <p>Most Substrate runtime macros are defined using either <strong>declarative macros</strong> or <strong>function-like macros</strong>, with a recent adoption of <strong>attribute-like macros</strong> in FRAME v2 pallets.</p>
 <blockquote>
-<p><strong>Tips to learn more about Substrate runtime macros</strong>: - read the <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/index.html#macros">documentation</a> on commonly used macros in FRAME - use <a href="https://github.com/dtolnay/cargo-expand"><code>cargo expand</code></a> to review a macro's expanded code and understand what's happening under the hood - read more on <a href="https://danielkeep.github.io/tlborm/book/pim-README.html">macro rules of expression pattern matching</a></p>
+<p><strong>Tips to learn more about Substrate runtime macros</strong>: - read the <a href="https://substrate.dev/rustdocs/latest/frame_support/index.html#macros">documentation</a> on commonly used macros in FRAME - use <a href="https://github.com/dtolnay/cargo-expand"><code>cargo expand</code></a> to review a macro's expanded code and understand what's happening under the hood - read more on <a href="https://danielkeep.github.io/tlborm/book/pim-README.html">macro rules of expression pattern matching</a></p>
 </blockquote>
 <h2><a class="anchor" aria-hidden="true" id="substrate-runtime-macros"></a><a href="#substrate-runtime-macros" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Substrate Runtime Macros</h2>
 <p>The following section is a comprehensive explanation of the macros that runtime engineers most frequently encounter. Developers who want to know about the implementation details are encouraged to follow the links in &quot;Docs and Notes&quot; sub-sections to better understand how each macro expands.</p>
@@ -96,27 +96,27 @@
 <ul>
 <li>in <code>frame_support</code>:
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/index.html#macros">function-like</a> macros</li>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/index.html#derives">derive</a> macros</li>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/index.html#attributes">attribute</a> macros</li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/index.html#macros">function-like</a> macros</li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/index.html#derives">derive</a> macros</li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/index.html#attributes">attribute</a> macros</li>
 </ul></li>
 </ul>
 <p><strong>Macros in the Substrate <a href="./frame#system-library">System Library</a>:</strong></p>
 <ul>
 <li>in <code>sp_core</code>:
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/sp_core/index.html#macros">function-like macros</a> macros</li>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/sp_core/index.html#derives">derive <code>RuntimeDebug</code></a> macro</li>
+<li><a href="https://substrate.dev/rustdocs/latest/sp_core/index.html#macros">function-like macros</a> macros</li>
+<li><a href="https://substrate.dev/rustdocs/latest/sp_core/index.html#derives">derive <code>RuntimeDebug</code></a> macro</li>
 </ul></li>
 <li>in <code>sp_runtime</code>:
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/sp_runtime/index.html#macros">function-like</a> macros</li>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/sp_runtime/index.html#derives">derive</a> macros</li>
+<li><a href="https://substrate.dev/rustdocs/latest/sp_runtime/index.html#macros">function-like</a> macros</li>
+<li><a href="https://substrate.dev/rustdocs/latest/sp_runtime/index.html#derives">derive</a> macros</li>
 </ul></li>
-<li>in <code>serde</code>: <a href="https://substrate.dev/rustdocs/v3.0.0/sp_runtime/index.html#derives">function-like</a> macros</li>
-<li>in <code>sp_api</code>: <a href="https://substrate.dev/rustdocs/v3.0.0/sp_api/index.html#macros">function-like</a> macros</li>
-<li>in <code>sp_std</code>: <a href="https://substrate.dev/rustdocs/v3.0.0/sp_std/index.html#macros">function-like</a> macros</li>
-<li>in <code>sp_version</code>: <a href="https://substrate.dev/rustdocs/v3.0.0/sp_version/index.html#macros">function-like</a> macros</li>
+<li>in <code>serde</code>: <a href="https://substrate.dev/rustdocs/latest/sp_runtime/index.html#derives">function-like</a> macros</li>
+<li>in <code>sp_api</code>: <a href="https://substrate.dev/rustdocs/latest/sp_api/index.html#macros">function-like</a> macros</li>
+<li>in <code>sp_std</code>: <a href="https://substrate.dev/rustdocs/latest/sp_std/index.html#macros">function-like</a> macros</li>
+<li>in <code>sp_version</code>: <a href="https://substrate.dev/rustdocs/latest/sp_version/index.html#macros">function-like</a> macros</li>
 </ul>
 <blockquote>
 <p><strong>Note</strong>: refer to <code>#Substrate dependencies</code> in the <code>Cargo.toml</code> file of the <a href="https://github.com/substrate-developer-hub/substrate-node-template/blob/master/runtime/Cargo.toml#L21">node template runtime</a> to see where these are put to use.</p>
@@ -132,8 +132,8 @@
 </blockquote>
 <p><strong>Things to note:</strong></p>
 <ul>
-<li><p>v2 is backwards compatible with v1, meaning that any pallet declared using v1 can be declared using v2 without too much difficulty (see <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#upgrade-guidelines">upgrade guidelines</a> for more details). However, v1 will cease getting improvement features.</p></li>
-<li><p>Using instantiable pallets with v2 requires a different approach than for v1. See the guide <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#example-for-pallet-with-instance">here</a> for more information on how that works.</p></li>
+<li><p>v2 is backwards compatible with v1, meaning that any pallet declared using v1 can be declared using v2 without too much difficulty (see <a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#upgrade-guidelines">upgrade guidelines</a> for more details). However, v1 will cease getting improvement features.</p></li>
+<li><p>Using instantiable pallets with v2 requires a different approach than for v1. See the guide <a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#example-for-pallet-with-instance">here</a> for more information on how that works.</p></li>
 <li><p>In v2, items are defined inside a module, therefore <code>pub(super)</code> is used to make those items private but accessible to the <code>super</code> namespace (i.e. the crate root namespace).</p></li>
 <li><p><code>RawEvent</code> is no longer used in v2, all instances of events are declared as <code>Event</code>.</p></li>
 <li><p>Use <a href="https://github.com/ascjones/subsee">subsee</a> as a tool to query metadata.</p></li>
@@ -175,7 +175,7 @@
 <p>Replacing it with a new struct type defined by <code>#name</code> and have it implement the data type storage trait.</p>
 <p><strong>Docs and Notes</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_storage.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/macro.decl_storage.html">API 文档</a></li>
 <li><code>Store</code> trait is declared with each storage name, thus becoming an associated type inside the trait.</li>
 <li><code>Module</code> implementation contains the getter function and metadata of each storage item.</li>
 <li>Each of the storage items becomes a struct.</li>
@@ -187,7 +187,7 @@
 <p>This macro defines pallet events by implementing the <code>Event</code> enum type, with each event type in the macro being an enum variant inside <code>Event</code>.</p>
 <p><strong>Docs and Notes</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_event.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/macro.decl_event.html">API 文档</a></li>
 <li><code>Event</code> or <code>Event&lt;T&gt;</code> type is defined, assigned to <code>RawEvent</code>.</li>
 <li><code>RawEvent&lt;...all generic types used&gt;</code> enum type is defined with all events specified in the macro as its enum variants.</li>
 <li>The macro implements various helper traits for<code>RawEvent</code>, including data encoding/decoding, <code>core::cmp::PartialEq</code>, <code>core::cmp::Clone</code>, and <code>core::fmt::Debug</code>.</li>
@@ -201,7 +201,7 @@
 <p>One key feature is that the macro automatically implements the <code>From&lt;Error&lt;T&gt;&gt;</code> trait for <code>DispatchError</code>. Therefore, <code>DispatchError</code> returns the proper module index, error code, error string for a particular error type, and the documentation provided on top of each error as metadata.</p>
 <p><strong>Docs and Notes</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_error.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/macro.decl_error.html">API 文档</a></li>
 <li><code>Error&lt;T: Config&gt;</code> enum type is filled with enum variants specified in the macro.</li>
 <li><code>Error</code> implements various helper functions, and maps each error to a sequential error code and an error string.</li>
 <li><code>Error</code> type implementation contains a <code>fn metadata()</code> function.</li>
@@ -214,7 +214,7 @@
 <p>The macro declares a <code>Module</code> struct and <code>Call</code> enum type for the containing pallet. It combines the necessary logics using user-defined dispatchable calls into the two types. In addition to various helper traits implemented for <code>Module</code> and <code>Call</code>, e.g. <code>Copy</code>, <code>StructuralEq</code>, <code>Debug</code>, the macro also inserts lifecycle trait implementations for <code>Module</code>, e.g. <code>frame_support::traits::OnInitialize</code>, <code>frame_support::traits::OnFinalize</code>, <code>frame_support::traits::OnRuntimeUpgrade</code>, and <code>frame_support::traits::OffchainWorker</code>.</p>
 <p><strong>Docs and Notes</strong></p>
 <ul>
-<li><p><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_module.html">API 文档</a></p></li>
+<li><p><a href="https://substrate.dev/rustdocs/latest/frame_support/macro.decl_module.html">API 文档</a></p></li>
 <li><p>This macro declares a <code>Module&lt;T&gt;</code> struct and a <code>Call&lt;T&gt;</code> enum which implements the dispatch logic.</p></li>
 <li><p>Helper traits are automatically implemented for <code>Module</code> struct, such as <code>core::cmp::Eq</code>, <code>core::clone::Clone</code>, etc.</p></li>
 <li><p><code>Module</code> implements various lifecycle traits, such as</p>
@@ -245,10 +245,10 @@
 <p><strong>何时使用</strong></p>
 <p>Required to define the pallet's generics.</p>
 <p><strong>What it Does</strong></p>
-<p>Provides constants that are part of the <a href="https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/trait.Config.html"><code>Config</code> trait</a> and gives information about external tools to use for the runtime.</p>
+<p>Provides constants that are part of the <a href="https://substrate.dev/rustdocs/latest/frame_system/pallet/trait.Config.html"><code>Config</code> trait</a> and gives information about external tools to use for the runtime.</p>
 <p><strong>文档</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#config-trait-palletconfig-mandatory">Config trait</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#config-trait-palletconfig-mandatory">Config trait</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="palletconstant"></a><a href="#palletconstant" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>#[pallet::constant]</h3>
 <p><strong>何时使用</strong></p>
@@ -265,7 +265,7 @@
 </code></pre>
 <p><strong>文档</strong></p>
 <ul>
-<li>See use in the context of <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#config-trait-palletconfig-mandatory">#[pallet::config]</a></li>
+<li>See use in the context of <a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#config-trait-palletconfig-mandatory">#[pallet::config]</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="palletextra_constants"></a><a href="#palletextra_constants" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>#[pallet::extra_constants]</h3>
 <p><strong>何时使用</strong></p>
@@ -280,7 +280,7 @@
 </code></pre>
 <p><strong>文档</strong></p>
 <ul>
-<li>See <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional">documentation</a></li>
+<li>See <a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional">documentation</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="palletpallet"></a><a href="#palletpallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>#[pallet::pallet]</h3>
 <p><strong>何时使用</strong></p>
@@ -294,7 +294,7 @@
 </code></pre>
 <p><strong>文档</strong></p>
 <ul>
-<li>See the <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#macro-expansion-1">macro expansion</a> added to the <code>struct Pallet&lt;T&gt;</code> definition</li>
+<li>See the <a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#macro-expansion-1">macro expansion</a> added to the <code>struct Pallet&lt;T&gt;</code> definition</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="pallethooks"></a><a href="#pallethooks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>#[pallet::hooks]</h3>
 <p><strong>何时使用</strong></p>
@@ -310,7 +310,7 @@ imple<span class="token operator">&lt;</span><span class="token class-name">T</s
 <p><strong>文档</strong></p>
 <ul>
 <li>See the <a href="https://crates.parity.io/frame_support/attr.pallet.html#hooks-pallethooks-mandatory">documentation</a></li>
-<li>See the <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#macro-expansion-2">macro expansion</a></li>
+<li>See the <a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#macro-expansion-2">macro expansion</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="palletcall"></a><a href="#palletcall" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>#[pallet::call]</h3>
 <p><strong>何时使用</strong></p>
@@ -322,10 +322,10 @@ imple<span class="token operator">&lt;</span><span class="token class-name">T</s
 <li>return <code>DispatchResultWithPostInfo</code> or <code>DispatchResult</code></li>
 </ul>
 <p><strong>What it Does</strong></p>
-<p><a href="https://substrate.dev/docs/en/knowledgebase/learn-substrate/extrinsics">Extrinsics</a> can use calls to trigger specific logic. Calls can also be used in on-chain governance, demonstrated by the democracy pallet where calls can be voted on. <code>#[pallet::call]</code> allows to create dispatchable functions which will generate associated items from the <code>impl</code> code blocks. In other words, it aggregates all dispatchable logic using the [<code>Call</code> enum (<a href="https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Call.html">https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Call.html</a>) which will aggregate all dispatchable calls into a single runtime call.</p>
+<p><a href="https://substrate.dev/docs/en/knowledgebase/learn-substrate/extrinsics">Extrinsics</a> can use calls to trigger specific logic. Calls can also be used in on-chain governance, demonstrated by the democracy pallet where calls can be voted on. <code>#[pallet::call]</code> allows to create dispatchable functions which will generate associated items from the <code>impl</code> code blocks. In other words, it aggregates all dispatchable logic using the [<code>Call</code> enum (<a href="https://substrate.dev/rustdocs/latest/frame_system/pallet/enum.Call.html">https://substrate.dev/rustdocs/latest/frame_system/pallet/enum.Call.html</a>) which will aggregate all dispatchable calls into a single runtime call.</p>
 <p><strong>文档</strong></p>
 <ul>
-<li>See the <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#call-palletcall-mandatory">documentation</a></li>
+<li>See the <a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#call-palletcall-mandatory">documentation</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="palleterror"></a><a href="#palleterror" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>#[pallet::error]</h3>
 <p><strong>何时使用</strong></p>
@@ -350,7 +350,7 @@ imple<span class="token operator">&lt;</span><span class="token class-name">T</s
 </code></pre>
 <p><strong>文档</strong></p>
 <ul>
-<li>See <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#event-palletevent-optional">documentation</a></li>
+<li>See <a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#event-palletevent-optional">documentation</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="palletstorage"></a><a href="#palletstorage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>#[pallet::storage]</h3>
 <p><strong>何时使用</strong></p>
@@ -360,19 +360,19 @@ imple<span class="token operator">&lt;</span><span class="token class-name">T</s
 <p><strong>Note:</strong> this changes how storage is declared compared to v1. Here, <code>[pallet::storage]</code> is using a Rust-like HashMap to do storage, except it takes a Key, Value, Hasher, Prefix, QueryKind and an OnEmpty parameter. The prefix generic defines the place where the storage will store its <code>(key, value)</code> pairs (i.e. the trie) and defines the pallet and storage Prefix like such: <code>concat(twox_128(pallet_prefix), towx_128(storage_prefix))</code>, replacing <code>_</code> with the generated prefix implementations of the pallet and storage names.</p>
 <p><strong>文档</strong></p>
 <ul>
-<li>See <a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#storage-palletstorage-optional">macro documentation</a></li>
+<li>See <a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#storage-palletstorage-optional">macro documentation</a></li>
 <li><a href="https://crates.parity.io/frame_support/pallet_prelude/struct.StorageMap.html#implementations"><code>StorageMap</code> implementation</a></li>
 <li><a href="https://doc.rust-lang.org/book/ch08-03-hash-maps.html">Rust HashMap syntax</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="other-attributes"></a><a href="#other-attributes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Other Attributes</h3>
 <p>Other FRAME v2 macro attributes include:</p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional">#[pallet::genesis_config]</a></li>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#type-value-pallettype_value-optional">#[pallet::type_value]</a></li>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#genesis-build-palletgenesis_build-optional">#[pallet::genesis_build]</a></li>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#inherent-palletinherent-optional">#[pallet::inherent]</a></li>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#validate-unsigned-palletvalidate_unsigned-optional">#[pallet::validate_unsigned]</a></li>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#origin-palletorigin-optional">#[pallet::origin]</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional">#[pallet::genesis_config]</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#type-value-pallettype_value-optional">#[pallet::type_value]</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#genesis-build-palletgenesis_build-optional">#[pallet::genesis_build]</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#inherent-palletinherent-optional">#[pallet::inherent]</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#validate-unsigned-palletvalidate_unsigned-optional">#[pallet::validate_unsigned]</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#origin-palletorigin-optional">#[pallet::origin]</a></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="additional-frame-macros"></a><a href="#additional-frame-macros" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Additional FRAME Macros</h2>
 <h3><a class="anchor" aria-hidden="true" id="construct_runtime"></a><a href="#construct_runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>construct_runtime!</h3>
@@ -382,7 +382,7 @@ imple<span class="token operator">&lt;</span><span class="token class-name">T</s
 <p>The macro declares and implements various struct and enum, e.g.<code>Runtime</code>, <code>Event</code>, <code>Origin</code>, <code>Call</code>, <code>GenesisConfig</code> etc, and implements various helper traits for these struct types. The macro also adds logics of mapping different events and dispatchable calls from the overarching runtime back to a particular pallet.</p>
 <p><strong>Docs and Notes</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.construct_runtime.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/macro.construct_runtime.html">API 文档</a></li>
 <li><code>Runtime</code> struct type is defined to represent the Substrate runtime.</li>
 <li><code>Event</code> enum type is defined with variants of all pallets that emit events, with helper traits and encoding/decoding traits implemented for the enum. Various conversion traits <code>Event</code> also implements <code>TryInto&lt;pallets::Event&lt;Runtime&gt;&gt;</code> trait to extract the event out from the enum type.</li>
 <li><code>Origin</code> enum type is defined with helper traits, e.g. <code>PartialEq</code>, <code>Clone</code>, <code>Debug</code> implemented. This enum type defines who calls an extrinsic: <code>NONE</code>, <code>ROOT</code>, or signed by a particular account. These three primitive origins are defined by the FRAME System module, but optional FRAME pallets may also define origins.</li>
@@ -397,7 +397,7 @@ imple<span class="token operator">&lt;</span><span class="token class-name">T</s
 <p>The macro replaces each parameter specified into a struct type with a <code>get()</code> function returning its specified value. Each parameter struct type also implements a <code>frame_support::traits::Get&lt;I&gt;</code> trait to convert the type to its specified value.</p>
 <p><strong>文档</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.parameter_types.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/macro.parameter_types.html">API 文档</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="impl_outer_origin"></a><a href="#impl_outer_origin" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>impl_outer_origin!</h3>
 <p><strong>何时使用</strong></p>
@@ -407,7 +407,7 @@ imple<span class="token operator">&lt;</span><span class="token class-name">T</s
 <p>This macro creates an <code>Origin</code> struct type, and implements various helper traits for the type.</p>
 <p><strong>文档</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.impl_outer_origin.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/macro.impl_outer_origin.html">API 文档</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="impl_outer_event"></a><a href="#impl_outer_event" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>impl_outer_event!</h3>
 <p><strong>何时使用</strong></p>
@@ -416,7 +416,7 @@ imple<span class="token operator">&lt;</span><span class="token class-name">T</s
 <p>This macro creates an event enum type, implements various helper traits on <code>Event</code> type, including <code>core::clone::Clone</code>, <code>core::marker::StructuralPartialEq</code>, <code>core::fmt::Debug</code>, data encoding/decoding traits etc. Finally, the macro implements only the specifying pallet events for the runtime.</p>
 <p><strong>文档</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.impl_outer_event.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/macro.impl_outer_event.html">API 文档</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="impl_outer_dispatch"></a><a href="#impl_outer_dispatch" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>impl_outer_dispatch!</h3>
 <p><strong>何时使用</strong></p>
@@ -425,7 +425,7 @@ imple<span class="token operator">&lt;</span><span class="token class-name">T</s
 <p>This macro creates a <code>Call</code> enum type, implements various helper traits on <code>Event</code> type, including <code>Clone</code>, <code>PartialEq</code>, <code>RuntimeDebug</code> etc. Finally, the macro implements <code>GetDispatchInfo</code>, <code>GetCallMetadata</code>, <code>IsSubType</code> traits for the <code>Call</code> enum.</p>
 <p><strong>文档</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.impl_outer_dispatch.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/macro.impl_outer_dispatch.html">API 文档</a></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="substrate-system-library-macros"></a><a href="#substrate-system-library-macros" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Substrate System Library Macros</h2>
 <h3><a class="anchor" aria-hidden="true" id="impl_runtime_apis"></a><a href="#impl_runtime_apis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>impl_runtime_apis!</h3>
@@ -435,7 +435,7 @@ imple<span class="token operator">&lt;</span><span class="token class-name">T</s
 <p>The macro defines the <code>RuntimeApi</code> and <code>RuntimeApiImpl</code> exposed to the Substrate node client. It provides implementation details of the RuntimeApiImpl based on the setup and appended user specified implementation in the <code>RuntimeApiImpl</code>.</p>
 <p><strong>Docs and Notes</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/sp_api/macro.impl_runtime_apis.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/sp_api/macro.impl_runtime_apis.html">API 文档</a></li>
 <li><code>RuntimeApi</code> and <code>RuntimeApiImpl</code> structs are declared. The macro also implements various helper traits for <code>RuntimeApiImpl</code>.</li>
 <li>What developers define within <code>impl_runtime_apis!</code> macro are appended to the end of <code>RuntimeApiImpl</code> implementation.</li>
 <li>To expose version information about the runtime, a constant <code>RUNTIME_API_VERSIONS</code> is defined. containing the runtime core <code>ID</code>/<code>VERSION</code>, metadata <code>ID</code>/<code>VERSION</code>, SessionKeys <code>ID</code>/<code>VERSION</code>, etc.</li>
@@ -448,7 +448,7 @@ imple<span class="token operator">&lt;</span><span class="token class-name">T</s
 <p>The macro declares three struct types, <code>Public</code>, <code>Signature</code>, and <code>Pair</code>. Aside from having various helper traits implemented for these three types, <code>Public</code> type is implemented to generating keypairs, signing and verifying signature, <code>Signature</code> type to hold the signature property given the signature chosen to be used (e.g. SR25519, ED25519 etc), and <code>Pair</code> type to generate a public-private key pair from a seed.</p>
 <p><strong>Docs and Notes</strong></p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/sp_application_crypto/macro.app_crypto.html">API 文档</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/sp_application_crypto/macro.app_crypto.html">API 文档</a></li>
 <li><code>Public</code> struct type is declared, and implements <code>sp_application_crypto::AppKey</code> trait defining the public key type, and <code>sp_application_crypto::RuntimeAppPublic</code> trait for generating keypairs, signing, and verifying signatures.</li>
 <li><code>Signature</code> struct type is declared, and implements <code>core::hash::Hash</code> trait on how the data with this signature type is hashed.</li>
 <li><code>Pair</code> struct type is declared to wrap over the crypto pair. This type implements <code>sp_application_crypto::Pair</code> and <code>sp_application_crypto::AppKey</code> traits determining how it generates public-private key pairs from a phrase or seed.</li>

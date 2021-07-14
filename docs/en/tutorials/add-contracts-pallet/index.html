@@ -21,7 +21,7 @@ provides a minimal working runtime which you can use to quickly get started with
 blockchain. However, in the attempts to remain minimal, it does not include most of the pallets from
 <a href="../../knowledgebase/runtime/frame">FRAME</a>.</p>
 <p>This guide will show you how you can add the
-<a href="https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/">Contracts pallet</a> to your runtime in order to
+<a href="https://substrate.dev/rustdocs/latest/pallet_contracts/">Contracts pallet</a> to your runtime in order to
 allow your blockchain to support Wasm smart contracts. You can follow similar patterns to add
 additional FRAME pallets to your runtime, however you should note that each pallet is a little
 different in terms of the specific configuration settings needed to use it correctly.</p>
@@ -48,8 +48,8 @@ according to the instructions in its readme.</p>
 <span class="token operator">|</span>   <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> build<span class="token punctuation">.</span>rs
 <span class="token operator">|</span>   <span class="token operator">|</span>
 <span class="token operator">|</span>   <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> src
-<span class="token operator">|</span>      <span class="token operator">|</span>
-<span class="token operator">|</span>      <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> lib<span class="token punctuation">.</span>rs   <span class="token operator">&lt;</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token class-name">Most</span> changes <span class="token keyword">in</span> this file
+<span class="token operator">|</span>     <span class="token operator">|</span>
+<span class="token operator">|</span>     <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> lib<span class="token punctuation">.</span>rs   <span class="token operator">&lt;</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token class-name">Most</span> changes <span class="token keyword">in</span> this file
 <span class="token operator">|</span>
 <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> pallets
 <span class="token operator">|</span>
@@ -65,7 +65,7 @@ in your runtime's <code>Cargo.toml</code> file. If you want a proper primer into
 check out <a href="https://doc.rust-lang.org/cargo/reference/index.html">their official documentation</a>.</p>
 <p>Open <code>substrate-node-template/runtime/Cargo.toml</code> and you will see a list of all the dependencies
 your runtime has. For example, it depends on the
-<a href="https://substrate.dev/rustdocs/v3.0.0/pallet_balances/">Balances pallet</a>:</p>
+<a href="https://substrate.dev/rustdocs/latest/pallet_balances/">Balances pallet</a>:</p>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
 <pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies]</span>
 <span class="hljs-comment">#--snip--</span>
@@ -80,13 +80,13 @@ something like:</p>
 <pre><code class="hljs css language-TOML"><span class="hljs-section">[features]</span>
 <span class="hljs-attr">default</span> = [<span class="hljs-string">'std'</span>]
 <span class="hljs-attr">std</span> = [
-    <span class="hljs-string">'codec/std'</span>,
-    <span class="hljs-string">'frame-executive/std'</span>,
-    <span class="hljs-string">'frame-support/std'</span>,
-    <span class="hljs-string">'frame-system/std'</span>,
-    <span class="hljs-string">'frame-system-rpc-runtime-api/std'</span>,
-    <span class="hljs-string">'pallet-balances/std'</span>,
-    <span class="hljs-comment">#--snip--</span>
+   <span class="hljs-string">'codec/std'</span>,
+   <span class="hljs-string">'frame-executive/std'</span>,
+   <span class="hljs-string">'frame-support/std'</span>,
+   <span class="hljs-string">'frame-system/std'</span>,
+   <span class="hljs-string">'frame-system-rpc-runtime-api/std'</span>,
+   <span class="hljs-string">'pallet-balances/std'</span>,
+   <span class="hljs-comment">#--snip--</span>
 ]
 </code></pre>
 <p>This second line defines the <code>default</code> features of your runtime crate as <code>std</code>. You can imagine,
@@ -138,10 +138,10 @@ when the runtime is built with its own <code>std</code> feature. Add the followi
 <pre><code class="hljs css language-TOML"><span class="hljs-section">[features]</span>
 <span class="hljs-attr">default</span> = [<span class="hljs-string">'std'</span>]
 <span class="hljs-attr">std</span> = [
-    <span class="hljs-comment">#--snip--</span>
-    <span class="hljs-string">'pallet-contracts/std'</span>,
-    <span class="hljs-string">'pallet-contracts-primitives/std'</span>,
-    <span class="hljs-comment">#--snip--</span>
+   <span class="hljs-comment">#--snip--</span>
+   <span class="hljs-string">'pallet-contracts/std'</span>,
+   <span class="hljs-string">'pallet-contracts-primitives/std'</span>,
+   <span class="hljs-comment">#--snip--</span>
 ]
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="adding-the-contracts-pallet"></a><a href="#adding-the-contracts-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding the Contracts Pallet</h2>
@@ -150,7 +150,7 @@ when the runtime is built with its own <code>std</code> feature. Add the followi
 <p>Every pallet has a configuration trait called <code>Config</code> that the runtime must implement.</p>
 <p>To figure out what we need to implement for this pallet specifically, you can take a look at the
 FRAME</p>
-<p><a href="https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/trait.Config.html"><code>pallet_contracts::Config</code> documentation</a>.</p>
+<p><a href="https://substrate.dev/rustdocs/latest/pallet_contracts/trait.Config.html"><code>pallet_contracts::Config</code> documentation</a>.</p>
 <p>For our runtime, the implementation will look like this:</p>
 <p><strong><code>runtime/src/lib.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token keyword">use</span> <span class="token namespace">pallet_transaction_payment<span class="token punctuation">::</span></span><span class="token class-name">CurrencyAdapter</span><span class="token punctuation">;</span>
@@ -170,7 +170,7 @@ FRAME</p>
 <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token constant">DOLLARS</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token number">100</span> <span class="token operator">*</span> <span class="token constant">CENTS</span><span class="token punctuation">;</span>
 
 <span class="token keyword">const</span> <span class="token keyword">fn</span> <span class="token function-definition function">deposit</span><span class="token punctuation">(</span>items<span class="token punctuation">:</span> <span class="token keyword">u32</span><span class="token punctuation">,</span> bytes<span class="token punctuation">:</span> <span class="token keyword">u32</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Balance</span> <span class="token punctuation">{</span>
-    items <span class="token keyword">as</span> <span class="token class-name">Balance</span> <span class="token operator">*</span> <span class="token number">15</span> <span class="token operator">*</span> <span class="token constant">CENTS</span> <span class="token operator">+</span> <span class="token punctuation">(</span>bytes <span class="token keyword">as</span> <span class="token class-name">Balance</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">6</span> <span class="token operator">*</span> <span class="token constant">CENTS</span>
+   items <span class="token keyword">as</span> <span class="token class-name">Balance</span> <span class="token operator">*</span> <span class="token number">15</span> <span class="token operator">*</span> <span class="token constant">CENTS</span> <span class="token operator">+</span> <span class="token punctuation">(</span>bytes <span class="token keyword">as</span> <span class="token class-name">Balance</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">6</span> <span class="token operator">*</span> <span class="token constant">CENTS</span>
 <span class="token punctuation">}</span>
 
 <span class="token comment">/// We assume that ~10% of the block weight is consumed by `on_initalize` handlers.</span>
@@ -181,56 +181,56 @@ FRAME</p>
 </code></pre>
 <pre><code class="hljs css language-rust">
 <span class="token keyword">impl</span> <span class="token namespace">pallet_timestamp<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token keyword">for</span> <span class="token class-name">Runtime</span> <span class="token punctuation">{</span>
-    <span class="token comment">/* --snip-- */</span>
+   <span class="token comment">/* --snip-- */</span>
 <span class="token punctuation">}</span>
 
 <span class="token comment">/*** Add This Block ***/</span>
 <span class="token macro property">parameter_types!</span> <span class="token punctuation">{</span>
-    <span class="token keyword">pub</span> <span class="token class-name">TombstoneDeposit</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token function">deposit</span><span class="token punctuation">(</span> 
-        <span class="token number">1</span><span class="token punctuation">,</span>
-        <span class="token operator">&lt;</span><span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">Runtime</span><span class="token operator">>></span><span class="token punctuation">::</span><span class="token function">contract_info_size</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">pub</span> <span class="token class-name">DepositPerContract</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token class-name">TombstoneDeposit</span><span class="token punctuation">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">DepositPerStorageByte</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token function">deposit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">DepositPerStorageItem</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token function">deposit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">pub</span> <span class="token class-name">RentFraction</span><span class="token punctuation">:</span> <span class="token class-name">Perbill</span> <span class="token operator">=</span> <span class="token class-name">Perbill</span><span class="token punctuation">::</span><span class="token function">from_rational</span><span class="token punctuation">(</span><span class="token number">1u32</span><span class="token punctuation">,</span> <span class="token number">30</span> <span class="token operator">*</span> <span class="token constant">DAYS</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">SurchargeReward</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token number">150</span> <span class="token operator">*</span> <span class="token constant">MILLICENTS</span><span class="token punctuation">;</span>
-    <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">SignedClaimHandicap</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
-    <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">MaxDepth</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">32</span><span class="token punctuation">;</span>
-    <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">MaxValueSize</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">16</span> <span class="token operator">*</span> <span class="token number">1024</span><span class="token punctuation">;</span>
-    <span class="token comment">// The lazy deletion runs inside on_initialize.</span>
-    <span class="token keyword">pub</span> <span class="token class-name">DeletionWeightLimit</span><span class="token punctuation">:</span> <span class="token class-name">Weight</span> <span class="token operator">=</span> <span class="token constant">AVERAGE_ON_INITIALIZE_RATIO</span> <span class="token operator">*</span>
-        <span class="token class-name">BlockWeights</span><span class="token punctuation">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>max_block<span class="token punctuation">;</span>
-    <span class="token comment">// The weight needed for decoding the queue should be less or equal than a fifth</span>
-    <span class="token comment">// of the overall weight dedicated to the lazy deletion.</span>
-    <span class="token keyword">pub</span> <span class="token class-name">DeletionQueueDepth</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">DeletionWeightLimit</span><span class="token punctuation">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>
-            <span class="token operator">&lt;</span><span class="token class-name">Runtime</span> <span class="token keyword">as</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Config</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">WeightInfo</span><span class="token punctuation">::</span><span class="token function">on_initialize_per_queue_item</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">-</span>
-            <span class="token operator">&lt;</span><span class="token class-name">Runtime</span> <span class="token keyword">as</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Config</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">WeightInfo</span><span class="token punctuation">::</span><span class="token function">on_initialize_per_queue_item</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
-        <span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token keyword">u32</span><span class="token punctuation">;</span>
-    <span class="token keyword">pub</span> <span class="token class-name">MaxCodeSize</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">128</span> <span class="token operator">*</span> <span class="token number">1024</span><span class="token punctuation">;</span>
+   <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">TombstoneDeposit</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token function">deposit</span><span class="token punctuation">(</span>
+      <span class="token number">1</span><span class="token punctuation">,</span>
+      <span class="token operator">&lt;</span><span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">Runtime</span><span class="token operator">>></span><span class="token punctuation">::</span><span class="token function">contract_info_size</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+   <span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">DepositPerContract</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token class-name">TombstoneDeposit</span><span class="token punctuation">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">DepositPerStorageByte</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token function">deposit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">DepositPerStorageItem</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token function">deposit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">pub</span> <span class="token class-name">RentFraction</span><span class="token punctuation">:</span> <span class="token class-name">Perbill</span> <span class="token operator">=</span> <span class="token class-name">Perbill</span><span class="token punctuation">::</span><span class="token function">from_rational</span><span class="token punctuation">(</span><span class="token number">1u32</span><span class="token punctuation">,</span> <span class="token number">30</span> <span class="token operator">*</span> <span class="token constant">DAYS</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">SurchargeReward</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token number">150</span> <span class="token operator">*</span> <span class="token constant">MILLICENTS</span><span class="token punctuation">;</span>
+   <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">SignedClaimHandicap</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+   <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">MaxDepth</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">32</span><span class="token punctuation">;</span>
+   <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">MaxValueSize</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">16</span> <span class="token operator">*</span> <span class="token number">1024</span><span class="token punctuation">;</span>
+   <span class="token comment">// The lazy deletion runs inside on_initialize.</span>
+   <span class="token keyword">pub</span> <span class="token class-name">DeletionWeightLimit</span><span class="token punctuation">:</span> <span class="token class-name">Weight</span> <span class="token operator">=</span> <span class="token constant">AVERAGE_ON_INITIALIZE_RATIO</span> <span class="token operator">*</span>
+      <span class="token class-name">BlockWeights</span><span class="token punctuation">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>max_block<span class="token punctuation">;</span>
+   <span class="token comment">// The weight needed for decoding the queue should be less or equal than a fifth</span>
+   <span class="token comment">// of the overall weight dedicated to the lazy deletion.</span>
+   <span class="token keyword">pub</span> <span class="token class-name">DeletionQueueDepth</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">DeletionWeightLimit</span><span class="token punctuation">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>
+         <span class="token operator">&lt;</span><span class="token class-name">Runtime</span> <span class="token keyword">as</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Config</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">WeightInfo</span><span class="token punctuation">::</span><span class="token function">on_initialize_per_queue_item</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">-</span>
+         <span class="token operator">&lt;</span><span class="token class-name">Runtime</span> <span class="token keyword">as</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Config</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">WeightInfo</span><span class="token punctuation">::</span><span class="token function">on_initialize_per_queue_item</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+      <span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token keyword">u32</span><span class="token punctuation">;</span>
+   <span class="token keyword">pub</span> <span class="token class-name">MaxCodeSize</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">128</span> <span class="token operator">*</span> <span class="token number">1024</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">impl</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token keyword">for</span> <span class="token class-name">Runtime</span> <span class="token punctuation">{</span>
-    <span class="token keyword">type</span> <span class="token class-name">Time</span> <span class="token operator">=</span> <span class="token class-name">Timestamp</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">Randomness</span> <span class="token operator">=</span> <span class="token class-name">RandomnessCollectiveFlip</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">Currency</span> <span class="token operator">=</span> <span class="token class-name">Balances</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">Event</span> <span class="token operator">=</span> <span class="token class-name">Event</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">RentPayment</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">SignedClaimHandicap</span> <span class="token operator">=</span> <span class="token class-name">SignedClaimHandicap</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">TombstoneDeposit</span> <span class="token operator">=</span> <span class="token class-name">TombstoneDeposit</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">DepositPerContract</span> <span class="token operator">=</span> <span class="token class-name">DepositPerContract</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">DepositPerStorageByte</span> <span class="token operator">=</span> <span class="token class-name">DepositPerStorageByte</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">DepositPerStorageItem</span> <span class="token operator">=</span> <span class="token class-name">DepositPerStorageItem</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">RentFraction</span> <span class="token operator">=</span> <span class="token class-name">RentFraction</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">SurchargeReward</span> <span class="token operator">=</span> <span class="token class-name">SurchargeReward</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">MaxDepth</span> <span class="token operator">=</span> <span class="token class-name">MaxDepth</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">MaxValueSize</span> <span class="token operator">=</span> <span class="token class-name">MaxValueSize</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">WeightPrice</span> <span class="token operator">=</span> <span class="token namespace">pallet_transaction_payment<span class="token punctuation">::</span></span><span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token operator">></span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">WeightInfo</span> <span class="token operator">=</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span>weights<span class="token punctuation">::</span></span><span class="token class-name">SubstrateWeight</span><span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token operator">></span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">ChainExtension</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">DeletionQueueDepth</span> <span class="token operator">=</span> <span class="token class-name">DeletionQueueDepth</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">DeletionWeightLimit</span> <span class="token operator">=</span> <span class="token class-name">DeletionWeightLimit</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">MaxCodeSize</span> <span class="token operator">=</span> <span class="token class-name">MaxCodeSize</span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">Time</span> <span class="token operator">=</span> <span class="token class-name">Timestamp</span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">Randomness</span> <span class="token operator">=</span> <span class="token class-name">RandomnessCollectiveFlip</span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">Currency</span> <span class="token operator">=</span> <span class="token class-name">Balances</span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">Event</span> <span class="token operator">=</span> <span class="token class-name">Event</span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">RentPayment</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">SignedClaimHandicap</span> <span class="token operator">=</span> <span class="token class-name">SignedClaimHandicap</span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">TombstoneDeposit</span> <span class="token operator">=</span> <span class="token class-name">TombstoneDeposit</span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">DepositPerContract</span> <span class="token operator">=</span> <span class="token class-name">DepositPerContract</span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">DepositPerStorageByte</span> <span class="token operator">=</span> <span class="token class-name">DepositPerStorageByte</span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">DepositPerStorageItem</span> <span class="token operator">=</span> <span class="token class-name">DepositPerStorageItem</span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">RentFraction</span> <span class="token operator">=</span> <span class="token class-name">RentFraction</span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">SurchargeReward</span> <span class="token operator">=</span> <span class="token class-name">SurchargeReward</span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">MaxDepth</span> <span class="token operator">=</span> <span class="token class-name">MaxDepth</span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">MaxValueSize</span> <span class="token operator">=</span> <span class="token class-name">MaxValueSize</span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">WeightPrice</span> <span class="token operator">=</span> <span class="token namespace">pallet_transaction_payment<span class="token punctuation">::</span></span><span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token operator">></span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">WeightInfo</span> <span class="token operator">=</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span>weights<span class="token punctuation">::</span></span><span class="token class-name">SubstrateWeight</span><span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token operator">></span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">ChainExtension</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">DeletionQueueDepth</span> <span class="token operator">=</span> <span class="token class-name">DeletionQueueDepth</span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">DeletionWeightLimit</span> <span class="token operator">=</span> <span class="token class-name">DeletionWeightLimit</span><span class="token punctuation">;</span>
+   <span class="token keyword">type</span> <span class="token class-name">MaxCodeSize</span> <span class="token operator">=</span> <span class="token class-name">MaxCodeSize</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 <span class="token comment">/*** End Added Block ***/</span>
 </code></pre>
@@ -241,7 +241,7 @@ if things don't make sense or you want to gain a deeper understanding.</p>
 <p>Next, we need to add the pallet to the <code>construct_runtime!</code> macro. For this, we need to determine
 the types that the pallet exposes so that we can tell our runtime that they exist. The complete
 list of possible types can be found in the
-<a href="https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.construct_runtime.html"><code>construct_runtime!</code> macro documentation</a>.</p>
+<a href="https://substrate.dev/rustdocs/latest/frame_support/macro.construct_runtime.html"><code>construct_runtime!</code> macro documentation</a>.</p>
 <p>If we look at the Contracts pallet in detail, we know it has:</p>
 <ul>
 <li>Module <strong>Storage</strong>: Because it uses the <code>decl_storage!</code> macro.</li>
@@ -253,16 +253,16 @@ list of possible types can be found in the
 <p>Thus, when we add the pallet, it will look like this:</p>
 <p><strong><code>runtime/src/lib.rs</code></strong></p>
 <pre><code class="hljs css language-rust"><span class="token macro property">construct_runtime!</span><span class="token punctuation">(</span>
-    <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Runtime</span> <span class="token keyword">where</span>
-        <span class="token class-name">Block</span> <span class="token operator">=</span> <span class="token class-name">Block</span><span class="token punctuation">,</span>
-        <span class="token class-name">NodeBlock</span> <span class="token operator">=</span> <span class="token namespace">opaque<span class="token punctuation">::</span></span><span class="token class-name">Block</span><span class="token punctuation">,</span>
-        <span class="token class-name">UncheckedExtrinsic</span> <span class="token operator">=</span> <span class="token class-name">UncheckedExtrinsic</span>
-    <span class="token punctuation">{</span>
-        <span class="token comment">/* --snip-- */</span>
+   <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Runtime</span> <span class="token keyword">where</span>
+      <span class="token class-name">Block</span> <span class="token operator">=</span> <span class="token class-name">Block</span><span class="token punctuation">,</span>
+      <span class="token class-name">NodeBlock</span> <span class="token operator">=</span> <span class="token namespace">opaque<span class="token punctuation">::</span></span><span class="token class-name">Block</span><span class="token punctuation">,</span>
+      <span class="token class-name">UncheckedExtrinsic</span> <span class="token operator">=</span> <span class="token class-name">UncheckedExtrinsic</span>
+   <span class="token punctuation">{</span>
+      <span class="token comment">/* --snip-- */</span>
 
-        <span class="token comment">/*** Add This Line ***/</span>
-        <span class="token class-name">Contracts</span><span class="token punctuation">:</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token punctuation">{</span><span class="token class-name">Pallet</span><span class="token punctuation">,</span> <span class="token class-name">Call</span><span class="token punctuation">,</span> <span class="token class-name">Config</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span> <span class="token class-name">Storage</span><span class="token punctuation">,</span> <span class="token class-name">Event</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">}</span>
+      <span class="token comment">/*** Add This Line ***/</span>
+      <span class="token class-name">Contracts</span><span class="token punctuation">:</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token punctuation">{</span><span class="token class-name">Pallet</span><span class="token punctuation">,</span> <span class="token class-name">Call</span><span class="token punctuation">,</span> <span class="token class-name">Config</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span> <span class="token class-name">Storage</span><span class="token punctuation">,</span> <span class="token class-name">Event</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token punctuation">}</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Note that not all pallets will expose all of these runtime types, and some may expose more than just these! Always look at the source code of a pallet or the documentation of the pallet you're using to determine which of
@@ -287,8 +287,8 @@ we'll do it to make calls to our node's storage without making a transaction.</p
 <pre><code class="hljs css language-TOML"><span class="hljs-section">[features]</span>
 <span class="hljs-attr">default</span> = [<span class="hljs-string">'std'</span>]
 <span class="hljs-attr">std</span> = [
-    <span class="hljs-comment">#--snip--</span>
-    <span class="hljs-string">'pallet-contracts-rpc-runtime-api/std'</span>,
+   <span class="hljs-comment">#--snip--</span>
+   <span class="hljs-string">'pallet-contracts-rpc-runtime-api/std'</span>,
 ]
 </code></pre>
 <p>To get the state of a contract variable, we have to call a getter function that will return a
@@ -300,43 +300,43 @@ macro near the end of your runtime.</p>
    <span class="token comment">/* --snip-- */</span>
 
    <span class="token comment">/*** Add This Block ***/</span>
-    <span class="token keyword">impl</span> <span class="token namespace">pallet_contracts_rpc_runtime_api<span class="token punctuation">::</span></span><span class="token class-name">ContractsApi</span><span class="token operator">&lt;</span><span class="token class-name">Block</span><span class="token punctuation">,</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">Balance</span><span class="token punctuation">,</span> <span class="token class-name">BlockNumber</span><span class="token punctuation">,</span> <span class="token class-name">Hash</span><span class="token operator">></span>
-    <span class="token keyword">for</span> <span class="token class-name">Runtime</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">fn</span> <span class="token function-definition function">call</span><span class="token punctuation">(</span>
-            origin<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
-            dest<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
-            value<span class="token punctuation">:</span> <span class="token class-name">Balance</span><span class="token punctuation">,</span>
-            gas_limit<span class="token punctuation">:</span> <span class="token keyword">u64</span><span class="token punctuation">,</span>
-            input_data<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">,</span>
-        <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">ContractExecResult</span> <span class="token punctuation">{</span>
-            <span class="token class-name">Contracts</span><span class="token punctuation">::</span><span class="token function">bare_call</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> dest<span class="token punctuation">,</span> value<span class="token punctuation">,</span> gas_limit<span class="token punctuation">,</span> input_data<span class="token punctuation">)</span>
-        <span class="token punctuation">}</span>
+   <span class="token keyword">impl</span> <span class="token namespace">pallet_contracts_rpc_runtime_api<span class="token punctuation">::</span></span><span class="token class-name">ContractsApi</span><span class="token operator">&lt;</span><span class="token class-name">Block</span><span class="token punctuation">,</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">Balance</span><span class="token punctuation">,</span> <span class="token class-name">BlockNumber</span><span class="token punctuation">,</span> <span class="token class-name">Hash</span><span class="token operator">></span>
+   <span class="token keyword">for</span> <span class="token class-name">Runtime</span>
+   <span class="token punctuation">{</span>
+      <span class="token keyword">fn</span> <span class="token function-definition function">call</span><span class="token punctuation">(</span>
+         origin<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
+         dest<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
+         value<span class="token punctuation">:</span> <span class="token class-name">Balance</span><span class="token punctuation">,</span>
+         gas_limit<span class="token punctuation">:</span> <span class="token keyword">u64</span><span class="token punctuation">,</span>
+         input_data<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">ContractExecResult</span> <span class="token punctuation">{</span>
+         <span class="token class-name">Contracts</span><span class="token punctuation">::</span><span class="token function">bare_call</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> dest<span class="token punctuation">,</span> value<span class="token punctuation">,</span> gas_limit<span class="token punctuation">,</span> input_data<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
 
-        <span class="token keyword">fn</span> <span class="token function-definition function">instantiate</span><span class="token punctuation">(</span>
-            origin<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
-            endowment<span class="token punctuation">:</span> <span class="token class-name">Balance</span><span class="token punctuation">,</span>
-            gas_limit<span class="token punctuation">:</span> <span class="token keyword">u64</span><span class="token punctuation">,</span>
-            code<span class="token punctuation">:</span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">Code</span><span class="token operator">&lt;</span><span class="token class-name">Hash</span><span class="token operator">></span><span class="token punctuation">,</span>
-            data<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">,</span>
-            salt<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">,</span>
-        <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">ContractInstantiateResult</span><span class="token operator">&lt;</span><span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">BlockNumber</span><span class="token operator">></span> <span class="token punctuation">{</span>
-            <span class="token class-name">Contracts</span><span class="token punctuation">::</span><span class="token function">bare_instantiate</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> endowment<span class="token punctuation">,</span> gas_limit<span class="token punctuation">,</span> code<span class="token punctuation">,</span> data<span class="token punctuation">,</span> salt<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
-        <span class="token punctuation">}</span>
+      <span class="token keyword">fn</span> <span class="token function-definition function">instantiate</span><span class="token punctuation">(</span>
+         origin<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
+         endowment<span class="token punctuation">:</span> <span class="token class-name">Balance</span><span class="token punctuation">,</span>
+         gas_limit<span class="token punctuation">:</span> <span class="token keyword">u64</span><span class="token punctuation">,</span>
+         code<span class="token punctuation">:</span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">Code</span><span class="token operator">&lt;</span><span class="token class-name">Hash</span><span class="token operator">></span><span class="token punctuation">,</span>
+         data<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">,</span>
+         salt<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">ContractInstantiateResult</span><span class="token operator">&lt;</span><span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">BlockNumber</span><span class="token operator">></span> <span class="token punctuation">{</span>
+         <span class="token class-name">Contracts</span><span class="token punctuation">::</span><span class="token function">bare_instantiate</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> endowment<span class="token punctuation">,</span> gas_limit<span class="token punctuation">,</span> code<span class="token punctuation">,</span> data<span class="token punctuation">,</span> salt<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
 
-        <span class="token keyword">fn</span> <span class="token function-definition function">get_storage</span><span class="token punctuation">(</span>
-            address<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
-            key<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token keyword">u8</span><span class="token punctuation">;</span> <span class="token number">32</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-        <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">GetStorageResult</span> <span class="token punctuation">{</span>
-            <span class="token class-name">Contracts</span><span class="token punctuation">::</span><span class="token function">get_storage</span><span class="token punctuation">(</span>address<span class="token punctuation">,</span> key<span class="token punctuation">)</span>
-        <span class="token punctuation">}</span>
+      <span class="token keyword">fn</span> <span class="token function-definition function">get_storage</span><span class="token punctuation">(</span>
+         address<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
+         key<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token keyword">u8</span><span class="token punctuation">;</span> <span class="token number">32</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">GetStorageResult</span> <span class="token punctuation">{</span>
+         <span class="token class-name">Contracts</span><span class="token punctuation">::</span><span class="token function">get_storage</span><span class="token punctuation">(</span>address<span class="token punctuation">,</span> key<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
 
-        <span class="token keyword">fn</span> <span class="token function-definition function">rent_projection</span><span class="token punctuation">(</span>
-            address<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
-        <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">RentProjectionResult</span><span class="token operator">&lt;</span><span class="token class-name">BlockNumber</span><span class="token operator">></span> <span class="token punctuation">{</span>
-            <span class="token class-name">Contracts</span><span class="token punctuation">::</span><span class="token function">rent_projection</span><span class="token punctuation">(</span>address<span class="token punctuation">)</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+      <span class="token keyword">fn</span> <span class="token function-definition function">rent_projection</span><span class="token punctuation">(</span>
+         address<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">RentProjectionResult</span><span class="token operator">&lt;</span><span class="token class-name">BlockNumber</span><span class="token operator">></span> <span class="token punctuation">{</span>
+         <span class="token class-name">Contracts</span><span class="token punctuation">::</span><span class="token function">rent_projection</span><span class="token punctuation">(</span>address<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
    <span class="token comment">/*** End Added Block ***/</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -369,40 +369,40 @@ add the Contracts pallet along with its API.</p>
 </code></pre>
 <pre><code class="hljs css language-rust"><span class="token comment">/// Instantiate all full RPC extensions.</span>
 <span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function-definition function">create_full</span><span class="token operator">&lt;</span><span class="token class-name">C</span><span class="token punctuation">,</span> <span class="token class-name">P</span><span class="token operator">></span><span class="token punctuation">(</span>
-    deps<span class="token punctuation">:</span> <span class="token class-name">FullDeps</span><span class="token operator">&lt;</span><span class="token class-name">C</span><span class="token punctuation">,</span> <span class="token class-name">P</span><span class="token operator">></span><span class="token punctuation">,</span>
+   deps<span class="token punctuation">:</span> <span class="token class-name">FullDeps</span><span class="token operator">&lt;</span><span class="token class-name">C</span><span class="token punctuation">,</span> <span class="token class-name">P</span><span class="token operator">></span><span class="token punctuation">,</span>
 <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">jsonrpc_core<span class="token punctuation">::</span></span><span class="token class-name">IoHandler</span><span class="token operator">&lt;</span><span class="token namespace">sc_rpc<span class="token punctuation">::</span></span><span class="token class-name">Metadata</span><span class="token operator">></span> <span class="token keyword">where</span>
-    <span class="token comment">/* --snip-- */</span>
-    <span class="token class-name">C</span><span class="token punctuation">:</span> <span class="token class-name">Send</span> <span class="token operator">+</span> <span class="token class-name">Sync</span> <span class="token operator">+</span> <span class="token lifetime-annotation symbol">'static</span><span class="token punctuation">,</span>
-    <span class="token class-name">C</span><span class="token punctuation">::</span><span class="token class-name">Api</span><span class="token punctuation">:</span> <span class="token namespace">substrate_frame_rpc_system<span class="token punctuation">::</span></span><span class="token class-name">AccountNonceApi</span><span class="token operator">&lt;</span><span class="token class-name">Block</span><span class="token punctuation">,</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">Index</span><span class="token operator">></span><span class="token punctuation">,</span>
-    <span class="token comment">/*** Add This Line ***/</span>
-    <span class="token class-name">C</span><span class="token punctuation">::</span><span class="token class-name">Api</span><span class="token punctuation">:</span> <span class="token namespace">pallet_contracts_rpc<span class="token punctuation">::</span></span><span class="token class-name">ContractsRuntimeApi</span><span class="token operator">&lt;</span><span class="token class-name">Block</span><span class="token punctuation">,</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">Balance</span><span class="token punctuation">,</span> <span class="token class-name">BlockNumber</span><span class="token punctuation">,</span> <span class="token class-name">Hash</span><span class="token operator">></span><span class="token punctuation">,</span>
-    <span class="token comment">/* --snip-- */</span>
+   <span class="token comment">/* --snip-- */</span>
+   <span class="token class-name">C</span><span class="token punctuation">:</span> <span class="token class-name">Send</span> <span class="token operator">+</span> <span class="token class-name">Sync</span> <span class="token operator">+</span> <span class="token lifetime-annotation symbol">'static</span><span class="token punctuation">,</span>
+   <span class="token class-name">C</span><span class="token punctuation">::</span><span class="token class-name">Api</span><span class="token punctuation">:</span> <span class="token namespace">substrate_frame_rpc_system<span class="token punctuation">::</span></span><span class="token class-name">AccountNonceApi</span><span class="token operator">&lt;</span><span class="token class-name">Block</span><span class="token punctuation">,</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">Index</span><span class="token operator">></span><span class="token punctuation">,</span>
+   <span class="token comment">/*** Add This Line ***/</span>
+   <span class="token class-name">C</span><span class="token punctuation">::</span><span class="token class-name">Api</span><span class="token punctuation">:</span> <span class="token namespace">pallet_contracts_rpc<span class="token punctuation">::</span></span><span class="token class-name">ContractsRuntimeApi</span><span class="token operator">&lt;</span><span class="token class-name">Block</span><span class="token punctuation">,</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">Balance</span><span class="token punctuation">,</span> <span class="token class-name">BlockNumber</span><span class="token punctuation">,</span> <span class="token class-name">Hash</span><span class="token operator">></span><span class="token punctuation">,</span>
+   <span class="token comment">/* --snip-- */</span>
 <span class="token punctuation">{</span>
-    <span class="token comment">/* --snip-- */</span>
-    io<span class="token punctuation">.</span><span class="token function">extend_with</span><span class="token punctuation">(</span>
-        <span class="token class-name">TransactionPaymentApi</span><span class="token punctuation">::</span><span class="token function">to_delegate</span><span class="token punctuation">(</span><span class="token class-name">TransactionPayment</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>client<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">/*** Add This Block ***/</span>
-    <span class="token comment">// Contracts RPC API extension</span>
-    io<span class="token punctuation">.</span><span class="token function">extend_with</span><span class="token punctuation">(</span>
-        <span class="token class-name">ContractsApi</span><span class="token punctuation">::</span><span class="token function">to_delegate</span><span class="token punctuation">(</span><span class="token class-name">Contracts</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>client<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">/*** End Added Block ***/</span>
-    io
+   <span class="token comment">/* --snip-- */</span>
+   io<span class="token punctuation">.</span><span class="token function">extend_with</span><span class="token punctuation">(</span>
+      <span class="token class-name">TransactionPaymentApi</span><span class="token punctuation">::</span><span class="token function">to_delegate</span><span class="token punctuation">(</span><span class="token class-name">TransactionPayment</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>client<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+   <span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token comment">/*** Add This Block ***/</span>
+   <span class="token comment">// Contracts RPC API extension</span>
+   io<span class="token punctuation">.</span><span class="token function">extend_with</span><span class="token punctuation">(</span>
+      <span class="token class-name">ContractsApi</span><span class="token punctuation">::</span><span class="token function">to_delegate</span><span class="token punctuation">(</span><span class="token class-name">Contracts</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>client<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+   <span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token comment">/*** End Added Block ***/</span>
+   io
 <span class="token punctuation">}</span>
 </code></pre>
 <blockquote>
 <p>Note that rpc additions must appear in this section in the expected syntax:</p>
 <pre><code class="hljs css language-rust"><span class="token comment">// Extend this RPC with a custom API by using the following syntax.</span>
-  <span class="token comment">// `YourRpcStruct` should have a reference to a client, which is needed</span>
-  <span class="token comment">// to call into the runtime.</span>
-  <span class="token comment">// `io.extend_with(YourRpcTrait::to_delegate(YourRpcStruct::new(ReferenceToClient, ...)));`</span>
+ <span class="token comment">// `YourRpcStruct` should have a reference to a client, which is needed</span>
+ <span class="token comment">// to call into the runtime.</span>
+ <span class="token comment">// `io.extend_with(YourRpcTrait::to_delegate(YourRpcStruct::new(ReferenceToClient, ...)));`</span>
 </code></pre>
 </blockquote>
 <h3><a class="anchor" aria-hidden="true" id="genesis-configuration"></a><a href="#genesis-configuration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Genesis Configuration</h3>
 <p>Not all pallets will have a genesis configuration, but if yours does, you can use its documentation
 to learn about it. For example,
-<a href="https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/struct.GenesisConfig.html"><code>pallet_contracts::GenesisConfig</code> documentation</a>
+<a href="https://substrate.dev/rustdocs/latest/pallet_contracts/struct.GenesisConfig.html"><code>pallet_contracts::GenesisConfig</code> documentation</a>
 describes all the fields you need to define for the Contracts pallet.</p>
 <p>Genesis configurations are controlled in <code>node/src/chain_spec.rs</code>. We need to modify this file to
 include the <code>ContractsConfig</code> type and the contract price units at the top:</p>
@@ -417,23 +417,23 @@ remove the underscore that precedes the parameter definition.</p>
 </blockquote>
 <pre><code class="hljs css language-rust"><span class="token comment">/// Configure initial storage state for FRAME modules.</span>
 <span class="token keyword">fn</span> <span class="token function-definition function">testnet_genesis</span><span class="token punctuation">(</span>
-    wasm_binary<span class="token punctuation">:</span> <span class="token operator">&amp;</span><span class="token punctuation">[</span><span class="token keyword">u8</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-    initial_authorities<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token class-name">AuraId</span><span class="token punctuation">,</span> <span class="token class-name">GrandpaId</span><span class="token punctuation">)</span><span class="token operator">></span><span class="token punctuation">,</span>
-    root_key<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
-    endowed_accounts<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token class-name">AccountId</span><span class="token operator">></span><span class="token punctuation">,</span>
-    enable_println<span class="token punctuation">:</span> <span class="token keyword">bool</span><span class="token punctuation">,</span> <span class="token comment">// Update this line</span>
+   wasm_binary<span class="token punctuation">:</span> <span class="token operator">&amp;</span><span class="token punctuation">[</span><span class="token keyword">u8</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+   initial_authorities<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token class-name">AuraId</span><span class="token punctuation">,</span> <span class="token class-name">GrandpaId</span><span class="token punctuation">)</span><span class="token operator">></span><span class="token punctuation">,</span>
+   root_key<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
+   endowed_accounts<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token class-name">AccountId</span><span class="token operator">></span><span class="token punctuation">,</span>
+   enable_println<span class="token punctuation">:</span> <span class="token keyword">bool</span><span class="token punctuation">,</span> <span class="token comment">// Update this line</span>
 <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">GenesisConfig</span> <span class="token punctuation">{</span>
-    <span class="token class-name">GenesisConfig</span> <span class="token punctuation">{</span>
-        <span class="token comment">/* --snip-- */</span>
+   <span class="token class-name">GenesisConfig</span> <span class="token punctuation">{</span>
+      <span class="token comment">/* --snip-- */</span>
 
-        <span class="token comment">/*** Add This Block ***/</span>
-        pallet_contracts<span class="token punctuation">:</span> <span class="token class-name">ContractsConfig</span> <span class="token punctuation">{</span>
-            <span class="token comment">// println should only be enabled on development chains</span>
-            current_schedule<span class="token punctuation">:</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Schedule</span><span class="token punctuation">::</span><span class="token function">default</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">enable_println</span><span class="token punctuation">(</span>enable_println<span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token punctuation">}</span><span class="token punctuation">,</span>
-        <span class="token comment">/*** End Added Block ***/</span>
-    <span class="token punctuation">}</span>
+      <span class="token comment">/*** Add This Block ***/</span>
+      pallet_contracts<span class="token punctuation">:</span> <span class="token class-name">ContractsConfig</span> <span class="token punctuation">{</span>
+         <span class="token comment">// println should only be enabled on development chains</span>
+         current_schedule<span class="token punctuation">:</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Schedule</span><span class="token punctuation">::</span><span class="token function">default</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">enable_println</span><span class="token punctuation">(</span>enable_println<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token comment">/*** End Added Block ***/</span>
+   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="start-your-upgraded-chain"></a><a href="#start-your-upgraded-chain" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Start Your Upgraded Chain</h2>
@@ -468,9 +468,9 @@ Configuration.</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h3>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/index.html">FRAME <code>Contracts</code> Pallet API</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/pallet_contracts/index.html">FRAME <code>Contracts</code> Pallet API</a></li>
 </ul>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/9/2021 by Squirrel</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#install-the-node-template">Install the Node Template</a></li><li><a href="#file-structure">File Structure</a></li><li><a href="#importing-a-pallet-crate">Importing a Pallet Crate</a><ul class="toc-headings"><li><a href="#crate-features">Crate Features</a></li><li><a href="#importing-the-contracts-pallet-crate">Importing the Contracts Pallet Crate</a></li></ul></li><li><a href="#adding-the-contracts-pallet">Adding the Contracts Pallet</a><ul class="toc-headings"><li><a href="#implementing-the-contract-trait">Implementing the Contract Trait</a></li><li><a href="#adding-contracts-to-the-construct_runtime-macro">Adding Contracts to the <code>construct_runtime!</code> Macro</a></li><li><a href="#exposing-the-contracts-api">Exposing The Contracts API</a></li></ul></li><li><a href="#updating-the-outer-node">Updating the Outer Node</a><ul class="toc-headings"><li><a href="#adding-the-rpc-api-extension">Adding the RPC API extension</a></li><li><a href="#genesis-configuration">Genesis Configuration</a></li></ul></li><li><a href="#start-your-upgraded-chain">Start Your Upgraded Chain</a></li><li><a href="#adding-other-frame-pallets">Adding Other FRAME pallets</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li><li><a href="#references">References</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/14/2021 by Jimmy Chu</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#install-the-node-template">Install the Node Template</a></li><li><a href="#file-structure">File Structure</a></li><li><a href="#importing-a-pallet-crate">Importing a Pallet Crate</a><ul class="toc-headings"><li><a href="#crate-features">Crate Features</a></li><li><a href="#importing-the-contracts-pallet-crate">Importing the Contracts Pallet Crate</a></li></ul></li><li><a href="#adding-the-contracts-pallet">Adding the Contracts Pallet</a><ul class="toc-headings"><li><a href="#implementing-the-contract-trait">Implementing the Contract Trait</a></li><li><a href="#adding-contracts-to-the-construct_runtime-macro">Adding Contracts to the <code>construct_runtime!</code> Macro</a></li><li><a href="#exposing-the-contracts-api">Exposing The Contracts API</a></li></ul></li><li><a href="#updating-the-outer-node">Updating the Outer Node</a><ul class="toc-headings"><li><a href="#adding-the-rpc-api-extension">Adding the RPC API extension</a></li><li><a href="#genesis-configuration">Genesis Configuration</a></li></ul></li><li><a href="#start-your-upgraded-chain">Start Your Upgraded Chain</a></li><li><a href="#adding-other-frame-pallets">Adding Other FRAME pallets</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li><li><a href="#references">References</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();
