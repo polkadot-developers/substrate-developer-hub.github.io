@@ -17,7 +17,7 @@ the following `Config` configuration trait:
 /// Configure the pallet by specifying the parameters and types on which it depends.
 pub trait Config: frame_system::Config {
     /// Because this pallet emits events, it depends on the runtime's definition of an event.
-    type Event: From<Event<Self>> + Into<<Self as frame_system::Config>::Event>;
+    type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
 }
 ```
 
@@ -32,40 +32,38 @@ To figure out what you need to implement for the Nicks pallet specifically, you 
 the
 [`pallet_nicks::Config` documentation](https://substrate.dev/rustdocs/latest/pallet_nicks/trait.Config.html)
 or the definition of the trait itself in
-[the source code](https://github.com/paritytech/substrate/blob/monthly-2021-05/frame/nicks/src/lib.rs) of the
+[the source code](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs) of the
 Nicks pallet. We have annotated the source code for `nicks` pallet _from the substrate source_ below with
 enhanced comments that expand on those already included in the documentation, so be sure to read this:
 
-**[`substrate/frame/nicks/src/lib.rs`](https://github.com/paritytech/substrate/blob/monthly-2021-05/frame/nicks/src/lib.rs)**
+**[`substrate/frame/nicks/src/lib.rs`](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs)**
 
 ```rust
 /// Already in the Nicks pallet included substrate (with enhanced comments):
 pub trait Config: frame_system::Config {
-    // The runtime must supply this pallet with an Event type that satisfies the pallet's requirements.
-    type Event: From<Event<Self>> + Into<<Self as frame_system::Config>::Event>;
+    /// The overarching event type.
+    type Event: From<Event<Self>> + IsType<<Self as frame_system::Config>::Event>;
 
-    // The currency type that will be used to place deposits on nicks.
-    // It must implement ReservableCurrency.
-    // https://substrate.dev/rustdocs/latest/frame_support/traits/trait.ReservableCurrency.html
+    /// The currency trait.
     type Currency: ReservableCurrency<Self::AccountId>;
 
-    // The amount required to reserve a nick.
+    /// Reservation fee.
+    #[pallet::constant]
     type ReservationFee: Get<BalanceOf<Self>>;
 
-    // A callback that will be invoked when a deposit is forfeited.
+    /// What to do with slashed funds.
     type Slashed: OnUnbalanced<NegativeImbalanceOf<Self>>;
 
-    // Origins are used to identify network participants and control access.
-    // This is used to identify the pallet's admin.
-    // https://substrate.dev/docs/en/knowledgebase/runtime/origin
+    /// The origin which may forcibly set or remove a name. Root can always do this.
     type ForceOrigin: EnsureOrigin<Self::Origin>;
 
-    // This parameter is used to configure a nick's minimum length.
-    type MinLength: Get<usize>;
+    /// The minimum length a name may be.
+    #[pallet::constant]
+    type MinLength: Get<u32>;
 
-    // This parameter is used to configure a nick's maximum length.
-    // https://substrate.dev/docs/en/knowledgebase/runtime/storage#create-bounds
-    type MaxLength: Get<usize>;
+    /// The maximum length a name may be.
+    #[pallet::constant]
+    type MaxLength: Get<u32>;
 }
 ```
 
@@ -172,7 +170,7 @@ determine the types that the pallet exposes so that we can tell the runtime that
 complete list of possible types can be found in the
 [`construct_runtime!` macro documentation](https://substrate.dev/rustdocs/latest/frame_support/macro.construct_runtime.html).
 
-If we look at the [Nicks pallet](https://github.com/paritytech/substrate/blob/monthly-2021-05/frame/nicks/src/lib.rs) in detail, we know it has:
+If we look at the [Nicks pallet](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs) in detail, we know it has:
 
 - Module **Storage**: Because it uses the `decl_storage!` macro.
 - Module **Event**s: Because it uses the `decl_event!` macro. You will notice that in the case of
