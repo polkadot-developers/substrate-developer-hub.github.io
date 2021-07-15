@@ -1,0 +1,145 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Publish Your Own Pallet · Substrate Developer Hub</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="By now you should have successfully import the Nicks pallet. In future, you will write your own pallets"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Publish Your Own Pallet · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="By now you should have successfully import the Nicks pallet. In future, you will write your own pallets"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/past-seminars.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class=""><a href="/docs/en/" target="_self">Knowledge Base</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">Recipes</a></li><li class=""><a href="https://substrate.dev/substrate-how-to-guides/" target="_self">How-to Guides</a></li><li class=""><a href="https://substrate.dev/rustdocs/" target="_self">Reference</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/zh-CN/tutorials/add-a-pallet/publish-a-pallet">简体中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Add a Pallet to Your Runtime</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Add a Pallet to Your Runtime<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/add-a-pallet/">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/add-a-pallet/import-a-pallet">Import the Nicks Pallet</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/add-a-pallet/configure-a-pallet">Configure the Nicks Pallet</a></li><li class="navListItem"><a class="navItem" href="/docs/en/tutorials/add-a-pallet/interact-with-a-pallet">Interact with the Nicks Pallet</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/tutorials/add-a-pallet/publish-a-pallet">Publish Your Own Pallet</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/tutorials/add-a-pallet/publish-a-pallet.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Publish Your Own Pallet</h1></header><article><div><span><p>By now you should have successfully import the Nicks pallet. In future, you will write your own pallets
+to execute your application-specific logics. In those cases, you may want to share these pallets
+with others.</p>
+<p>In this section, we will cover how to publish your own pallet for public to download and use.</p>
+<h2><a class="anchor" aria-hidden="true" id="publishing-on-github"></a><a href="#publishing-on-github" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Publishing on GitHub</h2>
+<p>To publish your pallet on GitHub, you need to
+<a href="https://help.github.com/en/articles/create-a-repo">create a GitHub repository</a> and
+<a href="https://help.github.com/en/articles/pushing-to-a-remote">push your pallet's code</a> to it.</p>
+<p>Once published, other developers could refer to your pallet in their <code>Cargo.toml</code> using the
+following snippet:</p>
+<p><strong><code>runtime/Cargo.toml</code></strong></p>
+<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies.your-pallet-name]</span>
+<span class="hljs-attr">default_features</span> = <span class="hljs-literal">false</span>
+<span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/your-username/your-pallet'</span>
+<span class="hljs-attr">version</span> = <span class="hljs-string">'1.0.0'</span>
+<span class="hljs-attr">branch</span> = <span class="hljs-string">'master'</span>
+
+<span class="hljs-comment"># You may choose to refer to a specific commit or tag instead of branch</span>
+<span class="hljs-comment"># rev = '&lt;git-commit&gt;'</span>
+<span class="hljs-comment"># tag = '&lt;some tag&gt;</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="publishing-on-cratesio"></a><a href="#publishing-on-cratesio" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Publishing on crates.io</h2>
+<p><strong>crates.io</strong> allows permissionless publishing of Rust module. You could learn the procedure by
+following their guide on how to <a href="https://doc.rust-lang.org/cargo/reference/publishing.html">publish on crates.io</a>.</p>
+<p>Once published, other developers could refer to your pallet in their <code>Cargo.toml</code> using the
+following snippet:</p>
+<p><strong><code>runtime/Cargo.toml</code></strong></p>
+<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies.your-pallet-name]</span>
+<span class="hljs-attr">default_features</span> = <span class="hljs-literal">false</span>
+<span class="hljs-attr">version</span> = <span class="hljs-string">'some-compatible-version'</span>
+</code></pre>
+<p>We do not specify any target destination on the above, and by default it will search for the package
+in <strong>crates.io</strong> repository.</p>
+<h2><a class="anchor" aria-hidden="true" id="learn-more"></a><a href="#learn-more" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Learn More</h2>
+<ul>
+<li>We have <a href="../tutorials">plenty of tutorials</a> to showcase Substrate development concepts and
+techniques.</li>
+<li>For more information about runtime development tips and patterns, refer to our
+<a href="https://substrate.dev/recipes">Substrate Recipes</a>.</li>
+<li>For a bare FRAME pallet with higly detailed doc comments on specifics of what more you can access within FRAME, see <a href="https://github.com/paritytech/substrate/tree/master/frame/example">this example in <code>substrate</code></a>.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="references"></a><a href="#references" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h3>
+<ul>
+<li><a href="https://doc.rust-lang.org/stable/cargo/">The Cargo book</a></li>
+<li>More about <a href="https://rustwasm.github.io/">Rust and WebAssembly</a></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 7/14/2021 by Jimmy Chu</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/tutorials/add-a-pallet/interact-with-a-pallet"><span class="arrow-prev">← </span><span>Interact with the Nicks Pallet</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#publishing-on-github">Publishing on GitHub</a></li><li><a href="#publishing-on-cratesio">Publishing on crates.io</a></li><li><a href="#learn-more">Learn More</a><ul class="toc-headings"><li><a href="#references">References</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/rustdocs">API Reference</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+                var cookieSettings = document.getElementById('cookie-settings');
+                cookieSettings.onclick = function() {
+                  return klaro.show();
+                };
+              </script></a></div></section><section class="copyright">Copyright © 2021 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:en"]}
+              });
+            </script></body></html>
