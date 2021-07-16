@@ -36,13 +36,14 @@ class Index extends React.Component {
 
     return (
       <section>
-        {/* <div className="announcement">
-          Polkadot Decoded: talks, tech and all things Polkadot. May 19th & 20th{` `}&#128073;
+        <div className="announcement">
+          You’ve mastered the tech, now talk about it! Share your Substrate experience at Sub0
+          Online 2021.
           {` `}
-          <a href="https://decoded.polkadot.network/?utm_source=substrate.dev&utm_medium=referral&utm_campaign=decoded+2&utm_content=register">
-            Register now
+          <a href="https://www.parity.io/blog/sub0-online-take-the-stage-and-share-your-knowledge?utm_source=substrate.dev&utm_medium=referral&utm_campaign=cfp%20sub0&utm_content=call%20for%20proposals%20sub0&utm_term=parity">
+            Submit your proposal now.
           </a>
-        </div> */}
+        </div>
         <HomeSplash
           id='home-hero'
           siteConfig={siteConfig}
