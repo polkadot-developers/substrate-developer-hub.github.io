@@ -553,7 +553,7 @@ runtime. You can basically copy what was done there to your own runtime.
 
 ### Learn More
 
-- [A minimalist tutorial on writing your runtime pallet in its own package](../../tutorials/create-a-pallet/).
+- [A minimalist tutorial on writing your runtime pallet in its own package](../../tutorials/build-a-dapp/pallet).
 - With your node now capable of running smart contracts, go learn about
   [Substrate ink! smart contracts](../../knowledgebase/smart-contracts/).
 - [Substrate Recipes](https://substrate.dev/recipes/) offers detailed tutorials about writing
