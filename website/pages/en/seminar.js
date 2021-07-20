@@ -151,16 +151,12 @@ function Seminar(props) {
             <div className='col-md-6 second'>
 
               <h2 style={{ fontSize: '32px' }}><translate>Upcoming seminars</translate></h2>
-              
-              <p><strong>15 June. </strong><translate> Parity Software Developer Kian will be demonstrating a recent tool 
-              he built called try-runtime to test storage migrations and runtime upgrades.</translate></p>
+            
+              <p><strong>27 Jul. </strong><translate>Enhancing the FRAME developer experience: Parity Software Developer, Keith, presents improvements he's been working on for runtime engineers, including improving error messages in <code>construct_runtime</code> and the creation of <code>StorageNMaps</code>. </translate></p>
 
-              <p><strong>29 June. </strong><translate> RMRK.app: Nested, reactive, useful, upgradeable NFTs that react to emotion and conditionally 
-              display different resources in different formats.</translate></p>
+              <p><strong>10 Aug. </strong><translate>TBD.</translate></p>
 
-              <p><strong>13 July. </strong><translate> Parity Release Engineer Will (a.k.a. Chevdor) will present a set of tools he's been working on including:
-              subwasm, a tool to query a runtime directly from its WASM binary after generation by srtool;
-              srtool-cli, a new CLI for srtool that's powerful and easy to use; and a few other surprise tips and goodies. </translate></p>
+              <p><strong>24 Aug. </strong><translate>TBD.</translate></p>
 
             </div>
           </div>

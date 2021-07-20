@@ -1,5 +1,18 @@
 {
   "2021" : [{
+    "date": "2021 Jul 13",
+    "speakers": ["Will (Chevdor), Parity"],
+    "description": "Parity Release Engineer presents a set of tools he's been working on including: Subwasm, a tool to query a runtime directly from its WASM binary after generation by Srtool; Srtool-cli, a new CLI for srtool that's powerful and easy to use; and a few other surprise tips and goodies",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/43",
+    "tags": ["runtime", "tooling"]
+  },
+    {
+    "date": "2021 Jun 29",
+    "speakers": ["Bruno Škvorc, RMRK.app"],
+    "description": "RMRK.app: Nested, reactive, useful, upgradeable NFTs that react to emotion and conditionally display different resources in different formats",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/42",
+    "tags": ["ecosystem", "NFT"]
+  }, {
     "date": "2021 Jun 15",
     "speakers": ["Kian Paimani, Parity"],
     "description": "<code>try-runtime</code>: a testing tool for runtime upgrades",
