@@ -152,11 +152,11 @@ function Seminar(props) {
 
               <h2 style={{ fontSize: '32px' }}><translate>Upcoming seminars</translate></h2>
             
-              <p><strong>27 Jul. </strong><translate>Enhancing the FRAME developer experience: Parity Software Developer, Keith, presents improvements he's been working on for runtime engineers, including improving error messages in <code>construct_runtime</code> and the creation of <code>StorageNMaps</code>. </translate></p>
+              <p><strong>27 Jul. </strong><translate>Enhancing the FRAME developer experience: Parity Software Developer, Keith, presents improvements he's been working on for runtime engineers, including improving error messages in `construct_runtime` and the creation of `StorageNMaps`. </translate></p>
 
-              <p><strong>10 Aug. </strong><translate>TBD.</translate></p>
+              <p><strong>10 Aug. </strong><translate>Behind Subsocial's pallets: Alex will present his journey building a social network with Substrate, showcasing the flexibiltiy that FRAME offers for innovating with blockchain infrastructure.</translate></p>
 
-              <p><strong>24 Aug. </strong><translate>TBD.</translate></p>
+              <p><strong>24 Aug. </strong><translate>An implementation of delegated proof of stake under the hood: in this seminar, Amar will showcase a DPoS system he implemented with Substrate. He will talk about the inflation logic and the reward distribution, hoping to make it more "palatable" by contrasting it with FRAME's `pallet-staking`.</translate></p>
 
             </div>
           </div>
