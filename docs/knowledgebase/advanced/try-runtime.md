@@ -17,20 +17,18 @@ In its simplest form, `try-runtime` is a tool that enables:
 
 ## Motivation
 
-The initial motivation for `try-runtime` came from the need to test runtime changes against state from a real chain. Prior [`TestExternalities`][testextern-rustdocs] and [`BasicExternalities`][basicextern-rustdocs] existed for writing unit and integrated tests with mock data, but lacked an avenue to test against a chain's actual state. `try-runtime` extends [`TestExternalities`][testextern-rustdocs] and [`BasicExternalities`][basicextern-rustdocs] by scraping state (which is stored with key value pairs) via a node's RPC endpoints and inserting them into `TestExternalites`.
+The initial motivation for `try-runtime` came from the need to test runtime changes against state from a real chain. Prior [`TestExternalities`][testextern-rustdocs] and [`BasicExternalities`][basicextern-rustdocs] existed for writing unit and integrated tests with mock data, but lacked an avenue to test against a chain's actual state. `try-runtime` extends [`TestExternalities`][testextern-rustdocs] and [`BasicExternalities`][basicextern-rustdocs] by scraping state (which is stored with key value pairs) via a node's RPC endpoints [`getStorage`][get-storage] and [`getKeysPaged`][storage-keys-paged] and inserting them into `TestExternalites`.
 
 ## How it works
-The `try-runtime` tool has its own implementation of externalities called [`remote_externalities`][remoteextern-rustdocs], with its hash-map containing:
-
-- a **Key**: the `Hash` of `hash(pallet_name) + hash(storage)`; and
-- a **Value**: some SCALE encoded `Vec<u8>` Rust value. 
+The `try-runtime` tool has its own implementation of externalities called [`remote_externalities`][remoteextern-rustdocs] which is just a builder wrapper around `TestExternalities` that uses
+a generic [key-value store](/docs/en/knowledgebase/advanced/storage) where data is [SCALE encoded](/docs/en/knowledgebase/advanced/codec).
 
 The diagram below illustrates the way externalities sits outside a compiled runtime as a means to capture 
 the storage of that runtime. 
 
 Storage externalities            |  Testing with externalities
 :-------------------------:|:-------------------------:
-![image](./../assets/advanced/try-runtime-ext-1.png)  |  ![image](./../assets/advanced/try-runtime-ext-2.png)
+![image](/docs/assets/advanced/try-runtime-ext-1.png)  |  ![image](/docs/assets/advanced/try-runtime-ext-2.png)
 
 With `remote_externalities`, developers can capture some chain state and run tests on it. Essentially, `RemoteExterrnalities` will populate a `TestExternalities` with a real chain's data. 
 
@@ -45,7 +43,8 @@ In order to query state, `try-runtime` makes use of Substrate's RPCs, namely [`S
 The most common use case for `try-runtime` is with storage migrations and runtime upgrades.
 
 ### Calling into hooks from `OnRuntimeUpgrade`
-There's two ways of defining an runtime upgrade hook in the runtime:
+By default, there are two ways of defining a runtime upgrade in the runtime. The `OnRuntimeUpgrade` trait provides the [different methods][onruntimeupgrade-method-rustdocs] to achieve this.
+
 - **From inside a runtime**. For example:
     ```rust
     struct Custom;
@@ -54,21 +53,19 @@ There's two ways of defining an runtime upgrade hook in the runtime:
     }
     ```
 
-- **From a pallet**. For example:
+- **From inside a pallet**. For example:
     ```rust
     #[pallet::hooks]
     fn on_runtime_upgrade() -> Weight { }
     ```
 
 To call into these hooks with `try-runtime`, a cargo `feature` is used. This requires specifying a `features` 
-dependency in your projects' relevant `Cargo.toml` files. 
+dependency in your projects' relevant `Cargo.toml` files. With this cargo feature flag enabled, `try-runtime` can call into `OnRuntimeUpgrade` hooks using the 
+`#[cfg(feature = "try-runtime")]` macro which gives it access to the `OnRuntimeUpgrade` methods.
 
-> Refer to this how-to guide on integrating `try-runtime` to your project. (TODO)
+> Refer to this how-to guide on integrating `try-runtime` to your project. _(TODO)_
 
-With this feature tag, `try-runtime` can call into `OnRuntimeUpgrade` hooks using the 
-`#[cfg(feature = "try-runtime")]` macro. This macro must be 
-declared before each function being tested in order for `try-runtime` to capture the relevant state 
-that its user specified. For example, in a storage migration, `try-runtime` can allow developers to 
+For example, in a storage migration, `try-runtime` can allow developers to 
 examine state both before and after a runtime upgrade:
 
 ```rust
@@ -84,8 +81,8 @@ examine state both before and after a runtime upgrade:
 
 ### Helper functions
 
-A set of helper functions are made available from [`frame_support::hooks`][hooks-rustdocs] called
-[`OnRuntimeUpgradeHelpersExt`][oru-helpers-ext-rustdocs] in order to use `try-runtime` for testing storage migrations. These include:
+[`OnRuntimeUpgradeHelpersExt`][oru-helpers-ext-rustdocs] are a set of helper functions made available from 
+[`frame_support::hooks`][hooks-rustdocs] in order to use `try-runtime` for testing storage migrations. These include:
 
 - **`storage_key`**: Generates a storage key unique to this runtime upgrade. This can be used to communicate data from pre-upgrade to post-upgrade state and check them.
 - **`set_temp_storage`**: Writes some temporary data to a specific storage that can be read (potentially in the post-upgrade hook).
@@ -127,8 +124,6 @@ pub type Executive = Executive<_, _, _, _, (CheckerMigrations)>;
 
 To use `try-runtime` from the command line, run your node with the `--features=try-runtime` flag. 
 
-// TODO: basic commands / common combinations
-
 The possible sub-commands include:
 
 - **`on-runtime-upgrade`**: Executes "tryRuntime_on_runtime_upgrade" against the given runtime state.
@@ -143,6 +138,7 @@ cargo run -- --release --features=try-runtime try-runtime on-runtime-upgrade liv
 ```
 
 #### Other scenarios
+
 Using it to re-execute code from a `ElectionProviderMultiPhase` off-chain worker:
 
 ```bash
@@ -159,13 +155,16 @@ live \
 ws//$HOST:9944
 ```
 
+> Tip: pass in the --help flag after each subcommand to see the command's different options.
+
 ## Next Steps
 
 ### Learn More
-// TODO: Link how-to guides
-
+- [Storage keys](/docs/en/knowledgebase/advanced/storage#storage-value-keys)
+- [`OnRuntimeUpgrade`][onruntimeupgrade-method-rustdocs] FRAME trait
+- [`try-runtime-upgrade`][executive-try-runtime-rustdocs] from `frame_executive`
 ## Examples
-- `try-runtime` in [FRAME's Staking pallet][staking-frame].
+- `try-runtime` in [FRAME's Staking pallet][staking-frame]
 
 [tryruntime-api-rustdocs]: https://crates.parity.io/frame_try_runtime/trait.TryRuntime.html
 [testextern-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/sp_state_machine/struct.TestExternalities.html
@@ -180,3 +179,7 @@ ws//$HOST:9944
 [executive-rustdocs]: https://crates.parity.io/frame_executive/struct.Executive.html 
 [sc-cli-rustdocs]: https://crates.parity.io/sc_cli/index.html#
 [staking-frame]: https://github.com/paritytech/substrate/blob/fc49802f263529160635471c8a17888846035f5d/frame/staking/src/lib.rs#L1399-L1406
+[onruntimeupgrade-method-rustdocs]: https://crates.parity.io/frame_support/traits/trait.OnRuntimeUpgrade.html#on_runtime_upgrade
+[executive-try-runtime-rustdocs]: https://crates.parity.io/frame_executive/struct.Executive.html#method.try_runtime_upgrade
+[get-storage]: https://crates.parity.io/sp_core/traits/trait.Externalities.html#method.set_storage
+[storage-keys-paged]: https://crates.parity.io/sc_rpc/state/trait.StateApi.html#tymethod.storage_keys_paged
