@@ -4,8 +4,7 @@ title: try-runtime
 
 The `try-runtime` tool is built to query a snapshot of runtime storage, using an in-memory-externalities to store state. In this way, 
 it enables runtime engineers to write tests for a specified runtime state.
-Being part of [`sc-cli`][sc-cli-rustdocs], it is designed to be used as a command line interface to specify 
-what block to capture and which pallets to run tests on.
+Being part of [`sc-cli`][sc-cli-rustdocs], it is designed to be used as a command line interface to specify at which block to query state.
 
 In its simplest form, `try-runtime` is a tool that enables:
 
