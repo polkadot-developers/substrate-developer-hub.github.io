@@ -75,7 +75,8 @@
       "tutorials/add-a-pallet/index",
       "tutorials/add-a-pallet/import-a-pallet",
       "tutorials/add-a-pallet/configure-a-pallet",
-      "tutorials/add-a-pallet/interact-with-a-pallet"
+      "tutorials/add-a-pallet/interact-with-a-pallet",
+      "tutorials/add-a-pallet/publish-a-pallet"
     ]
   },
   "forkless-upgrade": {
@@ -101,9 +102,6 @@
       "tutorials/start-a-private-network/customspec",
       "tutorials/start-a-private-network/customchain"
     ]
-  },
-  "pallet-in-crate": {
-    "Write a Pallet in its Own Crate": []
   },
   "add-contracts-pallet": {
     "Add the Contracts Pallet": []

@@ -58,7 +58,7 @@ sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel
 > There are reports that using substrate dependancies newer than the June 2021 
 > monthly release are able to work without issue.
 > 
-> Here is the [node template `monthly-2021-05`](https://github.com/substrate-developer-hub/substrate-node-template/tree/v3.0.0%2Bmonthly-2021-05)
+> Here is the [latest node template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest)
 > that you should use as a base for building on M1s.
 > 
 > If you decide not to use a monthly release, see

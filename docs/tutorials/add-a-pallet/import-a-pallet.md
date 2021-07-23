@@ -2,7 +2,7 @@
 title: Import the Nicks Pallet
 ---
 
-We will now modify the Substrate Developer Hub Node Template to include the Nicks pallet; this
+We will now modify the Substrate Node Template to include the Nicks pallet. This
 pallet allows blockchain users to pay a deposit to reserve a nickname and associate it with an
 account they control.
 
@@ -10,23 +10,23 @@ Open the Node Template in your favorite code editor. We will be editing two file
 `runtime/src/lib.rs`, and `runtime/Cargo.toml`.
 
 ```text
-substrate-node-template
+substrate-node-template/
 |
-+-- runtime
++-- runtime/
 |   |
 |   +-- Cargo.toml    <-- One change in this file
 |   |
 |   +-- build.rs
 |   |
-|   +-- src
+|   +-- src/
 |       |
 |       +-- lib.rs     <-- Most changes in this file
 |
-+-- pallets
++-- pallets/
 |
-+-- scripts
++-- scripts/
 |
-+-- node
++-- node/
 |
 +-- ...
 ```
@@ -34,23 +34,22 @@ substrate-node-template
 ## Importing a Pallet Crate
 
 The first thing you need to do to add the Nicks pallet is to import the `pallet-nicks` crate in your
-runtime's `Cargo.toml` file. If you want a proper primer into Cargo References, you should check out
+runtime's `Cargo.toml` file. If you want a proper primer into Cargo References, please check out
 [their official documentation](https://doc.rust-lang.org/cargo/reference/index.html).
 
 Open `substrate-node-template/runtime/Cargo.toml` and you will see a list of all the dependencies
-your runtime has. For example, it depends on the
-[Balances pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/index.html):
+your runtime has. For example, it depends on the [Balances pallet](https://substrate.dev/rustdocs/latest/pallet_balances/index.html):
 
 **`runtime/Cargo.toml`**
 
 ```TOML
 [dependencies]
 #--snip--
-pallet-balances = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
+pallet-balances = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-YYYY-MM' }
 ```
 
 This is telling Cargo to find the crate from git repository `paritytech/substrate` with commit
-that is tagged with `monthly-2021-05` (linked [here](https://github.com/paritytech/substrate/tree/monthly-2021-05)).
+that is tagged with `monthly-YYYY-MM`. `YYYY` and `MM` are the corresponding year and month.
 
 ### Crate Features
 
@@ -83,11 +82,11 @@ feature will determine the features that should be used on downstream dependenci
 snippet above should be read as:
 
 > The default feature for this Substrate runtime is `std`. When `std` feature is enabled for the
-> runtime, `codec`, `serde`, `frame-executive`, `frame-support`, and all the other listed
-> dependencies should use their `std` feature too.
+> runtime, `codec`, `frame-executive`, `frame-support`, and all the other listed
+> dependencies should use their `std` feature.
 
-This is important to enable the Substrate runtime to compile to both native binaries, which support
-Rust [`std`](https://doc.rust-lang.org/std/), and [Wasm](https://webassembly.org/) binaries, which
+This is important to enable the Substrate runtime to compile to both native binary, which supports
+Rust [`std`](https://doc.rust-lang.org/std/), and [Wasm](https://webassembly.org/) binary, which
 do not (see: [`no_std`](https://rust-embedded.github.io/book/intro/no-std.html)).
 
 The use of Wasm runtime binaries is one of Substrate's defining features. It allows the runtime code

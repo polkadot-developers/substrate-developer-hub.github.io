@@ -13,7 +13,7 @@ with additional tools to ease development depending on your use cases.
 
 ### Contracts Pallet
 
-The [**FRAME Contracts pallet**](https://substrate.dev/rustdocs/v3.0.0-monthly-2021-05/pallet_contracts/index.html) 
+The [**FRAME Contracts pallet**](https://substrate.dev/rustdocs/latest/pallet_contracts/index.html)
 provides functionality for a Substrate runtime to deploy
 and execute WebAssembly Smart Contracts. It has its
 own smart contract language, specially designed to write contracts that optimize for correctness, conciseness and efficiency.
@@ -190,7 +190,7 @@ decisions on which approach to use based on different situations.
 ### References
 
 - Visit the reference docs for the
-  [Contracts pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_contracts/index.html).
+  [Contracts pallet](https://substrate.dev/rustdocs/latest/pallet_contracts/index.html).
 - View source code and documentation of the
   [EVM pallet](https://github.com/paritytech/frontier/tree/master/frame/evm).
 - Visit the

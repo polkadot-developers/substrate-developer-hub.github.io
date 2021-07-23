@@ -3,9 +3,9 @@ title: Why are there no Hash collections in sp_std?
 ---
 
 Collections such as maps and sets are fundamental data structures. `sp_std` exposes them via
-[`BTreeMap`](https://substrate.dev/rustdocs/v3.0.0/sp_std/collections/btree_map/struct.BTreeMap.html)
+[`BTreeMap`](https://substrate.dev/rustdocs/latest/sp_std/collections/btree_map/struct.BTreeMap.html)
 and
-[`BTreeSet`](https://substrate.dev/rustdocs/v3.0.0/sp_std/collections/btree_set/struct.BTreeSet.html)
+[`BTreeSet`](https://substrate.dev/rustdocs/latest/sp_std/collections/btree_set/struct.BTreeSet.html)
 respectively. These map closely to the implementations in Rust's standard library. However, the
 standard library also contains
 [`HashMap`](https://doc.rust-lang.org/std/collections/struct.HashMap.html) and

@@ -30,8 +30,8 @@ that Alice's account will be the one used to perform runtime upgrades throughout
 Dispatchable calls in Substrate are always associated with a
 [weight](../../knowledgebase/learn-substrate/weight), which is used for resource accounting. FRAME's
 System module bounds extrinsics to a block
-[`BlockLength`](https://substrate.dev/rustdocs/v3.0.0/frame_system/limits/struct.BlockLength.html) and
-[`BlockWeights`](https://substrate.dev/rustdocs/v3.0.0/frame_system/limits/struct.BlockWeights.html) limit.
+[`BlockLength`](https://substrate.dev/rustdocs/latest/frame_system/limits/struct.BlockLength.html) and
+[`BlockWeights`](https://substrate.dev/rustdocs/latest/frame_system/limits/struct.BlockWeights.html) limit.
 The `set_code` function in
 [the `System` module](https://github.com/paritytech/substrate/blob/v3.0.0/frame/system/src/lib.rs) is
 intentionally designed to consume the maximum weight that may fit in a block.
@@ -44,12 +44,12 @@ intentionally designed to consume the maximum weight that may fit in a block.
 > any blockchain: it is worth to spend one block to keep this operation clean and reduce
 > chance of error. This study is outside the scope of this tutorial.
 
-The [`set_code` function](https://substrate.dev/rustdocs/v3.0.0/src/frame_system/lib.rs.html#329-337)'s
+The [`set_code` function](https://substrate.dev/rustdocs/latest/src/frame_system/lib.rs.html#329-337)'s
 weight annotation also specifies that the extrinsic call is in
 [the `Operational` class](../../knowledgebase/runtime/fees#operational-dispatches) of dispatchable
 function, which identifies it as relating to network _operations_ and impacts the accounting of its
 resources, such as by exempting it from the
-[`TransactionByteFee`](https://substrate.dev/rustdocs/v3.0.0/pallet_transaction_payment/trait.Config.html#associatedtype.TransactionByteFee).
+[`TransactionByteFee`](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/trait.Config.html#associatedtype.TransactionByteFee).
 
 ### Use `sudo` to dispatch
 
@@ -58,7 +58,7 @@ capabilities related to the management of a single
 [`sudo` ("superuser do")](https://en.wikipedia.org/wiki/Sudo) administrator. In FRAME, the `Root`
 Origin is used to identify the runtime administrator; some of FRAME's features, including the
 ability to update the runtime by way of
-[the `set_code` function](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Call.html#variant.set_code),
+[the `set_code` function](https://substrate.dev/rustdocs/latest/frame_system/pallet/enum.Call.html#variant.set_code),
 are only accessible to this administrator. The Sudo pallet maintains a single
 [storage item](../../knowledgebase/runtime/storage): the ID of the account that has access to the
 pallet's [dispatchable functions](../../knowledgebase/getting-started/glossary#dispatch). The Sudo
@@ -84,7 +84,7 @@ fn sudo(origin, call) -> Result {
 ### `sudo` to Override Resource Accounting
 
 In order to work around resource accounting within FRAME's safeguards, the Sudo pallet provides the
-[`sudo_unchecked_weight`](https://substrate.dev/rustdocs/v3.0.0/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
+[`sudo_unchecked_weight`](https://substrate.dev/rustdocs/latest/pallet_sudo/enum.Call.html#variant.sudo_unchecked_weight)
 function, which provides the same capability as the `sudo` function, but accepts an additional
 parameter that is used to specify the (possibly zero) weight to use for the call. The
 `sudo_unchecked_weight` function is what will be used to invoke the runtime upgrade in this section
@@ -100,7 +100,7 @@ consumed by the `set_code` function.
 ### Add the `Scheduler` Pallet
 
 Because the template node doesn't come with the
-[Scheduler pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_scheduler/index.html) included in
+[Scheduler pallet](https://substrate.dev/rustdocs/latest/pallet_scheduler/index.html) included in
 its runtime, the first runtime upgrade performed in this tutorial will add that pallet.
 First, add the Scheduler pallet as a dependency in the template node's runtime Cargo file.
 
@@ -127,51 +127,51 @@ Next, add the pallet to the runtime:
 ```rust
 /// Define the types required by the Scheduler pallet.
 parameter_types! {
-	pub MaximumSchedulerWeight: Weight = 10_000_000;
-	pub const MaxScheduledPerBlock: u32 = 50;
+  pub MaximumSchedulerWeight: Weight = 10_000_000;
+  pub const MaxScheduledPerBlock: u32 = 50;
 }
 
 /// Configure the runtime's implementation of the Scheduler pallet.
 impl pallet_scheduler::Config for Runtime {
-	type Event = Event;
-	type Origin = Origin;
-	type PalletsOrigin = OriginCaller;
-	type Call = Call;
-	type MaximumWeight = MaximumSchedulerWeight;
-	type ScheduleOrigin = frame_system::EnsureRoot<AccountId>;
-	type MaxScheduledPerBlock = MaxScheduledPerBlock;
-	type WeightInfo = ();
+  type Event = Event;
+  type Origin = Origin;
+  type PalletsOrigin = OriginCaller;
+  type Call = Call;
+  type MaximumWeight = MaximumSchedulerWeight;
+  type ScheduleOrigin = frame_system::EnsureRoot<AccountId>;
+  type MaxScheduledPerBlock = MaxScheduledPerBlock;
+  type WeightInfo = ();
 }
 
 // Add the Scheduler pallet inside the construct_runtime! macro.
 construct_runtime!(
-	pub enum Runtime where
-		Block = Block,
-		NodeBlock = opaque::Block,
-		UncheckedExtrinsic = UncheckedExtrinsic
-	{
-		/*** snip ***/
-		Scheduler: pallet_scheduler::{Module, Call, Storage, Event<T>},
-	}
+  pub enum Runtime where
+    Block = Block,
+    NodeBlock = opaque::Block,
+    UncheckedExtrinsic = UncheckedExtrinsic
+  {
+    /*** snip ***/
+    Scheduler: pallet_scheduler::{Module, Call, Storage, Event<T>},
+  }
 );
 ```
 
 The final step to preparing an upgraded FRAME runtime is to increment its
-[`spec_version`](https://substrate.dev/rustdocs/v3.0.0/sp_version/struct.RuntimeVersion.html#structfield.spec_version),
+[`spec_version`](https://substrate.dev/rustdocs/latest/sp_version/struct.RuntimeVersion.html#structfield.spec_version),
 which is a member of
-[the `RuntimeVersion` struct](https://substrate.dev/rustdocs/v3.0.0/sp_version/struct.RuntimeVersion.html):
+[the `RuntimeVersion` struct](https://substrate.dev/rustdocs/latest/sp_version/struct.RuntimeVersion.html):
 
 **`runtime/src/lib.rs`**
 
 ```rust
 pub const VERSION: RuntimeVersion = RuntimeVersion {
-	spec_name: create_runtime_str!("node-template"),
-	impl_name: create_runtime_str!("node-template"),
-	authoring_version: 1,
-	spec_version: 101,  // *Increment* this value, the template uses 100 as a base
-	impl_version: 1,
-	apis: RUNTIME_API_VERSIONS,
-	transaction_version: 1,
+  spec_name: create_runtime_str!("node-template"),
+  impl_name: create_runtime_str!("node-template"),
+  authoring_version: 1,
+  spec_version: 101,  // *Increment* this value, the template uses 100 as a base
+  impl_version: 1,
+  apis: RUNTIME_API_VERSIONS,
+  transaction_version: 1,
 };
 ```
 

@@ -19,7 +19,7 @@ target use case. The result: each pallet has its own discrete logic which can mo
 functionality of your blockchain's state transition functions.
 
 
-For example, the [Balances pallet](https://github.com/paritytech/substrate/tree/master/frame/balances), which is included in [FRAME](/knowledgebase/runtime/frame), defines cryptocurrency capabilities for your blockchain. More specifically, it
+For example, the [Balances pallet](https://github.com/paritytech/substrate/tree/master/frame/balances), which is included in [FRAME](../../knowledgebase/runtime/frame), defines cryptocurrency capabilities for your blockchain. More specifically, it
 defines: 
 - **Storage items** that keep track of the tokens a user owns.
 - **Functions** that users can call to transfer
