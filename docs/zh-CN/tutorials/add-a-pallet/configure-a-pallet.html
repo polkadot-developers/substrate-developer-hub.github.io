@@ -186,10 +186,10 @@
 <p>Next, we need to add the Nicks pallet to the <code>construct_runtime!</code> macro. For this, we need to determine the types that the pallet exposes so that we can tell the runtime that they exist. The complete list of possible types can be found in the <a href="https://substrate.dev/rustdocs/latest/frame_support/macro.construct_runtime.html"><code>construct_runtime!</code> macro documentation</a>.</p>
 <p>If we look at the <a href="https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs">Nicks pallet</a> in detail, we know it has:</p>
 <ul>
-<li><strong>Storage</strong>模块：因为它使用了<code>decl_storage!</code> 宏。</li>
-<li><strong>Event</strong>模块：因为它使用了<code>decl_event!</code> 宏。 You will notice that in the case of the Nicks pallet, the <code>Event</code> keyword is parameterized with respect to a type, <code>T</code>; this is because at least one of the events defined by the Nicks pallet depends on a type that is configured with the <code>Config</code> configuration trait.</li>
-<li><strong>Call</strong>able 函数：因为它在 <code>decl_module!</code>宏中定义了可调用函数。</li>
-<li>The <strong>Pallet</strong> type from the <code>decl_module!</code> macro.</li>
+<li>Module <strong>Storage</strong>: Because it uses the <code>#[pallet::storage]</code> macro.</li>
+<li>Module <strong>Event</strong>s: Because it uses the <code>#[pallet::event]</code> macro. You will notice that in the case of the Nicks pallet, the <code>Event</code> keyword is parameterized with respect to a type, <code>T</code>; this is because at least one of the events defined by the Nicks pallet depends on a type that is configured with the <code>Config</code> configuration trait.</li>
+<li><strong>Call</strong>able Functions: Because it has dispatchable functions in the <code>#[pallet::call]</code> macro.</li>
+<li>The <strong>Pallet</strong> type from the <code>#[pallet::pallet]</code> macro.</li>
 </ul>
 <p>因此当我们添加pallet时，它看起来就像：</p>
 <p><strong><code>runtime/src/lib.rs</code></strong></p>
