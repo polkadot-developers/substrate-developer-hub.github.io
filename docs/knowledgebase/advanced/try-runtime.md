@@ -2,7 +2,7 @@
 title: try-runtime
 ---
 
-The `try-runtime` tool is built to query a snapshot of runtime storage, using an in-memory-externalities to store state. In this way, 
+The `try-runtime` tool is built to query a snapshot of runtime storage, using an [in-memory-externalities][testextern-rustdocs] to store state. In this way, 
 it enables runtime engineers to write tests for a specified runtime state.
 Being part of [`sc-cli`][sc-cli-rustdocs], it is designed to be used as a command line interface to specify at which block to query state.
 
@@ -162,11 +162,13 @@ ws//$HOST:9944
 - [Storage keys](/docs/en/knowledgebase/advanced/storage#storage-value-keys)
 - [`OnRuntimeUpgrade`][onruntimeupgrade-method-rustdocs] FRAME trait
 - [`try-runtime-upgrade`][executive-try-runtime-rustdocs] from `frame_executive`
+- [`set_storage`][get-storage-rustdocs] from `sp_core::traits::Externalities`
+- [storage_keys_paged][storage-keys-paged-rustdocs] from `sc_rpc::state::StateApi`
 ## Examples
 - `try-runtime` in [FRAME's Staking pallet][staking-frame]
 
 [tryruntime-api-rustdocs]: https://crates.parity.io/frame_try_runtime/trait.TryRuntime.html
-[testextern-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/sp_state_machine/struct.TestExternalities.html
+[testextern-rustdocs]: https://substrate.dev/rustdocs/latest/sp_state_machine/struct.TestExternalities.html
 [basicextern-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/sp_state_machine/struct.BasicExternalities.html
 [remoteextern-rustdocs]: https://crates.parity.io/remote_externalities/index.html#
 [stateapi-rustdocs]: https://crates.parity.io/sc_rpc/state/trait.StateApi.html# 
@@ -180,5 +182,7 @@ ws//$HOST:9944
 [staking-frame]: https://github.com/paritytech/substrate/blob/fc49802f263529160635471c8a17888846035f5d/frame/staking/src/lib.rs#L1399-L1406
 [onruntimeupgrade-method-rustdocs]: https://crates.parity.io/frame_support/traits/trait.OnRuntimeUpgrade.html#on_runtime_upgrade
 [executive-try-runtime-rustdocs]: https://crates.parity.io/frame_executive/struct.Executive.html#method.try_runtime_upgrade
-[get-storage]: https://crates.parity.io/sp_core/traits/trait.Externalities.html#method.set_storage
-[storage-keys-paged]: https://crates.parity.io/sc_rpc/state/trait.StateApi.html#tymethod.storage_keys_paged
+[get-storage-rustdocs]: https://crates.parity.io/sp_core/traits/trait.Externalities.html#method.set_storage
+[get-storage]: https://polkadot.js.org/docs/substrate/rpc/#getstoragechildkey-prefixedstoragekey-key-storagekey-at-hash-optionstoragedata
+[storage-keys-paged]: https://polkadot.js.org/docs/substrate/rpc/#getkeyspagedchildkey-prefixedstoragekey-prefix-storagekey-count-u32-startkey-storagekey-at-hash-vecstoragekey
+[storage-keys-paged-rustdocs]: https://crates.parity.io/sc_rpc/state/trait.StateApi.html#tymethod.storage_keys_paged
