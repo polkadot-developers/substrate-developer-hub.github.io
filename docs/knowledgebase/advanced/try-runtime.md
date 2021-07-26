@@ -159,6 +159,7 @@ ws//$HOST:9944
 ## Next Steps
 
 ### Learn More
+- [Integrate `try-runtime`][integrate-tryruntime-htg] how-to guide  
 - [Storage keys](/docs/en/knowledgebase/advanced/storage#storage-value-keys)
 - [`OnRuntimeUpgrade`][onruntimeupgrade-method-rustdocs] FRAME trait
 - [`try-runtime-upgrade`][executive-try-runtime-rustdocs] from `frame_executive`
@@ -186,3 +187,4 @@ ws//$HOST:9944
 [get-storage]: https://polkadot.js.org/docs/substrate/rpc/#getstoragechildkey-prefixedstoragekey-key-storagekey-at-hash-optionstoragedata
 [storage-keys-paged]: https://polkadot.js.org/docs/substrate/rpc/#getkeyspagedchildkey-prefixedstoragekey-prefix-storagekey-count-u32-startkey-storagekey-at-hash-vecstoragekey
 [storage-keys-paged-rustdocs]: https://crates.parity.io/sc_rpc/state/trait.StateApi.html#tymethod.storage_keys_paged
+[integrate-tryruntime-htg]: https://substrate.dev/substrate-how-to-guides/docs/tools/integrate-try-runtime
