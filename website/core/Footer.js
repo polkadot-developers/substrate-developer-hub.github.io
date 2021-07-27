@@ -128,8 +128,14 @@ class Footer extends React.Component {
             <a href="https://substrate.dev/recipes/">
               <translate>Recipes</translate>
             </a>
+            <a href="https://substrate.dev/substrate-how-to-guides">
+              <translate>How-to Guides</translate>
+            </a>
             <a href="https://substrate.dev/rustdocs">
               <translate>API Reference</translate>
+            </a>
+            <a href="https://playground.substrate.dev/">
+              <translate>Playground</translate>
             </a>
           </div>
           <div>
