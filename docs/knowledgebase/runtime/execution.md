@@ -70,8 +70,8 @@ usage of the blockchain.
 
 ### References
 
-- [FRAME executive](https://substrate.dev/rustdocs/v3.0.0/frame_executive/index.html)
-- [`decl_event!` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_event.html)
-- [`decl_storage!` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_storage.html)
-- [`construct_runtime!` macro](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.construct_runtime.html)
-- [`OnInitialize` trait](https://substrate.dev/rustdocs/v3.0.0/frame_support/traits/trait.OnInitialize.html)
+- [FRAME executive](https://substrate.dev/rustdocs/latest/frame_executive/index.html)
+- [`decl_event!` macro](https://substrate.dev/rustdocs/latest/frame_support/macro.decl_event.html)
+- [`decl_storage!` macro](https://substrate.dev/rustdocs/latest/frame_support/macro.decl_storage.html)
+- [`construct_runtime!` macro](https://substrate.dev/rustdocs/latest/frame_support/macro.construct_runtime.html)
+- [`OnInitialize` trait](https://substrate.dev/rustdocs/latest/frame_support/traits/trait.OnInitialize.html)

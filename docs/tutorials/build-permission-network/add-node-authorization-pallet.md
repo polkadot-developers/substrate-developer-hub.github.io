@@ -9,7 +9,7 @@ a configurable set of nodes for a permissioned network.
 Each node is identified by a `PeerId` which is simply a wrapper on `Vec<u8>`.
 Each `PeerId` is owned by an `AccountId` that claims it
 (these are 
-[associated in a map](https://substrate.dev/rustdocs/v3.0.0/pallet_node_authorization/struct.Owners.html)
+[associated in a map](https://substrate.dev/rustdocs/latest/pallet_node_authorization/struct.Owners.html)
 ). With this pallet, you have two ways to authorize a node which wants to join the network:
 
 1. Join the set of well known nodes between which the connections are allowed.
@@ -103,19 +103,19 @@ use frame_system::EnsureRoot;
 /* --snip-- */
 
 parameter_types! {
-	pub const MaxWellKnownNodes: u32 = 8;
-	pub const MaxPeerIdLength: u32 = 128;
+    pub const MaxWellKnownNodes: u32 = 8;
+    pub const MaxPeerIdLength: u32 = 128;
 }
 
 impl pallet_node_authorization::Config for Runtime {
-	type Event = Event;
-	type MaxWellKnownNodes = MaxWellKnownNodes;
-	type MaxPeerIdLength = MaxPeerIdLength;
-	type AddOrigin = EnsureRoot<AccountId>;
-	type RemoveOrigin = EnsureRoot<AccountId>;
-	type SwapOrigin = EnsureRoot<AccountId>;
-	type ResetOrigin = EnsureRoot<AccountId>;
-	type WeightInfo = ();
+    type Event = Event;
+    type MaxWellKnownNodes = MaxWellKnownNodes;
+    type MaxPeerIdLength = MaxPeerIdLength;
+    type AddOrigin = EnsureRoot<AccountId>;
+    type RemoveOrigin = EnsureRoot<AccountId>;
+    type SwapOrigin = EnsureRoot<AccountId>;
+    type ResetOrigin = EnsureRoot<AccountId>;
+    type WeightInfo = ();
 }
 
 /* --snip-- */
@@ -175,28 +175,28 @@ Adding our genesis config in the helper function `testnet_genesis`,
 ```rust
 /// Configure initial storage state for FRAME modules.
 fn testnet_genesis(
-	wasm_binary: &[u8],
-	initial_authorities: Vec<(AuraId, GrandpaId)>,
-	root_key: AccountId,
-	endowed_accounts: Vec<AccountId>,
-	_enable_println: bool,
+    wasm_binary: &[u8],
+    initial_authorities: Vec<(AuraId, GrandpaId)>,
+    root_key: AccountId,
+    endowed_accounts: Vec<AccountId>,
+    _enable_println: bool,
 ) -> GenesisConfig {
 
     /* --snip-- */
 
     /*** Add This Block Item ***/
-		pallet_node_authorization: Some(NodeAuthorizationConfig {
-    		nodes: vec![
-				(
-					OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
-					endowed_accounts[0].clone()
-				),
-				(
-					OpaquePeerId(bs58::decode("12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust").into_vec().unwrap()),
-					endowed_accounts[1].clone()
-				),
-    		],
-   		}),
+        pallet_node_authorization: Some(NodeAuthorizationConfig {
+            nodes: vec![
+                (
+                    OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
+                    endowed_accounts[0].clone()
+                ),
+                (
+                    OpaquePeerId(bs58::decode("12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust").into_vec().unwrap()),
+                    endowed_accounts[1].clone()
+                ),
+            ],
+        }),
 
     /* --snip-- */
 

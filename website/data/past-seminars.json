@@ -1,0 +1,167 @@
+{
+  "2021" : [{
+    "date": "2021 Jul 13",
+    "speakers": ["Will (Chevdor), Parity"],
+    "description": "Parity Release Engineer presents a set of tools he's been working on including: Subwasm, a tool to query a runtime directly from its WASM binary after generation by Srtool; Srtool-cli, a new CLI for srtool that's powerful and easy to use; and a few other surprise tips and goodies",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/43",
+    "tags": ["runtime", "tooling"]
+  },
+    {
+    "date": "2021 Jun 29",
+    "speakers": ["Bruno Škvorc, RMRK.app"],
+    "description": "RMRK.app: Nested, reactive, useful, upgradeable NFTs that react to emotion and conditionally display different resources in different formats",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/42",
+    "tags": ["ecosystem", "NFT"]
+  }, {
+    "date": "2021 Jun 15",
+    "speakers": ["Kian Paimani, Parity"],
+    "description": "<code>try-runtime</code>: a testing tool for runtime upgrades",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/41",
+    "tags": ["runtime", "runtime upgrade"]
+  }, {
+    "date": "2021 Jun 01",
+    "speakers": ["Antonio, Kilt"],
+    "description": "Kilt: Building DID Management Tools with Substrate",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/40",
+    "tags": ["ecosystem", "did"]
+  }, {
+    "date": "2021 May 18",
+    "speakers": ["Aten, Patract Labs"],
+    "description": "Patract Labs: WASM Smart Contracts",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/39",
+    "tags": ["wasm", "smart contract"]
+  }, {
+    "date": "2021 May 04",
+    "speakers": ["Tomek, Parity", "Hernando, Parity"],
+    "description": "Bridging Substrate Chains",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/38",
+    "tags": ["bridge"]
+  }, {
+    "date": "2021 Mar 23",
+    "speakers": ["Raul Romanutti, Parity", "Dan Forbes, Community"],
+    "description": "The Art of Chaos",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/37",
+    "tags": ["kusama"]
+  }, {
+    "date": "2021 Mar 09",
+    "speakers": ["Sacha Lansky, Parity"],
+    "description": "Instantiable Pallets",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/36",
+    "tags": ["runtime"]
+  }, {
+    "date": "2021 Feb 23",
+    "speakers": ["Chevdor, Community"],
+    "description": "Introduction of <code>srtool</code>",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/35",
+    "tags": ["ecosystem", "tooling"]
+  }, {
+    "date": "2021 Feb 16",
+    "speakers": ["Bill Laboon, Web3 Foundation"],
+    "description": "Defensive Development with Bill Laboon",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/34",
+    "tags": ["methodology"]
+  }, {
+    "date": "2021 Feb 09",
+    "speakers": ["Joshy Orndorff, Purestake"],
+    "description": "Moonbeam Learnings with Joshy Orndorff",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/33",
+    "tags": ["ecosystem", "methodology"]
+  }, {
+    "date": "2021 Feb 02",
+    "speakers": ["Brett Kolodny, Community"],
+    "description": "Substrate Developer Journey with Brett Kolodny",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/32",
+    "tags": ["ecosystem"]
+  }, {
+    "date": "2021 Jan 26",
+    "speakers": ["Dastan Samatov, LimeChain"],
+    "description": "Limechain AssemblyScript Libraries for Developing on Polkadot Stack",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/31",
+    "tags": ["ecosystem", "assemblyscript"]
+  }, {
+    "date": "2021 Jan 19",
+    "speakers": ["Guillaume Tholliere, Parity"],
+    "description": "FRAME v2",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/30",
+    "tags": ["runtime"]
+  }, {
+    "date": "2021 Jan 12",
+    "speakers": ["Will Pankiewicz, Parity"],
+    "description": "Network Security for Substrate",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/29",
+    "tags": ["network"]
+  }, {
+    "date": "2021 Jan 05",
+    "speakers": ["Dan Forbes, Parity"],
+    "description": "Rust Syntax for Substrate",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/28",
+    "tags": ["runtime"]
+  }],
+  "2020": [{
+    "date": "2020 Dec 15",
+    "speakers": ["Julien duBois, Community"],
+    "description": "Building PIRL (nominated POS community-based blockchain)",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/27",
+    "tags": []
+  }, {
+    "date": "2020 Dec 08",
+    "speakers": ["Kaichao Sun, Parity"],
+    "description": "Permissioned Network in Substrate",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/26",
+    "tags": ["runtime"]
+  }, {
+    "date": "2020 Dec 01",
+    "speakers": ["Sacha Lansky, Parity"],
+    "description": "Governance with FRAME",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/25",
+    "tags": ["runtime", "governance"]
+  }, {
+    "date": "2020 Nov 24",
+    "speakers": ["Dan Forbes, Parity"],
+    "description": "FRAME's Origin Primitive",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/24",
+    "tags": ["runtime"]
+  }, {
+    "date": "2020 Nov 17",
+    "speakers": ["Zeke Mostov, Parity"],
+    "description": "Substrate FRAME Hot Wallet Architecture",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/23",
+    "tags": ["runtime"]
+  }, {
+    "date": "2020 Nov 10",
+    "speakers": ["Shawn Tabrizi, Parity"],
+    "description": "Feeless Transaction Pallet",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/22",
+    "tags": ["runtime"]
+  }, {
+    "date": "2020 Nov 03",
+    "speakers": ["Joshy Orndorff, Parity"],
+    "description": "Frontier BlockImport and Moonbeam's Dual Parachain/Standalone Runtime",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/21",
+    "tags": ["ecosystem", "parachain"]
+  }, {
+    "date": "2020 Oct 27",
+    "speakers": ["Alex Popiak, Parity"],
+    "description": "Substrate Runtime Upgrade and Storage Migration",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/20",
+    "tags": ["runtime", "runtime upgrade"]
+  }, {
+    "date": "2020 Oct 20",
+    "speakers": ["Shawn Tabrizi, Parity"],
+    "description": "Runtime Benchmarking for Substrate Pallet",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/19",
+    "tags": ["runtime", "benchmarking"]
+  }, {
+    "date": "2020 Oct 13",
+    "speakers": ["Kirill Pimenov, Parity"],
+    "description": "Parity Signer and Key Management",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/18",
+    "tags": ["key management", "signer", "security"]
+  }, {
+    "date": "2020 Oct 06",
+    "speakers": ["David Palm, Parity"],
+    "description": "Substrate Analytics",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/17",
+    "tags": ["analytics"]
+  }]
+}

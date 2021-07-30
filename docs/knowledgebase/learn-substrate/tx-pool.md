@@ -15,7 +15,7 @@ hard-wired to the transaction pool, but is defined by the runtime. Example valid
 - Checking if the signature is valid.
 
 The transaction pool also regularly checks validity of existing transactions within the pool. A
-transaction will be dropped from the pool if an invalid or expired mortal transaction is found.
+transaction will be dropped from the pool if it is found to be invalid or is an expired mortal transaction.
 
 **Sorting**
 
@@ -34,7 +34,7 @@ propagation and block inclusion.
 ## Transaction Dependencies
 
 The `ValidTransaction`
-[struct](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/transaction_validity/struct.ValidTransaction.html)
+[struct](https://substrate.dev/rustdocs/latest/sp_runtime/transaction_validity/struct.ValidTransaction.html)
 defines the `requires` and `provides` parameters to build a dependency graph of transactions.
 Together with `priority` (discussed below), this dependency graph allows the pool to produce a valid
 linear ordering of transactions.
@@ -55,7 +55,7 @@ dependency (ordering) schemes.
 ## Transaction Priority
 
 Transaction `priority` in the `ValidTransaction`
-[struct](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/transaction_validity/struct.ValidTransaction.html)
+[struct](https://substrate.dev/rustdocs/latest/sp_runtime/transaction_validity/struct.ValidTransaction.html)
 determines the ordering of transactions that are in the ready queue. If a node is the next block
 author, it will order transactions from high to low priority in the next block until it reaches the
 weight or length limit of the block.

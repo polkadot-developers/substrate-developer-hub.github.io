@@ -85,6 +85,12 @@
   background-color: black;
 }
 
+#seminar .hero.height-200 {
+  height: 200px;
+  min-height: 200px;
+  max-height: 200px;
+}
+
 #seminar .hero .container {
   margin: auto;
   text-align: center;
@@ -218,6 +224,10 @@
   margin-bottom: 40px;
 }
 
+#seminar table .text-sm {
+  font-size: 94%;
+}
+
 @media (min-width: 768px) {
   #seminar .intro .left {
     padding-right: 60px;
@@ -241,4 +251,14 @@
   #seminar .intro .right .image-host {
     margin-right: 20px;
   }
+}
+
+/* For past seminars */
+#past-seminars ul li+li {
+  margin-top:  0em;
+}
+
+#past-seminars a.nav-link.active {
+  background-color: #ff1864 !important;
+  border-color:  #ff1864 !important;
 }

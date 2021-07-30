@@ -1,9 +1,9 @@
 ---
-title: ink! F.A.Q.
+title: F.A.Q.
 ---
 
 This page will answer a number of common questions you may have when starting to build smart
-contracts for Substrate.
+contracts with Substrate.
 
 ## ink! F.A.Q.
 
@@ -11,7 +11,7 @@ contracts for Substrate.
 
 In ink! we refer `memory` to being the computer memory that is commonly known to programmers while
 with `storage` we refer to the contract instance's memory. The `storage` is backed up by the runtime
-in a data base. Accesses to it are considered to be slow.
+in a database. Accesses to it are considered to be slow.
 
 ### How do I run tests?
 
@@ -27,9 +27,9 @@ To run this test, type the following command:
 cargo +nightly test
 ```
 
-## Contracts Module
+## Contracts Pallet
 
-### How do I add the Contracts module to my custom chain?
+### How do I add the Contracts pallet to my custom chain?
 
 You can follow
 [our guide here](../../tutorials/add-contracts-pallet) for instructions to add the Contracts pallet

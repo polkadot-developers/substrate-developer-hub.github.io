@@ -84,7 +84,7 @@ You can configure your benchmark to run over different varying inputs. For each 
 configure the range of those variables, and use them within the benchmark setup or execution logic.
 
 The full syntax and functionality can be seen in the [`benchmarks!` macro API
-documentation](https://substrate.dev/rustdocs/v3.0.0/frame_benchmarking/macro.benchmarks.html).
+documentation](https://substrate.dev/rustdocs/latest/frame_benchmarking/macro.benchmarks.html).
 
 ### Adding Benchmarking to Your Pallet
 
@@ -550,9 +550,9 @@ up, but not doing fancy computation.
 
 ## Reference
 
+  - [`frame-benchmarking` README](https://github.com/paritytech/substrate/blob/master/frame/benchmarking/README.md)
   - [Substrate Seminar: Benchmarking Your Substrate
     Pallet](https://www.youtube.com/watch?v=Qa6sTyUqgek)
-
   - [Benchmarking and Weights for a New Pallet](https://hackmd.io/041uMXYXR8y6nBWUnQ6uCQ)
 
 ## Footnotes

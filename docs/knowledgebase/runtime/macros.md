@@ -1,7 +1,7 @@
 ---
 title: Macros
 ---
-> **Update:** As of January 2021, FRAME based pallets have upgraded their use of macros. Refer to [this guide](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#upgrade-guidelines) to learn about migrating a v1 pallet to v2. 
+> **Update:** As of January 2021, FRAME based pallets have upgraded their use of macros. Refer to [this guide](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#upgrade-guidelines) to learn about migrating a v1 pallet to v2.
 
 Substrate uses [Rust macros](https://doc.rust-lang.org/book/ch19-06-macros.html) to aggregate the logic derived from pallets that are implemented for a runtime. 
 These runtime macros allow developers to focus on runtime logic rather than encoding and decoding on-chain
@@ -24,7 +24,7 @@ Most Substrate runtime macros are defined using either **declarative macros** or
 **attribute-like macros** in FRAME v2 pallets.
 
 > **Tips to learn more about Substrate runtime macros**:
-> - read the [documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/index.html#macros) on commonly used macros in FRAME
+> - read the [documentation](https://substrate.dev/rustdocs/latest/frame_support/index.html#macros) on commonly used macros in FRAME
 > - use [`cargo expand`](https://github.com/dtolnay/cargo-expand) to review a macro's expanded code and understand what's happening under the hood
 > - read more on [macro rules of expression pattern matching](https://danielkeep.github.io/tlborm/book/pim-README.html)
 
@@ -39,22 +39,22 @@ Here's a general overview of Substrate macros:
 
 **Macros in the FRAME [Support Library](./frame#support-library):**
 - in `frame_support`: 
-  - [function-like](https://substrate.dev/rustdocs/v3.0.0/frame_support/index.html#macros) macros 
-  - [derive](https://substrate.dev/rustdocs/v3.0.0/frame_support/index.html#derives) macros 
-  - [attribute](https://substrate.dev/rustdocs/v3.0.0/frame_support/index.html#attributes) macros
+  - [function-like](https://substrate.dev/rustdocs/latest/frame_support/index.html#macros) macros
+  - [derive](https://substrate.dev/rustdocs/latest/frame_support/index.html#derives) macros
+  - [attribute](https://substrate.dev/rustdocs/latest/frame_support/index.html#attributes) macros
 
 
 **Macros in the Substrate [System Library](./frame#system-library):**
 - in `sp_core`: 
-  - [function-like macros](https://substrate.dev/rustdocs/v3.0.0/sp_core/index.html#macros) macros 
-  - [derive `RuntimeDebug`](https://substrate.dev/rustdocs/v3.0.0/sp_core/index.html#derives) macro
+  - [function-like macros](https://substrate.dev/rustdocs/latest/sp_core/index.html#macros) macros
+  - [derive `RuntimeDebug`](https://substrate.dev/rustdocs/latest/sp_core/index.html#derives) macro
 - in `sp_runtime`: 
-  - [function-like](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/index.html#macros) macros 
-  - [derive](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/index.html#derives) macros
-- in `serde`: [function-like](https://substrate.dev/rustdocs/v3.0.0/sp_runtime/index.html#derives) macros
-- in `sp_api`: [function-like](https://substrate.dev/rustdocs/v3.0.0/sp_api/index.html#macros) macros
-- in `sp_std`: [function-like](https://substrate.dev/rustdocs/v3.0.0/sp_std/index.html#macros) macros
-- in `sp_version`: [function-like](https://substrate.dev/rustdocs/v3.0.0/sp_version/index.html#macros) macros
+  - [function-like](https://substrate.dev/rustdocs/latest/sp_runtime/index.html#macros) macros
+  - [derive](https://substrate.dev/rustdocs/latest/sp_runtime/index.html#derives) macros
+- in `serde`: [function-like](https://substrate.dev/rustdocs/latest/sp_runtime/index.html#derives) macros
+- in `sp_api`: [function-like](https://substrate.dev/rustdocs/latest/sp_api/index.html#macros) macros
+- in `sp_std`: [function-like](https://substrate.dev/rustdocs/latest/sp_std/index.html#macros) macros
+- in `sp_version`: [function-like](https://substrate.dev/rustdocs/latest/sp_version/index.html#macros) macros
 
 > **Note**: refer to `#Substrate dependencies` in the `Cargo.toml` file of the 
 [node template runtime](https://github.com/substrate-developer-hub/substrate-node-template/blob/master/runtime/Cargo.toml#L21) 
@@ -71,9 +71,9 @@ runtime is implemented.
 
 **Things to note:**
 
-- v2 is backwards compatible with v1, meaning that any pallet declared using v1 can be declared using v2 without too much difficulty (see [upgrade guidelines](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#upgrade-guidelines) for more details). However, v1 will cease getting improvement features.
+- v2 is backwards compatible with v1, meaning that any pallet declared using v1 can be declared using v2 without too much difficulty (see [upgrade guidelines](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#upgrade-guidelines) for more details). However, v1 will cease getting improvement features.
 
-- Using instantiable pallets with v2 requires a different approach than for v1. See the guide [here](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#example-for-pallet-with-instance) for more information on how that works.
+- Using instantiable pallets with v2 requires a different approach than for v1. See the guide [here](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#example-for-pallet-with-instance) for more information on how that works.
 
 - In v2, items are defined inside a module, therefore `pub(super)` is used to make those items private but accessible to the `super` namespace (i.e. the crate root namespace). 
 
@@ -136,7 +136,7 @@ trait.
 
 **Docs and Notes**
 
-- [API Documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_storage.html)
+- [API Documentation](https://substrate.dev/rustdocs/latest/frame_support/macro.decl_storage.html)
 - `Store` trait is declared with each storage name, thus becoming an associated type inside the
   trait.
 - `Module` implementation contains the getter function and metadata of each storage item.
@@ -155,7 +155,7 @@ macro being an enum variant inside `Event`.
 
 **Docs and Notes**
 
-- [API Documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_event.html)
+- [API Documentation](https://substrate.dev/rustdocs/latest/frame_support/macro.decl_event.html)
 - `Event` or `Event<T>` type is defined, assigned to `RawEvent`.
 - `RawEvent<...all generic types used>` enum type is defined with all events specified in the macro
   as its enum variants.
@@ -183,7 +183,7 @@ string for a particular error type, and the documentation provided on top of eac
 
 **Docs and Notes**
 
-- [API Documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_error.html)
+- [API Documentation](https://substrate.dev/rustdocs/latest/frame_support/macro.decl_error.html)
 - `Error<T: Config>` enum type is filled with enum variants specified in the macro.
 - `Error` implements various helper functions, and maps each error to a sequential error code and an
   error string.
@@ -208,7 +208,7 @@ also inserts lifecycle trait implementations for `Module`, e.g.
 
 **Docs and Notes**
 
-- [API Documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.decl_module.html)
+- [API Documentation](https://substrate.dev/rustdocs/latest/frame_support/macro.decl_module.html)
 - This macro declares a `Module<T>` struct and a `Call<T>` enum which implements the dispatch logic.
 - Helper traits are automatically implemented for `Module` struct, such as `core::cmp::Eq`,
   `core::clone::Clone`, etc.
@@ -260,10 +260,10 @@ Required to define the pallet's generics.
 
 **What it Does**
 
-Provides constants that are part of the [`Config` trait](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/trait.Config.html) and gives information about external tools to use for the runtime.
+Provides constants that are part of the [`Config` trait](https://substrate.dev/rustdocs/latest/frame_system/pallet/trait.Config.html) and gives information about external tools to use for the runtime.
 
 **Docs**
-- [Config trait](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#config-trait-palletconfig-mandatory)
+- [Config trait](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#config-trait-palletconfig-mandatory)
 
 ### #[pallet::constant]
 
@@ -288,7 +288,7 @@ pub trait Config: frame_system::Config {
 ```
 
 **Docs**
-- See use in the context of [#[pallet::config]](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#config-trait-palletconfig-mandatory)
+- See use in the context of [#[pallet::config]](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#config-trait-palletconfig-mandatory)
 
 ### #[pallet::extra_constants] 
 
@@ -309,7 +309,7 @@ impl<T: Config> Pallet<T> {
 ```
 
 **Docs**
-- See [documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional)
+- See [documentation](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#extra-constants-palletextra_constants-optional)
 
 ### #[pallet::pallet]  
 
@@ -330,7 +330,7 @@ pub struct Pallet<T>(PhantomData<T>);
 ```
 
 **Docs**
-- See the [macro expansion](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#macro-expansion-1) added to the `struct Pallet<T>` definition
+- See the [macro expansion](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#macro-expansion-1) added to the `struct Pallet<T>` definition
 
 ### #[pallet::hooks]
 
@@ -353,7 +353,7 @@ imple<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
 
 **Docs**
 - See the [documentation](https://crates.parity.io/frame_support/attr.pallet.html#hooks-pallethooks-mandatory)
-- See the [macro expansion](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#macro-expansion-2)
+- See the [macro expansion](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#macro-expansion-2)
 
 ### #[pallet::call]
 
@@ -372,11 +372,11 @@ trigger specific logic. Calls can also be used in on-chain governance, demonstra
 pallet where calls can be voted on.
 `#[pallet::call]` allows to create dispatchable functions which will generate associated items
 from the `impl` code blocks. In other words, it aggregates all dispatchable logic using the [`Call` enum
-(https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/enum.Call.html) which will aggregate all
+(https://substrate.dev/rustdocs/latest/frame_system/pallet/enum.Call.html) which will aggregate all
 dispatchable calls into a single runtime call.  
 
 **Docs**
-- See the [documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#call-palletcall-mandatory)
+- See the [documentation](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#call-palletcall-mandatory)
 
 ### #[pallet::error]
 
@@ -412,7 +412,7 @@ pub enum Event<T: Config> {
 ```
 
 **Docs**
-- See [documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#event-palletevent-optional)
+- See [documentation](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#event-palletevent-optional)
 ### #[pallet::storage]
 
 **When to Use** 
@@ -430,19 +430,19 @@ storage will store its `(key, value)` pairs (i.e. the trie) and defines the pall
 `concat(twox_128(pallet_prefix), towx_128(storage_prefix))`, replacing `_` with the generated prefix implementations of the pallet and storage names.
 
 **Docs**
-- See [macro documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#storage-palletstorage-optional)
+- See [macro documentation](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#storage-palletstorage-optional)
 - [`StorageMap` implementation](https://crates.parity.io/frame_support/pallet_prelude/struct.StorageMap.html#implementations)
 - [Rust HashMap syntax](https://doc.rust-lang.org/book/ch08-03-hash-maps.html)
 
 ### Other Attributes
 
 Other FRAME v2 macro attributes include:
-- [#[pallet::genesis_config]](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional)
-- [#[pallet::type_value]](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#type-value-pallettype_value-optional)
-- [#[pallet::genesis_build]](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#genesis-build-palletgenesis_build-optional)
-- [#[pallet::inherent]](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#inherent-palletinherent-optional)
-- [#[pallet::validate_unsigned]](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#validate-unsigned-palletvalidate_unsigned-optional)
-- [#[pallet::origin]](https://substrate.dev/rustdocs/v3.0.0/frame_support/attr.pallet.html#origin-palletorigin-optional)
+- [#[pallet::genesis_config]](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#genesis-config-palletgenesis_config-optional)
+- [#[pallet::type_value]](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#type-value-pallettype_value-optional)
+- [#[pallet::genesis_build]](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#genesis-build-palletgenesis_build-optional)
+- [#[pallet::inherent]](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#inherent-palletinherent-optional)
+- [#[pallet::validate_unsigned]](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#validate-unsigned-palletvalidate_unsigned-optional)
+- [#[pallet::origin]](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#origin-palletorigin-optional)
 
 ## Additional FRAME Macros
 ### construct_runtime!
@@ -460,7 +460,7 @@ a particular pallet.
 
 **Docs and Notes**
 
-- [API Documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.construct_runtime.html)
+- [API Documentation](https://substrate.dev/rustdocs/latest/frame_support/macro.construct_runtime.html)
 - `Runtime` struct type is defined to represent the Substrate runtime.
 - `Event` enum type is defined with variants of all pallets that emit events, with helper traits and
   encoding/decoding traits implemented for the enum. Various conversion traits `Event` also
@@ -493,7 +493,7 @@ to convert the type to its specified value.
 
 **Docs**
 
-- [API Documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.parameter_types.html)
+- [API Documentation](https://substrate.dev/rustdocs/latest/frame_support/macro.parameter_types.html)
 
 ### impl_outer_origin!
 
@@ -512,7 +512,7 @@ This macro creates an `Origin` struct type, and implements various helper traits
 
 **Docs**
 
-- [API Documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.impl_outer_origin.html)
+- [API Documentation](https://substrate.dev/rustdocs/latest/frame_support/macro.impl_outer_origin.html)
 
 ### impl_outer_event!
 
@@ -532,7 +532,7 @@ the runtime.
 
 **Docs**
 
-- [API Documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.impl_outer_event.html)
+- [API Documentation](https://substrate.dev/rustdocs/latest/frame_support/macro.impl_outer_event.html)
 
 ### impl_outer_dispatch!
 
@@ -551,7 +551,7 @@ This macro creates a `Call` enum type, implements various helper traits on `Even
 
 **Docs**
 
-- [API Documentation](https://substrate.dev/rustdocs/v3.0.0/frame_support/macro.impl_outer_dispatch.html)
+- [API Documentation](https://substrate.dev/rustdocs/latest/frame_support/macro.impl_outer_dispatch.html)
 
 ## Substrate System Library Macros
 ### impl_runtime_apis!
@@ -569,7 +569,7 @@ implementation in the `RuntimeApiImpl`.
 
 **Docs and Notes**
 
-- [API Documentation](https://substrate.dev/rustdocs/v3.0.0/sp_api/macro.impl_runtime_apis.html)
+- [API Documentation](https://substrate.dev/rustdocs/latest/sp_api/macro.impl_runtime_apis.html)
 - `RuntimeApi` and `RuntimeApiImpl` structs are declared. The macro also implements various helper
   traits for `RuntimeApiImpl`.
 - What developers define within `impl_runtime_apis!` macro are appended to the end of
@@ -596,7 +596,7 @@ public-private key pair from a seed.
 
 **Docs and Notes**
 
-- [API Documentation](https://substrate.dev/rustdocs/v3.0.0/sp_application_crypto/macro.app_crypto.html)
+- [API Documentation](https://substrate.dev/rustdocs/latest/sp_application_crypto/macro.app_crypto.html)
 - `Public` struct type is declared, and implements `sp_application_crypto::AppKey` trait defining
   the public key type, and `sp_application_crypto::RuntimeAppPublic` trait for generating keypairs,
   signing, and verifying signatures.

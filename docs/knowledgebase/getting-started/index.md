@@ -54,11 +54,16 @@ sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel
 ### macOS
 
 > NOTE: The Apple M1 ARM system on a chip is not very well supported yet by rust,
-> and thus you very likely will run into build errors stemming from this. It is best,
-> for the near term, to avoid using M1s for Substrate development. If you do decide to
-> give it a try despite this, see
-> [this community guide](https://vikiival.medium.com/run-substrate-on-apple-m1-a2699743fae8)
-> for details on extra configuration steps to get things working.
+> and thus you very likely will run into build errors stemming from this.
+> There are reports that using substrate dependancies newer than the June 2021 
+> monthly release are able to work without issue.
+> 
+> Here is the [latest node template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest)
+> that you should use as a base for building on M1s.
+> 
+> If you decide not to use a monthly release, see
+> [this community contributed script (and discussion)](https://github.com/substrate-developer-hub/substrate-node-template/issues/179#issuecomment-843522331)
+> for details on extra configuration steps to get things working on `v3.0.0` and below.
 
 Open the Terminal application and execute the following commands:
 

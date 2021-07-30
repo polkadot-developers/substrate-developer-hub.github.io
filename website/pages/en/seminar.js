@@ -54,9 +54,13 @@ function Seminar(props) {
                 Substrate together.
               </translate></p>
               <section>
-                <a target='_blank' className='btn btn-lg primary-color'
+                <a target='_blank' className='btn btn-lg primary-color mx-5'
                   href='https://www.crowdcast.io/e/substrate-seminar'>
-                  <translate>Live Call / Past Seminars</translate>
+                  <translate>Live Call</translate>
+                </a>
+                <a className='btn btn-lg secondary-color mx-5'
+                  href='past-seminars'>
+                  <translate>Past Seminars</translate>
                 </a>
               </section>
             </div>
@@ -82,14 +86,9 @@ function Seminar(props) {
           </div>
           <hr />
 
-          <div className='row pb-0'>
-            <div className='col-md-12'>
-              <h2 style={{ fontSize: '32px' }}><translate>FAQ</translate></h2>
-            </div>
-          </div>
-
           <div className='row justify-content-between pt-0 faqs'>
             <div className='col-md-6'>
+              <h2 style={{ fontSize: '32px' }}><translate>FAQ</translate></h2>
               <section>
                 <h4 className='mb-2'><translate>Can I ask my own questions?</translate></h4>
                 <p>
@@ -121,6 +120,11 @@ function Seminar(props) {
               <section>
                 <ul>
                   <li>
+                    <a href='./past-seminars'>
+                      List of seminars starting from 2021 Jan
+                    </a>.
+                  </li>
+                  <li>
                     <a href='https://www.crowdcast.io/e/substrate-seminar/'>
                       <translate>23 June 2020 and later</translate>
                     </a>
@@ -147,16 +151,12 @@ function Seminar(props) {
             <div className='col-md-6 second'>
 
               <h2 style={{ fontSize: '32px' }}><translate>Upcoming seminars</translate></h2>
-              
-              <p><strong>15 June. </strong><translate> Parity Software Developer Kian will be demonstrating a recent tool 
-              he built called try-runtime to test storage migrations and runtime upgrades.</translate></p>
+            
+              <p><strong>27 Jul. </strong><translate>Enhancing the FRAME developer experience: Parity Software Developer, Keith, presents improvements he's been working on for runtime engineers, including improving error messages in `construct_runtime` and the creation of `StorageNMaps`. </translate></p>
 
-              <p><strong>29 June. </strong><translate> RMRK.app: Nested, reactive, useful, upgradeable NFTs that react to emotion and conditionally 
-              display different resources in different formats.</translate></p>
+              <p><strong>10 Aug. </strong><translate>Behind Subsocial's pallets: Alex will present his journey building a social network with Substrate, showcasing the flexibiltiy that FRAME offers for innovating with blockchain infrastructure.</translate></p>
 
-              <p><strong>13 July. </strong><translate> Parity Release Engineer Will (a.k.a. Chevdor) will present a set of tools he's been working on including:
-              subwasm, a tool to query a runtime directly from its WASM binary after generation by srtool;
-              srtool-cli, a new CLI for srtool that's powerful and easy to use; and a few other surprise tips and goodies. </translate></p>
+              <p><strong>24 Aug. </strong><translate>An implementation of delegated proof of stake under the hood: in this seminar, Amar will showcase a DPoS system he implemented with Substrate. He will talk about the inflation logic and the reward distribution, hoping to make it more "palatable" by contrasting it with FRAME's `pallet-staking`.</translate></p>
 
             </div>
           </div>

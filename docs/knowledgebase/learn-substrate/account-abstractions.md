@@ -25,13 +25,13 @@ These abstractions are:
   certain validator operations. They should never hold funds.
 
 > **Note:** Learn more about validators and nominators in the context of the Substrate's NPoS
-> [Staking pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_staking/index.html).
+> [Staking pallet](https://substrate.dev/rustdocs/latest/pallet_staking/index.html).
 
 ## Account Keys
 
 A key pair can represent an account and control funds, like normal accounts that you would expect
 from other blockchains. In the context of Substrate's
-[Balances pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_balances/index.html), these accounts
+[Balances pallet](https://substrate.dev/rustdocs/latest/pallet_balances/index.html), these accounts
 must have a minimum amount (an "existential deposit") to exist in storage.
 
 Account keys are defined generically and made concrete in the runtime.
@@ -79,8 +79,8 @@ by the Controller can result in slashing, so it should still be well secured.
 ### References
 
 - Visit the reference docs for the
-  [session keys runtime API](https://substrate.dev/rustdocs/v3.0.0/sp_session/trait.SessionKeys.html).
+  [session keys runtime API](https://substrate.dev/rustdocs/latest/sp_session/trait.SessionKeys.html).
 
 - Take a look at the default
-  [session keys in the Substrate node runtime](https://substrate.dev/rustdocs/v3.0.0/node_runtime/struct.SessionKeys.html).
+  [session keys in the Substrate node runtime](https://substrate.dev/rustdocs/latest/node_runtime/struct.SessionKeys.html).
 

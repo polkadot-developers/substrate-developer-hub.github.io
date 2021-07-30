@@ -54,7 +54,8 @@ const siteConfig = {
     { page: 'tutorials', label: 'Tutorials' },
     { doc: 'index', label: 'Knowledge Base' },
     { href: 'https://substrate.dev/recipes/', label: 'Recipes' },
-    { href: 'https://substrate.dev/rustdocs/', label: 'API Reference' },
+    { href: 'https://substrate.dev/substrate-how-to-guides/', label: 'How-to Guides' },
+    { href: 'https://substrate.dev/rustdocs/', label: 'Reference' },
     { search: true }
   ],
 
@@ -84,10 +85,13 @@ const siteConfig = {
   // Add custom scripts here that would be placed in <script> tags.
   scripts: [
     'https://buttons.github.io/buttons.js',
+    'https://code.jquery.com/jquery-3.3.1.slim.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js',
+    'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
     '/js/clipboard.min.js',
     '/js/code-block-buttons.js',
     '/js/load.js',
-    '/js/redirect-next.js',
+    '/js/past-seminars.js',
     {
       src: '/js/config.js',
       defer: true
@@ -133,7 +137,9 @@ const siteConfig = {
   scrollToTop: true,
 
   // Style sheets to import
-  stylesheets: [ 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' ],
+  stylesheets: [
+    'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
+   ],
 
   // Translation recruitment link, appears in the language drop down as "Help Translate"
   translationRecruitingLink: 'https://crowdin.com/project/substrate-developer-hub',

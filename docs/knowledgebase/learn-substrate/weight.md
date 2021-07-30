@@ -1,19 +1,20 @@
 ---
-title: Transaction Weight
+title: Transaction Weights
 ---
 
-Resources available to chains are limited. The resources include memory usage, storage I/O,
-computation, transaction/block size and state database size. There are several mechanisms to manage
+Resources available to chains are limited. These resources include memory usage, storage I/O,
+computation, transaction/block size and state database size. Substrate makes several 
+mechanisms available to manage
 access to resources and to prevent individual components of the chain from consuming too much of any
 resource. Weights are the mechanism used to manage the _time it takes to validate_ a block.
 Generally speaking, this comes from limiting the storage I/O and computation.
 
-NOTE: Weights are not used to restrict access to other resources, such as storage itself or memory
+> **Note:** Weights are not used to restrict access to other resources, such as storage itself or memory
 footprint. Other mechanisms must be used for this.
 
 The amount of weight a block may contain is limited, and optional weight consumption (i.e. weight
 that is not required to be deployed as part of the block's initialization or finalization phases nor
-used in mandatory inherent extrinsics) will generally be limited through economic measures --- or in
+used in mandatory inherent extrinsics) will generally be limited through economic measures &mdash; or in
 simple terms, through transaction fees. The fee implications of the weight system are covered in the
 [Transaction Fees document](../runtime/fees).
 
@@ -40,7 +41,7 @@ keep up with hardware and software improvements.
 Weights represent the _limited_ time that your blockchain has to validate a block. This includes
 computational cycles, and storage I/O. A custom implementation may use complex structures to express
 this. Substrate weights are simply a
-[numeric value](https://substrate.dev/rustdocs/v3.0.0/frame_support/weights/type.Weight.html).
+[numeric value](https://substrate.dev/rustdocs/latest/frame_support/weights/type.Weight.html).
 
 A weight calculation should always:
 
@@ -84,10 +85,10 @@ execution time depends on, for example, the length of one parameter. It is impor
 calculations do not entail any meaningful work themselves. The pre-dispatch maximum weight should be
 trivially computable from the input arguments with some basic arithmetic.
 
-The [System pallet](https://substrate.dev/rustdocs/v3.0.0/frame_system/pallet/index.html) is
+The [System pallet](https://substrate.dev/rustdocs/latest/frame_system/pallet/index.html) is
 responsible for accumulating the weight of each block as it gets executed and making sure that it
 does not exceed the limit. The
-[Transaction Payment pallet](https://substrate.dev/rustdocs/v3.0.0/pallet_transaction_payment/index.html)
+[Transaction Payment pallet](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/index.html)
 is responsible for interpreting these weights and deducting fees based upon them. The weighing
 function is part of the runtime so it can be upgraded if needed.
 
@@ -111,13 +112,13 @@ filled with transactions that would take too long to execute. While processing t
 block, the System pallet accumulates both the total length of the block (sum of encoded transactions
 in bytes) and the total weight of the block. If either of these numbers surpass the limits, no
 further transactions are accepted in that block. These limits are defined in
-[`MaximumBlockLength`](https://substrate.dev/rustdocs/v3.0.0/frame_system/limits/struct.BlockLength.html)
+[`MaximumBlockLength`](https://substrate.dev/rustdocs/latest/frame_system/limits/struct.BlockLength.html)
 and
-[`MaximumBlockWeight`](https://substrate.dev/rustdocs/v3.0.0/frame_system/limits/struct.BlockWeights.html).
+[`MaximumBlockWeight`](https://substrate.dev/rustdocs/latest/frame_system/limits/struct.BlockWeights.html).
 
 One important note about these limits is that a portion of them are reserved for the `Operational`
 dispatch class. This rule applies to both of the limits and the ratio can be found in
-[`AvailableBlockRatio`](https://substrate.dev/rustdocs/v3.0.0/frame_system/limits/struct.BlockLength.html#method.max_with_normal_ratio).
+[`AvailableBlockRatio`](https://substrate.dev/rustdocs/latest/frame_system/limits/struct.BlockLength.html#method.max_with_normal_ratio).
 
 For example, if the block length limit is 1 megabyte and the ratio is set to 80%, all transactions
 can fill the first 800 kilobytes of the block while the last 200 can only be filled by the

@@ -27,17 +27,14 @@
       "knowledgebase/runtime/events",
       "knowledgebase/runtime/errors",
       "knowledgebase/runtime/fees",
+      "knowledgebase/runtime/benchmarking",
       "knowledgebase/runtime/debugging",
       "knowledgebase/runtime/tests",
-      "knowledgebase/runtime/benchmarking",
       "knowledgebase/runtime/randomness",
       "knowledgebase/runtime/upgrades"
     ],
     "Smart Contracts": [
-      "knowledgebase/smart-contracts/overview",
       "knowledgebase/smart-contracts/index",
-      "knowledgebase/smart-contracts/ink-fundamentals",
-      "knowledgebase/smart-contracts/ink-development",
       "knowledgebase/smart-contracts/contracts-pallet",
       "knowledgebase/smart-contracts/evm-pallet",
       "knowledgebase/smart-contracts/faq"
@@ -77,7 +74,8 @@
       "tutorials/add-a-pallet/index",
       "tutorials/add-a-pallet/import-a-pallet",
       "tutorials/add-a-pallet/configure-a-pallet",
-      "tutorials/add-a-pallet/interact-with-a-pallet"
+      "tutorials/add-a-pallet/interact-with-a-pallet",
+      "tutorials/add-a-pallet/publish-a-pallet"
     ]
   },
   "forkless-upgrade": {
@@ -103,9 +101,6 @@
       "tutorials/start-a-private-network/customspec",
       "tutorials/start-a-private-network/customchain"
     ]
-  },
-  "pallet-in-crate": {
-    "Write a Pallet in its Own Crate": []
   },
   "add-contracts-pallet": {
     "Add the Contracts Pallet": []
