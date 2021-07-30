@@ -35,11 +35,14 @@ In order to query state, `try-runtime` makes use of Substrate's RPCs, namely [`S
 - [`storage`][stateapi-storage-rustdocs]: A method which returns a storage value under the given key.
 - [`storage_key_paged`][stateapi-storage-keys-paged-rustdocs]: A method which returns the keys with prefix with pagination support.
 
-// TODO: Add about frame::Executor
 
 ## Usage
 
-The most common use case for `try-runtime` is with storage migrations and runtime upgrades.
+The most common use case for `try-runtime` is with storage migrations and runtime upgrades. 
+
+> **Tip:** Combine `try-runtime` with `fork-off-substrate` to test your chain before production. Use `try-runtime` to test your 
+> chain's migration and its pre and post states. Then, use [`fork-off-substrate`][fork-off-gh] if you want to check that block 
+> production continues fine after the migration, and do some other arbitrary testing. 
 
 ### Calling into hooks from `OnRuntimeUpgrade`
 By default, there are two ways of defining a runtime upgrade in the runtime. The `OnRuntimeUpgrade` trait provides the [different methods][onruntimeupgrade-method-rustdocs] to achieve this.
@@ -133,7 +136,7 @@ For example, running `try-runtime` with the "on-runtime-upgrade" subcommand on a
 running locally:
 
 ```bash
-cargo run -- --release --features=try-runtime try-runtime on-runtime-upgrade live ws://localhost:9944
+cargo run --release --features=try-runtime try-runtime on-runtime-upgrade live ws://localhost:9944
 ```
 
 #### Other scenarios
@@ -154,7 +157,7 @@ live \
 ws//$HOST:9944
 ```
 
-> Tip: pass in the --help flag after each subcommand to see the command's different options.
+> **Tip:** pass in the --help flag after each subcommand to see the command's different options.
 
 ## Next Steps
 
@@ -188,3 +191,4 @@ ws//$HOST:9944
 [storage-keys-paged]: https://polkadot.js.org/docs/substrate/rpc/#getkeyspagedchildkey-prefixedstoragekey-prefix-storagekey-count-u32-startkey-storagekey-at-hash-vecstoragekey
 [storage-keys-paged-rustdocs]: https://crates.parity.io/sc_rpc/state/trait.StateApi.html#tymethod.storage_keys_paged
 [integrate-tryruntime-htg]: https://substrate.dev/substrate-how-to-guides/docs/tools/integrate-try-runtime
+[fork-off-gh]: https://github.com/maxsam4/fork-off-substrate
