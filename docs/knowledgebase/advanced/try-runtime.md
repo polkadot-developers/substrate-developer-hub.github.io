@@ -76,7 +76,7 @@ The new hooks are as follows:
 
     #[cfg(feature = "try-runtime")]
     fn post_upgrade() -> Result<(), &'static str> { Ok(()) }
-
+```
 ### Helper functions
 
 [`OnRuntimeUpgradeHelpersExt`][oru-helpers-ext-rustdocs] are a set of helper functions made available from 
