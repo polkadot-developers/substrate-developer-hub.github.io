@@ -1,5 +1,5 @@
 ---
-title: try-runtime
+title: Try Runtime
 ---
 
 The `try-runtime` tool is built to query a snapshot of runtime storage, using an [in-memory-externalities][testextern-rustdocs] to store state. In this way, 

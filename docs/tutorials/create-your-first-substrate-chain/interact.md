@@ -14,7 +14,7 @@ Run the following command to start your node:
 ```
 
 Note the flags:
-- `--dev` this sets up a developer node [chain specification](../../knowledgebase/integrate/chain-spec)
+- `--dev` this sets up a developer node [chain specification](../../knowledgebase/toolchains/chain-spec)
 - `--tmp` this saves all active data for the node (keys, blockchain database, networking info, ...)
 and is deleted as soon as you properly terminate your node (using <kbd>ctrl</kbd>+<kbd>c</kbd>). So every time you start with this command, you will have a clean state to work from. If the node is killed, `/tmp` is cleaned automatically on the restart of your
 computer for linux based OSs, and these files can manually be removed if needed.
@@ -94,7 +94,7 @@ an account selector that will let you control the account you use to perform on-
 ![Chain Data & Account Selector](assets/tutorials/first-chain/chain-data.png)
 
 There is also a table that lists
-[the well-known test accounts](../../knowledgebase/integrate/subkey#well-known-keys) that you have
+[the well-known test accounts](../../knowledgebase/toolchains/subkey#well-known-keys) that you have
 access to. Some, like Alice and Bob, already have funds!
 
 ![Account Table](assets/tutorials/first-chain/accts-prefunded.png)
