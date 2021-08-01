@@ -1,0 +1,248 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>try-runtime · Substrate Developer Hub</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="The `try-runtime` tool is built to query a snapshot of runtime storage, using an [in-memory-externalities][testextern-rustdocs] to store state. In this way, "/><meta name="docsearch:language" content="en"/><meta property="og:title" content="try-runtime · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="The `try-runtime` tool is built to query a snapshot of runtime storage, using an [in-memory-externalities][testextern-rustdocs] to store state. In this way, "/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/past-seminars.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/en/tutorials" target="_self">Tutorials</a></li><li class="siteNavGroupActive"><a href="/docs/en/" target="_self">Knowledge Base</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">Recipes</a></li><li class=""><a href="https://substrate.dev/substrate-how-to-guides/" target="_self">How-to Guides</a></li><li class=""><a href="https://substrate.dev/rustdocs/" target="_self">Reference</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>English</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/zh-CN/knowledgebase/advanced/try-runtime">简体中文</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">Help Translate</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Advanced</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Getting Started<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/getting-started/architecture">Architecture</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/getting-started/">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/getting-started/windows-users">Getting Started on Windows</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/getting-started/glossary">Glossary</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Key Concepts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/">Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/learn-substrate/extrinsics">Extrinsics</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/learn-substrate/account-abstractions">Account Abstractions</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/learn-substrate/tx-pool">Transaction Pool</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/learn-substrate/session-keys">Session Keys</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/learn-substrate/weight">Transaction Weights</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/learn-substrate/off-chain-features">Off-Chain Features</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Runtime Development<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/pallets">Pallets</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/frame">FRAME</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/macros">Macros</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/metadata">Metadata</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/storage">Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/origin">Origin</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/execution">Execution</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/events">Events</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/errors">Errors</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/fees">Transaction Fees and Weights</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/benchmarking">Benchmarking</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/debugging">Debugging</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/tests">Tests</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/randomness">On-Chain Randomness</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/runtime/upgrades">Upgrades</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Smart Contracts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/smart-contracts/">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/smart-contracts/contracts-pallet">Contracts Pallet</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/smart-contracts/evm-pallet">EVM Pallet</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/smart-contracts/faq">F.A.Q.</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Integrate<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/integrate/polkadot-js">Polkadot-JS</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/integrate/libraries">Client Libraries</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/integrate/chain-spec">Chain Specification</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/integrate/subkey">The Subkey Tool</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/integrate/memory-profiling">Memory Profiling</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Advanced<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/advanced/account-info">Account Information</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/advanced/codec">SCALE Codec</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/advanced/consensus">Consensus</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/advanced/block-import">The Block Import Pipeline</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/advanced/executor">Runtime Executor</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/advanced/cryptography">Cryptography</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/advanced/storage">Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/advanced/ss58-address-format">SS58 Address Format</a></li><li class="navListItem"><a class="navItem" href="/docs/en/knowledgebase/advanced/no-hash-collections">Why are there no Hash collections in sp_std?</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/en/knowledgebase/advanced/try-runtime">try-runtime</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Contribute<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/en/contribute/help-translate">Help Translate</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/substrate-developer-hub/substrate-developer-hub.github.io/edit/source/docs/knowledgebase/advanced/try-runtime.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">try-runtime</h1></header><article><div><span><p>The <code>try-runtime</code> tool is built to query a snapshot of runtime storage, using an <a href="https://substrate.dev/rustdocs/latest/sp_state_machine/struct.TestExternalities.html">in-memory-externalities</a> to store state. In this way,
+it enables runtime engineers to write tests for a specified runtime state.
+Being part of <a href="https://crates.parity.io/sc_cli/index.html#"><code>sc-cli</code></a>, it is designed to be used as a command line interface to specify at which block to query state.</p>
+<p>In its simplest form, <code>try-runtime</code> is a tool that enables:</p>
+<ol>
+<li>Connecting to a remote node and calling into some runtime API.</li>
+<li>Scraping the specified state from a node at a given block.</li>
+<li>Writing tests for that data.</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> This tool is designed to be used for testing against real chain state <em>before</em> going to production.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="motivation"></a><a href="#motivation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Motivation</h2>
+<p>The initial motivation for <code>try-runtime</code> came from the need to test runtime changes against state from a real chain. Prior <a href="https://substrate.dev/rustdocs/latest/sp_state_machine/struct.TestExternalities.html"><code>TestExternalities</code></a> and <a href="https://substrate.dev/rustdocs/v3.0.0/sp_state_machine/struct.BasicExternalities.html"><code>BasicExternalities</code></a> existed for writing unit and integrated tests with mock data, but lacked an avenue to test against a chain's actual state. <code>try-runtime</code> extends <a href="https://substrate.dev/rustdocs/latest/sp_state_machine/struct.TestExternalities.html"><code>TestExternalities</code></a> and <a href="https://substrate.dev/rustdocs/v3.0.0/sp_state_machine/struct.BasicExternalities.html"><code>BasicExternalities</code></a> by scraping state (which is stored with key value pairs) via a node's RPC endpoints <a href="https://polkadot.js.org/docs/substrate/rpc/#getstoragechildkey-prefixedstoragekey-key-storagekey-at-hash-optionstoragedata"><code>getStorage</code></a> and <a href="https://polkadot.js.org/docs/substrate/rpc/#getkeyspagedchildkey-prefixedstoragekey-prefix-storagekey-count-u32-startkey-storagekey-at-hash-vecstoragekey"><code>getKeysPaged</code></a> and inserting them into <code>TestExternalites</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="how-it-works"></a><a href="#how-it-works" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How it works</h2>
+<p>The <code>try-runtime</code> tool has its own implementation of externalities called <a href="https://crates.parity.io/remote_externalities/index.html#"><code>remote_externalities</code></a> which is just a builder wrapper around <code>TestExternalities</code> that uses
+a generic <a href="/docs/en/knowledgebase/advanced/storage">key-value store</a> where data is <a href="/docs/en/knowledgebase/advanced/codec">SCALE encoded</a>.</p>
+<p>The diagram below illustrates the way externalities sits outside a compiled runtime as a means to capture
+the storage of that runtime.</p>
+<table>
+<thead>
+<tr><th style="text-align:center">Storage externalities</th><th style="text-align:center">Testing with externalities</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align:center"><img src="/docs/assets/advanced/try-runtime-ext-1.png" alt="image"></td><td style="text-align:center"><img src="/docs/assets/advanced/try-runtime-ext-2.png" alt="image"></td></tr>
+</tbody>
+</table>
+<p>With <code>remote_externalities</code>, developers can capture some chain state and run tests on it. Essentially, <code>RemoteExterrnalities</code> will populate a <code>TestExternalities</code> with a real chain's data.</p>
+<p>In order to query state, <code>try-runtime</code> makes use of Substrate's RPCs, namely <a href="https://crates.parity.io/sc_rpc/state/trait.StateApi.html#"><code>StateApi</code></a>. In particular:</p>
+<ul>
+<li><a href="https://crates.parity.io/sc_rpc/state/trait.StateApi.html#tymethod.storage"><code>storage</code></a>: A method which returns a storage value under the given key.</li>
+<li><a href="https://crates.parity.io/sc_rpc/state/trait.StateApi.html#tymethod.storage_keys_paged"><code>storage_key_paged</code></a>: A method which returns the keys with prefix with pagination support.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="usage"></a><a href="#usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h2>
+<p>The most common use case for <code>try-runtime</code> is with storage migrations and runtime upgrades.</p>
+<blockquote>
+<p><strong>Tip:</strong> Combine <code>try-runtime</code> with <code>fork-off-substrate</code> to test your chain before production. Use <code>try-runtime</code> to test your
+chain's migration and its pre and post states. Then, use <a href="https://github.com/maxsam4/fork-off-substrate"><code>fork-off-substrate</code></a> if you want to check that block
+production continues fine after the migration, and do some other arbitrary testing.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="calling-into-hooks-from-onruntimeupgrade"></a><a href="#calling-into-hooks-from-onruntimeupgrade" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Calling into hooks from <code>OnRuntimeUpgrade</code></h3>
+<p>By default, there are two ways of defining a runtime upgrade in the runtime. The <code>OnRuntimeUpgrade</code> trait provides the <a href="https://crates.parity.io/frame_support/traits/trait.OnRuntimeUpgrade.html#on_runtime_upgrade">different methods</a> to achieve this.</p>
+<ul>
+<li><p><strong>From inside a runtime</strong>. For example:</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">struct</span> <span class="token type-definition class-name">Custom</span><span class="token punctuation">;</span>
+<span class="token keyword">impl</span> <span class="token class-name">OnRuntimeUpgrade</span> <span class="token keyword">for</span> <span class="token class-name">Custom</span> <span class="token punctuation">{</span>
+    <span class="token keyword">fn</span> <span class="token function-definition function">on_runtime_upgrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Weight</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+<li><p><strong>From inside a pallet</strong>. For example:</p>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[pallet::hooks]</span>
+<span class="token keyword">fn</span> <span class="token function-definition function">on_runtime_upgrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Weight</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+</code></pre></li>
+</ul>
+<p>These hooks will specify <em>what should happen upon a runtime upgrade</em>. For testing purposes, we prefer having hooks that allow us to inspect the state <em>before</em> and <em>after</em> a runtime upgrade as well.</p>
+<p>These hooks are not available by default, and are only available under a specific feature flag, named <code>try-runtime</code>.</p>
+<blockquote>
+<p>Refer to <a href="https://substrate.dev/substrate-how-to-guides/docs/tools/integrate-try-runtime">this how-to guide</a> on how to integrate <code>try-runtime</code> to your project.</p>
+</blockquote>
+<p>The new hooks are as follows:</p>
+<pre><code class="hljs css language-rust">    <span class="token attribute attr-name">#[cfg(feature = <span class="token string">"try-runtime"</span>)]</span>
+    <span class="token keyword">fn</span> <span class="token function-definition function">pre_upgrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Result</span><span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token lifetime-annotation symbol">'static</span> <span class="token keyword">str</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
+
+    <span class="token attribute attr-name">#[cfg(feature = <span class="token string">"try-runtime"</span>)]</span>
+    <span class="token keyword">fn</span> <span class="token function-definition function">post_upgrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Result</span><span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token lifetime-annotation symbol">'static</span> <span class="token keyword">str</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
+
+### <span class="token class-name">Helper</span> functions
+
+<span class="token punctuation">[</span>`<span class="token class-name">OnRuntimeUpgradeHelpersExt</span>`<span class="token punctuation">]</span><span class="token punctuation">[</span>oru<span class="token operator">-</span>helpers<span class="token operator">-</span>ext<span class="token operator">-</span>rustdocs<span class="token punctuation">]</span> are a set of helper functions made available from 
+<span class="token punctuation">[</span>`<span class="token namespace">frame_support<span class="token punctuation">::</span></span>hooks`<span class="token punctuation">]</span><span class="token punctuation">[</span>hooks<span class="token operator">-</span>rustdocs<span class="token punctuation">]</span> <span class="token keyword">in</span> order to <span class="token keyword">use</span> `<span class="token keyword">try</span><span class="token operator">-</span>runtime` <span class="token keyword">for</span> testing storage migrations<span class="token punctuation">.</span> <span class="token class-name">These</span> include<span class="token punctuation">:</span>
+
+<span class="token operator">-</span> <span class="token operator">*</span><span class="token operator">*</span>`storage_key`<span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">:</span> <span class="token class-name">Generates</span> a storage key unique to this runtime upgrade<span class="token punctuation">.</span> <span class="token class-name">This</span> can be used to communicate data from pre<span class="token operator">-</span>upgrade to post<span class="token operator">-</span>upgrade state and check them<span class="token punctuation">.</span>
+<span class="token operator">-</span> <span class="token operator">*</span><span class="token operator">*</span>`set_temp_storage`<span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">:</span> <span class="token class-name">Writes</span> some temporary data to a specific storage that can be <span class="token function">read</span> <span class="token punctuation">(</span>potentially <span class="token keyword">in</span> the post<span class="token operator">-</span>upgrade hook<span class="token punctuation">)</span><span class="token punctuation">.</span>
+<span class="token operator">-</span> <span class="token operator">*</span><span class="token operator">*</span>`get_temp_storage`<span class="token operator">*</span><span class="token operator">*</span> <span class="token punctuation">:</span> <span class="token class-name">Gets</span> temporary storage data written by `set_temp_storage`<span class="token punctuation">.</span>
+
+<span class="token class-name">Using</span> the <span class="token punctuation">[</span>`<span class="token namespace">frame_executive<span class="token punctuation">::</span></span><span class="token class-name">Executive</span>`<span class="token punctuation">]</span><span class="token punctuation">[</span>executive<span class="token operator">-</span>rustdocs<span class="token punctuation">]</span> <span class="token keyword">struct</span><span class="token punctuation">,</span> these helper functions <span class="token keyword">in</span> action would look like<span class="token punctuation">:</span>
+
+```rust
+<span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">CheckTotalIssuance</span><span class="token punctuation">;</span>
+<span class="token keyword">impl</span> <span class="token class-name">OnRuntimeUpgrade</span> <span class="token keyword">for</span> <span class="token class-name">CheckTotalIssuance</span> <span class="token punctuation">{</span>
+    <span class="token attribute attr-name">#[cfg(feature = <span class="token string">"try-runtime"</span>)]</span>
+    <span class="token keyword">fn</span> <span class="token function-definition function">post_upgrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// iterate over all accounts, sum their balance and ensure that sum is correct.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">EnsureAccountsWontDie</span><span class="token punctuation">;</span>
+<span class="token keyword">impl</span> <span class="token class-name">OnRuntimeUpgrade</span> <span class="token keyword">for</span> <span class="token class-name">EnsureAccountsWontDie</span> <span class="token punctuation">{</span>
+    <span class="token attribute attr-name">#[cfg(feature = <span class="token string">"try-runtime"</span>)]</span>
+    <span class="token keyword">fn</span> <span class="token function-definition function">pre_upgrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> account_count <span class="token operator">=</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Accounts</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">Runtime</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token function">iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token function">set_temp_storage</span><span class="token punctuation">(</span>account_count<span class="token punctuation">,</span> <span class="token string">"account_count"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token attribute attr-name">#[cfg(feature = <span class="token string">"try-runtime"</span>)]</span>
+    <span class="token keyword">fn</span> <span class="token function-definition function">post_upgrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// ensure that this migration doesn't kill any account.</span>
+        <span class="token keyword">let</span> post_migration <span class="token operator">=</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Accounts</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">Runtime</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token function">iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> pre_migration <span class="token operator">=</span> <span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token function">get_temp_storage</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token keyword">u32</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token string">"account_count"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token macro property">ensure!</span><span class="token punctuation">(</span>post_migration <span class="token operator">==</span> pre_migration<span class="token punctuation">,</span> <span class="token string">"error ..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">pub</span> <span class="token keyword">type</span> <span class="token class-name">CheckerMigrations</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">EnsureAccountsWontDie</span><span class="token punctuation">,</span> <span class="token class-name">CheckTotalIssuance</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">pub</span> <span class="token keyword">type</span> <span class="token class-name">Executive</span> <span class="token operator">=</span> <span class="token class-name">Executive</span><span class="token operator">&lt;</span>_<span class="token punctuation">,</span> _<span class="token punctuation">,</span> _<span class="token punctuation">,</span> _<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token class-name">CheckerMigrations</span><span class="token punctuation">)</span><span class="token operator">></span><span class="token punctuation">;</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="cli-interface"></a><a href="#cli-interface" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CLI interface</h3>
+<p>To use <code>try-runtime</code> from the command line, run your node with the <code>--features=try-runtime</code> flag.</p>
+<p>The possible sub-commands include:</p>
+<ul>
+<li><strong><code>on-runtime-upgrade</code></strong>: Executes &quot;tryRuntime_on_runtime_upgrade&quot; against the given runtime state.</li>
+<li><strong><code>offchain-worker</code></strong>: Executes &quot;offchainWorkerApi_offchain_worker&quot; against the given runtime state.</li>
+<li><strong><code>execute-block</code></strong>: Executes &quot;core_execute_block&quot; using the given block and the runtime state of the parent block.</li>
+</ul>
+<p>For example, running <code>try-runtime</code> with the &quot;on-runtime-upgrade&quot; subcommand on a chain
+running locally:</p>
+<pre><code class="hljs css language-bash">cargo run --release --features=try-runtime try-runtime on-runtime-upgrade live ws://localhost:9944
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="other-scenarios"></a><a href="#other-scenarios" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Other scenarios</h4>
+<p>Using it to re-execute code from a <code>ElectionProviderMultiPhase</code> off-chain worker:</p>
+<pre><code class="hljs css language-bash">cargo run -- --release \
+--features=try-runtime \
+try-runtime \
+--execution Wasm \
+--wasm-execution Compiled \
+offchain-worker \
+--header-at 0x491d09f313c707b5096650d76600f063b09835fd820e2916d3f8b0f5b45bec30 \
+live \
+-b 0x491d09f313c707b5096650d76600f063b09835fd820e2916d3f8b0f5b45bec30 \
+-m ElectionProviderMultiPhase
+ws//<span class="hljs-variable">$HOST</span>:9944
+</code></pre>
+<blockquote>
+<p><strong>Tip:</strong> pass in the --help flag after each subcommand to see the command's different options.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="next-steps"></a><a href="#next-steps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Next Steps</h2>
+<h3><a class="anchor" aria-hidden="true" id="learn-more"></a><a href="#learn-more" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Learn More</h3>
+<ul>
+<li><a href="https://substrate.dev/substrate-how-to-guides/docs/tools/integrate-try-runtime">Integrate <code>try-runtime</code></a> how-to guide</li>
+<li><a href="/docs/en/knowledgebase/advanced/storage#storage-value-keys">Storage keys</a></li>
+<li><a href="https://crates.parity.io/frame_support/traits/trait.OnRuntimeUpgrade.html#on_runtime_upgrade"><code>OnRuntimeUpgrade</code></a> FRAME trait</li>
+<li><a href="https://crates.parity.io/frame_executive/struct.Executive.html#method.try_runtime_upgrade"><code>try-runtime-upgrade</code></a> from <code>frame_executive</code></li>
+<li><a href="https://crates.parity.io/sp_core/traits/trait.Externalities.html#method.set_storage"><code>set_storage</code></a> from <code>sp_core::traits::Externalities</code></li>
+<li><a href="https://crates.parity.io/sc_rpc/state/trait.StateApi.html#tymethod.storage_keys_paged">storage_keys_paged</a> from <code>sc_rpc::state::StateApi</code></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="examples"></a><a href="#examples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h2>
+<ul>
+<li><code>try-runtime</code> in <a href="https://github.com/paritytech/substrate/blob/fc49802f263529160635471c8a17888846035f5d/frame/staking/src/lib.rs#L1399-L1406">FRAME's Staking pallet</a></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 8/1/2021 by Sacha Lansky</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/knowledgebase/advanced/no-hash-collections"><span class="arrow-prev">← </span><span>Why are there no Hash collections in sp_std?</span></a><a class="docs-next button" href="/docs/en/contribute/help-translate"><span>Help Translate</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#motivation">Motivation</a></li><li><a href="#how-it-works">How it works</a></li><li><a href="#usage">Usage</a><ul class="toc-headings"><li><a href="#calling-into-hooks-from-onruntimeupgrade">Calling into hooks from <code>OnRuntimeUpgrade</code></a></li><li><a href="#cli-interface">CLI interface</a></li></ul></li><li><a href="#next-steps">Next Steps</a><ul class="toc-headings"><li><a href="#learn-more">Learn More</a></li></ul></li><li><a href="#examples">Examples</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/substrate-how-to-guides">How-to Guides</a><a href="https://substrate.dev/rustdocs">API Reference</a><a href="https://playground.substrate.dev/">Playground</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+                var cookieSettings = document.getElementById('cookie-settings');
+                cookieSettings.onclick = function() {
+                  return klaro.show();
+                };
+              </script></a></div></section><section class="copyright">Copyright © 2021 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:en"]}
+              });
+            </script></body></html>
