@@ -61,14 +61,14 @@ By default, there are two ways of defining a runtime upgrade in the runtime. The
     fn on_runtime_upgrade() -> Weight { }
     ```
 
-To call into these hooks with `try-runtime`, a cargo `feature` is used. This requires specifying a `features` 
-dependency in your projects' relevant `Cargo.toml` files. With this cargo feature flag enabled, `try-runtime` can call into `OnRuntimeUpgrade` hooks using the 
-`#[cfg(feature = "try-runtime")]` macro which gives it access to the `OnRuntimeUpgrade` methods.
+
+These hooks will specify _what should happen upon a runtime upgrade_. For testing purposes, we prefer having hooks that allow us to inspect the state _before_ and _after_ a runtime upgrade as well. 
+
+These hooks are not available by default, and are only available under a specific feature flag, named `try-runtime`. 
 
 > Refer to this how-to guide on integrating `try-runtime` to your project. _(TODO)_
 
-For example, in a storage migration, `try-runtime` can allow developers to 
-examine state both before and after a runtime upgrade:
+The new hooks are as follows:
 
 ```rust
     #[cfg(feature = "try-runtime")]
@@ -76,10 +76,6 @@ examine state both before and after a runtime upgrade:
 
     #[cfg(feature = "try-runtime")]
     fn post_upgrade() -> Result<(), &'static str> { Ok(()) }
-```
-
-> See how the Executive pallet implements the `try_runtime_upgrade` method [here][executive-example-frame] to 
-> aggregate all `OnRuntimeUpgrade` calls from a runtime and return a `Weight`, which could be used for testing.  
 
 ### Helper functions
 
