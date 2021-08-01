@@ -146,7 +146,10 @@ next to the Pallet Interactor.
 
 ## Troubleshooting
 
-In case of this error `Error Connecting to Substrate { "isTrusted": true }` and if you run the node as a remote host, you can create ssh local port forwarding to access the Front-End Template at http://localhost:8000/:
+If you get `Error Connecting to Substrate { "isTrusted": true }` 
+when connecting to a node on remote host, for _testing only_ you can create 
+an `ssh` local port forwarding to access tyour node from a local Front-End Template 
+at http://localhost:8000/:
 ```bash
 # Enable local port forwarding on port 9944
 ssh -L 9944:127.0.0.1:9944 <remote user>@<remote host ip> -N -f
