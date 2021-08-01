@@ -66,7 +66,7 @@ These hooks will specify _what should happen upon a runtime upgrade_. For testin
 
 These hooks are not available by default, and are only available under a specific feature flag, named `try-runtime`. 
 
-> Refer to this how-to guide on integrating `try-runtime` to your project. _(TODO)_
+> Refer to [this how-to guide][integrate-try-runtime-htg] on how to integrate `try-runtime` to your project.
 
 The new hooks are as follows:
 
@@ -188,3 +188,4 @@ ws//$HOST:9944
 [storage-keys-paged-rustdocs]: https://crates.parity.io/sc_rpc/state/trait.StateApi.html#tymethod.storage_keys_paged
 [integrate-tryruntime-htg]: https://substrate.dev/substrate-how-to-guides/docs/tools/integrate-try-runtime
 [fork-off-gh]: https://github.com/maxsam4/fork-off-substrate
+[integrate-try-runtime-htg]: https://substrate.dev/substrate-how-to-guides/docs/tools/integrate-try-runtime
