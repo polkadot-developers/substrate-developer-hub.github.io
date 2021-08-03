@@ -43,34 +43,44 @@ If you do decide to try and use a Windows computer to _natively_ build Substrate
    rustup target add wasm32-unknown-unknown --toolchain nightly
    ```
 
-4. Install LLVM: https://releases.llvm.org/download.html
+4. Install dependencies:
+   - A simple way is using **Chocolatey**. 
+      - First you need to install the Chocolatey package manager: https://community.chocolatey.org/courses/installation/installing
+      - Once Chocolatey installed you can install LLVM, OpenSSL, cmake, make from either cmd or powershell:
+         ```
+         choco install llvm openssl cmake make -y
+         ```
+      - Wait a few minutes to check every package is installed ok. Substrate should be ready to build. One more tip to notice is, Windows system has a restriction on path length. **Better to put your build folder closer to you root dir to minimize path length.** Refer to https://github.com/substrate-developer-hub/substrate-node-template/issues/185
 
-5. Install OpenSSL with `vcpkg` using PowerShell:
+   - The other way is more complicated, installing these packages by their maintainers' instructions:
+     1. Install LLVM: https://releases.llvm.org/download.html
 
-   ```bash
-   mkdir C:\Tools
-   cd C:\Tools
-   git clone https://github.com/Microsoft/vcpkg.git --depth=1
-   cd vcpkg
-   .\bootstrap-vcpkg.bat
-   .\vcpkg.exe install openssl:x64-windows-static
-   ```
+     2. Install OpenSSL with `vcpkg` using PowerShell:
 
-6. Add OpenSSL to your System Variables using PowerShell:
+        ```bash
+        mkdir C:\Tools
+        cd C:\Tools
+        git clone https://github.com/Microsoft/vcpkg.git --depth=1
+        cd vcpkg
+        .\bootstrap-vcpkg.bat
+        .\vcpkg.exe install openssl:x64-windows-static
+        ```
 
-   ```powershell
-   $env:OPENSSL_DIR = 'C:\Tools\vcpkg\installed\x64-windows-static'
-   $env:OPENSSL_STATIC = 'Yes'
-   [System.Environment]::SetEnvironmentVariable('OPENSSL_DIR', $env:OPENSSL_DIR, [System.EnvironmentVariableTarget]::User)
-   [System.Environment]::SetEnvironmentVariable('OPENSSL_STATIC', $env:OPENSSL_STATIC, [System.EnvironmentVariableTarget]::User)
-   ```
+     3. Add OpenSSL to your System Variables using PowerShell:
 
-7. Install `cmake`: https://cmake.org/download/
+        ```powershell
+        $env:OPENSSL_DIR = 'C:\Tools\vcpkg\installed\x64-windows-static'
+        $env:OPENSSL_STATIC = 'Yes'
+        [System.Environment]::SetEnvironmentVariable('OPENSSL_DIR', $env:OPENSSL_DIR, [System.EnvironmentVariableTarget]::User)
+        [System.Environment]::SetEnvironmentVariable('OPENSSL_STATIC', $env:OPENSSL_STATIC, [System.EnvironmentVariableTarget]::User)
+        ```
 
-8. Install `make`
-    - This can be done using Chocolatey. First you need to install the Chocolatey package manager: https://chocolatey.org/install
-    - Once Chocolatey installed you can install make:
+     4. Install `cmake`: https://cmake.org/download/
 
-   ```
-   choco install make
-   ```
+     5.  Install `make`
+         - This can be done using Chocolatey. First you need to install the Chocolatey package manager: https://chocolatey.org/install
+         - Once Chocolatey installed you can install make:
+
+           ```
+           choco install make
+           ```
