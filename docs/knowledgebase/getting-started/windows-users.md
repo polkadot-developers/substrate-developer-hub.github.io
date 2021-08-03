@@ -50,7 +50,7 @@ If you do decide to try and use a Windows computer to _natively_ build Substrate
          ```
          choco install llvm openssl cmake make -y
          ```
-      - Wait a few minutes to check every package is installed ok. Substrate should be ready to build. One more tip to notice is, Windows system has a restriction on path length. **Better to put your build folder closer to you root dir to minimize path length.** Refer to https://github.com/substrate-developer-hub/substrate-node-template/issues/185
+      - **Note that Windows systems have a restriction on path length, and sometimes substrate runs into this! **Better to put your build folder closer to you root dir to minimize path length.** More in [this issue](https://github.com/substrate-developer-hub/substrate-node-template/issues/185).
 
    - The other way is more complicated, installing these packages by their maintainers' instructions:
      1. Install LLVM: https://releases.llvm.org/download.html
