@@ -50,7 +50,7 @@ If you do decide to try and use a Windows computer to _natively_ build Substrate
          ```
          choco install llvm openssl cmake make -y
          ```
-      - **Note that Windows systems have a restriction on path length, and sometimes substrate runs into this! **Better to put your build folder closer to you root dir to minimize path length.** More in [this issue](https://github.com/substrate-developer-hub/substrate-node-template/issues/185).
+      - **Note that Windows systems have a restriction on path length, and sometimes substrate runs into this! **Better to put your build folder closer to your root dir to minimize path length.** More in [this issue](https://github.com/substrate-developer-hub/substrate-node-template/issues/185).
 
    - As an alternative to `chocolatey`, you can install these packages individually:
      1. Install LLVM: https://releases.llvm.org/download.html
