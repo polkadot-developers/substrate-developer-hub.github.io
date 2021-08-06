@@ -39,13 +39,13 @@
       "knowledgebase/smart-contracts/evm-pallet",
       "knowledgebase/smart-contracts/faq"
     ],
-    "Toolchains": [
-      "knowledgebase/toolchains/polkadot-js",
-      "knowledgebase/toolchains/libraries",
-      "knowledgebase/toolchains/chain-spec",
-      "knowledgebase/toolchains/subkey",
-      "knowledgebase/toolchains/memory-profiling",
-      "knowledgebase/toolchains/try-runtime"
+    "Integrate": [
+      "knowledgebase/integrate/polkadot-js",
+      "knowledgebase/integrate/libraries",
+      "knowledgebase/integrate/chain-spec",
+      "knowledgebase/integrate/subkey",
+      "knowledgebase/integrate/memory-profiling",
+      "knowledgebase/integrate/try-runtime"
     ],
     "Advanced": [
       "knowledgebase/advanced/account-info",
