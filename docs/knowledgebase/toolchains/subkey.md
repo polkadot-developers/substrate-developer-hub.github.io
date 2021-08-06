@@ -1,5 +1,5 @@
 ---
-title: The Subkey Tool
+title: Subkey
 ---
 
 Subkey is a [public key cryptographic](https://en.wikipedia.org/wiki/Public-key_cryptography)

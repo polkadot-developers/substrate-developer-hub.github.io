@@ -18,7 +18,7 @@ cargo run --release -- --dev --tmp
 > node to prove to yourself that the runtime upgrade is in fact done on an _active_ (dev) network,
 > not a rebuilt or restarted one.
 
-By default, the [well-known Alice account](../../knowledgebase/integrate/subkey#well-known-keys) is
+By default, the [well-known Alice account](../../knowledgebase/toolchains/subkey#well-known-keys) is
 configured as the holder of the Sudo pallet's key in the `development_config` function of the
 template node's
 [chain specification file](https://github.com/substrate-developer-hub/substrate-node-template/blob/v3.0.0/node/src/chain_spec.rs) -

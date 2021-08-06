@@ -58,7 +58,7 @@ Substrate allows developers to make choices between technical freedom and ease o
 
 - Refer to the developer documentation for the [FRAME system for runtime development](knowledgebase/runtime).
 - Learn how to create rich client applications for any Substrate-based chain by using the
-  [Polkadot-JS](knowledgebase/integrate/polkadot-js) family of libraries.
+  [Polkadot-JS](knowledgebase/toolchains/polkadot-js) family of libraries.
 - Dive deep into advanced topics, like Substrate's [SCALE encoding](knowledgebase/advanced/codec),
   [consensus mechanisms](knowledgebase/advanced/consensus), [cryptography](knowledgebase/advanced/cryptography), and
   [storage implementation](knowledgebase/advanced/storage).
