@@ -102,15 +102,7 @@
     ]
   },
   "frontier": {
-    "Integrate Ethereum Compatibility into Substrate": [
-      "tutorials/frontier/index",
-      "tutorials/frontier/pallet-evm",
-      "tutorials/frontier/pallet-ethereum",
-      "tutorials/frontier/wrapping-transactions",
-      "tutorials/frontier/runtime-api",
-      "tutorials/frontier/block-import",
-      "tutorials/frontier/rpc"
-    ]
+    "Integrate Ethereum Compatibility into Substrate": ["tutorials/frontier/index"]
   },
   "add-contracts-pallet": {
     "Add the Contracts Pallet": []
