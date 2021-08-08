@@ -104,7 +104,7 @@ class Index extends React.Component {
                 </translate></p>
                 <section className='button-wrap'>
                   <a
-                    href={ docUrl('knowledgebase/toolchains/polkadot-js') }
+                    href={ docUrl('knowledgebase/integrate/polkadot-js') }
                     className='with-arrow'
                   >
                     <translate>Learn More</translate>

@@ -199,11 +199,11 @@ is used by Substrate-based chains.
 A
 [mnemonic phrase](https://en.wikipedia.org/wiki/Mnemonic#For_numerical_sequences_and_mathematical_operations)
 that is intentionally made public. All of the
-[well-known development accounts](../toolchains/subkey#well-known-keys) (Alice, Bob, Charlie, Dave,
+[well-known development accounts](../integrate/subkey#well-known-keys) (Alice, Bob, Charlie, Dave,
 Ferdie, and Eve) are generated from the same dev phrase. The dev phrase is:
 `bottom drive obey lake curtain smoke basket hold race lonely fit walk`.
 
-Many tools in the Substrate ecosystem, such as [`subkey`](../toolchains/subkey), allow users to
+Many tools in the Substrate ecosystem, such as [`subkey`](../integrate/subkey), allow users to
 implicitly specify the dev phrase by only specifying a derivation path such as `//Alice`.
 
 ## Digest
@@ -356,7 +356,7 @@ execution (and thus verification) of all logic. Full clients stand in contrast t
 
 A mechanism for specifying the initial (genesis) [state](#state) of a [blockchain](#blockchain).
 Genesis configuration of Substrate-based chains is accomplished by way of a
-[chain specification](../../knowledgebase/toolchains/chain-spec) file, which makes it easy to use a
+[chain specification](../../knowledgebase/integrate/chain-spec) file, which makes it easy to use a
 single Substrate codebase to underpin multiple independently configured chains.
 
 ## GRANDPA

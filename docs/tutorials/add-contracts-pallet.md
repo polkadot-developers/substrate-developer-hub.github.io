@@ -560,7 +560,7 @@ runtime. You can basically copy what was done there to your own runtime.
   [Runtime APIs](https://substrate.dev/recipes/runtime-api.html) and
   [Custom RPCs](https://substrate.dev/recipes/custom-rpc.html) like the ones explored in
   this tutorial.
-- Understand the [Chain Spec](../../knowledgebase/toolchains/chain-spec) file to customize your Genesis
+- Understand the [Chain Spec](../../knowledgebase/integrate/chain-spec) file to customize your Genesis
   Configuration.
 
 ### References

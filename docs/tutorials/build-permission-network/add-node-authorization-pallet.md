@@ -207,12 +207,12 @@ fn testnet_genesis(
 The first element of the tuple is the `OpaquePeerId` and we use `bs58::decode` to convert
 the `PeerId` in human readable format to bytes. The second element of the tuple is `AccountId`
 and represents the owner of this node, here we are using one of the provided endowed accounts
-for demonstration: [Alice and Bob](../../knowledgebase/toolchains/subkey#well-known-keys).
+for demonstration: [Alice and Bob](../../knowledgebase/integrate/subkey#well-known-keys).
 
 <!-- TODO: update to use the `key` embedded CLI tool with the node, reference subkey as option -->
 
 You may wondering where the `12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2` comes from.
-We can use [subkey](../../knowledgebase/toolchains/subkey#generating-node-keys) to generate 
+We can use [subkey](../../knowledgebase/integrate/subkey#generating-node-keys) to generate 
 the above human readable `PeerId`.
 
 ```bash
@@ -220,7 +220,7 @@ subkey generate-node-key
 ```
 
 > Note: `subkey` is a CLI tool that comes bundled with substrate, and you can install it natively too!
->  - [Install Instructions](../../knowledgebase/toolchains/subkey#installation)
+>  - [Install Instructions](../../knowledgebase/integrate/subkey#installation)
 
 The output of the command is like:
 

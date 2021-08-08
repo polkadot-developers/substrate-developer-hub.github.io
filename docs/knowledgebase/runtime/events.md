@@ -133,7 +133,7 @@ beginning of a new block, the System module automatically removes all events tha
 the previous block.
 
 Events deposited using the default implementation will be directly supported by downstream libraries
-like the [Polkadot-JS API](../toolchains/polkadot-js), however you can implement your own
+like the [Polkadot-JS API](../integrate/polkadot-js), however you can implement your own
 `deposit_event` function if you want to handle events differently.
 
 ## Supported Types
@@ -148,7 +148,7 @@ those types as shown in the example above.
 
 The Substrate RPC does not directly expose an endpoint for querying events. If you used the default
 implementation, you can see the list of events for the current block by querying the storage of the
-System module. Otherwise, the [Polkadot-JS API](../toolchains/polkadot-js) supports a WebSocket
+System module. Otherwise, the [Polkadot-JS API](../integrate/polkadot-js) supports a WebSocket
 subscription on runtime events.
 
 ## Next Steps
@@ -156,7 +156,7 @@ subscription on runtime events.
 ### Learn More
 
 - Learn more about the [macros](macros) used in Substrate runtime development.
-- Learn more about using the [Polkadot-JS API](../toolchains/polkadot-js).
+- Learn more about using the [Polkadot-JS API](../integrate/polkadot-js).
 
 ### Examples
 
