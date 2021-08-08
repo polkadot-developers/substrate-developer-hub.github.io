@@ -142,38 +142,38 @@
 <span class="token comment">// This is a placeholder to implement traits and methods.</span>
 <span class="token attribute attr-name">#[pallet::pallet]</span>
 <span class="token attribute attr-name">#[pallet::generate_store(pub(super) trait Store)]</span>
-    <span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token class-name">PhantomData</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token class-name">PhantomData</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment">// 3. Runtime Configuration Trait</span>
 <span class="token comment">// All types and constants go here. </span>
 <span class="token comment">// Use #[pallet::constant] and #[pallet::extra_constants] </span>
 <span class="token comment">// to pass in values to metadata.</span>
 <span class="token attribute attr-name">#[pallet::config]</span>
-    <span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token class-name">Config</span><span class="token punctuation">:</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
+<span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token class-name">Config</span><span class="token punctuation">:</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
 
 <span class="token comment">// 4. Runtime Storage</span>
 <span class="token comment">// Use to declare storage items.</span>
 <span class="token attribute attr-name">#[pallet::storage]</span>
-    <span class="token attribute attr-name">#[pallet::getter(fn something)]</span>
-    <span class="token keyword">pub</span> <span class="token class-name">MyStorage</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token class-name">StorageValue</span><span class="token operator">&lt;</span>_<span class="token punctuation">,</span> <span class="token keyword">u32</span><span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token attribute attr-name">#[pallet::getter(fn something)]</span>
+<span class="token keyword">pub</span> <span class="token keyword">type</span> <span class="token class-name">MyStorage</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token class-name">StorageValue</span><span class="token operator">&lt;</span>_<span class="token punctuation">,</span> <span class="token keyword">u32</span><span class="token operator">></span><span class="token punctuation">;</span>
 
 <span class="token comment">// 5. Runtime Events</span>
 <span class="token comment">// Can stringify event types to metadata.</span>
 <span class="token attribute attr-name">#[pallet::event]</span>
-    <span class="token attribute attr-name">#[pallet::metadata(T::AccountId = <span class="token string">"AccountId"</span>)]</span>
-    <span class="token attribute attr-name">#[pallet::generate_deposit(pub(super) fn deposit_event)]</span>
-    <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Event</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
+<span class="token attribute attr-name">#[pallet::metadata(T::AccountId = <span class="token string">"AccountId"</span>)]</span>
+<span class="token attribute attr-name">#[pallet::generate_deposit(pub(super) fn deposit_event)]</span>
+<span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Event</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
 
 <span class="token comment">// 6. Hooks</span>
 <span class="token comment">// Define some logic that should be executed</span>
 <span class="token comment">// regularly in some context, for e.g. on_initialize.</span>
 <span class="token attribute attr-name">#[pallet::hooks]</span>
-    <span class="token keyword">impl</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token class-name">Hooks</span><span class="token operator">&lt;</span><span class="token class-name">BlockNumberFor</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">>></span> <span class="token keyword">for</span> <span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
+<span class="token keyword">impl</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token class-name">Hooks</span><span class="token operator">&lt;</span><span class="token class-name">BlockNumberFor</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">>></span> <span class="token keyword">for</span> <span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
 
 <span class="token comment">// 7. Extrinsics</span>
 <span class="token comment">// Functions that are callable from outside the runtime.</span>
 <span class="token attribute attr-name">#[pallet::call]</span>
-    <span class="token keyword">impl</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span><span class="token class-name">Config</span><span class="token operator">></span> <span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
+<span class="token keyword">impl</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span><span class="token class-name">Config</span><span class="token operator">></span> <span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
 
 </code></pre>
 <blockquote>
