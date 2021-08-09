@@ -1,5 +1,5 @@
 ---
-title: try-runtime
+title: Try Runtime
 ---
 
 The `try-runtime` tool is built to query a snapshot of runtime storage, using an [in-memory-externalities][testextern-rustdocs] to store state. In this way, 
@@ -76,7 +76,7 @@ The new hooks are as follows:
 
     #[cfg(feature = "try-runtime")]
     fn post_upgrade() -> Result<(), &'static str> { Ok(()) }
-
+```
 ### Helper functions
 
 [`OnRuntimeUpgradeHelpersExt`][oru-helpers-ext-rustdocs] are a set of helper functions made available from 
