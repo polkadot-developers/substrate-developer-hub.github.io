@@ -45,15 +45,16 @@ If you do decide to try and use a Windows computer to _natively_ build Substrate
 
 4. Install dependencies:
    - A simple way is using **Chocolatey**. 
-      - First you need to install the Chocolatey package manager: https://community.chocolatey.org/courses/installation/installing
-      - Once Chocolatey installed you can install LLVM, OpenSSL, cmake, make from either cmd or powershell:
-         ```
+      - First, install the [Chocolatey package manager](https://community.chocolatey.org/courses/installation/installing)
+      - Then, you can install LLVM, OpenSSL, cmake and make from either cmd or PowerShell:
+         ```powershell
          choco install llvm openssl cmake make -y
          ```
-      - **Note that Windows systems have a restriction on path length, and sometimes substrate runs into this! **Better to put your build folder closer to your root dir to minimize path length.** More in [this issue](https://github.com/substrate-developer-hub/substrate-node-template/issues/185).
+      - **Note that Windows systems have a restriction on path length which could lead to some issues. It is 
+      recommended to put your build folder closer to your root directory to avoid running into [these issues](https://github.com/substrate-developer-hub/substrate-node-template/issues/185).**
 
-   - As an alternative to `chocolatey`, you can install these packages individually:
-     1. Install LLVM: https://releases.llvm.org/download.html
+   - As an alternative to Chocolatey, you can install these packages individually:
+     1. [Install LLVM](https://releases.llvm.org/download.html)
 
      2. Install OpenSSL with `vcpkg` using PowerShell:
 
@@ -75,12 +76,12 @@ If you do decide to try and use a Windows computer to _natively_ build Substrate
         [System.Environment]::SetEnvironmentVariable('OPENSSL_STATIC', $env:OPENSSL_STATIC, [System.EnvironmentVariableTarget]::User)
         ```
 
-     4. Install `cmake`: https://cmake.org/download/
+     4. [Install `cmake`](https://cmake.org/download/)
 
      5.  Install `make`
-         - This can be done using Chocolatey. First you need to install the Chocolatey package manager: https://chocolatey.org/install
-         - Once Chocolatey installed you can install make:
+         - This can be done using Chocolatey. First you need to install the [Chocolatey package manager](https://chocolatey.org/install).
+         - Once Chocolatey is installed, install make with the following command:
 
-           ```
+           ```powershell
            choco install make
            ```
