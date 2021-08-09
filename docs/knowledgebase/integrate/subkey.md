@@ -7,13 +7,13 @@ utility that is developed
 [within Substrate itself](https://github.com/paritytech/substrate/tree/master/bin/utils/subkey). 
 Its main feature is generating and inspecting key pairs, currently supporting these scheme:
 
-- [sr25519](https://wiki.polkadot.network/docs/en/learn-cryptography): Schorr signatures on
+- [sr25519](https://wiki.polkadot.network/docs/learn-cryptography): Schorr signatures on
   the Ristretto group
 - [ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519): SHA-512 (SHA-2) on Curve25519
 - [secp256k1](https://en.bitcoin.it/wiki/Secp256k1): ECDSA signatures on secp256k1
 
 All keys in Substrate based networks
-([like polkadot](https://wiki.polkadot.network/docs/en/learn-accounts#address-format))
+([like polkadot](https://wiki.polkadot.network/docs/learn-accounts#address-format))
 use the 
 [SS58 address encoding format](https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58))
 that is the primary user-facing way to interact with keys.
@@ -535,4 +535,4 @@ generate the account.
 - Key pairs can also be generated in the [PolkadotJS Apps UI](https://polkadot.js.org/apps/). Try
   creating keys with the UI and restoring them with Subkey or vice versa.
 - Learn more about
-  [different cryptographic algorithms and choosing between them](https://wiki.polkadot.network/docs/en/learn-cryptography).
+  [different cryptographic algorithms and choosing between them](https://wiki.polkadot.network/docs/learn-cryptography).

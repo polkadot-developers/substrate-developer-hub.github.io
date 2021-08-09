@@ -207,7 +207,7 @@ Here is ours on [the grafana public dashboards](https://grafana.com/grafana/dash
 
 - Learn how to [set up a private Substrate network](../../tutorials/start-a-private-network/).
 - Further configuration, notification services, and permanent installation of
-  [Substrate/Polkadot monitoring tools](https://wiki.polkadot.network/docs/en/maintain-guides-how-to-monitor-your-node)
+  [Substrate/Polkadot monitoring tools](https://wiki.polkadot.network/docs/maintain-guides-how-to-monitor-your-node)
 
 ### Examples
 

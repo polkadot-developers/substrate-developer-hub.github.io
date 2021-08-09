@@ -171,8 +171,8 @@ decisions on which approach to use based on different situations.
 </table>
 
 > If you are building on Polkadot, you can also
-[deploy smart contracts on its parachain](https://wiki.polkadot.network/docs/en/build-smart-contracts). Check here for
-[comparison between developing on parachain, parathread, and smart contract](https://wiki.polkadot.network/docs/en/build-build-with-polkadot#what-is-the-difference-between-building-a-parachain-a-parathread-or-a-smart-contract).
+[deploy smart contracts on its parachain](https://wiki.polkadot.network/docs/build-smart-contracts). Check here for
+[comparison between developing on parachain, parathread, and smart contract](https://wiki.polkadot.network/docs/build-build-with-polkadot#what-is-the-difference-between-building-a-parachain-a-parathread-or-a-smart-contract).
 
 ### Learn More
 
