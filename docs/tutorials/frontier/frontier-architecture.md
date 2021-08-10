@@ -19,10 +19,6 @@ typically written in a high level language like Solidity, then compiled to EVM b
 
 The Ethereum pallet is responsible for storing Ethereum-formatted blocks, transaction receipts, and transaction statuses.
 
-The biggest challenge here is that the Frontier project does not use the same, published, Substrate
-crates; it takes Substrate code from github. For this tutorial, there's a special branch of
-Frontier that uses the published dependencies.
-
 ![architecture diagram](assets/tutorials/frontier/pallet-ethereum.png)
 
 ### Wrapping Ethereum Transactions
