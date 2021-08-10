@@ -62,7 +62,7 @@ https://github.com/substrate-developer-hub/frontier-node-template/ .
 
 #### Genesis Configuration
 
-The development [chain spec](node/src/chain_spec.rs) included with this project defines a genesis
+The development [chain spec](https://github.com/paritytech/frontier/blob/master/template/node/src/chain_spec.rs) included with this project defines a genesis
 block that has been pre-configured with an EVM account for
 [Alice](https://substrate.dev/docs/en/knowledgebase/integrate/subkey#well-known-keys). When
 [a development chain is started](https://github.com/substrate-developer-hub/substrate-node-template#run),
