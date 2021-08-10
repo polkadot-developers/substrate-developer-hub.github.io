@@ -74,7 +74,7 @@ value that is returned should be
 `0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff`.
 
 The storage slot was calculated using
-[a provided utility](utils/README.md#--erc20-slot-slot-address). (Slot 0 and alice address:
+[a provided utility](https://github.com/paritytech/frontier/blob/master/template/utils/README.md#--erc20-slot-slot-address). (Slot 0 and alice address:
 `0xd43593c715fdd31c61141abd04a99fd6822c8558`)
 
 > Further reading:

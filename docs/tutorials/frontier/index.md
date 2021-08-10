@@ -131,7 +131,8 @@ x: eth.getBalance
 > [EVM accounts](https://github.com/danforbes/danforbes/blob/master/writings/eth-dev.md#Accounts)
 
 Alice's EVM account ID was calculated using
-[an included utility script](utils/README.md#--evm-address-address).
+[an included utility script](https://github.com/paritytech/frontier/blob/master/template/utils/README.md#--evm-address-address).
+
 
 
 ### Deploy & Call Ethereum Smart Contracts
