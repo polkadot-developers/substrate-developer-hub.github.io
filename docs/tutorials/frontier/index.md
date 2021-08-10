@@ -21,30 +21,23 @@ Before attempting this tutorial, you should be familiar with the concepts listed
 - Ethereum and EVM basics
 - Pallet design
 
-## Template Solution and Reference
+## Frontier Template
 
-> The full tutorial is presently _not up to date!_ While it is still a good reference, it relays
-> incomplete and sometimes incorrect information based an older version of the base substrate node
-> template. It is thus _highly_ encouraged to generate your own template based of whatever commit
-> you desire from frontier itself to start working with many of the core features of Frontier
-> installed and enabled.
->
-> The biggest challenge here is that the Frontier project does not use the same, published, Substrate
-> crates; it takes Substrate code from github. Take note of this in your `Cargo` files. You _must_
-> use the _matching_ version of dependencies for all of Substrate and Frontier in your project.
->
-> > [Old tutorial for reference](https://github.com/substrate-developer-hub/frontier-workshop/)
+This tutorial is presently a little bit out of date. While it is still a good reference, it refers to an older version of Substrate template. It is thus encouraged to generate your own template based of whatever commit you desire from frontier itself to start working with many of the core features of Frontier installed and enabled.
 
-### Frontier Template
+The Frontier project currently does not use the published Substrate
+crates; it refers to Subsrate code from github directly. Take note of this in your `Cargo` files. You _must_
+use the _matching_ version of dependencies for all of Substrate and Frontier in your project.
 
-To get a stand-alone Frontier template to start, you are encouraged to generate your own. There also
-is a github repo `template` that is available for major Frontier releases pre-generated for you.
+This is a stop-gap solution while Frontier is being updated to the latest Substrate tag/release.
+
+There's also a github repo `template` that is available for major Frontier releases pre-generated for you.
 
 #### Generation Script
 
 You can generate a version of the Frontier template by running the
 [generation script](https://github.com/paritytech/frontier/blob/master/.maintain/node-template-release.sh)
-included in Frontier. This can be done starting at **any commit within frontier** to get a specific version/tag.
+included in Frontier. 
 
 ```bash
 # from the top working dir of Frontier:
@@ -56,11 +49,7 @@ cd .maintain/
 tar xvzf TEMPLATE.tar.gz
 # this unpacks into `frontier-node-template` with all your files
 cd frontier-node-template
-# build the template
-cargo build --release
 ```
-
-### Github Template
 
 The Substrate Developer Hub has generated the template using the
 [included release guide](https://github.com/paritytech/frontier/blob/master/docs/node-template-release.md)
@@ -69,64 +58,84 @@ The Substrate Developer Hub has generated the template using the
 You can `use` the pre-generated template or `fork` it from here:
 https://github.com/substrate-developer-hub/frontier-node-template/ .
 
-### Testing Ethereum Functionality
+### Build & Config Setup
 
-To test the template, please see the [included
-README](https://github.com/paritytech/frontier/blob/master/template/README.md) that details the
-proper Ethereum account use, as well as deploying and interacting with
-EVM contracts.
+#### Genesis Configuration
 
-## Frontier Overview & Architecture Diagrams
+The development [chain spec](https://github.com/paritytech/frontier/blob/master/template/node/src/chain_spec.rs) included with this project defines a genesis
+block that has been pre-configured with an EVM account for
+[Alice](https://substrate.dev/docs/en/knowledgebase/integrate/subkey#well-known-keys). When
+[a development chain is started](https://github.com/substrate-developer-hub/substrate-node-template#run),
+Alice's EVM account will be funded with a large amount of Ether. The
+[Polkadot UI](https://polkadot.js.org/apps/#?rpc=ws://127.0.0.1:9944) can be used to see the details
+of Alice's EVM account. In order to view an EVM account, use the `Developer` tab of the Polkadot UI
+`Settings` app to define the EVM `Account` type as below. It is also necessary to define the
+`Address` and `LookupSource` to send transaction, and `Transaction` and `Signature` to be able to
+inspect blocks:
 
-Here are a few helpful diagrams to help illustrate how the Frontier EVM and Ethereum RPC plug into
-your Substrate FRAME runtime.
+```json
+{
+	"Address": "MultiAddress",
+	"LookupSource": "MultiAddress",
+	"Account": {
+		"nonce": "U256",
+		"balance": "U256"
+	},
+	"Transaction": {
+		"nonce": "U256",
+		"action": "String",
+		"gas_price": "u64",
+		"gas_limit": "u64",
+		"value": "U256",
+		"input": "Vec<u8>",
+		"signature": "Signature"
+	},
+	"Signature": {
+		"v": "u64",
+		"r": "H256",
+		"s": "H256"
+	}
+}
+```
 
-### EVM Pallet Runtime Configuration
+#### Build & Run
 
-The Ethereum Virtual Machine (EVM) is a sandboxed virtual stack machine that is implemented in the
-EVM pallet. The EVM is responsible for executing Ethereum contract bytecode of smart contracts,
-typically written in a high level language like Solidity, then compiled to EVM bytecode.
+To build the chain, execute the following commands from the project root:
 
-![architecture diagram](assets/tutorials/frontier/pallet-evm.png)
+```
+$ cargo build --release
+```
 
-### Ethereum Pallet
+To execute the chain, run:
 
-The Ethereum pallet is responsible for storing Ethereum-formatted blocks, transaction receipts, and transaction statuses.
+```
+$ ./target/debug/frontier-template-node --dev
+```
 
-The biggest challenge here is that the Frontier project does not use the same, published, Substrate
-crates; it takes Substrate code from github. For this tutorial, I've made a special branch of
-Frontier that uses the published dependencies.
+The node also supports to use manual seal (to produce block manually through RPC).  
+```
+$ ./target/debug/frontier-template-node --dev --manual-seal
+```
 
-![architecture diagram](assets/tutorials/frontier/pallet-ethereum.png)
+### Query Balance Using RPC
 
-### Wrapping Ethereum Transactions
+Once your node is running, use the Polkadot JS Apps' `RPC calls` under the `Developer` tab to query `eth > getBalance(address, number)` with Alice's
+EVM account ID (`0xd43593c715fdd31c61141abd04a99fd6822c8558`); the value that is returned should be:
 
-When a user submits a raw Ethereum transaction, we need to convert it into a Substrate transaction. The conversion is simple. We just wrap the raw transaction in a call the `pallet_ethereum`'s `transact` extrinsic. This is done in the runtime.
+```text
+x: eth.getBalance
+340,282,366,920,938,463,463,374,607,431,768,211,455
+```
 
-> Note that Ethereum Accounts and Substrate accounts in this template are not directly compatible
-> for using keys. For an explainer on this, please see the
-> [Moonbean documentain on EVM&Substrate Accounts](https://docs.moonbeam.network/learn/unified-accounts/#substrate-evm-compatible-blockchain)
+> Further reading:
+> [EVM accounts](https://github.com/danforbes/danforbes/blob/master/writings/eth-dev.md#Accounts)
 
-### Ethereum Specific Runtime APIs & RPCs
+Alice's EVM account ID was calculated using
+[an included utility script](https://github.com/paritytech/frontier/blob/master/template/utils/README.md#--evm-address-address).
 
-Our runtime is storing all the ethereum-formatted information that may be queried, thus we need a
-way for the RPC server to call into the runtime and retrieve that information. This is done through
-runtime APIs & RPCs.
 
-![architecture diagram](assets/tutorials/frontier/rpc.png)
 
-Further reading:
+### Deploy & Call Ethereum Smart Contracts
 
-- [Recipe about Runtime APIs](https://substrate.dev/recipes/runtime-api.html)
-- [Recipe about Custom RPCs](https://substrate.dev/recipes/custom-rpc.html)
-- RPCs in Frontier: [fc-rpc](https://github.com/paritytech/frontier/tree/master/client/rpc)
-  and [fc-rpc-core](https://github.com/paritytech/frontier/blob/master/client/rpc-core/)
-
-### Frontier Block Import
-
-![architecture diagram](assets/tutorials/frontier/block-import.png)
-
-Further reading:
-
-- [Block import pipeline docs](../en/knowledgebase/advanced/block-import)
-- [Frontier consensus code](https://github.com/paritytech/frontier/tree/master/primitives/consensus)
+To deploy and call Ethereum smart contracts and test the related functionality follow the next steps at:
+- [Testing Ethereum Smart Contracts Functionality](ethereum-contracts).

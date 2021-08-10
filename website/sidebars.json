@@ -102,7 +102,11 @@
     ]
   },
   "frontier": {
-    "Integrate Ethereum Compatibility into Substrate": ["tutorials/frontier/index"]
+    "Integrate Ethereum Compatibility into Substrate": [
+      "tutorials/frontier/index",
+      "tutorials/frontier/frontier-architecture",
+      "tutorials/frontier/ethereum-contracts"
+    ]
   },
   "add-contracts-pallet": {
     "Add the Contracts Pallet": []
