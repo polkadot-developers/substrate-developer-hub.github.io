@@ -78,7 +78,7 @@ The storage slot was calculated using
 `0xd43593c715fdd31c61141abd04a99fd6822c8558`)
 
 > Further reading:
-> [EVM layout of state variables in storage](https://solidity.readthedocs.io/en/latest/miscellaneous.html#layout-of-state-variables-in-storage)
+> [EVM layout of state variables in storage](https://docs.soliditylang.org/en/latest/miscellaneous.html#layout-of-state-variables-in-storage)
 
 ### Step 3: Contract Usage
 
