@@ -4,16 +4,16 @@ title: Testing Ethereum Smart Contracts
 
 ## Example 1: ERC20 Contract Deployment using EVM dispatchable
 
-The following steps are also available as a [Typescript script](examples/contract-erc20) using
+The following steps are also available as a [Typescript script](https://github.com/paritytech/frontier/tree/master/template/examples/contract-erc20) using
 Polkadot JS SDK
 
 ### Step 1: Contract creation
 
-The [`truffle`](examples/contract-erc20/truffle) directory contains a
+The [`truffle`](https://github.com/paritytech/frontier/tree/master/template/examples/contract-erc20/truffle) directory contains a
 [Truffle](https://www.trufflesuite.com/truffle) project that defines
-[an ERC-20 token](examples/contract-erc20/truffle/contracts/MyToken.sol). For convenience, this
+[an ERC-20 token](https://github.com/paritytech/frontier/tree/master/template/examples/contract-erc20/truffle/contracts/MyToken.sol). For convenience, this
 repository also contains
-[the compiled bytecode of this token contract](examples/contract-erc20/truffle/contracts/MyToken.json#L259),
+[the compiled bytecode of this token contract](https://github.com/paritytech/frontier/tree/master/template/examples/contract-erc20/truffle/contracts/MyToken.json#L259),
 which can be used to deploy it to the Substrate blockchain.
 
 > Further reading:
