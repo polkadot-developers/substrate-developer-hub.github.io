@@ -80,6 +80,6 @@ _all_ pallet's that consume its randomness.
 
 ### References
 
-- Read more in the [Polkadot Wiki](https://wiki.polkadot.network/docs/en/learn-randomness)
+- Read more in the [Polkadot Wiki](https://wiki.polkadot.network/docs/learn-randomness)
 - View the Rustdocs on the
   [`Randomness` Trait](https://crates.parity.io/frame_support/traits/trait.Randomness.html).
