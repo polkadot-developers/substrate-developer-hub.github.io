@@ -65,7 +65,7 @@ of the Solidity contract.
 The ERC-20 contract that was deployed inherits from
 [the OpenZeppelin ERC-20 implementation](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol)
 and extends its capabilities by adding
-[a constructor that mints a maximum amount of tokens to the contract creator](examples/contract-erc20/truffle/contracts/MyToken.sol#L8).
+[a constructor that mints a maximum amount of tokens to the contract creator](https://github.com/paritytech/frontier/tree/master/template/examples/contract-erc20/truffle/contracts/MyToken.sol#L8).
 Use the `Chain State` app to query `evm > accountStorage` and view the value associated with Alice's
 account in the `_balances` map of the ERC-20 contract; use the ERC-20 contract address
 (`0x8a50db1e0f9452cfd91be8dc004ceb11cb08832f`) as the first parameter and the storage slot to read
@@ -78,7 +78,7 @@ The storage slot was calculated using
 `0xd43593c715fdd31c61141abd04a99fd6822c8558`)
 
 > Further reading:
-> [EVM layout of state variables in storage](https://docs.soliditylang.org/en/latest/miscellaneous.html#layout-of-state-variables-in-storage)
+> [EVM layout of state variables in storage](https://docs.soliditylang.org/en/v0.8.6/internals/layout_in_storage.html#layout-of-state-variables-in-storage)
 
 ### Step 3: Contract Usage
 
