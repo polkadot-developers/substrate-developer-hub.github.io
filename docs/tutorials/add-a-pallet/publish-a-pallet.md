@@ -52,7 +52,7 @@ in **crates.io** repository.
 
 ## Learn More
 
-- We have [plenty of tutorials](../tutorials) to showcase Substrate development concepts and
+- We have [plenty of tutorials](/tutorials) to showcase Substrate development concepts and
   techniques.
 - For more information about runtime development tips and patterns, refer to our
   [Substrate Recipes](https://substrate.dev/recipes).

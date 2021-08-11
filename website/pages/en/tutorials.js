@@ -207,8 +207,7 @@ class Tutorials extends React.Component {
         length: <translate>1 Hour</translate>,
         prerequisite: false,
         version: "3.0.0",
-        hrefFrom: "baseUrl",
-        href: "tutorials/substrate-frontier-workshop/",
+        href: "tutorials/frontier/",
       },
       {
         img: "img/tutorials/grafana.png",

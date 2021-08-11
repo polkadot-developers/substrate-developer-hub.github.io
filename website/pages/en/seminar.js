@@ -151,16 +151,12 @@ function Seminar(props) {
             <div className='col-md-6 second'>
 
               <h2 style={{ fontSize: '32px' }}><translate>Upcoming seminars</translate></h2>
-              
-              <p><strong>15 June. </strong><translate> Parity Software Developer Kian will be demonstrating a recent tool 
-              he built called try-runtime to test storage migrations and runtime upgrades.</translate></p>
+            
+              <p><strong>27 Jul. </strong><translate>Enhancing the FRAME developer experience: Parity Software Developer, Keith, presents improvements he's been working on for runtime engineers, including improving error messages in `construct_runtime` and the creation of `StorageNMaps`. </translate></p>
 
-              <p><strong>29 June. </strong><translate> RMRK.app: Nested, reactive, useful, upgradeable NFTs that react to emotion and conditionally 
-              display different resources in different formats.</translate></p>
+              <p><strong>10 Aug. </strong><translate>Behind Subsocial's pallets: Alex will present his journey building a social network with Substrate, showcasing the flexibiltiy that FRAME offers for innovating with blockchain infrastructure.</translate></p>
 
-              <p><strong>13 July. </strong><translate> Parity Release Engineer Will (a.k.a. Chevdor) will present a set of tools he's been working on including:
-              subwasm, a tool to query a runtime directly from its WASM binary after generation by srtool;
-              srtool-cli, a new CLI for srtool that's powerful and easy to use; and a few other surprise tips and goodies. </translate></p>
+              <p><strong>24 Aug. </strong><translate>An implementation of delegated proof of stake under the hood: in this seminar, Amar will showcase a DPoS system he implemented with Substrate. He will talk about the inflation logic and the reward distribution, hoping to make it more "palatable" by contrasting it with FRAME's `pallet-staking`.</translate></p>
 
             </div>
           </div>

@@ -44,7 +44,8 @@
       "knowledgebase/integrate/libraries",
       "knowledgebase/integrate/chain-spec",
       "knowledgebase/integrate/subkey",
-      "knowledgebase/integrate/memory-profiling"
+      "knowledgebase/integrate/memory-profiling",
+      "knowledgebase/integrate/try-runtime"
     ],
     "Advanced": [
       "knowledgebase/advanced/account-info",
@@ -57,9 +58,7 @@
       "knowledgebase/advanced/ss58-address-format",
       "knowledgebase/advanced/no-hash-collections"
     ],
-    "Contribute": [
-      "contribute/help-translate"
-    ]
+    "Contribute": ["contribute/help-translate"]
   },
   "create-your-first-substrate-chain": {
     "Create Your First Substrate Chain": [
@@ -100,6 +99,13 @@
       "tutorials/start-a-private-network/keygen",
       "tutorials/start-a-private-network/customspec",
       "tutorials/start-a-private-network/customchain"
+    ]
+  },
+  "frontier": {
+    "Integrate Ethereum Compatibility into Substrate": [
+      "tutorials/frontier/index",
+      "tutorials/frontier/frontier-architecture",
+      "tutorials/frontier/ethereum-contracts"
     ]
   },
   "add-contracts-pallet": {

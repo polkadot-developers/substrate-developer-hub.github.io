@@ -118,28 +118,39 @@ class Footer extends React.Component {
             )}
           </a>
           <div>
-            <h5><translate>Developer Hub</translate></h5>
+            <h5>
+              <translate>Developer Hub</translate>
+            </h5>
             <a href={this.pageUrl("tutorials", this.props.language)}>
               <translate>Tutorials</translate>
             </a>
-            <a href={'/docs/' + this.props.language + '/'}>
+            <a href={"/docs/" + this.props.language + "/"}>
               <translate>Knowledge Base</translate>
             </a>
             <a href="https://substrate.dev/recipes/">
               <translate>Recipes</translate>
             </a>
+            <a href="https://substrate.dev/substrate-how-to-guides">
+              <translate>How-to Guides</translate>
+            </a>
             <a href="https://substrate.dev/rustdocs">
               <translate>API Reference</translate>
             </a>
+            <a href="https://playground.substrate.dev/">
+              <translate>Playground</translate>
+            </a>
           </div>
           <div>
-            <h5><translate>Community</translate></h5>
+            <h5>
+              <translate>Community</translate>
+            </h5>
             <a href={this.pageUrl("community", this.props.language)}>
-              <translate>Community Home</translate></a>
+              <translate>Community Home</translate>
+            </a>
             <a href={this.pageUrl("newsletter", this.props.language)}>
               <translate>Newsletter</translate>
             </a>
-            <a href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org">
+            <a href="https://matrix.to/#/#substrate-technical:matrix.org">
               <translate>Substrate Technical Chat</translate>
             </a>
             <a href={this.pageUrl("seminar", this.props.language)}>
@@ -168,7 +179,9 @@ class Footer extends React.Component {
             </a>
           </div>
           <div>
-            <h5><translate>More</translate></h5>
+            <h5>
+              <translate>More</translate>
+            </h5>
             <a href="https://www.substrate.io/builders-program/">
               <translate>Substrate Builders Program</translate>
             </a>
@@ -189,13 +202,16 @@ class Footer extends React.Component {
               <translate>Cookie Settings</translate>
 
               {/* Script for cookie settings pop-up. */}
-              <script dangerouslySetInnerHTML={{ __html: `
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();
                 };
-              ` }}>
-              </script>
+              `,
+                }}
+              ></script>
             </a>
           </div>
         </section>
