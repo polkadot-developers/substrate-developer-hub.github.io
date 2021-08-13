@@ -174,7 +174,7 @@ voting.
 ### Elections Phragmén
 
 The Phragmén Elections pallet is an election module based on
-[sequential Phragmén](https://wiki.polkadot.network/docs/en/learn-phragmen).
+[sequential Phragmén](https://wiki.polkadot.network/docs/learn-phragmen).
 
 - [Docs](https://substrate.dev/rustdocs/latest/pallet_elections_phragmen/index.html)
 - [Source](https://github.com/paritytech/substrate/blob/v3.0.0/frame/elections-phragmen/src/lib.rs)

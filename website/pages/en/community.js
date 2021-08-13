@@ -40,7 +40,6 @@ function Community(props) {
         Subscribe to the Substrate newsletter to hear about updates and events.
       </translate></p>
       <Button
-        variant="secondary"
         size="sm"
         href="newsletter"
         className="m-1 primary-color"
@@ -50,7 +49,7 @@ function Community(props) {
     </CommunityResource>
   );
 
-  const RiotChat = () => (
+  const ElementChat = () => (
     <CommunityResource title={<translate>Element Chat</translate>}>
       <p><translate>
         Element is the main form of communication between Parity staff and the
@@ -62,46 +61,41 @@ function Community(props) {
         <translate>Channels:</translate>
         <Button
           target="_blank"
-          variant="dark"
           size="sm"
-          href="https://app.element.io/#/room/!HzySYSaIhtyWrwiwEV:matrix.org"
-          className="m-1"
+          href="https://matrix.to/#/#substrate-technical:matrix.org"
+          className="m-1 primary-color"
         >
           <translate>Substrate Technical</translate>
         </Button>
         <Button
           target="_blank"
-          variant="dark"
           size="sm"
-          href="https://app.element.io/#/room/!tYUCYdSvSYPMjWNDDD:matrix.parity.io"
-          className="m-1"
+          href="https://matrix.to/#/#ink:matrix.parity.io"
+          className="m-1 primary-color"
         >
           <translate>Smart Contracts & ink!</translate>
         </Button>
         <Button
           target="_blank"
-          variant="dark"
           size="sm"
-          href="https://app.element.io/#/room/!WuksvCDImqYSxvNmua:matrix.parity.io"
-          className="m-1"
+          href="https://matrix.to/#/#rococo:matrix.parity.io"
+          className="m-1 primary-color"
         >
           <translate>Rococo (Parachain)</translate>
         </Button>
         <Button
           target="_blank"
-          variant="dark"
           size="sm"
-          href="https://app.element.io/#/room/!fOOzymDEHiIIUtmlBE:matrix.org"
-          className="m-1"
+          href="https://matrix.to/#/#polkadot-watercooler:web3.foundation"
+          className="m-1 primary-color"
         >
           <translate>Polkadot Watercooler</translate>
         </Button>
         <Button
           target="_blank"
-          variant="dark"
           size="sm"
-          href="https://app.element.io/#/room/!IWlcTyHSqIEjpUReHD:matrix.parity.io"
-          className="m-1"
+          href="https://matrix.to/#/#watercooler:matrix.parity.io"
+          className="m-1 primary-color"
         >
           <translate>Parity Watercooler</translate>
         </Button>
@@ -113,12 +107,11 @@ function Community(props) {
     <CommunityResource title={<translate>Substrate Seminar</translate>}>
       <p><translate>
         Substrate Seminar is an open Collaborative Learning call where we learn about Substrate
-        together. We meet every Tuesday at 14:00UTC. Ask for help, show off your project,
+        together. We meet every other Tuesday at 14:00UTC. Ask for help, show off your project,
         learn Substrate, and make friends!
       </translate></p>
       <p>
         <Button
-          variant="secondary"
           size="sm"
           href={pageUrl("seminar")}
           className="m-1 primary-color"
@@ -127,7 +120,6 @@ function Community(props) {
         </Button>
         <Button
           target="_blank"
-          variant="secondary"
           size="sm"
           href="https://www.crowdcast.io/e/substrate-seminar"
           className="m-1 primary-color"
@@ -149,37 +141,41 @@ function Community(props) {
         <translate>Tags:</translate>
         <Button
           target="_blank"
-          variant="dark"
           size="sm"
           href="https://stackoverflow.com/questions/tagged/substrate"
-          className="m-1"
+          className="m-1 primary-color"
         >
           <code>substrate</code>
         </Button>
         <Button
           target="_blank"
-          variant="dark"
           size="sm"
           href="https://stackoverflow.com/questions/tagged/ink"
-          className="m-1"
+          className="m-1 primary-color"
         >
           <code>ink</code>
         </Button>
         <Button
           target="_blank"
-          variant="dark"
           size="sm"
           href="https://stackoverflow.com/questions/tagged/parity-io"
-          className="m-1"
+          className="m-1 primary-color"
         >
           <code>parity-io</code>
         </Button>
         <Button
           target="_blank"
-          variant="dark"
+          size="sm"
+          href="https://stackoverflow.com/questions/tagged/polkadot-js"
+          className="m-1 primary-color"
+        >
+          <code>polkadot-js</code>
+        </Button>
+        <Button
+          target="_blank"
           size="sm"
           href="https://stackoverflow.com/questions/tagged/rust"
-          className="m-1"
+          className="m-1 primary-color"
         >
           <code>rust</code>
         </Button>
@@ -194,7 +190,6 @@ function Community(props) {
       </translate></p>
       <p>
         <Button
-          variant="secondary"
           size="sm"
           href="https://twitter.com/substrate_io"
           className="m-1 primary-color"
@@ -202,7 +197,6 @@ function Community(props) {
           Substrate
         </Button>
         <Button
-          variant="secondary"
           size="sm"
           href="https://twitter.com/paritytech"
           className="m-1 primary-color"
@@ -210,7 +204,6 @@ function Community(props) {
           <translate>Parity Technologies</translate>
         </Button>
         <Button
-          variant="secondary"
           size="sm"
           href="https://twitter.com/Polkadot"
           className="m-1 primary-color"
@@ -218,7 +211,6 @@ function Community(props) {
           <translate>Polkadot Network</translate>
         </Button>
         <Button
-          variant="secondary"
           size="sm"
           href="https://twitter.com/kusamanetwork"
           className="m-1 primary-color"
@@ -238,10 +230,9 @@ function Community(props) {
       <p>
         <Button
           target="_blank"
-          variant="dark"
           size="sm"
           href="https://www.meetup.com/parity/"
-          className="m-1"
+          className="m-1 primary-color"
         >
           <translate>Events</translate>
         </Button>
@@ -252,12 +243,11 @@ function Community(props) {
   const AwesomeSubstrate = () => (
     <CommunityResource title={<translate>Awesome Substrate</translate>}>
       <p><translate>
-        An awesome list of up-to-date news, events, and onboarding materials for Substrate.
+        An `awesome list` of community contributed Substrate tooling, tips & ticks, and much more!
       </translate></p>
       <p>
         <Button
           target="_blank"
-          variant="secondary"
           size="sm"
           href="https://substrate.dev/awesome-substrate/"
           className="m-1 primary-color"
@@ -279,17 +269,17 @@ function Community(props) {
       />
       <div className="mainContainer">
         <Container>
-          <p><translate>
+          <h3><translate>
             The Substrate community is both technical and friendly, and we would
             be happy for you to join!
-          </translate></p>
-          <Newsletter />
-          <RiotChat />
+          </translate></h3>
+          <ElementChat />
           <Seminar />
+          <AwesomeSubstrate />
           <StackOverflow />
           <Twitter />
           <Events />
-          <AwesomeSubstrate />
+          <Newsletter />
         </Container>
       </div>
     </div>

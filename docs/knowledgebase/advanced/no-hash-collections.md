@@ -1,5 +1,5 @@
 ---
-title: Why are there no Hash collections in sp_std?
+title: Hash Collections
 ---
 
 Collections such as maps and sets are fundamental data structures. `sp_std` exposes them via
