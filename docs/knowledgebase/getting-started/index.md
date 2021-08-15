@@ -93,6 +93,12 @@ For most users you can run our script to automate the steps listed below:
 curl https://getsubstrate.io -sSf | bash -s -- --fast
 ```
 
+if you receive an error as "Skipped cargo install of 'substrate' and 'subkey'" just run the script above without --fast (solved bug see - [substrate bug 3890](https://github.com/paritytech/substrate/issues/3890))
+```bash
+curl https://getsubstrate.io -sSf | bash -s --
+```
+
+
 If this gives any errors, please follow the steps below to manually configure rust on your machine.
 
 ### Manual Rust Configuration
