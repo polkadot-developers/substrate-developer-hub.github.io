@@ -40,7 +40,7 @@ Template, which serves as a good starting point for building on Substrate.
 > **You should start building the node template _before_ moving on!**
 >
 > The time required for the compilation step depends somewhat on network bandwidth,
-> but far more on the CPU number and speed and the you're using.
+> but far more on the CPU number and speed you're using.
 >
 > **Run into issues? Try the [troubleshooting tips](../../../knowledgebase/getting-started/index#troubleshooting-substrate-builds).**
 
