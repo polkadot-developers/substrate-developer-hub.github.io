@@ -28,11 +28,15 @@ Template, which serves as a good starting point for building on Substrate.
     ```bash
     git clone -b v3.0.0+monthly-2021-05 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
     ```
-2. Compile the Node Template
+2. Compile the Node Template and update to the latest parity database
 
     ```bash
     cd substrate-node-template
     # NOTE: you should always use the `--release` flag
+    
+    cargo update -p parity-db
+    # TIP: this updates parity-db to v0.2.4
+    
     cargo build --release
     # ^^ this will take a while!
     ```
