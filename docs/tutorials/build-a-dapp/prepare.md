@@ -27,15 +27,15 @@ This allows that controller of that account to later prove that they were the or
 
 ## Install the Node Template
 
-You should already have version `v3.0.0+1` of the
-[Substrate Developer Hub Node Template](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions%2Fbuild-a-dapp-v3+1)
+You should already have version `latest` of the
+[Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions%2Fbuild-a-dapp-v3+1)
 compiled on your computer from when you completed the
 [Create Your First Substrate Chain Tutorial](../create-your-first-substrate-chain). If you do not,
-please complete that tutorial. (v3.0.0 tag works as well, but comes with FRAME v1 templates, 
-v3.0.0+1 includes FRAME v2 templates that you can use for reference for mock and testing files.)
+please complete that tutorial. (`v3.0.0` tag works as well, but comes with FRAME v1 templates,
+`latest` includes FRAME v2 templates that you can use for reference for mock and testing files.)
 
 ```bash
-git clone -b v3.0.0+1 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+git clone -b latest --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
 ```
 
 > Experienced developers may prefer to skip that tutorial and install the Node Template

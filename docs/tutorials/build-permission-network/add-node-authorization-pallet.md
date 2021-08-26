@@ -42,12 +42,12 @@ the right CLI flag as offchain worker is disabled by default for non-authority n
 ## Start with the Template
 
 If you already have Node Template cloned, you can just create a
-**check out the v3.0.0 branch** from the base template,
+**check out the `latest` branch** from the base template,
 otherwise, clone this branch of the project:
 
 ```bash
 # Fresh clone, if needed:
-git clone -b v3.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+git clone -b latest --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
 # From the working directory, create a new branch and check it out
 cd substrate-node-template
 git branch perm-network

@@ -21,7 +21,7 @@ cargo run --release -- --dev --tmp
 By default, the [well-known Alice account](../../knowledgebase/integrate/subkey#well-known-keys) is
 configured as the holder of the Sudo pallet's key in the `development_config` function of the
 template node's
-[chain specification file](https://github.com/substrate-developer-hub/substrate-node-template/blob/v3.0.0/node/src/chain_spec.rs) -
+[chain specification file](https://github.com/substrate-developer-hub/substrate-node-template/blob/latest/node/src/chain_spec.rs) -
 this is the configuration that is used when the node is launched with the `--dev` flag. This means
 that Alice's account will be the one used to perform runtime upgrades throughout this tutorial.
 
