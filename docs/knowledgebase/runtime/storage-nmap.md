@@ -23,7 +23,7 @@ by [Parity's SCALE codec](../advanced/codec). These include:
 - [Storage Map](https://substrate.dev/rustdocs/latest/frame_support/storage/trait.StorageMap.html) - used to store a key-value hash map, such as a balance-to-account mapping.
 - [Storage Double Map](https://substrate.dev/rustdocs/latest/frame_support/storage/trait.StorageDoubleMap.html) - used as an implementation of a storage map with two keys to provide the ability to efficiently removing
   all entries that have a common first key.
-- [Storage N Map](https://substrate.dev/rusdocs/v3.0.0/frame_support/storage/trait.StorageNMap.html) - used to store a hash map with any arbitrary number of keys, it can be used as a basis to build a Triple Storage Map, a Quadruple Storage Map and so on.
+- [Storage N Map](https://substrate.dev/rusdocs/latest/frame_support/storage/trait.StorageNMap.html) - used to store a hash map with any arbitrary number of keys, it can be used as a basis to build a Triple Storage Map, a Quadruple Storage Map and so on.
 
 ### Storage Value
 

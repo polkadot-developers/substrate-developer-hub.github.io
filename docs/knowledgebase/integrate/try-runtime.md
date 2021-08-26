@@ -169,7 +169,7 @@ ws//$HOST:9944
 
 [tryruntime-api-rustdocs]: https://crates.parity.io/frame_try_runtime/trait.TryRuntime.html
 [testextern-rustdocs]: https://substrate.dev/rustdocs/latest/sp_state_machine/struct.TestExternalities.html
-[basicextern-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/sp_state_machine/struct.BasicExternalities.html
+[basicextern-rustdocs]: https://substrate.dev/rustdocs/latest/sp_state_machine/struct.BasicExternalities.html
 [remoteextern-rustdocs]: https://crates.parity.io/remote_externalities/index.html#
 [stateapi-rustdocs]: https://crates.parity.io/sc_rpc/state/trait.StateApi.html# 
 [stateapi-storage-rustdocs]: https://crates.parity.io/sc_rpc/state/trait.StateApi.html#tymethod.storage

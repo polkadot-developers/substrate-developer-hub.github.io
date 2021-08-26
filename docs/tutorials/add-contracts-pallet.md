@@ -15,8 +15,8 @@ different in terms of the specific configuration settings needed to use it corre
 
 ## Install the Node Template
 
-You should already have version `v3.0.0` of the
-[Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
+You should already have version `latest` of the
+[Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest)
 compiled on your computer from when you completed the
 [Create Your First Substrate Chain Tutorial](../../tutorials/create-your-first-substrate-chain/).
 If you do not, please complete that tutorial.
@@ -287,7 +287,7 @@ impl pallet_contracts::Config for Runtime {
 ```
 
 At this point, it is recommended to explore the
-[Contracts pallet source code](https://github.com/paritytech/substrate/blob/v3.0.0/frame/contracts/src/lib.rs)
+[Contracts pallet source code](https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs)
 if things don't make sense or you want to gain a deeper understanding.
 
 ### Adding Contracts to the `construct_runtime!` Macro
@@ -538,7 +538,7 @@ In this guide, we walked through specifically how to import the Contracts pallet
 in the beginning of this guide, each pallet will be a little different. Have no fear, you can always
 refer to the
 
-[demonstration Substrate node runtime](https://github.com/paritytech/substrate/tree/v3.0.0/bin/node/runtime)
+[demonstration Substrate node runtime](https://github.com/paritytech/substrate/blob/master/bin/node/runtime)
 
 which includes nearly every pallet in the FRAME.
 

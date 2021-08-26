@@ -42,12 +42,12 @@ the right CLI flag as offchain worker is disabled by default for non-authority n
 ## Start with the Template
 
 If you already have Node Template cloned, you can just create a
-**check out the v3.0.0 branch** from the base template,
+**check out the `latest` branch** from the base template,
 otherwise, clone this branch of the project:
 
 ```bash
 # Fresh clone, if needed:
-git clone -b v3.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+git clone -b latest --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
 # From the working directory, create a new branch and check it out
 cd substrate-node-template
 git branch perm-network
@@ -231,4 +231,6 @@ c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a // This is node
 
 Now all the code changes are finished, we are ready to launch our permissioned network!
 
-> Stuck? The solution with all required changes to the base template can be found [here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/permissioned-network-v3).
+> Stuck? The solution with all required changes to the base template can be found
+[here](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/permissioned-network-v3).
+Check [the diff from its base](https://github.com/substrate-developer-hub/substrate-node-template/compare/1c5b984ccadf76cdbc0edd0e82594d57e412b257...tutorials/solutions/permissioned-network-v3).

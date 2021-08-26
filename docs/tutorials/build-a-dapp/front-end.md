@@ -10,15 +10,15 @@ designed to make use of our PoE pallet's capabilities.
 
 The first thing you'll need to do is to clone a copy of the
 [Front-End Template](https://github.com/substrate-developer-hub/substrate-front-end-template)
- **specifically with the `v3.0.0` tag** as a base, if you haven't already.
+ **specifically with the `latest` tag** as a base, if you haven't already.
 
 ```bash
-git clone -b v3.0.0 --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
+git clone -b latest --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
 ```
 
 ### Yarn V2
 
-The Frontend Template is expected to work with `yarn 2.4.1`.
+The Frontend Template is expected to work with `yarn` **v2**.
 To ensure you have the right version, use:
 
 ```bash
@@ -227,7 +227,7 @@ comments to learn what each part is doing.
 
 > Stuck? There is a full front-end template
 > [solution](https://github.com/substrate-developer-hub/substrate-front-end-template/tree/tutorials/solutions/build-a-dapp-v3+1)
-> to use as a reference. Check the commit diff from the base `v3.0.0` version for the exact changes.
+> to use as a reference. Check [the diff from its base `v3.0.0` for exact changes](https://github.com/substrate-developer-hub/substrate-front-end-template/compare/v3.0.0...tutorials/solutions/build-a-dapp-v3+1).
 
 ## Submit a Proof
 

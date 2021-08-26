@@ -179,7 +179,7 @@ the genesis `chain_spec.rs`, where all others mut be added manually via extrinsi
 Remember that we are using `sudo` pallet for our governance, we can make a sudo call
 on `add_well_known_node` dispatch call provided by node-authorization pallet to add
 our node. You can find more avaliable calls in this 
-[reference doc](https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_authorization/enum.Call.html).
+[reference doc](https://substrate.dev/rustdocs/latest/pallet_node_authorization/pallet/enum.Call.html).
 
 Go to **Developer** page, **Sudo** tab, in apps and submit the `nodeAuthorization` -
 `add_well_known_node` call with the peer id in hex of Charlie's node and the 

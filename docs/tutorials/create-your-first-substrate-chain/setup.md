@@ -23,10 +23,10 @@ You will probably need to do some set-up to prepare your computer for Substrate 
 Once the prerequisites are installed, you can use Git to clone the Substrate Developer Hub Node
 Template, which serves as a good starting point for building on Substrate.
 
-1. Clone the Node Template (version `v3.0.0+monthly-2021-05`).
+1. Clone the Node Template (version `latest`).
 
     ```bash
-    git clone -b v3.0.0+monthly-2021-05 --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+    git clone -b latest --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
     ```
 2. Compile the Node Template
 
@@ -61,7 +61,7 @@ Now you can proceed to set up the front-end template with these commands.
 
 ```bash
 # Clone the frontend template from github
-git clone -b v3.0.0+monthly-2021-05 --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
+git clone -b latest --depth 1 https://github.com/substrate-developer-hub/substrate-front-end-template
 
 # Install the dependencies
 cd substrate-front-end-template
