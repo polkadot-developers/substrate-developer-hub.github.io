@@ -227,7 +227,7 @@ comments to learn what each part is doing.
 
 > Stuck? There is a full front-end template
 > [solution](https://github.com/substrate-developer-hub/substrate-front-end-template/tree/tutorials/solutions/build-a-dapp-v3+1)
-> to use as a reference. Check the commit diff from the base `v3.0.0` version for the exact changes.
+> to use as a reference. Check [the diff from its base `v3.0.0` for exact changes](https://github.com/substrate-developer-hub/substrate-front-end-template/compare/v3.0.0...tutorials/solutions/build-a-dapp-v3+1).
 
 ## Submit a Proof
 
