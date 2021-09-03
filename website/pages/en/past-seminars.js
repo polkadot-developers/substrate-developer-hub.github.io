@@ -135,7 +135,7 @@ function PastSeminars(props) {
                   <span className='block type--fine-print'>
                     <translate>or</translate>
                     &nbsp;
-                    <a href='https://www.crowdcast.io/e/substrate-seminar'>
+                    <a href='https://www.crowdcast.io/e/substrate-seminar-2'>
                       <translate>join live call »</translate>
                     </a>
                   </span>
