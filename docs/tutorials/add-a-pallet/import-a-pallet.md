@@ -132,7 +132,7 @@ So based on the `balances` import shown above, the `nicks` import will look like
 ```TOML
 [dependencies]
 #--snip--
-pallet-nicks = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05' }
+pallet-nicks = { default-features = false, version = '4.0.0-dev', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-08' }
 ```
 
 As with other pallets, the Nicks pallet has an `std` feature. We should build its `std` feature
