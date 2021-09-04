@@ -121,7 +121,7 @@ function Community(props) {
         <Button
           target="_blank"
           size="sm"
-          href="https://www.crowdcast.io/e/substrate-seminar"
+          href="https://www.crowdcast.io/e/substrate-seminar-2"
           className="m-1 primary-color"
         >
           <translate>Join the Seminar</translate>

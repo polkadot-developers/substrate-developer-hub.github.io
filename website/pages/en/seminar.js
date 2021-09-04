@@ -55,7 +55,7 @@ function Seminar(props) {
               </translate></p>
               <section>
                 <a target='_blank' className='btn btn-lg primary-color mx-5'
-                  href='https://www.crowdcast.io/e/substrate-seminar'>
+                  href='https://www.crowdcast.io/e/substrate-seminar-2'>
                   <translate>Live Call</translate>
                 </a>
                 <a className='btn btn-lg secondary-color mx-5'
@@ -152,9 +152,11 @@ function Seminar(props) {
 
               <h2 style={{ fontSize: '32px' }}><translate>Upcoming seminars</translate></h2>
         
-              <p><strong>24 Aug. </strong><translate>An implementation of delegated proof of stake under the hood: in this seminar, Amar, Software Engineer at Purestake, will showcase a DPoS system he implemented with Substrate. He will talk about the inflation logic and the reward distribution, hoping to make it more "palatable" by contrasting it with FRAME's `pallet-staking`.</translate></p>
-
               <p><strong>7 Sept. </strong><translate>TBD.</translate></p>
+
+              <p><strong>21 Sept. </strong><translate>TBD.</translate></p>
+
+              <p><strong>5 Oct. </strong><translate>TBD.</translate></p>
 
             </div>
           </div>
@@ -187,7 +189,7 @@ function Seminar(props) {
                   <span className='block type--fine-print'>
                     <translate>or</translate>
                     &nbsp;
-                    <a href='https://www.crowdcast.io/e/substrate-seminar'>
+                    <a href='https://www.crowdcast.io/e/substrate-seminar-2'>
                       <translate>join live call »</translate>
                     </a>
                   </span>

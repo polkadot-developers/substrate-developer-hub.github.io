@@ -1,5 +1,12 @@
 {
   "2021" : [{
+    "date": "2021 Aug 24",
+    "speakers": ["Amar Singh, Purestake "],
+    "description": "In this seminar, Amar, Software Engineer at Purestake, showcases a DPoS system he implemented with Substrate for Moonbeam. He talks about the inflation logic and the reward distribution, making it more \"palatable\" by contrasting it with FRAME's pallet-staking.",
+    "link": "https://www.crowdcast.io/e/substrate-seminar-2/2",
+    "tags": ["parachains", "FRAME", "consensus"]
+  },
+    {
     "date": "2021 Aug 10",
     "speakers": ["Alex Siman, Subsocial"],
     "description": "Alex, founder of Subsocial, presents his journey building a social network with Substrate, showcasing the flexibiltiy that FRAME offers for innovating with blockchain infrastructure.",
