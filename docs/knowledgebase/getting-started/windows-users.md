@@ -45,12 +45,14 @@ If you do decide to try and use a Windows computer to _natively_ build Substrate
 
 4. Install LLVM
    
-   The `llvm-config` binary is required by substrate. but `llvm-config` does not exist in windows prebuilt binaries. You need to compile from the source code to get it. you can read these documents to build llvm on windows.
+The `llvm-config` binary is required by substrate. but `llvm-config` does not exist in windows prebuilt binaries.
+You need to compile from the source code to get it. you can read these documents to build llvm on windows.
    
-   - [Where is llvm-config in Windows?](https://stackoverflow.com/questions/17096804/where-is-llvm-config-in-windows)
-   - [How to build LLVM, libclang, and liblld from source](https://github.com/ziglang/zig/wiki/How-to-build-LLVM,-libclang,-and-liblld-from-source#windows)
+- [Where is llvm-config in Windows?](https://stackoverflow.com/questions/17096804/where-is-llvm-config-in-windows)
+- [How to build LLVM, libclang, and liblld from source](https://github.com/ziglang/zig/wiki/How-to-build-LLVM,-libclang,-and-liblld-from-source#windows)
 
-   Or you can directly use the [prebuilt binaries](https://github.com/ziglang/zig/wiki/Building-Zig-on-Windows#option-2-using-cmake-and-microsoft-visual-studio) provided by zig 
+Or you can directly use the [prebuilt binaries](https://github.com/ziglang/zig/wiki/Building-Zig-on-Windows#option-2-using-cmake-and-microsoft-visual-studio)
+provided by `zig`.
 
 5. Install OpenSSL with `vcpkg` using PowerShell:
 
