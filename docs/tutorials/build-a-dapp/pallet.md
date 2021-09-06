@@ -253,7 +253,7 @@ To implement this, replace the `#[pallet::call]` line with:
         #[pallet::call]
         impl<T: Config> Pallet<T> {
             #[pallet::weight(1_000)]
-            pub(super) fn create_claim(
+            pub fn create_claim(
                 origin: OriginFor<T>,
                 proof: Vec<u8>,
             ) -> DispatchResultWithPostInfo {
@@ -279,7 +279,7 @@ To implement this, replace the `#[pallet::call]` line with:
             }
 
             #[pallet::weight(10_000)]
-            fn revoke_claim(
+            pub fn revoke_claim(
                 origin: OriginFor<T>,
                 proof: Vec<u8>,
             ) -> DispatchResultWithPostInfo {
