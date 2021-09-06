@@ -229,7 +229,7 @@
         <span class="token attribute attr-name">#[pallet::call]</span>
         <span class="token keyword">impl</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
             <span class="token attribute attr-name">#[pallet::weight(1_000)]</span>
-            <span class="token keyword">pub</span><span class="token punctuation">(</span><span class="token keyword">super</span><span class="token punctuation">)</span> <span class="token keyword">fn</span> <span class="token function-definition function">create_claim</span><span class="token punctuation">(</span>
+            <span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function-definition function">create_claim</span><span class="token punctuation">(</span>
                 origin<span class="token punctuation">:</span> <span class="token class-name">OriginFor</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span>
                 proof<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">,</span>
             <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">DispatchResultWithPostInfo</span> <span class="token punctuation">{</span>
@@ -255,7 +255,7 @@
             <span class="token punctuation">}</span>
 
             <span class="token attribute attr-name">#[pallet::weight(10_000)]</span>
-            <span class="token keyword">fn</span> <span class="token function-definition function">revoke_claim</span><span class="token punctuation">(</span>
+            <span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function-definition function">revoke_claim</span><span class="token punctuation">(</span>
                 origin<span class="token punctuation">:</span> <span class="token class-name">OriginFor</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span>
                 proof<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">,</span>
             <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">DispatchResultWithPostInfo</span> <span class="token punctuation">{</span>
