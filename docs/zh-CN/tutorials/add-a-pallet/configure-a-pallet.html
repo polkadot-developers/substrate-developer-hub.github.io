@@ -151,9 +151,9 @@
 <span class="token macro property">parameter_types!</span> <span class="token punctuation">{</span>
     <span class="token comment">// Choose a fee that incentivizes desireable behavior.</span>
     <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">NickReservationFee</span><span class="token punctuation">:</span> <span class="token keyword">u128</span> <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
-    <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">MinNickLength</span><span class="token punctuation">:</span> <span class="token keyword">usize</span> <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span>
+    <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">MinNickLength</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span>
     <span class="token comment">// Maximum bounds on storage are important to secure your chain.</span>
-    <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">MaxNickLength</span><span class="token punctuation">:</span> <span class="token keyword">usize</span> <span class="token operator">=</span> <span class="token number">32</span><span class="token punctuation">;</span>
+    <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">MaxNickLength</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">32</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">impl</span> <span class="token namespace">pallet_nicks<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token keyword">for</span> <span class="token class-name">Runtime</span> <span class="token punctuation">{</span>
