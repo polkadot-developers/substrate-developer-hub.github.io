@@ -105,7 +105,15 @@
 rustup update stable
 rustup target add wasm32-unknown-unknown --toolchain nightly
 </code></pre></li>
-<li><p>安装 LLVM: <a href="https://releases.llvm.org/download.html">https://releases.llvm.org/download.html</a></p></li>
+<li><p>Install LLVM</p></li>
+</ol>
+<p>The <code>llvm-config</code> binary is required by substrate. but <code>llvm-config</code> does not exist in windows prebuilt binaries. You need to compile from the source code to get it. you can read these documents to build llvm on windows.</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/17096804/where-is-llvm-config-in-windows">Where is llvm-config in Windows?</a></li>
+<li><a href="https://github.com/ziglang/zig/wiki/How-to-build-LLVM,-libclang,-and-liblld-from-source#windows">How to build LLVM, libclang, and liblld from source</a></li>
+</ul>
+<p>Or you can directly use the <a href="https://github.com/ziglang/zig/wiki/Building-Zig-on-Windows#option-2-using-cmake-and-microsoft-visual-studio">prebuilt binaries</a> provided by <code>zig</code>.</p>
+<ol start="5">
 <li><p>Install OpenSSL with <code>vcpkg</code> using PowerShell:</p>
 <pre><code class="hljs css language-bash">mkdir C:\Tools
 <span class="hljs-built_in">cd</span> C:\Tools
@@ -114,7 +122,7 @@ git <span class="hljs-built_in">clone</span> https://github.com/Microsoft/vcpkg.
 .\bootstrap-vcpkg.bat
 .\vcpkg.exe install openssl:x64-windows-static
 </code></pre></li>
-<li><p>使用 PowerShell 将OpenSSL 添加到系统变量：</p>
+<li><p>Add OpenSSL to your System Variables using PowerShell:</p>
 <pre><code class="hljs css language-powershell"><span class="hljs-variable">$env:OPENSSL_DIR</span> = <span class="hljs-string">'C:\Tools\vcpkg\installed\x64-windows-static'</span>
 <span class="hljs-variable">$env:OPENSSL_STATIC</span> = <span class="hljs-string">'Yes'</span>
 [<span class="hljs-type">System.Environment</span>]::SetEnvironmentVariable(<span class="hljs-string">'OPENSSL_DIR'</span>, <span class="hljs-variable">$env:OPENSSL_DIR</span>, [<span class="hljs-type">System.EnvironmentVariableTarget</span>]::User)
