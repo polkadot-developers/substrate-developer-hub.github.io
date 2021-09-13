@@ -55,7 +55,7 @@ sudo zypper install clang curl git openssl-devel llvm-devel libudev-devel
 
 > NOTE: The Apple M1 ARM system on a chip is not very well supported yet by rust,
 > and thus you very likely will run into build errors stemming from this.
-> There are reports that using substrate dependancies newer than the June 2021 
+> There are reports that using substrate dependencies newer than the June 2021 
 > monthly release are able to work without issue.
 > 
 > Here is the [latest node template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest)
@@ -125,7 +125,7 @@ development is to follow the steps in our first tutorial:
 
 --- 
 
-> **For more details on _why_ these dependancies are used, and for *troubleshooting* errors building the template, read on.**
+> **For more details on _why_ these dependencies are used, and for *troubleshooting* errors building the template, read on.**
 
 ---
 
