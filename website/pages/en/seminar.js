@@ -152,11 +152,16 @@ function Seminar(props) {
 
               <h2 style={{ fontSize: '32px' }}><translate>Upcoming seminars</translate></h2>
         
-              <p><strong>7 Sept. </strong><translate>TBD.</translate></p>
-
-              <p><strong>21 Sept. </strong><translate>TBD.</translate></p>
+              <p><a href='https://www.crowdcast.io/e/substrate-seminar-2/3'><strong>21 Sept. </strong></a><translate>In this seminar, lead developer of</translate> 
+                 <a href='https://phala.network/en/technology/'> Phala Network </a>
+                 <translate>Hang Yin will go over the design and capabilities of a Polkadot parachain, highlighting the</translate>
+                 <a href='https://research.web3.foundation/en/latest/polkadot/XCMP/index.html#polkadot-xcmp-index--page-root'> XCMP architecture </a> 
+                 <translate>in action. He will step through how XCM (Cross-Consensus Messaging format) is extended to Phala's 
+                 off-chain secure enclave workers to enable a dApp for privacy-preserving and CPU intensive computation.</translate></p>
 
               <p><strong>5 Oct. </strong><translate>TBD.</translate></p>
+
+              <p><strong>19 Oct. </strong><translate>TBD.</translate></p>
 
             </div>
           </div>
