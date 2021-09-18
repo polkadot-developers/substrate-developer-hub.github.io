@@ -59,13 +59,20 @@ cargo build --release -p node-template-runtime
 In the previous section, the Scheduler pallet was configured with the `Root` origin as its
 [`ScheduleOrigin`](https://substrate.dev/rustdocs/latest/pallet_scheduler/trait.Config.html#associatedtype.ScheduleOrigin),
 which means that the `sudo` function (_not_ `sudo_unchecked_weight`) can be used to invoke the
-`schedule` function. Use this link to open the Polkadot JS Apps UI's Sudo tab:
-https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944 (If this site is already open, you may
-need a refresh for the Extrinsics of the Scheduler pallet to show). Wait until all the other fields
-have been filled in before providing the `when` parameter. Leave the `maybe_periodic` parameter
-empty and the `priority` parameter at its default value of `0`. Select the System pallet's
-`set_code` function as the `call` parameter and provide the Wasm binary as before. Leave the
-"with weight override" option deactivated. Once all the other fields have been filled in, use a
+`schedule` function. To upgrade the runtime:
+
+- Use [this link](https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944) to open the Polkadot JS Apps UI's Sudo tab. Refresh your browser if you have it already running to make sure that the 
+Extrinsics for the Scheduler pallet show. 
+- Wait until all the other fields
+have been filled in before providing the `when` parameter. 
+- Leave the `maybe_periodic` parameter
+empty and the `priority` parameter at its default value of `0`. 
+- Select the System pallet's
+`set_code` function as the `call` parameter and provide the Wasm binary as before.
+- Leave the
+"with weight override" option deactivated. 
+
+Once all the other fields have been filled in, use a
 block number about 10 blocks (1 minute) in the future to fill in the `when` parameter and quickly
 submit the transaction.
 
