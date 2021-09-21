@@ -65,12 +65,12 @@ your runtime has. For example, it depends on the
 
 **`runtime/Cargo.toml`**
 
-```TOML
+```toml
 [dependencies.pallet-balances]
 default-features = false
-version = '4.0.0-dev'
 git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-08'
+tag = 'monthly-2021-09+1'
+version = '4.0.0-dev'
 ```
 
 ### Crate Features
@@ -82,7 +82,7 @@ something like:
 
 **`runtime/Cargo.toml`**
 
-```TOML
+```toml
 [features]
 default = ['std']
 std = [
@@ -143,19 +143,18 @@ So based on the `balances` import shown above, the `contracts` import will look 
 
 **`runtime/Cargo.toml`**
 
-```TOML
-[dependencies]
-#--snip--
+```toml
+# *** Add the following lines ***
 [dependencies.pallet-contracts]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-08'
+tag = 'monthly-2021-09+1'
 version = '4.0.0-dev'
 
 [dependencies.pallet-contracts-primitives]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-08'
+tag = 'monthly-2021-09+1'
 version = '4.0.0-dev'
 ```
 
@@ -165,7 +164,7 @@ when the runtime is built with its own `std` feature. Add the following two line
 
 **`runtime/Cargo.toml`**
 
-```TOML
+```toml
 [features]
 default = ['std']
 std = [
@@ -347,22 +346,23 @@ We start by adding the required API dependencies in our `Cargo.toml`.
 
 **`runtime/Cargo.toml`**
 
-```TOML
+```toml
 [dependencies.pallet-contracts-rpc-runtime-api]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-08'
+tag = 'monthly-2021-09+1'
 version = '4.0.0-dev'
 ```
 
 **`runtime/Cargo.toml`**
 
-```TOML
+```toml
 [features]
 default = ['std']
 std = [
    #--snip--
    'pallet-contracts-rpc-runtime-api/std',
+   #--snip--
 ]
 ```
 
@@ -444,22 +444,17 @@ don't have to maintain a dedicated `std` feature.
 **`node/Cargo.toml`**
 
 ```toml
-[dependencies]
-jsonrpc-core = '15.1.0'
-structopt = '0.3.8'
-#--snip--
 # *** Add the following lines ***
 [dependencies.pallet-contracts]
 git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-08'
+tag = 'monthly-2021-09+1'
 version = '4.0.0-dev'
 
 [dependencies.pallet-contracts-rpc]
 git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-08'
+tag = 'monthly-2021-09+1'
 version = '4.0.0-dev'
 ```
-
 
 Substrate provides an RPC to interact with our node. However, it does not contain access to the
 Contracts pallet by default. To interact with this pallet, we have to extend the existing RPC and
