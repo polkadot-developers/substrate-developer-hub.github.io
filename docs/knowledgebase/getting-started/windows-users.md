@@ -46,7 +46,8 @@ If you do decide to try and use a Windows computer to _natively_ build Substrate
 4. Install dependencies:
    
    > **Important:** Windows systems have a restriction on path length which could lead to some issues. It is 
-   recommended to put your build folder closer to your root directory to avoid running into [these issues](https://github.com/substrate-developer-hub/substrate-node-template/issues/185).
+   recommended to put your build folder closer to your root directory to avoid running into
+   [these issues](https://github.com/substrate-developer-hub/substrate-node-template/issues/185).
 
    **Option 1: Using Chocolatey**
 
