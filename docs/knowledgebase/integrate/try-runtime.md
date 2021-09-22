@@ -40,8 +40,7 @@ In order to query state, `try-runtime` makes use of Substrate's RPCs, namely [`S
 
 The most common use case for `try-runtime` is with storage migrations and runtime upgrades. 
 
-There are a number of flags that need to be preferably set on a running node in order to work well with try-runtime’s 
-expensive RPC queries, namely:
+There are a number of flags that should be set on the node try-runtime is completing RPC queries against in order to work well with the large payloads, namely:
 
 - `set --rpc-max-payload 1000` to ensure large RPC queries can work.
 - `set --rpc-cors all` to ensure ws connections can come through.
