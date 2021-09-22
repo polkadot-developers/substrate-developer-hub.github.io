@@ -93,6 +93,9 @@ To import the `pallet-contracts` crate:
       ]
    ```
 
+1. Save your changes and close the `runtime/Cargo.toml` file.
+
+
 ## Implement the Contracts configuration trait
 
 Now that you have successfully imported the Contracts pallet crate, you are ready to add it to the runtime. 
@@ -256,6 +259,8 @@ To implement the `Config` trait for the Contracts pallet in the runtime:
    );
    ```
 
+1. Save your changes and close the `runtime/src/lib.rs` file.
+
 1. Check that your runtime compiles correctly by running the following command:
    
    ```bash
@@ -302,9 +307,7 @@ To expose the Contracts RPC API:
    ]
    ```
 
-   To get the state of a contract variable, we have to call a getter function that will return a `ContractExecResult` wrapper with the current state of the execution.
-
-****
+1. Save your changes and close the `runtime/Cargo.toml` file.
 
 1. Open the `runtime/src/lib.rs` file and implement the contracts runtime API in the `impl_runtime_apis!` macro near the end of the runtime `lib.rs` file.
    
@@ -357,6 +360,8 @@ To expose the Contracts RPC API:
    /*** End added block ***/
    }
    ```
+
+1. Save your changes and close the `runtime/src/lib.rs` file.
 
 1. Check that your runtime compiles correctly by running the following command:
    
@@ -431,6 +436,8 @@ To add the RPC API extension to the outer node:
    }
    ```
 
+1. Save your changes and close the `node/src/rpc.rs` file.
+
 1. Check that your runtime compiles correctly by running the following command:
    
    ```bash
@@ -495,6 +502,11 @@ To use the front-end template:
 
 1. Open http://localhost:8000/ in a browser to view the front-end template.
 
+1. In the Pallet Interactor component, verify that Extrinsic is selected.
+
+1. Select `contracts` from the list of pallets available to call.
+   
+   ![View the contracts pallets](assets/tutorials/contracts-pallet.png)
 
 ## Next steps
 
@@ -503,12 +515,14 @@ In this tutorial, you learned:
 * How to import the Contracts pallet.
 * How to expose the Contracts pallet RPC endpoints API.
 * How to update the outer node.
+* How to verify the Contracts pallet is available in the runtime using the front-end template.
+
+to begin using the Contracts pallet, you'll need to start writing some smart contracts to deploy. 
+To learn about writing and deploying smart contracts, see [Substrate ink! smart contracts](../../knowledgebase/smart-contracts/).
 
 If you are ready to explore additional pallets, see the [demonstration Substrate node runtime](https://github.com/paritytech/substrate/blob/master/bin/node/runtime). The demonstration runtime includes nearly every pallet available in the FRAME development environment.
 
-For basic guide to writing your own custom pallet, see the [Build a dApp](../../tutorials/build-a-dapp/pallet) tutorial.
-
-To learn about writing and deploying smart contracts, see [Substrate ink! smart contracts](../../knowledgebase/smart-contracts/).
+For s basic guide to writing your own custom pallet, see the [Build a dApp](../../tutorials/build-a-dapp/pallet) tutorial.
 
 For a closer look at runtime APIs and RPC endpoints, see the documentation for [Runtime APIs](https://substrate.dev/recipes/runtime-api.html) and
 [Custom RPCs](https://substrate.dev/recipes/custom-rpc.html).
