@@ -2,6 +2,10 @@
 title: Session Keys
 ---
 
+Substrate provides the
+[Session pallet](https://substrate.dev/rustdocs/latest/pallet_session/index.html), which allows
+validators to manage their session keys.
+
 Session keys are "hot keys" that are used by validators to sign consensus-related messages. They are
 not meant to be used as account keys that control funds and should only be used for their intended
 purpose. They can be changed regularly; your Controller only needs to create a certificate by
@@ -12,10 +16,6 @@ To create a Session key, validator operators must attest that a key acts on beha
 account (stake) and nominators. To do so, they create a certificate by signing the key with their
 Controller key. Then, they inform the chain that this key represents their Controller key by
 publishing the Session certificate in a transaction on the chain.
-
-Substrate provides the
-[Session pallet](https://substrate.dev/rustdocs/latest/pallet_session/index.html), which allows
-validators to manage their session keys.
 
 ## Use
 
@@ -31,7 +31,8 @@ of public keys with a "Controller" account, and submit a transaction to register
 This on-chain registration links a validator _node_ with an _account_ that holds funds. As such,
 that account can be credited with rewards or slashed based on the node's behavior.
 
-The runtime declares what session keys will be included (`runtime/src/lib.rs`):
+The runtime declares what session keys will be implimented with the help of a macro on a struct. An
+[example](https://substrate.dev/rustdocs/latest/src/node_runtime/lib.rs.html#435-442):
 
 ```rust
 impl_opaque_keys! {
@@ -44,8 +45,8 @@ impl_opaque_keys! {
 }
 ```
 
-The actual cryptographic curve that each key uses gets defined in `primitives`. For example, BABE's
-key uses sr25519:
+The actual cryptographic curve that each key uses gets defined in `primitives`. For example,
+[BABE's key uses sr25519](https://substrate.dev/rustdocs/latest/src/sp_consensus_babe/lib.rs.html#44-47):
 
 ```rust
 mod app {
@@ -54,12 +55,9 @@ mod app {
 }
 ```
 
-> This code is just an example of a Substrate node at the
-> [time of writing](https://github.com/substrate-developer-hub/substrate-node-template).
-> Refer to the runtime for the most up-to-date implementation.
-
-The default Substrate node implements Session keys in the
-[Session pallet](https://substrate.dev/rustdocs/latest/pallet_session/).
+Typically, these keys are also initially configured in the genesis state to launch your chain with
+pre-established vallidators. You can see this demonstrated in the
+[private network tutorial](../../tutorials/start-a-private-network/).
 
 ### Strongly Typed Wrappers
 
@@ -74,8 +72,8 @@ As a node operator, you can generate keys using the RPC call
 [`author_rotateKeys`](https://substrate.dev/rustdocs/latest/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys).
 You will then need to register the new keys on chain using a [`session.setKeys`](https://substrate.dev/rustdocs/latest/pallet_session/struct.Module.html#method.set_keys) transaction.
 
-> **Note:** for increased security, session keys should be changed every session. This can be done by creating a certificate via signing a session public key
-> and broadcasting it via an extrinsic.
+> **Note:** for increased security, session keys should be changed every session. This can be done by
+> creating a certificate via signing a session public key nd broadcasting it via an extrinsic.
 
 Since session keys are hot keys that must be kept online, the individual keys should **not** be used to
 control funds. All the logic for handling session keys is in the Substrate client, primitives, and
