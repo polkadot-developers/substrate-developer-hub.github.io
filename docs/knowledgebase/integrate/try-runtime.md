@@ -1,5 +1,5 @@
 ---
-title: try-runtime
+title: Try Runtime
 ---
 
 The `try-runtime` tool is built to query a snapshot of runtime storage, using an [in-memory-externalities][testextern-rustdocs] to store state. In this way, 
@@ -40,27 +40,34 @@ In order to query state, `try-runtime` makes use of Substrate's RPCs, namely [`S
 
 The most common use case for `try-runtime` is with storage migrations and runtime upgrades. 
 
-> **Tip:** Combine `try-runtime` with `fork-off-substrate` to test your chain before production. Use `try-runtime` to test your 
-> chain's migration and its pre and post states. Then, use [`fork-off-substrate`][fork-off-gh] if you want to check that block 
-> production continues fine after the migration, and do some other arbitrary testing. 
+> **Tip:** Combine `try-runtime` with [`fork-off-substrate`][fork-off-gh] to test your chain before
+> production. Use `try-runtime` to test your chain's migration and its pre and post states. Then,
+> use `fork-off-substrate` if you want to check that block production continues fine after the
+> migration, and do some other arbitrary testing.
 
 ### Calling into hooks from `OnRuntimeUpgrade`
+
 By default, there are two ways of defining a runtime upgrade in the runtime. The `OnRuntimeUpgrade` trait provides the [different methods][onruntimeupgrade-method-rustdocs] to achieve this.
 
 - **From inside a runtime**. For example:
     ```rust
     struct Custom;
     impl OnRuntimeUpgrade for Custom {
-        fn on_runtime_upgrade() -> Weight { }
+        fn on_runtime_upgrade() -> Weight {
+            // -- snip --
+        }
     }
     ```
 
 - **From inside a pallet**. For example:
     ```rust
     #[pallet::hooks]
-    fn on_runtime_upgrade() -> Weight { }
+    impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
+        fn on_runtime_upgrade() -> Weight {
+            // -- snip --
+        }
+    }
     ```
-
 
 These hooks will specify _what should happen upon a runtime upgrade_. For testing purposes, we prefer having hooks that allow us to inspect the state _before_ and _after_ a runtime upgrade as well. 
 
@@ -76,7 +83,7 @@ The new hooks are as follows:
 
     #[cfg(feature = "try-runtime")]
     fn post_upgrade() -> Result<(), &'static str> { Ok(()) }
-
+```
 ### Helper functions
 
 [`OnRuntimeUpgradeHelpersExt`][oru-helpers-ext-rustdocs] are a set of helper functions made available from 
@@ -169,7 +176,7 @@ ws//$HOST:9944
 
 [tryruntime-api-rustdocs]: https://crates.parity.io/frame_try_runtime/trait.TryRuntime.html
 [testextern-rustdocs]: https://substrate.dev/rustdocs/latest/sp_state_machine/struct.TestExternalities.html
-[basicextern-rustdocs]: https://substrate.dev/rustdocs/v3.0.0/sp_state_machine/struct.BasicExternalities.html
+[basicextern-rustdocs]: https://substrate.dev/rustdocs/latest/sp_state_machine/struct.BasicExternalities.html
 [remoteextern-rustdocs]: https://crates.parity.io/remote_externalities/index.html#
 [stateapi-rustdocs]: https://crates.parity.io/sc_rpc/state/trait.StateApi.html# 
 [stateapi-storage-rustdocs]: https://crates.parity.io/sc_rpc/state/trait.StateApi.html#tymethod.storage

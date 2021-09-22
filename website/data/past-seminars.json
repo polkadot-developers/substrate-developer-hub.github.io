@@ -1,5 +1,26 @@
 {
   "2021" : [{
+    "date": "2021 Aug 24",
+    "speakers": ["Amar Singh, Purestake "],
+    "description": "In this seminar, Amar, Software Engineer at Purestake, showcases a DPoS system he implemented with Substrate for Moonbeam. He talks about the inflation logic and the reward distribution, making it more \"palatable\" by contrasting it with FRAME's pallet-staking.",
+    "link": "https://www.crowdcast.io/e/substrate-seminar-2/2",
+    "tags": ["parachains", "FRAME", "consensus"]
+  },
+    {
+    "date": "2021 Aug 10",
+    "speakers": ["Alex Siman, Subsocial"],
+    "description": "Alex, founder of Subsocial, presents his journey building a social network with Substrate, showcasing the flexibiltiy that FRAME offers for innovating with blockchain infrastructure.",
+    "link": "https://www.crowdcast.io/e/substrate-seminar-2/",
+    "tags": ["ecosystem", "FRAME"]
+  },
+  {
+    "date": "2021 Jul 27",
+    "speakers": ["Keith Yeung, Parity"],
+    "description": "Parity Software Developer, Keith, presents improvements he's been working on for runtime engineers, including improving error messages in `construct_runtime` and the creation of `StorageNMaps`.",
+    "link": "https://www.crowdcast.io/e/substrate-seminar/44",
+    "tags": ["runtime", "FRAME"]
+  },
+    {
     "date": "2021 Jul 13",
     "speakers": ["Will (Chevdor), Parity"],
     "description": "Parity Release Engineer presents a set of tools he's been working on including: Subwasm, a tool to query a runtime directly from its WASM binary after generation by Srtool; Srtool-cli, a new CLI for srtool that's powerful and easy to use; and a few other surprise tips and goodies",

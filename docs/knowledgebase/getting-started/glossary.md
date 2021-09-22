@@ -463,7 +463,7 @@ developers can easily define custom origins, such as those defined by the
 
 A parachain is a [blockchain](#blockchain) that derives shared infrastructure and security from a
 "[relay chain](#relay-chain)". You can
-[learn more about parachains on the Polkadot Wiki](https://wiki.polkadot.network/docs/en/learn-parachains).
+[learn more about parachains on the Polkadot Wiki](https://wiki.polkadot.network/docs/learn-parachains).
 
 ## Pallet
 

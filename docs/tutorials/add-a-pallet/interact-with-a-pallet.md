@@ -11,6 +11,7 @@ cargo build --release
 
 If the build fails, go back to the previous section and make sure you followed all the steps
 correctly. You can also view a [full solution including the `Nick` pallet](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions%2Fadd-a-pallet-v3.0.0+monthly-2021-05).
+Check [the diff from its base `v3.0.0+monthly-2021-05`](https://github.com/substrate-developer-hub/substrate-node-template/compare/v3.0.0+monthly-2021-05...tutorials/solutions/add-a-pallet-v3.0.0+monthly-2021-05).
 
 After the build succeeds, you can start the node:
 

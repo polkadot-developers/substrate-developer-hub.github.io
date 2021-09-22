@@ -3,7 +3,7 @@ title: Introduction
 ---
 
 In this tutorial, you will learn how to build a permissioned network with Substrate by using
-[node-authorization pallet](https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_authorization/).
+[node-authorization pallet](https://substrate.dev/rustdocs/latest/pallet_node_authorization/pallet/index.html).
 This tutorial should take you about **1 hour** to complete. 
 
  You are probably already familiar with public or *permissionless* blockchain, where everyone
@@ -29,7 +29,7 @@ If you run into an issue on this tutorial, **we are here to help!** You can [ask
 ## What you will be doing
 
 1. Modify the Node Template project to add 
-[node-authorization pallet](https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_authorization/).
+[node-authorization pallet](https://substrate.dev/rustdocs/latest/pallet_node_authorization/pallet/index.html).
 2. Launch multiple nodes and authorize new nodes to join the network by calling
 the dispatchable calls provided by node-authorization pallet.
 

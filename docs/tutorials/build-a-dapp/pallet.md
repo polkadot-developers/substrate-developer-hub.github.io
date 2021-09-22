@@ -253,7 +253,7 @@ To implement this, replace the `#[pallet::call]` line with:
         #[pallet::call]
         impl<T: Config> Pallet<T> {
             #[pallet::weight(1_000)]
-            pub(super) fn create_claim(
+            pub fn create_claim(
                 origin: OriginFor<T>,
                 proof: Vec<u8>,
             ) -> DispatchResultWithPostInfo {
@@ -267,7 +267,7 @@ To implement this, replace the `#[pallet::call]` line with:
                 ensure!(!Proofs::<T>::contains_key(&proof), Error::<T>::ProofAlreadyClaimed);
 
                 // Get the block number from the FRAME System module.
-                let current_block = <frame_system::Module<T>>::block_number();
+                let current_block = <frame_system::Pallet<T>>::block_number();
 
                 // Store the proof with the sender and block number.
                 Proofs::<T>::insert(&proof, (&sender, current_block));
@@ -279,7 +279,7 @@ To implement this, replace the `#[pallet::call]` line with:
             }
 
             #[pallet::weight(10_000)]
-            fn revoke_claim(
+            pub fn revoke_claim(
                 origin: OriginFor<T>,
                 proof: Vec<u8>,
             ) -> DispatchResultWithPostInfo {
@@ -326,4 +326,4 @@ And now it is time to interact with our new Proof of Existence pallet!
 
 > Stuck? There is a full node template
 > [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/build-a-dapp-v3+1)
-> to use as a reference. Check the commit diff from the base `v3.0.0+1` template for the exact changes.
+> to use as a reference. Check [the diff from its base `v3.0.0+1` template for exact changes](https://github.com/substrate-developer-hub/substrate-node-template/compare/v3.0.0+1...tutorials/solutions/build-a-dapp-v3+1).

@@ -37,11 +37,10 @@ class Index extends React.Component {
     return (
       <section>
         <div className="announcement">
-          You’ve mastered the tech, now talk about it! Share your Substrate experience at Sub0
-          Online 2021.
+          Meet others who speak your language! For devs at all levels - Sub0 Online, October 13-14, 2021.
           {` `}
-          <a href="https://www.parity.io/blog/sub0-online-take-the-stage-and-share-your-knowledge?utm_source=substrate.dev&utm_medium=referral&utm_campaign=cfp%20sub0&utm_content=call%20for%20proposals%20sub0&utm_term=parity">
-            Submit your proposal now.
+          <a href=" https://sub0.substrate.io/?utm_source=substrate.dev&utm_medium=referral&utm_campaign=sub0 2021&utm_content=registrations&utm_term=parity&ref=2bcd2286876e">
+            Register now
           </a>
         </div>
         <HomeSplash

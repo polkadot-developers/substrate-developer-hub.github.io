@@ -21,7 +21,7 @@ cargo run --release -- --dev --tmp
 By default, the [well-known Alice account](../../knowledgebase/integrate/subkey#well-known-keys) is
 configured as the holder of the Sudo pallet's key in the `development_config` function of the
 template node's
-[chain specification file](https://github.com/substrate-developer-hub/substrate-node-template/blob/v3.0.0/node/src/chain_spec.rs) -
+[chain specification file](https://github.com/substrate-developer-hub/substrate-node-template/blob/latest/node/src/chain_spec.rs) -
 this is the configuration that is used when the node is launched with the `--dev` flag. This means
 that Alice's account will be the one used to perform runtime upgrades throughout this tutorial.
 
@@ -204,7 +204,7 @@ cargo build --release -p node-template-runtime
 
 > Get stuck? Here is a
 > [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/runtime-upgrade-v3)
-> to check against. See the `diff` in the commit history for details.
+> to check against. See [the `diff` in the commit history for details](https://github.com/substrate-developer-hub/substrate-node-template/compare/1c5b984ccadf76cdbc0edd0e82594d57e412b257...tutorials/solutions/runtime-upgrade-v3).
 
 Here the `--release` flag will result in a longer compile time, but also generate a smaller build
 artifact that is better suited for submitting to the blockchain network: storage minimization

@@ -89,38 +89,38 @@ pub mod pallet {
 // This is a placeholder to implement traits and methods.
 #[pallet::pallet]
 #[pallet::generate_store(pub(super) trait Store)]
-	pub struct Pallet<T>(PhantomData<T>);
+pub struct Pallet<T>(PhantomData<T>);
 
 // 3. Runtime Configuration Trait
 // All types and constants go here. 
 // Use #[pallet::constant] and #[pallet::extra_constants] 
 // to pass in values to metadata.
 #[pallet::config]
-	pub trait Config: frame_system::Config { ... }
+pub trait Config: frame_system::Config { ... }
 
 // 4. Runtime Storage
 // Use to declare storage items.
 #[pallet::storage]
-	#[pallet::getter(fn something)]
-	pub MyStorage<T: Config> = StorageValue<_, u32>;
+#[pallet::getter(fn something)]
+pub type MyStorage<T: Config> = StorageValue<_, u32>;
 
 // 5. Runtime Events
 // Can stringify event types to metadata.
 #[pallet::event]
-	#[pallet::metadata(T::AccountId = "AccountId")]
-	#[pallet::generate_deposit(pub(super) fn deposit_event)]
-	pub enum Event<T: Config> { ... }
+#[pallet::metadata(T::AccountId = "AccountId")]
+#[pallet::generate_deposit(pub(super) fn deposit_event)]
+pub enum Event<T: Config> { ... }
 
 // 6. Hooks
 // Define some logic that should be executed
 // regularly in some context, for e.g. on_initialize.
 #[pallet::hooks]
-	impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> { ... }
+impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> { ... }
 
 // 7. Extrinsics
 // Functions that are callable from outside the runtime.
 #[pallet::call]
-	impl<T:Config> Pallet<T> { ... }
+impl<T:Config> Pallet<T> { ... }
 
 ```
 > **Note:** Pallets can be composed of as many sections as needed, giving runtime engineers a lot of flexibility ontop of the basic skeletons depicted above. Refer to the [Substrate Runtime Macros](./macros#substrate-runtime-macros) to learn more about adding functionality to a FRAME pallet.

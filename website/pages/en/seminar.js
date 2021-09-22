@@ -55,7 +55,7 @@ function Seminar(props) {
               </translate></p>
               <section>
                 <a target='_blank' className='btn btn-lg primary-color mx-5'
-                  href='https://www.crowdcast.io/e/substrate-seminar'>
+                  href='https://www.crowdcast.io/e/substrate-seminar-2'>
                   <translate>Live Call</translate>
                 </a>
                 <a className='btn btn-lg secondary-color mx-5'
@@ -151,12 +151,17 @@ function Seminar(props) {
             <div className='col-md-6 second'>
 
               <h2 style={{ fontSize: '32px' }}><translate>Upcoming seminars</translate></h2>
-            
-              <p><strong>27 Jul. </strong><translate>Enhancing the FRAME developer experience: Parity Software Developer, Keith, presents improvements he's been working on for runtime engineers, including improving error messages in `construct_runtime` and the creation of `StorageNMaps`. </translate></p>
+        
+              <p><a href='https://www.crowdcast.io/e/substrate-seminar-2/3'><strong>21 Sept. </strong></a><translate>In this seminar, lead developer of</translate> 
+                 <a href='https://phala.network/en/technology/'> Phala Network </a>
+                 <translate>Hang Yin will go over the design and capabilities of a Polkadot parachain, highlighting the</translate>
+                 <a href='https://research.web3.foundation/en/latest/polkadot/XCMP/index.html#polkadot-xcmp-index--page-root'> XCMP architecture </a> 
+                 <translate>in action. He will step through how XCM (Cross-Consensus Messaging format) is extended to Phala's 
+                 off-chain secure enclave workers to enable a dApp for privacy-preserving and CPU intensive computation.</translate></p>
 
-              <p><strong>10 Aug. </strong><translate>Behind Subsocial's pallets: Alex will present his journey building a social network with Substrate, showcasing the flexibiltiy that FRAME offers for innovating with blockchain infrastructure.</translate></p>
+              <p><strong>5 Oct. </strong><translate>TBD.</translate></p>
 
-              <p><strong>24 Aug. </strong><translate>An implementation of delegated proof of stake under the hood: in this seminar, Amar will showcase a DPoS system he implemented with Substrate. He will talk about the inflation logic and the reward distribution, hoping to make it more "palatable" by contrasting it with FRAME's `pallet-staking`.</translate></p>
+              <p><strong>19 Oct. </strong><translate>TBD.</translate></p>
 
             </div>
           </div>
@@ -189,7 +194,7 @@ function Seminar(props) {
                   <span className='block type--fine-print'>
                     <translate>or</translate>
                     &nbsp;
-                    <a href='https://www.crowdcast.io/e/substrate-seminar'>
+                    <a href='https://www.crowdcast.io/e/substrate-seminar-2'>
                       <translate>join live call »</translate>
                     </a>
                   </span>

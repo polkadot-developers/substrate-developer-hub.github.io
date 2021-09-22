@@ -15,8 +15,8 @@ different in terms of the specific configuration settings needed to use it corre
 
 ## Install the Node Template
 
-You should already have version `v3.0.0` of the
-[Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template)
+You should already have version `latest` of the
+[Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template/tree/latest)
 compiled on your computer from when you completed the
 [Create Your First Substrate Chain Tutorial](../../tutorials/create-your-first-substrate-chain/).
 If you do not, please complete that tutorial.
@@ -66,9 +66,11 @@ your runtime has. For example, it depends on the
 **`runtime/Cargo.toml`**
 
 ```TOML
-[dependencies]
-#--snip--
-pallet-balances = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
+[dependencies.pallet-balances]
+default-features = false
+version = '4.0.0-dev'
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-08'
 ```
 
 ### Crate Features
@@ -144,8 +146,17 @@ So based on the `balances` import shown above, the `contracts` import will look 
 ```TOML
 [dependencies]
 #--snip--
-pallet-contracts = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
-pallet-contracts-primitives = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
+[dependencies.pallet-contracts]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-08'
+version = '4.0.0-dev'
+
+[dependencies.pallet-contracts-primitives]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-08'
+version = '4.0.0-dev'
 ```
 
 As with other pallets, the Contracts pallet has an `std` feature. We should build its `std` feature
@@ -204,7 +215,7 @@ const fn deposit(items: u32, bytes: u32) -> Balance {
    items as Balance * 15 * CENTS + (bytes as Balance) * 6 * CENTS
 }
 
-/// We assume that ~10% of the block weight is consumed by `on_initalize` handlers.
+/// We assume that ~10% of the block weight is consumed by `on_initialize` handlers.
 /// This is used to limit the maximal weight of a single extrinsic.
 const AVERAGE_ON_INITIALIZE_RATIO: Perbill = Perbill::from_percent(10);
 
@@ -219,17 +230,16 @@ impl pallet_timestamp::Config for Runtime {
 
 /*** Add This Block ***/
 parameter_types! {
-   pub const TombstoneDeposit: Balance = deposit(
+   pub TombstoneDeposit: Balance = deposit(
       1,
       <pallet_contracts::Pallet<Runtime>>::contract_info_size()
    );
-   pub const DepositPerContract: Balance = TombstoneDeposit::get();
+   pub DepositPerContract: Balance = TombstoneDeposit::get();
    pub const DepositPerStorageByte: Balance = deposit(0, 1);
    pub const DepositPerStorageItem: Balance = deposit(1, 0);
    pub RentFraction: Perbill = Perbill::from_rational(1u32, 30 * DAYS);
    pub const SurchargeReward: Balance = 150 * MILLICENTS;
    pub const SignedClaimHandicap: u32 = 2;
-   pub const MaxDepth: u32 = 32;
    pub const MaxValueSize: u32 = 16 * 1024;
    // The lazy deletion runs inside on_initialize.
    pub DeletionWeightLimit: Weight = AVERAGE_ON_INITIALIZE_RATIO *
@@ -240,7 +250,8 @@ parameter_types! {
          <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(1) -
          <Runtime as pallet_contracts::Config>::WeightInfo::on_initialize_per_queue_item(0)
       )) / 5) as u32;
-   pub MaxCodeSize: u32 = 128 * 1024;
+
+   pub Schedule: pallet_contracts::Schedule<Runtime> = Default::default();
 }
 
 impl pallet_contracts::Config for Runtime {
@@ -256,20 +267,27 @@ impl pallet_contracts::Config for Runtime {
    type DepositPerStorageItem = DepositPerStorageItem;
    type RentFraction = RentFraction;
    type SurchargeReward = SurchargeReward;
-   type MaxDepth = MaxDepth;
-   type MaxValueSize = MaxValueSize;
    type WeightPrice = pallet_transaction_payment::Module<Self>;
    type WeightInfo = pallet_contracts::weights::SubstrateWeight<Self>;
    type ChainExtension = ();
    type DeletionQueueDepth = DeletionQueueDepth;
    type DeletionWeightLimit = DeletionWeightLimit;
-   type MaxCodeSize = MaxCodeSize;
+   type Call = Call;
+	/// The safest default is to allow no calls at all.
+	///
+	/// Runtimes should whitelist dispatchables that are allowed to be called from contracts
+	/// and make sure they are stable. Dispatchables exposed to contracts are not allowed to
+	/// change because that would break already deployed contracts. The `Call` structure itself
+	/// is not allowed to change the indices of existing pallets, too.
+	type CallFilter = DenyAll;
+	type Schedule = Schedule;
+	type CallStack = [pallet_contracts::Frame<Self>; 31];
 }
 /*** End Added Block ***/
 ```
 
 At this point, it is recommended to explore the
-[Contracts pallet source code](https://github.com/paritytech/substrate/blob/v3.0.0/frame/contracts/src/lib.rs)
+[Contracts pallet source code](https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs)
 if things don't make sense or you want to gain a deeper understanding.
 
 ### Adding Contracts to the `construct_runtime!` Macro
@@ -301,7 +319,7 @@ construct_runtime!(
       /* --snip-- */
 
       /*** Add This Line ***/
-      Contracts: pallet_contracts::{Pallet, Call, Config<T>, Storage, Event<T>},
+      Contracts: pallet_contracts::{Pallet, Call, Storage, Event<T>},
    }
 );
 ```
@@ -330,9 +348,11 @@ We start by adding the required API dependencies in our `Cargo.toml`.
 **`runtime/Cargo.toml`**
 
 ```TOML
-[dependencies]
-#--snip--
-pallet-contracts-rpc-runtime-api = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
+[dependencies.pallet-contracts-rpc-runtime-api]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-08'
+version = '4.0.0-dev'
 ```
 
 **`runtime/Cargo.toml`**
@@ -369,7 +389,8 @@ impl_runtime_apis! {
          gas_limit: u64,
          input_data: Vec<u8>,
       ) -> pallet_contracts_primitives::ContractExecResult {
-         Contracts::bare_call(origin, dest, value, gas_limit, input_data)
+         let debug = true;
+         Contracts::bare_call(origin, dest, value, gas_limit, input_data, debug)
       }
 
       fn instantiate(
@@ -380,7 +401,9 @@ impl_runtime_apis! {
          data: Vec<u8>,
          salt: Vec<u8>,
       ) -> pallet_contracts_primitives::ContractInstantiateResult<AccountId, BlockNumber> {
-         Contracts::bare_instantiate(origin, endowment, gas_limit, code, data, salt, true)
+         let compute_rent_projection = true;
+         let debug = true;
+         Contracts::bare_instantiate(origin, endowment, gas_limit, code, data, salt, compute_rent_projection, debug)
       }
 
       fn get_storage(
@@ -425,9 +448,16 @@ don't have to maintain a dedicated `std` feature.
 jsonrpc-core = '15.1.0'
 structopt = '0.3.8'
 #--snip--
-# *** Add this 2 lines ***
-pallet-contracts = { version = '3.0.0',  git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
-pallet-contracts-rpc = { version = '3.0.0',  git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05'}
+# *** Add the following lines ***
+[dependencies.pallet-contracts]
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-08'
+version = '4.0.0-dev'
+
+[dependencies.pallet-contracts-rpc]
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-08'
+version = '4.0.0-dev'
 ```
 
 
@@ -483,43 +513,8 @@ to learn about it. For example,
 [`pallet_contracts::GenesisConfig` documentation](https://substrate.dev/rustdocs/latest/pallet_contracts/struct.GenesisConfig.html)
 describes all the fields you need to define for the Contracts pallet.
 
-Genesis configurations are controlled in `node/src/chain_spec.rs`. We need to modify this file to
-include the `ContractsConfig` type and the contract price units at the top:
-
-**`node/src/chain_spec.rs`**
-
-```rust
-use node_template_runtime::ContractsConfig;
-```
-
-Then inside the `testnet_genesis` function we need to add our Contract pallet's configuration to the returned
-`GenesisConfig` object as followed:
-
-> IMPORTANT: We are taking the value `_enable_println` from the function parameters. Make sure to
-> remove the underscore that precedes the parameter definition.
-
-```rust
-/// Configure initial storage state for FRAME modules.
-fn testnet_genesis(
-   wasm_binary: &[u8],
-   initial_authorities: Vec<(AuraId, GrandpaId)>,
-   root_key: AccountId,
-   endowed_accounts: Vec<AccountId>,
-   enable_println: bool, // Update this line
-) -> GenesisConfig {
-   GenesisConfig {
-      /* --snip-- */
-
-      /*** Add This Block ***/
-      pallet_contracts: ContractsConfig {
-         // println should only be enabled on development chains
-         current_schedule: pallet_contracts::Schedule::default()
-            .enable_println(enable_println),
-      },
-      /*** End Added Block ***/
-   }
-}
-```
+Genesis configurations are controlled in `node/src/chain_spec.rs`. The Contracts pallet no longer has
+a genesis configuration.
 
 ## Start Your Upgraded Chain
 
@@ -543,7 +538,7 @@ In this guide, we walked through specifically how to import the Contracts pallet
 in the beginning of this guide, each pallet will be a little different. Have no fear, you can always
 refer to the
 
-[demonstration Substrate node runtime](https://github.com/paritytech/substrate/tree/v3.0.0/bin/node/runtime)
+[demonstration Substrate node runtime](https://github.com/paritytech/substrate/blob/master/bin/node/runtime)
 
 which includes nearly every pallet in the FRAME.
 

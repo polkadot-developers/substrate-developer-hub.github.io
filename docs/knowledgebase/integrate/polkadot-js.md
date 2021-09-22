@@ -56,7 +56,7 @@ interacting with extension-compliant dApps.
 for Chrome</a>
 <a class="btn btn-warning" href="https://addons.mozilla.org/en-US/firefox/addon/polkadot-js-extension/">Install
 for Firefox</a>
-<a class="btn btn-secondary text-white" href="https://github.com/polkadot-js/apps">GitHub</a>
+<a class="btn btn-secondary text-white" href="https://github.com/polkadot-js/extension">GitHub</a>
 
 ## Next Steps
 

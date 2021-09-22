@@ -5,7 +5,7 @@ title: Benchmarking
 ## What Is Runtime Benchmarking?
 
 The default Substrate block production systems produce blocks at consistent intervals. This is the
-known as the target block time. Given this requirement, Substrate based blockchains are only be able
+known as the target block time. Given this requirement, Substrate based blockchains are only able
 to execute a limited number of extrinsics per block. The time it takes to execute an extrinsic may
 vary based on the computational complexity, storage complexity, hardware used, and many other
 factors. We use generic measurement called **weight** to represent how many extrinsics can fit into
@@ -17,21 +17,21 @@ specific reference hardware<sup>[[1]](#footnote-ref-hardware)</sup>.
 Substrate does not use a mechanism similar to "gas metering" for extrinsic measurement due to the
 large overhead such a process would introduce. Instead, Substrate expects benchmarking to provide an
 approximate maximum for the worst case scenario of executing an extrinsic. Substrate will charge the
-user assuming this worst case scenario path was taken, and if the extrinsic turns out needing less
+user assuming this worst case scenario path was taken, and if the extrinsic turns out to need less
 resources, some of the estimated weight and fees can be returned. This is further explained in the
 [Transaction Fees chapter](./fees).
 
 So how do we determine the worst case scenario computation time and weight of our extrinsics?
 
 This is where Substrate Runtime Benchmarking comes in. It has a set of tools to help determine the
-weight of a runtime extrinsic. It execute the extrinsics in a pallet multiple times within the
+weight of a runtime extrinsic. It executes the extrinsics in a pallet multiple times within the
 runtime environment, and keeps track of the execution time.
 
-In total, it:
+In summary, it:
 
 - Sets up and executes extrinsics from your pallets.
 
-- Captures the raw data of these benchmarks over with these varying inputs, including how many
+- Captures the raw data of these benchmarks with these varying inputs, including how many
   database reads and writes have been performed.
 
 - Uses linear regression analysis to determine the relationship between computation time and the
@@ -44,9 +44,9 @@ In total, it:
 
 Denial-of-service (DoS) is a common attack vector for distributed systems, including blockchain
 networks. A simple example of such an attack would be for a user to repeatedly execute an extrinsic
-that involve intensive computation. To prevent users from spamming the network, we charge fee to the
-user for making that call. The cost of the call should reflect the computation and storage cost
-incurred to the system, to the more complex the call, the more we charge. However, we still want to
+that involves intensive computation. To prevent users from spamming the network, we charge a fee to
+the user for making that call. The cost of the call should reflect the computation and storage cost
+incurred to the system. The more complex the call, the more we charge. However, we still want to
 encourage users to use our blockchain system, so we also want this estimate cost to be relatively
 accurate so we don't charge users more than necessary.
 
