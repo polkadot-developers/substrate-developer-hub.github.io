@@ -17,7 +17,7 @@ account (stake) and nominators. To do so, they create a certificate by signing t
 Controller key. Then, they inform the chain that this key represents their Controller key by
 publishing the Session certificate in a transaction on the chain.
 
-## Use
+## Implimentation
 
 Session keys are used by validators to sign consensus-related messages. [`SessionKeys`](https://substrate.dev/rustdocs/latest/sp_session/trait.SessionKeys.html) is a generic,
 indexable type that is made concrete in the runtime.
@@ -66,7 +66,7 @@ in your runtime logic. To prevent the wrong key being used for the wrong operati
 Rust types wrap these keys, keeping them incompatible with one another and ensuring they are only
 used for their intended purpose.
 
-## Generation
+## Generation & Use
 
 As a node operator, you can generate keys using the RPC call
 [`author_rotateKeys`](https://substrate.dev/rustdocs/latest/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys).
