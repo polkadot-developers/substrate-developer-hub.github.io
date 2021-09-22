@@ -42,8 +42,8 @@ The most common use case for `try-runtime` is with storage migrations and runtim
 
 There are a number of flags that should be set on the node try-runtime is completing RPC queries against in order to work well with the large payloads, namely:
 
-- `set --rpc-max-payload 1000` to ensure large RPC queries can work.
-- `set --rpc-cors all` to ensure ws connections can come through.
+- set `--rpc-max-payload 1000` to ensure large RPC queries can work.
+- set `--rpc-cors all` to ensure ws connections can come through.
 
 > **Tip:** Combine `try-runtime` with [`fork-off-substrate`][fork-off-gh] to test your chain before
 > production. Use `try-runtime` to test your chain's migration and its pre and post states. Then,
