@@ -116,7 +116,7 @@ fixed values based on benchmarks. The most basic example would look like this:
 ```rust
 #[weight = 100_000]
 fn my_dispatchable() {
-    // ...
+	// ...
 }
 ```
 
@@ -132,7 +132,7 @@ dispatchable:
 ```rust
 #[weight = T::DbWeight::get().reads_writes(1, 2) + 20_000]
 fn my_dispatchable() {
-    // ...
+	// ...
 }
 ```
 
@@ -157,7 +157,7 @@ dispatchable uses another class like this:
 ```rust
 #[weight = (100_000, DispatchClass::Operational)]
 fn my_dispatchable() {
-    // ...
+	// ...
 }
 ```
 
@@ -167,7 +167,7 @@ is charged based on the annotated weight. When not defined otherwise, `Pays::Yes
 ```rust
 #[weight = (100_000, DispatchClass::Normal, Pays::No)]
 fn my_dispatchable() {
-    // ...
+	// ...
 }
 ```
 
@@ -213,7 +213,7 @@ some basic arithmetic:
   Pays::Yes,
 )]
 fn handle_users(origin, calls: Vec<User>) {
-    // Do something per user
+	// Do something per user
 }
 ```
 
@@ -227,15 +227,15 @@ weight, the dispatchable declares a different return type and then returns its a
 ```rust
 #[weight = 10_000 + 500_000_000]
 fn expensive_or_cheap(input: u64) -> DispatchResultWithPostInfo {
-    let was_heavy = do_calculation(input);
+	let was_heavy = do_calculation(input);
 
-    if (was_heavy) {
-        // None means "no correction" from the weight annotation.
-        Ok(None.into())
-    } else {
-        // Return the actual weight consumed.
-        Ok(Some(10_000).into())
-    }
+	if (was_heavy) {
+		// None means "no correction" from the weight annotation.
+		Ok(None.into())
+	} else {
+		// Return the actual weight consumed.
+		Ok(Some(10_000).into())
+	}
 }
 ```
 
@@ -274,33 +274,33 @@ struct LenWeight(u32);
 // `T` will be different. All that we care about is that `T` is encodable. That is always true by
 // definition. All dispatch arguments are encodable.
 impl<T: Encode> WeighData<T> for LenWeight {
-    fn weigh_data(&self, target: T) -> Weight {
-        let multiplier = self.0;
-        let encoded_len = target.encode().len() as u32;
-        multiplier * encoded_len
-    }
+	fn weigh_data(&self, target: T) -> Weight {
+		let multiplier = self.0;
+		let encoded_len = target.encode().len() as u32;
+		multiplier * encoded_len
+	}
 }
 
 impl<T: Encode> ClassifyDispatch<T> for LenWeight {
-    fn classify_dispatch(&self, target: T) -> DispatchClass {
-        let encoded_len = target.encode().len() as u32;
-        if encoded_len > 100 {
-            DispatchClass::Operational
-        } else {
-            DispatchClass::Normal
-        }
-    }
+	fn classify_dispatch(&self, target: T) -> DispatchClass {
+		let encoded_len = target.encode().len() as u32;
+		if encoded_len > 100 {
+			DispatchClass::Operational
+		} else {
+			DispatchClass::Normal
+		}
+	}
 }
 
 impl<T: Encode> PaysFee<T> {
-    fn pays_fee(&self, target: T) -> Pays {
-        let encoded_len = target.encode().len() as u32;
-        if encoded_len > 10 {
-            Pays::Yes
-        } else {
-            Pays::No
-        }
-    }
+	fn pays_fee(&self, target: T) -> Pays {
+		let encoded_len = target.encode().len() as u32;
+		if encoded_len > 10 {
+			Pays::Yes
+		} else {
+			Pays::No
+		}
+	}
 }
 ```
 
@@ -311,9 +311,9 @@ this. Just note that, in that case, your code would roughly look like:
 ```rust
 struct CustomWeight;
 impl WeighData<(&u32, &u64)> for CustomWeight {
-    fn weigh_data(&self, target: (&u32, &u64)) -> Weight {
-        ...
-    }
+	fn weigh_data(&self, target: (&u32, &u64)) -> Weight {
+		...
+	}
 }
 // impl `ClassifyDispatch<(&u32, &u64)>` , `PaysFee<(&u32, &u64)>`...
 
@@ -321,7 +321,7 @@ impl WeighData<(&u32, &u64)> for CustomWeight {
 #[pallet::call]
 impl<T: Config> Pallet<T> {
 	#[pallet::weight(CustomWeight)]
-    pub fn foo(origin: OriginFor<T>, a: u32, b: u64)  -> DispatchResult {
+	pub fn foo(origin: OriginFor<T>, a: u32, b: u64)  -> DispatchResult {
 		ensure_signed(origin)?;
 		// logic with a & b...
 	}
@@ -348,38 +348,38 @@ type Balance = u64;
 // Assume we want all the weights to have a `100 + 2 * w` conversion to fees
 struct CustomWeightToFee;
 impl Convert<Weight, Balance> for CustomWeightToFee {
-    fn convert(w: Weight) -> Balance {
-        let a = Balance::from(100);
-        let b = Balance::from(2);
-        let w = Balance::from(w);
-        a + b * w
-    }
+	fn convert(w: Weight) -> Balance {
+		let a = Balance::from(100);
+		let b = Balance::from(2);
+		let w = Balance::from(w);
+		a + b * w
+	}
 }
 
 parameter_types! {
-    pub const ExtrinsicBaseWeight: Weight = 10_000_000;
+	pub const ExtrinsicBaseWeight: Weight = 10_000_000;
 }
 
 impl frame_system::Config for Runtime {
-    type ExtrinsicBaseWeight = ExtrinsicBaseWeight;
+	type ExtrinsicBaseWeight = ExtrinsicBaseWeight;
 }
 
 parameter_types! {
-    pub const TransactionByteFee: Balance = 10;
+	pub const TransactionByteFee: Balance = 10;
 }
 
 impl transaction_payment::Config {
-    type TransactionByteFee = TransactionByteFee;
-    type WeightToFee = CustomWeightToFee;
-    type FeeMultiplierUpdate = TargetedFeeAdjustment<TargetBlockFullness>;
+	type TransactionByteFee = TransactionByteFee;
+	type WeightToFee = CustomWeightToFee;
+	type FeeMultiplierUpdate = TargetedFeeAdjustment<TargetBlockFullness>;
 }
 
 struct TargetedFeeAdjustment<T>(sp_std::marker::PhantomData<T>);
 impl<T: Get<Perquintill>> Convert<Fixed128, Fixed128> for TargetedFeeAdjustment<T> {
-    fn convert(multiplier: Fixed128) -> Fixed128 {
-        // Don't change anything. Put any fee update info here.
-        multiplier
-    }
+	fn convert(multiplier: Fixed128) -> Fixed128 {
+		// Don't change anything. Put any fee update info here.
+		multiplier
+	}
 }
 ```
 
