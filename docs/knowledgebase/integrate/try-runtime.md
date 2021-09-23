@@ -16,7 +16,7 @@ In its simplest form, `try-runtime` is a tool that enables:
 
 ## Motivation
 
-The initial motivation for `try-runtime` came from the need to test runtime changes against state from a real chain. Prior [`TestExternalities`][testextern-rustdocs] and [`BasicExternalities`][basicextern-rustdocs] existed for writing unit and integrated tests with mock data, but lacked an avenue to test against a chain's actual state. `try-runtime` extends [`TestExternalities`][testextern-rustdocs] and [`BasicExternalities`][basicextern-rustdocs] by scraping state (which is stored with key value pairs) via a node's RPC endpoints [`getStorage`][get-storage] and [`getKeysPaged`][storage-keys-paged] and inserting them into `TestExternalites`.
+The initial motivation for `try-runtime` came from the need to test runtime changes against state from a real chain. Prior [`TestExternalities`][testextern-rustdocs] and [`BasicExternalities`][basicextern-rustdocs] existed for writing unit and integrated tests with mock data, but lacked an avenue to test against a chain's actual state. `try-runtime` extends [`TestExternalities`][testextern-rustdocs] and [`BasicExternalities`][basicextern-rustdocs] by scraping state (which is stored with key value pairs) via a node's RPC endpoints [`getStorage`][get-storage] and [`getKeysPaged`][storage-keys-paged] and inserting them into `TestExternalities`.
 
 ## How it works
 
@@ -30,7 +30,7 @@ the storage of that runtime.
 | :---------------------------------------------------: | :---------------------------------------------------: |
 | ![image](/docs/assets/advanced/try-runtime-ext-1.png) | ![image](/docs/assets/advanced/try-runtime-ext-2.png) |
 
-With `remote_externalities`, developers can capture some chain state and run tests on it. Essentially, `RemoteExterrnalities` will populate a `TestExternalities` with a real chain's data.
+With `remote_externalities`, developers can capture some chain state and run tests on it. Essentially, `RemoteExternalities` will populate a `TestExternalities` with a real chain's data.
 
 In order to query state, `try-runtime` makes use of Substrate's RPCs, namely [`StateApi`][stateapi-rustdocs]. In particular:
 
