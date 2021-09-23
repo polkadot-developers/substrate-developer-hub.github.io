@@ -78,7 +78,7 @@ To import the `pallet-contracts` crate:
    
    The Contracts pallet is one of the more complicated pallets in FRAME, so it makes a good example to illustrate how to add pallets.
    NOTE: When adding a new dependency to the `Cargo.toml` file, be sure that the `tag` you use is the same for all of the pallet crates you are importing.
-   For example, if all of the other dependency use `tag = 'monthly-2021-09+1'`, replace `tag = 'monthly-2021-MM'` with `tag = 'monthly-2021-09+1'`.
+   For example, if all of the other dependencies use `tag = 'monthly-2021-09+1'`, replace `tag = 'monthly-2021-MM'` with `tag = 'monthly-2021-09+1'`.
 
 1. Add the Contracts pallet to the list of `std` features so that its features are included when the runtime is built as a native Rust binary.
    
@@ -101,7 +101,7 @@ To import the `pallet-contracts` crate:
 Now that you have successfully imported the Contracts pallet crate, you are ready to add it to the runtime. 
 If you have explored other tutorials, you might already know that every pallet has a configuration trait—called `Config`—that the runtime must implement.
 
-To determine what you need to implement for the Contracts pallet, you can take a look at the FRAME [`pallet_contracts::Config` documentation](https://substrate.dev/rustdocs/latest/pallet_contracts/trait.Config.html).
+To determine what you need to implement for the Contracts pallet, you can take a look at the FRAME [`pallet_contracts::Config` documentation](https://substrate.dev/rustdocs/latest/pallet_contracts/pallet/trait.Config.html).
 
 To implement the `Config` trait for the Contracts pallet in the runtime:
 
@@ -133,7 +133,7 @@ To implement the `Config` trait for the Contracts pallet in the runtime:
    use pallet_contracts::weights::WeightInfo;
    ```
 
-1. Add constants for the Contracts pallet to the runtime.
+1. Add the constants required by the Contracts pallet to the runtime.
 
    For example:
 
@@ -231,15 +231,15 @@ To implement the `Config` trait for the Contracts pallet in the runtime:
 
 1. Identify the types that the Contracts pallet exposes.
    
-   You can find a complete list of types in the [`construct_runtime!` macro](/rustdocs/latest/frame_support/macro.construct_runtime.html) documentation.
+   You can find a complete list of types in the [`construct_runtime!` macro](https://substrate.dev/rustdocs/latest/frame_support/macro.construct_runtime.html) documentation.
     
-    The [Contract pallet](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs) uses the following types:
+    The [Contracts pallet](https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs) uses the following types:
     
-    - **Storage** because it uses the `decl_storage!` macro.
-    - **Event** because it uses the `decl_event!` macro.
-    - **Call**able functions because it has dispatchable functions in the `decl_module!` macro.
-    - **Config**uration values because the `decl_storage!` macro has `config()` parameters.
-    - The **Module** type from the `decl_module!` macro.
+    - **Storage** because it uses the `#[pallet::storage]` macro.
+    - **Event** because it uses the `#[pallet::event]` macro.
+    - **Call**able functions because it has dispatchable functions in the `#[pallet::call]` macro.
+    - **Config**uration values because of the types under the `#[pallet::config]` macro.
+    - The **Pallet** type from the `#[frame_support::pallet]` macro.
 
 1. Add the types exposed in the Contracts pallet to the `construct_runtime!` macro.
    
@@ -277,15 +277,15 @@ However, it is useful to expose the APIs and endpoints for the Contracts pallet 
 
 * Read contracts state from off chain.
 
-* Make calls to node storage without making a transaction.
+* Make calls to a node's storage without making a transaction.
 
 To expose the Contracts RPC API:
 
-1. Open the `runtime/Cargo.toml` file in a text editor and add a dependencies section to import the Contracts RPC endpoints runtime API.
+1. Open the `runtime/Cargo.toml` file and add a dependencies section to import the Contracts RPC endpoints runtime API.
    
    For example:
    
-   ```TOML
+   ```toml
    [dependencies.pallet-contracts-rpc-runtime-api]
    default-features = false
    git = 'https://github.com/paritytech/substrate.git'
@@ -294,7 +294,7 @@ To expose the Contracts RPC API:
    ```
 
    Recall that the `tag` you use must the same for all of the pallet crates you are importing.
-   For example, if all of the other dependency use `tag = 'monthly-2021-09+1'`, replace `tag = 'monthly-2021-MM'` with `tag = 'monthly-2021-09+1'`.
+   For example, if all of the other dependencies use `tag = 'monthly-2021-09+1'`, replace `tag = 'monthly-2021-MM'` with `tag = 'monthly-2021-09+1'`.
 
 1. Add the Contracts RPC API to the list of `std` features so that its features are included when the runtime is built as a native Rust binary.
    
@@ -376,7 +376,7 @@ For the Contracts pallet to take advantage of the RPC endpoint API, you need to 
 
 To add the RPC API extension to the outer node:
 
-1. Open the `node/Cargo.toml` file in a text editor and add the dependencies sections to import the Contracts and Contracts RPC crates
+1. Open the `node/Cargo.toml` file and add the dependencies sections to import the Contracts and Contracts RPC crates
    
    For example:
    
@@ -398,11 +398,11 @@ To add the RPC API extension to the outer node:
    version = '4.0.0-dev'
    ```
 
-   Because you have exposed the runtime API and are now working in code for the outer node, you don't need to use `no_std` configuration, so you don't have to maintain a dedicated `std` list of features.
+   Because you have exposed the runtime API and are now working in code for the outer node, you don't need to use the `no_std` configuration, so you don't have to maintain a dedicated `std` list of features.
 
 1. Save your changes and close the `node/Cargo.toml` file.
 
-1. Open the `node/src/rpc.rs` file in a text editor. 
+1. Open the `node/src/rpc.rs` file. 
    
    Substrate provides an RPC to interact with the node. However, it does not contain access to the Contracts pallet by default. To interact with the Contracts pallet, you must extend the existing RPC and add the Contracts pallet and its API.
 
@@ -475,8 +475,8 @@ To start the local Substrate node:
 
     - The `--dev` option specifies that the node run as a developer node chain specification.
 
-    - The `--tmp` option specifies that the node save all active data—such as keys, blockchain database, and networking information—while it is running, then delete the data when you stop the node by pressing Control-c.
-    You should use `--tmp` option to ensure you have a clean working state any time you stop and restart the node.
+    - The `--tmp` option specifies that the node saves all active data—such as keys, blockchain database, and networking information—while it is running, then deletes the data when you stop the node by pressing Control-c.
+    You should use the `--tmp` option to ensure you have a clean working state any time you stop and restart the node.
 
 1. Verify your node is up and running successfully by reviewing the output displayed in the terminal.
 
@@ -517,12 +517,12 @@ In this tutorial, you learned:
 * How to update the outer node.
 * How to verify the Contracts pallet is available in the runtime using the front-end template.
 
-to begin using the Contracts pallet, you'll need to start writing some smart contracts to deploy. 
+To begin using the Contracts pallet, you'll need to start writing some smart contracts to deploy. 
 To learn about writing and deploying smart contracts, see [Substrate ink! smart contracts](../../knowledgebase/smart-contracts/).
 
 If you are ready to explore additional pallets, see the [demonstration Substrate node runtime](https://github.com/paritytech/substrate/blob/master/bin/node/runtime). The demonstration runtime includes nearly every pallet available in the FRAME development environment.
 
-For s basic guide to writing your own custom pallet, see the [Build a dApp](../../tutorials/build-a-dapp/pallet) tutorial.
+For a basic guide to writing your own custom pallet, see the [Build a dApp](../../tutorials/build-a-dapp/pallet) tutorial.
 
 For a closer look at runtime APIs and RPC endpoints, see the documentation for [Runtime APIs](https://substrate.dev/recipes/runtime-api.html) and
 [Custom RPCs](https://substrate.dev/recipes/custom-rpc.html).
