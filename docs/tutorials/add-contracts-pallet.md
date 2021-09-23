@@ -125,7 +125,7 @@ If you have explored other tutorials, you might already know that every pallet h
 trait—called `Config`—that the runtime must implement.
 
 To determine what you need to implement for the Contracts pallet, you can take a look at the FRAME
-[`pallet_contracts::Config` documentation](https://substrate.dev/rustdocs/latest/pallet_contracts/trait.Config.html).
+[`pallet_contracts::Config` documentation](https://substrate.dev/rustdocs/latest/pallet_contracts/pallet/trait.Config.html).
 
 To implement the `Config` trait for the Contracts pallet in the runtime:
 
@@ -257,18 +257,19 @@ To implement the `Config` trait for the Contracts pallet in the runtime:
    [Contracts pallet source code](https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs).
 
 1. Identify the types that the Contracts pallet exposes.
+
    You can find a complete list of types in the
-   [`construct_runtime!` macro](/rustdocs/latest/frame_support/macro.construct_runtime.html)
+   [`construct_runtime!` macro](https://substrate.dev/rustdocs/latest/frame_support/macro.construct_runtime.html)
    documentation.
 
-   The [Contract pallet](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs) uses the following types:
+   The [Contracts pallet](https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs)
+   uses the following types:
 
-   - **Storage** because it uses the `decl_storage!` macro.
-   - **Event** because it uses the `decl_event!` macro.
-   - **Call**able functions because it has dispatchable functions in the `decl_module!` macro.
-   - **Config**uration values because the `decl_storage!` macro has `config()` parameters.
-   - The **Module** type from the `decl_module!` macro.
-
+   - **Storage** because it uses the `#[pallet::storage]` macro.
+   - **Event** because it uses the `#[pallet::event]` macro.
+   - **Call**able functions because it has dispatchable functions in the `#[pallet::call]` macro.
+   - **Config**uration values because of the types under the `#[pallet::config]` macro.
+   - The **Pallet** type from the `#[frame_support::pallet]` macro.
 
 1. Add the types exposed in the Contracts pallet to the `construct_runtime!` macro.
 
@@ -411,8 +412,9 @@ endpoint to the node configuration.
 
 To add the RPC API extension to the outer node:
 
-1. Open the `node/Cargo.toml` file in a text editor and add the dependencies sections to import the
-   Contracts and Contracts RPC crates
+1. Open the `node/Cargo.toml` file and add the dependencies sections to import the Contracts and
+   Contracts RPC crates.
+
    For example:
 
    ```toml
@@ -564,9 +566,8 @@ In this tutorial, you learned:
 - How to update the outer node.
 - How to verify the Contracts pallet is available in the runtime using the front-end template.
 
-to begin using the Contracts pallet, you'll need to start writing some smart contracts to deploy.
-
-To learn about writing and deploying smart contracts, see pur
+To begin using the Contracts pallet, you'll need to start writing some smart contracts to deploy.
+To learn about writing and deploying smart contracts, see our
 [Substrate ink! smart contracts](../../knowledgebase/smart-contracts/).
 
 If you are ready to explore additional pallets, see the
