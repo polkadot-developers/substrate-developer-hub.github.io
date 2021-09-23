@@ -181,13 +181,13 @@ update our pallet's dependencies:
 **`pallet/template/Cargo.toml`**
 
 ```toml
-# add `sp-std` in the dependencies section of the toml file
-
-[dependencies]
-# -- snip -- 
-sp-std = { default-features = false, version = '3.0.0' }
-# -- snip --
-```  
+# *** Add the following lines ***
+[dependencies.sp-std]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-09+1'
+version = '4.0.0-dev'
+```
 
 ### 4. Pallet Errors
 

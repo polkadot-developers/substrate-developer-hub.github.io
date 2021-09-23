@@ -158,7 +158,7 @@ To implement the `Config` trait for the Contracts pallet in the runtime:
    use pallet_contracts::weights::WeightInfo;
    ```
 
-1. Add constants for the Contracts pallet to the runtime.
+1. Add the constants required by the Contracts pallet to the runtime.
 
    For example:
 
@@ -257,7 +257,6 @@ To implement the `Config` trait for the Contracts pallet in the runtime:
    [Contracts pallet source code](https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs).
 
 1. Identify the types that the Contracts pallet exposes.
-
    You can find a complete list of types in the
    [`construct_runtime!` macro](/rustdocs/latest/frame_support/macro.construct_runtime.html)
    documentation.
@@ -269,6 +268,7 @@ To implement the `Config` trait for the Contracts pallet in the runtime:
    - **Call**able functions because it has dispatchable functions in the `decl_module!` macro.
    - **Config**uration values because the `decl_storage!` macro has `config()` parameters.
    - The **Module** type from the `decl_module!` macro.
+
 
 1. Add the types exposed in the Contracts pallet to the `construct_runtime!` macro.
 
@@ -316,7 +316,7 @@ To expose the Contracts RPC API:
 
    For example:
 
-   ```TOML
+   ```toml
    [dependencies.pallet-contracts-rpc-runtime-api]
    default-features = false
    git = 'https://github.com/paritytech/substrate.git'
@@ -413,7 +413,6 @@ To add the RPC API extension to the outer node:
 
 1. Open the `node/Cargo.toml` file in a text editor and add the dependencies sections to import the
    Contracts and Contracts RPC crates
-
    For example:
 
    ```toml
