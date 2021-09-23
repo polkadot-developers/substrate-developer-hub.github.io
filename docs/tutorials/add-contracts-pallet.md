@@ -187,7 +187,7 @@ Every pallet has a configuration trait called `Config` that the runtime must imp
 To figure out what we need to implement for this pallet specifically, you can take a look at the
 FRAME
 
-[`pallet_contracts::Config` documentation](https://substrate.dev/rustdocs/latest/pallet_contracts/trait.Config.html).
+[`pallet_contracts::Config` documentation](https://substrate.dev/rustdocs/latest/pallet_contracts/pallet/trait.Config.html).
 
 For our runtime, the implementation will look like this:
 
