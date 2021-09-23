@@ -60,9 +60,9 @@ By default, there are two ways of defining a runtime upgrade in the runtime. The
   ```rust
   struct Custom;
   impl OnRuntimeUpgrade for Custom {
-      fn on_runtime_upgrade() -> Weight {
-          // -- snip --
-      }
+  	fn on_runtime_upgrade() -> Weight {
+  		// -- snip --
+  	}
   }
   ```
 
@@ -70,9 +70,9 @@ By default, there are two ways of defining a runtime upgrade in the runtime. The
   ```rust
   #[pallet::hooks]
   impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
-      fn on_runtime_upgrade() -> Weight {
-          // -- snip --
-      }
+  	fn on_runtime_upgrade() -> Weight {
+  		// -- snip --
+  	}
   }
   ```
 
@@ -85,11 +85,11 @@ These hooks are not available by default, and are only available under a specifi
 The new hooks are as follows:
 
 ```rust
-    #[cfg(feature = "try-runtime")]
-    fn pre_upgrade() -> Result<(), &'static str> { Ok(()) }
+#[cfg(feature = "try-runtime")]
+fn pre_upgrade() -> Result<(), &'static str> { Ok(()) }
 
-    #[cfg(feature = "try-runtime")]
-    fn post_upgrade() -> Result<(), &'static str> { Ok(()) }
+#[cfg(feature = "try-runtime")]
+fn post_upgrade() -> Result<(), &'static str> { Ok(()) }
 ```
 
 ### Helper functions
@@ -106,27 +106,27 @@ Using the [`frame_executive::Executive`][executive-rustdocs] struct, these helpe
 ```rust
 pub struct CheckTotalIssuance;
 impl OnRuntimeUpgrade for CheckTotalIssuance {
-    #[cfg(feature = "try-runtime")]
-    fn post_upgrade() {
-        // iterate over all accounts, sum their balance and ensure that sum is correct.
-    }
+	#[cfg(feature = "try-runtime")]
+	fn post_upgrade() {
+		// iterate over all accounts, sum their balance and ensure that sum is correct.
+	}
 }
 
 pub struct EnsureAccountsWontDie;
 impl OnRuntimeUpgrade for EnsureAccountsWontDie {
-    #[cfg(feature = "try-runtime")]
-    fn pre_upgrade() {
-        let account_count = frame_system::Accounts::<Runtime>::iter().count();
-        Self::set_temp_storage(account_count, "account_count");
-    }
+	#[cfg(feature = "try-runtime")]
+	fn pre_upgrade() {
+		let account_count = frame_system::Accounts::<Runtime>::iter().count();
+		Self::set_temp_storage(account_count, "account_count");
+	}
 
-    #[cfg(feature = "try-runtime")]
-    fn post_upgrade() {
-        // ensure that this migration doesn't kill any account.
-        let post_migration = frame_system::Accounts::<Runtime>::iter().count();
-        let pre_migration = Self::get_temp_storage::<u32>("account_count");
-        ensure!(post_migration == pre_migration, "error ...");
-    }
+	#[cfg(feature = "try-runtime")]
+	fn post_upgrade() {
+		// ensure that this migration doesn't kill any account.
+		let post_migration = frame_system::Accounts::<Runtime>::iter().count();
+		let pre_migration = Self::get_temp_storage::<u32>("account_count");
+		ensure!(post_migration == pre_migration, "error ...");
+	}
 }
 
 pub type CheckerMigrations = (EnsureAccountsWontDie, CheckTotalIssuance);
@@ -158,16 +158,16 @@ Using it to re-execute code from a `ElectionProviderMultiPhase` off-chain worker
 
 ```bash
 cargo run -- --release \
---features=try-runtime \
-try-runtime \
---execution Wasm \
---wasm-execution Compiled \
-offchain-worker \
---header-at 0x491d09f313c707b5096650d76600f063b09835fd820e2916d3f8b0f5b45bec30 \
-live \
--b 0x491d09f313c707b5096650d76600f063b09835fd820e2916d3f8b0f5b45bec30 \
--m ElectionProviderMultiPhase
-ws//$HOST:9944
+	--features=try-runtime \
+	try-runtime \
+	--execution Wasm \
+	--wasm-execution Compiled \
+	offchain-worker \
+	--header-at 0x491d09f313c707b5096650d76600f063b09835fd820e2916d3f8b0f5b45bec30 \
+	live \
+	-b 0x491d09f313c707b5096650d76600f063b09835fd820e2916d3f8b0f5b45bec30 \
+	-m ElectionProviderMultiPhase
+	ws//$HOST:9944
 ```
 
 > **Tip:** pass in the --help flag after each subcommand to see the command's different options.
@@ -176,26 +176,26 @@ Run the migrations of the local runtime on the state of SomeChain, for example:
 
 ```bash
 RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
-    cargo run try-runtime \
-    --execution Native \
-    --chain somechain-dev \
-    on-runtime-upgrade \
-    live \
-    --uri wss://rpc.polkadot.io
+	cargo run try-runtime \
+	--execution Native \
+	--chain somechain-dev \
+	on-runtime-upgrade \
+	live \
+	--uri wss://rpc.polkadot.io
 ```
 
 Running it at a specific block number's state:
 
 ```bash
 RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
-    cargo run try-runtime \
-    --execution Native \
-    --chain dev \
-    --no-spec-name-check \ # mind this one!
-    on-runtime-upgrade \
-    live \
-    --uri wss://rpc.polkadot.io \
-    --at <block-hash>
+	cargo run try-runtime \
+	--execution Native \
+	--chain dev \
+	--no-spec-name-check \ # mind this one!
+	on-runtime-upgrade \
+	live \
+	--uri wss://rpc.polkadot.io \
+	--at <block-hash>
 ```
 
 ## Next Steps
