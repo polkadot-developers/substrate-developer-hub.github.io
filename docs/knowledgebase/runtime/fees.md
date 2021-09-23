@@ -315,24 +315,25 @@ impl WeighData<(&u32, &u64)> for CustomWeight {
         ...
     }
 }
-impl ClassifyDispatch<(T)> for CustomWeight {
-    fn classify_dispatch(&self, target: T) -> DispatchClass{
-        ...
-    }
-}
+// impl `ClassifyDispatch<(&u32, &u64)>` , `PaysFee<(&u32, &u64)>`...
 
-// given dispatch:
+// example dispatchable:
 #[pallet::call]
 impl<T: Config> Pallet<T> {
-		#[pallet::weight(CustomWeight)]
-		pub fn accumulate_dummy(origin: OriginFor<T>, increase_by: T::Balance) -> DispatchResult {
-    fn foo(a: u32, b: u64) { ... }
+	#[pallet::weight(CustomWeight)]
+    pub fn foo(origin: OriginFor<T>, a: u32, b: u64)  -> DispatchResult {
+		ensure_signed(origin)?;
+		// logic with a & b...
+	}
 }
 ```
 
 This means that `CustomWeight` can only be used in conjunction with a dispatch with a particular
 signature `(u32, u64)`, as opposed to `LenWeight`, which can be used with anything because they
 don't make any strict assumptions about `<T>`.
+
+> A full working example can be
+> [found in Substrate's example pallet](https://substrate.dev/rustdocs/latest/src/pallet_example/lib.rs.html#292-339)
 
 ### Custom Inclusion Fee
 
@@ -388,7 +389,12 @@ The entire logic of fees is encapsulated in `pallet-transaction-payment` via a `
 While this pallet provides a high degree of flexibility, a user can opt to build their custom
 payment pallet drawing inspiration from Transaction Payment.
 
-Given now you know what Substrate weight system is, how it affect the transaction fee computation, and how to specify them for your dispatchables, the last question is how to find the right weights for your dispatchables. That is what **Substrate Benchmarking** is for. By writing benchmarking functions and running them, the system (`frame-benchmarking`) calls these functions repeatedly with different numerical parameters and empirically determine the weight functions for dispatchables in their worst case scenarios, within a certain limit. [Learn more here](./benchmarking).
+Given now you know what Substrate weight system is, how it affect the transaction fee computation,
+and how to specify them for your dispatchables, the last question is how to find the right weights
+for your dispatchables. That is what **Substrate Benchmarking** is for. By writing benchmarking
+functions and running them, the system (`frame-benchmarking`) calls these functions repeatedly with
+different numerical parameters and empirically determine the weight functions for dispatchables in
+their worst case scenarios, within a certain limit. [Learn more here](./benchmarking).
 
 ### Learn More
 
@@ -398,10 +404,9 @@ Given now you know what Substrate weight system is, how it affect the transactio
 
 ### Examples
 
-Substrate Recipes contains examples of both
-[custom weights](https://github.com/substrate-developer-hub/recipes/tree/master/pallets/weights) and
-custom
-[WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/runtimes/weight-fee-runtime).
+How-to Guides contains a section on Weights, and many example patterns of
+[custom weights](https://substrate.dev/substrate-how-to-guides/docs/weights/conditional-weight-struct)
+and [calculating fees](https://substrate.dev/substrate-how-to-guides/docs/weights/calculate-fees)
 
 ### References
 
