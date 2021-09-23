@@ -209,8 +209,7 @@ cargo build --release -p node-template-runtime
 > Get stuck? Here is a
 > [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/runtime-upgrade-v3)
 > to check against. See [the `diff` in the commit history for details](https://github.com/substrate-developer-hub/substrate-node-template/compare/1c5b984ccadf76cdbc0edd0e82594d57e412b257...tutorials/solutions/runtime-upgrade-v3).
-
-<!-- The solution might confuse more, as some parts of it are outdated and do not work against the current `4.0.0-dev` version -->
+> NOTE: this is for an _older version_ of the node template, so there are minor differences to watchout for!
 
 Here the `--release` flag will result in a longer compile time, but also generate a smaller build
 artifact that is better suited for submitting to the blockchain network: storage minimization
