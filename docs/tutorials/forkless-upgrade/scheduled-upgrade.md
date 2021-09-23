@@ -61,7 +61,8 @@ In the previous section, the Scheduler pallet was configured with the `Root` ori
 which means that the `sudo` function (_not_ `sudo_unchecked_weight`) can be used to invoke the
 `schedule` function. To upgrade the runtime:
 
-- Use [this link](https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944) to open the Polkadot JS Apps UI's Sudo tab. Refresh your browser if you have it already running to make sure that the 
+- Use [this link](https://polkadot.js.org/apps/#/sudo?rpc=ws://127.0.0.1:9944) to open the Polkadot JS Apps UI's Sudo
+   tab. Refresh your browser if you have it already running to make sure that the
 Extrinsics for the Scheduler pallet show. 
 - Wait until all the other fields
 have been filled in before providing the `when` parameter. 
