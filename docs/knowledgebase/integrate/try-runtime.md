@@ -40,6 +40,11 @@ In order to query state, `try-runtime` makes use of Substrate's RPCs, namely [`S
 
 The most common use case for `try-runtime` is with storage migrations and runtime upgrades. 
 
+There are a number of flags that should be set on the node try-runtime is completing RPC queries against in order to work well with the large payloads, namely:
+
+- set `--rpc-max-payload 1000` to ensure large RPC queries can work.
+- set `--rpc-cors all` to ensure ws connections can come through.
+
 > **Tip:** Combine `try-runtime` with [`fork-off-substrate`][fork-off-gh] to test your chain before
 > production. Use `try-runtime` to test your chain's migration and its pre and post states. Then,
 > use `fork-off-substrate` if you want to check that block production continues fine after the
@@ -134,6 +139,8 @@ The possible sub-commands include:
 - **`on-runtime-upgrade`**: Executes "tryRuntime_on_runtime_upgrade" against the given runtime state.
 - **`offchain-worker`**: Executes "offchainWorkerApi_offchain_worker" against the given runtime state.
 - **`execute-block`**: Executes "core_execute_block" using the given block and the runtime state of the parent block.
+- **`follow-chain`**: Follows a given chain's finalized blocks and applies to all its extrinsics. This allows the 
+behavior of a new runtime to be inspected over a long period of time, with real transactions coming as input.
 
 For example, running `try-runtime` with the "on-runtime-upgrade" subcommand on a chain
 running locally:
@@ -161,6 +168,32 @@ ws//$HOST:9944
 ```
 
 > **Tip:** pass in the --help flag after each subcommand to see the command's different options.
+
+Run the migrations of the local runtime on the state of SomeChain, for example: 
+
+```bash
+RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
+    cargo run try-runtime \
+    --execution Native \
+    --chain somechain-dev \
+    on-runtime-upgrade \
+    live \
+    --uri wss://rpc.polkadot.io
+```
+
+Running it at a specific block number's state:
+
+```bash
+RUST_LOG=runtime=trace,try-runtime::cli=trace,executor=trace \
+    cargo run try-runtime \
+    --execution Native \
+    --chain dev \
+    --no-spec-name-check \ # mind this one!
+    on-runtime-upgrade \
+    live \
+    --uri wss://rpc.polkadot.io \
+    --at <block-hash>
+```
 
 ## Next Steps
 

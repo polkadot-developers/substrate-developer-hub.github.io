@@ -72,12 +72,17 @@ First we must add the pallet to our runtime dependencies:
 
 **`runtime/Cargo.toml`**
 
-```TOML
-[dependencies]
-#--snip--
-pallet-node-authorization = { default-features = false, version = '3.0.0' }
+```toml
+[dependencies.pallet-node-authorization]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-09+1'
+version = '4.0.0-dev'
+```
 
-#--snip--
+**`runtime/Cargo.toml`**
+
+```toml
 [features]
 default = ['std']
 std = [
@@ -86,6 +91,7 @@ std = [
     #--snip--
 ]
 ```
+
 We need to simulate the governance in our simple blockchain, so we just let a `sudo` admin rule, 
 configuring the pallet's interface to `EnsureRoot`. In a production environment we sould want to have 
 difference, governance based checking implimented here. More details of this `Config` can be found in
@@ -148,9 +154,9 @@ construct_runtime!(
 `PeerId` is encoded in bs58 format, so we need a new library
 [bs58](https://docs.rs/bs58/0.3.1/bs58/) in **node/cargo.toml** to decode it to get its bytes.
 
-**`node/cargo.toml`**
+**`node/Cargo.toml`**
 
-```TOML
+```toml
 [dependencies]
 #--snip--
 bs58 = "0.4.0"
