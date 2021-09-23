@@ -80,19 +80,19 @@ To import the `pallet-contracts` crate:
 1. Import the `pallet-contracts` crate to make it available to the node template runtime by adding
    it to the list of dependencies.
 
-```toml
-[dependencies.pallet-contracts]
-default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-YYYY-MM'
-version = '4.0.0-dev'
+   ```toml
+   [dependencies.pallet-contracts]
+   default-features = false
+   git = 'https://github.com/paritytech/substrate.git'
+   tag = 'monthly-YYYY-MM'
+   version = '4.0.0-dev'
 
-[dependencies.pallet-contracts-primitives]
-default-features = false
-git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-YYYY-MM'
-version = '4.0.0-dev'
-```
+   [dependencies.pallet-contracts-primitives]
+   default-features = false
+   git = 'https://github.com/paritytech/substrate.git'
+   tag = 'monthly-YYYY-MM'
+   version = '4.0.0-dev'
+   ```
 
 The Contracts pallet is one of the more complicated pallets in FRAME, so it makes a good example to
 illustrate how to add pallets.
@@ -104,16 +104,16 @@ For example, if all of the other dependency use `tag = 'monthly-2021-09+1'`, rep
 1. Add the Contracts pallet to the list of `std` features so that its features are included when the
    runtime is built as a native Rust binary.
 
-```toml
-[features]
-default = ['std']
-std = [
-	#--snip--
-	'pallet-contracts/std',
-	'pallet-contracts-primitives/std',
-	#--snip--
- ]
-```
+   ```toml
+   [features]
+   default = ['std']
+   std = [
+   	#--snip--
+   	'pallet-contracts/std',
+   	'pallet-contracts-primitives/std',
+   	#--snip--
+    ]
+   ```
 
 1. Save your changes and close the `runtime/Cargo.toml` file.
 
