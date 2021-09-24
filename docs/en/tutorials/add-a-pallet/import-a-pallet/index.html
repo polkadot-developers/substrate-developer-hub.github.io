@@ -104,9 +104,11 @@ runtime's <code>Cargo.toml</code> file. If you want a proper primer into Cargo R
 <p>Open <code>substrate-node-template/runtime/Cargo.toml</code> and you will see a list of all the dependencies
 your runtime has. For example, it depends on the <a href="https://substrate.dev/rustdocs/latest/pallet_balances/index.html">Balances pallet</a>:</p>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies]</span>
-<span class="hljs-comment">#--snip--</span>
-<span class="hljs-attr">pallet-balances</span> = { default-features = <span class="hljs-literal">false</span>, version = <span class="hljs-string">'SEMVER VERSION'</span>, git = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>, tag = <span class="hljs-string">'monthly-YYYY-MM'</span> }
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">dependencies.pallet-balances</span><span class="token punctuation">]</span>
+<span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
+<span class="token key property">tag</span> <span class="token punctuation">=</span> <span class="token string">'monthly-YYYY-MM'</span>
+<span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">'SEMVER VERSION'</span>
 </code></pre>
 <p>This is telling Cargo to find the crate from git repository <code>paritytech/substrate</code> with commit
 that is tagged with <code>monthly-YYYY-MM</code>. <code>YYYY</code> and <code>MM</code> are the corresponding year and month.
@@ -123,19 +125,19 @@ crate <code>features</code> correctly. In the code snippet above, you will notic
 <code>default-features = false</code>. If you explore the <code>Cargo.toml</code> file even closer, you will find
 something like:</p>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"><span class="hljs-section">[features]</span>
-<span class="hljs-attr">default</span> = [<span class="hljs-string">'std'</span>]
-<span class="hljs-attr">std</span> = [
-    <span class="hljs-string">'codec/std'</span>,
-    <span class="hljs-string">'serde'</span>,
-    <span class="hljs-string">'frame-executive/std'</span>,
-    <span class="hljs-string">'frame-support/std'</span>,
-    <span class="hljs-string">'frame-system/std'</span>,
-    <span class="hljs-string">'frame-system-rpc-runtime-api/std'</span>,
-    <span class="hljs-string">'pallet-aura/std'</span>,
-    <span class="hljs-string">'pallet-balances/std'</span>,
-    <span class="hljs-comment">#--snip--</span>
-]
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">features</span><span class="token punctuation">]</span>
+<span class="token key property">default</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">'std'</span><span class="token punctuation">]</span>
+<span class="token key property">std</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span>
+    <span class="token string">'codec/std'</span><span class="token punctuation">,</span>
+    <span class="token string">'serde'</span><span class="token punctuation">,</span>
+    <span class="token string">'frame-executive/std'</span><span class="token punctuation">,</span>
+    <span class="token string">'frame-support/std'</span><span class="token punctuation">,</span>
+    <span class="token string">'frame-system/std'</span><span class="token punctuation">,</span>
+    <span class="token string">'frame-system-rpc-runtime-api/std'</span><span class="token punctuation">,</span>
+    <span class="token string">'pallet-aura/std'</span><span class="token punctuation">,</span>
+    <span class="token string">'pallet-balances/std'</span><span class="token punctuation">,</span>
+    <span class="token comment">#--snip--</span>
+<span class="token punctuation">]</span>
 </code></pre>
 <p>This second line defines the <code>default</code> features of your runtime crate as <code>std</code>. You can imagine,
 each pallet crate has a similar configuration defining the default feature for the crate. Your
@@ -179,9 +181,12 @@ the common points you need to consider when adding a pallet to your runtime.</p>
 <p>First we will add the new dependency by simply copying an existing pallet and changing the values.
 So based on the <code>balances</code> import shown above, the <code>nicks</code> import will look like:</p>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies]</span>
-<span class="hljs-comment">#--snip--</span>
-<span class="hljs-attr">pallet-nicks</span> = { default-features = <span class="hljs-literal">false</span>, version = <span class="hljs-string">'4.0.0-dev'</span>, git = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>, tag = <span class="hljs-string">'monthly-2021-09+1'</span> }
+<pre><code class="hljs css language-toml"><span class="token comment"># *** Add the following lines ***</span>
+<span class="token punctuation">[</span><span class="token table class-name">dependencies.pallet-nicks</span><span class="token punctuation">]</span>
+<span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
+<span class="token key property">tag</span> <span class="token punctuation">=</span> <span class="token string">'monthly-2021-09+1'</span>
+<span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">'4.0.0-dev'</span>
 </code></pre>
 <blockquote>
 <p>Note you must use the correct <a href="#importing-a-pallet-crate">tag and version</a> for the specific version of the node template you are using.
@@ -191,13 +196,13 @@ The above sippet will need to be adjusted for this!</p>
 when the runtime is built with its own <code>std</code> feature. Add the following line to the runtime's <code>std</code>
 feature.</p>
 <p><strong><code>runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"><span class="hljs-section">[features]</span>
-<span class="hljs-attr">default</span> = [<span class="hljs-string">"std"</span>]
-<span class="hljs-attr">std</span> = [
-    <span class="hljs-comment">#--snip--</span>
-    <span class="hljs-string">'pallet-nicks/std'</span>,
-    <span class="hljs-comment">#--snip--</span>
-]
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">features</span><span class="token punctuation">]</span>
+<span class="token key property">default</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">"std"</span><span class="token punctuation">]</span>
+<span class="token key property">std</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span>
+    <span class="token comment">#--snip--</span>
+    <span class="token string">'pallet-nicks/std'</span><span class="token punctuation">,</span>
+    <span class="token comment">#--snip--</span>
+<span class="token punctuation">]</span>
 </code></pre>
 <p>If you forget to set the feature, when building to your native binaries you will get errors like:</p>
 <pre><code class="hljs">error<span class="token punctuation">[</span><span class="token constant">E0425</span><span class="token punctuation">]</span><span class="token punctuation">:</span> cannot find function `memory_teardown` <span class="token keyword">in</span> module `sandbox`
@@ -217,7 +222,7 @@ error<span class="token punctuation">[</span><span class="token constant">E0425<
 <p>Before moving on, check that the new dependencies resolve correctly by running:</p>
 <pre><code class="hljs css language-bash">cargo check -p node-template-runtime
 </code></pre>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 9/9/2021 by Dan Shields</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/tutorials/add-a-pallet/index"><span class="arrow-prev">← </span><span>Introduction</span></a><a class="docs-next button" href="/docs/en/tutorials/add-a-pallet/configure-a-pallet"><span>Configure the Nicks Pallet</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#importing-a-pallet-crate">Importing a Pallet Crate</a><ul class="toc-headings"><li><a href="#crate-features">Crate Features</a></li><li><a href="#importing-the-nicks-pallet-crate">Importing the Nicks Pallet Crate</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/substrate-how-to-guides">How-to Guides</a><a href="https://substrate.dev/rustdocs">API Reference</a><a href="https://playground.substrate.dev/">Playground</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://matrix.to/#/#substrate-technical:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 9/23/2021 by Pedro de Matos Fedricci</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/en/tutorials/add-a-pallet/index"><span class="arrow-prev">← </span><span>Introduction</span></a><a class="docs-next button" href="/docs/en/tutorials/add-a-pallet/configure-a-pallet"><span>Configure the Nicks Pallet</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#importing-a-pallet-crate">Importing a Pallet Crate</a><ul class="toc-headings"><li><a href="#crate-features">Crate Features</a></li><li><a href="#importing-the-nicks-pallet-crate">Importing the Nicks Pallet Crate</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>Developer Hub</h5><a href="/en/tutorials">Tutorials</a><a href="/docs/en/">Knowledge Base</a><a href="https://substrate.dev/recipes/">Recipes</a><a href="https://substrate.dev/substrate-how-to-guides">How-to Guides</a><a href="https://substrate.dev/rustdocs">API Reference</a><a href="https://playground.substrate.dev/">Playground</a></div><div><h5>Community</h5><a href="/en/community">Community Home</a><a href="/en/newsletter">Newsletter</a><a href="https://matrix.to/#/#substrate-technical:matrix.org">Substrate Technical Chat</a><a href="/en/seminar">Substrate Seminar</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">Twitter</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">Events</a></div><div><h5>More</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders Program</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">Developer Hub GitHub</a><a href="https://www.parity.io/privacy/">Privacy Policy</a><a href="/terms">Terms of Use</a><a href="#" id="cookie-settings">Cookie Settings<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();

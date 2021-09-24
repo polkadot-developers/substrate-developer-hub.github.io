@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>添加一个模块 · Substrate Developer Hub</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="The [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template) provides a minimal working runtime which you can use to quickly get started with building your own custom blockchain. 不过，为了让它保持细小，有许多 [FRAME](../../knowledgebase/runtime/frame) 里的模块都没有被包含在内。"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="添加一个模块 · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="The [Substrate Node Template](https://github.com/substrate-developer-hub/substrate-node-template) provides a minimal working runtime which you can use to quickly get started with building your own custom blockchain. 不过，为了让它保持细小，有许多 [FRAME](../../knowledgebase/runtime/frame) 里的模块都没有被包含在内。"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/past-seminars.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>在 Runtime 里添加 Contracts 模块 · Substrate Developer Hub</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="As you saw in the [Create your first Substrate blockchain](../tutorials/create-your-first-substrate-chain) tutorial, the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) provides a working runtime that you can use to start building your own blockchain. The node template includes a runtime that is constructed using the [FRAME](../../knowledgebase/runtime/frame) development framework and includes some **pallets** to get you started."/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="在 Runtime 里添加 Contracts 模块 · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="As you saw in the [Create your first Substrate blockchain](../tutorials/create-your-first-substrate-chain) tutorial, the [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template) provides a working runtime that you can use to start building your own blockchain. The node template includes a runtime that is constructed using the [FRAME](../../knowledgebase/runtime/frame) development framework and includes some **pallets** to get you started."/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/past-seminars.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
           addBackToTop(
             {"zIndex":100}
@@ -16,334 +16,324 @@
             languagesDropDown.className = "hide";
           }
         });
-      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">添加一个模块</h1></header><article><div><span><p>The <a href="https://github.com/substrate-developer-hub/substrate-node-template">Substrate Node Template</a> provides a minimal working runtime which you can use to quickly get started with building your own custom blockchain. 不过，为了让它保持细小，有许多 <a href="../../knowledgebase/runtime/frame">FRAME</a> 里的模块都没有被包含在内。</p>
-<p>This guide will show you how you can add the <a href="https://substrate.dev/rustdocs/latest/pallet_contracts/">Contracts pallet</a> to your runtime in order to allow your blockchain to support Wasm smart contracts. 你可按照类似的方式将其他 FRAME 模块添加到 runtime 里。但需要注意，每个模块在具体配置设定上都会略有差异。</p>
-<h2><a class="anchor" aria-hidden="true" id="安装-node-template"></a><a href="#安装-node-template" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装 Node Template</h2>
-<p>You should already have version <code>latest</code> of the <a href="https://github.com/substrate-developer-hub/substrate-node-template/tree/latest">Substrate Node Template</a> compiled on your computer from when you completed the <a href="../../tutorials/create-your-first-substrate-chain/">Create Your First Substrate Chain Tutorial</a>. 如果您尚未完成，请完成该教程。</p>
-<blockquote>
-<p>有经验的开发者可以跳过该教程，您可以参考readme里的步骤说明来安装 。 。</p>
-</blockquote>
-<h2><a class="anchor" aria-hidden="true" id="文件结构"></a><a href="#文件结构" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>文件结构</h2>
-<p>We will now modify the <code>substrate-node-template</code> to include the Contracts pallet.</p>
-<p>在您喜欢的编辑器中打开 <code>substrate-node-template</code>。 我们将编辑两个文件：<code>runtime/src/lib.rs</code>，和 <code>runtime/Cargo.toml</code>。</p>
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">在 Runtime 里添加 Contracts 模块</h1></header><article><div><span><p>As you saw in the <a href="../tutorials/create-your-first-substrate-chain">Create your first Substrate blockchain</a> tutorial, the <a href="https://github.com/substrate-developer-hub/substrate-node-template">Substrate node template</a> provides a working runtime that you can use to start building your own blockchain. The node template includes a runtime that is constructed using the <a href="../../knowledgebase/runtime/frame">FRAME</a> development framework and includes some <strong>pallets</strong> to get you started.</p>
+<p>In this tutorial, you'll learn how to add the <a href="https://substrate.dev/rustdocs/latest/pallet_contracts/">Contract pallet</a> to the node template.</p>
+<p>You can follow similar patterns to add other FRAME pallets to your runtime. However, each pallet requires you to configure specific parameters and types and you must set them correctly before you can use the pallet. This tutorial illustrates how to configure the parameters and types that the Contracts pallet requires.</p>
+<h2><a class="anchor" aria-hidden="true" id="before-you-begin"></a><a href="#before-you-begin" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Before you begin</h2>
+<p>Before starting this tutorial, verify the following:</p>
+<ul>
+<li><p>You have downloaded and compiled the <code>latest</code> version of the <a href="https://github.com/substrate-developer-hub/substrate-node-template/tree/latest">Substrate node template</a>.</p>
+<p>If you have not previously compiled the node template on your computer, follow the instructions in the <a href="../../tutorials/create-your-first-substrate-chain/">Create your first Substrate chain</a> tutorial before continuing.</p></li>
+<li><p>You have downloaded and installed the <a href="https://github.com/substrate-developer-hub/substrate-node-template/tree/latest">Substrate front-end template</a> as described in the <a href="../../tutorials/create-your-first-substrate-chain/">Create your first Substrate chain</a> tutorial before continuing.</p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="file-structure"></a><a href="#file-structure" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>File structure</h2>
+<p>In this tutorial, you are going to modify the <code>substrate-node-template</code> to include the Contracts pallet by editing some files in the <code>substrate-node-template</code> directory. The directory structure for the node template looks like this:</p>
 <pre><code class="hljs">substrate<span class="token operator">-</span>node<span class="token operator">-</span>template
 <span class="token operator">|</span>
 <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> runtime
 <span class="token operator">|</span>   <span class="token operator">|</span>
-<span class="token operator">|</span>   <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token class-name">Cargo</span><span class="token punctuation">.</span>toml   <span class="token operator">&lt;</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token class-name">One</span> change <span class="token keyword">in</span> this file
+<span class="token operator">|</span>   <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token class-name">Cargo</span><span class="token punctuation">.</span>toml <span class="token operator">&lt;</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token class-name">Changes</span> are required <span class="token keyword">in</span> this file
 <span class="token operator">|</span>   <span class="token operator">|</span>
 <span class="token operator">|</span>   <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> build<span class="token punctuation">.</span>rs
 <span class="token operator">|</span>   <span class="token operator">|</span>
 <span class="token operator">|</span>   <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> src
 <span class="token operator">|</span>     <span class="token operator">|</span>
-<span class="token operator">|</span>     <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> lib<span class="token punctuation">.</span>rs   <span class="token operator">&lt;</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token class-name">Most</span> changes <span class="token keyword">in</span> this file
+<span class="token operator">|</span>     <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> lib<span class="token punctuation">.</span>rs   <span class="token operator">&lt;</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token class-name">Changes</span> are required <span class="token keyword">in</span> this file
 <span class="token operator">|</span>
 <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> pallets
 <span class="token operator">|</span>
 <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> scripts
 <span class="token operator">|</span>
-<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> node            <span class="token operator">&lt;</span><span class="token operator">-</span><span class="token operator">-</span> changes <span class="token keyword">in</span> this directory
+<span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> node           <span class="token operator">&lt;</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token class-name">Changes</span> are required <span class="token keyword">in</span> this directory
 <span class="token operator">|</span>
 <span class="token operator">+</span><span class="token operator">-</span><span class="token operator">-</span> <span class="token punctuation">...</span>
 </code></pre>
-<h2><a class="anchor" aria-hidden="true" id="导入模块-crate"></a><a href="#导入模块-crate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>导入模块 Crate</h2>
-<p>要添加合约模块，首先应把 <code>pallet-contracts</code> 导入到 runtime 的 <code>Cargo.toml</code> 文件中。 如果您需要 Cargo 相关参考资料的入门导读，可查询 <a href="https://doc.rust-lang.org/cargo/reference/index.html">它的官方文档</a>。</p>
-<p>打开 <code>substrate-node-template/runtime/Cargo.toml</code> 文件，您将看到 runtime 的所有依赖组件。 For example, it depends on the <a href="https://substrate.dev/rustdocs/latest/pallet_balances/">Balances pallet</a>:</p>
-<p><strong><code>runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies.pallet-balances]</span>
-<span class="hljs-attr">default-features</span> = <span class="hljs-literal">false</span>
-<span class="hljs-attr">version</span> = <span class="hljs-string">'4.0.0-dev'</span>
-<span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
-<span class="hljs-attr">tag</span> = <span class="hljs-string">'monthly-2021-08'</span>
-</code></pre>
-<h3><a class="anchor" aria-hidden="true" id="crate-特性"></a><a href="#crate-特性" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Crate 特性</h3>
-<p>导入pallet crates时需要注意的一件事是确保正确设置crate里的 <code>features</code>内容。 In the code snippet above, you will notice that we set <code>default-features = false</code>. 如果您更仔细地浏览<code>Cargo.toml</code> 文件，则会发现类似以下内容：</p>
-<p><strong><code>runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"><span class="hljs-section">[features]</span>
-<span class="hljs-attr">default</span> = [<span class="hljs-string">'std'</span>]
-<span class="hljs-attr">std</span> = [
-   <span class="hljs-string">'codec/std'</span>,
-   <span class="hljs-string">'frame-executive/std'</span>,
-   <span class="hljs-string">'frame-support/std'</span>,
-   <span class="hljs-string">'frame-system/std'</span>,
-   <span class="hljs-string">'frame-system-rpc-runtime-api/std'</span>,
-   <span class="hljs-string">'pallet-balances/std'</span>,
-   <span class="hljs-comment">#--snip--</span>
-]
-</code></pre>
-<p>第二行代码将runtime crate的 <code>default</code> 特性定义为 <code>std</code>。 您可以想象，每个pallet crate都有一个相似的配置定义该crate的默认特性。 每个 crate 的特性则决定了其下游依赖项的特性。 例如，上面代码应解读为：</p>
-<blockquote>
-<p>此 Substrate runtime 的默认特性为 <code>std</code>。 当runtime启用 <code>std</code> 特性时, <code>parity-scale-codec</code>, <code>primitives</code>, <code>client</code>和所有其他列出的依赖项也将设置为 <code>std</code>。</p>
-</blockquote>
-<p>这样使 Substrate runtime 既能编译成原生文件 (支持 Rust：<a href="https://doc.rust-lang.org/std/"><code>std</code></a>) 和 Wasm (不支持： <a href="https://rust-embedded.github.io/book/intro/no-std.html"><code>no_std</code></a>)。</p>
-<p>要查看这些功能如何在运行时代码中实际使用，我们可以打开项目文件：</p>
-<p><strong><code>runtime/src/lib.rs</code></strong></p>
-<pre><code class="hljs css language-rust"><span class="token comment">//! The Substrate Node Template runtime. This can be compiled with `#[no_std]`, ready for Wasm.</span>
+<h2><a class="anchor" aria-hidden="true" id="add-the-crate-for-the-contract-pallet-to-the-node-template"></a><a href="#add-the-crate-for-the-contract-pallet-to-the-node-template" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add the crate for the Contract pallet to the node template</h2>
+<p>To add the Contracts pallet to the node template, you first must import the <code>pallet-contracts</code> crate by modifying the <code>Cargo.toml</code> file for the runtime environment.</p>
+<p>To import the <code>pallet-contracts</code> crate:</p>
+<ol>
+<li><p>Open a terminal shell and change to the root directory for the node template.</p></li>
+<li><p>Open the <code>runtime/Cargo.toml</code> configuration file in a text editor.</p>
+<p>The <code>Cargo.toml</code> file lists of all the dependencies for the node template runtime. For example, you can see that the runtime depends on the <a href="https://substrate.dev/rustdocs/latest/pallet_balances/">Balances pallet</a> because it has a [dependencies.pallet-balances] section.</p></li>
+<li><p>Import the <code>pallet-contracts</code> crate to make it available to the node template runtime by adding it to the list of dependencies.</p>
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">dependencies.pallet-contracts</span><span class="token punctuation">]</span>
+<span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
+<span class="token key property">tag</span> <span class="token punctuation">=</span> <span class="token string">'monthly-YYYY-MM'</span>
+<span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">'4.0.0-dev'</span>
 
-<span class="token attribute attr-name">#![cfg_attr(not(feature = <span class="token string">"std"</span>), no_std)]</span>
-<span class="token comment">// `construct_runtime!` does a lot of recursion and requires us to increase the limit to 256.</span>
-<span class="token attribute attr-name">#![recursion_limit=<span class="token string">"256"</span>]</span>
-
-<span class="token comment">// Make the Wasm binary available.</span>
-<span class="token attribute attr-name">#[cfg(feature = <span class="token string">"std"</span>)]</span>
-<span class="token macro property">include!</span><span class="token punctuation">(</span><span class="token macro property">concat!</span><span class="token punctuation">(</span><span class="token macro property">env!</span><span class="token punctuation">(</span><span class="token string">"OUT_DIR"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"/wasm_binary.rs"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">// --snip--</span>
-</code></pre>
-<p>文件头部定义了当我们 <em>不</em> 使用 <code>std</code> 特性的时候，<code>no_std</code> 特性将会被启用。 再往下走几行代码，可以看见在 <code>wasm_binary.rs</code> 导入代码行上面的 <code>#[cfg(feature = &quot;std&quot;)]</code> 标志，它表示仅在启用了 <code>std</code> 特性后我们才能导入 Wasm 二进制文件。</p>
-<h3><a class="anchor" aria-hidden="true" id="导入合约模块"></a><a href="#导入合约模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>导入合约模块</h3>
-<p>既然我们已经对模块的特性有基本认识了，现在就可以开始动手导入合约模块啦。 合约模块可能是 FRAME 中最复杂的模块，所以它是一个很好的例子来说明在添加额外的模块时可能涉及的一些棘手问题。</p>
-<p>首先，我们将通过简单地复制现有模块并更改里面的值来添加新的依赖关系。 因此，根据上面 <code>balances</code> 导入样式， <code>contracts</code>导入将看起来像:</p>
-<p><strong><code>runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies]</span>
-<span class="hljs-comment">#--snip--</span>
-<span class="hljs-section">[dependencies.pallet-contracts]</span>
-<span class="hljs-attr">default-features</span> = <span class="hljs-literal">false</span>
-<span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
-<span class="hljs-attr">tag</span> = <span class="hljs-string">'monthly-2021-08'</span>
-<span class="hljs-attr">version</span> = <span class="hljs-string">'4.0.0-dev'</span>
-
-<span class="hljs-section">[dependencies.pallet-contracts-primitives]</span>
-<span class="hljs-attr">default-features</span> = <span class="hljs-literal">false</span>
-<span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
-<span class="hljs-attr">tag</span> = <span class="hljs-string">'monthly-2021-08'</span>
-<span class="hljs-attr">version</span> = <span class="hljs-string">'4.0.0-dev'</span>
-</code></pre>
-<p>与其他钱包一样，Contracts 模块也具有 <code>std</code> 的特性。 当 runtime 是使用其自身的 <code>std</code> 特性构建时，Nicks pallet 也应该使用它的 <code>std</code> 功能来构建。 请将以下代码添加到 runtime 的 <code>std</code> 功能。</p>
-<p><strong><code>runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"><span class="hljs-section">[features]</span>
-<span class="hljs-attr">default</span> = [<span class="hljs-string">'std'</span>]
-<span class="hljs-attr">std</span> = [
-   <span class="hljs-comment">#--snip--</span>
-   <span class="hljs-string">'pallet-contracts/std'</span>,
-   <span class="hljs-string">'pallet-contracts-primitives/std'</span>,
-   <span class="hljs-comment">#--snip--</span>
-]
-</code></pre>
-<h2><a class="anchor" aria-hidden="true" id="添加合约模块"></a><a href="#添加合约模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加合约模块</h2>
-<p>Now that we have successfully imported the Contracts pallet crate, we need to add it to our Runtime.</p>
-<h3><a class="anchor" aria-hidden="true" id="实现-contract-trait"></a><a href="#实现-contract-trait" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>实现 Contract Trait</h3>
-<p>Every pallet has a configuration trait called <code>Config</code> that the runtime must implement.</p>
-<p>To figure out what we need to implement for this pallet specifically, you can take a look at the FRAME</p>
-<p><a href="https://substrate.dev/rustdocs/latest/pallet_contracts/trait.Config.html"><code>pallet_contracts::Config</code> documentation</a>.</p>
-<p>For our runtime, the implementation will look like this:</p>
-<p><strong><code>runtime/src/lib.rs</code></strong></p>
-<pre><code class="hljs css language-rust"><span class="token keyword">use</span> <span class="token namespace">pallet_transaction_payment<span class="token punctuation">::</span></span><span class="token class-name">CurrencyAdapter</span><span class="token punctuation">;</span>
-   <span class="token comment">/* --snip-- */</span>
-
-<span class="token comment">/*** Add This Line ***/</span>
+<span class="token punctuation">[</span><span class="token table class-name">dependencies.pallet-contracts-primitives</span><span class="token punctuation">]</span>
+<span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
+<span class="token key property">tag</span> <span class="token punctuation">=</span> <span class="token string">'monthly-YYYY-MM'</span>
+<span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">'4.0.0-dev'</span>
+</code></pre></li>
+</ol>
+<p>The Contracts pallet is one of the more complicated pallets in FRAME, so it makes a good example to illustrate how to add pallets. NOTE: When adding a new dependency to the <code>Cargo.toml</code> file, be sure that the <code>tag</code> you use is the same for all of the pallet crates you are importing. For example, if all of the other dependency use <code>tag = 'monthly-2021-09+1'</code>, replace <code>tag = 'monthly-YYYY-MM'</code> with <code>tag = 'monthly-2021-09+1'</code>.</p>
+<ol>
+<li><p>Add the Contracts pallet to the list of <code>std</code> features so that its features are included when the runtime is built as a native Rust binary.</p>
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">features</span><span class="token punctuation">]</span>
+<span class="token key property">default</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">'std'</span><span class="token punctuation">]</span>
+<span class="token key property">std</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span>
+ <span class="token comment">#--snip--</span>
+ <span class="token string">'pallet-contracts/std'</span><span class="token punctuation">,</span>
+ <span class="token string">'pallet-contracts-primitives/std'</span><span class="token punctuation">,</span>
+ <span class="token comment">#--snip--</span>
+ <span class="token punctuation">]</span>
+</code></pre></li>
+<li><p>Save your changes and close the <code>runtime/Cargo.toml</code> file.</p></li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="implement-the-contracts-configuration-trait"></a><a href="#implement-the-contracts-configuration-trait" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Implement the Contracts configuration trait</h2>
+<p>Now that you have successfully imported the Contracts pallet crate, you are ready to add it to the runtime. If you have explored other tutorials, you might already know that every pallet has a configuration trait—called <code>Config</code>—that the runtime must implement.</p>
+<p>To determine what you need to implement for the Contracts pallet, you can take a look at the FRAME <a href="https://substrate.dev/rustdocs/latest/pallet_contracts/pallet/trait.Config.html"><code>pallet_contracts::Config</code> documentation</a>.</p>
+<p>To implement the <code>Config</code> trait for the Contracts pallet in the runtime:</p>
+<ol>
+<li><p>Open the <code>runtime/src/lib.rs</code> file in a text editor.</p></li>
+<li><p>Locate the <code>pub use frame_support</code> block and add <code>Nothing</code> to the list of traits.</p>
+<p>例如：</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">pub</span> <span class="token keyword">use</span> <span class="token namespace">frame_support<span class="token punctuation">::</span></span><span class="token punctuation">{</span>
+ construct_runtime<span class="token punctuation">,</span> parameter_types<span class="token punctuation">,</span>
+ <span class="token namespace">traits<span class="token punctuation">::</span></span><span class="token punctuation">{</span><span class="token class-name">KeyOwnerProofSystem</span><span class="token punctuation">,</span> <span class="token class-name">Randomness</span><span class="token punctuation">,</span> <span class="token class-name">StorageInfo</span><span class="token punctuation">,</span> <span class="token class-name">Nothing</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+ <span class="token namespace">weights<span class="token punctuation">::</span></span><span class="token punctuation">{</span>
+ <span class="token namespace">constants<span class="token punctuation">::</span></span><span class="token punctuation">{</span><span class="token class-name">BlockExecutionWeight</span><span class="token punctuation">,</span> <span class="token class-name">ExtrinsicBaseWeight</span><span class="token punctuation">,</span> <span class="token class-name">RocksDbWeight</span><span class="token punctuation">,</span> <span class="token constant">WEIGHT_PER_SECOND</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+ <span class="token class-name">IdentityFee</span><span class="token punctuation">,</span> <span class="token class-name">Weight</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token class-name">StorageValue</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></li>
+<li><p>Add the <code>WeightInfo</code> property to the runtime.</p>
+<p>例如：</p>
+<pre><code class="hljs css language-rust"><span class="token comment">/* After this line */</span>
+<span class="token keyword">use</span> <span class="token namespace">pallet_transaction_payment<span class="token punctuation">::</span></span><span class="token class-name">CurrencyAdapter</span><span class="token punctuation">;</span>
+<span class="token comment">/*** Add this line ***/</span>
 <span class="token keyword">use</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span>weights<span class="token punctuation">::</span></span><span class="token class-name">WeightInfo</span><span class="token punctuation">;</span>
-</code></pre>
-<pre><code class="hljs css language-rust">
-<span class="token comment">// These time units are defined in number of blocks.</span>
-   <span class="token comment">/* --snip-- */</span>
+</code></pre></li>
+<li><p>Add the constants required by the Contracts pallet to the runtime.</p>
+<p>例如：</p>
+<pre><code class="hljs css language-rust"><span class="token comment">/* After this block */</span>
+<span class="token comment">// Time is measured by number of blocks.</span>
+<span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token constant">MINUTES</span><span class="token punctuation">:</span> <span class="token class-name">BlockNumber</span> <span class="token operator">=</span> <span class="token number">60_000</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token constant">MILLISECS_PER_BLOCK</span> <span class="token keyword">as</span> <span class="token class-name">BlockNumber</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token constant">HOURS</span><span class="token punctuation">:</span> <span class="token class-name">BlockNumber</span> <span class="token operator">=</span> <span class="token constant">MINUTES</span> <span class="token operator">*</span> <span class="token number">60</span><span class="token punctuation">;</span>
+<span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token constant">DAYS</span><span class="token punctuation">:</span> <span class="token class-name">BlockNumber</span> <span class="token operator">=</span> <span class="token constant">HOURS</span> <span class="token operator">*</span> <span class="token number">24</span><span class="token punctuation">;</span>
 
-<span class="token comment">/*** Add This Block ***/</span>
+<span class="token comment">/* Add this block */</span>
 <span class="token comment">// Contracts price units.</span>
 <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token constant">MILLICENTS</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token number">1_000_000_000</span><span class="token punctuation">;</span>
 <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token constant">CENTS</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token number">1_000</span> <span class="token operator">*</span> <span class="token constant">MILLICENTS</span><span class="token punctuation">;</span>
 <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token constant">DOLLARS</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token number">100</span> <span class="token operator">*</span> <span class="token constant">CENTS</span><span class="token punctuation">;</span>
 
 <span class="token keyword">const</span> <span class="token keyword">fn</span> <span class="token function-definition function">deposit</span><span class="token punctuation">(</span>items<span class="token punctuation">:</span> <span class="token keyword">u32</span><span class="token punctuation">,</span> bytes<span class="token punctuation">:</span> <span class="token keyword">u32</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Balance</span> <span class="token punctuation">{</span>
-   items <span class="token keyword">as</span> <span class="token class-name">Balance</span> <span class="token operator">*</span> <span class="token number">15</span> <span class="token operator">*</span> <span class="token constant">CENTS</span> <span class="token operator">+</span> <span class="token punctuation">(</span>bytes <span class="token keyword">as</span> <span class="token class-name">Balance</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">6</span> <span class="token operator">*</span> <span class="token constant">CENTS</span>
+ items <span class="token keyword">as</span> <span class="token class-name">Balance</span> <span class="token operator">*</span> <span class="token number">15</span> <span class="token operator">*</span> <span class="token constant">CENTS</span> <span class="token operator">+</span> <span class="token punctuation">(</span>bytes <span class="token keyword">as</span> <span class="token class-name">Balance</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">6</span> <span class="token operator">*</span> <span class="token constant">CENTS</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment">/// We assume that ~10% of the block weight is consumed by `on_initialize` handlers.</span>
+<span class="token comment">/// Assume ~10% of the block weight is consumed by `on_initialize` handlers.</span>
 <span class="token comment">/// This is used to limit the maximal weight of a single extrinsic.</span>
 <span class="token keyword">const</span> <span class="token constant">AVERAGE_ON_INITIALIZE_RATIO</span><span class="token punctuation">:</span> <span class="token class-name">Perbill</span> <span class="token operator">=</span> <span class="token class-name">Perbill</span><span class="token punctuation">::</span><span class="token function">from_percent</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
 <span class="token comment">/*** End Added Block ***/</span>
-</code></pre>
-<pre><code class="hljs css language-rust">
-<span class="token keyword">impl</span> <span class="token namespace">pallet_timestamp<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token keyword">for</span> <span class="token class-name">Runtime</span> <span class="token punctuation">{</span>
-   <span class="token comment">/* --snip-- */</span>
+</code></pre></li>
+<li><p>Add the parameter types and implementation for the Config trait to the runtime.</p>
+<p>例如：</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">impl</span> <span class="token namespace">pallet_timestamp<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token keyword">for</span> <span class="token class-name">Runtime</span> <span class="token punctuation">{</span>
+<span class="token comment">/* --snip-- */</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment">/*** Add This Block ***/</span>
+<span class="token comment">/*** Add this block ***/</span>
 <span class="token macro property">parameter_types!</span> <span class="token punctuation">{</span>
-   <span class="token keyword">pub</span> <span class="token class-name">TombstoneDeposit</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token function">deposit</span><span class="token punctuation">(</span>
-      <span class="token number">1</span><span class="token punctuation">,</span>
-      <span class="token operator">&lt;</span><span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">Runtime</span><span class="token operator">>></span><span class="token punctuation">::</span><span class="token function">contract_info_size</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-   <span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token keyword">pub</span> <span class="token class-name">DepositPerContract</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token class-name">TombstoneDeposit</span><span class="token punctuation">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">DepositPerStorageByte</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token function">deposit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">DepositPerStorageItem</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token function">deposit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token keyword">pub</span> <span class="token class-name">RentFraction</span><span class="token punctuation">:</span> <span class="token class-name">Perbill</span> <span class="token operator">=</span> <span class="token class-name">Perbill</span><span class="token punctuation">::</span><span class="token function">from_rational</span><span class="token punctuation">(</span><span class="token number">1u32</span><span class="token punctuation">,</span> <span class="token number">30</span> <span class="token operator">*</span> <span class="token constant">DAYS</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">SurchargeReward</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token number">150</span> <span class="token operator">*</span> <span class="token constant">MILLICENTS</span><span class="token punctuation">;</span>
-   <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">SignedClaimHandicap</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
-   <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">MaxValueSize</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">16</span> <span class="token operator">*</span> <span class="token number">1024</span><span class="token punctuation">;</span>
-   <span class="token comment">// The lazy deletion runs inside on_initialize.</span>
-   <span class="token keyword">pub</span> <span class="token class-name">DeletionWeightLimit</span><span class="token punctuation">:</span> <span class="token class-name">Weight</span> <span class="token operator">=</span> <span class="token constant">AVERAGE_ON_INITIALIZE_RATIO</span> <span class="token operator">*</span>
-      <span class="token class-name">BlockWeights</span><span class="token punctuation">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>max_block<span class="token punctuation">;</span>
-   <span class="token comment">// The weight needed for decoding the queue should be less or equal than a fifth</span>
-   <span class="token comment">// of the overall weight dedicated to the lazy deletion.</span>
-   <span class="token keyword">pub</span> <span class="token class-name">DeletionQueueDepth</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">DeletionWeightLimit</span><span class="token punctuation">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>
-         <span class="token operator">&lt;</span><span class="token class-name">Runtime</span> <span class="token keyword">as</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Config</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">WeightInfo</span><span class="token punctuation">::</span><span class="token function">on_initialize_per_queue_item</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">-</span>
-         <span class="token operator">&lt;</span><span class="token class-name">Runtime</span> <span class="token keyword">as</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Config</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">WeightInfo</span><span class="token punctuation">::</span><span class="token function">on_initialize_per_queue_item</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
-      <span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token keyword">u32</span><span class="token punctuation">;</span>
+ <span class="token keyword">pub</span> <span class="token class-name">TombstoneDeposit</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token function">deposit</span><span class="token punctuation">(</span>
+     <span class="token number">1</span><span class="token punctuation">,</span>
+     <span class="token operator">&lt;</span><span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">Runtime</span><span class="token operator">>></span><span class="token punctuation">::</span><span class="token function">contract_info_size</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+ <span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">pub</span> <span class="token class-name">DepositPerContract</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token class-name">TombstoneDeposit</span><span class="token punctuation">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">DepositPerStorageByte</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token function">deposit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">DepositPerStorageItem</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token function">deposit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">pub</span> <span class="token class-name">RentFraction</span><span class="token punctuation">:</span> <span class="token class-name">Perbill</span> <span class="token operator">=</span> <span class="token class-name">Perbill</span><span class="token punctuation">::</span><span class="token function">from_rational</span><span class="token punctuation">(</span><span class="token number">1u32</span><span class="token punctuation">,</span> <span class="token number">30</span> <span class="token operator">*</span> <span class="token constant">DAYS</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">SurchargeReward</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token number">150</span> <span class="token operator">*</span> <span class="token constant">MILLICENTS</span><span class="token punctuation">;</span>
+ <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">SignedClaimHandicap</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+ <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">MaxValueSize</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">16</span> <span class="token operator">*</span> <span class="token number">1024</span><span class="token punctuation">;</span>
+ <span class="token comment">// The lazy deletion runs inside on_initialize.</span>
+ <span class="token keyword">pub</span> <span class="token class-name">DeletionWeightLimit</span><span class="token punctuation">:</span> <span class="token class-name">Weight</span> <span class="token operator">=</span> <span class="token constant">AVERAGE_ON_INITIALIZE_RATIO</span> <span class="token operator">*</span>
+  <span class="token class-name">BlockWeights</span><span class="token punctuation">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>max_block<span class="token punctuation">;</span>
+ <span class="token comment">// The weight needed for decoding the queue should be less or equal than a fifth</span>
+ <span class="token comment">// of the overall weight dedicated to the lazy deletion.</span>
+ <span class="token keyword">pub</span> <span class="token class-name">DeletionQueueDepth</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">DeletionWeightLimit</span><span class="token punctuation">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>
+     <span class="token operator">&lt;</span><span class="token class-name">Runtime</span> <span class="token keyword">as</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Config</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">WeightInfo</span><span class="token punctuation">::</span><span class="token function">on_initialize_per_queue_item</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">-</span>
+     <span class="token operator">&lt;</span><span class="token class-name">Runtime</span> <span class="token keyword">as</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Config</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token class-name">WeightInfo</span><span class="token punctuation">::</span><span class="token function">on_initialize_per_queue_item</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token keyword">u32</span><span class="token punctuation">;</span>
 
-   <span class="token keyword">pub</span> <span class="token class-name">Schedule</span><span class="token punctuation">:</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Schedule</span><span class="token operator">&lt;</span><span class="token class-name">Runtime</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token class-name">Default</span><span class="token punctuation">::</span><span class="token function">default</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">pub</span> <span class="token class-name">Schedule</span><span class="token punctuation">:</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Schedule</span><span class="token operator">&lt;</span><span class="token class-name">Runtime</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token class-name">Default</span><span class="token punctuation">::</span><span class="token function">default</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">impl</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token keyword">for</span> <span class="token class-name">Runtime</span> <span class="token punctuation">{</span>
-   <span class="token keyword">type</span> <span class="token class-name">Time</span> <span class="token operator">=</span> <span class="token class-name">Timestamp</span><span class="token punctuation">;</span>
-   <span class="token keyword">type</span> <span class="token class-name">Randomness</span> <span class="token operator">=</span> <span class="token class-name">RandomnessCollectiveFlip</span><span class="token punctuation">;</span>
-   <span class="token keyword">type</span> <span class="token class-name">Currency</span> <span class="token operator">=</span> <span class="token class-name">Balances</span><span class="token punctuation">;</span>
-   <span class="token keyword">type</span> <span class="token class-name">Event</span> <span class="token operator">=</span> <span class="token class-name">Event</span><span class="token punctuation">;</span>
-   <span class="token keyword">type</span> <span class="token class-name">RentPayment</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token keyword">type</span> <span class="token class-name">SignedClaimHandicap</span> <span class="token operator">=</span> <span class="token class-name">SignedClaimHandicap</span><span class="token punctuation">;</span>
-   <span class="token keyword">type</span> <span class="token class-name">TombstoneDeposit</span> <span class="token operator">=</span> <span class="token class-name">TombstoneDeposit</span><span class="token punctuation">;</span>
-   <span class="token keyword">type</span> <span class="token class-name">DepositPerContract</span> <span class="token operator">=</span> <span class="token class-name">DepositPerContract</span><span class="token punctuation">;</span>
-   <span class="token keyword">type</span> <span class="token class-name">DepositPerStorageByte</span> <span class="token operator">=</span> <span class="token class-name">DepositPerStorageByte</span><span class="token punctuation">;</span>
-   <span class="token keyword">type</span> <span class="token class-name">DepositPerStorageItem</span> <span class="token operator">=</span> <span class="token class-name">DepositPerStorageItem</span><span class="token punctuation">;</span>
-   <span class="token keyword">type</span> <span class="token class-name">RentFraction</span> <span class="token operator">=</span> <span class="token class-name">RentFraction</span><span class="token punctuation">;</span>
-   <span class="token keyword">type</span> <span class="token class-name">SurchargeReward</span> <span class="token operator">=</span> <span class="token class-name">SurchargeReward</span><span class="token punctuation">;</span>
-   <span class="token keyword">type</span> <span class="token class-name">WeightPrice</span> <span class="token operator">=</span> <span class="token namespace">pallet_transaction_payment<span class="token punctuation">::</span></span><span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token operator">></span><span class="token punctuation">;</span>
-   <span class="token keyword">type</span> <span class="token class-name">WeightInfo</span> <span class="token operator">=</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span>weights<span class="token punctuation">::</span></span><span class="token class-name">SubstrateWeight</span><span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token operator">></span><span class="token punctuation">;</span>
-   <span class="token keyword">type</span> <span class="token class-name">ChainExtension</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token keyword">type</span> <span class="token class-name">DeletionQueueDepth</span> <span class="token operator">=</span> <span class="token class-name">DeletionQueueDepth</span><span class="token punctuation">;</span>
-   <span class="token keyword">type</span> <span class="token class-name">DeletionWeightLimit</span> <span class="token operator">=</span> <span class="token class-name">DeletionWeightLimit</span><span class="token punctuation">;</span>
-   <span class="token keyword">type</span> <span class="token class-name">Call</span> <span class="token operator">=</span> <span class="token class-name">Call</span><span class="token punctuation">;</span>
-    <span class="token comment">/// The safest default is to allow no calls at all.</span>
-    <span class="token comment">///</span>
-    <span class="token comment">/// Runtimes should whitelist dispatchables that are allowed to be called from contracts</span>
-    <span class="token comment">/// and make sure they are stable. Dispatchables exposed to contracts are not allowed to</span>
-    <span class="token comment">/// change because that would break already deployed contracts. The `Call` structure itself</span>
-    <span class="token comment">/// is not allowed to change the indices of existing pallets, too.</span>
-    <span class="token keyword">type</span> <span class="token class-name">CallFilter</span> <span class="token operator">=</span> <span class="token class-name">DenyAll</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">Schedule</span> <span class="token operator">=</span> <span class="token class-name">Schedule</span><span class="token punctuation">;</span>
-    <span class="token keyword">type</span> <span class="token class-name">CallStack</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Frame</span><span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token operator">></span><span class="token punctuation">;</span> <span class="token number">31</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">Time</span> <span class="token operator">=</span> <span class="token class-name">Timestamp</span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">Randomness</span> <span class="token operator">=</span> <span class="token class-name">RandomnessCollectiveFlip</span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">Currency</span> <span class="token operator">=</span> <span class="token class-name">Balances</span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">Event</span> <span class="token operator">=</span> <span class="token class-name">Event</span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">RentPayment</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">SignedClaimHandicap</span> <span class="token operator">=</span> <span class="token class-name">SignedClaimHandicap</span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">TombstoneDeposit</span> <span class="token operator">=</span> <span class="token class-name">TombstoneDeposit</span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">DepositPerContract</span> <span class="token operator">=</span> <span class="token class-name">DepositPerContract</span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">DepositPerStorageByte</span> <span class="token operator">=</span> <span class="token class-name">DepositPerStorageByte</span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">DepositPerStorageItem</span> <span class="token operator">=</span> <span class="token class-name">DepositPerStorageItem</span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">RentFraction</span> <span class="token operator">=</span> <span class="token class-name">RentFraction</span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">SurchargeReward</span> <span class="token operator">=</span> <span class="token class-name">SurchargeReward</span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">WeightPrice</span> <span class="token operator">=</span> <span class="token namespace">pallet_transaction_payment<span class="token punctuation">::</span></span><span class="token class-name">Module</span><span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token operator">></span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">WeightInfo</span> <span class="token operator">=</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span>weights<span class="token punctuation">::</span></span><span class="token class-name">SubstrateWeight</span><span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token operator">></span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">ChainExtension</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">DeletionQueueDepth</span> <span class="token operator">=</span> <span class="token class-name">DeletionQueueDepth</span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">DeletionWeightLimit</span> <span class="token operator">=</span> <span class="token class-name">DeletionWeightLimit</span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">Call</span> <span class="token operator">=</span> <span class="token class-name">Call</span><span class="token punctuation">;</span>
+ <span class="token comment">/// The safest default is to allow no calls at all.</span>
+ <span class="token comment">///</span>
+ <span class="token comment">/// Runtimes should whitelist dispatchables that are allowed to be called from contracts</span>
+ <span class="token comment">/// and make sure they are stable. Dispatchables exposed to contracts are not allowed to</span>
+ <span class="token comment">/// change because that would break already deployed contracts. The `Call` structure itself</span>
+ <span class="token comment">/// is not allowed to change the indices of existing pallets, too.</span>
+ <span class="token keyword">type</span> <span class="token class-name">CallFilter</span> <span class="token operator">=</span> <span class="token class-name">Nothing</span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">Schedule</span> <span class="token operator">=</span> <span class="token class-name">Schedule</span><span class="token punctuation">;</span>
+ <span class="token keyword">type</span> <span class="token class-name">CallStack</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token class-name">Frame</span><span class="token operator">&lt;</span><span class="token keyword">Self</span><span class="token operator">></span><span class="token punctuation">;</span> <span class="token number">31</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-<span class="token comment">/*** End Added Block ***/</span>
+<span class="token comment">/*** End added block ***/</span>
 </code></pre>
-<p>At this point, it is recommended to explore the <a href="https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs">Contracts pallet source code</a> if things don't make sense or you want to gain a deeper understanding.</p>
-<h3><a class="anchor" aria-hidden="true" id="将合约模块添加到-construct_runtime-宏"></a><a href="#将合约模块添加到-construct_runtime-宏" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>将合约模块添加到 <code>construct_runtime!</code> 宏</h3>
-<p>Next, we need to add the pallet to the <code>construct_runtime!</code> macro. For this, we need to determine the types that the pallet exposes so that we can tell our runtime that they exist. The complete list of possible types can be found in the <a href="https://substrate.dev/rustdocs/latest/frame_support/macro.construct_runtime.html"><code>construct_runtime!</code> macro documentation</a>.</p>
-<p>If we look at the Contracts pallet in detail, we know it has:</p>
+<p>For more information about the configuration of the Contracts pallet and how the types and parameters are use, see the <a href="https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs">Contracts pallet source code</a>.</p></li>
+<li><p>Identify the types that the Contracts pallet exposes.</p>
+<p>You can find a complete list of types in the <a href="https://substrate.dev/rustdocs/latest/frame_support/macro.construct_runtime.html"><code>construct_runtime!</code> macro</a> documentation.</p>
+<p>The <a href="https://github.com/paritytech/substrate/blob/master/frame/contracts/src/lib.rs">Contracts pallet</a> uses the following types:</p>
 <ul>
-<li><strong>Storage</strong> 模块：因为它使用了 <code>decl_storage!</code> 宏。</li>
-<li>Module <strong>Event</strong>: Because it uses the <code>decl_event!</code> macro.</li>
-<li><strong>Call</strong>able 函数：因为它在 <code>decl_module!</code>宏中定义了可调用函数。</li>
-<li><strong>可配置</strong> 值：因为 <code>decl_storage!</code> 宏有 <code>config()</code> 参数。</li>
-<li>在 <code>decl_module!</code> 宏里定义的 <strong>Module</strong> 类型。</li>
-</ul>
-<p>因此当我们添加pallet时，它看起来就像：</p>
-<p><strong><code>runtime/src/lib.rs</code></strong></p>
+<li><strong>Storage</strong> because it uses the <code>#[pallet::storage]</code> macro.</li>
+<li><strong>Event</strong> because it uses the <code>#[pallet::event]</code> macro.</li>
+<li><strong>Call</strong>able functions because it has dispatchable functions in the <code>#[pallet::call]</code> macro.</li>
+<li><strong>Config</strong>uration values because of the types under the <code>#[pallet::config]</code> macro.</li>
+<li>The <strong>Pallet</strong> type from the <code>#[frame_support::pallet]</code> macro.</li>
+</ul></li>
+<li><p>Add the types exposed in the Contracts pallet to the <code>construct_runtime!</code> macro.</p>
+<p>例如：</p>
 <pre><code class="hljs css language-rust"><span class="token macro property">construct_runtime!</span><span class="token punctuation">(</span>
-   <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Runtime</span> <span class="token keyword">where</span>
-      <span class="token class-name">Block</span> <span class="token operator">=</span> <span class="token class-name">Block</span><span class="token punctuation">,</span>
-      <span class="token class-name">NodeBlock</span> <span class="token operator">=</span> <span class="token namespace">opaque<span class="token punctuation">::</span></span><span class="token class-name">Block</span><span class="token punctuation">,</span>
-      <span class="token class-name">UncheckedExtrinsic</span> <span class="token operator">=</span> <span class="token class-name">UncheckedExtrinsic</span>
-   <span class="token punctuation">{</span>
-      <span class="token comment">/* --snip-- */</span>
-
-      <span class="token comment">/*** Add This Line ***/</span>
-      <span class="token class-name">Contracts</span><span class="token punctuation">:</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token punctuation">{</span><span class="token class-name">Pallet</span><span class="token punctuation">,</span> <span class="token class-name">Call</span><span class="token punctuation">,</span> <span class="token class-name">Storage</span><span class="token punctuation">,</span> <span class="token class-name">Event</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-   <span class="token punctuation">}</span>
+ <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Runtime</span> <span class="token keyword">where</span>
+  <span class="token class-name">Block</span> <span class="token operator">=</span> <span class="token class-name">Block</span><span class="token punctuation">,</span>
+  <span class="token class-name">NodeBlock</span> <span class="token operator">=</span> <span class="token namespace">opaque<span class="token punctuation">::</span></span><span class="token class-name">Block</span><span class="token punctuation">,</span>
+  <span class="token class-name">UncheckedExtrinsic</span> <span class="token operator">=</span> <span class="token class-name">UncheckedExtrinsic</span>
+ <span class="token punctuation">{</span>
+  <span class="token comment">/* --snip-- */</span>
+  <span class="token comment">/*** Add this ine ***/</span>
+  <span class="token class-name">Contracts</span><span class="token punctuation">:</span> <span class="token namespace">pallet_contracts<span class="token punctuation">::</span></span><span class="token punctuation">{</span><span class="token class-name">Pallet</span><span class="token punctuation">,</span> <span class="token class-name">Call</span><span class="token punctuation">,</span> <span class="token class-name">Storage</span><span class="token punctuation">,</span> <span class="token class-name">Event</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+ <span class="token punctuation">}</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<p>Note that not all pallets will expose all of these runtime types, and some may expose more than just these! Always look at the source code of a pallet or the documentation of the pallet you're using to determine which of these types you need to expose.</p>
-<p>This is another good time to check that your runtime compiles correctly so far. Although the runtime should compile, the entire node will not (yet). So we will use this command to just check the runtime only:</p>
+</code></pre></li>
+<li><p>Save your changes and close the <code>runtime/src/lib.rs</code> file.</p></li>
+<li><p>Check that your runtime compiles correctly by running the following command:</p>
 <pre><code class="hljs css language-bash">cargo check -p node-template-runtime
 </code></pre>
-<h3><a class="anchor" aria-hidden="true" id="开放出-contracts-api"></a><a href="#开放出-contracts-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>开放出 Contracts API</h3>
-<p>Some pallets, including the Contracts pallet, expose custom runtime APIs and RPC endpoints. In the case of the Contracts pallet, this enables reading contracts state from off chain.</p>
-<p>It's not required to enable the RPC calls on the Contracts pallet to use it in our chain. However, we'll do it to make calls to our node's storage without making a transaction.</p>
-<p>We start by adding the required API dependencies in our <code>Cargo.toml</code>.</p>
-<p><strong><code>runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"><span class="hljs-section">[dependencies.pallet-contracts-rpc-runtime-api]</span>
-<span class="hljs-attr">default-features</span> = <span class="hljs-literal">false</span>
-<span class="hljs-attr">git</span> = <span class="hljs-string">'https://github.com/paritytech/substrate.git'</span>
-<span class="hljs-attr">tag</span> = <span class="hljs-string">'monthly-2021-08'</span>
-<span class="hljs-attr">version</span> = <span class="hljs-string">'4.0.0-dev'</span>
+<p>Although the runtime should compile, you cannot yet compile the entire node.</p></li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="expose-the-contracts-api"></a><a href="#expose-the-contracts-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Expose the Contracts API</h2>
+<p>Some pallets, including the Contracts pallet, expose custom runtime APIs and RPC endpoints. You are not required to enable the RPC calls on the Contracts pallet to use it on chain. However, it is useful to expose the APIs and endpoints for the Contracts pallet because doing so enables you to perform the following tasks:</p>
+<ul>
+<li><p>Read contracts state from off chain.</p></li>
+<li><p>Make calls to node storage without making a transaction.</p></li>
+</ul>
+<p>To expose the Contracts RPC API:</p>
+<ol>
+<li><p>Open the <code>runtime/Cargo.toml</code> file in a text editor and add a dependencies section to import the Contracts RPC endpoints runtime API.</p>
+<p>例如：</p>
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">dependencies.pallet-contracts-rpc-runtime-api</span><span class="token punctuation">]</span>
+<span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
+<span class="token key property">tag</span> <span class="token punctuation">=</span> <span class="token string">'monthly-YYYY-MM'</span>
+<span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">'4.0.0-dev'</span>
 </code></pre>
-<p><strong><code>runtime/Cargo.toml</code></strong></p>
-<pre><code class="hljs css language-TOML"><span class="hljs-section">[features]</span>
-<span class="hljs-attr">default</span> = [<span class="hljs-string">'std'</span>]
-<span class="hljs-attr">std</span> = [
-   <span class="hljs-comment">#--snip--</span>
-   <span class="hljs-string">'pallet-contracts-rpc-runtime-api/std'</span>,
-]
-</code></pre>
-<p>To get the state of a contract variable, we have to call a getter function that will return a <code>ContractExecResult</code> wrapper with the current state of the execution.</p>
-<p><strong><code>runtime/src/lib.rs</code></strong></p>
-<p>We're now ready to implement the contracts runtime API. This happens in the <code>impl_runtime_apis!</code> macro near the end of your runtime.</p>
+<p>Recall that the <code>tag</code> you use must the same for all of the pallet crates you are importing. For example, if all of the other dependency use <code>tag = 'monthly-2021-09+1'</code>, replace <code>tag = 'monthly-YYYY-MM'</code> with <code>tag = 'monthly-2021-09+1'</code>.</p></li>
+<li><p>Add the Contracts RPC API to the list of <code>std</code> features so that its features are included when the runtime is built as a native Rust binary.</p>
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">features</span><span class="token punctuation">]</span>
+<span class="token key property">default</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">'std'</span><span class="token punctuation">]</span>
+<span class="token key property">std</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span>
+ <span class="token comment">#--snip--</span>
+ <span class="token string">'pallet-contracts-rpc-runtime-api/std'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+</code></pre></li>
+<li><p>Save your changes and close the <code>runtime/Cargo.toml</code> file.</p></li>
+<li><p>Open the <code>runtime/src/lib.rs</code> file and implement the contracts runtime API in the <code>impl_runtime_apis!</code> macro near the end of the runtime <code>lib.rs</code> file.</p>
+<p>例如：</p>
 <pre><code class="hljs css language-rust"><span class="token macro property">impl_runtime_apis!</span> <span class="token punctuation">{</span>
-   <span class="token comment">/* --snip-- */</span>
-
-   <span class="token comment">/*** Add This Block ***/</span>
-   <span class="token keyword">impl</span> <span class="token namespace">pallet_contracts_rpc_runtime_api<span class="token punctuation">::</span></span><span class="token class-name">ContractsApi</span><span class="token operator">&lt;</span><span class="token class-name">Block</span><span class="token punctuation">,</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">Balance</span><span class="token punctuation">,</span> <span class="token class-name">BlockNumber</span><span class="token punctuation">,</span> <span class="token class-name">Hash</span><span class="token operator">></span>
-   <span class="token keyword">for</span> <span class="token class-name">Runtime</span>
-   <span class="token punctuation">{</span>
-      <span class="token keyword">fn</span> <span class="token function-definition function">call</span><span class="token punctuation">(</span>
+ <span class="token comment">/* --snip-- */</span>
+ <span class="token comment">/*** Add this block ***/</span>
+ <span class="token keyword">impl</span> <span class="token namespace">pallet_contracts_rpc_runtime_api<span class="token punctuation">::</span></span><span class="token class-name">ContractsApi</span><span class="token operator">&lt;</span><span class="token class-name">Block</span><span class="token punctuation">,</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">Balance</span><span class="token punctuation">,</span> <span class="token class-name">BlockNumber</span><span class="token punctuation">,</span> <span class="token class-name">Hash</span><span class="token operator">></span>
+ <span class="token keyword">for</span> <span class="token class-name">Runtime</span> <span class="token punctuation">{</span>
+  <span class="token keyword">fn</span> <span class="token function-definition function">call</span><span class="token punctuation">(</span>
          origin<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
          dest<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
          value<span class="token punctuation">:</span> <span class="token class-name">Balance</span><span class="token punctuation">,</span>
          gas_limit<span class="token punctuation">:</span> <span class="token keyword">u64</span><span class="token punctuation">,</span>
          input_data<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">,</span>
-      <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">ContractExecResult</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">ContractExecResult</span> <span class="token punctuation">{</span>
          <span class="token keyword">let</span> debug <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
          <span class="token class-name">Contracts</span><span class="token punctuation">::</span><span class="token function">bare_call</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> dest<span class="token punctuation">,</span> value<span class="token punctuation">,</span> gas_limit<span class="token punctuation">,</span> input_data<span class="token punctuation">,</span> debug<span class="token punctuation">)</span>
-      <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
 
-      <span class="token keyword">fn</span> <span class="token function-definition function">instantiate</span><span class="token punctuation">(</span>
+     <span class="token keyword">fn</span> <span class="token function-definition function">instantiate</span><span class="token punctuation">(</span>
          origin<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
          endowment<span class="token punctuation">:</span> <span class="token class-name">Balance</span><span class="token punctuation">,</span>
          gas_limit<span class="token punctuation">:</span> <span class="token keyword">u64</span><span class="token punctuation">,</span>
          code<span class="token punctuation">:</span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">Code</span><span class="token operator">&lt;</span><span class="token class-name">Hash</span><span class="token operator">></span><span class="token punctuation">,</span>
          data<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">,</span>
          salt<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token operator">></span><span class="token punctuation">,</span>
-      <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">ContractInstantiateResult</span><span class="token operator">&lt;</span><span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">BlockNumber</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">ContractInstantiateResult</span><span class="token operator">&lt;</span><span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">BlockNumber</span><span class="token operator">></span> <span class="token punctuation">{</span>
          <span class="token keyword">let</span> compute_rent_projection <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
          <span class="token keyword">let</span> debug <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
          <span class="token class-name">Contracts</span><span class="token punctuation">::</span><span class="token function">bare_instantiate</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> endowment<span class="token punctuation">,</span> gas_limit<span class="token punctuation">,</span> code<span class="token punctuation">,</span> data<span class="token punctuation">,</span> salt<span class="token punctuation">,</span> compute_rent_projection<span class="token punctuation">,</span> debug<span class="token punctuation">)</span>
-      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
 
-      <span class="token keyword">fn</span> <span class="token function-definition function">get_storage</span><span class="token punctuation">(</span>
+  <span class="token keyword">fn</span> <span class="token function-definition function">get_storage</span><span class="token punctuation">(</span>
          address<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
          key<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token keyword">u8</span><span class="token punctuation">;</span> <span class="token number">32</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-      <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">GetStorageResult</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">GetStorageResult</span> <span class="token punctuation">{</span>
          <span class="token class-name">Contracts</span><span class="token punctuation">::</span><span class="token function">get_storage</span><span class="token punctuation">(</span>address<span class="token punctuation">,</span> key<span class="token punctuation">)</span>
-      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
 
-      <span class="token keyword">fn</span> <span class="token function-definition function">rent_projection</span><span class="token punctuation">(</span>
+  <span class="token keyword">fn</span> <span class="token function-definition function">rent_projection</span><span class="token punctuation">(</span>
          address<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
-      <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">RentProjectionResult</span><span class="token operator">&lt;</span><span class="token class-name">BlockNumber</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">pallet_contracts_primitives<span class="token punctuation">::</span></span><span class="token class-name">RentProjectionResult</span><span class="token operator">&lt;</span><span class="token class-name">BlockNumber</span><span class="token operator">></span> <span class="token punctuation">{</span>
          <span class="token class-name">Contracts</span><span class="token punctuation">::</span><span class="token function">rent_projection</span><span class="token punctuation">(</span>address<span class="token punctuation">)</span>
-      <span class="token punctuation">}</span>
-   <span class="token punctuation">}</span>
-   <span class="token comment">/*** End Added Block ***/</span>
+  <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+ <span class="token comment">/*** End added block ***/</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<p>This is another good time to check that your runtime compiles correctly so far.</p>
+</code></pre></li>
+<li><p>Save your changes and close the <code>runtime/src/lib.rs</code> file.</p></li>
+<li><p>Check that your runtime compiles correctly by running the following command:</p>
 <pre><code class="hljs css language-bash">cargo check -p node-template-runtime
-</code></pre>
-<h2><a class="anchor" aria-hidden="true" id="更新外部节点"></a><a href="#更新外部节点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>更新外部节点</h2>
-<p>At this point we have finished adding a pallet to the runtime. We now turn our attention to the outer node which will often need some corresponding updates. In the case of the Contracts pallet we will add the custom RPC endpoint and a genesis configuration.</p>
-<h3><a class="anchor" aria-hidden="true" id="添加-rpc-api-扩展"></a><a href="#添加-rpc-api-扩展" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加 RPC API 扩展</h3>
-<p>With the proper runtime API exposed, now we can add the RPC to the node's service to call into that runtime API. Because we are now working in the outer node, we are not building to <code>no_std</code> and we don't have to maintain a dedicated <code>std</code> feature.</p>
-<p><strong><code>node/Cargo.toml</code></strong></p>
+</code></pre></li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="updating-the-outer-node"></a><a href="#updating-the-outer-node" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Updating the outer node</h2>
+<p>At this point, you have finished adding the Contracts pallet to the runtime. Now, you need to consider whether the outer node requires any corresponding updates. For the Contracts pallet to take advantage of the RPC endpoint API, you need to add the custom RPC endpoint to the node configuration.</p>
+<p>To add the RPC API extension to the outer node:</p>
+<ol>
+<li><p>Open the <code>node/Cargo.toml</code> file and add the dependencies sections to import the Contracts and Contracts RPC crates.</p>
+<p>例如：</p>
 <pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">dependencies</span><span class="token punctuation">]</span>
 <span class="token key property">jsonrpc-core</span> <span class="token punctuation">=</span> <span class="token string">'15.1.0'</span>
 <span class="token key property">structopt</span> <span class="token punctuation">=</span> <span class="token string">'0.3.8'</span>
 <span class="token comment">#--snip--</span>
 <span class="token comment"># *** Add the following lines ***</span>
+
 <span class="token punctuation">[</span><span class="token table class-name">dependencies.pallet-contracts</span><span class="token punctuation">]</span>
 <span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
-<span class="token key property">tag</span> <span class="token punctuation">=</span> <span class="token string">'monthly-2021-08'</span>
+<span class="token key property">tag</span> <span class="token punctuation">=</span> <span class="token string">'monthly-YYYY-MM'</span>
 <span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">'4.0.0-dev'</span>
 
 <span class="token punctuation">[</span><span class="token table class-name">dependencies.pallet-contracts-rpc</span><span class="token punctuation">]</span>
 <span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
-<span class="token key property">tag</span> <span class="token punctuation">=</span> <span class="token string">'monthly-2021-08'</span>
+<span class="token key property">tag</span> <span class="token punctuation">=</span> <span class="token string">'monthly-YYYY-MM'</span>
 <span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">'4.0.0-dev'</span>
 </code></pre>
-<p>Substrate provides an RPC to interact with our node. However, it does not contain access to the Contracts pallet by default. To interact with this pallet, we have to extend the existing RPC and add the Contracts pallet along with its API.</p>
-<p><strong><code>node/src/rpc.rs</code></strong></p>
+<p>Because you have exposed the runtime API and are now working in code for the outer node, you don't need to use <code>no_std</code> configuration, so you don't have to maintain a dedicated <code>std</code> list of features.</p></li>
+<li><p>Save your changes and close the <code>node/Cargo.toml</code> file.</p></li>
+<li><p>Open the <code>node/src/rpc.rs</code> file in a text editor.</p>
+<p>Substrate provides an RPC to interact with the node. However, it does not contain access to the Contracts pallet by default. To interact with the Contracts pallet, you must extend the existing RPC and add the Contracts pallet and its API.</p>
 <pre><code class="hljs css language-rust"><span class="token keyword">use</span> <span class="token namespace">node_template_runtime<span class="token punctuation">::</span></span><span class="token punctuation">{</span><span class="token namespace">opaque<span class="token punctuation">::</span></span><span class="token class-name">Block</span><span class="token punctuation">,</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span> <span class="token class-name">Balance</span><span class="token punctuation">,</span> <span class="token class-name">Index</span><span class="token punctuation">,</span> <span class="token class-name">BlockNumber</span><span class="token punctuation">,</span> <span class="token class-name">Hash</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// NOTE THIS IS AN ADJUSTMENT TO AN EXISTING LINE</span>
 <span class="token keyword">use</span> <span class="token namespace">pallet_contracts_rpc<span class="token punctuation">::</span></span><span class="token punctuation">{</span><span class="token class-name">Contracts</span><span class="token punctuation">,</span> <span class="token class-name">ContractsApi</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<pre><code class="hljs css language-rust"><span class="token comment">/// Instantiate all full RPC extensions.</span>
+   <span class="token comment">/* --snip-- */</span>
+
+<span class="token comment">/// Instantiate all full RPC extensions.</span>
 <span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function-definition function">create_full</span><span class="token operator">&lt;</span><span class="token class-name">C</span><span class="token punctuation">,</span> <span class="token class-name">P</span><span class="token operator">></span><span class="token punctuation">(</span>
    deps<span class="token punctuation">:</span> <span class="token class-name">FullDeps</span><span class="token operator">&lt;</span><span class="token class-name">C</span><span class="token punctuation">,</span> <span class="token class-name">P</span><span class="token operator">></span><span class="token punctuation">,</span>
 <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">jsonrpc_core<span class="token punctuation">::</span></span><span class="token class-name">IoHandler</span><span class="token operator">&lt;</span><span class="token namespace">sc_rpc<span class="token punctuation">::</span></span><span class="token class-name">Metadata</span><span class="token operator">></span> <span class="token keyword">where</span>
@@ -356,53 +346,74 @@
 <span class="token punctuation">{</span>
    <span class="token comment">/* --snip-- */</span>
    io<span class="token punctuation">.</span><span class="token function">extend_with</span><span class="token punctuation">(</span>
-      <span class="token class-name">TransactionPaymentApi</span><span class="token punctuation">::</span><span class="token function">to_delegate</span><span class="token punctuation">(</span><span class="token class-name">TransactionPayment</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>client<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+     <span class="token class-name">TransactionPaymentApi</span><span class="token punctuation">::</span><span class="token function">to_delegate</span><span class="token punctuation">(</span><span class="token class-name">TransactionPayment</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>client<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
    <span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token comment">/*** Add This Block ***/</span>
+   <span class="token comment">/*** Add this block ***/</span>
    <span class="token comment">// Contracts RPC API extension</span>
    io<span class="token punctuation">.</span><span class="token function">extend_with</span><span class="token punctuation">(</span>
-      <span class="token class-name">ContractsApi</span><span class="token punctuation">::</span><span class="token function">to_delegate</span><span class="token punctuation">(</span><span class="token class-name">Contracts</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>client<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+     <span class="token class-name">ContractsApi</span><span class="token punctuation">::</span><span class="token function">to_delegate</span><span class="token punctuation">(</span><span class="token class-name">Contracts</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>client<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
    <span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token comment">/*** End Added Block ***/</span>
+   <span class="token comment">/*** End added block ***/</span>
    io
 <span class="token punctuation">}</span>
-</code></pre>
-<blockquote>
-<p>Note that rpc additions must appear in this section in the expected syntax:</p>
-<pre><code class="hljs css language-rust"><span class="token comment">// Extend this RPC with a custom API by using the following syntax.</span>
- <span class="token comment">// `YourRpcStruct` should have a reference to a client, which is needed</span>
- <span class="token comment">// to call into the runtime.</span>
- <span class="token comment">// `io.extend_with(YourRpcTrait::to_delegate(YourRpcStruct::new(ReferenceToClient, ...)));`</span>
-</code></pre>
-</blockquote>
-<h3><a class="anchor" aria-hidden="true" id="创世配置"></a><a href="#创世配置" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>创世配置</h3>
-<p>Not all pallets will have a genesis configuration, but if yours does, you can use its documentation to learn about it. For example, <a href="https://substrate.dev/rustdocs/latest/pallet_contracts/struct.GenesisConfig.html"><code>pallet_contracts::GenesisConfig</code> documentation</a> describes all the fields you need to define for the Contracts pallet.</p>
-<p>Genesis configurations are controlled in <code>node/src/chain_spec.rs</code>. The Contracts pallet no longer has a genesis configuration.</p>
-<h2><a class="anchor" aria-hidden="true" id="启动您升级过的链"></a><a href="#启动您升级过的链" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>启动您升级过的链</h2>
-<p>Now you are ready to compile and run your contract-capable node. Compile the node in release mode with</p>
+</code></pre></li>
+<li><p>Save your changes and close the <code>node/src/rpc.rs</code> file.</p></li>
+<li><p>Check that your runtime compiles correctly by running the following command:</p>
+<pre><code class="hljs css language-bash">cargo check -p node-template-runtime
+</code></pre></li>
+</ol>
+<p>If there are no errors, you are ready to compile.</p>
+<ol>
+<li><p>Compile the node in release mode by running the following command:</p>
 <pre><code class="hljs css language-bash">cargo build --release
+</code></pre></li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="start-the-blockchain-node-and-use-the-contracts-pallet"></a><a href="#start-the-blockchain-node-and-use-the-contracts-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Start the blockchain node and use the Contracts pallet</h2>
+<p>After your node compiles, you are ready to start the Substrate node that has been enhanced with smart contract capabilities from the <a href="https://substrate.dev/rustdocs/latest/pallet_contracts/index.html">Contracts pallet</a> and interact with it using the front-end template.</p>
+<h3><a class="anchor" aria-hidden="true" id="start-the-local-substrate-node"></a><a href="#start-the-local-substrate-node" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Start the local Substrate node</h3>
+<p>To start the local Substrate node:</p>
+<ol>
+<li><p>Open a terminal shell, if necessary.</p></li>
+<li><p>Change to the root directory of the Substrate node template.</p></li>
+<li><p>Start the node in development mode by running the following command:</p>
+<pre><code class="hljs"><span class="token punctuation">.</span><span class="token operator">/</span>target<span class="token operator">/</span>release<span class="token operator">/</span>node<span class="token operator">-</span>template <span class="token operator">-</span><span class="token operator">-</span>dev <span class="token operator">-</span><span class="token operator">-</span>tmp
 </code></pre>
-<p>Now launch the executable you just built by running this command</p>
-<pre><code class="hljs css language-bash"><span class="hljs-comment"># 在开发模式运行一个临时节点</span>
-./target/release/node-template --dev --tmp
-</code></pre>
-<h2><a class="anchor" aria-hidden="true" id="添加其它-frame-pallets"></a><a href="#添加其它-frame-pallets" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加其它 FRAME Pallets</h2>
-<p>In this guide, we walked through specifically how to import the Contracts pallet, but as mentioned in the beginning of this guide, each pallet will be a little different. Have no fear, you can always refer to the</p>
-<p><a href="https://github.com/paritytech/substrate/blob/master/bin/node/runtime">demonstration Substrate node runtime</a></p>
-<p>which includes nearly every pallet in the FRAME.</p>
-<p>In the <code>Cargo.toml</code> file of the Substrate node runtime, you will see an example of how to import each of the different pallets, and in the <code>lib.rs</code> file you will find how to add each pallet to your runtime. You can basically copy what was done there to your own runtime.</p>
-<h3><a class="anchor" aria-hidden="true" id="进一步学习"></a><a href="#进一步学习" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>进一步学习</h3>
+<p>The node-template command-line options specify how you want the running node to operate. In this case, the options specify the following:</p>
 <ul>
-<li><a href="../../tutorials/build-a-dapp/pallet">A minimalist tutorial on writing your runtime pallet in its own package</a>.</li>
-<li>您的节点现在能够运行智能合约，学习 <a href="../../knowledgebase/smart-contracts/">Substrate ink！ 智能合约</a>。</li>
-<li><a href="https://substrate.dev/recipes/">Substrate Recipes</a> offers detailed tutorials about writing <a href="https://substrate.dev/recipes/runtime-api.html">Runtime APIs</a> and <a href="https://substrate.dev/recipes/custom-rpc.html">Custom RPCs</a> like the ones explored in this tutorial.</li>
-<li>了解 <a href="../../knowledgebase/integrate/chain-spec">Chain Spec</a> 文件以自定义创世配置。</li>
-</ul>
-<h3><a class="anchor" aria-hidden="true" id="参考文档"></a><a href="#参考文档" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文档</h3>
+<li><p>The <code>--dev</code> option specifies that the node run as a developer node chain specification.</p></li>
+<li><p>The <code>--tmp</code> option specifies that the node save all active data—such as keys, blockchain database, and networking information—while it is running, then delete the data when you stop the node by pressing Control-c. You should use <code>--tmp</code> option to ensure you have a clean working state any time you stop and restart the node.</p></li>
+</ul></li>
+<li><p>Verify your node is up and running successfully by reviewing the output displayed in the terminal.</p>
+<p>If the number after <code>finalized</code> is increasing in the console output, your blockchain is producing new blocks and reaching consensus about the state they describe.</p></li>
+<li><p>Keep the terminal that displays the node output open to continue.</p></li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="start-the-front-end-template"></a><a href="#start-the-front-end-template" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Start the front-end template</h3>
+<p>The Substrate front-end template consists of user interface components to enable you to interact with the Substrate node and perform a few common tasks.</p>
+<p>To use the front-end template:</p>
+<ol>
+<li><p>Open a new terminal shell on your computer.</p></li>
+<li><p>In the new terminal, change to the root directory where you installed the front-end template.</p></li>
+<li><p>Start the web server for the front-end template by running the following command:</p>
+<pre><code class="hljs css language-bash">yarn start
+</code></pre></li>
+<li><p>Open <a href="http://localhost:8000/">http://localhost:8000/</a> in a browser to view the front-end template.</p></li>
+<li><p>In the Pallet Interactor component, verify that Extrinsic is selected.</p></li>
+<li><p>Select <code>contracts</code> from the list of pallets available to call.</p>
+<p><img src="/docs/assets/tutorials/contracts-pallet.png" alt="View the contracts pallets"></p></li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="next-steps"></a><a href="#next-steps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Next steps</h2>
+<p>In this tutorial, you learned:</p>
 <ul>
-<li><a href="https://substrate.dev/rustdocs/latest/pallet_contracts/index.html">FRAME <code>Contract</code> 模块 API</a></li>
+<li>How to import the Contracts pallet.</li>
+<li>How to expose the Contracts pallet RPC endpoints API.</li>
+<li>How to update the outer node.</li>
+<li>How to verify the Contracts pallet is available in the runtime using the front-end template.</li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#安装-node-template">安装 Node Template</a></li><li><a href="#文件结构">文件结构</a></li><li><a href="#导入模块-crate">导入模块 Crate</a><ul class="toc-headings"><li><a href="#crate-特性">Crate 特性</a></li><li><a href="#导入合约模块">导入合约模块</a></li></ul></li><li><a href="#添加合约模块">添加合约模块</a><ul class="toc-headings"><li><a href="#实现-contract-trait">实现 Contract Trait</a></li><li><a href="#将合约模块添加到-construct_runtime-宏">将合约模块添加到 <code>construct_runtime!</code> 宏</a></li><li><a href="#开放出-contracts-api">开放出 Contracts API</a></li></ul></li><li><a href="#更新外部节点">更新外部节点</a><ul class="toc-headings"><li><a href="#添加-rpc-api-扩展">添加 RPC API 扩展</a></li><li><a href="#创世配置">创世配置</a></li></ul></li><li><a href="#启动您升级过的链">启动您升级过的链</a></li><li><a href="#添加其它-frame-pallets">添加其它 FRAME Pallets</a><ul class="toc-headings"><li><a href="#进一步学习">进一步学习</a></li><li><a href="#参考文档">参考文档</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/substrate-how-to-guides">How-to Guides</a><a href="https://substrate.dev/rustdocs">API 文档</a><a href="https://playground.substrate.dev/">Playground</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://matrix.to/#/#substrate-technical:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
+<p>To begin using the Contracts pallet, you'll need to start writing some smart contracts to deploy. To learn about writing and deploying smart contracts, see our <a href="../../knowledgebase/smart-contracts/">Substrate ink! smart contracts</a>.</p>
+<p>If you are ready to explore additional pallets, see the <a href="https://github.com/paritytech/substrate/blob/master/bin/node/runtime">demonstration Substrate node runtime</a>. The demonstration runtime includes nearly every pallet available in the FRAME development environment.</p>
+<p>For a basic guide to writing your own custom pallet, see the <a href="../../tutorials/build-a-dapp/pallet">Build a dApp</a> tutorial.</p>
+<p>For a closer look at runtime APIs and RPC endpoints, see the documentation for <a href="https://substrate.dev/recipes/runtime-api.html">Runtime APIs</a> and <a href="https://substrate.dev/recipes/custom-rpc.html">Custom RPCs</a>.</p>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#before-you-begin">Before you begin</a></li><li><a href="#file-structure">File structure</a></li><li><a href="#add-the-crate-for-the-contract-pallet-to-the-node-template">Add the crate for the Contract pallet to the node template</a></li><li><a href="#implement-the-contracts-configuration-trait">Implement the Contracts configuration trait</a></li><li><a href="#expose-the-contracts-api">Expose the Contracts API</a></li><li><a href="#updating-the-outer-node">Updating the outer node</a></li><li><a href="#start-the-blockchain-node-and-use-the-contracts-pallet">Start the blockchain node and use the Contracts pallet</a><ul class="toc-headings"><li><a href="#start-the-local-substrate-node">Start the local Substrate node</a></li><li><a href="#start-the-front-end-template">Start the front-end template</a></li></ul></li><li><a href="#next-steps">Next steps</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/substrate-how-to-guides">How-to Guides</a><a href="https://substrate.dev/rustdocs">API 文档</a><a href="https://playground.substrate.dev/">Playground</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://matrix.to/#/#substrate-technical:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
                 var cookieSettings = document.getElementById('cookie-settings');
                 cookieSettings.onclick = function() {
                   return klaro.show();
