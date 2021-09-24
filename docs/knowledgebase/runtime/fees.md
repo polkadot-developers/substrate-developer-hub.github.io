@@ -24,13 +24,13 @@ A transaction fee consists of two parts:
 
 - `length_fee`: A per-byte fee that is multiplied by the length, in bytes, of the encoded extrinsic.
   See
-  [`TransactionByteFee`](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/trait.Config.html#associatedtype.TransactionByteFee).
+  [`TransactionByteFee`](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.TransactionByteFee).
 - `weight_fee`: A fee based on the weight of the extrinsic, which is a function of two parameters.
   One, an `ExtrinsicBaseWeight` that is declared in the runtime and applies to all extrinsics. The
   base weight covers inclusion overhead like signature verification. Two, a flexible `#[weight]`
   annotation that accounts for an extrinsic's complexity. In order to convert the weight to
   `Currency`, the runtime must define a
-  [`WeightToFee`](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/trait.Config.html#associatedtype.WeightToFee)
+  [`WeightToFee`](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.WeightToFee)
   struct that implements a conversion function,
   [`Convert<Weight,Balance>`](https://substrate.dev/rustdocs/latest/sp_runtime/traits/trait.Convert.html).
 
@@ -53,13 +53,13 @@ block construction logic perform checks prior to adding an extrinsic to a block.
 
 The above formula gives a fee that is always the same for the same input. However, weight can be
 dynamic and, based on how
-[`WeightToFee`](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/trait.Config.html#associatedtype.WeightToFee)
+[`WeightToFee`](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.WeightToFee)
 is defined, the final fee can include some degree of variability. To fulfill this requirement,
 Substrate provides:
 
-- [`NextFeeMultiplier`](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/struct.Module.html#method.next_fee_multiplier):
-  A configurable multiplier stored in the Transaction Payment module.
-- [`FeeMultiplierUpdate`](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/trait.Config.html#associatedtype.FeeMultiplierUpdate):
+- [`NextFeeMultiplier`](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/pallet/type.NextFeeMultiplier.html):
+  A configurable multiplier stored in the Transaction Payment pallet.
+- [`FeeMultiplierUpdate`](https://substrate.dev/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.FeeMultiplierUpdate):
   A configurable parameter for a runtime to describe how this multiplier can change.
 
 `NextFeeMultiplier` has the type `Fixed64`, which can represent a fixed point number. So, given the
@@ -74,7 +74,7 @@ final_fee = fee * NextFeeMultiplier
 ```
 
 Updating the `NextFeeMultiplier` has a similar effect as updating `WeightToFee`. The
-`FeeMultiplierUpdate` associated type in Transaction Payment module is defined as a
+`FeeMultiplierUpdate` associated type in Transaction Payment pallet is defined as a
 `Convert<Fixed64, Fixed64>`, which should be read:
 
 > "it receives the previous multiplier and returns the next one".
@@ -116,7 +116,7 @@ fixed values based on benchmarks. The most basic example would look like this:
 ```rust
 #[weight = 100_000]
 fn my_dispatchable() {
-    // ...
+	// ...
 }
 ```
 
@@ -132,7 +132,7 @@ dispatchable:
 ```rust
 #[weight = T::DbWeight::get().reads_writes(1, 2) + 20_000]
 fn my_dispatchable() {
-    // ...
+	// ...
 }
 ```
 
@@ -157,7 +157,7 @@ dispatchable uses another class like this:
 ```rust
 #[weight = (100_000, DispatchClass::Operational)]
 fn my_dispatchable() {
-    // ...
+	// ...
 }
 ```
 
@@ -167,7 +167,7 @@ is charged based on the annotated weight. When not defined otherwise, `Pays::Yes
 ```rust
 #[weight = (100_000, DispatchClass::Normal, Pays::No)]
 fn my_dispatchable() {
-    // ...
+	// ...
 }
 ```
 
@@ -213,7 +213,7 @@ some basic arithmetic:
   Pays::Yes,
 )]
 fn handle_users(origin, calls: Vec<User>) {
-    // Do something per user
+	// Do something per user
 }
 ```
 
@@ -227,15 +227,15 @@ weight, the dispatchable declares a different return type and then returns its a
 ```rust
 #[weight = 10_000 + 500_000_000]
 fn expensive_or_cheap(input: u64) -> DispatchResultWithPostInfo {
-    let was_heavy = do_calculation(input);
+	let was_heavy = do_calculation(input);
 
-    if (was_heavy) {
-        // None means "no correction" from the weight annotation.
-        Ok(None.into())
-    } else {
-        // Return the actual weight consumed.
-        Ok(Some(10_000).into())
-    }
+	if (was_heavy) {
+		// None means "no correction" from the weight annotation.
+		Ok(None.into())
+	} else {
+		// Return the actual weight consumed.
+		Ok(Some(10_000).into())
+	}
 }
 ```
 
@@ -254,7 +254,7 @@ calculation type. This type must implement the follow traits:
 
 Substrate then bundles the output information of the two traits into the [`DispatchInfo`] struct and
 provides it by implementing the [`GetDispatchInfo`] for all `Call` variants and opaque extrinsic
-types. This is used internally by the System and Executive modules; you probably won't use it.
+types. This is used internally by the System and Executive pallets; you probably won't use it.
 
 `ClassifyDispatch`, `WeighData`, and `PaysFee` are generic over `T`, which gets resolved into the
 tuple of all dispatch arguments except for the origin. To demonstrate, we will craft a struct that
@@ -274,33 +274,33 @@ struct LenWeight(u32);
 // `T` will be different. All that we care about is that `T` is encodable. That is always true by
 // definition. All dispatch arguments are encodable.
 impl<T: Encode> WeighData<T> for LenWeight {
-    fn weigh_data(&self, target: T) -> Weight {
-        let multiplier = self.0;
-        let encoded_len = target.encode().len() as u32;
-        multiplier * encoded_len
-    }
+	fn weigh_data(&self, target: T) -> Weight {
+		let multiplier = self.0;
+		let encoded_len = target.encode().len() as u32;
+		multiplier * encoded_len
+	}
 }
 
 impl<T: Encode> ClassifyDispatch<T> for LenWeight {
-    fn classify_dispatch(&self, target: T) -> DispatchClass {
-        let encoded_len = target.encode().len() as u32;
-        if encoded_len > 100 {
-            DispatchClass::Operational
-        } else {
-            DispatchClass::Normal
-        }
-    }
+	fn classify_dispatch(&self, target: T) -> DispatchClass {
+		let encoded_len = target.encode().len() as u32;
+		if encoded_len > 100 {
+			DispatchClass::Operational
+		} else {
+			DispatchClass::Normal
+		}
+	}
 }
 
 impl<T: Encode> PaysFee<T> {
-    fn pays_fee(&self, target: T) -> Pays {
-        let encoded_len = target.encode().len() as u32;
-        if encoded_len > 10 {
-            Pays::Yes
-        } else {
-            Pays::No
-        }
-    }
+	fn pays_fee(&self, target: T) -> Pays {
+		let encoded_len = target.encode().len() as u32;
+		if encoded_len > 10 {
+			Pays::Yes
+		} else {
+			Pays::No
+		}
+	}
 }
 ```
 
@@ -311,15 +311,20 @@ this. Just note that, in that case, your code would roughly look like:
 ```rust
 struct CustomWeight;
 impl WeighData<(&u32, &u64)> for CustomWeight {
-    fn weigh_data(&self, target: (&u32, &u64)) -> Weight {
-        ...
-    }
+	fn weigh_data(&self, target: (&u32, &u64)) -> Weight {
+		...
+	}
 }
+// impl `ClassifyDispatch<(&u32, &u64)>` , `PaysFee<(&u32, &u64)>`...
 
-// given dispatch:
-decl_module! {
-    #[weight = CustomWeight]
-    fn foo(a: u32, b: u64) { ... }
+// example dispatchable:
+#[pallet::call]
+impl<T: Config> Pallet<T> {
+	#[pallet::weight(CustomWeight)]
+	pub fn foo(origin: OriginFor<T>, a: u32, b: u64)  -> DispatchResult {
+		ensure_signed(origin)?;
+		// logic with a & b...
+	}
 }
 ```
 
@@ -327,10 +332,13 @@ This means that `CustomWeight` can only be used in conjunction with a dispatch w
 signature `(u32, u64)`, as opposed to `LenWeight`, which can be used with anything because they
 don't make any strict assumptions about `<T>`.
 
+> A full working example can be
+> [found in Substrate's example pallet](https://substrate.dev/rustdocs/latest/src/pallet_example/lib.rs.html#292-339)
+
 ### Custom Inclusion Fee
 
 This is an example of how to customize your inclusion fee. You must configure the appropriate
-associated types in the respective module.
+associated types in the respective pallet.
 
 ```rust
 use sr_primitives::{traits::Convert, weights::Weight}
@@ -340,61 +348,65 @@ type Balance = u64;
 // Assume we want all the weights to have a `100 + 2 * w` conversion to fees
 struct CustomWeightToFee;
 impl Convert<Weight, Balance> for CustomWeightToFee {
-    fn convert(w: Weight) -> Balance {
-        let a = Balance::from(100);
-        let b = Balance::from(2);
-        let w = Balance::from(w);
-        a + b * w
-    }
+	fn convert(w: Weight) -> Balance {
+		let a = Balance::from(100);
+		let b = Balance::from(2);
+		let w = Balance::from(w);
+		a + b * w
+	}
 }
 
 parameter_types! {
-    pub const ExtrinsicBaseWeight: Weight = 10_000_000;
+	pub const ExtrinsicBaseWeight: Weight = 10_000_000;
 }
 
 impl frame_system::Config for Runtime {
-    type ExtrinsicBaseWeight = ExtrinsicBaseWeight;
+	type ExtrinsicBaseWeight = ExtrinsicBaseWeight;
 }
 
 parameter_types! {
-    pub const TransactionByteFee: Balance = 10;
+	pub const TransactionByteFee: Balance = 10;
 }
 
 impl transaction_payment::Config {
-    type TransactionByteFee = TransactionByteFee;
-    type WeightToFee = CustomWeightToFee;
-    type FeeMultiplierUpdate = TargetedFeeAdjustment<TargetBlockFullness>;
+	type TransactionByteFee = TransactionByteFee;
+	type WeightToFee = CustomWeightToFee;
+	type FeeMultiplierUpdate = TargetedFeeAdjustment<TargetBlockFullness>;
 }
 
 struct TargetedFeeAdjustment<T>(sp_std::marker::PhantomData<T>);
 impl<T: Get<Perquintill>> Convert<Fixed128, Fixed128> for TargetedFeeAdjustment<T> {
-    fn convert(multiplier: Fixed128) -> Fixed128 {
-        // Don't change anything. Put any fee update info here.
-        multiplier
-    }
+	fn convert(multiplier: Fixed128) -> Fixed128 {
+		// Don't change anything. Put any fee update info here.
+		multiplier
+	}
 }
 ```
 
 ## Next Steps
 
 The entire logic of fees is encapsulated in `pallet-transaction-payment` via a `SignedExtension`.
-While this module provides a high degree of flexibility, a user can opt to build their custom
-payment module drawing inspiration from Transaction Payment.
+While this pallet provides a high degree of flexibility, a user can opt to build their custom
+payment pallet drawing inspiration from Transaction Payment.
 
-Given now you know what Substrate weight system is, how it affect the transaction fee computation, and how to specify them for your dispatchables, the last question is how to find the right weights for your dispatchables. That is what **Substrate Benchmarking** is for. By writing benchmarking functions and running them, the system (`frame-benchmarking`) calls these functions repeatedly with different numerical parameters and empirically determine the weight functions for dispatchables in their worst case scenarios, within a certain limit. [Learn more here](./benchmarking).
+Given now you know what Substrate weight system is, how it affect the transaction fee computation,
+and how to specify them for your dispatchables, the last question is how to find the right weights
+for your dispatchables. That is what **Substrate Benchmarking** is for. By writing benchmarking
+functions and running them, the system (`frame-benchmarking`) calls these functions repeatedly with
+different numerical parameters and empirically determine the weight functions for dispatchables in
+their worst case scenarios, within a certain limit. [Learn more here](./benchmarking).
 
 ### Learn More
 
 - Dedicated [weight documentation](../learn-substrate/weight)
-- [Example module](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
+- [Example pallet](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
 - [SignedExtension](https://substrate.dev/rustdocs/latest/sp_runtime/traits/trait.SignedExtension.html)
 
 ### Examples
 
-Substrate Recipes contains examples of both
-[custom weights](https://github.com/substrate-developer-hub/recipes/tree/master/pallets/weights) and
-custom
-[WeightToFee](https://github.com/substrate-developer-hub/recipes/tree/master/runtimes/weight-fee-runtime).
+How-to Guides contains a section on Weights, and many example patterns of
+[custom weights](https://substrate.dev/substrate-how-to-guides/docs/weights/conditional-weight-struct)
+and [calculating fees](https://substrate.dev/substrate-how-to-guides/docs/weights/calculate-fees)
 
 ### References
 

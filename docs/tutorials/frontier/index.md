@@ -23,21 +23,26 @@ Before attempting this tutorial, you should be familiar with the concepts listed
 
 ## Frontier Template
 
-This tutorial is presently a little bit out of date. While it is still a good reference, it refers to an older version of Substrate template. It is thus encouraged to generate your own template based of whatever commit you desire from frontier itself to start working with many of the core features of Frontier installed and enabled.
+This tutorial is presently a little bit out of date. While it is still a good reference, it refers
+to an older version of Substrate template. It is thus encouraged to generate your own template based
+of whatever commit you desire from frontier itself to start working with many of the core features
+of Frontier installed and enabled.
 
 The Frontier project currently does not use the published Substrate
-crates; it refers to Subsrate code from github directly. Take note of this in your `Cargo` files. You _must_
-use the _matching_ version of dependencies for all of Substrate and Frontier in your project.
+crates; it refers to Substrate code from github directly. Take note of this in your `Cargo` files.
+You _must_ use the _matching_ version of dependencies for all of Substrate and Frontier in your
+project.
 
 This is a stop-gap solution while Frontier is being updated to the latest Substrate tag/release.
 
-There's also a github repo `template` that is available for major Frontier releases pre-generated for you.
+There's also a github repo `template` that is available for major Frontier releases pre-generated
+for you.
 
 #### Generation Script
 
 You can generate a version of the Frontier template by running the
 [generation script](https://github.com/paritytech/frontier/blob/master/.maintain/node-template-release.sh)
-included in Frontier. 
+included in Frontier.
 
 ```bash
 # from the top working dir of Frontier:
@@ -62,9 +67,9 @@ https://github.com/substrate-developer-hub/frontier-node-template/ .
 
 #### Genesis Configuration
 
-The development [chain spec](https://github.com/paritytech/frontier/blob/master/template/node/src/chain_spec.rs) included with this project defines a genesis
-block that has been pre-configured with an EVM account for
-[Alice](https://substrate.dev/docs/en/knowledgebase/integrate/subkey#well-known-keys). When
+The development [chain spec](https://github.com/paritytech/frontier/blob/master/template/node/src/chain_spec.rs)
+included with this project defines a genesis block that has been pre-configured with an EVM account
+for [Alice](https://substrate.dev/docs/en/knowledgebase/integrate/subkey#well-known-keys). When
 [a development chain is started](https://github.com/substrate-developer-hub/substrate-node-template#run),
 Alice's EVM account will be funded with a large amount of Ether. The
 [Polkadot UI](https://polkadot.js.org/apps/#?rpc=ws://127.0.0.1:9944) can be used to see the details
@@ -75,26 +80,26 @@ inspect blocks:
 
 ```json
 {
-	"Address": "MultiAddress",
-	"LookupSource": "MultiAddress",
-	"Account": {
-		"nonce": "U256",
-		"balance": "U256"
-	},
-	"Transaction": {
-		"nonce": "U256",
-		"action": "String",
-		"gas_price": "u64",
-		"gas_limit": "u64",
-		"value": "U256",
-		"input": "Vec<u8>",
-		"signature": "Signature"
-	},
-	"Signature": {
-		"v": "u64",
-		"r": "H256",
-		"s": "H256"
-	}
+  "Address": "MultiAddress",
+  "LookupSource": "MultiAddress",
+  "Account": {
+    "nonce": "U256",
+    "balance": "U256"
+  },
+  "Transaction": {
+    "nonce": "U256",
+    "action": "String",
+    "gas_price": "u64",
+    "gas_limit": "u64",
+    "value": "U256",
+    "input": "Vec<u8>",
+    "signature": "Signature"
+  },
+  "Signature": {
+    "v": "u64",
+    "r": "H256",
+    "s": "H256"
+  }
 }
 ```
 
@@ -112,15 +117,17 @@ To execute the chain, run:
 $ ./target/debug/frontier-template-node --dev
 ```
 
-The node also supports to use manual seal (to produce block manually through RPC).  
+The node also supports to use manual seal (to produce block manually through RPC).
+
 ```
 $ ./target/debug/frontier-template-node --dev --manual-seal
 ```
 
 ### Query Balance Using RPC
 
-Once your node is running, use the Polkadot JS Apps' `RPC calls` under the `Developer` tab to query `eth > getBalance(address, number)` with Alice's
-EVM account ID (`0xd43593c715fdd31c61141abd04a99fd6822c8558`); the value that is returned should be:
+Once your node is running, use the Polkadot JS Apps' `RPC calls` under the `Developer` tab to query
+`eth > getBalance(address, number)` with Alice's EVM account ID
+(`0xd43593c715fdd31c61141abd04a99fd6822c8558`); the value that is returned should be:
 
 ```text
 x: eth.getBalance
@@ -133,9 +140,9 @@ x: eth.getBalance
 Alice's EVM account ID was calculated using
 [an included utility script](https://github.com/paritytech/frontier/blob/master/template/utils/README.md#--evm-address-address).
 
-
-
 ### Deploy & Call Ethereum Smart Contracts
 
-To deploy and call Ethereum smart contracts and test the related functionality follow the next steps at:
+To deploy and call Ethereum smart contracts and test the related functionality follow the next steps
+at:
+
 - [Testing Ethereum Smart Contracts Functionality](ethereum-contracts).
