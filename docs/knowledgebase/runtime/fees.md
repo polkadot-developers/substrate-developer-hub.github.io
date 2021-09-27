@@ -88,9 +88,9 @@ fee before the extrinsic is invoked. The fee is deducted from the sender's balan
 
 ### Accounts with an insufficient balance
 
-If an account does not have a sufficient balance to pay the inclusion fee and remain alive—that is, enough to pay the inclusion fee and maintain the minimum **existential deposit**—then no fee is deducted and the
-transaction does not begin execution.
+If an account does not have a sufficient balance to pay the inclusion fee and remain alive—that is, enough to pay the inclusion fee and maintain the minimum **existential deposit**—then you should ensure the transaction is cancelled so that no fee is deducted and the transaction does not begin execution.
 
+Substrate does not enforce this rollback behavior.
 However, this scenario would be a rare occurrence because the transaction queue and block-making logic perform checks to prevent it before adding an extrinsic to a block.
 
 ### Fee multiplier
@@ -408,7 +408,7 @@ impl<T: Get<Perquintill>> Convert<Fixed128, Fixed128> for TargetedFeeAdjustment<
 }
 ```
 
-## Next ~~W~~teps
+## Next steps
 
 The entire logic of fees is encapsulated in `pallet-transaction-payment` via a `SignedExtension`.
 While this pallet provides a high degree of flexibility, a user can opt to build their custom
@@ -421,7 +421,7 @@ functions and running them, the system (`frame-benchmarking`) calls these functi
 different numerical parameters and empirically determine the weight functions for dispatchables in
 their worst case scenarios, within a certain limit. [Learn more here](./benchmarking).
 
-### Learn More
+### Learn more
 
 - Dedicated [weight documentation](../learn-substrate/weight)
 - [Example pallet](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs)
