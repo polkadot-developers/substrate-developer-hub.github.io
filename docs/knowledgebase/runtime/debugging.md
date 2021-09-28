@@ -10,7 +10,7 @@ are some restrictions when operating inside of a `no_std` environment like the S
 
 The FRAME Support
 [`debug` module](https://substrate.dev/rustdocs/latest/frame_support/debug/index.html) contains
-macros and functions that make it possible to print logs out of runtime code. 
+macros and functions that make it possible to print logs out of runtime code.
 
 ### Log from Native Runtimes
 
