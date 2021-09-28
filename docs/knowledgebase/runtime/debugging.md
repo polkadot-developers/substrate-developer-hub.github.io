@@ -10,9 +10,11 @@ are some restrictions when operating inside of a `no_std` environment like the S
 
 The FRAME Support
 [`debug` module](https://substrate.dev/rustdocs/latest/frame_support/debug/index.html) contains
-macros and functions that make it possible to print logs out of runtime code.
+macros and functions that make it possible to print logs out of runtime code. 
 
 ### Log from Native Runtimes
+
+> NOTE: this is depricated for substrate releases newer than [monthly-2021-03](https://github.com/paritytech/substrate/tree/monthly-2021-03/frame/support/src). [More details on the change](https://github.com/paritytech/substrate/commit/dd295960a0bb80620ca1381978f10bc9dfc07d32#).
 
 For performance-preserving, native-only debugging, use the macros in the
 [`frame_support::debug::native` module](https://substrate.dev/rustdocs/latest/frame_support/debug/native/index.html).
