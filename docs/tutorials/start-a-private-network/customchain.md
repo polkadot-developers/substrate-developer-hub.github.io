@@ -161,7 +161,12 @@ Alternatively, you can insert a key saved to a local file using the `key` comman
 
 ```bash
 # Insert the key from /path/to/key/file into the keystore
-./target/release/node-template key insert --base-path /tmp/node01 --chain local --key-type <aura/gran> --suri /path/to/key/file
+# for <aura> key type, default <Sr25519> crypto scheme is applied
+./target/release/node-template key insert --base-path /tmp/node01 --chain local --key-type aura  --suri /path/to/key/file
+
+# for <gran> key type, need to specify <Ed25519> crypto scheme!
+./target/release/node-template key insert --base-path /tmp/node01 --chain local --key-type gran  --scheme Ed25519 --suri /path/to/key/file
+
 ```
 
 ### Verify Keys in the Keystore (Optional)
