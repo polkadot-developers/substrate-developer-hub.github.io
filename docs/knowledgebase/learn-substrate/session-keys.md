@@ -17,7 +17,7 @@ account (stake) and nominators. To do so, they create a certificate by signing t
 Controller key. Then, they inform the chain that this key represents their Controller key by
 publishing the Session certificate in a transaction on the chain.
 
-## Implimentation
+## Implementation
 
 Session keys are used by validators to sign consensus-related messages. [`SessionKeys`](https://substrate.dev/rustdocs/latest/sp_session/trait.SessionKeys.html) is a generic,
 indexable type that is made concrete in the runtime.
@@ -31,7 +31,7 @@ of public keys with a "Controller" account, and submit a transaction to register
 This on-chain registration links a validator _node_ with an _account_ that holds funds. As such,
 that account can be credited with rewards or slashed based on the node's behavior.
 
-The runtime declares what session keys will be implimented with the help of a macro on a struct. An
+The runtime declares what session keys will be implemented with the help of a macro. An
 [example](https://substrate.dev/rustdocs/latest/src/node_runtime/lib.rs.html#435-442):
 
 ```rust
@@ -66,14 +66,14 @@ in your runtime logic. To prevent the wrong key being used for the wrong operati
 Rust types wrap these keys, keeping them incompatible with one another and ensuring they are only
 used for their intended purpose.
 
-## Generation & Use
+## Generation and Use
 
 As a node operator, you can generate keys using the RPC call
 [`author_rotateKeys`](https://substrate.dev/rustdocs/latest/sc_rpc/author/trait.AuthorApi.html#tymethod.rotate_keys).
 You will then need to register the new keys on chain using a [`session.setKeys`](https://substrate.dev/rustdocs/latest/pallet_session/struct.Module.html#method.set_keys) transaction.
 
 > **Note:** for increased security, session keys should be changed every session. This can be done by
-> creating a certificate via signing a session public key nd broadcasting it via an extrinsic.
+> creating a certificate via signing a session public key and broadcasting it via an extrinsic.
 
 Since session keys are hot keys that must be kept online, the individual keys should **not** be used to
 control funds. All the logic for handling session keys is in the Substrate client, primitives, and
