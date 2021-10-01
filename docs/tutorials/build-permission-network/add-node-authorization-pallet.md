@@ -9,7 +9,7 @@ a configurable set of nodes for a permissioned network.
 Each node is identified by a `PeerId` which is simply a wrapper on `Vec<u8>`.
 Each `PeerId` is owned by an `AccountId` that claims it
 (these are 
-[associated in a map](https://substrate.dev/rustdocs/latest/pallet_node_authorization/struct.Owners.html)
+[associated in a map](https://substrate.dev/rustdocs/latest/pallet_node_authorization/pallet/type.Owners.html)
 ). With this pallet, you have two ways to authorize a node which wants to join the network:
 
 1. Join the set of well known nodes between which the connections are allowed.
@@ -27,7 +27,7 @@ To protect against false claims, the maintainer of the node should claim it
 The owner of a node can then add and remove connections for their node.
 To be clear, you can't change the connections between well known nodes,
 they are always allowed to connect with each other.
-Instead, you can manipulate the connection between a well know node
+Instead, you can manipulate the connection between a well known node
 and a normal node or between two normal nodes and sub-nodes.
 
 The `node-authorization` pallet integrates an
