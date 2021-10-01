@@ -56,7 +56,7 @@ You can try the following code snippets to fetch the metadata in this
 // async function main () {
 // const api = await ApiPromise.create();
 const metadata = await api.rpc.state.getMetadata();
-console.log('version: ' + metadata.version);
+console.log("version: " + metadata.version);
 console.log("Magic number: " + metadata.magicNumber);
 console.log("Metadata: " + JSON.stringify(metadata.asLatest.toHuman(), null, 2));
 // }
@@ -229,24 +229,30 @@ about the module's storage:
           }
         },
         "fallback": "0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-        "documentation": [
-          " The full account information for a particular account ID."
-        ]
+        "documentation": [" The full account information for a particular account ID."]
       },
       {
-        "name": "ExtrinsicCount",
+        "name": "ExtrinsicCount"
         // ..
       },
       {
-        "name": "AllExtrinsicsLen",
+        "name": "AllExtrinsicsLen"
         // ..
       }
     ]
   },
-  "calls": [/*...*/],
-  "events": [/*...*/],
-  "constants": [/*...*/],
-  "errors": [/*...*/],
+  "calls": [
+    /*...*/
+  ],
+  "events": [
+    /*...*/
+  ],
+  "constants": [
+    /*...*/
+  ],
+  "errors": [
+    /*...*/
+  ],
   "index": 0
 }
 ```
@@ -266,7 +272,7 @@ decl_storage! {
 // In FRAME v2.
 #[pallet::config]
 pub trait Config: frame_system::Config {
-	#[pallet::constant] 
+	#[pallet::constant]
 	type Foo: Get<u32>;
 }
 ```
@@ -290,8 +296,8 @@ For example:
 // In FRAME v1.
 decl_module! {
     pub struct Module<T: Config> for enum Call where origin: T::Origin {
-  
-        /// This function does some thing.      
+
+        /// This function does some thing.
         ///
         /// All documentation details go here.
         fn do_something(origin, #[compact] thing: T::Something) {
@@ -304,11 +310,11 @@ decl_module! {
 #[pallet::call]
 	impl<T: Config> Pallet<T> {
 
-		/// This function does some thing.      
+		/// This function does some thing.
     ///
     /// All documentation details go here.
 		pub(super) fn do_something(
-            origin: OriginFor<T>, 
+            origin: OriginFor<T>,
             #[pallet::compact] thing: T::Something
             ) -> DispatchResultWithPostInfo {
       // ... snip
@@ -512,4 +518,4 @@ the [`InvalidSpecName` error](https://substrate.dev/rustdocs/latest/frame_system
 ### References
 
 - [Metadata](https://substrate.dev/rustdocs/latest/frame_metadata/index.html)
-- [FRAME v2 macro documentation](https://crates.parity.io/frame_support/attr.pallet.html)
+- [FRAME v2 macro documentation](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html)
