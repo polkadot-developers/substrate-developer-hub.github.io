@@ -16,171 +16,176 @@
 
 /* Make nav bar dark like the background of the hero image container */
 .fixedHeaderContainer {
-    background: $secondaryColor;
+  background: $secondaryColor;
 }
 
 /* Add a hero image to the home splash */
 .heroImage {
-    background-image: url("/img/bg-dark-1.png"); /* The image used */
-    background-color: $secondaryColor; /* Used if the image is unavailable */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
+  background-image: url("/img/bg-dark-1.png"); /* The image used */
+  background-color: $secondaryColor; /* Used if the image is unavailable */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
 }
 
 /* Add simple tags to use the primary color */
 .primary-color {
-    background-color: $primaryColor;
-    border-color: $primaryColor;
-    color: #ffffff;
+  background-color: $primaryColor;
+  border-color: $primaryColor;
+  color: #ffffff;
 }
 
 .secondary-color {
-    background-color: $secondaryColor;
-    border-color: $secondaryColor;
-    color: #ffffff;
+  background-color: $secondaryColor;
+  border-color: $secondaryColor;
+  color: #ffffff;
 }
 
 .primary-color-text {
-    color: $primaryColor!important;
+  color: $primaryColor !important;
 }
 
 /* Make Home Splash title look better */
 .projectTitle {
-    font-weight: 300;
-    color: #ffffff;
+  font-weight: 300;
+  color: #ffffff;
 }
 
 /* Add green checkmarks to homepage list */
 .lead {
-    list-style: none;
-  }
+  list-style: none;
+}
 
 .lead li:before {
-    content: '✓ ';
-    color: #28a745;
-  }
+  content: "✓ ";
+  color: #28a745;
+}
 
 /* Patch the docs nav bar on mobile */
 .docsNavContainer {
-    max-width: 100%;
-    padding: 0;
+  max-width: 100%;
+  padding: 0;
 }
 
 /* search input display */
 .navSearchWrapper {
-    max-width: calc(100% - 315px);
+  max-width: calc(100% - 315px);
 }
 @media only screen and (max-width: 480px) {
-    .navSearchWrapper {
-        max-width: none;
-    }
+  .navSearchWrapper {
+    max-width: none;
+  }
 }
 input#search_input_react {
-    background-color: rgba(242, 196, 178, 0.25);
-    height: 2rem;
-    margin-top: -1px;
+  background-color: rgba(242, 196, 178, 0.25);
+  height: 2rem;
+  margin-top: -1px;
 }
 @media only screen and (max-width: 1024px) {
-    .reactNavSearchWrapper input#search_input_react {
-        margin-top: -5px;
-    }
+  .reactNavSearchWrapper input#search_input_react {
+    margin-top: -5px;
+  }
 }
 
 /* Fix search icon in search box */
 .navSearchWrapper::before {
-    box-sizing: unset;
+  box-sizing: unset;
 }
 
 /* Fix the klaro */
 .klaro .cookie-modal .cm-modal .hide {
-    top: 20px !important;
-    display: inline-block;
+  top: 20px !important;
+  display: inline-block;
 }
 
 .cm-toggle-all {
-    display: none !important;
+  display: none !important;
 }
 
 /* seminar styles */
 .heroVH {
-    height: calc(100vh - 50px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url("/img/bg-seminar-001.png");
-    background-size: cover;
-    background-position: right top;
-    text-align: left;
+  height: calc(100vh - 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("/img/bg-seminar-001.png");
+  background-size: cover;
+  background-position: right top;
+  text-align: left;
 }
 .heroVH > div {
-    width: 100vw;
-    background: black;
+  width: 100vw;
+  background: black;
 }
 .contrast-color {
-    background-color: #00FFC2;
-    border-color: #00FFC2;
-    color: #000;
+  background-color: #00ffc2;
+  border-color: #00ffc2;
+  color: #000;
 }
 .contrast-color-border {
-    background-color: transparent;
-    border-color: #00FFC2;
-    color: #00FFC2 !important;
+  background-color: transparent;
+  border-color: #00ffc2;
+  color: #00ffc2 !important;
 }
 .contrastText {
-    color: #00FFC2;
+  color: #00ffc2;
 }
 .tabTop {
-    position: absolute;
-    display: flex;
-    margin-top: -4rem;
+  position: absolute;
+  display: flex;
+  margin-top: -4rem;
 }
 @media only screen and (min-width: 1024px) {
-    .tabTop {
-        margin-left: -5rem;
-    }
+  .tabTop {
+    margin-left: -5rem;
+  }
 }
 .tabTop > a {
-    font-family: 'ManifoldCF','Helvetica','Arial', sans-serif;
-    background: black;
+  font-family: "ManifoldCF", "Helvetica", "Arial", sans-serif;
+  background: black;
 }
 .tabTop:before {
-    content: '';
-    display: inline-block;
-    width: 3rem;
-    height: 3rem;
-    margin-right: 1rem;
-    background-image: url(/img/openmoji/1F64B.png);
-    background-size: contain;
-    background-position: center bottom;
-    background-repeat: no-repeat;
+  content: "";
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  margin-right: 1rem;
+  background-image: url(/img/openmoji/1F64B.png);
+  background-size: contain;
+  background-position: center bottom;
+  background-repeat: no-repeat;
 }
 [class*="contrast-color"].btn {
-    transition: box-shadow 0.3s, opacity 0.3s;
+  transition: box-shadow 0.3s, opacity 0.3s;
 }
 [class*="contrast-color"]:hover {
-    box-shadow: 0 -18px 20px rgba(0, 255, 194, 0.2);
-    opacity: 0.9;
+  box-shadow: 0 -18px 20px rgba(0, 255, 194, 0.2);
+  opacity: 0.9;
 }
 .readableLineLenght {
-    max-width: 750px;
-    margin: auto;
+  max-width: 750px;
+  margin: auto;
 }
 
 /* tutorial cards */
 .a_wrapper {
-    display: contents;
-    color: black;
+  display: contents;
+  color: black;
 }
 .announcement {
-    display: inline-block;
-    width: 100%;
-    padding: .5em;
-    text-align: center;
-    color: white;
-    background-color: #131313;
-    border-bottom: 1px solid #990036;
-    border-top: 1px solid #990036;
+  display: inline-block;
+  width: 100%;
+  padding: 0.5em;
+  text-align: center;
+  color: white;
+  background-color: #ff1864;
+  border-bottom: 1px solid #990036;
+  border-top: 1px solid #990036;
+}
+.announcement-bottom {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 .navigationSlider .slidingNav ul li a {
