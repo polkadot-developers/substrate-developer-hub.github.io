@@ -107,7 +107,11 @@ First, add the Scheduler pallet as a dependency in the template node's runtime C
 **`runtime/Cargo.toml`**
 
 ```toml
-pallet-scheduler = { default-features = false, version = '3.0.0' }
+[dependencies.pallet-scheduler]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-09+1'
+version = '4.0.0-dev'
 
 #--snip--
 
@@ -125,7 +129,7 @@ Next, add the pallet to the runtime:
 **`runtime/src/lib.rs`**
 
 ```rust
-/// Define the types required by the Scheduler pallet.
+// Define the types required by the Scheduler pallet.
 parameter_types! {
   pub MaximumSchedulerWeight: Weight = 10_000_000;
   pub const MaxScheduledPerBlock: u32 = 50;
@@ -151,7 +155,7 @@ construct_runtime!(
     UncheckedExtrinsic = UncheckedExtrinsic
   {
     /*** snip ***/
-    Scheduler: pallet_scheduler::{Module, Call, Storage, Event<T>},
+    Scheduler: pallet_scheduler::{Pallet, Call, Storage, Event<T>},
   }
 );
 ```
@@ -203,8 +207,8 @@ cargo build --release -p node-template-runtime
 ```
 
 > Get stuck? Here is a
-> [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/runtime-upgrade-v3)
-> to check against. See [the `diff` in the commit history for details](https://github.com/substrate-developer-hub/substrate-node-template/compare/1c5b984ccadf76cdbc0edd0e82594d57e412b257...tutorials/solutions/runtime-upgrade-v3).
+> [solution](https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/runtime-upgrade)
+> to check against. See [the `diff` in the commit history for details](https://github.com/substrate-developer-hub/substrate-node-template/commit/ae3d9618b1b65c66ff7399fc91f7e9838d9c85ea).
 
 Here the `--release` flag will result in a longer compile time, but also generate a smaller build
 artifact that is better suited for submitting to the blockchain network: storage minimization
@@ -213,7 +217,7 @@ and optimizations are _critical_ for any blockchain.
 As we are _only_ building the runtime, Cargo looks in runtime
 `cargo.toml` file for requirements and only executes these. Notice the
 [`runtime/build.rs` file](https://doc.rust-lang.org/cargo/reference/build-scripts.html) that
-cargo looks for build the Wasm of your runtime that is specified in `runtime/lib.rs`.
+cargo looks for build the Wasm of your runtime that is specified in `runtime/src/lib.rs`.
 
 When the `--release` flag is specified, build artifacts are output to the
 `target/release` directory; when the flag is omitted they will be sent to `target/debug`. Refer to

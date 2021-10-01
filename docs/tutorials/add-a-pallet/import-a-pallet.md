@@ -42,10 +42,12 @@ your runtime has. For example, it depends on the [Balances pallet](https://subst
 
 **`runtime/Cargo.toml`**
 
-```TOML
-[dependencies]
-#--snip--
-pallet-balances = { default-features = false, version = 'SEMVER VERSION', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-YYYY-MM' }
+```toml
+[dependencies.pallet-balances]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-YYYY-MM'
+version = 'SEMVER VERSION'
 ```
 
 This is telling Cargo to find the crate from git repository `paritytech/substrate` with commit
@@ -66,7 +68,7 @@ something like:
 
 **`runtime/Cargo.toml`**
 
-```TOML
+```toml
 [features]
 default = ['std']
 std = [
@@ -135,10 +137,13 @@ So based on the `balances` import shown above, the `nicks` import will look like
 
 **`runtime/Cargo.toml`**
 
-```TOML
-[dependencies]
-#--snip--
-pallet-nicks = { default-features = false, version = '4.0.0-dev', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-09+1' }
+```toml
+# *** Add the following lines ***
+[dependencies.pallet-nicks]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-09+1'
+version = '4.0.0-dev'
 ```
 
 > Note you must use the correct [tag and version](#importing-a-pallet-crate) for the specific version of the node template you are using.
@@ -150,7 +155,7 @@ feature.
 
 **`runtime/Cargo.toml`**
 
-```TOML
+```toml
 [features]
 default = ["std"]
 std = [
