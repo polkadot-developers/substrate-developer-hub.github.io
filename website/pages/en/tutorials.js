@@ -154,7 +154,7 @@ class Tutorials extends React.Component {
           </translate>
         ),
         difficulty: <translate>Easy</translate>,
-        length: <translate>2 Hours</translate>,
+        length: <translate>1 Hours</translate>,
         prerequisite: true,
         version: "3.0.0",
         href: "tutorials/build-permission-network/",
