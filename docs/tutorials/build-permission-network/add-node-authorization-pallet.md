@@ -141,7 +141,7 @@ construct_runtime!(
         /* --snip-- */
 
         /*** Add This Line ***/
-        NodeAuthorization: pallet_node_authorization::{Module, Call, Storage, Event<T>, Config<T>},
+        NodeAuthorization: pallet_node_authorization::{Pallet, Call, Storage, Event<T>, Config<T>},
 
         /* --snip-- */
 
@@ -191,7 +191,7 @@ fn testnet_genesis(
     /* --snip-- */
 
     /*** Add This Block Item ***/
-        pallet_node_authorization: Some(NodeAuthorizationConfig {
+        node_authorization: NodeAuthorizationConfig {
             nodes: vec![
                 (
                     OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
@@ -202,7 +202,7 @@ fn testnet_genesis(
                     endowed_accounts[1].clone()
                 ),
             ],
-        }),
+        },
 
     /* --snip-- */
 
