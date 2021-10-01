@@ -105,15 +105,31 @@
 rustup update stable
 rustup target add wasm32-unknown-unknown --toolchain nightly
 </code></pre></li>
-<li><p>Install LLVM</p></li>
+<li><p>Install dependencies:</p>
+<blockquote>
+<p><strong>Important:</strong> Windows systems have a restriction on path length which could lead to some issues. It is recommended to put your build folder closer to your root directory to avoid running into <a href="https://github.com/substrate-developer-hub/substrate-node-template/issues/185">these issues</a>.</p>
+</blockquote>
+<p><strong>Option 1: Using Chocolatey</strong></p>
+<ul>
+<li>First, install the <a href="https://community.chocolatey.org/courses/installation/installing">Chocolatey package manager</a>.</li>
+<li>Then, you can install LLVM, OpenSSL, cmake and make from either cmd or PowerShell:
+<pre><code class="hljs css language-powershell">choco install llvm openssl cmake make <span class="hljs-literal">-y</span>
+</code></pre></li>
+</ul>
+<p><strong>Option 2: Manually</strong></p>
+<p>As an alternative to Chocolatey, you can install these packages individually:</p>
+<ol>
+<li><a href="https://releases.llvm.org/download.html">Install LLVM</a></li>
 </ol>
-<p>The <code>llvm-config</code> binary is required by substrate. but <code>llvm-config</code> does not exist in windows prebuilt binaries. You need to compile from the source code to get it. you can read these documents to build llvm on windows.</p>
+<p>Or you can use the <a href="https://github.com/ziglang/zig/wiki/Building-Zig-on-Windows#option-2-using-cmake-and-microsoft-visual-studio">prebuilt binaries</a> provided by Zig.</p>
+<blockquote>
+<p><strong>Note:</strong> The <code>llvm-config</code> binary is required by Substrate. But <code>llvm-config</code> does not exist in Windows prebuilt binaries — you'll need to compile from the source code to get it. Read these resources to learn more:</p>
+</blockquote>
 <ul>
 <li><a href="https://stackoverflow.com/questions/17096804/where-is-llvm-config-in-windows">Where is llvm-config in Windows?</a></li>
 <li><a href="https://github.com/ziglang/zig/wiki/How-to-build-LLVM,-libclang,-and-liblld-from-source#windows">How to build LLVM, libclang, and liblld from source</a></li>
 </ul>
-<p>Or you can directly use the <a href="https://github.com/ziglang/zig/wiki/Building-Zig-on-Windows#option-2-using-cmake-and-microsoft-visual-studio">prebuilt binaries</a> provided by <code>zig</code>.</p>
-<ol start="5">
+<ol start="2">
 <li><p>Install OpenSSL with <code>vcpkg</code> using PowerShell:</p>
 <pre><code class="hljs css language-bash">mkdir C:\Tools
 <span class="hljs-built_in">cd</span> C:\Tools
@@ -128,14 +144,15 @@ git <span class="hljs-built_in">clone</span> https://github.com/Microsoft/vcpkg.
 [<span class="hljs-type">System.Environment</span>]::SetEnvironmentVariable(<span class="hljs-string">'OPENSSL_DIR'</span>, <span class="hljs-variable">$env:OPENSSL_DIR</span>, [<span class="hljs-type">System.EnvironmentVariableTarget</span>]::User)
 [<span class="hljs-type">System.Environment</span>]::SetEnvironmentVariable(<span class="hljs-string">'OPENSSL_STATIC'</span>, <span class="hljs-variable">$env:OPENSSL_STATIC</span>, [<span class="hljs-type">System.EnvironmentVariableTarget</span>]::User)
 </code></pre></li>
-<li><p>Install <code>cmake</code>: <a href="https://cmake.org/download/">https://cmake.org/download/</a></p></li>
+<li><p><a href="https://cmake.org/download/">Install <code>cmake</code></a></p></li>
 <li><p>Install <code>make</code></p>
 <ul>
-<li>This can be done using Chocolatey. First you need to install the Chocolatey package manager: <a href="https://chocolatey.org/install">https://chocolatey.org/install</a></li>
-<li>Once Chocolatey installed you can install make:</li>
-</ul>
-<pre><code class="hljs">choco install make
+<li><p>This can also be done using Chocolatey. If you haven't already, install the <a href="https://chocolatey.org/install">Chocolatey package manager</a>.</p></li>
+<li><p>Once Chocolatey is installed, install <code>make</code> with the following command:</p>
+<pre><code class="hljs css language-powershell">choco install make
 </code></pre></li>
+</ul></li>
+</ol></li>
 </ol>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/knowledgebase/getting-started/index"><span class="arrow-prev">← </span><span>安装</span></a><a class="docs-next button" href="/docs/zh-CN/knowledgebase/getting-started/glossary"><span>词汇表</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/substrate-how-to-guides">How-to Guides</a><a href="https://substrate.dev/rustdocs">API 文档</a><a href="https://playground.substrate.dev/">Playground</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://matrix.to/#/#substrate-technical:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
                 var cookieSettings = document.getElementById('cookie-settings');
