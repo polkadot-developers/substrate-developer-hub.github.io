@@ -87,7 +87,12 @@
 </ul>
 <p>Most Substrate runtime macros are defined using either <strong>declarative macros</strong> or <strong>function-like macros</strong>, with a recent adoption of <strong>attribute-like macros</strong> in FRAME v2 pallets.</p>
 <blockquote>
-<p><strong>Tips to learn more about Substrate runtime macros</strong>: - read the <a href="https://substrate.dev/rustdocs/latest/frame_support/index.html#macros">documentation</a> on commonly used macros in FRAME - use <a href="https://github.com/dtolnay/cargo-expand"><code>cargo expand</code></a> to review a macro's expanded code and understand what's happening under the hood - read more on <a href="https://danielkeep.github.io/tlborm/book/pim-README.html">macro rules of expression pattern matching</a></p>
+<p><strong>Tips to learn more about Substrate runtime macros</strong>:</p>
+<ul>
+<li>read the <a href="https://substrate.dev/rustdocs/latest/frame_support/index.html#macros">documentation</a> on commonly used macros in FRAME</li>
+<li>use <a href="https://github.com/dtolnay/cargo-expand"><code>cargo expand</code></a> to review a macro's expanded code and understand what's happening under the hood</li>
+<li>read more on <a href="https://danielkeep.github.io/tlborm/book/pim-README.html">macro rules of expression pattern matching</a></li>
+</ul>
 </blockquote>
 <h2><a class="anchor" aria-hidden="true" id="substrate-runtime-macros"></a><a href="#substrate-runtime-macros" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Substrate Runtime Macros</h2>
 <p>The following section is a comprehensive explanation of the macros that runtime engineers most frequently encounter. Developers who want to know about the implementation details are encouraged to follow the links in &quot;Docs and Notes&quot; sub-sections to better understand how each macro expands.</p>
@@ -234,7 +239,7 @@
 <p><strong>何时使用</strong></p>
 <p>Required to declare a pallet consisting of a set of types, functions, and trait implementations that will later be aggregated by <code>construct_runtime</code> to build to runtime.</p>
 <p><strong>有何作用</strong></p>
-<p>This is the <a href="https://crates.parity.io/frame_support/attr.pallet.html">attribute macro</a> that allows the pallet to be used in <code>construct_runtime!</code>. This macro is made up of the various attributes that will be used to identify the specific items the pallet requires.</p>
+<p>This is the <a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html">attribute macro</a> that allows the pallet to be used in <code>construct_runtime!</code>. This macro is made up of the various attributes that will be used to identify the specific items the pallet requires.</p>
 <p><strong>Note:</strong> similar to a derive macro, this macro only expands types and trait implementations by reading the input and its input is <em>almost</em> never touched. The only exception where this macro modifies its input (contrary to a derive macro) is:</p>
 <ul>
 <li><strong>when a generic is replaced with a type</strong>. For example, in <code>pallet::pallet</code> the inner types of the item in <code>pub struct Pallet&lt;..&gt;(_)</code> is replaced by <code>PhantomData</code> and in <code>pallet::storage</code>, the first generic <code>_</code> is replaced with a type that implements the <code>StorageInstance</code> trait.</li>
@@ -258,7 +263,7 @@
 <p>Adding the <code>#[pallet::constant]</code> attribute will result in the macro adding to the constant metadata, including: the constant's name; the name of the associated type; the constant's value; and the value returned by <code>Get::get()</code>.</p>
 <p>For example, we can use <code>#[pallet::constant]</code> to put <code>type MyGetParam</code> in metadata:</p>
 <pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[pallet::config]</span>
-<span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token class-name">Config</span><span class="token punctuation">:</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token punctuation">{</span> 
+<span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token class-name">Config</span><span class="token punctuation">:</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token punctuation">{</span>
     <span class="token attribute attr-name">#[pallet::constant]</span> <span class="token comment">// puts attributes in metadata</span>
     <span class="token keyword">type</span> <span class="token class-name">MyGetParam</span><span class="token punctuation">:</span> <span class="token class-name">Get</span><span class="token operator">&lt;</span><span class="token keyword">u32</span><span class="token operator">></span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
@@ -300,7 +305,7 @@
 <p><strong>何时使用</strong></p>
 <p>Required for declaring pallet hooks.</p>
 <p><strong>What it Does</strong></p>
-<p><a href="https://crates.parity.io/frame_support/traits/trait.Hooks.html#provided-methods"><code>Hooks</code></a> are made available by using the <code>Hooks</code> trait.</p>
+<p><a href="https://substrate.dev/rustdocs/latest/frame_support/traits/trait.Hooks.html#provided-methods"><code>Hooks</code></a> are made available by using the <code>Hooks</code> trait.</p>
 <p>例如：</p>
 <pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[pallet::hooks]</span>
 imple<span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token class-name">Hooks</span><span class="token operator">&lt;</span><span class="token class-name">BlockNumberFor</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">>></span> <span class="token keyword">for</span> <span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
@@ -309,7 +314,7 @@ imple<span class="token operator">&lt;</span><span class="token class-name">T</s
 </code></pre>
 <p><strong>文档</strong></p>
 <ul>
-<li>See the <a href="https://crates.parity.io/frame_support/attr.pallet.html#hooks-pallethooks-mandatory">documentation</a></li>
+<li>See the <a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#hooks-pallethooks-mandatory">documentation</a></li>
 <li>See the <a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#macro-expansion-2">macro expansion</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="palletcall"></a><a href="#palletcall" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>#[pallet::call]</h3>
@@ -334,7 +339,7 @@ imple<span class="token operator">&lt;</span><span class="token class-name">T</s
 <p>Puts error variants documentation into metadata.</p>
 <p><strong>文档</strong></p>
 <ul>
-<li>See <a href="https://crates.parity.io/frame_support/attr.pallet.html#error-palleterror-optional">documentation</a></li>
+<li>See <a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#error-palleterror-optional">documentation</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="palletevents"></a><a href="#palletevents" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>#[pallet::events]</h3>
 <p><strong>何时使用</strong></p>
@@ -361,7 +366,7 @@ imple<span class="token operator">&lt;</span><span class="token class-name">T</s
 <p><strong>文档</strong></p>
 <ul>
 <li>See <a href="https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#storage-palletstorage-optional">macro documentation</a></li>
-<li><a href="https://crates.parity.io/frame_support/pallet_prelude/struct.StorageMap.html#implementations"><code>StorageMap</code> implementation</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/pallet_prelude/struct.StorageMap.html#implementations"><code>StorageMap</code> implementation</a></li>
 <li><a href="https://doc.rust-lang.org/book/ch08-03-hash-maps.html">Rust HashMap syntax</a></li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="other-attributes"></a><a href="#other-attributes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Other Attributes</h3>

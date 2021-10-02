@@ -72,7 +72,7 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Try Runtime</h1></header><article><div><span><p>The <code>try-runtime</code> tool is built to query a snapshot of runtime storage, using an <a href="https://substrate.dev/rustdocs/latest/sp_state_machine/struct.TestExternalities.html">in-memory-externalities</a> to store state. In this way, it enables runtime engineers to write tests for a specified runtime state. Being part of <a href="https://crates.parity.io/sc_cli/index.html#"><code>sc-cli</code></a>, it is designed to be used as a command line interface to specify at which block to query state.</p>
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Try Runtime</h1></header><article><div><span><p>The <code>try-runtime</code> tool is built to query a snapshot of runtime storage, using an <a href="https://substrate.dev/rustdocs/latest/sp_state_machine/struct.TestExternalities.html">in-memory-externalities</a> to store state. In this way, it enables runtime engineers to write tests for a specified runtime state. Being part of <a href="https://substrate.dev/rustdocs/latest/sc_cli/index.html#"><code>sc-cli</code></a>, it is designed to be used as a command line interface to specify at which block to query state.</p>
 <p>In its simplest form, <code>try-runtime</code> is a tool that enables:</p>
 <ol>
 <li>Connecting to a remote node and calling into some runtime API.</li>
@@ -83,9 +83,9 @@
 <p><strong>Note:</strong> This tool is designed to be used for testing against real chain state <em>before</em> going to production.</p>
 </blockquote>
 <h2><a class="anchor" aria-hidden="true" id="motivation"></a><a href="#motivation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Motivation</h2>
-<p>The initial motivation for <code>try-runtime</code> came from the need to test runtime changes against state from a real chain. Prior <a href="https://substrate.dev/rustdocs/latest/sp_state_machine/struct.TestExternalities.html"><code>TestExternalities</code></a> and <a href="https://substrate.dev/rustdocs/latest/sp_state_machine/struct.BasicExternalities.html"><code>BasicExternalities</code></a> existed for writing unit and integrated tests with mock data, but lacked an avenue to test against a chain's actual state. <code>try-runtime</code> extends <a href="https://substrate.dev/rustdocs/latest/sp_state_machine/struct.TestExternalities.html"><code>TestExternalities</code></a> and <a href="https://substrate.dev/rustdocs/latest/sp_state_machine/struct.BasicExternalities.html"><code>BasicExternalities</code></a> by scraping state (which is stored with key value pairs) via a node's RPC endpoints <a href="https://polkadot.js.org/docs/substrate/rpc/#getstoragechildkey-prefixedstoragekey-key-storagekey-at-hash-optionstoragedata"><code>getStorage</code></a> and <a href="https://polkadot.js.org/docs/substrate/rpc/#getkeyspagedchildkey-prefixedstoragekey-prefix-storagekey-count-u32-startkey-storagekey-at-hash-vecstoragekey"><code>getKeysPaged</code></a> and inserting them into <code>TestExternalites</code>.</p>
+<p>The initial motivation for <code>try-runtime</code> came from the need to test runtime changes against state from a real chain. Prior <a href="https://substrate.dev/rustdocs/latest/sp_state_machine/struct.TestExternalities.html"><code>TestExternalities</code></a> and <a href="https://substrate.dev/rustdocs/latest/sp_state_machine/struct.BasicExternalities.html"><code>BasicExternalities</code></a> existed for writing unit and integrated tests with mock data, but lacked an avenue to test against a chain's actual state. <code>try-runtime</code> extends <a href="https://substrate.dev/rustdocs/latest/sp_state_machine/struct.TestExternalities.html"><code>TestExternalities</code></a> and <a href="https://substrate.dev/rustdocs/latest/sp_state_machine/struct.BasicExternalities.html"><code>BasicExternalities</code></a> by scraping state (which is stored with key value pairs) via a node's RPC endpoints <a href="https://polkadot.js.org/docs/substrate/rpc/#getstoragechildkey-prefixedstoragekey-key-storagekey-at-hash-optionstoragedata"><code>getStorage</code></a> and <a href="https://polkadot.js.org/docs/substrate/rpc/#getkeyspagedchildkey-prefixedstoragekey-prefix-storagekey-count-u32-startkey-storagekey-at-hash-vecstoragekey"><code>getKeysPaged</code></a> and inserting them into <code>TestExternalities</code>.</p>
 <h2><a class="anchor" aria-hidden="true" id="how-it-works"></a><a href="#how-it-works" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How it works</h2>
-<p>The <code>try-runtime</code> tool has its own implementation of externalities called <a href="https://crates.parity.io/remote_externalities/index.html#"><code>remote_externalities</code></a> which is just a builder wrapper around <code>TestExternalities</code> that uses a generic <a href="/docs/en/knowledgebase/advanced/storage">key-value store</a> where data is <a href="/docs/en/knowledgebase/advanced/codec">SCALE encoded</a>.</p>
+<p>The <code>try-runtime</code> tool has its own implementation of externalities called <a href="https://substrate.dev/rustdocs/latest/remote_externalities/index.html#"><code>remote_externalities</code></a> which is just a builder wrapper around <code>TestExternalities</code> that uses a generic <a href="/docs/en/knowledgebase/advanced/storage">key-value store</a> where data is <a href="/docs/en/knowledgebase/advanced/codec">SCALE encoded</a>.</p>
 <p>The diagram below illustrates the way externalities sits outside a compiled runtime as a means to capture the storage of that runtime.</p>
 <table>
 <thead>
@@ -95,11 +95,11 @@
 <tr><td style="text-align:center"><img src="/docs/assets/advanced/try-runtime-ext-1.png" alt="image"></td><td style="text-align:center"><img src="/docs/assets/advanced/try-runtime-ext-2.png" alt="image"></td></tr>
 </tbody>
 </table>
-<p>With <code>remote_externalities</code>, developers can capture some chain state and run tests on it. Essentially, <code>RemoteExterrnalities</code> will populate a <code>TestExternalities</code> with a real chain's data.</p>
-<p>In order to query state, <code>try-runtime</code> makes use of Substrate's RPCs, namely <a href="https://crates.parity.io/sc_rpc/state/trait.StateApi.html#"><code>StateApi</code></a>. In particular:</p>
+<p>With <code>remote_externalities</code>, developers can capture some chain state and run tests on it. Essentially, <code>RemoteExternalities</code> will populate a <code>TestExternalities</code> with a real chain's data.</p>
+<p>In order to query state, <code>try-runtime</code> makes use of Substrate's RPCs, namely <a href="https://substrate.dev/rustdocs/latest/sc_rpc/state/trait.StateApi.html#"><code>StateApi</code></a>. In particular:</p>
 <ul>
-<li><a href="https://crates.parity.io/sc_rpc/state/trait.StateApi.html#tymethod.storage"><code>storage</code></a>: A method which returns a storage value under the given key.</li>
-<li><a href="https://crates.parity.io/sc_rpc/state/trait.StateApi.html#tymethod.storage_keys_paged"><code>storage_key_paged</code></a>: A method which returns the keys with prefix with pagination support.</li>
+<li><a href="https://substrate.dev/rustdocs/latest/sc_rpc/state/trait.StateApi.html#tymethod.storage"><code>storage</code></a>: A method which returns a storage value under the given key.</li>
+<li><a href="https://substrate.dev/rustdocs/latest/sc_rpc/state/trait.StateApi.html#tymethod.storage_keys_paged"><code>storage_key_paged</code></a>: A method which returns the keys with prefix with pagination support.</li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="usage"></a><a href="#usage" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage</h2>
 <p>The most common use case for <code>try-runtime</code> is with storage migrations and runtime upgrades.</p>
@@ -112,22 +112,22 @@
 <p><strong>Tip:</strong> Combine <code>try-runtime</code> with <a href="https://github.com/maxsam4/fork-off-substrate"><code>fork-off-substrate</code></a> to test your chain before production. Use <code>try-runtime</code> to test your chain's migration and its pre and post states. Then, use <code>fork-off-substrate</code> if you want to check that block production continues fine after the migration, and do some other arbitrary testing.</p>
 </blockquote>
 <h3><a class="anchor" aria-hidden="true" id="calling-into-hooks-from-onruntimeupgrade"></a><a href="#calling-into-hooks-from-onruntimeupgrade" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Calling into hooks from <code>OnRuntimeUpgrade</code></h3>
-<p>By default, there are two ways of defining a runtime upgrade in the runtime. The <code>OnRuntimeUpgrade</code> trait provides the <a href="https://crates.parity.io/frame_support/traits/trait.OnRuntimeUpgrade.html#on_runtime_upgrade">different methods</a> to achieve this.</p>
+<p>By default, there are two ways of defining a runtime upgrade in the runtime. The <code>OnRuntimeUpgrade</code> trait provides the <a href="https://substrate.dev/rustdocs/latest/frame_support/traits/trait.OnRuntimeUpgrade.html#on_runtime_upgrade">different methods</a> to achieve this.</p>
 <ul>
 <li><p><strong>From inside a runtime</strong>. 例如：</p>
 <pre><code class="hljs css language-rust"><span class="token keyword">struct</span> <span class="token type-definition class-name">Custom</span><span class="token punctuation">;</span>
 <span class="token keyword">impl</span> <span class="token class-name">OnRuntimeUpgrade</span> <span class="token keyword">for</span> <span class="token class-name">Custom</span> <span class="token punctuation">{</span>
-    <span class="token keyword">fn</span> <span class="token function-definition function">on_runtime_upgrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Weight</span> <span class="token punctuation">{</span>
-        <span class="token comment">// -- snip --</span>
-    <span class="token punctuation">}</span>
+  <span class="token keyword">fn</span> <span class="token function-definition function">on_runtime_upgrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Weight</span> <span class="token punctuation">{</span>
+      <span class="token comment">// -- snip --</span>
+  <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre></li>
 <li><p><strong>From inside a pallet</strong>. 例如：</p>
 <pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[pallet::hooks]</span>
 <span class="token keyword">impl</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token class-name">Hooks</span><span class="token operator">&lt;</span><span class="token class-name">BlockNumberFor</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">>></span> <span class="token keyword">for</span> <span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
-    <span class="token keyword">fn</span> <span class="token function-definition function">on_runtime_upgrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Weight</span> <span class="token punctuation">{</span>
-        <span class="token comment">// -- snip --</span>
-    <span class="token punctuation">}</span>
+  <span class="token keyword">fn</span> <span class="token function-definition function">on_runtime_upgrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Weight</span> <span class="token punctuation">{</span>
+      <span class="token comment">// -- snip --</span>
+  <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre></li>
 </ul>
@@ -137,20 +137,20 @@
 <p>Refer to <a href="https://substrate.dev/substrate-how-to-guides/docs/tools/integrate-try-runtime">this how-to guide</a> on how to integrate <code>try-runtime</code> to your project.</p>
 </blockquote>
 <p>The new hooks are as follows:</p>
-<pre><code class="hljs css language-rust">    <span class="token attribute attr-name">#[cfg(feature = <span class="token string">"try-runtime"</span>)]</span>
-    <span class="token keyword">fn</span> <span class="token function-definition function">pre_upgrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Result</span><span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token lifetime-annotation symbol">'static</span> <span class="token keyword">str</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[cfg(feature = <span class="token string">"try-runtime"</span>)]</span>
+<span class="token keyword">fn</span> <span class="token function-definition function">pre_upgrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Result</span><span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token lifetime-annotation symbol">'static</span> <span class="token keyword">str</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
 
-    <span class="token attribute attr-name">#[cfg(feature = <span class="token string">"try-runtime"</span>)]</span>
-    <span class="token keyword">fn</span> <span class="token function-definition function">post_upgrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Result</span><span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token lifetime-annotation symbol">'static</span> <span class="token keyword">str</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
+<span class="token attribute attr-name">#[cfg(feature = <span class="token string">"try-runtime"</span>)]</span>
+<span class="token keyword">fn</span> <span class="token function-definition function">post_upgrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Result</span><span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token lifetime-annotation symbol">'static</span> <span class="token keyword">str</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="helper-functions"></a><a href="#helper-functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Helper functions</h3>
-<p><a href="https://crates.parity.io/frame_support/traits/trait.OnRuntimeUpgradeHelpersExt.html"><code>OnRuntimeUpgradeHelpersExt</code></a> are a set of helper functions made available from <a href="https://crates.parity.io/src/frame_support/traits/hooks.rs.html#109"><code>frame_support::hooks</code></a> in order to use <code>try-runtime</code> for testing storage migrations. These include:</p>
+<p><a href="https://substrate.dev/rustdocs/latest/frame_support/traits/trait.OnRuntimeUpgradeHelpersExt.html"><code>OnRuntimeUpgradeHelpersExt</code></a> are a set of helper functions made available from <a href="https://substrate.dev/rustdocs/latest/src/frame_support/traits/hooks.rs.html#109"><code>frame_support::hooks</code></a> in order to use <code>try-runtime</code> for testing storage migrations. These include:</p>
 <ul>
 <li><strong><code>storage_key</code></strong>: Generates a storage key unique to this runtime upgrade. This can be used to communicate data from pre-upgrade to post-upgrade state and check them.</li>
 <li><strong><code>set_temp_storage</code></strong>: Writes some temporary data to a specific storage that can be read (potentially in the post-upgrade hook).</li>
 <li><strong><code>get_temp_storage</code></strong> : Gets temporary storage data written by <code>set_temp_storage</code>.</li>
 </ul>
-<p>Using the <a href="https://crates.parity.io/frame_executive/struct.Executive.html"><code>frame_executive::Executive</code></a> struct, these helper functions in action would look like:</p>
+<p>Using the <a href="https://substrate.dev/rustdocs/latest/frame_executive/struct.Executive.html"><code>frame_executive::Executive</code></a> struct, these helper functions in action would look like:</p>
 <pre><code class="hljs css language-rust"><span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">CheckTotalIssuance</span><span class="token punctuation">;</span>
 <span class="token keyword">impl</span> <span class="token class-name">OnRuntimeUpgrade</span> <span class="token keyword">for</span> <span class="token class-name">CheckTotalIssuance</span> <span class="token punctuation">{</span>
     <span class="token attribute attr-name">#[cfg(feature = <span class="token string">"try-runtime"</span>)]</span>
@@ -194,16 +194,16 @@
 <h4><a class="anchor" aria-hidden="true" id="other-scenarios"></a><a href="#other-scenarios" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Other scenarios</h4>
 <p>Using it to re-execute code from a <code>ElectionProviderMultiPhase</code> off-chain worker:</p>
 <pre><code class="hljs css language-bash">cargo run -- --release \
---features=try-runtime \
-try-runtime \
---execution Wasm \
---wasm-execution Compiled \
-offchain-worker \
---header-at 0x491d09f313c707b5096650d76600f063b09835fd820e2916d3f8b0f5b45bec30 \
-live \
--b 0x491d09f313c707b5096650d76600f063b09835fd820e2916d3f8b0f5b45bec30 \
--m ElectionProviderMultiPhase
-ws//<span class="hljs-variable">$HOST</span>:9944
+    --features=try-runtime \
+    try-runtime \
+    --execution Wasm \
+    --wasm-execution Compiled \
+    offchain-worker \
+    --header-at 0x491d09f313c707b5096650d76600f063b09835fd820e2916d3f8b0f5b45bec30 \
+    live \
+    -b 0x491d09f313c707b5096650d76600f063b09835fd820e2916d3f8b0f5b45bec30 \
+    -m ElectionProviderMultiPhase
+    ws//<span class="hljs-variable">$HOST</span>:9944
 </code></pre>
 <blockquote>
 <p><strong>Tip:</strong> pass in the --help flag after each subcommand to see the command's different options.</p>
@@ -233,10 +233,10 @@ ws//<span class="hljs-variable">$HOST</span>:9944
 <ul>
 <li><a href="https://substrate.dev/substrate-how-to-guides/docs/tools/integrate-try-runtime">Integrate <code>try-runtime</code></a> how-to guide</li>
 <li><a href="/docs/en/knowledgebase/advanced/storage#storage-value-keys">Storage keys</a></li>
-<li><a href="https://crates.parity.io/frame_support/traits/trait.OnRuntimeUpgrade.html#on_runtime_upgrade"><code>OnRuntimeUpgrade</code></a> FRAME trait</li>
-<li><a href="https://crates.parity.io/frame_executive/struct.Executive.html#method.try_runtime_upgrade"><code>try-runtime-upgrade</code></a> from <code>frame_executive</code></li>
-<li><a href="https://crates.parity.io/sp_core/traits/trait.Externalities.html#method.set_storage"><code>set_storage</code></a> from <code>sp_core::traits::Externalities</code></li>
-<li><a href="https://crates.parity.io/sc_rpc/state/trait.StateApi.html#tymethod.storage_keys_paged">storage_keys_paged</a> from <code>sc_rpc::state::StateApi</code></li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_support/traits/trait.OnRuntimeUpgrade.html#on_runtime_upgrade"><code>OnRuntimeUpgrade</code></a> FRAME trait</li>
+<li><a href="https://substrate.dev/rustdocs/latest/frame_executive/struct.Executive.html#method.try_runtime_upgrade"><code>try-runtime-upgrade</code></a> from <code>frame_executive</code></li>
+<li><a href="https://substrate.dev/rustdocs/latest/sp_core/traits/trait.Externalities.html#method.set_storage"><code>set_storage</code></a> from <code>sp_core::traits::Externalities</code></li>
+<li><a href="https://substrate.dev/rustdocs/latest/sc_rpc/state/trait.StateApi.html#tymethod.storage_keys_paged">storage_keys_paged</a> from <code>sc_rpc::state::StateApi</code></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="例子"></a><a href="#例子" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>例子</h2>
 <ul>
