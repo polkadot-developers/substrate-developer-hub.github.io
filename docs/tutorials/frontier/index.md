@@ -108,19 +108,19 @@ inspect blocks:
 To build the chain, execute the following commands from the project root:
 
 ```
-$ cargo build --release
+cargo build --release
 ```
 
 To execute the chain, run:
 
 ```
-$ ./target/debug/frontier-template-node --dev
+./target/debug/frontier-template-node --dev
 ```
 
 The node also supports to use manual seal (to produce block manually through RPC).
 
 ```
-$ ./target/debug/frontier-template-node --dev --manual-seal
+./target/debug/frontier-template-node --dev --manual-seal
 ```
 
 ### Query Balance Using RPC
