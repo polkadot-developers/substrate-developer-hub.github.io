@@ -1,5 +1,12 @@
 {
   "2021" : [{
+    "date": "2021 Sep 21",
+    "speakers": ["Hang Yin, Phala Network "],
+    "description": "Lead developer of Phala Network Hang Yin goes over the design and capabilities of a Polkadot parachain, highlighting the XCMP architecture in action. He steps through how XCM (Cross-Consensus Messaging format) is extended to Phala's off-chain secure enclave workers to enable a dApp for privacy-preserving and CPU intensive computation.",
+    "link": "https://www.crowdcast.io/e/substrate-seminar-2/3",
+    "tags": ["parachains", "XCM", "off-chain workers"]
+  },
+    {
     "date": "2021 Aug 24",
     "speakers": ["Amar Singh, Purestake "],
     "description": "In this seminar, Amar, Software Engineer at Purestake, showcases a DPoS system he implemented with Substrate for Moonbeam. He talks about the inflation logic and the reward distribution, making it more \"palatable\" by contrasting it with FRAME's pallet-staking.",
