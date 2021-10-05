@@ -42,14 +42,22 @@ your runtime has. For example, it depends on the [Balances pallet](https://subst
 
 **`runtime/Cargo.toml`**
 
-```TOML
-[dependencies]
-#--snip--
-pallet-balances = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-YYYY-MM' }
+```toml
+[dependencies.pallet-balances]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-YYYY-MM'
+version = 'SEMVER VERSION'
 ```
 
 This is telling Cargo to find the crate from git repository `paritytech/substrate` with commit
 that is tagged with `monthly-YYYY-MM`. `YYYY` and `MM` are the corresponding year and month.
+We also must [look upstream](https://github.com/paritytech/substrate/tags) for the correct version
+to use that is part of this tag. Without the correct tag and version, you will run into issues!
+
+> Be sure to use the _same git tag and version_ for **all** of your substrate dependancies for
+> consitant and reliable behavior! You likely will run into duplicate dependanciy issues and 
+> worse errors if you do not. 
 
 ### Crate Features
 
@@ -60,7 +68,7 @@ something like:
 
 **`runtime/Cargo.toml`**
 
-```TOML
+```toml
 [features]
 default = ['std']
 std = [
@@ -129,11 +137,17 @@ So based on the `balances` import shown above, the `nicks` import will look like
 
 **`runtime/Cargo.toml`**
 
-```TOML
-[dependencies]
-#--snip--
-pallet-nicks = { default-features = false, version = '3.0.0', git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-05' }
+```toml
+# *** Add the following lines ***
+[dependencies.pallet-nicks]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-09+1'
+version = '4.0.0-dev'
 ```
+
+> Note you must use the correct [tag and version](#importing-a-pallet-crate) for the specific version of the node template you are using.
+> The above sippet will need to be adjusted for this!
 
 As with other pallets, the Nicks pallet has an `std` feature. We should build its `std` feature
 when the runtime is built with its own `std` feature. Add the following line to the runtime's `std`
@@ -141,7 +155,7 @@ feature.
 
 **`runtime/Cargo.toml`**
 
-```TOML
+```toml
 [features]
 default = ["std"]
 std = [

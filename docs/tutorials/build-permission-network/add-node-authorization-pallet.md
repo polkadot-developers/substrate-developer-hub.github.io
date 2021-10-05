@@ -9,7 +9,7 @@ a configurable set of nodes for a permissioned network.
 Each node is identified by a `PeerId` which is simply a wrapper on `Vec<u8>`.
 Each `PeerId` is owned by an `AccountId` that claims it
 (these are 
-[associated in a map](https://substrate.dev/rustdocs/latest/pallet_node_authorization/struct.Owners.html)
+[associated in a map](https://substrate.dev/rustdocs/latest/pallet_node_authorization/pallet/type.Owners.html)
 ). With this pallet, you have two ways to authorize a node which wants to join the network:
 
 1. Join the set of well known nodes between which the connections are allowed.
@@ -27,7 +27,7 @@ To protect against false claims, the maintainer of the node should claim it
 The owner of a node can then add and remove connections for their node.
 To be clear, you can't change the connections between well known nodes,
 they are always allowed to connect with each other.
-Instead, you can manipulate the connection between a well know node
+Instead, you can manipulate the connection between a well known node
 and a normal node or between two normal nodes and sub-nodes.
 
 The `node-authorization` pallet integrates an
@@ -72,12 +72,17 @@ First we must add the pallet to our runtime dependencies:
 
 **`runtime/Cargo.toml`**
 
-```TOML
-[dependencies]
-#--snip--
-pallet-node-authorization = { default-features = false, version = '3.0.0' }
+```toml
+[dependencies.pallet-node-authorization]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-09+1'
+version = '4.0.0-dev'
+```
 
-#--snip--
+**`runtime/Cargo.toml`**
+
+```toml
 [features]
 default = ['std']
 std = [
@@ -86,6 +91,7 @@ std = [
     #--snip--
 ]
 ```
+
 We need to simulate the governance in our simple blockchain, so we just let a `sudo` admin rule, 
 configuring the pallet's interface to `EnsureRoot`. In a production environment we sould want to have 
 difference, governance based checking implimented here. More details of this `Config` can be found in
@@ -135,7 +141,7 @@ construct_runtime!(
         /* --snip-- */
 
         /*** Add This Line ***/
-        NodeAuthorization: pallet_node_authorization::{Module, Call, Storage, Event<T>, Config<T>},
+        NodeAuthorization: pallet_node_authorization::{Pallet, Call, Storage, Event<T>, Config<T>},
 
         /* --snip-- */
 
@@ -148,9 +154,9 @@ construct_runtime!(
 `PeerId` is encoded in bs58 format, so we need a new library
 [bs58](https://docs.rs/bs58/0.3.1/bs58/) in **node/cargo.toml** to decode it to get its bytes.
 
-**`node/cargo.toml`**
+**`node/Cargo.toml`**
 
-```TOML
+```toml
 [dependencies]
 #--snip--
 bs58 = "0.4.0"
@@ -185,7 +191,7 @@ fn testnet_genesis(
     /* --snip-- */
 
     /*** Add This Block Item ***/
-        pallet_node_authorization: Some(NodeAuthorizationConfig {
+        node_authorization: NodeAuthorizationConfig {
             nodes: vec![
                 (
                     OpaquePeerId(bs58::decode("12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2").into_vec().unwrap()),
@@ -196,7 +202,7 @@ fn testnet_genesis(
                     endowed_accounts[1].clone()
                 ),
             ],
-        }),
+        },
 
     /* --snip-- */
 

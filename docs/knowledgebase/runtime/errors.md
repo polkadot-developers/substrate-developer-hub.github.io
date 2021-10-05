@@ -16,36 +16,37 @@ that _should_ be a
 if the dispatchable function encountered an error.
 
 Each FRAME pallet may define custom a `DispatchError` by:
+
 - using
-the [`decl_error!` macro](macros#decl_error) (FRAME v1) or;
-- the [`#[pallet::error]` macro](/docs/en/knowledgebase/runtime/macros#palleterror)  (FRAME v2).
+  the [`decl_error!` macro](macros#decl_error) (FRAME v1) or;
+- the [`#[pallet::error]` macro](/docs/en/knowledgebase/runtime/macros#palleterror) (FRAME v2).
 
 ```rust
 // FRAME v1.
 // Errors inform users that something went wrong.
 decl_error! {
-  pub enum Error for Module<T: Config> {
-    /// Error names should be descriptive.
-    InvalidParameter,
-    /// Errors should have helpful documentation associated with them.
-    OutOfSpace,
-  }
+	pub enum Error for Module<T: Config> {
+		/// Error names should be descriptive.
+		InvalidParameter,
+		/// Errors should have helpful documentation associated with them.
+		OutOfSpace,
+	}
 }
 
 // FRAME v2.
 #[pallet::error]
 pub enum Error<T> {
-    /// Error names should be descriptive.
-    InvalidParameter,
-    /// Errors should have helpful documentation associated with them.
-    OutOfSpace,
-  }
-
+	/// Error names should be descriptive.
+	InvalidParameter,
+	/// Errors should have helpful documentation associated with them.
+	OutOfSpace,
+}
 ```
 
 > **Note:** In FRAME v1, in order to emit custom errors from a pallet, the pallet must
-> configure the `Error` type in `decl_module!`. See the [Rust docs](https://substrate.dev/rustdocs/latest/frame_support/macro.decl_error.html#usage) for more details.
-
+> configure the `Error` type in `decl_module!`. See the
+> [Rust docs](https://substrate.dev/rustdocs/latest/frame_support/macro.decl_error.html#usage)
+> for more details.
 
 The
 [Pallet Template](https://github.com/substrate-developer-hub/substrate-pallet-template/blob/master/src/lib.rs)
@@ -68,4 +69,4 @@ frame_support::ensure!(param < T::MaxVal::get(), Error::<T>::InvalidParameter);
 
 - [`decl_error!` macro](https://substrate.dev/rustdocs/latest/frame_support/macro.decl_error.html)
 - [`decl_module!` macro](https://substrate.dev/rustdocs/latest/frame_support/macro.decl_module.html)
-- [`[pallet::error]` macro](https://crates.parity.io/frame_support/attr.pallet.html#error-palleterror-optional)
+- [`[pallet::error]` macro](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html#error-palleterror-optional)

@@ -98,6 +98,7 @@ decl_module! {
   }
 }
 ```
+
 In FRAME v2, depositing an event adopts a slightly different structure:
 
 ```rust
@@ -170,4 +171,4 @@ runtime events are used:
 - [`decl_event!` macro](https://substrate.dev/rustdocs/latest/frame_support/macro.decl_event.html)
 - [`decl_module!` macro](https://substrate.dev/rustdocs/latest/frame_support/macro.decl_module.html)
 - [`construct_runtime!` macro](https://substrate.dev/rustdocs/latest/frame_support/macro.construct_runtime.html)
-- [`#[frame_support::pallet]` macro](https://crates.parity.io/frame_support/attr.pallet.html)
+- [`#[frame_support::pallet]` macro](https://substrate.dev/rustdocs/latest/frame_support/attr.pallet.html)

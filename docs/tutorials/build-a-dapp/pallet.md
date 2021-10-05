@@ -181,13 +181,13 @@ update our pallet's dependencies:
 **`pallet/template/Cargo.toml`**
 
 ```toml
-# add `sp-std` in the dependencies section of the toml file
-
-[dependencies]
-# -- snip -- 
-sp-std = { default-features = false, version = '3.0.0' }
-# -- snip --
-```  
+# *** Add the following lines ***
+[dependencies.sp-std]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'monthly-2021-09+1'
+version = '4.0.0-dev'
+```
 
 ### 4. Pallet Errors
 
@@ -253,7 +253,7 @@ To implement this, replace the `#[pallet::call]` line with:
         #[pallet::call]
         impl<T: Config> Pallet<T> {
             #[pallet::weight(1_000)]
-            pub(super) fn create_claim(
+            pub fn create_claim(
                 origin: OriginFor<T>,
                 proof: Vec<u8>,
             ) -> DispatchResultWithPostInfo {
@@ -279,7 +279,7 @@ To implement this, replace the `#[pallet::call]` line with:
             }
 
             #[pallet::weight(10_000)]
-            fn revoke_claim(
+            pub fn revoke_claim(
                 origin: OriginFor<T>,
                 proof: Vec<u8>,
             ) -> DispatchResultWithPostInfo {
