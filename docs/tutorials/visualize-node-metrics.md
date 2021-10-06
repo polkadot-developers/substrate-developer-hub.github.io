@@ -172,15 +172,15 @@ all available metric data.
 
 ## Visualizing Prometheus Metrics with Grafana
 
-Once you have Grafana running, navigate to it in a browser (**the default is https://localhost:3000/**).
+Once you have Grafana running, navigate to it in a browser (**the default is http://localhost:3000/**).
 Log in (default user `admin` and password `admin`) and navigate to the [data sources](http://localhost:3000/datasources) page.
 
 You then need to select a `Prometheus` data source type and specify where Grafana needs to look for it.
 
-> Note: The Prometheus port Grafana needs is NOT the one you set in the `prometheus.yml` file (https://localhost:9615) for where your node is publishing it's data.
+> Note: The Prometheus port Grafana needs is NOT the one you set in the `prometheus.yml` file (http://localhost:9615) for where your node is publishing it's data.
 
 With your substrate node and Prometheus are running, configure Grafana to look for Prometheus
-on it's default port: https://localhost:9090 (unless you customized it).
+on it's default port: http://localhost:9090 (unless you customized it).
 
 Hit `Save & Test` to ensure that you have the data source set correctly. Now you can configure a new dashboard!
 
