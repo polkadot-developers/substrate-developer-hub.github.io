@@ -142,7 +142,7 @@ So based on the `balances` import shown above, the `nicks` import will look like
 [dependencies.pallet-nicks]
 default-features = false
 git = 'https://github.com/paritytech/substrate.git'
-tag = 'monthly-2021-09+1'
+tag = 'monthly-2021-10'
 version = '4.0.0-dev'
 ```
 
