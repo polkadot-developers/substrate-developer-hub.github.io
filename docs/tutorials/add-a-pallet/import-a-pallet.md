@@ -55,8 +55,8 @@ that is tagged with `monthly-YYYY-MM`. `YYYY` and `MM` are the corresponding yea
 We also must [look upstream](https://github.com/paritytech/substrate/tags) for the correct version
 to use that is part of this tag. Without the correct tag and version, you will run into issues!
 
-> Be sure to use the _same git tag and version_ for **all** of your substrate dependancies for
-> consitant and reliable behavior! You likely will run into duplicate dependanciy issues and 
+> Be sure to use the _same git tag and version_ for **all** of your substrate dependencies for
+> consitant and reliable behavior! You likely will run into duplicate dependency issues and 
 > worse errors if you do not. 
 
 ### Crate Features
