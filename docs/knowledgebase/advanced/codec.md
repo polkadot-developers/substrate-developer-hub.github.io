@@ -131,8 +131,8 @@ SCALE Bytes:
 
 ### Strings
 
-Strings are Vectors containing a valid UTF8 sequence.
-
+Strings are Vectors of bytes (Vec<u8>) containing a valid UTF8 sequence.
+  
 ### Tuples
 
 A fixed-size series of values, each with a possibly different but predetermined and fixed type. This
