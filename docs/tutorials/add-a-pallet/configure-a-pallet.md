@@ -30,7 +30,7 @@ trait for the Nicks pallet.
 
 To figure out what you need to implement for the Nicks pallet specifically, you can take a look at
 the
-[`pallet_nicks::Config` documentation](https://substrate.dev/rustdocs/latest/pallet_nicks/trait.Config.html)
+[`pallet_nicks::Config` documentation](https://substrate.dev/rustdocs/latest/pallet_nicks/pallet/trait.Config.html)
 or the definition of the trait itself in
 [the source code](https://github.com/paritytech/substrate/blob/master/frame/nicks/src/lib.rs) of the
 Nicks pallet. We have annotated the source code for `nicks` pallet _from the substrate source_ below with
