@@ -112,12 +112,10 @@ workflows:
           filters: *only-source
           requires:
             - check-build
-            - check-links
       - deploy-to-staging:
           filters: *only-staging-source
           requires:
             - check-build
-            - check-links
 
   nightly_deploy:
     triggers:
