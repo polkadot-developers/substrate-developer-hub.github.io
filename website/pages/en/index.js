@@ -49,8 +49,8 @@ class Index extends React.Component {
         <div className="announcement">
           <div className="announcement-text">
             <strong>A brand new DevHub is here!</strong> As of this Wednesday, Oct. 13th, the
-            current Substrate docs on substrate.dev will be archived and all links will redirect to
-            the new site. Preview it now at{" "}
+            current Substrate docs on substrate.dev will be archived and all links will redirect 
+            to the new site. Preview it now at{" "}
             <a href="https://docs.substrate.io">
               <span className="announcement-bottom">docs.substrate.io</span>
             </a>
