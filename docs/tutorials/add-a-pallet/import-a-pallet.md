@@ -55,8 +55,8 @@ that is tagged with `monthly-YYYY-MM`. `YYYY` and `MM` are the corresponding yea
 We also must [look upstream](https://github.com/paritytech/substrate/tags) for the correct version
 to use that is part of this tag. Without the correct tag and version, you will run into issues!
 
-> Be sure to use the _same git tag and version_ for **all** of your substrate dependancies for
-> consitant and reliable behavior! You likely will run into duplicate dependanciy issues and 
+> Be sure to use the _same git tag and version_ for **all** of your substrate dependencies for
+> consistent and reliable behavior! You likely will run into duplicate dependency issues and
 > worse errors if you do not. 
 
 ### Crate Features
@@ -89,7 +89,7 @@ each pallet crate has a similar configuration defining the default feature for t
 feature will determine the features that should be used on downstream dependencies. For example, the
 snippet above should be read as:
 
-> The default feature for this Substrate runtime is `std`. When `std` feature is enabled for the
+> The default feature for this Substrate runtime is `std`. When the `std` feature is enabled for the
 > runtime, `codec`, `frame-executive`, `frame-support`, and all the other listed
 > dependencies should use their `std` feature.
 

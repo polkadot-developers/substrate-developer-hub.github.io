@@ -33,10 +33,10 @@ branch = 'master'
 
 ## Publishing on crates.io
 
-**crates.io** allows permissionless publishing of Rust module. You could learn the procedure by
+**crates.io** allows permissionless publishing of Rust crates. You can learn the procedure by
 following their guide on how to [publish on crates.io](https://doc.rust-lang.org/cargo/reference/publishing.html).
 
-Once published, other developers could refer to your pallet in their `Cargo.toml` using the
+Once published, other developers can refer to your pallet in their `Cargo.toml` using the
 following snippet:
 
 **`runtime/Cargo.toml`**
@@ -48,7 +48,7 @@ version = 'some-compatible-version'
 ```
 
 We do not specify any target destination on the above, and by default it will search for the package
-in **crates.io** repository.
+in the **crates.io** repository.
 
 ## Learn More
 
