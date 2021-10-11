@@ -37,12 +37,25 @@ class Index extends React.Component {
     return (
       <section>
         <div className="announcement">
-          Meet others who speak your language! For devs at all levels - Sub0 Online, October 13-14,
-          2021.
-          {` `}
-          <a href=" https://sub0.substrate.io/?utm_source=substrate.dev&utm_medium=referral&utm_campaign=sub0 2021&utm_content=registrations&utm_term=parity&ref=2bcd2286876e">
-            <span className="announcement-bottom">Register now</span>
-          </a>
+          <div className="announcement-text">
+            Meet others who speak your language! For devs at all levels - Sub0 Online, October
+            13-14, 2021.
+            {` `}
+            <a href=" https://sub0.substrate.io/?utm_source=substrate.dev&utm_medium=referral&utm_campaign=sub0 2021&utm_content=registrations&utm_term=parity&ref=2bcd2286876e">
+              <span className="announcement-bottom">Register now</span>
+            </a>
+          </div>
+        </div>
+        <div className="announcement">
+          <div className="announcement-text">
+            <strong>A brand new DevHub is here!</strong> As of this Wednesday, Oct. 13th, the
+            current Substrate docs on substrate.dev will be archived and all links will redirect to
+            the new site. Preview it now at{" "}
+            <a href="https://docs.substrate.io">
+              <span className="announcement-bottom">docs.substrate.io</span>
+            </a>
+            .
+          </div>
         </div>
         <HomeSplash
           id="home-hero"

@@ -173,14 +173,19 @@ input#search_input_react {
   color: black;
 }
 .announcement {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   width: 100%;
   padding: 0.5em;
+  margin: auto 0;
   text-align: center;
   color: white;
   background-color: #ff1864;
   border-bottom: 1px solid #990036;
   border-top: 1px solid #990036;
+}
+.announcement-text {
+  max-width: 850px;
 }
 .announcement-bottom {
   color: #fff;
