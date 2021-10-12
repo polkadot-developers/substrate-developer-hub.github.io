@@ -3,7 +3,7 @@ title: "Add the Contracts Pallet to a Runtime"
 ---
 
 As you saw in the
-[Create your first Substrate blockchain](../tutorials/create-your-first-substrate-chain)
+[Create your first Substrate blockchain](../../tutorials/create-your-first-substrate-chain)
 tutorial, the
 [Substrate node template](https://github.com/substrate-developer-hub/substrate-node-template)
 provides a working runtime that you can use to start building your own blockchain. The node template
