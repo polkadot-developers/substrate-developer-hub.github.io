@@ -1,4 +1,9 @@
-# Substrate Developer Hub
+# (Old) Substrate Developer Hub (ARCHIVED)
+
+## ***THIS SITE IS ARCHIVED.***
+
+> - New site: https://docs.substrate.io/ 
+> - Source available: https://github.com/substrate-developer-hub/substrate-docs/
 
 This repository houses documentation for the [Substrate](https://substrate.io) blockchain framework.
 
