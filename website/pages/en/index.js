@@ -41,7 +41,7 @@ class Index extends React.Component {
             Meet others who speak your language! For devs at all levels - Sub0 Online, October
             13-14, 2021.
             {` `}
-            <a href=" https://sub0.substrate.io/?utm_source=substrate.dev&utm_medium=referral&utm_campaign=sub0 2021&utm_content=registrations&utm_term=parity&ref=2bcd2286876e">
+            <a href="https://sub0.substrate.io/?utm_source=substrate.dev&utm_medium=referral&utm_campaign=sub0%202021&utm_content=registrations&utm_term=parity&ref=2bcd2286876e">
               <span className="announcement-bottom">Register now</span>
             </a>
           </div>
