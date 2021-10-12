@@ -1,0 +1,299 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>创建私有网络 · Substrate Developer Hub</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="当你创建好自定义链的 chain spec，并将其分发到所有参与者后，就可以开始启动该自定义链了。 在本节中，我们不再要求使用单一物理机或单一执行档。"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="创建私有网络 · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="当你创建好自定义链的 chain spec，并将其分发到所有参与者后，就可以开始启动该自定义链了。 在本节中，我们不再要求使用单一物理机或单一执行档。"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/past-seminars.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class=""><a href="/docs/zh-CN/" target="_self">知识库</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">进阶菜谱</a></li><li class=""><a href="https://substrate.dev/substrate-how-to-guides/" target="_self">How-to Guides</a></li><li class=""><a href="https://substrate.dev/rustdocs/" target="_self">Reference</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>简体中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/tutorials/start-a-private-network/customchain">English</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">协助翻译</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>启动私有网络</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">启动私有网络<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/start-a-private-network/">启动私有网络</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/start-a-private-network/alicebob">Alice 和 Bob 启动区块链</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/start-a-private-network/keygen">密钥生成</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/start-a-private-network/customspec">创建自定义的 chain spec</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/tutorials/start-a-private-network/customchain">创建私有网络</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">创建私有网络</h1></header><article><div><span><p>当你创建好自定义链的 chain spec，并将其分发到所有参与者后，就可以开始启动该自定义链了。 在本节中，我们不再要求使用单一物理机或单一执行档。</p>
+<h2><a class="anchor" aria-hidden="true" id="首位参与者启动节点"></a><a href="#首位参与者启动节点" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>首位参与者启动节点</h2>
+<p>你已完成所有必要的准备工作，现在准备好启动链。 此过程与之前以 Alice 和 Bob 的身份启动链的过程相似。 使用一个全新的路径来启动是非常重要的，若你想使用之前的路径，请清除该路径下的所有内容。</p>
+<p>首位参与者使用以下 flags 启动节点:</p>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># purge chain (only required for new/modified dev chain spec)</span>
+./target/release/node-template purge-chain --base-path /tmp/node01 --chain <span class="hljs-built_in">local</span> -y
+</code></pre>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># start node01</span>
+./target/release/node-template \
+  --base-path /tmp/node01 \
+  --chain ./customSpecRaw.json \
+  --port 30333 \
+  --ws-port 9945 \
+  --rpc-port 9933 \
+  --telemetry-url <span class="hljs-string">'wss://telemetry.polkadot.io/submit/ 0'</span> \
+  --validator \
+  --rpc-methods Unsafe \
+  --name MyNode01
+</code></pre>
+<p>以下是该启动流程与以 Alice 身份启动时的不同之处：</p>
+<ul>
+<li><code>--alice</code> 我们省略了该 flag。 但很快我们就会通过 RPC 将我们自己的密钥加进密钥库中。</li>
+<li><code>--chain</code> 该 flag 选项已更改，以使用我们自定义的 chain spec。</li>
+<li><code>--name</code> 添加了该 flag。 让你可在 telemetry 界面给该节点命名。</li>
+<li><code>--rpc-methods Unsafe</code> 加了这个可选的 flag。 顾名思义，在生产环境中使用该 flag 并不安全，但它可让本教程专注于当前主旨。</li>
+</ul>
+<p>你应该看到控制台输出如下内容：</p>
+<pre><code class="hljs css language-bash">2021-03-10 18:32:15  Substrate Node
+2021-03-10 18:32:15  ✌️  version 3.0.0-1c5b984-x86_64-linux-gnu
+2021-03-10 18:32:15  ❤️  by Substrate DevHub &lt;https://github.com/substrate-developer-hub&gt;, 2017-2021
+2021-03-10 18:32:15  📋 Chain specification: Local Testnet
+2021-03-10 18:32:15  🏷 Node name: MyNode01
+2021-03-10 18:32:15  👤 Role: AUTHORITY
+2021-03-10 18:32:15  💾 Database: RocksDb at /tmp/node01/chains/local_testnet/db
+2021-03-10 18:32:15  ⛓  Native runtime: node-template-100 (node-template-1.tx1.au1)
+2021-03-10 18:32:16  🔨 Initializing Genesis block/state (state: 0xea47…9ba8, header-hash: 0x9d07…7cce)
+2021-03-10 18:32:16  👴 Loading GRANDPA authority <span class="hljs-built_in">set</span> from genesis on what appears to be first startup.
+2021-03-10 18:32:16  ⏱  Loaded block-time = 6000 milliseconds from genesis on first-launch
+2021-03-10 18:32:16  Using default protocol ID <span class="hljs-string">"sup"</span> because none is configured <span class="hljs-keyword">in</span> the chain specs
+2021-03-10 18:32:16  🏷 Local node identity is: 12D3KooWJvVUoAa7R8gjCSQ45x69Ahh3HcdVSH1dvpcA52vKawHL
+2021-03-10 18:32:16  📦 Highest known block at <span class="hljs-comment">#0</span>
+2021-03-10 18:32:16  〽️ Prometheus server started at 127.0.0.1:9615
+2021-03-10 18:32:16  Listening <span class="hljs-keyword">for</span> new connections on 127.0.0.1:9944.
+2021-03-10 18:32:21  💤 Idle (0 peers), best: <span class="hljs-comment">#0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 0 ⬆ 0</span>
+2021-03-10 18:32:26  💤 Idle (0 peers), best: <span class="hljs-comment">#0 (0x9d07…7cce), finalized #0 (0x9d07…7cce), ⬇ 0 ⬆ 0</span>
+</code></pre>
+<blockquote>
+<p>Here you must take note of the <strong>node identity</strong>: <code>12D3KooWJvVUoAa7R8gjCSQ45x69Ahh3HcdVSH1dvpcA52vKawHL</code> and the <strong>IP address</strong> <code>127.0.0.1</code> and p2p port <code>--port = 30333</code>. These values are for this specific example, but for your node, they will be different and <strong>required</strong> for other nodes to directly connect to it (without a bootnode in the chain spec, as we removed in the flags before)</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="将密钥添加到密钥库"></a><a href="#将密钥添加到密钥库" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>将密钥添加到密钥库</h2>
+<p>一旦节点开始运行，你会再次发现没有区块生成。 此时，你应该将你的密钥加进密钥库里。 請注意你需要在网络中的每一个节点都完成这些步骤。 每个节点都需要添加两种类型的密钥：Aura 和 GRANDPA 密钥。 Aura keys are necessary for <a href="https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#author">block <em>production</em></a>; GRANDPA keys are necessary for <a href="https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#finality">block <em>finalization</em></a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="选项-1：使用-polkadot-js-app-ui"></a><a href="#选项-1：使用-polkadot-js-app-ui" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>选项 1：使用 Polkadot-JS App UI</h3>
+<p>你可以使用 Apps UI 将你的密钥加进密钥库内。 Navigate to &quot;Developer --&gt; RPC Call&quot;. Choose &quot;author&quot; and &quot;insertKey&quot;. 空白处如下填写：</p>
+<p><img src="/docs/assets/tutorials/private-network/private-network-apps-insert-key-aura.png" alt="用 Apps 添加 Aura 密鈅"></p>
+<pre><code class="hljs">keytype<span class="token punctuation">:</span> aura
+suri<span class="token punctuation">:</span> <span class="token operator">&lt;</span>your mnemonic phrase<span class="token operator">></span> <span class="token punctuation">(</span>eg<span class="token punctuation">.</span> clip organ olive upper oak void inject side suit toilet stick narrow<span class="token punctuation">)</span>
+publicKey<span class="token punctuation">:</span> <span class="token operator">&lt;</span>your raw sr25519 key<span class="token operator">></span> <span class="token punctuation">(</span>eg<span class="token punctuation">.</span> <span class="token number">0x9effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e</span><span class="token punctuation">)</span>
+</code></pre>
+<blockquote>
+<p>若密钥是由 Apps UI 生成的，你将不会知道其原始公钥。 In this case you may use your SS58 address (<code>5FfBQ3kwXrbdyoqLPvcXRp7ikWydXawpNs2Ceu3WwFdhZ8W4</code>) instead.</p>
+</blockquote>
+<p>现在，你已成功把 <a href="https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#aura-aka-authority-round"><strong>Aura</strong></a> 密钥加到密钥库里。 你可以重复以上步骤来加 <a href="https://substrate.dev/docs/en/knowledgebase/getting-started/glossary#grandpa"><strong>GRANDPA</strong></a> 密钥 ( <strong>ed25519</strong> 密钥)</p>
+<p><img src="/docs/assets/tutorials/private-network/private-network-apps-insert-key-gran.png" alt="用 Apps 添加 GRANDPA 密鈅"></p>
+<pre><code class="hljs">keytype<span class="token punctuation">:</span> gran
+suri<span class="token punctuation">:</span> <span class="token operator">&lt;</span>your mnemonic phrase<span class="token operator">></span> <span class="token punctuation">(</span>eg<span class="token punctuation">.</span> clip organ olive upper oak void inject side suit toilet stick narrow<span class="token punctuation">)</span>
+publicKey<span class="token punctuation">:</span> <span class="token operator">&lt;</span>your raw ed25519 key<span class="token operator">></span> <span class="token punctuation">(</span>eg<span class="token punctuation">.</span> <span class="token number">0xb48004c6e1625282313b07d1c9950935e86894a2e4f21fb1ffee9854d180c781</span><span class="token punctuation">)</span>
+</code></pre>
+<blockquote>
+<p>若密钥是由 Apps UI 生成的，你将不会知道其原始公钥。 In this case you may use your SS58 address (<code>5G9NWJ5P9uk7am24yCKeLZJqXWW6hjuMyRJDmw4ofqxG8Js2</code>) instead.</p>
+</blockquote>
+<blockquote>
+<p>If you are following these steps for the <em>second</em> node in the network, you must connect the UI to the second node before inserting the keys.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="选项-2：使用-curl"></a><a href="#选项-2：使用-curl" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>选项 2：使用 <code>curl</code></h3>
+<p>你也可以在命令行中，通过 <a href="https://curl.haxx.se/"><code>curl</code></a> 命令添加密钥到密钥库里。 若你在云服务器上配置生产环境，这种方法可能更可取。</p>
+<p>因为在生产环境中，安全性是最重要的，所以必须采取一切可能的预防措施。 这意味着在不要在任何地方留下密钥的痕迹，比如在终端的历史记录中。 创建一个文件，用于定义 <code>curl</code> 请求的内容：</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
+  <span class="hljs-attr">"id"</span>:<span class="hljs-number">1</span>,
+  <span class="hljs-attr">"method"</span>:<span class="hljs-string">"author_insertKey"</span>,
+  <span class="hljs-attr">"params"</span>: [
+    <span class="hljs-string">"&lt;aura/gran&gt;"</span>,
+    <span class="hljs-string">"&lt;mnemonic phrase&gt;"</span>,
+    <span class="hljs-string">"&lt;public key&gt;"</span>
+  ]
+}
+</code></pre>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># Submit a new key via RPC, connect to where your `rpc-port` is listening</span>
+curl http://localhost:9933 -H <span class="hljs-string">"Content-Type:application/json;charset=utf-8"</span> -d <span class="hljs-string">"@/path/to/file"</span>
+</code></pre>
+<p>如果命令和参数输入正确，则节点将返回如下的 JSON 响应：</p>
+<pre><code class="hljs css language-json">{ <span class="hljs-attr">"jsonrpc"</span>: <span class="hljs-string">"2.0"</span>, <span class="hljs-attr">"result"</span>: <span class="hljs-literal">null</span>, <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span> }
+</code></pre>
+<p>谨记完成时删除包含密钥的文件。</p>
+<h3><a class="anchor" aria-hidden="true" id="option-3-use-the-key-command"></a><a href="#option-3-use-the-key-command" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Option 3: Use the <code>key</code> command</h3>
+<p>Alternatively, you can insert a key saved to a local file using the <code>key</code> command:</p>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># Insert the key from /path/to/key/file into the keystore</span>
+<span class="hljs-comment"># for &lt;aura&gt; key type, default &lt;Sr25519&gt; crypto scheme is applied</span>
+./target/release/node-template key insert --base-path /tmp/node01 --chain <span class="hljs-built_in">local</span> --key-type aura  --suri /path/to/key/file
+
+<span class="hljs-comment"># for &lt;gran&gt; key type, need to specify &lt;Ed25519&gt; crypto scheme!</span>
+./target/release/node-template key insert --base-path /tmp/node01 --chain <span class="hljs-built_in">local</span> --key-type gran  --scheme Ed25519 --suri /path/to/key/file
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="verify-keys-in-the-keystore-optional"></a><a href="#verify-keys-in-the-keystore-optional" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Verify Keys in the Keystore (Optional)</h3>
+<p>Optionally, If you would like to check that your keys are now loaded, you can view the keystore files that should now exists for your <code>node01</code>. These are found in the following (default example) location:</p>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># The path stems from `--base-path` and ID from `chain_spec.rs` ID field.</span>
+<span class="hljs-comment"># Keys are then in `chains/&lt;chain ID&gt;/keystore :</span>
+ls /tmp/node01/chains/local_testnet/keystore
+</code></pre>
+<pre><code class="hljs css language-bash"><span class="hljs-comment">## list of keystore files:</span>
+617572619effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e
+6772616eb48004c6e1625282313b07d1c9950935e86894a2e4f21fb1ffee9854d180c781
+
+<span class="hljs-comment"># read a keystore file (our demo seed 1 was used)</span>
+cat /tmp/node01/chains/local_testnet/keystore/617572619effc1668ca381c242885516ec9fa2b19c67b6684c02a8a3237b6862e5c8cd7e
+<span class="hljs-string">"clip organ olive upper oak void inject side suit toilet stick narrow"</span>
+</code></pre>
+<p>Notice there are two keystores, as expected as we added two keys to our node. This example used <a href="keygen#pair-1">pair 1</a> from the well known seeds here, and will use <a href="keygen#pair-2">pair 2</a> for our next node, where your keys may differ.</p>
+<!-- TODO: update below with example of successful use (not working for me at time of writing) -->
+<!--
+You can also set a non-standard keystore file for your node with the flags:
+  keystore-path <PATH> - Specify custom keystore path
+  keystore-uri <keystore-uri> - Specify custom URIs to connect to for keystore-services
+-->
+<h2><a class="anchor" aria-hidden="true" id="其他参与者加入"></a><a href="#其他参与者加入" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>其他参与者加入</h2>
+<p>Subsequent validators can now join the network. This can be done by specifying the <code>--bootnodes</code> parameter as Bob did previously.</p>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># purge chain (only required for new/modified dev chain spec)</span>
+./target/release/node-template purge-chain --base-path /tmp/node02 --chain <span class="hljs-built_in">local</span> -y
+
+<span class="hljs-comment"># start node02</span>
+./target/release/node-template \
+  --base-path /tmp/node02 \
+  --chain ./customSpecRaw.json \
+  --port 30334 \
+  --ws-port 9946 \
+  --rpc-port 9934 \
+  --telemetry-url <span class="hljs-string">'wss://telemetry.polkadot.io/submit/ 0'</span> \
+  --validator \
+  --rpc-methods Unsafe \
+  --name MyNode02 \
+  --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/12D3KooWAvdwXzjmRpkHpz8PzUTaX1o23SdpgAWVyTGMSQ68QXK6
+  <span class="hljs-comment"># you MUST fill the correct info in the line above:</span>
+  <span class="hljs-comment"># --bootnodes /ip4/&lt;IP Address&gt;/tcp/&lt;p2p Port&gt;/p2p/&lt;Peer ID&gt;</span>
+</code></pre>
+<blockquote>
+<p>If you didn't set the correct node ID gathered from another running with the same chain spec, but only the right IP - you will get errors of the form: <code>💔 The bootnode you want to connect to at ... provided a different peer ID than the one you expect: ...</code></p>
+</blockquote>
+<p>As before, we specify another <code>base-path</code>, give it another <code>name</code>, and also specify this node as a <code>validator</code>.</p>
+<blockquote>
+<p><strong>Block production</strong>: Now you <em>must</em> also set the authoring keys in this node, just as we did <a href="#add-keys-to-keystore">for the first node</a>. Note that you will need to communicate with your node on the correct <code>ws-port</code> (so setting the app UI and submitting <code>curl</code> to the right port is critical) A node will not be able to produce blocks if it has not added its Aura key!</p>
+<p><strong>Block finalization</strong>: This can <em>only</em> happen if more than two-thirds of the validators have added their GRANDPA keys to their keystores. Since this network was configured with two validators (in the chain spec), block finalization can occur after the second node has added its keys (i.e. 50% &lt; 66% &lt; 100%).</p>
+</blockquote>
+<blockquote>
+<p><strong>Reminder:</strong> All validators must be using <em>identical chain specifications</em> in order to peer. 你应当看到相同的创世块和状态根哈希。</p>
+</blockquote>
+<p>Once the second node is running <em>and</em> it has an authoring key, you should see both nodes reporting block authoring:</p>
+<pre><code class="hljs css language-bash">2021-03-18 16:43:10  Substrate Node
+2021-03-18 16:43:10  ✌️  version 3.0.0-c528fd2-x86_64-linux-gnu
+2021-03-18 16:43:10  ❤️  by Substrate DevHub &lt;https://github.com/substrate-developer-hub&gt;, 2017-2021
+2021-03-18 16:43:10  📋 Chain specification: Local Testnet
+2021-03-18 16:43:10  🏷 Node name: MyNode02
+2021-03-18 16:43:10  👤 Role: AUTHORITY
+2021-03-18 16:43:10  💾 Database: RocksDb at /tmp/node02/chains/local_testnet/db
+2021-03-18 16:43:10  ⛓  Native runtime: node-template-100 (node-template-1.tx1.au1)
+2021-03-18 16:43:10  Using default protocol ID <span class="hljs-string">"sup"</span> because none is configured <span class="hljs-keyword">in</span> the chain specs
+2021-03-18 16:43:10  🏷 Local node identity is: 12D3KooWDfpXmPtsvLCFTh4mKybYi6MvDMDiUrnRDcGZiSTR2GHp
+2021-03-18 16:43:10  📦 Highest known block at <span class="hljs-comment">#1</span>
+2021-03-18 16:43:10  Listening <span class="hljs-keyword">for</span> new connections on 127.0.0.1:9946.
+2021-03-18 16:43:11  🔍 Discovered new external address <span class="hljs-keyword">for</span> our node: /ip4/127.0.0.1/tcp/30334/p2p/12D3KooWDfpXmPtsvLCFTh4mKybYi6MvDMDiUrnRDcGZiSTR2GHp
+2021-03-18 16:43:12  🙌 Starting consensus session on top of parent 0x700fda8b9c7574553eccc8acc72e2dec59e40711e743223d67c3e5b57e1f76ef
+2021-03-18 16:43:12  ♻️  Reorg on <span class="hljs-comment">#1,0x700f…76ef to #2,0xe111…c084, common ancestor #0,0x2776…8ba7</span>
+2021-03-18 16:43:12  ✨ Imported <span class="hljs-comment">#2 (0xe111…c084)</span>
+2021-03-18 16:43:12  Timeout fired waiting <span class="hljs-keyword">for</span> transaction pool at block <span class="hljs-comment">#1. Proceeding with production.</span>
+2021-03-18 16:43:12  🎁 Prepared block <span class="hljs-keyword">for</span> proposing at 2 [<span class="hljs-built_in">hash</span>: 0xc590a846ff17871ffdcdd670914321f667cd6ad0b898bfb6d25f7dd68fff478b; parent_hash: 0x700f…76ef; extrinsics (1): [0x34d6…ed56]]
+2021-03-18 16:43:12  🔖 Pre-sealed block <span class="hljs-keyword">for</span> proposal at 2. Hash now 0x38b29b343d8f6ef56286a2f3aad20c82ae75d5bb0698569dd06fca654dae6fa6, previously 0xc590a846ff17871ffdcdd670914321f667cd6ad0b898bfb6d25f7dd68fff478b.
+2021-03-18 16:43:12  ✨ Imported <span class="hljs-comment">#2 (0x38b2…6fa6)</span>
+2021-03-18 16:43:15  💤 Idle (1 peers), best: <span class="hljs-comment">#2 (0xe111…c084), finalized #0 (0x2776…8ba7), ⬇ 1.4kiB/s ⬆ 1.4kiB/s</span>
+</code></pre>
+<p>The final lines shows that your node has peered with another (<strong><code>1 peers</code></strong>), and they have produced a block (<strong><code>best: #2 (0xe111…c084)</code></strong>)!</p>
+<blockquote>
+<p>But do notice that even after you add the GRANDPA key for the second node no block finalization has happened (<strong><code>finalized #0 (0x2776…8ba7)</code></strong>). <strong>Substrate nodes require a restart after inserting a GRANDPA key.</strong> Kill your nodes and restart them with the same commands you used previously. Now blocks should be finalized!</p>
+</blockquote>
+<pre><code class="hljs css language-bash">...
+2021-03-18 16:47:47  💤 Idle (1 peers), best: <span class="hljs-comment">#46 (0xfaf1…02f8), finalized #44 (0x9b08…09ea), ⬇ 1.3kiB/s ⬆ 1.3kiB/s</span>
+2021-03-18 16:47:48  ✨ Imported <span class="hljs-comment">#47 (0x7375…aa51)</span>
+2021-03-18 16:47:52  💤 Idle (1 peers), best: <span class="hljs-comment">#47 (0x7375…aa51), finalized #45 (0x7c13…7575), ⬇ 0.8kiB/s ⬆ 0.6kiB/s</span>
+2021-03-18 16:47:54  🙌 Starting consensus session on top of parent 0x73757e1773e6d86a9ef4a3ec9c3a55eef04345705c0a51f04445af657184aa51
+2021-03-18 16:47:54  🎁 Prepared block <span class="hljs-keyword">for</span> proposing at 48 [<span class="hljs-built_in">hash</span>: 0xd9ef428ccd38426a47a9eca181b508630e327b35ef4c468103ce59fa861e60f6; parent_hash: 0x7375…aa51; extrinsics (1): [0x16f0…dbe6]]
+2021-03-18 16:47:54  🔖 Pre-sealed block <span class="hljs-keyword">for</span> proposal at 48. Hash now 0x23a93d8e6bbbcf9f36e61264cc3a48a426a7f1112ff48df76f0d55b52c181156, previously 0xd9ef428ccd38426a47a9eca181b508630e327b35ef4c468103ce59fa861e60f6.
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="您已完成本教程"></a><a href="#您已完成本教程" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>您已完成本教程</h2>
+<p>恭喜你！ You've started your own blockchain!</p>
+<p>In this tutorial you've learned to generate your own keypairs, create a custom chain spec that uses those keypairs, and start a private network based on your custom chain spec.</p>
+<h3><a class="anchor" aria-hidden="true" id="solutions-and-helpers"></a><a href="#solutions-and-helpers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Solutions and Helpers</h3>
+<p>If you would like examples of correct JSON keystore <code>curl</code> files with a known working chainspec, see the <a href="https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/private-chain-v3">solution</a>, you can use the extra files with your already cloned and compiled node, no need to start from scratch.</p>
+<!-- TODO link to the followup tutorial about starting a 3 node network using the demo substrate node
+Details in https://github.com/substrate-developer-hub/tutorials/issues/16 -->
+<h3><a class="anchor" aria-hidden="true" id="进一步学习"></a><a href="#进一步学习" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>进一步学习</h3>
+<p>That big Wasm blob we encountered in the chain spec was necessary to enable forkless upgrades. Learn more about how the <a href="../../knowledgebase/advanced/executor">executor</a> uses on-chain Wasm.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/tutorials/start-a-private-network/customspec"><span class="arrow-prev">← </span><span>创建自定义的 chain spec</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#首位参与者启动节点">首位参与者启动节点</a></li><li><a href="#将密钥添加到密钥库">将密钥添加到密钥库</a><ul class="toc-headings"><li><a href="#选项-1：使用-polkadot-js-app-ui">选项 1：使用 Polkadot-JS App UI</a></li><li><a href="#选项-2：使用-curl">选项 2：使用 <code>curl</code></a></li><li><a href="#option-3-use-the-key-command">Option 3: Use the <code>key</code> command</a></li><li><a href="#verify-keys-in-the-keystore-optional">Verify Keys in the Keystore (Optional)</a></li></ul></li><li><a href="#其他参与者加入">其他参与者加入</a></li><li><a href="#您已完成本教程">您已完成本教程</a><ul class="toc-headings"><li><a href="#solutions-and-helpers">Solutions and Helpers</a></li><li><a href="#进一步学习">进一步学习</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/substrate-how-to-guides">How-to Guides</a><a href="https://substrate.dev/rustdocs">API 文档</a><a href="https://playground.substrate.dev/">Playground</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://matrix.to/#/#substrate-technical:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
+                var cookieSettings = document.getElementById('cookie-settings');
+                cookieSettings.onclick = function() {
+                  return klaro.show();
+                };
+              </script></a></div></section><section class="copyright">Copyright © 2021 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-CN"]}
+              });
+            </script></body></html>

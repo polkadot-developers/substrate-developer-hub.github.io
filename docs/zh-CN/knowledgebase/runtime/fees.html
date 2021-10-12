@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Transaction Fees and Weights · Substrate Developer Hub</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="当出块人构造一个块时，必须要限制该区块的执行时间。 区块主体由一系列[extrinsics](../learn-substrate/extrinsics)组成。 由于执行不同extrinsic所需的资源可能有所不同，Substrate提供了一种称为“权重”的灵活机制，来代表执行某extrinsic所需的_时间_。 为了经济上的可持续发展并限制信息泛滥，某些交易（主要是用户发送的交易）在执行之前需要付费。"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="Transaction Fees and Weights · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="当出块人构造一个块时，必须要限制该区块的执行时间。 区块主体由一系列[extrinsics](../learn-substrate/extrinsics)组成。 由于执行不同extrinsic所需的资源可能有所不同，Substrate提供了一种称为“权重”的灵活机制，来代表执行某extrinsic所需的_时间_。 为了经济上的可持续发展并限制信息泛滥，某些交易（主要是用户发送的交易）在执行之前需要付费。"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/past-seminars.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class="siteNavGroupActive"><a href="/docs/zh-CN/" target="_self">知识库</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">进阶菜谱</a></li><li class=""><a href="https://substrate.dev/substrate-how-to-guides/" target="_self">How-to Guides</a></li><li class=""><a href="https://substrate.dev/rustdocs/" target="_self">Reference</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>简体中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/knowledgebase/runtime/fees">English</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">协助翻译</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Runtime 开发</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">开始<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/">总览</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/architecture">Architecture</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/">安装</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/windows-users">在 Windows 系统开始</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/glossary">词汇表</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Key Concepts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/">Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/extrinsics">Extrinsics</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/account-abstractions">账户摘要</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/tx-pool">交易池</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/session-keys">会话密钥</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/weight">Transaction Weights</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/off-chain-features">链下功能</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Runtime 开发<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/pallets">Pallets</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/frame">FRAME</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/macros">宏</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/metadata">元数据</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/storage">Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/origin">来源 (Origin)</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/execution">Execution</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/events">Events</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/errors">Errors</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/fees">Transaction Fees and Weights</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/benchmarking">Benchmarking</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/debugging">调试</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/tests">Tests</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/randomness">链上随机生成</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/upgrades">Upgrades</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">智能合约<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/">总览</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/contracts-pallet">合约 (Contracts) 模块</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/evm-pallet">EVM 模块</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/faq">F.A.Q.</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">整合<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/polkadot-js">Polkadot-JS</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/libraries">客户端库</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/chain-spec">链规范</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/subkey">Subkey</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/memory-profiling">内存分析</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/try-runtime">Try Runtime</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">进阶<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/account-info">Account Information</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/codec">SCALE 编解码器</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/consensus">共识机制</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/block-import">区块导入过程</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/executor">Runtime Executor</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/cryptography">密码学</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/storage">存储</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/ss58-address-format">SS58 地址格式</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/no-hash-collections">Hash Collections</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">贡献<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/contribute/help-translate">协助翻译</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Transaction Fees and Weights</h1></header><article><div><span><p>当出块人构造一个块时，必须要限制该区块的执行时间。 区块主体由一系列<a href="../learn-substrate/extrinsics">extrinsics</a>组成。 由于执行不同extrinsic所需的资源可能有所不同，Substrate提供了一种称为“权重”的灵活机制，来代表执行某extrinsic所需的<em>时间</em>。 为了经济上的可持续发展并限制信息泛滥，某些交易（主要是用户发送的交易）在执行之前需要付费。</p>
+<p>尽管extrinsic权重只是向发送方收取费用的其中一个组成部分，但我们建议在阅读本文档之前先了解<a href="../learn-substrate/weight">权重系统</a>一章。</p>
+<h2><a class="anchor" aria-hidden="true" id="费用计算"></a><a href="#费用计算" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>费用计算</h2>
+<p>函数调用的最终费用，是通过使用可调用函数的权重和一系列的可配置参数来计算的。</p>
+<h3><a class="anchor" aria-hidden="true" id="打包费用"></a><a href="#打包费用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>打包费用</h3>
+<p>交易费用由两部分组成：</p>
+<ul>
+<li><code>length_fee</code>: 每字节的费用乘以编码后的extrinsic长度（以字节为单位）。 See &lt;a href=&quot;https://substrate.dev/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.<code>TransactionByteFee</code></a>。</li>
+<li><code>weight_fee</code>: 基于extrinsic权重的费用，是一个接收两个入参的函数。 第一个参数为 <code>ExtrinsicBaseWeight</code>，它是在runtime中声明的，且应用于所有的extrinsics。 基本权重涵盖了如签名验证之类的不可变开销。 第二个参数为可供灵活使用的<code>#[weight]</code>注释，它用于标记extrinsic的复杂性。 In order to convert the weight to <code>Currency</code>, the runtime must define a <a href="https://substrate.dev/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.WeightToFee"><code>WeightToFee</code></a> struct that implements a conversion function, &lt;a href=&quot;<a href="https://substrate.dev/rustdocs/latest/sp_runtime/traits/trait">https://substrate.dev/rustdocs/latest/sp_runtime/traits/trait</a>.<a href="https://substrate.dev/rustdocs/v2.0.0/sp_runtime/traits/trait.Convert.html"><code>Convert&lt;Weight,Balance&gt;</code></a>。</li>
+</ul>
+<p>基于上述情况，一个可调用函数的最终费用为：</p>
+<pre><code class="hljs">fee <span class="token operator">=</span>
+  <span class="token function">len</span><span class="token punctuation">(</span>tx<span class="token punctuation">)</span> <span class="token operator">*</span> length_fee <span class="token operator">+</span>
+  <span class="token class-name">WeightToFee</span><span class="token punctuation">(</span>weight<span class="token punctuation">)</span>
+</code></pre>
+<p>这个 <code>费用</code>称之为“打包费”。 请注意，打包费是在实际调用 extrinsic <em>之前</em> 向发送方收取的，这样即使 extrinsic 执行失败，费用仍会被收取。 如果帐户中的余额不足以支付费用并保持激活 (即帐户最低余额要求及打包费总和)，则不会扣除任何费用而交易也不会被执行。 后一种情况应该很少见，因为交易队列和区块构造逻辑会在向块中添加 extrinsic 之前就执行相关检查。</p>
+<h3><a class="anchor" aria-hidden="true" id="费用加乘因素"></a><a href="#费用加乘因素" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>费用加乘因素</h3>
+<p>上述公式给出的费用对于相同的输入始终是相同的。 However, weight can be dynamic and, based on how &lt;a href=&quot;<a href="https://substrate.dev/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.最终费用可以包含一定程度的可变性">https://substrate.dev/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.最终费用可以包含一定程度的可变性</a>。 为了满足这个要求，Substrate 提供了：</p>
+<ul>
+<li><a href="https://substrate.dev/rustdocs/latest/pallet_transaction_payment/pallet/type.NextFeeMultiplier.html"><code>NextFeeMultiplier</code></a>: A configurable multiplier stored in the Transaction Payment pallet.</li>
+<li><a href="https://substrate.dev/rustdocs/latest/pallet_transaction_payment/pallet/trait.Config.html#associatedtype.FeeMultiplierUpdate"><code>FeeMultiplierUpdate</code></a>： Runtime 的可配置参数，用于描述该乘数的变化方式。</li>
+</ul>
+<p><code>NextFeeMultiplier</code> 的类型为 <code>Fixed64</code>，它可以表示一个固定的浮点数。 因此根据上述的打包费公式，最终版本将为：</p>
+<pre><code class="hljs">fee <span class="token operator">=</span>
+  <span class="token function">len</span><span class="token punctuation">(</span>tx<span class="token punctuation">)</span> <span class="token operator">*</span> length_fee <span class="token operator">+</span>
+  <span class="token class-name">WeightToFee</span><span class="token punctuation">(</span>weight<span class="token punctuation">)</span>
+
+final_fee <span class="token operator">=</span> fee <span class="token operator">*</span> <span class="token class-name">NextFeeMultiplier</span>
+</code></pre>
+<p>更新 <code>NextFeeMultiplier</code> 与更新 <code>WeightToFee</code> 具有类似的效果。 The <code>FeeMultiplierUpdate</code> associated type in Transaction Payment pallet is defined as a <code>Convert&lt;Fixed64, Fixed64&gt;</code>, which should be read:</p>
+<blockquote>
+<p>“它接收前一个乘数并返回下一个乘数”。</p>
+</blockquote>
+<p>默认更新函数受Polkadot网络的启发，并实现了目标调整，其中定义了区块权重的目标饱和度。 如果前一个区块更加饱和，则费用会略有增加。 同样，如果前一个区块的交易量少于目标交易量，则费用将会减少一小部分。 More information about this can be found in the <a href="https://w3f-research.readthedocs.io/en/latest/polkadot/overview/2-token-economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits">Web3 research page</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="附加费用："></a><a href="#附加费用：" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>附加费用：</h2>
+<p>打包费必须在extrinsic执行之前是可计算的，因此只能代表固定的逻辑。 有些交易则需要使用其他策略来限制资源的使用。 例如：</p>
+<ul>
+<li>保证金：保证金是用于在某些链上事件触发后，要么退还要么罚没的一种费用。 例如，runtime开发人员可能会希望实现一种用于投票的保证金机制。在这个情景下，保证金会在投票结束之后正常退还。但如果投票人尝试作恶，则保证金会在投票结束后被罚没。</li>
+<li>押金：押金是可被返还的费用。 例如，用户可能会被要求支付押金以执行占用存储的操作； 如果后续操作释放了该存储空间，则用户的押金将被返还。</li>
+<li>销毁：交易可能会基于其逻辑在执行中销毁资金。 例如，如果交易的结果是创建了新的存储条目，从而增加了链上状态的占用空间，则交易可能会因此销毁请求方发送的资金。</li>
+<li>限制：runtime开发人员可以自由地对某些操作强制执行恒定的或可配置的限制。 例如，默认的Staking pallet仅允许1个提名人提名16个验证人，以限制验证人选举过程的复杂性。</li>
+</ul>
+<p>重点要注意，如果在链中查询交易费用，它只会返回打包费。</p>
+<h2><a class="anchor" aria-hidden="true" id="默认权重注释"></a><a href="#默认权重注释" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>默认权重注释</h2>
+<p>Substrate中的所有可调用函数必须要指定权重。 可通过使用标注系统，将数据库读/写权重的固定值和基于基准测试的固定值组合在一起。 最基本的示例如下所示：</p>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[weight = 100_000]</span>
+<span class="token keyword">fn</span> <span class="token function-definition function">my_dispatchable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>请注意，<code>ExtrinsicBaseWeight</code> 会被自动加到权重中，来纳入一个空的 extrinsic 包含到区块内的成本。</p>
+<h3><a class="anchor" aria-hidden="true" id="把数据库访问参数化"></a><a href="#把数据库访问参数化" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>把数据库访问参数化</h3>
+<p>为了使权重标注独立于已部署的数据库后端，我们把它们定义为常量，在标注中用于表示可调用函数的数据库使用情况：</p>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[weight = T::DbWeight::get().reads_writes(1, 2) + 20_000]</span>
+<span class="token keyword">fn</span> <span class="token function-definition function">my_dispatchable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>可调用函数增加了20,000权重，包含一个数据库读取和两个数据库写入操作，以及其他一些操作。 通常我们所说的一次数据库访问，就是指对在 <code>decl_storage!</code> 代码块中声明的值的一次访问。 然而，由于某个值被访问了一次后就会被缓存，而再次访问则不会导致重复的数据库操作。因此，只有第一次访问会被计入权重。 这意味着：</p>
+<ul>
+<li>多次读取相同的值只计算一次读取权重。</li>
+<li>多次写入相同的值只计算一次写入权重。</li>
+<li>多次读取相同值并随后对该值进行写入，只计算一次读取和一次写入的权重。</li>
+<li>一次写入并随后跟着一次读取，只计算一次写入的权重。</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="可调用函数的类"></a><a href="#可调用函数的类" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>可调用函数的类</h3>
+<p>可调用函数可分成三个类：<code>Normal</code>, <code>Operational</code>, 和<code>Mandatory</code>。 如果未在权重标注中额外定义，则可调用函数默认为<code>Normal</code>。 开发人员可以指定可调用函数使用另一个类，例如：</p>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[weight = (100_000, DispatchClass::Operational)]</span>
+<span class="token keyword">fn</span> <span class="token function-definition function">my_dispatchable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>此元组形式的标注还可以指定最后一个参数，该参数会确定是否向用户收取基于所标注的权重的费用。 除非另有定义，否则默认为<code>Pays::Yes</code> ：</p>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[weight = (100_000, DispatchClass::Normal, Pays::No)]</span>
+<span class="token keyword">fn</span> <span class="token function-definition function">my_dispatchable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="normal-类的可调用函数"></a><a href="#normal-类的可调用函数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Normal 类的可调用函数</h4>
+<p>此类的可调用函数表示常规的用户触发交易。 These types of dispatches may only consume a portion of a block's total weight limit; this portion can be found by examining the <a href="https://substrate.dev/rustdocs/latest/frame_system/limits/struct.BlockLength.html#method.max_with_normal_ratio"><code>AvailableBlockRatio</code></a>. Normal dispatches are sent to the <a href="../learn-substrate/tx-pool">transaction pool</a>.</p>
+<h4><a class="anchor" aria-hidden="true" id="operational-类的可调用函数"></a><a href="#operational-类的可调用函数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Operational 类的可调用函数</h4>
+<p>与 normal 类的可调用函数 <em>使用了</em> 网络功能相反，operational 类的可调用函数 <em>提供了</em> 联网功能。 These types of dispatches may consume the entire weight limit of a block, which is to say that they are not bound by the <a href="https://substrate.dev/rustdocs/latest/frame_system/limits/struct.BlockLength.html#method.max_with_normal_ratio"><code>AvailableBlockRatio</code></a>. Dispatches in this class are given maximum priority and are exempt from paying the <code>length_fee</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="mandatory类的可调用函数"></a><a href="#mandatory类的可调用函数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Mandatory类的可调用函数</h4>
+<p>即使有可能会导致区块超出其权重上限，Mandatory 类的可调用函数也必然会被包含到区块里。 这种可调用函数类只能应用于<a href="../learn-substrate/extrinsics#Inherents">inherents</a>，且只能用在作为区块验证过程一部分的函数上。 由于这种类型的可调用函数始终会被包含到区块中，而与函数的权重无关，因此在函数的验证过程中，如何防止恶意验证程序滥用函数，以及保证构建出有效且权重不会太高的区块，显得至关重要。 通常可以通过确保操作始终非常轻，并且只能在一个块中被包含一次，来实现此目的。 为了使恶意的验证者更难以滥用这种类型的可调用函数，在返回错误的情况下，该可调用函数将不能被包含到区块当中去。 这种类型的可调用函数是为了这种假设而存在：允许创建一个超权重区块比禁止创建任何区块更好。</p>
+<h3><a class="anchor" aria-hidden="true" id="动态权重"></a><a href="#动态权重" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>动态权重</h3>
+<p>除固定权重和常量之外，在计算权重时还可把可调用函数的输入参数这个因素考虑进来。 这种权重应该是可以通过对输入参数进行简单运算而轻松得出的：</p>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[weight = FunctionOf(
+  |args: (&amp;Vec&lt;User>,)| args.0.len().saturating_mul(10_000),
+  DispatchClass::Normal,
+  Pays::Yes,
+)]</span>
+<span class="token keyword">fn</span> <span class="token function-definition function">handle_users</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> calls<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token class-name">User</span><span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Do something per user</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="调用后权重校正"></a><a href="#调用后权重校正" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>调用后权重校正</h2>
+<p>取决于最终执行逻辑，可调用函数实际消耗的权重有可能比调用前预估的要少。 权重校正的重要性在<a href="../learn-substrate/weight#post-dispatch-weight-correction">权重篇章</a>里已经解释得非常清楚。 为了校正权重，需在可调用函数中特殊声明一个返回类型，以返回其实际执行权重：</p>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[weight = 10_000 + 500_000_000]</span>
+<span class="token keyword">fn</span> <span class="token function-definition function">expensive_or_cheap</span><span class="token punctuation">(</span>input<span class="token punctuation">:</span> <span class="token keyword">u64</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">DispatchResultWithPostInfo</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> was_heavy <span class="token operator">=</span> <span class="token function">do_calculation</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>was_heavy<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// None means "no correction" from the weight annotation.</span>
+        <span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token class-name">None</span><span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Return the actual weight consumed.</span>
+        <span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token number">10_000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="自定义费用"></a><a href="#自定义费用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>自定义费用</h2>
+<p>也可通过调整自定义权重函数及打包费用函数的方式，来构建一个定制化的权重费用系统。</p>
+<h3><a class="anchor" aria-hidden="true" id="自定义权重"></a><a href="#自定义权重" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>自定义权重</h3>
+<p>除了使用上述默认的权重注释系统，您也可创建一种自定义的权重计算类型。 这种类型必须实现下列的 traits：</p>
+<ul>
+<li>[<code>WeighData&lt;T&gt;</code>]：用于确定可调用函数的权重。</li>
+<li>[<code>ClassifyDispatch&lt;T&gt;</code>]：用于确定可调用函数的类别。</li>
+<li>[<code>PaysFee&lt;T&gt;</code>]：用于确定是否由函数调用方来支付费用。</li>
+</ul>
+<p>接下来，Substrate 会将以上二个 traits 的输出信息绑定到 [<code>DispatchInfo</code>] 结构体中，并通过为所有 <code>Call</code> 变量和不透明的 extrinsic 类型实现 <code>GetDispatchInfo</code> trait 来提供以上信息。 This is used internally by the System and Executive pallets; you probably won't use it.</p>
+<p><code>ClassifyDispatch</code> 和 <code>WeightData</code> 都是基于泛型 <code>T</code> 的，这里T最终会解析为 可调用函数所有参数（除origin之外）的元组。 作为演示，我们将构建一个结构体来计算权重<code>m * len(args)</code>，其中 <code>m</code>是给定的乘数，而<code>args</code>则是可调用函数的所有参数串联组成的元组。 另外，如果交易的入参长度超过100个字节，则该交易的可调用函数类别被定为 <code>Operational</code>；如果该交易经编码后长度大于10个字节，则交易发送方将需要支付费用。</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">use</span> <span class="token namespace">coded<span class="token punctuation">::</span></span><span class="token class-name">Encode</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token namespace">sr_primitives<span class="token punctuation">::</span>weights<span class="token punctuation">::</span></span><span class="token punctuation">{</span><span class="token class-name">DispatchClass</span><span class="token punctuation">,</span> <span class="token class-name">ClassifyDispatch</span><span class="token punctuation">,</span> <span class="token class-name">WeightData</span><span class="token punctuation">}</span>
+
+<span class="token comment">// self.0 is the multiplier, `m`</span>
+<span class="token keyword">struct</span> <span class="token type-definition class-name">LenWeight</span><span class="token punctuation">(</span><span class="token keyword">u32</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// We don't quite know what T is. After all, different dispatches have different arguments, hence</span>
+<span class="token comment">// `T` will be different. All that we care about is that `T` is encodable. That is always true by</span>
+<span class="token comment">// definition. All dispatch arguments are encodable.</span>
+<span class="token keyword">impl</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Encode</span><span class="token operator">></span> <span class="token class-name">WeighData</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token keyword">for</span> <span class="token class-name">LenWeight</span> <span class="token punctuation">{</span>
+    <span class="token keyword">fn</span> <span class="token function-definition function">weigh_data</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">self</span><span class="token punctuation">,</span> target<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Weight</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> multiplier <span class="token operator">=</span> <span class="token keyword">self</span><span class="token punctuation">.</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> encoded_len <span class="token operator">=</span> target<span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">len</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token keyword">u32</span><span class="token punctuation">;</span>
+        multiplier <span class="token operator">*</span> encoded_len
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Encode</span><span class="token operator">></span> <span class="token class-name">ClassifyDispatch</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token keyword">for</span> <span class="token class-name">LenWeight</span> <span class="token punctuation">{</span>
+    <span class="token keyword">fn</span> <span class="token function-definition function">classify_dispatch</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">self</span><span class="token punctuation">,</span> target<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">DispatchClass</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> encoded_len <span class="token operator">=</span> target<span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">len</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token keyword">u32</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> encoded_len <span class="token operator">></span> <span class="token number">100</span> <span class="token punctuation">{</span>
+            <span class="token class-name">DispatchClass</span><span class="token punctuation">::</span><span class="token class-name">Operational</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token class-name">DispatchClass</span><span class="token punctuation">::</span><span class="token class-name">Normal</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Encode</span><span class="token operator">></span> <span class="token class-name">PaysFee</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">fn</span> <span class="token function-definition function">pays_fee</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">self</span><span class="token punctuation">,</span> target<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Pays</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> encoded_len <span class="token operator">=</span> target<span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">len</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token keyword">u32</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> encoded_len <span class="token operator">></span> <span class="token number">10</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Pays</span><span class="token punctuation">::</span><span class="token class-name">Yes</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Pays</span><span class="token punctuation">::</span><span class="token class-name">No</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>除了将入参类型定义成可编码的泛型以外，权重计算函数也可以强制指定接收的参数类型。 以下 <code>pallet-example</code> 提供了一个权重计算函数强制定义入参类型的示例。 请注意，在这种情况下，代码大致如下所示：</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">struct</span> <span class="token type-definition class-name">CustomWeight</span><span class="token punctuation">;</span>
+<span class="token keyword">impl</span> <span class="token class-name">WeighData</span><span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">u32</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token keyword">u64</span><span class="token punctuation">)</span><span class="token operator">></span> <span class="token keyword">for</span> <span class="token class-name">CustomWeight</span> <span class="token punctuation">{</span>
+    <span class="token keyword">fn</span> <span class="token function-definition function">weigh_data</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">self</span><span class="token punctuation">,</span> target<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token keyword">u32</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token keyword">u64</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Weight</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">...</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// impl `ClassifyDispatch&lt;(&amp;u32, &amp;u64)>` , `PaysFee&lt;(&amp;u32, &amp;u64)>`...</span>
+
+<span class="token comment">// example dispatchable:</span>
+<span class="token attribute attr-name">#[pallet::call]</span>
+<span class="token keyword">impl</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token attribute attr-name">#[pallet::weight(CustomWeight)]</span>
+    <span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function-definition function">foo</span><span class="token punctuation">(</span>origin<span class="token punctuation">:</span> <span class="token class-name">OriginFor</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span> a<span class="token punctuation">:</span> <span class="token keyword">u32</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token keyword">u64</span><span class="token punctuation">)</span>  <span class="token punctuation">-></span> <span class="token class-name">DispatchResult</span> <span class="token punctuation">{</span>
+        <span class="token function">ensure_signed</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">;</span>
+        <span class="token comment">// logic with a &amp; b...</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这意味着 <code>CustomWeight</code> 只能与带有特定签名 <code>(u32, u64)</code> 的可调用函数一起使用，而 <code>Lenweight</code> 则通用得多，因为它没有对 <code>&lt;T&gt;</code> 这个泛型作任何严格的假设。</p>
+<blockquote>
+<p>A full working example can be <a href="https://substrate.dev/rustdocs/latest/src/pallet_example/lib.rs.html#292-339">found in Substrate's example pallet</a></p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="自定义打包费用"></a><a href="#自定义打包费用" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>自定义打包费用</h3>
+<p>这是如何自定义打包费用的示例。 You must configure the appropriate associated types in the respective pallet.</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">use</span> <span class="token namespace">sr_primitives<span class="token punctuation">::</span></span><span class="token punctuation">{</span><span class="token namespace">traits<span class="token punctuation">::</span></span><span class="token class-name">Convert</span><span class="token punctuation">,</span> <span class="token namespace">weights<span class="token punctuation">::</span></span><span class="token class-name">Weight</span><span class="token punctuation">}</span>
+<span class="token comment">// Assume this is the balance type</span>
+<span class="token keyword">type</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token keyword">u64</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Assume we want all the weights to have a `100 + 2 * w` conversion to fees</span>
+<span class="token keyword">struct</span> <span class="token type-definition class-name">CustomWeightToFee</span><span class="token punctuation">;</span>
+<span class="token keyword">impl</span> <span class="token class-name">Convert</span><span class="token operator">&lt;</span><span class="token class-name">Weight</span><span class="token punctuation">,</span> <span class="token class-name">Balance</span><span class="token operator">></span> <span class="token keyword">for</span> <span class="token class-name">CustomWeightToFee</span> <span class="token punctuation">{</span>
+    <span class="token keyword">fn</span> <span class="token function-definition function">convert</span><span class="token punctuation">(</span>w<span class="token punctuation">:</span> <span class="token class-name">Weight</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Balance</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token class-name">Balance</span><span class="token punctuation">::</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> b <span class="token operator">=</span> <span class="token class-name">Balance</span><span class="token punctuation">::</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> w <span class="token operator">=</span> <span class="token class-name">Balance</span><span class="token punctuation">::</span><span class="token function">from</span><span class="token punctuation">(</span>w<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        a <span class="token operator">+</span> b <span class="token operator">*</span> w
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token macro property">parameter_types!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">ExtrinsicBaseWeight</span><span class="token punctuation">:</span> <span class="token class-name">Weight</span> <span class="token operator">=</span> <span class="token number">10_000_000</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token keyword">for</span> <span class="token class-name">Runtime</span> <span class="token punctuation">{</span>
+    <span class="token keyword">type</span> <span class="token class-name">ExtrinsicBaseWeight</span> <span class="token operator">=</span> <span class="token class-name">ExtrinsicBaseWeight</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token macro property">parameter_types!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">TransactionByteFee</span><span class="token punctuation">:</span> <span class="token class-name">Balance</span> <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span> <span class="token namespace">transaction_payment<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token punctuation">{</span>
+    <span class="token keyword">type</span> <span class="token class-name">TransactionByteFee</span> <span class="token operator">=</span> <span class="token class-name">TransactionByteFee</span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">WeightToFee</span> <span class="token operator">=</span> <span class="token class-name">CustomWeightToFee</span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">FeeMultiplierUpdate</span> <span class="token operator">=</span> <span class="token class-name">TargetedFeeAdjustment</span><span class="token operator">&lt;</span><span class="token class-name">TargetBlockFullness</span><span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">struct</span> <span class="token type-definition class-name">TargetedFeeAdjustment</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token namespace">sp_std<span class="token punctuation">::</span>marker<span class="token punctuation">::</span></span><span class="token class-name">PhantomData</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">impl</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Get</span><span class="token operator">&lt;</span><span class="token class-name">Perquintill</span><span class="token operator">>></span> <span class="token class-name">Convert</span><span class="token operator">&lt;</span><span class="token class-name">Fixed128</span><span class="token punctuation">,</span> <span class="token class-name">Fixed128</span><span class="token operator">></span> <span class="token keyword">for</span> <span class="token class-name">TargetedFeeAdjustment</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">fn</span> <span class="token function-definition function">convert</span><span class="token punctuation">(</span>multiplier<span class="token punctuation">:</span> <span class="token class-name">Fixed128</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Fixed128</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Don't change anything. Put any fee update info here.</span>
+        multiplier
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="后续步骤"></a><a href="#后续步骤" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>后续步骤</h2>
+<p>费用计算的全部逻辑都通过 <code>SignedExtension</code>封装在 <code>pallet-transaction-payment</code> 中。 While this pallet provides a high degree of flexibility, a user can opt to build their custom payment pallet drawing inspiration from Transaction Payment.</p>
+<p>Given now you know what Substrate weight system is, how it affect the transaction fee computation, and how to specify them for your dispatchables, the last question is how to find the right weights for your dispatchables. That is what <strong>Substrate Benchmarking</strong> is for. By writing benchmarking functions and running them, the system (<code>frame-benchmarking</code>) calls these functions repeatedly with different numerical parameters and empirically determine the weight functions for dispatchables in their worst case scenarios, within a certain limit. <a href="./benchmarking">Learn more here</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="进一步学习"></a><a href="#进一步学习" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>进一步学习</h3>
+<ul>
+<li>详尽的 <a href="../learn-substrate/weight">权重文档</a></li>
+<li><a href="https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs">Example pallet</a></li>
+<li><a href="https://substrate.dev/rustdocs/latest/sp_runtime/traits/trait.SignedExtension.html">SignedExtension</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="例子"></a><a href="#例子" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>例子</h3>
+<p>How-to Guides contains a section on Weights, and many example patterns of <a href="https://substrate.dev/substrate-how-to-guides/docs/weights/conditional-weight-struct">custom weights</a> and <a href="https://substrate.dev/substrate-how-to-guides/docs/weights/calculate-fees">calculating fees</a></p>
+<h3><a class="anchor" aria-hidden="true" id="参考文档"></a><a href="#参考文档" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文档</h3>
+<ul>
+<li><a href="https://w3f-research.readthedocs.io/en/latest/polkadot/overview/2-token-economics.html#relay-chain-transaction-fees-and-per-block-transaction-limits">Web3基金会研究</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/knowledgebase/runtime/errors"><span class="arrow-prev">← </span><span>Errors</span></a><a class="docs-next button" href="/docs/zh-CN/knowledgebase/runtime/benchmarking"><span>Benchmarking</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#费用计算">费用计算</a><ul class="toc-headings"><li><a href="#打包费用">打包费用</a></li><li><a href="#费用加乘因素">费用加乘因素</a></li></ul></li><li><a href="#附加费用：">附加费用：</a></li><li><a href="#默认权重注释">默认权重注释</a><ul class="toc-headings"><li><a href="#把数据库访问参数化">把数据库访问参数化</a></li><li><a href="#可调用函数的类">可调用函数的类</a></li><li><a href="#动态权重">动态权重</a></li></ul></li><li><a href="#调用后权重校正">调用后权重校正</a></li><li><a href="#自定义费用">自定义费用</a><ul class="toc-headings"><li><a href="#自定义权重">自定义权重</a></li><li><a href="#自定义打包费用">自定义打包费用</a></li></ul></li><li><a href="#后续步骤">后续步骤</a><ul class="toc-headings"><li><a href="#进一步学习">进一步学习</a></li><li><a href="#例子">例子</a></li><li><a href="#参考文档">参考文档</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/substrate-how-to-guides">How-to Guides</a><a href="https://substrate.dev/rustdocs">API 文档</a><a href="https://playground.substrate.dev/">Playground</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://matrix.to/#/#substrate-technical:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
+                var cookieSettings = document.getElementById('cookie-settings');
+                cookieSettings.onclick = function() {
+                  return klaro.show();
+                };
+              </script></a></div></section><section class="copyright">Copyright © 2021 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-CN"]}
+              });
+            </script></body></html>

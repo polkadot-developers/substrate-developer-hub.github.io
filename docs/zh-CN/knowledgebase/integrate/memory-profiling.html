@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>内存分析 · Substrate Developer Hub</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="内存分析使您能够持续了解基于Substrate的客户端的内存分配及区块链应用行为状况。 它能识别被调用的方法所使用的内存是如何分配的，以及分配了多少内存对象给它。 此外，内存分析可用于分析内存泄漏，确定发生内存消耗的位置，定义临时内存分配以及调查应用程序内过多内存碎片的原因。"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="内存分析 · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="内存分析使您能够持续了解基于Substrate的客户端的内存分配及区块链应用行为状况。 它能识别被调用的方法所使用的内存是如何分配的，以及分配了多少内存对象给它。 此外，内存分析可用于分析内存泄漏，确定发生内存消耗的位置，定义临时内存分配以及调查应用程序内过多内存碎片的原因。"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/past-seminars.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class="siteNavGroupActive"><a href="/docs/zh-CN/" target="_self">知识库</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">进阶菜谱</a></li><li class=""><a href="https://substrate.dev/substrate-how-to-guides/" target="_self">How-to Guides</a></li><li class=""><a href="https://substrate.dev/rustdocs/" target="_self">Reference</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>简体中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/knowledgebase/integrate/memory-profiling">English</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">协助翻译</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>整合</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">开始<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/">总览</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/architecture">Architecture</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/">安装</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/windows-users">在 Windows 系统开始</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/glossary">词汇表</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Key Concepts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/">Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/extrinsics">Extrinsics</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/account-abstractions">账户摘要</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/tx-pool">交易池</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/session-keys">会话密钥</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/weight">Transaction Weights</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/off-chain-features">链下功能</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Runtime 开发<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/pallets">Pallets</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/frame">FRAME</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/macros">宏</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/metadata">元数据</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/storage">Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/origin">来源 (Origin)</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/execution">Execution</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/events">Events</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/errors">Errors</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/fees">Transaction Fees and Weights</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/benchmarking">Benchmarking</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/debugging">调试</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/tests">Tests</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/randomness">链上随机生成</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/upgrades">Upgrades</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">智能合约<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/">总览</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/contracts-pallet">合约 (Contracts) 模块</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/evm-pallet">EVM 模块</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/faq">F.A.Q.</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">整合<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/polkadot-js">Polkadot-JS</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/libraries">客户端库</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/chain-spec">链规范</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/subkey">Subkey</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/memory-profiling">内存分析</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/try-runtime">Try Runtime</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">进阶<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/account-info">Account Information</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/codec">SCALE 编解码器</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/consensus">共识机制</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/block-import">区块导入过程</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/executor">Runtime Executor</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/cryptography">密码学</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/storage">存储</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/ss58-address-format">SS58 地址格式</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/no-hash-collections">Hash Collections</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">贡献<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/contribute/help-translate">协助翻译</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">内存分析</h1></header><article><div><span><p>内存分析使您能够持续了解基于Substrate的客户端的内存分配及区块链应用行为状况。 它能识别被调用的方法所使用的内存是如何分配的，以及分配了多少内存对象给它。 此外，内存分析可用于分析内存泄漏，确定发生内存消耗的位置，定义临时内存分配以及调查应用程序内过多内存碎片的原因。</p>
+<p>The profiler we recommend is <a href="https://github.com/koute/memory-profiler">koute's memory profiler</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="安装"></a><a href="#安装" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>安装</h2>
+<h3><a class="anchor" aria-hidden="true" id="from-a-binary-release"></a><a href="#from-a-binary-release" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>...from a binary release</h3>
+<p>You can download a precompiled binary release of the profiler from <a href="https://github.com/koute/memory-profiler/releases">here</a>. The last version we've tested is 0.6.1, but any newer one will also most likely work.</p>
+<p>Here's how you can download and unpack it from the command-line:</p>
+<pre><code class="hljs css language-bash">$ curl -L https://github.com/koute/memory-profiler/releases/download/0.6.1/memory-profiler-x86_64-unknown-linux-gnu.tgz -o memory-profiler-x86_64-unknown-linux-gnu.tgz
+$ tar -xf memory-profiler-x86_64-unknown-linux-gnu.tgz
+</code></pre>
+<p>This will result in three files being unpacked. We're only interested in two of them:</p>
+<ul>
+<li><code>libmemory_profiler.so</code> - this is the memory profiler itself that we will hook into Substrate</li>
+<li><code>memory-profiler-cli</code> - this is the program we will later use to analyze the profiling data</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="from-source"></a><a href="#from-source" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>...from source</h3>
+<p>You can also <a href="https://github.com/koute/memory-profiler#building">compile the profiler from source</a> yourself.</p>
+<p>First you need to make sure to have the following installed:</p>
+<ul>
+<li>GCC toolchain</li>
+<li>Rust nightly (we've tested version <code>nightly-2021-06-08</code>)</li>
+<li><a href="https://yarnpkg.com">Yarn</a> package manager (for building the GUI)</li>
+</ul>
+<p>Then you should be able to build the profiler like this:</p>
+<pre><code class="hljs css language-bash">$ git <span class="hljs-built_in">clone</span> https://github.com/koute/memory-profiler
+$ <span class="hljs-built_in">cd</span> memory-profiler
+$ cargo build --release -p memory-profiler
+$ cargo build --release -p memory-profiler-cli
+</code></pre>
+<p>You'll find the binaries we need in <code>target/release/libmemory_profiler.so</code> and <code>target/release/memory-profiler-cli</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="hooking-up-the-profiler-to-substrate"></a><a href="#hooking-up-the-profiler-to-substrate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hooking up the profiler to Substrate</h2>
+<p>This part heavily depends on how exactly you're launching Substrate.</p>
+<h3><a class="anchor" aria-hidden="true" id="hooking-to-a-manually-launched-substrate"></a><a href="#hooking-to-a-manually-launched-substrate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hooking to a manually launched Substrate</h3>
+<p>If you're manually launching Substrate from the command-line then hooking the profiler up to it boils down to just setting up a few extra environment variables and then launching it normally as you'd usually do.</p>
+<p>First, we want to enable logging, tell the profiler where it's supposed to output its logs, where it should gather its profiling data, and optionally tell it to cull temporary allocations:</p>
+<pre><code class="hljs css language-bash">$ <span class="hljs-built_in">export</span> MEMORY_PROFILER_LOG=info
+$ <span class="hljs-built_in">export</span> MEMORY_PROFILER_LOGFILE=profiling_%e_%t.log
+$ <span class="hljs-built_in">export</span> MEMORY_PROFILER_OUTPUT=profiling_%e_%t.dat
+
+<span class="hljs-comment"># Optional, depending on what exact aspect you'd like to profile</span>
+<span class="hljs-comment"># and how long you're going to be profiling.</span>
+$ <span class="hljs-built_in">export</span> MEMORY_PROFILER_CULL_TEMPORARY_ALLOCATIONS=1
+</code></pre>
+<p>Then we can launch Substrate with the profiler attached:</p>
+<pre><code class="hljs css language-bash">$ LD_PRELOAD=/path/to/libmemory_profiler.so ./target/release/substrate
+</code></pre>
+<p>Setting the <code>LD_PRELOAD</code> environment variable will instruct Linux's dynamic linker to inject the memory profiler into Substrate just before it's launched, which allows the profiler to hook into the system's memory allocation routines and track every memory allocation that Substrate's doing.</p>
+<h3><a class="anchor" aria-hidden="true" id="hooking-to-substrate-launched-through-systemd"></a><a href="#hooking-to-substrate-launched-through-systemd" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hooking to Substrate launched through <code>systemd</code></h3>
+<p>If you're running a Substrate-based node remotely you're probably using <code>systemd</code> to manage it. Here's how you could go about setting up profiling in such a situation.</p>
+<p>We assume you've already either downloaded a precompiled binary of the profiler or compiled it from source, and you have it in your current directory.</p>
+<p>First, we want to copy the memory profiler to a globally accessible location and set up a place where it can write its logs and gather the profiling data.</p>
+<pre><code class="hljs css language-bash">$ sudo mkdir -p /opt/memory-profiler/bin
+$ sudo cp libmemory_profiler.so /opt/memory-profiler/bin/
+$ sudo mkdir /opt/memory-profiler/logs
+$ sudo chmod 0777 /opt/memory-profiler/logs
+</code></pre>
+<p>Then we want to set up a file with all of the environment variables to configure the profiler itself:</p>
+<pre><code class="hljs css language-bash">$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"MEMORY_PROFILER_OUTPUT=/opt/memory-profiler/logs/profiling_%e_%t_%p.dat"</span> | sudo tee /opt/memory-profiler/env
+$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"MEMORY_PROFILER_LOGFILE=/opt/memory-profiler/logs/profiling_%e_%t_%p.txt"</span> | sudo tee -a /opt/memory-profiler/env
+$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"MEMORY_PROFILER_LOG=info"</span> | sudo tee -a /opt/memory-profiler/env
+$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"MEMORY_PROFILER_CULL_TEMPORARY_ALLOCATIONS=1"</span> | sudo tee -a /opt/memory-profiler/env
+$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"LD_PRELOAD=/opt/memory-profiler/bin/libmemory_profiler.so"</span> | sudo tee -a /opt/memory-profiler/env
+</code></pre>
+<p>Now you want to open your <code>systemd</code> unit file for your node and add the following in the <code>[Service]</code> section:</p>
+<pre><code class="hljs"><span class="token punctuation">[</span><span class="token class-name">Service</span><span class="token punctuation">]</span>
+<span class="token class-name">EnvironmentFile</span><span class="token operator">=</span><span class="token operator">/</span>opt<span class="token operator">/</span>memory<span class="token operator">-</span>profiler<span class="token operator">/</span>env
+</code></pre>
+<p>Do not add another <code>[Service]</code> section if one already exists; just add the <code>EnvironmentFile</code> key to it. If you already have one <code>EnvironmentFile</code> key do not replace it; just add a second one, <code>systemd</code> will apply both.</p>
+<p>Now you can reload your <code>systemd</code> daemon:</p>
+<pre><code class="hljs css language-bash">$ sudo systemctl daemon-reload
+</code></pre>
+<p>And then restart your service to start the profiling:</p>
+<pre><code class="hljs css language-bash">$ sudo systemctl restart kusama
+</code></pre>
+<p>The profiling data will be gathered at <code>/opt/memory-profiler/logs</code>. If you want to disable the memory profiler just delete the <code>EnvironmentFile</code> key you've added to your unit file, and restart the service again.</p>
+<h3><a class="anchor" aria-hidden="true" id="configuring-the-profiler"></a><a href="#configuring-the-profiler" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuring the profiler</h3>
+<p>There are also <a href="https://github.com/koute/memory-profiler#environment-variables-used-by-libmemory_profilerso">other environment variables you can set to configure the profiler</a>, although besides the ones we've already shown changing them shouldn't be necessary in normal circumstances.</p>
+<p>One configuration knob that warrants extra consideration is <code>MEMORY_PROFILER_CULL_TEMPORARY_ALLOCATIONS</code>, which controls whenever the profiler will gather short lived allocations.</p>
+<p>By default the profiler will gather <strong>every</strong> allocation that's made by the profiled application. That is a <em>lot</em> of data, and can be on the order of <em>megabytes</em> per second. This is great if you want to only profile for a short period of time, or if you specifically care about diagnosing temporary allocations, but it becomes problematic when you want to leave the profiler running for longer.</p>
+<p>This is where the <code>MEMORY_PROFILER_CULL_TEMPORARY_ALLOCATIONS</code> option comes in. When you turn it on by setting it to <code>1</code> the profiler will omit all of the really short lived allocations and not write them out to disk. This significantly cuts down the amount of data that's generated, usually to the range of <em>kilobytes</em> per second, which makes it possible to leave the profiling running for days at a time.</p>
+<h2><a class="anchor" aria-hidden="true" id="analysis"></a><a href="#analysis" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Analysis</h2>
+<p>Now that you've gathered the profiling data you can now analyze it.</p>
+<p>Assuming you have both the <code>memory-profiler-cli</code> and the <code>.dat</code> file you've gathered in the same directory you can load the GUI for it:</p>
+<pre><code class="hljs css language-bash">$ ./memory-profiler-cli server *.dat
+</code></pre>
+<p>This might take a while, depending or your exact hardware and on the amount of data you're trying to load. Eventually you should see something like this being printed out:</p>
+<pre><code class="hljs"><span class="token punctuation">[</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span>06T08<span class="token punctuation">:</span><span class="token number">59</span><span class="token punctuation">:</span>20Z <span class="token constant">INFO</span>  <span class="token namespace">cli_core<span class="token punctuation">::</span></span>loader<span class="token punctuation">]</span> <span class="token class-name">Loaded</span> data <span class="token keyword">in</span> 315s <span class="token number">820</span>
+<span class="token punctuation">[</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span>06T08<span class="token punctuation">:</span><span class="token number">59</span><span class="token punctuation">:</span>20Z <span class="token constant">INFO</span>  <span class="token namespace">actix_server<span class="token punctuation">::</span></span>builder<span class="token punctuation">]</span> <span class="token class-name">Starting</span> <span class="token number">8</span> workers
+<span class="token punctuation">[</span><span class="token number">2020</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span>06T08<span class="token punctuation">:</span><span class="token number">59</span><span class="token punctuation">:</span>20Z <span class="token constant">INFO</span>  <span class="token namespace">actix_server<span class="token punctuation">::</span></span>builder<span class="token punctuation">]</span> <span class="token class-name">Starting</span> server on <span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">8080</span>
+</code></pre>
+<p>Now you can open your web browser and access the GUI at <code>http://localhost:8080/</code>.</p>
+<p><img src="../../../assets/memory-graph.png" alt="Graphs from the web UI"></p>
+<p>There's also <a href="https://github.com/koute/memory-profiler#rest-api-exposed-by-memory-profiler-cli-server">a REST API</a> that you can access you'd like to export the data into another format or inspect it programmatically.</p>
+<h2><a class="anchor" aria-hidden="true" id="miscellaneous-tips"></a><a href="#miscellaneous-tips" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Miscellaneous tips</h2>
+<ul>
+<li><p>It's a good idea to always check the logs generated by the profiler and see whenever there are any <code>WRN</code> or <code>ERR</code> logs present.</p></li>
+<li><p>You might see the the following error or warning in the profiler's logs depending on which Linux distribution you're running:</p>
+<pre><code class="hljs"><span class="token class-name">The</span> perf_event_open syscall failed <span class="token keyword">for</span> <span class="token constant">PID</span> <span class="token number">0</span><span class="token punctuation">:</span> <span class="token class-name">Operation</span> not <span class="token function">permitted</span> <span class="token punctuation">(</span>os error <span class="token number">1</span><span class="token punctuation">)</span>`
+</code></pre>
+<p>This is generally harmless; at most this should only result in higher CPU usage when profiling. You can avoid it by doing something like this:</p>
+<pre><code class="hljs css language-bash">$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"-1"</span> | sudo tee /proc/sys/kernel/perf_event_paranoid
+</code></pre>
+<p>Although please note that this might have some security implications. Take a look at <code>man perf_event_open</code> for more details.</p></li>
+<li><p>During analysis the whole data file has to be loaded into memory. If you don't have enough RAM and you'll try to load up a big file the analyzer might run out of memory and crash.</p></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/knowledgebase/integrate/subkey"><span class="arrow-prev">← </span><span>Subkey</span></a><a class="docs-next button" href="/docs/zh-CN/knowledgebase/integrate/try-runtime"><span>Try Runtime</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#安装">安装</a><ul class="toc-headings"><li><a href="#from-a-binary-release">...from a binary release</a></li><li><a href="#from-source">...from source</a></li></ul></li><li><a href="#hooking-up-the-profiler-to-substrate">Hooking up the profiler to Substrate</a><ul class="toc-headings"><li><a href="#hooking-to-a-manually-launched-substrate">Hooking to a manually launched Substrate</a></li><li><a href="#hooking-to-substrate-launched-through-systemd">Hooking to Substrate launched through <code>systemd</code></a></li><li><a href="#configuring-the-profiler">Configuring the profiler</a></li></ul></li><li><a href="#analysis">Analysis</a></li><li><a href="#miscellaneous-tips">Miscellaneous tips</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/substrate-how-to-guides">How-to Guides</a><a href="https://substrate.dev/rustdocs">API 文档</a><a href="https://playground.substrate.dev/">Playground</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://matrix.to/#/#substrate-technical:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
+                var cookieSettings = document.getElementById('cookie-settings');
+                cookieSettings.onclick = function() {
+                  return klaro.show();
+                };
+              </script></a></div></section><section class="copyright">Copyright © 2021 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-CN"]}
+              });
+            </script></body></html>

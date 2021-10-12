@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>与 Nicks 模块交互 · Substrate Developer Hub</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="现在，您可以编译并运行刚才通过 Nicks 模块增加的昵称功能的节点了。 用以下命令以发布模式编译节点："/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="与 Nicks 模块交互 · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="现在，您可以编译并运行刚才通过 Nicks 模块增加的昵称功能的节点了。 用以下命令以发布模式编译节点："/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/past-seminars.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class=""><a href="/docs/zh-CN/" target="_self">知识库</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">进阶菜谱</a></li><li class=""><a href="https://substrate.dev/substrate-how-to-guides/" target="_self">How-to Guides</a></li><li class=""><a href="https://substrate.dev/rustdocs/" target="_self">Reference</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>简体中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/tutorials/add-a-pallet/interact-with-a-pallet">English</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">协助翻译</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>在 Runtime 添加一个模块</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">在 Runtime 添加一个模块<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/add-a-pallet/">介绍</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/add-a-pallet/import-a-pallet">导入 Nicks 模块</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/add-a-pallet/configure-a-pallet">设置 Nicks 模块</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/tutorials/add-a-pallet/interact-with-a-pallet">与 Nicks 模块交互</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/add-a-pallet/publish-a-pallet">Publish Your Own Pallet</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">与 Nicks 模块交互</h1></header><article><div><span><p>现在，您可以编译并运行刚才通过 Nicks 模块增加的昵称功能的节点了。 用以下命令以发布模式编译节点：</p>
+<pre><code class="hljs css language-bash">cargo build --release
+</code></pre>
+<p>如果构建失败，请返回前面章节，并确保正确执行了所有步骤。 You can also view a <a href="https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions%2Fadd-a-pallet-v3.0.0+monthly-2021-05">full solution including the <code>Nick</code> pallet</a>. Check <a href="https://github.com/substrate-developer-hub/substrate-node-template/compare/v3.0.0+monthly-2021-05...tutorials/solutions/add-a-pallet-v3.0.0+monthly-2021-05">the diff from its base <code>v3.0.0+monthly-2021-05</code></a>.</p>
+<p>构建成功后，您可以启动节点：</p>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># 在开发模式运行一个临时节点</span>
+./target/release/node-template --dev --tmp
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="启动前端"></a><a href="#启动前端" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>启动前端</h2>
+<p>与之前的教程一样，本教程将使用 Substrate Developer Hub 里的 Front-End Template 来支持您与 Node Template 之间的交互。 只要已完成《<a href="../create-your-first-substrate-chain">创建您的第一条区块链</a>》和《<a href="../build-a-dapp">构建一个dApp</a>》的教程，您就已经准备好，可继续本教程的其余部分了。</p>
+<blockquote>
+<p>如有需要，请直接参考《创建您的第一条区块链》教程的  <a href="../create-your-first-substrate-chain/setup#install-the-front-end-template">前端设置说明</a>。</p>
+</blockquote>
+<p>要启动 Front-End Template，导航到相关目录下，并运行：</p>
+<pre><code class="hljs css language-bash">yarn start
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="使用nicks-模块"></a><a href="#使用nicks-模块" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>使用Nicks 模块</h2>
+<p>您应该已经熟悉如何使用前端模板 <a href="../create-your-first-substrate-chain/interact#pallet-interactor-&amp;-events">与 Substrate 模块进行交互</a> 了。 在本节中，我们将使用 Nicks 模块来进一步说明如何使用前端模板与 FRAME pallets 进行交互。 我们还将学习更多关于如何使用前端模板通过 Sudo 模块来调用特权函数的内容。Sudo 模块默认是包含在 Node Template 里。 最后，您会学习到如何解析 FRAME pallet 触发出的不同类型的事件和错误。</p>
+<p>To get started, use the account selector from the Front-End Template to select <code>Alice</code>'s account and then use the Pallet Interactor component to call <a href="https://substrate.dev/rustdocs/latest/pallet_nicks/enum.Call.html#variant.set_name">the <code>setName</code> dispatchable</a> function from the <code>nicks</code> pallet. You can select any name you'd like as long as it is no shorter than the <code>MinNickLength</code> and no longer than the <code>MaxNickLength</code> you configured in the previous step. Use the <code>Signed</code> button to execute the function.</p>
+<p><img src="/docs/assets/tutorials/add-a-pallet/set-name.png" alt="Set a Name"></p>
+<p>As you can see in the image above, the Front-End Template will report the status of the dispatchable, as well as allow you to observe the <a href="https://substrate.dev/rustdocs/latest/pallet_nicks/enum.RawEvent.html">events</a> emitted by the Nicks pallet and the other pallets that compose your chain's runtime. Now use the Pallet Interactor's Query capabilities to read the value of Alice's nickname from the <a href="../../knowledgebase/runtime/storage">runtime storage</a> of the Nicks pallet.</p>
+<p><img src="/docs/assets/tutorials/add-a-pallet/name-of-alice.png" alt="Read a Name"></p>
+<p>The return type is a tuple that contains two values: Alice's hex-encoded nickname and the amount that was reserved from Alice's account in order to secure the nickname. If you query the Nicks pallet for Bob's nickname, you'll see that the <code>None</code> value is returned. This is because Bob has not invoked the <code>setName</code> dispatchable and deposited the funds needed to reserve a nickname.</p>
+<p><img src="/docs/assets/tutorials/add-a-pallet/name-of-bob.png" alt="Read an Empty Name"></p>
+<p>Use the <code>Signed</code> button to invoke <a href="https://substrate.dev/rustdocs/latest/pallet_nicks/enum.Call.html#variant.kill_name">the <code>killName</code> dispatchable</a> function and use Bob's account ID as the function's argument. The <code>killName</code> function must be called by the <code>ForceOrigin</code> that was configured with the Nicks pallet's <code>Config</code> interface in the previous section. You may recall that we configured this to be the FRAME system's <code>Root</code> origin. The Node Template's <a href="https://github.com/substrate-developer-hub/substrate-node-template/blob/v3.0.0/node/src/chain_spec.rs">chain specification</a> file is used to configure the <a href="https://substrate.dev/rustdocs/latest/pallet_sudo/index.html">Sudo pallet</a> to give Alice access to this origin.</p>
+<p>The front-end template makes it easy to use the Sudo pallet to dispatch a call from the <code>Root</code> origin - just use the <code>SUDO</code> button to invoke the dispatchable. Since we just used the <code>Signed</code> button as opposed to the <code>SUDO</code> button, the function was <em>dispatched</em> by <a href="https://substrate.dev/rustdocs/latest/frame_system/enum.RawOrigin.html#variant.Signed">the <code>Signed</code> origin</a> associated with Alice's account as opposed to the <code>Root</code> origin.</p>
+<p><img src="/docs/assets/tutorials/add-a-pallet/kill-name-bad-origin.png" alt="&lt;code&gt;BadOrigin&lt;/code&gt; Error"></p>
+<p>You will notice that even though the function call was successfully dispatched, a <code>BadOrigin</code> error was emitted and is visible in the Events pane. This means that Alice's account was still charged <a href="../../knowledgebase/runtime/fees">fees</a> for the dispatch, but there weren't any state changes executed because the Nicks pallet follows the important <a href="../../knowledgebase/runtime/storage#verify-first-write-last">verify-first-write-last</a> pattern. Now use the <code>SUDO</code> button to dispatch the same call with the same parameter.</p>
+<p><img src="/docs/assets/tutorials/add-a-pallet/clear-name-error.png" alt="Nicks Pallet Error"></p>
+<p>The Sudo pallet emits a <a href="https://substrate.dev/rustdocs/latest/pallet_sudo/enum.RawEvent.html#variant.Sudid"><code>Sudid</code> event</a> to inform network participants that the <code>Root</code> origin dispatched a call, however, you will notice that the inner dispatch failed with a <a href="https://substrate.dev/rustdocs/latest/sp_runtime/enum.DispatchError.html"><code>DispatchError</code></a> (the Sudo pallet's <a href="https://substrate.dev/rustdocs/latest/pallet_sudo/enum.Call.html#variant.sudo"><code>sudo</code> function</a> is the &quot;outer&quot; dispatch). In particular, this was an instance of <a href="https://substrate.dev/rustdocs/latest/frame_support/dispatch/enum.DispatchError.html#variant.Module">the <code>DispatchError::Module</code> variant</a>, which reports two pieces of metadata: an <code>index</code> number and an <code>error</code> number. The <code>index</code> number relates to the pallet from which the error originated; it corresponds with the <em>index</em> (position) of the pallet within the <code>construct_runtime!</code> macro. The <code>error</code> number corresponds with the index of the relevant variant from that pallet's <code>Error</code> enum. When using these numbers to find pallet errors, remember that the <em>first</em> position corresponds with index <em>zero</em>. In the screenshot above, the <code>index</code> is <code>9</code> (the <em>tenth</em> pallet) and the <code>error</code> is <code>2</code> (the <em>third</em> error). Depending on the position of the Nicks pallet in your <code>construct_runtime!</code> macro, you may see a different number for <code>index</code>. Regardless of the value of <code>index</code>, you should see that the <code>error</code> value is <code>2</code>, which corresponds to the <em>third</em> variant of the Nick's pallet's <code>Error</code> enum, <a href="https://substrate.dev/rustdocs/latest/pallet_nicks/enum.Error.html#variant.Unnamed">the <code>Unnamed</code> variant</a>. This shouldn't be a surprise since Bob has not yet reserved a nickname, thus it cannot be cleared!</p>
+<p>You should confirm that Alice can use the <code>SUDO</code> button to invoke the <code>killName</code> dispatchable and forcibly clear the nickname associated with any account (including her own) that actually has a nickname associated with it. Here are some other things you may want to try:</p>
+<ul>
+<li>Add a nickname that is shorter than the <code>MinNickLength</code> or longer than the <code>MaxNickLength</code> that you configured with the Nick's pallet's <code>Config</code> configuration trait.</li>
+<li>Add a nickname for Bob then use Alice's account and the <code>SUDO</code> button to forcibly kill Bob's nickname. 最后切换回 Bob 的帐户并调用 <code>clearName</code> 函数。</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="添加其它-frame-pallets"></a><a href="#添加其它-frame-pallets" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加其它 FRAME Pallets</h2>
+<p>In this guide, we walked through specifically how to import the Nicks pallet, but as mentioned in the beginning of this guide, each pallet will be a little different. Have no fear, you can always refer to the <a href="https://github.com/paritytech/substrate/tree/master/bin/node/runtime">Substrate runtime</a> which includes nearly every pallets in the library of core FRAME pallets.</p>
+<p>In the Substrate node runtime <code>bin/node/runtime/Cargo.toml</code> file, you will see how to import different pallets, and in the <code>bin/node/runtime/lib.rs</code> file you will see how to add each pallet to your runtime. You can generally copy what was done there as a starting point to include a pallet in your own runtime.</p>
+<h3><a class="anchor" aria-hidden="true" id="进一步学习"></a><a href="#进一步学习" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>进一步学习</h3>
+<ul>
+<li>通过完成 <a href="../add-contracts-pallet">添加合约模块</a> 教程，学习如何将更复杂的模块添加到 Node Template 里。</li>
+<li>Complete the <a href="../forkless-upgrade">Forkless Upgrade a Chain</a> tutorial to learn how Substrate enables forkless runtime upgrades and follow steps to perform two upgrades, each of which is performed by way of a distinct upgrade mechanism.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="参考文档"></a><a href="#参考文档" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文档</h3>
+<ul>
+<li><a href="https://substrate.dev/rustdocs/latest/pallet_nicks/index.html">Nicks 模块文档</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/tutorials/add-a-pallet/configure-a-pallet"><span class="arrow-prev">← </span><span>设置 Nicks 模块</span></a><a class="docs-next button" href="/docs/zh-CN/tutorials/add-a-pallet/publish-a-pallet"><span>Publish Your Own Pallet</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#启动前端">启动前端</a></li><li><a href="#使用nicks-模块">使用Nicks 模块</a></li><li><a href="#添加其它-frame-pallets">添加其它 FRAME Pallets</a><ul class="toc-headings"><li><a href="#进一步学习">进一步学习</a></li><li><a href="#参考文档">参考文档</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/substrate-how-to-guides">How-to Guides</a><a href="https://substrate.dev/rustdocs">API 文档</a><a href="https://playground.substrate.dev/">Playground</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://matrix.to/#/#substrate-technical:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
+                var cookieSettings = document.getElementById('cookie-settings');
+                cookieSettings.onclick = function() {
+                  return klaro.show();
+                };
+              </script></a></div></section><section class="copyright">Copyright © 2021 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-CN"]}
+              });
+            </script></body></html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>SCALE 编解码器 · Substrate Developer Hub</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="SCALE（Simple Concatenated Aggregate Little-Endian）编解码器是一个轻量级、高效的二进制序列化和反序列化编解码器。"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="SCALE 编解码器 · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="SCALE（Simple Concatenated Aggregate Little-Endian）编解码器是一个轻量级、高效的二进制序列化和反序列化编解码器。"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/past-seminars.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class="siteNavGroupActive"><a href="/docs/zh-CN/" target="_self">知识库</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">进阶菜谱</a></li><li class=""><a href="https://substrate.dev/substrate-how-to-guides/" target="_self">How-to Guides</a></li><li class=""><a href="https://substrate.dev/rustdocs/" target="_self">Reference</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>简体中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/knowledgebase/advanced/codec">English</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">协助翻译</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>进阶</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">开始<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/">总览</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/architecture">Architecture</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/">安装</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/windows-users">在 Windows 系统开始</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/glossary">词汇表</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Key Concepts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/">Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/extrinsics">Extrinsics</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/account-abstractions">账户摘要</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/tx-pool">交易池</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/session-keys">会话密钥</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/weight">Transaction Weights</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/off-chain-features">链下功能</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Runtime 开发<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/pallets">Pallets</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/frame">FRAME</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/macros">宏</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/metadata">元数据</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/storage">Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/origin">来源 (Origin)</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/execution">Execution</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/events">Events</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/errors">Errors</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/fees">Transaction Fees and Weights</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/benchmarking">Benchmarking</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/debugging">调试</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/tests">Tests</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/randomness">链上随机生成</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/upgrades">Upgrades</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">智能合约<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/">总览</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/contracts-pallet">合约 (Contracts) 模块</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/evm-pallet">EVM 模块</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/faq">F.A.Q.</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">整合<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/polkadot-js">Polkadot-JS</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/libraries">客户端库</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/chain-spec">链规范</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/subkey">Subkey</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/memory-profiling">内存分析</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/try-runtime">Try Runtime</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">进阶<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/account-info">Account Information</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/codec">SCALE 编解码器</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/consensus">共识机制</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/block-import">区块导入过程</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/executor">Runtime Executor</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/cryptography">密码学</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/storage">存储</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/ss58-address-format">SS58 地址格式</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/no-hash-collections">Hash Collections</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">贡献<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/contribute/help-translate">协助翻译</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">SCALE 编解码器</h1></header><article><div><span><p>SCALE（Simple Concatenated Aggregate Little-Endian）编解码器是一个轻量级、高效的二进制序列化和反序列化编解码器。</p>
+<p>它是专为资源受限的执行环境所设计的，比如 <a href="../runtime/">Substrate runtime</a>，可对数据进行高性能、无需拷贝的编码和解码。 它无法进行自我描述，并假定解码环境拥有编码数据的所有类型信息。</p>
+<h2><a class="anchor" aria-hidden="true" id="substrate-中的-scale"></a><a href="#substrate-中的-scale" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Substrate 中的 SCALE</h2>
+<p>Substrate 使用 <a href="https://github.com/paritytech/parity-scale-codec"><code>parity-scale-codec</code></a>，它是 SCALE 编解码器的 Rust 实现。 采用这个库和 SCALE 编解码器会使 Substrate 和区块链系统会更有优势，因为：</p>
+<ul>
+<li>相对于 <a href="https://serde.rs/">serde</a> 这样的通用序列化框架来说，它是轻量级的，因为 serde 添加了大量的模板，会使二进制文件过大。</li>
+<li>它不使用 Rust STD，因此可以把文件编译为 Wasm格式，用在 Substrate runtime 之中。</li>
+<li>它对在Rust中为新数据类型派生编解码逻辑的支持极为友好：
+<pre><code class="hljs"><span class="token attribute attr-name">#[derive(Encode, Decode)]</span>
+</code></pre></li>
+</ul>
+<p>相对于重用现有的 Rust 编解码器库而言，定义出 Substrate 上使用的编码方案非常重要，因为这个编解码器需要在其他支持互操作性的平台和语言上重新实现。</p>
+<h2><a class="anchor" aria-hidden="true" id="编解码器定义"></a><a href="#编解码器定义" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>编解码器定义</h2>
+<p>在此，你会了解 SCALE 编解码器是如何对不同类型进行编码的。</p>
+<h3><a class="anchor" aria-hidden="true" id="定宽整数"></a><a href="#定宽整数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>定宽整数</h3>
+<p>基础整数类型是由定宽的little-endian (LE) 编码格式进行编码的。</p>
+<h4><a class="anchor" aria-hidden="true" id="示例"></a><a href="#示例" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>示例</h4>
+<ul>
+<li><code>有符号的8位整数 69</code>: <code>0x45</code></li>
+<li><code>无符号的16位整数 42</code>: <code>0x2a00</code></li>
+<li><code>无符号的32位整数 16777215</code>: <code>0xffffff00</code></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="紧凑通用整数"></a><a href="#紧凑通用整数" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>紧凑/通用整数</h3>
+<p>紧凑型或通用整数编码对于编码大整数 (最大2**536) 来说已经足够了，而且对大多数值的编码会比定宽版本更有效率。 (虽然对于单字节值来说，定宽整数编码会更有效些。)</p>
+<p>它用两个最小有效位进行编码以表示模式：</p>
+<ul>
+<li><code>0b00</code>：单字节模式；前面6位是数值的LE编码 (只对0-63的数值有效)。</li>
+<li><code>0b01</code>：双字节模式：前面6位和下一字节是值的LE编码(只对值 <code>64-(2**14-1)</code> 有效)。</li>
+<li><code>0b10</code>: four-byte mode: upper six bits and the following three bytes are the LE encoding of the value (valid only for values <code>(2**14)-(2**30-1)</code>).</li>
+<li><code>0b11</code>：大整数模式。前面6位表示的值是后面的字节数减4。 值以 LE 编码形式包含在后面的字节中。 最后 (最重要的) 的字节必须为不能为零。 Valid only for values <code>(2**30)-(2**536-1)</code>.</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="示例-1"></a><a href="#示例-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>示例</h4>
+<ul>
+<li><code>无符号整数 0</code>: <code>0x00</code></li>
+<li><code>无符号整数 1</code>: <code>0x04</code></li>
+<li><code>无符号整数 42</code>: <code>0xa8</code></li>
+<li><code>无符号整数 69</code>: <code>0x1501</code></li>
+</ul>
+<p>错误：</p>
+<ul>
+<li><del><code>0x0100</code>: 模式1中对0这个值的编码</del></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="布尔型"></a><a href="#布尔型" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>布尔型</h3>
+<p>布尔型值使用单个字节的最小有效位进行编码。</p>
+<h4><a class="anchor" aria-hidden="true" id="示例-2"></a><a href="#示例-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>示例</h4>
+<ul>
+<li><code>布尔值 false</code>: <code>0x00</code></li>
+<li><code>布尔值 true</code>: <code>0x01</code></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="option类型"></a><a href="#option类型" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Option类型</h3>
+<p>特定类型的一个或零个值。 编码为：</p>
+<ul>
+<li>如果是 <code>None</code> (&quot;empty&quot; 或 &quot;null&quot;)，则为<code>0x00</code> 。</li>
+<li><code>0x01</code> 后面加上编码值 <code>Some</code>。</li>
+</ul>
+<p>一个例外是，如果是布尔型，那么它的大小总是一个字节。</p>
+<ul>
+<li>如果是 <code>None</code> (&quot;empty&quot; 或 &quot;null&quot;)，则为<code>0x00</code> 。</li>
+<li>如果是 <code>true</code>，则为<code>0x01</code> 。</li>
+<li>如果是 <code>false</code> 值，则为<code>0x02</code> 。</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="results类型"></a><a href="#results类型" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Results类型</h3>
+<p>Results是常用的枚举类型，用于表示某些操作是成功还是不成功。 编码为：</p>
+<ul>
+<li>如果操作成功，<code>0x00</code>后面再加上编码值。</li>
+<li>如果操作不成功，<code>0x01</code> 后面再加上错误编码。</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="示例-3"></a><a href="#示例-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>示例</h4>
+<pre><code class="hljs css language-rust"><span class="token comment">// A custom result type used in a crate.</span>
+<span class="token keyword">let</span> <span class="token class-name">Result</span> <span class="token operator">=</span> <span class="token namespace">std<span class="token punctuation">::</span>result<span class="token punctuation">::</span></span><span class="token class-name">Result</span><span class="token operator">&lt;</span><span class="token keyword">u8</span><span class="token punctuation">,</span> <span class="token keyword">bool</span><span class="token operator">></span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li><code>Ok(42)</code>: <code>0x002a</code></li>
+<li><code>Err(false)</code>: <code>0x0100</code></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="数组列表，序列，集合"></a><a href="#数组列表，序列，集合" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>数组(列表，序列，集合)</h3>
+<p>对同类型值的集合进行编码时，在编码前加一个 <em>compact</em> 前缀，然后依次将每个项的编码连起来。</p>
+<h4><a class="anchor" aria-hidden="true" id="示例-4"></a><a href="#示例-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>示例</h4>
+<p>16位无符号整数的数组：</p>
+<pre><code class="hljs"><span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">]</span>
+</code></pre>
+<p>SCALE 编码后的字节：</p>
+<pre><code class="hljs"><span class="token number">0x18040008000f00100017002a00</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="字符串"></a><a href="#字符串" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>字符串</h3>
+<p>Strings are Vectors of bytes (<code>Vec&lt;u8&gt;</code>) containing a valid UTF8 sequence.</p>
+<h3><a class="anchor" aria-hidden="true" id="元组"></a><a href="#元组" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>元组</h3>
+<p>一个固定大小的数值序列，每个数值都可以是不同类型，但这些类型是预先确定且不可更改的。 编码时就是简单把所有值的编码连接起来。</p>
+<h4><a class="anchor" aria-hidden="true" id="示例-5"></a><a href="#示例-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>示例</h4>
+<p>无符号整数和布尔值组成的元祖：</p>
+<p><code>(3, false)</code>: <code>0x0c00</code></p>
+<h3><a class="anchor" aria-hidden="true" id="数据结构体"></a><a href="#数据结构体" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>数据结构体</h3>
+<p>对于结构体而言，虽然值被命名了，但编码并不使用该名字 (名字是被忽略的 - 仅值的顺序重要)。 <strong>所有容器都是连续存储元素的。 元素的存储顺序取决于容器，而不是一成不变的，因此不能依赖于解码。</strong></p>
+<p>这就意味着，如果将某个字节数组解码成一个指定的结构体（结构体本身是排好序的），然后再重新编码，可能会导致新编码的数组与原有的字节数组不一样。</p>
+<h4><a class="anchor" aria-hidden="true" id="示例-6"></a><a href="#示例-6" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>示例</h4>
+<p>想象一个 <code>SortedVecAsc&lt;u8&gt;</code> 结构体，它的元素总是按升序排列，你有 <code>[3, 5, 2, 8]</code>序列，其中第一个元素是后面跟随的元素的数量(即 <code>[3, 5, 2]</code> 将是无效的结构)。</p>
+<p><code>SortedVecAsc::from([3, 5, 2, 8])</code> 会将其解码为 <code>[3, 2, 5, 8]</code>，这与原始编码不符。</p>
+<h3><a class="anchor" aria-hidden="true" id="枚举打标的并集"></a><a href="#枚举打标的并集" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>枚举(打标的并集)</h3>
+<p>固定数量的变量，每一个变量都是互斥的，并可能还会包含另一个或另一系列的值。</p>
+<p>编码后的第一个字节表示值所在的变量的索引。 后续的字节是该变量所包含的实际值的编码结果。 因此，最多支持256个变量。</p>
+<h4><a class="anchor" aria-hidden="true" id="示例-7"></a><a href="#示例-7" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>示例</h4>
+<pre><code class="hljs css language-rust"><span class="token keyword">enum</span> <span class="token type-definition class-name">IntOrBool</span> <span class="token punctuation">{</span>
+  <span class="token class-name">Int</span><span class="token punctuation">(</span><span class="token keyword">u8</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token class-name">Bool</span><span class="token punctuation">(</span><span class="token keyword">bool</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li><code>Int(42)</code>: <code>0x002a</code></li>
+<li><code>Bool(true)</code>: <code>0x0101</code></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="实现版本"></a><a href="#实现版本" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>实现版本</h2>
+<p>Parity SCALE 编解码器已经用许多语言实现了，包括用 Rust 编写的参考实现，这是由 Parity Technologies 维护的。</p>
+<ul>
+<li>Rust: <a href="https://github.com/paritytech/parity-scale-codec"><code>paritytech/parity-scale-codec</code></a></li>
+<li>Python: <a href="https://github.com/polkascan/py-scale-codec"><code>polkascan/py-scale-codec</code></a></li>
+<li>Golang: <a href="https://github.com/itering/scale.go"><code>itering/scale.go</code></a></li>
+<li>C++: <a href="https://github.com/soramitsu/kagome/tree/master/core/scale"><code>soramitsu/scale</code></a></li>
+<li>JavaScript: <a href="https://github.com/polkadot-js/api"><code>polkadot-js/api</code></a></li>
+<li>AssemblyScript: <a href="https://github.com/LimeChain/as-scale-codec"><code>LimeChain/as-scale-codec</code></a></li>
+<li>Haskell: <a href="https://github.com/airalab/hs-web3/tree/master/packages/scale"><code>airalab/hs-web3</code></a></li>
+<li>Java: <a href="https://github.com/emeraldpay/polkaj"><code>emeraldpay/polkaj</code></a></li>
+<li>Ruby: <a href="https://github.com/itering/scale.rb"><code>itering/scale.rb</code></a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="参考文档"></a><a href="#参考文档" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>参考文档</h2>
+<ul>
+<li><p>Visit the reference docs for the <a href="https://substrate.dev/rustdocs/latest/parity_scale_codec/index.html"><code>parity-scale-codec</code></a>.</p></li>
+<li><p>访问 <a href="https://github.com/w3f/polkadot-spec/">Polkadot runtime 环境配置</a> 的辅助编码部分。</p></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/knowledgebase/advanced/account-info"><span class="arrow-prev">← </span><span>Account Information</span></a><a class="docs-next button" href="/docs/zh-CN/knowledgebase/advanced/consensus"><span>共识机制</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#substrate-中的-scale">Substrate 中的 SCALE</a></li><li><a href="#编解码器定义">编解码器定义</a><ul class="toc-headings"><li><a href="#定宽整数">定宽整数</a></li><li><a href="#紧凑通用整数">紧凑/通用整数</a></li><li><a href="#布尔型">布尔型</a></li><li><a href="#option类型">Option类型</a></li><li><a href="#results类型">Results类型</a></li><li><a href="#数组列表，序列，集合">数组(列表，序列，集合)</a></li><li><a href="#字符串">字符串</a></li><li><a href="#元组">元组</a></li><li><a href="#数据结构体">数据结构体</a></li><li><a href="#枚举打标的并集">枚举(打标的并集)</a></li></ul></li><li><a href="#实现版本">实现版本</a></li><li><a href="#参考文档">参考文档</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/substrate-how-to-guides">How-to Guides</a><a href="https://substrate.dev/rustdocs">API 文档</a><a href="https://playground.substrate.dev/">Playground</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://matrix.to/#/#substrate-technical:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
+                var cookieSettings = document.getElementById('cookie-settings');
+                cookieSettings.onclick = function() {
+                  return klaro.show();
+                };
+              </script></a></div></section><section class="copyright">Copyright © 2021 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-CN"]}
+              });
+            </script></body></html>

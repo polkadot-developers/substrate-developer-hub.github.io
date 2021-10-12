@@ -1,0 +1,440 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Benchmarking · Substrate Developer Hub</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## What Is Runtime Benchmarking?"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="Benchmarking · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="## What Is Runtime Benchmarking?"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/past-seminars.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class="siteNavGroupActive"><a href="/docs/zh-CN/" target="_self">知识库</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">进阶菜谱</a></li><li class=""><a href="https://substrate.dev/substrate-how-to-guides/" target="_self">How-to Guides</a></li><li class=""><a href="https://substrate.dev/rustdocs/" target="_self">Reference</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>简体中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/knowledgebase/runtime/benchmarking">English</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">协助翻译</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Runtime 开发</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">开始<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/">总览</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/architecture">Architecture</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/">安装</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/windows-users">在 Windows 系统开始</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/getting-started/glossary">词汇表</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Substrate Key Concepts<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/">Runtime</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/extrinsics">Extrinsics</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/account-abstractions">账户摘要</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/tx-pool">交易池</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/session-keys">会话密钥</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/weight">Transaction Weights</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/learn-substrate/off-chain-features">链下功能</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Runtime 开发<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/pallets">Pallets</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/frame">FRAME</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/macros">宏</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/metadata">元数据</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/storage">Storage</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/origin">来源 (Origin)</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/execution">Execution</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/events">Events</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/errors">Errors</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/fees">Transaction Fees and Weights</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/benchmarking">Benchmarking</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/debugging">调试</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/tests">Tests</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/randomness">链上随机生成</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/runtime/upgrades">Upgrades</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">智能合约<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/">总览</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/contracts-pallet">合约 (Contracts) 模块</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/evm-pallet">EVM 模块</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/smart-contracts/faq">F.A.Q.</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">整合<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/polkadot-js">Polkadot-JS</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/libraries">客户端库</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/chain-spec">链规范</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/subkey">Subkey</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/memory-profiling">内存分析</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/integrate/try-runtime">Try Runtime</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">进阶<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/account-info">Account Information</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/codec">SCALE 编解码器</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/consensus">共识机制</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/block-import">区块导入过程</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/executor">Runtime Executor</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/cryptography">密码学</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/storage">存储</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/ss58-address-format">SS58 地址格式</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/knowledgebase/advanced/no-hash-collections">Hash Collections</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">贡献<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/contribute/help-translate">协助翻译</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">Benchmarking</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="what-is-runtime-benchmarking"></a><a href="#what-is-runtime-benchmarking" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What Is Runtime Benchmarking?</h2>
+<p>The default Substrate block production systems produce blocks at consistent intervals. This is the known as the target block time. Given this requirement, Substrate based blockchains are only able to execute a limited number of extrinsics per block. The time it takes to execute an extrinsic may vary based on the computational complexity, storage complexity, hardware used, and many other factors. We use generic measurement called <strong>weight</strong> to represent how many extrinsics can fit into one block. This is further explained in the <a href="../learn-substrate/weight">transaction weight section</a>.</p>
+<p>In Substrate, <strong>10^12 Weight = 1 Second</strong>, and i.e 1,000 weight = 1 nanosecond, measured on a specific reference hardware<sup><a href="#footnote-ref-hardware">[1]</a></sup>.</p>
+<p>Substrate does not use a mechanism similar to &quot;gas metering&quot; for extrinsic measurement due to the large overhead such a process would introduce. Instead, Substrate expects benchmarking to provide an approximate maximum for the worst case scenario of executing an extrinsic. Substrate will charge the user assuming this worst case scenario path was taken, and if the extrinsic turns out to need less resources, some of the estimated weight and fees can be returned. This is further explained in the <a href="./fees">Transaction Fees chapter</a>.</p>
+<p>So how do we determine the worst case scenario computation time and weight of our extrinsics?</p>
+<p>This is where Substrate Runtime Benchmarking comes in. It has a set of tools to help determine the weight of a runtime extrinsic. It executes the extrinsics in a pallet multiple times within the runtime environment, and keeps track of the execution time.</p>
+<p>In summary, it:</p>
+<ul>
+<li><p>Sets up and executes extrinsics from your pallets.</p></li>
+<li><p>Captures the raw data of these benchmarks with these varying inputs, including how many database reads and writes have been performed.</p></li>
+<li><p>Uses linear regression analysis to determine the relationship between computation time and the extrinsic input.</p></li>
+<li><p>Outputs a rust file with ready to use weight functions that can be easily integrated in your runtime.</p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="why-benchmark-a-runtime-pallet"></a><a href="#why-benchmark-a-runtime-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why Benchmark a Runtime Pallet?</h2>
+<p>Denial-of-service (DoS) is a common attack vector for distributed systems, including blockchain networks. A simple example of such an attack would be for a user to repeatedly execute an extrinsic that involves intensive computation. To prevent users from spamming the network, we charge a fee to the user for making that call. The cost of the call should reflect the computation and storage cost incurred to the system. The more complex the call, the more we charge. However, we still want to encourage users to use our blockchain system, so we also want this estimate cost to be relatively accurate so we don't charge users more than necessary.</p>
+<p>With the Substrate benchmarking framework, runtime developers can estimate the weight of their extrinsics and charge an appropriate transaction fee to the end users. So it is critical to benchmark our runtime extrinsics to measure how the extrinsic computation changes with respect to its input and set the proper weight functions for these extrinsics. Setting a proper weight function that reflects accurately on the underlying computation and storage is an important security safeguard in Substrate.</p>
+<h2><a class="anchor" aria-hidden="true" id="how-to-benchmark"></a><a href="#how-to-benchmark" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How to Benchmark?</h2>
+<p>The benchmarking framework uses Rust macros to help users easily integrate them into their runtime. A Substrate benchmark will look something like this:</p>
+<pre><code class="hljs css language-rust"><span class="token macro property">benchmarks!</span> <span class="token punctuation">{</span>
+  benchmark_name <span class="token punctuation">{</span>
+    <span class="token comment">/* setup initial state */</span>
+  <span class="token punctuation">}</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* the code to be benchmarked */</span>
+  <span class="token punctuation">}</span> verify <span class="token punctuation">{</span>
+    <span class="token comment">/* verifying final state */</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>You can see that the benchmark macro:</p>
+<ol>
+<li>Sets up the initial state before running the benchmark.</li>
+<li>Measures the execution time, along with the number of and database reads and writes.</li>
+<li>Verifies the final state of the runtime, ensuring that the benchmark executed as expected.</li>
+</ol>
+<p>You can configure your benchmark to run over different varying inputs. For each input, you can configure the range of those variables, and use them within the benchmark setup or execution logic.</p>
+<p>The full syntax and functionality can be seen in the <a href="https://substrate.dev/rustdocs/latest/frame_benchmarking/macro.benchmarks.html"><code>benchmarks!</code> macro API documentation</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="adding-benchmarking-to-your-pallet"></a><a href="#adding-benchmarking-to-your-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding Benchmarking to Your Pallet</h3>
+<ol>
+<li><p>In <a href="https://github.com/paritytech/substrate/blob/master/frame/example/Cargo.toml">the pallet's <code>Cargo.toml</code></a>, add the <code>frame-benchmarking</code> crate and the <code>runtime-benchmarks</code> feature.</p>
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">dependencies</span><span class="token punctuation">]</span>
+<span class="token comment"># -- snip --</span>
+<span class="token key property">frame-benchmarking</span> <span class="token punctuation">=</span> <span class="token punctuation">{</span> <span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">"3.1.0"</span><span class="token punctuation">,</span> <span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token key property">path</span> <span class="token punctuation">=</span> <span class="token string">"../benchmarking"</span><span class="token punctuation">,</span> <span class="token key property">optional</span> <span class="token punctuation">=</span> <span class="token boolean">true</span> <span class="token punctuation">}</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">features</span><span class="token punctuation">]</span>
+<span class="token comment"># -- snip --</span>
+<span class="token key property">runtime-benchmarks</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">"frame-benchmarking"</span><span class="token punctuation">]</span>
+</code></pre></li>
+<li><p>Create a new sub-module for your benchmarks within your pallet, and create a basic structure similar to this:</p>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[cfg(feature = <span class="token string">"runtime-benchmarks"</span>)]</span>
+<span class="token keyword">mod</span> <span class="token module-declaration namespace">benchmarking</span> <span class="token punctuation">{</span>
+  <span class="token keyword">use</span> <span class="token keyword">crate</span><span class="token punctuation">::</span><span class="token punctuation">{</span><span class="token operator">*</span><span class="token punctuation">,</span> <span class="token class-name">Module</span> <span class="token keyword">as</span> <span class="token class-name">PalletModule</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">use</span> <span class="token namespace">frame_benchmarking<span class="token punctuation">::</span></span><span class="token punctuation">{</span>benchmarks<span class="token punctuation">,</span> account<span class="token punctuation">,</span> impl_benchmark_test_suite<span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">use</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">RawOrigin</span><span class="token punctuation">;</span>
+
+  <span class="token macro property">benchmarks!</span><span class="token punctuation">{</span>
+    <span class="token comment">// Individual benchmarks are placed here</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+<li><p>Each benchmark case has up to three sections: a setup section, an execution section, and optionally a verification section at the end.</p>
+<pre><code class="hljs css language-rust"><span class="token macro property">benchmarks!</span><span class="token punctuation">{</span>
+  benchmark_name <span class="token punctuation">{</span>
+    <span class="token comment">/* setup initial state */</span>
+  <span class="token punctuation">}</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* the code to be benchmarked */</span>
+  <span class="token punctuation">}</span>
+  verify <span class="token punctuation">{</span>
+    <span class="token comment">/* verifying final state */</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>An extremely basic example of a benchmark can be found in the Example pallet: <a href="https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs"><code>example/src/lib.rs</code></a>:</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// This will measure the execution time of `set_dummy` for b in [1..1000] range.</span>
+set_dummy <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> b <span class="token keyword">in</span> <span class="token number">1</span> <span class="token punctuation">..</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">:</span> <span class="token function">set_dummy</span><span class="token punctuation">(</span><span class="token class-name">RawOrigin</span><span class="token punctuation">::</span><span class="token class-name">Root</span><span class="token punctuation">,</span> b<span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>The name of the benchmark is <code>set_dummy</code>. Here <code>b</code> is a variable input that passed into the extrinsic <code>set_dummy</code> which may affect the extrinsic execution time. <code>b</code> will be varied between 1 to 1,000, where we will repeat and measure the benchmark at the different values.</p>
+<p>The extrinsic <code>set_dummy</code> is called in the execution section, and we do not verify the result at the end.</p>
+<p>You will also see code like this:</p>
+<pre><code class="hljs css language-rust">accumulate_dummy <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> b <span class="token keyword">in</span> <span class="token number">1</span> <span class="token punctuation">..</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> caller <span class="token operator">=</span> <span class="token function">account</span><span class="token punctuation">(</span><span class="token string">"caller"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">:</span> <span class="token function">_</span><span class="token punctuation">(</span><span class="token class-name">RawOrigin</span><span class="token punctuation">::</span><span class="token class-name">Signed</span><span class="token punctuation">(</span>caller<span class="token punctuation">)</span><span class="token punctuation">,</span> b<span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Here you can see we can replace the extrinsic name with <code>_</code> when it matches the name of the benchmark.</p></li>
+<li><p>Once you have written your benchmarks, you should make sure they execute properly by testing them. You can add this macro at the bottom of your module:</p>
+<pre><code class="hljs css language-rust"><span class="token macro property">impl_benchmark_test_suite!</span><span class="token punctuation">(</span>
+  <span class="token class-name">PalletModule</span><span class="token punctuation">,</span>
+  <span class="token keyword">crate</span><span class="token module-declaration namespace"><span class="token punctuation">::</span>tests<span class="token punctuation">::</span></span><span class="token function">new_test_ext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">crate</span><span class="token module-declaration namespace"><span class="token punctuation">::</span>tests<span class="token punctuation">::</span></span><span class="token class-name">Test</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>The <code>impl_benchmark_test_suite!</code> takes three input: the Module struct generated by your pallet, a function that generates a test genesis storage (i.e. <code>new_text_ext()</code>), and a full runtime struct. These things you should get from your normal pallet unit tests.</p>
+<p>We will use your test environment and execute the benchmarks similar to how they would execute when actually running the benchmarks. If everything passes, then it is likely that things will work when you actually run your benchmarks!</p></li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="add-benchmarking-to-your-runtime"></a><a href="#add-benchmarking-to-your-runtime" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add Benchmarking to Your Runtime</h3>
+<p>With all the code completed on the pallet side, you need to also enable your full runtime to allow benchmarking.</p>
+<ol>
+<li><p>Update your runtime <code>Cargo.toml</code> file to include the <code>runtime-benchmarking</code> features:</p>
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">dependencies</span><span class="token punctuation">]</span>
+<span class="token comment"># -- snip --</span>
+<span class="token key property">pallet-you-created</span> <span class="token punctuation">=</span> <span class="token punctuation">{</span> <span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token key property">path</span> <span class="token punctuation">=</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">}</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">features</span><span class="token punctuation">]</span>
+<span class="token key property">std</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span>
+  <span class="token comment"># -- snip --</span>
+  <span class="token string">"pallet-you-created/std"</span>
+<span class="token punctuation">]</span>
+<span class="token key property">runtime-benchmarks</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span>
+  <span class="token comment"># -- snip --</span>
+  <span class="token string">"pallet-you-created/runtime-benchmarks"</span>
+<span class="token punctuation">]</span>
+</code></pre></li>
+<li><p>Add your new pallet to your runtime just as you would any other pallet. If you need more details check out our tutorial to <a href="../../tutorials/add-a-pallet">Add a Pallet to Your Runtime Tutorial</a>.</p></li>
+<li><p>Then, in addition to your normal runtime configuration, you also need to update the benchmarking section of your runtime:</p>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[cfg(feature = <span class="token string">"runtime-benchmarks"</span>)]</span>
+<span class="token keyword">impl</span> <span class="token namespace">frame_benchmarking<span class="token punctuation">::</span></span><span class="token class-name">Benchmark</span><span class="token operator">&lt;</span><span class="token class-name">Block</span><span class="token operator">></span> <span class="token keyword">for</span> <span class="token class-name">Runtime</span> <span class="token punctuation">{</span>
+  <span class="token keyword">fn</span> <span class="token function-definition function">dispatch_benchmark</span><span class="token punctuation">(</span>
+    config<span class="token punctuation">:</span> <span class="token namespace">frame_benchmarking<span class="token punctuation">::</span></span><span class="token class-name">BenchmarkConfig</span>
+  <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Result</span><span class="token operator">&lt;</span><span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token namespace">frame_benchmarking<span class="token punctuation">::</span></span><span class="token class-name">BenchmarkBatch</span><span class="token operator">></span><span class="token punctuation">,</span> <span class="token namespace">sp_runtime<span class="token punctuation">::</span></span><span class="token class-name">RuntimeString</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> whitelist<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token class-name">TrackedStorageKey</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token macro property">vec!</span><span class="token punctuation">[</span>
+      <span class="token comment">// you can whitelist any storage keys you do not want to track here</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">let</span> <span class="token keyword">mut</span> batches <span class="token operator">=</span> <span class="token class-name">Vec</span><span class="token punctuation">::</span><span class="token operator">&lt;</span><span class="token class-name">BenchmarkBatch</span><span class="token operator">></span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> params <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">&amp;</span>config<span class="token punctuation">,</span> <span class="token operator">&amp;</span>whitelist<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Adding the pallet you will perform thee benchmarking</span>
+    <span class="token macro property">add_benchmark!</span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> batches<span class="token punctuation">,</span> pallet_you_crated<span class="token punctuation">,</span> <span class="token class-name">YourPallet</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// -- snip --</span>
+
+    <span class="token keyword">if</span> batches<span class="token punctuation">.</span><span class="token function">is_empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token class-name">Err</span><span class="token punctuation">(</span><span class="token string">"Benchmark not found for this pallet."</span><span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
+    <span class="token class-name">Ok</span><span class="token punctuation">(</span>batches<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>This code should already exist within your runtime assuming you use any of our starting templates. There seems to be a lot of code, but we are mainly just setting up the environment where your benchmarking code will run.</p></li>
+<li><p>To add our new benchmarks, we simply add a new line with the <code>add_benchmark!</code> macro.</p></li>
+</ol>
+<p>Now we are ready to compile the project and run the benchmark!</p>
+<h3><a class="anchor" aria-hidden="true" id="running-your-benchmarks"></a><a href="#running-your-benchmarks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Running Your Benchmarks</h3>
+<p>Benchmarking code is not included with your runtime by default since it would bloat the size of your Wasm. Instead, we need to compile our Substrate node with a feature flag that includes the runtime benchmarking code.</p>
+<p>Depending on your project, you may need to navigate to your node's crate to be able to compile for benchmarks, since virtual workspaces in Rust do not support the <code>--features</code> flag. For example, when using the main Substrate repository, you need to navigate to the <code>/node/cli/</code> folder:</p>
+<pre><code class="hljs css language-bash"><span class="hljs-built_in">cd</span> substrate/bin/node/cli
+</code></pre>
+<p>Then you can build your project with the benchmarks enabled:</p>
+<pre><code class="hljs css language-bash">cargo build --release --features runtime-benchmarks
+</code></pre>
+<p>Once this is done, you should be able to run the <code>benchmark</code> subcommand.</p>
+<pre><code class="hljs css language-bash"><span class="hljs-built_in">cd</span> ../../../
+target/release/substrate benchmark --<span class="hljs-built_in">help</span>
+</code></pre>
+<p>The Benchmarking CLI has a lot of options which can help you automate your benchmarking. A minimal command to execute benchmarks for a pallet will look like this:</p>
+<pre><code class="hljs css language-bash">./target/release/substrate benchmark \
+    --chain dev \               <span class="hljs-comment"># Configurable Chain Spec</span>
+    --execution wasm \          <span class="hljs-comment"># Always test with Wasm</span>
+    --wasm-execution compiled \ <span class="hljs-comment"># Always used `wasm-time`</span>
+    --pallet pallet_example \   <span class="hljs-comment"># Select the pallet</span>
+    --extrinsic <span class="hljs-string">'\*'</span> \          <span class="hljs-comment"># Select the benchmark case name, using '*' for all</span>
+    --steps 20 \                <span class="hljs-comment"># Number of steps across component ranges</span>
+    --repeat 10 \               <span class="hljs-comment"># Number of times we repeat a benchmark</span>
+    --raw \                     <span class="hljs-comment"># Optionally output raw benchmark data to stdout</span>
+    --output ./                 <span class="hljs-comment"># Output results into a Rust file</span>
+</code></pre>
+<ul>
+<li><code>chain</code> specifies the chain-spec we will use</li>
+<li><code>execution</code> and <code>wasm-execution</code> specify we are benchmarking the compiled wasm code (vs the native code as an alternative)</li>
+<li><code>pallet</code> and <code>extrinsic</code> specify which pallet and extrinsics we are benchmarking. With the above arguments we are benchmarking all extrinsics of <code>pallet_example</code>.</li>
+<li><code>steps</code> and <code>repeat</code> means how many steps will be taken to walk through each variable range, and how many time the execution state will be repeated.</li>
+</ul>
+<p>Let's take <code>accumulate_dummy</code> benchmark case as an example.</p>
+<pre><code class="hljs css language-rust">accumulate_dummy <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> b <span class="token keyword">in</span> <span class="token number">1</span> <span class="token punctuation">..</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> caller <span class="token operator">=</span> <span class="token function">account</span><span class="token punctuation">(</span><span class="token string">"caller"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">:</span> <span class="token function">_</span> <span class="token punctuation">(</span><span class="token class-name">RawOrigin</span><span class="token punctuation">::</span><span class="token class-name">Signed</span><span class="token punctuation">(</span>caller<span class="token punctuation">)</span><span class="token punctuation">,</span> b<span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<p>With <code>--steps 20 --repeat 10</code> in the benchmark input arguments, <code>b</code> will walk 20 steps to reach 1,000, so <code>b</code> will start from 1 and increment by about 50. For each value of <code>b</code>, we will execute the benchmark 10 times and record the benchmark information.</p>
+<p><img src="/docs/assets/runtime/benchmarking/multi-variables-regression.png" alt="multi-variables-regression"></p>
+<p>A more complete command that we use for the Substrate benchmarking output looks like this:</p>
+<pre><code class="hljs css language-bash">cargo run --release
+  --features=runtime-benchmarks
+  --manifest-path=bin/node/cli/Cargo.toml
+  --
+  benchmark
+  --chain=dev
+  --steps=50
+  --repeat=20
+  --pallet=frame_system
+  --extrinsic=<span class="hljs-string">"*"</span>
+  --execution=wasm
+  --wasm-execution=compiled
+  --heap-pages=4096
+  --output=./frame/system/src/weights.rs
+  --template=./.maintain/frame-weight-template.hbs
+</code></pre>
+<p>However, the exact command you run will depend on your needs.</p>
+<blockquote>
+<p><strong>备注</strong></p>
+<p>Another argument introduced above is <code>--template</code>. We allow you to specify your own weight template file and the benchmarking toolchain will fill in the exact numbers from the measured result. This enables automating weight generation in your desired code format and integrates this in your CI process.</p>
+<p>The template is in <a href="https://docs.rs/handlebars/">rust handlebars</a> format.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="analyzing-and-outputting-your-benchmarks"></a><a href="#analyzing-and-outputting-your-benchmarks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Analyzing and Outputting Your Benchmarks</h3>
+<p>After running the <code>benchmark</code> command above, we have two outputs. The raw data with benchmarked time and the auto-generated Rust file of <code>WeightInfo</code> implementation.</p>
+<h4><a class="anchor" aria-hidden="true" id="raw-data"></a><a href="#raw-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Raw Data</h4>
+<p>The first output is the raw data recording how much time is spent on running the execution state when varying the input variables. At the end for each variable, the coefficient, assuming linear relationship, between the execution time with respect to change in the variable is determined.</p>
+<p>This is a snippet of the output:</p>
+<pre><code class="hljs css language-csv">Pallet: <span class="hljs-string">"pallet_example"</span>, Extrinsic: <span class="hljs-string">"accumulate_dummy"</span>, Lowest values: [], Highest values: [], Steps: [<span class="hljs-number">10</span>], Repeat: <span class="hljs-number">5</span>
+b,extrinsic_time,storage_root_time,reads,repeat_reads,writes,repeat_writes
+<span class="hljs-number">1</span>,<span class="hljs-number">1231926</span>,<span class="hljs-number">162640</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
+<span class="hljs-number">1</span>,<span class="hljs-number">1245146</span>,<span class="hljs-number">128021</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
+<span class="hljs-number">1</span>,<span class="hljs-number">1238746</span>,<span class="hljs-number">126051</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
+<span class="hljs-number">1</span>,<span class="hljs-number">1206004</span>,<span class="hljs-number">126391</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
+<span class="hljs-number">1</span>,<span class="hljs-number">1212564</span>,<span class="hljs-number">127941</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
+<span class="hljs-number">100</span>,<span class="hljs-number">1257646</span>,<span class="hljs-number">129750</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
+<span class="hljs-number">100</span>,<span class="hljs-number">1232476</span>,<span class="hljs-number">125780</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
+<span class="hljs-number">100</span>,<span class="hljs-number">1215466</span>,<span class="hljs-number">128310</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
+<span class="hljs-number">100</span>,<span class="hljs-number">1205835</span>,<span class="hljs-number">129070</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
+...
+<span class="hljs-number">991</span>,<span class="hljs-number">1208294</span>,<span class="hljs-number">125820</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
+<span class="hljs-number">991</span>,<span class="hljs-number">1209305</span>,<span class="hljs-number">126921</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
+<span class="hljs-number">991</span>,<span class="hljs-number">1203275</span>,<span class="hljs-number">125031</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
+<span class="hljs-number">991</span>,<span class="hljs-number">1234855</span>,<span class="hljs-number">124190</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
+<span class="hljs-number">991</span>,<span class="hljs-number">1337136</span>,<span class="hljs-number">125060</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
+
+Median Slopes Analysis
+========
+-- Extrinsic Time --
+
+Model:
+Time ~=     <span class="hljs-number">1231</span>
+    + b        <span class="hljs-number">0</span>
+              µs
+
+Reads = <span class="hljs-number">1</span> + (<span class="hljs-number">0</span> * b)
+Writes = <span class="hljs-number">1</span> + (<span class="hljs-number">0</span> * b)
+
+Min Squares Analysis
+========
+-- Extrinsic Time --
+
+Data points distribution:
+    b   mean µs  sigma µs       %
+    <span class="hljs-number">1</span>      <span class="hljs-number">1230</span>     <span class="hljs-number">12.61</span>    <span class="hljs-number">1.0</span>%
+  <span class="hljs-number">100</span>      <span class="hljs-number">1230</span>     <span class="hljs-number">16.53</span>    <span class="hljs-number">1.3</span>%
+  <span class="hljs-number">199</span>      <span class="hljs-number">1227</span>     <span class="hljs-number">12.88</span>    <span class="hljs-number">1.0</span>%
+  <span class="hljs-number">298</span>      <span class="hljs-number">1215</span>     <span class="hljs-number">12.94</span>    <span class="hljs-number">1.0</span>%
+  <span class="hljs-number">397</span>      <span class="hljs-number">1239</span>     <span class="hljs-number">19.83</span>    <span class="hljs-number">1.6</span>%
+  <span class="hljs-number">496</span>      <span class="hljs-number">1234</span>     <span class="hljs-number">18.51</span>    <span class="hljs-number">1.5</span>%
+  <span class="hljs-number">595</span>      <span class="hljs-number">1228</span>     <span class="hljs-number">7.167</span>    <span class="hljs-number">0.5</span>%
+  <span class="hljs-number">694</span>      <span class="hljs-number">1233</span>     <span class="hljs-number">13.51</span>    <span class="hljs-number">1.0</span>%
+  <span class="hljs-number">793</span>      <span class="hljs-number">1218</span>     <span class="hljs-number">9.876</span>    <span class="hljs-number">0.8</span>%
+  <span class="hljs-number">892</span>      <span class="hljs-number">1225</span>     <span class="hljs-number">14.15</span>    <span class="hljs-number">1.1</span>%
+  <span class="hljs-number">991</span>      <span class="hljs-number">1220</span>     <span class="hljs-number">11.63</span>    <span class="hljs-number">0.9</span>%
+
+Quality <span class="hljs-keyword">and</span> confidence:
+param     error
+b         <span class="hljs-number">0.006</span>
+
+Model:
+Time ~=     <span class="hljs-number">1230</span>
+    + b        <span class="hljs-number">0</span>
+              µs
+
+Reads = <span class="hljs-number">1</span> + (<span class="hljs-number">0</span> * b)
+Writes = <span class="hljs-number">1</span> + (<span class="hljs-number">0</span> * b)
+</code></pre>
+<p>With the median slopes analysis, this is the weight function:</p>
+<pre><code class="hljs"><span class="token number">1231</span> µs <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">0</span> <span class="token operator">*</span> b<span class="token punctuation">)</span> <span class="token operator">+</span>
+  <span class="token punctuation">[</span><span class="token number">1</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">0</span> <span class="token operator">*</span> b<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">*</span> db read time <span class="token operator">+</span>
+  <span class="token punctuation">[</span><span class="token number">1</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">0</span> <span class="token operator">*</span> b<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">*</span> db write time
+</code></pre>
+<p>We separate the db/storage read and write out because they are particularly expensive and their respective operation time will be retrieved from the runtime. We just need to measure how many db read write are performed with respect to the change of <code>b</code>.</p>
+<p>The benchmark result is telling us that it will always perform 1 db read and 1 db write no matter how <code>b</code> changes.</p>
+<p>The benchmark library gives us both a median slope analysis; that the execution time of a particular <code>b</code> value is taken as the median value of the repeated runs, and a <a href="https://en.wikipedia.org/wiki/Least_squares">min. square analysis</a> that is better explained in a statistics primer.</p>
+<p>You can also derive your own coefficients given you have the raw data on each run, say maybe you know the computation time will not be a linear but an <em>O(nlogn)</em> relationship with the input variable. So you need to determine the coefficient differently.</p>
+<h3><a class="anchor" aria-hidden="true" id="auto-generated-weightinfo-implementation"></a><a href="#auto-generated-weightinfo-implementation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Auto-generated <code>WeightInfo</code> Implementation</h3>
+<p>The second output is an auto-generated <code>WeightInfo</code> implementation. This file defines weight functions of benchmarked extrinsics with the computed coefficient above. We can directly integrated this file in your pallet or further customize them if so desired. The auto-generated implementation is designed to make end-to-end weight updates easy.</p>
+<p>To use this file, we first define a <code>WeightInfo</code> trait in <a href="https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs"><code>frame/example/src/lib.rs</code></a>:</p>
+<pre><code class="hljs css language-rust"><span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token class-name">WeightInfo</span> <span class="token punctuation">{</span>
+  <span class="token keyword">fn</span> <span class="token function-definition function">accumulate_dummy</span><span class="token punctuation">(</span>b<span class="token punctuation">:</span> <span class="token keyword">u32</span><span class="token punctuation">,</span> <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Weight</span><span class="token punctuation">;</span>
+  <span class="token keyword">fn</span> <span class="token function-definition function">set_dummy</span><span class="token punctuation">(</span>b<span class="token punctuation">:</span> <span class="token keyword">u32</span><span class="token punctuation">,</span> <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Weight</span><span class="token punctuation">;</span>
+  <span class="token keyword">fn</span> <span class="token function-definition function">sort_vector</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token keyword">u32</span><span class="token punctuation">,</span> <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Weight</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Here, associated function <code>set_dummy</code> take a parameter. This is because we have the line <code>let b in 1 .. 1000;</code> in our <code>set_dummy</code> benchmarking function, indicating the execution time likely be affected by this parameter.</p>
+<p>The generated file implements these associated functions. To integrate them, we can copy the generated file into the directory where <code>lib.rs</code> is located and named it as <code>weights.rs</code>.</p>
+<p>In the <code>frame/example/src/lib.rs</code>, we have:</p>
+<pre><code class="hljs css language-rust"><span class="token comment">// importing the `weights.rs` here</span>
+<span class="token keyword">pub</span> <span class="token keyword">mod</span> <span class="token module-declaration namespace">weights</span><span class="token punctuation">;</span>
+
+<span class="token keyword">pub</span> <span class="token keyword">mod</span> <span class="token module-declaration namespace">pallet</span> <span class="token punctuation">{</span>
+  <span class="token comment">// -- snip --</span>
+  <span class="token attribute attr-name">#[pallet::call]</span>
+  <span class="token keyword">impl</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Config</span><span class="token operator">></span> <span class="token class-name">Pallet</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token attribute attr-name">#[pallet::weight(
+      T::WeightInfo::set_dummy((*new_value).saturated_into())
+    )]</span>
+    <span class="token keyword">pub</span><span class="token punctuation">(</span><span class="token keyword">super</span><span class="token punctuation">)</span> <span class="token keyword">fn</span> <span class="token function-definition function">set_dummy</span><span class="token punctuation">(</span>
+      origin<span class="token punctuation">:</span> <span class="token class-name">OriginFor</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span>
+      <span class="token attribute attr-name">#[pallet::compact]</span> new_value<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">::</span><span class="token class-name">Balance</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">DispatchResult</span> <span class="token punctuation">{</span>
+      <span class="token comment">// -- snip</span>
+      <span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>For each extrinsic, we add an attribute macro <code>pallet::weight</code> and pass in the weight implementation function with the same name as the extrinsic and variables that affect the weight. We can pass extrinsic parameters as weight function inputs to estimated the final weight.</p>
+<h2><a class="anchor" aria-hidden="true" id="best-practice-and-common-patterns"></a><a href="#best-practice-and-common-patterns" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Best Practice and Common Patterns</h2>
+<p>There are a few best practices for writing extrinsics in order to avoid any surprise on your extrinsics computation time and benchmarking.</p>
+<h3><a class="anchor" aria-hidden="true" id="initial-weight-calculation-must-be-lightweight"></a><a href="#initial-weight-calculation-must-be-lightweight" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Initial Weight Calculation Must be Lightweight</h3>
+<p>Extrinsic weight function will be called, probably multiple times, when an extrinsic is going to be called. So the weight function must be lightweight and should not perform any storage read/write, an expensive operation.</p>
+<h3><a class="anchor" aria-hidden="true" id="set-bounds-and-assume-the-worst"></a><a href="#set-bounds-and-assume-the-worst" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set Bounds and Assume the Worst</h3>
+<p>If the extrinsic computation time depends on existing storage value, then set a maximum bound on those storages and assume the worst case. Later on, weight can be returned in the extrinsic when it is returned.</p>
+<h3><a class="anchor" aria-hidden="true" id="keep-extrinsics-simple"></a><a href="#keep-extrinsics-simple" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Keep Extrinsics Simple</h3>
+<p>Try to keep extrinsic simple and to perform only one function. Sometimes it maybe better to separate the complex logic into multiple extrinsic calls and have a front-end abstracting these extrinsic interaction away to provide a clean and friendly user experience.</p>
+<h3><a class="anchor" aria-hidden="true" id="separate-benchmarks-per-logical-path-and-use-the-worst-case"></a><a href="#separate-benchmarks-per-logical-path-and-use-the-worst-case" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Separate Benchmarks per Logical Path and Use the Worst Case</h3>
+<p>If your extrinsic has multiple logical paths with signficantly different execution time, separate these paths in multiple benchmarking cases and measure them. In the actual pallet weight macro above the extrinsics, you could combine them with a <code>max</code> function, e.g.</p>
+<pre><code class="hljs css language-rust"><span class="token attribute attr-name">#[pallet::weight(
+  &lt;T::WeightInfo::path_a()
+    .max(T::WeightInfo::path_b())
+    .max(T::WeightInfo::path_c())>
+)]</span>
+</code></pre>
+<p>Note the weight returned here is more as the worst case of the weight estimate. You can then decide if you want to return some weight value back at the end of the extrinsic once you what computation have happened. Otherwise it will be always overcharging users for calling this extrinsic.</p>
+<h3><a class="anchor" aria-hidden="true" id="minimize-usage-of-on_finalize-and-trasition-logic-to-on_initialize"></a><a href="#minimize-usage-of-on_finalize-and-trasition-logic-to-on_initialize" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Minimize Usage of <code>on_finalize</code>, and trasition logic to <code>on_initialize</code></h3>
+<p>Substrate provides runtime developers with multiple hooks when writing their own runtime, with <code>on_initialize</code> and <code>on_finalize</code> being two of them. As <code>on_finalize</code> is the last thing happening in a block, variable weight needs in <code>on_finalize</code> can easily lead to overweight block and should be avoided.</p>
+<p><img src="/docs/assets/runtime/benchmarking/on-finalize-blocktime.png" alt="on-finalize-blocktime.png"></p>
+<p>If possible, move the logic to <code>on_intialize</code> hook that happens at the beginning of the block. Then the number of extrinsics to be included in the block can be adjusted accordingly. Another trick is to put the weight of <code>on_finalize</code> on to <code>on_initialize</code> or the extrinsic itself. This leads to another tip of trying to keep the pallet hook execution in constant time for only set up and clean up, but not doing fancy computation.</p>
+<h2><a class="anchor" aria-hidden="true" id="reference"></a><a href="#reference" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Reference</h2>
+<ul>
+<li><a href="https://github.com/paritytech/substrate/blob/master/frame/benchmarking/README.md"><code>frame-benchmarking</code> README</a></li>
+<li><a href="https://www.youtube.com/watch?v=Qa6sTyUqgek">Substrate Seminar: Benchmarking Your Substrate Pallet</a></li>
+<li><a href="https://hackmd.io/041uMXYXR8y6nBWUnQ6uCQ">Benchmarking and Weights for a New Pallet</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="footnotes"></a><a href="#footnotes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Footnotes</h2>
+<ol>
+<li><span id="footnote-ref-hardware">The</span> reference hardware use for benchmarking Substrate is an Intel Core i7-7700K CPU with 64GB of RAM and an NVMe SSD.</li>
+</ol>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/knowledgebase/runtime/fees"><span class="arrow-prev">← </span><span>Transaction Fees and Weights</span></a><a class="docs-next button" href="/docs/zh-CN/knowledgebase/runtime/debugging"><span>调试</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#what-is-runtime-benchmarking">What Is Runtime Benchmarking?</a></li><li><a href="#why-benchmark-a-runtime-pallet">Why Benchmark a Runtime Pallet?</a></li><li><a href="#how-to-benchmark">How to Benchmark?</a><ul class="toc-headings"><li><a href="#adding-benchmarking-to-your-pallet">Adding Benchmarking to Your Pallet</a></li><li><a href="#add-benchmarking-to-your-runtime">Add Benchmarking to Your Runtime</a></li><li><a href="#running-your-benchmarks">Running Your Benchmarks</a></li><li><a href="#analyzing-and-outputting-your-benchmarks">Analyzing and Outputting Your Benchmarks</a></li><li><a href="#auto-generated-weightinfo-implementation">Auto-generated <code>WeightInfo</code> Implementation</a></li></ul></li><li><a href="#best-practice-and-common-patterns">Best Practice and Common Patterns</a><ul class="toc-headings"><li><a href="#initial-weight-calculation-must-be-lightweight">Initial Weight Calculation Must be Lightweight</a></li><li><a href="#set-bounds-and-assume-the-worst">Set Bounds and Assume the Worst</a></li><li><a href="#keep-extrinsics-simple">Keep Extrinsics Simple</a></li><li><a href="#separate-benchmarks-per-logical-path-and-use-the-worst-case">Separate Benchmarks per Logical Path and Use the Worst Case</a></li><li><a href="#minimize-usage-of-on_finalize-and-trasition-logic-to-on_initialize">Minimize Usage of <code>on_finalize</code>, and trasition logic to <code>on_initialize</code></a></li></ul></li><li><a href="#reference">Reference</a></li><li><a href="#footnotes">Footnotes</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/substrate-how-to-guides">How-to Guides</a><a href="https://substrate.dev/rustdocs">API 文档</a><a href="https://playground.substrate.dev/">Playground</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://matrix.to/#/#substrate-technical:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
+                var cookieSettings = document.getElementById('cookie-settings');
+                cookieSettings.onclick = function() {
+                  return klaro.show();
+                };
+              </script></a></div></section><section class="copyright">Copyright © 2021 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-CN"]}
+              });
+            </script></body></html>

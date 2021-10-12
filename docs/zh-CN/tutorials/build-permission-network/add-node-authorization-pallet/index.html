@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>添加节点授权模块 · Substrate Developer Hub</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 关于 `node-authorization` pallet"/><meta name="docsearch:language" content="zh-CN"/><meta property="og:title" content="添加节点授权模块 · Substrate Developer Hub"/><meta property="og:type" content="website"/><meta property="og:url" content="https://substrate-developer-hub.github.io//"/><meta property="og:description" content="## 关于 `node-authorization` pallet"/><meta property="og:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://substrate-developer-hub.github.io/img/substrate-dev-hub-card.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script><script type="text/javascript" src="/js/clipboard.min.js"></script><script type="text/javascript" src="/js/code-block-buttons.js"></script><script type="text/javascript" src="/js/load.js"></script><script type="text/javascript" src="/js/past-seminars.js"></script><script type="text/javascript" src="/js/config.js" defer=""></script><script type="text/javascript" src="/js/klaro.min.js" defer=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/zh-CN"><img class="logo" src="/img/Substrate-logo.svg" alt="Substrate Developer Hub"/><h2 class="headerTitleWithLogo">Substrate Developer Hub</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/zh-CN/tutorials" target="_self">教程</a></li><li class=""><a href="/docs/zh-CN/" target="_self">知识库</a></li><li class=""><a href="https://substrate.dev/recipes/" target="_self">进阶菜谱</a></li><li class=""><a href="https://substrate.dev/substrate-how-to-guides/" target="_self">How-to Guides</a></li><li class=""><a href="https://substrate.dev/rustdocs/" target="_self">Reference</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><span><li><a id="languages-menu" href="#"><img class="languages-icon" src="/img/language.svg" alt="Languages icon"/>简体中文</a><div id="languages-dropdown" class="hide"><ul id="languages-dropdown-items"><li><a href="/docs/en/tutorials/build-permission-network/add-node-authorization-pallet">English</a></li><li><a href="https://crowdin.com/project/substrate-developer-hub" target="_blank" rel="noreferrer noopener">协助翻译</a></li></ul></div></li><script>
+        const languagesMenuItem = document.getElementById("languages-menu");
+        const languagesDropDown = document.getElementById("languages-dropdown");
+        languagesMenuItem.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          if (languagesDropDown.className == "hide") {
+            languagesDropDown.className = "visible";
+          } else {
+            languagesDropDown.className = "hide";
+          }
+        });
+      </script></span></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>建立一个联盟链</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">建立一个联盟链<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/build-permission-network/">介绍</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/zh-CN/tutorials/build-permission-network/add-node-authorization-pallet">添加节点授权模块</a></li><li class="navListItem"><a class="navItem" href="/docs/zh-CN/tutorials/build-permission-network/launch-network">创建联盟链</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://crowdin.com/project/substrate-developer-hub/zh-CN" target="_blank" rel="noreferrer noopener">Translate</a><h1 id="__docusaurus" class="postHeaderTitle">添加节点授权模块</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="关于-node-authorization-pallet"></a><a href="#关于-node-authorization-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>关于 <code>node-authorization</code> pallet</h2>
+<p>The <code>node-authorization</code> pallet is a build-in pallet in Substrate FRAME, which manages a configurable set of nodes for a permissioned network. 每个节点通过 <code>PeerId</code> 进行标识，它仅仅包含了 <code>Vec&lt;u8&gt;</code> 这一数据类型。 Each <code>PeerId</code> is owned by an <code>AccountId</code> that claims it (these are <a href="https://substrate.dev/rustdocs/latest/pallet_node_authorization/pallet/type.Owners.html">associated in a map</a> ). 通过这个模块，你有两种方法来授权节点加入到区块链网络中：</p>
+<ol>
+<li>加入到 well known 节点集合中，这些节点彼此可以连接。 You need to be approved by the governance (or sudo) in the system for this.</li>
+<li>Ask for a <em>paired peer</em> connection from a specific node. This node can either be a well known node or a normal one.</li>
+</ol>
+<p>通过 <code>PeerId</code> 关联的某个节点 <strong>有且仅有一个拥有者</strong>。 Well known 节点的拥有者是在添加它们时指定的。 如果是普通节点，<em>任何</em> 用户都可以 claim 认领这一 <code>PeerId</code> 作为对应节点的拥有者。 To protect against false claims, the maintainer of the node should claim it <em>before even starting the node</em> and therefor revealing their <code>PeerID</code> to the network that <em>anyone</em> could subsequently claim.</p>
+<p>The owner of a node can then add and remove connections for their node. To be clear, you can't change the connections between well known nodes, they are always allowed to connect with each other. Instead, you can manipulate the connection between a well known node and a normal node or between two normal nodes and sub-nodes.</p>
+<p>The <code>node-authorization</code> pallet integrates an <a href="../../knowledgebase/learn-substrate/off-chain-features#off-chain-workers">offchain worker</a> to configure it's node connections. Make sure to enable offchain worker with the right CLI flag as offchain worker is disabled by default for non-authority nodes.</p>
+<blockquote>
+<p>Your node may not be synced with the latest block, and thus not be aware of and published updates that are reflected in the <code>node-authorization</code> chain storage. You may need to disable offchain worker and manually set reachable reserved nodes for your node to sync up with the network if this is the case.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="start-with-the-template"></a><a href="#start-with-the-template" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Start with the Template</h2>
+<p>If you already have Node Template cloned, you can just create a <strong>check out the <code>latest</code> branch</strong> from the base template, otherwise, clone this branch of the project:</p>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># Fresh clone, if needed:</span>
+git <span class="hljs-built_in">clone</span> -b latest --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+<span class="hljs-comment"># From the working directory, create a new branch and check it out</span>
+<span class="hljs-built_in">cd</span> substrate-node-template
+git branch perm-network
+git checkout perm-network
+</code></pre>
+<p>You should be able to <code>build</code> the project (or <code>check</code>) without any error:</p>
+<pre><code class="hljs css language-bash"><span class="hljs-built_in">cd</span> substrate-node-template/
+cargo build --release
+</code></pre>
+<blockquote>
+<p>If you do run into issues building, checkout <a href="../../knowledgebase/getting-started/#2-rust-developer-environment">these helpful tips</a></p>
+</blockquote>
+<p>现在可以用你最喜欢的编译器打开代码，等不及了是不是？</p>
+<h2><a class="anchor" aria-hidden="true" id="add-the-node-authorization-pallet"></a><a href="#add-the-node-authorization-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add the <code>node-authorization</code> pallet</h2>
+<p>First we must add the pallet to our runtime dependencies:</p>
+<p><strong><code>runtime/Cargo.toml</code></strong></p>
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">dependencies.pallet-node-authorization</span><span class="token punctuation">]</span>
+<span class="token key property">default-features</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+<span class="token key property">git</span> <span class="token punctuation">=</span> <span class="token string">'https://github.com/paritytech/substrate.git'</span>
+<span class="token key property">tag</span> <span class="token punctuation">=</span> <span class="token string">'monthly-2021-09+1'</span>
+<span class="token key property">version</span> <span class="token punctuation">=</span> <span class="token string">'4.0.0-dev'</span>
+</code></pre>
+<p><strong><code>runtime/Cargo.toml</code></strong></p>
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">features</span><span class="token punctuation">]</span>
+<span class="token key property">default</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">'std'</span><span class="token punctuation">]</span>
+<span class="token key property">std</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span>
+    <span class="token comment">#--snip--</span>
+    <span class="token string">'pallet-node-authorization/std'</span><span class="token punctuation">,</span>
+    <span class="token comment">#--snip--</span>
+<span class="token punctuation">]</span>
+</code></pre>
+<p>We need to simulate the governance in our simple blockchain, so we just let a <code>sudo</code> admin rule, configuring the pallet's interface to <code>EnsureRoot</code>. In a production environment we sould want to have difference, governance based checking implimented here. More details of this <code>Config</code> can be found in the pallet's <a href="https://docs.rs/pallet-node-authorization/3.0.0/pallet_node_authorization/trait.Config.html">reference docs</a>.</p>
+<p><strong><code>runtime/src/lib.rs</code></strong></p>
+<pre><code class="hljs css language-rust">
+<span class="token comment">/* --snip-- */</span>
+
+<span class="token keyword">use</span> <span class="token namespace">frame_system<span class="token punctuation">::</span></span><span class="token class-name">EnsureRoot</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* --snip-- */</span>
+
+<span class="token macro property">parameter_types!</span> <span class="token punctuation">{</span>
+    <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">MaxWellKnownNodes</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span>
+    <span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token class-name">MaxPeerIdLength</span><span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token number">128</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span> <span class="token namespace">pallet_node_authorization<span class="token punctuation">::</span></span><span class="token class-name">Config</span> <span class="token keyword">for</span> <span class="token class-name">Runtime</span> <span class="token punctuation">{</span>
+    <span class="token keyword">type</span> <span class="token class-name">Event</span> <span class="token operator">=</span> <span class="token class-name">Event</span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">MaxWellKnownNodes</span> <span class="token operator">=</span> <span class="token class-name">MaxWellKnownNodes</span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">MaxPeerIdLength</span> <span class="token operator">=</span> <span class="token class-name">MaxPeerIdLength</span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">AddOrigin</span> <span class="token operator">=</span> <span class="token class-name">EnsureRoot</span><span class="token operator">&lt;</span><span class="token class-name">AccountId</span><span class="token operator">></span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">RemoveOrigin</span> <span class="token operator">=</span> <span class="token class-name">EnsureRoot</span><span class="token operator">&lt;</span><span class="token class-name">AccountId</span><span class="token operator">></span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">SwapOrigin</span> <span class="token operator">=</span> <span class="token class-name">EnsureRoot</span><span class="token operator">&lt;</span><span class="token class-name">AccountId</span><span class="token operator">></span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">ResetOrigin</span> <span class="token operator">=</span> <span class="token class-name">EnsureRoot</span><span class="token operator">&lt;</span><span class="token class-name">AccountId</span><span class="token operator">></span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">WeightInfo</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* --snip-- */</span>
+</code></pre>
+<p>Finally, we are ready to put our pallet in <code>construct_runtime</code> macro with following extra line of code:</p>
+<p><strong><code>runtime/src/lib.rs</code></strong></p>
+<pre><code class="hljs css language-rust"><span class="token macro property">construct_runtime!</span><span class="token punctuation">(</span>
+    <span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Runtime</span> <span class="token keyword">where</span>
+        <span class="token class-name">Block</span> <span class="token operator">=</span> <span class="token class-name">Block</span><span class="token punctuation">,</span>
+        <span class="token class-name">NodeBlock</span> <span class="token operator">=</span> <span class="token namespace">opaque<span class="token punctuation">::</span></span><span class="token class-name">Block</span><span class="token punctuation">,</span>
+        <span class="token class-name">UncheckedExtrinsic</span> <span class="token operator">=</span> <span class="token class-name">UncheckedExtrinsic</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">/* --snip-- */</span>
+
+        <span class="token comment">/*** Add This Line ***/</span>
+        <span class="token class-name">NodeAuthorization</span><span class="token punctuation">:</span> <span class="token namespace">pallet_node_authorization<span class="token punctuation">::</span></span><span class="token punctuation">{</span><span class="token class-name">Pallet</span><span class="token punctuation">,</span> <span class="token class-name">Call</span><span class="token punctuation">,</span> <span class="token class-name">Storage</span><span class="token punctuation">,</span> <span class="token class-name">Event</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span> <span class="token class-name">Config</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+        <span class="token comment">/* --snip-- */</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="add-genesis-storage-for-our-pallet"></a><a href="#add-genesis-storage-for-our-pallet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add genesis storage for our pallet</h2>
+<p><code>PeerId</code> is encoded in bs58 format, so we need a new library <a href="https://docs.rs/bs58/0.3.1/bs58/">bs58</a> in <strong>node/cargo.toml</strong> to decode it to get its bytes.</p>
+<p><strong><code>node/Cargo.toml</code></strong></p>
+<pre><code class="hljs css language-toml"><span class="token punctuation">[</span><span class="token table class-name">dependencies</span><span class="token punctuation">]</span>
+<span class="token comment">#--snip--</span>
+<span class="token key property">bs58</span> <span class="token punctuation">=</span> <span class="token string">"0.4.0"</span>
+<span class="token comment">#--snip--</span>
+</code></pre>
+<p>Now we add a proper genesis storage in <strong>node/src/chain_spec.rs</strong>. Similarly, import the necessary dependencies:</p>
+<p><strong>node/src/chain_spec.rs</strong></p>
+<pre><code class="hljs css language-rust"><span class="token comment">/* --snip-- */</span>
+<span class="token keyword">use</span> <span class="token namespace">sp_core<span class="token punctuation">::</span></span><span class="token class-name">OpaquePeerId</span><span class="token punctuation">;</span> <span class="token comment">// A struct wraps Vec&lt;u8>, represents as our `PeerId`.</span>
+<span class="token keyword">use</span> <span class="token namespace">node_template_runtime<span class="token punctuation">::</span></span><span class="token class-name">NodeAuthorizationConfig</span><span class="token punctuation">;</span> <span class="token comment">// The genesis config that serves for our pallet.</span>
+<span class="token comment">/* --snip-- */</span>
+</code></pre>
+<p>Adding our genesis config in the helper function <code>testnet_genesis</code>,</p>
+<p><strong>node/src/chain_spec.rs</strong></p>
+<pre><code class="hljs css language-rust"><span class="token comment">/// Configure initial storage state for FRAME modules.</span>
+<span class="token keyword">fn</span> <span class="token function-definition function">testnet_genesis</span><span class="token punctuation">(</span>
+    wasm_binary<span class="token punctuation">:</span> <span class="token operator">&amp;</span><span class="token punctuation">[</span><span class="token keyword">u8</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    initial_authorities<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token class-name">AuraId</span><span class="token punctuation">,</span> <span class="token class-name">GrandpaId</span><span class="token punctuation">)</span><span class="token operator">></span><span class="token punctuation">,</span>
+    root_key<span class="token punctuation">:</span> <span class="token class-name">AccountId</span><span class="token punctuation">,</span>
+    endowed_accounts<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&lt;</span><span class="token class-name">AccountId</span><span class="token operator">></span><span class="token punctuation">,</span>
+    _enable_println<span class="token punctuation">:</span> <span class="token keyword">bool</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">GenesisConfig</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/* --snip-- */</span>
+
+    <span class="token comment">/*** Add This Block Item ***/</span>
+        node_authorization<span class="token punctuation">:</span> <span class="token class-name">NodeAuthorizationConfig</span> <span class="token punctuation">{</span>
+            nodes<span class="token punctuation">:</span> <span class="token macro property">vec!</span><span class="token punctuation">[</span>
+                <span class="token punctuation">(</span>
+                    <span class="token class-name">OpaquePeerId</span><span class="token punctuation">(</span><span class="token namespace">bs58<span class="token punctuation">::</span></span><span class="token function">decode</span><span class="token punctuation">(</span><span class="token string">"12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">into_vec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unwrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                    endowed_accounts<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token punctuation">(</span>
+                    <span class="token class-name">OpaquePeerId</span><span class="token punctuation">(</span><span class="token namespace">bs58<span class="token punctuation">::</span></span><span class="token function">decode</span><span class="token punctuation">(</span><span class="token string">"12D3KooWQYV9dGMFoRzNStwpXztXaBUjtPqi6aU76ZgUriHhKust"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">into_vec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unwrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                    endowed_accounts<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token comment">/* --snip-- */</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p><code>NodeAuthorizationConfig</code> contains a property named <code>nodes</code>, which is vector of tuple. The first element of the tuple is the <code>OpaquePeerId</code> and we use <code>bs58::decode</code> to convert the <code>PeerId</code> in human readable format to bytes. The second element of the tuple is <code>AccountId</code> and represents the owner of this node, here we are using one of the provided endowed accounts for demonstration: <a href="../../knowledgebase/integrate/subkey#well-known-keys">Alice and Bob</a>.</p>
+<!-- TODO: update to use the `key` embedded CLI tool with the node, reference subkey as option -->
+<p>You may wondering where the <code>12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2</code> comes from. We can use <a href="../../knowledgebase/integrate/subkey#generating-node-keys">subkey</a> to generate the above human readable <code>PeerId</code>.</p>
+<pre><code class="hljs css language-bash">subkey generate-node-key
+</code></pre>
+<blockquote>
+<p>Note: <code>subkey</code> is a CLI tool that comes bundled with substrate, and you can install it natively too! - <a href="../../knowledgebase/integrate/subkey#installation">Install Instructions</a></p>
+</blockquote>
+<p>The output of the command is like:</p>
+<pre><code class="hljs css language-bash">12D3KooWBmAwcd4PJNJvfV89HwE48nwkRmAgo8Vy3uQEyNNHBox2 // this is PeerId.
+c12b6d18942f5ee8528c8e2baf4e147b5c5c18710926ea492d09cbd9f6c9f82a // This is node-key.
+</code></pre>
+<p>Now all the code changes are finished, we are ready to launch our permissioned network!</p>
+<blockquote>
+<p>Stuck? The solution with all required changes to the base template can be found <a href="https://github.com/substrate-developer-hub/substrate-node-template/tree/tutorials/solutions/permissioned-network-v3">here</a>. Check <a href="https://github.com/substrate-developer-hub/substrate-node-template/compare/1c5b984ccadf76cdbc0edd0e82594d57e412b257...tutorials/solutions/permissioned-network-v3">the diff from its base</a>.</p>
+</blockquote>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/zh-CN/tutorials/build-permission-network/index"><span class="arrow-prev">← </span><span>介绍</span></a><a class="docs-next button" href="/docs/zh-CN/tutorials/build-permission-network/launch-network"><span>创建联盟链</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#关于-node-authorization-pallet">关于 <code>node-authorization</code> pallet</a></li><li><a href="#start-with-the-template">Start with the Template</a></li><li><a href="#add-the-node-authorization-pallet">Add the <code>node-authorization</code> pallet</a></li><li><a href="#add-genesis-storage-for-our-pallet">Add genesis storage for our pallet</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/Substrate-logo.svg" alt="Substrate Developer Hub" width="66" height="58"/></a><div><h5>开发者中心</h5><a href="/zh-CN/tutorials">教程</a><a href="/docs/zh-CN/">知识库</a><a href="https://substrate.dev/recipes/">进阶菜谱</a><a href="https://substrate.dev/substrate-how-to-guides">How-to Guides</a><a href="https://substrate.dev/rustdocs">API 文档</a><a href="https://playground.substrate.dev/">Playground</a></div><div><h5>社区</h5><a href="/zh-CN/community">社区主页</a><a href="/zh-CN/newsletter">通讯</a><a href="https://matrix.to/#/#substrate-technical:matrix.org">Substrate 技术聊天室</a><a href="/zh-CN/seminar">Substrate 研讨会</a><a href="http://stackoverflow.com/questions/tagged/substrate" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/substrate_io" target="_blank" rel="noreferrer noopener">推特</a><a href="https://www.meetup.com/parity/" target="_blank" rel="noreferrer noopener">聚会活动</a></div><div><h5>更多</h5><a href="https://www.substrate.io/builders-program/">Substrate Builders 计划</a><a href="https://www.parity.io/blog/">Blog</a><a href="https://github.com/paritytech/substrate">Substrate GitHub</a><a href="https://github.com/substrate-developer-hub/">开发者中心 GitHub</a><a href="https://www.parity.io/privacy/">隐私政策</a><a href="/terms">使用条款</a><a href="#" id="cookie-settings">Cookie 设置<script>
+                var cookieSettings = document.getElementById('cookie-settings');
+                cookieSettings.onclick = function() {
+                  return klaro.show();
+                };
+              </script></a></div></section><section class="copyright">Copyright © 2021 Parity Technologies</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '5cd09916f4ba4c283b2d45ee7386fc34',
+                indexName: 'substrate',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {"facetFilters":["language:zh-CN"]}
+              });
+            </script></body></html>
