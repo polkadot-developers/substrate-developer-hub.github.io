@@ -21,11 +21,11 @@
 const videos = require('./data/videos')
 
 const title_prefix = 'Substrate Developer Hub'
-const custom_url = 'substrate.dev'
+// const custom_url = 'substrate.dev'
 const is_staging = process.env['NODE_ENV'] == 'staging'
 const git_rev = is_staging ? process.env['GIT_REV'] : null
 const title = is_staging ? `${title_prefix} (@${git_rev})` : title_prefix
-const cname = is_staging ? `staging.${custom_url}` : custom_url
+// const cname = is_staging ? `staging.${custom_url}` : custom_url
 
 const siteConfig = {
 
@@ -47,7 +47,7 @@ const siteConfig = {
   //   baseUrl: '/test-site/',
 
   // Generate CNAME file when building
-  cname,
+  // cname,
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [

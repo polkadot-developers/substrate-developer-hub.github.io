@@ -390,4 +390,5 @@ class Index extends React.Component {
 
 Index.title = "Official Substrate Documentation for Blockchain Developers";
 Index.description = "Learn to build blockchains using the next generation blockchain framework.";
+
 module.exports = Index;

@@ -1,3 +1,7 @@
+**⚠️ Substrate Documentation in this repo is deprecated. The new version is deployed at: https://docs.substrate.io.**
+
+---
+
 This website was created with [Docusaurus](https://docusaurus.io/).
 
 # What's In This Document
